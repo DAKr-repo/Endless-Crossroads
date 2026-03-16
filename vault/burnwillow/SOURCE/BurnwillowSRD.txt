@@ -1,0 +1,135 @@
+﻿Here is the Burnwillow System Reference Document (SRD) v0.1.
+
+This document strips away the conversation and leaves you with the raw rules text. You can copy-paste this into a doc to start playtesting.
+
+BURNWILLOW: System Reference Document
+Premise: A procedural dungeon-crawler where equipment defines your class. Goal: Reach the heart of the Burning Willow to stop the Blight. Core Philosophy: You are what you wear. Death is final.
+
+1. The Core Mechanic
+To attempt a risky action, the player rolls a pool of six-sided dice (d6) and adds a relevant Stat Modifier.
+
+The Formula:
+
+[Dice Pool] + [Stat Modifier] vs. [Difficulty Class (DC)]
+
+The Cap: A player may never roll more than 5d6 for a single action.
+
+The Base: Characters always start with 1d6 (The "Naked" die). Gear adds additional dice.
+
+Difficulty Classes (DC)
+Difficulty DC Examples
+Routine 8 Breaking a wooden crate, climbing a rope.
+Hard 12 Picking a lock, jumping a chasm, attacking a soldier.
+Heroic 16 Bending iron bars, deciphering ancient runes.
+Legendary 20 Resisting dragon fear, swimming up a waterfall.
+2. Character Creation
+Characters are defined by four Core Stats. Roll 4d6 and drop the lowest for each. Assign as desired.
+
+The Four Pillars
+MIGHT (Physical): Strength, melee combat, athletics.
+
+WITS (Mental): Perception, ranged accuracy, technology, mechanisms.
+
+GRIT (Fortitude): Health, stamina, poison resistance.
+
+AETHER (Magical): Willpower, spellcasting, attunement.
+
+Stat Modifiers
+Score Modifier Score Modifier
+8–9 -1 14–15 +2
+10–11 0 16–17 +3
+12–13 +1 18 +4
+Health (HP): 10 + Grit Modifier.
+
+Defense (AC): 10 + Wits Modifier (Modified by Shield/Armor).
+
+3. Equipment & Progression
+Characters do not level up. They acquire better gear. The Slots (10 Total): Head, Shoulders, Chest, Arms, Legs, R. Hand, L. Hand, R. Ring, L. Ring, Neck.
+
+Gear Tiers (The Dice Pool)
+The material of an item determines how many dice are added to the roll.
+
+Tier 0 (Unarmed): 1d6 Total.
+
+Tier I (Scrap/Wood): Adds +1d6.
+
+Tier II (Iron/Leather): Adds +2d6.
+
+Tier III (Steel/Silver): Adds +3d6.
+
+Tier IV (Mithral/Gold): Adds +4d6.
+
+Armor & Protection
+Armor does not make you harder to hit; it reduces damage taken.
+
+Damage Reduction (DR): Subtracted from incoming damage before HP loss.
+
+Example: Chainmail Chest (DR 2). A hit for 5 damage becomes 3 damage.
+
+4. Combat Rules
+Combat is played in Rounds.
+
+Initiative (The Ambush): When entering a room with enemies, the party leader rolls Wits vs. Enemy Passive DC.
+
+Success: The Party takes an Ambush Round (Enemies do nothing).
+
+Failure: Roll standard Initiative.
+
+The Turn:
+
+Move: Up to Speed (Standard ~30ft).
+
+Action: Attack, Cast, Skill, or Support.
+
+Universal Actions
+Attack: Roll [Weapon Dice] + Stat vs. Enemy Defense.
+
+Dash: Move twice.
+
+Guard: Add +1d6 to Defense rolls until next turn.
+
+Grapple/Shove: Might vs. Might. Success = Prone or Pushed.
+
+Active Support Actions (Gear Dependent)
+Intercept (Shield): Take a hit meant for an adjacent ally. Gain +2 DR for that hit.
+
+Command (Banner/Horn): Roll Wits. Success = Ally gains an immediate free Attack or Move.
+
+Bolster (Holy Symbol): Roll Aether. Success = Ally adds +2d6 to their next roll.
+
+Sanctify (Relic): Roll Aether. Create a zone enemies cannot enter.
+
+5. Adventuring Rules
+The Lock & Key Economy
+Keys: Consumable items. Automatically open 1 Locked Chest/Door.
+
+Lockpicking: Requires Thief Gear (e.g., Skeleton Key Band). Roll Wits vs. Lock DC.
+
+Failure: Lock jams or Trap triggers.
+
+Brute Force: Roll Might.
+
+Success: Opens, but 50% chance to destroy fragile loot inside.
+
+Magic: Implements vs. Scrolls
+Implements (Wands/Staves): Infinite use. Scale with Aether. Lower damage than melee weapons, but hit Resistance instead of Defense.
+
+Scrolls: Consumable. High power.
+
+Volatile: When used, roll Aether vs. DC 10. Failure = Scroll burns and spell fizzles (or backfires).
+
+Death & The Cycle
+Hardcore: When HP reaches 0, the character is dead.
+
+Legacy: The dungeon resets. The town persists (optionally). The player creates a new character (4d6 drop lowest) to brave the Burnwillow again.
+
+6. Sample Loot Table (Tier I - Starting Gear)
+d6 Item Name Slot Effect
+1 Rusted Shortsword R. Hand +1d6 Attack.
+2 Padded Jerkin Chest DR 1.
+3 Old Oak Wand R. Hand +1d6 Magic Attack (Aether).
+4 Burglar's Gloves Arms [Lockpick] Ability. +1d6 to Thievery.
+5 Pot Lid Shield L. Hand +1 Defense. Allows [Intercept].
+6 Bandage Pouch Legs Action: Heal 1d6 HP (3 Charges).
+
+

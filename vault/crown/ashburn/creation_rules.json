@@ -1,0 +1,46 @@
+{
+  "system_id": "ashburn",
+  "display_name": "Ashburn High",
+  "genre": "Gothic School Mystery",
+  "parent_engine": "crown",
+  "stats_method": "none",
+  "stats": [],
+  "steps": [
+    {
+      "id": "name",
+      "label": "Name Your Heir",
+      "type": "text_input",
+      "prompt": "What is your name, Heir of Ashburn?"
+    },
+    {
+      "id": "class",
+      "label": "Choose Your Archetype",
+      "type": "choice",
+      "prompt": "What is your role at the Academy?",
+      "options": [
+        {"id": "prefect", "label": "The Prefect", "description": "Authority and order. You hold the keys."},
+        {"id": "scholar", "label": "The Scholar", "description": "Knowledge is a weapon. You wield it well."},
+        {"id": "rebel", "label": "The Rebel", "description": "Rules are made to be broken. You prove it."},
+        {"id": "legacy", "label": "The Legacy", "description": "Your family name opens every door."},
+        {"id": "outsider", "label": "The Outsider", "description": "You don't belong here. That's your advantage."}
+      ]
+    },
+    {
+      "id": "race",
+      "label": "Choose Your House",
+      "type": "choice",
+      "prompt": "Which house claims you?",
+      "options": [
+        {"id": "corvus", "label": "House Corvus", "description": "The watchers. Secrets are currency."},
+        {"id": "ashwood", "label": "House Ashwood", "description": "Old blood. Old money. Old grudges."},
+        {"id": "thornwall", "label": "House Thornwall", "description": "Discipline and duty above all."},
+        {"id": "mirewood", "label": "House Mirewood", "description": "The mystics. They hear what others cannot."}
+      ]
+    }
+  ],
+  "view_type": "stat_block",
+  "derived": {
+    "corruption": "0",
+    "suspicion": "Low"
+  }
+}

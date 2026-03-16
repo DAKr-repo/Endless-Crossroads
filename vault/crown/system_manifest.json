@@ -1,0 +1,22 @@
+{
+  "system_id": "crown",
+  "display_name": "Crown of the Oathbreaker",
+  "engine_type": "spatial",
+  "engine_traits": [
+    "narrative_loom"
+  ],
+  "primary_loop": "spatial_dungeon",
+  "resolution_mechanic": "d20",
+  "stat_block_format": {
+    "fields": ["name", "hp", "ac", "attack", "damage"],
+    "pattern_hint": null
+  },
+  "character_stats": ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"],
+  "damage_types": ["slashing", "piercing", "bludgeoning", "fire", "cold", "necrotic", "radiant"],
+  "currency": "gp",
+  "progression": "xp_levels",
+  "classified_by": "human",
+  "classified_at": "2026-03-08T00:00:00Z",
+  "confidence": 1.0,
+  "needs_review": false
+}

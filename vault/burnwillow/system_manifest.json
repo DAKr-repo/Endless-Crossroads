@@ -1,0 +1,24 @@
+{
+  "system_id": "burnwillow",
+  "display_name": "Burnwillow",
+  "engine_type": "spatial",
+  "engine_traits": [
+    "doom_clock", "conditions", "initiative",
+    "quest_system", "npc_dialogue", "narrative_loom", "capacity"
+  ],
+  "primary_loop": "spatial_dungeon",
+  "resolution_mechanic": "dice_pool_d6",
+  "stat_block_format": {
+    "fields": ["name", "hp", "attack", "defense", "tier"],
+    "pattern_hint": null
+  },
+  "character_stats": ["Might", "Wits", "Grit", "Aether"],
+  "damage_types": ["physical", "fire", "necrotic", "radiant"],
+  "currency": "gold",
+  "progression": "milestone",
+  "classified_by": "human",
+  "classified_at": "2026-03-08T00:00:00Z",
+  "confidence": 1.0,
+  "needs_review": false,
+  "campaign_setting": "burnwillow"
+}

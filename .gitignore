@@ -34,6 +34,9 @@ models/
 # Copyrighted source material (PDFs) — keep the directory structure
 vault/*
 !vault/.gitkeep
+# Original game systems (not copyrighted third-party material)
+!vault/burnwillow/
+!vault/crown/
 
 # Legacy code (contains stale tokens)
 legacy_import/

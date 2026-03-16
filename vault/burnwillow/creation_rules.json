@@ -1,0 +1,41 @@
+{
+  "system_id": "burnwillow",
+  "display_name": "Burnwillow",
+  "genre": "Dark Fantasy Roguelike",
+  "stats_method": "roll_4d6_drop_lowest",
+  "stats": ["Might", "Wits", "Grit", "Aether"],
+  "steps": [
+    {
+      "id": "name",
+      "label": "Name Your Wanderer",
+      "type": "text_input",
+      "prompt": "What do they call you?"
+    },
+    {
+      "id": "stats",
+      "label": "Allocate Stats",
+      "type": "stat_pool_allocate",
+      "method": "roll_4d6_drop_lowest",
+      "assign_to": ["Might", "Wits", "Grit", "Aether"]
+    },
+    {
+      "id": "loadout",
+      "label": "Choose Loadout",
+      "type": "choice",
+      "prompt": "Your gear defines you. Choose wisely.",
+      "options": [
+        {"id": "sellsword", "label": "The Sellsword", "description": "Sword + Jerkin + Gloves [Lockpick]"},
+        {"id": "occultist", "label": "The Occultist", "description": "Wand + Bell [Summon] + Jerkin"},
+        {"id": "sentinel", "label": "The Sentinel", "description": "Sword + Shield [Intercept] + Jerkin"},
+        {"id": "archer", "label": "The Archer", "description": "Shortbow [Ranged] + Jerkin"},
+        {"id": "vanguard", "label": "The Vanguard", "description": "Greatsword [Cleave] + Jerkin"},
+        {"id": "scholar", "label": "The Scholar", "description": "Grimoire [Spellslot] + Robes + Gloves [Lockpick]"}
+      ]
+    }
+  ],
+  "view_type": "paper_doll",
+  "derived": {
+    "hp": "10 + grit_mod",
+    "defense": "10 + wits_mod"
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "system_id": "crown",
+  "display_name": "Crown & Crew",
+  "genre": "Narrative Survival",
+  "stats_method": "none",
+  "stats": [],
+  "steps": [
+    {
+      "id": "name",
+      "label": "Name Your Character",
+      "type": "text_input",
+      "prompt": "Who are you in this desperate march?"
+    },
+    {
+      "id": "class",
+      "label": "Choose Your Leader",
+      "type": "choice",
+      "prompt": "Who leads this ragged band?",
+      "options": [
+        {"id": "captain_vane", "label": "Captain Vane", "description": "A scarred veteran who leads from the front"},
+        {"id": "defector", "label": "The Defector", "description": "A Crown officer who switched sides"},
+        {"id": "mercenary", "label": "The Mercenary", "description": "Loyal only to coin and survival"},
+        {"id": "mystic", "label": "The Mystic", "description": "A seer who reads the fire and the wind"},
+        {"id": "brother_ash", "label": "Brother Ash", "description": "The Zealot — faith burns brighter than fear"},
+        {"id": "lady_miren", "label": "Lady Miren", "description": "The Fallen Noble — duty over comfort"},
+        {"id": "faceless", "label": "The Faceless", "description": "The Anarchist — no gods, no masters"},
+        {"id": "sergeant_kell", "label": "Sergeant Kell", "description": "The backbone — holds the line when all else fails"}
+      ]
+    },
+    {
+      "id": "race",
+      "label": "Choose Your Patron",
+      "type": "choice",
+      "prompt": "Whose shadow do you flee?",
+      "options": [
+        {"id": "high_inquisitor", "label": "The High Inquisitor", "description": "Hunts heretics with divine authority"},
+        {"id": "governor", "label": "The Governor", "description": "Controls the border and the law"},
+        {"id": "spymaster", "label": "The Spymaster", "description": "Sees everything, trusts no one"},
+        {"id": "justiciar", "label": "The Justiciar", "description": "The letter of the law, without mercy"},
+        {"id": "high_priestess", "label": "The High Priestess", "description": "Religious authority, spiritual chains"},
+        {"id": "merchant_prince", "label": "The Merchant Prince", "description": "Financial authority, everything has a price"},
+        {"id": "iron_marshal", "label": "The Iron Marshal", "description": "Military authority, soldiers everywhere"},
+        {"id": "court_astrologer", "label": "The Court Astrologer", "description": "Arcane authority, fate is his instrument"}
+      ]
+    }
+  ],
+  "view_type": "stat_block",
+  "derived": {
+    "sway": "0 (Drifter)",
+    "days_remaining": "5"
+  }
+}
