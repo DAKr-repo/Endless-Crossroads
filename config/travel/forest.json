@@ -1,0 +1,134 @@
+{
+  "terrain_type": "forest",
+  "events": {
+    "tier_1": [
+      {
+        "id": "fallen_tree",
+        "type": "skill_challenge",
+        "title": "Fallen Tree Across the Path",
+        "description": "A massive oak has crashed across the trail, bark still fresh.",
+        "target_role": "guide",
+        "dc": 10,
+        "success": "You find a game trail around it. No time lost.",
+        "failure": "The detour through thick brush costs half a day.",
+        "failure_cost": {"days": 0.5}
+      },
+      {
+        "id": "wolf_pack",
+        "type": "combat",
+        "title": "Wolf Pack",
+        "description": "Yellow eyes gleam between the trunks. Low growls echo.",
+        "target_role": "scout",
+        "dc": 12,
+        "success": "Spotted early. You light torches and they slink away.",
+        "failure": "The wolves attack from three sides.",
+        "enemies_tier": 1
+      },
+      {
+        "id": "herb_grove",
+        "type": "discovery",
+        "title": "Hidden Herb Grove",
+        "description": "Medicinal plants grow thick in a sunlit clearing.",
+        "target_role": "forager",
+        "dc": 8,
+        "success": "You gather healing herbs and wild berries.",
+        "failure": "Nothing useful. Just pretty flowers.",
+        "success_reward": {"rations": 2}
+      },
+      {
+        "id": "hunters_cache",
+        "type": "discovery",
+        "title": "Hunter's Cache",
+        "description": "A canvas-wrapped bundle hangs from a tree branch, half-hidden.",
+        "target_role": "scout",
+        "dc": 10,
+        "success": "Dried meat and a waterskin. Someone's emergency stash.",
+        "failure": "You miss it entirely. The forest keeps its secrets.",
+        "success_reward": {"rations": 3}
+      },
+      {
+        "id": "overgrown_path",
+        "type": "skill_challenge",
+        "title": "Overgrown Path",
+        "description": "The trail vanishes into a wall of brambles and ferns.",
+        "target_role": "guide",
+        "dc": 10,
+        "success": "Old blazes on the trees guide you through.",
+        "failure": "Hours of hacking through undergrowth. Exhausting.",
+        "failure_cost": {"days": 0.5}
+      }
+    ],
+    "tier_2": [
+      {
+        "id": "ettercap_webs",
+        "type": "combat",
+        "title": "Ettercap Webs",
+        "description": "Thick webs span between the trees. Something large scuttles above.",
+        "target_role": "scout",
+        "dc": 14,
+        "success": "You spot the trap and burn a path through safely.",
+        "failure": "Webbed! The ettercaps descend.",
+        "enemies_tier": 2
+      },
+      {
+        "id": "fey_crossing",
+        "type": "skill_challenge",
+        "title": "Fey Crossing",
+        "description": "The forest shimmers. Mushroom rings dot the ground. Time feels wrong.",
+        "target_role": "guide",
+        "dc": 13,
+        "success": "You mark your path with iron nails and pass through safely.",
+        "failure": "Hours pass like minutes. You emerge a day later than expected.",
+        "failure_cost": {"days": 1}
+      },
+      {
+        "id": "forester_camp",
+        "type": "discovery",
+        "title": "Forester's Camp",
+        "description": "A well-maintained camp with a cold fire pit. Signs of recent use.",
+        "target_role": "forager",
+        "dc": 10,
+        "success": "They left dried provisions. Fair trade for firewood.",
+        "failure": "Empty. Whoever was here moved on.",
+        "success_reward": {"rations": 2}
+      }
+    ],
+    "tier_3": [
+      {
+        "id": "green_dragon_territory",
+        "type": "skill_challenge",
+        "title": "Green Dragon Territory",
+        "description": "The trees are twisted, bark etched with claw marks. Poison mist clings low.",
+        "target_role": "scout",
+        "dc": 15,
+        "success": "You navigate around the dragon's hunting grounds.",
+        "failure": "The dragon has noticed you. Run.",
+        "enemies_tier": 3
+      },
+      {
+        "id": "blighted_grove",
+        "type": "skill_challenge",
+        "title": "Blighted Grove",
+        "description": "The trees are dead, bark black and weeping sap. Something corrupted this place.",
+        "target_role": "guard",
+        "dc": 14,
+        "success": "You press through quickly, warding off the corruption.",
+        "failure": "The blight saps your strength. Everyone feels weaker.",
+        "failure_cost": {"days": 0.5}
+      }
+    ],
+    "tier_4": [
+      {
+        "id": "treant_awakening",
+        "type": "combat",
+        "title": "Treant Awakening",
+        "description": "The ancient oak you camped beside... moves. Roots tear from the earth.",
+        "target_role": "guard",
+        "dc": 16,
+        "success": "You sense the rumbling and evacuate camp before it fully wakes.",
+        "failure": "It attacks. The forest itself fights you.",
+        "enemies_tier": 4
+      }
+    ]
+  }
+}

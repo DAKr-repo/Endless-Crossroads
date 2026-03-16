@@ -1,0 +1,247 @@
+﻿  ---
+  Project Codex — State of the Union
+
+  By the Numbers
+
+  - 80,400 lines of production code across 173 Python modules
+  - 27,700 lines of tests across 46 test suites (2,527 passing, 0 failures)
+  - 9 fully playable game engines — none are stubs
+  - ~600 KB of PDF-sourced reference data across 49 files
+  - ~30 official PDFs indexed in the vault
+  - Runs on a Raspberry Pi 5 with local LLMs (no cloud dependency)
+
+  ---
+  Strengths (What's Rock Solid)
+
+  1. Multi-System Architecture — Unique in the Market
+
+  No competing project supports 9 different TTRPG systems from a unified engine. The
+  adapter pattern (Character dataclass → Engine → RulesetAdapter → Spatial) means adding
+   system #10 follows a proven template. ENGINE_REGISTRY, NarrativeLoomMixin, and the
+  CharacterBuilderEngine all compose cleanly.
+
+  2. Burnwillow — Production-Quality Flagship
+
+  7,500 LOC engine, 22 enemy types, 97 loot items, 20 hazards, 11 AoE trait types, party
+   scaling (1-6), AI companion system, DoomClock progression, quest markers,
+  Mimir-generated quests, procedural dungeon generation with BSP. This is a complete
+  game.
+
+  3. Spatial Map System
+
+  True spatial rendering with BSP room generation, fog of war, corridor connections,
+  quest markers, themed rendering (RUST/STONE/GOTHIC/VILLAGE/CANOPY), mini-map, viewport
+   scrolling. The adapter pattern lets any engine use the same dungeon infrastructure.
+
+  4. Reference Data Integrity
+
+  The WO-V42 PDF extraction pass + 3-guardrail policy means all reference data is
+  sourced from actual rulebooks. 49 data files, all validated. The fabrication incident
+  was caught, corrected, and systematically prevented.
+
+  5. Multi-Interface Parity
+
+  Terminal + Discord + Telegram all share the same StateFrame contract. Broadcast
+  manager distributes events (initiative, conditions, rest) to all interfaces
+  simultaneously. DM Dashboard provides a separate god-view.
+
+  6. Edge-Native AI
+
+  The Sovereign Trinity routing (Mimir for fast reflexes, Codex for deep reasoning,
+  Experimental for sandboxed code) runs entirely on a Pi 5 with no cloud API calls.
+  FAISS-backed RAG with nomic-embed-text for semantic search. Thermal gating prevents
+  crashes under load.
+
+  7. Test Suite
+
+  2,527 tests, adversarial playtesting, combat simulation, cross-system depth parity
+  validation. Each engine has 110-152 dedicated tests. Save/load roundtrips, legacy data
+   migration, and determinism checks all covered.
+
+  ---
+  Weaknesses (What Needs Work)
+
+  1. No CI/CD Pipeline — Critical Gap
+
+  No .github/workflows/, no pytest.ini, no coverage.py. Tests run manually. One bad push
+   could break 2,527 tests without anyone knowing. This is the single most impactful
+  improvement available.
+
+  2. Bot Test Coverage — Zero
+
+  Discord bot (3,019 LOC) and Telegram bot (1,519 LOC) have zero dedicated tests. These
+  are user-facing production surfaces. The discord_stub.py exists but isn't used in any
+  test file.
+
+  3. Core Routing Untested
+
+  architect.py (LLM routing), butler.py (command dispatch), cortex.py (thermal control)
+  — the three pillars of the runtime loop — have no unit tests. They work in practice
+  but any refactoring is blind.
+
+  4. LLM Speed on Pi 5
+
+  At 4.2 tok/s (qwen3:1.7b) or 2.0 tok/s (qwen3.5:2b), AI responses take 15-50 seconds.
+  This is acceptable for turn-based play but makes the experience feel sluggish compared
+   to cloud-based competitors that respond in 1-2 seconds.
+
+  5. Voice System is Alpha
+
+  Ears (STT) and Mouth (TTS) are functional microservices but lack streaming, real-time
+  feedback loops, and robust error handling. Voice bridge has had a persistent test
+  failure (now fixed). Not production-ready for voice-first gameplay.
+
+  6. Content Depth Imbalance
+
+  Burnwillow has 22 enemies, 97 items, 20 hazards. The FITD engines (BitD, SaV, BoB,
+  CBR+PNK, Candela) rely on procedural generation for enemies/loot — no hand-crafted
+  content tables. D&D 5e has 400+ spells but no curated encounter tables. The "playable
+  hours" gap between Burnwillow and the FITD cluster is significant.
+
+  7. No Web Interface
+
+  Terminal (Rich), Discord, and Telegram — but no browser-based UI. Every commercial
+  competitor (Friends & Fables, AI Dungeon, QuestForge) leads with a web app. This
+  limits accessibility for non-technical users.
+
+  8. Single-Player Focus
+
+  Multiplayer is supported via Discord/Telegram channels, but there's no real-time
+  session synchronization, shared initiative tracking between players, or
+  player-vs-player mechanics. The DM Dashboard watches a JSON file — functional but
+  primitive.
+
+  ---
+  Where to Improve Next (Prioritized)
+
+  ┌──────────┬──────────────────────────────┬──────────────────────────────┬────────┐
+  │ Priority │         Improvement          │            Impact            │ Effort │
+  ├──────────┼──────────────────────────────┼──────────────────────────────┼────────┤
+  │ P0       │ CI/CD pipeline (GitHub       │ Prevents regressions,        │ Low    │
+  │          │ Actions + pytest + coverage) │ enables confident deploys    │        │
+  ├──────────┼──────────────────────────────┼──────────────────────────────┼────────┤
+  │ P1       │ Bot test coverage (Discord + │ De-risks the primary         │ Medium │
+  │          │  Telegram)                   │ user-facing surfaces         │        │
+  ├──────────┼──────────────────────────────┼──────────────────────────────┼────────┤
+  │ P2       │ Core unit tests (architect,  │ Enables safe refactoring of  │ Medium │
+  │          │ butler, cortex)              │ runtime loop                 │        │
+  ├──────────┼──────────────────────────────┼──────────────────────────────┼────────┤
+  │ P3       │ Web UI (FastAPI + HTMX or    │ Opens the project to         │ High   │
+  │          │ similar)                     │ non-technical users          │        │
+  ├──────────┼──────────────────────────────┼──────────────────────────────┼────────┤
+  │ P4       │ FITD content tables (curated │ Closes the depth gap with    │ Medium │
+  │          │  enemies, encounters)        │ Burnwillow                   │        │
+  ├──────────┼──────────────────────────────┼──────────────────────────────┼────────┤
+  │ P5       │ LLM response streaming       │ Perceived latency drops      │ Medium │
+  │          │                              │ dramatically                 │        │
+  ├──────────┼──────────────────────────────┼──────────────────────────────┼────────┤
+  │ P6       │ Voice streaming pipeline     │ Real-time narration becomes  │ High   │
+  │          │                              │ viable                       │        │
+  └──────────┴──────────────────────────────┴──────────────────────────────┴────────┘
+
+  ---
+  Competitive Landscape
+
+  vs. Hobby/Open Source Projects
+
+  Project: Codex
+  Systems: 9 systems
+  AI: Local Ollama (Pi 5)
+  Local?: Yes
+  Multi-Interface: Terminal + Discord + Telegram
+  Content Depth: Deep (97 items, 22 enemies, 400+ spells)
+  ────────────────────────────────────────
+  Project: GameMasterAI
+  Systems: D&D only
+  AI: GPT-3.5/4 (cloud)
+  Local?: No
+  Multi-Interface: Web only
+  Content Depth: Shallow (narrative-focused)
+  ────────────────────────────────────────
+  Project: VirtualGameMaster
+  Systems: Generic
+  AI: Multi-API (OpenAI, Anthropic, etc.)
+  Local?: Partial
+  Multi-Interface: CLI + Web
+  Content Depth: Minimal (prompt-based)
+  ────────────────────────────────────────
+  Project: GameMaster-GPT
+  Systems: Generic
+  AI: OpenAI
+  Local?: No
+  Multi-Interface: CLI only
+  Content Depth: Minimal
+  ────────────────────────────────────────
+  Project: QuestForge
+  Systems: Generic
+  AI: Grok (xAI API)
+  Local?: Partial (~200 LOC)
+  Multi-Interface: Browser
+  Content Depth: Narrative only (no mechanics)
+
+  Codex's edge: No open-source competitor comes close on system breadth (9 vs 1),
+  content depth, or edge-native deployment. Most are thin GPT wrappers with no
+  mechanical simulation.
+
+  vs. Commercial Products
+
+  Product: Friends & Fables
+  Price: $0-$20/mo
+  AI: Cloud (proprietary)
+  Systems: D&D 5e
+  Codex Advantage: 9 systems, no subscription, runs offline
+  Codex Disadvantage: No web UI, slower AI, no polished onboarding
+  ────────────────────────────────────────
+  Product: AI Dungeon
+  Price: Freemium
+  AI: Cloud (custom)
+  Systems: Generic fiction
+  Codex Advantage: Mechanical depth, real dice/rules
+  Codex Disadvantage: No web UI, less narrative fluidity
+  ────────────────────────────────────────
+  Product: LitRPG Adventures
+  Price: $9/mo
+  AI: GPT-4
+  Systems: D&D-adjacent
+  Codex Advantage: Full game engine vs. content generator
+  Codex Disadvantage: LitRPG has better generation quality
+  ────────────────────────────────────────
+  Product: Foundry VTT + AI modules
+  Price: $50 one-time
+  AI: Plugin-dependent
+  Systems: D&D 5e, PF2e
+  Codex Advantage: Integrated AI + engine vs bolted-on
+  Codex Disadvantage: Foundry has vastly better map/token UX
+
+  Codex's moat: Offline-first, multi-system, mechanically deep. No commercial product
+  supports 9 TTRPG systems with local AI and real game mechanics.
+
+  Codex's gap: Every commercial competitor has a polished web UI with visual maps,
+  character portraits, and drag-and-drop tokens. Codex's Rich terminal is powerful but
+  niche.
+
+  ---
+  Summary Assessment
+
+  Codex is the most architecturally ambitious open-source TTRPG AI project in existence.
+   80K LOC, 9 game systems, local AI on a Raspberry Pi, multi-interface delivery,
+  PDF-sourced reference data, 2,527 tests. Nothing else in the open-source space
+  approaches this scope.
+
+  The project's biggest strategic weakness is accessibility — no web UI, no CI/CD, and
+  Pi 5 inference speed limits the experience. The foundation is production-grade; the
+  surface layer needs polish to reach a wider audience.
+
+  If this were a startup pitch: The engine is the product. The missing piece is the
+  frontend.
+
+  Sources:
+  - GameMasterAI (GitHub)
+  - VirtualGameMaster (GitHub)
+  - Friends & Fables
+  - QuestForge / Grok AI DM
+  - LitRPG Adventures
+  - Quest Forge Platform
+  - AI RPG Platforms 2025
+
+

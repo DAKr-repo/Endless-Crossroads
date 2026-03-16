@@ -1,0 +1,129 @@
+{
+    "seed": 2001,
+    "width": 60,
+    "height": 50,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "rat_cellar",
+        "theme": "STONE",
+        "topology": "dungeon",
+        "display_name": "The Rat King's Cellar"
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 25,
+            "y": 5,
+            "width": 8,
+            "height": 6,
+            "room_type": "start",
+            "connections": [1],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "A crumbling stone staircase descends into darkness. The air reeks of damp fur and spoiled grain. Water seeps through cracks in the ceiling, pooling on steps worn smooth by generations of millers."
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 25,
+            "y": 15,
+            "width": 10,
+            "height": 8,
+            "room_type": "normal",
+            "connections": [0, 2, 3],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The old grain store. Sacks of flour lie shredded across the flagstones, their contents trampled into paste. Tiny claw marks score the walls in frantic parallel lines. Three giant rats gnaw at a barrel of salted pork, their eyes catching the torchlight like wet copper coins.",
+                "enemies": [
+                    {"name": "Giant Rat", "hp": 7, "attack": 4, "damage": "1d4+2", "count": 3}
+                ]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 10,
+            "y": 20,
+            "width": 10,
+            "height": 8,
+            "room_type": "treasure",
+            "connections": [1],
+            "tier": 1,
+            "is_locked": true,
+            "is_secret": false,
+            "content_hints": {
+                "description": "A locked storeroom. The iron-banded door is gnawed along its bottom edge but the lock holds firm. Inside: crates of untouched provisions stamped with the Miller's Guild seal, and a small iron chest tucked behind a flour barrel. The chest's lock is newer than everything else in this cellar.",
+                "lock_dc": 12,
+                "loot": [
+                    {"name": "Healing Potion", "value": 50},
+                    {"name": "Silver Dagger", "value": 100},
+                    {"name": "25 Gold Pieces", "value": 25}
+                ]
+            }
+        },
+        "3": {
+            "id": 3,
+            "x": 40,
+            "y": 20,
+            "width": 8,
+            "height": 8,
+            "room_type": "normal",
+            "connections": [1, 4, 5],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "A collapsed section of cellar wall has opened into natural cavern beyond. The worked stone gives way to rough limestone slick with moisture. Rat droppings carpet the floor in a thick layer, and the air carries a warm, animal musk that coats the back of the throat.",
+                "perception_dc": 14,
+                "perception_success": "A draft of cooler air comes from behind a loose section of stone to the east -- there is a hidden passage."
+            }
+        },
+        "4": {
+            "id": 4,
+            "x": 40,
+            "y": 35,
+            "width": 12,
+            "height": 10,
+            "room_type": "boss",
+            "connections": [3],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "A vast underground chamber where the natural cavern opens into a cathedral of dripping stone. At its center, atop a mound of bones, spoiled grain, and refuse, sits the Rat King -- a dire rat of monstrous proportions. A crude crown of bent copper wire sits between its scarred ears. Dozens of smaller rats swarm around it, chittering in what sounds almost like organized speech.",
+                "enemies": [
+                    {"name": "The Rat King", "hp": 33, "attack": 6, "damage": "1d6+3", "is_boss": true, "special": ["Summon Swarm (recharge 5-6): Calls 1d4 giant rats from tunnels in the walls."]},
+                    {"name": "Rat Swarm", "hp": 12, "attack": 3, "damage": "2d4", "count": 2, "special": ["Resistance to bludgeoning, piercing, and slashing from nonmagical attacks."]}
+                ],
+                "loot": [
+                    {"name": "Rat King's Copper Crown", "value": 150, "description": "A crude circlet of twisted copper. It hums faintly when rats are nearby."},
+                    {"name": "Gnawed Spellbook (Identify)", "value": 200, "description": "A leather-bound spellbook with tooth marks on every cover. The pages for Identify are intact."}
+                ]
+            }
+        },
+        "5": {
+            "id": 5,
+            "x": 55,
+            "y": 18,
+            "width": 6,
+            "height": 6,
+            "room_type": "secret",
+            "connections": [3],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": true,
+            "content_hints": {
+                "description": "Hidden behind loose stones -- a smuggler's cache that predates the rat infestation by decades. Cobwebbed crates bear the faded stamp of a trading company that went bankrupt twenty years ago. Whatever they were hiding down here, the rats never found it.",
+                "investigation_dc": 15,
+                "loot": [
+                    {"name": "Potion of Invisibility", "value": 300, "description": "A crystal vial containing a shimmering, colorless liquid. The label reads 'For Emergency Use Only' in Common."},
+                    {"name": "50 Gold Pieces", "value": 50, "description": "Old minting -- coins stamped with the profile of a king dead forty years."},
+                    {"name": "Smuggler's Ledger", "value": 10, "description": "A coded journal. A skilled linguist might decipher the smuggling network it describes."}
+                ]
+            }
+        }
+    }
+}

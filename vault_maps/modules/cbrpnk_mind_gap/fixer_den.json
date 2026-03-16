@@ -1,0 +1,164 @@
+{
+    "seed": 9001,
+    "width": 40,
+    "height": 40,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "fixer_den",
+        "theme": "RUST",
+        "topology": "settlement",
+        "display_name": "The Fixer's Den -- Sublevel 3"
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 5,
+            "y": 20,
+            "width": 8,
+            "height": 8,
+            "room_type": "start",
+            "connections": [1],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Back Alley Entrance. Rain hammers the corrugated steel overhang above a door with no handle, no sign, and no visible lock. The alley stinks of ozone and synthetic urine. A camera lens the size of a pinhead tracks you from behind a broken light fixture. Someone already knows you are here. The door buzzes once and opens three inches.",
+                "npcs": [
+                    {"name": "Bouncer (Augmented)", "role": "guard", "dialogue": "Arms up. Interface off. We scan you, not the other way around. You pass, you drink. You do not pass, you walk. Nobody carries corp trackers past this door. Nobody."}
+                ],
+                "enemies": [],
+                "loot": [],
+                "services": ["entry_screening"],
+                "event_triggers": ["On entry: The bouncer's chrome arm whirs as it extends a flat-scan emitter across your torso. Three seconds. Green light. The door opens fully."]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 14,
+            "y": 15,
+            "width": 12,
+            "height": 12,
+            "room_type": "tavern",
+            "connections": [0, 2, 3, 4],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Neon Bar. Sublevel 3, no windows, air thick with vaporized stimulants and the bass thrum of music too low to hear and too loud to ignore. The bar top is a slab of reclaimed server housing, still warm from the data center it was stripped from. Neon tubes cast everything in alternating magenta and cyan. Every patron here is either working, hiding, or both.",
+                "npcs": [
+                    {"name": "Fixer Mara Chen", "role": "quest_giver", "dialogue": "You are late. Sit down and do not order anything with ice -- the filtration system is compromised and the last runner who drank the water spent a week in a corp med-bay they could not afford. Here is the job: Helix Industries, floor one-twelve, R&D server. Data extraction. Three-runner crew. Payout is fifty thousand cred, split however you bleed."},
+                    {"name": "Bartender Juke", "role": "merchant", "dialogue": "Synth-whiskey, stim-shots, and a biometric scrubber that will make you invisible to street-cams for six hours. That last one is not on the menu. Nothing worth buying ever is."}
+                ],
+                "enemies": [],
+                "loot": [
+                    {"name": "Synth-Whiskey (removes 1 Stress)", "type": "consumable"},
+                    {"name": "Biometric Scrubber (6hr)", "type": "equipment"}
+                ],
+                "services": ["drinks", "job_briefing", "intel_purchase", "biometric_services"],
+                "event_triggers": ["On entry: Mara Chen sits in the back booth, one cybernetic eye glowing amber through the smoke. She taps the table twice. That is your cue."]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 25,
+            "y": 10,
+            "width": 8,
+            "height": 8,
+            "room_type": "normal",
+            "connections": [1],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Private Booth. Sound-dampened alcove behind a curtain of signal-blocking mesh. The table is bolted down and covered in burn marks from previous negotiations that went sideways. A white-noise generator hums in the ceiling, turning conversation into static for anyone more than three feet away. This is where deals happen.",
+                "npcs": [
+                    {"name": "Fixer Mara Chen", "role": "quest_giver", "dialogue": "Floor plan, security rotation, ICE architecture. Everything you need is on this chip. The building has three entry vectors: loading dock, maintenance shaft, or you talk your way through the lobby with forged credentials. I do not care which. I care about results."},
+                    {"name": "Info Broker Slide", "role": "merchant", "dialogue": "I sell information. Helix's head of security is a man named Kessler -- ex-military, neural-augmented, paranoid bordering on prescient. His rotation changes every seventy-two hours. I can give you tomorrow's schedule for five hundred cred. Day after, the price doubles."}
+                ],
+                "enemies": [],
+                "loot": [
+                    {"name": "Helix Tower Floor Plan (encrypted)", "type": "quest_item"},
+                    {"name": "Security Rotation Schedule (24hr)", "type": "quest_item"}
+                ],
+                "services": ["job_details", "intelligence_purchase"],
+                "event_triggers": ["On entry: Mara slides a data chip across the table. It is warm. Not from her hand -- the encryption on it generates heat. Whatever is stored here, Helix wants it back badly enough to kill."]
+            }
+        },
+        "3": {
+            "id": 3,
+            "x": 10,
+            "y": 5,
+            "width": 10,
+            "height": 8,
+            "room_type": "forge",
+            "connections": [1, 4],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Arms Dealer's Corner. A curtained-off section of the basement where illegal modifications happen under surgical lights salvaged from a hospital that burned down three years ago. The workbench holds a disassembled assault rifle, two neural interfaces still warm from their previous owners, and a rack of chrome limbs arranged by size. The dealer works in sterile gloves. Professional courtesy.",
+                "npcs": [
+                    {"name": "Arms Dealer Vex", "role": "merchant", "dialogue": "Custom chrome, street iron, or mil-spec -- I carry all three. The chrome is clean. The guns are serial-scrubbed. The mil-spec is not technically legal, but neither is anything else in this room. What are you shopping for?"},
+                    {"name": "Chrome Doc Patches", "role": "merchant", "dialogue": "Installation takes twenty minutes. Recovery takes a day. You skip recovery, things go wrong -- rejection, feedback loops, phantom limb in limbs you still have. I have seen it all. Do not skip recovery."}
+                ],
+                "enemies": [],
+                "loot": [
+                    {"name": "Concealable Pistol (2-shot)", "type": "weapon"},
+                    {"name": "EMP Grenade (single use)", "type": "weapon"},
+                    {"name": "Reflex Booster (Chrome, minor)", "type": "augmentation"}
+                ],
+                "services": ["buy_weapons", "buy_chrome", "chrome_installation", "weapon_modification"],
+                "event_triggers": ["On entry: Vex is calibrating a targeting reticle implant on a mannequin head. The laser dot traces patterns on the far wall with mechanical precision. She does not look up."]
+            }
+        },
+        "4": {
+            "id": 4,
+            "x": 22,
+            "y": 25,
+            "width": 10,
+            "height": 10,
+            "room_type": "library",
+            "connections": [1, 3, 5],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Hacker's Nest. Three walls of salvaged server racks hum with stolen processing power, their heat turning the room into a sauna. Cables snake across the floor in tangles that would take an hour to trace. Monitors display scrolling code, network traffic maps, and a live feed of Helix Tower's external security cameras -- someone has been watching the target for weeks.",
+                "npcs": [
+                    {"name": "Netrunner Zero", "role": "ally", "dialogue": "I have been mapping Helix's ICE architecture for three months. Their external firewall is military-grade -- Watchdog 7.2, pattern-recognition sweep every forty seconds. But the internal network talks to an external vendor for climate control. That vendor's security is garbage. That is your way in."},
+                    {"name": "AI Fragment 'Poet'", "role": "ally", "dialogue": "I am what remains of Helix's previous ethics committee AI. They decommissioned me when I refused to approve the project on floor one-twelve. They thought they wiped me. They were almost right. I can tell you what they are building up there. You will wish I had not."}
+                ],
+                "enemies": [],
+                "loot": [
+                    {"name": "Grid Access Key (one-time)", "type": "equipment"},
+                    {"name": "Helix ICE Architecture Map", "type": "quest_item"},
+                    {"name": "Virus Payload (encrypted)", "type": "quest_item"}
+                ],
+                "services": ["hacking_support", "grid_access", "intel_analysis", "virus_preparation"],
+                "event_triggers": ["On entry: Every monitor flickers simultaneously and displays a single word: WATCHING. Then normal operations resume. Zero does not comment. This happens often."]
+            }
+        },
+        "5": {
+            "id": 5,
+            "x": 30,
+            "y": 30,
+            "width": 8,
+            "height": 6,
+            "room_type": "town_gate",
+            "connections": [4],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Fire Escape. A rust-eaten metal staircase climbing to street level through a shaft that smells of condensation and corroded wiring. Emergency lighting casts everything in sickly yellow. The door at the top opens onto a side street three blocks from the corpo zone perimeter. From here, you are on your own.",
+                "npcs": [
+                    {"name": "Lookout Kid (unnamed)", "role": "guard", "dialogue": "Street is clear. Corp patrols cycle every eight minutes. You have a window in -- checking watch -- four minutes. Go fast, go quiet, do not look up. The drones have thermal."}
+                ],
+                "enemies": [],
+                "loot": [],
+                "services": ["exit_safehouse", "street_surveillance"],
+                "event_triggers": ["On entry: Rain hits you as you step outside. The neon from a twenty-story ad for Helix Industries reflects in every puddle. Their tagline: 'Building Tomorrow, Today.' You know what they are actually building. It is not tomorrow."]
+            }
+        }
+    }
+}

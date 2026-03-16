@@ -1,0 +1,114 @@
+{
+    "seed": 5000,
+    "width": 80,
+    "height": 60,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "underdark_overview",
+        "theme": "GOTHIC",
+        "topology": "wilderness",
+        "display_name": "The Underdark"
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 10,
+            "y": 10,
+            "width": 12,
+            "height": 8,
+            "room_type": "start",
+            "connections": [1, 2],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The outpost of Velkynvelve clings to the wall of an immense chasm like a spider's web strung between stalactites. Faint purple faerzress light pulses in the stone, and somewhere far below, water roars against rock that has never known sunlight.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [],
+                "services": [],
+                "event_triggers": ["On entry: Module begins. Players wake as prisoners."]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 30,
+            "y": 5,
+            "width": 14,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [0, 3],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Darklake stretches into absolute blackness, its surface broken only by the phosphorescent trails of blind fish and the distant echo of kuo-toa chanting. The air tastes of brine and ancient sediment.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [],
+                "services": ["ferry_crossing"],
+                "event_triggers": ["On entry: Navigation check required. Random encounter table active."]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 50,
+            "y": 20,
+            "width": 16,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [0, 3, 4],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Gracklstugh sprawls across a vast cavern, its forges painting the ceiling with ruddy light. The clang of duergar hammers never ceases, and the ground trembles with the breathing of something enormous beneath the Cairngorm Caverns.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [],
+                "services": ["forge", "market"],
+                "event_triggers": ["On entry: Duergar patrol demands papers."]
+            }
+        },
+        "3": {
+            "id": 3,
+            "x": 35,
+            "y": 30,
+            "width": 12,
+            "height": 8,
+            "room_type": "normal",
+            "connections": [1, 2, 4],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Bioluminescent fungi paint the grove in sickly greens and purples. The myconids stand in perfect circles, their rapport spores filling the air with wordless communion. But something festers in the southern terraces -- a wrongness that smells of overripe fruit and madness.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [],
+                "services": [],
+                "event_triggers": ["On entry: Spore communication begins. Wisdom save or disorientation."]
+            }
+        },
+        "4": {
+            "id": 4,
+            "x": 60,
+            "y": 45,
+            "width": 14,
+            "height": 10,
+            "room_type": "boss",
+            "connections": [2, 3],
+            "tier": 4,
+            "is_locked": true,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Menzoberranzan. The City of Spiders. A hundred thousand drow go about their business beneath a ceiling of stalactites dripping with faerzress. House Baenre's compound dominates the cavern floor, its spires of shaped stone reaching upward like grasping fingers.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [],
+                "services": ["market", "temple"],
+                "event_triggers": ["On entry: Faction reputation check. Drow patrols on alert for surfacers."]
+            }
+        }
+    }
+}

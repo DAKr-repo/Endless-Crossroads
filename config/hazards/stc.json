@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "format": "cosmere",
+  "source": "Stormlight RPG Handbook + Modules (baseline from hardcoded pools)",
+  "tiers": {
+    "1": [
+      {"name": "Highstorm Winds", "dc": 10, "damage": "1d6", "damage_type": "impact", "source": "Handbook"},
+      {"name": "Cracked Chasm Floor", "dc": 10, "damage": "1d6", "damage_type": "impact", "source": "Handbook"},
+      {"name": "Crem Buildup", "dc": 8, "damage": "0", "damage_type": "none", "source": "Handbook"}
+    ],
+    "2": [
+      {"name": "Chasm Collapse", "dc": 13, "damage": "2d6", "damage_type": "impact", "source": "Handbook"},
+      {"name": "Stormlight Surge", "dc": 12, "damage": "1d8", "damage_type": "spirit", "source": "Handbook"},
+      {"name": "Parshendi Trap", "dc": 12, "damage": "1d6", "damage_type": "keen", "source": "Handbook"}
+    ],
+    "3": [
+      {"name": "Everstorm Fragment", "dc": 15, "damage": "3d6", "damage_type": "impact", "source": "Handbook"},
+      {"name": "Unmade Corruption", "dc": 15, "damage": "2d6", "damage_type": "spirit", "source": "Handbook"},
+      {"name": "Void Rift", "dc": 14, "damage": "2d8", "damage_type": "spirit", "source": "Handbook"}
+    ],
+    "4": [
+      {"name": "Full Everstorm", "dc": 18, "damage": "4d8", "damage_type": "impact", "source": "Handbook"},
+      {"name": "Odium's Influence", "dc": 18, "damage": "3d8", "damage_type": "spirit", "source": "Handbook"},
+      {"name": "Spiritual Realm Breach", "dc": 17, "damage": "4d6", "damage_type": "spirit", "source": "Handbook"}
+    ]
+  }
+}

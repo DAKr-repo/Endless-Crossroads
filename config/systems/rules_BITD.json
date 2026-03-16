@@ -1,0 +1,65 @@
+{
+    "system_id": "BITD",
+    "display_name": "bitd",
+    "engine": "FITD",
+    "system_family": "FITD",
+    "archetype_categories": {
+        "Playbooks": []
+    },
+    "core_stats": {
+        "attributes": [
+            "Insight",
+            "Prowess",
+            "Resolve"
+        ],
+        "actions": {}
+    },
+    "resources": [
+        "Stress",
+        "Trauma"
+    ],
+    "dice_system": "d6_pool",
+    "position_effect": true,
+    "stress_max": 9,
+    "trauma_max": 4,
+    "mechanics": {
+        "stats": [
+            "Insight",
+            "Prowess",
+            "Resolve"
+        ],
+        "resources": [
+            "Coin",
+            "Heat",
+            "Rep",
+            "Stress",
+            "Trauma",
+            "Wanted Level"
+        ],
+        "classes": [
+            "Cutter",
+            "Hound",
+            "Leech",
+            "Lurk",
+            "Slide",
+            "Spider",
+            "Whisper"
+        ],
+        "subclasses": [
+            "Assassin",
+            "Brave",
+            "Bruiser",
+            "Ghost",
+            "Hunter",
+            "Skulk"
+        ],
+        "races": [
+            "Dwarf",
+            "Elf",
+            "Elven",
+            "Gnome",
+            "Human",
+            "Orc"
+        ]
+    }
+}

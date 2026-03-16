@@ -1,0 +1,1494 @@
+{
+  "version": 1,
+  "source": "SRD / Monster Manual (2014) + Mordenkainen's + Adventure Modules",
+  "tiers": {
+    "1": [
+      {
+        "name": "Knucklehead Trout",
+        "cr": "0",
+        "base_hp": 1,
+        "base_ac": 12,
+        "base_atk": 3,
+        "base_dmg": "1d6+1"
+      },
+      {
+        "name": "Kobold",
+        "cr": "1/8",
+        "base_hp": 5,
+        "base_ac": 12,
+        "base_atk": 4,
+        "base_dmg": "1d4+2"
+      },
+      {
+        "name": "Mountain Goat",
+        "cr": "1/8",
+        "base_hp": 13,
+        "base_ac": 11,
+        "base_atk": 4,
+        "base_dmg": "1d6+2"
+      },
+      {
+        "name": "Twig Blight",
+        "cr": "1/8",
+        "base_hp": 4,
+        "base_ac": 13,
+        "base_atk": 3,
+        "base_dmg": "1d4+1"
+      },
+      {
+        "name": "Yeti Tyke",
+        "cr": "1/8",
+        "base_hp": 9,
+        "base_ac": 11,
+        "base_atk": 4,
+        "base_dmg": "1d4+2"
+      },
+      {
+        "name": "Derro",
+        "cr": "1/4",
+        "base_hp": 13,
+        "base_ac": 13,
+        "base_atk": 2,
+        "base_dmg": "1d6"
+      },
+      {
+        "name": "Dimetrodon",
+        "cr": "1/4",
+        "base_hp": 19,
+        "base_ac": 12,
+        "base_atk": 4,
+        "base_dmg": "2d6+2"
+      },
+      {
+        "name": "Gnoll Witherling",
+        "cr": "1/4",
+        "base_hp": 11,
+        "base_ac": 12,
+        "base_atk": 4,
+        "base_dmg": "1d6"
+      },
+      {
+        "name": "Goblin",
+        "cr": "1/4",
+        "base_hp": 7,
+        "base_ac": 15,
+        "base_atk": 4,
+        "base_dmg": "1d6+2"
+      },
+      {
+        "name": "Icewind Kobold",
+        "cr": "1/4",
+        "base_hp": 7,
+        "base_ac": 14,
+        "base_atk": 5,
+        "base_dmg": "1d4+3"
+      },
+      {
+        "name": "Ixitxachitl",
+        "cr": "1/4",
+        "base_hp": 18,
+        "base_ac": 15,
+        "base_atk": 3,
+        "base_dmg": "1d6+1"
+      },
+      {
+        "name": "Kenku",
+        "cr": "1/4",
+        "base_hp": 13,
+        "base_ac": 13,
+        "base_atk": 5,
+        "base_dmg": "1d6+3"
+      },
+      {
+        "name": "Kobold Inventor",
+        "cr": "1/4",
+        "base_hp": 13,
+        "base_ac": 12,
+        "base_atk": 4,
+        "base_dmg": "1d6"
+      },
+      {
+        "name": "Male Steeder",
+        "cr": "1/4",
+        "base_hp": 13,
+        "base_ac": 12,
+        "base_atk": 4,
+        "base_dmg": "1d8+2"
+      },
+      {
+        "name": "Needle Blight",
+        "cr": "1/4",
+        "base_hp": 11,
+        "base_ac": 12,
+        "base_atk": 3,
+        "base_dmg": "2d4+1"
+      },
+      {
+        "name": "Skeleton",
+        "cr": "1/4",
+        "base_hp": 13,
+        "base_ac": 13,
+        "base_atk": 4,
+        "base_dmg": "1d6+2"
+      },
+      {
+        "name": "Star Spawn Grue",
+        "cr": "1/4",
+        "base_hp": 17,
+        "base_ac": 17,
+        "base_atk": 3,
+        "base_dmg": "1d6"
+      },
+      {
+        "name": "Tortle",
+        "cr": "1/4",
+        "base_hp": 22,
+        "base_ac": 17,
+        "base_atk": 4,
+        "base_dmg": "1d6"
+      },
+      {
+        "name": "Troglodyte",
+        "cr": "1/4",
+        "base_hp": 13,
+        "base_ac": 11,
+        "base_atk": 4,
+        "base_dmg": "1d4+2"
+      },
+      {
+        "name": "Vegepygmy",
+        "cr": "1/4",
+        "base_hp": 13,
+        "base_ac": 13,
+        "base_atk": 4,
+        "base_dmg": "1d6"
+      },
+      {
+        "name": "Wretched Sorrowsworn",
+        "cr": "1/4",
+        "base_hp": 10,
+        "base_ac": 15,
+        "base_atk": 3,
+        "base_dmg": "1d6"
+      },
+      {
+        "name": "Zombie",
+        "cr": "1/4",
+        "base_hp": 22,
+        "base_ac": 8,
+        "base_atk": 3,
+        "base_dmg": "1d6+1"
+      },
+      {
+        "name": "Ambush Drake",
+        "cr": "1/2",
+        "base_hp": 22,
+        "base_ac": 13,
+        "base_atk": 4,
+        "base_dmg": "1d6"
+      },
+      {
+        "name": "Darkling",
+        "cr": "1/2",
+        "base_hp": 13,
+        "base_ac": 14,
+        "base_atk": 5,
+        "base_dmg": "1d6"
+      },
+      {
+        "name": "Deep Gnome",
+        "cr": "1/2",
+        "base_hp": 16,
+        "base_ac": 15,
+        "base_atk": 4,
+        "base_dmg": "1d8+2"
+      },
+      {
+        "name": "Firenewt Warrior",
+        "cr": "1/2",
+        "base_hp": 27,
+        "base_ac": 13,
+        "base_atk": 3,
+        "base_dmg": "1d6"
+      },
+      {
+        "name": "Gazer",
+        "cr": "1/2",
+        "base_hp": 13,
+        "base_ac": 13,
+        "base_atk": 5,
+        "base_dmg": "1d6"
+      },
+      {
+        "name": "Gnome Squidling",
+        "cr": "1/2",
+        "base_hp": 26,
+        "base_ac": 10,
+        "base_atk": 4,
+        "base_dmg": "2d4+2"
+      },
+      {
+        "name": "Vine Blight",
+        "cr": "1/2",
+        "base_hp": 26,
+        "base_ac": 12,
+        "base_atk": 4,
+        "base_dmg": "2d6+2"
+      },
+      {
+        "name": "Bugbear",
+        "cr": 1,
+        "base_hp": 27,
+        "base_ac": 16,
+        "base_atk": 4,
+        "base_dmg": "2d8+2"
+      },
+      {
+        "name": "Crag Cat",
+        "cr": "1",
+        "base_hp": 34,
+        "base_ac": 13,
+        "base_atk": 5,
+        "base_dmg": "1d8+3"
+      },
+      {
+        "name": "Demos Magen",
+        "cr": "1",
+        "base_hp": 51,
+        "base_ac": 16,
+        "base_atk": 6,
+        "base_dmg": "1d8+4"
+      },
+      {
+        "name": "Dragonclaw",
+        "cr": "1",
+        "base_hp": 16,
+        "base_ac": 14,
+        "base_atk": 5,
+        "base_dmg": "1d6+3"
+      },
+      {
+        "name": "Duergar Soulblade",
+        "cr": "1",
+        "base_hp": 18,
+        "base_ac": 14,
+        "base_atk": 5,
+        "base_dmg": "2d6+3"
+      },
+      {
+        "name": "Female Steeder",
+        "cr": "1",
+        "base_hp": 30,
+        "base_ac": 14,
+        "base_atk": 5,
+        "base_dmg": "1d6"
+      },
+      {
+        "name": "Ghoul",
+        "cr": 1,
+        "base_hp": 22,
+        "base_ac": 12,
+        "base_atk": 2,
+        "base_dmg": "2d6+2"
+      },
+      {
+        "name": "Giant Spider",
+        "cr": 1,
+        "base_hp": 26,
+        "base_ac": 14,
+        "base_atk": 5,
+        "base_dmg": "1d8+3"
+      },
+      {
+        "name": "Hypnos Magen",
+        "cr": "1",
+        "base_hp": 34,
+        "base_ac": 12,
+        "base_atk": 4,
+        "base_dmg": "1d10+2"
+      },
+      {
+        "name": "Ice Toad",
+        "cr": "1",
+        "base_hp": 32,
+        "base_ac": 12,
+        "base_atk": 3,
+        "base_dmg": "1d6"
+      },
+      {
+        "name": "Vargouille",
+        "cr": "1",
+        "base_hp": 18,
+        "base_ac": 12,
+        "base_atk": 4,
+        "base_dmg": "1d6"
+      },
+      {
+        "name": "Adult Kruthik",
+        "cr": "2",
+        "base_hp": 39,
+        "base_ac": 18,
+        "base_atk": 5,
+        "base_dmg": "1d6"
+      },
+      {
+        "name": "Aurochs",
+        "cr": "2",
+        "base_hp": 38,
+        "base_ac": 11,
+        "base_atk": 7,
+        "base_dmg": "2d8+5"
+      },
+      {
+        "name": "Berbalang",
+        "cr": "2",
+        "base_hp": 49,
+        "base_ac": 14,
+        "base_atk": 5,
+        "base_dmg": "2d4+3"
+      },
+      {
+        "name": "Chamberlain of Zuggtmoy",
+        "cr": "2",
+        "base_hp": 45,
+        "base_ac": 13,
+        "base_atk": 5,
+        "base_dmg": "2d6+3"
+      },
+      {
+        "name": "Darkling Elder",
+        "cr": "2",
+        "base_hp": 27,
+        "base_ac": 15,
+        "base_atk": 5,
+        "base_dmg": "1d6"
+      },
+      {
+        "name": "Dragonwing",
+        "cr": "2",
+        "base_hp": 33,
+        "base_ac": 14,
+        "base_atk": 5,
+        "base_dmg": "1d6+3"
+      },
+      {
+        "name": "Duergar Hammerer",
+        "cr": "2",
+        "base_hp": 33,
+        "base_ac": 17,
+        "base_atk": 5,
+        "base_dmg": "2d6+3"
+      },
+      {
+        "name": "Duergar Mind Master",
+        "cr": "2",
+        "base_hp": 39,
+        "base_ac": 14,
+        "base_atk": 5,
+        "base_dmg": "1d8+3"
+      },
+      {
+        "name": "Duergar Stone Guard",
+        "cr": "2",
+        "base_hp": 39,
+        "base_ac": 18,
+        "base_atk": 6,
+        "base_dmg": "1d6+4"
+      },
+      {
+        "name": "Duergar Xarrorn",
+        "cr": "2",
+        "base_hp": 26,
+        "base_ac": 18,
+        "base_atk": 5,
+        "base_dmg": "1d6"
+      },
+      {
+        "name": "Ghast",
+        "cr": 2,
+        "base_hp": 36,
+        "base_ac": 13,
+        "base_atk": 3,
+        "base_dmg": "2d8+3"
+      },
+      {
+        "name": "Griffon Cavalry Rider",
+        "cr": "2",
+        "base_hp": 58,
+        "base_ac": 17,
+        "base_atk": 4,
+        "base_dmg": "1d4+2"
+      },
+      {
+        "name": "Guard Drake",
+        "cr": "2",
+        "base_hp": 52,
+        "base_ac": 14,
+        "base_atk": 5,
+        "base_dmg": "1d6"
+      },
+      {
+        "name": "Hobgoblin Iron Shadow",
+        "cr": "2",
+        "base_hp": 32,
+        "base_ac": 15,
+        "base_atk": 5,
+        "base_dmg": "1d4+3"
+      },
+      {
+        "name": "Nothic",
+        "cr": 2,
+        "base_hp": 45,
+        "base_ac": 15,
+        "base_atk": 4,
+        "base_dmg": "1d6+3"
+      },
+      {
+        "name": "Ogre",
+        "cr": 2,
+        "base_hp": 59,
+        "base_ac": 11,
+        "base_atk": 6,
+        "base_dmg": "2d8+4"
+      },
+      {
+        "name": "Ogre Bolt Launcher",
+        "cr": "2",
+        "base_hp": 59,
+        "base_ac": 13,
+        "base_atk": 6,
+        "base_dmg": "1d6"
+      },
+      {
+        "name": "Ogre Howdah",
+        "cr": "2",
+        "base_hp": 59,
+        "base_ac": 15,
+        "base_atk": 6,
+        "base_dmg": "1d6"
+      },
+      {
+        "name": "Tortle Druid",
+        "cr": "2",
+        "base_hp": 33,
+        "base_ac": 17,
+        "base_atk": 4,
+        "base_dmg": "2d6+2"
+      },
+      {
+        "name": "Vampiric Ixitxachitl",
+        "cr": "2",
+        "base_hp": 44,
+        "base_ac": 16,
+        "base_atk": 4,
+        "base_dmg": "1d8+2"
+      },
+      {
+        "name": "Will-o'-Wisp",
+        "cr": 2,
+        "base_hp": 22,
+        "base_ac": 19,
+        "base_atk": 4,
+        "base_dmg": "2d8"
+      }
+    ],
+    "2": [
+      {
+        "name": "Brain in a Jar",
+        "cr": "3",
+        "base_hp": 55,
+        "base_ac": 11,
+        "base_atk": 6,
+        "base_dmg": "3d6"
+      },
+      {
+        "name": "Bugbear Chief",
+        "cr": 3,
+        "base_hp": 65,
+        "base_ac": 17,
+        "base_atk": 5,
+        "base_dmg": "2d8+3"
+      },
+      {
+        "name": "Cave Fisher",
+        "cr": "3",
+        "base_hp": 58,
+        "base_ac": 16,
+        "base_atk": 5,
+        "base_dmg": "2d6+3"
+      },
+      {
+        "name": "Deep Scion",
+        "cr": "3",
+        "base_hp": 67,
+        "base_ac": 11,
+        "base_atk": 6,
+        "base_dmg": "1d6"
+      },
+      {
+        "name": "Derro Savant",
+        "cr": "3",
+        "base_hp": 49,
+        "base_ac": 13,
+        "base_atk": 2,
+        "base_dmg": "1d4-1"
+      },
+      {
+        "name": "Duergar Screamer",
+        "cr": "3",
+        "base_hp": 38,
+        "base_ac": 15,
+        "base_atk": 6,
+        "base_dmg": "1d6"
+      },
+      {
+        "name": "Galvan Magen",
+        "cr": "3",
+        "base_hp": 68,
+        "base_ac": 14,
+        "base_atk": 5,
+        "base_dmg": "2d6+2"
+      },
+      {
+        "name": "Giff",
+        "cr": "3",
+        "base_hp": 60,
+        "base_ac": 16,
+        "base_atk": 6,
+        "base_dmg": "1d6"
+      },
+      {
+        "name": "Hook Horror Spore Servant",
+        "cr": "3",
+        "base_hp": 75,
+        "base_ac": 15,
+        "base_atk": 6,
+        "base_dmg": "2d6+4"
+      },
+      {
+        "name": "Lava Child",
+        "cr": "3",
+        "base_hp": 60,
+        "base_ac": 11,
+        "base_atk": 6,
+        "base_dmg": "2d6+4"
+      },
+      {
+        "name": "Manticore",
+        "cr": 3,
+        "base_hp": 68,
+        "base_ac": 14,
+        "base_atk": 5,
+        "base_dmg": "1d8+3"
+      },
+      {
+        "name": "Martial Arts Adept",
+        "cr": "3",
+        "base_hp": 60,
+        "base_ac": 16,
+        "base_atk": 5,
+        "base_dmg": "1d6"
+      },
+      {
+        "name": "Ogre Chain Brute",
+        "cr": "3",
+        "base_hp": 59,
+        "base_ac": 11,
+        "base_atk": 6,
+        "base_dmg": "2d8+4"
+      },
+      {
+        "name": "Owlbear",
+        "cr": 3,
+        "base_hp": 59,
+        "base_ac": 13,
+        "base_atk": 7,
+        "base_dmg": "2d8+5"
+      },
+      {
+        "name": "Shadow Mastiff Alpha",
+        "cr": "3",
+        "base_hp": 44,
+        "base_ac": 12,
+        "base_atk": 5,
+        "base_dmg": "2d6+3"
+      },
+      {
+        "name": "Snow Golem",
+        "cr": "3",
+        "base_hp": 39,
+        "base_ac": 12,
+        "base_atk": 5,
+        "base_dmg": "1d6+3"
+      },
+      {
+        "name": "Swashbuckler",
+        "cr": "3",
+        "base_hp": 66,
+        "base_ac": 17,
+        "base_atk": 6,
+        "base_dmg": "1d6"
+      },
+      {
+        "name": "Sword Wraith Warrior",
+        "cr": "3",
+        "base_hp": 45,
+        "base_ac": 16,
+        "base_atk": 6,
+        "base_dmg": "1d6"
+      },
+      {
+        "name": "Troglodyte Champion of Laogzed",
+        "cr": "3",
+        "base_hp": 59,
+        "base_ac": 14,
+        "base_atk": 6,
+        "base_dmg": "1d8+4"
+      },
+      {
+        "name": "Water Weird",
+        "cr": 3,
+        "base_hp": 58,
+        "base_ac": 13,
+        "base_atk": 5,
+        "base_dmg": "3d6+3"
+      },
+      {
+        "name": "Wight",
+        "cr": 3,
+        "base_hp": 45,
+        "base_ac": 14,
+        "base_atk": 4,
+        "base_dmg": "1d6+2"
+      },
+      {
+        "name": "Babau",
+        "cr": "4",
+        "base_hp": 82,
+        "base_ac": 16,
+        "base_atk": 6,
+        "base_dmg": "1d6"
+      },
+      {
+        "name": "Chardalyn Berserker",
+        "cr": "4",
+        "base_hp": 50,
+        "base_ac": 11,
+        "base_atk": 5,
+        "base_dmg": "2d6+3"
+      },
+      {
+        "name": "Chuul Spore Servant",
+        "cr": "4",
+        "base_hp": 93,
+        "base_ac": 16,
+        "base_atk": 6,
+        "base_dmg": "2d6+4"
+      },
+      {
+        "name": "Clockwork Iron Cobra",
+        "cr": "4",
+        "base_hp": 91,
+        "base_ac": 13,
+        "base_atk": 5,
+        "base_dmg": "1d6"
+      },
+      {
+        "name": "Clockwork Stone Defender",
+        "cr": "4",
+        "base_hp": 105,
+        "base_ac": 16,
+        "base_atk": 6,
+        "base_dmg": "2d6+4"
+      },
+      {
+        "name": "Ghost",
+        "cr": 4,
+        "base_hp": 45,
+        "base_ac": 11,
+        "base_atk": 5,
+        "base_dmg": "4d6+3"
+      },
+      {
+        "name": "Giant Walrus",
+        "cr": "4",
+        "base_hp": 85,
+        "base_ac": 9,
+        "base_atk": 8,
+        "base_dmg": "3d6+5"
+      },
+      {
+        "name": "Girallon",
+        "cr": "4",
+        "base_hp": 59,
+        "base_ac": 13,
+        "base_atk": 6,
+        "base_dmg": "1d6"
+      },
+      {
+        "name": "Hobgoblin Devastator",
+        "cr": "4",
+        "base_hp": 45,
+        "base_ac": 13,
+        "base_atk": 3,
+        "base_dmg": "1d6"
+      },
+      {
+        "name": "Lamia",
+        "cr": 4,
+        "base_hp": 97,
+        "base_ac": 13,
+        "base_atk": 5,
+        "base_dmg": "2d10+3"
+      },
+      {
+        "name": "Living Bigby's Hand",
+        "cr": "4",
+        "base_hp": 52,
+        "base_ac": 20,
+        "base_atk": 7,
+        "base_dmg": "2d6+4"
+      },
+      {
+        "name": "Merregon",
+        "cr": "4",
+        "base_hp": 45,
+        "base_ac": 16,
+        "base_atk": 6,
+        "base_dmg": "1d6"
+      },
+      {
+        "name": "Ogre Battering Ram",
+        "cr": "4",
+        "base_hp": 76,
+        "base_ac": 11,
+        "base_atk": 6,
+        "base_dmg": "1d6"
+      },
+      {
+        "name": "Verbeeg Marauder",
+        "cr": "4",
+        "base_hp": 95,
+        "base_ac": 14,
+        "base_atk": 7,
+        "base_dmg": "3d6+4"
+      },
+      {
+        "name": "Warlock of the Archfey",
+        "cr": "4",
+        "base_hp": 67,
+        "base_ac": 13,
+        "base_atk": 5,
+        "base_dmg": "1d6"
+      },
+      {
+        "name": "Yestabrod",
+        "cr": "4",
+        "base_hp": 75,
+        "base_ac": 15,
+        "base_atk": 3,
+        "base_dmg": "3d4+1"
+      },
+      {
+        "name": "Banderhobb",
+        "cr": "5",
+        "base_hp": 84,
+        "base_ac": 15,
+        "base_atk": 8,
+        "base_dmg": "1d6"
+      },
+      {
+        "name": "Clockwork Oaken Bolter",
+        "cr": "5",
+        "base_hp": 117,
+        "base_ac": 16,
+        "base_atk": 7,
+        "base_dmg": "2d6+3"
+      },
+      {
+        "name": "Coldlight Walker",
+        "cr": "5",
+        "base_hp": 82,
+        "base_ac": 13,
+        "base_atk": 6,
+        "base_dmg": "2d6+3"
+      },
+      {
+        "name": "Dragonfang",
+        "cr": "5",
+        "base_hp": 78,
+        "base_ac": 15,
+        "base_atk": 6,
+        "base_dmg": "1d6+3"
+      },
+      {
+        "name": "Frost Druid",
+        "cr": "5",
+        "base_hp": 75,
+        "base_ac": 13,
+        "base_atk": 5,
+        "base_dmg": "2d8"
+      },
+      {
+        "name": "Gnome Ceremorph",
+        "cr": "5",
+        "base_hp": 58,
+        "base_ac": 15,
+        "base_atk": 7,
+        "base_dmg": "2d10+4"
+      },
+      {
+        "name": "Kraken Priest",
+        "cr": "5",
+        "base_hp": 75,
+        "base_ac": 15,
+        "base_atk": 5,
+        "base_dmg": "1d6"
+      },
+      {
+        "name": "Kruthik Hive Lord",
+        "cr": "5",
+        "base_hp": 102,
+        "base_ac": 20,
+        "base_atk": 7,
+        "base_dmg": "2d6+3"
+      },
+      {
+        "name": "Mindwitness",
+        "cr": "5",
+        "base_hp": 75,
+        "base_ac": 15,
+        "base_atk": 5,
+        "base_dmg": "4d6+2"
+      },
+      {
+        "name": "Otyugh",
+        "cr": 5,
+        "base_hp": 114,
+        "base_ac": 14,
+        "base_atk": 6,
+        "base_dmg": "2d8+3"
+      },
+      {
+        "name": "Salamander",
+        "cr": 5,
+        "base_hp": 90,
+        "base_ac": 15,
+        "base_atk": 7,
+        "base_dmg": "2d6+4"
+      },
+      {
+        "name": "Shambling Mound",
+        "cr": 5,
+        "base_hp": 136,
+        "base_ac": 15,
+        "base_atk": 7,
+        "base_dmg": "2d8+4"
+      },
+      {
+        "name": "Swarm of Cranium Rats",
+        "cr": "5",
+        "base_hp": 76,
+        "base_ac": 12,
+        "base_atk": 5,
+        "base_dmg": "1d6"
+      },
+      {
+        "name": "Tanarukk",
+        "cr": "5",
+        "base_hp": 95,
+        "base_ac": 14,
+        "base_atk": 7,
+        "base_dmg": "2d6+4"
+      },
+      {
+        "name": "Troll",
+        "cr": 5,
+        "base_hp": 84,
+        "base_ac": 15,
+        "base_atk": 7,
+        "base_dmg": "2d6+4"
+      },
+      {
+        "name": "Dragonsoul",
+        "cr": "6",
+        "base_hp": 110,
+        "base_ac": 16,
+        "base_atk": 7,
+        "base_dmg": "1d6+3"
+      },
+      {
+        "name": "Drider",
+        "cr": 6,
+        "base_hp": 123,
+        "base_ac": 19,
+        "base_atk": 6,
+        "base_dmg": "1d12+3"
+      },
+      {
+        "name": "Duergar Warlord",
+        "cr": "6",
+        "base_hp": 75,
+        "base_ac": 20,
+        "base_atk": 7,
+        "base_dmg": "1d6"
+      },
+      {
+        "name": "Frost Giant Skeleton",
+        "cr": "6",
+        "base_hp": 102,
+        "base_ac": 14,
+        "base_atk": 8,
+        "base_dmg": "3d12+6"
+      },
+      {
+        "name": "Medusa",
+        "cr": 6,
+        "base_hp": 127,
+        "base_ac": 15,
+        "base_atk": 5,
+        "base_dmg": "1d6+2"
+      },
+      {
+        "name": "Verbeeg Longstrider",
+        "cr": "6",
+        "base_hp": 119,
+        "base_ac": 14,
+        "base_atk": 7,
+        "base_dmg": "4d6+4"
+      }
+    ],
+    "3": [
+      {
+        "name": "Young White Dragon",
+        "cr": 6,
+        "base_hp": 133,
+        "base_ac": 17,
+        "base_atk": 7,
+        "base_dmg": "2d10+4"
+      },
+      {
+        "name": "Air Elemental Myrmidon",
+        "cr": "7",
+        "base_hp": 117,
+        "base_ac": 18,
+        "base_atk": 7,
+        "base_dmg": "2d8+4"
+      },
+      {
+        "name": "Earth Elemental Myrmidon",
+        "cr": "7",
+        "base_hp": 127,
+        "base_ac": 18,
+        "base_atk": 7,
+        "base_dmg": "2d6+4"
+      },
+      {
+        "name": "Goliath Werebear",
+        "cr": "7",
+        "base_hp": 120,
+        "base_ac": 14,
+        "base_atk": 9,
+        "base_dmg": "2d6+6"
+      },
+      {
+        "name": "Ice Troll",
+        "cr": "7",
+        "base_hp": 115,
+        "base_ac": 16,
+        "base_atk": 9,
+        "base_dmg": "2d6+6"
+      },
+      {
+        "name": "Korred",
+        "cr": "7",
+        "base_hp": 93,
+        "base_ac": 17,
+        "base_atk": 9,
+        "base_dmg": "1d6"
+      },
+      {
+        "name": "Lost Sorrowsworn",
+        "cr": "7",
+        "base_hp": 78,
+        "base_ac": 15,
+        "base_atk": 6,
+        "base_dmg": "1d6"
+      },
+      {
+        "name": "Mind Flayer",
+        "cr": 7,
+        "base_hp": 71,
+        "base_ac": 15,
+        "base_atk": 7,
+        "base_dmg": "2d10+4"
+      },
+      {
+        "name": "Shield Guardian",
+        "cr": 7,
+        "base_hp": 142,
+        "base_ac": 17,
+        "base_atk": 7,
+        "base_dmg": "2d6+4"
+      },
+      {
+        "name": "Stone Giant",
+        "cr": 7,
+        "base_hp": 126,
+        "base_ac": 17,
+        "base_atk": 9,
+        "base_dmg": "3d8+6"
+      },
+      {
+        "name": "Warlock of the Fiend",
+        "cr": "7",
+        "base_hp": 78,
+        "base_ac": 13,
+        "base_atk": 6,
+        "base_dmg": "1d6"
+      },
+      {
+        "name": "Water Elemental Myrmidon",
+        "cr": "7",
+        "base_hp": 127,
+        "base_ac": 18,
+        "base_atk": 7,
+        "base_dmg": "2d8+4"
+      },
+      {
+        "name": "Young Black Dragon",
+        "cr": 7,
+        "base_hp": 127,
+        "base_ac": 18,
+        "base_atk": 7,
+        "base_dmg": "2d10+4"
+      },
+      {
+        "name": "Frost Giant",
+        "cr": 8,
+        "base_hp": 138,
+        "base_ac": 15,
+        "base_atk": 9,
+        "base_dmg": "3d12+6"
+      },
+      {
+        "name": "Hydra",
+        "cr": 8,
+        "base_hp": 172,
+        "base_ac": 15,
+        "base_atk": 8,
+        "base_dmg": "1d10+5"
+      },
+      {
+        "name": "Shoosuva",
+        "cr": "8",
+        "base_hp": 136,
+        "base_ac": 14,
+        "base_atk": 7,
+        "base_dmg": "2d8+4"
+      },
+      {
+        "name": "Young Green Dragon",
+        "cr": 8,
+        "base_hp": 136,
+        "base_ac": 18,
+        "base_atk": 7,
+        "base_dmg": "2d10+4"
+      },
+      {
+        "name": "Cloud Giant",
+        "cr": 9,
+        "base_hp": 200,
+        "base_ac": 14,
+        "base_atk": 12,
+        "base_dmg": "3d8+8"
+      },
+      {
+        "name": "Drow House Captain",
+        "cr": "9",
+        "base_hp": 162,
+        "base_ac": 16,
+        "base_atk": 8,
+        "base_dmg": "2d8+4"
+      },
+      {
+        "name": "Fire Giant",
+        "cr": 9,
+        "base_hp": 162,
+        "base_ac": 18,
+        "base_atk": 11,
+        "base_dmg": "6d6+7"
+      },
+      {
+        "name": "Flind",
+        "cr": "9",
+        "base_hp": 127,
+        "base_ac": 16,
+        "base_atk": 9,
+        "base_dmg": "2d8+4"
+      },
+      {
+        "name": "Frost Salamander",
+        "cr": "9",
+        "base_hp": 168,
+        "base_ac": 17,
+        "base_atk": 9,
+        "base_dmg": "2d8+4"
+      },
+      {
+        "name": "Lonely Sorrowsworn",
+        "cr": "9",
+        "base_hp": 112,
+        "base_ac": 16,
+        "base_atk": 7,
+        "base_dmg": "2d8+4"
+      },
+      {
+        "name": "Shadar-Kai Gloom Weaver",
+        "cr": "9",
+        "base_hp": 104,
+        "base_ac": 14,
+        "base_atk": 8,
+        "base_dmg": "2d8+4"
+      },
+      {
+        "name": "Treant",
+        "cr": 9,
+        "base_hp": 138,
+        "base_ac": 16,
+        "base_atk": 10,
+        "base_dmg": "3d6+6"
+      },
+      {
+        "name": "War Priest",
+        "cr": "9",
+        "base_hp": 117,
+        "base_ac": 18,
+        "base_atk": 7,
+        "base_dmg": "2d6+3"
+      },
+      {
+        "name": "Young Blue Dragon",
+        "cr": 9,
+        "base_hp": 152,
+        "base_ac": 18,
+        "base_atk": 9,
+        "base_dmg": "2d10+5"
+      },
+      {
+        "name": "Death Kiss",
+        "cr": "10",
+        "base_hp": 142,
+        "base_ac": 15,
+        "base_atk": 8,
+        "base_dmg": "2d8+4"
+      },
+      {
+        "name": "Froghemoth",
+        "cr": "10",
+        "base_hp": 161,
+        "base_ac": 14,
+        "base_atk": 10,
+        "base_dmg": "2d8+4"
+      },
+      {
+        "name": "Githyanki Gish",
+        "cr": "10",
+        "base_hp": 130,
+        "base_ac": 17,
+        "base_atk": 7,
+        "base_dmg": "8d6"
+      },
+      {
+        "name": "Githzerai Enlightened",
+        "cr": "10",
+        "base_hp": 112,
+        "base_ac": 18,
+        "base_atk": 8,
+        "base_dmg": "2d8+4"
+      },
+      {
+        "name": "Tomb Tapper",
+        "cr": "10",
+        "base_hp": 207,
+        "base_ac": 17,
+        "base_atk": 8,
+        "base_dmg": "2d10+4"
+      },
+      {
+        "name": "Young Red Dragon",
+        "cr": 10,
+        "base_hp": 178,
+        "base_ac": 18,
+        "base_atk": 10,
+        "base_dmg": "2d10+6"
+      },
+      {
+        "name": "Balhannoth",
+        "cr": "11",
+        "base_hp": 114,
+        "base_ac": 17,
+        "base_atk": 7,
+        "base_dmg": "2d8+4"
+      },
+      {
+        "name": "Chardalyn Dragon",
+        "cr": "11",
+        "base_hp": 147,
+        "base_ac": 17,
+        "base_atk": 11,
+        "base_dmg": "4d10+6"
+      },
+      {
+        "name": "Cloud Giant Smiling One",
+        "cr": "11",
+        "base_hp": 250,
+        "base_ac": 15,
+        "base_atk": 12,
+        "base_dmg": "3d8+8"
+      },
+      {
+        "name": "Hungry Sorrowsworn",
+        "cr": "11",
+        "base_hp": 225,
+        "base_ac": 17,
+        "base_atk": 8,
+        "base_dmg": "2d8+4"
+      },
+      {
+        "name": "Morkoth",
+        "cr": "11",
+        "base_hp": 165,
+        "base_ac": 17,
+        "base_atk": 6,
+        "base_dmg": "2d6+2"
+      },
+      {
+        "name": "Naergoth Bladelord",
+        "cr": "11",
+        "base_hp": 135,
+        "base_ac": 18,
+        "base_atk": 9,
+        "base_dmg": "5d6+3"
+      },
+      {
+        "name": "Remorhaz",
+        "cr": 11,
+        "base_hp": 195,
+        "base_ac": 17,
+        "base_atk": 11,
+        "base_dmg": "6d10+7"
+      },
+      {
+        "name": "Roc",
+        "cr": 11,
+        "base_hp": 248,
+        "base_ac": 15,
+        "base_atk": 13,
+        "base_dmg": "4d8+9"
+      },
+      {
+        "name": "Githyanki Kith'rak",
+        "cr": "12",
+        "base_hp": 180,
+        "base_ac": 18,
+        "base_atk": 8,
+        "base_dmg": "2d6+4"
+      },
+      {
+        "name": "Devourer",
+        "cr": "13",
+        "base_hp": 189,
+        "base_ac": 16,
+        "base_atk": 10,
+        "base_dmg": "2d6+5"
+      }
+    ],
+    "4": [
+      {
+        "name": "Adult White Dragon",
+        "cr": 13,
+        "base_hp": 200,
+        "base_ac": 18,
+        "base_atk": 11,
+        "base_dmg": "2d10+6"
+      },
+      {
+        "name": "Storm Giant",
+        "cr": 13,
+        "base_hp": 230,
+        "base_ac": 16,
+        "base_atk": 14,
+        "base_dmg": "6d6+9"
+      },
+      {
+        "name": "Vampire",
+        "cr": 13,
+        "base_hp": 144,
+        "base_ac": 16,
+        "base_atk": 8,
+        "base_dmg": "1d8+4"
+      },
+      {
+        "name": "Adult Black Dragon",
+        "cr": 14,
+        "base_hp": 195,
+        "base_ac": 19,
+        "base_atk": 11,
+        "base_dmg": "2d10+6"
+      },
+      {
+        "name": "Purple Worm",
+        "cr": 15,
+        "base_hp": 247,
+        "base_ac": 18,
+        "base_atk": 14,
+        "base_dmg": "3d8+9"
+      },
+      {
+        "name": "Adult Blue Dragon",
+        "cr": 16,
+        "base_hp": 225,
+        "base_ac": 19,
+        "base_atk": 12,
+        "base_dmg": "2d10+7"
+      },
+      {
+        "name": "Githzerai Anarch",
+        "cr": "16",
+        "base_hp": 144,
+        "base_ac": 20,
+        "base_atk": 10,
+        "base_dmg": "2d8+4"
+      },
+      {
+        "name": "Iron Golem",
+        "cr": 16,
+        "base_hp": 210,
+        "base_ac": 20,
+        "base_atk": 14,
+        "base_dmg": "3d8+7"
+      },
+      {
+        "name": "Storm Giant Quintessent",
+        "cr": "16",
+        "base_hp": 230,
+        "base_ac": 12,
+        "base_atk": 14,
+        "base_dmg": "2d8+4"
+      },
+      {
+        "name": "Adult Red Dragon",
+        "cr": 17,
+        "base_hp": 256,
+        "base_ac": 19,
+        "base_atk": 14,
+        "base_dmg": "2d10+8"
+      },
+      {
+        "name": "Death Knight",
+        "cr": 17,
+        "base_hp": 180,
+        "base_ac": 20,
+        "base_atk": 11,
+        "base_dmg": "1d8+5"
+      },
+      {
+        "name": "Nagpa",
+        "cr": "17",
+        "base_hp": 203,
+        "base_ac": 19,
+        "base_atk": 8,
+        "base_dmg": "2d6+2"
+      },
+      {
+        "name": "Pit Fiend",
+        "cr": 20,
+        "base_hp": 300,
+        "base_ac": 19,
+        "base_atk": 14,
+        "base_dmg": "2d6+8"
+      },
+      {
+        "name": "Lich",
+        "cr": 21,
+        "base_hp": 135,
+        "base_ac": 17,
+        "base_atk": 12,
+        "base_dmg": "3d6"
+      },
+      {
+        "name": "Baphomet",
+        "cr": "23",
+        "base_hp": 333,
+        "base_ac": 22,
+        "base_atk": 17,
+        "base_dmg": "4d6+10"
+      },
+      {
+        "name": "Fraz-Urb'luu",
+        "cr": "23",
+        "base_hp": 350,
+        "base_ac": 18,
+        "base_atk": 16,
+        "base_dmg": "4d6+9"
+      },
+      {
+        "name": "Juiblex",
+        "cr": "23",
+        "base_hp": 350,
+        "base_ac": 18,
+        "base_atk": 14,
+        "base_dmg": "4d6+7"
+      },
+      {
+        "name": "Zuggtmoy",
+        "cr": "23",
+        "base_hp": 304,
+        "base_ac": 18,
+        "base_atk": 13,
+        "base_dmg": "2d8+5"
+      },
+      {
+        "name": "Graz'zt",
+        "cr": "24",
+        "base_hp": 378,
+        "base_ac": 20,
+        "base_atk": 13,
+        "base_dmg": "4d6+6"
+      },
+      {
+        "name": "Yeenoghu",
+        "cr": "24",
+        "base_hp": 348,
+        "base_ac": 22,
+        "base_atk": 16,
+        "base_dmg": "2d12+9"
+      },
+      {
+        "name": "Demogorgon",
+        "cr": "26",
+        "base_hp": 496,
+        "base_ac": 22,
+        "base_atk": 17,
+        "base_dmg": "4d12+9"
+      },
+      {
+        "name": "Orcus",
+        "cr": "26",
+        "base_hp": 405,
+        "base_ac": 17,
+        "base_atk": 19,
+        "base_dmg": "3d8+8"
+      },
+      {
+        "name": "Tiamat",
+        "cr": "30",
+        "base_hp": 615,
+        "base_ac": 25,
+        "base_atk": 19,
+        "base_dmg": "4d6+10"
+      }
+    ]
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "source": "DMG + SRD (baseline from hardcoded pools)",
+  "tiers": {
+    "1": [
+      {"name": "Potion of Healing", "rarity": "common", "value_gp": 50, "source": "DMG p.188"},
+      {"name": "Shortsword +1", "rarity": "uncommon", "value_gp": 500, "source": "DMG p.213"},
+      {"name": "50 gp", "rarity": "currency", "value_gp": 50, "source": "SRD"},
+      {"name": "Scroll of Shield", "rarity": "common", "value_gp": 25, "source": "DMG p.200"},
+      {"name": "Rope of Climbing", "rarity": "uncommon", "value_gp": 500, "source": "DMG p.197"}
+    ],
+    "2": [
+      {"name": "Potion of Greater Healing", "rarity": "uncommon", "value_gp": 150, "source": "DMG p.188"},
+      {"name": "Longsword +1", "rarity": "uncommon", "value_gp": 500, "source": "DMG p.213"},
+      {"name": "200 gp", "rarity": "currency", "value_gp": 200, "source": "SRD"},
+      {"name": "Wand of Magic Missiles", "rarity": "uncommon", "value_gp": 500, "source": "DMG p.211"},
+      {"name": "Cloak of Protection", "rarity": "uncommon", "value_gp": 500, "source": "DMG p.159"}
+    ],
+    "3": [
+      {"name": "Potion of Superior Healing", "rarity": "rare", "value_gp": 500, "source": "DMG p.188"},
+      {"name": "Greatsword +2", "rarity": "rare", "value_gp": 4000, "source": "DMG p.213"},
+      {"name": "750 gp", "rarity": "currency", "value_gp": 750, "source": "SRD"},
+      {"name": "Ring of Protection", "rarity": "rare", "value_gp": 4000, "source": "DMG p.191"},
+      {"name": "Staff of the Python", "rarity": "uncommon", "value_gp": 2000, "source": "DMG p.204"}
+    ],
+    "4": [
+      {"name": "Potion of Supreme Healing", "rarity": "very rare", "value_gp": 5000, "source": "DMG p.188"},
+      {"name": "Holy Avenger", "rarity": "legendary", "value_gp": 50000, "source": "DMG p.174"},
+      {"name": "2500 gp", "rarity": "currency", "value_gp": 2500, "source": "SRD"},
+      {"name": "Rod of the Pact Keeper +3", "rarity": "very rare", "value_gp": 20000, "source": "DMG p.197"},
+      {"name": "Vorpal Sword", "rarity": "legendary", "value_gp": 50000, "source": "DMG p.209"}
+    ]
+  }
+}

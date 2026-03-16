@@ -1,0 +1,38 @@
+{
+    "system_id": "CANDELA",
+    "display_name": "Candela Obscura",
+    "engine": "Illuminated",
+    "system_family": "ILLUMINATED_WORLDS",
+    "archetype_categories": {
+        "Roles": ["Face", "Muscle", "Scholar", "Slink", "Weird"],
+        "Circles": ["Circle of Needle & Thread", "Circle of Tide & Bone", "Circle of the Crimson Mirror"]
+    },
+    "core_stats": {
+        "resistances": ["Nerve", "Cunning", "Intuition"],
+        "actions": {
+            "Nerve": ["Strike", "Control", "Move"],
+            "Cunning": ["Hide", "Sneak", "Sense"],
+            "Intuition": ["Conduct", "Survey", "Read"]
+        }
+    },
+    "resources": ["Marks", "Scars", "Illumination Keys"],
+    "dice_system": "gilded_dice",
+    "gilded_dice_rules": {
+        "pool": "Roll d6s equal to action dots",
+        "success": "Highest die: 1-3=miss, 4-5=mixed, 6=success",
+        "gilded_die": "Replaces one standard d6 when spending Illumination",
+        "gilded_6": "Critical success with narrative bonus",
+        "zero_dice": "Roll 2d6 take lowest"
+    },
+    "marks_and_scars": {
+        "body_marks": 3,
+        "brain_marks": 3,
+        "bleed_marks": 3,
+        "scar_threshold": "When a track fills, take a Scar and reset"
+    },
+    "special_mechanics": {
+        "investigations": "Assignment-based structure (Briefing -> Investigation -> Confrontation)",
+        "bleed": "Supernatural corruption mechanic unique to Illuminated engine",
+        "illumination_keys": "Narrative XP triggers specific to each character"
+    }
+}

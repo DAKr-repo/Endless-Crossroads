@@ -1,0 +1,215 @@
+{
+    "seed": 7003,
+    "width": 55,
+    "height": 50,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "dragon_hatchery",
+        "theme": "STONE",
+        "topology": "dungeon",
+        "display_name": "The Dragon Hatchery"
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 5,
+            "y": 5,
+            "width": 10,
+            "height": 8,
+            "room_type": "start",
+            "connections": [1],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The cave mouth gapes in the cliff face like the maw of something dead, ringed with stalactites that drip fetid water. The smell rolls out in waves: rotting meat, sulfur, and the sharp ammonia stink of reptile nesting. Claw marks gouge the stone at the entrance -- something large comes and goes regularly. Fresh kobold tracks lead inside, alongside the deeper impressions of booted humanoids.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Kobold (group of 4, guard detail)", "cr": "1/8"}
+                ],
+                "loot": [],
+                "services": [],
+                "event_triggers": ["On entry: DC 12 Stealth to enter undetected. The kobolds are inattentive but the cave acoustics carry sound.", "On search: DC 11 Survival identifies the large tracks as drake -- multiple specimens."]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 15,
+            "y": 12,
+            "width": 12,
+            "height": 8,
+            "room_type": "normal",
+            "connections": [0, 2, 3],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The mushroom garden fills a damp side-chamber with clusters of phosphorescent fungi -- blues, greens, and an unnatural purple variety that the kobolds cultivate for food. The air is thick with spores, and the ceiling is alive with insects drawn to the bioluminescence. A crude kobold irrigation system of clay pipes feeds the garden from an underground stream.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Violet Fungus (2)", "cr": "1/4"}
+                ],
+                "loot": [
+                    {"name": "Edible Mushrooms (5 days rations)", "type": "consumable"},
+                    {"name": "Purple Fungus Extract (poison, DC 11 Con save, 2d6 poison damage)", "type": "consumable"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: DC 13 Nature to identify safe vs. dangerous fungi.", "On harvest: The purple fungi can be extracted into a blade poison (DC 12 Nature or Alchemist's Tools)."]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 20,
+            "y": 5,
+            "width": 10,
+            "height": 8,
+            "room_type": "normal",
+            "connections": [1, 4],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The bat cavern's ceiling writhes with thousands of roosting bats packed so densely they form a living carpet of fur and membrane. The floor is inches deep in guano, and the stench is staggering. Any sudden light or noise sends the colony into a panicked flight that fills the cavern with a tornado of wings and teeth -- not dangerous individually, but blinding and disorienting en masse.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Swarm of Bats", "cr": "1/4"},
+                    {"name": "Swarm of Bats", "cr": "1/4"}
+                ],
+                "loot": [],
+                "services": [],
+                "event_triggers": ["On entry: Any light source or noise above a whisper (DC 8 Stealth to maintain silence) awakens the bat swarm.", "On traverse: DC 12 Dexterity save to navigate without slipping in guano. Failure = prone + disadvantage for 1 round."]
+            }
+        },
+        "3": {
+            "id": 3,
+            "x": 10,
+            "y": 22,
+            "width": 12,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [1, 5, 6],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The stirge cave buzzes with a high-pitched whine that vibrates behind the eyes. The stirges roost in clusters on the ceiling, their proboscises twitching in sleep. The cave floor is scattered with the desiccated husks of rats, bats, and one unfortunate kobold who wandered in without a torch. The Cult uses this cave as a natural trap -- they know the safe path through, but intruders do not.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Stirge (10)", "cr": "1/8"}
+                ],
+                "loot": [
+                    {"name": "Dead Kobold's Map (crude map of the hatchery)", "type": "quest_item"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: Stirges attack anything with blood. They latch on and drain 1d4+3 HP per round until removed (DC 11 Athletics).", "On torch: Fire keeps stirges at bay within 5 ft but reveals the party to anything deeper in the cave system."]
+            }
+        },
+        "4": {
+            "id": 4,
+            "x": 30,
+            "y": 15,
+            "width": 14,
+            "height": 12,
+            "room_type": "normal",
+            "connections": [2, 5, 6],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The drake nursery is a heated chamber where the Cult breeds guard drakes from dragon eggs stolen or harvested across the Sword Coast. Clay nesting pits line the walls, each containing leathery eggs in various stages of development. Adult guard drakes patrol between the nests, and kobold handlers scatter meat scraps to keep them placated. The heat comes from a volcanic vent in the floor that the Cult has harnessed with crude piping.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Guard Drake (adult, 3)", "cr": "2"},
+                    {"name": "Kobold Handler", "cr": "1/8"},
+                    {"name": "Kobold Handler", "cr": "1/8"}
+                ],
+                "loot": [
+                    {"name": "Dragon Egg (unhatched, valuable or quest item)", "type": "quest_item"},
+                    {"name": "Drake Handling Whistle (advantage on Animal Handling for drakes)", "type": "gear"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: The drakes are aggressive but the whistle (DC 14 Perception to spot on a handler) can calm them.", "On eggs: Destroying the eggs permanently reduces the Cult's drake supply. Stealing an egg has... consequences."]
+            }
+        },
+        "5": {
+            "id": 5,
+            "x": 25,
+            "y": 28,
+            "width": 16,
+            "height": 12,
+            "room_type": "boss",
+            "connections": [3, 4, 7],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Langdedrosa Cyanwrath stands in the center of the chamber like a statue come to life, his greatsword drawn and resting on one shoulder. The half-dragon has been waiting. He knew someone would come. His chamber is spartanly furnished -- a bedroll, a weapon rack, a shrine to Tiamat consisting of five candles in five colors. The walls bear tally marks counting his kills. There are hundreds.",
+                "npcs": [
+                    {"name": "Langdedrosa Cyanwrath", "role": "antagonist", "dialogue": "You survived Greenest. Good. I hoped you would. *His tail sweeps the ground in a slow, predatory arc.* The last fight was... incomplete. I gave you honor. You gave me a wound that still aches when I breathe. Now we finish it. No audience. No prisoners. No mercy from me, and I expect none from you."}
+                ],
+                "enemies": [
+                    {"name": "Langdedrosa Cyanwrath (Half-Blue Dragon Veteran)", "cr": "4"},
+                    {"name": "Berserker (bodyguard, 2)", "cr": "2"}
+                ],
+                "loot": [
+                    {"name": "Cyanwrath's Greatsword +1 (Lightning Damage)", "type": "weapon"},
+                    {"name": "Tiamat Shrine Components (worth 100 gp)", "type": "treasure"},
+                    {"name": "Potion of Lightning Resistance", "type": "consumable"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: Cyanwrath offers single combat again. This time, he fights to the death.", "On combat: He opens with his breath weapon (lightning, 5d10). His berserker bodyguards only join if the party attacks first.", "On defeat: Cyanwrath dies with a smile. 'A good death. Tiamat will remember me.' His chamber contains intelligence about Rezmir's location."]
+            }
+        },
+        "6": {
+            "id": 6,
+            "x": 35,
+            "y": 25,
+            "width": 12,
+            "height": 10,
+            "room_type": "treasure",
+            "connections": [3, 4],
+            "tier": 2,
+            "is_locked": true,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The treasure chamber is carved from living rock and sealed with a door of iron banded in chardalyn. Inside, the Cult's overflow hoard gleams in the torchlight: chests of gold and silver coin, bolts of silk, casks of spice, and a small fortune in gemstones. This is what didn't fit on the wagons heading north -- the dregs of a dozen raided towns, piled without ceremony.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Trap: Poison Needle (DC 15 to detect, DC 12 to disarm, 2d10 poison)", "cr": "0"}
+                ],
+                "loot": [
+                    {"name": "Gold and Silver Coin (800 gp total)", "type": "treasure"},
+                    {"name": "Silk Bolts (200 gp)", "type": "treasure"},
+                    {"name": "Gemstones (assorted, 350 gp)", "type": "treasure"},
+                    {"name": "Scroll of Chromatic Orb", "type": "scroll"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: DC 15 Investigation detects the poison needle trap on the door lock.", "On loot: Taking the hoard deprives the Cult of significant resources. This is noticed and reported to Rezmir."]
+            }
+        },
+        "7": {
+            "id": 7,
+            "x": 20,
+            "y": 40,
+            "width": 10,
+            "height": 8,
+            "room_type": "temple",
+            "connections": [5],
+            "tier": 2,
+            "is_locked": true,
+            "is_secret": true,
+            "content_hints": {
+                "description": "The secret shrine is hidden behind a concealed door at the back of Cyanwrath's chamber -- a small natural alcove converted into a holy place of terrible devotion. Five dragon skulls, each a different color, are mounted on the walls in a pentagonal arrangement. At the center, a black altar bears fresh blood and a ledger written in Draconic detailing the Cult's chapter houses across the Sword Coast.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [
+                    {"name": "Cult Chapter Ledger (lists all Cult cells on the Sword Coast)", "type": "quest_item"},
+                    {"name": "Chromatic Dragon Fang Necklace (focus for dragon-related spells)", "type": "wondrous_item"},
+                    {"name": "Offering Bowl (solid gold, 150 gp)", "type": "treasure"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: DC 16 Investigation to find the concealed door. DC 14 Religion to understand the shrine's purpose.", "On ledger: This intelligence is invaluable. The Harpers and Order of the Gauntlet will pay handsomely for it."]
+            }
+        }
+    }
+}

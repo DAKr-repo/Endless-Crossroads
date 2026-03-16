@@ -1,0 +1,134 @@
+{
+    "seed": 7000,
+    "width": 80,
+    "height": 60,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "sword_coast",
+        "theme": "STONE",
+        "topology": "wilderness",
+        "display_name": "The Sword Coast"
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "location_id": "greenest",
+            "name": "Greenest",
+            "x": 10,
+            "y": 40,
+            "width": 12,
+            "height": 8,
+            "room_type": "start",
+            "connections": [1],
+            "tier": 1,
+            "terrain": "road",
+            "travel_days": 0,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Greenest nestles in the Greenfields south of the Trade Way, a prosperous farming town whose fields of wheat and barley have fed Baldur's Gate for generations. Tonight the fields burn. A blue dragon wheels above the town trailing lightning, and columns of cultists stream from the south carrying torches and the banner of a five-headed dragon.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [],
+                "services": [],
+                "event_triggers": ["On entry: Module begins. The town is under attack by the Cult of the Dragon."]
+            }
+        },
+        "1": {
+            "id": 1,
+            "location_id": "mere_of_dead_men",
+            "name": "Mere of Dead Men",
+            "x": 15,
+            "y": 30,
+            "width": 12,
+            "height": 8,
+            "room_type": "normal",
+            "connections": [0, 2],
+            "tier": 2,
+            "terrain": "swamp",
+            "travel_days": 4,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Mere of Dead Men stretches along the coast north of Waterdeep, a fetid swamp of black water and twisted mangroves that has swallowed entire armies. Castle Naerytar rises from its center on a hillock of solid ground, a crumbling fortress the Cult has repurposed as a waystation for their hoard of stolen treasure.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [],
+                "services": [],
+                "event_triggers": ["On entry: Swamp travel. DC 13 Survival to navigate. Random encounters with lizardfolk and bullywugs."]
+            }
+        },
+        "2": {
+            "id": 2,
+            "location_id": "waterdeep",
+            "name": "Waterdeep",
+            "x": 30,
+            "y": 15,
+            "width": 14,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [1, 3, 4],
+            "tier": 3,
+            "terrain": "urban",
+            "travel_days": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Waterdeep, City of Splendors, sprawls along the coast beneath Mount Waterdeep's watchful shadow. The Lords' Palace stands at the city's heart, and within it, the Council of Waterdeep convenes to address the dragon threat. Banners of a dozen factions fly from the council hall, and the tension between them is almost as dangerous as the dragons themselves.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [],
+                "services": ["trade", "rest", "council"],
+                "event_triggers": ["On entry: Council sessions available. Faction reputation affects available allies."]
+            }
+        },
+        "3": {
+            "id": 3,
+            "location_id": "skyreach_castle",
+            "name": "Skyreach Castle",
+            "x": 50,
+            "y": 10,
+            "width": 12,
+            "height": 8,
+            "room_type": "normal",
+            "connections": [2],
+            "tier": 3,
+            "terrain": "mountain",
+            "travel_days": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Skyreach Castle floats among the clouds, visible only as a shadow against the moon when the cloud cover parts. The flying fortress of a cloud giant, pressed into service by the Cult of the Dragon, carries a hoard of treasure northward. Its trajectory takes it over the Sword Coast, a constant reminder that the enemy commands the sky.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [],
+                "services": [],
+                "event_triggers": ["On entry: Must reach the castle via flight, climbing, or subterfuge."]
+            }
+        },
+        "4": {
+            "id": 4,
+            "location_id": "well_of_dragons",
+            "name": "Well of Dragons",
+            "x": 60,
+            "y": 35,
+            "width": 14,
+            "height": 12,
+            "room_type": "boss",
+            "connections": [2],
+            "tier": 4,
+            "terrain": "mountain",
+            "travel_days": 5,
+            "is_locked": true,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Well of Dragons is a volcanic caldera in the Sunset Mountains, its slopes covered in the bones of dragons who came here to die across millennia. The Cult has occupied the caldera, filling it with an army of cultists, chromatic dragons, and Red Wizards of Thay. At the caldera's center, a temple to Tiamat rises from the dragon bone carpet, and within it, the ritual to summon the Dragon Queen from the Nine Hells nears completion.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [],
+                "services": [],
+                "event_triggers": ["On entry: The final battle. Allied forces engage the Cult's army while the party infiltrates the temple."]
+            }
+        }
+    }
+}

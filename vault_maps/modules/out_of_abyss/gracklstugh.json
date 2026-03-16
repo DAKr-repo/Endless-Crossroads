@@ -1,0 +1,218 @@
+{
+    "seed": 5003,
+    "width": 70,
+    "height": 55,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "gracklstugh",
+        "theme": "STONE",
+        "topology": "settlement",
+        "display_name": "Gracklstugh, City of Blades"
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 5,
+            "y": 5,
+            "width": 12,
+            "height": 8,
+            "room_type": "town_gate",
+            "connections": [1, 3],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The gates of Gracklstugh are hammered from a single sheet of iron thirty feet tall, flanked by basalt pillars carved with duergar faces frozen mid-scream. The heat hits you first -- furnace-blast warmth rolling out of the cavern beyond, carrying the tang of molten metal and coal smoke. Guards in gray plate inspect you with eyes that reflect no light.",
+                "npcs": [
+                    {"name": "Gate Captain Gorglak", "role": "guard", "dialogue": "Surfacers. You will surrender all weapons of mithral or adamantine. You will not enter the Cairngorm Caverns. You will not speak to the Deepking. Violate these laws and you become property of the Keepers of the Flame. Move."}
+                ],
+                "enemies": [
+                    {"name": "Duergar Stone Guard", "cr": "2"},
+                    {"name": "Duergar Stone Guard", "cr": "2"}
+                ],
+                "loot": [],
+                "services": [],
+                "event_triggers": ["On entry: Weapons check. Confiscation of restricted items. Players receive a clay token permitting 3 days in the city."]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 20,
+            "y": 10,
+            "width": 14,
+            "height": 10,
+            "room_type": "market",
+            "connections": [0, 2, 4, 5],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Blade Bazaar fills an entire cavern with the ring of commerce and the hiss of quenched steel. Stalls of black iron display weapons of brutal elegance -- duergar craftsmanship prizes function over beauty. Invisible merchants hawk wares from behind illusion-masked booths, and a half-dozen brawls seem perpetually on the verge of erupting.",
+                "npcs": [
+                    {"name": "Werz Saltbaron", "role": "merchant", "dialogue": "You want the good stuff? Not this pig-iron they sell to outsiders. I have a connection in the surface world -- Blingdenstone goods, drow silk, even some... contraband from Menzoberranzan. But we talk price somewhere private, yes?"}
+                ],
+                "enemies": [],
+                "loot": [
+                    {"name": "Duergar Warhammer", "type": "weapon"},
+                    {"name": "Stoneguard Shield", "type": "armor"},
+                    {"name": "Darkvision Goggles", "type": "gear"}
+                ],
+                "services": ["trade", "rumors", "weapon_upgrade"],
+                "event_triggers": ["On entry: Werz approaches party after 10 minutes, offers a smuggling job.", "On search: DC 15 Investigation reveals a duergar merchant selling a stone that 'whispers' -- actually a piece of faerzress-infected crystal."]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 15,
+            "y": 25,
+            "width": 10,
+            "height": 8,
+            "room_type": "normal",
+            "connections": [1, 6],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Ghohlbrorn's Lair occupies a natural chimney in the cavern wall, its entrance marked by claw gouges in the basalt. The derro savant has turned this space into a laboratory of madness -- jars of pickled cave creatures line the shelves, and formulae written in blood cover the walls. The air shimmers with residual magic.",
+                "npcs": [
+                    {"name": "Droki", "role": "informant", "dialogue": "*The derro twitches violently, his oversized boots flopping as he dances in place.* Can't stop, can't stop, the gray ones see if Droki stops! Messages to carry, yesyes, small packages, don't look inside, NEVER look inside! *He bolts for a crack in the wall.*"}
+                ],
+                "enemies": [
+                    {"name": "Derro Savant", "cr": "3"}
+                ],
+                "loot": [
+                    {"name": "Spell Scroll (Enlarge/Reduce)", "type": "scroll"},
+                    {"name": "Pygmywort Mushroom (3)", "type": "consumable"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: Droki is here 50% of the time. If present, he flees toward the Whorlstone Tunnels.", "On search: DC 13 Investigation finds a hidden compartment containing correspondence about a derro plot against the Deepking."]
+            }
+        },
+        "3": {
+            "id": 3,
+            "x": 35,
+            "y": 5,
+            "width": 12,
+            "height": 8,
+            "room_type": "tavern",
+            "connections": [0, 4],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Darklake Brewery squats at the cavern's edge where an underground river feeds into the lake. The ale is brewed from cave-moss and zurkhwood sap, served in iron tankards bolted to the tables by chains. The barkeep is a duergar woman who has not smiled since the Deepking's grandfather was young, and she communicates primarily in grunts of varying disapproval.",
+                "npcs": [
+                    {"name": "Ylsa Henstak", "role": "barkeep", "dialogue": "*Grunt.* Two copper. *Grunt.* No tabs. *Long, withering stare.* ...Fine. One copper. But you drink it here and you don't talk to me about your problems."}
+                ],
+                "enemies": [],
+                "loot": [
+                    {"name": "Darklake Stout (heals 1d4 HP)", "type": "consumable"}
+                ],
+                "services": ["rest", "rumors", "drink"],
+                "event_triggers": ["On rest: Safe short rest. Overhear rumors about Themberchaud growing too large for his chamber.", "On search: DC 14 Perception notices a duergar in the corner watching the party -- a spy for Errde Blackskull."]
+            }
+        },
+        "4": {
+            "id": 4,
+            "x": 40,
+            "y": 20,
+            "width": 14,
+            "height": 12,
+            "room_type": "normal",
+            "connections": [1, 3, 5],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Cairngorm Caverns open beneath Gracklstugh like a second city made of crystal. Massive geodes of smoky quartz and amethyst line the walls, and stone giant elders move through the space with the slow deliberation of continents. Their voices are the sound of grinding tectonic plates, and the ground vibrates with each footstep.",
+                "npcs": [
+                    {"name": "Stonespeaker Hgraam", "role": "quest_giver", "dialogue": "The stone speaks of change. The stone speaks of fire that should not be, and madness seeping through cracks in the world. You are small, but the stone says you carry weight beyond your size. Come. I will show you what the crystals have shown me."},
+                    {"name": "Dorhun", "role": "ally", "dialogue": "Stonespeaker Hgraam sees much in the stone, but he does not see the duergar sharpening their blades for us. The gray ones grow bold. They forget who carved these caverns first."}
+                ],
+                "enemies": [],
+                "loot": [
+                    {"name": "Stonespeaker Crystal (divination focus)", "type": "wondrous_item"}
+                ],
+                "services": ["divination", "lore"],
+                "event_triggers": ["On entry: Hgraam offers a vision quest -- stare into the crystal for 1 minute, Wisdom save DC 12 or psychic damage, success reveals a vision of the demon lord threat.", "On quest: Hgraam asks party to investigate the source of the madness plaguing the stone giants."]
+            }
+        },
+        "5": {
+            "id": 5,
+            "x": 50,
+            "y": 15,
+            "width": 16,
+            "height": 12,
+            "room_type": "boss",
+            "connections": [1, 4, 6],
+            "tier": 3,
+            "is_locked": true,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The heat in Themberchaud's lair could forge iron. The red dragon -- grotesquely fat from decades of captive feeding -- sprawls across a hoard of coins and weapons. His belly drags the ground, and his eyes burn with an intelligence that his keepers desperately hope he lacks. The Keepers of the Flame maintain a careful fiction: the dragon is a tool. The dragon knows otherwise.",
+                "npcs": [
+                    {"name": "Themberchaud", "role": "quest_giver", "dialogue": "Ah. More morsels sent by the Keepers. Tell me, little ones -- do they still believe I don't know about the egg? That they're raising my replacement in the tunnels below? *A laugh like a furnace door opening.* Find that egg. Bring it to me. And perhaps I won't eat Gracklstugh."},
+                    {"name": "Gartokkar Xundorn", "role": "keeper", "dialogue": "The Wyrmsmith is... temperamental today. We apologize for the heat. Please, do not discuss eggs, replacements, or the concept of freedom. It upsets him terribly."}
+                ],
+                "enemies": [
+                    {"name": "Themberchaud (Adult Red Dragon, obese)", "cr": "17"}
+                ],
+                "loot": [
+                    {"name": "Dragon Scale Mail (red)", "type": "armor"},
+                    {"name": "Keepers' Flame Scepter", "type": "wondrous_item"},
+                    {"name": "Hoard: 2,400 gp in mixed coin", "type": "treasure"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: Themberchaud is NOT immediately hostile. He offers a quest to find the replacement egg.", "On betrayal: If the party sides with the Keepers, Themberchaud attacks. Full lair actions active.", "On alliance: If the party brings the egg, Themberchaud begins planning Gracklstugh's destruction."]
+            }
+        },
+        "6": {
+            "id": 6,
+            "x": 35,
+            "y": 35,
+            "width": 12,
+            "height": 8,
+            "room_type": "forge",
+            "connections": [2, 5, 7],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Great Forge of Gracklstugh is less a room than a cathedral of industry. Molten rivers of iron flow through channels carved in the floor, feeding a hundred anvils where duergar smiths pound out weapons in grim silence. The heat-shimmer makes the far wall ripple like a mirage, and the rhythmic hammering has the cadence of a war drum.",
+                "npcs": [
+                    {"name": "Errde Blackskull", "role": "quest_giver", "dialogue": "You've been noticed, surfacers. The Stone Guard has eyes everywhere, and what they see, I know. I could have you expelled -- or worse. But perhaps we can help each other. There are... disturbances in the Whorlstone Tunnels. Derro activity. I need expendable investigators."}
+                ],
+                "enemies": [],
+                "loot": [
+                    {"name": "Adamantine Ingot", "type": "crafting_material"},
+                    {"name": "Duergar Plate Armor", "type": "armor"}
+                ],
+                "services": ["forge", "weapon_upgrade", "armor_repair"],
+                "event_triggers": ["On entry: Errde Blackskull intercepts the party. Offers a deal: investigate the Whorlstone Tunnels in exchange for safe passage out of Gracklstugh."]
+            }
+        },
+        "7": {
+            "id": 7,
+            "x": 50,
+            "y": 40,
+            "width": 10,
+            "height": 8,
+            "room_type": "town_gate",
+            "connections": [6],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "A crack in the forge's foundation widens into a passage that the duergar have tried -- and failed -- to seal three times. The mortar is always broken from the inside. Beyond, the Whorlstone Tunnels twist in geometries that defy the natural world, their walls etched with spiral patterns that seem to move when viewed peripherally.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Derro", "cr": "1/4"},
+                    {"name": "Derro", "cr": "1/4"}
+                ],
+                "loot": [],
+                "services": [],
+                "event_triggers": ["On entry: The tunnels lead toward Neverlight Grove and other Underdark destinations.", "On exit: Transition to wilderness travel. The faerzress grows stronger the deeper you go."]
+            }
+        }
+    }
+}

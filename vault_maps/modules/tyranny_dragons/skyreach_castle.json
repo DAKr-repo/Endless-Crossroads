@@ -1,0 +1,223 @@
+{
+    "seed": 7005,
+    "width": 60,
+    "height": 55,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "skyreach_castle",
+        "theme": "STONE",
+        "topology": "vertical",
+        "display_name": "Skyreach Castle"
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 5,
+            "y": 40,
+            "width": 14,
+            "height": 10,
+            "room_type": "start",
+            "connections": [1, 3],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The lower courtyard of Skyreach Castle floats among the clouds. The walls are carved from ice as strong as steel, and the ground -- if you can call it that -- is a platform of enchanted stone suspended two thousand feet above the Sword Coast. Wind howls through the crenellations with enough force to stagger a man, and looking over the edge reveals nothing but white void and the occasional dark patch of earth far, far below.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Ogre (2, castle labor)", "cr": "2"}
+                ],
+                "loot": [
+                    {"name": "Ogre's Greatclub (oversized, heavy)", "type": "weapon"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: The ogres are laborers, not guards. DC 12 Intimidation to cow them, or they fight with dull enthusiasm.", "On search: DC 13 Perception reveals a service stair to the upper courtyard and a ramp descending to the dragon cave."]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 15,
+            "y": 30,
+            "width": 14,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [0, 2, 4],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The upper courtyard is the castle's social center -- such as it is. Stone benches ring a frozen fountain, and the Cult's officers take their meals here in the open air, seemingly immune to the altitude and the cold. The cloud giant's aesthetics clash with the Cult's decorations: elegant ice sculptures share space with crude dragon banners, and the delicate frost-filigree railings have been scarred by careless cultists.",
+                "npcs": [
+                    {"name": "Captain Othelstan", "role": "antagonist", "dialogue": "This castle is a marvel of giant engineering pressed into service by inferior minds. The Cult treats it like a cargo ship. Blagothkus tolerates us because we promised him alliance against the dragons. When that promise fails -- and it will -- I intend to be somewhere else. Perhaps we can help each other with that timing."}
+                ],
+                "enemies": [
+                    {"name": "Cult Veteran (Captain Othelstan)", "cr": "3"},
+                    {"name": "Dragonclaw (4)", "cr": "1"}
+                ],
+                "loot": [
+                    {"name": "Othelstan's Key Ring (opens most castle doors)", "type": "quest_item"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: Othelstan can be turned with DC 15 Persuasion -- he's a pragmatist, not a true believer.", "On ally: If turned, Othelstan provides castle layout, guard schedules, and the location of the hoard."]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 25,
+            "y": 25,
+            "width": 10,
+            "height": 8,
+            "room_type": "barracks",
+            "connections": [1],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The ogre barracks is a cavern of ice stinking of unwashed bodies and rancid meat. The ogres sleep on piles of hides, their snoring loud enough to mask approaching footsteps. Personal effects are limited to clubs, bone dice, and crude carvings of things the ogres find amusing -- mostly other things being hit with clubs. A crude altar to Vaprak the Destroyer occupies one corner.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Ogre (4, sleeping)", "cr": "2"}
+                ],
+                "loot": [
+                    {"name": "Ogre Bone Dice (worth 5 gp as curiosity)", "type": "treasure"},
+                    {"name": "Hidden Stash: 120 gp in stolen coin (under largest ogre's bed)", "type": "treasure"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: Ogres are sleeping. DC 10 Stealth to pass without waking them. Waking one wakes all.", "On combat: The ogres' roaring alerts the upper courtyard within 3 rounds."]
+            }
+        },
+        "3": {
+            "id": 3,
+            "x": 5,
+            "y": 50,
+            "width": 16,
+            "height": 12,
+            "room_type": "normal",
+            "connections": [0, 7],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The vampire tower rises from the castle's eastern wall, its interior perpetually dark despite the open sky above -- a magical darkness that serves its occupant well. The chambers within are furnished in a style centuries out of date: velvet drapes, candelabras, and a coffin of polished mahogany that sits on a dais like a throne room's centerpiece. The air smells of old roses and very old death.",
+                "npcs": [
+                    {"name": "Sandesyl Morgia", "role": "antagonist", "dialogue": "*She emerges from shadow like a stain spreading across silk.* How delightful. Visitors. The Cult keeps me supplied with blood and I keep their precious hoard guarded during the night hours. It's a civilized arrangement. But you don't look like you're here to negotiate supply contracts. *Fangs extend.* Pity."}
+                ],
+                "enemies": [
+                    {"name": "Sandesyl Morgia (Vampire Spawn)", "cr": "5"},
+                    {"name": "Vampire Spawn (servant, 2)", "cr": "5"}
+                ],
+                "loot": [
+                    {"name": "Cloak of Protection", "type": "wondrous_item"},
+                    {"name": "Sandesyl's Ring (commands vampire spawn within 120 ft)", "type": "wondrous_item"},
+                    {"name": "Ancient Wine Collection (500 gp)", "type": "treasure"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: Sandesyl attacks on sight unless it's daylight (she retreats to her coffin during day hours).", "On coffin: Destroying the coffin prevents her from regenerating. DC 15 Athletics to break it."]
+            }
+        },
+        "4": {
+            "id": 4,
+            "x": 30,
+            "y": 35,
+            "width": 16,
+            "height": 14,
+            "room_type": "normal",
+            "connections": [1, 5],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The dragon cave is carved into the cloud-stuff beneath the castle itself, a vast chamber of ice and compressed vapor that serves as den for Glazhael the Cloudchaser. The white dragon's hoard is spread across the cavern floor -- not the Cult's treasure (that is stored separately) but Glazhael's personal collection: frozen corpses arranged in artistic poses, ice sculptures of himself in various heroic stances, and a modest pile of platinum coins he counts every evening.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Glazhael the Cloudchaser (Adult White Dragon)", "cr": "13"}
+                ],
+                "loot": [
+                    {"name": "Glazhael's Hoard: 3,000 pp, 500 gp in gems", "type": "treasure"},
+                    {"name": "Wand of Winter", "type": "wondrous_item"},
+                    {"name": "Frozen Shield +2 (resistance to cold damage)", "type": "armor"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: Glazhael is possessive and territorial. Any intrusion triggers combat.", "On combat: Full lair actions: ice collapse (4d6 bludgeoning), fog cloud, slippery floor (DC 12 Dex or prone).", "On defeat: Glazhael's death removes the castle's dragon guardian. Blagothkus takes notice."]
+            }
+        },
+        "5": {
+            "id": 5,
+            "x": 40,
+            "y": 20,
+            "width": 14,
+            "height": 12,
+            "room_type": "normal",
+            "connections": [4, 6],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The steering tower rises at the castle's prow, its interior dominated by a mechanism of gears, levers, and crystals the size of a man's head. This is how the castle flies -- a navigation system powered by cloud giant magic and the bound essence of an air elemental. The elemental's form is visible in the largest crystal, a face pressed against glass, silently screaming. The controls are labeled in Giant.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [
+                    {"name": "Navigation Crystal (priceless, powers castle flight)", "type": "quest_item"},
+                    {"name": "Scroll of Control Weather", "type": "scroll"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: DC 16 Arcana or Giant language to operate the controls. Success can redirect the castle's course.", "On sabotage: Destroying the navigation crystal causes the castle to begin a slow descent (6 hours to impact). This can be used as leverage against Blagothkus."]
+            }
+        },
+        "6": {
+            "id": 6,
+            "x": 45,
+            "y": 10,
+            "width": 16,
+            "height": 14,
+            "room_type": "boss",
+            "connections": [5, 7],
+            "tier": 3,
+            "is_locked": true,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Blagothkus's tower is built to giant scale -- every piece of furniture is four times human size, and the ceilings soar forty feet overhead. The cloud giant sits in a throne of compressed cloudstuff, his expression the weary resignation of someone who has made a deal they regret but cannot escape. His wife's memorial -- an ice sculpture of extraordinary beauty -- occupies a place of honor. He built this castle for her. Now it carries a tyrant's hoard.",
+                "npcs": [
+                    {"name": "Blagothkus", "role": "neutral", "dialogue": "*The cloud giant's voice is thunder filtered through grief.* I allied with the Cult because they promised giant-kind a place in Tiamat's new order. But I have watched them, and I know a lie when I hear one. We are tools to them, nothing more. Kill the dragon below. Remove the Cult from my castle. And I will set this fortress down wherever you wish, and fly away, and forget that any of this ever happened."}
+                ],
+                "enemies": [
+                    {"name": "Blagothkus (Cloud Giant)", "cr": "9"}
+                ],
+                "loot": [
+                    {"name": "Blagothkus's Morningstar (giant-sized, +2)", "type": "weapon"},
+                    {"name": "Potion of Cloud Giant Strength", "type": "consumable"},
+                    {"name": "Bag of Holding (full of personal mementos)", "type": "wondrous_item"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: Blagothkus can be reasoned with (DC 14 Persuasion). He is not the enemy -- the Cult is.", "On alliance: If the party has killed Glazhael, Blagothkus joins them against remaining Cult forces. The castle becomes a mobile base.", "On combat: If provoked, Blagothkus is a devastating opponent. Full lair actions: wind blast, ice pillar, fog."]
+            }
+        },
+        "7": {
+            "id": 7,
+            "x": 25,
+            "y": 45,
+            "width": 14,
+            "height": 10,
+            "room_type": "boss",
+            "connections": [3, 6],
+            "tier": 3,
+            "is_locked": true,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Glazhael's lair extends deeper than the dragon cave, into chambers where the cloud-stuff thins and you can see the ground two thousand feet below through translucent floors. The white dragon's innermost sanctum is a gallery of ice -- walls, floor, ceiling, all ice, all reflecting and refracting until direction loses meaning. At the center, the Cult's treasure hoard is piled: chests upon chests of gold, weapons, artwork, and magical items looted from across the Sword Coast.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Glazhael the Cloudchaser (if not yet defeated)", "cr": "13"}
+                ],
+                "loot": [
+                    {"name": "Cult Treasure Hoard: 12,000 gp in mixed valuables", "type": "treasure"},
+                    {"name": "Dragon Slayer Longsword", "type": "weapon"},
+                    {"name": "Tome of Understanding", "type": "wondrous_item"},
+                    {"name": "Necklace of Fireballs", "type": "wondrous_item"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: If Glazhael lives, this is his last stand. If dead, the hoard is unguarded.", "On loot: Securing the hoard is a major campaign victory. The Cult loses months of accumulated resources.", "On exit: With the hoard secured and the castle neutralized, the party returns to Waterdeep for the Council. Transition to Rise of Tiamat arc."]
+            }
+        }
+    }
+}

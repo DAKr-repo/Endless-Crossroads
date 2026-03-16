@@ -1,0 +1,117 @@
+{
+    "module_id": "rime_frostmaiden",
+    "display_name": "Icewind Dale: Rime of the Frostmaiden",
+    "system_id": "dnd5e",
+    "source_pdf": "Rime of the Frostmaiden.pdf",
+    "world_map": "world_map.json",
+    "starting_location": "bryn_shander",
+    "recommended_levels": {"min": 1, "max": 12},
+    "chapters": [
+        {
+            "chapter_id": "ch1",
+            "display_name": "Chapter 1: Ten-Towns",
+            "order": 1,
+            "zones": [
+                {
+                    "zone_id": "bryn_shander",
+                    "blueprint": "bryn_shander.json",
+                    "topology": "settlement",
+                    "theme": "VILLAGE",
+                    "location_id": "ten_towns",
+                    "entry_trigger": "module_start",
+                    "exit_trigger": "quest_complete"
+                },
+                {
+                    "zone_id": "easthaven",
+                    "blueprint": "easthaven.json",
+                    "topology": "settlement",
+                    "theme": "VILLAGE",
+                    "location_id": "ten_towns",
+                    "entry_trigger": "quest_complete",
+                    "exit_trigger": "quest_complete"
+                }
+            ]
+        },
+        {
+            "chapter_id": "ch2",
+            "display_name": "Chapter 2: Sunblight",
+            "order": 2,
+            "zones": [
+                {
+                    "zone_id": "sunblight_fortress",
+                    "blueprint": "sunblight_fortress.json",
+                    "topology": "dungeon",
+                    "theme": "STONE",
+                    "location_id": "spine_of_the_world",
+                    "entry_trigger": "quest_complete",
+                    "exit_trigger": "boss_defeated"
+                }
+            ]
+        },
+        {
+            "chapter_id": "ch3",
+            "display_name": "Chapter 3: Jarlmoot",
+            "order": 3,
+            "zones": [
+                {
+                    "zone_id": "jarlmoot",
+                    "blueprint": "jarlmoot.json",
+                    "topology": "wilderness",
+                    "theme": "STONE",
+                    "location_id": "spine_of_the_world",
+                    "entry_trigger": "boss_defeated",
+                    "exit_trigger": "quest_complete"
+                }
+            ]
+        },
+        {
+            "chapter_id": "ch4",
+            "display_name": "Chapter 4: Caves of Hunger",
+            "order": 4,
+            "zones": [
+                {
+                    "zone_id": "caves_of_hunger",
+                    "blueprint": "caves_of_hunger.json",
+                    "topology": "dungeon",
+                    "theme": "STONE",
+                    "location_id": "reghed_glacier",
+                    "entry_trigger": "quest_complete",
+                    "exit_trigger": "boss_defeated"
+                }
+            ]
+        },
+        {
+            "chapter_id": "ch5",
+            "display_name": "Chapter 5: Ythryn",
+            "order": 5,
+            "zones": [
+                {
+                    "zone_id": "ythryn",
+                    "blueprint": "ythryn.json",
+                    "topology": "dungeon",
+                    "theme": "GOTHIC",
+                    "location_id": "reghed_glacier",
+                    "entry_trigger": "boss_defeated",
+                    "exit_trigger": "boss_defeated"
+                }
+            ]
+        },
+        {
+            "chapter_id": "ch6",
+            "display_name": "Chapter 6: Auril's Abode",
+            "order": 6,
+            "zones": [
+                {
+                    "zone_id": "auril_abode",
+                    "blueprint": "auril_abode.json",
+                    "topology": "dungeon",
+                    "theme": "GOTHIC",
+                    "location_id": "sea_of_moving_ice",
+                    "entry_trigger": "boss_defeated",
+                    "exit_trigger": "boss_defeated"
+                }
+            ]
+        }
+    ],
+    "freeform_zones": []
+}

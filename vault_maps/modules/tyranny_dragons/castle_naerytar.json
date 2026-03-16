@@ -1,0 +1,186 @@
+{
+    "seed": 7004,
+    "width": 55,
+    "height": 50,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "castle_naerytar",
+        "theme": "STONE",
+        "topology": "dungeon",
+        "display_name": "Castle Naerytar"
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 5,
+            "y": 5,
+            "width": 14,
+            "height": 10,
+            "room_type": "start",
+            "connections": [1],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The causeway crosses the Mere of Dead Men on a ribbon of packed earth barely wide enough for a wagon. Black water flanks both sides, thick with reeds and the sulfurous bubbles of swamp gas. The castle emerges from the mist ahead -- a crumbling curtain wall of gray stone draped in moss, its towers listing at angles that suggest the foundations are losing their argument with the swamp.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Bullywug (patrol of 6)", "cr": "1/4"},
+                    {"name": "Giant Frog", "cr": "1/4"}
+                ],
+                "loot": [],
+                "services": [],
+                "event_triggers": ["On entry: Bullywug patrols serve as the Cult's early warning system. DC 14 Stealth to bypass, or DC 12 Animal Handling to calm the frogs.", "On capture: Bullywugs can be bribed with shiny objects (worth 5+ gp) to reveal the castle's guard schedule."]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 15,
+            "y": 15,
+            "width": 14,
+            "height": 10,
+            "room_type": "town_gate",
+            "connections": [0, 2, 3],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The castle courtyard is ankle-deep in standing water that never fully drains. Wagons of stolen treasure are parked in rows, their contents being catalogued by cultists with wax tablets and the joyless efficiency of tax collectors. Lizardfolk laborers carry crates toward the castle's interior, overseen by a tall elf in Cult robes whose expression suggests he considers physical labor a personal affront to his dignity.",
+                "npcs": [
+                    {"name": "Dralmorrer Borngray", "role": "antagonist", "dialogue": "The swamp rots everything -- metal, morale, my patience. I trained at the Academy of Arms, you know. Neverwinter's finest. Now I catalog turnips stolen from peasants while Rezmir hoards all the genuine power for herself. But I am patient. I am elf. Time is my weapon."}
+                ],
+                "enemies": [
+                    {"name": "Dralmorrer Borngray (Elf Veteran)", "cr": "3"},
+                    {"name": "Cultist (4)", "cr": "1/8"},
+                    {"name": "Lizardfolk (laborer, 6)", "cr": "1/2"}
+                ],
+                "loot": [
+                    {"name": "Wax Tablet Manifest (treasure inventory)", "type": "quest_item"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: Dralmorrer may be turned against Rezmir with DC 16 Persuasion -- he resents his subordinate position.", "On combat: The lizardfolk are not loyal to the Cult and flee if Borngray falls. The cultists fight to the death."]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 25,
+            "y": 10,
+            "width": 12,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [1, 4],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The great hall has not been great in centuries. The ceiling sags with water damage, the tapestries are moldy rags, and the long table bears the scars of a hundred meals served without tablecloths. But the Cult has made it functional: maps of the Sword Coast cover one wall, supply tallies another, and a crude model of Castle Naerytar sits on the table, pins marking guard positions with the obsessive detail of the paranoid.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [
+                    {"name": "Sword Coast Map (annotated with Cult supply routes)", "type": "quest_item"},
+                    {"name": "Castle Naerytar Schematic", "type": "quest_item"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: The maps reveal the full scope of the Cult's treasure pipeline: Greenest to Naerytar to Skyreach Castle.", "On search: DC 14 Investigation finds orders from Rezmir describing a 'teleportation circle in the lower chambers.'"]
+            }
+        },
+        "3": {
+            "id": 3,
+            "x": 10,
+            "y": 25,
+            "width": 12,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [1, 4],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The observatory occupies the tallest tower still standing, reached by a spiral stair missing every third step. At the top, a brass telescope of ancient make points at the sky through a hole in the collapsed roof. Star charts cover the walls, and a desk holds astronomical calculations in a hand that predates the Cult's occupation by centuries. The castle's original builder was tracking something in the heavens -- something that the Cult has found relevant.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [
+                    {"name": "Ancient Star Charts (reference to Dracostellar alignments)", "type": "quest_item"},
+                    {"name": "Brass Telescope (worth 250 gp)", "type": "treasure"},
+                    {"name": "Scroll of See Invisibility", "type": "scroll"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: DC 15 Arcana to interpret the star charts -- they predict the optimal time to summon Tiamat.", "On telescope: Looking through it at night reveals Skyreach Castle, visible as a dark shape against the stars."]
+            }
+        },
+        "4": {
+            "id": 4,
+            "x": 20,
+            "y": 25,
+            "width": 12,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [2, 3, 5],
+            "tier": 2,
+            "is_locked": true,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The dungeon level descends into foundations older than the castle -- dressed stone gives way to rough-hewn rock, then to natural cavern. Water seeps through every joint, and the walls are furred with mold in colors nature never intended. Iron cell doors hang open on rusted hinges, their occupants long gone. The corridor ends at a heavy door of dark wood that bears no rust, no mold, no sign of age. It radiates faint transmutation magic.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Rug of Smothering (trap before the door)", "cr": "2"}
+                ],
+                "loot": [
+                    {"name": "Dungeon Key (opens Rezmir's chamber)", "type": "quest_item"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: The animated rug attacks anyone who steps on it (DC 15 Perception to notice it).", "On door: The door is magically sealed. DC 17 Thieves' Tools or knock spell to open."]
+            }
+        },
+        "5": {
+            "id": 5,
+            "x": 30,
+            "y": 30,
+            "width": 14,
+            "height": 12,
+            "room_type": "boss",
+            "connections": [4, 6],
+            "tier": 3,
+            "is_locked": true,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Rezmir's chamber is a stark contrast to the castle's decay -- spotlessly clean, magically heated, and furnished with precision. The half-black-dragon's acid has etched abstract patterns into the stone floor, and the smell of chlorine burns the sinuses. A wardrobe of fine clothes, a weapon rack of masterwork blades, and a desk bearing the Black Dragon Mask itself occupy the room. The portal to Skyreach Castle glows behind a silk screen.",
+                "npcs": [
+                    {"name": "Rezmir", "role": "antagonist", "dialogue": "*The half-black dragon turns with a smile that reveals too many teeth.* You've been persistent. I respect persistence. It's the quality I most enjoy breaking. The hoard goes north. I go with it. You can try to stop me, but I should warn you -- I've been killing things since before your grandparents were born, and I am very, very good at it."}
+                ],
+                "enemies": [
+                    {"name": "Rezmir (Half-Black Dragon, wearing Black Dragon Mask)", "cr": "7"},
+                    {"name": "Guard Drake (2)", "cr": "2"}
+                ],
+                "loot": [
+                    {"name": "Black Dragon Mask (legendary, attunement)", "type": "wondrous_item"},
+                    {"name": "Rezmir's Scimitar +2 (acid damage)", "type": "weapon"},
+                    {"name": "Potion of Acid Resistance", "type": "consumable"},
+                    {"name": "Cult War Chest (600 gp)", "type": "treasure"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: Rezmir fights but attempts to flee through the portal if reduced to half HP.", "On mask: The Black Dragon Mask is one of five needed to summon Tiamat. Securing it is a major victory.", "On portal: The portal remains active for 1 minute after Rezmir passes through. Party can follow."]
+            }
+        },
+        "6": {
+            "id": 6,
+            "x": 35,
+            "y": 40,
+            "width": 10,
+            "height": 8,
+            "room_type": "hidden_portal",
+            "connections": [5],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The portal room is a bare circle of stone inscribed with runes that pulse with silver-blue light. The air shimmers in the center, and through the distortion you can see a glimpse of somewhere else -- cold stone, frost on the walls, and the vast open sky of a place much higher than a swamp castle should be. The runes match Netherese notation. This portal is old, and it goes somewhere impossible.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [],
+                "services": [],
+                "event_triggers": ["On entry: The portal leads to Skyreach Castle. Stepping through is one-way without the activation phrase (found in Rezmir's notes).", "On exit: Transition to Skyreach Castle. The party arrives in the castle's lower courtyard."]
+            }
+        }
+    }
+}

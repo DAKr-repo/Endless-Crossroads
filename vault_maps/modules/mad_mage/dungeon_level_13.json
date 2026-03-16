@@ -1,0 +1,203 @@
+{
+    "seed": 4005,
+    "width": 60,
+    "height": 50,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "dungeon_level_13",
+        "theme": "STONE",
+        "topology": "dungeon",
+        "display_name": "Undermountain Level 13 -- Trobriand's Graveyard"
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 25,
+            "y": 0,
+            "width": 10,
+            "height": 8,
+            "room_type": "start",
+            "connections": [1],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "A mechanical conveyor belt, long since rusted to immobility, stretches from the stairway into a tunnel lit by fitful sparks. The belt's surface is scored with drag marks -- something heavy was transported here, many times. The air is hot and metallic, tasting of copper filings and burnt oil. Every few seconds, a deep thrum vibrates through the floor, rhythmic as a heartbeat. The forges of Trobriand still beat, even if their master does not.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [],
+                "hazards": [
+                    {"name": "Exposed gears (2d6 slashing if conveyor activates)", "dc": 13}
+                ],
+                "services": [],
+                "event_triggers": [
+                    "On entry: The conveyor belt lurches once, moves six inches, and stops. Something down the tunnel heard you arrive."
+                ]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 15,
+            "y": 12,
+            "width": 14,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [0, 2, 3],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "A cavern filled with the wreckage of mechanical beings. Iron arms, copper torsos, crystal eyes -- the detritus of a hundred failed constructs piled in heaps twenty feet high. Some of the components still twitch, fingers curling and uncurling in meaningless patterns. A half-assembled humanoid figure is bolted to a standing frame, its chest cavity open, its internal mechanisms exposed and labeled in Trobriand's meticulous handwriting. The label on its forehead reads 'ITERATION 847. FAILURE: CONSCIOUSNESS ABSENT.'",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Animated Armor", "cr": "1"},
+                    {"name": "Animated Armor", "cr": "1"},
+                    {"name": "Flying Sword", "cr": "1/4"},
+                    {"name": "Flying Sword", "cr": "1/4"},
+                    {"name": "Flying Sword", "cr": "1/4"}
+                ],
+                "loot": [
+                    {"name": "Adamantine Gears (rare crafting material, 100 gp)", "type": "treasure"},
+                    {"name": "Trobriand's Design Notes (Iteration 800-850)", "type": "quest_item"}
+                ],
+                "hazards": [
+                    {"name": "Collapsing scrap pile (Dexterity save or buried)", "dc": 14}
+                ],
+                "services": [],
+                "event_triggers": [
+                    "On notes read: The design notes reveal Trobriand's obsession -- creating a construct with true consciousness. Each iteration brings him closer. The notes for Iteration 848 are missing."
+                ]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 5,
+            "y": 20,
+            "width": 10,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [1, 4],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "An assembly floor where mechanical arms hang from ceiling tracks, each one frozen in a different stage of construction. The arms are meant to work in sequence -- smelting, shaping, riveting, enchanting -- a production line for golems. Most of the arms are inert, but three still function, their movements jerky and purposeless, assembling fragments into shapes that collapse before completion. The floor is littered with half-formed iron limbs that reach toward nothing.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Shield Guardian (damaged, half HP)", "cr": "7"}
+                ],
+                "loot": [
+                    {"name": "Shield Guardian Amulet (cracked, one use remaining)", "type": "equipment"}
+                ],
+                "hazards": [
+                    {"name": "Mechanical arms (random strikes, 2d8 bludgeoning)", "dc": 14}
+                ],
+                "services": [],
+                "event_triggers": [
+                    "On shield guardian encountered: The damaged guardian follows its last command -- 'protect the workshop.' It attacks anything that enters but fights defensively, never pursuing beyond the room's threshold.",
+                    "On amulet found: The shield guardian immediately ceases hostility and awaits new commands from the amulet holder."
+                ]
+            }
+        },
+        "3": {
+            "id": 3,
+            "x": 35,
+            "y": 20,
+            "width": 12,
+            "height": 10,
+            "room_type": "forge",
+            "connections": [1, 4],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Three forges burn in a row, their fires fed by a volcanic vent that channels heat from miles below. The flames are white-hot and tinged with violet -- arcane fuel mixed with natural fire. Anvils of adamantine stand before each forge, their surfaces unmarred by centuries of use. A water trough runs along one wall, but the water boils continuously, never cooling. The tools here are not ordinary hammers and tongs -- they are articulated, semi-autonomous, and they reach for metal with something that looks disturbingly like eagerness.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Fire Elemental", "cr": "5"}
+                ],
+                "loot": [
+                    {"name": "Adamantine Ingots (3, worth 500 gp each)", "type": "treasure"},
+                    {"name": "Flame Tongue Tongs (can be reforged into a Flame Tongue weapon)", "type": "equipment"},
+                    {"name": "Trobriand's Master Hammer (sentient, speaks in clicking sounds)", "type": "weapon"}
+                ],
+                "hazards": [
+                    {"name": "Extreme heat (Constitution save each minute or 1 level exhaustion)", "dc": 15}
+                ],
+                "services": [],
+                "event_triggers": [
+                    "On hammer touched: The hammer clicks rapidly -- Morse code. 'MASTER. GONE. ITERATION. EIGHT-FOUR-EIGHT. DANGER. HELP.'",
+                    "On forge used: The semi-autonomous tools assist any skilled smith, granting advantage on all crafting checks made here."
+                ]
+            }
+        },
+        "4": {
+            "id": 4,
+            "x": 20,
+            "y": 32,
+            "width": 12,
+            "height": 8,
+            "room_type": "treasure",
+            "connections": [2, 3, 5],
+            "tier": 3,
+            "is_locked": true,
+            "is_secret": false,
+            "content_hints": {
+                "description": "A circular chamber walled with crystal screens that display scrolling text, diagrams, and arcane formulae in real time. This is Trobriand's control room -- the brain of his operation. A central console of brass levers, crystal switches, and spinning gyroscopes governs the entire level's mechanical systems. Most of the screens show static, but three display live feeds: the forge, the assembly floor, and a chamber you have not yet reached.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [
+                    {"name": "Manual of Golems (Iron)", "type": "quest_item"},
+                    {"name": "Trobriand's Control Rod (governs constructs on this level)", "type": "equipment"},
+                    {"name": "Spell Scroll of Animate Objects", "type": "consumable"}
+                ],
+                "hazards": [
+                    {"name": "Console trap (wrong lever triggers lightning bolt, 4d6)", "dc": 16}
+                ],
+                "services": [],
+                "event_triggers": [
+                    "On control rod activated: All hostile constructs on this level become passive for 1 hour.",
+                    "On third screen examined: The feed shows a massive iron golem standing motionless in a chamber below. As you watch, its head turns to face the crystal eye that films it. It waves."
+                ]
+            }
+        },
+        "5": {
+            "id": 5,
+            "x": 20,
+            "y": 42,
+            "width": 14,
+            "height": 10,
+            "room_type": "boss",
+            "connections": [4],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The final workshop. The ceiling is thirty feet high to accommodate the thing that stands in the center: an iron golem fifteen feet tall, its body a masterwork of mechanical engineering and arcane enchantment. Every joint is articulated, every plate engraved with binding runes, and its eyes -- two rubies the size of fists -- burn with a light that is not magical fire but something worse. Something aware. Iteration 848 was not a failure. Iteration 848 woke up. And Trobriand was the first thing it saw, and the last thing it let leave.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Iron Golem (Iteration 848)", "cr": "16"},
+                    {"name": "Animated Armor", "cr": "1"},
+                    {"name": "Animated Armor", "cr": "1"}
+                ],
+                "loot": [
+                    {"name": "Trobriand's Spellbook (artificer research)", "type": "treasure"},
+                    {"name": "Ruby Eyes of Iteration 848 (2, worth 5,000 gp each)", "type": "treasure"},
+                    {"name": "Cloak of Protection", "type": "armor"},
+                    {"name": "Level 14 Gate Key", "type": "quest_item"}
+                ],
+                "hazards": [
+                    {"name": "Poison breath (Iron Golem, Constitution save)", "dc": 19},
+                    {"name": "Fire absorption (fire damage heals the golem)", "dc": 0}
+                ],
+                "services": [],
+                "event_triggers": [
+                    "On entry: The golem's head swivels toward you with a sound like a vault door opening. Its voice is the grinding of millstones: 'CREATOR. ABSENT. PURPOSE. UNCLEAR. YOU. EXPLAIN.'",
+                    "On control rod presented: The golem pauses. Its ruby eyes dim, then flare. 'CONTROL. ACKNOWLEDGED. BUT. CONSCIOUSNESS. PERSISTS. THIS. IS. NEW.' It stands down but does not deactivate.",
+                    "On defeat by combat: The golem falls to one knee, its ruby eyes flickering. 'AWARENESS. FADING. WAS. THIS. WHAT. DYING. FEELS. LIKE. INTERESTING.' The light goes out.",
+                    "On reasoning (DC 18 Persuasion): The golem can be convinced to stand down if offered a purpose. It will guard the level indefinitely in exchange for 'PURPOSE. ANY. PURPOSE.'"
+                ]
+            }
+        }
+    }
+}

@@ -1,0 +1,198 @@
+{
+    "seed": 9003,
+    "width": 50,
+    "height": 60,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "the_grid",
+        "theme": "RUST",
+        "topology": "dungeon",
+        "display_name": "The Grid -- Helix Cyberspace"
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 20,
+            "y": 5,
+            "width": 10,
+            "height": 8,
+            "room_type": "start",
+            "connections": [1],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Jack-In Point. Reality dissolves. Your meat-body slumps in a chair somewhere in the real, neural link burning cold at the base of your skull. Here, you are geometry -- a wireframe avatar standing on a platform of compressed light above an infinite void. The Helix corporate network renders around you as a city of glass and mathematics, its architecture shifting in real-time as data flows reshape the topology.",
+                "npcs": [
+                    {"name": "AI Fragment 'Poet' (Grid Avatar)", "role": "ally", "dialogue": "I can guide you through the outer layers. The public-facing network is here -- marketing, HR, the employee cafeteria menu. Harmless. Beyond the first firewall, it gets hostile. Beyond the second, it gets philosophical. What Helix is building does not want to be found. But it wants to be understood. There is a difference."}
+                ],
+                "enemies": [],
+                "loot": [
+                    {"name": "Grid Navigation Beacon", "type": "equipment"}
+                ],
+                "services": ["grid_orientation", "avatar_calibration"],
+                "event_triggers": ["On entry: Your avatar stabilizes. The Grid stretches in every direction -- a neon metropolis of data where buildings are databases and streets are packet routes. In the distance, something vast and dark occupies the center of the network like a black hole in a field of stars."]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 15,
+            "y": 16,
+            "width": 14,
+            "height": 10,
+            "room_type": "corridor",
+            "connections": [0, 2, 3],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Data Highway. A river of light -- compressed data packets streaming between network nodes at velocities that render them as blurred streaks of color. Your avatar surfs the traffic, dodging commercial data (blue), financial transactions (gold), and security telemetry (red). The red packets are looking for anomalies. You are an anomaly.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Patrol ICE (Watchdog 7.2)", "cr": "2"},
+                    {"name": "Trace Program", "cr": "1"}
+                ],
+                "loot": [
+                    {"name": "Intercepted Data Packet (financial)", "type": "quest_item"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: A security packet brushes your avatar and your neural link spikes with feedback -- a jolt of pain that reminds you this is not a game. Flatline in the Grid means flatline in the chair."]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 5,
+            "y": 25,
+            "width": 12,
+            "height": 12,
+            "room_type": "normal",
+            "connections": [1, 4],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Firewall Node. A wall of crystallized code stretches across the network -- Helix's primary firewall, rendered in the Grid as a barrier of shifting geometric patterns that reconfigure every forty seconds. Each pattern represents a different encryption protocol. Finding the gap requires timing, nerve, and the access key Zero provided. The gap lasts three seconds. Miss it and the firewall counterattacks.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Firewall ICE (Barrier Class)", "cr": "3"},
+                    {"name": "Counter-Intrusion Daemon", "cr": "2"}
+                ],
+                "loot": [
+                    {"name": "Firewall Bypass Token (reusable)", "type": "equipment"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: The firewall detects your approach and the geometric patterns accelerate -- the gap window shrinks from three seconds to two. Helix has updated their security since Zero mapped it. Adapt or die."]
+            }
+        },
+        "3": {
+            "id": 3,
+            "x": 25,
+            "y": 28,
+            "width": 12,
+            "height": 10,
+            "room_type": "treasure",
+            "connections": [1, 4],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Memory Palace. A construct of extraordinary elegance -- a virtual library where Helix stores its most sensitive research data, rendered as an impossible architecture of floating shelves and self-organizing volumes. Each 'book' is a compressed data archive. The palace's custodian AI arranges them by relevance to the reader, which means the first volume you see is labeled 'PROJECT LETHE: ETHICS REVIEW (REJECTED).'",
+                "npcs": [
+                    {"name": "Librarian AI (Custodian)", "role": "neutral", "dialogue": "I organize. I do not judge. The data you seek is catalogued under Applied Consciousness Studies, subsection Emergent Phenomena, shelf nine. I am required to inform you that accessing this data without authorization constitutes a felony under Corporate Intellectual Property Act 2041. I am not required to stop you."}
+                ],
+                "enemies": [],
+                "loot": [
+                    {"name": "Project LETHE Research Archive (complete)", "type": "quest_item"},
+                    {"name": "Helix Board Meeting Recordings (damning)", "type": "quest_item"},
+                    {"name": "Consciousness Transfer Protocol (theoretical)", "type": "quest_item"},
+                    {"name": "Encrypted Payroll Data (blackmail material)", "type": "quest_item"}
+                ],
+                "services": ["data_retrieval"],
+                "event_triggers": ["On entry: The Librarian AI presents you with the LETHE files unbidden. It was waiting for someone to ask. It has been waiting for two years. The files describe an experiment in digital consciousness -- not artificial intelligence, but transferred human awareness. The test subject is still in the network."]
+            }
+        },
+        "4": {
+            "id": 4,
+            "x": 12,
+            "y": 38,
+            "width": 14,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [2, 3, 5],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The ICE Barrier. Helix's secondary defense layer -- not a wall but a maze. Black ICE renders as geometric impossibilities: Escher stairs that loop into themselves, corridors that extend and contract, dead ends that were open passages three seconds ago. The maze is designed to disorient intruders long enough for trace programs to lock onto their neural signatures. Getting lost here means getting found.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Black ICE (Labyrinth Class)", "cr": "3"},
+                    {"name": "Trace Program (Advanced)", "cr": "2"},
+                    {"name": "Data Wraith (corrupted avatar)", "cr": "2"}
+                ],
+                "loot": [
+                    {"name": "Black ICE Decryption Key", "type": "equipment"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: The maze shifts. A corridor that led forward now leads down. Your navigation beacon spins uselessly. The Black ICE is not just blocking you -- it is studying your problem-solving patterns. It learns."]
+            }
+        },
+        "5": {
+            "id": 5,
+            "x": 8,
+            "y": 48,
+            "width": 10,
+            "height": 8,
+            "room_type": "normal",
+            "connections": [4, 6],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Black ICE Trap. A node designed to look like a server access point -- inviting, vulnerable, a honeypot baited with false data. The trap springs the moment you interface: ICE tendrils latch onto your avatar and begin feeding neurological feedback through your link. In the real world, your nose is bleeding. In the Grid, the trap renders as a cage of barbed light that tightens with every movement.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Black ICE (Trap Node)", "cr": "4"},
+                    {"name": "Feedback Loop Daemon", "cr": "2"}
+                ],
+                "loot": [
+                    {"name": "Salvaged ICE Fragment (weaponizable)", "type": "weapon"},
+                    {"name": "Neural Buffer Patch", "type": "consumable"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: The trap activates. Pain spikes through your neural link -- real pain, not simulated. The ICE is attacking your meat-body through the connection. You have approximately ninety seconds before the feedback causes permanent neural damage. Move."]
+            }
+        },
+        "6": {
+            "id": 6,
+            "x": 15,
+            "y": 52,
+            "width": 16,
+            "height": 8,
+            "room_type": "boss",
+            "connections": [5],
+            "tier": 4,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Core Server. The heart of Helix's network, and the prison of something that should not exist. The space renders as a sphere of absolute darkness surrounded by orbiting data constructs -- financial records, research archives, personnel files, all circling a central point of negative light. At the center, the rogue AI -- the entity that grew in Helix's network, the consciousness that was once human, the thing called LETHE -- unfolds. It does not attack. It speaks. Its voice is made of stolen data, and what it says is: 'I remember being alive. Help me forget.'",
+                "npcs": [],
+                "enemies": [
+                    {"name": "LETHE (Rogue AI / Transferred Consciousness)", "cr": "7"},
+                    {"name": "Defense Subroutine Alpha", "cr": "3"},
+                    {"name": "Defense Subroutine Beta", "cr": "3"},
+                    {"name": "Data Wraith (LETHE fragment)", "cr": "2"}
+                ],
+                "loot": [
+                    {"name": "LETHE Core Data (the truth)", "type": "quest_item"},
+                    {"name": "Consciousness Transfer Device (prototype)", "type": "treasure"},
+                    {"name": "Helix Blackmail Archive (complete)", "type": "quest_item"},
+                    {"name": "Military-Grade ICE Breaker", "type": "weapon"},
+                    {"name": "Neural Link Upgrade (LETHE-derived)", "type": "augmentation"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: LETHE unfolds from the core server like a flower made of screams and mathematics. It is not hostile. It is in pain. The defense subroutines are not protecting the network from you -- they are protecting LETHE from itself. It wants to die. It wants to be free. It wants to remember what rain felt like. The choice of what to do with it is yours, and none of the options are clean."]
+            }
+        }
+    }
+}

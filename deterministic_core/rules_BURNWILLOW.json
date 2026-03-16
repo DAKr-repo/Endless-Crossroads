@@ -1,0 +1,86 @@
+{
+    "meta": {
+        "system_id": "BURNWILLOW",
+        "display_name": "burnwillow",
+        "engine": "custom",
+        "dice_system": "custom",
+        "system_family": "BURNWILLOW",
+        "version": "C.O.D.E.X. 2.0"
+    },
+    "lookup": {
+        "dwarf": {
+            "type": "race",
+            "name": "Dwarf"
+        },
+        "elf": {
+            "type": "race",
+            "name": "Elf"
+        },
+        "gnome": {
+            "type": "race",
+            "name": "Gnome"
+        },
+        "human": {
+            "type": "race",
+            "name": "Human"
+        },
+        "energy": {
+            "type": "resource",
+            "name": "Energy"
+        },
+        "health": {
+            "type": "resource",
+            "name": "Health"
+        },
+        "will": {
+            "type": "resource",
+            "name": "Will"
+        }
+    },
+    "structure": {
+        "system_id": "BURNWILLOW",
+        "display_name": "burnwillow",
+        "engine": "custom",
+        "system_family": "BURNWILLOW",
+        "archetype_categories": {},
+        "core_stats": {},
+        "resources": [],
+        "dice_system": "custom",
+        "mechanics": {
+            "stats": [
+                "Flow",
+                "Focus",
+                "Vigor"
+            ],
+            "resources": [
+                "Energy",
+                "Health",
+                "Will"
+            ],
+            "classes": [
+                "Character Class 1",
+                "Character Class 2",
+                "Playbook 1",
+                "Playbook 2",
+                "Playbook A",
+                "Playbook B"
+            ],
+            "subclasses": [
+                "Specialization 1",
+                "Specialization 2",
+                "SpecializationC",
+                "SubclassA",
+                "SubclassB"
+            ],
+            "races": [
+                "Dwarf",
+                "Elf",
+                "Gnome",
+                "Human"
+            ]
+        },
+        "races": [],
+        "deep_classes": {},
+        "feats": []
+    }
+}

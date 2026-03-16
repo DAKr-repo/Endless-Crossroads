@@ -1,0 +1,129 @@
+{
+    "seed": 4000,
+    "width": 30,
+    "height": 80,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "undermountain_overview",
+        "theme": "STONE",
+        "topology": "vertical",
+        "display_name": "Undermountain -- The Depths Below"
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 10,
+            "y": 0,
+            "width": 10,
+            "height": 10,
+            "room_type": "start",
+            "connections": [1],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Yawning Portal's well drops into the first levels of Undermountain, where goblins, bugbears, and Xanathar Guild agents squabble over territory in halls that Halaster carved as an afterthought. These upper levels are almost civilized -- almost.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [],
+                "hazards": [],
+                "services": [],
+                "event_triggers": [
+                    "On entry: Levels 1-3. Recommended for parties of level 5-7."
+                ]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 10,
+            "y": 16,
+            "width": 10,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [0, 2],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Sargauth River cuts through these levels, its black water flowing from nowhere to nowhere. Drow outposts cling to the cavern walls, and the dwarven ruins of Clan Melairkyn give way to stranger architecture -- temples to forgotten gods, prisons for things that should not be named.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [],
+                "hazards": [],
+                "services": [],
+                "event_triggers": [
+                    "On entry: Levels 3-5. Recommended for parties of level 7-9."
+                ]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 10,
+            "y": 32,
+            "width": 10,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [1, 3],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Lost Level. Time moves strangely here. Petrified forests grow in caverns that have never seen sunlight, and githyanki war parties hunt through ruins that predate the city above. The walls remember things that the surface has forgotten, and some of those memories have teeth.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [],
+                "hazards": [],
+                "services": [],
+                "event_triggers": [
+                    "On entry: Levels 6-9. Recommended for parties of level 9-13."
+                ]
+            }
+        },
+        "3": {
+            "id": 3,
+            "x": 10,
+            "y": 48,
+            "width": 10,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [2, 4],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Trobriand's Graveyard, where the Mad Mage's apprentice built an army of iron constructs and then lost control of them. The forges still burn. The golems still march. And Trobriand himself may still be here, his mind merged with his greatest creation, unable to tell where the wizard ends and the machine begins.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [],
+                "hazards": [],
+                "services": [],
+                "event_triggers": [
+                    "On entry: Levels 10-16. Recommended for parties of level 13-17."
+                ]
+            }
+        },
+        "4": {
+            "id": 4,
+            "x": 10,
+            "y": 64,
+            "width": 10,
+            "height": 10,
+            "room_type": "boss",
+            "connections": [3],
+            "tier": 4,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The deepest level. Halaster's sanctum, where reality bends to the will of a thousand-year-old wizard who has had centuries to go mad and decades to get creative about it. Stars burn in underground skies. Doors open into rooms that should not exist. And at the center of it all, Halaster Blackcloak waits, playing a game whose rules only he understands.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [],
+                "hazards": [],
+                "services": [],
+                "event_triggers": [
+                    "On entry: Levels 17-23. Recommended for parties of level 17-20."
+                ]
+            }
+        }
+    }
+}

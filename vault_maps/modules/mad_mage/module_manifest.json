@@ -1,0 +1,107 @@
+{
+    "module_id": "mad_mage",
+    "display_name": "Waterdeep: Dungeon of the Mad Mage",
+    "system_id": "dnd5e",
+    "source_pdf": "Waterdeep Dungeon of the Mad Mage.pdf",
+    "world_map": "world_map.json",
+    "starting_location": "undermountain",
+    "recommended_levels": {"min": 5, "max": 20},
+    "chapters": [
+        {
+            "chapter_id": "ch1",
+            "display_name": "Chapter 1: Dungeon Level 1 -- The Dungeon Level",
+            "order": 1,
+            "zones": [
+                {
+                    "zone_id": "undermountain_gate",
+                    "blueprint": "undermountain_gate.json",
+                    "topology": "settlement",
+                    "theme": "VILLAGE",
+                    "location_id": "waterdeep",
+                    "entry_trigger": "module_start",
+                    "exit_trigger": "quest_complete",
+                    "generation_params": null
+                },
+                {
+                    "zone_id": "dungeon_level_1",
+                    "blueprint": "dungeon_level_1.json",
+                    "topology": "dungeon",
+                    "theme": "STONE",
+                    "location_id": "undermountain",
+                    "entry_trigger": "quest_complete",
+                    "exit_trigger": "boss_defeated",
+                    "generation_params": null
+                }
+            ]
+        },
+        {
+            "chapter_id": "ch2",
+            "display_name": "Chapter 3: Sargauth Level",
+            "order": 2,
+            "zones": [
+                {
+                    "zone_id": "dungeon_level_3",
+                    "blueprint": "dungeon_level_3.json",
+                    "topology": "dungeon",
+                    "theme": "STONE",
+                    "location_id": "undermountain",
+                    "entry_trigger": "boss_defeated",
+                    "exit_trigger": "boss_defeated",
+                    "generation_params": null
+                }
+            ]
+        },
+        {
+            "chapter_id": "ch3",
+            "display_name": "Chapter 6: Lost Level",
+            "order": 3,
+            "zones": [
+                {
+                    "zone_id": "dungeon_level_6",
+                    "blueprint": "dungeon_level_6.json",
+                    "topology": "dungeon",
+                    "theme": "GOTHIC",
+                    "location_id": "undermountain",
+                    "entry_trigger": "boss_defeated",
+                    "exit_trigger": "boss_defeated",
+                    "generation_params": null
+                }
+            ]
+        },
+        {
+            "chapter_id": "ch4",
+            "display_name": "Chapter 13: Trobriand's Graveyard",
+            "order": 4,
+            "zones": [
+                {
+                    "zone_id": "dungeon_level_13",
+                    "blueprint": "dungeon_level_13.json",
+                    "topology": "dungeon",
+                    "theme": "STONE",
+                    "location_id": "undermountain",
+                    "entry_trigger": "boss_defeated",
+                    "exit_trigger": "boss_defeated",
+                    "generation_params": null
+                }
+            ]
+        },
+        {
+            "chapter_id": "ch5",
+            "display_name": "Chapter 23: Mad Wizard's Lair",
+            "order": 5,
+            "zones": [
+                {
+                    "zone_id": "halaster_lair",
+                    "blueprint": "halaster_lair.json",
+                    "topology": "dungeon",
+                    "theme": "GOTHIC",
+                    "location_id": "undermountain",
+                    "entry_trigger": "boss_defeated",
+                    "exit_trigger": "boss_defeated",
+                    "generation_params": null
+                }
+            ]
+        }
+    ],
+    "freeform_zones": []
+}

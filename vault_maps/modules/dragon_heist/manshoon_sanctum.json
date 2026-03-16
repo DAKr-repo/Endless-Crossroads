@@ -1,0 +1,189 @@
+{
+    "seed": 3015,
+    "width": 50,
+    "height": 50,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "manshoon_sanctum",
+        "theme": "GOTHIC",
+        "topology": "dungeon",
+        "display_name": "Manshoon's Sanctum"
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 20,
+            "y": 0,
+            "width": 10,
+            "height": 6,
+            "room_type": "start",
+            "connections": [1],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "A section of wall in a Trades Ward basement pivots inward at a touch, revealing a staircase cut from obsidian. Each step is engraved with a different arcane sigil -- not wards, but a curriculum. A wizard walking down these stairs would learn, step by step, the theory of soul transference. By the bottom step, you understand enough to be horrified.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [],
+                "hazards": [
+                    {"name": "Psychic resonance (Wisdom save or unsettling visions)", "dc": 14}
+                ],
+                "services": [],
+                "event_triggers": [
+                    "On entry: The door seals behind you. No sound passes through it in either direction."
+                ]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 15,
+            "y": 10,
+            "width": 14,
+            "height": 10,
+            "room_type": "library",
+            "connections": [0, 2, 3],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Scrolls in crystal tubes fill honeycombed walls from floor to ceiling. The tubes are labeled in a cipher that shifts when you look away, and the scrolls inside glow faintly -- each one a preserved memory, stolen from someone who no longer remembers what they lost. A reading lectern in the center holds a half-translated scroll, its text bleeding between Common and Infernal.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Zhentarim Warlock", "cr": "3"}
+                ],
+                "loot": [
+                    {"name": "Scroll of Memory Theft (unique spell)", "type": "consumable"},
+                    {"name": "Manshoon's Cipher Codex", "type": "quest_item"}
+                ],
+                "hazards": [
+                    {"name": "Cursed scroll (read aloud triggers Suggestion)", "dc": 15}
+                ],
+                "services": [],
+                "event_triggers": [
+                    "On search (DC 16 Arcana): One scroll contains the true history of Manshoon's clones -- there have been dozens, and they have spent centuries killing each other."
+                ]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 5,
+            "y": 22,
+            "width": 12,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [1, 4],
+            "tier": 3,
+            "is_locked": true,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Six glass cylinders stand in a row, each filled with pale green fluid and lit from below. Five contain humanoid bodies in various stages of growth -- the same face repeated, the same sharp cheekbones and widow's peak, the same thin-lipped mouth set in a permanent frown. The sixth cylinder is empty, its glass cracked, its fluid pooled on the floor. Something hatched.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Failed Clone (Flesh Golem)", "cr": "5"}
+                ],
+                "loot": [
+                    {"name": "Clone Vat Schematics", "type": "quest_item"},
+                    {"name": "Alchemical Preservative (rare component)", "type": "treasure"}
+                ],
+                "hazards": [
+                    {"name": "Leaking alchemical fluid (acid damage on contact)", "dc": 13}
+                ],
+                "services": [],
+                "event_triggers": [
+                    "On disturbance: The failed clone awakens -- a half-formed thing with Manshoon's face and none of his mind. It attacks anything that moves."
+                ]
+            }
+        },
+        "3": {
+            "id": 3,
+            "x": 30,
+            "y": 22,
+            "width": 10,
+            "height": 8,
+            "room_type": "normal",
+            "connections": [1, 4],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "A sand table fills the room, its surface sculpted into a detailed relief map of Waterdeep. Tiny figurines represent faction positions -- Zhentarim in black, Xanathar Guild in purple, Harpers in silver, and a single golden dragon figurine placed deep underground. Manshoon has been planning his takeover move by move, and judging by the positions, he is three moves from checkmate.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [
+                    {"name": "Manshoon's Strategic Map", "type": "quest_item"},
+                    {"name": "Faction Disposition Notes", "type": "quest_item"}
+                ],
+                "hazards": [],
+                "services": [],
+                "event_triggers": [
+                    "On study (DC 14 History or Investigation): The map reveals the approximate location of the Vault of Dragons and Manshoon's planned assault route."
+                ]
+            }
+        },
+        "4": {
+            "id": 4,
+            "x": 15,
+            "y": 34,
+            "width": 14,
+            "height": 12,
+            "room_type": "boss",
+            "connections": [2, 3, 5],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The sanctum is a perfect sphere carved from black marble, its walls etched with constellations that do not match any sky you have seen. Manshoon floats at the center in lotus position, surrounded by orbiting spellbooks that turn their own pages. He opens his eyes as you enter -- one eye is natural, the other a glass orb that glows with stored spell energy. He does not look surprised. He looks disappointed.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Manshoon (Archmage variant)", "cr": "12"},
+                    {"name": "Zhentarim Assassin", "cr": "8"}
+                ],
+                "loot": [
+                    {"name": "Manshoon's Spellbook", "type": "treasure"},
+                    {"name": "Staff of Power", "type": "weapon"},
+                    {"name": "Robe of the Archmagi (cursed -- bears Manshoon's sigil)", "type": "armor"}
+                ],
+                "hazards": [
+                    {"name": "Contingency spell (triggers Shield on first attack)", "dc": 0}
+                ],
+                "services": [],
+                "event_triggers": [
+                    "On combat start: 'You have come to kill me. Others have tried. I have died before -- it is surprisingly educational. Shall we begin?'",
+                    "On Manshoon at half HP: He gestures and the ceiling becomes transparent, revealing the night sky above Waterdeep. 'This city will be mine. If not this body, then the next. I am patient.'",
+                    "On defeat: Manshoon's body dissolves. Somewhere in another hidden sanctum, a clone's eyes open."
+                ]
+            }
+        },
+        "5": {
+            "id": 5,
+            "x": 15,
+            "y": 46,
+            "width": 10,
+            "height": 6,
+            "room_type": "treasure",
+            "connections": [4],
+            "tier": 3,
+            "is_locked": true,
+            "is_secret": false,
+            "content_hints": {
+                "description": "A vault door warded with three overlapping Arcane Locks opens onto a small chamber where wealth is measured not in coin but in knowledge. Scrolls of ninth-level spells, a crystal ball clouded with futures, and a leather case containing six soul coins from Avernus. A single chest holds operational funds -- gold enough to buy a noble title twice over.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [
+                    {"name": "Gold (3,000 gp)", "type": "treasure"},
+                    {"name": "Soul Coins (6, from Avernus)", "type": "quest_item"},
+                    {"name": "Crystal Ball (clouded)", "type": "equipment"},
+                    {"name": "Scroll of Teleportation Circle", "type": "consumable"}
+                ],
+                "hazards": [
+                    {"name": "Symbol of Death on vault interior", "dc": 17}
+                ],
+                "services": [],
+                "event_triggers": [
+                    "On soul coins examined: Each coin contains a screaming face pressed against the interior surface. They are warm to the touch."
+                ]
+            }
+        }
+    }
+}

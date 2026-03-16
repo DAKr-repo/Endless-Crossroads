@@ -1,0 +1,124 @@
+{
+    "world_id": "sword_coast",
+    "display_name": "The Sword Coast",
+    "system_id": "dnd5e",
+    "seed": 1492,
+    "bounds": [200, 150],
+    "start_location_id": "waterdeep",
+    "locations": {
+        "waterdeep": {
+            "id": "waterdeep",
+            "display_name": "Waterdeep",
+            "x": 80,
+            "y": 70,
+            "location_type": "city",
+            "terrain": "coast",
+            "feature": "The City of Splendors -- a vast metropolis built against the cliffs of the Sword Coast. Over a million souls crowd its streets, from the masked Lords of the palace to the pickpockets of Dock Ward.",
+            "zones": ["yawning_portal", "zhentarim_hideout", "trollskull_manor"],
+            "connections": ["amphail", "daggerford"],
+            "icon": "C",
+            "tier": 1,
+            "is_starting_location": true,
+            "services": ["tavern", "market", "temple", "forge", "library", "barracks"],
+            "grapes_landmark_index": null
+        },
+        "neverwinter": {
+            "id": "neverwinter",
+            "display_name": "Neverwinter",
+            "x": 60,
+            "y": 20,
+            "location_type": "city",
+            "terrain": "coast",
+            "feature": "The Jewel of the North, still rebuilding after Mount Hotenow's eruption scarred the city decades ago. Warm ocean currents keep the harbor ice-free year-round.",
+            "zones": [],
+            "connections": ["waterdeep"],
+            "icon": "C",
+            "tier": 3,
+            "is_starting_location": false,
+            "services": ["tavern", "market", "temple", "forge"],
+            "grapes_landmark_index": null
+        },
+        "baldurs_gate": {
+            "id": "baldurs_gate",
+            "display_name": "Baldur's Gate",
+            "x": 100,
+            "y": 130,
+            "location_type": "city",
+            "terrain": "coast",
+            "feature": "A sprawling port city where coin speaks louder than law. The Flaming Fist mercenary company keeps a tenuous peace between the Upper City's patriars and the Outer City's desperate poor.",
+            "zones": [],
+            "connections": ["daggerford"],
+            "icon": "C",
+            "tier": 4,
+            "is_starting_location": false,
+            "services": ["tavern", "market", "temple", "forge", "barracks"],
+            "grapes_landmark_index": null
+        },
+        "daggerford": {
+            "id": "daggerford",
+            "display_name": "Daggerford",
+            "x": 90,
+            "y": 100,
+            "location_type": "town",
+            "terrain": "plains",
+            "feature": "A walled town at the mouth of the Delimbiyr River, governed by the young Duchess Morwen. Caravans bound for Waterdeep or Baldur's Gate stop here to resupply and hire guards.",
+            "zones": [],
+            "connections": ["waterdeep", "baldurs_gate"],
+            "icon": "T",
+            "tier": 2,
+            "is_starting_location": false,
+            "services": ["tavern", "market", "temple"],
+            "grapes_landmark_index": null
+        },
+        "amphail": {
+            "id": "amphail",
+            "display_name": "Amphail",
+            "x": 75,
+            "y": 55,
+            "location_type": "village",
+            "terrain": "plains",
+            "feature": "A sleepy horse-breeding village north of Waterdeep, named after a long-dead warlord whose statue still stands in the village green. Noble families from the city maintain country estates here.",
+            "zones": [],
+            "connections": ["waterdeep"],
+            "icon": "V",
+            "tier": 1,
+            "is_starting_location": false,
+            "services": ["tavern", "market"],
+            "grapes_landmark_index": null
+        }
+    },
+    "routes": [
+        {
+            "from_id": "waterdeep",
+            "to_id": "amphail",
+            "travel_days": 1,
+            "terrain": "road",
+            "danger_level": 1,
+            "description": "The Long Road north -- well-patrolled and lined with farms. Merchant caravans trundle past every hour."
+        },
+        {
+            "from_id": "waterdeep",
+            "to_id": "daggerford",
+            "travel_days": 4,
+            "terrain": "road",
+            "danger_level": 2,
+            "description": "The Trade Way south along the coast. Bandits and goblin raiding parties grow bolder the farther one gets from Waterdeep's patrols."
+        },
+        {
+            "from_id": "daggerford",
+            "to_id": "baldurs_gate",
+            "travel_days": 7,
+            "terrain": "road",
+            "danger_level": 3,
+            "description": "The Trade Way continues through the Fields of the Dead -- ancient battlefields where restless spirits have been known to waylay travelers after dark."
+        },
+        {
+            "from_id": "waterdeep",
+            "to_id": "neverwinter",
+            "travel_days": 10,
+            "terrain": "road",
+            "danger_level": 3,
+            "description": "The High Road north -- a long and dangerous journey through Mere of Dead Men and the Sword Mountains. Only the well-armed or the desperate travel this route."
+        }
+    ]
+}

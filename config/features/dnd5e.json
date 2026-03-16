@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "source": "PHB + Tasha's Cauldron (baseline)",
+  "invocations": [
+    {"name": "Agonizing Blast", "prerequisite": "eldritch blast cantrip", "effect": "Add CHA mod to eldritch blast damage"},
+    {"name": "Armor of Shadows", "prerequisite": null, "effect": "Cast mage armor on self at will"},
+    {"name": "Beast Speech", "prerequisite": null, "effect": "Cast speak with animals at will"},
+    {"name": "Beguiling Influence", "prerequisite": null, "effect": "Proficiency in Deception and Persuasion"},
+    {"name": "Book of Ancient Secrets", "prerequisite": "Pact of the Tome", "effect": "Record ritual spells from any class"},
+    {"name": "Devil's Sight", "prerequisite": null, "effect": "See normally in darkness (120ft)"},
+    {"name": "Eldritch Sight", "prerequisite": null, "effect": "Cast detect magic at will"},
+    {"name": "Eldritch Spear", "prerequisite": "eldritch blast cantrip", "effect": "Eldritch blast range 300ft"},
+    {"name": "Eyes of the Rune Keeper", "prerequisite": null, "effect": "Read all writing"},
+    {"name": "Fiendish Vigor", "prerequisite": null, "effect": "Cast false life on self at will"},
+    {"name": "Mask of Many Faces", "prerequisite": null, "effect": "Cast disguise self at will"},
+    {"name": "Misty Visions", "prerequisite": null, "effect": "Cast silent image at will"},
+    {"name": "One with Shadows", "prerequisite": "5th level", "effect": "Become invisible in dim light/darkness"},
+    {"name": "Otherworldly Leap", "prerequisite": "9th level", "effect": "Cast jump on self at will"},
+    {"name": "Repelling Blast", "prerequisite": "eldritch blast cantrip", "effect": "Push creature 10ft on eldritch blast hit"},
+    {"name": "Thirsting Blade", "prerequisite": "5th level, Pact of the Blade", "effect": "Attack twice with pact weapon"},
+    {"name": "Witch Sight", "prerequisite": "15th level", "effect": "See true form of shapechangers (30ft)"}
+  ],
+  "maneuvers": [
+    {"name": "Commander's Strike", "effect": "Ally uses reaction to attack, add superiority die to damage"},
+    {"name": "Disarming Attack", "effect": "Add superiority die to damage, target drops item on failed STR save"},
+    {"name": "Distracting Strike", "effect": "Add superiority die to damage, next ally attack has advantage"},
+    {"name": "Evasive Footwork", "effect": "Add superiority die to AC while moving"},
+    {"name": "Feinting Attack", "effect": "Advantage on next attack, add superiority die to damage"},
+    {"name": "Goading Attack", "effect": "Add superiority die to damage, target has disadvantage attacking others"},
+    {"name": "Lunging Attack", "effect": "Increase reach by 5ft, add superiority die to damage"},
+    {"name": "Maneuvering Attack", "effect": "Add superiority die to damage, ally moves half speed without opportunity attack"},
+    {"name": "Menacing Attack", "effect": "Add superiority die to damage, target frightened on failed WIS save"},
+    {"name": "Parry", "effect": "Reduce damage by superiority die + DEX mod"},
+    {"name": "Precision Attack", "effect": "Add superiority die to attack roll"},
+    {"name": "Pushing Attack", "effect": "Add superiority die to damage, push target 15ft on failed STR save"},
+    {"name": "Rally", "effect": "Ally gains superiority die + CHA mod temporary HP"},
+    {"name": "Riposte", "effect": "When missed by melee, attack as reaction, add superiority die to damage"},
+    {"name": "Sweeping Attack", "effect": "On hit, deal superiority die damage to adjacent creature"},
+    {"name": "Trip Attack", "effect": "Add superiority die to damage, knock prone on failed STR save"}
+  ],
+  "metamagic": [
+    {"name": "Careful Spell", "cost": 1, "effect": "Chosen creatures auto-succeed on spell save"},
+    {"name": "Distant Spell", "cost": 1, "effect": "Double spell range"},
+    {"name": "Empowered Spell", "cost": 1, "effect": "Reroll up to CHA mod damage dice"},
+    {"name": "Extended Spell", "cost": 1, "effect": "Double spell duration"},
+    {"name": "Heightened Spell", "cost": 3, "effect": "One target has disadvantage on first save"},
+    {"name": "Quickened Spell", "cost": 2, "effect": "Cast as bonus action instead of action"},
+    {"name": "Subtle Spell", "cost": 1, "effect": "Cast without verbal or somatic components"},
+    {"name": "Twinned Spell", "cost": "spell level", "effect": "Target second creature with single-target spell"}
+  ],
+  "fighting_styles": [
+    {"name": "Archery", "effect": "+2 bonus to attack rolls with ranged weapons"},
+    {"name": "Defense", "effect": "+1 AC while wearing armor"},
+    {"name": "Dueling", "effect": "+2 damage with one-handed melee weapon"},
+    {"name": "Great Weapon Fighting", "effect": "Reroll 1s and 2s on two-handed weapon damage"},
+    {"name": "Protection", "effect": "Impose disadvantage on attack against adjacent ally (reaction, shield)"},
+    {"name": "Two-Weapon Fighting", "effect": "Add ability modifier to off-hand attack damage"}
+  ]
+}

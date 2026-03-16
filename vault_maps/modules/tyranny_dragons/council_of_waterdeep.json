@@ -1,0 +1,154 @@
+{
+    "seed": 7007,
+    "width": 50,
+    "height": 40,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "council_of_waterdeep",
+        "theme": "VILLAGE",
+        "topology": "settlement",
+        "display_name": "Council of Waterdeep"
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 5,
+            "y": 5,
+            "width": 12,
+            "height": 8,
+            "room_type": "start",
+            "connections": [1, 4],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Palace Gates of Waterdeep open onto a courtyard of white marble where the banners of five factions snap in the sea breeze. Guards in the livery of the Lords' Alliance check credentials with the precise courtesy of soldiers who know they're guarding the most important meeting in a century. Beyond the gates, the palace rises in tiers of elegant stonework, its windows blazing with candlelight despite the midday hour.",
+                "npcs": [
+                    {"name": "Leosin Erlanthar", "role": "ally", "dialogue": "You've come a long way from that prison compound in the raiders' camp. The Council waits inside. A word of warning -- the factions agree on nothing except that they disagree. Your testimony may be the only thing that unites them. Choose your words with care. Wars have started over less."}
+                ],
+                "enemies": [],
+                "loot": [],
+                "services": [],
+                "event_triggers": ["On entry: Leosin briefs the party on council dynamics. Faction reputation from previous chapters affects initial attitudes."]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 15,
+            "y": 10,
+            "width": 16,
+            "height": 14,
+            "room_type": "town_square",
+            "connections": [0, 2, 3],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Council Chamber is a circular hall beneath a dome painted with a map of Faerun. A round table dominates the center -- no head seat, by deliberate design, though the faction leaders have arranged themselves into obvious power blocs. The air is thick with tension, interrupted whispers, and the scratch of scribes' quills recording every word for posterity. This is where the fate of the Sword Coast will be decided by people who trust each other about as far as they can throw a tarrasque.",
+                "npcs": [
+                    {"name": "Laeral Silverhand", "role": "council_leader", "dialogue": "Let us dispense with pleasantries. The Cult of the Dragon moves to summon Tiamat from Avernus. Our guests *she gestures to the party* have seen the enemy's strength firsthand. I suggest we listen before we argue. There will be ample time for arguing afterward. There always is."},
+                    {"name": "Dagult Neverember", "role": "faction_leader", "dialogue": "I represent the Lords' Alliance, and I will be blunt: Waterdeep's coffers are not bottomless. Any military response must be proportional to the threat, and I have yet to be convinced that the threat justifies the expense Laeral is proposing. Convince me."},
+                    {"name": "Connerad Brawnanvil", "role": "faction_leader", "dialogue": "Gauntlgrym stands with the Alliance, but I'll not commit dwarven lives on the word of strangers. *He leans forward.* Show me proof. Not rumors, not intelligence reports -- proof. Then you'll have every axe in my kingdom."},
+                    {"name": "King Melandrach", "role": "faction_leader", "dialogue": "The elves have watched the rise and fall of dragon cults before. They burn bright and die. The question is how much they burn before the dying. I am willing to commit the Misty Forest's forces, but only if the plan accounts for the forest's defense in our absence."},
+                    {"name": "Ambassador Brawnanvil", "role": "faction_leader", "dialogue": "My cousin Connerad speaks for the shield dwarves. I speak for those of us who've been fighting the Cult in the shadows for months. The Order of the Gauntlet has intelligence the Council needs, and I'll share it freely -- but I want a seat at the strategy table, not just the testimony bench."}
+                ],
+                "enemies": [],
+                "loot": [],
+                "services": ["information", "faction_negotiation"],
+                "event_triggers": ["On entry: Council session begins. The party presents evidence gathered throughout the campaign.", "On testimony: Each piece of evidence (maps, masks, intelligence) shifts faction attitudes. DC varies by evidence quality.", "On diplomacy: DC 14-18 Persuasion to win over specific faction leaders. Multiple checks possible across sessions."]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 30,
+            "y": 10,
+            "width": 12,
+            "height": 8,
+            "room_type": "normal",
+            "connections": [1, 3],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The War Room adjoins the Council Chamber, its walls covered in maps bristling with pins, string, and annotations in six different hands. A sand table in the center models the Well of Dragons with miniature figures representing allied and enemy forces. The scale of the Cult's army is sobering -- the miniatures representing their forces outnumber the allied ones three to one. Winning this war requires allies the Council hasn't yet imagined.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [
+                    {"name": "War Council Map (annotated, shows all known Cult positions)", "type": "quest_item"},
+                    {"name": "Faction Alliance Tokens (tracking allied support)", "type": "quest_item"}
+                ],
+                "services": ["strategy", "information"],
+                "event_triggers": ["On entry: The party can propose strategy. Success at DC 16 History or Insight improves allied army composition.", "On metallic dragons: A separate quest to convince the metallic dragons to join is available here. Requires a party member to serve as ambassador."]
+            }
+        },
+        "3": {
+            "id": 3,
+            "x": 25,
+            "y": 22,
+            "width": 12,
+            "height": 10,
+            "room_type": "library",
+            "connections": [1, 2, 5],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The palace library occupies three floors connected by a spiral stair of polished oak. The collection spans centuries of Waterdhavian scholarship, and the section on dragonlore has been pulled to the reading tables for urgent consultation. Sages hunch over ancient texts, cross-referencing prophecies about Tiamat's return with the Cult's timeline. The answer to stopping the ritual may already be written somewhere in these stacks.",
+                "npcs": [
+                    {"name": "Elia", "role": "sage", "dialogue": "The Draconomicon of Cordell mentions a counter-ritual -- a way to strengthen the barrier between planes during a summoning attempt. It requires five metallic dragon scales, freely given, and a spellcaster of considerable power. The theory is sound. Whether it works against a goddess... *she shrugs* ...that part is less certain."}
+                ],
+                "enemies": [],
+                "loot": [
+                    {"name": "Draconomicon Fragment (contains counter-ritual notes)", "type": "quest_item"},
+                    {"name": "Scroll of Dispel Evil and Good", "type": "scroll"},
+                    {"name": "Research Notes on Dragon Masks (weaknesses detailed)", "type": "quest_item"}
+                ],
+                "services": ["lore", "research", "spell_identification"],
+                "event_triggers": ["On entry: Elia's research provides the key to weakening Tiamat during the summoning.", "On research: DC 15 Investigation + 4 hours yields one of three critical pieces of intelligence: counter-ritual, mask weaknesses, or Cult hierarchy."]
+            }
+        },
+        "4": {
+            "id": 4,
+            "x": 5,
+            "y": 22,
+            "width": 10,
+            "height": 8,
+            "room_type": "residence",
+            "connections": [0, 5],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The guest quarters assigned to the party are the finest rooms in the palace -- a recognition of their status that doubles as gentle confinement. The beds are feather-soft, the wine is excellent, and the guards outside the door are 'for your protection.' The view from the window encompasses Waterdeep's harbor, where warships are being provisioned for the campaign ahead. Sleep comes uneasily when you know what's coming.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [
+                    {"name": "Palace Wine (4 bottles, 50 gp each)", "type": "treasure"},
+                    {"name": "Fine Clothing Set (suitable for court)", "type": "gear"}
+                ],
+                "services": ["rest", "long_rest"],
+                "event_triggers": ["On rest: Full long rest. All resources restored. Dreams of Tiamat: Wisdom save DC 10 or gain no benefit (prophetic nightmares).", "On night: DC 14 Perception while resting detects a Cult assassin attempting to poison the party's wine."]
+            }
+        },
+        "5": {
+            "id": 5,
+            "x": 15,
+            "y": 30,
+            "width": 12,
+            "height": 8,
+            "room_type": "town_gate",
+            "connections": [3, 4],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The palace gardens overlook the Sea of Swords, their hedgerows and flower beds maintained even in wartime -- a deliberate statement that civilization endures. A gate in the garden wall opens onto the harbor road, where the army gathers. This is the departure point. Beyond this gate lies the road south to the Well of Dragons, and whatever waits at the end of it.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [],
+                "services": [],
+                "event_triggers": ["On exit: The party departs for the Well of Dragons with whatever allies the Council sessions secured.", "On allies: The composition of the allied army depends on the party's diplomacy: more factions convinced = more support in the final battle.", "On transition: Faction scorecard tallied. Each allied faction provides specific combat bonuses during the Well of Dragons assault."]
+            }
+        }
+    }
+}

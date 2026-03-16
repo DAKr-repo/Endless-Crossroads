@@ -1,0 +1,173 @@
+{
+    "seed": 7002,
+    "width": 50,
+    "height": 45,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "raider_camp",
+        "theme": "STONE",
+        "topology": "wilderness",
+        "display_name": "The Raider Camp"
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 5,
+            "y": 5,
+            "width": 10,
+            "height": 8,
+            "room_type": "start",
+            "connections": [1],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "A rocky ridge overlooks a horseshoe-shaped plateau where the Cult of the Dragon has made camp. From this vantage, the scope of the operation becomes clear: hundreds of tents arranged in concentric rings around a large command pavilion, cook fires burning in organized clusters, and patrols moving on schedule. This is not a raiding party. This is an army, and it has been here for weeks.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [
+                    {"name": "Spyglass (if party doesn't have one)", "type": "gear"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: DC 12 Perception from this vantage reveals the camp's layout, patrol patterns, and the location of the prisoner compound.", "On plan: Multiple infiltration approaches: disguise as cultists (DC 13 Deception), sneak through the perimeter (DC 15 Stealth), or bluff as new recruits (DC 14 Persuasion)."]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 15,
+            "y": 15,
+            "width": 14,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [0, 2, 3, 4],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The outer camp is a sprawl of mercenary tents, campfires, and stinking latrine trenches. The non-cultist raiders -- hired swords, bandits, and kobold auxiliaries -- camp here in squalid conditions while the true believers occupy the inner ring. Arguments over loot shares are constant, and the mercenaries eye the cultists with the resentment of men who've been promised gold and received only sermons.",
+                "npcs": [
+                    {"name": "Leosin Erlanthar (prisoner, disguised)", "role": "quest_giver", "dialogue": "*The half-elf monk is bruised and filthy, chained to a post among other prisoners.* I infiltrated the camp deliberately. I needed to understand their plans. The cult is gathering a hoard -- treasure from a dozen raids -- to offer to Tiamat herself. They believe they can summon her from Avernus. The worst part? They might be right."}
+                ],
+                "enemies": [
+                    {"name": "Cultist Patrol (4)", "cr": "1/8"},
+                    {"name": "Guard Drake (on chain)", "cr": "2"}
+                ],
+                "loot": [],
+                "services": [],
+                "event_triggers": ["On entry: Disguise check required every 30 minutes (DC increases by 1 each time).", "On discovery: If exposed, the camp erupts. Escape becomes the priority. DC 14 Athletics to outrun pursuit."]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 25,
+            "y": 10,
+            "width": 12,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [1, 3],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The cult tents form an inner ring distinguished by purple canvas and the five-headed dragon banner. Braziers burn with incense that smells of brimstone, and the cultists here move with the glazed intensity of the devout. Prayer sessions occur every four hours, and the chanting is audible from across the camp -- a droning litany to Tiamat that sets teeth on edge.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Dragonclaw", "cr": "1"},
+                    {"name": "Dragonclaw", "cr": "1"},
+                    {"name": "Cultist (group of 6)", "cr": "1/8"}
+                ],
+                "loot": [
+                    {"name": "Cult Robes (disguise)", "type": "gear"},
+                    {"name": "Cult Instruction Manual (details hierarchy and beliefs)", "type": "quest_item"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: Wearing cult robes grants advantage on Deception checks in the inner camp.", "On listen: DC 13 Perception overhears discussion about 'Rezmir's portal' and 'the flying castle.'"]
+            }
+        },
+        "3": {
+            "id": 3,
+            "x": 30,
+            "y": 20,
+            "width": 14,
+            "height": 12,
+            "room_type": "treasure",
+            "connections": [1, 2, 5],
+            "tier": 2,
+            "is_locked": true,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Rezmir's tent is the largest in camp, its interior divided by silk screens into chambers. The furnishings are stolen luxury -- a mahogany desk from some nobleman's study, silken carpets from Calimshan, and a camp bed with linens finer than most peasants see in a lifetime. A locked chest sits beneath the desk, and maps on the wall trace the Cult's treasure route from Greenest to Castle Naerytar to the north.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Guard Drake (Rezmir's personal guard)", "cr": "2"},
+                    {"name": "Guard Drake (Rezmir's personal guard)", "cr": "2"}
+                ],
+                "loot": [
+                    {"name": "Rezmir's Route Map (traces treasure hoard path)", "type": "quest_item"},
+                    {"name": "Black Dragon Mask Fragment (clue to the Dragon Masks)", "type": "quest_item"},
+                    {"name": "Stolen Jewelry (300 gp)", "type": "treasure"},
+                    {"name": "Potion of Superior Healing", "type": "consumable"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: Rezmir is absent (at Castle Naerytar). The guard drakes attack non-cultists on sight.", "On chest: DC 17 Thieves' Tools to open. Contains the route map and fragment."]
+            }
+        },
+        "4": {
+            "id": 4,
+            "x": 10,
+            "y": 25,
+            "width": 12,
+            "height": 8,
+            "room_type": "normal",
+            "connections": [1, 5],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The prisoner compound is a roped-off section of dirt where captured villagers and adventurers are staked to posts with iron chains. A handful of kobolds guard them with the petty cruelty of creatures given authority over those bigger than themselves. The prisoners are sun-burned, dehydrated, and hollow-eyed -- they've been here for days with minimal food or water.",
+                "npcs": [
+                    {"name": "Leosin Erlanthar", "role": "quest_giver", "dialogue": "*If rescued.* Frulam Mondath commands this camp, but Rezmir -- a half-black-dragon -- commands her. The hoard goes north by wagon, then by portal, then by cloud giant castle. If we can disrupt the chain at any point, we set them back by months. Get me to Ontharr Frume in Elturel. The Harpers and the Order of the Gauntlet must know what's happening."}
+                ],
+                "enemies": [
+                    {"name": "Kobold Guard (4)", "cr": "1/8"}
+                ],
+                "loot": [
+                    {"name": "Manacle Key (taken from kobold guard)", "type": "quest_item"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: Rescuing Leosin requires neutralizing guards silently (DC 14 Stealth + DC 13 Sleight of Hand for manacles) or causing a distraction.", "On rescue: Leosin provides critical intelligence about the Cult's plans and establishes connection to the Harpers."]
+            }
+        },
+        "5": {
+            "id": 5,
+            "x": 25,
+            "y": 35,
+            "width": 14,
+            "height": 10,
+            "room_type": "boss",
+            "connections": [3, 4],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The rear guard post is a natural rock formation the Cult has fortified with wooden palisades and a watchtower. Frulam Mondath, the camp's operational commander, maintains her headquarters here. She is a woman of iron discipline and absolute faith -- her eyes burn with the certainty of someone who has seen a god and been found worthy. The guards here are the camp's elite: veteran dragonclaws and two berserkers who fight without armor or fear.",
+                "npcs": [
+                    {"name": "Frulam Mondath", "role": "antagonist", "dialogue": "The Cult of the Dragon has endured for centuries because we understand what the complacent do not: the age of mortals is ending. Tiamat rises, and those who serve her will be rewarded beyond imagining. Those who oppose her... *She draws her halberd.* ...will not be remembered at all."}
+                ],
+                "enemies": [
+                    {"name": "Frulam Mondath (War Cleric)", "cr": "4"},
+                    {"name": "Dragonclaw Veteran", "cr": "1"},
+                    {"name": "Dragonclaw Veteran", "cr": "1"},
+                    {"name": "Berserker", "cr": "2"}
+                ],
+                "loot": [
+                    {"name": "Frulam's Halberd (+1)", "type": "weapon"},
+                    {"name": "Cult Command Cipher (decodes cult communications)", "type": "quest_item"},
+                    {"name": "Dragon Scale Amulet (identifies wearer as Cult officer)", "type": "wondrous_item"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: Frulam fights defensively, trying to buy time for camp reinforcements (arrive in 5 rounds).", "On defeat: The camp's command structure collapses. The Cult abandons the camp within 24 hours, but the hoard is already en route north."]
+            }
+        }
+    }
+}

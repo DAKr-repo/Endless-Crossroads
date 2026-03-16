@@ -1,0 +1,265 @@
+{
+    "zone_id": "willow_wood",
+    "display_name": "The Willow Wood",
+    "topology": "wilderness",
+    "theme": "RUST",
+    "landmark_rooms": [
+        {"id": 0, "type": "grove_heart", "name": "Heart of the Wood", "tier": 0,
+         "description": "Ancient willows crowd together here, their roots intertwined. Emberhome's lanterns glow faintly through the canopy behind you.",
+         "connections": [1, 2, 6],
+         "grapes_binding": null},
+        {"id": 1, "type": "shrine", "name": "The Wayward Shrine", "tier": 0,
+         "description": "A moss-covered shrine carved into a hollow trunk. Someone has left fresh wildflowers.",
+         "connections": [0, 3], "services": ["save", "rest"],
+         "grapes_binding": "religion"},
+        {"id": 2, "type": "hollow", "name": "The Whisper Hollow", "tier": 0,
+         "description": "The ground dips into a natural bowl. Voices carry strangely here — you hear fragments of conversation from nowhere.",
+         "connections": [0, 4], "services": ["npc_encounter"],
+         "grapes_binding": "social"},
+        {"id": 3, "type": "crossing", "name": "Merchant's Crossing", "tier": 1,
+         "description": "A well-worn path crosses a shallow stream. Cart tracks mark the mud on both sides.",
+         "connections": [1, 5, 7], "services": ["trade"],
+         "grapes_binding": "economics"},
+        {"id": 4, "type": "thicket", "name": "The Withering Thicket", "tier": 1,
+         "description": "The willows here are skeletal — bark peeling, branches bare. Something has drained the life from them.",
+         "connections": [2, 5],
+         "grapes_binding": "geography"},
+        {"id": 5, "type": "clearing", "name": "Ashen Clearing", "tier": 1,
+         "description": "A circle of scorched earth where nothing grows. The stumps of burned willows ring the clearing like teeth.",
+         "connections": [3, 4],
+         "grapes_binding": "security"},
+        {"id": 6, "type": "pool", "name": "The Still Pool", "tier": 0,
+         "description": "A dark pond fed by no visible stream. The water is perfectly still — not even leaves disturb the surface.",
+         "connections": [0, 5],
+         "grapes_binding": null},
+        {"id": 7, "type": "rootbridge", "name": "The Rootbridge", "tier": 1,
+         "description": "Living roots form a natural bridge over a deep ravine. The wood groans and shifts underfoot.",
+         "connections": [3, 4],
+         "grapes_binding": null}
+    ],
+    "destination_gates": [
+        {"gate_id": "descent", "name": "The Root Stair", "tier": 1,
+         "exit_type": "descend",
+         "description": "Massive roots spiral downward into darkness. The air rising from below smells of damp earth and iron.",
+         "path_from": 3, "path_rooms_min": 3, "path_rooms_max": 5},
+        {"gate_id": "ascent", "name": "The Canopy Ladder", "tier": 1,
+         "exit_type": "ascend",
+         "description": "Woven rope ladders ascend through thinning branches toward the distant crown of the Burnwillow.",
+         "path_from": 4, "path_rooms_min": 3, "path_rooms_max": 5},
+        {"gate_id": "cave", "name": "The Maw", "tier": 2,
+         "exit_type": "descend",
+         "description": "A jagged crack in the hillside exhales a cold breath. Claw marks line the stone around the entrance.",
+         "path_from": 3, "path_rooms_min": 4, "path_rooms_max": 5}
+    ],
+    "start_room": 0,
+    "npc_pool": ["wandering_herbalist", "lost_traveler", "wounded_scout", "mushroom_forager",
+                 "fleeing_merchant", "willow_tender", "ghost_lantern_keeper"],
+    "path_room_pool": [
+        {"type": "trail", "name_pool": ["Winding Trail", "Overgrown Path", "Deer Track", "Mud Lane"],
+         "tier": 0, "encounter_chance": 0.1,
+         "description_pool": [
+             "The path narrows between leaning willows. Footprints in the mud suggest recent passage.",
+             "Fallen branches block the trail. Someone has been cutting them — recently.",
+             "A game trail winds through tall grass. Something rustles just out of sight."
+         ]},
+        {"type": "stream", "name_pool": ["Shallow Ford", "The Trickle", "Moss Creek", "Iron Brook"],
+         "tier": 0, "encounter_chance": 0.2,
+         "description_pool": [
+             "A shallow stream cuts across the path. The water runs dark with tannin.",
+             "Stepping stones cross a bubbling brook. One stone has a carved rune on its face."
+         ]},
+        {"type": "grove", "name_pool": ["Silent Grove", "Twisted Copse", "The Weeping Stand"],
+         "tier": 1, "encounter_chance": 0.3,
+         "description_pool": [
+             "A ring of willows leans inward, branches touching like clasped hands.",
+             "The trees here grow in a spiral pattern. The air smells of sap and decay."
+         ]},
+        {"type": "ruin", "name_pool": ["Broken Waypost", "Collapsed Lean-To", "Foundation Stones"],
+         "tier": 1, "encounter_chance": 0.4,
+         "description_pool": [
+             "Stone foundations peek through moss. Someone lived here once.",
+             "A crumbled waypost lists directions to places you've never heard of."
+         ]},
+        {"type": "den", "name_pool": ["Hollow Log", "Beast's Den", "Bramble Nest"],
+         "tier": 1, "encounter_chance": 0.5,
+         "description_pool": [
+             "Claw marks score the earth around a massive hollow log. Something lives here.",
+             "Bones and fur litter the ground. The den's occupant is elsewhere — for now."
+         ]},
+        {"type": "overlook", "name_pool": ["Ridge View", "The Lookout", "Canopy Gap"],
+         "tier": 0, "encounter_chance": 0.0,
+         "description_pool": [
+             "A break in the canopy reveals the landscape below. You can see far from here.",
+             "The ridge offers a clear view. Smoke rises from Emberhome in the distance."
+         ]}
+    ],
+    "encounter_table": {
+        "tier_0": ["will_o_wisp", "twig_blight", "root_crawler", "lost_fawn"],
+        "tier_1": ["blighted_wolf", "spore_shambler", "rot_sprite", "territorial_boar"],
+        "tier_2": ["hollow_knight", "canopy_stalker", "rot_elemental"]
+    },
+    "encounters": {
+        "territorial_boar": {
+            "name": "Territorial Boar",
+            "description": "A massive boar blocks the trail, tusks lowered, eyes red.",
+            "approaches": {
+                "combat": {"dc": 12, "reward": "boar_hide", "description": "Fight the beast head-on."},
+                "social": {"dc": 10, "skill": "command", "reward": "boar_calmed",
+                           "description": "Calm the beast with steady voice and posture."},
+                "exploration": {"dc": 8, "skill": "perception", "reward": "bypass",
+                               "description": "Spot a side trail that avoids the boar entirely."},
+                "narrative": {"dc": 0, "reward": "lore_fragment",
+                             "description": "Observe quietly. The boar guards a shallow grave — someone buried here."}
+            }
+        },
+        "will_o_wisp": {
+            "name": "Will-o'-Wisp",
+            "description": "A pale light drifts between the trees, always just ahead.",
+            "approaches": {
+                "combat": {"dc": 14, "reward": "wisp_essence", "description": "Attack the light. It fights back."},
+                "social": {"dc": 12, "skill": "mending", "reward": "guided_to_secret",
+                           "description": "Offer a prayer. The wisp brightens and waits."},
+                "exploration": {"dc": 10, "skill": "perception", "reward": "shortcut",
+                               "description": "Follow at a distance. It leads you somewhere unexpected."},
+                "narrative": {"dc": 0, "reward": "lore_fragment",
+                             "description": "Watch it fade. You notice it hovers where a name is carved into bark."}
+            }
+        },
+        "collapsed_bridge": {
+            "name": "Collapsed Bridge",
+            "description": "The old bridge has given way. The ravine is too wide to jump.",
+            "approaches": {
+                "combat": {"dc": 0, "reward": "none", "description": "Nothing to fight here."},
+                "social": {"dc": 10, "skill": "command", "reward": "npc_help",
+                           "description": "Call out. A voice answers from the other side."},
+                "exploration": {"dc": 12, "skill": "perception", "reward": "hidden_crossing",
+                               "description": "Search downstream. Find a fallen tree spanning the gap."},
+                "narrative": {"dc": 0, "reward": "lore_fragment",
+                             "description": "The bridge was cut deliberately. Tool marks on the supports."}
+            }
+        },
+        "lost_fawn": {
+            "name": "Lost Fawn",
+            "description": "A young deer stands trembling in the underbrush, leg caught in old wire.",
+            "approaches": {
+                "combat": {"dc": 0, "reward": "none", "description": "There's nothing to fight here."},
+                "social": {"dc": 8, "skill": "triage", "reward": "fawn_freed",
+                           "description": "Approach slowly and free the trapped leg."},
+                "exploration": {"dc": 10, "skill": "perception", "reward": "snare_network",
+                               "description": "Follow the wire. Find a network of old traps — and who set them."},
+                "narrative": {"dc": 0, "reward": "lore_fragment",
+                             "description": "The wire is dwarven make, corroded green. This trap is very old."}
+            }
+        },
+        "blighted_wolf": {
+            "name": "Blighted Wolf",
+            "description": "A wolf with fungal growths along its spine watches you from the undergrowth. Its eyes glow faintly.",
+            "approaches": {
+                "combat": {"dc": 11, "reward": "blighted_pelt", "description": "Put the creature out of its misery."},
+                "social": {"dc": 12, "skill": "command", "reward": "wolf_retreats",
+                           "description": "Show no fear. The wolf is more sick than savage."},
+                "exploration": {"dc": 10, "skill": "perception", "reward": "fungal_trail",
+                               "description": "Follow the spore trail back to its source."},
+                "narrative": {"dc": 0, "reward": "lore_fragment",
+                             "description": "The blight is spreading. This wolf wandered too close to the Grove's edge."}
+            }
+        },
+        "spore_shambler": {
+            "name": "Spore Shambler",
+            "description": "A figure made of moss and rotting wood shambles between the trees, leaving a trail of mushrooms.",
+            "approaches": {
+                "combat": {"dc": 13, "reward": "shambler_core", "description": "Destroy the shambler before it spreads."},
+                "social": {"dc": 14, "skill": "mending", "reward": "shambler_calmed",
+                           "description": "The creature was once alive. Speak to it gently."},
+                "exploration": {"dc": 9, "skill": "perception", "reward": "mushroom_harvest",
+                               "description": "Avoid the shambler and harvest the mushrooms it left behind."},
+                "narrative": {"dc": 0, "reward": "lore_fragment",
+                             "description": "The shambler was once a willow tender. Their tools hang from its bark."}
+            }
+        },
+        "rot_sprite": {
+            "name": "Rot Sprite",
+            "description": "A tiny winged creature buzzes around your head, giggling. Wherever it lands, the wood blackens.",
+            "approaches": {
+                "combat": {"dc": 10, "reward": "sprite_dust", "description": "Swat it out of the air."},
+                "social": {"dc": 11, "skill": "command", "reward": "sprite_bribed",
+                           "description": "Offer it something shiny. Rot sprites love trinkets."},
+                "exploration": {"dc": 8, "skill": "perception", "reward": "sprite_nest",
+                               "description": "Follow it. Rot sprites nest near hidden things."},
+                "narrative": {"dc": 0, "reward": "lore_fragment",
+                             "description": "Rot sprites are drawn to dying willows. This one is circling a specific tree."}
+            }
+        }
+    },
+    "secrets": {
+        "hidden_cache": {
+            "rooms": ["ruin", "den", "overlook"],
+            "dc": 12, "skill": "perception",
+            "one_per_session": true,
+            "loot_tier": 1
+        },
+        "lore_inscription": {
+            "rooms": ["ruin", "shrine", "grove"],
+            "dc": 10, "skill": "investigation",
+            "one_per_session": false,
+            "reward": "lore_fragment"
+        },
+        "hidden_path": {
+            "trigger": "guided_to_secret",
+            "creates_room": true
+        },
+        "buried_offering": {
+            "rooms": ["shrine"],
+            "prerequisite": "has_lore_inscription",
+            "reward": "session_blessing"
+        },
+        "willow_seed": {
+            "rooms": ["grove_heart", "grove", "pool"],
+            "drop_chance": 0.15,
+            "reward_item": {
+                "name": "Willow Seed",
+                "tier": 2,
+                "trait": "Sanctuary",
+                "description": "Plant in any dungeon room to create a 1-turn safe rest point."
+            }
+        },
+        "echo_memory": {
+            "rooms": ["hollow"],
+            "prerequisite_sessions": 3,
+            "reward": "flashback"
+        }
+    },
+    "grapes_bindings": {
+        "economics": {
+            "room_id": 3,
+            "positive_suffix": " A caravan has set up camp here. Lanterns swing from posts.",
+            "negative_suffix": " The crossing is empty. Rotting crates line the bank.",
+            "positive_services": ["trade", "quest_board"],
+            "negative_services": ["trade_limited"]
+        },
+        "security": {
+            "room_id": 5,
+            "positive_suffix": " A patrol camp has been established. Soldiers tend a cookfire.",
+            "negative_suffix": " Squatters huddle around a dying fire. They watch you with hollow eyes.",
+            "positive_services": ["rest", "quest_board"],
+            "negative_services": []
+        },
+        "religion": {
+            "room_id": 1,
+            "positive_suffix": " The shrine gleams. Fresh flowers and candles crowd the alcove.",
+            "negative_suffix": " The shrine has been defaced. Strange symbols are scratched into the bark.",
+            "positive_services": ["save", "rest", "blessing"],
+            "negative_services": ["save"]
+        },
+        "social": {
+            "room_id": 2,
+            "positive_suffix": " The whispers are warm — laughter, singing, fragments of celebration.",
+            "negative_suffix": " The whispers are sharp — accusations, weeping, the sound of doors slamming."
+        },
+        "geography": {
+            "room_id": 4,
+            "positive_suffix": " New growth pushes through the dead bark. Green shoots, fragile but alive.",
+            "negative_suffix": " The withering has spread further since your last visit. Even the ground is grey."
+        }
+    }
+}

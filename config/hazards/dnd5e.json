@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "source": "DMG (baseline from hardcoded pools)",
+  "tiers": {
+    "1": [
+      {"name": "Pit Trap", "dc": 10, "damage": "2d6", "damage_type": "bludgeoning", "source": "DMG p.122"},
+      {"name": "Poison Dart Trap", "dc": 12, "damage": "1d4", "damage_type": "poison", "source": "DMG p.123"},
+      {"name": "Alarm Glyph", "dc": 10, "damage": "0", "damage_type": "none", "source": "DMG p.122"}
+    ],
+    "2": [
+      {"name": "Swinging Blade", "dc": 14, "damage": "3d6", "damage_type": "slashing", "source": "DMG p.123"},
+      {"name": "Poison Gas", "dc": 13, "damage": "2d6", "damage_type": "poison", "source": "DMG p.123"},
+      {"name": "Collapsing Floor", "dc": 12, "damage": "2d6", "damage_type": "bludgeoning", "source": "DMG p.122"}
+    ],
+    "3": [
+      {"name": "Flame Jet", "dc": 15, "damage": "4d6", "damage_type": "fire", "source": "DMG p.123"},
+      {"name": "Teleport Trap", "dc": 16, "damage": "0", "damage_type": "none", "source": "DMG p.123"},
+      {"name": "Anti-Magic Zone", "dc": 15, "damage": "0", "damage_type": "none", "source": "DMG p.122"}
+    ],
+    "4": [
+      {"name": "Sphere of Annihilation", "dc": 18, "damage": "10d10", "damage_type": "force", "source": "DMG p.201"},
+      {"name": "Symbol of Death", "dc": 18, "damage": "10d10", "damage_type": "necrotic", "source": "DMG p.123"},
+      {"name": "Prismatic Wall", "dc": 17, "damage": "special", "damage_type": "special", "source": "DMG p.123"}
+    ]
+  }
+}

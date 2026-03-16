@@ -1,0 +1,229 @@
+{
+    "seed": 4003,
+    "width": 70,
+    "height": 60,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "dungeon_level_3",
+        "theme": "STONE",
+        "topology": "dungeon",
+        "display_name": "Undermountain Level 3 -- The Sargauth Level"
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 30,
+            "y": 0,
+            "width": 10,
+            "height": 8,
+            "room_type": "start",
+            "connections": [1, 2],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The stairway deposits you onto a stone landing slick with condensation. The air here is different -- heavier, wetter, carrying the mineral tang of deep groundwater and something else, something organic, like the breath of a river that has never seen the sun. The walls are carved with dwarven mason's marks from Clan Melairkyn, each one a signature of a craftsman dead for a thousand years.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [],
+                "hazards": [
+                    {"name": "Slippery stone (Dexterity save on running)", "dc": 11}
+                ],
+                "services": [],
+                "event_triggers": [
+                    "On entry: The distant sound of rushing water echoes from the south. The Sargauth River."
+                ]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 10,
+            "y": 10,
+            "width": 14,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [0, 3],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Sargauth River fills a cavern a hundred feet wide, its black water moving with a patient, irresistible current. The surface is glass-smooth and utterly opaque -- you cannot see an inch below it. A stone quay juts into the water, mooring three flat-bottomed boats. The boats are drow-made, carved from a single piece of zurkhwood and treated to resist the river's corrosive minerals. Someone has painted eyes on each prow.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [
+                    {"name": "Zurkhwood Boat (seats 4)", "type": "equipment"}
+                ],
+                "hazards": [
+                    {"name": "River current (Strength save or swept 60 ft downstream)", "dc": 14},
+                    {"name": "Deep water (no bottom visible; something large moves below)", "dc": 0}
+                ],
+                "services": [],
+                "event_triggers": [
+                    "On water contact: The river is ice-cold and leaves a faint phosphorescent residue on the skin that takes hours to fade.",
+                    "On boat launch: The painted eyes on the prow glow faintly as the boat enters the current, then go dark."
+                ]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 45,
+            "y": 10,
+            "width": 12,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [0, 4],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Webbing fills this cavern like cotton in a jewelry box, every surface coated in sticky strands that vibrate at the slightest touch. Wrapped bundles hang from the ceiling -- some are animals, some are humanoid, and one is still moving, its muffled screams barely audible through layers of silk. The webs are not random; they form a pattern, a spiral that draws the eye inward toward a dark hollow at the center.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Giant Spider", "cr": "1"},
+                    {"name": "Giant Spider", "cr": "1"},
+                    {"name": "Phase Spider", "cr": "3"}
+                ],
+                "loot": [
+                    {"name": "Webbed Coin Pouch (30 gp)", "type": "treasure"},
+                    {"name": "Potion of Spider Climbing (in web cocoon)", "type": "consumable"}
+                ],
+                "hazards": [
+                    {"name": "Web strands (restrained on contact, DC 12 to escape)", "dc": 12}
+                ],
+                "services": [],
+                "event_triggers": [
+                    "On rescue attempt: The wrapped figure is a drow scout who will reluctantly provide information about the outpost ahead in exchange for freedom."
+                ]
+            }
+        },
+        "3": {
+            "id": 3,
+            "x": 5,
+            "y": 25,
+            "width": 14,
+            "height": 12,
+            "room_type": "normal",
+            "connections": [1, 5, 6],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Stalactites have been hollowed out and connected by rope bridges to form a drow settlement suspended above the river. Dim purple faerie fire illuminates doorways carved into the stone columns, and drow move between them with the silent grace of spiders on a web. The settlement is a forward outpost for House Auvryndar, and the guards watch the water and the passages with equal suspicion.",
+                "npcs": [
+                    {
+                        "name": "T'rissa Auvryndar",
+                        "role": "antagonist",
+                        "dialogue": "Surface dwellers. How quaint. You have come seeking the deeper levels, yes? Everyone does. Few survive. I will make you an offer: serve House Auvryndar for one task, and I will grant you safe passage to Level 4. Refuse, and you may try to swim. The river is very patient.",
+                        "notes": "Drow priestess of Lolth, commander of the outpost. Cunning and pragmatic. Will use the party as expendable assets against rival drow houses. Honors deals but interprets them with spider-web precision."
+                    }
+                ],
+                "enemies": [
+                    {"name": "Drow", "cr": "1/4"},
+                    {"name": "Drow", "cr": "1/4"},
+                    {"name": "Drow Elite Warrior", "cr": "5"}
+                ],
+                "loot": [
+                    {"name": "Drow Poison (3 doses)", "type": "consumable"},
+                    {"name": "Drow Chain Shirt", "type": "armor"}
+                ],
+                "hazards": [],
+                "services": [],
+                "event_triggers": [
+                    "On diplomacy (DC 15 Persuasion): T'rissa offers safe passage through the outpost and information about Level 4 in exchange for clearing the spider nest."
+                ]
+            }
+        },
+        "4": {
+            "id": 4,
+            "x": 50,
+            "y": 28,
+            "width": 10,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [2, 5],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The crossing is a natural stone bridge spanning a forty-foot chasm through which the Sargauth thunders. The bridge is three feet wide, slick with spray, and has no railing. Halfway across, drow runes carved into the stone glow when stepped on -- each one a different color, each one a different effect. The drow use them as a security measure. Visitors use them as a gamble.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [],
+                "hazards": [
+                    {"name": "Narrow bridge crossing (Acrobatics or Athletics)", "dc": 14},
+                    {"name": "Rune traps (random effects: light, darkness, teleport, alarm)", "dc": 15}
+                ],
+                "services": [],
+                "event_triggers": [
+                    "On crossing: Roll 1d4 for each rune stepped on. 1: Faerie Fire (outlined for 1 minute). 2: Darkness (10-foot radius). 3: Teleported back to start. 4: Alarm (drow alerted)."
+                ]
+            }
+        },
+        "5": {
+            "id": 5,
+            "x": 30,
+            "y": 38,
+            "width": 14,
+            "height": 10,
+            "room_type": "treasure",
+            "connections": [3, 4, 6],
+            "tier": 2,
+            "is_locked": true,
+            "is_secret": false,
+            "content_hints": {
+                "description": "A dwarven temple to Dumathoin, Keeper of Secrets Under the Mountain. The altar is carved from a single boulder of black marble, its surface engraved with a face whose eyes are closed and whose lips are sealed. Offerings of raw gemstones fill niches in the walls, placed by Melairkyn dwarves who never returned to claim them. The temple has been undisturbed for centuries -- until now. The dust on the floor shows only your footprints.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [
+                    {"name": "Uncut Gemstones (12 gems, 25 gp each)", "type": "treasure"},
+                    {"name": "Shield of the Sentinel (+1 Shield, glows near secret doors)", "type": "armor"},
+                    {"name": "Prayer Beads of Dumathoin", "type": "equipment"}
+                ],
+                "hazards": [
+                    {"name": "Divine ward (non-dwarves take 2d6 radiant on altar touch)", "dc": 14}
+                ],
+                "services": [],
+                "event_triggers": [
+                    "On dwarf character prayer: Dumathoin grants a vision of a secret passage on this level, revealed for 1 hour.",
+                    "On desecration attempt: The sealed face on the altar opens its eyes. The temperature drops thirty degrees in an instant."
+                ]
+            }
+        },
+        "6": {
+            "id": 6,
+            "x": 20,
+            "y": 50,
+            "width": 12,
+            "height": 8,
+            "room_type": "boss",
+            "connections": [3, 5],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "A ritual chamber dominated by a spider-shaped altar carved from purple obsidian. Eight candles burn at the tips of its legs, their flames a sickly green that casts no shadows. A drow priestess kneels before it, her prayers carrying the clicking, skittering cadence of the spider tongue. Behind her, a Gate spell shimmers in the air -- a portal to the Demonweb Pits, half-open, leaking wisps of darkness that move against the light.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Drow Priestess of Lolth", "cr": "8"},
+                    {"name": "Giant Spider", "cr": "1"},
+                    {"name": "Giant Spider", "cr": "1"},
+                    {"name": "Drider", "cr": "6"}
+                ],
+                "loot": [
+                    {"name": "Spider Staff (rare, drow craftsmanship)", "type": "weapon"},
+                    {"name": "Lolth's Blessing Amulet (cursed)", "type": "equipment"},
+                    {"name": "Level 4 Gate Key", "type": "quest_item"}
+                ],
+                "hazards": [
+                    {"name": "Demonweb Gate (Charisma save or pulled 5 ft toward portal)", "dc": 15}
+                ],
+                "services": [],
+                "event_triggers": [
+                    "On combat start: The priestess does not turn around. 'Lolth told me you were coming. She told me to make it interesting.' The gate pulses wider.",
+                    "On defeat: The gate collapses with a shriek of torn reality. The candles die. In the sudden darkness, something on the other side of the closing portal whispers: 'Next time.'",
+                    "On gate key found: The stairway to Level 4 unlocks. The stone grinds open like a jaw."
+                ]
+            }
+        }
+    }
+}

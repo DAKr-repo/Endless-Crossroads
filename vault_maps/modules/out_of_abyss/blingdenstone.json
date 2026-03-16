@@ -1,0 +1,172 @@
+{
+    "seed": 5005,
+    "width": 55,
+    "height": 45,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "blingdenstone",
+        "theme": "STONE",
+        "topology": "settlement",
+        "display_name": "Blingdenstone"
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 5,
+            "y": 5,
+            "width": 12,
+            "height": 8,
+            "room_type": "town_gate",
+            "connections": [1, 2],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The main gate of Blingdenstone is a marvel of gnomish engineering -- three concentric doors of stone and iron that rotate on hidden mechanisms, each requiring a different combination of pressure plates. The svirfneblin who rebuilt this gate did so with siege in mind. Arrow slits line the approach tunnel, and the faint hum of an alarm ward vibrates in the stone underfoot.",
+                "npcs": [
+                    {"name": "Sergeant Battlehammer Pingtu", "role": "guard", "dialogue": "Halt! State your business in Blingdenstone. We've had enough trouble from the deep places without importing more. If you're traders, show your wares. If you're refugees... *heavy sigh* ...join the line."}
+                ],
+                "enemies": [],
+                "loot": [],
+                "services": [],
+                "event_triggers": ["On entry: Svirfneblin guards are cautious but not hostile. DC 12 Persuasion for immediate entry, otherwise 1-hour processing."]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 20,
+            "y": 10,
+            "width": 12,
+            "height": 10,
+            "room_type": "market",
+            "connections": [0, 3, 4],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Trader's Grotto is a natural geode chamber the svirfneblin have converted into a marketplace. Amethyst crystals jut from the walls, repurposed as display hooks and lantern mounts. The merchants here are quiet, efficient folk who weigh gems on scales precise enough to measure a fairy's sigh, and they quote prices in a dialect that makes Common sound like it has too many vowels.",
+                "npcs": [
+                    {"name": "Kazook Pickshine", "role": "merchant", "dialogue": "Gems I buy, gems I sell, questions I answer -- for a price. You want to know about the Rockblight? That'll cost you a sapphire, minimum. The puddings down there ate my brother's shop. I take that personally."},
+                    {"name": "Chipgrin Goldwhisker", "role": "merchant", "dialogue": "Goldwhisker clan has the finest provisions in Blingdenstone! Dried cave fish, mushroom flour, zurkhwood-smoked rothe -- all at very reasonable prices. We also buy curiosities. Anything strange from the deep tunnels, yes? We pay well for strange."}
+                ],
+                "enemies": [],
+                "loot": [
+                    {"name": "Gem of Brightness", "type": "wondrous_item"},
+                    {"name": "Gnomish Crossbow (light, +1)", "type": "weapon"},
+                    {"name": "Potion of Invisibility", "type": "consumable"}
+                ],
+                "services": ["trade", "gem_appraisal", "rumors"],
+                "event_triggers": ["On entry: Kazook offers quest to clear the Rockblight of oozes in exchange for a rare gem."]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 10,
+            "y": 25,
+            "width": 12,
+            "height": 10,
+            "room_type": "temple",
+            "connections": [0, 3],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The temple to Callarduran Smoothhands is carved from a single massive stalagmite, hollowed out and polished until the walls glow with inner fire. The altar is a flat-topped ruby the size of a dining table. Deep gnome priests move through the space in meditative silence, their bare feet making no sound on the mirror-smooth floor. The air tastes of clean stone and ancient devotion.",
+                "npcs": [
+                    {"name": "Glyphic Shroomlight", "role": "priest", "dialogue": "Callarduran teaches us that the deep places are not to be feared, but understood. The stone protects those who respect it. But something has disturbed the stone's dreams -- a wrongness from the Rockblight that even our wards cannot fully contain. Will you help us seal it?"}
+                ],
+                "enemies": [],
+                "loot": [
+                    {"name": "Scroll of Stone Shape", "type": "scroll"},
+                    {"name": "Holy Water (3 vials)", "type": "consumable"}
+                ],
+                "services": ["healing", "restoration", "divination"],
+                "event_triggers": ["On entry: Free Lesser Restoration available once per party member.", "On quest: Glyphic asks party to consecrate a warding stone in the Rockblight caverns."]
+            }
+        },
+        "3": {
+            "id": 3,
+            "x": 30,
+            "y": 20,
+            "width": 14,
+            "height": 12,
+            "room_type": "normal",
+            "connections": [1, 2, 4, 5],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Rockblight is Blingdenstone's open wound -- a section of the settlement that was never reclaimed after the drow invasion a century ago. Collapsed tunnels and shattered homes create a maze of rubble, and the stone here sweats a gray slime that smells of acid. Puddings ooze between the ruins, and the faint sound of dissolving stone provides a constant, nerve-shredding backdrop.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Black Pudding", "cr": "4"},
+                    {"name": "Gray Ooze", "cr": "1/2"},
+                    {"name": "Gray Ooze", "cr": "1/2"},
+                    {"name": "Ochre Jelly", "cr": "2"}
+                ],
+                "loot": [
+                    {"name": "Mithral Chain Shirt (in dissolved gnome's pack)", "type": "armor"},
+                    {"name": "Warding Stone Fragment", "type": "quest_item"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: Oozes are dormant until disturbed. DC 14 Stealth to pass without waking them.", "On search: DC 16 Investigation finds the remains of a gnomish alchemist's lab with intact reagents."]
+            }
+        },
+        "4": {
+            "id": 4,
+            "x": 40,
+            "y": 10,
+            "width": 10,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [1, 3],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Goldwhisker Warrens are a tight maze of gnome-sized tunnels connecting dozens of small chambers. The resident wererats have made this their domain, though they maintain a thin veneer of legitimacy as 'salvage merchants.' The tunnels are lined with stolen goods, trinkets, and the bones of things that wandered in uninvited. Small eyes watch from every crack.",
+                "npcs": [
+                    {"name": "Chipgrin Goldwhisker", "role": "faction_leader", "dialogue": "You've found our humble home! Please, sit. Have some cheese. *His smile has too many teeth.* The Goldwhiskers are simple folk who happen to know every secret tunnel in Blingdenstone. That knowledge has value. What do you have to trade for it?"}
+                ],
+                "enemies": [
+                    {"name": "Wererat", "cr": "2"},
+                    {"name": "Wererat", "cr": "2"},
+                    {"name": "Giant Rat", "cr": "1/8"},
+                    {"name": "Giant Rat", "cr": "1/8"}
+                ],
+                "loot": [
+                    {"name": "Goldwhisker Map (secret tunnels of Blingdenstone)", "type": "quest_item"},
+                    {"name": "Stolen Gems (120 gp)", "type": "treasure"}
+                ],
+                "services": ["black_market", "smuggling"],
+                "event_triggers": ["On entry: Goldwhiskers are not immediately hostile. They prefer deals to fights.", "On betrayal: If party threatens to expose them, all wererats attack. Tunnels become trapped."]
+            }
+        },
+        "5": {
+            "id": 5,
+            "x": 35,
+            "y": 35,
+            "width": 12,
+            "height": 8,
+            "room_type": "treasure",
+            "connections": [3],
+            "tier": 3,
+            "is_locked": true,
+            "is_secret": true,
+            "content_hints": {
+                "description": "Behind a wall that radiates warmth to the touch, a hidden chamber houses Entemoch's Boon -- an earth elemental shrine predating the gnomish settlement by millennia. The floor is a mosaic of precious stones set in living rock that rearranges itself slowly, and a plinth of pure emerald holds a crown of interlocking stone rings that rotate perpetually, generating a low harmonic that resonates in the bones.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Earth Elemental (guardian)", "cr": "5"}
+                ],
+                "loot": [
+                    {"name": "Crown of Entemoch (attunement: tremorsense 30 ft)", "type": "wondrous_item"},
+                    {"name": "Bag of Gemstones (500 gp)", "type": "treasure"},
+                    {"name": "Scroll of Passwall", "type": "scroll"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: Earth elemental tests worthiness -- answer a riddle (DC 15 Intelligence) or fight.", "On loot: Taking the Crown causes a minor earthquake. Blingdenstone authorities investigate within 1 hour."]
+            }
+        }
+    }
+}

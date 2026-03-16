@@ -1,0 +1,76 @@
+{
+    "world_id": "sample_world",
+    "display_name": "The Millhaven Region",
+    "system_id": "dnd5e",
+    "seed": 42,
+    "bounds": [50, 50],
+    "start_location_id": "millhaven",
+    "locations": {
+        "millhaven": {
+            "id": "millhaven",
+            "display_name": "Millhaven",
+            "x": 25,
+            "y": 25,
+            "location_type": "town",
+            "terrain": "plains",
+            "feature": "A quiet farming town along the River Haver, known for its ancient watermill.",
+            "zones": ["millhaven_tavern", "millhaven_return"],
+            "connections": ["old_road", "forest_shrine"],
+            "icon": "T",
+            "tier": 1,
+            "is_starting_location": true,
+            "services": ["tavern", "market", "temple"],
+            "grapes_landmark_index": null
+        },
+        "old_road": {
+            "id": "old_road",
+            "display_name": "The Old King's Road",
+            "x": 10,
+            "y": 15,
+            "location_type": "wilderness_poi",
+            "terrain": "plains",
+            "feature": "An overgrown cobblestone road stretching toward the mountains. Bandit ambushes are common.",
+            "zones": ["wilderness_road"],
+            "connections": ["millhaven"],
+            "icon": "*",
+            "tier": 2,
+            "is_starting_location": false,
+            "services": [],
+            "grapes_landmark_index": null
+        },
+        "forest_shrine": {
+            "id": "forest_shrine",
+            "display_name": "The Whispering Shrine",
+            "x": 40,
+            "y": 12,
+            "location_type": "ruins",
+            "terrain": "forest",
+            "feature": "Crumbling elven ruins half-consumed by an ancient forest. Strange lights glow at night.",
+            "zones": [],
+            "connections": ["millhaven"],
+            "icon": "R",
+            "tier": 3,
+            "is_starting_location": false,
+            "services": [],
+            "grapes_landmark_index": null
+        }
+    },
+    "routes": [
+        {
+            "from_id": "millhaven",
+            "to_id": "old_road",
+            "travel_days": 1,
+            "terrain": "road",
+            "danger_level": 1,
+            "description": "A half-day's walk along the rutted cart path west of town."
+        },
+        {
+            "from_id": "millhaven",
+            "to_id": "forest_shrine",
+            "travel_days": 2,
+            "terrain": "trail",
+            "danger_level": 2,
+            "description": "A winding forest trail through the Whisperwood. Travelers speak of strange sounds after dark."
+        }
+    ]
+}

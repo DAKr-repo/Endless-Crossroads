@@ -1,0 +1,185 @@
+{
+    "module_id": "dragon_heist",
+    "display_name": "Waterdeep: Dragon Heist",
+    "system_id": "dnd5e",
+    "campaign_setting": "forgotten_realms",
+    "source_pdf": "Waterdeep Dragon Heist.pdf",
+    "world_map": "sword_coast.json",
+    "starting_location": "waterdeep",
+    "recommended_levels": {"min": 1, "max": 5},
+    "chapters": [
+        {
+            "chapter_id": "ch1",
+            "display_name": "Chapter 1: A Friend in Need",
+            "order": 1,
+            "zones": [
+                {
+                    "zone_id": "yawning_portal",
+                    "blueprint": "yawning_portal.json",
+                    "topology": "settlement",
+                    "theme": "VILLAGE",
+                    "location_id": "waterdeep",
+                    "entry_trigger": "module_start",
+                    "exit_trigger": "quest_complete",
+                    "generation_params": null
+                },
+                {
+                    "zone_id": "zhentarim_hideout",
+                    "blueprint": "zhentarim_hideout.json",
+                    "topology": "dungeon",
+                    "theme": "STONE",
+                    "location_id": "waterdeep",
+                    "entry_trigger": "quest_complete",
+                    "exit_trigger": "boss_defeated",
+                    "generation_params": null
+                }
+            ]
+        },
+        {
+            "chapter_id": "ch2",
+            "display_name": "Chapter 2: Trollskull Alley",
+            "order": 2,
+            "zones": [
+                {
+                    "zone_id": "trollskull_manor",
+                    "blueprint": "trollskull_manor.json",
+                    "topology": "settlement",
+                    "theme": "VILLAGE",
+                    "location_id": "waterdeep",
+                    "entry_trigger": "boss_defeated",
+                    "exit_trigger": "player_choice",
+                    "generation_params": null
+                },
+                {
+                    "zone_id": "trollskull_alley",
+                    "blueprint": "trollskull_alley.json",
+                    "topology": "settlement",
+                    "theme": "VILLAGE",
+                    "location_id": "waterdeep",
+                    "entry_trigger": "player_choice",
+                    "exit_trigger": "quest_complete",
+                    "generation_params": null
+                }
+            ]
+        },
+        {
+            "chapter_id": "ch3",
+            "display_name": "Chapter 3: Fireball",
+            "order": 3,
+            "zones": [
+                {
+                    "zone_id": "dock_ward",
+                    "blueprint": "dock_ward.json",
+                    "topology": "settlement",
+                    "theme": "VILLAGE",
+                    "location_id": "waterdeep",
+                    "entry_trigger": "quest_complete",
+                    "exit_trigger": "investigation_complete",
+                    "generation_params": null
+                },
+                {
+                    "zone_id": "gralhund_villa",
+                    "blueprint": "gralhund_villa.json",
+                    "topology": "dungeon",
+                    "theme": "STONE",
+                    "location_id": "waterdeep",
+                    "entry_trigger": "investigation_complete",
+                    "exit_trigger": "boss_defeated",
+                    "generation_params": null
+                }
+            ]
+        },
+        {
+            "chapter_id": "ch4",
+            "display_name": "Chapter 4: Dragon Season",
+            "order": 4,
+            "zones": [
+                {
+                    "zone_id": "kolat_towers",
+                    "blueprint": "kolat_towers.json",
+                    "topology": "vertical",
+                    "theme": "GOTHIC",
+                    "location_id": "waterdeep",
+                    "entry_trigger": "villain_path_manshoon",
+                    "exit_trigger": "boss_defeated",
+                    "generation_params": null
+                },
+                {
+                    "zone_id": "cassalanter_estate",
+                    "blueprint": "cassalanter_estate.json",
+                    "topology": "dungeon",
+                    "theme": "STONE",
+                    "location_id": "waterdeep",
+                    "entry_trigger": "villain_path_cassalanter",
+                    "exit_trigger": "boss_defeated",
+                    "generation_params": null
+                },
+                {
+                    "zone_id": "xanathar_lair",
+                    "blueprint": "xanathar_lair.json",
+                    "topology": "dungeon",
+                    "theme": "STONE",
+                    "location_id": "waterdeep",
+                    "entry_trigger": "villain_path_xanathar",
+                    "exit_trigger": "boss_defeated",
+                    "generation_params": null
+                },
+                {
+                    "zone_id": "sea_maidens_faire",
+                    "blueprint": "sea_maidens_faire.json",
+                    "topology": "dungeon",
+                    "theme": "STONE",
+                    "location_id": "waterdeep",
+                    "entry_trigger": "villain_path_jarlaxle",
+                    "exit_trigger": "boss_defeated",
+                    "generation_params": null
+                },
+                {
+                    "zone_id": "manshoon_sanctum",
+                    "blueprint": "manshoon_sanctum.json",
+                    "topology": "dungeon",
+                    "theme": "GOTHIC",
+                    "location_id": "waterdeep",
+                    "entry_trigger": "villain_path_manshoon",
+                    "exit_trigger": "boss_defeated",
+                    "generation_params": null
+                }
+            ]
+        },
+        {
+            "chapter_id": "ch5",
+            "display_name": "Chapter 5: Spring Madness",
+            "order": 5,
+            "zones": [
+                {
+                    "zone_id": "vault_of_dragons",
+                    "blueprint": "vault_of_dragons.json",
+                    "topology": "dungeon",
+                    "theme": "STONE",
+                    "location_id": "waterdeep",
+                    "entry_trigger": "boss_defeated",
+                    "exit_trigger": "module_complete",
+                    "generation_params": null
+                }
+            ]
+        }
+    ],
+    "freeform_zones": [
+        {
+            "zone_id": "dock_ward",
+            "blueprint": "dock_ward.json",
+            "topology": "settlement",
+            "theme": "VILLAGE",
+            "location_id": "waterdeep",
+            "generation_params": null
+        },
+        {
+            "zone_id": "trollskull_alley",
+            "blueprint": "trollskull_alley.json",
+            "topology": "settlement",
+            "theme": "VILLAGE",
+            "location_id": "waterdeep",
+            "generation_params": null
+        }
+    ]
+}

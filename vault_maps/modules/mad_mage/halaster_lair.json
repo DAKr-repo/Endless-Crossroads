@@ -1,0 +1,271 @@
+{
+    "seed": 4006,
+    "width": 80,
+    "height": 70,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "halaster_lair",
+        "theme": "GOTHIC",
+        "topology": "dungeon",
+        "display_name": "Undermountain Level 23 -- Halaster's Lair"
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 35,
+            "y": 0,
+            "width": 10,
+            "height": 8,
+            "room_type": "start",
+            "connections": [1],
+            "tier": 4,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The gate does not open so much as permit. One moment you are on Level 22, and the next you are somewhere else entirely -- standing on a flagstone floor that stretches in every direction beyond the reach of torchlight. The ceiling is not stone. It is sky -- a night sky filled with stars in constellations you do not recognize, turning slowly above you like a planetarium built by a god with a very specific aesthetic. The air smells of ozone and old paper. A sign hangs in midair, written in Halaster's hand: 'WELCOME TO THE END. PLEASE WIPE YOUR FEET.'",
+                "npcs": [],
+                "enemies": [],
+                "loot": [],
+                "hazards": [
+                    {"name": "Reality instability (wild magic zone, roll on surge table)", "dc": 0}
+                ],
+                "services": [],
+                "event_triggers": [
+                    "On entry: The sign rotates to show its reverse side: 'JUST KIDDING. THERE IS NO END. ONLY DEEPER.'"
+                ]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 25,
+            "y": 12,
+            "width": 16,
+            "height": 8,
+            "room_type": "corridor",
+            "connections": [0, 2, 3],
+            "tier": 4,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The corridor is not straight. It is geometrically impossible -- you walk forward and arrive behind where you started. The walls are lined with doors, each one a different color, each one slightly ajar, each one showing a different scene through the gap: a tropical beach, a burning city, a room identical to this one containing a version of you looking back. The floor is tessellated in patterns that shift when you are not looking directly at them. You have been walking for what feels like hours. Your watch says three minutes.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Mimic (disguised as door)", "cr": "2"},
+                    {"name": "Mimic (disguised as door)", "cr": "2"}
+                ],
+                "loot": [],
+                "hazards": [
+                    {"name": "Non-Euclidean geometry (Wisdom save or disoriented)", "dc": 16},
+                    {"name": "False doors (random teleportation within level)", "dc": 15}
+                ],
+                "services": [],
+                "event_triggers": [
+                    "On wrong door: You step through and emerge from a different door in the same corridor. Halaster's laughter echoes from everywhere and nowhere.",
+                    "On correct door (DC 17 Arcana to identify): The geometry resolves. The corridor straightens. For one merciful moment, physics works as intended."
+                ]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 10,
+            "y": 20,
+            "width": 12,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [1, 4],
+            "tier": 4,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "A circular gallery of mirrors, each one taller than a man, each one showing a different reflection. One mirror shows you as you were ten years ago. Another shows you as you might be in ten years, and the version in that mirror looks tired and scared. A third shows nothing at all -- just empty room behind you, as if you do not exist. The frames are silver and black, engraved with sigils of divination and madness. At the gallery's center, a pedestal holds a single clear glass marble that contains a mote of light. The light blinks.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Nothic", "cr": "2"},
+                    {"name": "Nothic", "cr": "2"}
+                ],
+                "loot": [
+                    {"name": "Marble of Divination (1/day Augury)", "type": "equipment"},
+                    {"name": "Mirror Shard (can cast Scrying 1/week when reassembled)", "type": "quest_item"}
+                ],
+                "hazards": [
+                    {"name": "Mirror of Opposition (creates hostile duplicate on eye contact)", "dc": 17}
+                ],
+                "services": [],
+                "event_triggers": [
+                    "On empty mirror examined: Your reflection appears after a delay, mouths the word 'RUN,' then vanishes.",
+                    "On marble taken: Every mirror in the gallery cracks simultaneously. The fragments do not fall -- they hover, showing a thousand tiny reflections of your face, each one wearing a different expression."
+                ]
+            }
+        },
+        "3": {
+            "id": 3,
+            "x": 45,
+            "y": 20,
+            "width": 14,
+            "height": 10,
+            "room_type": "library",
+            "connections": [1, 5],
+            "tier": 4,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "A library that contains every book Halaster ever read, wrote, stole, or dreamed. The shelves extend upward into the false sky above, and floating discs carry books between levels like a vertical mail system. Some books are chained. Some are caged. One section is walled off behind glass etched with warning runes, and the books inside it press their covers against the glass like prisoners against bars. A reading chair floats near the ceiling, surrounded by orbiting tomes -- Halaster's study spot, still warm.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Arcanaloth", "cr": "12"}
+                ],
+                "loot": [
+                    {"name": "Tome of Clear Thought (guarded by the Arcanaloth)", "type": "quest_item"},
+                    {"name": "Spell Scroll of Wish (sealed, trapped)", "type": "consumable"},
+                    {"name": "Halaster's Diary (latest volume, 3,000 years of entries)", "type": "quest_item"}
+                ],
+                "hazards": [
+                    {"name": "Trapped books (various spells trigger on opening)", "dc": 17},
+                    {"name": "Caged books (release causes psychic damage in 30-ft radius)", "dc": 18}
+                ],
+                "services": [],
+                "event_triggers": [
+                    "On Arcanaloth encountered: It is reading. It looks up with an expression of profound annoyance. 'I am on page 14,672. I have been reading for nine years. This had better be important.'",
+                    "On diary read: The final entry reads: 'They are coming. I know because I invited them. I know because I am them. I know because I already wrote this. Madness is not the absence of reason -- it is reason taken to its conclusion. See you at the Throne.'"
+                ]
+            }
+        },
+        "4": {
+            "id": 4,
+            "x": 10,
+            "y": 35,
+            "width": 12,
+            "height": 10,
+            "room_type": "treasure",
+            "connections": [2, 6],
+            "tier": 4,
+            "is_locked": true,
+            "is_secret": false,
+            "content_hints": {
+                "description": "A chamber dominated by a crystalline engine the size of a house, its facets humming with contained power. Arcane energy flows through diamond conduits in visible rivers of blue-white light, and the air crackles with so much raw magic that your hair stands on end and metal objects vibrate. This is the Spell Engine -- Halaster's masterwork, the device that maintains every ward, every trap, every teleportation circle, every twisted geometry in all twenty-three levels of Undermountain. It has been running for a thousand years. It was not designed to stop.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Helmed Horror", "cr": "4"},
+                    {"name": "Helmed Horror", "cr": "4"}
+                ],
+                "loot": [
+                    {"name": "Spell Engine Component (priceless, dangerous to remove)", "type": "quest_item"},
+                    {"name": "Ioun Stone (Mastery, orbits the engine)", "type": "equipment"},
+                    {"name": "Diamond Dust (500 gp worth)", "type": "treasure"}
+                ],
+                "hazards": [
+                    {"name": "Arcane discharge (3d10 force damage per round within 10 ft)", "dc": 18},
+                    {"name": "Anti-magic dead zones (random, 10-ft cubes)", "dc": 0}
+                ],
+                "services": [],
+                "event_triggers": [
+                    "On engine tampered: Halaster's voice booms through the level: 'DO NOT TOUCH THAT. I spent four hundred years calibrating the phase alignment. If you break it, REALITY breaks. And then I have to FIX reality, and that puts me in a VERY bad mood.'",
+                    "On engine studied (DC 20 Arcana): Understanding the engine grants insight into Halaster's defenses. All DCs in the final chamber are reduced by 2."
+                ]
+            }
+        },
+        "5": {
+            "id": 5,
+            "x": 45,
+            "y": 38,
+            "width": 14,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [3, 6, 7],
+            "tier": 4,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "A maze of invisible walls, visible floors, and audible illusions. The path forward is clear -- you can see the exit. You cannot reach it. Invisible barriers redirect you into dead ends, loops, and pits that appear solid but are not. The maze is not static; it reconfigures every few minutes, its walls sliding on silent tracks. Halaster's voice provides commentary like a bored gameshow host: 'Cold. Colder. Ice cold. Oh, that one has spikes at the bottom. My condolences.'",
+                "npcs": [],
+                "enemies": [],
+                "loot": [],
+                "hazards": [
+                    {"name": "Invisible walls (Intelligence or Investigation to navigate)", "dc": 16},
+                    {"name": "Illusory floor (3d6 falling into spiked pit)", "dc": 17},
+                    {"name": "Reconfiguring maze (new check every 3 rounds)", "dc": 16}
+                ],
+                "services": [],
+                "event_triggers": [
+                    "On first failure: 'Oh dear. That looked painful. Would you like a hint? Too bad. I do not give hints. Well, maybe one: the floor is lying to you.'",
+                    "On success: 'Impressive. Most die on the third reconfiguration. You made it through in -- let me check -- seven minutes. New record. I am almost disappointed.'"
+                ]
+            }
+        },
+        "6": {
+            "id": 6,
+            "x": 25,
+            "y": 48,
+            "width": 14,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [4, 5, 7],
+            "tier": 4,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "A dais of black marble floats unsupported in a void of stars. There is no floor beyond the dais -- only space, infinite and cold, with galaxies wheeling in the distance. The throne is carved from a single meteorite, its surface still bearing the heat scars of atmospheric entry. The stars are not decorative. They are real. Halaster carved a window in reality and built his throne room around the view. The void does not look back. It does not need to.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [
+                    {"name": "Meteorite Throne Fragment (legendary crafting material)", "type": "treasure"}
+                ],
+                "hazards": [
+                    {"name": "Void edge (Dexterity save or fall into infinite space)", "dc": 15},
+                    {"name": "Cosmic radiation (1d6 radiant per round without cover)", "dc": 0}
+                ],
+                "services": [],
+                "event_triggers": [
+                    "On throne sat upon: For one instant, you see all twenty-three levels of Undermountain simultaneously -- every room, every creature, every trap. The vision lasts a heartbeat and leaves you with a nosebleed and a headache that will not fade for days.",
+                    "On void examined: Something moves in the stars. Something impossibly large and impossibly far away. It is coming closer. It has been coming closer for a very long time."
+                ]
+            }
+        },
+        "7": {
+            "id": 7,
+            "x": 30,
+            "y": 60,
+            "width": 16,
+            "height": 12,
+            "room_type": "boss",
+            "connections": [5, 6],
+            "tier": 4,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The sanctum of Halaster Blackcloak is not a room. It is a statement. The walls are living spellwork -- formulae that rewrite themselves in real time, adapting to threats, learning from attacks, evolving. The floor is a mosaic depicting the entire history of Undermountain from its dwarven origins to this exact moment, updating as you watch. And at the center, standing in a circle of his own design, is Halaster Blackcloak: a gaunt figure in star-scarred robes, his beard braided with spell components, his eyes -- one brown, one silver -- absolutely, terrifyingly lucid. He has been waiting for you. He has been waiting for exactly you. He designed every level, every trap, every monster, every treasure to lead precisely to this meeting. A thousand years of preparation for a single conversation.",
+                "npcs": [
+                    {
+                        "name": "Halaster Blackcloak",
+                        "role": "antagonist",
+                        "dialogue": "Finally. Do you know how long I have waited? Of course you do not. You think you came here of your own will. You think you fought your way through twenty-three levels of dungeon by accident. Nothing in Undermountain is an accident. Every trap you survived was a test. Every monster you killed was a lesson. Every treasure you found was a bribe to keep you going. And now you are here, and you are ready, and I can finally -- FINALLY -- have a proper conversation. Sit down. We have much to discuss. And yes, this is a trap. But it is a very interesting trap, and I think you will find the bait irresistible.",
+                        "notes": "Archmage, CR 23. Over 1,000 years old. Not insane -- or rather, his insanity has gone so deep it has come out the other side into a kind of alien clarity. Built Undermountain as a filter to find worthy opponents and successors. Can be fought, reasoned with, or (DC 25 Persuasion) convinced to leave Undermountain entirely. Any outcome he has already predicted and planned for. This does not bother him. It delights him."
+                    }
+                ],
+                "enemies": [
+                    {"name": "Halaster Blackcloak (Archmage)", "cr": "23"}
+                ],
+                "loot": [
+                    {"name": "Staff of the Magi", "type": "weapon"},
+                    {"name": "Robe of the Archmagi", "type": "armor"},
+                    {"name": "Halaster's Blast Scepter (unique artifact)", "type": "weapon"},
+                    {"name": "Undermountain Master Key (opens every lock in the dungeon)", "type": "quest_item"},
+                    {"name": "Wish Scroll (Halaster's final contingency)", "type": "consumable"}
+                ],
+                "hazards": [
+                    {"name": "Living spellwork walls (random spell effects each round)", "dc": 19},
+                    {"name": "Temporal distortion (initiative rerolled every 3 rounds)", "dc": 0},
+                    {"name": "Lair actions: floor mosaic animates, walls discharge spells, gravity reverses", "dc": 18}
+                ],
+                "services": [],
+                "event_triggers": [
+                    "On combat start: Halaster does not stand. He does not draw a weapon. He snaps his fingers, and Undermountain itself fights for him. The walls pulse. The floor shifts. The ceiling opens onto the void above.",
+                    "On Halaster at half HP: He laughs -- not mockingly, but with genuine delight. 'YES. This is what I built it for. This moment. This exact arrangement of forces. You are MAGNIFICENT.' He stops holding back.",
+                    "On Halaster at quarter HP: He pauses mid-spell. For one moment, the madness clears entirely. 'I have been alone in this dungeon for a thousand years. Win or lose, thank you for coming.' Then the madness returns, sharper than ever.",
+                    "On defeat: Halaster falls. The living walls go still. The stars above go dark. For the first time in a millennium, Undermountain is silent. Then, from somewhere far above -- Level 1, Level 2, every level -- doors begin to open. Locks disengage. Traps disarm. The dungeon exhales.",
+                    "On negotiation success: Halaster stands, dusts off his robes, and walks toward the void. 'A thousand years is enough. I leave you my dungeon, my library, my reputation, and my very sincere recommendation that you do not make the same mistakes I did.' He steps into the stars and is gone. The Undermountain Master Key appears on the throne."
+                ]
+            }
+        }
+    }
+}

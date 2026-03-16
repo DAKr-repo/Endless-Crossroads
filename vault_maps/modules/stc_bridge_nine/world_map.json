@@ -1,0 +1,82 @@
+{
+    "seed": 8100,
+    "width": 60,
+    "height": 40,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "shattered_plains_focus",
+        "theme": "STONE",
+        "topology": "wilderness",
+        "display_name": "The Shattered Plains -- War Zone"
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 5,
+            "y": 15,
+            "width": 12,
+            "height": 10,
+            "room_type": "start",
+            "connections": [1],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The western warcamps cling to the plateau rim like barnacles on a ship's hull -- temporary structures that have become permanent through sheer stubbornness and the inability of anyone to agree on a better plan. Smoke from a thousand cook-fires smudges the sky.",
+                "npcs": [
+                    {"name": "Camp Crier", "role": "guide", "dialogue": "Bridge assignments posted at dawn. If your number is called, you run. If your number is not called, you wait. Either way, you do not sleep well."}
+                ],
+                "enemies": [],
+                "loot": [],
+                "services": ["orientation", "warcamp_supplies"],
+                "event_triggers": ["On entry: A horn sounds -- plateau assault imminent. Bridge crews scramble to their staging areas."]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 28,
+            "y": 10,
+            "width": 14,
+            "height": 12,
+            "room_type": "normal",
+            "connections": [0, 2],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Plateau Battlefields stretch endlessly eastward -- mesa after mesa separated by chasms that could swallow a building whole. Stormlight-infused gemhearts grow in chrysalises on the contested plateaus, and two nations bleed for them daily.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Parshendi Scout", "cr": "1"}
+                ],
+                "loot": [],
+                "services": [],
+                "event_triggers": ["On entry: The distant crack of Shardblades against Parshendi carapace echoes across the plateaus like thunder"]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 45,
+            "y": 25,
+            "width": 10,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [1],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Deep Chasms -- where the plateaus give way to a network of fractures that descend beyond light and reason. Salvage crews report finding ruins down there, structures that predate the Shattered Plains themselves. The chasmfiends nest in the deepest reaches.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Chasmfiend Hatchling", "cr": "2"}
+                ],
+                "loot": [
+                    {"name": "Salvaged Sphere Pouch", "type": "currency"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: A chasmfiend's hunting call reverberates through the stone -- a subsonic vibration you feel in your marrow"]
+            }
+        }
+    }
+}

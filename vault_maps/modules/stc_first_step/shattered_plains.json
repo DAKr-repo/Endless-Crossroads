@@ -1,0 +1,187 @@
+{
+    "seed": 8002,
+    "width": 70,
+    "height": 60,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "shattered_plains",
+        "theme": "STONE",
+        "topology": "wilderness",
+        "display_name": "The Shattered Plains"
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 5,
+            "y": 25,
+            "width": 12,
+            "height": 10,
+            "room_type": "start",
+            "connections": [1, 2],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Sadeas War Camp sprawls across the western rim of the Shattered Plains -- a city of tents, cook-fires, and misery arranged with military precision. The smell of sweat, horse dung, and the metallic tang of Soulcast grain hangs over everything like a permanent weather system.",
+                "npcs": [
+                    {"name": "Highprince Sadeas", "role": "antagonist", "dialogue": "Ah, new arrivals. How refreshing. Tell me -- do you find bridge duty a noble calling, or merely a necessary one? I find the distinction illuminating."},
+                    {"name": "Quartermaster Hashal", "role": "merchant", "dialogue": "Rations are rations. You eat what you are given. Complain and you eat half of what you are given."}
+                ],
+                "enemies": [],
+                "loot": [],
+                "services": ["warcamp_supplies", "recruitment"],
+                "event_triggers": ["On entry: Bridge crews drill in the distance, carrying enormous wooden bridges at a dead run across the stone ground"]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 15,
+            "y": 35,
+            "width": 10,
+            "height": 10,
+            "room_type": "barracks",
+            "connections": [0, 3],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Bridge Four's barrack is a wind-battered lean-to on the camp's eastern edge, its stormward wall reinforced with salvaged bridge planks. Brands mark every man here -- slaves, criminals, the condemned. But someone has hung curtains, and a stewpot simmers over a careful fire. Someone is trying.",
+                "npcs": [
+                    {"name": "Kaladin Stormblessed", "role": "ally", "dialogue": "You are not bridge crew. Good -- that means you still have a choice. I did not have one. But I made something of it anyway. The question is what you will make of yours."},
+                    {"name": "Rock", "role": "ally", "dialogue": "Is stew! Very good stew. I am using horneater spices -- they will put hair on your chest. Literally. Horneater thing. You will get used to it."}
+                ],
+                "enemies": [],
+                "loot": [
+                    {"name": "Rock's Stew (heals 3 HP)", "type": "consumable"}
+                ],
+                "services": ["rest", "bridge_crew_information"],
+                "event_triggers": ["On entry: Kaladin stands at the barrack entrance, arms crossed, evaluating you with eyes that have seen too many bridge runs"]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 20,
+            "y": 10,
+            "width": 12,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [0, 3, 4],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Dalinar Kholin's Command Pavilion is a fortress of canvas and discipline. Maps of the Shattered Plains cover three standing tables, weighted down with gemstones. Lighteyed officers move between them, updating positions with the quiet urgency of men who know that every mark on parchment represents lives.",
+                "npcs": [
+                    {"name": "Dalinar Kholin", "role": "quest_giver", "dialogue": "I have read The Way of Kings. Most consider it outdated philosophy. I consider it prophecy. The codes matter. Honor matters. We have forgotten that, and the Parshendi remember. That imbalance will destroy us."},
+                    {"name": "Adolin Kholin", "role": "ally", "dialogue": "My father sees the big picture. I see the next plateau assault. Between us, we might actually win something. You look capable -- want to join the vanguard?"}
+                ],
+                "enemies": [],
+                "loot": [],
+                "services": ["military_briefing", "quest_assignment"],
+                "event_triggers": ["On entry: Dalinar traces a route across the plateau map, his scarred hands steady despite the weight of what he is planning"]
+            }
+        },
+        "3": {
+            "id": 3,
+            "x": 40,
+            "y": 25,
+            "width": 14,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [1, 2, 4, 5],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Plateau Run stretches before you -- a gap of forty feet between two stone mesas, the chasm below lost in shadow. Bridge crews sprint across portable wooden spans while Parshendi arrows rain from the far side. The stone is slick with crem and blood.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Parshendi Warrior", "cr": "2"},
+                    {"name": "Parshendi Warrior", "cr": "2"},
+                    {"name": "Parshendi Archer", "cr": "1"}
+                ],
+                "loot": [
+                    {"name": "Parshendi Carapace Shield", "type": "armor"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: War drums pound from across the chasm -- the Rhythm of War, unmistakable even to those who have never heard it"]
+            }
+        },
+        "4": {
+            "id": 4,
+            "x": 55,
+            "y": 15,
+            "width": 10,
+            "height": 10,
+            "room_type": "treasure",
+            "connections": [2, 3],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Gemheart Plateau. At its center, a chrysalis the size of a house splits open like a wound, revealing the prize that drives this entire war -- a gemheart the size of a man's head, pulsing with deep violet Stormlight. Parshendi and Alethi blood stains the stone in equal measure.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Parshendi Elite (Warform)", "cr": "3"},
+                    {"name": "Parshendi Shaman (Stormform)", "cr": "4"}
+                ],
+                "loot": [
+                    {"name": "Gemheart (Amethyst, Broam-grade)", "type": "treasure"},
+                    {"name": "Stormlight Sphere (Broam)", "type": "currency"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: The chrysalis cracks open with a sound like breaking bone, and Stormlight spills across the plateau in a violet wave"]
+            }
+        },
+        "5": {
+            "id": 5,
+            "x": 50,
+            "y": 40,
+            "width": 10,
+            "height": 12,
+            "room_type": "normal",
+            "connections": [3, 6],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Parshendi camp occupies a plateau on the eastern edge of the war zone. Unlike the Alethi camps, there are no tents -- the Parshendi sleep in hollows carved into the stone, their marbled skin providing insulation the Alethi cannot match. War songs echo in overlapping harmonics.",
+                "npcs": [
+                    {"name": "Eshonai", "role": "antagonist", "dialogue": "You walk into our home as if the stone belongs to you. It does not. We fought for it. We sing to it. You build your camps and call it conquest. Tell me, human -- what do you hear when the stone speaks?"}
+                ],
+                "enemies": [
+                    {"name": "Parshendi Warrior (Warform)", "cr": "3"}
+                ],
+                "loot": [
+                    {"name": "Parshendi War Song Transcription", "type": "quest_item"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: The Parshendi cease singing. The silence that follows is more unsettling than the war drums"]
+            }
+        },
+        "6": {
+            "id": 6,
+            "x": 45,
+            "y": 50,
+            "width": 8,
+            "height": 6,
+            "room_type": "town_gate",
+            "connections": [5],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Chasm Edge -- where the final plateau crumbles into darkness. Rope ladders dangle over the lip, knotted by bridge crews who descend for salvage and never discuss what they find below. The wind that rises from the depths carries the smell of wet stone and something older, something alive.",
+                "npcs": [
+                    {"name": "Bridge Sergeant Gaz", "role": "merchant", "dialogue": "Chasm duty pays double. That should tell you everything about chasm duty. You want rope? I have got rope. Insurance? That I do not sell."}
+                ],
+                "enemies": [],
+                "loot": [
+                    {"name": "Chasm Descent Rope (50 ft)", "type": "equipment"}
+                ],
+                "services": ["chasm_descent_access", "salvage_equipment"],
+                "event_triggers": ["On entry: A bridge crew hauls up a salvage bag from the chasm -- it contains a Shardblade fragment and the expression of men who found something else down there they will not name"]
+            }
+        }
+    }
+}

@@ -1,0 +1,195 @@
+{
+    "seed": 5006,
+    "width": 70,
+    "height": 60,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "menzoberranzan",
+        "theme": "GOTHIC",
+        "topology": "settlement",
+        "display_name": "Menzoberranzan, City of Spiders"
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 5,
+            "y": 5,
+            "width": 12,
+            "height": 8,
+            "room_type": "start",
+            "connections": [1, 2],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Tier Breche -- the Academy -- perches on a stalagmite plateau overlooking the city. Three structures dominate: Arach-Tinilith (the spider-shaped temple), Sorcere (the tower of wizardry), and Melee-Magthere (the pyramid of warriors). Drow students move between them with the practiced paranoia of predators who know they are also prey. The view of Menzoberranzan below is staggering: a cavern miles across, studded with glowing compounds like a constellation fallen underground.",
+                "npcs": [
+                    {"name": "Gromph Baenre (projection)", "role": "quest_giver", "dialogue": "You should not be here. No surface dweller should. And yet the very fabric of the Underdark unravels, and the Archmage of Menzoberranzan finds himself in need of... expendable assets who won't be missed. How refreshingly honest our arrangement can be."}
+                ],
+                "enemies": [],
+                "loot": [],
+                "services": [],
+                "event_triggers": ["On entry: Party must be disguised or have a drow escort. DC 18 Deception to pass as drow servants.", "On detection: If recognized as surfacers, House patrols converge within 2d4 minutes."]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 20,
+            "y": 10,
+            "width": 14,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [0, 3, 4],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Narbondellyn is the merchant quarter -- if merchants carried poisoned daggers and considered assassination a valid negotiation tactic. The buildings are grown from shaped stone and draped in phosphorescent silk. Every doorway has a glyph of warding, every window a crossbow slit. The streets are clean because the street-sweeping golems also dispose of bodies.",
+                "npcs": [
+                    {"name": "Jarlaxle Baenre", "role": "informant", "dialogue": "Surfacers! In Menzoberranzan! Either you're impossibly brave or you've simply run out of places to hide. *Tips his wide-brimmed hat.* I am Jarlaxle. I run a mercenary company called Bregan D'aerthe. We're expensive, but I offer a friends-and-family discount to anyone the Matron Mothers want dead. That would be you, by the way."}
+                ],
+                "enemies": [],
+                "loot": [
+                    {"name": "Piwafwi (Cloak of Elvenkind, drow make)", "type": "armor"},
+                    {"name": "Drow Poison (5 doses)", "type": "consumable"}
+                ],
+                "services": ["information", "disguise", "safe_house"],
+                "event_triggers": ["On entry: Jarlaxle finds the party within 1d4 hours. He always knows.", "On deal: Jarlaxle offers safe passage through the city in exchange for a favor to be named later."]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 10,
+            "y": 25,
+            "width": 14,
+            "height": 10,
+            "room_type": "market",
+            "connections": [0, 3],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Duthcloim is an open-air bazaar lit by faerzress-infused crystals that cast everything in shifting purple light. Merchants from across the Underdark hawk their wares: duergar weapons, svirfneblin gems, illithid-harvested components that should not exist in any just universe. Prices are negotiated through a complex system of hand signals, because in Menzoberranzan, speaking your true desires aloud is a vulnerability.",
+                "npcs": [
+                    {"name": "Xanathar's Agent (disguised)", "role": "merchant", "dialogue": "Ah, you have the look of people in need of things that aren't technically for sale. *The beholder-kin's disguise flickers for an instant.* My employer has interests in the surface world. Perhaps we can arrange a mutually beneficial exchange of services."}
+                ],
+                "enemies": [],
+                "loot": [
+                    {"name": "Wand of Web", "type": "wondrous_item"},
+                    {"name": "Drow Hand Crossbow +1", "type": "weapon"},
+                    {"name": "Scroll of Darkness", "type": "scroll"}
+                ],
+                "services": ["trade", "black_market", "information"],
+                "event_triggers": ["On entry: Pickpocket attempt every 30 minutes (DC 14 Perception to notice).", "On search: DC 16 Investigation finds a vendor selling a map to Gauntlgrym that may or may not be genuine."]
+            }
+        },
+        "3": {
+            "id": 3,
+            "x": 30,
+            "y": 20,
+            "width": 16,
+            "height": 12,
+            "room_type": "temple",
+            "connections": [1, 2, 4, 5],
+            "tier": 4,
+            "is_locked": true,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Arach-Tinilith. The temple of Lolth is shaped like a monstrous spider crouching atop a stalagmite, its legs forming the buttresses and its abdomen the central dome. Inside, the air is thick with incense that smells of venom, and the walls are covered in living webs that pulse with a heartbeat. Priestesses move through the chambers in silent procession, each one radiating an authority that makes the stone itself seem to flinch.",
+                "npcs": [
+                    {"name": "Sos'Umptu Baenre", "role": "antagonist", "dialogue": "The Spider Queen sees all who enter her house. You are either offerings or offenders. I suggest you decide which before I decide for you. *The living webs on the walls contract around the exits.*"}
+                ],
+                "enemies": [
+                    {"name": "Drow Priestess of Lolth", "cr": "8"},
+                    {"name": "Yochlol (Handmaiden of Lolth)", "cr": "10"},
+                    {"name": "Giant Spider", "cr": "1"},
+                    {"name": "Giant Spider", "cr": "1"}
+                ],
+                "loot": [
+                    {"name": "Rod of the Pact Keeper +2", "type": "wondrous_item"},
+                    {"name": "Spider Silk Robe (AC 13 + Dex)", "type": "armor"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: This is hostile territory. No stealth will avail -- Lolth's awareness permeates the temple.", "On combat: Yochlol manifests after 2 rounds. Temple alarm summons reinforcements in 1d4+1 rounds."]
+            }
+        },
+        "4": {
+            "id": 4,
+            "x": 45,
+            "y": 10,
+            "width": 16,
+            "height": 14,
+            "room_type": "boss",
+            "connections": [1, 3],
+            "tier": 4,
+            "is_locked": true,
+            "is_secret": false,
+            "content_hints": {
+                "description": "House Baenre is less a building than a fortress grown from the cavern floor over three thousand years of accumulated power. Its walls are living stone reinforced with adamantine, its towers capped with antimagic fields. The interior is a labyrinth designed to disorient invaders, with every corridor featuring trapped floors, illusory walls, and patrol golems. At its heart, the throne room holds the Ruling Council -- and Matron Mother Quenthel Baenre, whose spider-silk robes move of their own volition.",
+                "npcs": [
+                    {"name": "Quenthel Baenre", "role": "antagonist", "dialogue": "You stand in the seat of power that has ruled Menzoberranzan for longer than your pathetic surface nations have existed. Whatever brought you here -- desperation, courage, or simple stupidity -- it ends now. Lolth demands tribute, and you will serve."}
+                ],
+                "enemies": [
+                    {"name": "Quenthel Baenre (Drow Matron Mother)", "cr": "20"},
+                    {"name": "Baenre House Guard (Drow Elite)", "cr": "5"},
+                    {"name": "Baenre House Guard (Drow Elite)", "cr": "5"}
+                ],
+                "loot": [
+                    {"name": "Tentacle Rod (rare)", "type": "weapon"},
+                    {"name": "Robe of the Archmagi (fragment)", "type": "wondrous_item"},
+                    {"name": "House Baenre Insignia (quest item)", "type": "quest_item"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: Direct confrontation is not required. Infiltration, negotiation, or the Gromph quest may bypass this room.", "On combat: Quenthel has lair actions. Retreat is possible through secret passages (DC 18 Investigation)."]
+            }
+        },
+        "5": {
+            "id": 5,
+            "x": 35,
+            "y": 40,
+            "width": 12,
+            "height": 10,
+            "room_type": "library",
+            "connections": [3, 6],
+            "tier": 3,
+            "is_locked": true,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Sorcere, the tower of wizardry, rises in a spiral of black stone veined with pulsing faerzress. Inside, the library defies geometry -- bookshelves extend in directions that shouldn't exist, and scrolls float between reading stations on currents of controlled levitation. The knowledge here spans millennia of drow arcane research, including subjects the surface world has wisely left unexamined.",
+                "npcs": [
+                    {"name": "Vizeran DeVir", "role": "ally", "dialogue": "I am a dead man walking. House DeVir was destroyed, and I should have died with it. Instead I study, and I plan, and I wait for the moment when knowledge becomes vengeance. The demon lords threaten us all -- I have a ritual that can banish them. But I need components from places even I dare not go alone."}
+                ],
+                "enemies": [],
+                "loot": [
+                    {"name": "Spell Scroll (Banishment)", "type": "scroll"},
+                    {"name": "Tome of Faerzress Manipulation", "type": "quest_item"},
+                    {"name": "Drow Spellbook (15 spells)", "type": "spellbook"}
+                ],
+                "services": ["lore", "spell_identification", "scroll_purchase"],
+                "event_triggers": ["On entry: Vizeran offers the Dark Heart ritual -- the key to banishing the demon lords.", "On quest: Vizeran's component list leads to Gauntlgrym and other dangerous locations."]
+            }
+        },
+        "6": {
+            "id": 6,
+            "x": 50,
+            "y": 45,
+            "width": 10,
+            "height": 8,
+            "room_type": "town_gate",
+            "connections": [5],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Eastmyr Gate is the least-watched exit from Menzoberranzan -- a narrow passage through a curtain of calcified spider silk that parts reluctantly, like stepping through a membrane. Beyond, the tunnel leads toward the upper Underdark and eventually to Gauntlgrym. Patrol frequency here has dropped since the demon lord incursions drew the city's attention inward.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Drow Patrol (2 warriors)", "cr": "1/4"}
+                ],
+                "loot": [],
+                "services": [],
+                "event_triggers": ["On entry: DC 14 Stealth to pass the patrol, or DC 16 Deception with forged papers.", "On exit: Transition to Underdark travel toward Gauntlgrym. 10 days travel."]
+            }
+        }
+    }
+}

@@ -1,0 +1,198 @@
+{
+    "seed": 5001,
+    "width": 60,
+    "height": 50,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "velkynvelve",
+        "theme": "GOTHIC",
+        "topology": "dungeon",
+        "display_name": "Velkynvelve"
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 5,
+            "y": 40,
+            "width": 10,
+            "height": 8,
+            "room_type": "start",
+            "connections": [1, 2],
+            "tier": 1,
+            "is_locked": true,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Iron bars crusted with decades of dried blood partition this hanging stalactite cell. The floor is damp silk -- actual webbing, layered so thick it has calcified. Through the bars you can see the chasm drop away into roaring blackness, and across the void, other stalactite-cages hold your fellow prisoners.",
+                "npcs": [
+                    {"name": "Prince Derendil", "role": "fellow_prisoner", "dialogue": "I am not this... beast. I am Prince Derendil of the elven kingdom of Nelrindenvane. A curse -- the witch Nezznar laid this quaggoth form upon me."},
+                    {"name": "Stool", "role": "fellow_prisoner", "dialogue": "*The small myconid extends rapport spores. Images of a peaceful grove, of circles of mushroom-folk swaying in silent communion, flood your mind.*"},
+                    {"name": "Shuushar the Awakened", "role": "fellow_prisoner", "dialogue": "Violence is the language of the unenlightened. The Darklake has taught me patience. We will find our freedom through stillness, not struggle."},
+                    {"name": "Jimjar", "role": "fellow_prisoner", "dialogue": "Five gold says we're out of here before the next patrol. No? Ten gold says you'll take the bet before we are."},
+                    {"name": "Buppido", "role": "fellow_prisoner", "dialogue": "Stay close to me, friend. I know these tunnels better than our captors think. We'll find our moment."},
+                    {"name": "Sarith Kzekarit", "role": "fellow_prisoner", "dialogue": "I didn't kill him. But it doesn't matter what I say. Drow justice is decided before the trial begins."},
+                    {"name": "Topsy", "role": "fellow_prisoner", "dialogue": "My brother and I just want to go home. Please... don't look at us when the moon would be full. Just -- don't."},
+                    {"name": "Turvy", "role": "fellow_prisoner", "dialogue": "*The deep gnome clutches his sister's hand and says nothing, but his eyes dart to every shadow with an animal wariness.*"}
+                ],
+                "enemies": [],
+                "loot": [],
+                "services": [],
+                "event_triggers": ["On entry: Players wake with no equipment. Manacles require DC 15 Dexterity check or DC 20 Strength to break.", "On rest: Drow guard rotation every 8 hours. Quaggoth slave Derendil knows the schedule."]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 20,
+            "y": 35,
+            "width": 12,
+            "height": 8,
+            "room_type": "barracks",
+            "connections": [0, 3, 4],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The guard post occupies a natural shelf of stone bridging two stalactites. Drow warriors lounge on bedrolls of spider-silk, their hand crossbows within easy reach. A zurkhwood table holds the remnants of a meal -- rothe cheese and blind cave fish -- and a half-finished game of sava.",
+                "npcs": [
+                    {"name": "Jorlan Duskryn", "role": "guard", "dialogue": "Ilvara burned half my face with acid for questioning her judgment. If you find a way out... I might not raise the alarm as quickly as I should."}
+                ],
+                "enemies": [
+                    {"name": "Drow Elite Warrior", "cr": "5"},
+                    {"name": "Drow Warrior", "cr": "1/4"},
+                    {"name": "Drow Warrior", "cr": "1/4"}
+                ],
+                "loot": [
+                    {"name": "Hand Crossbow", "type": "weapon"},
+                    {"name": "Drow Poison (3 doses)", "type": "consumable"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: Stealth check DC 14 or guards alerted. Jorlan may help if approached alone."]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 5,
+            "y": 25,
+            "width": 10,
+            "height": 8,
+            "room_type": "normal",
+            "connections": [0, 3],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "A larger pen carved from living rock, where quaggoth slaves and surplus prisoners are kept. The stench of unwashed fur and despair is overwhelming. Crude claw-marks on the walls count days in sets of eight -- the drow week. Some tallies reach into the hundreds.",
+                "npcs": [
+                    {"name": "Ront", "role": "fellow_prisoner", "dialogue": "Ront not afraid. Ront kill drow if Ront had axe. You get Ront axe, Ront smash everything."},
+                    {"name": "Eldeth Feldrun", "role": "fellow_prisoner", "dialogue": "I'm a daughter of Gauntlgrym. My people will come for me -- but I'd rather not wait. You have the look of someone who makes their own luck."}
+                ],
+                "enemies": [],
+                "loot": [
+                    {"name": "Crude Shiv (improvised)", "type": "weapon"},
+                    {"name": "Torn Map Fragment", "type": "quest_item"}
+                ],
+                "services": [],
+                "event_triggers": ["On search: DC 12 Investigation finds a loose stone concealing a previous prisoner's crude map of the outpost."]
+            }
+        },
+        "3": {
+            "id": 3,
+            "x": 25,
+            "y": 20,
+            "width": 14,
+            "height": 10,
+            "room_type": "boss",
+            "connections": [1, 2, 4],
+            "tier": 2,
+            "is_locked": true,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Ilvara's quarters occupy the highest stalactite, connected by silk bridges that sway over the abyss. The chamber is draped in purple silk embroidered with spiders. A shrine to Lolth dominates one wall -- a black stone spider whose ruby eyes seem to follow movement. The priestess's tentacle rod hangs from a rack beside her armor.",
+                "npcs": [
+                    {"name": "Ilvara Mizzrym", "role": "antagonist", "dialogue": "You think darkness is your ally? You were merely born in it. I was chosen by it. Lolth whispers your fate to me, and it is... unpleasant."},
+                    {"name": "Asha Vandree", "role": "lieutenant", "dialogue": "Mistress Ilvara's methods are... thorough. I would suggest cooperation. The alternative involves spiders, and not the small kind."}
+                ],
+                "enemies": [
+                    {"name": "Ilvara Mizzrym (Drow Priestess of Lolth)", "cr": "8"},
+                    {"name": "Asha Vandree (Drow Acolyte)", "cr": "2"}
+                ],
+                "loot": [
+                    {"name": "Tentacle Rod", "type": "weapon"},
+                    {"name": "Spider-Silk Cloak", "type": "armor"},
+                    {"name": "Potion of Healing (2)", "type": "consumable"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: If alarm raised, Ilvara has cast spiritual guardians. If stealth approach, she may be in meditation (surprise round).", "On defeat: Ilvara swears vengeance -- she will pursue the party into the Underdark."]
+            }
+        },
+        "4": {
+            "id": 4,
+            "x": 40,
+            "y": 25,
+            "width": 10,
+            "height": 8,
+            "room_type": "treasure",
+            "connections": [1, 3, 5],
+            "tier": 1,
+            "is_locked": true,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The armory is carved into the back of a stalactite, its entrance sealed with a zurkhwood door reinforced with adamantine bands. Inside, racks of hand crossbows and shortswords line the walls, alongside confiscated prisoner equipment bundled in spider-silk cocoons labeled with drow script.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Giant Spider (guard)", "cr": "1"}
+                ],
+                "loot": [
+                    {"name": "Confiscated Equipment Bundle", "type": "quest_item"},
+                    {"name": "Shortsword", "type": "weapon"},
+                    {"name": "Studded Leather Armor", "type": "armor"},
+                    {"name": "Spell Component Pouch", "type": "gear"},
+                    {"name": "50 ft Silk Rope", "type": "gear"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: DC 15 Thieves' Tools to pick lock, or key from guard post. Giant spider lurks in ceiling.", "On search: Players recover their starting equipment if they reach this room."]
+            }
+        },
+        "5": {
+            "id": 5,
+            "x": 45,
+            "y": 35,
+            "width": 10,
+            "height": 8,
+            "room_type": "normal",
+            "connections": [4, 6],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The waterfall plunges from a crack in the cavern ceiling, crashing onto a ledge slick with spray and phosphorescent algae. The roar is deafening -- perfect cover for whispered escape plans. A narrow path descends along the cliff face, switchbacking into the darkness below.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [
+                    {"name": "Waterlogged Journal (previous escapee)", "type": "quest_item"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: DC 12 Acrobatics to navigate safely. Failure means a fall (2d6 damage) but landing on a lower ledge.", "On search: DC 14 Perception reveals the journal wedged behind a rock. It describes a route to Sloobludop."]
+            }
+        },
+        "6": {
+            "id": 6,
+            "x": 50,
+            "y": 45,
+            "width": 8,
+            "height": 6,
+            "room_type": "town_gate",
+            "connections": [5],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The passage narrows to a crack barely wide enough for a human to squeeze through. Beyond it, the Underdark opens into a vastness your eyes cannot parse -- no walls, no ceiling, just the void and the distant sound of dripping water echoing from every direction. Freedom, such as it is.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [],
+                "services": [],
+                "event_triggers": ["On entry: Escape successful. Pursuit clock begins -- Ilvara will send patrols within 1d4 hours.", "On exit: Transition to Darklake travel. Choose destination: Sloobludop, Gracklstugh, or Neverlight Grove."]
+            }
+        }
+    }
+}

@@ -1,0 +1,114 @@
+{
+    "seed": 6000,
+    "width": 80,
+    "height": 60,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "icewind_dale",
+        "theme": "STONE",
+        "topology": "wilderness",
+        "display_name": "Icewind Dale"
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 35,
+            "y": 10,
+            "width": 14,
+            "height": 10,
+            "room_type": "start",
+            "connections": [1, 2],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Ten-Towns clings to the shores of three frozen lakes like a scattering of hearth-fires defying an endless night. Auril's Everlasting Rime has stolen the sun -- the sky holds only stars and the pale knife-edge of a moon that never warms. Smoke rises from a hundred chimneys, and the wind carries the sound of dog sleds and desperate prayer.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [],
+                "services": ["rest", "trade"],
+                "event_triggers": ["On entry: Module begins. Auril's curse is active: no dawn, perpetual twilight, temperatures lethal without shelter."]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 15,
+            "y": 25,
+            "width": 12,
+            "height": 8,
+            "room_type": "normal",
+            "connections": [0, 3],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Spine of the World rises like a wall of frozen teeth along the southern horizon. Somewhere in those peaks, duergar forges burn with stolen fire, and a chardalyn dragon takes shape in a cavern of ice and hate. The mountain passes are choked with snow, and the wind here cuts through fur and flesh alike.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [],
+                "services": [],
+                "event_triggers": ["On entry: Extreme cold. Constitution save DC 10 every hour without cold weather gear or take 1d6 cold damage."]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 55,
+            "y": 20,
+            "width": 12,
+            "height": 8,
+            "room_type": "normal",
+            "connections": [0, 3, 4],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Sea of Moving Ice stretches north of Icewind Dale, a labyrinth of shifting bergs and black water that has swallowed ships since before the founding of Ten-Towns. Somewhere among the ice, Auril maintains her island fortress. The northern lights play across the frozen expanse in colors that seem to spell out words in a language older than the world.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [],
+                "services": [],
+                "event_triggers": ["On entry: Navigation DC 15 Survival. Failure means 1d4 days lost and a random encounter with the ice."]
+            }
+        },
+        "3": {
+            "id": 3,
+            "x": 30,
+            "y": 35,
+            "width": 14,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [1, 2, 4],
+            "tier": 3,
+            "is_locked": true,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Reghed Glacier dominates the eastern expanse -- a river of ice miles wide and ancient beyond reckoning. Beneath its surface, visible through translucent layers of compressed snow, the ruins of Ythryn wait. The Netherese city fell here centuries ago, frozen mid-collapse, its towers and streets preserved in ice like insects in amber.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [],
+                "services": [],
+                "event_triggers": ["On entry: The glacier groans and shifts. Earthquakes possible. DC 12 Perception to notice subsurface ruins."]
+            }
+        },
+        "4": {
+            "id": 4,
+            "x": 55,
+            "y": 45,
+            "width": 12,
+            "height": 10,
+            "room_type": "boss",
+            "connections": [2, 3],
+            "tier": 4,
+            "is_locked": true,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Island of Solstice rises from the Sea of Moving Ice like a fang of black rock sheathed in frost. Auril's divine presence makes the air crystallize -- breathing here is like inhaling broken glass. The aurora overhead is not natural light but the Frostmaiden's gaze, and it watches everything that moves upon her domain.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [],
+                "services": [],
+                "event_triggers": ["On entry: Auril's awareness is absolute. No stealth, no surprise. The Tests begin."]
+            }
+        }
+    }
+}

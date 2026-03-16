@@ -1,0 +1,60 @@
+{
+    "system_id": "SAV",
+    "display_name": "sav",
+    "engine": "FITD",
+    "system_family": "FITD",
+    "archetype_categories": {
+        "Playbooks": []
+    },
+    "core_stats": {
+        "attributes": [
+            "Insight",
+            "Prowess",
+            "Resolve"
+        ],
+        "actions": {}
+    },
+    "resources": [
+        "Stress",
+        "Trauma"
+    ],
+    "dice_system": "d6_pool",
+    "position_effect": true,
+    "stress_max": 9,
+    "trauma_max": 4,
+    "mechanics": {
+        "stats": [
+            "Insight",
+            "Prowess",
+            "Resolve"
+        ],
+        "resources": [
+            "Cred",
+            "Gambits",
+            "Heat",
+            "Stress"
+        ],
+        "classes": [
+            "Mechanic",
+            "Muscle",
+            "Mystic",
+            "Pilot",
+            "Scoundrel",
+            "Speaker",
+            "Stitch"
+        ],
+        "subclasses": [
+            "Scum",
+            "Scumbag",
+            "Villain",
+            "Villainy"
+        ],
+        "races": [
+            "Alien",
+            "Goblin",
+            "Human",
+            "Vampire",
+            "Villain"
+        ]
+    }
+}

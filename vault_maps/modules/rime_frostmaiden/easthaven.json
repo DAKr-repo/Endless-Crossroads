@@ -1,0 +1,156 @@
+{
+    "seed": 6002,
+    "width": 50,
+    "height": 40,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "easthaven",
+        "theme": "VILLAGE",
+        "topology": "settlement",
+        "display_name": "Easthaven"
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 5,
+            "y": 5,
+            "width": 10,
+            "height": 8,
+            "room_type": "start",
+            "connections": [1, 2],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Easthaven sits on the south shore of Lac Dinneshere, a fishing town that has forgotten what the sun looks like. The wooden buildings lean against each other for warmth, their roofs sagging under snow that no one has the energy to clear. Fishing nets hang frozen on their racks, useless -- the lake has iced over solid, and the fish have gone deep.",
+                "npcs": [
+                    {"name": "Captain Arlaggath", "role": "quest_giver", "dialogue": "We lost another boat crew on the ice. Not to the cold -- to something under it. The fishermen say they saw shapes moving beneath the frozen surface, and then the ice cracked and the shapes pulled them through. I need someone to go out there. Someone who isn't afraid of dark water."}
+                ],
+                "enemies": [],
+                "loot": [],
+                "services": [],
+                "event_triggers": ["On entry: Arlaggath meets the party at the town entrance. She's been watching the road, hoping for help."]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 20,
+            "y": 10,
+            "width": 12,
+            "height": 8,
+            "room_type": "tavern",
+            "connections": [0, 3, 4],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Wet Trout is a two-story inn whose sign features a fish that has been repainted so many times it resembles a lumpy blue blob. Inside, the common room is packed -- not with customers, but with refugees from the outer homesteads who can no longer survive alone. Children sleep on the floor wrapped in every blanket the inn owns, and the hearth fire burns whatever will ignite: chairs, bed frames, a sign that once read 'No Refunds.'",
+                "npcs": [
+                    {"name": "Rinaldo", "role": "bard", "dialogue": "I came north to write songs about adventure. *Strums a lute with two broken strings.* Instead I write songs about frostbite, starvation, and the lottery. They're not popular, but they're honest. Buy me an ale and I'll sing you the one about the thing under the lake. Nobody laughs at that one."},
+                    {"name": "Dzaan (disguised)", "role": "antagonist", "dialogue": "I am merely a scholar, researching the history of Icewind Dale. *His smile is too practiced, his robes too fine for a simple academic.* The Netherese ruins beneath the glacier are of particular interest. Purely academic, of course. Knowledge for its own sake."}
+                ],
+                "enemies": [],
+                "loot": [
+                    {"name": "Rinaldo's Ballad (written, grants advantage on one History check about Icewind Dale)", "type": "consumable"}
+                ],
+                "services": ["rest", "rumors", "drink", "lodging"],
+                "event_triggers": ["On rest: Long rest available (3 sp/night). Dzaan can be spotted sneaking out at midnight (DC 14 Perception).", "On investigation: Following Dzaan leads to his ruins exploration site south of town."]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 10,
+            "y": 22,
+            "width": 10,
+            "height": 8,
+            "room_type": "normal",
+            "connections": [0, 3],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Town Hall doubles as a courtroom, and today it is serving that function. A crowd of Easthaven citizens fills the benches, their faces grim. At the front, a red-robed figure stands accused -- Dzaan, the wizard, charged with murder and the forbidden practice of necromancy. The evidence is damning: three corpses found in his rented room, drained of life force.",
+                "npcs": [
+                    {"name": "Captain Arlaggath", "role": "judge", "dialogue": "The evidence is clear. Dzaan of Thay stands convicted of murder by arcane means. The sentence is death by burning. Unless someone here wishes to speak in his defense? *Silence.* Then at dawn, we light the pyre."}
+                ],
+                "enemies": [],
+                "loot": [
+                    {"name": "Dzaan's Confiscated Journal", "type": "quest_item"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: Trial in progress. Party may intervene (DC 18 Persuasion to delay execution) or let justice proceed.", "On journal: The journal describes Ythryn's location beneath the Reghed Glacier and hints at a 'Spindle' that controls the weather."]
+            }
+        },
+        "3": {
+            "id": 3,
+            "x": 25,
+            "y": 20,
+            "width": 10,
+            "height": 8,
+            "room_type": "normal",
+            "connections": [1, 2, 4],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The ferry docks are locked in ice, the boats frozen to their moorings at angles that suggest the freeze came suddenly. A wooden pier extends over what was once open water and is now a white plain stretching to the far shore. Ice fishermen huddle over holes they've chipped with axes, pulling up fish too small to feed a cat. The lake groans beneath them, a sound like a giant turning in uneasy sleep.",
+                "npcs": [
+                    {"name": "Imdra Arlaggath (off-duty)", "role": "informant", "dialogue": "Something lives under this lake. I've seen the shapes -- too big to be fish, too deliberate to be currents. The old-timers say it's a plesiosaur. The priests say it's Auril's pet. I say it's hungry, and it's getting bolder."}
+                ],
+                "enemies": [],
+                "loot": [
+                    {"name": "Ice Fishing Auger", "type": "gear"}
+                ],
+                "services": ["ferry_crossing"],
+                "event_triggers": ["On entry: DC 12 Perception notices dark shapes moving beneath the ice.", "On fishing: Each hour of ice fishing yields 1d4 rations but a 20% chance of attracting the lake creature."]
+            }
+        },
+        "4": {
+            "id": 4,
+            "x": 35,
+            "y": 10,
+            "width": 10,
+            "height": 8,
+            "room_type": "normal",
+            "connections": [1, 3, 5],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The road south from Easthaven passes through stunted pine forest before climbing into the foothills. Here, partially buried in snowdrifts, lie the ruins Dzaan was excavating. Stone foundations of a structure predating Ten-Towns by centuries poke through the white, covered in runes that glow faintly blue in the perpetual twilight. Fresh dig marks and discarded tools suggest recent activity.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Animated Armor (Dzaan's guardian)", "cr": "1"},
+                    {"name": "Simulacrum of Dzaan (if Dzaan is dead)", "cr": "3"}
+                ],
+                "loot": [
+                    {"name": "Scroll of Locate Object", "type": "scroll"},
+                    {"name": "Netherese Compass (points toward Ythryn)", "type": "quest_item"},
+                    {"name": "Ruby Dust (100 gp, spell component)", "type": "treasure"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: If Dzaan was executed, his simulacrum is here, attempting to complete his work.", "On search: DC 14 Arcana reveals the runes are Netherese directional markers pointing toward the Reghed Glacier."]
+            }
+        },
+        "5": {
+            "id": 5,
+            "x": 40,
+            "y": 25,
+            "width": 8,
+            "height": 6,
+            "room_type": "town_gate",
+            "connections": [4],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Caer-Dineval Road is a frozen track winding south through the foothills. The signpost at the crossroads has been gnawed by something with large teeth. One arrow points toward Caer-Dineval. Another, handwritten and nailed over the original, reads: 'SUNBLIGHT -- DO NOT APPROACH.' Someone has crossed this out and written beneath it: 'Too late.'",
+                "npcs": [],
+                "enemies": [],
+                "loot": [],
+                "services": [],
+                "event_triggers": ["On exit: Travel options: Caer-Dineval (4 hours), Sunblight Fortress (2 days through mountain passes). Blizzard chance increases in mountains."]
+            }
+        }
+    }
+}

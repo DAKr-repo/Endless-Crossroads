@@ -1,0 +1,101 @@
+{
+    "meta": {
+        "system_id": "CANDELA_OBSCURA",
+        "display_name": "Candela_Obscura",
+        "engine": "Illuminated",
+        "dice_system": "gilded_dice",
+        "system_family": "ILLUMINATED_WORLDS",
+        "version": "C.O.D.E.X. 2.0"
+    },
+    "lookup": {
+        "dwarf": {
+            "type": "race",
+            "name": "Dwarf"
+        },
+        "elf": {
+            "type": "race",
+            "name": "Elf"
+        },
+        "gnome": {
+            "type": "race",
+            "name": "Gnome"
+        },
+        "human": {
+            "type": "race",
+            "name": "Human"
+        },
+        "marks": {
+            "type": "resource",
+            "name": "Marks"
+        },
+        "scars": {
+            "type": "resource",
+            "name": "Scars"
+        }
+    },
+    "structure": {
+        "system_id": "CANDELA_OBSCURA",
+        "display_name": "Candela_Obscura",
+        "engine": "Illuminated",
+        "system_family": "ILLUMINATED_WORLDS",
+        "archetype_categories": {
+            "Roles": []
+        },
+        "core_stats": {
+            "resistances": [
+                "Nerve",
+                "Cunning",
+                "Intuition"
+            ],
+            "actions": {}
+        },
+        "resources": [
+            "Marks",
+            "Scars"
+        ],
+        "dice_system": "gilded_dice",
+        "mechanics": {
+            "stats": [
+                "Cunning",
+                "Intuition",
+                "Nerve"
+            ],
+            "resources": [
+                "Marks",
+                "Scars"
+            ],
+            "classes": [
+                "Character Class 1",
+                "Character Class 2",
+                "Playbook 1",
+                "Playbook 2"
+            ],
+            "subclasses": [
+                "Specialization 1",
+                "Specialization 2",
+                "Specialization1",
+                "Specialization2"
+            ],
+            "actions": [
+                "Conduct",
+                "Control",
+                "Hide",
+                "Move",
+                "Read",
+                "Sense",
+                "Sneak",
+                "Strike",
+                "Survey"
+            ],
+            "races": [
+                "Dwarf",
+                "Elf",
+                "Gnome",
+                "Human"
+            ]
+        },
+        "races": [],
+        "deep_classes": {},
+        "feats": []
+    }
+}

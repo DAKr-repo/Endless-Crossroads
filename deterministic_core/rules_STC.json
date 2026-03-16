@@ -1,0 +1,105 @@
+{
+    "meta": {
+        "system_id": "STC",
+        "display_name": "stc",
+        "engine": "custom",
+        "dice_system": "custom",
+        "system_family": "STC",
+        "version": "C.O.D.E.X. 2.0"
+    },
+    "lookup": {
+        "dwarf": {
+            "type": "race",
+            "name": "Dwarf"
+        },
+        "elven": {
+            "type": "race",
+            "name": "Elven"
+        },
+        "gnome": {
+            "type": "race",
+            "name": "Gnome"
+        },
+        "human": {
+            "type": "race",
+            "name": "Human"
+        },
+        "orc": {
+            "type": "race",
+            "name": "Orc"
+        },
+        "troll": {
+            "type": "race",
+            "name": "Troll"
+        },
+        "focus": {
+            "type": "resource",
+            "name": "Focus"
+        },
+        "investiture": {
+            "type": "resource",
+            "name": "Investiture"
+        },
+        "stormlight": {
+            "type": "resource",
+            "name": "Stormlight"
+        }
+    },
+    "structure": {
+        "system_id": "STC",
+        "display_name": "stc",
+        "engine": "custom",
+        "system_family": "STC",
+        "archetype_categories": {},
+        "core_stats": {},
+        "resources": [],
+        "dice_system": "custom",
+        "mechanics": {
+            "stats": [
+                "Awareness",
+                "Intellect",
+                "Presence",
+                "Speed",
+                "Strength",
+                "Will"
+            ],
+            "resources": [
+                "Focus",
+                "Investiture",
+                "Stormlight"
+            ],
+            "classes": [
+                "Bondsmith",
+                "Dustbringer",
+                "Edgedancer",
+                "Elsecaller",
+                "Lightweaver",
+                "Skybreaker",
+                "Stoneward",
+                "Truthwatcher",
+                "Willshaper",
+                "Windrunner"
+            ],
+            "subclasses": [
+                "Cosmere Item",
+                "Living Shard",
+                "Radiant",
+                "Specialization 1",
+                "Specialization 2",
+                "Squire",
+                "Stormlight Item"
+            ],
+            "races": [
+                "Dwarf",
+                "Elven",
+                "Gnome",
+                "Human",
+                "Orc",
+                "Troll"
+            ]
+        },
+        "races": [],
+        "deep_classes": {},
+        "feats": []
+    }
+}

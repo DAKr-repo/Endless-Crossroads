@@ -1,0 +1,212 @@
+{
+    "seed": 3012,
+    "width": 50,
+    "height": 70,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "kolat_towers",
+        "theme": "GOTHIC",
+        "topology": "vertical",
+        "display_name": "Kolat Towers"
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 20,
+            "y": 0,
+            "width": 10,
+            "height": 6,
+            "room_type": "start",
+            "connections": [1],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "A wooden door reinforced with iron bands stands in a narrow alley between two stone towers that lean toward each other like conspiring thieves. Arcane sigils flicker along the doorframe -- wards that have been recently reset. The stones here are old, older than the surrounding buildings, and the mortar between them is black with age.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [],
+                "hazards": [
+                    {"name": "Arcane Ward (alarm triggers on forced entry)", "dc": 15}
+                ],
+                "services": [],
+                "event_triggers": [
+                    "On forced entry: A silent alarm alerts all inhabitants. Stealth checks inside are made at disadvantage for 1 minute."
+                ]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 5,
+            "y": 10,
+            "width": 12,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [0, 2, 6],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Workbenches cluttered with half-assembled clockwork line the walls. Gears, springs, and crystal lenses spill from open drawers. An animated broom sweeps the same patch of floor in an endless, maddening loop. The air smells of machine oil and ozone, and every few seconds a spark jumps between two copper rods mounted above the door.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Animated Armor", "cr": "1"},
+                    {"name": "Flying Sword", "cr": "1/4"},
+                    {"name": "Flying Sword", "cr": "1/4"}
+                ],
+                "loot": [
+                    {"name": "Tinker's Tools", "type": "equipment"},
+                    {"name": "Clockwork Components (30 gp)", "type": "treasure"}
+                ],
+                "hazards": [],
+                "services": [],
+                "event_triggers": [
+                    "On disturbance: The animated armor activates only if items are touched or removed."
+                ]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 5,
+            "y": 24,
+            "width": 12,
+            "height": 10,
+            "room_type": "library",
+            "connections": [1, 3],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Books are shelved not by title but by the color of their spines, creating a disorienting rainbow that spirals up two floors. A mechanical ladder slides along brass rails, clicking to a stop wherever you stand as if anticipating your reach. Several volumes are chained to their shelves. The ones that are not chained whisper when you turn your back.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [
+                    {"name": "Spell Scroll of Counterspell", "type": "consumable"},
+                    {"name": "Tome: 'The Arcane Brotherhood -- A History' (quest lore)", "type": "quest_item"}
+                ],
+                "hazards": [
+                    {"name": "Explosive Runes on trapped book", "dc": 16}
+                ],
+                "services": [],
+                "event_triggers": [
+                    "On search (DC 15 Investigation): A journal reveals the towers were built by the Kolat brothers, wizards who vanished decades ago. Manshoon claimed the space after."
+                ]
+            }
+        },
+        "3": {
+            "id": 3,
+            "x": 5,
+            "y": 38,
+            "width": 12,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [2, 4],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Living quarters stripped of personality. The bed is made with military precision, the wardrobe holds identical black robes, and the only decoration is a mirror that shows your reflection three seconds delayed. A cold meal sits untouched on a side table -- someone was here recently and left in no hurry, which is worse.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Zhentarim Spy", "cr": "1"}
+                ],
+                "loot": [
+                    {"name": "Zhentarim Cipher Key", "type": "quest_item"}
+                ],
+                "hazards": [],
+                "services": [],
+                "event_triggers": []
+            }
+        },
+        "4": {
+            "id": 4,
+            "x": 5,
+            "y": 52,
+            "width": 12,
+            "height": 10,
+            "room_type": "treasure",
+            "connections": [3, 5],
+            "tier": 3,
+            "is_locked": true,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Glass vessels line every surface, each containing a different colored liquid that bubbles or glows or does both simultaneously. An alchemical apparatus of bewildering complexity dominates the center table, its copper tubing coiling like intestines. Charts on the wall map ley lines beneath Waterdeep, with the Vault of Dragons circled three times in red ink.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [
+                    {"name": "Potion of Invisibility", "type": "consumable"},
+                    {"name": "Potion of Greater Healing", "type": "consumable"},
+                    {"name": "Ley Line Map of Waterdeep", "type": "quest_item"},
+                    {"name": "Alchemist's Supplies", "type": "equipment"}
+                ],
+                "hazards": [
+                    {"name": "Unstable reagents (acid splash if disturbed)", "dc": 14}
+                ],
+                "services": [],
+                "event_triggers": [
+                    "On search: The ley line map reveals the approximate location of the Vault of Dragons beneath the city."
+                ]
+            }
+        },
+        "5": {
+            "id": 5,
+            "x": 30,
+            "y": 58,
+            "width": 10,
+            "height": 8,
+            "room_type": "normal",
+            "connections": [4],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "A stone platform atop the north tower, open to the sky and ringed by gargoyle waterspouts. A permanent teleportation circle is etched into the flagstones, its runes glowing a faint violet. Wind whips across the rooftop, and the lights of Waterdeep spread out below like a field of earthbound stars. The circle hums when you step near it.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [
+                    {"name": "Teleportation Circle Sigil Sequence (recorded)", "type": "quest_item"}
+                ],
+                "hazards": [
+                    {"name": "Rooftop gusts (Strength save or pushed toward edge)", "dc": 13}
+                ],
+                "services": [],
+                "event_triggers": [
+                    "On activation: The circle connects to Manshoon's sanctum. Activating it without the correct passphrase deposits the user in a random location in Undermountain."
+                ]
+            }
+        },
+        "6": {
+            "id": 6,
+            "x": 30,
+            "y": 10,
+            "width": 12,
+            "height": 10,
+            "room_type": "boss",
+            "connections": [1],
+            "tier": 3,
+            "is_locked": true,
+            "is_secret": true,
+            "content_hints": {
+                "description": "The basement is carved from raw stone, older than the towers above. Manacles hang from the walls beside rust-colored stains that no amount of scrubbing has removed. In the center, a ritual circle drawn in silver dust surrounds a crystal sphere that pulses with stolen memories. The air is thick with the smell of old blood and new magic.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Manshoon Simulacrum", "cr": "8"},
+                    {"name": "Zhentarim Enforcer", "cr": "3"},
+                    {"name": "Zhentarim Enforcer", "cr": "3"}
+                ],
+                "loot": [
+                    {"name": "Manshoon's Spellbook (partial copy)", "type": "treasure"},
+                    {"name": "Staff of Power (cursed -- attunes to Manshoon on death)", "type": "weapon"}
+                ],
+                "hazards": [
+                    {"name": "Antimagic field (intermittent, 50% chance per round)", "dc": 0}
+                ],
+                "services": [],
+                "event_triggers": [
+                    "On combat start: The simulacrum speaks with Manshoon's voice: 'You found the basement. How industrious. How unfortunate.'",
+                    "On defeat: The simulacrum dissolves into snow. A sending stone on the desk crackles with Manshoon's real voice: 'That was merely a copy. I have many.'"
+                ]
+            }
+        }
+    }
+}

@@ -1,0 +1,64 @@
+{
+  "scenarios": [
+    {
+      "id": "lunar_flicker",
+      "title": "The Lunar Flicker",
+      "theme": "Werewolf tension / Lunar Filter malfunction",
+      "intro_text": "The Lunar Filter above the East Wing stutters — three seconds of raw moonlight breach the glass. In that silver flash, you see Jax's shadow twist wrong. Too long. Too many limbs. By morning, the Filter is repaired and no one speaks of it. But you saw. And Jax knows you saw.",
+      "immediate_dilemma": {
+        "crown": {
+          "label": "Report the Flicker to Headmaster Alaric",
+          "description": "The Board rewards loyalty. Alaric will contain the situation — and owe you a favor. But Jax will know who talked.",
+          "sway_effect": -1,
+          "corruption_effect": 0
+        },
+        "crew": {
+          "label": "Confront Jax directly in the Sub-Basement",
+          "description": "The Crew protects its own. Jax may have answers about the Filter — and about what the school is hiding. But raw moonlight changes people.",
+          "sway_effect": 1,
+          "corruption_effect": 0
+        }
+      }
+    },
+    {
+      "id": "registry_audit",
+      "title": "The Registry Audit",
+      "theme": "Iron Order / Blackmail tension",
+      "intro_text": "A leather-bound ledger appears in your dormitory — no note, no sender. Inside: names, dates, and debts. Every student who ever owed the Board. Every favor called in. Every secret leveraged. Your name is on page 47. The entry reads: 'PENDING.' Someone wants you to see this before the Iron Order's audit begins tomorrow.",
+      "immediate_dilemma": {
+        "crown": {
+          "label": "Deliver the ledger to the Board before the audit",
+          "description": "Returning it proves loyalty and erases your 'PENDING' entry. The Board will see you as trustworthy. But whoever sent it to you will see you as a traitor.",
+          "sway_effect": -1,
+          "corruption_effect": 1
+        },
+        "crew": {
+          "label": "Copy the ledger and distribute it to the Crew",
+          "description": "Knowledge is power. If every student knows the Board's leverage, no one can be blackmailed. But the Iron Order will hunt the source.",
+          "sway_effect": 1,
+          "corruption_effect": 0
+        }
+      }
+    },
+    {
+      "id": "fay_court",
+      "title": "The Fay Court",
+      "theme": "Social debt / Theater tension",
+      "intro_text": "Lydia's annual Fay Court Masquerade is tonight — the one event where Crown and Crew pretend to be equals behind porcelain masks. You receive two invitations: one on gold card stock from the Board's table, one on ash-grey paper slipped under your door. Both say 'RSVP MANDATORY.' Attending one means insulting the other. The Masquerade has rules. The first rule: every mask hides a debt.",
+      "immediate_dilemma": {
+        "crown": {
+          "label": "Accept the Board's gold invitation",
+          "description": "Sit at the high table. Lydia will introduce you to the Inner Circle. Power flows upward at the Fay Court — but so do obligations.",
+          "sway_effect": -1,
+          "corruption_effect": 0
+        },
+        "crew": {
+          "label": "Follow the ash-grey invitation to the lower gallery",
+          "description": "The Crew's masks are simpler but their conversations are real. Rowan has information about the Masquerade's true purpose. But the Board watches the lower gallery.",
+          "sway_effect": 1,
+          "corruption_effect": 0
+        }
+      }
+    }
+  ]
+}

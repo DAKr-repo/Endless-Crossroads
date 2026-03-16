@@ -1,0 +1,135 @@
+{
+  "terrain_type": "road",
+  "events": {
+    "tier_1": [
+      {
+        "id": "merchant_caravan",
+        "type": "discovery",
+        "title": "Merchant Caravan",
+        "description": "A trade caravan trundles past, guards eyeing your party.",
+        "target_role": "scout",
+        "dc": 8,
+        "success": "The merchants are friendly. They share news and offer fair prices.",
+        "failure": "They pass without stopping. You learn nothing.",
+        "success_reward": {"rations": 2}
+      },
+      {
+        "id": "washed_out_bridge",
+        "type": "skill_challenge",
+        "title": "Washed-Out Bridge",
+        "description": "The river crossing is flooded. The old bridge is half-submerged.",
+        "target_role": "guide",
+        "dc": 10,
+        "success": "You find a ford upstream. Boots get wet but no time lost.",
+        "failure": "A long detour around the gorge. Half a day wasted.",
+        "failure_cost": {"days": 0.5}
+      },
+      {
+        "id": "roadside_shrine",
+        "type": "discovery",
+        "title": "Roadside Shrine",
+        "description": "A weathered shrine to a forgotten god sits beneath an oak.",
+        "target_role": "forager",
+        "dc": 8,
+        "success": "Herbs grow thick around the shrine. Useful for poultices.",
+        "failure": "Just old stone and dead offerings.",
+        "success_reward": {"rations": 1}
+      },
+      {
+        "id": "bandits",
+        "type": "combat",
+        "title": "Highway Bandits",
+        "description": "Figures step from the treeline, blades drawn. 'Your coin or your life.'",
+        "target_role": "scout",
+        "dc": 12,
+        "success": "Spotted early. You choose the ground and they think better of it.",
+        "failure": "Ambush! They attack from both sides.",
+        "enemies_tier": 1
+      },
+      {
+        "id": "fellow_travelers",
+        "type": "discovery",
+        "title": "Fellow Travelers",
+        "description": "A group of pilgrims shares your road for a stretch.",
+        "target_role": "guard",
+        "dc": 8,
+        "success": "They share a meal and rumors of the road ahead.",
+        "failure": "They eye you with suspicion and keep their distance.",
+        "success_reward": {"rations": 1}
+      }
+    ],
+    "tier_2": [
+      {
+        "id": "toll_gate",
+        "type": "skill_challenge",
+        "title": "Toll Gate",
+        "description": "Armed soldiers demand a toll to pass. The fee seems steep.",
+        "target_role": "guide",
+        "dc": 12,
+        "success": "You know a smuggler's path around the checkpoint.",
+        "failure": "Pay the toll or lose a day going around.",
+        "failure_cost": {"days": 1}
+      },
+      {
+        "id": "dire_wolves",
+        "type": "combat",
+        "title": "Dire Wolf Pack",
+        "description": "Unnaturally large wolves pace alongside the road, testing your resolve.",
+        "target_role": "scout",
+        "dc": 14,
+        "success": "You spot their den and steer wide. They lose interest.",
+        "failure": "The pack closes in. Fight or flee.",
+        "enemies_tier": 2
+      },
+      {
+        "id": "storm",
+        "type": "skill_challenge",
+        "title": "Thunderstorm",
+        "description": "Black clouds roll in fast. Lightning splits the sky.",
+        "target_role": "forager",
+        "dc": 12,
+        "success": "You find shelter in a cave. Even gather some mushrooms.",
+        "failure": "Drenched and miserable. Rations get soaked.",
+        "failure_cost": {"days": 0.5},
+        "success_reward": {"rations": 1}
+      }
+    ],
+    "tier_3": [
+      {
+        "id": "war_patrol",
+        "type": "combat",
+        "title": "Enemy War Patrol",
+        "description": "A column of soldiers marches down the road. Their banner is not friendly.",
+        "target_role": "scout",
+        "dc": 15,
+        "success": "You spot them first and hide until they pass.",
+        "failure": "They spot you. Prepare for battle.",
+        "enemies_tier": 3
+      },
+      {
+        "id": "refugee_column",
+        "type": "discovery",
+        "title": "Refugee Column",
+        "description": "Hundreds of displaced people clog the road, fleeing something terrible.",
+        "target_role": "guide",
+        "dc": 14,
+        "success": "You navigate through quickly and learn what drove them out.",
+        "failure": "Stuck in the crowd. A full day lost.",
+        "failure_cost": {"days": 1}
+      }
+    ],
+    "tier_4": [
+      {
+        "id": "dragon_overhead",
+        "type": "skill_challenge",
+        "title": "Dragon Overhead",
+        "description": "A shadow blots out the sun. Leathery wings. The rush of displaced air.",
+        "target_role": "guard",
+        "dc": 16,
+        "success": "Everyone holds still. The dragon passes without noticing you.",
+        "failure": "It circles back. You scatter into the brush and lose supplies.",
+        "failure_cost": {"days": 1}
+      }
+    ]
+  }
+}

@@ -1,0 +1,280 @@
+{
+    "seed": 3014,
+    "width": 80,
+    "height": 60,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "xanathar_lair",
+        "theme": "STONE",
+        "topology": "dungeon",
+        "display_name": "Xanathar's Lair"
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 5,
+            "y": 5,
+            "width": 8,
+            "height": 6,
+            "room_type": "start",
+            "connections": [1],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "A storm drain grate lifts away to reveal stone steps descending into the Waterdeep sewers. The stench hits first -- a wall of rot and standing water and something else beneath it, something sharp and alien, like ozone before a lightning strike. Bioluminescent fungus clings to the walls in blue-green patches, providing just enough light to see the rats watching you from the shadows.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [],
+                "hazards": [
+                    {"name": "Slippery steps (Dexterity save or fall prone)", "dc": 11}
+                ],
+                "services": [],
+                "event_triggers": [
+                    "On entry: A small, gelatinous creature with a single eye blinks at you from a ledge, then scurries into the darkness. You have been spotted."
+                ]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 15,
+            "y": 5,
+            "width": 14,
+            "height": 6,
+            "room_type": "corridor",
+            "connections": [0, 2],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The tunnel is half-flooded, murky water reaching mid-thigh. Things move beneath the surface -- quick, sinuous shapes that brush against your legs and vanish. The walls are scratched with territorial markings in Deep Speech, and at one point the passage narrows to single-file between two pillars of fused bone.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Gazer", "cr": "1/2"},
+                    {"name": "Gazer", "cr": "1/2"}
+                ],
+                "loot": [],
+                "hazards": [
+                    {"name": "Flooded passage (difficult terrain, hidden debris)", "dc": 12}
+                ],
+                "services": [],
+                "event_triggers": []
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 35,
+            "y": 5,
+            "width": 10,
+            "height": 8,
+            "room_type": "normal",
+            "connections": [1, 3, 4],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Crude barricades of overturned tables and salvaged doors block the passage. Behind them, bugbear guards play a dice game using knucklebones that are not from any animal you recognize. They wear mismatched armor stamped with a circle-and-dot symbol -- Xanathar's brand. One picks its teeth with a human femur.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Bugbear", "cr": "1"},
+                    {"name": "Bugbear", "cr": "1"},
+                    {"name": "Bugbear Chief", "cr": "3"}
+                ],
+                "loot": [
+                    {"name": "Guard Post Key", "type": "equipment"},
+                    {"name": "Xanathar Guild Token", "type": "quest_item"}
+                ],
+                "hazards": [],
+                "services": [],
+                "event_triggers": [
+                    "On combat: The bugbear chief blows a horn. Reinforcements arrive from Room 4 in 3 rounds if not stopped."
+                ]
+            }
+        },
+        "3": {
+            "id": 3,
+            "x": 35,
+            "y": 18,
+            "width": 12,
+            "height": 8,
+            "room_type": "normal",
+            "connections": [2, 5],
+            "tier": 3,
+            "is_locked": true,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Iron cages hang from the ceiling by rusted chains, each containing a prisoner in varying states of despair. Some weep. Some stare. One laughs softly and will not stop. The floor beneath the cages is stained with old filth, and a bucket of gruel sits by the entrance with a ladle chained to it -- feeding time is apparently self-service.",
+                "npcs": [
+                    {
+                        "name": "Floon Blagmaar",
+                        "role": "quest_target",
+                        "dialogue": "You came. By Tymora's grace, you actually came. They kept asking about the Stone -- I told them I do not know anything, but the big one, the beholder, it can tell when you are lying. It just... stares at you, and you feel your thoughts peeling open.",
+                        "notes": "Missing nobleman. Kidnapped by mistake (looks like Renaer Neverember). Traumatized but physically unharmed. Key to Chapter 1 resolution."
+                    }
+                ],
+                "enemies": [
+                    {"name": "Intellect Devourer", "cr": "2"}
+                ],
+                "loot": [
+                    {"name": "Prisoner Belongings (assorted, 40 gp total)", "type": "treasure"}
+                ],
+                "hazards": [],
+                "services": [],
+                "event_triggers": [
+                    "On rescue: Floon warns that Xanathar's throne room is ahead and begs the party to leave before the beholder notices."
+                ]
+            }
+        },
+        "4": {
+            "id": 4,
+            "x": 55,
+            "y": 5,
+            "width": 12,
+            "height": 10,
+            "room_type": "treasure",
+            "connections": [2, 5, 6],
+            "tier": 3,
+            "is_locked": true,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Shelves of stolen goods line the walls -- paintings still in their frames, bolts of silk, casks of dwarven spirits, and a taxidermied owlbear wearing a jaunty hat. Xanathar keeps trophies of every significant theft, each tagged with a label in cramped handwriting noting the date, the victim, and a rating out of ten for difficulty. The owlbear rates a seven.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [
+                    {"name": "Necklace of Fireballs (3 beads remaining)", "type": "weapon"},
+                    {"name": "Stolen Paintings (500 gp total)", "type": "treasure"},
+                    {"name": "Cask of Dwarven Brandy (150 gp)", "type": "treasure"},
+                    {"name": "Xanathar's Trophy Log", "type": "quest_item"}
+                ],
+                "hazards": [
+                    {"name": "Glyph of Warding on owlbear pedestal", "dc": 15}
+                ],
+                "services": [],
+                "event_triggers": []
+            }
+        },
+        "5": {
+            "id": 5,
+            "x": 45,
+            "y": 25,
+            "width": 14,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [3, 4, 7],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "A sand-floored pit twenty feet deep, ringed by tiered stone benches worn smooth by spectators. Bones are scattered across the arena floor -- some humanoid, some not, all gnawed clean. Rusty weapons are chained to posts at the pit's center. Dark stains in the sand tell the story of a hundred fights, and the drainage grate at the bottom is clogged with teeth.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Half-Ogre", "cr": "1"},
+                    {"name": "Intellect Devourer", "cr": "2"}
+                ],
+                "loot": [
+                    {"name": "Champion's Gauntlets (+1 unarmed strikes)", "type": "equipment"}
+                ],
+                "hazards": [
+                    {"name": "Pit walls (DC 15 Athletics to climb out)", "dc": 15}
+                ],
+                "services": [],
+                "event_triggers": [
+                    "On entry: Iron gates slam shut. A booming voice echoes: 'NEW CHALLENGERS! XANATHAR SEES ALL!'"
+                ]
+            }
+        },
+        "6": {
+            "id": 6,
+            "x": 65,
+            "y": 15,
+            "width": 10,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [4, 7],
+            "tier": 3,
+            "is_locked": true,
+            "is_secret": false,
+            "content_hints": {
+                "description": "A circular chamber filled entirely with water, lit from below by permanent Dancing Lights spells. Inside the crystal-clear tank, a single goldfish swims in lazy circles among miniature castles, sunken ships, and tiny ceramic divers. The tank is temperature-controlled, pH-balanced, and guarded by more magic than most noble vaults. This fish is the most protected creature in Waterdeep.",
+                "npcs": [
+                    {
+                        "name": "Sylgar",
+                        "role": "pet",
+                        "dialogue": "The goldfish stares at you with one flat eye, opens its mouth, closes it, and turns away. It is, by all measures, just a fish.",
+                        "notes": "Xanathar's beloved pet goldfish. Has been secretly replaced dozens of times by Xanathar's minions (the beholder cannot tell goldfish apart). Threatening Sylgar is the most dangerous thing you can do in this lair. Xanathar will offer nearly anything for the fish's safe return."
+                    }
+                ],
+                "enemies": [],
+                "loot": [],
+                "hazards": [
+                    {"name": "Alarm ward on fish tank (alerts Xanathar immediately)", "dc": 18}
+                ],
+                "services": [],
+                "event_triggers": [
+                    "On Sylgar threatened: Xanathar abandons all other priorities. Every creature in the lair converges on this room within 2 rounds."
+                ]
+            }
+        },
+        "7": {
+            "id": 7,
+            "x": 45,
+            "y": 40,
+            "width": 16,
+            "height": 14,
+            "room_type": "boss",
+            "connections": [5, 6, 8],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The cavern opens into a dome of natural stone, its ceiling crusted with stalactites that drip into shallow pools. In the center, floating three feet above a throne carved from a single stalagmite, Xanathar rotates slowly. Its central eye sweeps the room like a lighthouse beam, and its eyestalks writhe in constant, independent surveillance. The beholder's voice fills the chamber without echo, as if it speaks from inside your skull.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Xanathar (Beholder)", "cr": "13"},
+                    {"name": "Gazer", "cr": "1/2"},
+                    {"name": "Gazer", "cr": "1/2"},
+                    {"name": "Gazer", "cr": "1/2"}
+                ],
+                "loot": [
+                    {"name": "Xanathar's Hoard (2,500 gp in mixed coin)", "type": "treasure"},
+                    {"name": "Ring of Mind Shielding", "type": "equipment"},
+                    {"name": "Wand of Fear", "type": "weapon"}
+                ],
+                "hazards": [
+                    {"name": "Antimagic Cone (Xanathar's central eye)", "dc": 0}
+                ],
+                "services": [],
+                "event_triggers": [
+                    "On entry: 'Ah. Visitors. Xanathar sees you. Xanathar sees everything. You are here about the gold, yes? Everyone is here about the gold. Xanathar finds this tiresome.'",
+                    "On Sylgar mentioned: Xanathar's eyestalks all focus on the speaker simultaneously. 'You know about Sylgar? WHO TOLD YOU ABOUT SYLGAR?'",
+                    "On defeat: The lair begins to collapse as Xanathar's death throes destabilize the cavern. 3 rounds to escape."
+                ]
+            }
+        },
+        "8": {
+            "id": 8,
+            "x": 45,
+            "y": 55,
+            "width": 8,
+            "height": 5,
+            "room_type": "town_gate",
+            "connections": [7],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "A waterway cuts through the rock, its current fast and cold. A flat-bottomed boat is moored to an iron ring, large enough for four. The tunnel ahead narrows to a slit of gray light -- the harbor. Salt air pushes back against the sewer stench, and the distant cry of gulls sounds like freedom.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [],
+                "hazards": [
+                    {"name": "Strong current (Strength save or swept downstream)", "dc": 13}
+                ],
+                "services": ["exit_settlement"],
+                "event_triggers": [
+                    "On escape during collapse: The boat ride through the sewers is a harrowing 2-minute sprint against falling stone and rising water."
+                ]
+            }
+        }
+    }
+}

@@ -1,0 +1,232 @@
+{
+    "seed": 3016,
+    "width": 70,
+    "height": 60,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "vault_of_dragons",
+        "theme": "STONE",
+        "topology": "dungeon",
+        "display_name": "Vault of Dragons"
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 30,
+            "y": 0,
+            "width": 10,
+            "height": 6,
+            "room_type": "start",
+            "connections": [1],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Stone of Golorr pulses in your hand as you descend through a crack in the bedrock beneath Waterdeep. The passage is dwarven-cut, precise as a surgeon's incision, and the air grows warm as you go deeper -- not the damp warmth of a cellar but the dry heat of a furnace. The walls bear the sigil of Clan Melairkyn, the dwarven house that carved Undermountain's first halls before the darkness took them.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [],
+                "hazards": [],
+                "services": [],
+                "event_triggers": [
+                    "On entry: The Stone of Golorr grows warm and tugs gently downward, guiding you deeper."
+                ]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 25,
+            "y": 10,
+            "width": 16,
+            "height": 8,
+            "room_type": "corridor",
+            "connections": [0, 2, 6],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The corridor stretches a hundred feet, its walls carved with scenes of dwarven triumph -- kings crowned, dragons slain, veins of mithral discovered. But the later carvings grow darker: armies breaking, halls burning, eyes opening in the deep places. The floor is trapped with pressure plates visible only by the slight difference in stone color, and the ceiling is perforated with holes that once spat poison or flame.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [],
+                "hazards": [
+                    {"name": "Pressure plate trap (darts, 2d6 piercing)", "dc": 15},
+                    {"name": "Collapsing ceiling section (4d6 bludgeoning)", "dc": 16}
+                ],
+                "services": [],
+                "event_triggers": [
+                    "On trap triggered: The Stone of Golorr flashes in warning a heartbeat too late."
+                ]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 10,
+            "y": 20,
+            "width": 12,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [1, 3],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Three dwarf statues stand in alcoves, each holding a stone weapon -- axe, hammer, shield. Their eyes are gemstones that track your movement. A plaque in Dwarvish reads: 'The worthy pass. The unworthy feed the stone.' The floor before each statue is stained dark, and deep grooves in the flagstones suggest the statues can move from their pedestals.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Animated Dwarf Statue", "cr": "4"},
+                    {"name": "Animated Dwarf Statue", "cr": "4"},
+                    {"name": "Animated Dwarf Statue", "cr": "4"}
+                ],
+                "loot": [
+                    {"name": "Gemstone Eyes (6 gems, 50 gp each)", "type": "treasure"}
+                ],
+                "hazards": [],
+                "services": [],
+                "event_triggers": [
+                    "On approach: The statues animate only if the Stone of Golorr is not presented. Holding the Stone aloft causes them to bow and return to their alcoves.",
+                    "On combat: The statues fight in perfect coordination, using shield-wall tactics."
+                ]
+            }
+        },
+        "3": {
+            "id": 3,
+            "x": 5,
+            "y": 34,
+            "width": 16,
+            "height": 14,
+            "room_type": "boss",
+            "connections": [2, 4],
+            "tier": 4,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The cavern opens into a cathedral-sized vault, its ceiling lost in shadow above. In the center, coiled atop a mountain of gold coins that cascades down like a frozen waterfall, an adult gold dragon sleeps. Each breath sends a ripple through the treasure -- coins sliding, gems clinking. The dragon's scales are burnished copper-gold, and even in sleep, an aura of ancient authority radiates from it like heat from a banked fire. One eye opens. It is the color of molten metal.",
+                "npcs": [
+                    {
+                        "name": "Aurinax",
+                        "role": "guardian",
+                        "dialogue": "I am Aurinax. I was asked to guard this hoard by Dagult Neverember, who placed a dragonstaff in my keeping to ensure my compliance. I have slept here for years, and I have grown... weary. Do you bring the Stone? Then we may speak of terms. But know this: I will not release one coin to anyone who would use it to harm this city.",
+                        "notes": "Adult gold dragon polymorphed into a dwarf named Barok Clanghammer when not in true form. Honorable but bound by the dragonstaff. Can be negotiated with (DC 18 Persuasion) or fought (CR 17). Prefers diplomacy. Genuinely cares about Waterdeep despite being an outsider."
+                    }
+                ],
+                "enemies": [
+                    {"name": "Aurinax (Adult Gold Dragon)", "cr": "17"}
+                ],
+                "loot": [
+                    {"name": "Dragonstaff of Ahghairon", "type": "quest_item"}
+                ],
+                "hazards": [
+                    {"name": "Frightful Presence aura (Wisdom save or frightened 1 minute)", "dc": 21}
+                ],
+                "services": [],
+                "event_triggers": [
+                    "On Stone presented: Aurinax recognizes the Stone of Golorr and stands, sending an avalanche of gold crashing across the floor. 'So. The game is ending at last.'",
+                    "On negotiation success: Aurinax surrenders the dragonstaff and agrees to release the gold to whoever can prove rightful claim. He transforms into Barok Clanghammer and walks out, free for the first time in years.",
+                    "On combat: Aurinax fights with restraint at first, using wing attacks and tail swipes to disarm rather than kill. Only uses breath weapon if reduced below half HP."
+                ]
+            }
+        },
+        "4": {
+            "id": 4,
+            "x": 30,
+            "y": 38,
+            "width": 14,
+            "height": 10,
+            "room_type": "treasure",
+            "connections": [3, 5],
+            "tier": 4,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Behind Aurinax's resting place, the true vault stretches into the dark. Half a million gold dragons are stacked in iron-banded chests, each stamped with the seal of Dagult Neverember. The wealth of an entire city, embezzled by its own lord. Beside the chests, manifests and shipping records document every transaction -- enough evidence to shake the political foundations of the Sword Coast.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [
+                    {"name": "Neverember's Embezzled Hoard (500,000 gp)", "type": "treasure"},
+                    {"name": "Financial Manifests (political evidence)", "type": "quest_item"},
+                    {"name": "Gem of Seeing", "type": "equipment"}
+                ],
+                "hazards": [],
+                "services": [],
+                "event_triggers": [
+                    "On discovery: The question is not how to take the gold. It is what happens to Waterdeep when everyone learns it exists."
+                ]
+            }
+        },
+        "5": {
+            "id": 5,
+            "x": 45,
+            "y": 30,
+            "width": 10,
+            "height": 8,
+            "room_type": "normal",
+            "connections": [4, 6],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "A workshop untouched since the Melairkyn dwarves abandoned it centuries ago. Tools hang on pegs in perfect order, their edges still sharp under a film of dust. A half-finished mithral breastplate sits on an anvil, waiting for a smith who will never return. The forge is cold but the coals are still there, as if they could be lit with a single breath.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [
+                    {"name": "Mithral Breastplate (unfinished, requires skilled smith)", "type": "armor"},
+                    {"name": "Dwarven Smith's Tools (masterwork)", "type": "equipment"}
+                ],
+                "hazards": [],
+                "services": [],
+                "event_triggers": [
+                    "On forge examination: A plaque reads 'Forge of Kalain, Master Smith, Third Age of Melairkyn.' The name is recorded in no surviving history."
+                ]
+            }
+        },
+        "6": {
+            "id": 6,
+            "x": 45,
+            "y": 12,
+            "width": 12,
+            "height": 8,
+            "room_type": "corridor",
+            "connections": [1, 5, 7],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "A corridor carved with geometric precision, every angle exact to the degree. But the walls are scarred with claw marks -- something large passed through here, and it was not gentle. The deepest gouges are recent, the exposed stone still pale. Whatever made them has been pacing this corridor for a long time.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [],
+                "hazards": [
+                    {"name": "Pit trap (hidden, 3d6 falling damage)", "dc": 15}
+                ],
+                "services": [],
+                "event_triggers": []
+            }
+        },
+        "7": {
+            "id": 7,
+            "x": 55,
+            "y": 5,
+            "width": 8,
+            "height": 6,
+            "room_type": "town_gate",
+            "connections": [6],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "A vertical shaft bored through solid rock, fitted with iron rungs hammered into the stone. Daylight -- thin, gray, and impossibly welcome -- filters down from a grate far above. The climb is long and the rungs are slick with condensation, but the air grows sweeter with every step. The grate opens into a cellar in the Castle Ward, behind a stack of wine barrels that has not been moved in years.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [],
+                "hazards": [
+                    {"name": "Long climb (Athletics check, fall 60 ft on failure)", "dc": 12}
+                ],
+                "services": ["exit_settlement"],
+                "event_triggers": [
+                    "On exit: You emerge blinking into Waterdeep sunlight. The city goes about its business, unaware that half a million gold dragons lie beneath its streets."
+                ]
+            }
+        }
+    }
+}

@@ -1,0 +1,31 @@
+{
+    "system_id": "CBRPNK",
+    "display_name": "CBR+PNK",
+    "engine": "FITD",
+    "system_family": "FITD",
+    "archetype_categories": {
+        "Roles": ["Hacker", "Punk", "Runner", "Fixer"]
+    },
+    "core_stats": {
+        "attributes": ["Insight", "Prowess", "Resolve"],
+        "actions": {
+            "Insight": ["Hack", "Study", "Survey"],
+            "Prowess": ["Prowl", "Skirmish", "Tinker"],
+            "Resolve": ["Consort", "Sway"]
+        }
+    },
+    "resources": ["Stress", "Glitches", "Cred"],
+    "dice_system": "d6_pool",
+    "position_effect": true,
+    "stress_max": 9,
+    "trauma_max": 4,
+    "trauma_table": [
+        "Paranoid", "Reckless", "Volatile", "Obsessed",
+        "Cold", "Haunted", "Unstable", "Vicious"
+    ],
+    "special_mechanics": {
+        "cyberware": "Augmentation slots with Glitch risk",
+        "runs": "Score-based mission structure (Plan -> Execute -> Aftermath)",
+        "heat": "Corporate attention tracker (0-6 clock)"
+    }
+}

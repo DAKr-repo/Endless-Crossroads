@@ -1,0 +1,63 @@
+{
+  "terrain_type": "urban",
+  "events": {
+    "tier_1": [
+      {
+        "id": "city_gate_queue",
+        "type": "skill_challenge",
+        "title": "City Gate Queue",
+        "description": "A long line of merchants and travelers chokes the gate. Guards inspect every cart.",
+        "target_role": "guide",
+        "dc": 9,
+        "success": "You know a service entrance. Slip through without the wait.",
+        "failure": "Hours in line. The bureaucracy is merciless.",
+        "failure_cost": {"days": 0.5}
+      },
+      {
+        "id": "street_pickpocket",
+        "type": "skill_challenge",
+        "title": "Street Pickpocket",
+        "description": "A child bumps into you in the crowd. Quick hands dart toward your belt pouch.",
+        "target_role": "scout",
+        "dc": 10,
+        "success": "You catch the hand and the child flees empty-handed.",
+        "failure": "Your coin pouch is lighter. You notice too late."
+      },
+      {
+        "id": "market_surplus",
+        "type": "discovery",
+        "title": "Market Surplus",
+        "description": "A merchant is closing up shop, selling the day's unsold stock at a discount.",
+        "target_role": "forager",
+        "dc": 8,
+        "success": "Trail rations at half price. Good deal.",
+        "failure": "Sold out before you reach the stall.",
+        "success_reward": {"rations": 3}
+      }
+    ],
+    "tier_2": [
+      {
+        "id": "guild_blockade",
+        "type": "skill_challenge",
+        "title": "Guild Blockade",
+        "description": "A trade guild has barricaded the district. No one passes without paying tribute.",
+        "target_role": "guide",
+        "dc": 12,
+        "success": "You know a route through the sewers. Unpleasant but effective.",
+        "failure": "Pay the toll or waste a day finding another route.",
+        "failure_cost": {"days": 1}
+      },
+      {
+        "id": "city_watch_suspicion",
+        "type": "skill_challenge",
+        "title": "City Watch Suspicion",
+        "description": "A patrol of guards stops your party. 'You match a description. Come with us.'",
+        "target_role": "scout",
+        "dc": 13,
+        "success": "You produce travel papers and they wave you through.",
+        "failure": "Hours of questioning at the watch house. You're released but delayed.",
+        "failure_cost": {"days": 0.5}
+      }
+    ]
+  }
+}

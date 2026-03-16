@@ -1,0 +1,308 @@
+{
+  "geography": {
+    "landmarks": [
+      {"name_parts": ["The", "Shattered", "Peaks"], "terrain": "alpine", "feature": "volcanic fissures that glow at night"},
+      {"name_parts": ["The", "Ironwood", "Expanse"], "terrain": "dense forest", "feature": "trees with bark harder than steel"},
+      {"name_parts": ["The", "Ashen", "Flats"], "terrain": "wasteland", "feature": "perpetual grey snow of volcanic ash"},
+      {"name_parts": ["The", "Verdant", "Rift"], "terrain": "canyon", "feature": "bioluminescent moss covering every surface"},
+      {"name_parts": ["The", "Sunken", "Reaches"], "terrain": "swamp", "feature": "half-submerged ruins of a prior age"},
+      {"name_parts": ["The", "Crystalline", "Steppe"], "terrain": "tundra", "feature": "fields of naturally occurring quartz pillars"},
+      {"name_parts": ["The", "Crimson", "Delta"], "terrain": "river delta", "feature": "red clay that stains everything it touches"},
+      {"name_parts": ["The", "Hollow", "Mesa"], "terrain": "plateau", "feature": "a vast network of caverns beneath the surface"},
+      {"name_parts": ["The", "Weeping", "Coast"], "terrain": "coastal cliffs", "feature": "waterfalls that flow from cliff faces into the sea"},
+      {"name_parts": ["The", "Gilded", "Savanna"], "terrain": "grassland", "feature": "amber grass that catches fire in dry season"},
+      {"name_parts": ["The", "Shifting", "Dunes"], "terrain": "desert", "feature": "sandstorms that reveal buried structures"},
+      {"name_parts": ["The", "Thorned", "Highlands"], "terrain": "moorland", "feature": "razor-edged obsidian outcrops"},
+      {"name_parts": ["The", "Pale", "Archipelago"], "terrain": "island chain", "feature": "bleached coral reefs visible from shore"},
+      {"name_parts": ["The", "Ember", "Caldera"], "terrain": "volcanic basin", "feature": "hot springs with healing properties"},
+      {"name_parts": ["The", "Frozen", "Reach"], "terrain": "glacier", "feature": "ancient creatures preserved in ice"}
+    ]
+  },
+  "religion": {
+    "tenets": [
+      {"doctrine": "The Cycle of Ash and Bloom", "ritual": "burning effigies at the solstice", "heresy": "refusing to let the dead rest"},
+      {"doctrine": "The Covenant of Still Waters", "ritual": "submersion baptism in sacred pools", "heresy": "poisoning a water source"},
+      {"doctrine": "The Iron Litany", "ritual": "forging a personal blade at coming-of-age", "heresy": "breaking an oath sworn on iron"},
+      {"doctrine": "The Whisper Compact", "ritual": "confessing sins to the wind at mountaintops", "heresy": "speaking the names of the dead aloud"},
+      {"doctrine": "The Radiant Accord", "ritual": "dawn prayers facing the first light", "heresy": "willingly entering darkness without a flame"},
+      {"doctrine": "The Rootbound Faith", "ritual": "planting a tree for every life taken", "heresy": "clear-cutting sacred groves"},
+      {"doctrine": "The Ember Creed", "ritual": "carrying a coal from the communal hearth", "heresy": "letting the eternal flame extinguish"},
+      {"doctrine": "The Veil Doctrine", "ritual": "wearing masks during all public worship", "heresy": "revealing a priest's true face"},
+      {"doctrine": "The Tidal Mandate", "ritual": "offerings cast into the sea at high tide", "heresy": "building permanent structures on the shore"},
+      {"doctrine": "The Bone Remembrance", "ritual": "wearing ancestor tokens carved from bone", "heresy": "destroying ancestral remains"},
+      {"doctrine": "The Star Concordance", "ritual": "navigating by constellations for all decisions", "heresy": "travelling during an eclipse"},
+      {"doctrine": "The Silence of the Deep", "ritual": "a day of absolute silence each month", "heresy": "screaming underground"},
+      {"doctrine": "The Dual Path", "ritual": "choosing light or shadow at age thirteen", "heresy": "walking both paths simultaneously"},
+      {"doctrine": "The Harvest Tithe", "ritual": "offering the first yield to temple granaries", "heresy": "hoarding grain during famine"},
+      {"doctrine": "The Dream Communion", "ritual": "shared sleeping rituals using sacred herbs", "heresy": "inducing nightmares in another"}
+    ]
+  },
+  "arts": {
+    "aesthetics": [
+      {"style": "Brutalist Stonework", "art_form": "monolithic architecture", "cultural_mark": "buildings that intimidate rather than welcome"},
+      {"style": "Living Sculpture", "art_form": "topiary and vine-shaping", "cultural_mark": "gardens that tell stories through plant arrangement"},
+      {"style": "Ember Glasswork", "art_form": "volcanic glass jewelry and windows", "cultural_mark": "status displayed through the colour of one's glass"},
+      {"style": "War Tapestry", "art_form": "battle-scene weaving", "cultural_mark": "every family owns a tapestry recording their losses"},
+      {"style": "Bone Scrimshaw", "art_form": "carved bone instruments and tools", "cultural_mark": "the dead serve the living through their remains"},
+      {"style": "Tide Painting", "art_form": "murals made with sea-pigment", "cultural_mark": "art that fades and must be constantly renewed"},
+      {"style": "Shadow Theatre", "art_form": "puppetry and silhouette performance", "cultural_mark": "truth is only spoken through fictional characters"},
+      {"style": "Iron Calligraphy", "art_form": "metalwork text and scrollwork", "cultural_mark": "contracts are literally forged in iron"},
+      {"style": "Ash Ceramics", "art_form": "pottery fired with volcanic ash glaze", "cultural_mark": "funeral urns are a family's most prized possession"},
+      {"style": "Crystal Resonance", "art_form": "musical instruments made from quartz", "cultural_mark": "pitch and harmony dictate social hierarchy"},
+      {"style": "Root Carving", "art_form": "sculpture from petrified wood", "cultural_mark": "elders are honoured with wooden likenesses"},
+      {"style": "Storm Weaving", "art_form": "textiles dyed by lightning strike", "cultural_mark": "clothing patterns reveal regional origin"},
+      {"style": "Sand Mandalas", "art_form": "temporary geometric ground art", "cultural_mark": "impermanence is considered the highest beauty"},
+      {"style": "Rune Tattooing", "art_form": "body art with magical significance", "cultural_mark": "one's history is literally written on the skin"},
+      {"style": "Fossil Mosaic", "art_form": "floors and walls inlaid with ancient remains", "cultural_mark": "the deep past is always underfoot"}
+    ]
+  },
+  "politics": {
+    "factions": [
+      {"name_parts": ["The", "Iron", "Council"], "agenda": "Maintain military supremacy through conscription", "clock_segments": 6},
+      {"name_parts": ["The", "Gilded", "Compact"], "agenda": "Control trade routes and set commodity prices", "clock_segments": 4},
+      {"name_parts": ["The", "Ashen", "Tribunal"], "agenda": "Enforce religious orthodoxy through inquisition", "clock_segments": 8},
+      {"name_parts": ["The", "Free", "Syndicate"], "agenda": "Undermine state monopolies through smuggling", "clock_segments": 6},
+      {"name_parts": ["The", "Silent", "Hand"], "agenda": "Gather intelligence and eliminate dissent", "clock_segments": 4},
+      {"name_parts": ["The", "Rootbound", "Assembly"], "agenda": "Protect ancestral lands from exploitation", "clock_segments": 6},
+      {"name_parts": ["The", "Ember", "Collective"], "agenda": "Redistribute wealth to the working class", "clock_segments": 8},
+      {"name_parts": ["The", "Pale", "Magistrates"], "agenda": "Codify law and punish all infractions equally", "clock_segments": 4},
+      {"name_parts": ["The", "Crimson", "Legion"], "agenda": "Expand borders through conquest", "clock_segments": 6},
+      {"name_parts": ["The", "Twilight", "Accord"], "agenda": "Broker peace between warring factions", "clock_segments": 8},
+      {"name_parts": ["The", "Bone", "Keepers"], "agenda": "Preserve the old ways against modernization", "clock_segments": 6},
+      {"name_parts": ["The", "Storm", "Wardens"], "agenda": "Control weather-manipulation technology", "clock_segments": 4},
+      {"name_parts": ["The", "Hollow", "Crown"], "agenda": "Restore the deposed monarchy", "clock_segments": 8},
+      {"name_parts": ["The", "Verdant", "Pact"], "agenda": "Enforce environmental protection through force", "clock_segments": 6},
+      {"name_parts": ["The", "Dusk", "Merchants"], "agenda": "Monopolize rare reagent trade", "clock_segments": 4}
+    ]
+  },
+  "economics": {
+    "resources": [
+      {"resource": "Emberite ore", "abundance_pool": ["scarce", "moderate", "depleting"], "trade_note_pool": ["Heavily taxed by the state", "Black market thrives", "Only mined by indentured workers"]},
+      {"resource": "Freshwater", "abundance_pool": ["abundant", "seasonal", "contested"], "trade_note_pool": ["Free for citizens", "Rationed during drought", "Water wars define border conflicts"]},
+      {"resource": "Ironwood timber", "abundance_pool": ["moderate", "scarce", "renewable"], "trade_note_pool": ["Export restricted", "Guilds control harvest", "Sacred groves off-limits"]},
+      {"resource": "Salt", "abundance_pool": ["abundant", "moderate", "monopolized"], "trade_note_pool": ["Used as currency in remote areas", "Crown monopoly", "Smuggled across borders"]},
+      {"resource": "Arcane reagents", "abundance_pool": ["rare", "scarce", "synthetic"], "trade_note_pool": ["Temple-controlled", "Worth more than gold", "Addictive when refined"]},
+      {"resource": "Grain and livestock", "abundance_pool": ["surplus", "adequate", "scarce"], "trade_note_pool": ["Tithed to temples", "Free market", "Famine risk every third year"]},
+      {"resource": "Volcanic glass", "abundance_pool": ["abundant", "moderate", "artisan-only"], "trade_note_pool": ["Exported widely", "Sacred material", "Weapons-grade is restricted"]},
+      {"resource": "Bone ivory", "abundance_pool": ["moderate", "declining", "taboo"], "trade_note_pool": ["Religious significance", "Harvest is controversial", "Synthetic alternatives emerging"]},
+      {"resource": "Cloth and dyes", "abundance_pool": ["abundant", "seasonal", "imported"], "trade_note_pool": ["Guild-controlled", "Colour indicates caste", "Trade caravans are frequent targets"]},
+      {"resource": "Crystals and gemstones", "abundance_pool": ["rare", "moderate", "hoarded"], "trade_note_pool": ["Currency standard", "Magical applications", "Mining causes ecological damage"]},
+      {"resource": "Medicinal herbs", "abundance_pool": ["seasonal", "cultivated", "wild only"], "trade_note_pool": ["Healer guilds set prices", "Free for the faithful", "Overharvesting is a growing concern"]},
+      {"resource": "Fossil fuels", "abundance_pool": ["abundant", "depleting", "contested"], "trade_note_pool": ["Powers industry", "Environmental cost ignored", "Rival nations compete for deposits"]},
+      {"resource": "Rare metals", "abundance_pool": ["scarce", "deep-vein only", "imported"], "trade_note_pool": ["Arms race driver", "Slave labour in mines", "Strategic reserve hoarded by military"]},
+      {"resource": "Whale oil", "abundance_pool": ["seasonal", "declining", "synthetic"], "trade_note_pool": ["Lamp fuel standard", "Whaling fleets are privateer-run", "Conservation movement growing"]},
+      {"resource": "Spices and stimulants", "abundance_pool": ["imported", "cultivated", "rare"], "trade_note_pool": ["Luxury trade", "Addictive varieties banned", "Caravans require armed escort"]}
+    ]
+  },
+  "social": {
+    "taboos": [
+      {"prohibition": "Eating meat on holy days", "punishment": "public flogging", "origin": "An ancient famine pact with the gods"},
+      {"prohibition": "Speaking to strangers after dark", "punishment": "exile for one moon cycle", "origin": "A plague carried by night travellers"},
+      {"prohibition": "Wearing the colour red outside of war", "punishment": "confiscation of property", "origin": "Red dye was once made from human blood"},
+      {"prohibition": "Entering a home uninvited", "punishment": "the host may claim a possession", "origin": "An ancestral treaty between nomadic clans"},
+      {"prohibition": "Killing a bird within city walls", "punishment": "seven days of community service", "origin": "Birds are believed to carry messages from the dead"},
+      {"prohibition": "Refusing hospitality to a traveller", "punishment": "social ostracism for a season", "origin": "A legendary hero was once turned away and cursed the town"},
+      {"prohibition": "Counting another person's wealth aloud", "punishment": "a fine equal to the amount named", "origin": "Envy-spirits are drawn to spoken numbers"},
+      {"prohibition": "Building higher than the temple spire", "punishment": "demolition of the structure", "origin": "Only the gods may look down upon the faithful"},
+      {"prohibition": "Whistling underground", "punishment": "immediate expulsion from the mine", "origin": "Miners believe it wakes sleeping earth-spirits"},
+      {"prohibition": "Marrying outside one's craft guild", "punishment": "loss of guild membership", "origin": "Trade secrets must stay within bloodlines"},
+      {"prohibition": "Touching a corpse with bare hands", "punishment": "ritual purification lasting three days", "origin": "Death-taint is considered contagious"},
+      {"prohibition": "Travelling alone during an eclipse", "punishment": "none formal, but considered suicidal", "origin": "The space between worlds thins during eclipses"},
+      {"prohibition": "Using fire magic within settlements", "punishment": "imprisonment until the next rain", "origin": "The Great Burning that destroyed the old capital"},
+      {"prohibition": "Naming a child before its first birthday", "punishment": "bad luck upon the family", "origin": "Infant mortality was once so high names were wasted"},
+      {"prohibition": "Harvesting from another's garden without asking", "punishment": "replacement at double quantity", "origin": "Property rights are sacred since the land reforms"}
+    ]
+  },
+  "language": {
+    "profiles": [
+      {
+        "name_parts": ["Guttural", "Stone"],
+        "phoneme_type": "guttural",
+        "vowels": ["a", "o", "u", "a", "o"],
+        "consonants": ["k", "g", "r", "d", "th", "n", "b"],
+        "syllable_patterns": ["CVC", "CV", "VC"],
+        "naming_rules": "Hard consonant clusters, deep vowels",
+        "suffixes": ["-ak", "-ok", "-ur", "-grim"],
+        "titles": ["Thane", "Stonespeaker", "Warden"]
+      },
+      {
+        "name_parts": ["Sibilant", "Fluid"],
+        "phoneme_type": "sibilant",
+        "vowels": ["i", "e", "a", "ei"],
+        "consonants": ["s", "sh", "z", "ss", "zh", "sl", "sv"],
+        "syllable_patterns": ["CV", "CVC", "VC"],
+        "naming_rules": "Sibilant-heavy, flowing rhythm",
+        "suffixes": ["-iss", "-esh", "-az", "-ei"],
+        "titles": ["Whisper", "Silkwarden", "Veilkeeper"]
+      },
+      {
+        "name_parts": ["Flowing", "Elvish"],
+        "phoneme_type": "flowing",
+        "vowels": ["a", "e", "i", "ae", "ia"],
+        "consonants": ["l", "n", "r", "th", "v", "m", "f"],
+        "syllable_patterns": ["CV", "CVC", "VCV"],
+        "naming_rules": "Liquid consonants, diphthong vowels",
+        "suffixes": ["-iel", "-wen", "-ath", "-ion"],
+        "titles": ["Starweaver", "Lightbearer", "Eldren"]
+      },
+      {
+        "name_parts": ["Clipped", "Martial"],
+        "phoneme_type": "clipped",
+        "vowels": ["a", "e", "i", "o"],
+        "consonants": ["t", "k", "p", "v", "r", "b", "d"],
+        "syllable_patterns": ["CVC", "CV", "VC"],
+        "naming_rules": "Short syllables, hard stops",
+        "suffixes": ["-ek", "-an", "-id"],
+        "titles": ["Captain", "Marshal", "Blade"]
+      },
+      {
+        "name_parts": ["Nasal", "Scholar"],
+        "phoneme_type": "nasal",
+        "vowels": ["a", "e", "o", "an", "en"],
+        "consonants": ["m", "n", "ng", "mn", "l", "d", "v"],
+        "syllable_patterns": ["CVC", "CV", "CVV"],
+        "naming_rules": "Nasal resonance, measured cadence",
+        "suffixes": ["-man", "-ven", "-om", "-nen"],
+        "titles": ["Loremaster", "Sage", "Archivist"]
+      },
+      {
+        "name_parts": ["Liquid", "River"],
+        "phoneme_type": "liquid",
+        "vowels": ["a", "o", "u", "ou"],
+        "consonants": ["l", "r", "w", "fl", "br", "n"],
+        "syllable_patterns": ["CV", "CVC", "CVV"],
+        "naming_rules": "Flowing liquid consonants, open vowels",
+        "suffixes": ["-low", "-ura", "-al", "-wen"],
+        "titles": ["Riverwarden", "Tidecaller", "Boatswain"]
+      },
+      {
+        "name_parts": ["Harsh", "Volcanic"],
+        "phoneme_type": "harsh",
+        "vowels": ["a", "o", "u", "a"],
+        "consonants": ["k", "z", "g", "r", "v", "d", "kh"],
+        "syllable_patterns": ["CVC", "CV", "VC"],
+        "naming_rules": "Velar fricatives, guttural force",
+        "suffixes": ["-kh", "-ox", "-az", "-ul"],
+        "titles": ["Ashborn", "Forgekeeper", "Cinderlord"]
+      },
+      {
+        "name_parts": ["Breathy", "Nomad"],
+        "phoneme_type": "breathy",
+        "vowels": ["a", "e", "i", "ah", "eh"],
+        "consonants": ["h", "wh", "f", "th", "sh", "ph"],
+        "syllable_patterns": ["CV", "CVC", "VCV"],
+        "naming_rules": "Aspirated onsets, soft edges",
+        "suffixes": ["-ah", "-eh", "-ith", "-phe"],
+        "titles": ["Windwalker", "Dustseer", "Pathfinder"]
+      },
+      {
+        "name_parts": ["Rhythmic", "Drum"],
+        "phoneme_type": "rhythmic",
+        "vowels": ["a", "o", "u", "e"],
+        "consonants": ["b", "d", "t", "k", "mb", "nd", "ng"],
+        "syllable_patterns": ["CV", "CVC", "CVCV"],
+        "naming_rules": "Plosive cadence, drum-beat rhythm",
+        "suffixes": ["-ba", "-ko", "-ndu", "-ta"],
+        "titles": ["Drumkeeper", "Heartbeat", "Chanter"]
+      },
+      {
+        "name_parts": ["Melodic", "Dawn"],
+        "phoneme_type": "melodic",
+        "vowels": ["a", "e", "i", "o", "ai", "ei"],
+        "consonants": ["l", "m", "n", "r", "v", "s"],
+        "syllable_patterns": ["CV", "CVV", "VCV"],
+        "naming_rules": "Vowel-rich, singable names",
+        "suffixes": ["-ai", "-iel", "-ora", "-is"],
+        "titles": ["Dawnsinger", "Harmonist", "Cantor"]
+      },
+      {
+        "name_parts": ["Ancient", "Formal"],
+        "phoneme_type": "ancient",
+        "vowels": ["a", "e", "o", "u", "ae"],
+        "consonants": ["th", "v", "n", "r", "l", "s", "m"],
+        "syllable_patterns": ["CVC", "CV", "VCV"],
+        "naming_rules": "Archaic clusters, formal register",
+        "suffixes": ["-us", "-or", "-ae", "-ion"],
+        "titles": ["Primarch", "Archon", "Consul"]
+      },
+      {
+        "name_parts": ["Dialectal", "Rural"],
+        "phoneme_type": "dialectal",
+        "vowels": ["a", "e", "i", "o"],
+        "consonants": ["b", "d", "g", "w", "r", "l", "h"],
+        "syllable_patterns": ["CVC", "CV", "VC"],
+        "naming_rules": "Simple clusters, earthy tones",
+        "suffixes": ["-wick", "-ford", "-dale", "-ham"],
+        "titles": ["Goodman", "Reeve", "Elder"]
+      },
+      {
+        "name_parts": ["Trade", "Pidgin"],
+        "phoneme_type": "trade-pidgin",
+        "vowels": ["a", "e", "i", "o", "u"],
+        "consonants": ["t", "k", "s", "n", "r", "l", "m"],
+        "syllable_patterns": ["CV", "CVC", "VC"],
+        "naming_rules": "Simplified phonology, universal sounds",
+        "suffixes": ["-to", "-ka", "-ni", "-sa"],
+        "titles": ["Factor", "Broker", "Speaker"]
+      },
+      {
+        "name_parts": ["Tonal", "Birdlike"],
+        "phoneme_type": "tonal",
+        "vowels": ["i", "e", "a", "ii", "ee"],
+        "consonants": ["ch", "t", "k", "p", "ts", "w", "r"],
+        "syllable_patterns": ["CV", "CVC", "CVV"],
+        "naming_rules": "High vowels, chirping consonants",
+        "suffixes": ["-chi", "-ri", "-tee", "-wi"],
+        "titles": ["Skycaller", "Feathered", "Songmaster"]
+      },
+      {
+        "name_parts": ["Creole", "Dockside"],
+        "phoneme_type": "creole",
+        "vowels": ["a", "e", "o", "u", "ou"],
+        "consonants": ["j", "b", "d", "r", "l", "m", "n", "v"],
+        "syllable_patterns": ["CV", "CVC", "VCV"],
+        "naming_rules": "Mixed phonemes, relaxed rhythm",
+        "suffixes": ["-jo", "-bel", "-mar", "-dou"],
+        "titles": ["Bosun", "Dockmaster", "Harbourhand"]
+      }
+    ]
+  },
+  "culture": {
+    "values": [
+      {"tenet": "Hospitality above all", "expression": "No stranger sleeps outside the walls", "consequence": "Innkeepers hold political power equal to mayors"},
+      {"tenet": "Truth in all dealings", "expression": "Contracts spoken aloud before witnesses are sacred", "consequence": "Liars are branded and exiled permanently"},
+      {"tenet": "Honour the craft", "expression": "Every citizen masters one trade before adulthood", "consequence": "The unguilded are considered incomplete persons"},
+      {"tenet": "Strength through unity", "expression": "No family eats until all families eat", "consequence": "Communal granaries are defended more fiercely than temples"},
+      {"tenet": "Respect the cycle", "expression": "Nothing is wasted; all returns to the earth", "consequence": "Funeral rites double as planting ceremonies"},
+      {"tenet": "Courage before comfort", "expression": "Children face a trial of endurance at age twelve", "consequence": "Cowardice in battle strips citizenship rights"},
+      {"tenet": "Knowledge is power", "expression": "Libraries are guarded as fiercely as treasuries", "consequence": "Illiteracy is punished; scribes outrank soldiers"},
+      {"tenet": "Mercy to the fallen", "expression": "Defeated enemies are offered shelter and rehabilitation", "consequence": "Prisons do not exist; all captives must be sponsored by a family"},
+      {"tenet": "Balance in all things", "expression": "Every act of creation must be matched by an act of sacrifice", "consequence": "Artists destroy one old work for every new piece completed"},
+      {"tenet": "Freedom of movement", "expression": "No gate may bar a peaceful traveller", "consequence": "Borders are ceremonial; passports are considered offensive"},
+      {"tenet": "Ancestor reverence", "expression": "The dead advise the living through dream-oracles", "consequence": "Major decisions require consulting an ancestor shrine"},
+      {"tenet": "The commons belong to all", "expression": "Rivers, forests, and mineral veins cannot be privately owned", "consequence": "Resource hoarding is the gravest crime"},
+      {"tenet": "Earn your name", "expression": "Birth names are replaced by deed-names at maturity", "consequence": "The unnamed hold no legal standing in courts"},
+      {"tenet": "Art reveals truth", "expression": "Public art critiquing leaders is protected speech", "consequence": "Censorship attempts provoke immediate civic unrest"},
+      {"tenet": "Protect the young", "expression": "Harm to a child calls the entire community to arms", "consequence": "Orphans are raised collectively; adoption is automatic"}
+    ]
+  },
+  "architecture": {
+    "styles": [
+      {"building_style": "Brutalist Stone", "material": "dark granite", "motif": "imposing geometric forms", "clothing_style": "Heavy layers", "textile": "oiled canvas and leather", "accessory": "iron clasps"},
+      {"building_style": "Organic Growth", "material": "living wood and woven vines", "motif": "spiralling natural curves", "clothing_style": "Draped robes", "textile": "moss-dyed linen", "accessory": "seed-pod brooches"},
+      {"building_style": "Subterranean Vault", "material": "reinforced basalt", "motif": "arched ceilings with carved keystones", "clothing_style": "Fitted tunics", "textile": "cave-spider silk", "accessory": "phosphorescent pendants"},
+      {"building_style": "Crystalline Lattice", "material": "fused quartz and glass", "motif": "prismatic light refraction", "clothing_style": "Translucent wraps", "textile": "spun glass-fibre", "accessory": "crystal circlets"},
+      {"building_style": "Maritime Timber", "material": "salt-treated driftwood", "motif": "wave-carved lintels and rope joints", "clothing_style": "Oilskin coats", "textile": "waxed sailcloth", "accessory": "brass compass tokens"},
+      {"building_style": "Nomadic Frame", "material": "hide-stretched bone poles", "motif": "portable symmetry and wind-angled walls", "clothing_style": "Layered wraps", "textile": "felted wool and fur trim", "accessory": "antler toggles"},
+      {"building_style": "Arboreal Platform", "material": "living branch and bark planking", "motif": "canopy-integrated walkways", "clothing_style": "Leaf-scale armour", "textile": "woven bark-strip cloth", "accessory": "thorn pins"},
+      {"building_style": "Industrial Rivet", "material": "pig iron and riveted steel", "motif": "exposed girders and smoke stacks", "clothing_style": "Heavy aprons", "textile": "fireproof asbestos-weave", "accessory": "gear-tooth buckles"},
+      {"building_style": "Sacred Monolith", "material": "white marble and gold leaf", "motif": "towering spires and stained glass", "clothing_style": "Vestments", "textile": "embroidered silk", "accessory": "holy symbol amulets"},
+      {"building_style": "Martial Fortress", "material": "quarried limestone and iron bands", "motif": "crenellations and murder holes", "clothing_style": "Tabards over mail", "textile": "padded gambeson linen", "accessory": "sigil brooches"},
+      {"building_style": "Mercantile Arcade", "material": "painted plaster over brick", "motif": "colonnaded shopfronts and tiled courtyards", "clothing_style": "Embroidered vests", "textile": "imported cotton and satin", "accessory": "coin-chain belts"},
+      {"building_style": "Fungal Hollow", "material": "compressed mycelium blocks", "motif": "bioluminescent veining and soft edges", "clothing_style": "Spore-resistant cloaks", "textile": "mushroom-leather", "accessory": "chitin rings"},
+      {"building_style": "Glacial Cut", "material": "shaped ice and permafrost stone", "motif": "smooth facets that catch polar light", "clothing_style": "Fur-lined parkas", "textile": "seal-hide and down", "accessory": "bone scrimshaw clasps"},
+      {"building_style": "Volcanic Forge", "material": "obsidian and slag-glass", "motif": "heat vents integrated into walls", "clothing_style": "Soot-darkened leathers", "textile": "fire-resistant wyrm-scale", "accessory": "lava-stone rings"},
+      {"building_style": "Woven Canopy", "material": "giant reed and palm frond", "motif": "layered thatching with hanging gardens", "clothing_style": "Open-weave tunics", "textile": "plant-fibre lace", "accessory": "flower garlands"}
+    ]
+  }
+}

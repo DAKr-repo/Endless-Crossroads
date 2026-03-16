@@ -1,0 +1,159 @@
+{
+    "seed": 3003,
+    "width": 50,
+    "height": 50,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "trollskull_manor",
+        "theme": "VILLAGE",
+        "topology": "settlement",
+        "display_name": "Trollskull Manor"
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 15,
+            "y": 15,
+            "width": 20,
+            "height": 12,
+            "room_type": "tavern",
+            "connections": [1, 2, 3, 4, 5],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The taproom of Trollskull Manor -- a once-grand tavern fallen into elegant disrepair. Dust sheets cover the furniture. A chandelier of antlers and wrought iron hangs askew from the vaulted ceiling. The bar is carved from a single slab of dark oak, its surface ringed by a thousand mugs. Sunlight slants through cracked stained-glass windows depicting a troll hunt. The whole place smells of wood polish and old dreams.",
+                "npcs": [
+                    {
+                        "name": "Lif",
+                        "role": "ghost",
+                        "dialogue": "",
+                        "notes": "The ghost of the previous owner. Does not speak but communicates through poltergeist activity -- arranging mugs into words, slamming doors in disapproval, or polishing the bar when pleased. Friendly once acknowledged. Will help run the tavern if the party treats his legacy with respect."
+                    }
+                ],
+                "services": ["drink", "rest", "base_of_operations"],
+                "renovation_options": [
+                    {"name": "Basic Repairs", "cost": 250, "days": 5, "effect": "Tavern becomes functional. Lif stops breaking things."},
+                    {"name": "Full Renovation", "cost": 1000, "days": 20, "effect": "Tavern becomes profitable. Generates 10 gp/tenday income."},
+                    {"name": "Guild License", "cost": 150, "days": 3, "effect": "Legal permission to operate. Required by Waterdeep law."}
+                ]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 5,
+            "y": 18,
+            "width": 8,
+            "height": 8,
+            "room_type": "residence",
+            "connections": [0],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The kitchen -- a stone-floored room with a cold hearth large enough to stand in. Copper pots hang from ceiling hooks, tarnished green. A dumbwaiter connects to the cellar below. The pantry shelves are bare except for a jar of pickled eggs that may predate the Spellplague. Rat droppings dot the corners, though the rats themselves seem to have moved on.",
+                "services": ["cook"],
+                "renovation_options": [
+                    {"name": "Restock Kitchen", "cost": 50, "days": 1, "effect": "Basic cooking supplies. Can prepare simple meals."},
+                    {"name": "Hire a Cook", "cost": 30, "days": 0, "effect": "Per tenday. A competent cook improves tavern reputation."}
+                ]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 18,
+            "y": 30,
+            "width": 14,
+            "height": 10,
+            "room_type": "residence",
+            "connections": [0],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The cellar -- damp stone walls, a packed earth floor, and racks of empty wine bottles gathering dust. A locked iron gate in the far wall opens onto the Waterdeep sewer system. The air is cold and carries a mineral tang. Claw marks on the cellar door suggest something once tried very hard to get out -- or in.",
+                "investigation_dc": 14,
+                "investigation_success": "Behind a false section of wine rack: a hidden compartment containing Lif's personal ledger and a pouch of 50 gold pieces -- his life savings, hidden before his murder.",
+                "loot": [
+                    {"name": "Lif's Ledger", "value": 0, "description": "The former owner's accounting book. Details the manor's debts and the name of his killer: 'Turned away by the Guild. They sent a man with a dead smile. I write this knowing I will not survive the night.'"},
+                    {"name": "50 Gold Pieces (hidden)", "value": 50}
+                ]
+            }
+        },
+        "3": {
+            "id": 3,
+            "x": 15,
+            "y": 2,
+            "width": 20,
+            "height": 10,
+            "room_type": "residence",
+            "connections": [0, 4],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The guest rooms -- a row of four small chambers on the upper floor, each with a straw mattress, a washstand, and a window overlooking Trollskull Alley. The wallpaper peels in long strips, revealing older wallpaper beneath, and older wallpaper beneath that -- layers of decades like geological strata. One room still has a 'Do Not Disturb' sign hanging from its doorknob.",
+                "services": ["rest"],
+                "capacity": 4,
+                "renovation_options": [
+                    {"name": "Furnish Guest Rooms", "cost": 200, "days": 5, "effect": "Comfortable rooms. Can rent to guests for 5 sp/night each."}
+                ]
+            }
+        },
+        "4": {
+            "id": 4,
+            "x": 20,
+            "y": 2,
+            "width": 10,
+            "height": 6,
+            "room_type": "residence",
+            "connections": [3],
+            "tier": 1,
+            "is_locked": true,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The owner's suite -- the largest room on the upper floor, with a four-poster bed draped in moth-eaten velvet and a writing desk facing a bay window. Lif's personal effects remain undisturbed: a half-finished letter, a miniature portrait of a woman, and a pressed flower between the pages of a book of Waterdhavian poetry. The room feels cold even on warm days.",
+                "lock_dc": 10,
+                "npcs": [
+                    {
+                        "name": "Lif (manifestation)",
+                        "role": "ghost",
+                        "dialogue": "",
+                        "notes": "Lif's presence is strongest here. If the party reads his letter aloud, the room warms by several degrees and the ghost becomes permanently friendly. The letter is addressed to someone named 'Elara' and says: 'I should have left when you asked me to.'"
+                    }
+                ]
+            }
+        },
+        "5": {
+            "id": 5,
+            "x": 25,
+            "y": 30,
+            "width": 8,
+            "height": 6,
+            "room_type": "town_gate",
+            "connections": [0],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The alley entrance -- a side door opening onto Trollskull Alley, a narrow cobblestone lane in the North Ward. Neighboring businesses include a bookshop, a tiger-renting establishment, a private detective's office, and a shop that sells nothing but candles shaped like famous Waterdhavians. A calico cat sits on the stoop, watching passersby with unsettling intelligence.",
+                "npcs": [
+                    {
+                        "name": "Fala Lefaliir",
+                        "role": "neighbor",
+                        "dialogue": "Welcome to the alley! I run Corellon's Crown -- the herbalist shop next door. If you need poultices, tinctures, or someone to complain to about the noise, I'm your elf.",
+                        "notes": "Wood elf herbalist. Non-binary. Knows all the alley's gossip. Can supply healing potions at cost (40 gp) as a favor to good neighbors."
+                    },
+                    {
+                        "name": "Vincent Trench",
+                        "role": "neighbor",
+                        "dialogue": "Trench. Private investigator. If you need someone found or something proven, my rates are reasonable. If you need something un-found or un-proven, my rates are less reasonable.",
+                        "notes": "Actually a disguised rakshasa named Valanthar. Runs a legitimate detective agency as cover. Not hostile unless his true nature is discovered."
+                    }
+                ],
+                "services": ["exit_settlement"],
+                "exit_note": "Leads to Trollskull Alley and the North Ward of Waterdeep."
+            }
+        }
+    }
+}

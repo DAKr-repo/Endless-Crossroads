@@ -1,0 +1,191 @@
+{
+    "seed": 5008,
+    "width": 65,
+    "height": 55,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "demogorgon_lair",
+        "theme": "GOTHIC",
+        "topology": "dungeon",
+        "display_name": "The Labyrinth of the Prince of Demons"
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 5,
+            "y": 5,
+            "width": 12,
+            "height": 8,
+            "room_type": "start",
+            "connections": [1],
+            "tier": 4,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Abyssal Gate is a wound in reality -- a vertical tear in the fabric of the Underdark where stone gives way to a membrane of darkness that pulses like a heartbeat. Stepping through it is like being swallowed. The other side is wrong in every way: the air tastes of copper and madness, gravity shifts subtly with each step, and the stone walls are veined with something organic that contracts when touched.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Barlgura", "cr": "5"},
+                    {"name": "Shadow Demon", "cr": "4"}
+                ],
+                "loot": [
+                    {"name": "Vizeran's Dark Heart Compass (quest item, points toward ritual site)", "type": "quest_item"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: No turning back. The gate seals behind the party.", "On combat: Demons patrol in pairs. Stealth DC 16 to avoid initial encounter."]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 20,
+            "y": 10,
+            "width": 14,
+            "height": 12,
+            "room_type": "normal",
+            "connections": [0, 2, 3],
+            "tier": 4,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Fetid Gallery stretches through a series of chambers whose walls are covered in bas-relief depicting scenes of madness and consumption. Each carving moves when not directly observed -- figures change position, mouths open wider, eyes track the viewer. The floor is an inch deep in brackish water that reflects a different ceiling than the one above, and things move beneath the surface.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Chasme", "cr": "6"},
+                    {"name": "Dretch (swarm of 6)", "cr": "1/4"},
+                    {"name": "Hezrou", "cr": "8"}
+                ],
+                "loot": [
+                    {"name": "Amulet of Proof Against Detection", "type": "wondrous_item"},
+                    {"name": "Demon Ichor (3 vials, alchemical component)", "type": "crafting_material"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: Wisdom save DC 14 or gain one level of madness (short-term).", "On search: DC 17 Perception reveals a carving that depicts the ritual chamber -- a map carved in madness."]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 35,
+            "y": 5,
+            "width": 16,
+            "height": 14,
+            "room_type": "boss",
+            "connections": [1, 4, 5],
+            "tier": 4,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Throne of Madness sits at the convergence of two impossible corridors that should not intersect but do. The throne itself is carved from a single piece of obsidian -- or perhaps grown, as its surface bears the texture of coral. It is sized for something with two heads, and the armrests are worn smooth by claws. The air here vibrates with a frequency that makes teeth ache and thoughts fragment.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Glabrezu", "cr": "9"},
+                    {"name": "Vrock", "cr": "6"}
+                ],
+                "loot": [
+                    {"name": "Obsidian Crown Fragment (ritual component)", "type": "quest_item"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: Sitting on the throne triggers a vision of Demogorgon's plan -- Intelligence save DC 16 or 4d6 psychic damage, success reveals the layout of the sanctum.", "On search: DC 15 Arcana identifies the throne as a psychic anchor -- destroying it weakens Demogorgon's hold on this layer."]
+            }
+        },
+        "3": {
+            "id": 3,
+            "x": 15,
+            "y": 25,
+            "width": 12,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [1, 5],
+            "tier": 4,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Spawning Pool fills a cavern with a lake of viscous, dark liquid that bubbles and churns of its own volition. Things rise from its surface partially formed -- limbs, faces, wings -- only to dissolve back into the pool. The smell is indescribable: birth and death and something chemical that burns the nostrils. Demogorgon breeds his servants here, each one a reflection of his divided nature.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Babau", "cr": "4"},
+                    {"name": "Babau", "cr": "4"},
+                    {"name": "Nascent Demon (spawning)", "cr": "3"}
+                ],
+                "loot": [
+                    {"name": "Spawning Catalyst (can be corrupted into a component for the Dark Heart)", "type": "quest_item"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: Every round, a new demon spawns from the pool (1d4: 1-2 Dretch, 3 Babau, 4 nothing).", "On destroy: DC 18 Arcana to poison the pool with holy water (5 vials). Stops spawning permanently."]
+            }
+        },
+        "4": {
+            "id": 4,
+            "x": 45,
+            "y": 15,
+            "width": 12,
+            "height": 10,
+            "room_type": "treasure",
+            "connections": [2, 5],
+            "tier": 4,
+            "is_locked": true,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Trophy Hall is Demogorgon's gallery of conquered foes. Petrified bodies line the walls in poses of terror -- adventurers, demons, even a solar angel frozen mid-scream. Glass cases hold weapons taken from the defeated, each one still humming with power that its wielder could not save them. The Prince of Demons keeps his victories close.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Medusa (Demogorgon's curator)", "cr": "6"}
+                ],
+                "loot": [
+                    {"name": "Holy Avenger (longsword, in a trophy case)", "type": "weapon"},
+                    {"name": "Staff of Power (cracked, 10 charges remaining)", "type": "wondrous_item"},
+                    {"name": "Potion of Supreme Healing (2)", "type": "consumable"},
+                    {"name": "Ioun Stone (Mastery)", "type": "wondrous_item"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: The medusa curator challenges intruders. Defeating her or DC 18 Persuasion (she secretly resents her master) grants access.", "On loot: Breaking the trophy cases triggers a psychic alarm. Demogorgon is now aware of intruders (halves surprise chance in sanctum)."]
+            }
+        },
+        "5": {
+            "id": 5,
+            "x": 30,
+            "y": 30,
+            "width": 18,
+            "height": 16,
+            "room_type": "boss",
+            "connections": [2, 3, 4, 6],
+            "tier": 4,
+            "is_locked": true,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Demogorgon's Sanctum is a cavern that should not exist -- its dimensions shift, its walls breathe, and the ceiling is a window into the Gaping Maw, the demon lord's home layer of the Abyss. The Prince of Demons stands at its center, both heads arguing with each other in a language that predates mortal speech. His tentacles grip the stone floor, cracking it. He is eighteen feet of muscle, madness, and primordial rage, and both pairs of eyes turn to you with terrible, divided attention.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Demogorgon, Prince of Demons", "cr": "26"},
+                    {"name": "Nalfeshnee (lieutenant)", "cr": "13"}
+                ],
+                "loot": [
+                    {"name": "Demogorgon's Essence (captured during ritual)", "type": "quest_item"},
+                    {"name": "Amulet of the Planes", "type": "wondrous_item"},
+                    {"name": "Hoard: 12,000 gp in gems and artifacts", "type": "treasure"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: The Dark Heart ritual must be activated within 3 rounds. Without it, Demogorgon cannot be permanently banished.", "On ritual: Vizeran's Dark Heart turns the demon lords against each other. Demogorgon battles other demon lords while the party fights weakened remnants.", "On victory: Demogorgon is banished. The Underdark begins to heal. But the cost -- the madness seeded in every settlement -- will take generations to fully purge."]
+            }
+        },
+        "6": {
+            "id": 6,
+            "x": 50,
+            "y": 45,
+            "width": 10,
+            "height": 8,
+            "room_type": "town_gate",
+            "connections": [5],
+            "tier": 4,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Exit Rift tears open as Demogorgon falls -- a crack in the Abyss that leads back to the Underdark, specifically to the caverns beneath Gauntlgrym. Light -- real light, reflected from dwarven forge-fires -- spills through the rift like a promise. The Abyss screams behind you as you step through, and for one terrible moment both worlds overlap. Then the rift seals, and you stand in silence, and the stone beneath your feet is just stone.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [],
+                "services": [],
+                "event_triggers": ["On entry: Module complete. Transition to epilogue.", "On exit: Bruenor and the dwarves of Gauntlgrym welcome the party as heroes. Celebrations last a tenday."]
+            }
+        }
+    }
+}

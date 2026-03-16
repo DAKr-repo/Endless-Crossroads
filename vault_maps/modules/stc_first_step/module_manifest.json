@@ -1,0 +1,76 @@
+{
+    "module_id": "stc_first_step",
+    "display_name": "Stormlight: The First Step",
+    "system_id": "stc",
+    "source_pdf": null,
+    "world_map": "world_map.json",
+    "starting_location": "kholinar",
+    "recommended_levels": {"min": 1, "max": 5},
+    "chapters": [
+        {
+            "chapter_id": "ch1",
+            "display_name": "Act 1: The City of Bells",
+            "order": 1,
+            "zones": [
+                {
+                    "zone_id": "kholinar",
+                    "blueprint": "kholinar.json",
+                    "topology": "settlement",
+                    "theme": "STONE",
+                    "location_id": "alethkar",
+                    "entry_trigger": "module_start",
+                    "exit_trigger": "quest_complete"
+                }
+            ]
+        },
+        {
+            "chapter_id": "ch2",
+            "display_name": "Act 2: The Shattered Plains",
+            "order": 2,
+            "zones": [
+                {
+                    "zone_id": "shattered_plains",
+                    "blueprint": "shattered_plains.json",
+                    "topology": "wilderness",
+                    "theme": "STONE",
+                    "location_id": "shattered_plains",
+                    "entry_trigger": "quest_complete",
+                    "exit_trigger": "boss_defeated"
+                }
+            ]
+        },
+        {
+            "chapter_id": "ch3",
+            "display_name": "Act 3: The Tower",
+            "order": 3,
+            "zones": [
+                {
+                    "zone_id": "urithiru",
+                    "blueprint": "urithiru.json",
+                    "topology": "vertical",
+                    "theme": "STONE",
+                    "location_id": "urithiru",
+                    "entry_trigger": "boss_defeated",
+                    "exit_trigger": "quest_complete"
+                }
+            ]
+        },
+        {
+            "chapter_id": "ch4",
+            "display_name": "Act 4: Into the Depths",
+            "order": 4,
+            "zones": [
+                {
+                    "zone_id": "chasm_descent",
+                    "blueprint": "chasm_descent.json",
+                    "topology": "dungeon",
+                    "theme": "GOTHIC",
+                    "location_id": "shattered_plains",
+                    "entry_trigger": "quest_complete",
+                    "exit_trigger": "boss_defeated"
+                }
+            ]
+        }
+    ],
+    "freeform_zones": []
+}

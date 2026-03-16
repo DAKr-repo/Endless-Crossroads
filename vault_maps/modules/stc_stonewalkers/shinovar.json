@@ -1,0 +1,157 @@
+{
+    "seed": 8201,
+    "width": 50,
+    "height": 50,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "shinovar",
+        "theme": "VILLAGE",
+        "topology": "settlement",
+        "display_name": "Shinovar -- The Forbidden Land"
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 5,
+            "y": 25,
+            "width": 10,
+            "height": 8,
+            "room_type": "start",
+            "connections": [1, 4],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Mountain Pass descends through a gap in the Misted Mountains where the air shifts from Rosharan dry to something impossibly humid. The stone underfoot gives way to dirt -- actual dirt, dark and loamy and yielding. Trees grow here with bark instead of carapace, their leaves broad and soft. Nothing retracts at your approach. The world has stopped flinching.",
+                "npcs": [
+                    {"name": "Shin Border Guard Tien", "role": "guard", "dialogue": "You carry weapons. Among us, only the lowliest caste bears steel. You will be treated as such unless you surrender them. This is not a threat -- it is hospitality."}
+                ],
+                "enemies": [],
+                "loot": [],
+                "services": ["border_crossing", "weapon_storage"],
+                "event_triggers": ["On entry: A Shin child stares at you from behind a fence. Not at your face -- at your boots. She has never seen stone-treading soles before."]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 18,
+            "y": 20,
+            "width": 14,
+            "height": 12,
+            "room_type": "town_square",
+            "connections": [0, 2, 3],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Farmer's Village spreads across rolling green hills in a pattern that would make an Alethi cartographer weep -- no walls, no fortifications, no defensive geometry whatsoever. Stone buildings with thatched roofs cluster around a communal well. Gardens burst with vegetables that grow in soil. Chickens -- actual chickens, not axehounds -- peck at the ground.",
+                "npcs": [
+                    {"name": "Elder Neturo", "role": "quest_giver", "dialogue": "You are outsiders. This is neither good nor bad -- the Almighty sends what the Almighty sends. But you must understand: we do not value what you value. The warrior is the lowest among us. The farmer, the highest. If you wish respect here, learn to plant."},
+                    {"name": "Farmer Szeth-daughter-Valam", "role": "merchant", "dialogue": "I can trade you grain for those strange spheres you carry. Yes, the glowing ones. We use them for children's toys here. Pretty lights, nothing more."}
+                ],
+                "enemies": [],
+                "loot": [
+                    {"name": "Shin Grain Bundle (heals 2 HP)", "type": "consumable"},
+                    {"name": "Chicken Egg (rare on Roshar)", "type": "trade_good"}
+                ],
+                "services": ["food", "lodging", "trade", "local_information"],
+                "event_triggers": ["On entry: A farmer offers you a drink of water from the communal well. The water is clean. Not purified, not Soulcast -- naturally clean. The novelty is staggering."]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 30,
+            "y": 15,
+            "width": 12,
+            "height": 10,
+            "room_type": "temple",
+            "connections": [1, 4],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Stone Shamans' Temple rises from the village's highest hill -- the only stone structure of any grandeur in Shinovar. Its walls are carved with glyphs that predate the Vorin writing system by millennia. Inside, the Stone Shamans tend the Honorblades in a vault beneath the altar, guarding weapons that could unmake nations with the same reverence a farmer gives a seed.",
+                "npcs": [
+                    {"name": "High Shaman Vallano", "role": "quest_giver", "dialogue": "The Honorblades are not weapons. They are responsibilities. Eight remain -- two were taken. The two that were taken have caused more suffering than the eight we guard have prevented. This is the mathematics of power, outsider. It never balances."},
+                    {"name": "Acolyte Shin-da", "role": "scholar", "dialogue": "The Stone Shamans remember what the rest of Roshar forgot. The Desolations. The Oathpact. The true nature of the spren. We remember because forgetting would be the greatest sin."}
+                ],
+                "enemies": [],
+                "loot": [
+                    {"name": "Shaman's Blessing (restores 3 Focus)", "type": "consumable"}
+                ],
+                "services": ["lore", "spiritual_guidance", "honorblade_viewing"],
+                "event_triggers": ["On entry: The vault door stands open -- unusual, the acolytes say. Something inside is resonating. One of the Honorblades has begun to glow."]
+            }
+        },
+        "3": {
+            "id": 3,
+            "x": 15,
+            "y": 35,
+            "width": 10,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [1],
+            "tier": 3,
+            "is_locked": true,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Truthless Prison. A stone hut on the village outskirts, windowless, its door sealed with seven locks of different metals. Inside, a man sits in absolute darkness, his forehead branded with a glyph that marks him as Truthless -- condemned to obey any master who holds his Oathstone. The brand is old. The man is patient.",
+                "npcs": [
+                    {"name": "The Truthless", "role": "ally", "dialogue": "I have served seventeen masters. Killed for twelve. The Shamans say I spoke heresy. I said the Voidbringers had returned. I was not wrong. But being right and being free are different things."}
+                ],
+                "enemies": [],
+                "loot": [
+                    {"name": "Oathstone (cracked)", "type": "quest_item"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: The Truthless does not look up. He already knows you are there. He has been expecting someone for a very long time."]
+            }
+        },
+        "4": {
+            "id": 4,
+            "x": 35,
+            "y": 30,
+            "width": 12,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [0, 2, 5],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Sacred Groves occupy a valley where trees grow taller than any structure in Kholinar. These are not the stunted rockbuds of eastern Roshar -- they are true trees, with rings that count centuries and roots that drink from aquifers no highstorm could reach. The Shin plant a tree for every death. The groves are ancient, and very full.",
+                "npcs": [
+                    {"name": "Grove Keeper Nan-dar", "role": "guide", "dialogue": "Each tree carries a name. Touch the bark and speak it, and you will feel the echo of the person who grew here. Not a ghost -- a resonance. The Shin do not haunt. We root."}
+                ],
+                "enemies": [],
+                "loot": [],
+                "services": ["meditation", "ancestral_communion"],
+                "event_triggers": ["On entry: You touch a tree and feel warmth in the bark -- a pulse, like a heartbeat, from wood that has been alive for four hundred years"]
+            }
+        },
+        "5": {
+            "id": 5,
+            "x": 45,
+            "y": 35,
+            "width": 8,
+            "height": 6,
+            "room_type": "town_gate",
+            "connections": [4],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Western Road descends from the Shin highlands toward the coast, following a path worn smooth by centuries of trade caravans. Beyond the last farmstead, the terrain shifts -- soil giving way to rock, grass yielding to moss and lichen. Roshar reasserts itself. The mountains ahead hide the Stone Shambles.",
+                "npcs": [
+                    {"name": "Caravan Master Lesh", "role": "merchant", "dialogue": "I trade between worlds -- Shin grain for Rosharan spheres. Both sides think they are getting the better deal. That is the secret of good trade: everyone walks away feeling clever."}
+                ],
+                "enemies": [],
+                "loot": [
+                    {"name": "Shin Trade Provisions", "type": "consumable"}
+                ],
+                "services": ["exit_settlement", "trade_provisions", "travel_escort"],
+                "event_triggers": ["On entry: The last Shin farmer you pass makes a gesture of farewell -- palms down, toward the soil. Among the Shin, the ground is sacred. They are commending you to it."]
+            }
+        }
+    }
+}

@@ -1,0 +1,115 @@
+{
+    "meta": {
+        "system_id": "SAV",
+        "display_name": "sav",
+        "engine": "FITD",
+        "dice_system": "d6_pool",
+        "system_family": "FITD",
+        "version": "C.O.D.E.X. 2.0"
+    },
+    "lookup": {
+        "alien": {
+            "type": "race",
+            "name": "Alien"
+        },
+        "goblin": {
+            "type": "race",
+            "name": "Goblin"
+        },
+        "human": {
+            "type": "race",
+            "name": "Human"
+        },
+        "vampire": {
+            "type": "race",
+            "name": "Vampire"
+        },
+        "villain": {
+            "type": "race",
+            "name": "Villain"
+        },
+        "stress": {
+            "type": "resource",
+            "name": "Stress"
+        },
+        "trauma": {
+            "type": "resource",
+            "name": "Trauma"
+        },
+        "cred": {
+            "type": "resource",
+            "name": "Cred"
+        },
+        "gambits": {
+            "type": "resource",
+            "name": "Gambits"
+        },
+        "heat": {
+            "type": "resource",
+            "name": "Heat"
+        }
+    },
+    "structure": {
+        "system_id": "SAV",
+        "display_name": "sav",
+        "engine": "FITD",
+        "system_family": "FITD",
+        "archetype_categories": {
+            "Playbooks": []
+        },
+        "core_stats": {
+            "attributes": [
+                "Insight",
+                "Prowess",
+                "Resolve"
+            ],
+            "actions": {}
+        },
+        "resources": [
+            "Stress",
+            "Trauma"
+        ],
+        "dice_system": "d6_pool",
+        "position_effect": true,
+        "stress_max": 9,
+        "trauma_max": 4,
+        "mechanics": {
+            "stats": [
+                "Insight",
+                "Prowess",
+                "Resolve"
+            ],
+            "resources": [
+                "Cred",
+                "Gambits",
+                "Heat",
+                "Stress"
+            ],
+            "classes": [
+                "Mechanic",
+                "Muscle",
+                "Mystic",
+                "Pilot",
+                "Scoundrel",
+                "Speaker",
+                "Stitch"
+            ],
+            "subclasses": [
+                "Scum",
+                "Scumbag",
+                "Villain",
+                "Villainy"
+            ],
+            "races": [
+                "Alien",
+                "Goblin",
+                "Human",
+                "Vampire",
+                "Villain"
+            ]
+        },
+        "races": [],
+        "deep_classes": {},
+        "feats": []
+    }
+}

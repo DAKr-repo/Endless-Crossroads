@@ -1,0 +1,179 @@
+{
+    "seed": 6001,
+    "width": 55,
+    "height": 45,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "bryn_shander",
+        "theme": "VILLAGE",
+        "topology": "settlement",
+        "display_name": "Bryn Shander"
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 5,
+            "y": 5,
+            "width": 10,
+            "height": 8,
+            "room_type": "start",
+            "connections": [1, 2],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The south gate of Bryn Shander groans on frost-locked hinges as the guards haul it open just wide enough to admit you. The palisade walls are fifteen feet of frozen timber, crusted with ice an inch thick. Beyond, the town hunches under perpetual twilight -- lanterns burn in every window, but the light seems dimmer than it should be, as though the darkness itself has weight.",
+                "npcs": [
+                    {"name": "Sheriff Markham Southwell", "role": "guard", "dialogue": "Another group of travelers. You picked a hell of a time to visit Bryn Shander. No sun for two months, food stores running low, and last night something took three sled dogs from the kennel without leaving tracks. Welcome to paradise."}
+                ],
+                "enemies": [],
+                "loot": [],
+                "services": [],
+                "event_triggers": ["On entry: Sheriff Markham provides a brief orientation. Curfew is enforced after dark -- which is always."]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 20,
+            "y": 5,
+            "width": 12,
+            "height": 10,
+            "room_type": "town_square",
+            "connections": [0, 2, 3, 4],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The market square of Bryn Shander is a wind-scoured plaza of packed snow where merchants stamp their feet and blow into their gloves between transactions. The prices on the boards have been scratched out and rewritten so many times the wood is scarred. Everything costs double what it should. A frozen fountain in the center holds an ice sculpture that no one carved -- it appeared three nights ago, and it looks like a woman screaming.",
+                "npcs": [
+                    {"name": "Speaker Duvessa Shane", "role": "quest_giver", "dialogue": "I've been Speaker for two years, and in that time I've watched this town go from thriving to surviving. The lottery is... necessary. Someone must be sacrificed to Auril each month, or the blizzards worsen. I hate it. But I don't have a better answer. If you find one, I'll owe you more than I can repay."}
+                ],
+                "enemies": [],
+                "loot": [],
+                "services": ["trade", "rumors", "quest_board"],
+                "event_triggers": ["On entry: Duvessa approaches if party looks capable. She needs outsiders -- locals are too afraid to act against Auril's cult.", "On search: DC 13 Investigation notices cult symbols scratched beneath market stall counters."]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 10,
+            "y": 20,
+            "width": 12,
+            "height": 10,
+            "room_type": "tavern",
+            "connections": [0, 1, 5],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Northlook Inn is the warmest building in Bryn Shander, and it smells like it -- woodsmoke, wet fur, spilled ale, and the mineral tang of people who haven't bathed since the last thaw that never came. The hearth is large enough to roast an ox, and the innkeeper keeps it burning day and night. Regulars hunch over their drinks in silence, because in Icewind Dale, complaining about the cold is redundant.",
+                "npcs": [
+                    {"name": "Scramsax", "role": "barkeep", "dialogue": "Ale's warm, food's hot, rooms are cold but dry. That's the best offer in Ten-Towns and don't let anyone tell you different. *Slides a mug across the bar.* First one's on me. You look like you need it. Everyone does, lately."},
+                    {"name": "Hlin Trollbane", "role": "quest_giver", "dialogue": "I'm retired. Bounty hunter, thirty years in the Dale. But something's hunting the speakers of Ten-Towns -- two dead in the last month, made to look like accidents. It isn't. Someone hire you? No? Then I'm hiring you. Name your price."}
+                ],
+                "enemies": [],
+                "loot": [
+                    {"name": "Warm Meal (removes 1 level of exhaustion)", "type": "consumable"}
+                ],
+                "services": ["rest", "rumors", "drink", "lodging"],
+                "event_triggers": ["On rest: Long rest available (5 sp/night). Hlin approaches during first rest.", "On rumors: Patrons discuss the lottery, missing fishermen on Maer Dualdon, and strange lights on the tundra."]
+            }
+        },
+        "3": {
+            "id": 3,
+            "x": 35,
+            "y": 10,
+            "width": 10,
+            "height": 8,
+            "room_type": "normal",
+            "connections": [1, 4],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Town Hall is a squat stone building whose chimney never stops smoking. Inside, maps of Ten-Towns cover every wall, bristling with pins marking incidents -- missing persons, creature sightings, food shortages. A war table occupies the center, as though the town is under siege. It is, in a sense. The enemy is winter, and winter is winning.",
+                "npcs": [
+                    {"name": "Speaker Duvessa Shane", "role": "quest_giver", "dialogue": "The other speakers won't cooperate. Easthaven hoards its fish, Targos guards its walls, Caer-Konig pretends nothing is wrong. We need someone who can travel between the towns without political baggage. Someone expendable. *Winces.* I'm sorry. I mean someone... flexible."}
+                ],
+                "enemies": [],
+                "loot": [
+                    {"name": "Ten-Towns Charter (grants passage between towns)", "type": "quest_item"},
+                    {"name": "Cold Weather Gear Set", "type": "gear"}
+                ],
+                "services": ["quest_board", "information"],
+                "event_triggers": ["On entry: Duvessa provides the party with official sanction to investigate between towns.", "On quest: Available quests pinned to the board: missing sled dogs, strange lights, frozen bodies found with expressions of ecstasy."]
+            }
+        },
+        "4": {
+            "id": 4,
+            "x": 40,
+            "y": 25,
+            "width": 10,
+            "height": 8,
+            "room_type": "forge",
+            "connections": [1, 3, 5],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Blackiron Blades occupies a stone-walled shop attached to a forge that burns chardalyn dust for extra heat. The smith is a taciturn woman whose arms are crosshatched with old burns and whose work speaks louder than her words. Every blade on the rack has been tested -- she notches the ones that fail and melts them down. There are no notched blades on display.",
+                "npcs": [
+                    {"name": "Elza Blackiron", "role": "merchant", "dialogue": "*She doesn't look up from the anvil.* Steel's good. Chardalyn's better, but it'll cost you, and I won't guarantee what it does to your dreams. You want a weapon that works? Buy steel. You want a weapon that wins? *Finally meets your eyes.* That's a different conversation."}
+                ],
+                "enemies": [],
+                "loot": [
+                    {"name": "Chardalyn Dagger (+1, cursed: nightmares on long rest)", "type": "weapon"},
+                    {"name": "Steel Longsword", "type": "weapon"},
+                    {"name": "Cold-Iron Arrowheads (20)", "type": "ammunition"}
+                ],
+                "services": ["forge", "weapon_upgrade", "repair"],
+                "event_triggers": ["On entry: Elza will craft chardalyn weapons if provided with raw chardalyn (found in wilderness encounters).", "On search: DC 15 Arcana identifies chardalyn as psychically reactive material -- prolonged contact risks corruption."]
+            }
+        },
+        "5": {
+            "id": 5,
+            "x": 25,
+            "y": 30,
+            "width": 12,
+            "height": 10,
+            "room_type": "temple",
+            "connections": [2, 4, 6],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Temple of Tempus stands apart from the other buildings, its stone walls bearing the sword-and-shield emblem of the Lord of Battles. Inside, the warmth comes not from the modest hearth but from the barely contained fury of the priest, who preaches to empty pews about fighting back against Auril. The altar bears fresh blood -- animal, he insists, from the morning sacrifice. The congregation has dwindled to three.",
+                "npcs": [
+                    {"name": "Mishann", "role": "priest", "dialogue": "Tempus teaches us that every battle can be won if you have the courage to fight it. But how do you fight a goddess? I preach courage and my congregation shrinks. They'd rather huddle by their fires and sacrifice their neighbors to the cold. If Tempus tests me much further, I'll have no one left to preach to."}
+                ],
+                "enemies": [],
+                "loot": [
+                    {"name": "Scroll of Protection from Evil and Good", "type": "scroll"},
+                    {"name": "Blessed Waterskin (heals 2d4+2 once)", "type": "consumable"}
+                ],
+                "services": ["healing", "blessing", "restoration"],
+                "event_triggers": ["On entry: Mishann offers free healing and a warm meal.", "On quest: She asks the party to investigate why Auril's power is growing -- the sacrifices should be enough, but the cold worsens."]
+            }
+        },
+        "6": {
+            "id": 6,
+            "x": 35,
+            "y": 38,
+            "width": 10,
+            "height": 6,
+            "room_type": "town_gate",
+            "connections": [5],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The northeast gate opens onto the Eastway -- a road that was once well-maintained and is now a suggestion beneath two feet of snow. Dog sled tracks lead toward Easthaven, six hours east. The wind picks up as you pass the palisade, and the lanterns of Bryn Shander shrink behind you with unsettling speed, swallowed by the darkness of the tundra.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [],
+                "services": [],
+                "event_triggers": ["On exit: Wilderness travel to Easthaven. Random encounter check every 2 hours. Blizzard chance 30%."]
+            }
+        }
+    }
+}

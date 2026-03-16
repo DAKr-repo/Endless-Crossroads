@@ -1,0 +1,54 @@
+{
+    "system_id": "STC",
+    "display_name": "stc",
+    "engine": "custom",
+    "system_family": "STC",
+    "archetype_categories": {},
+    "core_stats": [],
+    "resources": [],
+    "dice_system": "custom",
+    "mechanics": {
+        "stats": [
+            "Awareness",
+            "Intellect",
+            "Presence",
+            "Speed",
+            "Strength",
+            "Will"
+        ],
+        "resources": [
+            "Focus",
+            "Investiture",
+            "Stormlight"
+        ],
+        "classes": [
+            "Bondsmith",
+            "Dustbringer",
+            "Edgedancer",
+            "Elsecaller",
+            "Lightweaver",
+            "Skybreaker",
+            "Stoneward",
+            "Truthwatcher",
+            "Willshaper",
+            "Windrunner"
+        ],
+        "subclasses": [
+            "Cosmere Item",
+            "Living Shard",
+            "Radiant",
+            "Specialization 1",
+            "Specialization 2",
+            "Squire",
+            "Stormlight Item"
+        ],
+        "races": [
+            "Dwarf",
+            "Elven",
+            "Gnome",
+            "Human",
+            "Orc",
+            "Troll"
+        ]
+    }
+}

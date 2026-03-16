@@ -1,0 +1,112 @@
+{
+    "meta": {
+        "system_id": "BOB",
+        "display_name": "bob",
+        "engine": "FITD",
+        "dice_system": "d6_pool",
+        "system_family": "FITD",
+        "version": "C.O.D.E.X. 2.0"
+    },
+    "lookup": {
+        "dwarf": {
+            "type": "race",
+            "name": "Dwarf"
+        },
+        "elf": {
+            "type": "race",
+            "name": "Elf"
+        },
+        "gnome": {
+            "type": "race",
+            "name": "Gnome"
+        },
+        "human": {
+            "type": "race",
+            "name": "Human"
+        },
+        "orc": {
+            "type": "race",
+            "name": "Orc"
+        },
+        "stress": {
+            "type": "resource",
+            "name": "Stress"
+        },
+        "trauma": {
+            "type": "resource",
+            "name": "Trauma"
+        },
+        "morale": {
+            "type": "resource",
+            "name": "Morale"
+        },
+        "supply": {
+            "type": "resource",
+            "name": "Supply"
+        }
+    },
+    "structure": {
+        "system_id": "BOB",
+        "display_name": "bob",
+        "engine": "FITD",
+        "system_family": "FITD",
+        "archetype_categories": {
+            "Playbooks": []
+        },
+        "core_stats": {
+            "attributes": [
+                "Insight",
+                "Prowess",
+                "Resolve"
+            ],
+            "actions": {}
+        },
+        "resources": [
+            "Stress",
+            "Trauma"
+        ],
+        "dice_system": "d6_pool",
+        "position_effect": true,
+        "stress_max": 9,
+        "trauma_max": 4,
+        "mechanics": {
+            "stats": [
+                "Insight",
+                "Prowess",
+                "Resolve"
+            ],
+            "resources": [
+                "Morale",
+                "Stress",
+                "Supply",
+                "Trauma"
+            ],
+            "classes": [
+                "Heavy",
+                "Medic",
+                "Officer",
+                "Rookie",
+                "Sniper",
+                "Soldier",
+                "Specialist"
+            ],
+            "subclasses": [
+                "Band of Blades",
+                "BandLeader",
+                "BandMember",
+                "Specialization 1",
+                "Specialization 2"
+            ],
+            "races": [
+                "Dwarf",
+                "Elf",
+                "Gnome",
+                "Human",
+                "Orc"
+            ]
+        },
+        "races": [],
+        "deep_classes": {},
+        "feats": []
+    }
+}

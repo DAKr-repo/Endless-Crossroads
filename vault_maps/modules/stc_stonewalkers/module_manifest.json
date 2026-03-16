@@ -1,0 +1,60 @@
+{
+    "module_id": "stc_stonewalkers",
+    "display_name": "Stormlight: Stonewalkers",
+    "system_id": "stc",
+    "source_pdf": null,
+    "world_map": "world_map.json",
+    "starting_location": "shinovar",
+    "recommended_levels": {"min": 3, "max": 7},
+    "chapters": [
+        {
+            "chapter_id": "ch1",
+            "display_name": "Act 1: The Forbidden Land",
+            "order": 1,
+            "zones": [
+                {
+                    "zone_id": "shinovar",
+                    "blueprint": "shinovar.json",
+                    "topology": "settlement",
+                    "theme": "VILLAGE",
+                    "location_id": "shinovar",
+                    "entry_trigger": "module_start",
+                    "exit_trigger": "quest_complete"
+                }
+            ]
+        },
+        {
+            "chapter_id": "ch2",
+            "display_name": "Act 2: The Stone Shambles",
+            "order": 2,
+            "zones": [
+                {
+                    "zone_id": "stone_shambles",
+                    "blueprint": "stone_shambles.json",
+                    "topology": "dungeon",
+                    "theme": "STONE",
+                    "location_id": "shinovar",
+                    "entry_trigger": "quest_complete",
+                    "exit_trigger": "boss_defeated"
+                }
+            ]
+        },
+        {
+            "chapter_id": "ch3",
+            "display_name": "Act 3: The Reshi Isles",
+            "order": 3,
+            "zones": [
+                {
+                    "zone_id": "reshi_isles",
+                    "blueprint": "reshi_isles.json",
+                    "topology": "wilderness",
+                    "theme": "STONE",
+                    "location_id": "reshi_isles",
+                    "entry_trigger": "boss_defeated",
+                    "exit_trigger": "boss_defeated"
+                }
+            ]
+        }
+    ],
+    "freeform_zones": []
+}

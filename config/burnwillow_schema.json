@@ -1,0 +1,364 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Burnwillow Save State Schema",
+  "description": "Death Loop Roguelike: RUN_STATE is ephemeral (wiped on death), META_STATE is persistent (survives death)",
+  "type": "object",
+  "required": ["run_state", "meta_state", "schema_version"],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "description": "Schema version for migration tracking",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+      "default": "1.0.0"
+    },
+    "run_state": {
+      "type": "object",
+      "description": "EPHEMERAL - Wiped on death. Current character and dungeon progress.",
+      "required": ["hp", "max_hp", "stats", "gear_grid", "dungeon_depth", "doom_clock", "run_statistics"],
+      "properties": {
+        "hp": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Current Hit Points"
+        },
+        "max_hp": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Maximum HP = 10 + Grit Modifier"
+        },
+        "stats": {
+          "type": "object",
+          "description": "The Four Pillars (4d6 drop lowest each)",
+          "required": ["might", "wits", "grit", "aether"],
+          "properties": {
+            "might": {
+              "type": "object",
+              "required": ["score", "modifier"],
+              "properties": {
+                "score": {
+                  "type": "integer",
+                  "minimum": 3,
+                  "maximum": 18,
+                  "description": "Physical power (4d6 drop lowest)"
+                },
+                "modifier": {
+                  "type": "integer",
+                  "minimum": -4,
+                  "maximum": 4,
+                  "description": "Derived from score (10-11=0, 12-13=+1, etc.)"
+                }
+              }
+            },
+            "wits": {
+              "type": "object",
+              "required": ["score", "modifier"],
+              "properties": {
+                "score": {
+                  "type": "integer",
+                  "minimum": 3,
+                  "maximum": 18,
+                  "description": "Mental acuity, ranged, mechanisms"
+                },
+                "modifier": {
+                  "type": "integer",
+                  "minimum": -4,
+                  "maximum": 4
+                }
+              }
+            },
+            "grit": {
+              "type": "object",
+              "required": ["score", "modifier"],
+              "properties": {
+                "score": {
+                  "type": "integer",
+                  "minimum": 3,
+                  "maximum": 18,
+                  "description": "Fortitude, HP, stamina"
+                },
+                "modifier": {
+                  "type": "integer",
+                  "minimum": -4,
+                  "maximum": 4
+                }
+              }
+            },
+            "aether": {
+              "type": "object",
+              "required": ["score", "modifier"],
+              "properties": {
+                "score": {
+                  "type": "integer",
+                  "minimum": 3,
+                  "maximum": 18,
+                  "description": "Magic, willpower, attunement"
+                },
+                "modifier": {
+                  "type": "integer",
+                  "minimum": -4,
+                  "maximum": 4
+                }
+              }
+            }
+          }
+        },
+        "gear_grid": {
+          "type": "object",
+          "description": "10-slot equipment grid. null = empty slot.",
+          "required": ["head", "shoulders", "chest", "arms", "legs", "r_hand", "l_hand", "r_ring", "l_ring", "neck"],
+          "properties": {
+            "head": { "oneOf": [{"type": "null"}, {"$ref": "#/definitions/item"}] },
+            "shoulders": { "oneOf": [{"type": "null"}, {"$ref": "#/definitions/item"}] },
+            "chest": { "oneOf": [{"type": "null"}, {"$ref": "#/definitions/item"}] },
+            "arms": { "oneOf": [{"type": "null"}, {"$ref": "#/definitions/item"}] },
+            "legs": { "oneOf": [{"type": "null"}, {"$ref": "#/definitions/item"}] },
+            "r_hand": { "oneOf": [{"type": "null"}, {"$ref": "#/definitions/item"}] },
+            "l_hand": { "oneOf": [{"type": "null"}, {"$ref": "#/definitions/item"}] },
+            "r_ring": { "oneOf": [{"type": "null"}, {"$ref": "#/definitions/item"}] },
+            "l_ring": { "oneOf": [{"type": "null"}, {"$ref": "#/definitions/item"}] },
+            "neck": { "oneOf": [{"type": "null"}, {"$ref": "#/definitions/item"}] }
+          }
+        },
+        "inventory": {
+          "type": "array",
+          "description": "Backpack items (potions, keys, scrolls)",
+          "items": {"$ref": "#/definitions/item"},
+          "default": []
+        },
+        "dungeon_depth": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Current floor number (0 = surface/town)"
+        },
+        "doom_clock": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Turns until catastrophe. Advances with dungeon turns."
+        },
+        "run_statistics": {
+          "type": "object",
+          "description": "Session stats for this life",
+          "required": ["floors_cleared", "enemies_slain", "turns_taken", "chests_opened"],
+          "properties": {
+            "floors_cleared": {"type": "integer", "minimum": 0},
+            "enemies_slain": {"type": "integer", "minimum": 0},
+            "turns_taken": {"type": "integer", "minimum": 0},
+            "chests_opened": {"type": "integer", "minimum": 0},
+            "keys_used": {"type": "integer", "minimum": 0},
+            "scrolls_read": {"type": "integer", "minimum": 0}
+          }
+        },
+        "character_name": {
+          "type": "string",
+          "description": "Randomly generated or player-set name for this life",
+          "maxLength": 32
+        },
+        "timestamp_born": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 timestamp of character creation"
+        }
+      }
+    },
+    "meta_state": {
+      "type": "object",
+      "description": "PERSISTENT - Survives death. Town progression and legacy.",
+      "required": ["legacy_currency", "unlocked_blueprints", "town_status", "total_deaths", "deepest_floor_reached"],
+      "properties": {
+        "legacy_currency": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Burnwillow Sap or similar meta-resource"
+        },
+        "unlocked_blueprints": {
+          "type": "array",
+          "description": "Item blueprints discovered (persist across deaths)",
+          "items": {"type": "string"},
+          "uniqueItems": true,
+          "default": []
+        },
+        "town_status": {
+          "type": "object",
+          "description": "Building upgrade levels in Emberhome",
+          "properties": {
+            "blacksmith": {"type": "integer", "minimum": 0, "maximum": 5, "default": 0},
+            "alchemist": {"type": "integer", "minimum": 0, "maximum": 5, "default": 0},
+            "temple": {"type": "integer", "minimum": 0, "maximum": 5, "default": 0},
+            "library": {"type": "integer", "minimum": 0, "maximum": 5, "default": 0}
+          },
+          "default": {
+            "blacksmith": 0,
+            "alchemist": 0,
+            "temple": 0,
+            "library": 0
+          }
+        },
+        "total_deaths": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Count of fallen heroes"
+        },
+        "deepest_floor_reached": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Furthest anyone has delved"
+        },
+        "graveyard": {
+          "type": "array",
+          "description": "Memorial for past characters",
+          "items": {
+            "type": "object",
+            "required": ["name", "death_floor", "timestamp"],
+            "properties": {
+              "name": {"type": "string"},
+              "death_floor": {"type": "integer"},
+              "timestamp": {"type": "string", "format": "date-time"},
+              "epitaph": {"type": "string", "maxLength": 128}
+            }
+          },
+          "default": []
+        }
+      }
+    }
+  },
+  "definitions": {
+    "item": {
+      "type": "object",
+      "required": ["name", "tier", "slot_type"],
+      "properties": {
+        "name": {"type": "string", "maxLength": 64},
+        "tier": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 5,
+          "description": "0=Unarmed, 1=Scrap/Wood, 2=Ironbark/Cured Hide, 3=Petrified Heartwood/Moonstone, 4=Ambercore/Sunresin, 5=Burnwillow/Light"
+        },
+        "material": {
+          "type": "string",
+          "description": "Arborist material name (e.g., Ironbark, Petrified Heartwood, Ambercore)"
+        },
+        "slot_type": {
+          "type": "string",
+          "enum": ["head", "shoulders", "chest", "arms", "legs", "r_hand", "l_hand", "r_ring", "l_ring", "neck", "consumable"]
+        },
+        "dice_bonus": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 5,
+          "description": "Number of d6 added to rolls (usually = tier for weapons)"
+        },
+        "stat_bonuses": {
+          "type": "object",
+          "description": "Flat stat modifiers",
+          "properties": {
+            "might": {"type": "integer"},
+            "wits": {"type": "integer"},
+            "grit": {"type": "integer"},
+            "aether": {"type": "integer"}
+          },
+          "default": {}
+        },
+        "damage_reduction": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "DR for armor pieces"
+        },
+        "abilities": {
+          "type": "array",
+          "description": "Special traits ([Lockpick], [Clunky], [Backstab], etc.)",
+          "items": {"type": "string"},
+          "default": []
+        },
+        "charges": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "For consumables and limited-use gear"
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 256
+        }
+      }
+    },
+    "loot_item": {
+      "type": "object",
+      "description": "Loot item with canonical material and special abilities",
+      "required": ["name", "tier", "slot", "material"],
+      "properties": {
+        "name": {"type": "string", "maxLength": 64},
+        "tier": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 5,
+          "description": "0=Unarmed, 1=Scrap/Wood, 2=Ironbark/Cured Hide, 3=Petrified Heartwood/Moonstone, 4=Ambercore/Sunresin, 5=Burnwillow/Light"
+        },
+        "slot": {
+          "type": "string",
+          "enum": ["head", "shoulders", "chest", "arms", "legs", "r_hand", "l_hand", "r_ring", "l_ring", "neck", "consumable"]
+        },
+        "material": {
+          "type": "string",
+          "description": "Arborist material name (Ironbark, Cured Hide, Petrified Heartwood, Moonstone, Ambercore, Sunresin, Burnwillow, Light)"
+        },
+        "dice_bonus": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 5,
+          "description": "Number of d6 added to rolls"
+        },
+        "effect": {
+          "type": "string",
+          "description": "Primary mechanical effect (e.g., DR 1, +1d6 Attack, Heal 1d6 HP)"
+        },
+        "special_ability": {
+          "type": "array",
+          "description": "Special traits like [Lockpick], [Intercept], [Clunky]",
+          "items": {"type": "string"},
+          "default": []
+        }
+      }
+    },
+    "enemy": {
+      "type": "object",
+      "description": "Enemy stat block",
+      "required": ["name", "dc", "hp", "damage", "tier"],
+      "properties": {
+        "name": {"type": "string", "maxLength": 64},
+        "dc": {
+          "type": "integer",
+          "minimum": 4,
+          "maximum": 24,
+          "description": "Difficulty Class to hit"
+        },
+        "hp": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Hit Points"
+        },
+        "damage": {
+          "type": "string",
+          "description": "Damage expression (e.g., 2, 1d6+2, 1d6+4)"
+        },
+        "special_abilities": {
+          "type": "array",
+          "description": "List of special abilities with mechanics",
+          "items": {
+            "type": "object",
+            "required": ["name", "effect"],
+            "properties": {
+              "name": {"type": "string"},
+              "effect": {"type": "string"}
+            }
+          },
+          "default": []
+        },
+        "tier": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 5,
+          "description": "Enemy tier (0=Minion, 1-2=Normal, 3-4=Elite, 5=Boss)"
+        }
+      }
+    }
+  }
+}

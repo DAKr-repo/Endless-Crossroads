@@ -1,0 +1,218 @@
+{
+    "seed": 6006,
+    "width": 65,
+    "height": 55,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "ythryn",
+        "theme": "GOTHIC",
+        "topology": "dungeon",
+        "display_name": "Ythryn, the Buried City"
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 5,
+            "y": 5,
+            "width": 12,
+            "height": 8,
+            "room_type": "start",
+            "connections": [1, 2],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The city breach opens onto what was once a boulevard. The buildings of Ythryn are Netherese architecture at its most arrogant -- soaring spires of crystallized magic, walkways that hang unsupported between towers, fountains whose water froze mid-spray into sculptures of impossible delicacy. Everything is preserved in a bubble of stasis, dusted with rime but structurally intact. The city did not die. It was paused.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Nothic (lurking in rubble)", "cr": "2"}
+                ],
+                "loot": [
+                    {"name": "Netherese Silver Coin (50, historical value)", "type": "treasure"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: The Mythallar's hum is audible throughout the city. Its magic preserves breathable air but also sustains undead inhabitants.", "On search: DC 13 Investigation finds frozen bodies of Netherese citizens in poses of daily life -- the catastrophe was instant."]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 20,
+            "y": 10,
+            "width": 12,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [0, 3, 4],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The frozen street stretches between tower complexes, its cobblestones etched with guidance runes that once directed magical conveyances. Frozen carts of goods sit where they stopped, their merchants' skeletons still clutching coin purses. A street performer's skeleton poses mid-juggle, three crystal balls suspended in the air by ancient magic that outlasted their owner. The silence here has texture -- it presses against the eardrums.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Will-o'-Wisp (3)", "cr": "2"},
+                    {"name": "Specter (Netherese citizen)", "cr": "1"}
+                ],
+                "loot": [
+                    {"name": "Crystal Juggling Balls (arcane focus, +1)", "type": "wondrous_item"},
+                    {"name": "Netherese Trade Goods (200 gp)", "type": "treasure"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: Will-o'-wisps lure party toward dead ends. DC 14 Wisdom save to resist.", "On search: DC 15 History identifies the street as the Avenue of the Arcanists -- the towers ahead were schools of magic."]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 10,
+            "y": 25,
+            "width": 12,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [0, 3],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Tower of Conjuration has cracked along its height like a broken finger, its upper floors exposed to the glacier's ice. The interior is a maze of lecture halls and practice chambers where summoning circles are still inscribed in the floors, some still faintly active. In one chamber, a conjured creature -- an elemental of some kind -- paces inside a binding circle that has held for centuries, its form flickering between states of matter.",
+                "npcs": [
+                    {"name": "Everlast (bound Dao)", "role": "prisoner", "dialogue": "*The earth genie presses against the invisible walls of its binding.* Nine hundred years. Nine hundred years in this circle, summoned for a lesson that was never completed. Free me and I will grant you one wish within my power. Betray me and I will spend the next nine hundred years finding a way to make you regret it."}
+                ],
+                "enemies": [
+                    {"name": "Everlast (Dao, if freed hostilely)", "cr": "11"}
+                ],
+                "loot": [
+                    {"name": "Conjurer's Tome (contains Summon Elemental, Conjure Animals, Dimension Door)", "type": "spellbook"},
+                    {"name": "Binding Circle Chalk (10 uses)", "type": "gear"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: The Dao is hostile if the circle is broken carelessly. DC 16 Arcana to release it properly.", "On deal: If freed properly, Everlast grants one favor: information, treasure relocation, or a single combat ally."]
+            }
+        },
+        "3": {
+            "id": 3,
+            "x": 25,
+            "y": 20,
+            "width": 12,
+            "height": 10,
+            "room_type": "treasure",
+            "connections": [1, 2, 5],
+            "tier": 3,
+            "is_locked": true,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Tower of Divination is intact -- the only tower in Ythryn that suffered no structural damage in the crash. Its walls are lined with scrying mirrors that still function, each one showing a different location: a sun-baked desert, an underwater city, a star field. The central chamber holds an orrery of gemstone planets orbiting a crystal sun, and the device still turns, tracking celestial bodies visible only to it.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Spectator (ancient guardian)", "cr": "3"}
+                ],
+                "loot": [
+                    {"name": "Crystal Ball of True Seeing", "type": "wondrous_item"},
+                    {"name": "Orrery Gemstone (Ruby, 500 gp)", "type": "treasure"},
+                    {"name": "Scroll of Foresight", "type": "scroll"},
+                    {"name": "Diviner's Spectacles (advantage on Investigation checks)", "type": "wondrous_item"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: Spectator challenges intruders but can be reasoned with (DC 14 Persuasion) -- it was told to guard 'until the masters return.'", "On scrying: Using the mirrors shows glimpses of Auril on her island, the Mythallar's location, and a warning about Iriolarthas."]
+            }
+        },
+        "4": {
+            "id": 4,
+            "x": 40,
+            "y": 10,
+            "width": 12,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [1, 5, 6],
+            "tier": 4,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Tower of Necromancy is a charnel house that predates the crash. The Netherese practiced death magic openly, and this tower was their laboratory. Preservation vats line the walls, each containing a specimen in various states of undeath. Some are still active, pressing against the glass with skeletal hands. The smell should be overwhelming, but the cold has reduced it to a faint, sweet staleness.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Wight (Netherese necromancer)", "cr": "3"},
+                    {"name": "Zombie (preserved specimen, 4)", "cr": "1/4"},
+                    {"name": "Flameskull (faculty member)", "cr": "4"}
+                ],
+                "loot": [
+                    {"name": "Staff of the Necromancer (attunement: wizard)", "type": "weapon"},
+                    {"name": "Netherese Embalming Fluid (preserves 1 body indefinitely)", "type": "consumable"},
+                    {"name": "Spell Scroll (Animate Dead, Speak With Dead)", "type": "scroll"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: Specimens begin breaking free of vats 1d4 rounds after entry.", "On search: DC 16 Arcana finds Iriolarthas's research notes -- he was attempting to become a lich before the crash. He succeeded."]
+            }
+        },
+        "5": {
+            "id": 5,
+            "x": 30,
+            "y": 30,
+            "width": 18,
+            "height": 14,
+            "room_type": "boss",
+            "connections": [3, 4, 7],
+            "tier": 4,
+            "is_locked": true,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Ythryn Mythallar occupies the city's central tower, a sphere of crystallized magic thirty feet in diameter that floats in the center of a cylindrical chamber. It pulses with blue-white light, and the air around it tastes of ozone and possibility. This was the engine that held Ythryn aloft, and even fallen, it generates enough magical power to maintain the stasis that preserves the city. Iriolarthas, the city's archmage, stands before it -- or what remains of him. Nine centuries of undeath have reduced him to a demilich, a jeweled skull floating in the Mythallar's light.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Iriolarthas (Demilich)", "cr": "18"},
+                    {"name": "Living Blade of Disaster", "cr": "6"}
+                ],
+                "loot": [
+                    {"name": "Mythallar Shard (can end Auril's Everlasting Rime if brought to the surface)", "type": "quest_item"},
+                    {"name": "Staff of Power", "type": "weapon"},
+                    {"name": "Iriolarthas's Phylactery (soul gems, 5,000 gp)", "type": "treasure"},
+                    {"name": "Robe of Stars", "type": "wondrous_item"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: Iriolarthas does not attack immediately. He offers a bargain: leave the Mythallar intact, and he will share its power.", "On combat: Iriolarthas uses the Mythallar to amplify spells. Lair actions: antimagic pulse (recharges 5-6), gravity reversal, summoned constructs.", "On Mythallar: The Mythallar can be used to end Auril's Rime (DC 20 Arcana), but this destroys the stasis preserving Ythryn."]
+            }
+        },
+        "6": {
+            "id": 6,
+            "x": 50,
+            "y": 15,
+            "width": 10,
+            "height": 8,
+            "room_type": "library",
+            "connections": [4],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Iriolarthas's Study is a circular chamber whose walls are floor-to-ceiling bookshelves holding texts in languages that predate Common by millennia. A desk of dark wood -- warm to the touch, impossibly, as though the archmage's life force still lingers in his furniture -- holds an open journal. The last entry, written in a shaking hand: 'The Spindle fails. We fall. I have prepared. The others have not. Let the ice take what it will. I will endure.'",
+                "npcs": [],
+                "enemies": [],
+                "loot": [
+                    {"name": "Iriolarthas's Journal (full history of Ythryn's fall)", "type": "quest_item"},
+                    {"name": "Scroll of True Resurrection", "type": "scroll"},
+                    {"name": "Netherese Spellbook (25 spells, levels 1-9)", "type": "spellbook"}
+                ],
+                "services": ["lore"],
+                "event_triggers": ["On entry: The journal reveals that the Spindle -- Ythryn's levitation device -- was sabotaged by a rival arcanist.", "On search: DC 18 Investigation finds a hidden compartment containing the formula for creating a Mythallar."]
+            }
+        },
+        "7": {
+            "id": 7,
+            "x": 35,
+            "y": 45,
+            "width": 12,
+            "height": 8,
+            "room_type": "normal",
+            "connections": [5],
+            "tier": 4,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Spire of Iriolarthas once pierced the clouds. Now it lies on its side, half-buried in glacier ice, its peak pointing toward the surface like a compass needle. The interior is a spiral of laboratories and observation decks, and at the very tip, a crack in the ice admits a shaft of pale light from the world above. The first natural light you've seen since entering the glacier. It is cold, and thin, and the most beautiful thing imaginable.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [],
+                "services": [],
+                "event_triggers": ["On entry: The crack can be widened (DC 16 Athletics or fire magic) to create an exit to the surface.", "On exit: Emergence onto the Reghed Glacier. With the Mythallar Shard, the party can confront Auril directly."]
+            }
+        }
+    }
+}

@@ -1,0 +1,67 @@
+{
+    "module_id": "sample_module",
+    "display_name": "The Rat King's Cellar",
+    "system_id": "dnd5e",
+    "source_pdf": null,
+    "world_map": "sample_world.json",
+    "starting_location": "millhaven",
+    "recommended_levels": {"min": 1, "max": 3},
+    "chapters": [
+        {
+            "chapter_id": "ch1",
+            "display_name": "Chapter 1: Trouble in Millhaven",
+            "order": 1,
+            "zones": [
+                {
+                    "zone_id": "millhaven_tavern",
+                    "blueprint": "tavern.json",
+                    "topology": "settlement",
+                    "theme": "VILLAGE",
+                    "location_id": "millhaven",
+                    "entry_trigger": "module_start",
+                    "exit_trigger": "quest_complete",
+                    "generation_params": null
+                },
+                {
+                    "zone_id": "rat_cellar",
+                    "blueprint": "hideout.json",
+                    "topology": "dungeon",
+                    "theme": "STONE",
+                    "location_id": "millhaven",
+                    "entry_trigger": "quest_complete",
+                    "exit_trigger": "boss_defeated",
+                    "generation_params": null
+                }
+            ]
+        },
+        {
+            "chapter_id": "ch2",
+            "display_name": "Chapter 2: Return to Millhaven",
+            "order": 2,
+            "zones": [
+                {
+                    "zone_id": "millhaven_return",
+                    "blueprint": "tavern.json",
+                    "topology": "settlement",
+                    "theme": "VILLAGE",
+                    "location_id": "millhaven",
+                    "entry_trigger": "boss_defeated",
+                    "exit_trigger": "player_choice",
+                    "generation_params": null
+                }
+            ]
+        }
+    ],
+    "freeform_zones": [
+        {
+            "zone_id": "wilderness_road",
+            "blueprint": null,
+            "topology": "wilderness",
+            "theme": "STONE",
+            "location_id": "old_road",
+            "entry_trigger": "player_choice",
+            "exit_trigger": "player_choice",
+            "generation_params": {"width": 40, "height": 40, "max_depth": 3, "seed": 99}
+        }
+    ]
+}

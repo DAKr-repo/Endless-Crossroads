@@ -1,0 +1,168 @@
+{
+    "seed": 8203,
+    "width": 60,
+    "height": 50,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "reshi_isles",
+        "theme": "STONE",
+        "topology": "wilderness",
+        "display_name": "The Reshi Isles"
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 5,
+            "y": 25,
+            "width": 12,
+            "height": 10,
+            "room_type": "start",
+            "connections": [1],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Trading Dock is built into the shell of a tai-na -- a living island, its carapace encrusted with barnacles the size of boulders and vegetation that has taken root in crem deposits centuries deep. The dock bobs gently as the greatshell breathes. The sea stretches in every direction, turquoise and violent, dotted with the dark shapes of other island-creatures drifting on the current.",
+                "npcs": [
+                    {"name": "Dockmaster Taravangian", "role": "guide", "dialogue": "Welcome to the Reshi Isles. The island you stand on is called Akak'ar by the locals -- it means 'the patient one.' The tai-na has not moved in three years. When it does, the dock goes with it. Plan accordingly."},
+                    {"name": "Sailor Kaza", "role": "merchant", "dialogue": "Passage between islands costs ten chips. Passage during a highstorm costs your life. I do not offer refunds on either."}
+                ],
+                "enemies": [],
+                "loot": [],
+                "services": ["inter-island_travel", "dock_supplies", "information"],
+                "event_triggers": ["On entry: The tai-na shifts -- a grinding of shell against coral reef -- and the entire dock tilts five degrees. The locals do not even look up."]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 18,
+            "y": 18,
+            "width": 14,
+            "height": 12,
+            "room_type": "market",
+            "connections": [0, 2, 3],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Shell Market occupies a natural bowl in the tai-na's carapace where merchants spread their wares on living shell that grows beneath their stalls. Fish still gleaming with salt water, pearls harvested from lesser greatshells, spices from the mainland, and curiosities dredged from the sea floor -- including pieces of ancient technology no one can identify.",
+                "npcs": [
+                    {"name": "Pearl Diver Gu", "role": "merchant", "dialogue": "These pearls come from the belly of a santhid -- killed my net, broke my boat, nearly broke me. But a santhid pearl is worth more than a gemheart to the right buyer. You look like the right buyer."},
+                    {"name": "Curiosity Seller Axies", "role": "scholar", "dialogue": "I collect oddities. This piece I found at forty fathoms -- it is warm to the touch and hums when a highstorm approaches. Fabrial? Maybe. But it predates fabrial science by several epochs. Interesting, yes?"}
+                ],
+                "enemies": [],
+                "loot": [
+                    {"name": "Santhid Pearl", "type": "treasure"},
+                    {"name": "Salted Fish Bundle (heals 2 HP)", "type": "consumable"},
+                    {"name": "Unidentified Deep-Sea Artifact", "type": "quest_item"}
+                ],
+                "services": ["buy_equipment", "sell_goods", "pearl_appraisal", "curiosities"],
+                "event_triggers": ["On entry: A santhid surfaces near the dock -- the first seen in months. Divers scramble for their gear. Axies drops everything and starts sketching."]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 30,
+            "y": 12,
+            "width": 10,
+            "height": 12,
+            "room_type": "normal",
+            "connections": [1, 3, 4],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Island Spine Trail follows the tai-na's dorsal ridge upward -- a path carved into living shell by generations of Reshi climbers. Handholds are cut at regular intervals, their edges worn smooth by ten thousand grips. The wind intensifies with altitude, carrying salt spray and the distant singing of Reshi navigators using tonal markers to track the island's drift.",
+                "npcs": [
+                    {"name": "Reshi Climber Nym", "role": "guide", "dialogue": "The tai-na knows we are here. It tolerates us because we clean the parasites from its shell. Fair trade, yes? You want to reach the summit, climb steady and do not anger the lichen colonies. They bite."}
+                ],
+                "enemies": [
+                    {"name": "Parasitic Cremling Colony", "cr": "2"}
+                ],
+                "loot": [],
+                "services": ["climbing_guidance"],
+                "event_triggers": ["On entry: The shell beneath your feet is warm -- the tai-na's body heat radiating through its carapace. You are climbing a living thing."]
+            }
+        },
+        "3": {
+            "id": 3,
+            "x": 35,
+            "y": 25,
+            "width": 12,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [1, 2, 4],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Greatshell Summit crowns the tai-na's highest point -- a plateau of ancient shell where the Reshi king holds court. The king sits cross-legged on a throne of polished coral, attended by advisors who communicate in a mixture of spoken language and hand signs readable from a hundred feet away. The view encompasses three other island-creatures and the open sea beyond.",
+                "npcs": [
+                    {"name": "King Taravangian of the Reshi (island king)", "role": "quest_giver", "dialogue": "I am king of a nation that moves. My borders are whatever the tai-na can see. My army is the sea itself. What I lack is knowledge -- knowledge of what stirs in the deep water. Something has driven the santhids to the surface. Something has made the tai-na restless. I need someone brave or foolish to find out what."},
+                    {"name": "Royal Navigator Rysn", "role": "ally", "dialogue": "The tai-na has changed course three times this month. It has never done that before. The currents have not shifted. Something in the deep water is pulling it -- or pushing it away."}
+                ],
+                "enemies": [],
+                "loot": [
+                    {"name": "King's Writ of Passage", "type": "quest_item"}
+                ],
+                "services": ["audience_with_king", "navigation_charts", "deep_water_expedition"],
+                "event_triggers": ["On entry: The king's throne vibrates. The tai-na is humming -- a subsonic vibration that the Reshi have never heard before. The navigators look frightened."]
+            }
+        },
+        "4": {
+            "id": 4,
+            "x": 42,
+            "y": 18,
+            "width": 10,
+            "height": 10,
+            "room_type": "treasure",
+            "connections": [2, 3, 5],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Tai-na's Eye. A natural cavity in the greatshell's carapace, directly above one of the creature's massive eyes -- a disk of dark chitin twenty feet across, its surface iridescent with bioluminescence. Looking through the translucent shell into the eye beneath, you see something that should not be there: a chamber of worked stone inside the living creature, visible through layers of chitin like a fossil in amber.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Greatshell Parasite (Symbiont)", "cr": "3"}
+                ],
+                "loot": [
+                    {"name": "Tai-na Eye Lens (Bioluminescent)", "type": "treasure"},
+                    {"name": "Ancient Stone Fragment (from inside the tai-na)", "type": "quest_item"},
+                    {"name": "Stormlight Sphere (Broam)", "type": "currency"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: The tai-na blinks. The eye beneath you closes and opens, and for a moment you see the stone chamber inside the creature clearly -- it contains a door."]
+            }
+        },
+        "5": {
+            "id": 5,
+            "x": 48,
+            "y": 30,
+            "width": 12,
+            "height": 12,
+            "room_type": "boss",
+            "connections": [4],
+            "tier": 4,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Deep Waters. You descend from the island's edge into the sea -- warm, impossibly clear, lit by bioluminescent organisms that trail like constellations in the current. Below, a corrupted greatshell circles the tai-na's base, its carapace veined with dark violet light that pulses in the rhythm of the Everstorm. Voidspren swarm around it like pilot fish around a shark. It has been feeding on the tai-na. It has been growing.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Corrupted Greatshell (Void-Touched)", "cr": "7"},
+                    {"name": "Voidspren Swarm", "cr": "2"},
+                    {"name": "Voidspren Swarm", "cr": "2"}
+                ],
+                "loot": [
+                    {"name": "Corrupted Gemheart (Voidlight-infused)", "type": "treasure"},
+                    {"name": "Deep-Sea Honorblade Fragment", "type": "quest_item"},
+                    {"name": "Shardplate Fragment (Pauldron)", "type": "armor"},
+                    {"name": "Stormlight Sphere (Grand Broam)", "type": "currency"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: The corrupted greatshell turns toward you with eyes that glow violet instead of natural blue. It opens mandibles wide enough to swallow a boat, and from its throat comes a sound that is not a roar -- it is a word, spoken in a language that predates the Oathpact. The word is 'ODIUM.'"]
+            }
+        }
+    }
+}

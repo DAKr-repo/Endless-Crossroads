@@ -1,0 +1,165 @@
+{
+    "seed": 3002,
+    "width": 60,
+    "height": 50,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "zhentarim_hideout",
+        "theme": "STONE",
+        "topology": "dungeon",
+        "display_name": "Zhentarim Warehouse"
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 25,
+            "y": 5,
+            "width": 10,
+            "height": 6,
+            "room_type": "start",
+            "connections": [1],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "A Dock Ward warehouse, its windows boarded from the inside. The heavy timber door hangs ajar -- the padlock has been smashed. Inside, moonlight filters through gaps in the planking, illuminating a floor of sawdust and old bloodstains. The Zhentarim serpent is scratched into the doorframe at eye level.",
+                "perception_dc": 10,
+                "perception_success": "Fresh bootprints in the sawdust lead deeper into the building. At least six people passed through here recently."
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 25,
+            "y": 15,
+            "width": 12,
+            "height": 8,
+            "room_type": "normal",
+            "connections": [0, 2, 3],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "A storage room stacked with crates of mundane trade goods -- bolts of cloth, sacks of flour, barrels of salt fish. A crude barricade of overturned tables blocks the far doorway. Two thugs crouch behind it, crossbows leveled at the entrance.",
+                "enemies": [
+                    {"name": "Zhentarim Thug", "hp": 11, "ac": 11, "attack": 4, "damage": "1d6+2", "count": 2, "notes": "Leather armor, maces. Will surrender below 5 HP."}
+                ],
+                "loot": [
+                    {"name": "2 Light Crossbows", "value": 50},
+                    {"name": "20 Crossbow Bolts", "value": 2},
+                    {"name": "8 Silver Pieces", "value": 8}
+                ]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 10,
+            "y": 18,
+            "width": 10,
+            "height": 8,
+            "room_type": "normal",
+            "connections": [1],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "A cramped office that smells of ink and candle wax. A writing desk is buried under ledgers and correspondence. A map of Waterdeep's sewer system is pinned to the wall, with several locations circled in red ink. A Zhentarim spy sits at the desk, hastily burning documents in a brass bowl.",
+                "enemies": [
+                    {"name": "Zhentarim Spy", "hp": 12, "ac": 12, "attack": 4, "damage": "1d6+2", "count": 1, "notes": "Shortsword, hand crossbow. Cunning Action (bonus action Dash, Disengage, or Hide). Will attempt to flee if outnumbered."}
+                ],
+                "loot": [
+                    {"name": "Half-Burned Ledger", "value": 0, "description": "Partially destroyed. Mentions payments to someone called 'The Zhent' and a delivery at Gralhund Villa."},
+                    {"name": "Sewer Map (Waterdeep)", "value": 25, "description": "Marked with three circled locations: Xanathar Guild outpost, Zhent safehouse, and an unmarked cellar in the Trades Ward."},
+                    {"name": "15 Gold Pieces", "value": 15}
+                ],
+                "investigation_dc": 12,
+                "investigation_success": "Among the unburned papers: a note reading 'Bring the Neverember boy to the boss. The other one is useless -- dispose of him.'"
+            }
+        },
+        "3": {
+            "id": 3,
+            "x": 40,
+            "y": 18,
+            "width": 6,
+            "height": 6,
+            "room_type": "secret",
+            "connections": [1, 4, 5],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": true,
+            "content_hints": {
+                "description": "A narrow passage hidden behind a false wall of crates. The wooden planks here are scuffed and scratched from repeated use. The passage slopes downward into a damp cellar beneath the warehouse -- the Zhentarim's actual base of operations.",
+                "perception_dc": 15,
+                "perception_success": "One stack of crates is mounted on a wooden rail. It slides aside to reveal a passage descending into darkness."
+            }
+        },
+        "4": {
+            "id": 4,
+            "x": 40,
+            "y": 28,
+            "width": 10,
+            "height": 8,
+            "room_type": "treasure",
+            "connections": [3],
+            "tier": 1,
+            "is_locked": true,
+            "is_secret": false,
+            "content_hints": {
+                "description": "A dank cellar room with iron manacles bolted to the walls. One set of manacles holds a bruised and terrified young man in fine but torn clothing -- Floon Blagmaar. He has been beaten but is alive. His eyes go wide when he sees the party.",
+                "lock_dc": 10,
+                "npcs": [
+                    {
+                        "name": "Floon Blagmaar",
+                        "role": "rescue_target",
+                        "dialogue": "Thank the gods! Please -- get me out of here! They took Renaer somewhere else. The big one -- Krentz -- kept asking about gold. Some kind of vault. I don't know anything about a vault, I swear!",
+                        "notes": "Volo's friend. Was mistaken for Renaer Neverember due to similar appearance. Knows nothing of value but believes Renaer is in greater danger."
+                    }
+                ],
+                "loot": [
+                    {"name": "Floon's Signet Ring", "value": 25, "description": "A gold ring bearing the Blagmaar family crest. Floon insists the party keep it as payment."}
+                ]
+            }
+        },
+        "5": {
+            "id": 5,
+            "x": 48,
+            "y": 15,
+            "width": 12,
+            "height": 12,
+            "room_type": "boss",
+            "connections": [3],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The warehouse's main cellar -- a low-ceilinged room supported by timber pillars, lit by guttering torches in iron sconces. Crates of weapons and contraband line the walls. Krentz, a scarred veteran in studded leather, stands at the center flanked by two thugs. He draws a longsword when he sees the party. 'Wrong door, friends. This is the last mistake you'll ever make.'",
+                "enemies": [
+                    {
+                        "name": "Krentz",
+                        "hp": 22,
+                        "ac": 13,
+                        "attack": 5,
+                        "damage": "1d8+3",
+                        "is_boss": true,
+                        "notes": "Studded leather, longsword, dagger. Former soldier. Will not surrender -- too afraid of his Zhentarim superiors.",
+                        "special": ["Multiattack: Two longsword attacks per turn.", "Parry: +2 AC as a reaction against one melee attack."]
+                    },
+                    {
+                        "name": "Zhentarim Thug",
+                        "hp": 11,
+                        "ac": 11,
+                        "attack": 4,
+                        "damage": "1d6+2",
+                        "count": 2,
+                        "notes": "Maces, leather armor. Will flee if Krentz falls."
+                    }
+                ],
+                "loot": [
+                    {"name": "Krentz's Longsword", "value": 15, "description": "Well-maintained but unremarkable. The pommel is shaped like a serpent -- Zhentarim standard issue."},
+                    {"name": "Zhentarim Orders", "value": 0, "description": "A sealed letter: 'Interrogate the Neverember boy. Find the Stone of Golorr. Report to Urstul Floxin at the appointed hour. --M'"},
+                    {"name": "40 Gold Pieces", "value": 40},
+                    {"name": "Potion of Healing", "value": 50}
+                ]
+            }
+        }
+    }
+}

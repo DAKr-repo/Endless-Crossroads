@@ -1,0 +1,164 @@
+{
+    "seed": 8103,
+    "width": 40,
+    "height": 60,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "chasmfiend_nest",
+        "theme": "GOTHIC",
+        "topology": "dungeon",
+        "display_name": "Chasmfiend Nest"
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 15,
+            "y": 5,
+            "width": 10,
+            "height": 8,
+            "room_type": "start",
+            "connections": [1],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Chasm Entrance gapes like a wound in the plateau's edge -- a vertical drop into wet darkness that smells of mineral water and organic decay. Iron pitons hammered into the rock by previous expeditions form a crude ladder descending into the gloom. Three of the pitons are bent. Two are missing entirely.",
+                "npcs": [
+                    {"name": "Scout Leyten", "role": "guide", "dialogue": "Last crew that went down came back with two less men and one more secret they will not talk about. The gemheart scouts say there is a nest down there worth a fortune. Question is what a fortune buys when you are dead."}
+                ],
+                "enemies": [],
+                "loot": [
+                    {"name": "Climbing Piton Kit", "type": "equipment"}
+                ],
+                "services": ["descent_preparation"],
+                "event_triggers": ["On entry: A warm updraft carries the scent of chitin and something chemical -- a pheromone marker, the scouts say, that means the nest is active"]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 10,
+            "y": 16,
+            "width": 14,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [0, 2],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Bone Gallery. Shed exoskeletons and skeletal remains line the chasm walls in geological layers -- decades of accumulated death, compressed and calcified. Greatshell bones form arches overhead, their hollow interiors home to colonies of luminescent cremlings that provide the only light. The air tastes of calcium and old violence.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Cremling Swarm (Luminescent)", "cr": "1"},
+                    {"name": "Skyeel (Cave Variant)", "cr": "1"}
+                ],
+                "loot": [
+                    {"name": "Greatshell Bone Shard", "type": "material"},
+                    {"name": "Fossilized Cremling Cluster", "type": "material"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: The luminescent cremlings pulse brighter when you enter, then dim -- a warning signal rippling through the colony toward the deeper chambers"]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 8,
+            "y": 28,
+            "width": 8,
+            "height": 12,
+            "room_type": "corridor",
+            "connections": [1, 3],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Narrow Squeeze. The chasm pinches to a gap barely wide enough for one person to pass sideways, the stone walls pressing against your chest and back. Claw marks six inches deep score both walls at irregular heights -- something large forces itself through here regularly. The marks are fresh. The stone dust has not settled.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [],
+                "services": [],
+                "event_triggers": ["On entry: Your torch gutters in a draft from below -- warm, wet, rhythmic. Something enormous is breathing down there."]
+            }
+        },
+        "3": {
+            "id": 3,
+            "x": 5,
+            "y": 38,
+            "width": 14,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [2, 4],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Chrysalis Chamber. Dozens of translucent chrysalises hang from the ceiling and walls, each containing the half-formed shape of a chasmfiend in various stages of metamorphosis. The largest are the size of wagons. Stormlight pulses through them in slow waves, feeding the creatures within. One chrysalis near the floor has cracked -- whatever was inside has already hatched.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Chasmfiend Hatchling (Freshly Emerged)", "cr": "2"},
+                    {"name": "Chasmfiend Hatchling", "cr": "2"}
+                ],
+                "loot": [
+                    {"name": "Chrysalis Fluid (Stormlight-Infused)", "type": "material"},
+                    {"name": "Stormlight Sphere (Mark)", "type": "currency"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: A chrysalis near you shifts -- the creature inside presses against the membrane with a limb that has too many joints. You can see its compound eyes tracking you through the translucent wall."]
+            }
+        },
+        "4": {
+            "id": 4,
+            "x": 15,
+            "y": 42,
+            "width": 10,
+            "height": 8,
+            "room_type": "treasure",
+            "connections": [3, 5],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Larval Pool. A shallow basin of mineral-rich water fills a natural depression in the chasm floor, warm from geothermal vents below. Chasmfiend larvae -- pale, segmented things the length of your forearm -- swim in slow circles. Gemstones litter the pool floor, carried here by water currents from the crystal veins above. The larvae ignore them. They are not yet old enough to grow gemhearts.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [
+                    {"name": "Sapphire (Raw, Broam-grade)", "type": "gemstone"},
+                    {"name": "Ruby Cluster (Infused)", "type": "gemstone"},
+                    {"name": "Chasmfiend Larva (Specimen)", "type": "material"},
+                    {"name": "Stormlight Sphere (Broam)", "type": "currency"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: The larvae sense you and school together in the pool's center. They are not afraid -- they have never encountered a predator in this place. That tells you what you need to know about what protects them."]
+            }
+        },
+        "5": {
+            "id": 5,
+            "x": 10,
+            "y": 50,
+            "width": 18,
+            "height": 10,
+            "room_type": "boss",
+            "connections": [4],
+            "tier": 4,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Adult Nest. The chasm opens into a vast natural amphitheater, its floor strewn with the shattered carapaces of defeated rivals and the bones of everything that was not fast enough to escape. An adult chasmfiend fills the space -- seventy feet of armored legs, mandibles that could shear through steel, and compound eyes that reflect your torch-light back as a hundred burning points. Its gemheart glows through its carapace like a second sun.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Chasmfiend (Adult)", "cr": "7"},
+                    {"name": "Chasmfiend Hatchling (Guard)", "cr": "2"},
+                    {"name": "Chasmfiend Hatchling (Guard)", "cr": "2"}
+                ],
+                "loot": [
+                    {"name": "Chasmfiend Gemheart (Grand)", "type": "treasure"},
+                    {"name": "Chasmfiend Mandible (Trophy)", "type": "weapon"},
+                    {"name": "Ancient Parshendi Offering", "type": "quest_item"},
+                    {"name": "Shardplate Fragment (Chest)", "type": "armor"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: The chasmfiend does not roar. It clicks its mandibles once -- a sound like a lock engaging. Then it charges. The ground shakes so violently that stalactites fall from the ceiling like stone rain."]
+            }
+        }
+    }
+}

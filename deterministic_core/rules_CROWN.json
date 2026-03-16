@@ -1,0 +1,68 @@
+{
+    "meta": {
+        "system_id": "CROWN",
+        "display_name": "crown",
+        "engine": "custom",
+        "dice_system": "custom",
+        "system_family": "CROWN",
+        "version": "C.O.D.E.X. 2.0"
+    },
+    "lookup": {
+        "dwarf": {
+            "type": "race",
+            "name": "Dwarf"
+        },
+        "elf": {
+            "type": "race",
+            "name": "Elf"
+        },
+        "gnome": {
+            "type": "race",
+            "name": "Gnome"
+        },
+        "human": {
+            "type": "race",
+            "name": "Human"
+        },
+        "orc": {
+            "type": "race",
+            "name": "Orc"
+        }
+    },
+    "structure": {
+        "system_id": "CROWN",
+        "display_name": "crown",
+        "engine": "custom",
+        "system_family": "CROWN",
+        "archetype_categories": {},
+        "core_stats": {},
+        "resources": [],
+        "dice_system": "custom",
+        "mechanics": {
+            "races": [
+                "Dwarf",
+                "Elf",
+                "Gnome",
+                "Human",
+                "Orc"
+            ],
+            "classes": [
+                "Character Class 1",
+                "Character Class 2",
+                "Playbook A",
+                "Playbook B"
+            ],
+            "subclasses": [
+                "Specialization X",
+                "SpecializationC",
+                "Subclass A",
+                "Subclass B",
+                "SubclassA",
+                "SubclassB"
+            ]
+        },
+        "races": [],
+        "deep_classes": {},
+        "feats": []
+    }
+}

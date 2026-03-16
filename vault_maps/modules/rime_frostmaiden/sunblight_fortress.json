@@ -1,0 +1,218 @@
+{
+    "seed": 6003,
+    "width": 60,
+    "height": 55,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "sunblight_fortress",
+        "theme": "STONE",
+        "topology": "dungeon",
+        "display_name": "Sunblight Fortress"
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 5,
+            "y": 5,
+            "width": 10,
+            "height": 8,
+            "room_type": "start",
+            "connections": [1],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The mountain approach to Sunblight is a narrow defile carved by some ancient river and never widened. The walls close to arm's width in places, forcing single file. Midway up, the first signs of duergar habitation appear: iron spikes driven into the rock at throat height for the unwary, and a smell of coal smoke drifting from somewhere above.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Duergar Sentry (invisible)", "cr": "1"}
+                ],
+                "loot": [],
+                "services": [],
+                "event_triggers": ["On entry: DC 15 Perception to notice the invisible duergar sentry. If undetected, the sentry alerts the fortress."]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 15,
+            "y": 10,
+            "width": 12,
+            "height": 8,
+            "room_type": "town_gate",
+            "connections": [0, 2, 3],
+            "tier": 2,
+            "is_locked": true,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The outer gate is a slab of chardalyn-reinforced iron set into the mountainside. Purple-black veins run through the metal, and touching it sends a jolt of wrongness up the arm -- not pain, exactly, but the sensation of being observed by something that doesn't blink. Murder holes line the passage beyond, and the floor is studded with pressure plates.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Duergar Stone Guard", "cr": "2"},
+                    {"name": "Duergar Stone Guard", "cr": "2"},
+                    {"name": "Duergar Mind Master", "cr": "2"}
+                ],
+                "loot": [
+                    {"name": "Chardalyn Shard (crafting component)", "type": "crafting_material"},
+                    {"name": "Fortress Key (iron)", "type": "quest_item"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: If alarm raised, gate is barred (DC 20 Strength to force). Pressure plates trigger darts (2d4 piercing).", "On stealth: DC 16 Thieves' Tools disarms pressure plates. DC 14 Stealth bypasses murder holes."]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 25,
+            "y": 15,
+            "width": 14,
+            "height": 10,
+            "room_type": "forge",
+            "connections": [1, 4, 5],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The forge level burns with a heat that has nothing to do with comfort. Three blast furnaces roar against the far wall, fed by chardalyn-laced coal that burns with a sickly purple flame. Duergar smiths work in silence, hammering chardalyn into weapons and armor with mechanical precision. Their eyes are glazed -- not with fatigue, but with the blank devotion of the thoroughly indoctrinated.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Duergar Hammerer (construct)", "cr": "2"},
+                    {"name": "Duergar Smith", "cr": "1"},
+                    {"name": "Duergar Smith", "cr": "1"}
+                ],
+                "loot": [
+                    {"name": "Chardalyn Warhammer (+1, cursed)", "type": "weapon"},
+                    {"name": "Chardalyn Ingot (3)", "type": "crafting_material"},
+                    {"name": "Forge Schematic (chardalyn dragon construction)", "type": "quest_item"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: The schematic on the workbench reveals Xardorok's plan: a chardalyn dragon designed to destroy Ten-Towns.", "On sabotage: DC 16 Tinker's Tools can disable one furnace. All three disabled halts chardalyn production permanently."]
+            }
+        },
+        "3": {
+            "id": 3,
+            "x": 15,
+            "y": 25,
+            "width": 10,
+            "height": 8,
+            "room_type": "barracks",
+            "connections": [1, 4],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The barracks is carved from the mountain's heart, its ceiling black with soot from wall-mounted torches that burn chardalyn oil. Stone bunks line the walls in rows so precise they could have been measured by a machine -- and given duergar temperament, they probably were. Personal effects are nonexistent. These soldiers own nothing but their duty.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Duergar Warrior", "cr": "1"},
+                    {"name": "Duergar Warrior", "cr": "1"},
+                    {"name": "Duergar Warrior", "cr": "1"},
+                    {"name": "Duergar Warrior", "cr": "1"}
+                ],
+                "loot": [
+                    {"name": "Potion of Enlarge", "type": "consumable"},
+                    {"name": "Iron Rations (10 days)", "type": "consumable"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: If alarm was raised, full garrison present (8 warriors). If stealth, half are on patrol.", "On search: DC 13 Investigation finds a letter from Xardorok to his son Durth describing the chardalyn dragon's launch date: 'Three days. Then the surface burns.'"]
+            }
+        },
+        "4": {
+            "id": 4,
+            "x": 30,
+            "y": 25,
+            "width": 16,
+            "height": 14,
+            "room_type": "boss",
+            "connections": [2, 3, 5, 6],
+            "tier": 3,
+            "is_locked": true,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Xardorok's throne room is a cathedral of industry. The throne itself is welded from chardalyn and iron, its back reaching twenty feet high in a jagged crown of dark crystal. The duergar warlord sits upon it in armor that seems to absorb light, his face hidden behind a visor shaped like a screaming mouth. Behind him, through a massive viewport carved in the mountainside, you can see the chardalyn dragon -- a horror of dark crystal and hate, crouched in its launch bay, nearly complete.",
+                "npcs": [
+                    {"name": "Xardorok Sunblight", "role": "antagonist", "dialogue": "You're too late, surface filth. My masterwork is complete. In three days it flies north, and every town, every village, every miserable huddle of warmth-seekers in Icewind Dale becomes ash and memory. Deep Duerra has shown me the path. The surface belongs to the duergar now."}
+                ],
+                "enemies": [
+                    {"name": "Xardorok Sunblight (Duergar Warlord)", "cr": "8"},
+                    {"name": "Duergar Screamer (construct)", "cr": "3"},
+                    {"name": "Chardalyn Berserker", "cr": "4"}
+                ],
+                "loot": [
+                    {"name": "Xardorok's Chardalyn Crown", "type": "wondrous_item"},
+                    {"name": "Dragon Control Rod (controls chardalyn dragon if attuned)", "type": "quest_item"},
+                    {"name": "Deep Duerra's War Plans", "type": "quest_item"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: Xardorok fights to the death. He has lair actions: chardalyn shrapnel (2d6 piercing in 15 ft cone), enlarge self.", "On victory: The Dragon Control Rod can redirect or disable the chardalyn dragon. Without it, the dragon launches autonomously in 1d4 hours."]
+            }
+        },
+        "5": {
+            "id": 5,
+            "x": 45,
+            "y": 15,
+            "width": 14,
+            "height": 12,
+            "room_type": "normal",
+            "connections": [2, 4],
+            "tier": 3,
+            "is_locked": true,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The chardalyn dragon bay is a vertical shaft carved from the mountain's peak, its walls scored with claw marks from the construct's test movements. The dragon itself fills the space -- forty feet of chardalyn crystal shaped into a nightmarish echo of a real dragon, its eyes two burning points of purple light. It radiates cold malice. Even dormant, standing near it makes your teeth ache and your thoughts scatter.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Chardalyn Dragon (construct, dormant)", "cr": "11"}
+                ],
+                "loot": [
+                    {"name": "Chardalyn Dragon Heart (if destroyed before launch)", "type": "quest_item"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: The dragon is dormant unless Xardorok activates it or the autonomous launch triggers.", "On sabotage: DC 18 Arcana + DC 16 Thieves' Tools to disable the dragon. Failure awakens it.", "On launch: If the dragon launches, it flies toward Ten-Towns. The party has 12 hours to intercept it before it reaches Bryn Shander."]
+            }
+        },
+        "6": {
+            "id": 6,
+            "x": 25,
+            "y": 40,
+            "width": 10,
+            "height": 8,
+            "room_type": "normal",
+            "connections": [4, 7],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The prison block occupies the fortress's lowest level, where the temperature drops below freezing and the walls weep with condensation that freezes into curtains of ice. Iron cages hold captives -- surface folk taken from caravans, a handful of shield dwarves, and one particularly miserable-looking goblin who claims to be a prince.",
+                "npcs": [
+                    {"name": "Grandolpha Muzgardt", "role": "prisoner", "dialogue": "Xardorok imprisoned his own grandmother. That should tell you everything about his character. I opposed the surface invasion -- foolish, not because it's wrong, but because it's premature. Free me and I'll tell you about the passage to the Underdark. The one Xardorok used to bring his army north."},
+                    {"name": "Goblin 'Prince' Snurk", "role": "prisoner", "dialogue": "Snurk is royalty! Snurk demands diplomatic treatment! Also food. Mostly food. Snurk hasn't eaten in three days and is willing to renegotiate the royalty claim in exchange for a turnip."}
+                ],
+                "enemies": [],
+                "loot": [
+                    {"name": "Manacle Key (opens all cells)", "type": "quest_item"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: Freeing prisoners provides 2d4 grateful NPCs who can serve as guides or distraction.", "On Grandolpha: She reveals the Underdark passage and the location of Xardorok's secret chardalyn cache."]
+            }
+        },
+        "7": {
+            "id": 7,
+            "x": 20,
+            "y": 48,
+            "width": 8,
+            "height": 6,
+            "room_type": "town_gate",
+            "connections": [6],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": true,
+            "content_hints": {
+                "description": "The Underdark passage is a natural fissure widened by duergar picks, descending at a steep angle into absolute darkness. The air that rises from below carries the mineral smell of deep earth and the faintest whisper of flowing water. This is how Xardorok's army arrived, and it remains unguarded -- the duergar never expected anyone to want to go down.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [],
+                "services": [],
+                "event_triggers": ["On exit: Passage leads deep into the Underdark. Can be used to access other modules or as an emergency escape route."]
+            }
+        }
+    }
+}

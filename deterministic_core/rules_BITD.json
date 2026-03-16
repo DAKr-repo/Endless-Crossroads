@@ -1,0 +1,128 @@
+{
+    "meta": {
+        "system_id": "BITD",
+        "display_name": "bitd",
+        "engine": "FITD",
+        "dice_system": "d6_pool",
+        "system_family": "FITD",
+        "version": "C.O.D.E.X. 2.0"
+    },
+    "lookup": {
+        "dwarf": {
+            "type": "race",
+            "name": "Dwarf"
+        },
+        "elf": {
+            "type": "race",
+            "name": "Elf"
+        },
+        "elven": {
+            "type": "race",
+            "name": "Elven"
+        },
+        "gnome": {
+            "type": "race",
+            "name": "Gnome"
+        },
+        "human": {
+            "type": "race",
+            "name": "Human"
+        },
+        "orc": {
+            "type": "race",
+            "name": "Orc"
+        },
+        "stress": {
+            "type": "resource",
+            "name": "Stress"
+        },
+        "trauma": {
+            "type": "resource",
+            "name": "Trauma"
+        },
+        "coin": {
+            "type": "resource",
+            "name": "Coin"
+        },
+        "heat": {
+            "type": "resource",
+            "name": "Heat"
+        },
+        "rep": {
+            "type": "resource",
+            "name": "Rep"
+        },
+        "wanted level": {
+            "type": "resource",
+            "name": "Wanted Level"
+        }
+    },
+    "structure": {
+        "system_id": "BITD",
+        "display_name": "bitd",
+        "engine": "FITD",
+        "system_family": "FITD",
+        "archetype_categories": {
+            "Playbooks": []
+        },
+        "core_stats": {
+            "attributes": [
+                "Insight",
+                "Prowess",
+                "Resolve"
+            ],
+            "actions": {}
+        },
+        "resources": [
+            "Stress",
+            "Trauma"
+        ],
+        "dice_system": "d6_pool",
+        "position_effect": true,
+        "stress_max": 9,
+        "trauma_max": 4,
+        "mechanics": {
+            "stats": [
+                "Insight",
+                "Prowess",
+                "Resolve"
+            ],
+            "resources": [
+                "Coin",
+                "Heat",
+                "Rep",
+                "Stress",
+                "Trauma",
+                "Wanted Level"
+            ],
+            "classes": [
+                "Cutter",
+                "Hound",
+                "Leech",
+                "Lurk",
+                "Slide",
+                "Spider",
+                "Whisper"
+            ],
+            "subclasses": [
+                "Assassin",
+                "Brave",
+                "Bruiser",
+                "Ghost",
+                "Hunter",
+                "Skulk"
+            ],
+            "races": [
+                "Dwarf",
+                "Elf",
+                "Elven",
+                "Gnome",
+                "Human",
+                "Orc"
+            ]
+        },
+        "races": [],
+        "deep_classes": {},
+        "feats": []
+    }
+}

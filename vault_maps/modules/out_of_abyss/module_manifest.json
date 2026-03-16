@@ -1,0 +1,140 @@
+{
+    "module_id": "out_of_abyss",
+    "display_name": "Out of the Abyss",
+    "system_id": "dnd5e",
+    "source_pdf": "Out of the Abyss.pdf",
+    "world_map": "world_map.json",
+    "starting_location": "velkynvelve",
+    "recommended_levels": {"min": 1, "max": 15},
+    "chapters": [
+        {
+            "chapter_id": "ch1",
+            "display_name": "Chapter 1: Prisoners of the Drow",
+            "order": 1,
+            "zones": [
+                {
+                    "zone_id": "velkynvelve",
+                    "blueprint": "velkynvelve.json",
+                    "topology": "dungeon",
+                    "theme": "GOTHIC",
+                    "location_id": "underdark",
+                    "entry_trigger": "module_start",
+                    "exit_trigger": "quest_complete"
+                }
+            ]
+        },
+        {
+            "chapter_id": "ch2",
+            "display_name": "Chapter 3: The Darklake",
+            "order": 2,
+            "zones": [
+                {
+                    "zone_id": "sloobludop",
+                    "blueprint": "sloobludop.json",
+                    "topology": "settlement",
+                    "theme": "GOTHIC",
+                    "location_id": "underdark",
+                    "entry_trigger": "quest_complete",
+                    "exit_trigger": "boss_defeated"
+                }
+            ]
+        },
+        {
+            "chapter_id": "ch3",
+            "display_name": "Chapter 4: Gracklstugh",
+            "order": 3,
+            "zones": [
+                {
+                    "zone_id": "gracklstugh",
+                    "blueprint": "gracklstugh.json",
+                    "topology": "settlement",
+                    "theme": "STONE",
+                    "location_id": "underdark",
+                    "entry_trigger": "boss_defeated",
+                    "exit_trigger": "quest_complete"
+                }
+            ]
+        },
+        {
+            "chapter_id": "ch4",
+            "display_name": "Chapter 5: Neverlight Grove",
+            "order": 4,
+            "zones": [
+                {
+                    "zone_id": "neverlight_grove",
+                    "blueprint": "neverlight_grove.json",
+                    "topology": "wilderness",
+                    "theme": "GOTHIC",
+                    "location_id": "underdark",
+                    "entry_trigger": "quest_complete",
+                    "exit_trigger": "boss_defeated"
+                }
+            ]
+        },
+        {
+            "chapter_id": "ch5",
+            "display_name": "Chapter 6: Blingdenstone",
+            "order": 5,
+            "zones": [
+                {
+                    "zone_id": "blingdenstone",
+                    "blueprint": "blingdenstone.json",
+                    "topology": "settlement",
+                    "theme": "STONE",
+                    "location_id": "underdark",
+                    "entry_trigger": "boss_defeated",
+                    "exit_trigger": "quest_complete"
+                }
+            ]
+        },
+        {
+            "chapter_id": "ch6",
+            "display_name": "Chapter 12: Menzoberranzan",
+            "order": 6,
+            "zones": [
+                {
+                    "zone_id": "menzoberranzan",
+                    "blueprint": "menzoberranzan.json",
+                    "topology": "settlement",
+                    "theme": "GOTHIC",
+                    "location_id": "underdark",
+                    "entry_trigger": "quest_complete",
+                    "exit_trigger": "quest_complete"
+                }
+            ]
+        },
+        {
+            "chapter_id": "ch7",
+            "display_name": "Chapter 13: Gauntlgrym",
+            "order": 7,
+            "zones": [
+                {
+                    "zone_id": "gauntlgrym",
+                    "blueprint": "gauntlgrym.json",
+                    "topology": "dungeon",
+                    "theme": "STONE",
+                    "location_id": "underdark",
+                    "entry_trigger": "quest_complete",
+                    "exit_trigger": "quest_complete"
+                }
+            ]
+        },
+        {
+            "chapter_id": "ch8",
+            "display_name": "Chapter 17: Against the Demon Lords",
+            "order": 8,
+            "zones": [
+                {
+                    "zone_id": "demogorgon_lair",
+                    "blueprint": "demogorgon_lair.json",
+                    "topology": "dungeon",
+                    "theme": "GOTHIC",
+                    "location_id": "underdark",
+                    "entry_trigger": "quest_complete",
+                    "exit_trigger": "boss_defeated"
+                }
+            ]
+        }
+    ],
+    "freeform_zones": []
+}

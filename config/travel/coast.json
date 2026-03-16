@@ -1,0 +1,64 @@
+{
+  "terrain_type": "coast",
+  "events": {
+    "tier_1": [
+      {
+        "id": "tidal_crossing",
+        "type": "skill_challenge",
+        "title": "Tidal Crossing",
+        "description": "The trail crosses a tidal flat. Water is already creeping in.",
+        "target_role": "guide",
+        "dc": 10,
+        "success": "You time the crossing perfectly. Boots stay dry.",
+        "failure": "Caught by the tide. Hours waiting for it to recede.",
+        "failure_cost": {"days": 0.5}
+      },
+      {
+        "id": "fishing_village",
+        "type": "discovery",
+        "title": "Fishing Village",
+        "description": "A cluster of huts on stilts. Nets hang drying in the salt wind.",
+        "target_role": "forager",
+        "dc": 8,
+        "success": "The fishers share smoked fish and directions.",
+        "failure": "Abandoned. The smell of old fish is the only greeting.",
+        "success_reward": {"rations": 3}
+      },
+      {
+        "id": "sahuagin_scouts",
+        "type": "combat",
+        "title": "Sahuagin Scouts",
+        "description": "Scaled figures emerge from the surf, tridents gleaming.",
+        "target_role": "scout",
+        "dc": 12,
+        "success": "You spot their heads in the waves and move inland before they strike.",
+        "failure": "They attack from the waterline.",
+        "enemies_tier": 1
+      }
+    ],
+    "tier_2": [
+      {
+        "id": "storm_surge",
+        "type": "skill_challenge",
+        "title": "Storm Surge",
+        "description": "A wall of grey water races toward the coastal path.",
+        "target_role": "guide",
+        "dc": 13,
+        "success": "You scramble to high ground just in time.",
+        "failure": "Swept off the path. Gear soaked, supplies ruined.",
+        "failure_cost": {"days": 1}
+      },
+      {
+        "id": "shipwreck",
+        "type": "discovery",
+        "title": "Shipwreck",
+        "description": "A merchant vessel lies broken on the rocks, cargo spilling from its hold.",
+        "target_role": "scout",
+        "dc": 11,
+        "success": "You salvage intact provisions from the wreck.",
+        "failure": "Nothing but barnacles and rotting wood.",
+        "success_reward": {"rations": 4}
+      }
+    ]
+  }
+}

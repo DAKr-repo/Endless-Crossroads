@@ -1,0 +1,181 @@
+{
+    "seed": 6005,
+    "width": 60,
+    "height": 50,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "caves_of_hunger",
+        "theme": "STONE",
+        "topology": "dungeon",
+        "display_name": "Caves of Hunger"
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 5,
+            "y": 5,
+            "width": 10,
+            "height": 8,
+            "room_type": "start",
+            "connections": [1],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The ice cave entrance is a wound in the glacier's face, exhaling air so cold it crystallizes your breath into ice before it leaves your lips. The walls are translucent blue-white, and deep within them, you can see shapes -- bones, weapons, the frozen forms of creatures that wandered in centuries ago and never found their way out. The tunnel descends at a sharp angle, polished smooth by millennia of meltwater that has long since frozen.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [
+                    {"name": "Ice Piton Set", "type": "gear"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: DC 12 Acrobatics or Athletics to descend safely. Failure means sliding 30 ft and taking 1d6 bludgeoning.", "On listen: DC 14 Perception hears something breathing in the deep -- slow, rhythmic, enormous."]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 15,
+            "y": 15,
+            "width": 14,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [0, 2, 3],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The frozen waterfall hangs suspended in time -- a curtain of ice forty feet tall, the water caught mid-cascade. Behind it, visible through the translucent ice, a passage continues deeper. The fall is beautiful and deeply wrong; water does not freeze this way naturally. Something stopped time here, or stopped the water, and whatever force accomplished that is still present, humming in the ice like a held breath.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Ice Mephit", "cr": "1/2"},
+                    {"name": "Ice Mephit", "cr": "1/2"},
+                    {"name": "Ice Mephit", "cr": "1/2"}
+                ],
+                "loot": [
+                    {"name": "Frozen Waterfall Crystal (focus component, +1 to cold spell DC)", "type": "wondrous_item"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: Breaking through the waterfall requires DC 15 Strength or fire damage (20+ HP to the ice).", "On search: DC 16 Arcana reveals the waterfall was frozen by Auril's power, not natural cold. The magic can be dispelled (DC 17)."]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 30,
+            "y": 10,
+            "width": 12,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [1, 3, 4],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Crystal Cavern refracts what little light enters it into a constellation of prismatic points. Every surface is faceted ice, and the reflections create the illusion of infinite space -- you see yourself repeated a thousand times in every direction, each reflection slightly delayed, as though watching your own past. The acoustics are treacherous; sounds bounce and multiply until a whisper becomes a chorus.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Gelatinous Ice Cube (transparent, DC 17 to spot)", "cr": "4"}
+                ],
+                "loot": [
+                    {"name": "Diamond Dust (300 gp, resurrection component)", "type": "treasure"},
+                    {"name": "Ring of Warmth", "type": "wondrous_item"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: The gelatinous cube is nearly invisible against the crystal walls. DC 17 Perception to spot before walking into it.", "On search: DC 14 Investigation finds a frozen gnome explorer with intact gear and a journal describing the route to Ythryn."]
+            }
+        },
+        "3": {
+            "id": 3,
+            "x": 20,
+            "y": 25,
+            "width": 16,
+            "height": 14,
+            "room_type": "boss",
+            "connections": [1, 2, 5],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The pool fills a cavern whose ceiling drips with stalactites of ice so clear they look like glass fangs. The water -- impossibly liquid in this frozen hell -- is black and still, reflecting nothing. Then the surface breaks, and something rises: a mass of translucent, shoggoth-like protoplasm that fills half the cavern, its body studded with frozen corpses it has absorbed over centuries. It makes a sound like tekeli-li, tekeli-li, and the temperature drops another twenty degrees.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Tekeli-li (Elder Ooze)", "cr": "10"}
+                ],
+                "loot": [
+                    {"name": "Vorpal Sword (frozen inside Tekeli-li's body, retrievable on defeat)", "type": "weapon"},
+                    {"name": "Frost Brand Rapier", "type": "weapon"},
+                    {"name": "Absorbed Explorer's Pack (rations, rope, torches)", "type": "gear"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: Tekeli-li attacks anything that approaches within 30 ft of the pool.", "On combat: Lair action: ice shards rain from ceiling (2d6 piercing, DC 14 Dex save for half) every other round.", "On defeat: The pool drains, revealing a passage descending toward Ythryn."]
+            }
+        },
+        "4": {
+            "id": 4,
+            "x": 40,
+            "y": 20,
+            "width": 12,
+            "height": 10,
+            "room_type": "treasure",
+            "connections": [2, 5],
+            "tier": 3,
+            "is_locked": true,
+            "is_secret": true,
+            "content_hints": {
+                "description": "The Vampire Tomb is sealed behind a wall of black ice that radiates malice like heat from a forge. Inside, a sarcophagus of obsidian rests on a dais of frozen blood. The chamber is decorated in a style that predates Icewind Dale's settlement -- Netherese carvings, depicting a pale figure with elongated canines receiving the adulation of robed supplicants. The lid of the sarcophagus is cracked. Something got out.",
+                "npcs": [
+                    {"name": "Lucius Rime (Vampire Spawn, Netherese)", "role": "neutral", "dialogue": "*The pale figure stands in the corner, watching you with eyes like frozen rubies.* I have been here since Ythryn fell. Sealed in by the crash, preserved by the cold. I remember the city as it was -- alive, arrogant, beautiful. I can guide you there. The price is a flask of warm blood and a promise: when you find the Mythallar, you let me touch it. Just once."}
+                ],
+                "enemies": [
+                    {"name": "Lucius Rime (Vampire Spawn, if hostile)", "cr": "5"}
+                ],
+                "loot": [
+                    {"name": "Netherese Amulet of Shielding", "type": "wondrous_item"},
+                    {"name": "Spell Scroll (Wall of Ice)", "type": "scroll"},
+                    {"name": "Ruby Eyes (200 gp each, 2)", "type": "treasure"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: Lucius is not immediately hostile. He offers information in exchange for blood and safe passage.", "On deal: He provides accurate intelligence about Ythryn's layout and its guardian.", "On betrayal: If attacked or denied, Lucius fights with desperate fury. He has nowhere else to go."]
+            }
+        },
+        "5": {
+            "id": 5,
+            "x": 25,
+            "y": 38,
+            "width": 12,
+            "height": 8,
+            "room_type": "normal",
+            "connections": [3, 4, 6],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Passage of Echoes is a tube bored through solid glacier ice by some force that left the walls glass-smooth. Every sound repeats here, building on itself until a footstep becomes a thunderclap and a whispered word becomes a shout. The passage descends at a gentle angle for what feels like miles, and through the translucent walls, the first shadows of Ythryn's towers become visible -- dark shapes frozen in the ice like flies in amber.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [],
+                "services": [],
+                "event_triggers": ["On entry: No stealth possible in this passage. Any sound is amplified. Creatures ahead are automatically alerted.", "On listen: DC 12 Perception hears distant, mechanical sounds -- the Mythallar, still running after centuries."]
+            }
+        },
+        "6": {
+            "id": 6,
+            "x": 30,
+            "y": 45,
+            "width": 8,
+            "height": 6,
+            "room_type": "town_gate",
+            "connections": [5],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The passage terminates in a breach -- the glacier has cracked here, splitting open to reveal a pocket of still air and the first structures of Ythryn. A Netherese archway, still intact after centuries, frames the entrance to the buried city. The runes on its surface pulse with a faint blue light, and beyond it, streets of frozen stone extend into a darkness that somehow feels warmer than the ice behind you.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [],
+                "services": [],
+                "event_triggers": ["On exit: Transition to Ythryn. The archway's magic preserves a bubble of breathable air within the buried city."]
+            }
+        }
+    }
+}

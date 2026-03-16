@@ -1,0 +1,180 @@
+{
+    "seed": 8001,
+    "width": 60,
+    "height": 50,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "kholinar",
+        "theme": "STONE",
+        "topology": "settlement",
+        "display_name": "Kholinar -- The City of Bells"
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 5,
+            "y": 25,
+            "width": 10,
+            "height": 8,
+            "room_type": "start",
+            "connections": [1, 3],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Palace Gates of Kholinar loom forty feet high, carved from a single slab of granite hauled from the Sunmaker Mountains three centuries past. Lighteyed guards in blue and white tabards inspect every entrant with the practiced boredom of men who have done this ten thousand times.",
+                "npcs": [
+                    {"name": "Captain Niter", "role": "guard", "dialogue": "State your business. And keep your hands where I can see them -- we have had incidents with Soulcasters this week."}
+                ],
+                "enemies": [],
+                "loot": [],
+                "services": ["entry_pass"],
+                "event_triggers": ["On entry: The storm bells ring three times -- the all-clear signal after a recent highstorm"]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 20,
+            "y": 20,
+            "width": 14,
+            "height": 12,
+            "room_type": "market",
+            "connections": [0, 2, 4, 5],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Kholinar Market sprawls beneath a canopy of taut stormcloth, its stalls arranged in concentric rings around a central fountain that runs dry between highstorms. The air carries the sharp sweetness of chouta frying in oil, the wet-mineral scent of fresh crem, and the shouting of a hundred merchants who all believe theirs is the only voice worth hearing.",
+                "npcs": [
+                    {"name": "Wit", "role": "storyteller", "dialogue": "Ah, new faces. I collect those, you know. Faces. Not literally -- well, not usually. Sit, sit. I have a story about a man who walked into a chasm and found a door. What was behind it? That depends entirely on who is asking."},
+                    {"name": "Merchant Hahvah", "role": "merchant", "dialogue": "Spheres only, darkeyes. Dun spheres get you dun goods. Infused get you the real stock."}
+                ],
+                "enemies": [],
+                "loot": [
+                    {"name": "Chouta Wrap (heals 2 HP)", "type": "consumable"},
+                    {"name": "Stormlight Sphere (Chip)", "type": "currency"}
+                ],
+                "services": ["buy_equipment", "sell_goods", "rumors", "food"],
+                "event_triggers": ["On entry: Wit catches your eye from across the market and raises a cup in greeting, as if he was expecting you"]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 40,
+            "y": 10,
+            "width": 12,
+            "height": 10,
+            "room_type": "residence",
+            "connections": [1, 4],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Lighteyes District rises on terraced stone above the market quarter. Every home is fronted with carved stormwork and displays the house glyphs of its patron. The streets are swept clean of crem by a small army of darkeyed servants, and the air smells of incense burned in honor of the Almighty.",
+                "npcs": [
+                    {"name": "Brightlord Amaram", "role": "quest_giver", "dialogue": "The codes of war are not merely tradition. They are the only thing separating us from the Parshendi. I need soldiers who understand that distinction. Are you such soldiers?"}
+                ],
+                "enemies": [],
+                "loot": [],
+                "services": ["patron_audience", "military_recruitment"],
+                "event_triggers": ["On entry: A servant ushers you aside as a lighteyed woman passes in a palanquin, her safehand sleeve embroidered with the glyph for 'truth'"]
+            }
+        },
+        "3": {
+            "id": 3,
+            "x": 10,
+            "y": 38,
+            "width": 12,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [0, 5],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Darkeyes Quarter presses tight against the outer wall -- a maze of tenements stacked three and four stories high, their rain-catches bristling from every rooftop like iron quills. Laundry snaps on lines strung between buildings, and children play with cremling carapaces in the gutters.",
+                "npcs": [
+                    {"name": "Teft", "role": "ally", "dialogue": "You have the look of bridge crew about you. Do not take that as an insult -- those men are the toughest bastards in this city. Follow me if you want to meet someone worth meeting."}
+                ],
+                "enemies": [],
+                "loot": [
+                    {"name": "Darkeyed Worker's Knife", "type": "weapon"}
+                ],
+                "services": ["lodging", "street_information"],
+                "event_triggers": ["On entry: A group of darkeyed men argue loudly about bridge crew assignments, their voices bitter with exhaustion"]
+            }
+        },
+        "4": {
+            "id": 4,
+            "x": 35,
+            "y": 25,
+            "width": 10,
+            "height": 10,
+            "room_type": "temple",
+            "connections": [1, 2],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Devotary of Purity stands apart from the city's bustle, its walls built from white stone that seems to glow even without Stormlight. Inside, ardents in grey robes tend rows of glowing gemstones mounted in fabrials of exquisite craft. The air hums with a frequency that settles in your teeth.",
+                "npcs": [
+                    {"name": "Ardent Kabsal", "role": "scholar", "dialogue": "The geometry of the city is not accidental. Kholinar's layout mirrors the shape of a Dawncity -- a pattern from before recorded history. I have been mapping the correspondence. Would you like to see?"},
+                    {"name": "Head Ardent Ilara", "role": "merchant", "dialogue": "The Devotary offers healing fabrials to those in need. We ask only a donation of infused spheres in return. The Almighty provides, but gemstones do not infuse themselves."}
+                ],
+                "enemies": [],
+                "loot": [
+                    {"name": "Healing Fabrial (Minor)", "type": "consumable"}
+                ],
+                "services": ["healing", "lore", "fabrial_purchase"],
+                "event_triggers": ["On entry: An ardent looks up from a cymatics experiment -- sand on a vibrating plate has formed a glyph no one recognizes"]
+            }
+        },
+        "5": {
+            "id": 5,
+            "x": 22,
+            "y": 40,
+            "width": 8,
+            "height": 8,
+            "room_type": "hidden_portal",
+            "connections": [1, 3],
+            "tier": 2,
+            "is_locked": true,
+            "is_secret": true,
+            "content_hints": {
+                "description": "A cellar beneath an abandoned dye-works, its entrance hidden behind a false wall of stacked crem bricks. Inside, maps cover every surface -- the Shattered Plains, Urithiru, coastlines that match no known geography. A bedroll in the corner still carries warmth.",
+                "npcs": [
+                    {"name": "Shallan Davar", "role": "ally", "dialogue": "Do not be alarmed. I am not a spy. Well -- I am, technically. But not against you. Probably. I need to get to the Shattered Plains, and I think you need the same thing. Shall we stop pretending we are strangers?"}
+                ],
+                "enemies": [],
+                "loot": [
+                    {"name": "Stolen Cartography Notes", "type": "quest_item"},
+                    {"name": "Stormlight Sphere (Mark)", "type": "currency"}
+                ],
+                "services": ["intelligence", "cartography"],
+                "event_triggers": ["On entry: A Memory sketch pinned to the wall shows your face -- drawn before you arrived in the city"]
+            }
+        },
+        "6": {
+            "id": 6,
+            "x": 2,
+            "y": 10,
+            "width": 8,
+            "height": 8,
+            "room_type": "town_gate",
+            "connections": [0],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The City Wall Gate faces east toward the Shattered Plains. The stone here is scarred with the impact marks of a hundred highstorms, and the crem buildup on the lee side has been carved into crude reliefs by generations of bored gate guards -- battles, highstorms, and one surprisingly detailed chasmfiend.",
+                "npcs": [
+                    {"name": "Gate Warden Beld", "role": "guard", "dialogue": "East road is open, but I would not recommend it. Three caravans have gone missing this month. Parshendi? Bandits? Nobody who went to find out has come back to say."}
+                ],
+                "enemies": [],
+                "loot": [],
+                "services": ["exit_city", "travel_provisions"],
+                "event_triggers": ["On entry: A caravan master argues with the gate warden, insisting the eastern road is safe despite the evidence"]
+            }
+        }
+    }
+}

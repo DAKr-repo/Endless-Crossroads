@@ -1,0 +1,189 @@
+{
+    "seed": 8004,
+    "width": 50,
+    "height": 70,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "chasm_descent",
+        "theme": "GOTHIC",
+        "topology": "dungeon",
+        "display_name": "The Chasm Descent"
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 20,
+            "y": 5,
+            "width": 10,
+            "height": 8,
+            "room_type": "start",
+            "connections": [1],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Chasm Edge. Rope anchors hammered into stone by bridge crew salvagers mark the descent point. Below, darkness swallows your torchlight at thirty feet. The rock is slick with condensation and something else -- a faint bioluminescent slime that pulses in slow rhythms, like breathing.",
+                "npcs": [
+                    {"name": "Salvager Drehy", "role": "guide", "dialogue": "Down is easy. It is the coming back up that kills people. Mark your rope every fifty feet with a knot. When the knots stop making sense, you have gone too deep."}
+                ],
+                "enemies": [],
+                "loot": [
+                    {"name": "Salvager's Glow-Lamp", "type": "equipment"}
+                ],
+                "services": ["descent_equipment"],
+                "event_triggers": ["On entry: Something large shifts in the darkness below -- a scraping of chitin against stone that echoes for far too long"]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 18,
+            "y": 16,
+            "width": 8,
+            "height": 14,
+            "room_type": "corridor",
+            "connections": [0, 2],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Narrow Ledge runs along the chasm wall -- a shelf of stone barely four feet wide, polished smooth by millennia of rushing water. The left wall seeps moisture. The right drops into nothing. Cremlings scatter at your approach, their carapaces clicking against stone like a thousand tiny dice.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Cremling Swarm", "cr": "1"}
+                ],
+                "loot": [],
+                "services": [],
+                "event_triggers": ["On entry: Your footsteps dislodge a stone that falls into the chasm. You count to seven before it hits something. Then it hits something else."]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 10,
+            "y": 28,
+            "width": 16,
+            "height": 12,
+            "room_type": "normal",
+            "connections": [1, 3, 4],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Flooded Gallery opens where two chasms intersect -- a cathedral-sized cavern where water pools knee-deep in the low season and neck-deep when the highstorms drain. The walls carry tide marks at five different heights, each stained a different mineral color. Bones float in the shallows -- human, Parshendi, and things with too many joints.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Whitespine (juvenile)", "cr": "3"},
+                    {"name": "Cremling Swarm", "cr": "1"}
+                ],
+                "loot": [
+                    {"name": "Waterlogged Soldier's Pack", "type": "container"},
+                    {"name": "Stormlight Sphere (Mark)", "type": "currency"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: The water level is rising. Slowly, but visibly. A storm above is draining into the chasms."]
+            }
+        },
+        "3": {
+            "id": 3,
+            "x": 5,
+            "y": 38,
+            "width": 14,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [2, 5],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Chasmfiend bones arch overhead -- the ribcage of an adult specimen wedged between the chasm walls forty feet up, where it died trying to climb free. The skeleton has calcified into the stone itself, and cremlings have built entire colonies in its eye sockets. Parshendi ceremonial carvings cover the creature's carapace.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Chasmfiend Hatchling", "cr": "2"},
+                    {"name": "Chasmfiend Hatchling", "cr": "2"}
+                ],
+                "loot": [
+                    {"name": "Chasmfiend Carapace Shard", "type": "material"},
+                    {"name": "Parshendi Ritual Carving", "type": "quest_item"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: The hatchlings freeze when they sense you -- not afraid, but evaluating. They have their parent's predator intelligence."]
+            }
+        },
+        "4": {
+            "id": 4,
+            "x": 25,
+            "y": 40,
+            "width": 12,
+            "height": 10,
+            "room_type": "treasure",
+            "connections": [2, 5],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Stormlight Crystal Cave. Natural gemstone formations thrust from every surface -- amethyst, heliodor, sapphire, ruby -- each one drinking light and exhaling it as Stormlight. The air is dense with investiture, and your skin prickles with static charge. A Radiant could feast here. The crystals hum at frequencies that make your vision blur.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [
+                    {"name": "Raw Amethyst (Broam-grade)", "type": "gemstone"},
+                    {"name": "Sapphire Cluster (infused)", "type": "gemstone"},
+                    {"name": "Stormlight Sphere (Broam)", "type": "currency"},
+                    {"name": "Heliodor Shard (Fabrial-grade)", "type": "material"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: Stormlight floods your body unbidden -- cuts close, bruises fade, and for a moment you understand why the Radiants were willing to die for this"]
+            }
+        },
+        "5": {
+            "id": 5,
+            "x": 15,
+            "y": 50,
+            "width": 10,
+            "height": 8,
+            "room_type": "normal",
+            "connections": [3, 4, 6],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "An Ancient Oathgate Fragment -- a section of worked stone utterly unlike the natural chasm walls, carved with the ten glyph-patterns of the Radiant Orders. It juts from the rock as if the chasm itself broke through a structure that was here first. The stone is warm to the touch, and Stormlight seeps from its seams like blood from a wound.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Midnight Essence", "cr": "3"}
+                ],
+                "loot": [
+                    {"name": "Oathgate Keystone Fragment", "type": "quest_item"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: The Oathgate fragment responds to your presence -- glyphs illuminate in sequence, tracing a pattern that spells a word in a language predating human civilization on Roshar"]
+            }
+        },
+        "6": {
+            "id": 6,
+            "x": 12,
+            "y": 60,
+            "width": 16,
+            "height": 10,
+            "room_type": "boss",
+            "connections": [5],
+            "tier": 4,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Chasmfiend Nest. The chasm widens into a bowl-shaped cavern strewn with shed carapace plates the size of wagon wheels. The walls are scarred with claw marks three inches deep. At the center, a fully grown chasmfiend curls around its chrysalis, compound eyes tracking your every movement with alien intelligence. It does not attack immediately. It waits.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Adult Chasmfiend", "cr": "6"},
+                    {"name": "Chasmfiend Hatchling", "cr": "2"},
+                    {"name": "Chasmfiend Hatchling", "cr": "2"}
+                ],
+                "loot": [
+                    {"name": "Chasmfiend Gemheart", "type": "treasure"},
+                    {"name": "Ancient Shardblade (dormant)", "type": "weapon"},
+                    {"name": "Chrysalis Amber", "type": "material"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: The adult chasmfiend rises to its full height -- sixty feet of armored legs and mandibles and eyes that have no right to hold the intelligence they do. The hatchlings scatter behind it. It is protecting them."]
+            }
+        }
+    }
+}

@@ -1,0 +1,27 @@
+{
+  "version": "2.0",
+  "engine": "codex_memory",
+  "timestamp": "2026-02-04T13:40:47.837328",
+  "shards": [
+    {
+      "id": "df17a1f9",
+      "type": "MASTER",
+      "content": "WORLD: The Iron Crown\nGENRE: Skyborne Fantasy | TONE: GRIM\n\nCROWN FACTION: The General\nCREW FACTION: The Resistance\n\nWORLD STRUCTURE (G.R.A.P.E.S.):\n  GEOGRAPHY: Floating sky-islands\n  RELIGION: Machine-god technofaith\n  ACHIEVEMENTS: Mapped the planar boundaries\n  POLITICS: Puppet state (controlled from abroad)\n  ECONOMICS: Gold-standard mercantile trade\n  SOCIAL: Wealth-based social mobility\n\nWORLD PRIMER:\nThe Iron Crown is a land of Floating sky-islands. The people follow Machine-god technofaith. Their greatest achievement: Mapped the planar boundaries. Power rests with The General \u2014 Order through strength. Discipline is law.. In the shadows, The Resistance \u2014 Freedom fighters or terrorists \u2014 depends who you ask.. The economy runs on Gold-standard mercantile trade. Society is defined by Wealth-based social mobility.",
+      "timestamp": "2026-02-04T13:40:47.837281",
+      "tags": [
+        "world",
+        "genesis"
+      ],
+      "pinned": true,
+      "token_estimate": 207,
+      "source": "genesis"
+    }
+  ],
+  "metadata": {
+    "total_shards": 1,
+    "pinned_count": 1,
+    "token_budget": 6144,
+    "max_tokens": 8192,
+    "generation_reserve": 2048
+  }
+}

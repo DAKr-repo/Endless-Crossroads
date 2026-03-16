@@ -1,0 +1,32 @@
+{
+    "seed": 0,
+    "width": 40,
+    "height": 30,
+    "start_room_id": 0,
+    "rooms": {
+        "0": {"id": 0, "x": 15, "y": 12, "width": 10, "height": 6,
+              "room_type": "town_square", "connections": [1,2,3,4,5,6,7],
+              "tier": 0, "is_locked": false, "is_secret": false},
+        "1": {"id": 1, "x": 2, "y": 2, "width": 8, "height": 6,
+              "room_type": "tavern", "connections": [0,5,6],
+              "tier": 0, "is_locked": false, "is_secret": false},
+        "2": {"id": 2, "x": 30, "y": 2, "width": 8, "height": 6,
+              "room_type": "forge", "connections": [0,5,7],
+              "tier": 0, "is_locked": false, "is_secret": false},
+        "3": {"id": 3, "x": 2, "y": 22, "width": 8, "height": 6,
+              "room_type": "barracks", "connections": [0,4,6],
+              "tier": 0, "is_locked": false, "is_secret": false},
+        "4": {"id": 4, "x": 30, "y": 22, "width": 8, "height": 6,
+              "room_type": "market", "connections": [0,3,7],
+              "tier": 0, "is_locked": false, "is_secret": false},
+        "5": {"id": 5, "x": 15, "y": 0, "width": 10, "height": 4,
+              "room_type": "town_gate", "connections": [0,1,2],
+              "tier": 0, "is_locked": false, "is_secret": false},
+        "6": {"id": 6, "x": 2, "y": 12, "width": 8, "height": 6,
+              "room_type": "temple", "connections": [0,1,3],
+              "tier": 0, "is_locked": false, "is_secret": false},
+        "7": {"id": 7, "x": 30, "y": 12, "width": 8, "height": 6,
+              "room_type": "library", "connections": [0,2,4],
+              "tier": 0, "is_locked": false, "is_secret": false}
+    }
+}

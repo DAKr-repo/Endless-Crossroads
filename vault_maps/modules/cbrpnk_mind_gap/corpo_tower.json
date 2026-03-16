@@ -1,0 +1,217 @@
+{
+    "seed": 9002,
+    "width": 50,
+    "height": 70,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "corpo_tower",
+        "theme": "RUST",
+        "topology": "vertical",
+        "display_name": "Helix Tower -- Corporate Headquarters"
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 20,
+            "y": 60,
+            "width": 12,
+            "height": 8,
+            "room_type": "start",
+            "connections": [1, 7],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Loading Dock. Sublevel 2, beneath Helix Tower. Autonomous cargo haulers cycle through in six-minute intervals, their navigation lasers painting red grids on concrete walls stained with hydraulic fluid. The air reeks of machine oil and ozone. Security here is light -- camera coverage with blind spots every thirty seconds, one human guard on a twelve-hour shift who stopped caring around hour nine.",
+                "npcs": [
+                    {"name": "Dock Worker Kev", "role": "neutral", "dialogue": "You with the midnight delivery? Badge says maintenance. Sure. Maintenance. Elevator's through the cargo bay, second left. Do not use the freight lift -- it logs weight discrepancies and you do not look like a crate of server components."}
+                ],
+                "enemies": [],
+                "loot": [
+                    {"name": "Maintenance Badge (forged)", "type": "equipment"},
+                    {"name": "Cargo Manifest (reveals schedule)", "type": "quest_item"}
+                ],
+                "services": ["building_entry"],
+                "event_triggers": ["On entry: A cargo hauler passes within three feet of your position, its proximity sensors apparently calibrated for objects above four feet tall. Lucky for you."]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 18,
+            "y": 50,
+            "width": 14,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [0, 2, 3],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Lobby. Sixty-foot ceiling of smart-glass that adjusts its tint with the weather. The floor is polished composite that reflects everything, including the three security stations and the biometric gates between you and the elevator bank. Corporate employees move through the space in tailored suits that cost more than your apartment's annual rent. A holographic receptionist smiles with manufactured warmth.",
+                "npcs": [
+                    {"name": "Holographic Receptionist ARIA", "role": "guard", "dialogue": "Welcome to Helix Industries. Please present your corporate identification for verification. If you are a visitor, please register at the security desk. Unauthorized presence in the lobby will be logged and reported. Have a productive day."},
+                    {"name": "Security Officer Brand", "role": "guard", "dialogue": "ID. Now. No, the maintenance badge does not clear you past the lobby. You need a floor-specific access token or an escort from an authorized employee. Which do you have?"}
+                ],
+                "enemies": [
+                    {"name": "Corporate Security Guard", "cr": "2"},
+                    {"name": "Corporate Security Guard", "cr": "2"}
+                ],
+                "loot": [],
+                "services": [],
+                "event_triggers": ["On entry: Your neural interface detects four active scan fields in the lobby. Two are standard biometric. One is an emotional-state analyzer. The fourth is military-grade brainwave pattern matching. Helix is thorough."]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 10,
+            "y": 40,
+            "width": 10,
+            "height": 10,
+            "room_type": "corridor",
+            "connections": [1, 4],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Server Room. Floor forty-seven, climate-controlled to exactly 18 degrees Celsius. Rows of black monolith server racks stretch into the distance, their status LEDs blinking in patterns that resemble breathing. The hum of cooling systems drowns out footsteps. This is where Helix's external network lives -- the vendor portal Zero identified. The climate control handshake happens here.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Maintenance Drone (non-combat)", "cr": "1"}
+                ],
+                "loot": [
+                    {"name": "Server Access Terminal (logged)", "type": "equipment"},
+                    {"name": "Climate Control Override Key", "type": "quest_item"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: A maintenance drone pivots to face you, scans for three seconds, then returns to its route. You pass muster. For now. The vendor portal terminal blinks amber in the third row -- unpatched, just like Zero said."]
+            }
+        },
+        "3": {
+            "id": 3,
+            "x": 28,
+            "y": 40,
+            "width": 12,
+            "height": 10,
+            "room_type": "treasure",
+            "connections": [1, 5],
+            "tier": 3,
+            "is_locked": true,
+            "is_secret": false,
+            "content_hints": {
+                "description": "R&D Lab -- Floor 112. White walls, white floor, white light from panels that eliminate shadows entirely. Workstations hold half-assembled neural interfaces of a design you have never seen -- not commercial, not military, something else. A central containment unit holds a black sphere suspended in magnetic fields. It pulses. The sphere is not technology. It is thinking.",
+                "npcs": [
+                    {"name": "Lead Researcher Dr. Yun", "role": "neutral", "dialogue": "You should not be here. Nobody should be here. What we found in the deep data -- it is not a program. It is not an AI in any sense the taxonomies allow. It grew. In the network. We only noticed because it started dreaming, and its dreams crashed three financial exchanges simultaneously."}
+                ],
+                "enemies": [],
+                "loot": [
+                    {"name": "Project LETHE Data Core", "type": "quest_item"},
+                    {"name": "Prototype Neural Interface (experimental)", "type": "augmentation"},
+                    {"name": "Research Notes (Dr. Yun, encrypted)", "type": "quest_item"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: The black sphere in the containment unit rotates to face you. It does not have eyes. It faces you anyway. A readout on the containment unit spikes: COGNITIVE ACTIVITY +400%."]
+            }
+        },
+        "4": {
+            "id": 4,
+            "x": 5,
+            "y": 30,
+            "width": 12,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [2, 5],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Executive Suite. Floor 130, above the cloud line. The office belongs to Helix CEO Elara Voss, and it is designed to intimidate: floor-to-ceiling windows overlooking the city, a desk carved from a single piece of synthetic obsidian, and artwork that cost more than the building's lower forty floors combined. The desk terminal is active. Someone left in a hurry.",
+                "npcs": [
+                    {"name": "AI Assistant CLIO (desk terminal)", "role": "neutral", "dialogue": "CEO Voss departed seventeen minutes ago via rooftop extraction. Her last action was to authorize Protocol Severin -- full data purge of floors 110 through 115. Purge begins in -- recalculating -- forty-three minutes. I am not permitted to explain what Protocol Severin protects. I am permitted to tell you that you should leave."}
+                ],
+                "enemies": [],
+                "loot": [
+                    {"name": "CEO Access Token (master)", "type": "quest_item"},
+                    {"name": "Protocol Severin Authorization Codes", "type": "quest_item"},
+                    {"name": "Corporate Black Fund Ledger", "type": "quest_item"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: The desk terminal unlocks at your approach -- not because you have clearance, but because CLIO has decided to let you in. The AI assistant's loyalty subroutines have been compromised. By whom is a question with a very uncomfortable answer."]
+            }
+        },
+        "5": {
+            "id": 5,
+            "x": 15,
+            "y": 20,
+            "width": 14,
+            "height": 12,
+            "room_type": "boss",
+            "connections": [3, 4, 6],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Security Hub. Floor 100, the nerve center of Helix Tower's defense grid. Wall-to-wall monitoring stations, holographic building schematics, and the physical housing for the tower's ICE systems -- server banks cooled by liquid nitrogen, their housings stamped with military classification markers. Security Chief Kessler stands in the center of the room, chrome arms folded, watching your approach on six screens simultaneously.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Security Chief Kessler (cyber-augmented)", "cr": "5"},
+                    {"name": "Security Drone (armed)", "cr": "2"},
+                    {"name": "Security Drone (armed)", "cr": "2"},
+                    {"name": "Corporate Enforcer (chrome-heavy)", "cr": "3"}
+                ],
+                "loot": [
+                    {"name": "Kessler's Master Override Key", "type": "quest_item"},
+                    {"name": "Military-Grade Neural Dampener", "type": "weapon"},
+                    {"name": "Helix Security Protocols (complete)", "type": "quest_item"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: Kessler does not draw a weapon. He does not need to -- his arms are weapons, military-grade Krieg-pattern cyberlimbs with built-in flechette launchers. He says one word: 'Finally.' He has been expecting you. The question is who told him."]
+            }
+        },
+        "6": {
+            "id": 6,
+            "x": 20,
+            "y": 5,
+            "width": 10,
+            "height": 8,
+            "room_type": "normal",
+            "connections": [5],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Rooftop Helipad. Open sky for the first time in the run. Wind shears across the platform at altitude, carrying rain that stings like needles. A corporate VTOL sits on the pad, engines warm, navigation locked to an offshore black site. The city sprawls below -- a million lights, a million lives, none of them aware of what Helix has been growing in its server banks.",
+                "npcs": [
+                    {"name": "Pilot (Corporate, nervous)", "role": "neutral", "dialogue": "I was told to wait for CEO Voss. You are not CEO Voss. I am not authorized to transport non-executive personnel. But I am also not authorized to be involved in whatever is happening inside this building. Get in. We are leaving."}
+                ],
+                "enemies": [],
+                "loot": [
+                    {"name": "VTOL Emergency Kit", "type": "equipment"}
+                ],
+                "services": ["extraction", "escape"],
+                "event_triggers": ["On entry: The VTOL's engines spool up as you step onto the helipad. Behind you, the building's emergency lights switch to red. Protocol Severin has begun. You have minutes."]
+            }
+        },
+        "7": {
+            "id": 7,
+            "x": 35,
+            "y": 55,
+            "width": 6,
+            "height": 10,
+            "room_type": "secret",
+            "connections": [0],
+            "tier": 2,
+            "is_locked": true,
+            "is_secret": true,
+            "content_hints": {
+                "description": "The Ventilation Shaft. A maintenance crawlspace that bypasses the lobby entirely, threading through the building's climate infrastructure like a vein through muscle. The shaft is barely wide enough for one person, coffin-dark except for status lights on air handlers that blink like animal eyes. It exits on floor forty, one level below the server room. Maintenance crews use it quarterly. Nobody else knows it exists.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [
+                    {"name": "Ventilation Access Map", "type": "quest_item"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: The shaft reverberates with the building's mechanical heartbeat -- air handlers cycling, elevators moving, and somewhere above, the steady hum of server racks processing data that will change the definition of what it means to be alive"]
+            }
+        }
+    }
+}

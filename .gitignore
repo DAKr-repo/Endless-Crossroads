@@ -1,0 +1,68 @@
+# Secrets
+.env
+*.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+venv/
+*.egg-info/
+
+# Logs & temp
+logs/
+*.log
+*.wav
+codex_system.log
+codex_builder.log
+
+# State & saves (player data, not code)
+state/
+saves/
+backups/
+
+# Indices & models (large binaries)
+faiss_index/
+models/
+*.gguf
+*.onnx
+
+# Databases
+*.db
+*.sqlite
+
+# Copyrighted source material (PDFs)
+vault/
+
+# Legacy code (contains stale tokens)
+legacy_import/
+
+# Knowledge pool (scraped wiki data, ZIM files)
+knowledge_pool/
+
+# Systemd service files (local paths)
+*.service
+
+# Chat logs & Gemini workspace
+Gemini Chat logs/
+gemini_sandbox/
+
+# Archive (old code snapshots)
+archive/
+
+# Claude Code workspace & agent definitions (build-time tooling)
+.claude/
+agents/
+TEAM_MANIFEST.md
+
+# LibreOffice
+*.odt
+.~lock.*
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

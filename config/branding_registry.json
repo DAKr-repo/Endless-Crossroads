@@ -1,0 +1,73 @@
+{
+    "DND5E": {
+        "title": "Volo's Chronicle of Journeys",
+        "tagline": "A scholar's guide to peril and profit.",
+        "color": "GOLD",
+        "default_universe": "forgotten_realms",
+        "core_rule_set": "dnd5e"
+    },
+    "STC": {
+        "title": "Stormlight Chronicles: Urithiru Archive",
+        "tagline": "Life before death. Strength before weakness. Journey before destination.",
+        "color": "BLUE",
+        "default_universe": "roshar",
+        "core_rule_set": "stc"
+    },
+    "BITD": {
+        "title": "Blades in the Dark: The Hub",
+        "tagline": "Death is only a new kind of debt in Doskvol.",
+        "color": "GRAY",
+        "default_universe": "doskvol",
+        "core_rule_set": "fitd"
+    },
+    "SAV": {
+        "title": "Scum and Villainy: The Ship",
+        "tagline": "Freedom is a fast ship and a jump drive that doesn't jam.",
+        "color": "CYAN",
+        "default_universe": "procyon",
+        "core_rule_set": "fitd"
+    },
+    "BOB": {
+        "title": "Band of Blades: The Keep",
+        "tagline": "Hope is a luxury for the living; the Legion only has its duty.",
+        "color": "RED",
+        "default_universe": "the_legion",
+        "core_rule_set": "fitd"
+    },
+    "CBRPNK": {
+        "title": "CBR+PNK: Neon Grid",
+        "tagline": "Jack in. Run fast. Get paid. Don't die.",
+        "color": "MAGENTA",
+        "default_universe": "megalopolis",
+        "core_rule_set": "fitd"
+    },
+    "CANDELA": {
+        "title": "Candela Obscura: The Circle",
+        "tagline": "The darkness has a shape, and it remembers your name.",
+        "color": "PURPLE",
+        "default_universe": "newfaire",
+        "core_rule_set": "fitd"
+    },
+    "BURNWILLOW": {
+        "title": "Burnwillow: Emberhome",
+        "tagline": "You are what you wear. Die well.",
+        "color": "ORANGE",
+        "default_universe": null,
+        "core_rule_set": "burnwillow"
+    },
+    "CROWN_AND_CREW": {
+        "title": "Crown & Crew: The Sway",
+        "tagline": "Every alliance is a leash. Choose who holds yours.",
+        "color": "YELLOW",
+        "default_universe": null,
+        "core_rule_set": "crown"
+    },
+    "ASHBURN_HIGH": {
+        "title": "Ashburn High: Legacy of Ashes",
+        "tagline": "Blood is thicker than loyalty, but betrayal is thicker than both.",
+        "color": "RED",
+        "default_universe": "ashburn",
+        "system_family": "crown_and_crew",
+        "core_rule_set": "crown"
+    }
+}

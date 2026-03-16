@@ -1,0 +1,180 @@
+{
+  "grapes": {
+    "geography": [
+      "Volcanic archipelago",
+      "Frozen tundra wasteland",
+      "Floating sky-islands",
+      "Underground cavern network",
+      "Dense fungal jungle",
+      "Coastal desert with oasis cities",
+      "Mountain-ringed valley",
+      "Swampland river delta",
+      "Shattered continent (post-cataclysm)",
+      "Endless steppe grasslands"
+    ],
+    "religion": [
+      "Monotheistic sun cult",
+      "Ancestor spirit worship",
+      "Machine-god technofaith",
+      "Druidic nature covenant",
+      "Dualistic light/shadow theology",
+      "Atheist rationalist state",
+      "Polytheistic pantheon (12 gods)",
+      "Death-worship necromantic order",
+      "Dream-oracle mysticism",
+      "Forbidden worship (outlawed faiths)"
+    ],
+    "achievements": [
+      "Mastered gunpowder and firearms",
+      "Developed airship travel",
+      "Invented arcane printing press",
+      "Built a continental rail network",
+      "Harnessed elemental energy",
+      "Created sentient golems (labor class)",
+      "Mapped the planar boundaries",
+      "Developed alchemical medicine",
+      "Constructed a world-spanning wall",
+      "Unlocked rudimentary telepathy"
+    ],
+    "politics": [
+      "Feudal monarchy with landed lords",
+      "Theocratic council of high priests",
+      "Corporate oligarchy (trade guilds)",
+      "Military junta (war council)",
+      "Democratic republic (fragile)",
+      "Anarchic free-city confederation",
+      "Magocratic elite (wizard rulers)",
+      "Colonial empire (expansionist)",
+      "Tribal confederacy (elder council)",
+      "Puppet state (controlled from abroad)"
+    ],
+    "economics": [
+      "Gold-standard mercantile trade",
+      "Barter economy (no currency)",
+      "Debt-based credit system",
+      "Resource extraction (mining colony)",
+      "Slave labor foundation",
+      "Guild-monopoly controlled markets",
+      "Smuggling and black-market dominant",
+      "Collectivist resource sharing",
+      "Magical reagent economy",
+      "War-profiteering arms trade"
+    ],
+    "social": [
+      "Rigid caste system (birth-locked)",
+      "Meritocratic guild ladder",
+      "Egalitarian commune",
+      "Nobility vs. peasant divide",
+      "Racial/species segregation",
+      "Religious stratification",
+      "Wealth-based social mobility",
+      "Warrior-honor hierarchy",
+      "Scholar-bureaucrat elite",
+      "Criminal underclass dominance"
+    ]
+  },
+  "faction_templates": {
+    "theocracy": {
+      "name": "Theocracy",
+      "crown_title": "The High Priest",
+      "crown_desc": "The voice of the divine. Law is scripture.",
+      "crew_title": "The Heretics",
+      "crew_desc": "Those who question the faith and seek forbidden truth.",
+      "neutral_title": "The Faithful",
+      "campfire_title": "The Confessional"
+    },
+    "corporatocracy": {
+      "name": "Corporatocracy",
+      "crown_title": "The Board of Directors",
+      "crown_desc": "Profit is policy. Shareholders are sovereign.",
+      "crew_title": "The Union",
+      "crew_desc": "Workers who organize in shadow against the corporate machine.",
+      "neutral_title": "The Employees",
+      "campfire_title": "The Break Room"
+    },
+    "monarchy": {
+      "name": "Monarchy",
+      "crown_title": "The King",
+      "crown_desc": "Born to rule. The throne is bloodright.",
+      "crew_title": "The Usurpers",
+      "crew_desc": "Those who believe the crown sits on the wrong head.",
+      "neutral_title": "The Common Folk",
+      "campfire_title": "The Tavern Hearth"
+    },
+    "military_junta": {
+      "name": "Military Junta",
+      "crown_title": "The General",
+      "crown_desc": "Order through strength. Discipline is law.",
+      "crew_title": "The Resistance",
+      "crew_desc": "Freedom fighters or terrorists — depends who you ask.",
+      "neutral_title": "The Civilians",
+      "campfire_title": "The Bunker"
+    },
+    "magocracy": {
+      "name": "Magocracy",
+      "crown_title": "The Archmage",
+      "crown_desc": "Power flows from knowledge. The Tower sees all.",
+      "crew_title": "The Hedge Witches",
+      "crew_desc": "Wild magic users who refuse the Tower's leash.",
+      "neutral_title": "The Mundane",
+      "campfire_title": "The Ley Line Nexus"
+    },
+    "pirate_republic": {
+      "name": "Pirate Republic",
+      "crown_title": "The Admiral",
+      "crown_desc": "The one who maintains the fleet code and collects tribute from every port.",
+      "crew_title": "The Mutineers",
+      "crew_desc": "Those who believe the sea belongs to no one and the code has rotted from within.",
+      "neutral_title": "The Crew",
+      "campfire_title": "The Captain's Table"
+    },
+    "hive_mind": {
+      "name": "Hive Mind",
+      "crown_title": "The Queen",
+      "crown_desc": "The singular consciousness that speaks for all — unity is survival, deviation is disease.",
+      "crew_title": "The Disconnected",
+      "crew_desc": "Those who severed the neural link — they remember what individuality felt like and refuse to forget.",
+      "neutral_title": "The Drones",
+      "campfire_title": "The Silent Frequency"
+    },
+    "nomadic_fleet": {
+      "name": "Nomadic Fleet",
+      "crown_title": "The Commodore",
+      "crown_desc": "The navigator of the Great Migration — charts the course, allocates fuel, decides who gets left behind.",
+      "crew_title": "The Grounded",
+      "crew_desc": "Those who want to stop running — they found a world worth dying for and refuse to leave it.",
+      "neutral_title": "The Passengers",
+      "campfire_title": "The Observation Deck"
+    },
+    "meritocracy": {
+      "name": "Meritocracy",
+      "crown_title": "The Architect",
+      "crown_desc": "Power earned through proven excellence — every seat at the table was won by examination, not inheritance.",
+      "crew_title": "The Unqualified",
+      "crew_desc": "Those who failed the tests or refused to take them — they say the exams measure obedience, not merit.",
+      "neutral_title": "The Candidates",
+      "campfire_title": "The Review Board"
+    },
+    "anarcho_syndicate": {
+      "name": "Anarcho-Syndicate",
+      "crown_title": "The Council",
+      "crown_desc": "A rotating assembly of trade unions and worker collectives — they say there are no rulers, but someone still sets the agenda.",
+      "crew_title": "The Individualists",
+      "crew_desc": "Those who reject collective bargaining — they answer to no committee, no union, no vote but their own.",
+      "neutral_title": "The Unaffiliated",
+      "campfire_title": "The Assembly Floor"
+    }
+  },
+  "name_parts": {
+    "adjectives": [
+      "Iron", "Crimson", "Hollow", "Shattered", "Golden",
+      "Ashen", "Silent", "Verdant", "Obsidian", "Pale",
+      "Burning", "Frozen", "Sunken", "Gilded", "Thorned"
+    ],
+    "nouns": [
+      "Reach", "Dominion", "Expanse", "Frontier", "Bastion",
+      "Throne", "Veil", "Wasteland", "Haven", "Spire",
+      "Covenant", "Marches", "Crossing", "Deep", "Crown"
+    ]
+  }
+}

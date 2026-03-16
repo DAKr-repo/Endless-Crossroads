@@ -1,0 +1,208 @@
+{
+    "seed": 3010,
+    "width": 60,
+    "height": 40,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "trollskull_alley",
+        "theme": "VILLAGE",
+        "topology": "settlement",
+        "display_name": "Trollskull Alley"
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 25,
+            "y": 5,
+            "width": 12,
+            "height": 10,
+            "room_type": "tavern",
+            "connections": [1, 2, 3, 5],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Trollskull Manor lists to the left like a drunk leaning on a lamppost. Three stories of cracked plaster and warped timber, its tap room still smells of pipe smoke and old ale despite standing vacant for a decade. The floorboards groan beneath your feet, and candles gutter without any draft.",
+                "npcs": [
+                    {
+                        "name": "Lif",
+                        "role": "ghost",
+                        "dialogue": "Glasses slide across the bar of their own accord. A rag polishes the taps in slow, deliberate circles. The word WELCOME appears, letter by letter, in the condensation on the window.",
+                        "notes": "Former barkeep, died in the taproom. Poltergeist activity -- hostile until the party renovates the manor, then becomes a loyal (if invisible) employee. Moves objects, cleans, and occasionally throws things at rude customers."
+                    }
+                ],
+                "enemies": [],
+                "loot": [
+                    {"name": "Dusty Ledger", "type": "quest_item"},
+                    {"name": "Tavern Deed", "type": "quest_item"}
+                ],
+                "hazards": [
+                    {"name": "Rotting floorboards (second floor)", "dc": 12}
+                ],
+                "services": ["drink", "rest", "rumor"],
+                "event_triggers": [
+                    "On entry: Lif slams a door shut behind the party, then slowly opens it again -- testing their nerve.",
+                    "On renovation complete: Lif begins serving drinks to patrons, glasses floating through the air."
+                ]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 5,
+            "y": 5,
+            "width": 8,
+            "height": 8,
+            "room_type": "market",
+            "connections": [0, 2],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Sawdust carpets the floor of this narrow workshop, and the air tastes of fresh-cut pine and linseed oil. Half-finished chairs hang from ceiling hooks like wooden bats. A wood elf works a hand-plane with meditative precision, shavings curling away in pale ribbons.",
+                "npcs": [
+                    {
+                        "name": "Talisolvanar 'Tally' Fellbranch",
+                        "role": "shopkeeper",
+                        "dialogue": "Every joint tells a story. Dovetail means trust. Mortise-and-tenon means permanence. Nails? Nails mean you're in a hurry, and hurry is the enemy of craft.",
+                        "notes": "Wood elf carpenter. Patient, philosophical. Will repair furniture and sell custom pieces. Knows every building on the alley and notices structural changes -- useful for detecting break-ins or hidden passages."
+                    }
+                ],
+                "enemies": [],
+                "loot": [
+                    {"name": "Masterwork Carpentry Tools", "type": "equipment"}
+                ],
+                "hazards": [],
+                "services": ["shop"],
+                "event_triggers": []
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 5,
+            "y": 20,
+            "width": 8,
+            "height": 8,
+            "room_type": "forge",
+            "connections": [0, 1, 3],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Heat rolls out the open door in visible waves, carrying the tang of hot iron and quenching oil. Inside, a fire genasi hammers a glowing blade while a water genasi tempers another in a stone trough. Steam hisses between them like a conversation neither needs to speak aloud.",
+                "npcs": [
+                    {
+                        "name": "Avi",
+                        "role": "shopkeeper",
+                        "dialogue": "Embric does the shaping, I do the finishing. He is fire, I am patience. Between us, we make things that last.",
+                        "notes": "Water genasi. Quiet, precise. Handles the business side. Married to Embric."
+                    },
+                    {
+                        "name": "Embric",
+                        "role": "shopkeeper",
+                        "dialogue": "You want sharp? I give you sharp. You want beautiful? That costs extra. You want both? Now we are talking.",
+                        "notes": "Fire genasi. Passionate, dramatic. Forges weapons and armor. Married to Avi."
+                    }
+                ],
+                "enemies": [],
+                "loot": [
+                    {"name": "Smoke Shield", "type": "armor"},
+                    {"name": "Cinderblade", "type": "weapon"}
+                ],
+                "hazards": [
+                    {"name": "Open forge (fire damage if careless)", "dc": 10}
+                ],
+                "services": ["shop"],
+                "event_triggers": []
+            }
+        },
+        "3": {
+            "id": 3,
+            "x": 45,
+            "y": 5,
+            "width": 8,
+            "height": 8,
+            "room_type": "market",
+            "connections": [0, 2, 4],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Bundles of dried herbs hang from every rafter, filling the shop with a green, medicinal perfume that clings to your clothes long after you leave. A wood elf tends rows of potted plants on windowsill shelves, murmuring to each one as she waters them. A fat orange tabby sleeps in a patch of sunlight on the counter.",
+                "npcs": [
+                    {
+                        "name": "Fala Lefaliir",
+                        "role": "shopkeeper",
+                        "dialogue": "This one is for headaches. This one is for heartbreak. No, I am not joking -- grief sits in the body like a stone, and willowbark alone will not shift it.",
+                        "notes": "Non-binary wood elf herbalist. Gentle, perceptive. Sells potions and herbal remedies. Member of the Emerald Enclave. Knows local gossip through their customers' ailments."
+                    }
+                ],
+                "enemies": [],
+                "loot": [
+                    {"name": "Potion of Healing", "type": "consumable"},
+                    {"name": "Antitoxin", "type": "consumable"},
+                    {"name": "Healer's Kit", "type": "equipment"}
+                ],
+                "hazards": [],
+                "services": ["shop", "rest"],
+                "event_triggers": []
+            }
+        },
+        "4": {
+            "id": 4,
+            "x": 45,
+            "y": 20,
+            "width": 8,
+            "height": 8,
+            "room_type": "residence",
+            "connections": [3, 5],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "A brass placard reads TIGER'S EYE: PRIVATE INVESTIGATIONS in letters that have been polished so often they've worn thin. Inside, the office is immaculate -- not a single paper out of place, not a mote of dust on the mahogany desk. The proprietor watches you enter with eyes that miss nothing and give away less.",
+                "npcs": [
+                    {
+                        "name": "Vincent Trench",
+                        "role": "quest_giver",
+                        "dialogue": "Everyone on this alley has a secret. I know most of them. The interesting question is not what people hide -- it is why they think hiding it will help.",
+                        "notes": "Actually a disguised Rakshasa named Valetta. Operates a legitimate detective agency as deep cover. Genuinely helpful to neighbors -- the disguise has become comfortable. Will investigate leads for the party at a price. Detects as fiend if checked."
+                    }
+                ],
+                "enemies": [],
+                "loot": [
+                    {"name": "Case Files", "type": "quest_item"}
+                ],
+                "hazards": [],
+                "services": ["rumor", "quest"],
+                "event_triggers": [
+                    "On quest accept: Vincent provides a dossier on the target with unsettling accuracy."
+                ]
+            }
+        },
+        "5": {
+            "id": 5,
+            "x": 25,
+            "y": 30,
+            "width": 10,
+            "height": 6,
+            "room_type": "town_gate",
+            "connections": [0, 4],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The alley narrows here between leaning tenements, the cobblestones slick with something best not examined too closely. A gutter runs down the center carrying rainwater and the occasional rat. Beyond, the noise of the North Ward swells -- cart wheels, hawkers, the Watch patrol's bootfall.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [],
+                "hazards": [
+                    {"name": "Slippery cobblestones", "dc": 10}
+                ],
+                "services": ["exit_settlement"],
+                "event_triggers": [
+                    "On entry: A street urchin offers to carry a message anywhere in Waterdeep for 2 copper."
+                ]
+            }
+        }
+    }
+}

@@ -1,0 +1,162 @@
+{
+    "seed": 8102,
+    "width": 60,
+    "height": 50,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "plateau_assault",
+        "theme": "STONE",
+        "topology": "wilderness",
+        "display_name": "Plateau Assault"
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 5,
+            "y": 20,
+            "width": 10,
+            "height": 8,
+            "room_type": "start",
+            "connections": [1],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Assembly Point. The bridge crews form up in columns behind their bridges -- massive wooden platforms that four men wide carry at shoulder height. The bridge itself is Bridge Nine's burden: twelve hundred pounds of Soulcast lumber, still smelling of the stone it was transmuted from. Ahead, seven chasms wait.",
+                "npcs": [
+                    {"name": "Sergeant Talno", "role": "ally", "dialogue": "Steady pace to the first chasm, then sprint formation. Arrows will come from the east. Keep the bridge between you and the Parshendi. That is not cowardice -- that is geometry."}
+                ],
+                "enemies": [],
+                "loot": [],
+                "services": [],
+                "event_triggers": ["On entry: The lighteyed company captain raises his Shardblade. The sun catches it and for a moment the blade looks like frozen lightning. The advance begins."]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 18,
+            "y": 15,
+            "width": 12,
+            "height": 12,
+            "room_type": "normal",
+            "connections": [0, 2],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Chasm Crossing. Bridge Nine slams its burden down across a forty-foot gap while Parshendi arrows arc overhead in whistling clouds. The bridge bounces once, twice, then holds. Men sprint across wood that flexes beneath their weight, the chasm yawning below -- a darkness so deep it has its own weather.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Parshendi Archer", "cr": "1"},
+                    {"name": "Parshendi Archer", "cr": "1"}
+                ],
+                "loot": [],
+                "services": [],
+                "event_triggers": ["On entry: Arrows thud into the bridge planks around your feet. A man two paces ahead takes one in the shoulder and keeps running -- stopping means dying, and dying means the bridge falls."]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 32,
+            "y": 10,
+            "width": 14,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [1, 3, 4],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Plateau Approach. Open stone mesa under an unforgiving sky. The Parshendi have taken defensive positions on the far side, their warforms settling into battle stances with the mechanical precision of soldiers who fight to a rhythm only they can hear. Their songs carry across the stone -- beautiful and terrible in equal measure.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Parshendi Warrior (Warform)", "cr": "2"},
+                    {"name": "Parshendi Warrior (Warform)", "cr": "2"},
+                    {"name": "Parshendi Archer", "cr": "1"}
+                ],
+                "loot": [
+                    {"name": "Parshendi Warform Gauntlet", "type": "armor"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: The Parshendi switch from the Rhythm of Resolve to the Rhythm of War -- a shift in tempo that tightens every muscle in your body"]
+            }
+        },
+        "3": {
+            "id": 3,
+            "x": 45,
+            "y": 5,
+            "width": 12,
+            "height": 12,
+            "room_type": "treasure",
+            "connections": [2],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Gemheart Platform. The chrysalis sits at the plateau's center, splitting open in slow organic pulses. Inside, the gemheart glows with deep emerald Stormlight -- worth a king's ransom, worth the blood of every man who died crossing the chasms to reach it. Parshendi and Alethi soldiers fight in a tightening circle around it.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Parshendi Elite (Warform)", "cr": "3"}
+                ],
+                "loot": [
+                    {"name": "Gemheart (Emerald, Broam-grade)", "type": "treasure"},
+                    {"name": "Stormlight Sphere (Broam)", "type": "currency"},
+                    {"name": "Parshendi Song Crystal", "type": "quest_item"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: The chrysalis splits fully open and the gemheart pulses with light so intense it casts shadows through solid stone. Every Parshendi on the plateau begins singing the same song simultaneously."]
+            }
+        },
+        "4": {
+            "id": 4,
+            "x": 40,
+            "y": 25,
+            "width": 14,
+            "height": 12,
+            "room_type": "boss",
+            "connections": [2, 5],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Parshendi Battle Line. A Shardbearer stands among the Parshendi warriors -- carapace grown over Shardplate in a fusion of biology and ancient technology. The Shardblade in her hand hums with a frequency that makes your teeth ache. She sings the Rhythm of Command, and every Parshendi on the plateau moves as one.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Parshendi Shardbearer", "cr": "5"},
+                    {"name": "Parshendi Warrior (Warform)", "cr": "2"},
+                    {"name": "Parshendi Warrior (Warform)", "cr": "2"}
+                ],
+                "loot": [
+                    {"name": "Shardplate Fragment (Leg)", "type": "armor"},
+                    {"name": "Parshendi Battle Standard", "type": "quest_item"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: The Parshendi Shardbearer raises her blade and the singing stops. In the silence, she speaks a single word in Alethi: 'Enough.'"]
+            }
+        },
+        "5": {
+            "id": 5,
+            "x": 30,
+            "y": 38,
+            "width": 10,
+            "height": 8,
+            "room_type": "normal",
+            "connections": [4],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Retreat Path. The plateau run is over -- won or lost, the survivors must cross the bridges back before the Parshendi regroup. Bridge Nine carries its wounded and its bridge simultaneously. The chasms gape below. The sun sets in the west, painting the Shattered Plains the color of old blood.",
+                "npcs": [
+                    {"name": "Medic Lirin", "role": "ally", "dialogue": "Pressure on the wound. Hold it. No, harder than that -- you are not going to hurt him more than the arrow already did. We have three men down and one bridge crossing left. Everyone walks back or no one does."}
+                ],
+                "enemies": [],
+                "loot": [
+                    {"name": "Battlefield Healing Kit", "type": "consumable"}
+                ],
+                "services": ["field_healing"],
+                "event_triggers": ["On entry: Talno counts heads. His expression when the number comes up short is the most honest thing you have seen on this plateau."]
+            }
+        }
+    }
+}

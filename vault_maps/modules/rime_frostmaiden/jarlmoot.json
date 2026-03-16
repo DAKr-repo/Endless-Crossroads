@@ -1,0 +1,152 @@
+{
+    "seed": 6004,
+    "width": 50,
+    "height": 45,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "jarlmoot",
+        "theme": "STONE",
+        "topology": "wilderness",
+        "display_name": "Jarlmoot"
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 5,
+            "y": 5,
+            "width": 10,
+            "height": 8,
+            "room_type": "start",
+            "connections": [1],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Frost Giant Path ascends through a valley of shattered stone where ancient glaciers once ground the mountains to gravel. Footprints the size of wagon wheels are pressed into the frozen mud, fresh enough that ice has not yet filled them. The wind carries a sound like distant drums -- or perhaps the footsteps of something immense, just over the ridge.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Winter Wolf", "cr": "3"}
+                ],
+                "loot": [],
+                "services": [],
+                "event_triggers": ["On entry: DC 14 Survival to follow the giant tracks without getting lost. Failure adds 1d4 hours to travel time."]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 20,
+            "y": 10,
+            "width": 16,
+            "height": 12,
+            "room_type": "normal",
+            "connections": [0, 2, 3],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Stone Amphitheater is carved into the mountainside in concentric rings that descend toward a central platform. The seats are sized for giants -- each stone bench twenty feet long and five feet deep. Snow has filled the lower tiers, but the upper ones are clear, swept by winds that never rest. The acoustics are perfect. A whisper at the center carries to every seat, and the echoes linger for seconds, as though the mountain itself is listening.",
+                "npcs": [
+                    {"name": "Geluvicken (frost giant ghost)", "role": "quest_giver", "dialogue": "*The spectral giant materializes from the blowing snow, ten feet of translucent rage and ancient sorrow.* You trespass on the moot-ground. In life, I was jarl of these mountains. In death, I guard their secrets. Prove your worth or become another frozen corpse on the path below."}
+                ],
+                "enemies": [
+                    {"name": "Frost Giant Ghost", "cr": "8"}
+                ],
+                "loot": [],
+                "services": [],
+                "event_triggers": ["On entry: Geluvicken challenges the party. Combat can be avoided with DC 16 Persuasion and a display of courage (specific to player actions).", "On diplomacy: If impressed, Geluvicken reveals the location of the Runestone Circle and its purpose."]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 30,
+            "y": 15,
+            "width": 12,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [1, 3, 4],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Seven runestones stand in a circle atop the peak, each one fifteen feet tall and carved with the name and deeds of a frost giant jarl. The runes glow faintly blue in the perpetual twilight, and the snow refuses to settle on them -- it slides off as though repelled. At the circle's center, the ground is bare stone worn smooth by centuries of giant feet performing the moot-dance.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [
+                    {"name": "Runestone Rubbing (7 pages, reveals frost giant history)", "type": "quest_item"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: Reading the runes (DC 14 Arcana or Giant language) reveals a prophecy about 'the one who breaks the Frostmaiden's heart.'", "On ritual: Standing in the center during the aurora allows a commune-like effect with the ancient jarls. One question answered truthfully."]
+            }
+        },
+        "3": {
+            "id": 3,
+            "x": 20,
+            "y": 25,
+            "width": 14,
+            "height": 12,
+            "room_type": "treasure",
+            "connections": [1, 2, 4],
+            "tier": 3,
+            "is_locked": true,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Ancient Barrow burrows into the mountain beneath the amphitheater, its entrance sealed with a capstone bearing a ward that flares with cold light when approached. Inside, the walls are lined with the bones of frost giants arranged in geometric patterns -- not burial, but architecture, as though the dead were building something with their remains. At the center, an ice sarcophagus holds a giant in full war regalia, perfectly preserved.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Frost Giant Wight (Jarl Ygra)", "cr": "7"},
+                    {"name": "Frozen Skeleton", "cr": "1"},
+                    {"name": "Frozen Skeleton", "cr": "1"}
+                ],
+                "loot": [
+                    {"name": "Jarl's Greataxe (+2, cold damage on hit)", "type": "weapon"},
+                    {"name": "Frost Giant Torc (advantage on saves vs. cold)", "type": "wondrous_item"},
+                    {"name": "Ancient Giant Coins (800 gp)", "type": "treasure"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: The ward requires DC 16 Arcana to bypass. Breaking it awakens the wight.", "On loot: Taking the greataxe triggers a final vision from Jarl Ygra: the location of the Caves of Hunger and a warning about what sleeps within."]
+            }
+        },
+        "4": {
+            "id": 4,
+            "x": 35,
+            "y": 30,
+            "width": 10,
+            "height": 8,
+            "room_type": "normal",
+            "connections": [2, 3, 5],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Spirit Altar is a flat-topped boulder at the mountain's edge, overlooking a vista of frozen tundra that stretches to the horizon. The altar's surface bears scorch marks from centuries of offerings burned here -- animal fat, mead, and blood, the traditional gifts to Thrym and the giant gods. The wind drops to nothing at this spot, creating an eerie pocket of silence amid the mountain's constant howl.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [
+                    {"name": "Potion of Frost Giant Strength", "type": "consumable"}
+                ],
+                "services": ["divination"],
+                "event_triggers": ["On entry: Making an offering of value (50+ gp equivalent) grants a vision of one future event relevant to the party's quest.", "On rest: Meditating here for 1 hour grants inspiration to one party member."]
+            }
+        },
+        "5": {
+            "id": 5,
+            "x": 40,
+            "y": 38,
+            "width": 8,
+            "height": 6,
+            "room_type": "town_gate",
+            "connections": [4],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The mountain pass descends steeply to the northeast, switchbacking through ice fields that crack and shift underfoot. Far below, the Reghed Glacier gleams like a river of frozen moonlight. The path is marked by cairns topped with giant skulls -- warnings or guideposts, depending on your perspective. The way to the Caves of Hunger lies through the glacier's eastern face.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [],
+                "services": [],
+                "event_triggers": ["On exit: Travel to the Caves of Hunger (2 days). Extreme cold conditions. Random encounters with yetis and crag cats."]
+            }
+        }
+    }
+}

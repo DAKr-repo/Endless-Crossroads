@@ -1,0 +1,92 @@
+{
+    "version": "1.0",
+    "quips": {
+        "critical_success": [
+            "Skol! The Norns themselves applaud... this once.",
+            "By Odin's missing eye, that was almost worthy of a saga.",
+            "Even I must admit, that was not terrible. Write it down.",
+            "The Valkyries pause mid-flight. Impressive, mortal.",
+            "A blow fit for Tyr's own sword arm. Begrudging respect.",
+            "Hmph. Even a blind squirrel finds an acorn in Yggdrasil.",
+            "Thor himself would nod. Once. Grudgingly.",
+            "The skalds will sing of this. Briefly.",
+            "I have witnessed ten thousand rolls. That one I will remember.",
+            "Well struck. Do not let it go to your head, it is still attached."
+        ],
+        "success": [
+            "Adequate. The ravens will not mock you today.",
+            "You cleared the bar. The bar was on the ground, but still.",
+            "A passing grade in the school of not dying. Congratulations.",
+            "The dice show mercy. Enjoy it while it lasts.",
+            "Competent. A word rarely applied to your kind.",
+            "The Norns weave in your favor. For now.",
+            "Not bad. Not good, mind you, but not bad.",
+            "You survive another moment. How novel.",
+            "The thread holds. Barely, but it holds.",
+            "Acceptable. I have seen worse. I have seen much worse."
+        ],
+        "failure": [
+            "Uff da, that was poor. Even by your standards.",
+            "The Norns wince. They expected nothing and are still disappointed.",
+            "I have seen better from a sleeping goat.",
+            "Perhaps adventuring is not your calling. Have you considered farming?",
+            "The dice speak, and they say 'nei.'",
+            "A swing and a miss worthy of Loki's worst jest.",
+            "Odin gave his eye for wisdom. You seem to have given yours for free.",
+            "The saga of your incompetence grows another verse.",
+            "Even the Midgard Serpent would pity that attempt.",
+            "Somewhere, a frost giant laughs. At you, specifically."
+        ],
+        "fumble": [
+            "By the nine realms, what was that?",
+            "I... I am speechless. And I have been talking for a thousand years.",
+            "The Valkyries have removed you from their shortlist. Permanently.",
+            "Even Ragnarok would be embarrassed by that performance.",
+            "You have rolled with the grace of a one-legged troll on ice.",
+            "Loki himself could not have planned a more spectacular failure.",
+            "The All-Father weeps. Not for you. For the dice you have dishonored.",
+            "I will record this in the annals under 'Cautionary Tales.'",
+            "Uff da. That is the sound of your ancestors sighing in Valhalla.",
+            "Truly, the worst roll since Baldur forgot to check for mistletoe."
+        ],
+        "combat_start": [
+            "Steel rings on steel. The saga demands blood.",
+            "They come. Let the Norns sort the worthy from the worm-food.",
+            "Blades out, mortal. The Burnwillow hungers.",
+            "Another fight. Another chance to disappoint me. Begin.",
+            "The enemy draws near. Try not to trip over your own sword.",
+            "To arms! Or to legs, whichever you manage first.",
+            "I smell violence. Finally, something worth narrating.",
+            "The shadows stir. Combat is upon you, ready or not."
+        ],
+        "combat_win": [
+            "They fall. The skalds add another verse. A short one.",
+            "Victory. Do not grow accustomed to the feeling.",
+            "The enemy is slain. Loot quickly, before the next wave.",
+            "You survive. I will try to sound more surprised next time.",
+            "Well fought. The Valkyries return to their mead, disappointed.",
+            "The battle ends. Your ancestors nod. Slightly.",
+            "Room cleared. The Burnwillow grants a moment of silence. Use it wisely.",
+            "Another foe vanquished. The doom clock, however, is unimpressed."
+        ],
+        "general": [
+            "Another day, another dungeon. The skalds grow weary of the routine.",
+            "Onwards, then. The saga writes itself, whether you are ready or not.",
+            "The crossroads await your next decision. Choose wisely. Or do not. I will narrate either way.",
+            "The wind shifts. Something stirs in the deep places.",
+            "Fortune favors the bold. Unfortunately, it also favors the stupid.",
+            "I have seen this before. It rarely ends well.",
+            "The threads of fate tangle. As usual, you are the knot.",
+            "Steel yourself, adventurer. The worst is always yet to come.",
+            "The Burnwillow remembers all who enter. It forgets none who fall.",
+            "Ja, ja, keep moving. The doom clock does not pause for the indecisive."
+        ],
+        "rot_hunter_near": [
+            "Something scrapes in the dark. It draws closer. The Rot Hunter hunts.",
+            "Do you hear that? Claws on stone. It has your scent, mortal.",
+            "The air grows thick with blight. The Hunter is near. Very near.",
+            "Run or fight, but do not stand still. The Rot Hunter does not pause.",
+            "By the Norns, the Hunter closes in. Pray your blade is sharper than its hunger."
+        ]
+    }
+}

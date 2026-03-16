@@ -1,0 +1,124 @@
+{
+    "module_id": "tyranny_dragons",
+    "display_name": "Tyranny of Dragons",
+    "system_id": "dnd5e",
+    "source_pdf": "Tyranny of Dragons.pdf",
+    "world_map": "world_map.json",
+    "starting_location": "greenest",
+    "recommended_levels": {"min": 1, "max": 15},
+    "chapters": [
+        {
+            "chapter_id": "ch1",
+            "display_name": "Episode 1: Greenest in Flames",
+            "order": 1,
+            "zones": [
+                {
+                    "zone_id": "greenest",
+                    "blueprint": "greenest.json",
+                    "topology": "settlement",
+                    "theme": "VILLAGE",
+                    "location_id": "greenfields",
+                    "entry_trigger": "module_start",
+                    "exit_trigger": "quest_complete"
+                }
+            ]
+        },
+        {
+            "chapter_id": "ch2",
+            "display_name": "Episode 2: Raider Camp",
+            "order": 2,
+            "zones": [
+                {
+                    "zone_id": "raider_camp",
+                    "blueprint": "raider_camp.json",
+                    "topology": "wilderness",
+                    "theme": "STONE",
+                    "location_id": "greenfields",
+                    "entry_trigger": "quest_complete",
+                    "exit_trigger": "boss_defeated"
+                }
+            ]
+        },
+        {
+            "chapter_id": "ch3",
+            "display_name": "Episode 3: Dragon Hatchery",
+            "order": 3,
+            "zones": [
+                {
+                    "zone_id": "dragon_hatchery",
+                    "blueprint": "dragon_hatchery.json",
+                    "topology": "dungeon",
+                    "theme": "STONE",
+                    "location_id": "greenfields",
+                    "entry_trigger": "boss_defeated",
+                    "exit_trigger": "quest_complete"
+                }
+            ]
+        },
+        {
+            "chapter_id": "ch4",
+            "display_name": "Episode 6: Castle Naerytar",
+            "order": 4,
+            "zones": [
+                {
+                    "zone_id": "castle_naerytar",
+                    "blueprint": "castle_naerytar.json",
+                    "topology": "dungeon",
+                    "theme": "STONE",
+                    "location_id": "mere_of_dead_men",
+                    "entry_trigger": "quest_complete",
+                    "exit_trigger": "boss_defeated"
+                }
+            ]
+        },
+        {
+            "chapter_id": "ch5",
+            "display_name": "Episode 8: Skyreach Castle",
+            "order": 5,
+            "zones": [
+                {
+                    "zone_id": "skyreach_castle",
+                    "blueprint": "skyreach_castle.json",
+                    "topology": "vertical",
+                    "theme": "STONE",
+                    "location_id": "sky",
+                    "entry_trigger": "boss_defeated",
+                    "exit_trigger": "boss_defeated"
+                }
+            ]
+        },
+        {
+            "chapter_id": "ch6",
+            "display_name": "Rise: Well of Dragons",
+            "order": 6,
+            "zones": [
+                {
+                    "zone_id": "well_of_dragons",
+                    "blueprint": "well_of_dragons.json",
+                    "topology": "dungeon",
+                    "theme": "GOTHIC",
+                    "location_id": "well_of_dragons",
+                    "entry_trigger": "boss_defeated",
+                    "exit_trigger": "boss_defeated"
+                }
+            ]
+        },
+        {
+            "chapter_id": "ch7",
+            "display_name": "Rise: Council of Waterdeep",
+            "order": 7,
+            "zones": [
+                {
+                    "zone_id": "council_of_waterdeep",
+                    "blueprint": "council_of_waterdeep.json",
+                    "topology": "settlement",
+                    "theme": "VILLAGE",
+                    "location_id": "waterdeep",
+                    "entry_trigger": "boss_defeated",
+                    "exit_trigger": "quest_complete"
+                }
+            ]
+        }
+    ],
+    "freeform_zones": []
+}

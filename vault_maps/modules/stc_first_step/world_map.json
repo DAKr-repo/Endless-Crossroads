@@ -1,0 +1,131 @@
+{
+    "seed": 8000,
+    "width": 80,
+    "height": 60,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "roshar_overview",
+        "theme": "STONE",
+        "topology": "wilderness",
+        "display_name": "Roshar -- Eastern Kingdoms"
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 10,
+            "y": 20,
+            "width": 12,
+            "height": 10,
+            "room_type": "start",
+            "connections": [1, 4],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Kholinar rises behind its Windblades -- immense stone formations that claw skyward like the fingers of a buried god. The city's bells ring in staggered cascades before each highstorm, their tones carrying across the Alethi countryside for miles.",
+                "npcs": [
+                    {"name": "Gate Sergeant Teleb", "role": "guard", "dialogue": "Papers, darkeyes. And don't look at the Windblades too long -- new arrivals always get dizzy."}
+                ],
+                "enemies": [],
+                "loot": [],
+                "services": ["travel", "information"],
+                "event_triggers": ["On entry: Highstorm warning bells begin their first cascade"]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 35,
+            "y": 15,
+            "width": 14,
+            "height": 12,
+            "room_type": "normal",
+            "connections": [0, 2, 3],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Shattered Plains stretch to the horizon -- a vast expanse of stone plateaus separated by chasms of unfathomable depth. Permanent warcamps cling to the western edge, their fires visible at night like a constellation fallen to earth.",
+                "npcs": [
+                    {"name": "Scout Lirin", "role": "guide", "dialogue": "The plateaus shift after every highstorm. Maps older than a week are kindling."}
+                ],
+                "enemies": [
+                    {"name": "Parshendi Patrol", "cr": "2"}
+                ],
+                "loot": [],
+                "services": ["scouting", "warcamp_supplies"],
+                "event_triggers": ["On entry: Distant drums echo from the eastern plateaus -- Parshendi war rhythms"]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 55,
+            "y": 5,
+            "width": 14,
+            "height": 14,
+            "room_type": "normal",
+            "connections": [1],
+            "tier": 3,
+            "is_locked": true,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Urithiru. The tower city of the Knights Radiant, thought lost for millennia, rises through the clouds above the peaks. Its tiers are carved from a single impossible mountain of stone, every surface inscribed with glyphs that once glowed with Stormlight.",
+                "npcs": [
+                    {"name": "Navani Kholin", "role": "quest_giver", "dialogue": "The tower has secrets we have barely begun to understand. Rooms that open to no key. Fabrials that hum at frequencies we cannot hear."}
+                ],
+                "enemies": [],
+                "loot": [
+                    {"name": "Ancient Radiant Glyph Rubbing", "type": "quest_item"}
+                ],
+                "services": ["research", "oathgate_travel"],
+                "event_triggers": ["On entry: The Stormfather's voice rumbles like distant thunder, acknowledging your arrival"]
+            }
+        },
+        "3": {
+            "id": 3,
+            "x": 40,
+            "y": 40,
+            "width": 10,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [1],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The chasms beneath the Shattered Plains are a world unto themselves -- a labyrinth of dripping stone and ancient bones. Moss glows faintly where water trickles, and the skeletons of fallen chasmfiends arch overhead like the ribs of cathedrals.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Cremling Swarm", "cr": "1"},
+                    {"name": "Chasmfiend Hatchling", "cr": "3"}
+                ],
+                "loot": [
+                    {"name": "Stormlight Sphere (Mark)", "type": "currency"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: Water rushes somewhere below -- a highstorm's runoff, hours old"]
+            }
+        },
+        "4": {
+            "id": 4,
+            "x": 5,
+            "y": 45,
+            "width": 10,
+            "height": 8,
+            "room_type": "normal",
+            "connections": [0],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Stormlands -- open Alethi countryside where crem-crusted rockbuds dot the stone ground and lavis polyps cling to every sheltered surface. The sky darkens in the east, and the air tastes of ozone. A highstorm approaches.",
+                "npcs": [
+                    {"name": "Farmer Hesina", "role": "merchant", "dialogue": "Best get inside, travelers. That wall of cloud means you have maybe an hour. I can sell you storm provisions, but not time."}
+                ],
+                "enemies": [],
+                "loot": [],
+                "services": ["provisions", "shelter"],
+                "event_triggers": ["On entry: Rockbuds retract their vines and seal shut -- the land itself prepares"]
+            }
+        }
+    }
+}

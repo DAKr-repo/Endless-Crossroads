@@ -1,0 +1,158 @@
+{
+    "seed": 5004,
+    "width": 55,
+    "height": 50,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "neverlight_grove",
+        "theme": "GOTHIC",
+        "topology": "wilderness",
+        "display_name": "Neverlight Grove"
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 5,
+            "y": 5,
+            "width": 12,
+            "height": 10,
+            "room_type": "start",
+            "connections": [1, 2],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The cavern ceiling vanishes into darkness above a forest of fungi taller than castle towers. Zurkhwood trunks rise like pillars of a drowned cathedral, their caps glowing with soft bioluminescence in blues and greens. The air is warm, humid, and sweet -- too sweet, like fruit left to rot in the sun. Spores drift in lazy spirals, and you feel a presence pressing against the edges of your thoughts.",
+                "npcs": [
+                    {"name": "Stool", "role": "guide", "dialogue": "*The small myconid releases rapport spores. Joy floods your mind -- images of this grove, of circles of myconids swaying in communion. Home. Then a flicker of something else: a shadow behind the southern terraces, a shape of wrong growth, quickly suppressed.*"}
+                ],
+                "enemies": [],
+                "loot": [],
+                "services": [],
+                "event_triggers": ["On entry: If Stool is with the party, it guides them directly to Sovereign Basidia.", "On rest: Rapport spores allow dreamless sleep. But those with Wisdom below 12 dream of something vast and wet."]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 20,
+            "y": 5,
+            "width": 12,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [0, 3],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Northern Terraces cascade down the cavern wall in tiers of shelf fungus, each level hosting a circle of myconids in silent rapport. The elder specimens stand eight feet tall, their caps patterned with age-rings like ancient trees. Crystal-clear water seeps from the rock, feeding pools where bioluminescent algae paint the water in living color.",
+                "npcs": [
+                    {"name": "Sovereign Basidia", "role": "quest_giver", "dialogue": "*Rapport spores carry complex emotion: worry, duty, fractured loyalty.* The grove is divided. Sovereign Phylo speaks of a 'Great Seeder' who will bring a new cycle of growth. But the growth I have seen in the southern terraces is not life. It is consumption wearing life's mask. I fear Phylo has been... changed."},
+                    {"name": "Loobamub", "role": "ally", "dialogue": "*The myconid's spores taste of adrenaline and barely contained rage.* Loobamub is circle-leader of the animators. Loobamub's spore servants have seen what grows in the south. Loobamub will fight. Show Loobamub where to fight."}
+                ],
+                "enemies": [],
+                "loot": [
+                    {"name": "Sovereign's Blessing Spores (advantage on saves vs. poison for 24h)", "type": "consumable"}
+                ],
+                "services": ["rest", "information", "healing"],
+                "event_triggers": ["On entry: Basidia shares rapport with all willing party members. Vision of the grove's history: peaceful for millennia, the corruption began weeks ago.", "On quest: Basidia asks party to investigate the southern terraces and determine what Phylo worships."]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 10,
+            "y": 20,
+            "width": 14,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [0, 3, 4],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Southern Terraces look like the Northern ones viewed through a fever dream. The fungi here grow at wrong angles -- horizontal, spiraling, erupting from each other in fractal explosions of pale flesh. The bioluminescence has shifted from blue-green to a bruised purple, and the rapport spores here carry not thoughts but sensations: hunger, ecstasy, dissolution.",
+                "npcs": [
+                    {"name": "Sovereign Phylo", "role": "antagonist", "dialogue": "*The rapport spores are overwhelming -- a flood of bliss and surrender.* You feel it, don't you? The Great Seeder comes. She will make all flesh one flesh, all minds one mind. No more loneliness. No more separation. Only the Wedding, and the joy that comes after. Come. Let me show you the garden She tends."}
+                ],
+                "enemies": [
+                    {"name": "Corrupted Myconid Adult", "cr": "2"},
+                    {"name": "Corrupted Myconid Adult", "cr": "2"}
+                ],
+                "loot": [],
+                "services": [],
+                "event_triggers": ["On entry: Wisdom save DC 13 or charmed for 1 minute by Phylo's corrupted rapport spores.", "On investigation: DC 15 Nature reveals the corruption resembles Zuggtmoy's demonic influence."]
+            }
+        },
+        "3": {
+            "id": 3,
+            "x": 30,
+            "y": 15,
+            "width": 10,
+            "height": 8,
+            "room_type": "normal",
+            "connections": [1, 2],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Garden of Welcome was once a place where newcomers were introduced to myconid communion. Now it serves as a border zone between the divided grove. Myconids from both factions stand in uneasy proximity, their rapport spores canceling each other out in a fog of conflicting emotion. Wilted fungi carpet the ground -- casualties of the spiritual war.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [
+                    {"name": "Nightlight Mushroom (3, glow 20 ft for 8 hours)", "type": "consumable"},
+                    {"name": "Tongues Spore Pouch (comprehend languages, 1 hour)", "type": "consumable"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: Tension is palpable. Any aggressive action triggers combat between factions.", "On diplomacy: DC 16 Persuasion can delay the schism, buying time to investigate Yggmorgus."]
+            }
+        },
+        "4": {
+            "id": 4,
+            "x": 25,
+            "y": 30,
+            "width": 16,
+            "height": 14,
+            "room_type": "boss",
+            "connections": [2, 5],
+            "tier": 3,
+            "is_locked": true,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Yggmorgus. The name means 'the great body' in myconid rapport. It is a fungal tower that has grown to fill a side cavern, its flesh pulsing with veins of luminous ichor. At its base, myconids sway in rapturous communion, their bodies partially merged with the structure. And at the top, barely visible through the spore-thick air, a shape moves that is not a mushroom -- something with arms, and a crown of fruiting bodies, and the suggestion of a face twisted in divine ecstasy.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Zuggtmoy (Manifestation, weakened)", "cr": "14"},
+                    {"name": "Bridesmaid of Zuggtmoy", "cr": "5"},
+                    {"name": "Bridesmaid of Zuggtmoy", "cr": "5"},
+                    {"name": "Corrupted Myconid Sovereign", "cr": "4"}
+                ],
+                "loot": [
+                    {"name": "Wand of Entangle", "type": "wondrous_item"},
+                    {"name": "Zuggtmoy's Fallen Spore (quest item)", "type": "quest_item"},
+                    {"name": "Ring of Resistance (Poison)", "type": "wondrous_item"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: Zuggtmoy is performing the Wedding -- a ritual to merge all myconid consciousness into herself. 5 rounds to disrupt.", "On combat: Zuggtmoy fights at half strength (she is not fully manifested). Lair actions: spore clouds, grasping fungi.", "On defeat: Zuggtmoy retreats to the Abyss. The corruption begins to recede but the southern terraces are permanently scarred."]
+            }
+        },
+        "5": {
+            "id": 5,
+            "x": 35,
+            "y": 40,
+            "width": 8,
+            "height": 6,
+            "room_type": "town_gate",
+            "connections": [4],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Behind Yggmorgus, a tunnel punches through the cavern wall into raw Underdark. The fungi thin out here, replaced by bare stone still warm from the grove's ambient heat. The passage slopes downward, and a draft carries the mineral smell of deep earth. Basidia's spores reach you one last time: gratitude, and a warning. What you saw here is only a symptom. The disease lies deeper still.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [],
+                "services": [],
+                "event_triggers": ["On exit: Transition to Underdark travel. Blingdenstone is 8 days travel. Random encounters active."]
+            }
+        }
+    }
+}

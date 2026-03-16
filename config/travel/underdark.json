@@ -1,0 +1,77 @@
+{
+  "terrain_type": "underdark",
+  "events": {
+    "tier_1": [
+      {
+        "id": "faerzress",
+        "type": "skill_challenge",
+        "title": "Faerzress Zone",
+        "description": "The air shimmers with wild magic. Compasses spin. Light sources flicker.",
+        "target_role": "guide",
+        "dc": 12,
+        "success": "You navigate by fungi patterns. Slow but steady.",
+        "failure": "Walked in circles. Half a day lost in the tunnels.",
+        "failure_cost": {"days": 0.5}
+      },
+      {
+        "id": "cave_fisher",
+        "type": "combat",
+        "title": "Cave Fisher",
+        "description": "A sticky filament drops from the ceiling. Something chitinous shifts above.",
+        "target_role": "scout",
+        "dc": 12,
+        "success": "You spot the filament and burn it. The fisher retreats.",
+        "failure": "It snags a pack and reels it up. Fight for your supplies.",
+        "enemies_tier": 1
+      },
+      {
+        "id": "fungi_garden",
+        "type": "discovery",
+        "title": "Fungi Garden",
+        "description": "Bioluminescent mushrooms carpet the cavern floor in soft blue light.",
+        "target_role": "forager",
+        "dc": 10,
+        "success": "Edible varieties. A rare treat in the dark.",
+        "failure": "Poisonous lookalikes. Better not risk it.",
+        "success_reward": {"rations": 2}
+      }
+    ],
+    "tier_2": [
+      {
+        "id": "drow_patrol",
+        "type": "combat",
+        "title": "Drow Patrol",
+        "description": "Hand-crossbows click in the dark. Crimson eyes gleam from a side tunnel.",
+        "target_role": "scout",
+        "dc": 14,
+        "success": "You douse your lights and let them pass.",
+        "failure": "Poisoned bolts fly from the shadows.",
+        "enemies_tier": 2
+      },
+      {
+        "id": "underground_river",
+        "type": "skill_challenge",
+        "title": "Underground River",
+        "description": "A rushing river blocks the path. The current looks lethal.",
+        "target_role": "guide",
+        "dc": 13,
+        "success": "You find stepping stones hidden beneath the surface.",
+        "failure": "A long detour through twisting tunnels. A full day wasted.",
+        "failure_cost": {"days": 1}
+      }
+    ],
+    "tier_3": [
+      {
+        "id": "purple_worm_tunnel",
+        "type": "skill_challenge",
+        "title": "Purple Worm Tunnel",
+        "description": "The tunnel walls are smooth and circular. Fresh. Something massive came through here recently.",
+        "target_role": "guard",
+        "dc": 15,
+        "success": "You hear it grinding through rock below and move fast.",
+        "failure": "The ground trembles. It surfaces behind you. Run!",
+        "enemies_tier": 3
+      }
+    ]
+  }
+}

@@ -1,0 +1,180 @@
+{
+    "seed": 8003,
+    "width": 50,
+    "height": 70,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "urithiru",
+        "theme": "STONE",
+        "topology": "vertical",
+        "display_name": "Urithiru -- Tower of the Radiants"
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 20,
+            "y": 60,
+            "width": 12,
+            "height": 8,
+            "room_type": "start",
+            "connections": [1],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Oathgate Platform occupies the tower's base -- a circular stone dais inlaid with ten interlocking glyph patterns, one for each Order. The air shimmers where Stormlight pools in the mechanism's seams. Stepping onto the platform feels like stepping onto a held breath.",
+                "npcs": [
+                    {"name": "Oathgate Attendant Ral", "role": "guide", "dialogue": "Place your hand on the glyph and infuse. That is the simple version. The complicated version involves explaining why half of them do not work anymore. Which would you prefer?"}
+                ],
+                "enemies": [],
+                "loot": [],
+                "services": ["oathgate_travel", "orientation"],
+                "event_triggers": ["On entry: The Oathgate hums beneath your feet, its frequency shifting as if recognizing your approach"]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 18,
+            "y": 48,
+            "width": 14,
+            "height": 10,
+            "room_type": "market",
+            "connections": [0, 2, 3],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Ground Level Markets fill a vast atrium carved from living rock, its ceiling lost in shadow far above. Merchants from every princedom have staked claims here -- Thaylen gem traders, Azish bureaucrats selling permits for permits, Herdazian cooks whose chouta stalls trail fragrant smoke like signal fires.",
+                "npcs": [
+                    {"name": "Merchant Vstim", "role": "merchant", "dialogue": "I have traded in six kingdoms, friend, and I will tell you this -- Urithiru's market is the strangest of all. Where else can you buy a Soulcaster on the same floor as dried lavis? Nowhere. That is the answer."},
+                    {"name": "Herdazian Cook Lopen", "role": "merchant", "dialogue": "Chouta! Fresh chouta! Made with one hand, twice the flavor! My cousin, he says the spices are too strong. My cousin is wrong about many things. This is only the most recent."}
+                ],
+                "enemies": [],
+                "loot": [
+                    {"name": "Chouta Wrap (heals 2 HP)", "type": "consumable"},
+                    {"name": "Thaylen Gemstone Pouch", "type": "currency"}
+                ],
+                "services": ["buy_equipment", "sell_goods", "food", "rumors"],
+                "event_triggers": ["On entry: A scribe's spanreed twitches to life mid-sentence, relaying news from Kholinar -- the tone is urgent"]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 10,
+            "y": 35,
+            "width": 14,
+            "height": 12,
+            "room_type": "library",
+            "connections": [1, 4, 5],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Library of Urithiru stretches across three tiers connected by ramps worn smooth by ten millennia of scholars' feet. Shelves cut directly into the stone walls hold thousands of volumes -- most written in languages no living person can read. Glyphs on the ceiling pulse with residual Stormlight, casting the chamber in amber light that shifts like living things.",
+                "npcs": [
+                    {"name": "Jasnah Kholin", "role": "quest_giver", "dialogue": "History is not merely what happened. It is the pattern of what happened, and therefore the prediction of what will happen again. I have found references to the Desolations that contradict everything the Vorin church teaches. Do you have the courage to hear uncomfortable truths?"},
+                    {"name": "Renarin Kholin", "role": "ally", "dialogue": "The visions my father sees -- I see them too, but differently. Through a cracked lens. I am not sure what that makes me. Can I show you something? These glyphs on the wall -- they change when no one is looking."}
+                ],
+                "enemies": [],
+                "loot": [
+                    {"name": "Radiant Codex Fragment", "type": "quest_item"},
+                    {"name": "Translation Key (partial)", "type": "quest_item"}
+                ],
+                "services": ["lore", "research", "translation"],
+                "event_triggers": ["On entry: A book falls from a shelf untouched. When you open it, the page it lands on describes your party -- in a text written four thousand years ago"]
+            }
+        },
+        "3": {
+            "id": 3,
+            "x": 25,
+            "y": 35,
+            "width": 10,
+            "height": 10,
+            "room_type": "residence",
+            "connections": [1, 4],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Residential Tier occupies the tower's midsection -- hundreds of chambers carved with geometric precision, each identical, each designed for a Knight Radiant who lived here millennia ago. The new occupants have draped Alethi banners over Radiant glyphs and stuffed rockbud planters into arrow slits. The tower tolerates the redecoration.",
+                "npcs": [
+                    {"name": "Navani Kholin", "role": "quest_giver", "dialogue": "These rooms were not built for comfort. They were built for function -- each one connects to a fabrial network we do not understand. I have mapped the conduits on three floors. The patterns suggest the tower itself is a fabrial. The largest one ever constructed."}
+                ],
+                "enemies": [],
+                "loot": [],
+                "services": ["rest", "fabrial_consultation"],
+                "event_triggers": ["On entry: The room's gemstone sconces flicker to life as you enter, responding to your presence after four thousand years of darkness"]
+            }
+        },
+        "4": {
+            "id": 4,
+            "x": 18,
+            "y": 20,
+            "width": 12,
+            "height": 10,
+            "room_type": "barracks",
+            "connections": [2, 3, 5],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Training Grounds occupy an open terrace jutting from the tower's eastern face, high enough that clouds drift below. Wind hammers the platform from every direction -- by design, the Radiants trained in conditions worse than any battlefield. Weapon racks hold practice blades, and the stone floor is inscribed with sparring circle glyphs.",
+                "npcs": [
+                    {"name": "Swordmaster Zahel", "role": "trainer", "dialogue": "Stance. Grip. Breath. Everything else is decoration. You want to learn to fight, you learn those three things until they are reflex. You want to learn to kill, that is a different lesson. I teach both."}
+                ],
+                "enemies": [],
+                "loot": [
+                    {"name": "Practice Shardblade (Weighted)", "type": "weapon"}
+                ],
+                "services": ["combat_training", "weapon_purchase"],
+                "event_triggers": ["On entry: Zahel is sparring with three soldiers simultaneously. He has not drawn his own blade. He does not appear to need it."]
+            }
+        },
+        "5": {
+            "id": 5,
+            "x": 15,
+            "y": 5,
+            "width": 14,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [2, 4, 6],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Stormfather's Balcony crowns the tower's highest accessible tier -- a stone platform that extends into empty sky. From here, Roshar curves at the horizon. Highstorms are visible as walls of cloud and lightning hundreds of miles wide, advancing across the continent like the anger of a god who has not yet decided where to strike.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [],
+                "services": ["meditation", "stormlight_infusion"],
+                "event_triggers": ["On entry: The Stormfather speaks -- not in words, but in a pressure behind your eyes, a gravity in your chest. 'YOU HAVE CLIMBED FAR, CHILD. THE QUESTION IS WHETHER YOU CLIMBED TOWARD SOMETHING, OR AWAY.'"]
+            }
+        },
+        "6": {
+            "id": 6,
+            "x": 20,
+            "y": 0,
+            "width": 10,
+            "height": 6,
+            "room_type": "treasure",
+            "connections": [5],
+            "tier": 4,
+            "is_locked": true,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Gem Archive -- a sealed vault at Urithiru's apex, accessible only through a door that responds to Stormlight of specific frequencies. Inside, gemstones the size of fists sit in recessed alcoves, each one storing a captured memory from the time of the Knights Radiant. Touch one, and you live a moment from four thousand years ago.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Midnight Essence Guardian", "cr": "4"}
+                ],
+                "loot": [
+                    {"name": "Memory Gemstone (Radiant's Last Stand)", "type": "quest_item"},
+                    {"name": "Shardplate Gauntlet (cracked)", "type": "armor"},
+                    {"name": "Stormlight Sphere (Broam)", "type": "currency"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: The gemstones pulse in sequence -- a heartbeat preserved in light, still counting after four millennia"]
+            }
+        }
+    }
+}

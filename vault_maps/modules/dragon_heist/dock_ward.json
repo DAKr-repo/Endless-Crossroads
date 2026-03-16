@@ -1,0 +1,195 @@
+{
+    "seed": 3017,
+    "width": 60,
+    "height": 40,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "dock_ward",
+        "theme": "VILLAGE",
+        "topology": "settlement",
+        "display_name": "Dock Ward"
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 25,
+            "y": 5,
+            "width": 12,
+            "height": 8,
+            "room_type": "town_square",
+            "connections": [1, 2, 3, 4],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "A cobblestone square slick with fish scales and salt spray, ringed by leaning timber buildings whose upper stories overhang the street like gossiping neighbors. Gulls wheel overhead, fighting over scraps. A fountain in the center -- long dry, its basin now used as a message board -- is papered with broadsheets, wanted posters, and handbills advertising passage to Baldur's Gate. The smell of the sea is everywhere, mixed with tar, smoke, and frying fish.",
+                "npcs": [
+                    {
+                        "name": "Dash",
+                        "role": "informant",
+                        "dialogue": "You want information, I want silver. Everybody gets what they want, everybody walks away smiling. I seen things down by warehouse nine last night. Things with tentacles. That one's free -- consider it a sample.",
+                        "notes": "Street urchin, about twelve. Missing two front teeth. Runs a network of child informants across the Dock Ward. Genuinely knows everything that happens on these streets. Will not betray paying clients."
+                    }
+                ],
+                "enemies": [],
+                "loot": [],
+                "hazards": [],
+                "services": ["rumor"],
+                "event_triggers": [
+                    "On entry: A pickpocket attempts to lift a coin purse (DC 14 Perception to notice)."
+                ]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 5,
+            "y": 5,
+            "width": 10,
+            "height": 10,
+            "room_type": "tavern",
+            "connections": [0, 2],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The sign shows a dragon spitted on a lance like a roast pig. Inside, the ceiling is so low that anyone over five and a half feet stoops. Smoke from a peat fire mixes with pipe smoke to create a permanent haze at eye level. The ale is cheap, the food is salt cod and hard bread, and the clientele are the kind of people who keep their backs to the wall and their weapons where they can reach them.",
+                "npcs": [
+                    {
+                        "name": "Bonnie",
+                        "role": "tavern_keeper",
+                        "dialogue": "Rules of the house: no magic, no fighting inside, no tab over five gold. Break a rule and I break something of yours. What are you having?",
+                        "notes": "Half-orc barkeep. Former sailor with anchor tattoos on both forearms. Fair but absolutely no-nonsense. Has thrown a full-grown minotaur out the front door. Hears every rumor in the ward but will only share for coin or a good story."
+                    }
+                ],
+                "enemies": [],
+                "loot": [],
+                "hazards": [],
+                "services": ["drink", "rest", "rumor"],
+                "event_triggers": [
+                    "On rest: Bonnie slides you an extra bread roll with your meal. 'You look like you need it. Do not get used to it.'"
+                ]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 5,
+            "y": 20,
+            "width": 10,
+            "height": 8,
+            "room_type": "normal",
+            "connections": [0, 1],
+            "tier": 2,
+            "is_locked": true,
+            "is_secret": false,
+            "content_hints": {
+                "description": "A salt-stained warehouse marked only with a black serpent chalked above the door. Inside, crates are stacked in careful rows, each stamped with legitimate shipping marks that do not match their contents. The air smells of weapon oil and smuggled spices. A lookout on the catwalk above watches the entrance with a loaded crossbow.",
+                "npcs": [
+                    {
+                        "name": "Yagra Stonefist",
+                        "role": "faction_contact",
+                        "dialogue": "You are either brave or stupid to come here. Most people are both. State your business or get out -- we do not give tours.",
+                        "notes": "Zhentarim enforcer. Half-orc. Respects strength and directness. Will deal with the party if they have leverage or a Zhentarim contact. Controls smuggling operations in this section of the docks."
+                    }
+                ],
+                "enemies": [
+                    {"name": "Zhentarim Spy", "cr": "1"},
+                    {"name": "Zhentarim Thug", "cr": "1/2"}
+                ],
+                "loot": [
+                    {"name": "Smuggled Weapons Crate", "type": "equipment"},
+                    {"name": "Zhentarim Shipping Manifest", "type": "quest_item"}
+                ],
+                "hazards": [],
+                "services": [],
+                "event_triggers": [
+                    "On hostile entry: Yagra flips a table and draws twin scimitars. 'Wrong door, friend.'"
+                ]
+            }
+        },
+        "3": {
+            "id": 3,
+            "x": 45,
+            "y": 5,
+            "width": 10,
+            "height": 8,
+            "room_type": "barracks",
+            "connections": [0, 4],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The City Watch post is a squat stone building that looks like it was designed to survive a siege and then forgotten about. A duty roster nailed to the wall is three days out of date. Inside, two guards play cards while a third sleeps with his helmet over his face. The desk sergeant's ledger is open to a page of incident reports, most involving drunk sailors and missing cargo.",
+                "npcs": [
+                    {
+                        "name": "Sergeant Cromley",
+                        "role": "authority",
+                        "dialogue": "Another complaint? File it with the clerk. What? The clerk quit? Fine, file it with me. I will get to it. Eventually. We are understaffed, underpaid, and the captain says no overtime.",
+                        "notes": "Human, middle-aged, exhausted. Honest but overwhelmed. The Dock Ward has more crime than his unit can handle. Will cooperate with adventurers who do not cause more problems than they solve."
+                    }
+                ],
+                "enemies": [],
+                "loot": [],
+                "hazards": [],
+                "services": ["quest"],
+                "event_triggers": [
+                    "On quest available: Cromley has bounties posted for warehouse break-ins that he suspects are Xanathar Guild related."
+                ]
+            }
+        },
+        "4": {
+            "id": 4,
+            "x": 45,
+            "y": 20,
+            "width": 10,
+            "height": 8,
+            "room_type": "market",
+            "connections": [0, 3, 5],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Wooden stalls and canvas awnings stretch along the wharf, selling the day's catch. Fishmongers shout prices over each other while cats prowl between the tables, waiting for scraps. The fish range from mundane cod and herring to things pulled from deep water that have too many eyes. One stall sells 'exotic specimens' in sealed jars that glow faintly in the shadows.",
+                "npcs": [
+                    {
+                        "name": "Old Maera",
+                        "role": "shopkeeper",
+                        "dialogue": "Eel? Cod? Something from below the thermocline? I have a squid today with seven tentacles instead of eight -- lucky squid, they say. Or unlucky, depending on which end you are on.",
+                        "notes": "Human fisherwoman, weathered and sharp-eyed. Sells mundane and exotic sea creatures. Occasionally finds magical items in her nets. Knows the harbor currents, smuggling routes, and which warehouse doors are left unlocked at night."
+                    }
+                ],
+                "enemies": [],
+                "loot": [
+                    {"name": "Cloak of the Manta Ray (tangled in fishing nets)", "type": "equipment"}
+                ],
+                "hazards": [],
+                "services": ["shop"],
+                "event_triggers": [
+                    "On browse: Old Maera leans close. 'I pulled something out of the harbor last night that was not a fish. Interested?'"
+                ]
+            }
+        },
+        "5": {
+            "id": 5,
+            "x": 25,
+            "y": 30,
+            "width": 10,
+            "height": 6,
+            "room_type": "town_gate",
+            "connections": [4],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The harbor gate is a massive timber-and-iron affair set into the city's sea wall. Beyond it, wooden piers reach into the gray harbor like outstretched fingers. Ships from a dozen nations rock at anchor -- Calishite dhows, Luskan raiders with their sails furled, a Lantanese steamship trailing a ribbon of smoke. The gate guards check cargo, not people. Anyone can walk in. Getting cargo out is another matter.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [],
+                "hazards": [],
+                "services": ["exit_settlement"],
+                "event_triggers": [
+                    "On exit: The sounds of the Dock Ward fade behind you as salt wind fills your lungs."
+                ]
+            }
+        }
+    }
+}

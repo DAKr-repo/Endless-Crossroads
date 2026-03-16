@@ -1,0 +1,198 @@
+{
+    "seed": 7001,
+    "width": 55,
+    "height": 45,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "greenest",
+        "theme": "VILLAGE",
+        "topology": "settlement",
+        "display_name": "Greenest in Flames"
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 5,
+            "y": 5,
+            "width": 10,
+            "height": 8,
+            "room_type": "start",
+            "connections": [1],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The road crests a hill and Greenest burns below you. Columns of smoke rise from a dozen buildings, lit orange from beneath by spreading fires. Through the smoke, a blue dragon wheels over the town in lazy circles, its lightning breath arcing between rooftops like a cat toying with prey. Screaming civilians run through the streets, pursued by raiders in purple robes who carry curved swords and the certainty of zealots.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Kobold Raider (group of 8)", "cr": "1/8"},
+                    {"name": "Cultist", "cr": "1/8"},
+                    {"name": "Cultist", "cr": "1/8"}
+                ],
+                "loot": [],
+                "services": [],
+                "event_triggers": ["On entry: Initiative. A family of four is being chased by kobolds. Rescue them to gain information about the keep.", "On rescue: The family knows a back way to the keep through the stream bed. Grants advantage on navigating to room 2."]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 15,
+            "y": 10,
+            "width": 14,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [0, 2, 5],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The burning houses line what was once Greenest's main street. Thatch roofs blaze like torches, and the heat is intense enough to blister skin at twenty paces. Bodies lie in the street -- civilians caught mid-flight, cut down by cultist blades. Through the smoke, more raiders move in organized groups, systematically looting homes and loading wagons. This is not random violence. This is an operation.",
+                "npcs": [
+                    {"name": "Linan Swift", "role": "civilian", "dialogue": "*Clutching a wounded child to her chest.* The keep -- Governor Nighthill opened the keep. But the path is blocked. There are raiders everywhere. My husband went to find another way and hasn't come back. Please -- help us get to the keep."}
+                ],
+                "enemies": [
+                    {"name": "Cultist", "cr": "1/8"},
+                    {"name": "Cultist", "cr": "1/8"},
+                    {"name": "Guard Drake", "cr": "2"}
+                ],
+                "loot": [
+                    {"name": "Cultist's Orders (describes hoard transport to the nursery caves)", "type": "quest_item"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: Combat encounter. Cultists are looting a burning house.", "On search: DC 12 Investigation finds the cultist orders on a dead raider -- references to 'Frulam Mondath' and 'the nursery.'"]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 25,
+            "y": 15,
+            "width": 14,
+            "height": 12,
+            "room_type": "barracks",
+            "connections": [1, 3, 4],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Greenest Keep squats on a low hill at the town's center, its walls of mortared stone the only thing standing between the refugees and annihilation. The courtyard is packed with terrified civilians, and the walls are manned by a skeleton crew of guards launching crossbow bolts at the raiders below. Governor Nighthill stands on the battlements with blood running from a cut on his forehead, shouting orders that no one seems to hear.",
+                "npcs": [
+                    {"name": "Governor Tarbaw Nighthill", "role": "quest_giver", "dialogue": "Thank the gods -- capable fighters. The keep holds for now, but it won't last the night. That dragon -- it's toying with us. The real threat is the army in the fields. I need intelligence: who leads them, what they want, and how to make them leave. I'll pay whatever Greenest has left, which isn't much."},
+                    {"name": "Castellan Escobert the Red", "role": "ally", "dialogue": "*The dwarf is shorter than his temper, which is saying something.* There's a sally port -- old tunnel from the keep to the stream. Hasn't been used in years but the masonry's sound. Might get a small group out unseen. You want to be heroes? Start there."}
+                ],
+                "enemies": [],
+                "loot": [
+                    {"name": "Militia Weapons (longsword, shortbow, 20 arrows)", "type": "weapon"},
+                    {"name": "Healer's Kit", "type": "gear"},
+                    {"name": "Potion of Healing (2)", "type": "consumable"}
+                ],
+                "services": ["rest", "healing", "information"],
+                "event_triggers": ["On entry: Safe zone. Short rest available. Nighthill briefs the party on the situation.", "On quest: Multiple missions available: rescue civilians at the temple, investigate the mill, use the sally port for reconnaissance."]
+            }
+        },
+        "3": {
+            "id": 3,
+            "x": 15,
+            "y": 25,
+            "width": 10,
+            "height": 8,
+            "room_type": "secret",
+            "connections": [2, 5],
+            "tier": 1,
+            "is_locked": true,
+            "is_secret": true,
+            "content_hints": {
+                "description": "The sally port is a narrow tunnel of damp stone that exits through a rusted grate at the stream bed below the keep. Rats scatter as Escobert hands over the key, and the air tastes of old water and older masonry. The tunnel is low enough to force medium creatures to crouch, and the stream beyond is shallow but ice-cold, concealed from view by thick reeds.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Swarm of Rats", "cr": "1/4"}
+                ],
+                "loot": [],
+                "services": [],
+                "event_triggers": ["On entry: DC 10 Athletics to force the rusted grate. The stream provides concealment (advantage on Stealth) while moving through town.", "On exit: Opens onto the stream bed. Connects to temple route and mill route."]
+            }
+        },
+        "4": {
+            "id": 4,
+            "x": 35,
+            "y": 15,
+            "width": 12,
+            "height": 10,
+            "room_type": "temple",
+            "connections": [2, 6],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Temple of Chauntea is surrounded. Dozens of cultists and kobolds pound at the heavy oak doors while terrified voices pray within. The temple's stained-glass windows depict golden fields of grain, now backlit by firelight into something hellish. A battering ram -- a felled oak trunk -- thuds against the door with metronomic regularity. The hinges are buckling.",
+                "npcs": [
+                    {"name": "Eadyan Falconmoon", "role": "priest", "dialogue": "*Bracing the door from inside.* Chauntea preserve us -- there are thirty civilians in here. Women, children, the elderly. The door won't hold another ten minutes. If you've come to help, we need these raiders driven off or we need another way out. The crypt -- there's a tunnel in the crypt, but it collapsed years ago."}
+                ],
+                "enemies": [
+                    {"name": "Cultist (group of 6)", "cr": "1/8"},
+                    {"name": "Kobold (group of 10)", "cr": "1/8"},
+                    {"name": "Dragonclaw (cult fanatic)", "cr": "1"}
+                ],
+                "loot": [
+                    {"name": "Chauntea's Blessing (advantage on saves vs. poison for 24h)", "type": "consumable"},
+                    {"name": "Temple Silver (50 gp)", "type": "treasure"}
+                ],
+                "services": ["healing"],
+                "event_triggers": ["On entry: Timed encounter -- the door breaks in 5 rounds. Players can attack the raiders from behind, or help from inside.", "On rescue: Saving the temple earns significant Greenest reputation. Nighthill grants additional reward."]
+            }
+        },
+        "5": {
+            "id": 5,
+            "x": 5,
+            "y": 30,
+            "width": 12,
+            "height": 10,
+            "room_type": "boss",
+            "connections": [1, 3, 6],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Lennithon the blue dragon lands in the field before the keep at dawn, and in her shadow stands a half-dragon champion in purple scale mail, seven feet of muscle and arrogance. He plants his greatsword point-first in the earth and issues a challenge in a voice that carries to the keep walls: single combat, his champion against theirs. Behind him, a line of bound prisoners kneels in the mud. The stakes are their lives.",
+                "npcs": [
+                    {"name": "Langdedrosa Cyanwrath", "role": "antagonist", "dialogue": "I am Langdedrosa Cyanwrath, champion of the Cult of the Dragon. I offer honorable combat -- one warrior against one warrior. Win, and the prisoners walk free. Lose... *His smile shows teeth filed to points.* ...and they join the hoard. Either way, I get a good fight. It has been too long since I've had a good fight."}
+                ],
+                "enemies": [
+                    {"name": "Langdedrosa Cyanwrath (Half-Blue Dragon Veteran)", "cr": "4"},
+                    {"name": "Lennithon (Adult Blue Dragon, observing only)", "cr": "16"}
+                ],
+                "loot": [
+                    {"name": "Cyanwrath's Greatsword (returns in Dragon Hatchery)", "type": "weapon"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: Single combat challenge. If the party champion falls, Cyanwrath honors the deal and releases prisoners.", "On cheat: If the party attacks en masse, Lennithon intervenes with one lightning breath (8d10), then the Cult withdraws with prisoners.", "On defeat: Cyanwrath survives (he retreats at 10 HP). He will be encountered again in the Dragon Hatchery."]
+            }
+        },
+        "6": {
+            "id": 6,
+            "x": 25,
+            "y": 35,
+            "width": 10,
+            "height": 8,
+            "room_type": "normal",
+            "connections": [4, 5],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The mill stands at the town's edge, its wheel frozen mid-turn in the stream. Raiders have gathered around it, but something is wrong -- they're not looting. They're waiting. The grain stores are intact, the door ajar, and a lantern burns inside. This is a trap, baited with the town's food supply and the knowledge that heroes always try to save the provisions.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Cultist (ambush team of 6)", "cr": "1/8"},
+                    {"name": "Guard Drake", "cr": "2"},
+                    {"name": "Dragonclaw", "cr": "1"}
+                ],
+                "loot": [
+                    {"name": "Grain Stores (enough to feed Greenest for 2 weeks)", "type": "quest_item"},
+                    {"name": "Cult of the Dragon Insignia", "type": "quest_item"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: DC 14 Insight to recognize the trap. If recognized, party can set their own ambush (surprise round).", "On loot: Recovering the grain stores is critical for Greenest's survival. Major reputation gain."]
+            }
+        }
+    }
+}

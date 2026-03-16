@@ -1,0 +1,26 @@
+{
+    "system_id": "GRAVEYARD",
+    "display_name": "GRAVEYARD",
+    "mechanics": {
+        "races": [
+            "Alien",
+            "Dwarf",
+            "Elf",
+            "Gnome",
+            "Human"
+        ],
+        "classes": [
+            "Character Class A",
+            "Character Class B",
+            "Playbook C",
+            "Playbook X",
+            "Playbook Y"
+        ],
+        "subclasses": [
+            "Specialization A",
+            "Specialization B",
+            "SpecializationA",
+            "SpecializationB"
+        ]
+    }
+}

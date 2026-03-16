@@ -1,0 +1,32 @@
+{
+  "name": "The Iron Crown",
+  "system_id": "genesis",
+  "system_display": "Procedural Genesis",
+  "tone": "grim",
+  "genre": "Skyborne Fantasy",
+  "terms": {
+    "crown": "The General",
+    "crew": "The Resistance",
+    "neutral": "The Civilians",
+    "campfire": "The Bunker",
+    "world": "The Iron Crown"
+  },
+  "primer": "The Iron Crown is a land of Floating sky-islands. The people follow Machine-god technofaith. Their greatest achievement: Mapped the planar boundaries. Power rests with The General \u2014 Order through strength. Discipline is law.. In the shadows, The Resistance \u2014 Freedom fighters or terrorists \u2014 depends who you ask.. The economy runs on Gold-standard mercantile trade. Society is defined by Wealth-based social mobility.",
+  "prompts_crown": [],
+  "prompts_crew": [],
+  "prompts_world": [],
+  "prompts_campfire": [],
+  "secret_witness": "",
+  "patrons": [],
+  "leaders": [],
+  "created_timestamp": 1770241224.3201053,
+  "grapes": {
+    "geography": "Floating sky-islands",
+    "religion": "Machine-god technofaith",
+    "achievements": "Mapped the planar boundaries",
+    "politics": "Puppet state (controlled from abroad)",
+    "economics": "Gold-standard mercantile trade",
+    "social": "Wealth-based social mobility"
+  },
+  "bible_text": ""
+}

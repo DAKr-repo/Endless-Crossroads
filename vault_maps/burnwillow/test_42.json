@@ -1,0 +1,586 @@
+{
+  "location": "test",
+  "system_id": "burnwillow",
+  "seed": 42,
+  "total_rooms": 13,
+  "rooms": [
+    {
+      "id": 0,
+      "type": "normal",
+      "tier": 3,
+      "position": [
+        2,
+        1
+      ],
+      "size": [
+        3,
+        6
+      ],
+      "connections": [
+        2,
+        3
+      ],
+      "enemies": [
+        {
+          "name": "Forge Wraith",
+          "hp": 14,
+          "defense": 13,
+          "damage": "3d6",
+          "tier": 3,
+          "dr": 2,
+          "archetype": "aetherial",
+          "x": 3,
+          "y": 4
+        },
+        {
+          "name": "Blighted Sentinel",
+          "hp": 13,
+          "defense": 13,
+          "damage": "3d6",
+          "tier": 3,
+          "dr": 2,
+          "archetype": "construct",
+          "x": 3,
+          "y": 4
+        }
+      ],
+      "loot": [],
+      "hazards": [],
+      "furniture": [],
+      "description": "Cold bites through your gloves. Dead coals in a Heartwood forge, cold for centuries. Ash crumbles at a breath. The bellows leather has cracked and curled inward like a fist."
+    },
+    {
+      "id": 1,
+      "type": "normal",
+      "tier": 2,
+      "position": [
+        1,
+        9
+      ],
+      "size": [
+        4,
+        4
+      ],
+      "connections": [
+        2,
+        7
+      ],
+      "enemies": [
+        {
+          "name": "Clockwork Spider",
+          "hp": 12,
+          "defense": 12,
+          "damage": "2d6",
+          "tier": 2,
+          "dr": 1,
+          "archetype": "construct",
+          "x": 3,
+          "y": 11
+        },
+        {
+          "name": "Blighted Worker",
+          "hp": 14,
+          "defense": 12,
+          "damage": "2d6",
+          "tier": 2,
+          "dr": 1,
+          "archetype": "scavenger",
+          "x": 3,
+          "y": 11
+        }
+      ],
+      "loot": [],
+      "hazards": [
+        {
+          "name": "Arcane Ward",
+          "stat": "Aether",
+          "dc": 12,
+          "effect": "Drains 2 Aether, magic fails"
+        }
+      ],
+      "furniture": [],
+      "description": "A grey stillness fills the chamber, heavy and flat. Brass teeth crunch underfoot \u2014 scattered gears from a split housing. The stonework are cold and slick. A flywheel creaks on a dead axle."
+    },
+    {
+      "id": 2,
+      "type": "normal",
+      "tier": 2,
+      "position": [
+        1,
+        15
+      ],
+      "size": [
+        4,
+        5
+      ],
+      "connections": [
+        1,
+        0
+      ],
+      "enemies": [],
+      "loot": [
+        {
+          "name": "Ash Wand",
+          "slot": "R.Hand",
+          "tier": 2,
+          "x": 2,
+          "y": 17
+        }
+      ],
+      "hazards": [
+        {
+          "name": "Poison Gas Trap",
+          "stat": "Grit",
+          "dc": 12,
+          "effect": "Take 2d6 poison damage"
+        }
+      ],
+      "furniture": [],
+      "description": "The warmth has bled from this place. A fractured mirror throws your face back in pieces. The frame is Ironbark, split along the grain. Glass splinters crackle when you shift weight."
+    },
+    {
+      "id": 3,
+      "type": "normal",
+      "tier": 3,
+      "position": [
+        1,
+        23
+      ],
+      "size": [
+        3,
+        6
+      ],
+      "connections": [
+        4,
+        0
+      ],
+      "enemies": [
+        {
+          "name": "Forge Wraith",
+          "hp": 12,
+          "defense": 13,
+          "damage": "3d6",
+          "tier": 3,
+          "dr": 2,
+          "archetype": "aetherial",
+          "x": 2,
+          "y": 26
+        }
+      ],
+      "loot": [
+        {
+          "name": "Steel Greatsword",
+          "slot": "R.Hand",
+          "tier": 3,
+          "x": 2,
+          "y": 26
+        }
+      ],
+      "hazards": [
+        {
+          "name": "Poison Gas Trap",
+          "stat": "Grit",
+          "dc": 14,
+          "effect": "Take 3d6 poison damage"
+        }
+      ],
+      "furniture": [
+        {
+          "name": "Arcane Obelisk",
+          "tier": 3,
+          "container_type": "furniture",
+          "x": 2,
+          "y": 27
+        }
+      ],
+      "description": "Your teeth ache. The temperature dropped the moment you crossed the threshold. Glass shards snap under your heel \u2014 a fallen chandelier, its crystal arms shattered across the frost-cracked stone. Each piece catches the faint rune-rune-light and splits it."
+    },
+    {
+      "id": 4,
+      "type": "treasure",
+      "tier": 4,
+      "position": [
+        1,
+        33
+      ],
+      "size": [
+        4,
+        3
+      ],
+      "connections": [
+        5,
+        3
+      ],
+      "enemies": [],
+      "loot": [
+        {
+          "name": "Plate Armor",
+          "slot": "Chest",
+          "tier": 4,
+          "x": 2,
+          "y": 34
+        },
+        {
+          "name": "Plate Armor",
+          "slot": "Chest",
+          "tier": 4,
+          "x": 2,
+          "y": 34
+        }
+      ],
+      "hazards": [],
+      "furniture": [],
+      "description": "Something pulses in the walls. The stone is warm and shouldn't be. A metallic glint through the dust. Your boot kicks a coin \u2014 the ring of it carries too far in the silence. The scarred ground around the cache is suspiciously clean."
+    },
+    {
+      "id": 5,
+      "type": "boss",
+      "tier": 4,
+      "position": [
+        1,
+        42
+      ],
+      "size": [
+        4,
+        6
+      ],
+      "connections": [
+        4
+      ],
+      "enemies": [
+        {
+          "name": "Void Sentinel Alpha",
+          "hp": 52,
+          "defense": 16,
+          "damage": "5d6",
+          "tier": 4,
+          "is_boss": true,
+          "dr": 5,
+          "archetype": "aetherial",
+          "x": 3,
+          "y": 45
+        }
+      ],
+      "loot": [
+        {
+          "name": "Master Lockpicks",
+          "slot": "Arms",
+          "tier": 5,
+          "x": 2,
+          "y": 45
+        },
+        {
+          "name": "Golden Wand",
+          "slot": "R.Hand",
+          "tier": 5,
+          "x": 2,
+          "y": 45
+        }
+      ],
+      "hazards": [],
+      "furniture": [],
+      "description": "The Blight-smell hits you \u2014 sweetrot and copper. Bone fragments snap underfoot \u2014 old, dry, scattered thick. The air is dense and still. A low vibration hums through the scarred ground, felt in your knees."
+    },
+    {
+      "id": 6,
+      "type": "return_gate",
+      "tier": 2,
+      "position": [
+        9,
+        2
+      ],
+      "size": [
+        22,
+        4
+      ],
+      "connections": [
+        7,
+        9
+      ],
+      "enemies": [],
+      "loot": [],
+      "hazards": [],
+      "furniture": [],
+      "description": "Warmth seeps back into your fingers. The air tastes clean for the first time in hours. The walls here are dry and clean. A bronze bell hangs from a bracket, green with age but intact."
+    },
+    {
+      "id": 7,
+      "type": "normal",
+      "tier": 1,
+      "position": [
+        10,
+        10
+      ],
+      "size": [
+        30,
+        21
+      ],
+      "connections": [
+        6,
+        11,
+        1
+      ],
+      "enemies": [
+        {
+          "name": "Rust Rat",
+          "hp": 9,
+          "defense": 11,
+          "damage": "1d6",
+          "tier": 1,
+          "dr": 0,
+          "archetype": "beast",
+          "x": 26,
+          "y": 20
+        }
+      ],
+      "loot": [],
+      "hazards": [],
+      "furniture": [
+        {
+          "name": "Rusted Chest",
+          "tier": 1,
+          "container_type": "chest",
+          "x": 24,
+          "y": 21
+        }
+      ],
+      "description": "A furnace draft pushes through the corridor, carrying amber-tinged smoke. Mildew reek hits you first, thick and wet. Moss fur coats the brickwork. The deck plates is slick with condensation and rat leavings."
+    },
+    {
+      "id": 8,
+      "type": "normal",
+      "tier": 3,
+      "position": [
+        14,
+        35
+      ],
+      "size": [
+        21,
+        6
+      ],
+      "connections": [
+        9
+      ],
+      "enemies": [
+        {
+          "name": "Steel Serpent",
+          "hp": 14,
+          "defense": 13,
+          "damage": "3d6",
+          "tier": 3,
+          "dr": 2,
+          "archetype": "construct",
+          "x": 25,
+          "y": 38
+        }
+      ],
+      "loot": [],
+      "hazards": [],
+      "furniture": [],
+      "description": "The air hums with residual Aether \u2014 sharp, electric. A stone slab dominates the center, carved with route lines that no longer match the corridors outside. The carved channels are filled with cold dust."
+    },
+    {
+      "id": 9,
+      "type": "treasure",
+      "tier": 2,
+      "position": [
+        10,
+        46
+      ],
+      "size": [
+        21,
+        3
+      ],
+      "connections": [
+        8,
+        6
+      ],
+      "enemies": [
+        {
+          "name": "Clockwork Spider",
+          "hp": 15,
+          "defense": 12,
+          "damage": "2d6",
+          "tier": 2,
+          "dr": 1,
+          "archetype": "construct",
+          "x": 21,
+          "y": 47
+        }
+      ],
+      "loot": [
+        {
+          "name": "Ash Wand",
+          "slot": "R.Hand",
+          "tier": 2,
+          "x": 19,
+          "y": 47
+        },
+        {
+          "name": "Thief's Toolkit",
+          "slot": "Arms",
+          "tier": 2,
+          "x": 18,
+          "y": 47
+        },
+        {
+          "name": "Thief's Toolkit",
+          "slot": "Arms",
+          "tier": 2,
+          "x": 17,
+          "y": 47
+        },
+        {
+          "name": "Ash Wand",
+          "slot": "R.Hand",
+          "tier": 2,
+          "x": 16,
+          "y": 47
+        }
+      ],
+      "hazards": [],
+      "furniture": [],
+      "description": "Dust hangs motionless \u2014 nothing stirs. A chest sits dead center, lid cracked open. No dust on the hinges. The lock is intact. The air smells of pine tar and something sharper underneath."
+    },
+    {
+      "id": 10,
+      "type": "normal",
+      "tier": 1,
+      "position": [
+        46,
+        1
+      ],
+      "size": [
+        4,
+        4
+      ],
+      "connections": [
+        11
+      ],
+      "enemies": [
+        {
+          "name": "Oil Slick",
+          "hp": 10,
+          "defense": 11,
+          "damage": "1d6",
+          "tier": 1,
+          "dr": 0,
+          "archetype": "aetherial",
+          "x": 48,
+          "y": 3
+        },
+        {
+          "name": "Scrap Imp",
+          "hp": 10,
+          "defense": 11,
+          "damage": "1d6",
+          "tier": 1,
+          "dr": 0,
+          "archetype": "scavenger",
+          "x": 48,
+          "y": 3
+        }
+      ],
+      "loot": [
+        {
+          "name": "Padded Jerkin",
+          "slot": "Chest",
+          "tier": 1,
+          "x": 47,
+          "y": 3
+        }
+      ],
+      "hazards": [
+        {
+          "name": "Arcane Ward",
+          "stat": "Aether",
+          "dc": 10,
+          "effect": "Drains 1 Aether, magic fails"
+        }
+      ],
+      "furniture": [],
+      "description": "Warm sap weeps from the walls, amber and slow. The overhead sags low enough to touch \u2014 don't. Plaster crumbles at a breath. Water has pooled in the corners, breeding a skin of green scum."
+    },
+    {
+      "id": 11,
+      "type": "start",
+      "tier": 1,
+      "position": [
+        46,
+        12
+      ],
+      "size": [
+        4,
+        29
+      ],
+      "connections": [
+        10,
+        12,
+        7
+      ],
+      "enemies": [],
+      "loot": [],
+      "hazards": [],
+      "furniture": [],
+      "description": "Heat pulses through the roots overhead. The Burnwillow breathes here. Daylight dies on the threshold. The stone beyond is slick and the silence has weight. Your footsteps echo once, then the dark eats the sound."
+    },
+    {
+      "id": 12,
+      "type": "treasure",
+      "tier": 1,
+      "position": [
+        46,
+        44
+      ],
+      "size": [
+        4,
+        5
+      ],
+      "connections": [
+        11
+      ],
+      "enemies": [],
+      "loot": [
+        {
+          "name": "Old Oak Wand",
+          "slot": "R.Hand",
+          "tier": 1,
+          "x": 47,
+          "y": 46
+        },
+        {
+          "name": "Burglar's Gloves",
+          "slot": "Arms",
+          "tier": 1,
+          "x": 47,
+          "y": 46
+        },
+        {
+          "name": "Burglar's Gloves",
+          "slot": "Arms",
+          "tier": 1,
+          "x": 47,
+          "y": 46
+        },
+        {
+          "name": "Burglar's Gloves",
+          "slot": "Arms",
+          "tier": 1,
+          "x": 47,
+          "y": 46
+        }
+      ],
+      "hazards": [],
+      "furniture": [
+        {
+          "name": "Iron Lever",
+          "tier": 1,
+          "container_type": "furniture",
+          "x": 47,
+          "y": 47
+        }
+      ],
+      "description": "Heat pulses through the roots overhead. The Burnwillow breathes here. A chest sits dead center, lid cracked open. No dust on the hinges. The lock is intact. The air smells of pine tar and something sharper underneath."
+    }
+  ]
+}

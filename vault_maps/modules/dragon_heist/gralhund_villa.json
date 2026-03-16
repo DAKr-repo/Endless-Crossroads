@@ -1,0 +1,242 @@
+{
+    "seed": 3011,
+    "width": 70,
+    "height": 50,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "gralhund_villa",
+        "theme": "STONE",
+        "topology": "dungeon",
+        "display_name": "Gralhund Villa"
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 30,
+            "y": 0,
+            "width": 10,
+            "height": 6,
+            "room_type": "start",
+            "connections": [1],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Wrought-iron gates topped with gilded gryphons stand ajar, one hinge twisted where something forced its way through. Blood spatter on the flagstones has already dried to a dark crust. The villa beyond is lit from within, every window blazing as if the household wants the whole ward to see that everything is fine.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Gralhund Guard", "cr": "1/2"},
+                    {"name": "Gralhund Guard", "cr": "1/2"}
+                ],
+                "loot": [],
+                "hazards": [],
+                "services": [],
+                "event_triggers": [
+                    "On entry: Sounds of fighting echo from inside -- steel on steel, a scream cut short."
+                ]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 30,
+            "y": 8,
+            "width": 12,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [0, 2, 3, 6],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "A chandelier the size of a cart wheel throws fractured light across marble floors streaked with muddy bootprints. A suit of ceremonial plate armor has been knocked from its pedestal and lies in pieces near the staircase. The portraits on the walls depict generations of Gralhunds, each painted with the same sharp, acquisitive smile.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Zhentarim Thug", "cr": "1/2"},
+                    {"name": "Zhentarim Thug", "cr": "1/2"}
+                ],
+                "loot": [
+                    {"name": "Silver Candlestick (25 gp)", "type": "treasure"}
+                ],
+                "hazards": [],
+                "services": [],
+                "event_triggers": [
+                    "On entry: A Zhentarim thug crashes through a door to the left, bleeding from a crossbow bolt in his shoulder."
+                ]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 10,
+            "y": 10,
+            "width": 12,
+            "height": 8,
+            "room_type": "normal",
+            "connections": [1, 6],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The long oak table is set for twelve but dinner was never served. Soup has gone cold in porcelain bowls painted with the Gralhund crest. A crossbow bolt is embedded in the back of the host's chair. Glass crunches underfoot from a shattered wine decanter, and the carpet is stained the same deep red as the vintage it held.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Gralhund Guard", "cr": "1/2"}
+                ],
+                "loot": [
+                    {"name": "Fine Silverware Set (50 gp)", "type": "treasure"}
+                ],
+                "hazards": [],
+                "services": [],
+                "event_triggers": []
+            }
+        },
+        "3": {
+            "id": 3,
+            "x": 50,
+            "y": 10,
+            "width": 10,
+            "height": 8,
+            "room_type": "treasure",
+            "connections": [1, 4],
+            "tier": 2,
+            "is_locked": true,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Floor-to-ceiling shelves sag under the weight of leather-bound volumes and rolled scrolls. A reading desk near the window holds an open journal, its most recent entry half-finished -- the ink still wet, the quill abandoned mid-sentence. Someone left in a hurry and did not think to lock the door behind them.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [
+                    {"name": "Gralhund Correspondence", "type": "quest_item"},
+                    {"name": "Spell Scroll of Sending", "type": "consumable"},
+                    {"name": "Noble's Coin Purse (75 gp)", "type": "treasure"}
+                ],
+                "hazards": [
+                    {"name": "Glyph of Warding on desk drawer", "dc": 14}
+                ],
+                "services": [],
+                "event_triggers": [
+                    "On search (DC 14 Investigation): The journal reveals the Gralhunds have been playing the Zhentarim and Xanathar Guild against each other."
+                ]
+            }
+        },
+        "4": {
+            "id": 4,
+            "x": 50,
+            "y": 22,
+            "width": 10,
+            "height": 8,
+            "room_type": "normal",
+            "connections": [3, 5, 7],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "A gallery landing overlooks the grand foyer below. Ornamental swords and shields line the walls between tall windows. One window is shattered outward, its curtain flapping in the night breeze. Muddy handprints on the balustrade suggest someone climbed up from outside -- or fled down.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Gralhund Guard Captain", "cr": "2"}
+                ],
+                "loot": [],
+                "hazards": [
+                    {"name": "Broken window (fall to courtyard, 2d6 damage)", "dc": 12}
+                ],
+                "services": [],
+                "event_triggers": []
+            }
+        },
+        "5": {
+            "id": 5,
+            "x": 50,
+            "y": 34,
+            "width": 10,
+            "height": 8,
+            "room_type": "secret",
+            "connections": [4],
+            "tier": 2,
+            "is_locked": true,
+            "is_secret": true,
+            "content_hints": {
+                "description": "Behind a pivoting bookcase, the master bedroom's true purpose is revealed: a hidden alcove lined with lead sheeting to block divination. A small altar to Bane occupies one corner, its candles freshly lit. A locked strongbox sits beneath the altar, still warm to the touch.",
+                "npcs": [
+                    {
+                        "name": "Yalah Gralhund",
+                        "role": "antagonist",
+                        "dialogue": "You have no idea what you have walked into. The Stone was never meant for you, and the powers who want it will grind this city to dust to get it back. Leave now, and I will pretend you were never here.",
+                        "notes": "Noble matriarch. Ice-cold pragmatist. Worships Bane in secret. Ordered the Nimblewright to steal the Stone of Golorr. Will negotiate if cornered, fight if desperate."
+                    }
+                ],
+                "enemies": [],
+                "loot": [
+                    {"name": "Bane Holy Symbol (hidden)", "type": "quest_item"},
+                    {"name": "Coded Letters to Zhentarim", "type": "quest_item"}
+                ],
+                "hazards": [],
+                "services": [],
+                "event_triggers": [
+                    "On discovery (DC 15 Perception): The lead-lined walls suggest the Gralhunds are hiding something from magical surveillance."
+                ]
+            }
+        },
+        "6": {
+            "id": 6,
+            "x": 10,
+            "y": 22,
+            "width": 10,
+            "height": 8,
+            "room_type": "normal",
+            "connections": [1, 2],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Narrow cots line both walls of this long, low room, each with a footlocker and a hook for a uniform. Most of the beds are empty -- their occupants are either dead in the foyer or guarding upstairs. A half-eaten meal sits on a trestle table, the bread still soft.",
+                "npcs": [
+                    {
+                        "name": "Hurv Cossburl",
+                        "role": "informant",
+                        "dialogue": "I just work here, all right? They do not pay me enough to die for them. The mechanical thing -- it went up to the roof. The mistress built it in the attic, never let any of us near it.",
+                        "notes": "Gralhund house guard. Terrified. Will surrender and share information about the Nimblewright if shown mercy."
+                    }
+                ],
+                "enemies": [],
+                "loot": [
+                    {"name": "Guard's Crossbow", "type": "weapon"},
+                    {"name": "Healing Potion (under a pillow)", "type": "consumable"}
+                ],
+                "hazards": [],
+                "services": [],
+                "event_triggers": []
+            }
+        },
+        "7": {
+            "id": 7,
+            "x": 30,
+            "y": 38,
+            "width": 12,
+            "height": 10,
+            "room_type": "boss",
+            "connections": [4],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Potted topiaries shaped like dragons line a rooftop garden open to the Waterdeep sky. Between the planters, a mechanical figure stands motionless -- humanoid in shape but wrong in every detail. Its joints click as it turns to face you, and the moonlight catches the rapier in its articulated hand. A leather satchel hangs from its belt, bulging with something round.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Nimblewright", "cr": "4"}
+                ],
+                "loot": [
+                    {"name": "Stone of Golorr", "type": "quest_item"},
+                    {"name": "Nimblewright's Rapier (+1)", "type": "weapon"}
+                ],
+                "hazards": [
+                    {"name": "Rooftop edge (fall 30 ft, 3d6 damage)", "dc": 12}
+                ],
+                "services": [],
+                "event_triggers": [
+                    "On combat start: The Nimblewright fights with mechanical precision, prioritizing escape over killing. If reduced to half HP, it attempts to flee across the rooftops.",
+                    "On Stone recovered: The Stone of Golorr pulses with cold light and whispers a single word: 'Vault.'"
+                ]
+            }
+        }
+    }
+}

@@ -1,0 +1,177 @@
+{
+    "seed": 6007,
+    "width": 55,
+    "height": 50,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "auril_abode",
+        "theme": "GOTHIC",
+        "topology": "dungeon",
+        "display_name": "Auril's Abode, Island of Solstice"
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 5,
+            "y": 5,
+            "width": 14,
+            "height": 10,
+            "room_type": "start",
+            "connections": [1],
+            "tier": 4,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Island of Solstice rises from the Sea of Moving Ice like a tooth of black basalt sheathed in frost a foot thick. No natural thing grows here. The beach is a curve of ice-covered gravel that crunches underfoot like crushed bone, and the sky above holds an aurora so intense it casts moving shadows. The air is not merely cold -- it is the absence of warmth made manifest, a negation of comfort so total it feels like malice.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Coldlight Walker", "cr": "5"},
+                    {"name": "Coldlight Walker", "cr": "5"}
+                ],
+                "loot": [],
+                "services": [],
+                "event_triggers": ["On entry: Auril knows you are here. The aurora brightens. Temperature drops to -50F: Constitution save DC 15 every 30 minutes or gain one level of exhaustion.", "On combat: Coldlight walkers patrol the beach. They are the frozen remains of previous challengers, animated by Auril's will."]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 15,
+            "y": 15,
+            "width": 12,
+            "height": 10,
+            "room_type": "temple",
+            "connections": [0, 2],
+            "tier": 4,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Frost Shrine is an open-air structure of ice pillars supporting nothing -- a temple without a roof, open to the aurora above. At its center, a basin of black ice holds water that remains liquid despite the temperature, its surface reflecting not the sky but an endless, starless void. Kneeling before the basin are the frozen forms of Auril's most devoted worshippers, their faces locked in expressions of rapturous agony.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Frost Druid (Auril's Chosen)", "cr": "5"}
+                ],
+                "loot": [
+                    {"name": "Scrying Basin (functions as Crystal Ball, cold-attuned)", "type": "wondrous_item"},
+                    {"name": "Frost Druid's Staff", "type": "weapon"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: The Frost Druid guards the shrine and will fight to prevent desecration. DC 18 Persuasion to convince her Auril's Rime is destroying what she claims to protect.", "On basin: Gazing into the basin allows a commune with Auril (3 questions). Her answers are truths wrapped in cruelty."]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 25,
+            "y": 20,
+            "width": 12,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [1, 3],
+            "tier": 4,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Test of Cruelty is a chamber of ice where the walls display scenes from the party's past -- moments of weakness, betrayal, and failure, rendered in exquisite frozen detail. Each scene is a memory extracted from a party member's mind and displayed for all to see. The room demands that each person choose another's worst memory and shatter it, destroying the memory forever. The price of passage is inflicting a small cruelty on a companion.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [],
+                "services": [],
+                "event_triggers": ["On entry: Each party member sees their worst memory displayed in ice. No save.", "On test: To pass, each party member must shatter another's memory-sculpture. The targeted character permanently loses that memory. Refusing to participate traps the party until they comply or find another way (DC 20 Arcana to fool the test with illusion)."]
+            }
+        },
+        "3": {
+            "id": 3,
+            "x": 30,
+            "y": 30,
+            "width": 12,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [2, 4],
+            "tier": 4,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Test of Endurance is a corridor of wind. That's all it is -- a straight passage a hundred feet long with a gale blowing through it at hurricane force, carrying shards of ice like razors. The wind never stops. The cold is beyond description. Every step forward requires an act of will that borders on the irrational, because every nerve in your body is screaming that continuing means death.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [],
+                "services": [],
+                "event_triggers": ["On entry: Moving through requires 5 successful DC 14 Constitution saves (one per 20 ft). Each failure deals 3d6 cold damage and pushes the character back 10 ft.", "On shortcut: DC 18 Athletics allows a character to shelter behind their shield and advance at half speed without saves (but still takes 1d6 cold damage per segment)."]
+            }
+        },
+        "4": {
+            "id": 4,
+            "x": 35,
+            "y": 35,
+            "width": 12,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [3, 5],
+            "tier": 4,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Test of Isolation separates the party. Each character finds themselves alone in a featureless white void -- no floor, no ceiling, no walls, no sound. The void is not empty; it is full of nothing, a positive absence that presses on the mind like deep water. Time passes differently here. Minutes feel like days. The test is simple: endure the solitude without losing yourself. The voice in the silence that offers companionship is not your friend.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Psychic Echo (manifests as a trusted NPC)", "cr": "variable"}
+                ],
+                "loot": [],
+                "services": [],
+                "event_triggers": ["On entry: Party is separated. Each character must make 3 Wisdom saves (DC 13, 15, 17) over what feels like three days but is actually 1 hour.", "On failure: Each failed save inflicts a long-term madness effect. Three failures means the character accepts the void and must be physically retrieved by another party member.", "On success: The void shatters, revealing the Inner Sanctum."]
+            }
+        },
+        "5": {
+            "id": 5,
+            "x": 40,
+            "y": 40,
+            "width": 12,
+            "height": 8,
+            "room_type": "normal",
+            "connections": [4, 6],
+            "tier": 4,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Inner Sanctum is a dome of perfect ice through which the aurora blazes in curtains of green and violet. The floor is a frozen lake -- transparent, revealing the ocean hundreds of feet below, where vast shapes move in the abyssal dark. The sanctum is beautiful in the way a glacier calving is beautiful: terrible, indifferent, and entirely unconcerned with whether you survive the viewing.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [
+                    {"name": "Auril's Tear (diamond, 5,000 gp, component for ending the Rime)", "type": "quest_item"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: Brief respite before the final confrontation. Short rest possible.", "On search: DC 16 Religion identifies the sanctum as a conduit for Auril's divine power. The aurora above is her spell focus for the Everlasting Rime."]
+            }
+        },
+        "6": {
+            "id": 6,
+            "x": 45,
+            "y": 45,
+            "width": 16,
+            "height": 14,
+            "room_type": "boss",
+            "connections": [5],
+            "tier": 4,
+            "is_locked": true,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Auril's Throne is carved from a single iceberg, raised above a frozen lake on a column of compressed snow. The Frostmaiden sits upon it in her first form -- a giantess of living ice, her features beautiful and utterly devoid of warmth, her eyes twin stars of cold blue light. She does not speak. She does not need to. The temperature in this chamber is absolute zero in the way that the sun is warm: theoretically, categorically, and without regard for your survival.",
+                "npcs": [
+                    {"name": "Auril the Frostmaiden", "role": "final_boss", "dialogue": "*She does not speak with words. The cold speaks for her. A vision slams into your mind: Icewind Dale as she wishes it -- frozen, silent, preserved, perfect. No suffering because no life. No death because nothing lives to die. Her paradise is a world of ice, and she will not be denied it.*"}
+                ],
+                "enemies": [
+                    {"name": "Auril the Frostmaiden, First Form (Ice Giantess)", "cr": "10"},
+                    {"name": "Auril the Frostmaiden, Second Form (Brittle Maiden)", "cr": "12"},
+                    {"name": "Auril the Frostmaiden, Third Form (Winter's Woe)", "cr": "14"}
+                ],
+                "loot": [
+                    {"name": "Shard of Auril's Divinity (ends the Everlasting Rime permanently)", "type": "quest_item"},
+                    {"name": "Frostmaiden's Mantle (legendary cold resistance armor)", "type": "armor"},
+                    {"name": "Rod of the Winter Court", "type": "wondrous_item"},
+                    {"name": "Auril's Hoard: 8,000 gp in frozen gems", "type": "treasure"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: Auril engages immediately. No negotiation, no surrender, no mercy.", "On combat: Three-phase fight. Each form defeated triggers transformation into the next. 1 round gap between forms for healing/repositioning.", "On phase 1: Ice Giantess. Melee focused. Lair action: blizzard (heavily obscured, 2d6 cold in 60 ft radius).", "On phase 2: Brittle Maiden. Spellcaster form. Lair action: ice walls reshape the arena.", "On phase 3: Winter's Woe. Flying, incorporeal. Lair action: freezing aura (DC 16 Con save or restrained in ice).", "On victory: The Everlasting Rime ends. Dawn breaks over Icewind Dale for the first time in months. Module complete."]
+            }
+        }
+    }
+}

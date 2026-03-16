@@ -1,0 +1,64 @@
+{
+  "terrain_type": "swamp",
+  "events": {
+    "tier_1": [
+      {
+        "id": "sucking_mud",
+        "type": "skill_challenge",
+        "title": "Sucking Mud",
+        "description": "The ground gives way. One wrong step and you're thigh-deep in mire.",
+        "target_role": "guide",
+        "dc": 11,
+        "success": "You test the ground with a pole and find the solid path.",
+        "failure": "Hours pulling each other free. Half a day gone.",
+        "failure_cost": {"days": 0.5}
+      },
+      {
+        "id": "giant_leeches",
+        "type": "combat",
+        "title": "Giant Leeches",
+        "description": "The water ripples. Something large and dark surfaces.",
+        "target_role": "scout",
+        "dc": 11,
+        "success": "You spot them and take the dry ridge instead.",
+        "failure": "They latch on before anyone notices.",
+        "enemies_tier": 1
+      },
+      {
+        "id": "bog_berries",
+        "type": "discovery",
+        "title": "Bog Berries",
+        "description": "Clusters of dark berries grow on low bushes at the water's edge.",
+        "target_role": "forager",
+        "dc": 10,
+        "success": "Edible, tart, and plentiful. Good haul.",
+        "failure": "They look similar to poisonous ones. Better not risk it.",
+        "success_reward": {"rations": 2}
+      }
+    ],
+    "tier_2": [
+      {
+        "id": "will_o_wisp",
+        "type": "skill_challenge",
+        "title": "Will-o'-Wisps",
+        "description": "Pale lights dance over the water, drifting away from the path.",
+        "target_role": "guide",
+        "dc": 14,
+        "success": "You know the trick. Follow the moss, not the lights.",
+        "failure": "The party follows the lights into a dead end. A full day lost.",
+        "failure_cost": {"days": 1}
+      },
+      {
+        "id": "lizardfolk_territory",
+        "type": "combat",
+        "title": "Lizardfolk Hunters",
+        "description": "Scaled figures watch from the reeds, spears ready.",
+        "target_role": "scout",
+        "dc": 13,
+        "success": "You spot their sentries and negotiate passage with trade goods.",
+        "failure": "They attack. This is their hunting ground.",
+        "enemies_tier": 2
+      }
+    ]
+  }
+}

@@ -1,0 +1,170 @@
+{
+    "seed": 5007,
+    "width": 60,
+    "height": 50,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "gauntlgrym",
+        "theme": "STONE",
+        "topology": "dungeon",
+        "display_name": "Gauntlgrym"
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 5,
+            "y": 5,
+            "width": 14,
+            "height": 10,
+            "room_type": "start",
+            "connections": [1],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Great Gate of Gauntlgrym would humble the proudest surface kingdom. Twin doors of mithral-reinforced adamantine stand forty feet tall, carved with the history of Delzoun in runes so fine they blur into texture at a distance. Dwarven engineers have restored the mechanism -- the doors open on counterweights so perfectly balanced a child could move them. Beyond, the entrance hall stretches into dimness, its columns shaped like dwarven warriors frozen mid-stride.",
+                "npcs": [
+                    {"name": "Bruenor Battlehammer", "role": "quest_giver", "dialogue": "Ye've come a long way through dark places, and I'll not pretend the road ahead is brighter. But Gauntlgrym stands again, and by Moradin's hammer, it'll stand against whatever crawls up from the deep. Tell me what ye've seen down there. All of it. Leave nothing out."}
+                ],
+                "enemies": [],
+                "loot": [],
+                "services": ["rest", "resupply"],
+                "event_triggers": ["On entry: Bruenor greets the party personally. He has been expecting them -- rumors travel fast in the Underdark.", "On rest: Full long rest in safety. Dwarven healers restore all hit points and remove one curse."]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 20,
+            "y": 15,
+            "width": 16,
+            "height": 12,
+            "room_type": "temple",
+            "connections": [0, 2, 3],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Hall of Moradin occupies a natural cathedral cavern, its ceiling lost in shadow above columns of natural basalt carved with devotional scenes. The altar is an anvil of pure mithral that rings with a clear tone when struck, and the sound echoes for a full minute through chambers that amplify it into something that feels less like sound and more like conviction. Dwarven clerics maintain eternal vigil here, their chanting a low thunder.",
+                "npcs": [
+                    {"name": "High Priest Cadderly Bonaduce", "role": "priest", "dialogue": "The forges of Gauntlgrym were lit by a primordial of fire -- Maegera the Dawn Titan, bound beneath us by Delzoun magic. The binding holds, but the demon lords' presence weakens all wards. If Maegera breaks free, this city becomes a volcano. We need the binding reinforced."}
+                ],
+                "enemies": [],
+                "loot": [
+                    {"name": "Blessing of Moradin (advantage on saves vs. fiends for 24h)", "type": "consumable"},
+                    {"name": "Warhammer +2 (Soulforged)", "type": "weapon"}
+                ],
+                "services": ["healing", "restoration", "remove_curse", "resurrection"],
+                "event_triggers": ["On entry: All party members receive the Blessing of Moradin.", "On quest: Cadderly explains the need to reinforce Maegera's bindings before the final confrontation."]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 35,
+            "y": 10,
+            "width": 14,
+            "height": 12,
+            "room_type": "forge",
+            "connections": [1, 4],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Great Forge of Gauntlgrym is the masterwork of Delzoun engineering -- a chamber where Maegera's geothermal heat is channeled through adamantine pipes into the greatest smithy ever constructed. The forge itself is a pit of white-hot stone surrounded by workstations where dwarven smiths create weapons of legendary quality. The heat is barely tolerable, and the air shimmers like a desert mirage.",
+                "npcs": [
+                    {"name": "Mastersmith Helgara Steelborn", "role": "forge_master", "dialogue": "Aye, the Forge works again, but she's temperamental. Maegera's heat fluctuates -- some days the metal sings, some days it screams. If ye've brought materials from your travels, I can work them into something that'll make a demon lord think twice. But I'll need time, and I'll need ye to keep the deep tunnels clear."}
+                ],
+                "enemies": [],
+                "loot": [
+                    {"name": "Adamantine Weapon (player's choice)", "type": "weapon"},
+                    {"name": "Mithral Half Plate", "type": "armor"}
+                ],
+                "services": ["forge", "weapon_upgrade", "armor_upgrade", "enchantment"],
+                "event_triggers": ["On entry: Helgara offers to forge one adamantine weapon per party member if they provide materials.", "On craft: Crafting takes 1 day per item. Results are permanent upgrades."]
+            }
+        },
+        "3": {
+            "id": 3,
+            "x": 15,
+            "y": 30,
+            "width": 12,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [1, 4, 5],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Fiery Pit descends from Gauntlgrym's lower levels into the volcanic chambers where Maegera is bound. The temperature rises with each step, and the walls bleed magma in slow-moving rivulets that solidify into black glass before flowing again. The binding runes carved into the pit walls flicker between blazing white and guttering embers -- the ward is failing.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Fire Elemental", "cr": "5"},
+                    {"name": "Magma Mephit", "cr": "1/2"},
+                    {"name": "Magma Mephit", "cr": "1/2"},
+                    {"name": "Fire Snake", "cr": "1"}
+                ],
+                "loot": [
+                    {"name": "Ring of Fire Resistance", "type": "wondrous_item"},
+                    {"name": "Volcanic Glass Shard (crafting component)", "type": "crafting_material"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: Fire damage 1d6 per round without fire resistance. Binding rune puzzle: DC 15 Arcana to stabilize each of 4 rune clusters.", "On failure: Each failed rune check releases one additional fire elemental."]
+            }
+        },
+        "4": {
+            "id": 4,
+            "x": 40,
+            "y": 25,
+            "width": 12,
+            "height": 10,
+            "room_type": "treasure",
+            "connections": [2, 3, 5],
+            "tier": 4,
+            "is_locked": true,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Iron Tabernacle was the treasury of Delzoun's kings, sealed when the city fell and not opened until Bruenor's reclamation. The door is a puzzle lock of interlocking gears that took the dwarves months to solve. Inside, wealth beyond mortal accounting: armor stands holding plate mail that predates human civilization, weapon racks of masterwork blades, and chests of gems sorted by color into bins of obsidian.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Shield Guardian (ancient, dwarven make)", "cr": "7"}
+                ],
+                "loot": [
+                    {"name": "Dwarven Plate (legendary)", "type": "armor"},
+                    {"name": "Belt of Dwarvenkind", "type": "wondrous_item"},
+                    {"name": "Delzoun Royal Treasury (3,000 gp)", "type": "treasure"},
+                    {"name": "Scroll of Heroes' Feast", "type": "scroll"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: Shield Guardian activates unless party carries a Delzoun royal insignia.", "On loot: Bruenor grants access to one item per party member as payment for their service."]
+            }
+        },
+        "5": {
+            "id": 5,
+            "x": 30,
+            "y": 40,
+            "width": 16,
+            "height": 12,
+            "room_type": "boss",
+            "connections": [3, 4],
+            "tier": 4,
+            "is_locked": true,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Maegera's Chamber is a sphere of volcanic glass surrounding a core of liquid fire. The Dawn Titan hangs in the center, bound by chains of adamantine inscribed with divine runes -- a being of pure elemental rage compressed into a vaguely humanoid shape the size of a hill giant. The chains glow white with strain. When it speaks, the words are not heard but felt as waves of scorching heat that carry meaning.",
+                "npcs": [
+                    {"name": "Maegera the Dawn Titan", "role": "bound_entity", "dialogue": "*A wave of heat carries images: boundless fire, freedom, an ocean of magma consuming the Underdark. Then a flicker of something else -- confusion, pain, the chains that have held for millennia tightening, loosening, tightening again.* The demon lords disturb my prison. Free me or strengthen my chains. Choose."}
+                ],
+                "enemies": [
+                    {"name": "Maegera the Dawn Titan (if freed)", "cr": "23"},
+                    {"name": "Salamander Guardian", "cr": "5"},
+                    {"name": "Salamander Guardian", "cr": "5"}
+                ],
+                "loot": [
+                    {"name": "Primordial Chain Link (component for Dark Heart ritual)", "type": "quest_item"},
+                    {"name": "Flame Tongue Greatsword", "type": "weapon"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: The party must decide: reinforce Maegera's bindings (DC 18 group Arcana check, 4 successes needed) or harvest a chain link for the ritual.", "On reinforce: Maegera's bindings hold. Gauntlgrym is safe. Bruenor rewards the party.", "On harvest: Removing a chain link weakens the binding permanently. Maegera may eventually break free (future consequence)."]
+            }
+        }
+    }
+}

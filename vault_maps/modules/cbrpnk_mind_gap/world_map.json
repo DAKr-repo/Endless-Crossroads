@@ -1,0 +1,102 @@
+{
+    "seed": 9000,
+    "width": 60,
+    "height": 50,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "the_city",
+        "theme": "RUST",
+        "topology": "settlement",
+        "display_name": "The City -- NeoArc Metropolitan Zone"
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 5,
+            "y": 30,
+            "width": 12,
+            "height": 10,
+            "room_type": "start",
+            "connections": [1],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Downtown -- the drowned city. Neon bleeds through perpetual rain, reflecting off streets slick with runoff and spilled synth-coolant. Megacorp logos project from tower faces a hundred stories up, their light never reaching the street-level vendors hawking bootleg firmware and organ-printer cartridges. Down here, everyone is selling something.",
+                "npcs": [
+                    {"name": "Street Corner AI (Advert Unit)", "role": "guide", "dialogue": "Welcome to NeoArc. Current threat level: AMBER. Recommended actions: stay indoors, update your firewall, avoid eye contact with anyone carrying exposed chrome. Have a productive day."}
+                ],
+                "enemies": [],
+                "loot": [],
+                "services": ["street_navigation", "black_market_access"],
+                "event_triggers": ["On entry: A delivery drone crashes into a puddle at your feet, sparking. Its cargo -- a sealed medical canister -- rolls toward a storm drain. Someone will want that back."]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 25,
+            "y": 15,
+            "width": 14,
+            "height": 12,
+            "room_type": "normal",
+            "connections": [0, 2, 3],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Corpo Zone begins where the rain stops -- climate-controlled airspace maintained by Helix Industries atmospheric drones. The architecture transitions from street-level concrete to chrome-and-glass towers connected by skywalks. Security cameras track every movement. Your biometrics were logged the moment you crossed the perimeter.",
+                "npcs": [
+                    {"name": "Corporate Security AI", "role": "guard", "dialogue": "Biometric scan complete. Citizen status: UNREGISTERED. You have fourteen minutes to present valid corporate credentials or vacate the zone. Timer begins now."}
+                ],
+                "enemies": [],
+                "loot": [],
+                "services": [],
+                "event_triggers": ["On entry: Your neural interface pings with three corporate job offers and a cease-and-desist order, all within the first ten seconds"]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 45,
+            "y": 10,
+            "width": 10,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [1],
+            "tier": 3,
+            "is_locked": true,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Helix Tower -- corporate headquarters, one hundred and forty stories of reinforced smart-glass and drone-patrolled airspace. The lobby alone has more security than most districts. Above floor sixty, the building enters the corporate intranet -- a closed network running proprietary ICE that has killed three netrunners this quarter. The target is on floor one-twelve.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Corporate Security Drone", "cr": "2"}
+                ],
+                "loot": [],
+                "services": [],
+                "event_triggers": ["On entry: Your interface detects seventeen active scan attempts in the first corridor. Helix does not trust its own employees, let alone intruders."]
+            }
+        },
+        "3": {
+            "id": 3,
+            "x": 30,
+            "y": 35,
+            "width": 10,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [1],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Cyberspace -- the Grid. Not a place you walk to, but a place you fall into when the neural link takes hold. Here, data has geography. Firewalls are walls. ICE is ice -- cold, sharp, and lethal. The Grid renders as an infinite cityscape of light and mathematics, where the laws of physics are replaced by the laws of code.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Patrol ICE", "cr": "2"}
+                ],
+                "loot": [],
+                "services": [],
+                "event_triggers": ["On entry: Your avatar materializes in the Grid. The data around you flows like traffic -- packets of light streaming between server nodes. Something large and dark moves in the deep code. It noticed you."]
+            }
+        }
+    }
+}

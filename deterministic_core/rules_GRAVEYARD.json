@@ -1,0 +1,67 @@
+{
+    "meta": {
+        "system_id": "GRAVEYARD",
+        "display_name": "GRAVEYARD",
+        "engine": "custom",
+        "dice_system": "custom",
+        "system_family": "",
+        "version": "C.O.D.E.X. 2.0"
+    },
+    "lookup": {
+        "alien": {
+            "type": "race",
+            "name": "Alien"
+        },
+        "dwarf": {
+            "type": "race",
+            "name": "Dwarf"
+        },
+        "elf": {
+            "type": "race",
+            "name": "Elf"
+        },
+        "gnome": {
+            "type": "race",
+            "name": "Gnome"
+        },
+        "human": {
+            "type": "race",
+            "name": "Human"
+        }
+    },
+    "structure": {
+        "system_id": "GRAVEYARD",
+        "display_name": "GRAVEYARD",
+        "mechanics": {
+            "races": [
+                "Alien",
+                "Dwarf",
+                "Elf",
+                "Gnome",
+                "Human"
+            ],
+            "classes": [
+                "Character Class A",
+                "Character Class B",
+                "Playbook C",
+                "Playbook X",
+                "Playbook Y"
+            ],
+            "subclasses": [
+                "Specialization A",
+                "Specialization B",
+                "SpecializationA",
+                "SpecializationB"
+            ]
+        },
+        "engine": "custom",
+        "dice_system": "custom",
+        "system_family": "",
+        "races": [],
+        "deep_classes": {},
+        "feats": [],
+        "archetype_categories": {},
+        "core_stats": {},
+        "resources": []
+    }
+}

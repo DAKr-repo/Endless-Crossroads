@@ -1,0 +1,82 @@
+{
+    "seed": 8200,
+    "width": 70,
+    "height": 50,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "western_roshar",
+        "theme": "STONE",
+        "topology": "wilderness",
+        "display_name": "Western Roshar"
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 5,
+            "y": 20,
+            "width": 14,
+            "height": 12,
+            "room_type": "start",
+            "connections": [1],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Shinovar lies beyond the Misted Mountains -- a land of grass and soil where the highstorms arrive as gentle rains, stripped of their fury by the mountain barrier. To Rosharan eyes, this place is alien: plants that do not retract, animals without carapace, and soil that yields to footsteps instead of scraping like stone.",
+                "npcs": [
+                    {"name": "Border Warden Nin-son-God", "role": "guard", "dialogue": "Beyond these mountains, the world obeys different laws. The Shin do not welcome outsiders. They tolerate them. There is a distinction."}
+                ],
+                "enemies": [],
+                "loot": [],
+                "services": ["travel", "border_crossing"],
+                "event_triggers": ["On entry: The mountain pass opens and you see grass for the first time -- real grass, growing from real soil, and the wrongness of it hits you like vertigo"]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 30,
+            "y": 15,
+            "width": 12,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [0, 2],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Stone Shambles -- ruins that predate Shin civilization, built from a stone that resists crem buildup and weathers differently from anything found naturally on Roshar. The locals will not approach. They say the stones remember, and that remembering stones are never kind.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Ancient Construct (Dormant)", "cr": "3"}
+                ],
+                "loot": [
+                    {"name": "Pre-Desolation Stone Fragment", "type": "quest_item"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: The ruins hum -- not with Stormlight, but with something older, something that predates the Oathpact"]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 55,
+            "y": 25,
+            "width": 12,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [1],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Reshi Isles float on the backs of greatshells so vast they have become geography -- living islands that drift with the ocean currents. Settlements cling to the creatures' shells, their inhabitants scaling the living terrain with practiced ease. The sea between the islands churns with lesser greatshells and predatory fish.",
+                "npcs": [
+                    {"name": "Reshi Trader Talik", "role": "merchant", "dialogue": "You want passage to the summit? You climb. There is no other way. The tai-na does not stop for passengers."}
+                ],
+                "enemies": [],
+                "loot": [],
+                "services": ["sea_travel", "island_passage"],
+                "event_triggers": ["On entry: The island shifts beneath your feet -- the tai-na adjusting course -- and the entire settlement sways like a ship in a storm"]
+            }
+        }
+    }
+}

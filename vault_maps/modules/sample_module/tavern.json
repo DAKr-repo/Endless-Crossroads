@@ -1,0 +1,147 @@
+{
+    "seed": 1001,
+    "width": 60,
+    "height": 50,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "millhaven_tavern",
+        "theme": "VILLAGE",
+        "topology": "settlement",
+        "display_name": "Millhaven"
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 25,
+            "y": 20,
+            "width": 10,
+            "height": 8,
+            "room_type": "town_square",
+            "connections": [1, 2, 3, 4],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The heart of Millhaven -- a cobblestone square surrounding the ancient watermill. The mill wheel creaks slowly in the river current, spraying fine mist across the worn stones. A notice board lists local bounties in faded ink.",
+                "npcs": [
+                    {
+                        "name": "Old Tomas",
+                        "role": "town_crier",
+                        "dialogue": "Hear ye! The miller's cellar has been overrun by vermin of unusual size! The Council offers a bounty of fifty gold to any brave souls who clear the infestation!"
+                    }
+                ],
+                "services": ["map", "directions"]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 8,
+            "y": 18,
+            "width": 12,
+            "height": 10,
+            "room_type": "tavern",
+            "connections": [0],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Rusty Anchor -- Millhaven's only inn. Smoke-stained beams hold up a ceiling darkened by decades of hearth fire. The smell of mutton stew and spilled ale saturates the air. A cat sleeps on the mantelpiece.",
+                "npcs": [
+                    {
+                        "name": "Breta Ironhand",
+                        "role": "innkeeper",
+                        "dialogue": "Ale's a copper, stew's two. Room for the night? That'll be five silver. And before you ask -- no, I don't know what's in the cellar. I don't want to know."
+                    },
+                    {
+                        "name": "Fingers Malone",
+                        "role": "informant",
+                        "dialogue": "Psst. Over here. I seen things in that cellar. Big things. Toothy things. Wearing a little crown, I swear on my mother's grave. You interested in a job, or do I find someone braver?"
+                    }
+                ],
+                "services": ["drink", "rest", "rumor"],
+                "inventory": [
+                    {"name": "Ale", "cost": 1, "type": "consumable"},
+                    {"name": "Mutton Stew", "cost": 2, "type": "consumable"},
+                    {"name": "Room (1 night)", "cost": 50, "type": "service"}
+                ]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 40,
+            "y": 15,
+            "width": 10,
+            "height": 8,
+            "room_type": "market",
+            "connections": [0],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "An open-air market -- three weather-worn stalls shaded by canvas awnings bleached pale by the sun. A donkey hitched to a post chews hay with single-minded devotion. The smell of tanned leather and dried herbs hangs in the air.",
+                "npcs": [
+                    {
+                        "name": "Gerda the Provisioner",
+                        "role": "merchant",
+                        "dialogue": "Fresh supplies! Rope, torches, rations -- everything an adventurer needs and nothing they don't. I don't sell swords. See the smith in Daggerford for that."
+                    }
+                ],
+                "services": ["buy", "sell"],
+                "inventory": [
+                    {"name": "Torch (5)", "cost": 5, "type": "gear"},
+                    {"name": "Rope, 50ft", "cost": 10, "type": "gear"},
+                    {"name": "Rations (1 day)", "cost": 5, "type": "consumable"},
+                    {"name": "Healing Potion", "cost": 50, "type": "consumable"},
+                    {"name": "Crowbar", "cost": 20, "type": "gear"},
+                    {"name": "Tinderbox", "cost": 5, "type": "gear"}
+                ]
+            }
+        },
+        "3": {
+            "id": 3,
+            "x": 25,
+            "y": 35,
+            "width": 8,
+            "height": 8,
+            "room_type": "temple",
+            "connections": [0],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "A small stone chapel dedicated to Chauntea, goddess of agriculture. Candles flicker before a wooden altar carved with sheaves of wheat. The air smells of beeswax and dried lavender. A garden of medicinal herbs grows in the courtyard.",
+                "npcs": [
+                    {
+                        "name": "Sister Alara",
+                        "role": "priestess",
+                        "dialogue": "The harvest goddess watches over Millhaven, as she has for three hundred years. If you carry wounds, I can tend them. If you carry doubts -- well, I can tend those too."
+                    }
+                ],
+                "services": ["heal", "bless"]
+            }
+        },
+        "4": {
+            "id": 4,
+            "x": 25,
+            "y": 5,
+            "width": 8,
+            "height": 6,
+            "room_type": "town_gate",
+            "connections": [0],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The northern gate -- two rotting timber posts and a rusty chain that hasn't been raised in living memory. Beyond lies the cellar entrance beneath the old mill, its stone steps descending into a darkness that smells of damp fur.",
+                "npcs": [
+                    {
+                        "name": "Guard Harken",
+                        "role": "gate_guard",
+                        "dialogue": "Watch yourself out there. Something's been digging under the mill -- something bigger than rats ought to be. Last fellow who went down came back missing two fingers and all his courage."
+                    }
+                ],
+                "services": ["exit_settlement"]
+            }
+        }
+    }
+}

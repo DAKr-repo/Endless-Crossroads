@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "entities": {
+    "bracers_of_the_trap_weaver": {
+      "name": "Bracers of the Trap-Weaver",
+      "slot": "Arms",
+      "tier": 2,
+      "weight": 2.0,
+      "special_traits": ["SET_TRAP"],
+      "system_overrides": {
+        "burnwillow": {"action_cost": "turn", "effect": "Wits DC 10, creates HAZARD tile"},
+        "dnd5e": {"action_cost": "bonus_action", "effect": "Deploy caltrops 5ft square"}
+      }
+    },
+    "amulet_of_the_iron_pact": {
+      "name": "Amulet of the Iron Pact",
+      "slot": "Neck",
+      "tier": 3,
+      "weight": 0.5,
+      "special_traits": ["RESIST_BLIGHT"],
+      "system_overrides": {
+        "burnwillow": {"action_cost": "passive", "effect": "DR +2 vs Blight hazards"},
+        "dnd5e": {"action_cost": "passive", "effect": "Advantage on saves vs necrotic"}
+      }
+    },
+    "greaves_of_the_vanguard": {
+      "name": "Greaves of the Vanguard",
+      "slot": "Legs",
+      "tier": 2,
+      "weight": 4.0,
+      "special_traits": ["CHARGE"],
+      "system_overrides": {
+        "burnwillow": {"action_cost": "move", "effect": "Might DC 10 on enter room, +1d6 damage if success"},
+        "dnd5e": {"action_cost": "bonus_action", "effect": "After Dash, bonus melee attack"}
+      }
+    },
+    "crown_of_embers": {
+      "name": "Crown of Embers",
+      "slot": "Head",
+      "tier": 3,
+      "weight": 1.0,
+      "special_traits": ["SANCTIFY"],
+      "system_overrides": {
+        "burnwillow": {"action_cost": "turn", "effect": "Aether DC 14, enemies take 1d6 fire"},
+        "dnd5e": {"action_cost": "action", "effect": "15ft cone, 2d6 fire, DEX save DC 13"}
+      }
+    },
+    "ring_of_the_scout": {
+      "name": "Ring of the Scout",
+      "slot": "R.Ring",
+      "tier": 1,
+      "weight": 0.1,
+      "special_traits": ["FAR_SIGHT"],
+      "system_overrides": {
+        "burnwillow": {"action_cost": "free", "effect": "Scout action DC reduced by 2"},
+        "dnd5e": {"action_cost": "passive", "effect": "+5 passive Perception"}
+      }
+    }
+  }
+}

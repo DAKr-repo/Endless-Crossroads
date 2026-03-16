@@ -1,0 +1,222 @@
+{
+    "seed": 7006,
+    "width": 65,
+    "height": 55,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "well_of_dragons",
+        "theme": "GOTHIC",
+        "topology": "dungeon",
+        "display_name": "The Well of Dragons"
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 5,
+            "y": 5,
+            "width": 14,
+            "height": 10,
+            "room_type": "start",
+            "connections": [1],
+            "tier": 4,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The caldera rim offers a view of the apocalypse in preparation. The Well of Dragons is a volcanic bowl five miles across, its slopes carpeted with the bones of dragons who came here to die across a hundred thousand years. Now the Cult has filled the bowl with an army: columns of cultists, flights of chromatic dragons circling overhead, and at the center, a temple that wasn't there a month ago -- raised by Red Wizard magic in a frenzy of construction that cost a hundred lives.",
+                "npcs": [
+                    {"name": "Commander of Allied Forces", "role": "quest_giver", "dialogue": "Your allies have gathered -- Harpers, Order of the Gauntlet, Emerald Enclave, Lords' Alliance, and even some metallic dragons who'd rather not see Tiamat walk the world. They'll engage the army. Your job is the temple. Stop the ritual. Kill Severin. And for the love of every god that isn't a five-headed dragon, do not let Tiamat through that portal."}
+                ],
+                "enemies": [],
+                "loot": [
+                    {"name": "Allied Commander's Blessing (inspiration + temporary HP = level)", "type": "consumable"}
+                ],
+                "services": ["rest", "healing", "resupply"],
+                "event_triggers": ["On entry: Last chance for rest and preparation before the final assault. The allied army engages at dawn.", "On plan: Three approaches to the temple: frontal assault (hardest combat, most allies), flanking route (stealth, moderate combat), or dragon-back insertion (requires metallic dragon ally)."]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 15,
+            "y": 15,
+            "width": 14,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [0, 2, 3],
+            "tier": 4,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The outer defenses are a nightmare of overlapping kill zones. Cultists man barricades built from dragon bones, their positions reinforced by dragonclaws and dragonfangs wielding enchanted weapons. Overhead, a young red dragon makes strafing runs against anything that moves in the open. The ground between the caldera rim and the temple is five hundred yards of churned earth, bone fragments, and the bodies of those who tried this approach before you.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Dragonfang", "cr": "5"},
+                    {"name": "Dragonclaw (6)", "cr": "1"},
+                    {"name": "Young Red Dragon (strafing)", "cr": "10"}
+                ],
+                "loot": [
+                    {"name": "Dragonfang's Greatsword +1", "type": "weapon"},
+                    {"name": "Potion of Fire Resistance (2)", "type": "consumable"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: The allied army provides covering fire. Each round, 1d4 cultists are removed by allied attacks.", "On dragon: The young red dragon withdraws after taking 50+ damage or if engaged by allied metallic dragons."]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 25,
+            "y": 10,
+            "width": 12,
+            "height": 8,
+            "room_type": "normal",
+            "connections": [1, 4],
+            "tier": 4,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Red Wizard camp is a cluster of crimson pavilions set apart from the Cult's forces, their occupants maintaining the magical infrastructure that makes the summoning possible. Thayan necromancers work in shifts, feeding power to the ritual through a web of ley line taps that glow with sickly green light. They serve the Cult out of self-interest, not devotion -- Rath Modar promised them a share of Tiamat's power.",
+                "npcs": [
+                    {"name": "Rath Modar", "role": "antagonist", "dialogue": "The Red Wizards did not survive centuries of Thayan politics by backing losers. Tiamat will rise, and those who facilitated her return will be rewarded. Those who opposed it will be fuel. I strongly suggest you reconsider which category you prefer."}
+                ],
+                "enemies": [
+                    {"name": "Rath Modar (Red Wizard Illusionist)", "cr": "7"},
+                    {"name": "Red Wizard (3)", "cr": "3"}
+                ],
+                "loot": [
+                    {"name": "Staff of Fire", "type": "weapon"},
+                    {"name": "Rath Modar's Spellbook (illusion specialist)", "type": "spellbook"},
+                    {"name": "Ley Line Disruption Scroll (weakens the ritual by 1 phase if used)", "type": "quest_item"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: Disrupting the Red Wizard camp weakens the summoning ritual, giving the party more time.", "On combat: Rath Modar uses illusions and mirror images. The other wizards focus on counterspelling.", "On disruption: Using the Ley Line Disruption Scroll adds 3 rounds to the ritual timer in the Summoning Chamber."]
+            }
+        },
+        "3": {
+            "id": 3,
+            "x": 10,
+            "y": 25,
+            "width": 12,
+            "height": 10,
+            "room_type": "barracks",
+            "connections": [1, 5],
+            "tier": 4,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The cultist barracks fill a natural depression in the caldera, thousands of tents housing the foot soldiers of Tiamat's army. The cultists here are zealots, every one -- they've given up homes, families, and names for the promise of draconic ascension. Their eyes have the blank shine of the truly converted, and they fight with the fearlessness of those who believe death is merely a doorway to their god's embrace.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Dragonsoul (elite cultist)", "cr": "7"},
+                    {"name": "Cultist Fanatic (8)", "cr": "2"}
+                ],
+                "loot": [
+                    {"name": "Dragon Scale Armor (prototype)", "type": "armor"},
+                    {"name": "Cultist War Chest (400 gp)", "type": "treasure"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: The barracks is a gauntlet. Running through is possible (DC 16 Athletics, 3 checks) but fighting through alerts the temple.", "On stealth: DC 18 Stealth with cult disguise to pass through undetected."]
+            }
+        },
+        "4": {
+            "id": 4,
+            "x": 35,
+            "y": 15,
+            "width": 14,
+            "height": 12,
+            "room_type": "temple",
+            "connections": [2, 5, 6],
+            "tier": 4,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Temple of Tiamat is a blasphemy in architecture -- five towers of different-colored stone (white, black, green, blue, red) arranged in a pentagon around a central dome of obsidian. The stone itself seems to sweat malice, and the air tastes of metal and brimstone. Inside, the central chamber is a pit descending into darkness where the barrier between the Material Plane and Avernus has been worn to a membrane. The chanting of a hundred cultists fills the space with a vibration that makes the blood sing.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Wyrmspeaker (2)", "cr": "7"},
+                    {"name": "Dragonsoul (4)", "cr": "7"}
+                ],
+                "loot": [
+                    {"name": "Dragon Mask (whichever masks the party hasn't collected)", "type": "wondrous_item"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: The ritual is in progress. A countdown begins: 10 rounds until Tiamat manifests.", "On disruption: Each Wyrmspeaker killed adds 2 rounds. Each Dragon Mask removed from the ritual adds 3 rounds.", "On speed: If all Wyrmspeakers and masks are dealt with in time, Tiamat manifests at reduced power."]
+            }
+        },
+        "5": {
+            "id": 5,
+            "x": 25,
+            "y": 30,
+            "width": 18,
+            "height": 16,
+            "room_type": "boss",
+            "connections": [3, 4, 7],
+            "tier": 4,
+            "is_locked": true,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Summoning Chamber is the heart of the temple and the wound in reality. A portal the size of a barn door hangs in the air, its edges ragged with torn planar fabric, and through it you can see Avernus -- a sky of blood, a landscape of war, and approaching from the distance, a shape with five heads and wings that blot out the hellish sun. Severin, the Cult's supreme leader, stands before the portal in armor forged from all five types of chromatic dragon scale, the assembled Dragon Masks blazing with power on his brow.",
+                "npcs": [
+                    {"name": "Severin Silrajin", "role": "final_boss", "dialogue": "You're too late. The portal opens. The masks sing. And the Dragon Queen answers. A hundred thousand years of exile end today. Look -- LOOK -- and see your world's new master step through the gates of Hell. Every knee will bend. Every city will burn. And from the ashes, a new world will rise, with Tiamat eternal upon its throne."}
+                ],
+                "enemies": [
+                    {"name": "Severin Silrajin (wearing Mask of the Dragon Queen)", "cr": "14"},
+                    {"name": "Tiamat (if ritual completes, weakened by disruptions)", "cr": "30"}
+                ],
+                "loot": [
+                    {"name": "Mask of the Dragon Queen (all five masks combined)", "type": "wondrous_item"},
+                    {"name": "Severin's Dragonscale Armor (legendary)", "type": "armor"},
+                    {"name": "Tiamat's Regalia (if Tiamat is defeated): 20,000 gp in divine artifacts", "type": "treasure"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: Severin fights while maintaining the ritual. He must be killed to stop it, but Tiamat may already be partially through.", "On Tiamat: If Tiamat manifests, she fights at full (CR 30) or reduced (CR 20-25) power depending on how many disruptions the party achieved.", "On victory: Severin dies. Tiamat is banished back to Avernus. The portal collapses. The Cult of the Dragon is broken.", "On defeat: If the party falls, the allied army provides one last chance -- a metallic dragon champion buys 3 rounds for the party to recover."]
+            }
+        },
+        "6": {
+            "id": 6,
+            "x": 45,
+            "y": 25,
+            "width": 12,
+            "height": 10,
+            "room_type": "treasure",
+            "connections": [4],
+            "tier": 4,
+            "is_locked": true,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The dragon pens occupy a series of reinforced caverns beneath the temple, their walls scored by claw marks and blackened by breath weapons. Chromatic dragons of various ages are penned here -- not willingly, but bound by Cult magic that even they cannot easily break. The treasure they guard is the Cult's reserve hoard: wealth earmarked for Tiamat's offering that did not make it into the ritual in time.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Young Blue Dragon (chained, hostile)", "cr": "9"},
+                    {"name": "Young Green Dragon (chained, negotiable)", "cr": "8"}
+                ],
+                "loot": [
+                    {"name": "Reserve Hoard: 8,000 gp in mixed treasure", "type": "treasure"},
+                    {"name": "Dragonbone Staff +3", "type": "weapon"},
+                    {"name": "Robe of the Archmagi", "type": "wondrous_item"},
+                    {"name": "Potion of Supreme Healing (4)", "type": "consumable"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: The young green dragon can be negotiated with (DC 16 Persuasion) -- it wants freedom, not a fight.", "On release: Freeing the dragons is chaotic. They attack Cult forces indiscriminately, providing a distraction but creating additional danger."]
+            }
+        },
+        "7": {
+            "id": 7,
+            "x": 30,
+            "y": 48,
+            "width": 10,
+            "height": 6,
+            "room_type": "town_gate",
+            "connections": [5],
+            "tier": 4,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The escape route is a natural lava tube that predates the temple, threading through the caldera wall to emerge on the mountainside. The Cult never found it -- or if they did, they never sealed it, an arrogance that may save your lives. The tunnel is tight, hot, and reeks of sulfur, but it leads to open air and the sight of the allied army cheering from the caldera rim as the temple collapses behind you.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [],
+                "services": [],
+                "event_triggers": ["On exit: Module complete. The Cult of the Dragon is shattered. Tiamat is banished. The Sword Coast is saved -- for now.", "On epilogue: The Council of Waterdeep honors the party. Faction rewards distributed based on reputation earned throughout the campaign."]
+            }
+        }
+    }
+}

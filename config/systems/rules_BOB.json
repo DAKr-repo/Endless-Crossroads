@@ -1,0 +1,61 @@
+{
+    "system_id": "BOB",
+    "display_name": "bob",
+    "engine": "FITD",
+    "system_family": "FITD",
+    "archetype_categories": {
+        "Playbooks": []
+    },
+    "core_stats": {
+        "attributes": [
+            "Insight",
+            "Prowess",
+            "Resolve"
+        ],
+        "actions": {}
+    },
+    "resources": [
+        "Stress",
+        "Trauma"
+    ],
+    "dice_system": "d6_pool",
+    "position_effect": true,
+    "stress_max": 9,
+    "trauma_max": 4,
+    "mechanics": {
+        "stats": [
+            "Insight",
+            "Prowess",
+            "Resolve"
+        ],
+        "resources": [
+            "Morale",
+            "Stress",
+            "Supply",
+            "Trauma"
+        ],
+        "classes": [
+            "Heavy",
+            "Medic",
+            "Officer",
+            "Rookie",
+            "Sniper",
+            "Soldier",
+            "Specialist"
+        ],
+        "subclasses": [
+            "Band of Blades",
+            "BandLeader",
+            "BandMember",
+            "Specialization 1",
+            "Specialization 2"
+        ],
+        "races": [
+            "Dwarf",
+            "Elf",
+            "Gnome",
+            "Human",
+            "Orc"
+        ]
+    }
+}

@@ -1,0 +1,88 @@
+{
+  "terrain_type": "mountain",
+  "events": {
+    "tier_1": [
+      {
+        "id": "rockslide",
+        "type": "skill_challenge",
+        "title": "Rockslide",
+        "description": "Loose scree shifts under your boots. Stones begin to tumble above.",
+        "target_role": "scout",
+        "dc": 11,
+        "success": "You spot the unstable shelf and steer the party clear.",
+        "failure": "The slide catches the rear of the column. Half a day digging out.",
+        "failure_cost": {"days": 0.5}
+      },
+      {
+        "id": "mountain_goats",
+        "type": "discovery",
+        "title": "Mountain Goat Herd",
+        "description": "A herd of sure-footed goats grazes on a ledge above the trail.",
+        "target_role": "forager",
+        "dc": 11,
+        "success": "You snare one. Fresh meat for the camp.",
+        "failure": "They scatter at your approach. Nothing gained.",
+        "success_reward": {"rations": 3}
+      },
+      {
+        "id": "narrow_pass",
+        "type": "skill_challenge",
+        "title": "Narrow Pass",
+        "description": "The trail narrows to a ledge barely wide enough for one. Wind howls below.",
+        "target_role": "guide",
+        "dc": 10,
+        "success": "You rope the party together and cross safely.",
+        "failure": "Vertigo and fear slow the crossing. Hours wasted.",
+        "failure_cost": {"days": 0.5}
+      }
+    ],
+    "tier_2": [
+      {
+        "id": "wyvern_nest",
+        "type": "combat",
+        "title": "Wyvern Nest",
+        "description": "Bones litter a wide ledge. A screech echoes from above.",
+        "target_role": "scout",
+        "dc": 13,
+        "success": "You spot the nest and take a lower switchback unnoticed.",
+        "failure": "The wyvern dives. Protect the horses!",
+        "enemies_tier": 2
+      },
+      {
+        "id": "mountain_spring",
+        "type": "discovery",
+        "title": "Mountain Spring",
+        "description": "Crystal-clear water bubbles from a crack in the granite.",
+        "target_role": "forager",
+        "dc": 10,
+        "success": "Clean water and watercress. A welcome find.",
+        "failure": "The water tastes of sulfur. Not safe to drink.",
+        "success_reward": {"rations": 2}
+      },
+      {
+        "id": "blizzard",
+        "type": "skill_challenge",
+        "title": "Mountain Blizzard",
+        "description": "The sky goes white. Within minutes, visibility drops to nothing.",
+        "target_role": "guide",
+        "dc": 14,
+        "success": "You find a cave and wait it out. No time lost.",
+        "failure": "Hours wandering blind. An entire day lost.",
+        "failure_cost": {"days": 1}
+      }
+    ],
+    "tier_3": [
+      {
+        "id": "frost_giant_territory",
+        "type": "combat",
+        "title": "Frost Giant Patrol",
+        "description": "Massive footprints in the snow. Each one deeper than your arm is long.",
+        "target_role": "scout",
+        "dc": 15,
+        "success": "You track their patrol route and slip through the gap.",
+        "failure": "A frost giant steps from behind a boulder. It's not happy.",
+        "enemies_tier": 3
+      }
+    ]
+  }
+}

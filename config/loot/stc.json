@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "format": "cosmere",
+  "source": "Stormlight RPG Handbook + Modules (baseline from hardcoded pools)",
+  "tiers": {
+    "1": [
+      {"name": "Stormlight Sphere (Chip)", "rarity": "common", "value_spheres": 1, "source": "Handbook"},
+      {"name": "Shardblade Fragment", "rarity": "uncommon", "value_spheres": 5, "source": "Handbook"},
+      {"name": "Healing Fabrial", "rarity": "common", "value_spheres": 3, "source": "Handbook"},
+      {"name": "Parshendi Carapace", "rarity": "common", "value_spheres": 2, "source": "Handbook"}
+    ],
+    "2": [
+      {"name": "Stormlight Sphere (Mark)", "rarity": "uncommon", "value_spheres": 10, "source": "Handbook"},
+      {"name": "Half-Shard Shield", "rarity": "uncommon", "value_spheres": 15, "source": "Handbook"},
+      {"name": "Alerter Fabrial", "rarity": "uncommon", "value_spheres": 12, "source": "Handbook"},
+      {"name": "Windrunner Glyph", "rarity": "uncommon", "value_spheres": 8, "source": "Handbook"}
+    ],
+    "3": [
+      {"name": "Stormlight Sphere (Broam)", "rarity": "rare", "value_spheres": 50, "source": "Handbook"},
+      {"name": "Shardblade", "rarity": "rare", "value_spheres": 100, "source": "Handbook"},
+      {"name": "Soulcaster (cracked)", "rarity": "rare", "value_spheres": 80, "source": "Handbook"},
+      {"name": "Radiant Plate Shard", "rarity": "rare", "value_spheres": 60, "source": "Handbook"}
+    ],
+    "4": [
+      {"name": "Honorblade", "rarity": "legendary", "value_spheres": 500, "source": "Handbook"},
+      {"name": "Shardplate (full)", "rarity": "legendary", "value_spheres": 400, "source": "Handbook"},
+      {"name": "Soulcaster (functional)", "rarity": "very rare", "value_spheres": 300, "source": "Handbook"},
+      {"name": "Herald's Relic", "rarity": "legendary", "value_spheres": 500, "source": "Handbook"}
+    ]
+  }
+}

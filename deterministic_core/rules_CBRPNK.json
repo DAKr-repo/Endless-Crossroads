@@ -1,0 +1,137 @@
+{
+    "meta": {
+        "system_id": "CBRPNK",
+        "display_name": "CBR+PNK",
+        "engine": "FITD",
+        "dice_system": "d6_pool",
+        "system_family": "FITD",
+        "version": "C.O.D.E.X. 2.0"
+    },
+    "lookup": {
+        "hacker": {
+            "type": "archetype",
+            "name": "Hacker",
+            "category": "Roles"
+        },
+        "punk": {
+            "type": "archetype",
+            "name": "Punk",
+            "category": "Roles"
+        },
+        "runner": {
+            "type": "archetype",
+            "name": "Runner",
+            "category": "Roles"
+        },
+        "fixer": {
+            "type": "archetype",
+            "name": "Fixer",
+            "category": "Roles"
+        },
+        "hack": {
+            "name": "Hack",
+            "group": "Insight"
+        },
+        "study": {
+            "name": "Study",
+            "group": "Insight"
+        },
+        "survey": {
+            "name": "Survey",
+            "group": "Insight"
+        },
+        "prowl": {
+            "name": "Prowl",
+            "group": "Prowess"
+        },
+        "skirmish": {
+            "name": "Skirmish",
+            "group": "Prowess"
+        },
+        "tinker": {
+            "name": "Tinker",
+            "group": "Prowess"
+        },
+        "consort": {
+            "name": "Consort",
+            "group": "Resolve"
+        },
+        "sway": {
+            "name": "Sway",
+            "group": "Resolve"
+        },
+        "stress": {
+            "type": "resource",
+            "name": "Stress"
+        },
+        "glitches": {
+            "type": "resource",
+            "name": "Glitches"
+        },
+        "cred": {
+            "type": "resource",
+            "name": "Cred"
+        }
+    },
+    "structure": {
+        "system_id": "CBRPNK",
+        "display_name": "CBR+PNK",
+        "engine": "FITD",
+        "system_family": "FITD",
+        "archetype_categories": {
+            "Roles": [
+                "Hacker",
+                "Punk",
+                "Runner",
+                "Fixer"
+            ]
+        },
+        "core_stats": {
+            "attributes": [
+                "Insight",
+                "Prowess",
+                "Resolve"
+            ],
+            "actions": {
+                "Insight": [
+                    "Hack",
+                    "Study",
+                    "Survey"
+                ],
+                "Prowess": [
+                    "Prowl",
+                    "Skirmish",
+                    "Tinker"
+                ],
+                "Resolve": [
+                    "Consort",
+                    "Sway"
+                ]
+            }
+        },
+        "resources": [
+            "Stress",
+            "Glitches",
+            "Cred"
+        ],
+        "dice_system": "d6_pool",
+        "position_effect": true,
+        "stress_max": 9,
+        "trauma_max": 4,
+        "trauma_table": [
+            "Paranoid",
+            "Reckless",
+            "Volatile",
+            "Obsessed",
+            "Cold",
+            "Haunted",
+            "Unstable",
+            "Vicious"
+        ],
+        "special_mechanics": {
+            "cyberware": "Augmentation slots with Glitch risk",
+            "runs": "Score-based mission structure (Plan -> Execute -> Aftermath)",
+            "heat": "Corporate attention tracker (0-6 clock)"
+        }
+    }
+}

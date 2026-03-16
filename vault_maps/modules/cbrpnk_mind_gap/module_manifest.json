@@ -1,0 +1,60 @@
+{
+    "module_id": "cbrpnk_mind_gap",
+    "display_name": "CBR+PNK: Mind the Gap",
+    "system_id": "cbrpnk",
+    "source_pdf": null,
+    "world_map": "world_map.json",
+    "starting_location": "fixer_den",
+    "recommended_levels": {"min": 1, "max": 3},
+    "chapters": [
+        {
+            "chapter_id": "ch1",
+            "display_name": "Act 1: The Job",
+            "order": 1,
+            "zones": [
+                {
+                    "zone_id": "fixer_den",
+                    "blueprint": "fixer_den.json",
+                    "topology": "settlement",
+                    "theme": "RUST",
+                    "location_id": "downtown",
+                    "entry_trigger": "module_start",
+                    "exit_trigger": "quest_complete"
+                }
+            ]
+        },
+        {
+            "chapter_id": "ch2",
+            "display_name": "Act 2: The Heist",
+            "order": 2,
+            "zones": [
+                {
+                    "zone_id": "corpo_tower",
+                    "blueprint": "corpo_tower.json",
+                    "topology": "vertical",
+                    "theme": "RUST",
+                    "location_id": "corpo_zone",
+                    "entry_trigger": "quest_complete",
+                    "exit_trigger": "boss_defeated"
+                }
+            ]
+        },
+        {
+            "chapter_id": "ch3",
+            "display_name": "Act 3: The Grid",
+            "order": 3,
+            "zones": [
+                {
+                    "zone_id": "the_grid",
+                    "blueprint": "the_grid.json",
+                    "topology": "dungeon",
+                    "theme": "RUST",
+                    "location_id": "cyberspace",
+                    "entry_trigger": "boss_defeated",
+                    "exit_trigger": "boss_defeated"
+                }
+            ]
+        }
+    ],
+    "freeform_zones": []
+}

@@ -1,0 +1,164 @@
+{
+    "seed": 5002,
+    "width": 55,
+    "height": 45,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "sloobludop",
+        "theme": "GOTHIC",
+        "topology": "settlement",
+        "display_name": "Sloobludop"
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 5,
+            "y": 5,
+            "width": 10,
+            "height": 8,
+            "room_type": "start",
+            "connections": [1, 2],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Ramshackle docks of lashed-together zurkhwood jut into the Darklake's black water. Kuo-toa squat on every surface, their bulbous eyes tracking your arrival with unsettling synchronicity. The air reeks of fish oil and ozone, and the dock planks are slick with a mucus that never fully dries.",
+                "npcs": [
+                    {"name": "Ploopploopeen", "role": "quest_giver", "dialogue": "Surface-dwellers! You come at a time of great... upheaval. My daughter has fallen under the sway of a false god. Help me restore the true faith, and I will guide you safely across the Darklake."}
+                ],
+                "enemies": [],
+                "loot": [],
+                "services": ["ferry_crossing"],
+                "event_triggers": ["On entry: Ploopploopeen approaches within 1d4 minutes. Kuo-toa are agitated but not hostile."]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 20,
+            "y": 10,
+            "width": 14,
+            "height": 10,
+            "room_type": "temple",
+            "connections": [0, 3, 4],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The altar to the Sea Mother is a mound of coral and fish bones ten feet high, slathered in rancid offerings. Kuo-toa priests sway around it in a trance, their pincer-staffs clicking in arrhythmic patterns. The idol's lobster-headed form has been freshly redecorated with salvaged gemstones that weep condensation like tears.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Kuo-toa Archpriest", "cr": "6"},
+                    {"name": "Kuo-toa Whip", "cr": "1"},
+                    {"name": "Kuo-toa Whip", "cr": "1"}
+                ],
+                "loot": [
+                    {"name": "Pearl of Power", "type": "wondrous_item"},
+                    {"name": "Offering Gems (50 gp)", "type": "treasure"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: Ploopploopeen offers to bring players here for the confrontation with his daughter's faction."]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 10,
+            "y": 25,
+            "width": 12,
+            "height": 8,
+            "room_type": "residence",
+            "connections": [0, 3],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The archpriest's dwelling is a domed structure of mudded-together stone and shell. Inside, bioluminescent jellyfish float in glass jars, casting the room in pulsing blue light. Maps of the Darklake cover every wall, annotated in a script that looks like it was written by someone having a seizure.",
+                "npcs": [
+                    {"name": "Ploopploopeen", "role": "quest_giver", "dialogue": "My daughter Bloppblippodd -- she was always devout, but this new god she worships... it has no name that lips can shape. It is wrong. It makes the water taste of blood."}
+                ],
+                "enemies": [],
+                "loot": [
+                    {"name": "Darklake Navigation Chart", "type": "quest_item"},
+                    {"name": "Potion of Water Breathing", "type": "consumable"}
+                ],
+                "services": ["rest", "information"],
+                "event_triggers": ["On rest: Safe long rest. Ploopploopeen shares intelligence on other Underdark settlements."]
+            }
+        },
+        "3": {
+            "id": 3,
+            "x": 30,
+            "y": 20,
+            "width": 10,
+            "height": 8,
+            "room_type": "market",
+            "connections": [1, 2, 4],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The market stalls are waist-deep pools of water where kuo-toa merchants display their wares on floating zurkhwood trays. Weapons made of sharpened coral, armor of hardened fish scales, and dubious 'potions' that smell like they came from the wrong end of a cave fish. Everything is priced in offerings to one god or another.",
+                "npcs": [
+                    {"name": "Glooglugogg", "role": "merchant", "dialogue": "*The kuo-toa holds up a coral dagger with genuine pride.* Best stabber in Sloobludop! Only three offerings to the Sea Mother! Or... *eyes shift nervously* ...two offerings to the Deep Father. But you didn't hear that from Glooglugogg."}
+                ],
+                "enemies": [],
+                "loot": [
+                    {"name": "Coral Shortsword", "type": "weapon"},
+                    {"name": "Fish-Scale Shield", "type": "armor"},
+                    {"name": "Bioluminescent Lantern", "type": "gear"}
+                ],
+                "services": ["trade", "rumors"],
+                "event_triggers": ["On entry: Merchants reveal the schism -- half the town worships the Deep Father now."]
+            }
+        },
+        "4": {
+            "id": 4,
+            "x": 40,
+            "y": 10,
+            "width": 12,
+            "height": 10,
+            "room_type": "temple",
+            "connections": [1, 3, 5],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "This newer shrine is built from wreckage -- a capsized boat forms the roof, and the altar is a slab of obsidian that seems to drink the light. The idol atop it is a shape that hurts to look at: two serpentine necks rising from a base of tentacles, carved with manic devotion. The kuo-toa here have scratched out their own eyes.",
+                "npcs": [
+                    {"name": "Bloppblippodd", "role": "antagonist", "dialogue": "Father's god is a dead thing in a shell. The Deep Father MOVES. The Deep Father HUNGERS. He spoke to me from below the water, and his voice had two mouths. Come -- let me show you what real worship looks like."}
+                ],
+                "enemies": [
+                    {"name": "Bloppblippodd (Kuo-toa Archpriest)", "cr": "6"},
+                    {"name": "Kuo-toa Fanatic", "cr": "2"},
+                    {"name": "Kuo-toa Fanatic", "cr": "2"}
+                ],
+                "loot": [
+                    {"name": "Obsidian Holy Symbol", "type": "quest_item"}
+                ],
+                "services": [],
+                "event_triggers": ["On entry: Bloppblippodd begins the summoning ritual. 3 rounds to interrupt or Demogorgon manifests.", "On combat: The two factions of kuo-toa erupt into civil war around the party."]
+            }
+        },
+        "5": {
+            "id": 5,
+            "x": 45,
+            "y": 30,
+            "width": 10,
+            "height": 10,
+            "room_type": "town_gate",
+            "connections": [4],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The lakeshore crumbles into the Darklake in a slope of gravel and slime. Boats -- crude things of stretched hide over zurkhwood frames -- are beached here. But the water is wrong. It bulges upward in a dome, as though something impossibly vast is pushing up from below. Then two heads break the surface, each the size of a galleon, and the screaming begins.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Demogorgon (manifestation)", "cr": "26"}
+                ],
+                "loot": [],
+                "services": [],
+                "event_triggers": ["On entry: Demogorgon rises. This is NOT a fight -- it is a catastrophe. Players must flee.", "On flee: Grab a boat, DC 14 Athletics to launch. Each round of delay, 2d10 psychic damage from the Prince of Demons' mere presence.", "On exit: Sloobludop is destroyed behind you. The Darklake crossing begins."]
+            }
+        }
+    }
+}

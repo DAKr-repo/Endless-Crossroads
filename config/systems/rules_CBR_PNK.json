@@ -1,0 +1,68 @@
+{
+    "system_id": "CBR_PNK",
+    "display_name": "CBR_PNK",
+    "engine": "FITD",
+    "system_family": "FITD",
+    "archetype_categories": {
+        "Playbooks": []
+    },
+    "core_stats": {
+        "attributes": [
+            "Insight",
+            "Prowess",
+            "Resolve"
+        ],
+        "actions": {}
+    },
+    "resources": [
+        "Stress",
+        "Trauma"
+    ],
+    "dice_system": "d6_pool",
+    "position_effect": true,
+    "stress_max": 9,
+    "trauma_max": 4,
+    "mechanics": {
+        "stats": [
+            "Insight",
+            "Prowess",
+            "Resolve"
+        ],
+        "resources": [
+            "Stress"
+        ],
+        "classes": [
+            "Character Class 1",
+            "Character Class 2",
+            "Character Class A",
+            "Character Class B",
+            "Playbook 1",
+            "Playbook 2",
+            "Playbook X",
+            "Playbook Y"
+        ],
+        "subclasses": [
+            "SpecializationC",
+            "SubclassA",
+            "SubclassB"
+        ],
+        "actions": [
+            "Consort",
+            "Hack",
+            "Prowl",
+            "Skirmish",
+            "Study",
+            "Survey",
+            "Sway",
+            "Tinker"
+        ],
+        "races": [
+            "Dwarf",
+            "Elf",
+            "Elven",
+            "Gnome",
+            "Human",
+            "Orc"
+        ]
+    }
+}
