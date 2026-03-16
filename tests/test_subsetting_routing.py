@@ -159,5 +159,6 @@ class TestEarsModelRouting:
     """Verify ears.py uses the correct Ollama model."""
 
     def test_ollama_model_is_mimir(self):
+        pytest.importorskip("fastapi", reason="fastapi not installed (optional, in requirements_ears.txt)")
         from codex.services.ears import OLLAMA_MODEL
         assert OLLAMA_MODEL == "mimir"
