@@ -381,7 +381,7 @@ class TestTelegramSheet:
         context = MagicMock()
         session = get_session(99999)
         session.bridge = None
-        asyncio.get_event_loop().run_until_complete(cmd_sheet_tg(update, context))
+        asyncio.run(cmd_sheet_tg(update, context))
         update.message.reply_text.assert_called_once()
         call_text = update.message.reply_text.call_args[0][0]
         assert "No active session" in call_text
@@ -397,7 +397,7 @@ class TestTelegramAtlas:
         update.message.reply_text = AsyncMock()
         context = MagicMock()
         with patch("codex.bots.telegram_bot._ROOT", Path("/nonexistent")):
-            asyncio.get_event_loop().run_until_complete(cmd_atlas_tg(update, context))
+            asyncio.run(cmd_atlas_tg(update, context))
         update.message.reply_text.assert_called_once()
         call_text = update.message.reply_text.call_args[0][0]
         assert "No worlds" in call_text
@@ -424,7 +424,7 @@ class TestTelegramAtlas:
         update.message.reply_text = AsyncMock()
         context = MagicMock()
         with patch("codex.bots.telegram_bot._ROOT", tmp_path):
-            asyncio.get_event_loop().run_until_complete(cmd_atlas_tg(update, context))
+            asyncio.run(cmd_atlas_tg(update, context))
         call_text = update.message.reply_text.call_args[0][0]
         assert "Test World" in call_text
         assert "Mountains" in call_text
@@ -456,6 +456,6 @@ class TestTelegramRumors:
         update.message.reply_text = AsyncMock()
         context = MagicMock()
         with patch("codex.bots.telegram_bot._ROOT", tmp_path):
-            asyncio.get_event_loop().run_until_complete(cmd_rumors_tg(update, context))
+            asyncio.run(cmd_rumors_tg(update, context))
         call_text = update.message.reply_text.call_args[0][0]
         assert "Town Crier" in call_text

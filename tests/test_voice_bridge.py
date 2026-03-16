@@ -212,6 +212,9 @@ class TestVoiceBridgeSpeakTerminal(unittest.TestCase):
         VoiceBridge.speak_terminal(b"")  # Should not raise
 
 
+@unittest.skipUnless(
+    __import__("importlib").util.find_spec("fastapi"),
+    "fastapi not installed (optional, in requirements_mouth.txt)")
 class TestSpeakRequest(unittest.TestCase):
     """T13-T14: SpeakRequest model."""
 

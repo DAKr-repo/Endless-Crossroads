@@ -18,12 +18,29 @@ Test Classes:
 """
 
 import json
+import sys
 import time
 from dataclasses import dataclass, field
 from pathlib import Path
 from unittest.mock import MagicMock, patch
 
 import pytest
+
+# ─────────────────────────────────────────────────────────────────────
+# Discord/Telegram stubs — prevent opus/voice library loads on CI
+# ─────────────────────────────────────────────────────────────────────
+
+if "discord" not in sys.modules:
+    _discord_stub = MagicMock()
+    _discord_stub.Intents = MagicMock()
+    _discord_stub.Intents.default = MagicMock(return_value=MagicMock())
+    _discord_stub.Embed = MagicMock
+    _discord_stub.ui = MagicMock()
+    _discord_stub.ui.View = type("View", (), {"__init_subclass__": classmethod(lambda cls, **kw: None)})
+    sys.modules.setdefault("discord", _discord_stub)
+    sys.modules.setdefault("discord.ext", MagicMock())
+    sys.modules.setdefault("discord.ext.commands", MagicMock())
+    sys.modules.setdefault("discord.ui", _discord_stub.ui)
 
 
 # =========================================================================
