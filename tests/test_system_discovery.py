@@ -110,16 +110,14 @@ class TestSystemDiscovery:
     def test_scan_manifests_finds_all(self):
         from codex.core.system_discovery import get_all_manifests
         manifests = get_all_manifests(force=True)
-        assert len(manifests) >= 9
-        assert "dnd5e" in manifests
-        assert "stc" in manifests
-        assert "bitd" in manifests
-        assert "sav" in manifests
-        assert "bob" in manifests
-        assert "cbrpnk" in manifests
-        assert "candela" in manifests
+        # At minimum, original systems (burnwillow, crown) must be found
+        assert len(manifests) >= 2
         assert "burnwillow" in manifests
         assert "crown" in manifests
+        # Third-party systems only present when vault has their content
+        for sys_id in ("dnd5e", "stc", "bitd", "sav", "bob", "cbrpnk", "candela"):
+            if sys_id in manifests:
+                assert isinstance(manifests[sys_id], dict)
 
     def test_get_manifest_returns_data(self):
         from codex.core.system_discovery import get_manifest
