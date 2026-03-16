@@ -31,8 +31,9 @@ models/
 *.db
 *.sqlite
 
-# Copyrighted source material (PDFs)
-vault/
+# Copyrighted source material (PDFs) — keep the directory structure
+vault/*
+!vault/.gitkeep
 
 # Legacy code (contains stale tokens)
 legacy_import/

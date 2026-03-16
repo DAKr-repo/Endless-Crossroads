@@ -796,6 +796,7 @@ class TestCandelaAccessors:
 # =========================================================================
 
 
+@pytest.mark.skipif(not VAULT_ROOT.exists(), reason="vault/ not present (gitignored)")
 class TestVaultDiscovery:
     """Vault SETTINGS/ directories and sub-setting creation_rules exist."""
 

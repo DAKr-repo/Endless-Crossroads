@@ -1,0 +1,7 @@
+# Place your TTRPG source PDFs here, organized by system.
+# Example structure:
+#   vault/dnd5e/SOURCE/Players_Handbook.pdf
+#   vault/stc/SOURCE/Stormlight_Handbook.pdf
+#   vault/FITD/bitd/SETTINGS/Doskvol.json
+#
+# These files are gitignored and will not be committed.
