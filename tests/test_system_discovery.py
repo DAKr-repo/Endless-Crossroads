@@ -22,6 +22,12 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(PROJECT_ROOT))
 sys.path.insert(0, str(PROJECT_ROOT / "scripts"))
 
+VAULT_ROOT = PROJECT_ROOT / "vault"
+_has_third_party_vault = (VAULT_ROOT / "dnd5e").exists() and (VAULT_ROOT / "FITD").exists()
+requires_full_vault = pytest.mark.skipif(
+    not _has_third_party_vault,
+    reason="Third-party vault content not present (gitignored)")
+
 
 # =========================================================================
 # engine_traits.py
@@ -121,9 +127,9 @@ class TestSystemDiscovery:
 
     def test_get_manifest_returns_data(self):
         from codex.core.system_discovery import get_manifest
-        m = get_manifest("dnd5e")
+        m = get_manifest("burnwillow")
         assert m is not None
-        assert m["system_id"] == "dnd5e"
+        assert m["system_id"] == "burnwillow"
         assert m["engine_type"] == "spatial"
         assert m["primary_loop"] == "spatial_dungeon"
 
@@ -170,6 +176,7 @@ class TestSystemDiscovery:
         # Unknown system with no manifest falls back based on hardcoded
         assert get_primary_loop("unknown_xyz") == "scene_navigation"
 
+    @requires_full_vault
     def test_get_engine_traits(self):
         from codex.core.system_discovery import get_engine_traits
         traits = get_engine_traits("dnd5e")
@@ -177,6 +184,7 @@ class TestSystemDiscovery:
         assert "narrative_loom" in traits
         assert "progression_xp" in traits
 
+    @requires_full_vault
     def test_get_engine_traits_fitd(self):
         from codex.core.system_discovery import get_engine_traits
         traits = get_engine_traits("bitd")
@@ -184,18 +192,21 @@ class TestSystemDiscovery:
         assert "stress_track" in traits
         assert "faction_clocks" in traits
 
+    @requires_full_vault
     def test_get_pattern_hint(self):
         from codex.core.system_discovery import get_pattern_hint
         hint = get_pattern_hint("dnd5e")
         assert hint is not None
         assert "Armor Class" in hint or "AC" in hint
 
+    @requires_full_vault
     def test_get_pattern_hint_stc(self):
         from codex.core.system_discovery import get_pattern_hint
         hint = get_pattern_hint("stc")
         assert hint is not None
         assert "Tier" in hint
 
+    @requires_full_vault
     def test_get_resolution_mechanic(self):
         from codex.core.system_discovery import get_resolution_mechanic
         assert get_resolution_mechanic("dnd5e") == "d20"
