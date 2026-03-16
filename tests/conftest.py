@@ -8,9 +8,30 @@ that the cortex thermal gate denies RAG requests mid-suite.
 
 WO-V47.0: Added shared fixtures for engines, Ollama mocking, cortex, broadcast.
 """
+from pathlib import Path
 from unittest.mock import patch, MagicMock
 
 import pytest
+
+# ─────────────────────────────────────────────────────────────────────
+# Vault availability helpers — third-party content is gitignored
+# ─────────────────────────────────────────────────────────────────────
+
+VAULT_ROOT = Path(__file__).resolve().parent.parent / "vault"
+
+def _vault_has(*subdirs: str) -> bool:
+    """Check if a vault subdirectory exists (e.g., 'FITD', 'stc', 'dnd5e')."""
+    for sub in subdirs:
+        if not (VAULT_ROOT / sub).exists():
+            return False
+    return True
+
+requires_vault_fitd = pytest.mark.skipif(
+    not _vault_has("FITD"), reason="vault/FITD/ not present (third-party, gitignored)")
+requires_vault_stc = pytest.mark.skipif(
+    not _vault_has("stc"), reason="vault/stc/ not present (third-party, gitignored)")
+requires_vault_dnd5e = pytest.mark.skipif(
+    not _vault_has("dnd5e"), reason="vault/dnd5e/ not present (third-party, gitignored)")
 
 
 @pytest.fixture(autouse=True, scope="session")

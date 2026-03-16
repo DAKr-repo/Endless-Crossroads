@@ -7,6 +7,7 @@ Tests the setting filter utility, reference data tagging, engine
 setting propagation, adapter pool swapping, and vault discovery.
 """
 
+import pathlib
 import pytest
 from typing import Dict, Any
 
@@ -227,6 +228,9 @@ class TestEngineSettingPropagation:
 # =========================================================================
 
 
+@pytest.mark.skipif(
+    not (pathlib.Path(__file__).resolve().parent.parent / "vault" / "stc").exists(),
+    reason="vault/stc/ not present (third-party, gitignored)")
 class TestDiscoveryFindsRoshar:
     """Verify that CharacterBuilderEngine discovers the Roshar sub-setting."""
 
