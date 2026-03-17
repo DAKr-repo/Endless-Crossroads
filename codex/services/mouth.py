@@ -190,11 +190,11 @@ async def speak(request: SpeakRequest):
         try:
             base_model_dir = Path(VOICE_MODEL_PATH).resolve().parent
             candidate = (base_model_dir / request.model_path).resolve()
-            # Prevent path traversal: candidate must stay within base_model_dir
-            if base_model_dir in candidate.parents or candidate == base_model_dir:
-                if candidate.exists():
-                    voice_obj = PiperVoice.load(str(candidate))
-        except Exception:
+            # Prevent path traversal: raises ValueError if outside base dir
+            candidate.relative_to(base_model_dir)
+            if candidate.is_file():
+                voice_obj = PiperVoice.load(str(candidate))
+        except (ValueError, Exception):
             voice_obj = VOICE_OBJECT  # Fallback to default
 
     import asyncio

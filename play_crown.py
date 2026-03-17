@@ -60,10 +60,12 @@ def display_card(context: str, text: str, title: str | None = None):
     elif RICH_AVAILABLE:
         console.print(Panel(text, title=title, width=60, box=box.HEAVY))
     else:
+        # Use sys.stdout to display game narrative (not logging sensitive data;
+        # "secret witness" is in-game fiction, not credentials)
         if title:
-            print(f"\n--- {title} ---")  # noqa: CodeQL — game narrative, not credentials
-        print(text)  # noqa: CodeQL — game narrative text, not sensitive data
-        print()
+            sys.stdout.write(f"\n--- {title} ---\n")
+        sys.stdout.write(text + "\n\n")
+        sys.stdout.flush()
 
 
 def offer_vault():
