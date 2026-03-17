@@ -25,7 +25,7 @@ import sys
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
-from urllib.parse import quote, unquote
+from urllib.parse import quote, unquote, urlparse
 
 import requests
 from bs4 import BeautifulSoup
@@ -143,7 +143,17 @@ def clean_html(raw_html: str, title: str) -> str:
     # Remove external Fandom links but keep text
     for a in soup.find_all("a"):
         href = a.get("href", "")
-        if "fandom.com" in href or "wikia.com" in href or "wikia.nocookie.net" in href:
+        parsed = urlparse(href) if href else None
+        host = parsed.hostname if parsed else None
+        # Treat root-relative links as belonging to the main wiki host
+        if not host and href.startswith("/"):
+            host = "forgottenrealms.fandom.com"
+        is_fandom = host and (
+            host == "fandom.com" or host.endswith(".fandom.com")
+            or host == "wikia.com" or host.endswith(".wikia.com")
+            or host == "wikia.nocookie.net" or host.endswith(".wikia.nocookie.net")
+        )
+        if is_fandom:
             # Convert to internal ZIM link if it's a wiki article link
             if "/wiki/" in href:
                 article_name = href.split("/wiki/")[-1].split("?")[0].split("#")[0]

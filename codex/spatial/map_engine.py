@@ -1323,9 +1323,8 @@ def run_demo():
     for room in sorted(graph.rooms.values(), key=lambda r: r.id):
         room_type = room.room_type.value.upper()
         locked = " [LOCKED]" if room.is_locked else ""
-        secret = " [SECRET]" if room.is_secret else ""
         print(f"  Room {room.id:02d}: {room_type:10s} | Tier {room.tier} | "
-              f"({room.x:2d},{room.y:2d}) {room.width}x{room.height}{locked}{secret}")
+              f"({room.x:2d},{room.y:2d}) {room.width}x{room.height}{locked}")
 
     # Populate with Burnwillow content
     print("\n[CONTENT POPULATION - BURNWILLOW]")

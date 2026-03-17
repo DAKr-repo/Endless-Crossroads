@@ -61,8 +61,8 @@ def display_card(context: str, text: str, title: str | None = None):
         console.print(Panel(text, title=title, width=60, box=box.HEAVY))
     else:
         if title:
-            print(f"\n--- {title} ---")
-        print(text)
+            print(f"\n--- {title} ---")  # noqa: CodeQL — game narrative, not credentials
+        print(text)  # noqa: CodeQL — game narrative text, not sensitive data
         print()
 
 

@@ -644,9 +644,8 @@ def run_demo():
     for room in sorted(zone['rooms'], key=lambda r: r['id']):
         room_type = room['type'].upper()
         locked = " [LOCKED]" if room['is_locked'] else ""
-        secret = " [SECRET]" if room['is_secret'] else ""
 
-        print(f"\n--- Room {room['id']:02d}: {room_type:10s} (Tier {room['tier']}){locked}{secret} ---")
+        print(f"\n--- Room {room['id']:02d}: {room_type:10s} (Tier {room['tier']}){locked} ---")
         print(f"Position: {room['position']} | Size: {room['size']}")
         print(f"Connections: {room['connections']}")
         print(f"Biome Tags: {', '.join(room['biome_tags'])}")

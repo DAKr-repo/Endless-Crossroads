@@ -1562,7 +1562,8 @@ if __name__ == "__main__":
     print(f"  Terms: {injected.terms['crown']} vs {injected.terms['crew']}")
     print(f"  Crown prompts: {len(injected._prompts_crown)}")
     print(f"  Patron: {injected.patron}")
-    print(f"  Witness: {injected.get_secret_witness()[:50]}...")
+    witness_len = len(injected.get_secret_witness())
+    print(f"  Witness: <redacted, {witness_len} chars>")
     print("  ✅ World injection OK")
     print()
 

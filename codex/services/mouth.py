@@ -184,15 +184,18 @@ async def speak(request: SpeakRequest):
             detail="Text field cannot be empty"
         )
 
-    # Support alternate voice model (e.g. Norwegian narrator)
+    # Support alternate voice model — constrained to models directory
     voice_obj = VOICE_OBJECT
     if request.model_path and PIPER_AVAILABLE:
-        alt_path = Path(request.model_path)
-        if alt_path.exists():
-            try:
-                voice_obj = PiperVoice.load(str(alt_path))
-            except Exception:
-                voice_obj = VOICE_OBJECT  # Fallback to default
+        try:
+            base_model_dir = Path(VOICE_MODEL_PATH).resolve().parent
+            candidate = (base_model_dir / request.model_path).resolve()
+            # Prevent path traversal: candidate must stay within base_model_dir
+            if base_model_dir in candidate.parents or candidate == base_model_dir:
+                if candidate.exists():
+                    voice_obj = PiperVoice.load(str(candidate))
+        except Exception:
+            voice_obj = VOICE_OBJECT  # Fallback to default
 
     import asyncio
 
