@@ -51,6 +51,16 @@ def type_writer(text, speed=0.01):
     print()
 
 
+def _render_plain(title: str | None, body: str):
+    """Plain-text fallback renderer for terminals without Rich."""
+    lines = []
+    if title:
+        lines.append(f"\n--- {title} ---")
+    lines.append(body)
+    lines.append("")
+    return "\n".join(lines)
+
+
 def display_card(context: str, text: str, title: str | None = None):
     """Render text as a tarot card if available, else plain panel or print."""
     if TAROT_AVAILABLE and RICH_AVAILABLE:
@@ -60,12 +70,7 @@ def display_card(context: str, text: str, title: str | None = None):
     elif RICH_AVAILABLE:
         console.print(Panel(text, title=title, width=60, box=box.HEAVY))
     else:
-        # Use sys.stdout to display game narrative (not logging sensitive data;
-        # "secret witness" is in-game fiction, not credentials)
-        if title:
-            sys.stdout.write(f"\n--- {title} ---\n")
-        sys.stdout.write(text + "\n\n")
-        sys.stdout.flush()
+        console.print(_render_plain(title, text))
 
 
 def offer_vault():

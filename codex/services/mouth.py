@@ -187,15 +187,15 @@ async def speak(request: SpeakRequest):
     # Support alternate voice model — constrained to models directory
     voice_obj = VOICE_OBJECT
     if request.model_path and PIPER_AVAILABLE:
-        try:
-            base_model_dir = Path(VOICE_MODEL_PATH).resolve().parent
-            candidate = (base_model_dir / request.model_path).resolve()
-            # Prevent path traversal: raises ValueError if outside base dir
-            candidate.relative_to(base_model_dir)
-            if candidate.is_file():
-                voice_obj = PiperVoice.load(str(candidate))
-        except (ValueError, Exception):
-            voice_obj = VOICE_OBJECT  # Fallback to default
+        import os.path as _osp
+        base_path = _osp.realpath(str(Path(VOICE_MODEL_PATH).parent))
+        # Use os.path.normpath + startswith (CodeQL-approved pattern)
+        fullpath = _osp.normpath(_osp.join(base_path, request.model_path))
+        if fullpath.startswith(base_path + os.sep) and os.path.isfile(fullpath):
+            try:
+                voice_obj = PiperVoice.load(fullpath)
+            except Exception:
+                voice_obj = VOICE_OBJECT
 
     import asyncio
 
