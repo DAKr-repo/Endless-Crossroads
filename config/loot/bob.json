@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "format": "fitd",
+  "source": "Band of Blades (authored from setting — no stat block PDF source)",
+  "note": "BoB loot uses supply_value instead of gp. Supplies are the primary currency of a retreating Legion.",
+  "tiers": {
+    "1": [
+      {"name": "Ration Crate (3 days)", "rarity": "common", "supply_value": 1, "source": "authored"},
+      {"name": "Field Dressing Kit", "rarity": "common", "supply_value": 1, "source": "authored"},
+      {"name": "Standard Ammunition (bundle)", "rarity": "common", "supply_value": 1, "source": "authored"},
+      {"name": "Salvaged Weapons (mixed)", "rarity": "common", "supply_value": 1, "source": "authored"},
+      {"name": "Enemy Intelligence (low grade)", "rarity": "common", "supply_value": 1, "source": "authored"}
+    ],
+    "2": [
+      {"name": "Alchemical Reagents", "rarity": "uncommon", "supply_value": 2, "source": "authored"},
+      {"name": "Black Shot Ammunition (box)", "rarity": "uncommon", "supply_value": 2, "source": "authored"},
+      {"name": "Chosen Relic Fragment", "rarity": "uncommon", "supply_value": 2, "source": "authored"},
+      {"name": "Supply Cache (full week)", "rarity": "uncommon", "supply_value": 2, "source": "authored"},
+      {"name": "Healer's Kit (advanced)", "rarity": "uncommon", "supply_value": 2, "source": "authored"}
+    ],
+    "3": [
+      {"name": "Black Shot Cannon Rounds (set)", "rarity": "rare", "supply_value": 4, "source": "authored"},
+      {"name": "Blessed Weapons Cache", "rarity": "rare", "supply_value": 4, "source": "authored"},
+      {"name": "Cinder King Intelligence (high grade)", "rarity": "rare", "supply_value": 4, "source": "authored"},
+      {"name": "Chosen Relic (minor)", "rarity": "rare", "supply_value": 4, "source": "authored"}
+    ],
+    "4": [
+      {"name": "Chosen Relic (major)", "rarity": "legendary", "supply_value": 8, "source": "authored"},
+      {"name": "Black Oak Seal Component", "rarity": "legendary", "supply_value": 8, "source": "authored"},
+      {"name": "The Cinder King's Orders (stolen)", "rarity": "legendary", "supply_value": 8, "source": "authored"}
+    ]
+  }
+}

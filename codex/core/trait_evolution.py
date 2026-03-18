@@ -38,6 +38,7 @@ class TraitEvolution:
         """
         self.original: dict = dict(original_traits)
         self.deltas: List[TraitDelta] = []
+        self.bond: float = 0.0  # -1.0 (enmity) to +1.0 (deep bond)
 
     def nudge(self, trait: str, delta: float, reason: str, turn: int = 0) -> None:
         """Apply a small personality nudge. Clamps to MAX_DRIFT from original."""
@@ -88,6 +89,35 @@ class TraitEvolution:
         reason_str = ", ".join(reasons) if reasons else "experience"
         return f"Through {reason_str}: {'; '.join(changes)}."
 
+    def adjust_bond(self, delta: float) -> None:
+        """Adjust bond score. Clamps to -1.0 to +1.0."""
+        self.bond = max(-1.0, min(1.0, self.bond + delta))
+
+    def get_bond_tier(self) -> str:
+        """Qualitative bond tier for prompt injection."""
+        if self.bond >= 0.8:
+            return "deeply bonded"
+        if self.bond >= 0.5:
+            return "trusted ally"
+        if self.bond >= 0.2:
+            return "growing closer"
+        if self.bond >= -0.1:
+            return "new acquaintance"
+        if self.bond >= -0.5:
+            return "distrustful"
+        return "hostile"
+
+    def get_bond_multiplier(self) -> float:
+        """Scale dialogue nudge effectiveness by bond depth.
+
+        Positive bond scales mentorship (0.3 baseline to 1.0 at deep bond).
+        Negative bond INVERTS nudge direction — counsel is resisted.
+        """
+        if self.bond >= 0:
+            return 0.3 + 0.7 * self.bond
+        else:
+            return 0.7 * self.bond
+
     def to_dict(self) -> dict:
         return {
             "original": dict(self.original),
@@ -95,6 +125,7 @@ class TraitEvolution:
                 {"trait": d.trait, "delta": d.delta, "reason": d.reason, "turn": d.turn}
                 for d in self.deltas
             ],
+            "bond": self.bond,
         }
 
     @classmethod
@@ -105,6 +136,7 @@ class TraitEvolution:
                 trait=d["trait"], delta=d["delta"],
                 reason=d.get("reason", ""), turn=d.get("turn", 0),
             ))
+        evo.bond = data.get("bond", 0.0)
         return evo
 
 

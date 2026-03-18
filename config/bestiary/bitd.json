@@ -1,0 +1,203 @@
+{
+  "version": 1,
+  "format": "fitd",
+  "source": "Blades in the Dark (authored from setting — no stat block PDF source)",
+  "note": "FITD adversaries use tier/quality not D&D AC/HP. threat_level is narrative difficulty (1-4).",
+  "tiers": {
+    "1": [
+      {
+        "name": "Bluecoat Watchman",
+        "faction": "Bluecoats",
+        "tier": 1,
+        "quality": 1,
+        "threat_level": 1,
+        "scale": "individual",
+        "description": "A beat officer with a cudgel, whistles, and union-mandated cowardice.",
+        "capabilities": ["patrol", "arrest", "call_backup"],
+        "weakness": "bribes, paperwork, superior officers"
+      },
+      {
+        "name": "Dockworker Thug",
+        "faction": "criminal_freelance",
+        "tier": 1,
+        "quality": 1,
+        "threat_level": 1,
+        "scale": "individual",
+        "description": "Muscle-for-hire with a hook and a bad attitude.",
+        "capabilities": ["brawl", "intimidate"],
+        "weakness": "outnumbered, authority figures"
+      },
+      {
+        "name": "Weakened Ghost",
+        "faction": "spectral",
+        "tier": 1,
+        "quality": 1,
+        "threat_level": 1,
+        "scale": "individual",
+        "description": "A recently deceased soul still anchored by unresolved obsession.",
+        "capabilities": ["possession_attempt", "fear_aura"],
+        "weakness": "electroplasmic rounds, ghost lanterns, compelling obsession"
+      },
+      {
+        "name": "Gondolier Lookout",
+        "faction": "The Gondoliers",
+        "tier": 1,
+        "quality": 1,
+        "threat_level": 1,
+        "scale": "individual",
+        "description": "A union member with eyes like a hawk and loyalty to the guild.",
+        "capabilities": ["signal_network", "canal_knowledge"],
+        "weakness": "coin, competing guild loyalty"
+      },
+      {
+        "name": "Skovlan Refugee Fighter",
+        "faction": "independent",
+        "tier": 1,
+        "quality": 1,
+        "threat_level": 1,
+        "scale": "individual",
+        "description": "Displaced by the Unity War, fighting for survival.",
+        "capabilities": ["guerrilla_tactics", "desperation_bonus"],
+        "weakness": "offers of sanctuary, anti-imperial sentiment"
+      }
+    ],
+    "2": [
+      {
+        "name": "Bluecoat Sergeant",
+        "faction": "Bluecoats",
+        "tier": 2,
+        "quality": 2,
+        "threat_level": 2,
+        "scale": "individual",
+        "description": "A hardened officer who has seen it all and takes cuts from every gang in the ward.",
+        "capabilities": ["patrol", "arrest", "call_backup", "extortion"],
+        "weakness": "blackmail, superior officers, exposure"
+      },
+      {
+        "name": "Spirit Warden Initiate",
+        "faction": "Spirit Wardens",
+        "tier": 2,
+        "quality": 2,
+        "threat_level": 2,
+        "scale": "individual",
+        "description": "Masked, armed with a ghost-slayer, and very serious about electroplasm.",
+        "capabilities": ["ghost_capture", "electroplasmic_rounds", "mask_of_emptiness"],
+        "weakness": "political pressure, whisper allies, Hull companions"
+      },
+      {
+        "name": "Cровное Demon",
+        "faction": "spectral",
+        "tier": 2,
+        "quality": 2,
+        "threat_level": 2,
+        "scale": "individual",
+        "description": "A minor demon bound by a careless Whisper. It has more freedom than it should.",
+        "capabilities": ["possession", "fear_aura", "minor_corruption"],
+        "weakness": "binding circles, true name, leviathan blood"
+      },
+      {
+        "name": "Inspectors Agent",
+        "faction": "Inspectors",
+        "tier": 2,
+        "quality": 2,
+        "threat_level": 2,
+        "scale": "individual",
+        "description": "Plainclothes, methodical, building a case.",
+        "capabilities": ["surveillance", "deduction", "lawful_arrest"],
+        "weakness": "jurisdictional confusion, planted evidence, political interference"
+      },
+      {
+        "name": "Assassins Blade",
+        "faction": "The Assassins",
+        "tier": 2,
+        "quality": 2,
+        "threat_level": 2,
+        "scale": "individual",
+        "description": "A contracted killer from the Shadows. Professional, patient, expensive.",
+        "capabilities": ["ambush", "poison", "disappear"],
+        "weakness": "counter-contract, public exposure"
+      }
+    ],
+    "3": [
+      {
+        "name": "Bluecoat Inspector",
+        "faction": "Bluecoats",
+        "tier": 3,
+        "quality": 3,
+        "threat_level": 3,
+        "scale": "crew",
+        "description": "Backed by a full squad. Has read every report on your crew twice.",
+        "capabilities": ["squad_tactics", "legal_authority", "intelligence_file"],
+        "weakness": "corrupt superior, political favor"
+      },
+      {
+        "name": "Spirit Warden Captain",
+        "faction": "Spirit Wardens",
+        "tier": 3,
+        "quality": 3,
+        "threat_level": 3,
+        "scale": "individual",
+        "description": "A veteran of the Ghost Field. Has put down things that didn't have names.",
+        "capabilities": ["ghost_capture", "electroplasmic_rounds", "ghost_field_sense", "command"],
+        "weakness": "Whisper allies with leverage, political pull"
+      },
+      {
+        "name": "Greater Demon",
+        "faction": "spectral",
+        "tier": 3,
+        "quality": 3,
+        "threat_level": 3,
+        "scale": "crew",
+        "description": "An unbound entity of considerable power. It came through a tear that shouldn't have been made.",
+        "capabilities": ["possession_field", "terror", "corruption_aura", "physical_manifestation"],
+        "weakness": "true name, leviathan blood, the right ritual"
+      },
+      {
+        "name": "Whiskey Merchants Enforcer",
+        "faction": "Lampblacks_or_Rowdy_Boys",
+        "tier": 3,
+        "quality": 3,
+        "threat_level": 3,
+        "scale": "individual",
+        "description": "A gang lieutenant with a reputation that precedes them.",
+        "capabilities": ["crew_command", "criminal_network", "violence"],
+        "weakness": "rival gang, coin, family"
+      }
+    ],
+    "4": [
+      {
+        "name": "Bluecoat Commander",
+        "faction": "Bluecoats",
+        "tier": 4,
+        "quality": 4,
+        "threat_level": 4,
+        "scale": "faction",
+        "description": "A district commander with political backing, a full garrison, and a personal grudge.",
+        "capabilities": ["garrison_command", "political_authority", "intelligence_network", "martial_law"],
+        "weakness": "impeachment, major political debt, irrefutable scandal"
+      },
+      {
+        "name": "Spectral Engine",
+        "faction": "spectral",
+        "tier": 4,
+        "quality": 4,
+        "threat_level": 4,
+        "scale": "crew",
+        "description": "A mechanical construct imbued with a bound spirit. Walks. Thinks. Hates.",
+        "capabilities": ["physical_manifestation", "armor", "ghost_channeling", "area_terror"],
+        "weakness": "the spirit's true name, electroplasmic flood"
+      },
+      {
+        "name": "Archon",
+        "faction": "Church_of_Ecstasy_of_the_Flesh",
+        "tier": 4,
+        "quality": 4,
+        "threat_level": 4,
+        "scale": "faction",
+        "description": "A religious enforcer of the highest order. They don't forgive heresy.",
+        "capabilities": ["inquisition_authority", "spirit_manipulation", "theological_leverage", "political_immunity"],
+        "weakness": "exposure of corruption, rival sect, the Deathseeker Crows"
+      }
+    ]
+  }
+}

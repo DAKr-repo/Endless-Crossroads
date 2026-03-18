@@ -36,11 +36,14 @@ from typing import Any, Dict, List, Optional, Tuple
 
 from rich.console import Console
 from rich.panel import Panel
+from rich.table import Table
 from rich.text import Text
 from rich.prompt import Prompt
 from rich import box
 
 # Local imports
+from codex.core.mechanics.clock import DayClock, TimeOfDay
+from codex.core.mechanics.weather import WeatherEngine, WeatherState
 from codex.paths import SAVES_DIR, STATE_DIR, safe_save_json
 from codex.core.state_frame import build_state_frame, frame_to_json
 from codex.games.burnwillow.engine import (
@@ -141,6 +144,33 @@ TURN_CONSUMING_CMDS = frozenset({"end", "wait", "pass"})
 
 # Doom rate multiplier by party size (WO-V32.0: 5+ players tick doom faster)
 DOOM_RATE_MULT = {1: 1.0, 2: 1.0, 3: 1.0, 4: 1.0, 5: 1.1, 6: 1.2}
+
+
+# WO-V62.0: Combat quip templates (zero LLM cost)
+_COMBAT_QUIPS_DAMAGE = {
+    "vanguard": ["\"Is that all you've got?\"", "\"Just a scratch.\"", "*grunts and keeps fighting*"],
+    "scholar": ["\"Ow! That was uncalled for.\"", "*winces* \"Noted for my journal.\""],
+    "scavenger": ["\"Hey! Watch the merchandise!\"", "\"That's coming out of YOUR loot.\""],
+    "healer": ["\"I'll... heal that later.\"", "*grits teeth* \"Still standing.\""],
+}
+_COMBAT_QUIPS_KILL = {
+    "vanguard": ["\"Next.\"", "\"Who's next?\"", "*wipes blade clean*"],
+    "scholar": ["\"One fewer variable.\"", "*makes a note*"],
+    "scavenger": ["\"Check their pockets!\"", "\"Dibs on the gear.\""],
+    "healer": ["\"I'm sorry.\"", "*whispers a brief prayer*"],
+}
+_COMBAT_QUIPS_DAMAGE_HOSTILE = {
+    "vanguard": ["\"This is YOUR fault.\"", "*glares at you while bleeding*"],
+    "scholar": ["\"Perhaps if someone had a better plan...\""],
+    "scavenger": ["\"I'm billing you for this.\"", "\"Remind me why I'm here?\""],
+    "healer": ["*silently adds the wound to a mental tally*"],
+}
+_COMBAT_QUIPS_KILL_HOSTILE = {
+    "vanguard": ["\"No thanks to you.\"", "*cleans blade without looking at you*"],
+    "scholar": ["\"I work better alone.\""],
+    "scavenger": ["\"I'm keeping everything it drops.\""],
+    "healer": ["*says nothing*"],
+}
 
 
 # =============================================================================
@@ -259,6 +289,8 @@ class GameState:
         self.companion_mode: bool = False
         self.autopilot_delay: float = 1.5
         self.autopilot_agents: Dict[str, AutopilotAgent] = {}
+        self.trait_evolutions: Dict[str, Any] = {}   # name -> TraitEvolution
+        self._last_dialogue_nudge_turn: Dict[str, int] = {}  # companion -> last nudge turn
 
         # Doom rate scaling for larger parties (WO-V32.0)
         self.doom_rate_mult: float = 1.0
@@ -289,6 +321,17 @@ class GameState:
         self.expedition_timer: Optional[Any] = None
         self._session_type: str = "campaign"
         self._willow_wood_save: Optional[dict] = None
+
+        # WO-V69.0: World simulation — time of day and weather
+        self.day_clock: DayClock = DayClock()
+        self.weather: WeatherEngine = WeatherEngine(terrain_type="dungeon")
+        # Advance time every 3 rooms explored
+        self.rooms_since_last_tick: int = 0
+
+        # Pattern A: Butler (TTS) — dynamically assigned, typed Any for Pylance
+        self.butler: Any = None
+        # Pattern B: NPC memory manager — dynamically assigned
+        self._npc_memory: Any = None
 
     @property
     def character(self) -> Optional[Character]:
@@ -465,6 +508,7 @@ class GameState:
         """Advance to the next party member's turn. Returns announcement or None."""
         if not self.is_party_turn_mode():
             return None
+        assert self.engine is not None
         party = self.engine.get_active_party()
         if len(party) <= 1:
             return None
@@ -491,7 +535,7 @@ class GameState:
             lines.append(f"{marker}{char.name} (HP {char.current_hp}/{char.max_hp}){tag}")
         # Show enemies in combat
         if self.combat_mode:
-            enemies = self.room_enemies.get(self.current_room_id, [])
+            enemies = self.room_enemies.get(self.current_room_id or 0, [])
             if enemies:
                 lines.append("---")
                 for e in enemies:
@@ -503,10 +547,10 @@ class GameState:
 # QUEST HELPERS (WO-V44.0)
 # =============================================================================
 
-def _get_room_tier(state: GameState, room_id: int = None) -> int:
+def _get_room_tier(state: GameState, room_id: Optional[int] = None) -> int:
     """Get the tier of the current or specified room."""
     if room_id is None:
-        room_id = state.current_room_id
+        room_id = state.current_room_id or 0
     if state.engine and state.engine.dungeon_graph:
         room_node = state.engine.dungeon_graph.rooms.get(room_id)
         if room_node:
@@ -514,7 +558,7 @@ def _get_room_tier(state: GameState, room_id: int = None) -> int:
     return 1
 
 
-def _check_quest_kill(state: GameState, room_id: int = None) -> List[str]:
+def _check_quest_kill(state: GameState, room_id: Optional[int] = None) -> List[str]:
     """Fire kill objective trigger and return quest messages."""
     if not state.narrative:
         return []
@@ -522,7 +566,7 @@ def _check_quest_kill(state: GameState, room_id: int = None) -> List[str]:
     return state.narrative.check_objective(f"kill_tier_{tier}")
 
 
-def _check_quest_loot(state: GameState, room_id: int = None) -> List[str]:
+def _check_quest_loot(state: GameState, room_id: Optional[int] = None) -> List[str]:
     """Fire loot objective trigger and return quest messages."""
     if not state.narrative:
         return []
@@ -530,7 +574,7 @@ def _check_quest_loot(state: GameState, room_id: int = None) -> List[str]:
     return state.narrative.check_objective(f"loot_tier_{tier}")
 
 
-def _check_quest_search(state: GameState, room_id: int = None) -> List[str]:
+def _check_quest_search(state: GameState, room_id: Optional[int] = None) -> List[str]:
     """Fire search objective trigger and return quest messages."""
     if not state.narrative:
         return []
@@ -553,7 +597,7 @@ def _apply_haven_event(state: GameState, event: dict) -> str:
                 if hasattr(char, 'current_hp') and hasattr(char, 'max_hp'):
                     char.current_hp = min(char.current_hp + value, char.max_hp)
                 elif hasattr(char, 'hp') and hasattr(char, 'max_hp'):
-                    char.hp = min(char.hp + value, char.max_hp)
+                    char.hp = min(char.hp + value, char.max_hp)  # type: ignore[attr-defined]
     elif etype == "doom":
         if state.engine and state.engine.doom_clock:
             state.engine.doom_clock.advance(value)
@@ -668,17 +712,124 @@ def _handle_character_export(state: GameState):
 
 
 def _handle_character_import(state: GameState):
-    """List available characters for import."""
+    """Import a character from an exported JSON file into the active session.
+
+    Reads an exported JSON file path from the user, validates the required
+    fields (name, stats), clamps stats to 1-20, shows a confirmation panel,
+    and replaces the current party leader with the imported character.
+    """
     from codex.core.character_export import list_exported_characters
     con = state.console
     chars = list_exported_characters()
-    if not chars:
-        con.print("[dim]No exported characters found.[/dim]")
+
+    import_path_str: Optional[str] = None
+
+    if chars:
+        con.print("\n  [bold]Exported Characters:[/]")
+        for i, c in enumerate(chars, 1):
+            sys_id = c.get("system_id", "?")
+            con.print(f"  [{i}] {c['name']} ({sys_id})")
+        con.print("")
+
+    raw_input = Prompt.ask(
+        "  Enter path to character JSON (or number from list above, or [bold]back[/])",
+        console=con,
+        default="back",
+    ).strip()
+
+    if raw_input.lower() in ("back", "b", ""):
         return
-    for i, c in enumerate(chars, 1):
-        sys_id = c.get("system_id", "?")
-        con.print(f"  [{i}] {c['name']} ({sys_id})")
-    con.print("[dim]Character import into active sessions coming soon.[/dim]")
+
+    # Resolve by list index or literal path
+    if raw_input.isdigit() and chars:
+        idx = int(raw_input) - 1
+        if 0 <= idx < len(chars):
+            # list_exported_characters dicts carry a "path" key
+            import_path_str = chars[idx].get("path")
+        if import_path_str is None:
+            con.print(f"[red]Could not find file for selection {raw_input}.[/red]")
+            return
+    else:
+        import_path_str = raw_input
+
+    # Load and validate the JSON
+    try:
+        with open(import_path_str, "r") as fh:
+            raw_data: dict = json.load(fh)
+    except FileNotFoundError:
+        con.print(f"[red]File not found: {import_path_str}[/red]")
+        return
+    except json.JSONDecodeError as e:
+        con.print(f"[red]Invalid JSON: {e}[/red]")
+        return
+
+    # Unwrap if export wrapper format (has "character" key)
+    if "character" in raw_data and isinstance(raw_data["character"], dict):
+        char_data = raw_data["character"]
+    else:
+        char_data = raw_data
+
+    # Validate required fields
+    missing = [f for f in ("name", "might", "wits", "grit", "aether") if f not in char_data]
+    if missing:
+        con.print(f"[red]Missing required fields: {', '.join(missing)}[/red]")
+        return
+
+    # Clamp stats to 1-20 range
+    for stat_key in ("might", "wits", "grit", "aether"):
+        raw_stat = char_data.get(stat_key, 10)
+        try:
+            clamped = max(1, min(20, int(raw_stat)))
+        except (TypeError, ValueError):
+            clamped = 10
+        char_data[stat_key] = clamped
+
+    # Build Character from validated data
+    try:
+        imported_char = Character.from_dict(char_data)
+    except Exception as e:
+        con.print(f"[red]Failed to build character: {e}[/red]")
+        return
+
+    # Show confirmation panel
+    lines = Text()
+    lines.append(f"{imported_char.name}\n", style="bold yellow")
+    lines.append(
+        f"  HP: {imported_char.current_hp}/{imported_char.max_hp}  "
+        f"DEF: {imported_char.get_defense()}  "
+        f"DR: {imported_char.gear.get_total_dr()}\n",
+        style="white",
+    )
+    lines.append(
+        f"  M{imported_char.might} W{imported_char.wits} "
+        f"G{imported_char.grit} A{imported_char.aether}\n",
+        style="dim cyan",
+    )
+    lines.append(f"  Scrap: {imported_char.scrap}  Keys: {imported_char.keys}\n", style="dim")
+    for slot, item in imported_char.gear.slots.items():
+        if item:
+            lines.append(f"  [{slot.value}] {item.name} (T{item.tier.value})\n", style="dim cyan")
+
+    con.print(Panel(lines, title="Import Preview", border_style="yellow"))
+
+    confirm = Prompt.ask(
+        "  Import this character? ([bold]yes[/]/no)",
+        console=con,
+        default="no",
+    ).strip().lower()
+    if confirm not in ("yes", "y"):
+        con.print("[dim]Import cancelled.[/dim]")
+        return
+
+    # Replace party leader (or initialize party if empty)
+    if state.engine:
+        if state.engine.party:
+            state.engine.party[0] = imported_char
+        else:
+            state.engine.party = [imported_char]
+        state.engine.character = imported_char
+
+    con.print(f"[green]{imported_char.name} has joined the party.[/green]")
 
 
 def _run_willow_wood(state: GameState, destination: str) -> str:
@@ -1018,12 +1169,198 @@ def _move_settlement(state: GameState, direction: str):
         if hasattr(state, 'butler') and state.butler and hasattr(state.butler, 'narrate'):
             try:
                 rtype = best_room.room_type if isinstance(best_room.room_type, str) else best_room.room_type.value
-                room_label = best_room.label if hasattr(best_room, 'label') and best_room.label else rtype.replace("_", " ").title()
+                room_label = best_room.label if hasattr(best_room, 'label') and best_room.label else rtype.replace("_", " ").title()  # type: ignore[attr-defined]
                 state.butler.narrate(room_label)
             except Exception:
                 pass
     else:
         state.console.print("[dim]Nothing that way.[/]")
+
+
+def _companion_dialogue(state: GameState, companion_name: str, player_message: str = "") -> str:
+    """Generate companion dialogue using Mimir with personality context.
+
+    Falls back to quirk-flavored one-liner if Mimir unavailable.
+
+    Args:
+        state: Current GameState.
+        companion_name: Name of the companion to speak with.
+        player_message: Optional player message for conversational exchanges.
+
+    Returns:
+        Dialogue string.
+    """
+    agent = state.autopilot_agents.get(companion_name)
+    if not agent:
+        return ""
+
+    personality = agent.personality
+    evo = state.trait_evolutions.get(companion_name)
+    evo_summary = evo.get_evolution_summary() if evo else ""
+
+    # --- Dialogue-to-Trait Evolution Bridge (WO-V62.0) ---
+    nudge_ack = ""
+    if player_message and player_message != "Hello" and evo:
+        from codex.core.dialogue_intent import classify_intent
+        intent = classify_intent(player_message)
+        last_turn = state._last_dialogue_nudge_turn.get(companion_name, -99)
+        turn_now = getattr(state, 'turn_number', 0)
+        if turn_now - last_turn >= 3 and intent.confidence >= 0.3:
+            multiplier = evo.get_bond_multiplier()
+            for trait, delta in intent.trait_nudges:
+                evo.nudge(trait, delta * multiplier,
+                          f"player_{intent.category}", turn_now)
+            evo.adjust_bond(intent.bond_delta)
+            state._last_dialogue_nudge_turn[companion_name] = turn_now
+            nudge_ack = intent.acknowledgment
+            if hasattr(state, '_npc_memory') and state._npc_memory:
+                try:
+                    bank = state._npc_memory.get_bank(companion_name)
+                    if bank:
+                        bank.record(
+                            f"Player {intent.category}: '{player_message[:60]}'",
+                            tags=["dialogue", intent.category],
+                        )
+                except Exception:
+                    pass
+
+    # Build context
+    context_parts = [
+        f"You are {companion_name}, a {personality.archetype}.",
+        f"Personality: {personality.description}",
+        f"Quirk: {personality.quirk}",
+    ]
+    if evo_summary and evo_summary != "No personality evolution yet.":
+        context_parts.append(f"Recent changes: {evo_summary}")
+
+    # Add NPC memory if available
+    if hasattr(state, '_npc_memory') and state._npc_memory:
+        try:
+            bank = state._npc_memory.get_bank(companion_name)
+            if bank:
+                recent = bank.get_recent_shards(3)
+                if recent:
+                    context_parts.append("Recent memories: " + "; ".join(
+                        s.content if hasattr(s, 'content') else str(s) for s in recent
+                    ))
+        except Exception:
+            pass
+
+    # WO-V62.0: Bond tier + nudge acknowledgment injection
+    if evo:
+        bond_tier = evo.get_bond_tier()
+        context_parts.append(f"Bond with player: {bond_tier}")
+        if bond_tier in ("distrustful", "hostile"):
+            context_parts.append(
+                "You view the player with suspicion. Be dismissive, sarcastic, or openly hostile."
+            )
+    if nudge_ack:
+        context_parts.append(f"The player just {nudge_ack}. Acknowledge this naturally.")
+
+    # Add room context
+    if state.engine and state.current_room_id is not None:
+        room = state.engine.dungeon_graph.get_room(state.current_room_id) if state.engine.dungeon_graph else None
+        if room:
+            context_parts.append(f"Current room: {room.label if hasattr(room, 'label') and room.label else 'dungeon room'}")
+        enemies = state.room_enemies.get(state.current_room_id, [])
+        if enemies:
+            context_parts.append(f"Enemies present: {len(enemies)}")
+
+    # Party HP status
+    if state.engine:
+        for c in state.engine.get_active_party():
+            hp_pct = c.current_hp / max(1, c.max_hp)
+            if hp_pct < 0.5:
+                context_parts.append(f"{c.name} is wounded ({c.current_hp}/{c.max_hp} HP)")
+
+    if not player_message:
+        player_message = "Hello"
+
+    # Try Mimir
+    try:
+        from codex.integrations.mimir import query_mimir
+        prompt = (
+            "\n".join(context_parts) + "\n\n"
+            f"The player says: \"{player_message}\"\n"
+            f"Respond in character as {companion_name} in 1-2 sentences. Stay in character."
+        )
+        result = query_mimir(prompt, namespace="burnwillow")
+        if result and not result.startswith("Error"):
+            return result.strip()
+    except (ImportError, Exception):
+        pass
+
+    # Fallback: quirk-flavored response
+    _fallbacks = {
+        "vanguard": [
+            f"*{companion_name} grunts.* Less talking, more fighting.",
+            f"*{companion_name} checks their blade.* I'm ready for whatever's next.",
+        ],
+        "scholar": [
+            f"*{companion_name} adjusts their spectacles.* Fascinating place, this.",
+            f"*{companion_name} scribbles a note.* Did you notice the stonework here?",
+        ],
+        "scavenger": [
+            f"*{companion_name} pockets something shiny.* What? I'm listening.",
+            f"*{companion_name} glances around.* I bet there's treasure we missed.",
+        ],
+        "healer": [
+            f"*{companion_name} checks their poultice pouch.* Everyone holding up?",
+            f"*{companion_name} nods quietly.* I'll keep watch.",
+        ],
+    }
+    import random as _rng
+    options = _fallbacks.get(personality.archetype, [f"*{companion_name} shrugs.*"])
+    return _rng.choice(options)
+
+
+def _companion_auto_equip(state: GameState, char: "Character", loot_item: dict) -> Optional[str]:
+    """Auto-equip loot on companion if it's an upgrade. Returns narration or None.
+
+    Args:
+        state: Current GameState.
+        char: The companion Character to potentially equip.
+        loot_item: Loot dict with 'tier', 'slot', 'name', optional 'stat_bonus'/'special_traits'.
+
+    Returns:
+        Narration string if equipped, None otherwise.
+    """
+    if not char.gear:
+        return None
+
+    # Determine which slot this loot fits
+    loot_tier = loot_item.get("tier", 1)
+    loot_slot = loot_item.get("slot")
+    loot_name = loot_item.get("name", "item")
+
+    if not loot_slot:
+        return None
+
+    # Map slot name to GearSlot enum
+    try:
+        slot_enum = GearSlot(loot_slot) if isinstance(loot_slot, str) else loot_slot
+    except (ValueError, KeyError):
+        return None
+
+    current_item = char.gear.slots.get(slot_enum)
+    current_tier = current_item.tier.value if current_item and hasattr(current_item.tier, 'value') else (current_item.tier if current_item else 0)
+
+    if loot_tier > current_tier:
+        # Equip the upgrade
+        old_name = current_item.name if current_item else "nothing"
+        try:
+            new_gear = GearItem(  # type: ignore[call-arg]
+                name=loot_name,
+                slot=slot_enum,
+                tier=GearTier(loot_tier) if isinstance(loot_tier, int) else loot_tier,
+                stat_bonus=loot_item.get("stat_bonus", {}),
+                special_traits=loot_item.get("special_traits", []),
+            )
+            char.gear.equip(new_gear)
+            return f"{char.name} swaps their old {old_name} for the {loot_name}."
+        except Exception:
+            return None
+    return None
 
 
 def _settlement_talk(state: GameState, raw_input: str):
@@ -1074,6 +1411,45 @@ def _settlement_talk(state: GameState, raw_input: str):
 
     if not target:
         con.print(f"[dim]No one named '{raw_input}' is here.[/]")
+        return
+
+    # WO-V62.0: Route companion NPCs to personality-driven dialogue
+    if target.location == "party" and target.name in state.autopilot_agents:
+        evo = state.trait_evolutions.get(target.name)
+        if evo and evo.bond < -0.5:
+            con.print(f"\n  [bold cyan]{target.name}[/] (companion)")
+            con.print(f'  *{target.name} turns away.* "I have nothing to say to you."')
+            con.print(f"  [dim][1] Intimidate (Might DC 12)  [2] Persuade (Wits DC 14)  [0] Leave[/dim]")
+            choice = Prompt.ask("  >", console=con, default="0")
+            if choice == "1":
+                char = state.active_leader or state.character
+                if char:
+                    roll = random.randint(1, 20) + getattr(char, 'might_mod', 0)
+                    if roll >= 12:
+                        con.print(f"  [bold]{char.name} looms over {target.name}.[/] ({roll} vs DC 12: SUCCESS)")
+                        evo.adjust_bond(0.01)
+                    else:
+                        con.print(f"  {target.name} scoffs. ({roll} vs DC 12: FAIL)")
+                        return
+                else:
+                    return
+            elif choice == "2":
+                char = state.active_leader or state.character
+                if char:
+                    roll = random.randint(1, 20) + getattr(char, 'wits_mod', 0)
+                    if roll >= 14:
+                        con.print(f"  [bold]{char.name} finds the right words.[/] ({roll} vs DC 14: SUCCESS)")
+                        evo.adjust_bond(0.03)
+                    else:
+                        con.print(f"  {target.name} isn't convinced. ({roll} vs DC 14: FAIL)")
+                        return
+                else:
+                    return
+            else:
+                return
+        dialogue = _companion_dialogue(state, target.name, player_message)
+        con.print(f"\n  [bold cyan]{target.name}[/] (companion)")
+        con.print(f'  {dialogue}')
         return
 
     dialogue = state.narrative.talk_to_npc(target.name, player_message=player_message)
@@ -1155,6 +1531,14 @@ def _settlement_rumor_board(state: GameState):
 
     con.print("\n  [bold]RUMOR BOARD[/]")
     con.print("  [dim]Whispers pinned to weathered cork...[/]\n")
+
+    # WO-V62.0: Reputation gate
+    if state.trait_evolutions:
+        avg_bond = sum(e.bond for e in state.trait_evolutions.values()) / max(1, len(state.trait_evolutions))
+        if avg_bond < -0.3:
+            con.print("  [dim]The board is conspicuously empty. Word travels fast in Emberhome.[/]")
+            Prompt.ask("[dim]Press Enter[/]", console=con, default="")
+            return
 
     # Try Mimir-generated quest
     quest = state.narrative.generate_mimir_quest(tier=state.narrative.chapter)
@@ -1264,6 +1648,7 @@ def _settlement_quest_log(state: GameState):
 
 def _run_emberhome_menu_fallback(state: GameState):
     """Fallback: old menu-based Emberhome if no blueprint loaded."""
+    assert state.engine is not None
     con = state.console
     party = state.engine.party
 
@@ -1295,6 +1680,7 @@ def _run_emberhome_menu_fallback(state: GameState):
 
 def _emberhome_party_status(state: GameState):
     """Show party stats and equipped gear at Emberhome."""
+    assert state.engine is not None
     con = state.console
     for char in state.engine.party:
         lines = Text()
@@ -1309,21 +1695,208 @@ def _emberhome_party_status(state: GameState):
 
 
 def _emberhome_forge(state: GameState):
-    """Forge stub — awaiting Scrap resource system."""
-    state.console.print(Panel(
-        "[dim]The Forge smolders quietly. No Scrap available.\n"
-        "Find Scrap in the dungeon to repair damaged gear.[/]",
-        title="The Forge", border_style="red"))
-    Prompt.ask("[dim]Press Enter to return[/]", console=state.console, default="")
+    """Forge service: upgrade equipped gear using Scrap.
+
+    Cost formula: tier_target * 5 Scrap (T0->T1=5, T1->T2=10, T2->T3=15, T3->T4=20).
+    Upgrade increments GearItem.tier, adds a random stat bonus, and grants +1
+    defense_bonus for armor slots (Chest, Arms, Legs).
+    """
+    con = state.console
+    char = state.active_leader or state.character
+    if not char:
+        con.print("[dim]No character at the forge.[/dim]")
+        Prompt.ask("[dim]Press Enter[/]", console=con, default="")
+        return
+
+    _FORGE_ARMOR_SLOTS = {"Chest", "Arms", "Legs"}
+
+    while True:
+        con.clear()
+        ftbl = Table(title="The Forge", border_style="red", box=box.ROUNDED)
+        ftbl.add_column("#", style="bold yellow", width=3)
+        ftbl.add_column("Slot", style="cyan", width=10)
+        ftbl.add_column("Item", style="white", width=22)
+        ftbl.add_column("Tier", style="green", justify="center", width=6)
+        ftbl.add_column("Cost", style="orange3", justify="center", width=8)
+        ftbl.add_column("Effect", style="dim", width=26)
+
+        upgradeable: List[Tuple[Any, GearItem, int, int]] = []
+        for fslot, fitem in char.gear.slots.items():
+            if fitem and fitem.tier.value < 4:
+                ftier_t = fitem.tier.value + 1
+                fcost = ftier_t * 5
+                feffect = f"T{fitem.tier.value}->T{ftier_t}, +{ftier_t} die"
+                if fslot.value in _FORGE_ARMOR_SLOTS:
+                    feffect += ", +1 DEF"
+                upgradeable.append((fslot, fitem, ftier_t, fcost))
+                ftbl.add_row(
+                    str(len(upgradeable)),
+                    fslot.value,
+                    fitem.name[:22],
+                    f"T{fitem.tier.value}",
+                    f"{fcost} sc",
+                    feffect,
+                )
+
+        con.print(ftbl)
+        con.print(f"\n  [bold orange3]Scrap available:[/] {char.scrap}")
+
+        if not upgradeable:
+            con.print("\n  [dim]All equipped gear is already at maximum tier (T4).[/dim]")
+            Prompt.ask("[dim]Press Enter to leave[/]", console=con, default="")
+            return
+
+        forge_ch = Prompt.ask(
+            "\n  Choose gear to upgrade (number) or [bold]back[/]",
+            console=con, default="back",
+        ).strip().lower()
+
+        if forge_ch in ("back", "b", "q", "quit", ""):
+            return
+        if not forge_ch.isdigit() or not (1 <= int(forge_ch) <= len(upgradeable)):
+            con.print("[red]Invalid choice.[/red]")
+            Prompt.ask("[dim]Press Enter[/]", console=con, default="")
+            continue
+
+        fidx = int(forge_ch) - 1
+        fslot, fitem, ftier_t, fcost = upgradeable[fidx]
+        if char.scrap < fcost:
+            con.print(f"[red]Not enough Scrap! Need {fcost}, have {char.scrap}.[/red]")
+            Prompt.ask("[dim]Press Enter[/]", console=con, default="")
+            continue
+
+        # Upgrade: increment tier, add stat bonus, optionally +1 DEF for armor
+        char.scrap -= fcost
+        fitem.tier = GearTier(ftier_t)
+        fstat_gain = random.randint(1, ftier_t)
+        if fitem.stat_bonuses:
+            fst = next(iter(fitem.stat_bonuses))
+            fitem.stat_bonuses[fst] = fitem.stat_bonuses.get(fst, 0) + fstat_gain
+        else:
+            from codex.games.burnwillow.engine import SLOT_STAT_MAP
+            fitem.stat_bonuses[SLOT_STAT_MAP.get(fslot, StatType.MIGHT)] = fstat_gain
+
+        fdef_note = ""
+        if fslot.value in _FORGE_ARMOR_SLOTS:
+            fitem.defense_bonus += 1
+            fdef_note = f"  DEF +1 (total armor bonus: +{fitem.defense_bonus})\n"
+
+        con.print(Panel(
+            f"[bold green]{fitem.name}[/] upgraded to [bold]T{ftier_t}[/]!\n"
+            f"  Stat bonus +{fstat_gain}\n" + fdef_note
+            + f"  Scrap remaining: {char.scrap}",
+            title="Forge Complete", border_style="green",
+        ))
+        Prompt.ask("[dim]Press Enter[/]", console=con, default="")
+
+
+# WO-V66.0: Memory seed reward constants
+_SEED_STAT_NAMES = ("STR", "DEX", "WIS", "CON", "INT", "CHA")
+_SEED_STAT_MAP = {
+    "STR": StatType.MIGHT, "DEX": StatType.WITS, "WIS": StatType.WITS,
+    "CON": StatType.GRIT, "INT": StatType.WITS, "CHA": StatType.AETHER,
+}
+_SEED_LORE_FRAGMENTS = [
+    "The Burnwillow's roots drink from a buried sea of amber light.",
+    "The Rot is not a disease but a hunger — something ancient and aware.",
+    "Before the first dungeon, there were architects who built it to forget.",
+    "The DoomClock was never meant to be stopped. Only survived.",
+    "Emberhome was not always at the edge. Once it was the center.",
+    "Those who hear the bell in the deep are already half-claimed.",
+    "The Tier IV gear was not crafted. It was grown from the walls.",
+    "There are rooms that only appear at Doom 22. No one returns to describe them.",
+]
+_SEED_BLUEPRINTS = [
+    ("Ashen Blade", GearSlot.R_HAND, GearTier.TIER_II),
+    ("Ironbark Buckler", GearSlot.L_HAND, GearTier.TIER_II),
+    ("Emberveil Cloak", GearSlot.SHOULDERS, GearTier.TIER_II),
+    ("Rot-Iron Coif", GearSlot.HEAD, GearTier.TIER_II),
+    ("Deepstone Tassets", GearSlot.LEGS, GearTier.TIER_III),
+    ("Warden's Signet", GearSlot.R_RING, GearTier.TIER_III),
+]
 
 
 def _emberhome_decipher(state: GameState):
-    """Decipher stub — awaiting Memory Seed system."""
-    state.console.print(Panel(
-        "[dim]The deciphering table sits empty. No Memory Seeds found.\n"
-        "Rare and Epic seeds must be deciphered here before use.[/]",
-        title="Decipher Blueprints", border_style="magenta"))
-    Prompt.ask("[dim]Press Enter to return[/]", console=state.console, default="")
+    """Decipher service: reveal the reward locked inside a memory seed.
+
+    Memory seeds drop from elite/boss enemies (tier >= 3) and epic chests.
+    Reward probabilities: 50% stat buff, 30% lore fragment, 20% gear blueprint.
+    """
+    con = state.console
+    char = state.active_leader or state.character
+    if not char:
+        con.print("[dim]No character to decipher for.[/dim]")
+        Prompt.ask("[dim]Press Enter[/]", console=con, default="")
+        return
+
+    while True:
+        con.clear()
+        undeciphered = [
+            (i, s) for i, s in enumerate(char.memory_seeds) if not s.get("deciphered")
+        ]
+        if not undeciphered:
+            con.print(Panel(
+                "[dim]The deciphering table sits empty. No Memory Seeds to reveal.\n"
+                "Elite enemies (T3+) and boss chests drop seeds in the dungeon.[/dim]",
+                title="Decipher Blueprints", border_style="magenta",
+            ))
+            Prompt.ask("[dim]Press Enter to leave[/]", console=con, default="")
+            return
+
+        dtbl = Table(title="Memory Seeds", border_style="magenta", box=box.ROUNDED)
+        dtbl.add_column("#", style="bold yellow", width=3)
+        dtbl.add_column("Seed Name", style="white", width=24)
+        dtbl.add_column("Tier", style="green", justify="center", width=6)
+        for dnum, (_, dseed) in enumerate(undeciphered, 1):
+            dtbl.add_row(str(dnum), dseed.get("name", "Unknown Seed"), f"T{dseed.get('tier', 1)}")
+        con.print(dtbl)
+
+        dch = Prompt.ask(
+            "\n  Choose seed to decipher (number) or [bold]back[/]",
+            console=con, default="back",
+        ).strip().lower()
+        if dch in ("back", "b", "q", "quit", ""):
+            return
+        if not dch.isdigit() or not (1 <= int(dch) <= len(undeciphered)):
+            con.print("[red]Invalid choice.[/red]")
+            Prompt.ask("[dim]Press Enter[/]", console=con, default="")
+            continue
+
+        d_real_idx, dseed = undeciphered[int(dch) - 1]
+        char.memory_seeds[d_real_idx]["deciphered"] = True
+
+        droll = random.random()
+        if droll < 0.50:
+            dsn = random.choice(_SEED_STAT_NAMES)
+            dst = _SEED_STAT_MAP[dsn]
+            dattr = dst.value.lower()
+            setattr(char, dattr, min(20, getattr(char, dattr, 10) + 1))
+            if dst == StatType.GRIT:
+                char.recalculate_hp()
+            elif dst == StatType.WITS:
+                char.base_defense = 10 + calculate_stat_mod(char.wits)
+            drwd = (
+                f"[bold cyan]STAT BOOST:[/] {char.name}'s {dsn} increases by 1!\n"
+                f"  ({dattr.upper()} is now {getattr(char, dattr)})"
+            )
+        elif droll < 0.80:
+            drwd = f"[bold yellow]LORE FRAGMENT:[/]\n  \"{random.choice(_SEED_LORE_FRAGMENTS)}\""
+        else:
+            dbp_name, dbp_slot, dbp_tier = random.choice(_SEED_BLUEPRINTS)
+            char.add_to_inventory(GearItem(
+                name=dbp_name, slot=dbp_slot, tier=dbp_tier,
+                description=f"Forged from a deciphered memory. Tier {dbp_tier.value} quality.",
+            ))
+            drwd = (
+                f"[bold green]GEAR BLUEPRINT:[/] [italic]{dbp_name}[/italic] added to backpack!\n"
+                f"  ({dbp_slot.value}, T{dbp_tier.value})"
+            )
+
+        con.print(Panel(
+            f"Seed: [italic]{dseed.get('name', 'Unknown')}[/italic]\n\n{drwd}",
+            title="Seed Deciphered", border_style="magenta",
+        ))
+        Prompt.ask("[dim]Press Enter[/]", console=con, default="")
 
 
 # =============================================================================
@@ -1388,9 +1961,9 @@ def init_game(state: GameState, names: List[str], seed: Optional[int] = None,
             else:
                 state.engine.create_character(name)
             if i == 0:
-                state.engine.party = [state.engine.character]
+                state.engine.party = [state.engine.character]  # type: ignore[list-item]
             else:
-                state.engine.party.append(state.engine.character)
+                state.engine.party.append(state.engine.character)  # type: ignore[arg-type]
             state.engine.equip_loadout(loadout_id)
         state.engine.character = state.engine.party[0]
         state.engine.party[0].keys = 1
@@ -1483,16 +2056,21 @@ def init_game(state: GameState, names: List[str], seed: Optional[int] = None,
     from codex.core.services.momentum import MomentumLedger
     state.momentum_ledger = MomentumLedger(universe_id="burnwillow")
 
+    # WO-V69.0: Initialize world simulation — time starts at morning, day 1
+    state.day_clock = DayClock(phase=TimeOfDay.MORNING, day=1)
+    state.weather = WeatherEngine(terrain_type="dungeon")
+    state.rooms_since_last_tick = 0
+
     # --- Narrative Engine (Universal Adventure Module) ---
     state.narrative = NarrativeEngine(system_id=state.system_id or "burnwillow")
     # WO-V56.0: Wire _engine_ref — unlocks DeltaTracker + memory shard injection
-    state.narrative._engine_ref = state.engine
+    state.narrative._engine_ref = state.engine  # type: ignore[attr-defined]
     # WO-V56.0: Wire memory engine for ANCHOR shard injection into Mimir prompts
     try:
         from codex.core.memory import CodexMemoryEngine
-        state.engine.memory_engine = CodexMemoryEngine()
+        state.engine.memory_engine = CodexMemoryEngine()  # type: ignore[attr-defined]
     except ImportError:
-        state.engine.memory_engine = None
+        state.engine.memory_engine = None  # type: ignore[attr-defined]
     _load_emberhome_settlement(state)
     _init_npc_memory(state)
 
@@ -1516,7 +2094,7 @@ def init_game(state: GameState, names: List[str], seed: Optional[int] = None,
             system_id=state.system_id or "burnwillow",
         )
         state.engine.dungeon_graph.seed = dungeon_seed
-        state.engine.seed = dungeon_seed
+        state.engine.seed = dungeon_seed  # type: ignore[attr-defined]
         state.engine.current_room_id = state.engine.dungeon_graph.start_room_id
         if state.engine.dungeon_graph.start_room_id in state.engine.dungeon_graph.rooms:
             start_room = state.engine.dungeon_graph.rooms[state.engine.dungeon_graph.start_room_id]
@@ -1585,6 +2163,11 @@ def init_game_with_characters(state: GameState, characters, seed=None):
     from codex.core.services.momentum import MomentumLedger
     state.momentum_ledger = MomentumLedger(universe_id="burnwillow")
 
+    # WO-V69.0: Initialize world simulation — time starts at morning, day 1
+    state.day_clock = DayClock(phase=TimeOfDay.MORNING, day=1)
+    state.weather = WeatherEngine(terrain_type="dungeon")
+    state.rooms_since_last_tick = 0
+
     # --- Narrative Engine + Emberhome Hub ---
     state.narrative = NarrativeEngine(system_id=state.system_id or "burnwillow")
     _load_emberhome_settlement(state)
@@ -1608,7 +2191,7 @@ def init_game_with_characters(state: GameState, characters, seed=None):
             system_id=state.system_id or "burnwillow",
         )
         state.engine.dungeon_graph.seed = dungeon_seed
-        state.engine.seed = dungeon_seed
+        state.engine.seed = dungeon_seed  # type: ignore[attr-defined]
         state.engine.current_room_id = state.engine.dungeon_graph.start_room_id
         if state.engine.dungeon_graph.start_room_id in state.engine.dungeon_graph.rooms:
             start_room = state.engine.dungeon_graph.rooms[state.engine.dungeon_graph.start_room_id]
@@ -1673,6 +2256,7 @@ def _archive_dungeon_seed(state: GameState, seed: int, summary: dict):
 
 def _broadcast_death(state: GameState):
     """Record fallen party members in the Graveyard service."""
+    assert state.engine is not None
     try:
         from codex.core.services.graveyard import log_death
         for char in state.engine.party:
@@ -1700,6 +2284,7 @@ def _broadcast_death(state: GameState):
 
 def _broadcast_victory(state: GameState, butler=None):
     """Archive the winning seed and log fallen party members."""
+    assert state.engine is not None
     try:
         from codex.core.services.librarian import LibrarianTUI
         LibrarianTUI.archive_seed({
@@ -1890,11 +2475,107 @@ def _build_sidebar_detail(state: GameState) -> Optional[str]:
     return "\n".join(parts)
 
 
+NARROW_THRESHOLD = 80  # columns — terminals narrower than this use compact layout
+
+
+def _detect_width(console) -> int:
+    """Return current terminal width, defaulting to 120 if unavailable.
+
+    Args:
+        console: Rich :class:`~rich.console.Console` instance.
+
+    Returns:
+        Integer column count.
+    """
+    return console.width or 120
+
+
+def _build_narrow_frame(state: "GameState") -> Text:
+    """Build a single-column frame for narrow terminals (< NARROW_THRESHOLD cols).
+
+    Layout (top to bottom):
+      1. Compact stats bar  — HP / DR / Keys / Doom
+      2. Mini-map           — Rich text, full width
+      3. Room info          — type label + exits
+      4. Hostile list       — if present
+      5. Message log        — last 5 messages
+
+    Args:
+        state: Current :class:`GameState`.
+
+    Returns:
+        Rich :class:`~rich.text.Text` renderable for ``con.print()``.
+    """
+    leader = state.active_leader or state.character
+    output = Text()
+
+    # --- 1. Compact stats bar ---
+    if leader:
+        hp_style = "bold red" if leader.current_hp <= leader.max_hp // 3 else "bold white"
+        dr = leader.gear.get_total_dr() if hasattr(leader, 'gear') else 0
+        keys = getattr(leader, 'keys', 0)
+        doom = state.doom
+        output.append(f"HP: {leader.current_hp}/{leader.max_hp}", style=hp_style)
+        output.append(f"  |  DR: {dr}", style="white")
+        output.append(f"  |  Keys: {keys}", style=f"{THEME_CFG.color_loot}")
+        output.append(f"  |  Doom: {doom}", style=f"bold {THEME_CFG.color_enemy}")
+        output.append("\n")
+
+    # --- 2. Mini-map ---
+    if state.engine and state.engine.dungeon_graph:
+        mm_rooms = rooms_to_minimap_dict(state.engine.dungeon_graph)
+        for rid, sr in state.spatial_rooms.items():
+            if rid in mm_rooms and sr.quest_markers:
+                mm_rooms[rid]["quest_markers"] = list(sr.quest_markers)
+        mini = render_mini_map(
+            mm_rooms, state.current_room_id or 0, state.engine.visited_rooms,
+            rich_mode=True, theme=THEME,
+            doom=state.engine.doom_clock.current if hasattr(state.engine, 'doom_clock') else None,
+        )
+        output.append_text(mini if isinstance(mini, Text) else Text(str(mini)))
+        output.append("\n")
+
+    # --- 3. Room info + exits ---
+    room_data = state.engine.get_current_room() if state.engine else None
+    if room_data:
+        output.append(
+            f"[ {room_data.get('type', 'room').upper()} ]  ",
+            style=f"bold {THEME_CFG.color_current}",
+        )
+        exits = _format_cardinal_exits(state)
+        output.append(
+            f"Exits: {', '.join(exits) if exits else 'None'}\n",
+            style="white",
+        )
+
+    # --- 4. Hostile list ---
+    enemies = state.room_enemies.get(state.current_room_id or 0, [])
+    if enemies:
+        names = ", ".join(e["name"] for e in enemies)
+        output.append(f"Hostile: {names}\n", style=f"bold {THEME_CFG.color_enemy}")
+
+    # --- 5. Message log (last 5) ---
+    if state.message_log:
+        recent = state.message_log[-5:]
+        for msg in recent:
+            if msg.strip():
+                output.append(f"{msg.strip()}\n", style="dim white")
+
+    return output
+
+
 def render_frame(state: GameState):
     """Render the full game frame: map + HUD + room description + message log."""
     _rebuild_spatial_rooms(state)
     con = state.console
     con.clear()
+
+    # Narrow-mode: single-column layout for terminals under NARROW_THRESHOLD cols
+    if _detect_width(con) < NARROW_THRESHOLD:
+        narrow_content = _build_narrow_frame(state)
+        con.print(Panel(narrow_content, title=f"[bold]{GAME_TITLE}[/]",
+                        border_style=THEME_CFG.color_current, box=box.ROUNDED))
+        return
 
     # Title bar
     title_text = Text()
@@ -1903,6 +2584,10 @@ def render_frame(state: GameState):
     title_text.append(f"  Doom: {state.doom}", style=f"bold {THEME_CFG.color_enemy}")
     title_text.append(f"  Turn: {state.turn_number}", style=f"dim white")
     title_text.append(f"  Move: {state.remaining_movement}ft", style="dim cyan")
+    # WO-V69.0: Time of day + weather in HUD
+    _hud_time = state.day_clock.display()
+    _hud_weather = state.weather.current.value.capitalize()
+    title_text.append(f"  {_hud_time} \u2014 {_hud_weather}", style="dim yellow")
     action_status = "Ready" if not state.action_taken else "Used"
     action_style = "dim green" if not state.action_taken else "dim red"
     title_text.append(f"  Action: {action_status}", style=action_style)
@@ -1923,21 +2608,31 @@ def render_frame(state: GameState):
                         border_style="bold yellow", box=box.SIMPLE))
 
     # Get current room data
+    assert state.engine is not None
     room_data = state.engine.get_current_room()
     if not room_data:
         con.print("[red]ERROR: No current room data.[/red]")
         return
 
-    enemies = state.room_enemies.get(state.current_room_id, [])
-    loot = state.room_loot.get(state.current_room_id, [])
+    _cur_room_id = state.current_room_id or 0
+    enemies = state.room_enemies.get(_cur_room_id, [])
+    loot = state.room_loot.get(_cur_room_id, [])
 
     # Build stats dict for sidebar
-    furniture = state.room_furniture.get(state.current_room_id, [])
+    furniture = state.room_furniture.get(_cur_room_id, [])
+    # WO-V69.0: Append time/weather/darkness line to room description
+    _base_desc = room_data["description"]
+    _time_str = state.day_clock.display()
+    _weather_str = state.weather.flavor_text()
+    _env_line = f"[dim]{_time_str}. {_weather_str}[/dim]"
+    if state.day_clock.is_dark():
+        _env_line += " [dim red]Visibility is reduced in the darkness.[/dim red]"
+    _room_desc_with_env = f"{_base_desc}\n{_env_line}"
     stats = {
         "room_name": f"Room {room_data['id']} ({room_data['type'].upper()})",
-        "room_description": room_data["description"],
-        "hp_current": (state.active_leader or state.character).current_hp,
-        "hp_max": (state.active_leader or state.character).max_hp,
+        "room_description": _room_desc_with_env,
+        "hp_current": (state.active_leader or state.character).current_hp,  # type: ignore[union-attr]
+        "hp_max": (state.active_leader or state.character).max_hp,  # type: ignore[union-attr]
         "depth": room_data.get("tier", 1),
         "enemies": enemies,
         "loot": loot,
@@ -1954,7 +2649,7 @@ def render_frame(state: GameState):
             if rid in mm_rooms and sr.quest_markers:
                 mm_rooms[rid]["quest_markers"] = list(sr.quest_markers)
         stats["mini_map"] = render_mini_map(
-            mm_rooms, state.current_room_id, state.engine.visited_rooms,
+            mm_rooms, state.current_room_id or 0, state.engine.visited_rooms,
             rich_mode=True, theme=THEME,
             doom=state.engine.doom_clock.current if hasattr(state.engine, 'doom_clock') else None,
         )
@@ -1962,7 +2657,7 @@ def render_frame(state: GameState):
     # Render map with sidebar
     map_panel = render_spatial_map(
         rooms=state.spatial_rooms,
-        player_room_id=state.current_room_id,
+        player_room_id=state.current_room_id or 0,
         theme=THEME,
         stats=stats,
         viewport_width=50,
@@ -2001,10 +2696,11 @@ def render_frame(state: GameState):
             party_lines.append(f" A{calculate_stat_mod(char.aether):+d}", style=dead_style or "white")
             party_lines.append(f" DR:{char.gear.get_total_dr()}", style=dead_style or "white")
 
-    # Leader's keys
+    # Leader's keys and scrap
     leader = state.active_leader or state.character
     if leader:
         party_lines.append(f"  Keys:{leader.keys}", style=f"{THEME_CFG.color_loot}")
+        party_lines.append(f"  Scrap:{leader.scrap}", style="bold orange3")
 
     con.print(Panel(party_lines, box=box.SIMPLE, border_style="dim"))
 
@@ -2083,6 +2779,7 @@ def render_title_screen(con: Console):
 
 def render_death_screen(state: GameState):
     """Show the death screen (total party kill)."""
+    assert state.engine is not None
     con = state.console
     con.print()
     death_text = Text()
@@ -2106,6 +2803,7 @@ def render_death_screen(state: GameState):
 
 def render_victory_screen(state: GameState):
     """Show the victory screen (reached boss room and cleared it)."""
+    assert state.engine is not None
     con = state.console
     con.print()
     victory_text = Text()
@@ -2213,6 +2911,7 @@ def advance_to_next_zone(state) -> bool:
 
 def action_move(state: GameState, target_id: int) -> List[str]:
     """Move to a connected room. Advances Doom Clock by 1. Triggers ambush check."""
+    assert state.engine is not None
     messages = []
 
     # End any active combat before moving
@@ -2263,11 +2962,21 @@ def action_move(state: GameState, target_id: int) -> List[str]:
 
     # Quest objective tracking: room entry
     if state.narrative:
-        room_node = state.engine.dungeon_graph.rooms.get(target_id)
+        room_node = state.engine.dungeon_graph.rooms.get(target_id) if state.engine.dungeon_graph else None  # type: ignore[union-attr]
         tier = room_node.tier if room_node else 1
         triggers = state.narrative.check_objective(f"reach_tier_{tier}")
         for msg in triggers:
             messages.append(f"[QUEST] {msg}")
+
+    # WO-V69.0: Advance time of day every 3 rooms explored
+    state.rooms_since_last_tick += 1
+    if state.rooms_since_last_tick >= 3:
+        state.rooms_since_last_tick = 0
+        day_msgs = state.day_clock.advance(1)
+        messages.extend(f"[dim]{m}[/dim]" for m in day_msgs)
+        weather_msg = state.weather.advance()
+        if weather_msg:
+            messages.append(f"[dim italic]{weather_msg}[/dim italic]")
 
     # NPC encounter check (empty rooms only)
     npc_msgs = _handle_dungeon_npc_encounter(state, target_id)
@@ -2278,7 +2987,7 @@ def action_move(state: GameState, target_id: int) -> List[str]:
 
     # Encounter engine: augment room with party-size/doom scaling
     if new_enemies:
-        room_node = state.engine.dungeon_graph.rooms.get(target_id)
+        room_node = state.engine.dungeon_graph.rooms.get(target_id) if state.engine.dungeon_graph else None  # type: ignore[union-attr]
         _scaling = get_party_scaling(len(state.engine.get_active_party()))
         enc_ctx = EncounterContext(
             system_tag="BURNWILLOW",
@@ -2287,7 +2996,7 @@ def action_move(state: GameState, target_id: int) -> List[str]:
             floor_tier=room_node.tier if room_node else 1,
             room_type=room_node.room_type.value if room_node else "normal",
             trigger="move_entry",
-            seed=(state.engine.dungeon_graph.seed + target_id + state.turn_number),
+            seed=((state.engine.dungeon_graph.seed if state.engine.dungeon_graph else 0) + target_id + state.turn_number),  # type: ignore[union-attr]
             hp_mult=_scaling["hp_mult"],
             dmg_mult=_scaling["dmg_mult"],
         )
@@ -2367,6 +3076,7 @@ def action_move(state: GameState, target_id: int) -> List[str]:
 
 def action_scout(state: GameState, target_id: int) -> List[str]:
     """Peek at a connected room without entering. Wits vs DC 12. +1 Doom."""
+    assert state.engine is not None
     messages = []
     char = state.active_character or state.character
 
@@ -2383,11 +3093,11 @@ def action_scout(state: GameState, target_id: int) -> List[str]:
         return messages
 
     # Wits check
-    check = char.make_check(StatType.WITS, SCOUT_DC)
+    check = char.make_check(StatType.WITS, SCOUT_DC)  # type: ignore[union-attr]
     doom_events = _advance_doom_scaled(state, 1)
     for _evt in doom_events:
-        state.log_event("doom_threshold", doom_value=state.engine.doom_clock.filled, event_text=_evt)
-        _broadcast_anchor(state, "doom_threshold", doom_value=state.engine.doom_clock.filled, event_text=_evt)
+        state.log_event("doom_threshold", doom_value=state.engine.doom_clock.filled, event_text=_evt)  # type: ignore[union-attr]
+        _broadcast_anchor(state, "doom_threshold", doom_value=state.engine.doom_clock.filled, event_text=_evt)  # type: ignore[union-attr]
     state.turn_number += 1
 
     if check.success:
@@ -2424,7 +3134,7 @@ def action_scout(state: GameState, target_id: int) -> List[str]:
             messages.append("FUMBLE! Your noise alerts the enemy!")
             pop_room = state.engine.populated_rooms.get(target_id)
             source_enemies = pop_room.content.get("enemies", []) if pop_room else []
-            room_node = state.engine.dungeon_graph.rooms.get(target_id)
+            room_node = state.engine.dungeon_graph.rooms.get(target_id) if state.engine.dungeon_graph else None  # type: ignore[union-attr]
 
             _scaling = get_party_scaling(len(state.engine.get_active_party()))
             enc_ctx = EncounterContext(
@@ -2434,7 +3144,7 @@ def action_scout(state: GameState, target_id: int) -> List[str]:
                 floor_tier=room_node.tier if room_node else 1,
                 room_type=room_node.room_type.value if room_node else "normal",
                 trigger="scout_fumble",
-                seed=(state.engine.dungeon_graph.seed + target_id + state.turn_number),
+                seed=((state.engine.dungeon_graph.seed if state.engine.dungeon_graph else 0) + target_id + state.turn_number),  # type: ignore[union-attr]
                 source_room_enemies=source_enemies,
                 hp_mult=_scaling["hp_mult"],
                 dmg_mult=_scaling["dmg_mult"],
@@ -2442,8 +3152,9 @@ def action_scout(state: GameState, target_id: int) -> List[str]:
             enc_result = EncounterEngine().generate(enc_ctx)
 
             # Place pulled enemies in current room
-            current_room = state.engine.dungeon_graph.rooms.get(state.current_room_id)
-            existing = state.room_enemies.get(state.current_room_id, [])
+            _cur_id = state.current_room_id or 0
+            current_room = state.engine.dungeon_graph.rooms.get(_cur_id) if state.engine.dungeon_graph else None  # type: ignore[union-attr]
+            existing = state.room_enemies.get(_cur_id, [])
             for i, entity in enumerate(enc_result.entities):
                 if current_room:
                     cx = current_room.x + current_room.width // 2
@@ -2451,7 +3162,7 @@ def action_scout(state: GameState, target_id: int) -> List[str]:
                     inner_x1 = current_room.x + current_room.width - 2
                     entity["x"] = min(cx + 1 + len(existing) + i, inner_x1)
                     entity["y"] = cy
-                state.room_enemies.setdefault(state.current_room_id, []).append(entity)
+                state.room_enemies.setdefault(_cur_id, []).append(entity)
                 messages.append(f"  A {entity['name']} charges into your room!")
 
             # Handle traps from fumble (30% chance)
@@ -2474,29 +3185,31 @@ def action_scout(state: GameState, target_id: int) -> List[str]:
 
 def action_search(state: GameState) -> List[str]:
     """Thoroughly search the current room for hidden loot. Wits vs DC 12. +1 Doom."""
+    assert state.engine is not None
     messages = []
     char = state.active_character or state.character
-    room_id = state.current_room_id
+    room_id = state.current_room_id or 0
 
     if room_id in state.searched_rooms:
         messages.append("You have already searched this room thoroughly.")
         return messages
 
     # Wits check
-    check = char.make_check(StatType.WITS, SEARCH_DC)
+    check = char.make_check(StatType.WITS, SEARCH_DC)  # type: ignore[union-attr]
     doom_events = _advance_doom_scaled(state, 1)
     for _evt in doom_events:
-        state.log_event("doom_threshold", doom_value=state.engine.doom_clock.filled, event_text=_evt)
-        _broadcast_anchor(state, "doom_threshold", doom_value=state.engine.doom_clock.filled, event_text=_evt)
+        state.log_event("doom_threshold", doom_value=state.engine.doom_clock.filled, event_text=_evt)  # type: ignore[union-attr]
+        _broadcast_anchor(state, "doom_threshold", doom_value=state.engine.doom_clock.filled, event_text=_evt)  # type: ignore[union-attr]
     state.turn_number += 1
     state.searched_rooms.add(room_id)
 
     if check.success:
         # Generate bonus loot
-        room_node = state.engine.dungeon_graph.get_room(room_id)
+        room_node = state.engine.dungeon_graph.get_room(room_id) if state.engine.dungeon_graph else None  # type: ignore[union-attr]
         tier = room_node.tier if room_node else 1
-        adapter = BurnwillowAdapter(seed=(state.engine.dungeon_graph.seed + room_id + 1000))
-        rng = random.Random(state.engine.dungeon_graph.seed + room_id + 1000)
+        _dg_seed = state.engine.dungeon_graph.seed if state.engine.dungeon_graph else 0  # type: ignore[union-attr]
+        adapter = BurnwillowAdapter(seed=(_dg_seed + room_id + 1000))
+        rng = random.Random(_dg_seed + room_id + 1000)
         bonus_item = adapter._generate_loot(tier, rng)
 
         state.room_loot.setdefault(room_id, []).append(bonus_item)
@@ -2504,6 +3217,16 @@ def action_search(state: GameState) -> List[str]:
             f"Search SUCCESS ({check.total} vs DC {SEARCH_DC}): "
             f"You found a hidden {bonus_item['name']}!"
         )
+        # WO-V66.0: Scrap from search finds (1-3 scrap)
+        _search_leader = state.active_leader or state.character
+        if _search_leader:
+            _search_scrap = random.randint(1, 3)
+            _search_leader.scrap += _search_scrap
+            messages.append(f"[+{_search_scrap} Scrap] from hidden debris ({_search_leader.scrap} total)")
+        # WO-V62.0: Trait evolution nudge — found secret
+        for _cn, _evo in state.trait_evolutions.items():
+            from codex.core.trait_evolution import apply_nudge_trigger
+            apply_nudge_trigger(_evo, "found_secret", state.turn_number)
         # WO-V44.0: Quest search trigger
         for qm in _check_quest_search(state, room_id):
             messages.append(f"[QUEST] {qm}")
@@ -2524,26 +3247,27 @@ def action_search(state: GameState) -> List[str]:
 
 def action_bind_wounds(state: GameState) -> List[str]:
     """Heal approximately 50% of max HP. Costs 1 Dungeon Turn (+1 Doom)."""
+    assert state.engine is not None
     messages = []
     char = state.active_leader
 
-    if char.current_hp >= char.max_hp:
+    if char.current_hp >= char.max_hp:  # type: ignore[union-attr]
         messages.append("You are already at full health.")
         return messages
 
     # Heal
-    heal_amount = max(1, int(char.max_hp * BIND_WOUNDS_HEAL_PERCENT))
-    actual = char.heal(heal_amount)
+    heal_amount = max(1, int(char.max_hp * BIND_WOUNDS_HEAL_PERCENT))  # type: ignore[union-attr]
+    actual = char.heal(heal_amount)  # type: ignore[union-attr]
 
     doom_events = _advance_doom_scaled(state, 1)
     for _evt in doom_events:
-        state.log_event("doom_threshold", doom_value=state.engine.doom_clock.filled, event_text=_evt)
-        _broadcast_anchor(state, "doom_threshold", doom_value=state.engine.doom_clock.filled, event_text=_evt)
+        state.log_event("doom_threshold", doom_value=state.engine.doom_clock.filled, event_text=_evt)  # type: ignore[union-attr]
+        _broadcast_anchor(state, "doom_threshold", doom_value=state.engine.doom_clock.filled, event_text=_evt)  # type: ignore[union-attr]
     state.turn_number += 1
 
     messages.append(
         f"Bind Wounds: Healed {actual} HP "
-        f"(now {char.current_hp}/{char.max_hp})."
+        f"(now {char.current_hp}/{char.max_hp})."  # type: ignore[union-attr]
     )
 
     for event in doom_events:
@@ -2725,7 +3449,7 @@ def _advance_rot_hunter(state: GameState) -> List[str]:
     if not state.engine or not state.engine.dungeon_graph:
         return []
 
-    player_room = state.engine.current_room_id
+    player_room = state.engine.current_room_id or 0
     hunter_room = hunter["room_id"]
 
     if hunter_room == player_room:
@@ -2856,7 +3580,7 @@ def _advance_wave_roamers(state: GameState) -> List[str]:
     if state._wave_roam_counter % 2 != 0:
         return messages  # Only advance every other doom tick
 
-    player_room = state.engine.current_room_id
+    player_room = state.engine.current_room_id or 0
     for roamer in roamers:
         if not roamer.get("active"):
             continue
@@ -2929,13 +3653,14 @@ def _process_doom_advancement(state: GameState, doom_events: list) -> List[str]:
 
 def _end_exploration_turn(state: GameState, doom_cost: int = 0) -> List[str]:
     """End the current exploration turn: advance doom, rotate party, reset budget."""
+    assert state.engine is not None
     messages = []
 
     if doom_cost > 0:
         doom_events = _advance_doom_scaled(state, doom_cost)
         for _evt in doom_events:
-            state.log_event("doom_threshold", doom_value=state.engine.doom_clock.filled, event_text=_evt)
-            _broadcast_anchor(state, "doom_threshold", doom_value=state.engine.doom_clock.filled, event_text=_evt)
+            state.log_event("doom_threshold", doom_value=state.engine.doom_clock.filled, event_text=_evt)  # type: ignore[union-attr]
+            _broadcast_anchor(state, "doom_threshold", doom_value=state.engine.doom_clock.filled, event_text=_evt)  # type: ignore[union-attr]
         state.turn_number += 1
         messages.extend(doom_events)
         rot_msgs = _process_doom_advancement(state, doom_events)
@@ -2969,6 +3694,7 @@ def _advance_doom_scaled(state: GameState, base_cost: int) -> list:
     state._doom_remainder = scaled - whole_ticks
     if whole_ticks <= 0:
         return []
+    assert state.engine is not None
     return state.engine.advance_doom(whole_ticks)
 
 
@@ -3025,6 +3751,8 @@ def _find_exit_in_direction(state: GameState, direction: str) -> Optional[dict]:
     }
     target_dir = dir_map.get(direction.lower())
     if not target_dir:
+        return None
+    if not state.engine:
         return None
     for ex in state.engine.get_cardinal_exits():
         if ex["direction"] == target_dir:
@@ -3203,8 +3931,9 @@ def _apply_damage_aoe(state: GameState, char: Character, trait_name: str, tier: 
 
 def _perform_attack(state: GameState, char: Character, target_index: int) -> List[str]:
     """Core attack logic used by attack action, command bonus attack, etc."""
+    assert state.engine is not None
     messages = []
-    room_id = state.current_room_id
+    room_id = state.current_room_id or 0
     enemies = state.room_enemies.get(room_id, [])
 
     if not enemies:
@@ -3284,7 +4013,44 @@ def _perform_attack(state: GameState, char: Character, target_index: int) -> Lis
         if enemy["hp"] <= 0:
             enemies.pop(target_index)
             messages.append(f"{enemy_name} is slain!")
+            # WO-V66.0: Scrap drops — tier-scaled reward for kills
+            _scrap_ranges = {1: (1, 2), 2: (2, 4), 3: (4, 8), 4: (8, 16)}
+            _e_tier = min(4, max(1, enemy.get("tier", 1)))
+            _lo, _hi = _scrap_ranges[_e_tier]
+            _scrap_drop = random.randint(_lo, _hi)
+            _kill_leader = state.active_leader or state.character
+            if _kill_leader:
+                _kill_leader.scrap += _scrap_drop
+                messages.append(f"  [+{_scrap_drop} Scrap] ({_kill_leader.scrap} total)")
+            # WO-V66.0: Memory seed drops from elite/boss enemies (tier >= 3)
+            if _kill_leader and (enemy.get("is_boss") or _e_tier >= 3):
+                _seed_names = [
+                    "Echoing Shard", "Rot-Touched Crystal", "Ashen Whisper",
+                    "Blight Sigil", "Deep Root Fragment", "Forgotten Glyph",
+                ]
+                _seed = {
+                    "name": random.choice(_seed_names),
+                    "tier": _e_tier,
+                    "deciphered": False,
+                }
+                _kill_leader.memory_seeds.append(_seed)
+                messages.append(f"  [Memory Seed: {_seed['name']} (T{_e_tier})] dropped!")
+            # WO-V62.0: Combat quip on companion kill (bond-aware)
+            if char.name in state.autopilot_agents:
+                _agent = state.autopilot_agents[char.name]
+                _kill_evo = state.trait_evolutions.get(char.name)
+                if _kill_evo and _kill_evo.bond < -0.2:
+                    _quips = _COMBAT_QUIPS_KILL_HOSTILE.get(_agent.personality.archetype, [])
+                else:
+                    _quips = _COMBAT_QUIPS_KILL.get(_agent.personality.archetype, [])
+                if _quips:
+                    messages.append(f"  [italic dim]{char.name}: {random.choice(_quips)}[/italic dim]")
             state.enemies_slain += 1
+            # WO-V62.0: Trait evolution nudge — boss/elite kill
+            if enemy.get("is_boss") or enemy.get("tier", 1) >= 3:
+                for _cn, _evo in state.trait_evolutions.items():
+                    from codex.core.trait_evolution import apply_nudge_trigger
+                    apply_nudge_trigger(_evo, "killed_boss", state.turn_number)
             for qm in _check_quest_kill(state, room_id):
                 messages.append(f"[QUEST] {qm}")
             # WO-V37.0: Log kill event
@@ -3298,6 +4064,16 @@ def _perform_attack(state: GameState, char: Character, target_index: int) -> Lis
                     shard_type="ANCHOR",
                     tags=["combat", "kill", f"tier_{enemy.get('tier', 1)}"],
                 )
+            # WO-V62.0: Record boss/elite kill as ANCHOR in companion memory
+            if (enemy.get("is_boss") or enemy.get("tier", 1) >= 3) and hasattr(state, '_npc_memory') and state._npc_memory:
+                for comp_name in state.autopilot_agents:
+                    try:
+                        bank = state._npc_memory.get_bank(comp_name)
+                        if not bank:
+                            bank = state._npc_memory.register_npc(comp_name, role="companion")
+                        bank.record_anchor(f"Helped slay {enemy_name} (tier {enemy.get('tier', '?')})", tags=["combat", "boss_kill"])
+                    except Exception:
+                        pass
             # Rot Hunter death handling
             if enemy.get("is_rot_hunter") and state.rot_hunter:
                 state.rot_hunter["active"] = False
@@ -3311,6 +4087,15 @@ def _perform_attack(state: GameState, char: Character, target_index: int) -> Lis
                 if loot_drop:
                     state.room_loot.setdefault(room_id, []).append(loot_drop)
                     messages.append(f"  {enemy_name} drops: {loot_drop['name']}!")
+                    # WO-V62.0: Auto-equip for companions
+                    if char.name in state.autopilot_agents:
+                        equip_msg = _companion_auto_equip(state, char, loot_drop)
+                        if equip_msg:
+                            messages.append(f"  [cyan]{equip_msg}[/cyan]")
+                            # Remove from loot pile since companion took it
+                            loot_list = state.room_loot.get(room_id, [])
+                            if loot_drop in loot_list:
+                                loot_list.remove(loot_drop)
             if not enemies:
                 state.cleared_rooms.add(room_id)
                 messages.append("Room cleared!")
@@ -3417,11 +4202,17 @@ def action_intercept(state: GameState, char: Optional[Character] = None) -> List
         return [f"{char.name} has no gear with [Intercept] (e.g., a shield)."]
 
     state.intercepting = char.name
+    # WO-V62.0: Trait evolution nudge — saved ally (via intercept)
+    if char.name in state.trait_evolutions:
+        from codex.core.trait_evolution import apply_nudge_trigger
+        apply_nudge_trigger(state.trait_evolutions[char.name], "saved_ally", state.turn_number)
     return [f"{char.name} braces their shield to intercept! (Next ally hit redirected here, +2 DR)"]
 
 
 def _find_party_member(state: GameState, target_name: str) -> Optional[Character]:
     """Find a party member by name (case-insensitive partial match)."""
+    if not state.engine:
+        return None
     target_lower = target_name.lower()
     for c in state.engine.get_active_party():
         if c.name.lower() == target_lower or c.name.lower().startswith(target_lower):
@@ -3444,7 +4235,7 @@ def action_command(state: GameState, target_name: str, char: Optional[Character]
     check = char.make_check(StatType.WITS, 12)
     if check.success:
         messages = [f"{char.name} COMMANDS {target.name}! (Wits {check.total} vs DC 12: SUCCESS)"]
-        enemies = state.room_enemies.get(state.current_room_id, [])
+        enemies = state.room_enemies.get(state.current_room_id or 0, [])
         if enemies:
             messages.append(f"  {target.name} makes a bonus attack!")
             messages.extend(_perform_attack(state, target, 0))
@@ -3501,6 +4292,10 @@ def action_triage(state: GameState, target_name: str, char: Optional[Character] 
         if was_critical and now_safe:
             state.log_event("ally_saved", savior=char.name, saved=target.name, method="triage")
             _broadcast_anchor(state, "ally_saved", savior=char.name, saved=target.name, method="triage")
+            # WO-V62.0: Trait evolution nudge — saved ally
+            if char.name in state.trait_evolutions:
+                from codex.core.trait_evolution import apply_nudge_trigger
+                apply_nudge_trigger(state.trait_evolutions[char.name], "saved_ally", state.turn_number)
         return [msg]
     else:
         half_heal = max(1, full_heal // 2)
@@ -3513,6 +4308,10 @@ def action_triage(state: GameState, target_name: str, char: Optional[Character] 
         if was_critical and now_safe:
             state.log_event("ally_saved", savior=char.name, saved=target.name, method="triage")
             _broadcast_anchor(state, "ally_saved", savior=char.name, saved=target.name, method="triage")
+            # WO-V62.0: Trait evolution nudge — saved ally (partial heal)
+            if char.name in state.trait_evolutions:
+                from codex.core.trait_evolution import apply_nudge_trigger
+                apply_nudge_trigger(state.trait_evolutions[char.name], "saved_ally", state.turn_number)
         return [msg]
 
 
@@ -3532,6 +4331,7 @@ def action_sanctify(state: GameState, char: Optional[Character] = None) -> List[
 
 def action_summon(state: GameState, char: Optional[Character] = None) -> List[str]:
     """Summon: Aether vs DC 12. Conjure a spirit minion that joins the party for 3 rounds."""
+    assert state.engine is not None
     char = char or state.active_character
     if not char:
         return ["No active character."]
@@ -3587,7 +4387,7 @@ def action_flash(state: GameState, char: Optional[Character] = None) -> List[str
     tier = _has_trait_any_slot(char, "[Flash]")
     if tier is None:
         return [f"{char.name} has no Flash gear equipped. (Requires [Flash] trait)"]
-    room_id = state.current_room_id
+    room_id = state.current_room_id or 0
     enemies = state.room_enemies.get(room_id, [])
     if not enemies:
         return ["No enemies to blind."]
@@ -3610,7 +4410,7 @@ def action_snare(state: GameState, char: Optional[Character] = None) -> List[str
     tier = _has_trait_any_slot(char, "[Snare]")
     if tier is None:
         return [f"{char.name} has no Snare gear equipped. (Requires [Snare] trait)"]
-    room_id = state.current_room_id
+    room_id = state.current_room_id or 0
     enemies = state.room_enemies.get(room_id, [])
     if not enemies:
         return ["No enemies to snare."]
@@ -3628,6 +4428,7 @@ def action_snare(state: GameState, char: Optional[Character] = None) -> List[str
 
 def action_rally(state: GameState, char: Optional[Character] = None) -> List[str]:
     """Rally: Wits DC 10. Grant +1 bonus die to ALL allies' next attack."""
+    assert state.engine is not None
     char = char or state.active_character
     if not char:
         return ["No active character."]
@@ -3648,6 +4449,7 @@ def action_rally(state: GameState, char: Optional[Character] = None) -> List[str
 
 def action_mending(state: GameState, char: Optional[Character] = None) -> List[str]:
     """Mending: Wits DC 10. Heal 1d6*tier HP to ALL party members."""
+    assert state.engine is not None
     char = char or state.active_character
     if not char:
         return ["No active character."]
@@ -3677,6 +4479,7 @@ def action_mending(state: GameState, char: Optional[Character] = None) -> List[s
 
 def action_renewal(state: GameState, char: Optional[Character] = None) -> List[str]:
     """Renewal: Aether DC 12. HoT: 1d4 HP/round for 3 rounds to all allies."""
+    assert state.engine is not None
     char = char or state.active_character
     if not char:
         return ["No active character."]
@@ -3713,6 +4516,7 @@ def action_aegis(state: GameState, char: Optional[Character] = None) -> List[str
 # WO-V36.0: In-Game Companion Command
 def action_companion(state: GameState) -> List[str]:
     """Summon or check AI companion status. Hub-only."""
+    assert state.engine is not None
     if not state.in_settlement:
         return ["Companions can only be summoned at Emberhome hub."]
 
@@ -3746,12 +4550,19 @@ def action_companion(state: GameState) -> List[str]:
         from codex.games.burnwillow.autopilot import create_ai_character
         from codex.games.burnwillow.engine import create_starter_gear as _csg
         personality, companion_name, stats, bio, quirk = create_ai_character()
-        companion = Character(companion_name, **stats)
+        companion = Character(companion_name, **stats)  # type: ignore[call-arg]
         _csg(companion)
         state.engine.add_to_party(companion)
         agent = AutopilotAgent(personality, biography=bio)
         state.autopilot_agents[companion_name] = agent
         state.companion_mode = True
+        # WO-V62.0: Create trait evolution tracker
+        from codex.core.trait_evolution import TraitEvolution
+        state.trait_evolutions[companion_name] = TraitEvolution({
+            "aggression": personality.aggression,
+            "curiosity": personality.curiosity,
+            "caution": personality.caution,
+        })
     except Exception:
         # Fallback: create basic companion with default stats
         companion_name = "Ashara"
@@ -3836,12 +4647,13 @@ def action_retreat(state: GameState) -> List[str]:
     Failure: lose turn, enemies get free attack, +1 Doom.
     Rot Hunter: retreat allowed; 25% chance it pursues to the new room.
     """
+    assert state.engine is not None
     messages: List[str] = []
     char = state.active_character or (state.engine.party[0] if state.engine.party else None)
     if not char:
         return ["No active character."]
 
-    room_id = state.current_room_id
+    room_id = state.current_room_id or 0
     enemies = state.room_enemies.get(room_id, [])
     if not enemies:
         return ["No enemies to retreat from."]
@@ -3866,7 +4678,7 @@ def action_retreat(state: GameState) -> List[str]:
                 f"The party disengages and falls back!"
             )
             state.engine.current_room_id = retreat_room
-            room_node = state.engine.dungeon_graph.get_room(retreat_room)
+            room_node = state.engine.dungeon_graph.get_room(retreat_room) if state.engine.dungeon_graph else None  # type: ignore[union-attr]
             if room_node:
                 state.engine.player_pos = (
                     room_node.x + room_node.width // 2,
@@ -3918,8 +4730,9 @@ def action_retreat(state: GameState) -> List[str]:
 
 def _enemy_phase(state: GameState) -> List[str]:
     """Run the enemy counter-attack phase. Enemies attack random alive party members."""
+    assert state.engine is not None
     messages = []
-    room_id = state.current_room_id
+    room_id = state.current_room_id or 0
     enemies = state.room_enemies.get(room_id, [])
 
     if not enemies:
@@ -3997,7 +4810,7 @@ def _enemy_phase(state: GameState) -> List[str]:
                 interceptor = _find_party_member(state, state.intercepting)
                 if interceptor and interceptor is not target and interceptor.is_alive():
                     messages.append(f"  {interceptor.name} INTERCEPTS the attack on {target.name}!")
-                    target = interceptor
+                    target = interceptor  # type: ignore[assignment]
                     intercepted = True
                     state.intercepting = None  # Consumed
 
@@ -4025,6 +4838,16 @@ def _enemy_phase(state: GameState) -> List[str]:
                     f"  {enemy['name']} attacks {target.name} for {raw_damage} raw damage! "
                     f"(DR absorbs {raw_damage - actual_damage}, takes {actual_damage})"
                 )
+                # WO-V62.0: Combat quip when companion takes damage (bond-aware)
+                if target.name in state.autopilot_agents and actual_damage > 0:
+                    _agent = state.autopilot_agents[target.name]
+                    _dmg_evo = state.trait_evolutions.get(target.name)
+                    if _dmg_evo and _dmg_evo.bond < -0.2:
+                        _quips = _COMBAT_QUIPS_DAMAGE_HOSTILE.get(_agent.personality.archetype, [])
+                    else:
+                        _quips = _COMBAT_QUIPS_DAMAGE.get(_agent.personality.archetype, [])
+                    if _quips:
+                        messages.append(f"  [italic dim]{target.name}: {random.choice(_quips)}[/italic dim]")
                 # WO-V61.0: near_death anchor
                 if target.is_alive() and target.current_hp / max(1, target.max_hp) < 0.2:
                     if target.name not in state._near_death_emitted:
@@ -4035,6 +4858,10 @@ def _enemy_phase(state: GameState) -> List[str]:
                         _broadcast_anchor(state, "near_death", name=target.name,
                                           hp=target.current_hp, max_hp=target.max_hp,
                                           attacker=enemy['name'])
+                        # WO-V62.0: Trait evolution nudge — nearly died
+                        if target.name in state.trait_evolutions:
+                            from codex.core.trait_evolution import apply_nudge_trigger
+                            apply_nudge_trigger(state.trait_evolutions[target.name], "nearly_died", state.turn_number)
                 if not target.is_alive():
                     if isinstance(target, Minion):
                         messages.append(f"  {target.name} dissipates!")
@@ -4069,9 +4896,10 @@ def _enemy_phase(state: GameState) -> List[str]:
 
 def run_combat_round(state: GameState) -> List[str]:
     """Run one full combat round: each party member acts, then enemies retaliate."""
+    assert state.engine is not None
     messages = []
     con = state.console
-    room_id = state.current_room_id
+    room_id = state.current_room_id or 0
     enemies = state.room_enemies.get(room_id, [])
 
     if not enemies:
@@ -4134,8 +4962,36 @@ def run_combat_round(state: GameState) -> List[str]:
                     next(iter(state.autopilot_agents.values()), None)
                 )
                 if agent:
-                    raw = agent.decide_combat(snapshot)
+                    _bond_evo = state.trait_evolutions.get(char.name)
+                    _bond_val = _bond_evo.bond if _bond_evo else 0.0
+                    raw = agent.decide_combat(snapshot, bond=_bond_val)
                     con.print(f"  [dim][AI: {char.name}] {raw}[/dim]")
+                    # WO-V62.0: Narrate companion decision
+                    _narration = ""
+                    try:
+                        from codex.core.companion_maps import narrate_decision
+                        _drift = None
+                        _evo = state.trait_evolutions.get(char.name)
+                        _bond_tier = _evo.get_bond_tier() if _evo else None
+                        if _evo:
+                            _drift = {t: _evo.get_drift(t) for t in _evo.original}
+                        _action_word = raw.split()[0] if raw else ""
+                        _target_name = " ".join(raw.split()[1:]) if len(raw.split()) > 1 else "the enemy"
+                        # Resolve target name from enemy index
+                        if _action_word == "attack" and _target_name.isdigit():
+                            _enemies = state.room_enemies.get(state.current_room_id or 0, [])
+                            _tidx = int(_target_name)
+                            if 0 <= _tidx < len(_enemies):
+                                _target_name = _enemies[_tidx].get("name", "the enemy")
+                        _narration = narrate_decision(
+                            _action_word, agent.personality.archetype,
+                            char.name, _target_name, _drift,
+                            bond_tier=_bond_tier,
+                        )
+                    except Exception:
+                        pass
+                    if _narration:
+                        con.print(f"  [italic dim]{_narration}[/italic dim]")
                     _time.sleep(state.autopilot_delay * 0.3)
                 else:
                     raw = "attack 0"
@@ -4261,6 +5117,21 @@ def run_combat_round(state: GameState) -> List[str]:
         messages.append("\n--- Enemy Phase ---")
         messages.extend(_enemy_phase(state))
 
+    # WO-V62.0: Record combat memory for companions
+    if state.autopilot_agents and hasattr(state, '_npc_memory') and state._npc_memory:
+        room_id = state.current_room_id
+        _live_enemies = state.room_enemies.get(room_id, []) if room_id is not None else []
+        if _live_enemies:
+            for comp_name in state.autopilot_agents:
+                try:
+                    bank = state._npc_memory.get_bank(comp_name)
+                    if not bank:
+                        bank = state._npc_memory.register_npc(comp_name, role="companion")
+                    enemy_names = ", ".join(e.get("name", "?") for e in _live_enemies[:3])
+                    bank.record_shard(f"Fought {enemy_names} in room {room_id}")
+                except Exception:
+                    pass
+
     # Check if combat is over
     enemies = state.room_enemies.get(room_id, [])
     if not enemies:
@@ -4295,8 +5166,9 @@ def run_combat_round(state: GameState) -> List[str]:
 
 def action_loot(state: GameState) -> List[str]:
     """Pick up loot items from the current room and add to inventory."""
+    assert state.engine is not None
     messages = []
-    room_id = state.current_room_id
+    room_id = state.current_room_id or 0
     loot = state.room_loot.get(room_id, [])
 
     if not loot:
@@ -4343,6 +5215,36 @@ def action_loot(state: GameState) -> List[str]:
 
     state.room_loot[room_id] = []
 
+    # WO-V66.0: Scrap bonus from chest/room loot (2-5 scrap per loot action)
+    _loot_leader = state.active_leader or state.character
+    if _loot_leader:
+        _scrap_bonus = random.randint(2, 5)
+        _loot_leader.scrap += _scrap_bonus
+        messages.append(f"[+{_scrap_bonus} Scrap] from salvaging loot ({_loot_leader.scrap} total)")
+        # WO-V66.0: Memory seed from epic chests (treasure rooms tier >= 3)
+        _loot_room_node = (
+            state.engine.dungeon_graph.get_room(room_id)
+            if state.engine and state.engine.dungeon_graph else None
+        )
+        _loot_tier = _loot_room_node.tier if _loot_room_node else 1
+        _loot_rtype = (
+            _loot_room_node.room_type.value
+            if _loot_room_node and hasattr(_loot_room_node.room_type, "value")
+            else ""
+        )
+        if _loot_tier >= 3 and _loot_rtype in ("treasure", "boss", "elite"):
+            _epic_seed_names = [
+                "Ambercore Fragment", "Heartwood Shard", "Deep Vault Sigil",
+                "Blight-Locked Rune", "Ancient Memory Crystal",
+            ]
+            _epic_seed = {
+                "name": random.choice(_epic_seed_names),
+                "tier": _loot_tier,
+                "deciphered": False,
+            }
+            _loot_leader.memory_seeds.append(_epic_seed)
+            messages.append(f"[Memory Seed: {_epic_seed['name']} (T{_loot_tier})] found in the chest!")
+
     # Capacity warning after looting
     if state.active_leader:
         cap = state.active_leader.check_encumbrance()
@@ -4354,6 +5256,7 @@ def action_loot(state: GameState) -> List[str]:
 
 def action_look(state: GameState) -> List[str]:
     """Re-examine the current room. Pushes detail to sidebar."""
+    assert state.engine is not None
     room_data = state.engine.get_current_room()
     if not room_data:
         return ["You see nothing (no room data)."]
@@ -4363,7 +5266,8 @@ def action_look(state: GameState) -> List[str]:
     lines.append(room_data["description"])
     lines.append("")
 
-    enemies = state.room_enemies.get(state.current_room_id, [])
+    _look_room_id = state.current_room_id or 0
+    enemies = state.room_enemies.get(_look_room_id, [])
     if enemies:
         for i, e in enumerate(enemies):
             boss_tag = " [BOSS]" if e.get("is_boss") else ""
@@ -4371,7 +5275,7 @@ def action_look(state: GameState) -> List[str]:
     else:
         lines.append("No enemies.")
 
-    loot = state.room_loot.get(state.current_room_id, [])
+    loot = state.room_loot.get(_look_room_id, [])
     if loot:
         for item in loot:
             lines.append(f"* {item['name']} (Tier {item.get('tier', '?')})")
@@ -4455,7 +5359,8 @@ def action_inspect(state: GameState, target: str) -> List[str]:
     target = target.strip().lower()
 
     # Try enemy by index
-    enemies = state.room_enemies.get(state.current_room_id, [])
+    _inspect_room_id = state.current_room_id or 0
+    enemies = state.room_enemies.get(_inspect_room_id, [])
     try:
         idx = int(target)
         if 0 <= idx < len(enemies):
@@ -4473,7 +5378,7 @@ def action_inspect(state: GameState, target: str) -> List[str]:
             return [f"Inspecting {e['name']}."]
 
     # Try loot by name
-    loot = state.room_loot.get(state.current_room_id, [])
+    loot = state.room_loot.get(_inspect_room_id, [])
     for item in loot:
         if target in item.get("name", "").lower():
             lines = [
@@ -4511,7 +5416,7 @@ def action_inventory(state: GameState, use_paper_doll: bool = False) -> List[str
     lines.append(f"{char.name}")
     lines.append(
         f"HP:{char.current_hp}/{char.max_hp} DEF:{char.get_defense()} "
-        f"DR:{char.gear.get_total_dr()} Keys:{char.keys}"
+        f"DR:{char.gear.get_total_dr()} Keys:{char.keys} Scrap:{char.scrap}"
     )
     lines.append(
         f"M{calculate_stat_mod(char.might):+d} [Might]  "
@@ -4621,6 +5526,8 @@ def action_equip(state: GameState, inv_index: int, target_slot: Optional[GearSlo
     """
     messages = []
     char = state.active_leader
+    if not char:
+        return ["No active character."]
 
     item = char.remove_from_inventory(inv_index)
     if item is None:
@@ -4694,6 +5601,12 @@ def action_save(state: GameState) -> List[str]:
         }
     save_data["autopilot_mode"] = state.autopilot_mode
     save_data["companion_mode"] = state.companion_mode
+    # WO-V62.0: Persist trait evolution data
+    if state.trait_evolutions:
+        save_data["trait_evolutions"] = {
+            name: evo.to_dict() for name, evo in state.trait_evolutions.items()
+        }
+    save_data["_last_dialogue_nudge_turn"] = state._last_dialogue_nudge_turn
     # WO-V37.0: Persist session chronicle
     save_data["session_log"] = state.session_log
     # WO-V62.0: Persist new session modules
@@ -4712,6 +5625,10 @@ def action_save(state: GameState) -> List[str]:
     save_data["current_zone_idx"] = state.current_zone_idx
     # WorldMap and ModuleManifest objects are not JSON-serialized inline;
     # they are reloaded from their source files on load.
+    # WO-V69.0: Persist world simulation state
+    save_data["day_clock"] = state.day_clock.to_dict()
+    save_data["weather"] = state.weather.to_dict()
+    save_data["rooms_since_last_tick"] = state.rooms_since_last_tick
 
     filename = SAVES_DIR / "burnwillow_save.json"
     safe_save_json(filename, save_data)
@@ -4726,9 +5643,9 @@ def action_load(state: GameState) -> List[str]:
         return ["No save file found."]
 
     try:
-        with open(save_file, "r") as f:
-            save_data = json.load(f)
-    except (json.JSONDecodeError, IOError) as e:
+        from codex.core.save_crypto import load_save_file as _load_save_file
+        save_data = _load_save_file(save_file)
+    except (ValueError, json.JSONDecodeError, IOError) as e:
         return [f"Failed to load save: {e}"]
 
     # Rebuild engine from save
@@ -4793,16 +5710,16 @@ def action_load(state: GameState) -> List[str]:
     else:
         state.narrative = NarrativeEngine(system_id=state.system_id or "burnwillow")
     # WO-V56.0: Wire _engine_ref on load too
-    state.narrative._engine_ref = state.engine
+    state.narrative._engine_ref = state.engine  # type: ignore[attr-defined]
     # WO-V56.0: Restore memory engine
     try:
         from codex.core.memory import CodexMemoryEngine, MemoryShard
-        state.engine.memory_engine = CodexMemoryEngine()
+        state.engine.memory_engine = CodexMemoryEngine()  # type: ignore[attr-defined]
         if "memory_shards" in save_data:
             for sd in save_data["memory_shards"]:
-                state.engine.memory_engine.shards.append(MemoryShard.from_dict(sd))
+                state.engine.memory_engine.shards.append(MemoryShard.from_dict(sd))  # type: ignore[attr-defined]
     except ImportError:
-        state.engine.memory_engine = None
+        state.engine.memory_engine = None  # type: ignore[attr-defined]
 
     # Reload settlement graph from blueprint (deterministic)
     _load_emberhome_settlement(state)
@@ -4838,6 +5755,14 @@ def action_load(state: GameState) -> List[str]:
                 biography=meta.get("biography", ""),
             )
 
+    # WO-V62.0: Restore trait evolutions
+    saved_evos = save_data.get("trait_evolutions", {})
+    if saved_evos:
+        from codex.core.trait_evolution import TraitEvolution
+        for name, evo_data in saved_evos.items():
+            state.trait_evolutions[name] = TraitEvolution.from_dict(evo_data)
+    state._last_dialogue_nudge_turn = save_data.get("_last_dialogue_nudge_turn", {})
+
     # WO-V37.0: Restore session chronicle
     state.session_log = save_data.get("session_log", [])
     # WO-V62.0: Restore session modules
@@ -4859,6 +5784,16 @@ def action_load(state: GameState) -> List[str]:
     state.current_zone_idx = save_data.get("current_zone_idx", 0)
     # WorldMap / ModuleManifest are not saved inline; callers that set them
     # must re-attach them after loading (e.g. play_burnwillow main loop).
+    # WO-V69.0: Restore world simulation state (backward-compatible)
+    if "day_clock" in save_data:
+        state.day_clock = DayClock.from_dict(save_data["day_clock"])
+    else:
+        state.day_clock = DayClock()
+    if "weather" in save_data:
+        state.weather = WeatherEngine.from_dict(save_data["weather"])
+    else:
+        state.weather = WeatherEngine(terrain_type="dungeon")
+    state.rooms_since_last_tick = save_data.get("rooms_since_last_tick", 0)
 
     # Clear zombie combat flags from save
     state.clear_volatile_state()
@@ -4868,13 +5803,14 @@ def action_load(state: GameState) -> List[str]:
 
     messages = [
         f"Game loaded! Turn {state.turn_number}, Doom {state.doom}.",
-        f"Party: {', '.join(c.name for c in state.engine.party)}",
+        f"Party: {', '.join(c.name for c in state.engine.party)}",  # type: ignore[union-attr]
     ]
     return messages
 
 
 def action_party(state: GameState) -> List[str]:
     """Show detailed party status."""
+    assert state.engine is not None
     messages = ["=== PARTY STATUS ==="]
     for i, char in enumerate(state.engine.party):
         leader_tag = " (Leader)" if i == 0 else ""
@@ -4933,6 +5869,7 @@ def action_give(state: GameState, inv_index: int, target_party_index: int) -> Li
     giver = state.active_leader
     if not giver:
         return ["No active character."]
+    assert state.engine is not None
 
     party = state.engine.get_active_party()
     if target_party_index < 0 or target_party_index >= len(party):
@@ -5046,6 +5983,7 @@ def _get_furniture_flavor(name: str, tier: int = 1) -> str:
 
 def action_recruit(state: GameState) -> List[str]:
     """Launch Character Wizard mid-game to recruit a new party member."""
+    assert state.engine is not None
     if len(state.engine.party) >= 6:
         return ["Party is full (6 members). Someone must fall before another can join."]
 
@@ -5216,15 +6154,15 @@ def _resolve_bump(state: GameState, pos: Tuple[int, int]) -> Optional[List[str]]
                 # Check for Lockpick gear tag
                 char = state.active_character
                 has_lockpick = False
-                if char and char.gear_grid:
-                    for item in char.gear_grid.slots.values():
+                if char and char.gear_grid:  # type: ignore[attr-defined]
+                    for item in char.gear_grid.slots.values():  # type: ignore[attr-defined]
                         if item and "Lockpick" in (item.tags or []):
                             has_lockpick = True
                             break
                 if has_lockpick:
                     result = roll_dice_pool(
                         char.get_stat_value(StatType.WITS),
-                        char.gear_grid.get_total_dice_bonus(StatType.WITS),
+                        char.gear_grid.get_total_dice_bonus(StatType.WITS),  # type: ignore[attr-defined]
                         DC(LOCKPICK_DC),
                     )
                     if result.success:
@@ -5374,6 +6312,7 @@ def _save_village_progress(state: GameState, seeds: List[dict]) -> None:
 
 def _reinitialize_room_state(state: GameState) -> None:
     """Rebuild room content tracking after dungeon regeneration."""
+    assert state.engine is not None
     state.room_enemies.clear()
     state.room_loot.clear()
     state.room_furniture.clear()
@@ -5395,6 +6334,8 @@ def action_return(state: GameState) -> List[str]:
     """Extract through a Return Gate or dungeon entrance back to Emberhome."""
     if not state.engine or state.current_room_id is None:
         return ["No active dungeon."]
+    if not state.engine.dungeon_graph:
+        return ["No active dungeon map."]
 
     room_node = state.engine.dungeon_graph.get_room(state.current_room_id)
     if not room_node or room_node.room_type not in (RoomType.RETURN_GATE, RoomType.START):
@@ -5439,7 +6380,7 @@ def action_return(state: GameState) -> List[str]:
             system_id=state.system_id or "burnwillow",
         )
         state.engine.dungeon_graph.seed = new_seed
-        state.engine.seed = new_seed
+        state.engine.seed = new_seed  # type: ignore[attr-defined]
         state.engine.current_room_id = state.engine.dungeon_graph.start_room_id
         if state.engine.dungeon_graph.start_room_id in state.engine.dungeon_graph.rooms:
             start_room = state.engine.dungeon_graph.rooms[state.engine.dungeon_graph.start_room_id]
@@ -5834,6 +6775,7 @@ def game_loop(state: GameState, butler=None):
 
 def _game_loop_inner(state: GameState, butler=None):
     """Inner game loop (separated for try/finally session cleanup)."""
+    assert state.engine is not None
     con = state.console
 
     while state.running:
@@ -5932,7 +6874,7 @@ def _game_loop_inner(state: GameState, butler=None):
 
         # Combat mode: run structured combat rounds
         if state.combat_mode:
-            enemies = state.room_enemies.get(state.current_room_id, [])
+            enemies = state.room_enemies.get(state.current_room_id or 0, [])
             if enemies:
                 messages = run_combat_round(state)
                 if messages:
@@ -6134,7 +7076,7 @@ def _game_loop_inner(state: GameState, butler=None):
 
         elif cmd in ("attack", "atk", "fight"):
             # Out-of-combat attack triggers combat mode first
-            enemies = state.room_enemies.get(state.current_room_id, [])
+            enemies = state.room_enemies.get(state.current_room_id or 0, [])
             if enemies and not state.combat_mode:
                 state.start_combat()
                 new_messages = ["Combat begins!"]
@@ -6150,8 +7092,8 @@ def _game_loop_inner(state: GameState, butler=None):
                 search = " ".join(args[1:]).lower()
                 char = state.active_character
                 found = False
-                if char and char.gear_grid:
-                    for slot, item in char.gear_grid.slots.items():
+                if char and char.gear_grid:  # type: ignore[attr-defined]
+                    for slot, item in char.gear_grid.slots.items():  # type: ignore[attr-defined]
                         if item and (search in item.name.lower() or search in slot.name.lower()):
                             detail = render_item_detail(item)
                             state.push_sidebar(detail)
@@ -6213,7 +7155,7 @@ def _game_loop_inner(state: GameState, butler=None):
             _rebuild_spatial_rooms(state)
             debug_panel = render_spatial_map(
                 rooms=state.spatial_rooms,
-                player_room_id=state.current_room_id,
+                player_room_id=state.current_room_id or 0,
                 theme=THEME,
                 viewport_width=60,
                 viewport_height=30,
@@ -6318,12 +7260,15 @@ def _game_loop_inner(state: GameState, butler=None):
             else:
                 try:
                     idx = int(args[0])
-                    party = state.engine.get_active_party()
-                    if 0 <= idx < len(party):
-                        state.active_leader_override = idx
-                        new_messages = [f"Now controlling: {party[idx].name}"]
+                    if not state.engine:
+                        new_messages = ["No active game."]
                     else:
-                        new_messages = [f"Invalid. Party has {len(party)} members (0-{len(party)-1})."]
+                        party = state.engine.get_active_party()
+                        if 0 <= idx < len(party):
+                            state.active_leader_override = idx
+                            new_messages = [f"Now controlling: {party[idx].name}"]
+                        else:
+                            new_messages = [f"Invalid. Party has {len(party)} members (0-{len(party)-1})."]
                 except ValueError:
                     new_messages = ["Usage: switch <party_index>"]
 
@@ -6348,29 +7293,21 @@ def _game_loop_inner(state: GameState, butler=None):
 
         elif cmd == "talk" and args:
             target_name = " ".join(args)
-            # WO-V31.0: Companion talk in dungeon
+            player_msg = ""
+            # WO-V62.0: Companion dialogue in dungeon — split name from message
+            _companion_match = None
             if state.companion_mode and state.autopilot_agents:
-                agent = state.autopilot_agents.get(target_name)
-                if agent:
-                    # Use narrative engine talk_to_npc if available
-                    if state.narrative and hasattr(state.narrative, 'talk_to_npc'):
-                        dialogue = state.narrative.talk_to_npc(target_name)
-                        if dialogue:
-                            new_messages = [f'[cyan]{target_name}[/]: "{dialogue}"']
-                        else:
-                            # Fallback: personality-based quip
-                            new_messages = [f'[cyan]{target_name}[/]: "{agent.personality.quirk}"']
-                    else:
-                        new_messages = [f'[cyan]{target_name}[/]: "{agent.personality.quirk}"']
-                else:
-                    # Check partial match
-                    matches = [n for n in state.autopilot_agents if target_name.lower() in n.lower()]
-                    if matches:
-                        matched = matches[0]
-                        a = state.autopilot_agents[matched]
-                        new_messages = [f'[cyan]{matched}[/]: "{a.personality.quirk}"']
-                    else:
-                        new_messages = ["No companion by that name. NPCs appear in empty rooms."]
+                for _cn in state.autopilot_agents:
+                    if args[0].lower() in _cn.lower():
+                        target_name = _cn
+                        player_msg = " ".join(args[1:]) if len(args) > 1 else ""
+                        _companion_match = state.autopilot_agents[_cn]
+                        break
+                if not _companion_match:
+                    _companion_match = state.autopilot_agents.get(target_name)
+            if _companion_match:
+                dialogue = _companion_dialogue(state, target_name, player_msg)
+                new_messages = [f'[cyan]{target_name}[/]: "{dialogue}"']
             else:
                 new_messages = ["There's no one to talk to here. NPCs appear in empty rooms."]
 
@@ -6481,6 +7418,7 @@ def main(butler=None, characters=None, autopilot=False, companion=False,
         con.print(f"\n[bold {THEME_CFG.color_current}]Generating dungeon...[/]")
         summary = init_game_with_characters(state, characters)
         con.print(f"  Seed: {summary['seed']}  |  Rooms: {summary['total_rooms']}  |  Start: Room {summary['start_room']}")
+        assert state.engine is not None
 
         # Show party summary
         for char in state.engine.party:
@@ -6496,7 +7434,7 @@ def main(butler=None, characters=None, autopilot=False, companion=False,
             entry_party = "The party descends into the roots of Burnwillow."
 
         if party_size == 1:
-            entry_text = f"{state.character.name} {entry_verb}."
+            entry_text = f"{state.character.name} {entry_verb}."  # type: ignore[union-attr]
             con.print(f"\n  {entry_text}")
         else:
             entry_text = entry_party
@@ -6546,6 +7484,7 @@ def main(butler=None, characters=None, autopilot=False, companion=False,
             seed = cli_seed
             summary = init_game(state, ai_names, seed, char_specs=ai_specs)
             con.print(f"  Seed: {summary['seed']}  |  Rooms: {summary['total_rooms']}  |  Start: Room {summary['start_room']}")
+            assert state.engine is not None
 
             state.autopilot_agents[n1] = AutopilotAgent(personality=p1, biography=b1)
             state.autopilot_agents[n2] = AutopilotAgent(personality=p2, biography=b2)
@@ -6553,7 +7492,7 @@ def main(butler=None, characters=None, autopilot=False, companion=False,
             # Register companions as NPCs for dialogue
             for name, agent in state.autopilot_agents.items():
                 register_companion_as_npc(
-                    state.engine, name, agent.personality, agent.biography,
+                    state.engine, name, agent.personality, agent.biography,  # type: ignore[arg-type]
                     narrative_engine=state.narrative,
                 )
 
@@ -6586,6 +7525,7 @@ def main(butler=None, characters=None, autopilot=False, companion=False,
             seed = cli_seed
             summary = init_game(state, names, seed)
             con.print(f"  Seed: {summary['seed']}  |  Rooms: {summary['total_rooms']}  |  Start: Room {summary['start_room']}")
+            assert state.engine is not None
 
             state.autopilot_agents[comp_n] = AutopilotAgent(
                 personality=comp_p, biography=comp_b
@@ -6593,12 +7533,12 @@ def main(butler=None, characters=None, autopilot=False, companion=False,
 
             # Register companion as NPC
             register_companion_as_npc(
-                state.engine, comp_n, comp_p, comp_b,
+                state.engine, comp_n, comp_p, comp_b,  # type: ignore[arg-type]
                 narrative_engine=state.narrative,
             )
 
         # Show party summary
-        for char in state.engine.party:
+        for char in state.engine.party:  # type: ignore[union-attr]
             gear_names = [item.name for item in char.gear.slots.values() if item]
             gear_str = ", ".join(gear_names) if gear_names else "bare hands"
             tag = " [AI]" if char.name in state.autopilot_agents else ""
@@ -6687,6 +7627,7 @@ def main(butler=None, characters=None, autopilot=False, companion=False,
 
     # Creation mode: Wizard (stat allocation + 6 loadouts) or Quick Start (random)
     char_specs = None
+    names: List[str] = []
     try:
         mode = Prompt.ask(
             f"[bold {THEME_CFG.color_current}][W]izard (full creation) / [Q]uick start (random stats)?[/]",
@@ -6748,6 +7689,7 @@ def main(butler=None, characters=None, autopilot=False, companion=False,
     con.print(f"\n[bold {THEME_CFG.color_current}]Generating dungeon...[/]")
     summary = init_game(state, names, seed, char_specs=char_specs)
     con.print(f"  Seed: {summary['seed']}  |  Rooms: {summary['total_rooms']}  |  Start: Room {summary['start_room']}")
+    assert state.engine is not None
 
     # WO-V32.0: Companion backfill — offer to fill empty slots with AI companions
     if len(state.engine.party) < 6 and not state.autopilot_mode and not state.companion_mode:
@@ -6772,13 +7714,13 @@ def main(butler=None, characters=None, autopilot=False, companion=False,
                     grit=stats.get("Grit", 10),
                     aether=stats.get("Aether", 10),
                 )
-                state.engine.party.append(state.engine.character)
+                state.engine.party.append(state.engine.character)  # type: ignore[arg-type]
                 state.engine.equip_loadout(loadout_id)
                 agent = AutopilotAgent(personality=personality, biography=bio)
                 state.autopilot_agents[comp_name] = agent
                 if state.narrative:
                     register_companion_as_npc(
-                        state.engine, comp_name, personality, bio,
+                        state.engine, comp_name, personality, bio,  # type: ignore[arg-type]
                         narrative_engine=state.narrative,
                     )
                 con.print(f"  [cyan]{comp_name}[/] ({personality.archetype}) joins the party. [AI]")
@@ -6813,7 +7755,7 @@ def main(butler=None, characters=None, autopilot=False, companion=False,
         entry_party = "The party descends into the roots of Burnwillow."
 
     if party_size == 1:
-        entry_text = f"{state.character.name} {entry_verb}."
+        entry_text = f"{state.character.name} {entry_verb}."  # type: ignore[union-attr]
         con.print(f"\n  {entry_text}")
         con.print(f"  [dim](Tip: Equip gear with [Summon] to conjure Aether spirits)[/]")
     else:

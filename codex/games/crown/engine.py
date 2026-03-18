@@ -17,8 +17,15 @@ Version: 4.0 (Rest Progression + Quest Archetypes)
 
 import asyncio
 import random
+import time
 from dataclasses import dataclass, field
 from typing import Any, Dict, Literal, Optional
+
+try:
+    from codex.core.mechanics.clock import DayClock, TimeOfDay
+    _DAY_CLOCK_AVAILABLE = True
+except ImportError:
+    _DAY_CLOCK_AVAILABLE = False
 
 try:
     from codex.core.services.narrative_loom import (
@@ -398,6 +405,9 @@ class CrownAndCrewEngine:
     _politics_engine: Optional[Any] = field(default=None, init=False, repr=False)
     _event_generator: Optional[Any] = field(default=None, init=False, repr=False)
 
+    # WO-V69.0 — Day clock for world-simulation time tracking (not a dataclass init arg)
+    _day_clock: Optional[Any] = field(default=None, init=False, repr=False)
+
     def __post_init__(self):
         """Load world data or fall back to hardcoded defaults."""
 
@@ -486,6 +496,12 @@ class CrownAndCrewEngine:
             else:
                 self._morning_events = list(MORNING_EVENTS)
 
+        # WO-V69.0: Initialize DayClock aligned to Crown's day counter
+        if _DAY_CLOCK_AVAILABLE:
+            self._day_clock = DayClock(phase=TimeOfDay.MORNING, day=self.day)
+        else:
+            self._day_clock = None
+
     # ─────────────────────────────────────────────────────────────────────
     # MEMORY SHARD HELPERS (WO-V10.0)
     # ─────────────────────────────────────────────────────────────────────
@@ -505,7 +521,8 @@ class CrownAndCrewEngine:
         """Initialize the engine and seed narrative memory.
 
         Call after construction to populate the initial MASTER shard
-        with campaign context.
+        with campaign context.  Also creates the SessionManifest if one
+        has not already been restored from a save.
         """
         world_summary = ""
         if self.world_state and isinstance(self.world_state, dict):
@@ -516,6 +533,11 @@ class CrownAndCrewEngine:
             f"{world_summary}"
         ).strip()
         self._add_shard(context, "MASTER", "system")
+
+        # WO-V68.0: Ensure a SessionManifest exists for narrative caching
+        if NARRATIVE_LOOM_AVAILABLE and self._manifest is None:
+            session_id = f"crown_{int(time.time() * 1000)}"
+            self._manifest = SessionManifest(session_id=session_id)
 
     @staticmethod
     def _mimir_adapter(prompt: str, context: str) -> str:
@@ -1299,6 +1321,11 @@ class CrownAndCrewEngine:
         self._pending_allegiance = None
         self._short_rests_today = 0
 
+        # WO-V69.0: Advance DayClock by 1 phase per scene/day transition
+        if self._day_clock is not None:
+            self._day_clock.day = self.day
+            self._day_clock.advance(1)
+
         if self.day > self.arc_length:
             messages.append("🏁 THE BORDER: Your journey ends. Final reckoning awaits.")
         else:
@@ -1458,6 +1485,18 @@ class CrownAndCrewEngine:
             data["_politics_engine"] = self._politics_engine.to_dict()
         if self._event_generator is not None:
             data["_event_generator"] = self._event_generator.to_dict()
+        # WO-V68.0: Persist SessionManifest for narrative caching
+        if NARRATIVE_LOOM_AVAILABLE and self._manifest is not None:
+            try:
+                data["_manifest"] = self._manifest.to_dict()
+            except Exception:
+                pass
+        # WO-V69.0: Persist DayClock
+        if self._day_clock is not None:
+            try:
+                data["_day_clock"] = self._day_clock.to_dict()
+            except Exception:
+                pass
         return data
 
     @classmethod
@@ -1497,6 +1536,22 @@ class CrownAndCrewEngine:
                 )
             except Exception:
                 pass
+
+        # WO-V68.0: Restore SessionManifest for narrative caching
+        if "_manifest" in data and NARRATIVE_LOOM_AVAILABLE:
+            try:
+                engine._manifest = SessionManifest.from_dict(data["_manifest"])
+            except Exception:
+                pass
+
+        # WO-V69.0: Restore DayClock
+        if "_day_clock" in data and _DAY_CLOCK_AVAILABLE:
+            try:
+                engine._day_clock = DayClock.from_dict(data["_day_clock"])
+            except Exception:
+                engine._day_clock = DayClock(phase=TimeOfDay.MORNING, day=engine.day)
+        elif _DAY_CLOCK_AVAILABLE:
+            engine._day_clock = DayClock(phase=TimeOfDay.MORNING, day=engine.day)
 
         return engine
 

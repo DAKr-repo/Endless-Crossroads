@@ -1,0 +1,251 @@
+{
+  "location": "Test Vault",
+  "system_id": "galactic_empire",
+  "seed": 42,
+  "total_rooms": 8,
+  "rooms": [
+    {
+      "id": 0,
+      "type": "normal",
+      "tier": 4,
+      "position": [
+        1,
+        1
+      ],
+      "size": [
+        3,
+        3
+      ],
+      "connections": [
+        1,
+        2
+      ],
+      "enemies": [
+        {
+          "name": "Dragon Wyrmling",
+          "hp": 16,
+          "max_hp": 16,
+          "tier": 4
+        },
+        {
+          "name": "Beholder Zombie",
+          "hp": 24,
+          "max_hp": 24,
+          "tier": 4
+        }
+      ],
+      "loot": [
+        {
+          "name": "Legendary Weapon"
+        }
+      ],
+      "hazards": [],
+      "interactive": []
+    },
+    {
+      "id": 1,
+      "type": "boss",
+      "tier": 4,
+      "position": [
+        1,
+        7
+      ],
+      "size": [
+        3,
+        5
+      ],
+      "connections": [
+        0
+      ],
+      "enemies": [
+        {
+          "name": "Dragon Wyrmling",
+          "hp": 78,
+          "max_hp": 78,
+          "is_boss": true,
+          "tier": 4
+        }
+      ],
+      "loot": [
+        {
+          "name": "Artifact Fragment"
+        },
+        {
+          "name": "Artifact Fragment"
+        }
+      ],
+      "hazards": [],
+      "interactive": []
+    },
+    {
+      "id": 2,
+      "type": "treasure",
+      "tier": 3,
+      "position": [
+        1,
+        14
+      ],
+      "size": [
+        3,
+        5
+      ],
+      "connections": [
+        3,
+        0,
+        7
+      ],
+      "enemies": [],
+      "loot": [
+        {
+          "name": "Ring of Resistance"
+        },
+        {
+          "name": "Ring of Resistance"
+        },
+        {
+          "name": "Ring of Resistance"
+        }
+      ],
+      "hazards": [],
+      "interactive": []
+    },
+    {
+      "id": 3,
+      "type": "treasure",
+      "tier": 4,
+      "position": [
+        1,
+        22
+      ],
+      "size": [
+        3,
+        7
+      ],
+      "connections": [
+        2
+      ],
+      "enemies": [],
+      "loot": [
+        {
+          "name": "Artifact Fragment"
+        },
+        {
+          "name": "Artifact Fragment"
+        },
+        {
+          "name": "Artifact Fragment"
+        }
+      ],
+      "hazards": [],
+      "interactive": []
+    },
+    {
+      "id": 4,
+      "type": "normal",
+      "tier": 1,
+      "position": [
+        7,
+        1
+      ],
+      "size": [
+        3,
+        4
+      ],
+      "connections": [
+        5,
+        7
+      ],
+      "enemies": [],
+      "loot": [
+        {
+          "name": "Leather Shield"
+        }
+      ],
+      "hazards": [],
+      "interactive": []
+    },
+    {
+      "id": 5,
+      "type": "start",
+      "tier": 1,
+      "position": [
+        13,
+        2
+      ],
+      "size": [
+        10,
+        5
+      ],
+      "connections": [
+        4
+      ],
+      "enemies": [],
+      "loot": [],
+      "hazards": [],
+      "interactive": []
+    },
+    {
+      "id": 6,
+      "type": "secret",
+      "tier": 3,
+      "position": [
+        6,
+        9
+      ],
+      "size": [
+        4,
+        20
+      ],
+      "connections": [
+        7
+      ],
+      "enemies": [
+        {
+          "name": "Wraith",
+          "hp": 16,
+          "max_hp": 16,
+          "tier": 3
+        },
+        {
+          "name": "Chimera",
+          "hp": 29,
+          "max_hp": 29,
+          "tier": 3
+        }
+      ],
+      "loot": [
+        {
+          "name": "Ring of Resistance"
+        }
+      ],
+      "hazards": [],
+      "interactive": []
+    },
+    {
+      "id": 7,
+      "type": "normal",
+      "tier": 2,
+      "position": [
+        12,
+        10
+      ],
+      "size": [
+        16,
+        19
+      ],
+      "connections": [
+        6,
+        4,
+        2
+      ],
+      "enemies": [],
+      "loot": [
+        {
+          "name": "Steel Longsword"
+        }
+      ],
+      "hazards": [],
+      "interactive": []
+    }
+  ]
+}

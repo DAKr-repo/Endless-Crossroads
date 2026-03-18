@@ -231,6 +231,7 @@ class TestRestManager:
         from codex.games.dnd5e import DnD5eEngine
         engine = DnD5eEngine()
         engine.create_character("Aldric", character_class="fighter")
+        assert engine.character is not None
         engine.character.current_hp = 5  # Wounded
         engine.character.hit_dice_remaining = 1
 
@@ -245,6 +246,7 @@ class TestRestManager:
         from codex.games.dnd5e import DnD5eEngine
         engine = DnD5eEngine()
         engine.create_character("Aldric", character_class="fighter")
+        assert engine.character is not None
         engine.character.current_hp = 3
 
         mgr = RestManager()
@@ -257,6 +259,7 @@ class TestRestManager:
         from codex.games.stc import CosmereEngine
         engine = CosmereEngine()
         engine.create_character("Kaladin", order="windrunner", intellect=14)
+        assert engine.character is not None
         engine.character.focus = 0
 
         mgr = RestManager()
@@ -282,6 +285,7 @@ class TestRestManager:
         from codex.games.dnd5e import DnD5eEngine
         engine = DnD5eEngine()
         engine.create_character("Aldric", character_class="fighter")
+        assert engine.character is not None
         engine.character.current_hp = 3
 
         mgr = RestManager()
@@ -587,6 +591,7 @@ class TestDMDashboard:
         dashboard = self._make_dashboard()
         engine = DnD5eEngine()
         engine.create_character("Aldric", character_class="fighter")
+        assert engine.character is not None
         engine.character.current_hp = 3
         result = dashboard.dispatch_command("rest long", engine)
         assert "LONG REST" in result
@@ -723,6 +728,7 @@ class TestDnD5eEngineModifications:
         from codex.games.dnd5e import DnD5eEngine
         engine = DnD5eEngine()
         engine.create_character("Aldric", character_class="fighter")
+        assert engine.character is not None
         engine.character.current_hp = 3
         result = engine.short_rest()
         assert "SHORT REST" in result
@@ -731,6 +737,7 @@ class TestDnD5eEngineModifications:
         from codex.games.dnd5e import DnD5eEngine
         engine = DnD5eEngine()
         engine.create_character("Aldric", character_class="fighter")
+        assert engine.character is not None
         engine.character.current_hp = 3
         result = engine.long_rest()
         assert "LONG REST" in result
@@ -740,6 +747,7 @@ class TestDnD5eEngineModifications:
         from codex.games.dnd5e import DnD5eEngine
         engine = DnD5eEngine()
         engine.create_character("Aldric", character_class="fighter")
+        assert engine.character is not None
         result = engine.gain_xp(300, "goblin")
         assert "300" in result
         assert engine.character.xp == 300
@@ -748,6 +756,7 @@ class TestDnD5eEngineModifications:
         from codex.games.dnd5e import DnD5eEngine
         engine = DnD5eEngine()
         engine.create_character("Aldric", character_class="fighter")
+        assert engine.character is not None
         engine.character.xp = 300
         result = engine.level_up("Aldric")
         assert "level 2" in result.lower()
@@ -757,6 +766,7 @@ class TestDnD5eEngineModifications:
         from codex.games.dnd5e import DnD5eEngine
         engine = DnD5eEngine()
         engine.create_character("Aldric", character_class="fighter")
+        assert engine.character is not None
         engine.character.xp = 100
         result = engine.level_up("Aldric")
         assert "needs" in result.lower() or "more XP" in result
@@ -789,6 +799,7 @@ class TestBitDEngineModifications:
         from codex.games.bitd import BitDEngine
         engine = BitDEngine()
         engine.create_character("Vex", playbook="Cutter")
+        assert engine.character is not None
         result = engine._cmd_advance(trigger="desperate action")
         assert "marks XP" in result
         assert engine.character.xp_marks == 1
@@ -797,6 +808,7 @@ class TestBitDEngineModifications:
         from codex.games.bitd import BitDEngine
         engine = BitDEngine()
         engine.create_character("Vex", playbook="Cutter")
+        assert engine.character is not None
         engine.character.xp_marks = 7
         result = engine._cmd_advance(trigger="final mark")
         assert "ADVANCE" in result
@@ -823,6 +835,7 @@ class TestCosmereEngineModifications:
         from codex.games.stc import CosmereEngine
         engine = CosmereEngine()
         engine.create_character("Kaladin", order="windrunner")
+        assert engine.character is not None
         old_max_hp = engine.character.max_hp
         result = engine.swear_ideal("Kaladin")
         assert "2nd Ideal" in result
@@ -833,6 +846,7 @@ class TestCosmereEngineModifications:
         from codex.games.stc import CosmereEngine
         engine = CosmereEngine()
         engine.create_character("Kaladin", order="windrunner")
+        assert engine.character is not None
         engine.character.ideal_level = 5
         result = engine.swear_ideal("Kaladin")
         assert "all 5 Ideals" in result

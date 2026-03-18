@@ -390,7 +390,6 @@ class GameCommandView(discord.ui.View):
     def __init__(self, session, orchestrator=None):
         super().__init__(timeout=300)
         self._session = session
-        self._orchestrator = orchestrator
         self._build_selects()
 
     def _resolve_categories(self) -> dict[str, dict[str, str]]:
@@ -405,16 +404,7 @@ class GameCommandView(discord.ui.View):
             if cats:
                 return cats
 
-        # 2. Orchestrator (FITD sessions)
-        if self._orchestrator:
-            try:
-                cats = self._orchestrator.get_categorized_commands()
-                if cats:
-                    return cats
-            except Exception:
-                pass
-
-        # 3. Last resort
+        # 2. Last resort
         return self._FALLBACK_COMMANDS
 
     def _build_selects(self):
@@ -1459,6 +1449,9 @@ class VoiceListener:
         if self._vc and self._vc.is_connected():
             voice_text = CodexButler.voice_clean(response)
             clean_text, cue = parse_voice_cue(voice_text)
+            # Default to Narrator (Norse Skald voice) when no cue tagged
+            if cue is None:
+                cue = parse_voice_cue("[Narrator] x")[1]
             await self.bot.voice.speak_discord(clean_text, self._vc, voice_cue=cue)
 
 
@@ -2331,6 +2324,9 @@ Type `!travel` when ready.""")
                     if self.voice_clients:
                         voice_text = CodexButler.voice_clean(bulletin)
                         clean_text, cue = parse_voice_cue(voice_text)
+                        # Default broadcasts to Narrator (Norse Skald voice)
+                        if cue is None:
+                            cue = parse_voice_cue("[Narrator] x")[1]
                         for vc in self.voice_clients:
                             if vc.is_connected():
                                 try:
@@ -2613,6 +2609,9 @@ Type `!travel` when ready.""")
                             await message.author.voice.channel.connect()
                         voice_text = CodexButler.voice_clean(response)
                         clean_text, cue = parse_voice_cue(voice_text)
+                        # Default Mimir responses to Narrator (Norse Skald voice)
+                        if cue is None:
+                            cue = parse_voice_cue("[Narrator] " + clean_text)[1]
                         await self.voice.speak_discord(
                             clean_text, self.voice_clients[0], voice_cue=cue)
                 except Exception as e:
@@ -2980,6 +2979,9 @@ Type `!travel` when ready to move on."""
                                 await message.author.voice.channel.connect()
                             voice_text = CodexButler.voice_clean(response)
                             clean_text, cue = parse_voice_cue(voice_text)
+                            # Default to Narrator (Norse Skald voice)
+                            if cue is None:
+                                cue = parse_voice_cue("[Narrator] x")[1]
                             await self.voice.speak_discord(
                                 clean_text, self.voice_clients[0], voice_cue=cue)
 

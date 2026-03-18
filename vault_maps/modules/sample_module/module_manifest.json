@@ -3,6 +3,7 @@
     "display_name": "The Rat King's Cellar",
     "system_id": "dnd5e",
     "source_pdf": null,
+    "source_type": "community_authored",
     "world_map": "sample_world.json",
     "starting_location": "millhaven",
     "recommended_levels": {"min": 1, "max": 3},

@@ -1,0 +1,176 @@
+{
+  "version": 1,
+  "format": "fitd",
+  "source": "Crown (authored from setting — no stat block PDF source)",
+  "note": "Crown adversaries scale by sway — the political/criminal clout of the opposing force. threat_level 1-4 maps to sway: low/notable/powerful/apex.",
+  "tiers": {
+    "1": [
+      {
+        "name": "Crown Infantryman",
+        "faction": "Crown_Military",
+        "threat_level": 1,
+        "sway": "low",
+        "scale": "individual",
+        "description": "A conscript in the colors. Following orders, not thinking too hard.",
+        "capabilities": ["patrol", "checkpoint", "call_sergeant"],
+        "weakness": "bribes, false papers, misdirection"
+      },
+      {
+        "name": "Street Informant",
+        "faction": "underworld",
+        "threat_level": 1,
+        "sway": "low",
+        "scale": "individual",
+        "description": "Someone who sells information to whoever pays fastest.",
+        "capabilities": ["surveillance", "report_movements", "blend_in"],
+        "weakness": "coin, threats, false leads"
+      },
+      {
+        "name": "Crew Thug",
+        "faction": "criminal_crew",
+        "threat_level": 1,
+        "sway": "low",
+        "scale": "individual",
+        "description": "A low-ranking member looking to prove themselves.",
+        "capabilities": ["muscle", "intimidation", "turf_defense"],
+        "weakness": "better offer, fear, isolated from crew"
+      },
+      {
+        "name": "Dunweld Beast (Small)",
+        "faction": "wild",
+        "threat_level": 1,
+        "sway": "low",
+        "scale": "individual",
+        "description": "A creature from beyond the Dunweld boundary. Smaller than the ones you've heard about.",
+        "capabilities": ["feral_attack", "unnatural_resilience", "tracking"],
+        "weakness": "fire, iron, noise"
+      },
+      {
+        "name": "Corrupt Tax Collector",
+        "faction": "Crown_Administrative",
+        "threat_level": 1,
+        "sway": "low",
+        "scale": "individual",
+        "description": "The bureaucratic face of Crown extraction. Has a ledger and a grudge.",
+        "capabilities": ["legal_harassment", "asset_seizure", "inspector_contact"],
+        "weakness": "political favor, competing official, audit threat"
+      }
+    ],
+    "2": [
+      {
+        "name": "Crown Officer",
+        "faction": "Crown_Military",
+        "threat_level": 2,
+        "sway": "notable",
+        "scale": "individual",
+        "description": "A commissioned officer with a patrol of six and a set of standing orders.",
+        "capabilities": ["squad_command", "martial_law_declaration", "intelligence_reports"],
+        "weakness": "political outranking, blackmail, competing mandate"
+      },
+      {
+        "name": "Rival Crew Lieutenant",
+        "faction": "criminal_crew",
+        "threat_level": 2,
+        "sway": "notable",
+        "scale": "individual",
+        "description": "Second in command with something to prove and a short fuse.",
+        "capabilities": ["crew_mobilization", "local_contacts", "criminal_tactics"],
+        "weakness": "crew leader leverage, rival gang alliance, public exposure"
+      },
+      {
+        "name": "Crown Inquisitor",
+        "faction": "Crown_Administrative",
+        "threat_level": 2,
+        "sway": "notable",
+        "scale": "individual",
+        "description": "An agent of the Crown with authority to question, detain, and search.",
+        "capabilities": ["legal_authority", "investigation", "detention", "contact_military"],
+        "weakness": "political protection, noble rank, jurisdictional gaps"
+      },
+      {
+        "name": "Dunweld Stalker",
+        "faction": "wild",
+        "threat_level": 2,
+        "sway": "notable",
+        "scale": "individual",
+        "description": "A territorial creature from the deep Dunweld. Has followed something back.",
+        "capabilities": ["pack_tactics", "feral_ferocity", "unnatural_speed", "tracking"],
+        "weakness": "fire, iron weapons, breaking line of sight"
+      },
+      {
+        "name": "Noble House Agent",
+        "faction": "nobility",
+        "threat_level": 2,
+        "sway": "notable",
+        "scale": "individual",
+        "description": "Discreet, well-connected, and working an agenda that intersects yours.",
+        "capabilities": ["social_manipulation", "intelligence_network", "political_pressure"],
+        "weakness": "exposing their house, counter-leverage, Crown interference"
+      }
+    ],
+    "3": [
+      {
+        "name": "Crown Garrison Commander",
+        "faction": "Crown_Military",
+        "threat_level": 3,
+        "sway": "powerful",
+        "scale": "crew",
+        "description": "Commands the district garrison. Has the ear of the Regent.",
+        "capabilities": ["garrison_mobilization", "martial_law", "political_access", "intelligence_file"],
+        "weakness": "Regent-level political intervention, major scandal, rival commander"
+      },
+      {
+        "name": "Criminal Mastermind",
+        "faction": "criminal_crew",
+        "threat_level": 3,
+        "sway": "powerful",
+        "scale": "crew",
+        "description": "A crew leader who has been playing this game for twenty years. You are not the first threat.",
+        "capabilities": ["network_command", "contingency_plans", "leverage_portfolio", "criminal_empire"],
+        "weakness": "inner circle betrayal, losing the street, Crown exposure"
+      },
+      {
+        "name": "Dunweld Apex Predator",
+        "faction": "wild",
+        "threat_level": 3,
+        "sway": "powerful",
+        "scale": "individual",
+        "description": "A thing from beyond the boundary that should not have gotten through.",
+        "capabilities": ["apex_predation", "unnatural_resilience", "terror_aura", "pack_command"],
+        "weakness": "the boundary seal ritual, specialized hunting party, iron and salt"
+      },
+      {
+        "name": "Named NPC: The Magistrate",
+        "faction": "Crown_Administrative",
+        "threat_level": 3,
+        "sway": "powerful",
+        "scale": "faction",
+        "description": "The legal face of Crown power in this city. Has files on everyone.",
+        "capabilities": ["judicial_authority", "asset_seizure", "imprisonment", "political_network"],
+        "weakness": "evidence of corruption, noble house leverage, Regent-level favor"
+      }
+    ],
+    "4": [
+      {
+        "name": "The Regent's Hand",
+        "faction": "Crown_Administrative",
+        "threat_level": 4,
+        "sway": "apex",
+        "scale": "faction",
+        "description": "A direct agent of the Regent with unlimited authority and no accountability.",
+        "capabilities": ["absolute_legal_authority", "military_command", "intelligence_supremacy", "execution_mandate"],
+        "weakness": "the Regent herself, proof of treason against Crown, foreign diplomatic intervention"
+      },
+      {
+        "name": "Named NPC: The Kingmaker",
+        "faction": "nobility",
+        "threat_level": 4,
+        "sway": "apex",
+        "scale": "faction",
+        "description": "A noble whose ambition extends to the throne. Has been preparing for years.",
+        "capabilities": ["noble_coalition", "political_manipulation", "private_army", "deep_intelligence_network"],
+        "weakness": "the current Regent, proof of the conspiracy, internal noble betrayal"
+      }
+    ]
+  }
+}

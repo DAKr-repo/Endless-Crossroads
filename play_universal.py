@@ -414,6 +414,22 @@ class _FITDSceneState:
     def visited_count(self) -> int:
         return len(self.visited)
 
+    def to_dict(self) -> dict:
+        """Serialize scene state for save persistence."""
+        return {
+            "scene_idx": self.scene_idx,
+            "visited": sorted(self.visited),
+            "accepted_jobs": list(self.accepted_jobs),
+            "pending_offer": self.pending_offer,
+        }
+
+    def restore_from_dict(self, data: dict) -> None:
+        """Restore scene state from saved data."""
+        self.scene_idx = data.get("scene_idx", 0)
+        self.visited = set(data.get("visited", []))
+        self.accepted_jobs = data.get("accepted_jobs", [])
+        self.pending_offer = data.get("pending_offer")
+
     def format_scene(self, scene_data) -> str:
         """Format a SceneData (or dict) into a display string."""
         if scene_data is None:
@@ -1013,6 +1029,17 @@ def _run_fitd_loop(con: Console, engine, system_id: str, butler=None,
         stacked_char: Optional StackedCharacter for cross-system stacking.
         dispatcher: Optional StackedCommandDispatcher for multi-engine dispatch.
     """
+    # WO-V65+: Wire butler for audio narration in FITD loop
+    _fitd_butler = butler
+
+    def _fitd_narrate(text: str) -> None:
+        """Narrate text via butler if available."""
+        if _fitd_butler and getattr(_fitd_butler, '_voice_enabled', False):
+            try:
+                _fitd_butler.narrate(text)
+            except Exception:
+                pass
+
     con.print(Panel(
         f"[bold green]Welcome to {engine.display_name}[/bold green]\n"
         f"[dim]Type 'help' for commands, 'quit' to exit.[/dim]",
@@ -1037,6 +1064,10 @@ def _run_fitd_loop(con: Console, engine, system_id: str, butler=None,
                 title=title, border_style="magenta", box=box.ROUNDED,
             ))
             scene_state.play_scene_audio()  # WO-V54.0: Audio trigger
+            # Narrate scene description
+            desc = getattr(scene, 'description', None) or (scene.get("description", "") if isinstance(scene, dict) else "")
+            if desc:
+                _fitd_narrate(desc[:300])
 
     while True:
         try:
@@ -1133,6 +1164,9 @@ def _run_fitd_loop(con: Console, engine, system_id: str, butler=None,
                     _save_stacked(con, engine, system_id, stacked_char)
                 else:
                     data = engine.save_state()
+                    # Persist FITD scene progression
+                    if scene_state and hasattr(scene_state, 'to_dict'):
+                        data["fitd_scene_state"] = scene_state.to_dict()
                     # WO-V61.0: Persist companion evolution if present
                     _comp = getattr(scene_state, '_companion_agent', None)
                     if _comp and _comp.evolution:
@@ -1224,6 +1258,9 @@ def _run_fitd_loop(con: Console, engine, system_id: str, butler=None,
                                         border_style="magenta", box=box.ROUNDED,
                                     ))
                                     scene_state.play_scene_audio()  # WO-V54.0
+                                    _desc = getattr(scene, 'description', None) or (scene.get("description", "") if isinstance(scene, dict) else "")
+                                    if _desc:
+                                        _fitd_narrate(_desc[:300])
                             else:
                                 con.print(Panel(
                                     f"[bold gold1]MODULE COMPLETE![/bold gold1]\n"
@@ -1238,6 +1275,9 @@ def _run_fitd_loop(con: Console, engine, system_id: str, butler=None,
                         title=title, border_style="magenta", box=box.ROUNDED,
                     ))
                     scene_state.play_scene_audio()  # WO-V54.0
+                    _desc = getattr(scene, 'description', None) or (scene.get("description", "") if isinstance(scene, dict) else "")
+                    if _desc:
+                        _fitd_narrate(_desc[:300])
                 continue
 
             if verb in ("scenes",) or (verb == "scene" and len(parts) > 1 and parts[1] == "list"):
@@ -1415,8 +1455,43 @@ def _run_fitd_loop(con: Console, engine, system_id: str, butler=None,
             try:
                 result = engine.handle_command("roll_action", action=action)
                 con.print(Panel(result, title="Roll Result", border_style="yellow"))
+                _fitd_narrate(result[:200])
             except Exception as e:
                 con.print(f"[red]Roll failed: {e}[/red]")
+            continue
+
+        # WO-V68.0: resist <action> — spend stress to resist a consequence
+        if verb == "resist":
+            action = parts[1].lower() if len(parts) >= 2 else "resist"
+            # Locate StressClock on the engine or its first party member
+            stress_clock = getattr(engine, 'stress_clock', None)
+            if stress_clock is None and hasattr(engine, 'party') and engine.party:
+                stress_clock = getattr(engine.party[0], 'stress_clock', None)
+            if stress_clock is None:
+                con.print("[dim]No stress clock available for this engine.[/dim]")
+                continue
+            # Resistance roll: 2d6, each 6 reduces cost by 1 (min 0), floor at 6 stress
+            import random as _rng
+            dice = [_rng.randint(1, 6) for _ in range(2)]
+            sixes = dice.count(6)
+            # Standard FITD resist: stress cost = 6 - number of 6s rolled
+            stress_cost = max(0, 6 - sixes)
+            result = stress_clock.resist(stress_cost)
+            dice_str = ", ".join(str(d) for d in dice)
+            lines_r = [
+                f"[bold]Resist:[/bold] {action}",
+                f"Dice: [{dice_str}]  Sixes: {sixes}  Stress cost: {stress_cost}",
+                f"Stress: {result['new_stress']}/{stress_clock.max_stress}",
+            ]
+            if result.get("trauma_triggered"):
+                lines_r.append(
+                    f"[bold red]TRAUMA:[/bold red] {result['new_trauma']} — "
+                    "stress cleared, trauma gained."
+                )
+            if result.get("broken"):
+                lines_r.append("[bold red]You are BROKEN (4 traumas).[/bold red]")
+            con.print(Panel("\n".join(lines_r), title="Resistance Roll",
+                            border_style="yellow"))
             continue
 
         # Dispatch to engine.handle_command()
@@ -1458,6 +1533,9 @@ def _run_fitd_loop(con: Console, engine, system_id: str, butler=None,
             else:
                 con.print(Panel(result, title=cmd.replace("_", " ").title(),
                                 border_style="blue"))
+                # Narrate significant command outputs (skip short status lines)
+                if isinstance(result, str) and len(result) > 40:
+                    _fitd_narrate(result[:250])
         except Exception as e:
             con.print(f"[red]Command error: {e}[/red]")
 
@@ -2223,6 +2301,10 @@ def main(system_id: str, manifest: Optional[dict] = None, butler=None):
             # Create ZoneManager + scene state for narrative runner
             _fitd_zm = ZoneManager(manifest=mm, base_path=base_path)
             _fitd_scene_state = _FITDSceneState(_fitd_zm, base_path)
+            # Restore persisted scene progression if available
+            _saved_scene = manifest.get("fitd_scene_state") if manifest else None
+            if _saved_scene:
+                _fitd_scene_state.restore_from_dict(_saved_scene)
 
     # Legacy: resolve module from campaign manifest
     if zm is None and resolved_id in DUNGEON_SYSTEMS and manifest and ZoneManager is not None:

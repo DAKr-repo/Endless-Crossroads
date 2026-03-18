@@ -548,6 +548,50 @@ class CandelaEngine(NarrativeLoomMixin):
             return f"[DANGER CHECK] Dice: [{dice_str}]\n{result.get('message', '')}"
         return result.get("message", "")
 
+    def _cmd_assignment(self, **kwargs) -> str:
+        """Show current assignment/mission details.
+
+        Returns active case summary if one exists, otherwise shows circle
+        context and assignments completed so far.
+
+        Returns:
+            Human-readable string with mission/assignment details.
+        """
+        mgr = self._investigation_mgr
+        lines = [f"Circle: {self.circle_name or 'Unnamed'}"]
+        lines.append(f"Assignments completed: {self.assignments_completed}")
+        if mgr and mgr.active_case and mgr.active_case.active:
+            case = mgr.active_case
+            lines.append("")
+            lines.append(f"Active assignment: '{case.case_name}'")
+            lines.append(f"Phenomenon: {case.phenomena or 'Unknown'}")
+            lines.append(
+                f"Clues: {case.clues_found}/{case.clues_needed} | "
+                f"Danger: {case.danger_level}/5"
+            )
+            if mgr.clue_tracker.clues:
+                lines.append("Recent clues:")
+                for clue in mgr.clue_tracker.clues[-3:]:
+                    verified = "V" if clue.verified else "-"
+                    lines.append(f"  [{verified}] {clue.description[:60]}")
+        else:
+            lines.append("No active assignment. Use open_case to begin an investigation.")
+        return "\n".join(lines)
+
+    def _cmd_complication(self, **kwargs) -> str:
+        """Roll a complication from the system's consequence table."""
+        import random as _rng
+        tier = max(1, min(4, kwargs.get("tier", 1)))
+        # Candela uses assignments_completed as a rough pressure proxy
+        effective_tier = min(4, tier + (1 if self.assignments_completed >= 3 else 0))
+        pool = COMPLICATION_TABLE.get(effective_tier, COMPLICATION_TABLE[1])
+        entry = _rng.choice(pool)
+        self._add_shard(
+            f"Complication ({entry['type']}): {entry['text']}",
+            "CHRONICLE",
+        )
+        return f"COMPLICATION: {entry['text']}\nEffect: {entry.get('effect', 'none')}"
+
     def _cmd_build_trust(self, **kwargs) -> str:
         """Adjust trust with an NPC based on an action outcome.
 
@@ -578,12 +622,42 @@ class CandelaEngine(NarrativeLoomMixin):
 # COMMAND DEFINITIONS
 # =========================================================================
 
+# =========================================================================
+# COMPLICATION TABLE (Gap Fix: per-engine consequences)
+# =========================================================================
+
+COMPLICATION_TABLE: Dict[int, List[Dict[str, Any]]] = {
+    1: [
+        {"type": "mark_advance", "text": "A nagging headache intensifies. Something presses at the edge of perception.", "effect": "brain +1"},
+        {"type": "phenomenon_manifestation", "text": "Objects rattle on the nearest shelf. A cold draft from nowhere.", "effect": "bleed +1"},
+        {"type": "circle_strain", "text": "A contact grows distant, unsettled by your questions.", "effect": "trust -1"},
+    ],
+    2: [
+        {"type": "mark_advance", "text": "Your hands tremble. A wound from a previous assignment reopens.", "effect": "body +1"},
+        {"type": "bleed_escalation", "text": "The boundary between here and the other side thins. You hear whispers.", "effect": "bleed +1"},
+        {"type": "phenomenon_manifestation", "text": "A glass shatters spontaneously. The shards arrange themselves into a symbol.", "effect": "danger +1"},
+    ],
+    3: [
+        {"type": "mark_advance", "text": "Memories that aren't yours flood your mind. You lose minutes.", "effect": "brain +2"},
+        {"type": "bleed_escalation", "text": "Blood seeps from the walls of the investigation site.", "effect": "bleed +2"},
+        {"type": "circle_strain", "text": "An investigator's past catches up with them. A debt is called in.", "effect": "stress +3"},
+        {"type": "phenomenon_manifestation", "text": "The phenomenon manifests briefly — a face in the mirror that isn't yours.", "effect": "danger +2"},
+    ],
+    4: [
+        {"type": "mark_advance", "text": "Your body seizes. Something passes through you.", "effect": "body +2"},
+        {"type": "bleed_escalation", "text": "The bleed tears open. Something reaches through.", "effect": "bleed +3"},
+        {"type": "phenomenon_manifestation", "text": "The phenomenon fully manifests. Reality fractures around it.", "effect": "danger +3"},
+    ],
+}
+
+
 CANDELA_COMMANDS = {
     # Existing (WO-V10.0)
     "roll_action":    "Roll a d6-pool action check",
     "circle_status":  "Show circle name and assignments",
     "take_mark":      "Mark damage on Body/Brain/Bleed",
     "party_status":   "Show all investigator resource tracks",
+    "assignment":     "Show current assignment/mission details",
     # WO-V2C: Investigation
     "open_case":      "Open a new investigation case",
     "investigate":    "Perform an investigation roll to find clues",
@@ -593,16 +667,17 @@ CANDELA_COMMANDS = {
     "clues":          "List all discovered clues",
     "danger_check":   "Roll a danger escalation check",
     "build_trust":    "Adjust NPC trust level after an interaction",
+    "complication":   "Roll a complication from the consequence table",
 }
 
 CANDELA_CATEGORIES = {
-    "Circle":        ["circle_status", "party_status"],
+    "Circle":        ["circle_status", "party_status", "assignment"],
     "Action":        ["roll_action", "take_mark"],
     "Investigation": [
         "open_case", "investigate", "case_status", "clues",
         "illuminate", "danger_check",
     ],
-    "Roleplay":      ["gilded_move", "build_trust"],
+    "Roleplay":      ["gilded_move", "build_trust", "complication"],
 }
 
 

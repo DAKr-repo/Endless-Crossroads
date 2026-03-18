@@ -3,6 +3,7 @@
     "display_name": "Stormlight: The First Step",
     "system_id": "stc",
     "source_pdf": null,
+    "source_type": "community_authored",
     "world_map": "world_map.json",
     "starting_location": "kholinar",
     "recommended_levels": {"min": 1, "max": 5},

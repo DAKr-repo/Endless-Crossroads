@@ -32,7 +32,7 @@ class TestNarrativeLoomMixin:
         from codex.core.services.narrative_loom import NarrativeLoomMixin
         mixin = NarrativeLoomMixin()
         mixin._init_loom()
-        mixin.system_id = "test"
+        mixin.system_id = "test"  # type: ignore[attr-defined]
         mixin._add_shard("Test shard content", "CHRONICLE")
         assert len(mixin._memory_shards) == 1
         assert mixin._memory_shards[0].content == "Test shard content"
@@ -49,7 +49,7 @@ class TestNarrativeLoomMixin:
         from codex.core.services.narrative_loom import NarrativeLoomMixin
         mixin = NarrativeLoomMixin()
         mixin._init_loom()
-        mixin.system_id = "test"
+        mixin.system_id = "test"  # type: ignore[attr-defined]
         mixin._add_shard("The dragon attacked the village", "CHRONICLE")
         result = mixin.trace_fact("dragon")
         assert "dragon" in result
@@ -311,12 +311,12 @@ class TestDnD5ePartyScaling:
                                      max_depth=3, system_id="dnd5e")
         # Solo adapter
         solo = DnD5eAdapter(seed=42, party_size=1)
-        injector_solo = ContentInjector(solo)
+        injector_solo = ContentInjector(solo)  # type: ignore[arg-type]
         rooms_solo = injector_solo.populate_all(graph)
 
         # Party-of-4 adapter
         party4 = DnD5eAdapter(seed=42, party_size=4)
-        injector_party = ContentInjector(party4)
+        injector_party = ContentInjector(party4)  # type: ignore[arg-type]
         rooms_party = injector_party.populate_all(graph)
 
         # Compare total enemy HP in any room that has enemies

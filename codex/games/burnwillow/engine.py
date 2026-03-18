@@ -239,6 +239,7 @@ class GearItem:
     tier: GearTier
     stat_bonuses: Dict[StatType, int] = field(default_factory=dict)
     damage_reduction: int = 0  # Armor DR
+    defense_bonus: int = 0     # Armor defense bonus (contributes to get_defense())
     special_traits: List[str] = field(default_factory=list)  # e.g., "[Lockpick]", "[Intercept]"
     description: str = ""
     two_handed: bool = False  # If True, blocks both R.Hand and L.Hand
@@ -264,6 +265,7 @@ class GearItem:
             "tier": self.tier.value,
             "stat_bonuses": {stat.value: bonus for stat, bonus in self.stat_bonuses.items()},
             "damage_reduction": self.damage_reduction,
+            "defense_bonus": self.defense_bonus,
             "special_traits": self.special_traits,
             "description": self.description,
             "weight": self.weight,
@@ -284,6 +286,7 @@ class GearItem:
             tier=GearTier(data["tier"]),
             stat_bonuses={StatType(k): v for k, v in data.get("stat_bonuses", {}).items()},
             damage_reduction=data.get("damage_reduction", 0),
+            defense_bonus=data.get("defense_bonus", 0),
             special_traits=data.get("special_traits", []),
             description=data.get("description", ""),
             two_handed=data.get("two_handed", False),
@@ -319,6 +322,7 @@ class GearGrid:
             item_copy = GearItem(
                 name=item.name, slot=GearSlot.R_HAND, tier=item.tier,
                 stat_bonuses=item.stat_bonuses, damage_reduction=item.damage_reduction,
+                defense_bonus=item.defense_bonus,
                 special_traits=item.special_traits, description=item.description,
                 two_handed=True,
             )
@@ -457,7 +461,9 @@ class Character:
     # Inventory (not worn) — stable indices via dict
     inventory: Dict[int, GearItem] = field(default_factory=dict)
     _next_inv_id: int = field(default=0, repr=False)
-    keys: int = 0  # Consumable lock openers
+    keys: int = 0    # Consumable lock openers
+    scrap: int = 0   # Crafting resource for forge upgrades
+    memory_seeds: List[dict] = field(default_factory=list)  # Each: {name, tier, deciphered}
 
     def __post_init__(self):
         """Calculate derived stats."""
@@ -480,10 +486,18 @@ class Character:
         return base_mod + gear_bonus
 
     def get_defense(self) -> int:
-        """Get total Defense (AC)."""
-        # Base defense + gear modifiers
-        # (Future: armor can modify defense, shields add bonuses)
-        return self.base_defense
+        """Get total Defense (AC).
+
+        Base defense (10 + Wits mod) plus defense_bonus from armor pieces
+        equipped in body slots (Chest, Arms, Legs, Feet).
+        """
+        armor_slots = ("Chest", "Arms", "Legs", "Feet")
+        armor_bonus = sum(
+            item.defense_bonus
+            for slot, item in self.gear.slots.items()
+            if slot.value in armor_slots and item
+        )
+        return self.base_defense + armor_bonus
 
     # Action Methods
     def make_check(self, stat_type: StatType, dc: int) -> CheckResult:
@@ -567,7 +581,9 @@ class Character:
             "current_hp": self.current_hp,
             "gear": self.gear.to_dict(),
             "inventory": {str(k): v.to_dict() for k, v in self.inventory.items()},
-            "keys": self.keys
+            "keys": self.keys,
+            "scrap": self.scrap,
+            "memory_seeds": list(self.memory_seeds),
         }
 
     @classmethod
@@ -603,6 +619,8 @@ class Character:
             char.current_hp = min(saved_hp, char.max_hp)
 
         char.keys = data.get("keys", 0)
+        char.scrap = data.get("scrap", 0)
+        char.memory_seeds = list(data.get("memory_seeds", []))
         return char
 
     @classmethod
@@ -1135,29 +1153,14 @@ class BurnwillowEngine:
             injector = ContentInjector(adapter)
             self.populated_rooms = injector.populate_all(self.dungeon_graph)
         elif zone > 1:
-            # Use TangleGenerator as unified entry point for higher zones
+            # Higher zones use TangleAdapter for richer content
             try:
-                from codex.games.burnwillow.zone1 import TangleGenerator
-                gen = TangleGenerator(config={"zone": zone})
-                zone_data = gen.generate_zone(depth=depth, seed=seed)
-                self.dungeon_graph = zone_data["graph"]
-                # Adapt zone_data rooms into populated_rooms format
-                from codex.spatial.map_engine import PopulatedRoom
-                self.populated_rooms = {}
-                for room_dict in zone_data["rooms"]:
-                    room_node = self.dungeon_graph.rooms.get(room_dict["id"])
-                    if room_node:
-                        content = {
-                            k: room_dict.get(k, [])
-                            for k in ("enemies", "loot", "hazards", "interactive", "biome_tags")
-                        }
-                        self.populated_rooms[room_dict["id"]] = PopulatedRoom(
-                            geometry=room_node, content=content,
-                        )
+                from codex.games.burnwillow.zone1 import TangleAdapter
+                adapter = TangleAdapter(seed=seed)
             except ImportError:
                 adapter = BurnwillowAdapter(seed=seed)
-                injector = ContentInjector(adapter)
-                self.populated_rooms = injector.populate_all(self.dungeon_graph)
+            injector = ContentInjector(adapter)
+            self.populated_rooms = injector.populate_all(self.dungeon_graph)
         else:
             adapter = BurnwillowAdapter(seed=seed)
             injector = ContentInjector(adapter)
@@ -2121,6 +2124,7 @@ def create_starter_gear() -> List[GearItem]:
             slot=GearSlot.CHEST,
             tier=GearTier.TIER_I,
             damage_reduction=1,
+            defense_bonus=1,
             weight=3.0,
             description="Quilted cloth armor. Provides minimal protection."
         ),

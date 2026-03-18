@@ -34,10 +34,11 @@ from dataclasses import dataclass, field
 
 # Import zone generator
 try:
-    from codex.games.burnwillow.zone1 import TangleGenerator
+    from codex.games.burnwillow.zone1 import TangleAdapter
+    from codex.spatial.map_engine import CodexMapEngine, ContentInjector
 except ImportError:
-    print("ERROR: Cannot import TangleGenerator from burnwillow_zone1.py")
-    print("Ensure burnwillow_zone1.py and codex_map_engine.py are in the same directory.")
+    print("ERROR: Cannot import TangleAdapter/CodexMapEngine")
+    print("Ensure burnwillow zone1 and spatial map_engine modules are available.")
     sys.exit(1)
 
 
@@ -139,8 +140,8 @@ def run_stress_test(zone_count: int = 50, depth: int = 4) -> StressTestReport:
     # Start memory profiling
     tracemalloc.start()
 
-    # Initialize generator
-    generator = TangleGenerator()
+    # Initialize generator components
+    adapter = TangleAdapter()
 
     # Metrics storage
     zone_metrics: List[GenerationMetrics] = []
@@ -167,7 +168,17 @@ def run_stress_test(zone_count: int = 50, depth: int = 4) -> StressTestReport:
 
         # Generate zone
         gen_start = time.perf_counter()
-        zone = generator.generate_zone(depth=depth, seed=i)
+        map_engine = CodexMapEngine(seed=i)
+        graph = map_engine.generate(
+            width=50, height=50, min_room_size=5, max_depth=depth,
+            system_id="burnwillow",
+        )
+        injector = ContentInjector(adapter)
+        populated_rooms = injector.populate_all(graph)
+        zone = {
+            "seed": graph.seed, "total_rooms": len(populated_rooms),
+            "start_room_id": graph.start_room_id,
+        }
         gen_end = time.perf_counter()
 
         # Capture metrics

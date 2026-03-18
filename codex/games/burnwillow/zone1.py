@@ -524,116 +524,48 @@ class TangleAdapter(RulesetAdapter):
 
 
 # =============================================================================
-# ZONE GENERATOR — HIGH-LEVEL INTERFACE
-# =============================================================================
-
-class TangleGenerator:
-    """
-    High-level interface for generating a complete Tangle zone.
-
-    This wraps CodexMapEngine + TangleAdapter for convenience.
-
-    Usage:
-        generator = TangleGenerator()
-        zone = generator.generate_zone(depth=4, seed=12345)
-        print(f"Generated {len(zone['rooms'])} rooms")
-
-        for room in zone['rooms']:
-            print(f"Room {room['id']}: {room['biome_tags']}")
-    """
-
-    def __init__(self, config: Optional[dict] = None):
-        """Initialize the Tangle zone generator.
-
-        Args:
-            config: Optional configuration dict for zone generation parameters.
-        """
-        self.config = config or {}
-
-    def generate_zone(
-        self,
-        depth: int = 4,
-        seed: Optional[int] = None,
-        width: int = 50,
-        height: int = 50,
-        min_room_size: int = 5
-    ) -> dict:
-        """
-        Generate a complete Tangle zone.
-
-        Args:
-            depth: BSP depth (controls room count: ~2^depth rooms)
-            seed: Random seed for reproducibility
-            width: Dungeon width in grid units
-            height: Dungeon height in grid units
-            min_room_size: Minimum room dimension
-
-        Returns:
-            Dict containing:
-                - "seed": Generation seed
-                - "graph": DungeonGraph object
-                - "rooms": List of room dicts with content
-                - "start_room_id": Entrance room ID
-                - "total_rooms": Room count
-        """
-        # Generate geometry
-        map_engine = CodexMapEngine(seed=seed)
-        graph = map_engine.generate(
-            width=width,
-            height=height,
-            min_room_size=min_room_size,
-            max_depth=depth,
-            system_id="burnwillow",
-        )
-
-        # Populate with Tangle content
-        adapter = TangleAdapter(seed=seed)
-        injector = ContentInjector(adapter)
-        populated_rooms = injector.populate_all(graph)
-
-        # Convert to serializable format
-        rooms = []
-        for room_id, pop_room in populated_rooms.items():
-            room_dict = {
-                "id": pop_room.geometry.id,
-                "type": pop_room.geometry.room_type.value,
-                "tier": pop_room.geometry.tier,
-                "position": (pop_room.geometry.x, pop_room.geometry.y),
-                "size": (pop_room.geometry.width, pop_room.geometry.height),
-                "connections": pop_room.geometry.connections,
-                "is_locked": pop_room.geometry.is_locked,
-                "is_secret": pop_room.geometry.is_secret,
-                "biome_tags": pop_room.content["biome_tags"],
-                "enemies": pop_room.content["enemies"],
-                "loot": pop_room.content["loot"],
-                "hazards": pop_room.content["hazards"],
-                "interactive": pop_room.content["interactive"]
-            }
-            rooms.append(room_dict)
-
-        return {
-            "seed": graph.seed,
-            "graph": graph,
-            "rooms": rooms,
-            "start_room_id": graph.start_room_id,
-            "total_rooms": len(rooms)
-        }
-
-
-# =============================================================================
 # STANDALONE TEST & DEMO
 # =============================================================================
 
 def run_demo():
-    """Demonstrate the Tangle zone generator."""
+    """Demonstrate the Tangle zone generator using TangleAdapter directly."""
     print("=" * 70)
     print("ZONE 1: THE TANGLE - PROCEDURAL GENERATOR TEST")
     print("=" * 70)
 
     # Generate a Tangle zone
     print("\n[GENERATION]")
-    generator = TangleGenerator()
-    zone = generator.generate_zone(depth=3, seed=999)
+    map_engine = CodexMapEngine(seed=999)
+    graph = map_engine.generate(
+        width=50, height=50, min_room_size=5, max_depth=3,
+        system_id="burnwillow",
+    )
+    adapter = TangleAdapter(seed=999)
+    injector = ContentInjector(adapter)
+    populated_rooms = injector.populate_all(graph)
+
+    zone = {
+        "seed": graph.seed,
+        "rooms": [],
+        "start_room_id": graph.start_room_id,
+        "total_rooms": len(populated_rooms),
+    }
+    for room_id, pop_room in populated_rooms.items():
+        zone["rooms"].append({
+            "id": pop_room.geometry.id,
+            "type": pop_room.geometry.room_type.value,
+            "tier": pop_room.geometry.tier,
+            "position": (pop_room.geometry.x, pop_room.geometry.y),
+            "size": (pop_room.geometry.width, pop_room.geometry.height),
+            "connections": pop_room.geometry.connections,
+            "is_locked": pop_room.geometry.is_locked,
+            "is_secret": pop_room.geometry.is_secret,
+            "biome_tags": pop_room.content["biome_tags"],
+            "enemies": pop_room.content["enemies"],
+            "loot": pop_room.content["loot"],
+            "hazards": pop_room.content["hazards"],
+            "interactive": pop_room.content["interactive"],
+        })
 
     print(f"Seed: {zone['seed']}")
     print(f"Total Rooms: {zone['total_rooms']}")

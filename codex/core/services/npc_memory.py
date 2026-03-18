@@ -209,6 +209,10 @@ class NPCMemoryBank:
             return ""
         return header + "\n".join(bullets)
 
+    def get_recent_shards(self, n: int = 3) -> list:
+        """Return the N most recent shards, newest-first."""
+        return sorted(self.shards, key=lambda s: s.timestamp, reverse=True)[:n]
+
     def _decay(self):
         """Purge oldest shards when over MAX_SHARDS cap.
 

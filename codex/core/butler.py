@@ -49,7 +49,6 @@ class CodexButler:
         self._narrate_cooldown: float = 3.0  # Seconds between narrations (thermal)
         self._skald_lexicon: Dict[str, List[str]] = self._load_skald_lexicon()
         self._world_ledger = None  # WO-V9.0: WorldLedger for consequence tracking
-        self._orchestrator = None  # WO-V10.0: HybridGameOrchestrator
         # Conversational quip pools — zero-LLM-cost persona responses
         self._presence_quips = [
             "Aye, I am here. Where else would a severed head bound to a Void-Skiff go?",
@@ -129,15 +128,13 @@ class CodexButler:
             (r"^trace\s+(.+)$", self._handle_trace),
             # WO-V13.1: Voice toggle
             (r"^voice\s*(on|off)?$", self._handle_voice_toggle),
+            # WO-V68.0: Map listing reflex
+            (r"^maps?$", self._handle_maps),
         ]
 
     def set_world_ledger(self, ledger) -> None:
         """Attach a WorldLedger for consequence tracking (WO-V9.0)."""
         self._world_ledger = ledger
-
-    def set_orchestrator(self, orchestrator) -> None:
-        """Attach a HybridGameOrchestrator (WO-V10.0)."""
-        self._orchestrator = orchestrator
 
     def register_session(self, engine) -> None:
         """Register an active game engine for session-aware reflexes."""
@@ -470,18 +467,6 @@ class CodexButler:
                     f"Defense: {lead.get('defense', '?')} | Focus: {lead.get('focus', '?')} | "
                     f"Order: {lead.get('order', '?')} | Room: {bridge.get('room_id', '?')}"
                 )
-        # WO-V10.0: Orchestrator aggregated status
-        if self._orchestrator and self._orchestrator.engine_ids:
-            status = self._orchestrator.get_status()
-            lines = [f"Orchestrator: {status['session_id']}"]
-            for eid, edata in status.get("engines", {}).items():
-                if isinstance(edata, dict) and "error" not in edata:
-                    system = edata.get("system", eid)
-                    lead = edata.get("lead", "?")
-                    lines.append(f"  [{system}] Lead: {lead}")
-                else:
-                    lines.append(f"  [{eid}] {edata}")
-            return "\n".join(lines)
         if not self.core:
             return "❤️ Systems Nominal (No Core Link)"
         return "❤️ Systems Nominal (No Active Session)"
@@ -867,7 +852,11 @@ class CodexButler:
             idx = random.randint(0, len(pool) - 1)
         return pool[idx]
 
-    def narrate(self, text: str, speaker_id: Optional[int] = None) -> bool:
+    # Norwegian Skald narrator model filename (relative to models/piper/)
+    _NARRATOR_MODEL = "no_NO-talesyntese-medium.onnx"
+
+    def narrate(self, text: str, speaker_id: Optional[int] = None,
+                use_narrator_voice: bool = True) -> bool:
         """Send text to the Mouth TTS service for narration and play via aplay.
 
         Non-blocking with timeout. Sets _narrating flag for TUI status.
@@ -875,6 +864,7 @@ class CodexButler:
         Args:
             text: Text to narrate (will be voice-cleaned).
             speaker_id: Optional Piper speaker ID for NPC voice identity.
+            use_narrator_voice: If True (default), use the Norse Skald model.
 
         Returns:
             True if TTS accepted the request and audio was played, False otherwise.
@@ -898,6 +888,11 @@ class CodexButler:
             payload: dict = {"text": cleaned}
             if speaker_id is not None:
                 payload["speaker_id"] = speaker_id
+            # Route to Norse Skald voice by default
+            if use_narrator_voice:
+                _model_dir = self._ROOT / "models" / "piper"
+                if (_model_dir / self._NARRATOR_MODEL).exists():
+                    payload["model_path"] = self._NARRATOR_MODEL
             resp = requests.post(
                 "http://127.0.0.1:5001/speak",
                 json=payload,
@@ -966,3 +961,27 @@ class CodexButler:
             self._voice_enabled = not self._voice_enabled
         state = "ON" if self._voice_enabled else "OFF"
         return f"Voice narration: {state}"
+
+    def _handle_maps(self, match) -> str:
+        """WO-V68.0: List available map files grouped by system."""
+        try:
+            from codex.core.services.cartography import list_maps
+        except ImportError:
+            return "Cartography service not available."
+
+        # Filter to current session's system if one is active
+        system_id = self._infer_system_id()
+        result = list_maps(system_id=system_id)
+
+        if not result:
+            label = f"for {system_id}" if system_id else "in vault"
+            return f"No maps found {label}."
+
+        lines = ["Available maps:"]
+        for sid, files in sorted(result.items()):
+            lines.append(f"  [{sid}]")
+            for f in files[:10]:
+                lines.append(f"    {f}")
+            if len(files) > 10:
+                lines.append(f"    ...and {len(files) - 10} more")
+        return "\n".join(lines)

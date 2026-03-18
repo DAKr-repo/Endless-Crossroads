@@ -1,0 +1,102 @@
+{
+  "terrain_type": "desert",
+  "events": {
+    "tier_1": [
+      {
+        "id": "sandstorm",
+        "type": "skill_challenge",
+        "title": "Sandstorm",
+        "description": "A wall of amber dust swallows the horizon and races toward you. The sky goes dark in minutes.",
+        "target_role": "guide",
+        "dc": 11,
+        "success": "You find a rock outcrop in time and shelter until the storm passes.",
+        "failure": "The storm catches you in the open. You lose half a day stumbling blind.",
+        "failure_cost": {"days": 0.5}
+      },
+      {
+        "id": "sun_exposure",
+        "type": "skill_challenge",
+        "title": "Midday Sun",
+        "description": "The sun reaches its zenith. The air shimmers. Every step costs twice what it should.",
+        "target_role": "forager",
+        "dc": 10,
+        "success": "You pace the march and conserve water. No rations lost.",
+        "failure": "Two canteens run dry. Someone shows signs of heat exhaustion.",
+        "failure_cost": {"days": 0.5}
+      },
+      {
+        "id": "desert_cache",
+        "type": "discovery",
+        "title": "Buried Trader's Cache",
+        "description": "A weathered marker post juts from the sand. Something was buried here deliberately.",
+        "target_role": "scout",
+        "dc": 10,
+        "success": "Wrapped oilskins, hardtack, and a small waterskin. Emergency stores.",
+        "failure": "You dig and dig. Either it's gone or you misjudged the marker.",
+        "success_reward": {"rations": 2}
+      }
+    ],
+    "tier_2": [
+      {
+        "id": "oasis_discovery",
+        "type": "discovery",
+        "title": "Oasis",
+        "description": "Palm fronds catch the wind above a shallow pool. Too good to be true — or just lucky?",
+        "target_role": "forager",
+        "dc": 11,
+        "success": "Clean water and date palms. You fill every vessel and rest in the shade.",
+        "failure": "Brackish and foul. The water will make you sick if you drink it.",
+        "success_reward": {"rations": 4}
+      },
+      {
+        "id": "scorpion_nest",
+        "type": "combat",
+        "title": "Giant Scorpion Nest",
+        "description": "The sand shifts around a low dune cluster. Pincers emerge from holes you didn't see.",
+        "target_role": "scout",
+        "dc": 13,
+        "success": "You spot the telltale burrow holes and circle around.",
+        "failure": "They're already flanking you.",
+        "enemies_tier": 2
+      }
+    ],
+    "tier_3": [
+      {
+        "id": "sand_wurm",
+        "type": "combat",
+        "title": "Sand Wurm",
+        "description": "The ground vibrates with a rhythmic thud. A ring of teeth erupts from the dune directly ahead.",
+        "target_role": "scout",
+        "dc": 15,
+        "success": "You feel the vibrations early. Walk on rock. Scatter. It passes beneath you.",
+        "failure": "It surfaces under the party. Scatter or be swallowed.",
+        "enemies_tier": 3
+      },
+      {
+        "id": "mirage_labyrinth",
+        "type": "skill_challenge",
+        "title": "Mirage Labyrinth",
+        "description": "Three routes shimmer ahead. Landmarks repeat. You've been here before — or have you?",
+        "target_role": "guide",
+        "dc": 15,
+        "success": "You navigate by stars and trust the compass over your eyes.",
+        "failure": "Two days walking in an enormous circle before the error is caught.",
+        "failure_cost": {"days": 2}
+      }
+    ],
+    "tier_4": [
+      {
+        "id": "ancient_tomb",
+        "type": "skill_challenge",
+        "title": "Ancient Tomb Entrance",
+        "description": "A monolithic doorway rises from the sand where no structure should exist. Hieroglyphs warn of sleeping guardians. The darkness beyond is absolute.",
+        "target_role": "guard",
+        "dc": 16,
+        "success": "You scout the approach carefully and identify the guardian patrol pattern. Entry is possible.",
+        "failure": "Stone figures animate the moment you touch the door frame.",
+        "enemies_tier": 4,
+        "notes": "On success the party may enter the tomb as a dungeon encounter. Failure triggers immediate combat."
+      }
+    ]
+  }
+}

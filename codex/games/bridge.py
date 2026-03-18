@@ -79,6 +79,10 @@ class UniversalGameBridge:
             "save": "Save current game",
             "help": "List all commands",
         },
+        "narrative": {
+            "trace": "Trace a fact through narrative shards",
+            "reputation": "Show faction standing",
+        },
     }
 
     def __init__(self, engine_class, character_data=None, seed=None,
@@ -96,6 +100,12 @@ class UniversalGameBridge:
         self._session_log: list = []  # WO-V61.0: Session event chronicle
         self._momentum_handler = None  # WO-V62.0: Threshold handler
         self._pending_momentum_msgs: list = []  # WO-V62.0: Pending messages
+        # WO-V68.0: Faction reputation tracker
+        try:
+            from codex.core.mechanics.reputation import ReputationTracker
+            self._reputation: "Optional[ReputationTracker]" = ReputationTracker()
+        except ImportError:
+            self._reputation = None
 
         if character_data:
             self.engine.load_state(character_data)
@@ -210,6 +220,9 @@ class UniversalGameBridge:
             "sheet": self._handle_sheet,
             "doll": self._handle_sheet,
             "character": self._handle_sheet,
+            "trace": self._handle_trace,
+            "reputation": self._handle_reputation,
+            "rep": self._handle_reputation,
         }
 
         # WO-V54.0: Service alias routing — route service names to _handle_services
@@ -235,7 +248,7 @@ class UniversalGameBridge:
         if handler:
             # Pass remaining args for handlers that accept them
             if verb in ("drop", "use", "push", "rest", "heal", "hitdice",
-                        "voice", "talk", "npc", "services", "lore"):
+                        "voice", "talk", "npc", "services", "lore", "trace"):
                 arg = " ".join(parts[1:]) if len(parts) > 1 else ""
                 result = handler(arg)
             else:
@@ -1182,6 +1195,64 @@ class UniversalGameBridge:
         if not summary:
             return f"No lore found for '{arg}'.\n{self._status_line()}"
         return f"--- Lore: {arg.title()} ---\n{summary}\n\n{self._status_line()}"
+
+    def _handle_trace(self, arg: str = "") -> str:
+        """WO-V68.0: Trace a keyword through narrative memory shards.
+
+        Requires the engine to have a ``_memory_shards`` attribute (engines
+        using NarrativeLoomMixin).  Returns a formatted list of shard layers
+        that contain the keyword, ordered by authority.
+        """
+        keyword = arg.strip()
+        if not keyword:
+            return "Usage: trace <keyword>\n" + self._status_line()
+
+        if not hasattr(self.engine, '_memory_shards'):
+            return "Narrative trace requires an engine with memory shards loaded.\n" + self._status_line()
+
+        shards = getattr(self.engine, '_memory_shards', [])
+        if not shards:
+            return f"No memory shards loaded — trace for '{keyword}' unavailable.\n" + self._status_line()
+
+        try:
+            from codex.core.services.narrative_loom import diagnostic_trace
+        except ImportError:
+            return "Narrative Loom not available.\n" + self._status_line()
+
+        results = diagnostic_trace(keyword, shards)
+        if not results:
+            return f"No shards mention '{keyword}'.\n" + self._status_line()
+
+        lines = [f"=== Trace: \"{keyword}\" ({len(results)} match{'es' if len(results) != 1 else ''}) ==="]
+        for r in results:
+            lines.append(
+                f"  [{r['type']}] source={r['source']} relevance={r['relevance']}"
+            )
+            if r.get("excerpt"):
+                lines.append(f"    {r['excerpt']}")
+        lines.append("")
+        lines.append(self._status_line())
+        return "\n".join(lines)
+
+    def _handle_reputation(self) -> str:
+        """WO-V68.0: Show all tracked faction standings."""
+        if self._reputation is None:
+            return "Reputation system not available.\n" + self._status_line()
+
+        standings = self._reputation.all_standings()
+        if not standings:
+            return "No faction relationships tracked yet.\n" + self._status_line()
+
+        lines = ["=== Faction Reputation ==="]
+        for fid, fs in standings:
+            disp = self._reputation.get_disposition_modifier(fid)
+            disp_str = f"{disp:+d}" if disp != 0 else " 0"
+            lines.append(
+                f"  {fid:<28} {fs.title:<10} ({fs.standing:+d})  NPC mod {disp_str}"
+            )
+        lines.append("")
+        lines.append(self._status_line())
+        return "\n".join(lines)
 
     def _handle_event(self) -> str:
         """Show event triggers for the current room."""

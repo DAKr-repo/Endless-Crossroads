@@ -43,6 +43,14 @@ TRAIT_CATALOG: Dict[str, TraitDef] = {
         class_name="FITDActionRoll",
         requires=frozenset(),
     ),
+    "pbta_roll": TraitDef(
+        name="pbta_roll",
+        category="resolution",
+        description="Powered by the Apocalypse 2d6+stat resolution (miss/weak/strong/critical)",
+        module_path="codex.core.services.pbta_engine",
+        class_name="PbtAActionRoll",
+        requires=frozenset(),
+    ),
     "stress_track": TraitDef(
         name="stress_track",
         category="resolution",

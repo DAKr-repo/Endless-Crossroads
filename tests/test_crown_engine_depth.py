@@ -489,7 +489,7 @@ class TestPoliticalGravityEngine:
     def test_council_vote_with_sway_modifier(self):
         engine = self._engine()
         rng = random.Random(10)
-        result_neutral = engine.council_vote(
+        _result_neutral = engine.council_vote(
             "Test vote",
             {"Crown Loyalists": "crown", "People's Assembly": "crew"},
             sway_modifier=0,
@@ -569,7 +569,7 @@ class TestPoliticalGravityEngine:
 
     def test_faction_action_recruit(self):
         engine = self._engine()
-        old = engine.influence_tracker.factions["Free Companies"]["resources"].get("soldiers", 0)
+        _old = engine.influence_tracker.factions["Free Companies"]["resources"].get("soldiers", 0)
         result = engine.faction_action("Free Companies", "recruit")
         assert result["success"] is True
 
@@ -724,7 +724,7 @@ class TestEventGenerator:
         gen = EventGenerator()
         blood_pool = gen.get_weighted_pool(sway=0, tags=["BLOOD"])
         for event, _ in blood_pool:
-            assert event.get("tag") == "BLOOD"
+            assert event.get("tag") == "BLOOD"  # type: ignore[attr-defined]
 
     def test_serialization_roundtrip(self):
         gen = EventGenerator()
@@ -909,10 +909,11 @@ class TestCrownEngineSaveLoad:
         assert "_politics_engine" in data
         restored = CrownAndCrewEngine.from_dict(data)
         assert restored._politics_engine is not None
+        assert engine._politics_engine is not None
         restored_influence = restored._politics_engine.influence_tracker.factions[
             "Reformists"
         ]["influence"]
-        original_influence = engine._politics_engine.influence_tracker.factions[
+        original_influence = engine._politics_engine.influence_tracker.factions[  # type: ignore[union-attr]
             "Reformists"
         ]["influence"]
         assert restored_influence == original_influence
@@ -926,11 +927,12 @@ class TestCrownEngineSaveLoad:
         assert "_event_generator" in data
         restored = CrownAndCrewEngine.from_dict(data)
         assert restored._event_generator is not None
+        assert engine._event_generator is not None
         assert len(restored._event_generator.event_history) == len(
-            engine._event_generator.event_history
+            engine._event_generator.event_history  # type: ignore[union-attr]
         )
         assert restored._event_generator.chain_progress == (
-            engine._event_generator.chain_progress
+            engine._event_generator.chain_progress  # type: ignore[union-attr]
         )
 
     def test_roundtrip_with_both_subsystems_active(self):
@@ -983,7 +985,9 @@ class TestCrownEngineSaveLoad:
         engine._get_politics_engine().power_shift(0.4, "Crew victory")
         data = engine.to_dict()
         restored = CrownAndCrewEngine.from_dict(data)
+        assert restored._politics_engine is not None
+        assert engine._politics_engine is not None
         assert abs(
             restored._politics_engine.power_balance
-            - engine._politics_engine.power_balance
+            - engine._politics_engine.power_balance  # type: ignore[union-attr]
         ) < 0.001

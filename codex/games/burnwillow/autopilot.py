@@ -283,7 +283,7 @@ class AutopilotAgent:
         # 8. No options
         return "end"
 
-    def decide_combat(self, snapshot: dict) -> str:
+    def decide_combat(self, snapshot: dict, bond: float = 0.0) -> str:
         """Decide combat action based on current state.
 
         Priority chain (healer):
@@ -300,6 +300,7 @@ class AutopilotAgent:
 
         Args:
             snapshot: Dict from build_combat_snapshot()
+            bond: Bond score (-1.0 to +1.0) for reluctant ally behavior.
 
         Returns:
             Command string (e.g. "attack 0", "guard", "triage Kael")
@@ -307,11 +308,30 @@ class AutopilotAgent:
         hp_pct = snapshot.get("hp_pct", 1.0)
         enemies = snapshot.get("enemies", [])
         allies = snapshot.get("allies", [])
-        traits = snapshot.get("traits", [])
+        traits = list(snapshot.get("traits", []))
         char_name = snapshot.get("char_name", "")
+
+        # WO-V62.0: Reluctant ally behavior at negative bond
+        if bond < -0.3:
+            traits = [t for t in traits if t not in ("[Command]", "[Bolster]")]
+        if bond < -0.5 and random.random() < 0.15:
+            if enemies:
+                return f"attack {random.randint(0, len(enemies) - 1)}"
+            return "guard"
+        if bond < 0 and hp_pct < 0.35:
+            return "guard"
 
         # Find target using tactical selection
         target_idx = select_ai_target(snapshot)
+
+        # WO-V62.0: Gear-aware decisions
+        equipped = snapshot.get("equipped_traits", [])
+        has_aoe = any(t in equipped for t in ["[Shockwave]", "[Whirlwind]", "[Cleave]"])
+        if has_aoe and len(enemies) >= 3 and self.personality.aggression > 0.4:
+            return f"attack {target_idx}"  # Prefer attack with AoE gear
+
+        if hp_pct < 0.25 and snapshot.get("has_healing_item"):
+            return "use healing"
 
         # Healer/cautious behavior
         if self.personality.archetype == "healer" or self.personality.caution > 0.6:
@@ -350,15 +370,34 @@ class AutopilotAgent:
         return f"attack {target_idx}"
 
     def decide_hub(self, snapshot: dict) -> str:
-        """Decide hub action. Simple: navigate to gate and descend.
+        """Decide hub action based on needs and personality.
 
         Args:
-            snapshot: Dict with current_room_type, exits info.
+            snapshot: Dict with current_room_type, exits info, hp_pct, has_forge.
 
         Returns:
             Command string.
         """
         room_type = snapshot.get("room_type", "")
+        hp_pct = snapshot.get("hp_pct", 1.0)
+
+        # WO-V62.0: Need-based hub decisions
+        if hp_pct < 0.5 and room_type == "temple":
+            return "heal"
+        if hp_pct < 0.5:
+            # Navigate to healer
+            exits = snapshot.get("exits", [])
+            for exit_info in exits:
+                if exit_info.get("type") in ("temple", "healer"):
+                    return exit_info.get("direction", "s")
+
+        # Personality-driven service use
+        if room_type == "library" and self.personality.archetype == "scholar":
+            return "study"
+        if room_type == "shop" and self.personality.archetype == "scavenger":
+            return "browse"
+        if room_type == "forge" and snapshot.get("has_upgradeable_gear"):
+            return "forge"
 
         if room_type == "town_gate":
             return "descend"
@@ -594,12 +633,26 @@ def build_combat_snapshot(state, char: Character) -> dict:
             if item and item.special_traits:
                 traits.extend(item.special_traits)
 
+    # WO-V62.0: Gear-aware fields
+    equipped_traits = list(traits)  # Already collected above
+    has_healing_item = False
+    if char and hasattr(char, 'inventory'):
+        for inv_item in getattr(char, 'inventory', []):
+            if isinstance(inv_item, dict) and 'heal' in inv_item.get('name', '').lower():
+                has_healing_item = True
+                break
+            elif hasattr(inv_item, 'name') and 'heal' in inv_item.name.lower():
+                has_healing_item = True
+                break
+
     return {
         "hp_pct": char.current_hp / max(1, char.max_hp) if char else 1.0,
         "enemies": enemies,
         "allies": allies,
         "traits": traits,
         "char_name": char.name if char else "",
+        "equipped_traits": equipped_traits,
+        "has_healing_item": has_healing_item,
     }
 
 
@@ -640,7 +693,23 @@ def build_hub_snapshot(state) -> dict:
         except (ImportError, AttributeError):
             pass
 
+    # WO-V62.0: Add companion needs
+    hp_pct = 1.0
+    has_upgradeable_gear = False
+    if state.engine and state.engine.party:
+        for c in state.engine.party:
+            if c.name in (state.autopilot_agents or {}):
+                hp_pct = c.current_hp / max(1, c.max_hp)
+                if c.gear:
+                    for item in c.gear.slots.values():
+                        if item and hasattr(item.tier, 'value') and item.tier.value < 3:
+                            has_upgradeable_gear = True
+                            break
+                break
+
     return {
         "room_type": room_type,
         "exits": exits,
+        "hp_pct": hp_pct,
+        "has_upgradeable_gear": has_upgradeable_gear,
     }

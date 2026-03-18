@@ -9,9 +9,12 @@ Supports two modes:
     triggered event strings.
 
 Both modes can be combined (e.g., a 20-segment clock with narrative thresholds).
+
+Also provides DayClock and TimeOfDay for world-simulation time tracking.
 """
 
 from dataclasses import dataclass, field
+from enum import Enum
 from typing import Dict, List, Optional
 
 
@@ -128,3 +131,82 @@ def DoomClock(current: int = 0, thresholds: Optional[Dict[int, str]] = None) -> 
         max_segments=None,
         thresholds=thresholds or {},
     )
+
+
+# ── Day/Night Cycle ───────────────────────────────────────────────────────────
+
+class TimeOfDay(Enum):
+    """Eight phases of the day, advancing in order."""
+    DAWN = "dawn"
+    MORNING = "morning"
+    MIDDAY = "midday"
+    AFTERNOON = "afternoon"
+    DUSK = "dusk"
+    NIGHT = "night"
+    MIDNIGHT = "midnight"
+    PREDAWN = "predawn"
+
+
+class DayClock:
+    """Tracks time of day and day count across 8 phases per day.
+
+    Each call to advance() moves forward one or more phases.  Wrapping
+    past PREDAWN increments the day counter.  Key transitions emit
+    atmospheric flavor messages.
+    """
+
+    _PHASES: List[TimeOfDay] = list(TimeOfDay)
+
+    def __init__(
+        self,
+        phase: TimeOfDay = TimeOfDay.MORNING,
+        day: int = 1,
+    ) -> None:
+        self.phase: TimeOfDay = phase
+        self.day: int = day
+
+    def advance(self, ticks: int = 1) -> List[str]:
+        """Advance time by *ticks* phases.
+
+        Returns a list of atmospheric flavor strings for notable transitions
+        (dawn, dusk, midnight).  Empty list if no key transitions occurred.
+        """
+        messages: List[str] = []
+        for _ in range(ticks):
+            idx = self._PHASES.index(self.phase)
+            new_idx = (idx + 1) % len(self._PHASES)
+            if new_idx == 0:  # Wrapped past PREDAWN → new day
+                self.day += 1
+            self.phase = self._PHASES[new_idx]
+            if self.phase == TimeOfDay.DAWN:
+                messages.append("The first light of dawn creeps across the horizon.")
+            elif self.phase == TimeOfDay.DUSK:
+                messages.append("Shadows lengthen as dusk settles over the land.")
+            elif self.phase == TimeOfDay.MIDNIGHT:
+                messages.append("The deepest hour of night arrives.")
+        return messages
+
+    def is_dark(self) -> bool:
+        """Return True for phases from DUSK through PREDAWN (inclusive)."""
+        return self.phase in (
+            TimeOfDay.DUSK,
+            TimeOfDay.NIGHT,
+            TimeOfDay.MIDNIGHT,
+            TimeOfDay.PREDAWN,
+        )
+
+    def display(self) -> str:
+        """Human-readable summary, e.g. 'Day 3 — Dusk'."""
+        return f"Day {self.day} \u2014 {self.phase.value.title()}"
+
+    def to_dict(self) -> dict:
+        """Serialize to a JSON-safe dict."""
+        return {"phase": self.phase.value, "day": self.day}
+
+    @classmethod
+    def from_dict(cls, data: dict) -> "DayClock":
+        """Restore from a serialized dict."""
+        return cls(
+            phase=TimeOfDay(data["phase"]),
+            day=data.get("day", 1),
+        )

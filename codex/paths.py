@@ -52,11 +52,15 @@ def safe_save_json(filepath: Path, data: dict) -> None:
     """Write JSON with .bak rotation for crash safety.
 
     1. Copy existing file to .bak (if present)
-    2. Write new data via json.dump
+    2. Write new data, encrypting if ``CODEX_ENCRYPT_SAVES`` is set.
+
+    Encryption is handled transparently via :mod:`codex.core.save_crypto`.
+    Callers do not need to know whether encryption is active.
+
     Usable by any game system: Burnwillow, Crown, BitD, etc.
     """
-    import json
     import shutil
+    from codex.core.save_crypto import save_to_file
 
     filepath.parent.mkdir(parents=True, exist_ok=True)
     if filepath.exists():
@@ -64,5 +68,4 @@ def safe_save_json(filepath: Path, data: dict) -> None:
             shutil.copy2(str(filepath), str(filepath.with_suffix(".json.bak")))
         except OSError:
             pass  # Non-fatal — proceed with save
-    with open(filepath, "w") as f:
-        json.dump(data, f, indent=2)
+    save_to_file(filepath, data)

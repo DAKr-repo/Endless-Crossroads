@@ -188,6 +188,9 @@ class ModuleManifest:
     # WO-V60.0: System transitions — optional triggers for cross-system stacking
     # Each dict: {"target_system": "sav", "trigger": "zone_complete", "zone_id": "escape_pod"}
     system_transitions: List[dict] = field(default_factory=list)
+    # WO-V70.0: Source type — provenance of the module content
+    # Values: "community_authored" | "publisher_licensed" | "" (unknown/unset)
+    source_type: str = ""
 
     # ------------------------------------------------------------------
     # Zone traversal helpers
@@ -274,6 +277,8 @@ class ModuleManifest:
             d["campaign_setting"] = self.campaign_setting
         if self.system_transitions:
             d["system_transitions"] = list(self.system_transitions)
+        if self.source_type:
+            d["source_type"] = self.source_type
         return d
 
     @classmethod
@@ -293,6 +298,7 @@ class ModuleManifest:
             freeform_zones=freeform,
             campaign_setting=data.get("campaign_setting", ""),
             system_transitions=data.get("system_transitions", []),
+            source_type=data.get("source_type", ""),
         )
 
     # ------------------------------------------------------------------

@@ -694,7 +694,9 @@ def render_spatial_map(rooms: Dict[int, SpatialRoom],
                       viewport_height: int = 25,
                       console: Console = None,
                       player_pos: Optional[Tuple[int, int]] = None,
-                      map_title: Optional[str] = None) -> Layout:
+                      map_title: Optional[str] = None,
+                      max_width: Optional[int] = None,
+                      max_height: Optional[int] = None) -> Layout:
     """
     Main entry point. Returns a Rich Layout with Map (Left) and Sidebar (Right).
     Handles viewport centering on player.
@@ -705,7 +707,15 @@ def render_spatial_map(rooms: Dict[int, SpatialRoom],
         map_title: Custom panel title. If None, defaults per theme:
                    VILLAGE → "EMBERHOME", CANOPY → "THE CANOPY",
                    everything else → "THE DEPTHS".
+        max_width: If provided, cap ``viewport_width`` to this value.
+                   Useful for narrow-terminal layouts.
+        max_height: If provided, cap ``viewport_height`` to this value.
+                    Useful for narrow-terminal layouts.
     """
+    if max_width is not None:
+        viewport_width = min(viewport_width, max_width)
+    if max_height is not None:
+        viewport_height = min(viewport_height, max_height)
     renderer = SpatialGridRenderer(rooms, theme)
 
     # Inject player marker at exact grid position

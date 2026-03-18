@@ -3,6 +3,7 @@
     "display_name": "Stormlight: Stonewalkers",
     "system_id": "stc",
     "source_pdf": null,
+    "source_type": "community_authored",
     "world_map": "world_map.json",
     "starting_location": "shinovar",
     "recommended_levels": {"min": 3, "max": 7},

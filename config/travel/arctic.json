@@ -1,0 +1,102 @@
+{
+  "terrain_type": "arctic",
+  "events": {
+    "tier_1": [
+      {
+        "id": "blizzard_shelter",
+        "type": "skill_challenge",
+        "title": "Blizzard",
+        "description": "The temperature drops without warning. Visibility collapses to arm's length. Wind cuts through every layer.",
+        "target_role": "guide",
+        "dc": 11,
+        "success": "You dig a snow shelter in time. The night is cold but survivable.",
+        "failure": "Hours exposed before shelter is found. Everyone emerges exhausted.",
+        "failure_cost": {"days": 0.5}
+      },
+      {
+        "id": "thin_ice",
+        "type": "skill_challenge",
+        "title": "Thin Ice",
+        "description": "The lake crossing looks solid but the creak underfoot says otherwise.",
+        "target_role": "scout",
+        "dc": 10,
+        "success": "You test each step. The safe path is slow but holds.",
+        "failure": "The ice gives. Someone goes under. Getting out costs a brutal half-day.",
+        "failure_cost": {"days": 0.5}
+      },
+      {
+        "id": "frozen_cache",
+        "type": "discovery",
+        "title": "Frozen Expedition Supplies",
+        "description": "A cairn of stones marks something buried. The previous travelers never came back for it.",
+        "target_role": "forager",
+        "dc": 10,
+        "success": "Frozen rations — still good. Enough for two days.",
+        "failure": "The cache is empty or the contents have rotted under the ice.",
+        "success_reward": {"rations": 3}
+      }
+    ],
+    "tier_2": [
+      {
+        "id": "ice_bridge",
+        "type": "skill_challenge",
+        "title": "Natural Ice Bridge",
+        "description": "A single arch of ice spans a crevasse. It's the only crossing for miles. The wind makes balance treacherous.",
+        "target_role": "guide",
+        "dc": 13,
+        "success": "You rope the party together and cross one at a time. Everyone makes it.",
+        "failure": "The bridge shifts underfoot. Someone falls — rope saves them but the delay is a full day.",
+        "failure_cost": {"days": 1}
+      },
+      {
+        "id": "polar_bear",
+        "type": "combat",
+        "title": "Polar Bear",
+        "description": "A mound of snow resolves into a massive white shape. It stands and locks eyes with you.",
+        "target_role": "scout",
+        "dc": 13,
+        "success": "You back away slowly and give it wide berth. It loses interest.",
+        "failure": "It charges. The snow makes retreat nearly impossible.",
+        "enemies_tier": 2
+      }
+    ],
+    "tier_3": [
+      {
+        "id": "frost_giant_patrol",
+        "type": "combat",
+        "title": "Frost Giant Patrol",
+        "description": "Footprints the size of cart wheels press deep into the snow. Two figures crest the ridge ahead.",
+        "target_role": "scout",
+        "dc": 15,
+        "success": "You track their patrol pattern and slip through during the gap.",
+        "failure": "One turns and spots movement. They come down the ridge fast.",
+        "enemies_tier": 3
+      },
+      {
+        "id": "whiteout_crevasse",
+        "type": "skill_challenge",
+        "title": "Hidden Crevasse Field",
+        "description": "The whiteout is complete. Every surface looks identical. The glacier beneath you is riddled with hidden drops.",
+        "target_role": "guide",
+        "dc": 15,
+        "success": "You probe with poles and find a safe route through the field.",
+        "failure": "Three crevasse falls in quick succession. Ropes save lives but cost an entire day.",
+        "failure_cost": {"days": 1}
+      }
+    ],
+    "tier_4": [
+      {
+        "id": "glacier_dungeon",
+        "type": "skill_challenge",
+        "title": "Glacier Dungeon",
+        "description": "A cathedral of blue ice descends into the glacier. Something ancient and cold waits in the deepest chamber. The entrance is guarded by ice constructs.",
+        "target_role": "guard",
+        "dc": 17,
+        "success": "You study the construct patrol and find a maintenance tunnel that bypasses the outer guards.",
+        "failure": "The constructs detect you the moment you step inside.",
+        "enemies_tier": 4,
+        "notes": "On success the party enters the glacier dungeon with surprise. On failure they begin the dungeon combat-initiated."
+      }
+    ]
+  }
+}

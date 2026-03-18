@@ -116,6 +116,65 @@ DECISION_NARRATION: Dict[tuple, List[str]] = {
         "{name} ignores the blood streaming down their arm and charges.",
         "\"Not yet,\" {name} growls, throwing themselves at {target}.",
     ],
+    ("intercept", "vanguard"): [
+        "{name} steps in front of the blow, shield raised.",
+        "{name} roars and throws themselves between {target} and danger.",
+    ],
+    ("intercept", "healer"): [
+        "{name} rushes forward, ward blazing, to shield {target}.",
+        "\"Not them!\" {name} cries, interposing.",
+    ],
+    ("bolster", "healer"): [
+        "{name} channels energy into {target}, steadying their aim.",
+        "{name} whispers words of power over {target}.",
+    ],
+    ("bolster", "scholar"): [
+        "{name} traces a sigil in the air. {target} feels sharper.",
+        "{name} mutters an incantation and {target}'s weapon gleams.",
+    ],
+    ("command", "vanguard"): [
+        "\"NOW!\" {name} bellows at {target}.",
+        "{name} points at the enemy and barks an order to {target}.",
+    ],
+    ("command", "scholar"): [
+        "{name} reads the battlefield and signals {target} to strike.",
+        "\"There — the opening!\" {name} calls to {target}.",
+    ],
+    ("summon", "scholar"): [
+        "{name} pulls arcane threads from the air, binding them into form.",
+        "{name} opens a tome and reads aloud. Something stirs.",
+    ],
+    ("summon", "healer"): [
+        "{name} calls upon the beyond. A spectral guardian answers.",
+        "{name} prays and a luminous shape coalesces.",
+    ],
+}
+
+
+# Grudging narration for negative bond (WO-V62.0: Mentorship & Rivalry)
+_GRUDGING_NARRATION: Dict[str, List[str]] = {
+    "attack": [
+        "{name} attacks — but only because their own survival demands it.",
+        "{name} sighs with visible irritation and swings.",
+        "{name} strikes, pointedly ignoring your direction.",
+    ],
+    "guard": [
+        "{name} raises their shield, more for themselves than for you.",
+        "{name} grudgingly takes a defensive stance.",
+    ],
+    "triage": [
+        "{name} patches the wound in cold silence.",
+        "\"Don't read into this,\" {name} mutters while applying bandages.",
+    ],
+    "intercept": [
+        "{name} steps in — not for you, but because letting an ally fall would be inconvenient.",
+    ],
+    "bolster": [
+        "{name} provides support with a look that says 'you owe me'.",
+    ],
+    "command": [
+        "{name} barks an order, then adds: \"I'm not doing this for you.\"",
+    ],
 }
 
 
@@ -130,7 +189,8 @@ def get_companion_class(system_id: str, archetype: str) -> Optional[dict]:
 
 
 def narrate_decision(action: str, archetype: str, name: str,
-                     target: str = "the enemy", evolution_drift: Optional[dict] = None) -> str:
+                     target: str = "the enemy", evolution_drift: Optional[dict] = None,
+                     bond_tier: Optional[str] = None) -> str:
     """Generate a narrated companion decision line.
 
     Args:
@@ -139,10 +199,17 @@ def narrate_decision(action: str, archetype: str, name: str,
         name: Companion's name
         target: Target name for attack actions
         evolution_drift: Optional dict of trait -> drift float for evolved narration
+        bond_tier: Optional bond tier ("hostile", "distrustful", etc.)
 
     Returns:
         Formatted narration string, or empty string if no template found.
     """
+    # WO-V62.0: Grudging narration for negative bond
+    if bond_tier in ("distrustful", "hostile"):
+        grudge_templates = _GRUDGING_NARRATION.get(action, [])
+        if grudge_templates:
+            return random.choice(grudge_templates).format(name=name, target=target)
+
     # Check for evolved narration
     if evolution_drift:
         caution_drift = evolution_drift.get("caution", 0)

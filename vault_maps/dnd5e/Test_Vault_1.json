@@ -1,0 +1,234 @@
+{
+  "location": "Test Vault",
+  "system_id": "dnd5e",
+  "seed": 1,
+  "total_rooms": 8,
+  "rooms": [
+    {
+      "id": 0,
+      "type": "normal",
+      "tier": 2,
+      "position": [
+        1,
+        2
+      ],
+      "size": [
+        4,
+        4
+      ],
+      "connections": [
+        1,
+        3
+      ],
+      "enemies": [],
+      "loot": [],
+      "hazards": [],
+      "interactive": []
+    },
+    {
+      "id": 1,
+      "type": "secret",
+      "tier": 3,
+      "position": [
+        6,
+        1
+      ],
+      "size": [
+        5,
+        5
+      ],
+      "connections": [
+        0
+      ],
+      "enemies": [],
+      "loot": [
+        {
+          "name": "Mithral Armor"
+        }
+      ],
+      "hazards": [],
+      "interactive": []
+    },
+    {
+      "id": 2,
+      "type": "start",
+      "tier": 1,
+      "position": [
+        14,
+        1
+      ],
+      "size": [
+        8,
+        3
+      ],
+      "connections": [
+        3
+      ],
+      "enemies": [],
+      "loot": [],
+      "hazards": [],
+      "interactive": []
+    },
+    {
+      "id": 3,
+      "type": "treasure",
+      "tier": 1,
+      "position": [
+        26,
+        2
+      ],
+      "size": [
+        3,
+        4
+      ],
+      "connections": [
+        2,
+        0,
+        7
+      ],
+      "enemies": [],
+      "loot": [
+        {
+          "name": "Rusty Shortsword"
+        },
+        {
+          "name": "Healing Potion"
+        }
+      ],
+      "hazards": [],
+      "interactive": []
+    },
+    {
+      "id": 4,
+      "type": "boss",
+      "tier": 4,
+      "position": [
+        1,
+        15
+      ],
+      "size": [
+        6,
+        11
+      ],
+      "connections": [
+        5
+      ],
+      "enemies": [
+        {
+          "name": "Beholder Zombie",
+          "hp": 76,
+          "max_hp": 76,
+          "is_boss": true,
+          "tier": 4
+        }
+      ],
+      "loot": [
+        {
+          "name": "Crown of Command"
+        },
+        {
+          "name": "Crown of Command"
+        },
+        {
+          "name": "Crown of Command"
+        }
+      ],
+      "hazards": [],
+      "interactive": []
+    },
+    {
+      "id": 5,
+      "type": "normal",
+      "tier": 4,
+      "position": [
+        9,
+        9
+      ],
+      "size": [
+        9,
+        19
+      ],
+      "connections": [
+        4,
+        6
+      ],
+      "enemies": [
+        {
+          "name": "Dragon Wyrmling",
+          "hp": 31,
+          "max_hp": 31,
+          "tier": 4
+        },
+        {
+          "name": "Death Knight",
+          "hp": 17,
+          "max_hp": 17,
+          "tier": 4
+        }
+      ],
+      "loot": [
+        {
+          "name": "Crown of Command"
+        }
+      ],
+      "hazards": [],
+      "interactive": []
+    },
+    {
+      "id": 6,
+      "type": "treasure",
+      "tier": 3,
+      "position": [
+        22,
+        8
+      ],
+      "size": [
+        6,
+        3
+      ],
+      "connections": [
+        7,
+        5
+      ],
+      "enemies": [],
+      "loot": [
+        {
+          "name": "Enchanted Blade"
+        },
+        {
+          "name": "Mithral Armor"
+        },
+        {
+          "name": "Ring of Resistance"
+        }
+      ],
+      "hazards": [],
+      "interactive": []
+    },
+    {
+      "id": 7,
+      "type": "normal",
+      "tier": 2,
+      "position": [
+        21,
+        13
+      ],
+      "size": [
+        5,
+        15
+      ],
+      "connections": [
+        6,
+        3
+      ],
+      "enemies": [],
+      "loot": [
+        {
+          "name": "Chain Shirt"
+        }
+      ],
+      "hazards": [],
+      "interactive": []
+    }
+  ]
+}

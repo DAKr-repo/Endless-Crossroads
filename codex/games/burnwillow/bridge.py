@@ -56,6 +56,7 @@ COMMANDS = {
     "save":      [],
     "recap":     [],
     "help":      ["h", "?"],
+    "tutorial":  ["tut"],
 }
 
 # 8-way grid movement directions (handled separately from COMMANDS)
@@ -209,6 +210,7 @@ class BurnwillowBridge:
             "save":      lambda: self._cmd_save(),
             "recap":     lambda: self._cmd_recap(),
             "help":      lambda: self._cmd_help(),
+            "tutorial":  lambda: self._cmd_tutorial(),
         }
 
         result = dispatch[canonical]()
@@ -1002,6 +1004,37 @@ class BurnwillowBridge:
         """Collect session statistics for recap display (WO-V37.0)."""
         from codex.core.services.narrative_loom import format_session_stats
         return format_session_stats(self._session_log, self._build_engine_snapshot())
+
+    def _cmd_tutorial(self) -> str:
+        """Show tutorial content for Burnwillow."""
+        try:
+            from codex.core.services.tutorial import TutorialRegistry
+            registry = TutorialRegistry()
+            modules = registry.get_modules(category="burnwillow")
+            if modules:
+                lines = ["=== TUTORIAL ==="]
+                for mod in modules:
+                    lines.append(f"  {mod.title}")
+                    if mod.description:
+                        lines.append(f"    {mod.description}")
+                return "\n".join(lines)
+        except (ImportError, Exception):
+            pass
+        # Fallback: quick-start command reference
+        return (
+            "=== BURNWILLOW QUICK START ===\n"
+            "1. look (l)        — See your surroundings\n"
+            "2. n/s/e/w         — Move on the grid\n"
+            "3. attack (a)      — Fight enemies\n"
+            "4. search (s)      — Find loot (+1 Doom)\n"
+            "5. loot            — Pick up items\n"
+            "6. use <item>      — Activate gear traits\n"
+            "7. rest short/long — Heal up\n"
+            "8. map             — View the dungeon\n"
+            "9. stats (st)      — Check your character\n"
+            "10. save           — Save your progress\n"
+            "\nTip: Doom rises as you explore. Reach the boss before it hits 20!"
+        )
 
     def _cmd_recap(self) -> str:
         """Show session recap."""

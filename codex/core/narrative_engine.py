@@ -181,6 +181,9 @@ class NarrativeEngine:
     _loot_counts: Dict[str, int] = field(default_factory=dict)
     _visited_tiers: Dict[int, set] = field(default_factory=dict)
 
+    # WO-V68.0: Optional faction reputation tracker
+    reputation: Optional[Any] = field(default=None, repr=False)
+
     def __post_init__(self):
         if not self.quests:
             self._seed_chapter(self.chapter)
@@ -389,9 +392,22 @@ class NarrativeEngine:
             return tier_str
         return remainder
 
-    def check_objective(self, trigger: str) -> list:
-        """Check if any active quests match a trigger. Returns messages."""
+    def check_objective(self, trigger: str, faction_id: str = "") -> list:
+        """Check if any active quests match a trigger. Returns messages.
+
+        Args:
+            trigger:    Objective trigger string (e.g. ``"kill_tier_1"``).
+            faction_id: Optional faction the target belongs to.  If provided
+                        and the trigger is a kill, standing with that faction
+                        decreases by 1 (WO-V68.0).
+        """
         messages = []
+
+        # WO-V68.0: Killing an enemy worsens standing with their faction
+        if trigger.startswith("kill_") and faction_id and self.reputation is not None:
+            self.reputation.adjust(
+                faction_id, -1, reason=f"kill ({trigger})"
+            )
 
         # Update tracking counters
         if trigger.startswith("kill_"):
@@ -462,6 +478,12 @@ class NarrativeEngine:
                 for npc in self.npcs:
                     if npc.role == q.turn_in_npc:
                         npc.disposition = min(3, npc.disposition + 1)
+                # WO-V68.0: Quest completion improves faction standing
+                if self.reputation is not None and q.turn_in_npc:
+                    faction_id = q.turn_in_npc.lower().replace(" ", "_")
+                    self.reputation.adjust(
+                        faction_id, +1, reason=f"completed '{q.title}'"
+                    )
                 # Unlock prerequisite-gated quests
                 self._check_quest_prerequisites()
                 reward = q.reward_text if isinstance(q.reward_text, dict) else {"description": q.reward_text}

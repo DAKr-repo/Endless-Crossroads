@@ -557,6 +557,142 @@ class BitDEngine(NarrativeLoomMixin):
         result = mgr.train(kwargs.get("attribute", "playbook"))
         return result.get("description", str(result))
 
+    # ─── WO-V67.0: Crew heat / rep / vice / downtime commands ─────────
+
+    def _cmd_heat_status(self, **kwargs) -> str:
+        """Show current heat level and wanted status with descriptive flavour.
+
+        Returns:
+            Human-readable string describing heat and wanted level.
+        """
+        heat_labels = {
+            0: "Cold — no heat",
+            1: "Warm — the Bluecoats are curious",
+            2: "Hot — patrols are watching your territory",
+            3: "Scorching — informants have talked",
+            4: "Blazing — wanted posters are going up",
+            5: "Infernal — the Inspectors are personally involved",
+            6: "Wanted — the whole city is hunting your crew",
+        }
+        label = heat_labels.get(min(self.heat, 6), f"Heat {self.heat}")
+        wanted_msg = (
+            f"Wanted Level {self.wanted_level} — "
+            + (
+                "no extra scrutiny" if self.wanted_level == 0
+                else "extra patrols on your turf" if self.wanted_level == 1
+                else "guards shoot first on sight" if self.wanted_level >= 2
+                else f"level {self.wanted_level}"
+            )
+        )
+        return f"Heat: {self.heat}/6 — {label}\n{wanted_msg}"
+
+    def _cmd_rep_status(self, **kwargs) -> str:
+        """Show reputation, faction standings, and tier summary.
+
+        Returns:
+            Human-readable string with rep and faction clock overview.
+        """
+        rep_labels = ["Unknown", "Noticed", "Respected", "Feared", "Legendary"]
+        rep_label = rep_labels[min(self.rep // 3, len(rep_labels) - 1)]
+        lines = [
+            f"Rep: {self.rep} ({rep_label}) | Turf: {self.turf} | Coin: {self.coin}",
+            f"Crew: {self.crew_name or 'Unnamed'} ({self.crew_type or 'Unknown Type'})",
+        ]
+        if self.faction_clocks:
+            lines.append("Faction Clocks:")
+            for clock in self.faction_clocks:
+                name = getattr(clock, "name", "?")
+                current = getattr(clock, "current", 0)
+                size = getattr(clock, "size", 4)
+                lines.append(f"  {name}: {current}/{size}")
+        return "\n".join(lines)
+
+    def _cmd_entangle(self, **kwargs) -> str:
+        """Roll for an entanglement complication after a score (2d6 table).
+
+        Rolls 2d6. Higher result = lighter consequence.
+          2-5:  Complication — serious trouble
+          6-9:  Problem — manageable trouble
+          10+:  Nothing — crew slipped away clean
+
+        Returns:
+            Human-readable result string.
+        """
+        import random as _rand
+        d1 = _rand.randint(1, 6)
+        d2 = _rand.randint(1, 6)
+        total = d1 + d2
+        if total <= 5:
+            tier = "complication"
+            msg = "Serious complication. Something bad follows you home."
+        elif total <= 9:
+            tier = "problem"
+            msg = "A manageable problem. Deal with it before it escalates."
+        else:
+            tier = "nothing"
+            msg = "The crew slipped away clean. No entanglement this time."
+        self._add_shard(
+            f"Entangle roll: {d1}+{d2}={total} ({tier})",
+            "CHRONICLE",
+        )
+        return f"Entangle: [{d1}, {d2}] = {total} — {tier.upper()}\n{msg}"
+
+    def _cmd_vice(self, **kwargs) -> str:
+        """Roll stress relief via vice indulgence (1d6).
+
+        On a roll of 6, the character overindulges (complication).
+
+        Kwargs:
+            character: Optional BitDCharacter to target (defaults to lead).
+
+        Returns:
+            Human-readable result string.
+        """
+        import random as _rand
+        char = kwargs.get("character") or self.character
+        if not char:
+            return "No active character."
+        clock = self.stress_clocks.get(char.name)
+        if not clock:
+            return f"No stress clock for {char.name}."
+        roll = _rand.randint(1, 6)
+        if roll == 6:
+            msg = (
+                f"{char.name} overindulges their vice ({char.vice or 'unknown'})! "
+                "Stress cleared but complications arise."
+            )
+            # Clear all stress on overindulgence
+            clock.current_stress = 0
+        else:
+            recovered = clock.recover(roll).get("recovered", roll)
+            msg = (
+                f"{char.name} indulges vice ({char.vice or 'unknown'}): "
+                f"roll {roll}, recovered {recovered} stress. "
+                f"Remaining: {clock.current_stress}/{clock.max_stress}"
+            )
+        return msg
+
+    def _cmd_downtime(self, **kwargs) -> str:
+        """List available downtime actions for the current crew.
+
+        Returns:
+            Human-readable list of downtime options with brief descriptions.
+        """
+        actions = [
+            "  long_term_project — Work on a multi-segment clock project",
+            "  recover          — Heal from harm (healer_dots=<int>)",
+            "  reduce_heat      — Spend favors to lower crew heat",
+            "  train            — Gain XP in an attribute (attribute=<str>)",
+            "  acquire_asset    — Obtain a temporary asset",
+            "  vice             — Indulge vice to recover stress",
+            "  advance          — Spend accumulated XP marks",
+            "  engagement       — Plan and roll engagement for next score",
+        ]
+        return (
+            f"Downtime — {self.crew_name or 'crew'} has {self.rep} rep and "
+            f"{self.coin} coin.\nAvailable actions:\n" + "\n".join(actions)
+        )
+
     # ─── WO-V34.0: Downtime & Advancement ─────────────────────────────
 
     def _cmd_downtime_vice(self, **kwargs) -> str:
@@ -574,6 +710,19 @@ class BitDEngine(NarrativeLoomMixin):
         if info.get("overindulged"):
             msg += " OVERINDULGENCE! Complications arise."
         return msg
+
+    def _cmd_complication(self, **kwargs) -> str:
+        """Roll a complication from the system's consequence table."""
+        import random as _rng
+        tier = max(1, min(4, kwargs.get("tier", 1)))
+        effective_tier = min(4, tier + (1 if self.heat >= 4 else 0))
+        pool = COMPLICATION_TABLE.get(effective_tier, COMPLICATION_TABLE[1])
+        entry = _rng.choice(pool)
+        self._add_shard(
+            f"Complication ({entry['type']}): {entry['text']}",
+            "CHRONICLE",
+        )
+        return f"COMPLICATION: {entry['text']}\nEffect: {entry.get('effect', 'none')}"
 
     def _cmd_advance(self, **kwargs) -> str:
         """Mark XP for a character. 8 marks = playbook advance."""
@@ -596,11 +745,45 @@ class BitDEngine(NarrativeLoomMixin):
 # COMMAND DEFINITIONS (WO-V10.0)
 # =========================================================================
 
+# =========================================================================
+# COMPLICATION TABLE (Gap Fix: per-engine consequences)
+# =========================================================================
+
+COMPLICATION_TABLE: Dict[int, List[Dict[str, Any]]] = {
+    1: [
+        {"type": "faction_response", "text": "A street gang leaves a threatening note at your lair.", "effect": "heat +1"},
+        {"type": "vice_exposure", "text": "Your vice gets you noticed by the wrong people.", "effect": "stress +1"},
+        {"type": "bluecoat_raid", "text": "Bluecoats harass a crew associate at their workplace.", "effect": "coin -1"},
+    ],
+    2: [
+        {"type": "faction_response", "text": "A rival faction sabotages one of your operations.", "effect": "rep -1"},
+        {"type": "bluecoat_raid", "text": "A Bluecoat patrol stakes out your usual meeting spot.", "effect": "heat +2"},
+        {"type": "ghost_manifestation", "text": "Spectral disturbances plague the neighborhood near your lair.", "effect": "stress +2"},
+    ],
+    3: [
+        {"type": "faction_response", "text": "A powerful faction demands tribute or faces consequences.", "effect": "coin -2"},
+        {"type": "bluecoat_raid", "text": "The Inspectors raid a safehouse. Evidence is seized.", "effect": "heat +3"},
+        {"type": "ghost_manifestation", "text": "A vengeful ghost attacks a crew member in the night.", "effect": "stress +3"},
+        {"type": "vice_exposure", "text": "Your vice dealer is arrested. Finding a new one costs extra.", "effect": "coin -1"},
+    ],
+    4: [
+        {"type": "faction_response", "text": "A major faction declares open war on your crew.", "effect": "heat +4"},
+        {"type": "bluecoat_raid", "text": "The Spirit Wardens themselves investigate your activities.", "effect": "wanted +1"},
+        {"type": "ghost_manifestation", "text": "A demon takes notice of your crew's activities.", "effect": "stress +4"},
+    ],
+}
+
+
 BITD_COMMANDS = {
     "roll_action": "Roll an FITD action check",
     "crew_status": "Show crew heat, coin, and rep",
     "score_status": "Show current score details",
     "entanglement": "Roll for entanglement complications",
+    "heat_status": "Show heat level and wanted status",
+    "rep_status": "Show reputation, faction standings, and turf",
+    "entangle": "Roll 2d6 post-score entanglement (complication/problem/nothing)",
+    "vice": "Vice indulgence stress relief (1d6; 6=overindulgence)",
+    "downtime": "List available downtime actions",
     "party_status": "Show all crew members and stress",
     "downtime_vice": "Indulge vice to recover stress",
     "advance": "Mark XP toward playbook advance",
@@ -615,15 +798,16 @@ BITD_COMMANDS = {
     "downtime_reduce_heat": "Reduce crew heat",
     "downtime_recover": "Recover from harm",
     "downtime_train": "Train for XP",
+    "complication": "Roll a complication from the consequence table",
 }
 
 BITD_CATEGORIES = {
-    "Crew": ["crew_status", "score_status", "entanglement"],
+    "Crew": ["crew_status", "score_status", "entanglement", "heat_status", "rep_status"],
     "Action": ["roll_action", "party_status"],
-    "Score": ["engagement", "flashback", "devils_bargain", "accept_bargain", "resolve_score"],
+    "Score": ["engagement", "entangle", "flashback", "devils_bargain", "accept_bargain", "resolve_score", "complication"],
     "Downtime": [
-        "downtime_vice", "advance", "downtime_project", "downtime_acquire",
-        "downtime_reduce_heat", "downtime_recover", "downtime_train",
+        "vice", "downtime_vice", "advance", "downtime_project", "downtime_acquire",
+        "downtime_reduce_heat", "downtime_recover", "downtime_train", "downtime",
     ],
 }
 

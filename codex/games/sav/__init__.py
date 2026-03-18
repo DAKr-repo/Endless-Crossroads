@@ -547,6 +547,19 @@ class SaVEngine(NarrativeLoomMixin):
         """Alias for set_course — execute a hyperspace jump."""
         return self._cmd_set_course(**kwargs)
 
+    def _cmd_complication(self, **kwargs) -> str:
+        """Roll a complication from the system's consequence table."""
+        import random as _rng
+        tier = max(1, min(4, kwargs.get("tier", 1)))
+        effective_tier = min(4, tier + (1 if self.heat >= 4 else 0))
+        pool = COMPLICATION_TABLE.get(effective_tier, COMPLICATION_TABLE[1])
+        entry = _rng.choice(pool)
+        self._add_shard(
+            f"Complication ({entry['type']}): {entry['text']}",
+            "CHRONICLE",
+        )
+        return f"COMPLICATION: {entry['text']}\nEffect: {entry.get('effect', 'none')}"
+
     # ─── Job commands ─────────────────────────────────────────────────
 
     def _cmd_engagement(self, **kwargs) -> str:
@@ -619,6 +632,35 @@ class SaVEngine(NarrativeLoomMixin):
 # COMMAND DEFINITIONS
 # =========================================================================
 
+# =========================================================================
+# COMPLICATION TABLE (Gap Fix: per-engine consequences)
+# =========================================================================
+
+COMPLICATION_TABLE: Dict[int, List[Dict[str, Any]]] = {
+    1: [
+        {"type": "system_malfunction", "text": "A minor system glitch forces a manual override.", "effect": "position worsened"},
+        {"type": "customs_interdiction", "text": "A routine customs scan picks up something suspicious.", "effect": "heat +1"},
+        {"type": "bounty_hunter", "text": "A two-bit bounty hunter starts asking questions at the last port.", "effect": "heat +1"},
+    ],
+    2: [
+        {"type": "system_malfunction", "text": "Navigation array throws false readings. Recalibration needed.", "effect": "helm -1d next roll"},
+        {"type": "customs_interdiction", "text": "Hegemony patrol demands to board for inspection.", "effect": "heat +2"},
+        {"type": "crew_mutiny", "text": "A crewmate questions your leadership in front of the others.", "effect": "stress +2"},
+    ],
+    3: [
+        {"type": "system_malfunction", "text": "Engine core destabilizes during a jump. Emergency shutdown.", "effect": "hull -1"},
+        {"type": "bounty_hunter", "text": "A Guild-licensed hunter locks onto your transponder signal.", "effect": "heat +3"},
+        {"type": "customs_interdiction", "text": "Hegemony impounds your cargo pending investigation.", "effect": "coin -2"},
+        {"type": "crew_mutiny", "text": "The crew threatens to walk unless conditions improve.", "effect": "stress +3"},
+    ],
+    4: [
+        {"type": "system_malfunction", "text": "Critical hull breach. Atmosphere venting in section four.", "effect": "hull -2"},
+        {"type": "bounty_hunter", "text": "An elite Hegemony tracker has your ship flagged system-wide.", "effect": "heat +4"},
+        {"type": "crew_mutiny", "text": "Mutiny erupts. Someone pulls a weapon on the bridge.", "effect": "stress +4"},
+    ],
+}
+
+
 SAV_COMMANDS = {
     # Ship commands
     "ship_status":      "Display ship name, class, systems, and modules",
@@ -635,6 +677,7 @@ SAV_COMMANDS = {
     # Crew commands
     "roll_action":      "Roll an FITD action check",
     "crew_status":      "Show crew stress and trauma",
+    "complication":     "Roll a complication from the consequence table",
 }
 
 SAV_CATEGORIES = {
@@ -643,7 +686,7 @@ SAV_CATEGORIES = {
         "install_module", "use_gambit", "set_course", "jump",
     ],
     "Jobs": ["engagement", "resolve_job"],
-    "Crew": ["roll_action", "crew_status"],
+    "Crew": ["roll_action", "crew_status", "complication"],
 }
 
 

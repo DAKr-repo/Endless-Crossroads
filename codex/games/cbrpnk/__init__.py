@@ -597,6 +597,131 @@ class CBRPNKEngine(NarrativeLoomMixin):
         result = self.chrome_mgr.humanity_check()
         return result["message"]
 
+    # ─── WO-V67.0: New commands ────────────────────────────────────────
+
+    def _cmd_glitch(self, **kwargs) -> str:
+        """Roll the glitch die to determine complication severity (1d6).
+
+        Severity table:
+          1-2: Minor glitch — cosmetic corruption, slight delay
+          3-4: Moderate glitch — ICE countermeasure activates
+          5-6: Major glitch — system trace or neural feedback
+
+        The glitch die counter increments on each roll.
+
+        Returns:
+            Human-readable result string.
+        """
+        import random as _rand
+        roll = _rand.randint(1, 6)
+        self.glitch_die += 1
+        if roll <= 2:
+            severity = "MINOR"
+            detail = "Cosmetic data corruption. A brief lag — nothing critical."
+        elif roll <= 4:
+            severity = "MODERATE"
+            detail = "ICE countermeasure activates. Alarm level rises by 1."
+        else:
+            severity = "MAJOR"
+            detail = "System trace initiated. Neural feedback — take 1 stress."
+        self._add_shard(
+            f"Glitch roll: {roll} ({severity}). Total glitch die: {self.glitch_die}",
+            "CHRONICLE",
+        )
+        return (
+            f"Glitch Roll: {roll} — {severity}\n"
+            f"{detail}\n"
+            f"Accumulated glitch die: {self.glitch_die}"
+        )
+
+    def _cmd_corp_response(self, **kwargs) -> str:
+        """Escalation check: corp response tier scales with current heat.
+
+        Heat thresholds:
+          0-2:  Street level — gang enforcers or beat cops
+          3-4:  Security response — corp security team dispatched
+          5+:   Corp strike team — elite operators with full authority
+
+        Returns:
+            Human-readable response escalation string.
+        """
+        if self.heat <= 2:
+            tier = "street"
+            response = (
+                "Street-level response. Gang enforcers or city beat cops "
+                "check the area. Easily avoided or bribed."
+            )
+            actors = ["Gang Enforcer", "Beat Cop", "Street Punk patrol"]
+        elif self.heat <= 4:
+            tier = "security"
+            response = (
+                "Corporate security dispatched. Armored teams with tactical gear. "
+                "They're logging everything and have corp legal backing."
+            )
+            actors = ["Corp Security Squad", "Surveillance Drone", "Analyst Support"]
+        else:
+            tier = "corp_strike"
+            response = (
+                "Corp strike team deployed. Elite black-ops with full lethal authority. "
+                "They have your neural signatures. Extraction is the only option."
+            )
+            actors = ["Strike Team Alpha", "Black ICE Remote", "Corp Executive Override"]
+        import random as _rand
+        actor = _rand.choice(actors)
+        self._add_shard(
+            f"Corp response: heat {self.heat} → {tier}. Actors: {actor}",
+            "CHRONICLE",
+        )
+        return (
+            f"Corp Response — Heat {self.heat} ({tier.upper()})\n"
+            f"{response}\n"
+            f"Current threat: {actor}"
+        )
+
+    def _cmd_overclock(self, **kwargs) -> str:
+        """Push cybernetics for a bonus die at the cost of 1 stress.
+
+        Spending stress to exceed the normal limits of installed chrome.
+        Escalates the glitch die by 1 in addition to the stress cost.
+
+        Kwargs:
+            character: Optional CBRPNKCharacter to target (defaults to lead).
+
+        Returns:
+            Human-readable result string.
+        """
+        char = kwargs.get("character") or self.character
+        if not char:
+            return "No active character."
+        if not char.chrome:
+            return f"{char.name} has no chrome installed. Install augmentations first."
+        clock = self.stress_clocks.get(char.name)
+        if not clock:
+            return f"No stress clock for {char.name}."
+        # Pay the stress cost
+        push_result = clock.push(1)
+        self.glitch_die += 1
+        trauma_msg = ""
+        if push_result.get("trauma_triggered"):
+            trauma_msg = f" TRAUMA: {push_result['new_trauma']}!"
+            self._add_shard(
+                f"{char.name} overclock trauma: {push_result['new_trauma']}",
+                "ANCHOR",
+                source="session",
+            )
+        self._add_shard(
+            f"{char.name} overclocked chrome. Stress {clock.current_stress}/{clock.max_stress}. "
+            f"Glitch die: {self.glitch_die}.",
+            "CHRONICLE",
+        )
+        chrome_list = ", ".join(char.chrome[:3])
+        return (
+            f"{char.name} overclocks [{chrome_list}].\n"
+            f"Gain +1d on next action roll.\n"
+            f"Stress: {clock.current_stress}/{clock.max_stress}{trauma_msg} | "
+            f"Glitch die: {self.glitch_die}"
+        )
+
 
 # =========================================================================
 # COMMAND DEFINITIONS
@@ -608,6 +733,10 @@ CBRPNK_COMMANDS = {
     "crew_status": "Show runner stress and heat",
     "glitch_status": "Show glitch die and heat thresholds",
     "party_status": "Show all runners and chrome",
+    # WO-V67.0: New runner commands
+    "glitch": "Roll glitch die (1d6: minor/moderate/major complication)",
+    "corp_response": "Escalation check — corp response tier by heat level",
+    "overclock": "Push chrome for +1d bonus die (costs 1 stress, +1 glitch)",
     # Grid subsystem
     "jack_in": "Jack into the Grid (generates grid if none active)",
     "intrusion": "Attack an active ICE on the grid",
@@ -624,7 +753,7 @@ CBRPNK_COMMANDS = {
 CBRPNK_CATEGORIES = {
     "Grid": ["jack_in", "intrusion", "extract", "jack_out", "grid_status", "glitch_status"],
     "Chrome": ["install_chrome", "remove_chrome", "chrome_status", "humanity_check"],
-    "Action": ["roll_action", "crew_status", "party_status"],
+    "Action": ["roll_action", "crew_status", "party_status", "glitch", "corp_response", "overclock"],
 }
 
 

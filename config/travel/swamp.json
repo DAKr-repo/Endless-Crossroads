@@ -59,6 +59,46 @@
         "failure": "They attack. This is their hunting ground.",
         "enemies_tier": 2
       }
+    ],
+    "tier_3": [
+      {
+        "id": "hag_bargain",
+        "type": "skill_challenge",
+        "title": "Hag of the Murkmere",
+        "description": "A hunched figure stirs a cauldron on a moss-draped islet. She has noticed you. The swamp feels like it's holding its breath.",
+        "target_role": "guide",
+        "dc": 15,
+        "success": "You resist the pull of her offer. A will of iron keeps the party moving without cost.",
+        "failure": "Her bargain sinks in. Someone accepts. The price is paid in days and secrets.",
+        "failure_cost": {"days": 1},
+        "enemies_tier": 3,
+        "notes": "On failure the DM may trigger a WIS save (DC 14) for the player who spoke first."
+      },
+      {
+        "id": "swamp_gas_vent",
+        "type": "skill_challenge",
+        "title": "Methane Vent Field",
+        "description": "Bubbles burst across the water's surface. The air stings your eyes. One spark would be catastrophic.",
+        "target_role": "guard",
+        "dc": 14,
+        "success": "You cover flames and hold breath. The field is crossed safely.",
+        "failure": "A lantern tips. The gas ignites in a rolling boom. Supplies burn.",
+        "failure_cost": {"days": 0.5}
+      }
+    ],
+    "tier_4": [
+      {
+        "id": "black_dragon_lair",
+        "type": "skill_challenge",
+        "title": "Black Dragon's Demesne",
+        "description": "The water has turned to acid-tinged sludge. Bleached bones jut from the mire. The dragon's lair mouth yawns beneath an overhang of dead trees.",
+        "target_role": "scout",
+        "dc": 17,
+        "success": "You time the dragon's patrol, slip past the lair entrance, and emerge on solid ground.",
+        "failure": "The shadow falls before the warning is spoken. The dragon rises from the water.",
+        "enemies_tier": 4,
+        "notes": "On success the party may choose to enter the lair as a dungeon encounter instead of bypassing."
+      }
     ]
   }
 }

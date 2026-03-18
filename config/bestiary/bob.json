@@ -1,0 +1,176 @@
+{
+  "version": 1,
+  "format": "fitd",
+  "source": "Band of Blades (authored from setting — no stat block PDF source)",
+  "note": "BoB adversaries use threat_level and campaign_phase instead of D&D AC/HP. Threat levels map to mission difficulty 1-4.",
+  "tiers": {
+    "1": [
+      {
+        "name": "Broken Infantry",
+        "faction": "The Broken",
+        "threat_level": 1,
+        "campaign_phase": "early",
+        "scale": "squad",
+        "description": "Reanimated soldiers from a dozen different armies, marching in lockstep.",
+        "capabilities": ["mass_advance", "ignore_morale", "infection_on_wound"],
+        "weakness": "fire, command disruption, blessed weapons"
+      },
+      {
+        "name": "Hollow Scout",
+        "faction": "The Broken",
+        "threat_level": 1,
+        "campaign_phase": "early",
+        "scale": "individual",
+        "description": "A fast, dead thing that reports back to something worse.",
+        "capabilities": ["fast_movement", "silent_approach", "relay_position"],
+        "weakness": "isolation, bright light, sharp hearing countered by silence"
+      },
+      {
+        "name": "Cult Initiate",
+        "faction": "Infamous",
+        "threat_level": 1,
+        "campaign_phase": "early",
+        "scale": "individual",
+        "description": "A living deserter who chose the wrong side. Desperate, not skilled.",
+        "capabilities": ["sabotage", "intel_theft", "panic_induction"],
+        "weakness": "capture, interrogation, promises of safety"
+      },
+      {
+        "name": "Plague Beast",
+        "faction": "The Broken",
+        "threat_level": 1,
+        "campaign_phase": "early",
+        "scale": "individual",
+        "description": "An animal bloated with necrotic energy, teeth still sharp.",
+        "capabilities": ["disease_bite", "burst_on_death"],
+        "weakness": "fire, poison resistance ineffective"
+      },
+      {
+        "name": "Undead Militia",
+        "faction": "The Broken",
+        "threat_level": 1,
+        "campaign_phase": "early",
+        "scale": "squad",
+        "description": "Civilians raised from a village the Legion couldn't reach in time.",
+        "capabilities": ["swarm_tactics", "tenacity"],
+        "weakness": "chokepoints, ranged fire, morale-immune means nothing to the living allies"
+      }
+    ],
+    "2": [
+      {
+        "name": "Chosen Champion",
+        "faction": "The Broken",
+        "threat_level": 2,
+        "campaign_phase": "mid",
+        "scale": "individual",
+        "description": "A former hero turned by the Cinder King. Remembers its name. Hates you for it.",
+        "capabilities": ["veteran_tactics", "relic_weapon", "morale_crush"],
+        "weakness": "reminders of its past life, the Chosen bond"
+      },
+      {
+        "name": "Undead Heavy Infantry",
+        "faction": "The Broken",
+        "threat_level": 2,
+        "campaign_phase": "mid",
+        "scale": "squad",
+        "description": "Armored dead in full plate. They were elite once.",
+        "capabilities": ["armor_ignore_morale", "shield_wall", "trample"],
+        "weakness": "anti-armor tactics, blessed earth, fire"
+      },
+      {
+        "name": "Infamous Infiltrator",
+        "faction": "Infamous",
+        "threat_level": 2,
+        "campaign_phase": "mid",
+        "scale": "individual",
+        "description": "A traitor embedded in the Legion. Knows routes, rosters, supply lines.",
+        "capabilities": ["inside_knowledge", "assassination", "frame_allies"],
+        "weakness": "loyalty checks, counter-intelligence, exposure"
+      },
+      {
+        "name": "Cursed Cavalry",
+        "faction": "The Broken",
+        "threat_level": 2,
+        "campaign_phase": "mid",
+        "scale": "squad",
+        "description": "Riders and mounts fused together in death. Fast and relentless.",
+        "capabilities": ["charge", "lance_strike", "trample", "fast_flanking"],
+        "weakness": "pike formations, terrain obstacles, fire"
+      },
+      {
+        "name": "Plague Engine",
+        "faction": "The Broken",
+        "threat_level": 2,
+        "campaign_phase": "mid",
+        "scale": "individual",
+        "description": "A siege weapon repurposed as a plague-spreader. It moves on its own.",
+        "capabilities": ["plague_cloud", "crush", "artillery_range"],
+        "weakness": "structural weak points, ranged incendiary"
+      }
+    ],
+    "3": [
+      {
+        "name": "Named Undead Marshal",
+        "faction": "The Broken",
+        "threat_level": 3,
+        "campaign_phase": "late",
+        "scale": "individual",
+        "description": "A general of the Cinder King's armies. Has tactical intelligence and a grudge.",
+        "capabilities": ["army_command", "tactical_genius", "aura_of_dread", "personal_combat"],
+        "weakness": "its surviving mortal family, the original wound that killed it"
+      },
+      {
+        "name": "Undead Siege Tower",
+        "faction": "The Broken",
+        "threat_level": 3,
+        "campaign_phase": "late",
+        "scale": "crew",
+        "description": "Crawling with dead soldiers and imbued with dark magic. It doesn't stop.",
+        "capabilities": ["wall_breach", "troop_deployment", "resistance_to_fire"],
+        "weakness": "structural collapse, blessed siege weapons, sabotage at the foundation"
+      },
+      {
+        "name": "Devoted Chosen",
+        "faction": "Infamous",
+        "threat_level": 3,
+        "campaign_phase": "late",
+        "scale": "individual",
+        "description": "A Chosen who answered the Cinder King's call willingly. Powerful and ideologically committed.",
+        "capabilities": ["chosen_bond_powers", "aura_of_conviction", "elite_combat", "rally_undead"],
+        "weakness": "the Chosen bond inverted, other Chosen allies"
+      },
+      {
+        "name": "Mass Plague Wave",
+        "faction": "The Broken",
+        "threat_level": 3,
+        "campaign_phase": "late",
+        "scale": "faction",
+        "description": "Not a creature — a tide. Hundreds of infected dead rushing a position.",
+        "capabilities": ["overwhelming_numbers", "area_disease", "breach_walls"],
+        "weakness": "choke point defense, fire barriers, artillery"
+      }
+    ],
+    "4": [
+      {
+        "name": "Cinder King Avatar",
+        "faction": "The Broken",
+        "threat_level": 4,
+        "campaign_phase": "endgame",
+        "scale": "faction",
+        "description": "Not the Cinder King himself — a manifestation of his will given form. The campaign ends if this is not stopped.",
+        "capabilities": ["world_breaking_power", "raise_fallen", "curse_area", "immune_to_mortal_weapons"],
+        "weakness": "the Black Oak Seal, the six Chosen bonds united, sacred ground"
+      },
+      {
+        "name": "Undead Leviathan",
+        "faction": "The Broken",
+        "threat_level": 4,
+        "campaign_phase": "endgame",
+        "scale": "faction",
+        "description": "A sea creature of immense size, reanimated as a weapon of war. Used to destroy coastal fortifications.",
+        "capabilities": ["area_destruction", "water_movement", "crush", "immune_to_infantry"],
+        "weakness": "specialized siege weapons, Chosen with water-domain powers"
+      }
+    ]
+  }
+}

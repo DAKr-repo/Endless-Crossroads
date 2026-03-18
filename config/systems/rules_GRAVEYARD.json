@@ -1,26 +1,62 @@
 {
-    "system_id": "GRAVEYARD",
-    "display_name": "GRAVEYARD",
-    "mechanics": {
-        "races": [
-            "Alien",
-            "Dwarf",
-            "Elf",
-            "Gnome",
-            "Human"
-        ],
-        "classes": [
-            "Character Class A",
-            "Character Class B",
-            "Playbook C",
-            "Playbook X",
-            "Playbook Y"
-        ],
-        "subclasses": [
-            "Specialization A",
-            "Specialization B",
-            "SpecializationA",
-            "SpecializationB"
-        ]
+  "system_id": "GRAVEYARD",
+  "display_name": "GRAVEYARD — Fallen Character Archive",
+  "description": "Cross-system persistent tombstone storage for characters who have met their end. Tracks provenance, cause, and legacy across all supported game systems.",
+  "storage_format": "append_only_json_array",
+  "supported_systems": [
+    "burnwillow",
+    "dnd5e",
+    "stc",
+    "bitd",
+    "sav",
+    "bob",
+    "cbrpnk",
+    "candela",
+    "crown"
+  ],
+  "fields": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "description": "The character's name as it appeared in play."
+    },
+    "system": {
+      "type": "string",
+      "required": true,
+      "description": "system_id of the game system this character belonged to."
+    },
+    "level_or_tier": {
+      "type": "string",
+      "required": false,
+      "description": "Character level (D&D-style) or advancement tier (FITD-style) at time of death."
+    },
+    "cause_of_death": {
+      "type": "string",
+      "required": true,
+      "description": "Narrative description of the final scene or killing blow."
+    },
+    "date": {
+      "type": "string",
+      "required": true,
+      "description": "ISO 8601 date string of when the character died (real-world session date)."
+    },
+    "achievements": {
+      "type": "array",
+      "required": false,
+      "description": "List of notable deeds, completed quests, or legacy moments from this character's run.",
+      "items": "string"
     }
+  },
+  "example_tombstone": {
+    "name": "Ser Aldric Vane",
+    "system": "burnwillow",
+    "level_or_tier": "4",
+    "cause_of_death": "Crushed by the Doomclock's final toll when the vault collapsed.",
+    "date": "2026-03-01",
+    "achievements": [
+      "Cleared the Emberhome crypts",
+      "Recovered the Ember Sigil",
+      "Sacrificed herself so the party could escape"
+    ]
+  }
 }

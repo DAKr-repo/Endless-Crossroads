@@ -58,6 +58,46 @@
         "failure": "Hours of questioning at the watch house. You're released but delayed.",
         "failure_cost": {"days": 0.5}
       }
+    ],
+    "tier_3": [
+      {
+        "id": "guild_war_crossfire",
+        "type": "skill_challenge",
+        "title": "Guild War in the Streets",
+        "description": "Two rival guilds have chosen this district for their reckoning. Crossbow bolts skip off cobblestones. Barricades block every main route.",
+        "target_role": "guide",
+        "dc": 15,
+        "success": "You read the faction colors fast and take a neutral route through a temple quarter.",
+        "failure": "Mistaken for a courier. Both sides want what you're carrying.",
+        "enemies_tier": 3,
+        "notes": "On failure the party must choose a faction to side with, gaining or losing reputation accordingly."
+      },
+      {
+        "id": "plague_quarter",
+        "type": "skill_challenge",
+        "title": "Quarantined Quarter",
+        "description": "Red Xs mark every door. Guards in waxed masks turn travelers away. The shortest route runs straight through.",
+        "target_role": "guard",
+        "dc": 14,
+        "success": "You find a passage through the tanner's district that skirts the cordon.",
+        "failure": "Detained for inspection. Two days in a holding pen before you're cleared.",
+        "failure_cost": {"days": 2}
+      }
+    ],
+    "tier_4": [
+      {
+        "id": "city_siege",
+        "type": "skill_challenge",
+        "title": "City Under Siege",
+        "description": "Enemy banners ring the walls. Siege engines thud at the gates. Citizens scramble to board up windows. The garrison commander needs every capable sword.",
+        "target_role": "guard",
+        "dc": 16,
+        "success": "You coordinate a section of the wall defense and earn passage through the postern gate at dawn.",
+        "failure": "The breach holds but the delay is immense. The party is trapped inside for three days.",
+        "failure_cost": {"days": 3},
+        "enemies_tier": 4,
+        "notes": "On success the party may claim a reward from the city council in addition to continuing their journey."
+      }
     ]
   }
 }

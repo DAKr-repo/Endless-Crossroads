@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "format": "fitd",
+  "source": "CBR+PNK (authored from setting — no stat block PDF source)",
+  "note": "CBR+PNK loot uses cred value. Cred sticks are the primary currency; cyberware and data have street value.",
+  "tiers": {
+    "1": [
+      {"name": "Cred Stick (500¥)", "rarity": "common", "value_cred": 500, "source": "authored"},
+      {"name": "Burner Phone (untraceable)", "rarity": "common", "value_cred": 200, "source": "authored"},
+      {"name": "Data Chip (low-grade info)", "rarity": "common", "value_cred": 300, "source": "authored"},
+      {"name": "Street Med Kit", "rarity": "common", "value_cred": 400, "source": "authored"},
+      {"name": "Counterfeit Corp ID", "rarity": "common", "value_cred": 250, "source": "authored"}
+    ],
+    "2": [
+      {"name": "Cred Stick (2000¥)", "rarity": "uncommon", "value_cred": 2000, "source": "authored"},
+      {"name": "Low-grade Cyberware (reflex booster)", "rarity": "uncommon", "value_cred": 3000, "source": "authored"},
+      {"name": "Data Chip (corporate secrets)", "rarity": "uncommon", "value_cred": 2500, "source": "authored"},
+      {"name": "Program (basic exploit kit)", "rarity": "uncommon", "value_cred": 1500, "source": "authored"},
+      {"name": "Black Market Weapons Cache", "rarity": "uncommon", "value_cred": 2000, "source": "authored"}
+    ],
+    "3": [
+      {"name": "Cred Stick (10000¥)", "rarity": "rare", "value_cred": 10000, "source": "authored"},
+      {"name": "Military-grade Cyberware", "rarity": "rare", "value_cred": 15000, "source": "authored"},
+      {"name": "Program (ICE cracker, tier 3)", "rarity": "rare", "value_cred": 8000, "source": "authored"},
+      {"name": "Data Chip (executive-level intel)", "rarity": "rare", "value_cred": 12000, "source": "authored"},
+      {"name": "Corp Access Token (senior)", "rarity": "rare", "value_cred": 10000, "source": "authored"}
+    ],
+    "4": [
+      {"name": "Corporate Black Fund (transfer)", "rarity": "legendary", "value_cred": 50000, "source": "authored"},
+      {"name": "Prototype Cyberware (pre-release)", "rarity": "legendary", "value_cred": 80000, "source": "authored"},
+      {"name": "Rogue AI Core Shard", "rarity": "legendary", "value_cred": 100000, "source": "authored"},
+      {"name": "Megacorp Kill Switch Code", "rarity": "very_rare", "value_cred": 75000, "source": "authored"}
+    ]
+  }
+}

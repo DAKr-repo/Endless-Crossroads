@@ -1,0 +1,102 @@
+{
+  "terrain_type": "jungle",
+  "events": {
+    "tier_1": [
+      {
+        "id": "quicksand",
+        "type": "skill_challenge",
+        "title": "Quicksand Pit",
+        "description": "The ground looks solid. It isn't. Someone is already waist-deep before anyone reacts.",
+        "target_role": "guide",
+        "dc": 11,
+        "success": "You spot the discolored earth and redirect the party around it.",
+        "failure": "Three people sink before ropes and branches pull them out. Half a day lost.",
+        "failure_cost": {"days": 0.5}
+      },
+      {
+        "id": "biting_insects",
+        "type": "skill_challenge",
+        "title": "Biting Insect Cloud",
+        "description": "A black cloud of insects descends without warning. Every exposed surface is covered instantly.",
+        "target_role": "forager",
+        "dc": 10,
+        "success": "You recall that smoke drives them off. A smudge fire and the cloud disperses.",
+        "failure": "The swarm is relentless. The party suffers welts and exhaustion.",
+        "failure_cost": {"days": 0.5}
+      },
+      {
+        "id": "jungle_fruit",
+        "type": "discovery",
+        "title": "Fruit Grove",
+        "description": "Broad-leafed trees hang heavy with unfamiliar fruit.",
+        "target_role": "forager",
+        "dc": 9,
+        "success": "Edible and sweet. You fill packs with enough to last two days.",
+        "failure": "Some are edible. Some are not. You can't tell which.",
+        "success_reward": {"rations": 3}
+      }
+    ],
+    "tier_2": [
+      {
+        "id": "temple_ruins",
+        "type": "discovery",
+        "title": "Overgrown Temple Ruins",
+        "description": "Stone walls emerge from the undergrowth, covered in moss and carved faces. Something glints in a crevice.",
+        "target_role": "scout",
+        "dc": 12,
+        "success": "You find a cache of preserved offerings — useful supplies and a hand-drawn map fragment.",
+        "failure": "The ruins are trapped. You escape but gain nothing.",
+        "success_reward": {"rations": 2}
+      },
+      {
+        "id": "constrictor",
+        "type": "combat",
+        "title": "Giant Constrictor",
+        "description": "The branch you grab grabs back.",
+        "target_role": "scout",
+        "dc": 13,
+        "success": "You spot the scale pattern before it drops. Wide berth, no fight.",
+        "failure": "It coils around the last person in the column.",
+        "enemies_tier": 2
+      }
+    ],
+    "tier_3": [
+      {
+        "id": "dinosaur_encounter",
+        "type": "combat",
+        "title": "Dinosaur Encounter",
+        "description": "The trees part. A creature the size of a barn regards you with one enormous eye.",
+        "target_role": "scout",
+        "dc": 15,
+        "success": "You freeze and wait. It loses interest in you for easier prey.",
+        "failure": "It charges. The jungle offers nowhere to run.",
+        "enemies_tier": 3
+      },
+      {
+        "id": "canopy_collapse",
+        "type": "skill_challenge",
+        "title": "Canopy Collapse",
+        "description": "A dead tree shatters at the crown and brings a hundred feet of canopy down across the path.",
+        "target_role": "guard",
+        "dc": 14,
+        "success": "You clear enough of the debris in an hour to push through.",
+        "failure": "The tangle is impassable. A long detour costs a full day.",
+        "failure_cost": {"days": 1}
+      }
+    ],
+    "tier_4": [
+      {
+        "id": "yuan_ti_ambush",
+        "type": "combat",
+        "title": "Yuan-ti Ambush",
+        "description": "The jungle goes silent. Then arrows fall from every direction. Scaled figures drop from the canopy on silk lines. This was planned.",
+        "target_role": "guard",
+        "dc": 17,
+        "success": "You spot the ambush signs — too-quiet birds, disturbed vines — and set a counter-ambush.",
+        "failure": "The first volley lands before you even know they're there.",
+        "enemies_tier": 4,
+        "notes": "This is a multi-phase encounter. On success, the party gains the ambush turn. Expect a second wave after the first is broken."
+      }
+    ]
+  }
+}

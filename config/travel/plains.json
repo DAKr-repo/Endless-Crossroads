@@ -1,0 +1,103 @@
+{
+  "terrain_type": "plains",
+  "events": {
+    "tier_1": [
+      {
+        "id": "stampede",
+        "type": "skill_challenge",
+        "title": "Bison Stampede",
+        "description": "A thunder that isn't thunder. The horizon moves. Thousands of tons of muscle and horn heading straight for you.",
+        "target_role": "guide",
+        "dc": 11,
+        "success": "You spot the dust cloud early and steer perpendicular to the herd's path.",
+        "failure": "Caught in the fringe. Everyone sprints and dives. Half a day lost to scattered packs and shaken nerves.",
+        "failure_cost": {"days": 0.5}
+      },
+      {
+        "id": "lightning_storm",
+        "type": "skill_challenge",
+        "title": "Lightning Storm",
+        "description": "The only trees for miles are where you're standing. The clouds above are building fast.",
+        "target_role": "forager",
+        "dc": 10,
+        "success": "You find a dry gully and shelter low until the storm passes.",
+        "failure": "You're in the open when it hits. Everyone is shaken and drenched.",
+        "failure_cost": {"days": 0.5}
+      },
+      {
+        "id": "grain_farmstead",
+        "type": "discovery",
+        "title": "Farmstead",
+        "description": "A working farm with smoke rising from the chimney.",
+        "target_role": "forager",
+        "dc": 8,
+        "success": "The farmer trades fresh bread and salted pork for a fair price.",
+        "failure": "The farmstead is shuttered. No answer at the door.",
+        "success_reward": {"rations": 3}
+      }
+    ],
+    "tier_2": [
+      {
+        "id": "wandering_merchant",
+        "type": "discovery",
+        "title": "Wandering Merchant",
+        "description": "A lone wagon under a faded canvas canopy. The merchant waves from the driver's bench.",
+        "target_role": "forager",
+        "dc": 10,
+        "success": "Good prices and better rumors. You resupply and learn the road ahead.",
+        "failure": "His prices are outrageous and his wares questionable. Not worth it.",
+        "success_reward": {"rations": 4}
+      },
+      {
+        "id": "plains_raider",
+        "type": "combat",
+        "title": "Plains Raiders",
+        "description": "Riders on the horizon. They've spotted you and turned.",
+        "target_role": "scout",
+        "dc": 13,
+        "success": "You see them before they see you. A long detour and they never get close.",
+        "failure": "They ride you down. Fast horses on flat ground.",
+        "enemies_tier": 2
+      }
+    ],
+    "tier_3": [
+      {
+        "id": "bandit_army",
+        "type": "skill_challenge",
+        "title": "Bandit Army",
+        "description": "Not raiders — an army. Hundreds of armed deserters have claimed this stretch of road. They have archers, a command tent, and demands.",
+        "target_role": "guide",
+        "dc": 15,
+        "success": "You negotiate safe passage with a combination of coin and information about a mutual enemy.",
+        "failure": "Negotiations collapse. They want everything you have.",
+        "enemies_tier": 3,
+        "notes": "On success the party pays a toll (DM sets cost). On failure, combat with a bandit warband of tier 3 difficulty."
+      },
+      {
+        "id": "prairie_fire",
+        "type": "skill_challenge",
+        "title": "Prairie Fire",
+        "description": "The wind shifts and smoke fills your lungs. The grass behind you is already burning.",
+        "target_role": "scout",
+        "dc": 15,
+        "success": "You run for the river you spotted earlier. The fire skips over the wet ground.",
+        "failure": "The fire outpaces you. You survive but lose packs and supplies.",
+        "failure_cost": {"days": 1}
+      }
+    ],
+    "tier_4": [
+      {
+        "id": "dragon_sighting",
+        "type": "skill_challenge",
+        "title": "Dragon Sighting",
+        "description": "A shadow blots out the afternoon sun. It circles once, twice. There is nowhere to hide on open ground. It is deciding.",
+        "target_role": "guard",
+        "dc": 16,
+        "success": "You flatten, douse fires, and wait. It departs for easier prey.",
+        "failure": "It lands. The ground shakes. It has questions — or it's simply hungry.",
+        "enemies_tier": 4,
+        "notes": "On failure the DM may offer a parley option before combat: the dragon wants something and will let the party go if they can provide it."
+      }
+    ]
+  }
+}

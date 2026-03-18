@@ -23,6 +23,7 @@ import pytest
 # ---------------------------------------------------------------------------
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(PROJECT_ROOT))
+sys.path.insert(0, str(PROJECT_ROOT / "scripts"))
 
 
 # =========================================================================
@@ -328,8 +329,7 @@ class TestBuildContentHelpers:
 
     def test_extractor_registry_complete(self):
         """All 5 extractors registered."""
-        sys.path.insert(0, str(PROJECT_ROOT / "scripts"))
-        from build_content import EXTRACTORS
+        from build_content import EXTRACTORS  # type: ignore[import-not-found]
         assert "bestiary" in EXTRACTORS
         assert "loot" in EXTRACTORS
         assert "hazards" in EXTRACTORS
@@ -338,7 +338,7 @@ class TestBuildContentHelpers:
 
     def test_system_profiles_dnd5e(self):
         """D&D 5e system profile has expected patterns."""
-        from build_content import SYSTEM_PROFILES
+        from build_content import SYSTEM_PROFILES  # type: ignore[import-not-found]
         profile = SYSTEM_PROFILES["dnd5e"]
         assert "stat_block_pattern" in profile
         assert "magic_item_pattern" in profile
@@ -346,13 +346,13 @@ class TestBuildContentHelpers:
 
     def test_system_profiles_stc(self):
         """STC system profile has expected patterns."""
-        from build_content import SYSTEM_PROFILES
+        from build_content import SYSTEM_PROFILES  # type: ignore[import-not-found]
         profile = SYSTEM_PROFILES["stc"]
         assert "stat_block_pattern" in profile
 
     def test_tier_from_cr(self):
         """CR-to-tier mapping works correctly."""
-        from build_content import _tier_from_cr
+        from build_content import _tier_from_cr  # type: ignore[import-not-found]
         assert _tier_from_cr("1/4") == 1
         assert _tier_from_cr("1") == 1
         assert _tier_from_cr("4") == 1
@@ -366,7 +366,7 @@ class TestBuildContentHelpers:
 
     def test_regex_extract_stat_block_dnd5e(self):
         """Regex stat block extraction for D&D 5e."""
-        from build_content import _regex_extract_stat_block
+        from build_content import _regex_extract_stat_block  # type: ignore[import-not-found]
         chunk = (
             "Goblin\n"
             "Small humanoid\n"
@@ -383,7 +383,7 @@ class TestBuildContentHelpers:
 
     def test_regex_extract_stat_block_stc(self):
         """Regex stat block extraction for STC."""
-        from build_content import _regex_extract_stat_block
+        from build_content import _regex_extract_stat_block  # type: ignore[import-not-found]
         chunk = (
             "Parshendi Scout\n"
             "Tier 1 Minion\n"
@@ -397,7 +397,7 @@ class TestBuildContentHelpers:
 
     def test_regex_extract_magic_item(self):
         """Regex magic item extraction."""
-        from build_content import _regex_extract_magic_item
+        from build_content import _regex_extract_magic_item  # type: ignore[import-not-found]
         chunk = (
             "Cloak of Protection\n"
             "Wondrous item, uncommon (requires attunement)\n"
@@ -411,19 +411,19 @@ class TestBuildContentHelpers:
 
     def test_extract_bestiary_skips_existing(self):
         """Bestiary extractor skips when config exists and force=False."""
-        from build_content import extract_bestiary
+        from build_content import extract_bestiary  # type: ignore[import-not-found]
         result = extract_bestiary("dnd5e", [], no_llm=True, force=False)
         assert result["status"] == "skipped (exists)"
 
     def test_extract_loot_skips_existing(self):
         """Loot extractor skips when config exists and force=False."""
-        from build_content import extract_loot
+        from build_content import extract_loot  # type: ignore[import-not-found]
         result = extract_loot("dnd5e", [], no_llm=True, force=False)
         assert result["status"] == "skipped (exists)"
 
     def test_extract_hazards_skips_existing(self):
         """Hazards extractor skips when config exists and force=False."""
-        from build_content import extract_hazards
+        from build_content import extract_hazards  # type: ignore[import-not-found]
         result = extract_hazards("dnd5e", [], no_llm=True, force=False)
         assert result["status"] == "skipped (exists)"
 

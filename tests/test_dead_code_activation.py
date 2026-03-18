@@ -99,13 +99,15 @@ class TestDeltaTrackerOnDnD5e:
         from codex.core.services.narrative_frame import DeltaTracker
         engine = DnD5eEngine()
         engine.create_character("Tester")
-        engine.delta_tracker.record_visit(1, {"enemies": [{"name": "Orc"}], "loot": [], "hazards": []})
+        assert engine.delta_tracker is not None
+        engine.delta_tracker.record_visit(1, {"enemies": [{"name": "Orc"}], "loot": [], "hazards": []})  # type: ignore[union-attr]
         state = engine.save_state()
 
         engine2 = DnD5eEngine()
         engine2.create_character("Tester")
         engine2.load_state(state)
-        assert 1 in engine2.delta_tracker._snapshots
+        assert engine2.delta_tracker is not None
+        assert 1 in engine2.delta_tracker._snapshots  # type: ignore[union-attr]
 
     def test_dnd5e_has_get_current_room_dict(self):
         from codex.games.dnd5e import DnD5eEngine
@@ -135,13 +137,15 @@ class TestDeltaTrackerOnSTC:
         from codex.games.stc import CosmereEngine
         engine = CosmereEngine()
         engine.create_character("Kaladin")
-        engine.delta_tracker.record_visit(1, {"enemies": [{"name": "Parshendi"}], "loot": [], "hazards": []})
+        assert engine.delta_tracker is not None
+        engine.delta_tracker.record_visit(1, {"enemies": [{"name": "Parshendi"}], "loot": [], "hazards": []})  # type: ignore[union-attr]
         state = engine.save_state()
 
         engine2 = CosmereEngine()
         engine2.create_character("Kaladin")
         engine2.load_state(state)
-        assert 1 in engine2.delta_tracker._snapshots
+        assert engine2.delta_tracker is not None
+        assert 1 in engine2.delta_tracker._snapshots  # type: ignore[union-attr]
 
     def test_stc_has_get_current_room_dict(self):
         from codex.games.stc import CosmereEngine
@@ -207,9 +211,9 @@ class TestMemoryEngineWiring:
         from codex.games.burnwillow.engine import BurnwillowEngine
         engine = BurnwillowEngine()
         from codex.core.memory import CodexMemoryEngine
-        engine.memory_engine = CodexMemoryEngine()
-        engine.memory_engine.create_shard("Test", shard_type="ANCHOR", tags=["test"])
-        assert len(engine.memory_engine.shards) == 1
+        engine.memory_engine = CodexMemoryEngine()  # type: ignore[attr-defined]
+        engine.memory_engine.create_shard("Test", shard_type="ANCHOR", tags=["test"])  # type: ignore[attr-defined]
+        assert len(engine.memory_engine.shards) == 1  # type: ignore[attr-defined]
 
 
 # ===========================================================================
@@ -223,8 +227,8 @@ class TestEngineRefNarrativeFrame:
         from codex.core.narrative_engine import NarrativeEngine
         ne = NarrativeEngine(system_id="burnwillow")
         engine_mock = MagicMock()
-        ne._engine_ref = engine_mock
-        assert ne._engine_ref is engine_mock
+        ne._engine_ref = engine_mock  # type: ignore[attr-defined]
+        assert ne._engine_ref is engine_mock  # type: ignore[attr-defined]
 
     def test_build_narrative_frame_with_delta_tracker(self):
         from codex.core.services.narrative_frame import (
@@ -290,12 +294,14 @@ class TestRAGThermalGate:
         assert rag._should_summarize() is False
 
     def test_summarize_preserves_chunks_on_failure(self):
+        from unittest.mock import patch
         from codex.core.services.rag_service import RAGService, RAGResult
         rag = RAGService()
         result = RAGResult(chunks=["chunk1", "chunk2", "chunk3"], system_id="test", query="test")
-        # summarize should not crash even without Mimir
-        returned = rag.summarize(result, "test query")
-        # Chunks should still be present (summary may or may not be set)
+        # Mock Mimir to simulate failure — avoids 17s+ live Ollama call on Pi 5
+        with patch("codex.integrations.mimir.query_mimir", side_effect=RuntimeError("offline")):
+            returned = rag.summarize(result, "test query")
+        # Chunks should still be present (summary not set due to failure)
         assert len(returned.chunks) == 3
 
     def test_search_rules_lore_integration(self):
@@ -437,7 +443,8 @@ class TestTraitHandlerBurnwillow:
         from codex.games.burnwillow.engine import BurnwillowEngine
         engine = BurnwillowEngine()
         char = engine.create_character("Test")
-        handler = engine._trait_handler
+        handler = engine._trait_handler  # type: ignore[attr-defined]
+        assert handler is not None
         result = handler.activate_trait("INTERCEPT", "burnwillow", {"character": char})
         assert "action" in result
         assert result["action"] == "intercept"
@@ -445,7 +452,8 @@ class TestTraitHandlerBurnwillow:
     def test_trait_handler_has_burnwillow_resolver(self):
         from codex.games.burnwillow.engine import BurnwillowEngine
         engine = BurnwillowEngine()
-        assert engine._trait_handler.has_resolver("burnwillow")
+        assert engine._trait_handler is not None  # type: ignore[attr-defined]
+        assert engine._trait_handler.has_resolver("burnwillow")  # type: ignore[attr-defined]
 
     def test_bridge_use_routes_through_trait_handler(self):
         """Bridge _handle_use should use TraitHandler when available."""
@@ -547,12 +555,100 @@ class TestBurnwillowIntegration:
         from codex.games.burnwillow.engine import BurnwillowEngine
         engine = BurnwillowEngine()
         engine.create_character("Kael")
-        engine.delta_tracker.record_visit(1, {"enemies": [{"name": "Rat"}], "loot": [], "hazards": []})
+        assert engine.delta_tracker is not None
+        engine.delta_tracker.record_visit(1, {"enemies": [{"name": "Rat"}], "loot": [], "hazards": []})  # type: ignore[union-attr]
         data = engine.save_game()
 
         engine2 = BurnwillowEngine()
         engine2.load_game(data)
-        assert 1 in engine2.delta_tracker._snapshots
+        assert engine2.delta_tracker is not None
+        assert 1 in engine2.delta_tracker._snapshots  # type: ignore[union-attr]
+
+
+# ===========================================================================
+# WO-V65.0: Dead Code Purge Verification
+# ===========================================================================
+
+class TestV65DeadCodePurge:
+    """Verify dead code was properly removed in WO-V65.0."""
+
+    def test_butler_no_orchestrator_field(self):
+        """Butler should no longer have _orchestrator attribute."""
+        from codex.core.butler import CodexButler
+        b = CodexButler()
+        assert not hasattr(b, '_orchestrator')
+
+    def test_butler_no_set_orchestrator_method(self):
+        """Butler should no longer have set_orchestrator method."""
+        from codex.core.butler import CodexButler
+        assert not hasattr(CodexButler, 'set_orchestrator')
+
+    def test_tangle_generator_removed(self):
+        """TangleGenerator class should be removed from zone1."""
+        import codex.games.burnwillow.zone1 as z1
+        assert not hasattr(z1, 'TangleGenerator')
+
+    def test_tangle_adapter_still_exists(self):
+        """TangleAdapter should still be importable."""
+        from codex.games.burnwillow.zone1 import TangleAdapter
+        adapter = TangleAdapter()
+        assert adapter is not None
+
+    def test_synthesize_narrative_narrow_exception(self):
+        """synthesize_narrative should not catch KeyboardInterrupt."""
+        from codex.core.services.narrative_loom import synthesize_narrative
+        from codex.core.memory import MemoryShard, ShardType
+
+        def bad_mimir(prompt, ctx):
+            raise KeyboardInterrupt("should propagate")
+
+        shards = [MemoryShard(content="test", shard_type=ShardType.CHRONICLE)]
+        import pytest
+        with pytest.raises(KeyboardInterrupt):
+            synthesize_narrative("q", shards, mimir_fn=bad_mimir)
+
+    def test_synthesize_narrative_catches_type_error(self):
+        """synthesize_narrative should catch TypeError from bad mimir_fn."""
+        from codex.core.services.narrative_loom import synthesize_narrative
+        from codex.core.memory import MemoryShard, ShardType
+
+        def bad_mimir(prompt, ctx):
+            raise TypeError("bad call")
+
+        shards = [MemoryShard(content="test content", shard_type=ShardType.CHRONICLE)]
+        result = synthesize_narrative("q", shards, mimir_fn=bad_mimir)
+        assert "test content" in result  # falls back to concatenation
+
+    def test_engine_higher_zone_without_tangle_generator(self):
+        """BurnwillowEngine zone > 1 should use TangleAdapter directly."""
+        from codex.games.burnwillow.engine import BurnwillowEngine
+        engine = BurnwillowEngine()
+        engine.create_character("Test")
+        engine.generate_dungeon(zone=2, depth=2, seed=42)
+        assert engine.dungeon_graph is not None
+        assert len(engine.populated_rooms) > 0
+
+
+    def test_tutorial_dispatch_exists(self):
+        """'tutorial' command should be dispatched, not fall through to look."""
+        from codex.games.burnwillow.bridge import BurnwillowBridge
+        b = BurnwillowBridge("Tester", seed=42)
+        result = b.step("tutorial")
+        assert "QUICK START" in result or "TUTORIAL" in result
+
+    def test_tutorial_alias_tut(self):
+        """'tut' alias should dispatch to tutorial handler."""
+        from codex.games.burnwillow.bridge import BurnwillowBridge
+        b = BurnwillowBridge("Tester", seed=42)
+        result = b.step("tut")
+        assert "QUICK START" in result or "TUTORIAL" in result
+
+    def test_tutorial_not_room_description(self):
+        """Tutorial output should NOT be a room description."""
+        from codex.games.burnwillow.bridge import BurnwillowBridge
+        b = BurnwillowBridge("Tester", seed=42)
+        result = b.step("tutorial")
+        assert "=== Room" not in result
 
     def test_burnwillow_trait_map_has_all_traits(self):
         from codex.games.burnwillow.engine import BurnwillowTraitResolver

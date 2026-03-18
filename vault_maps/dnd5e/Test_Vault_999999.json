@@ -1,0 +1,228 @@
+{
+  "location": "Test Vault",
+  "system_id": "dnd5e",
+  "seed": 999999,
+  "total_rooms": 8,
+  "rooms": [
+    {
+      "id": 0,
+      "type": "hidden_portal",
+      "tier": 3,
+      "position": [
+        2,
+        6
+      ],
+      "size": [
+        3,
+        15
+      ],
+      "connections": [
+        1
+      ],
+      "enemies": [],
+      "loot": [
+        {
+          "name": "Ring of Resistance"
+        }
+      ],
+      "hazards": [],
+      "interactive": []
+    },
+    {
+      "id": 1,
+      "type": "normal",
+      "tier": 2,
+      "position": [
+        7,
+        4
+      ],
+      "size": [
+        4,
+        12
+      ],
+      "connections": [
+        0,
+        2,
+        6
+      ],
+      "enemies": [],
+      "loot": [],
+      "hazards": [],
+      "interactive": []
+    },
+    {
+      "id": 2,
+      "type": "treasure",
+      "tier": 1,
+      "position": [
+        12,
+        1
+      ],
+      "size": [
+        9,
+        23
+      ],
+      "connections": [
+        3,
+        1
+      ],
+      "enemies": [],
+      "loot": [
+        {
+          "name": "Rusty Shortsword"
+        },
+        {
+          "name": "Leather Shield"
+        }
+      ],
+      "hazards": [],
+      "interactive": []
+    },
+    {
+      "id": 3,
+      "type": "start",
+      "tier": 1,
+      "position": [
+        23,
+        3
+      ],
+      "size": [
+        6,
+        12
+      ],
+      "connections": [
+        2
+      ],
+      "enemies": [],
+      "loot": [],
+      "hazards": [],
+      "interactive": []
+    },
+    {
+      "id": 4,
+      "type": "boss",
+      "tier": 4,
+      "position": [
+        1,
+        26
+      ],
+      "size": [
+        4,
+        3
+      ],
+      "connections": [
+        5
+      ],
+      "enemies": [
+        {
+          "name": "Beholder Zombie",
+          "hp": 80,
+          "max_hp": 80,
+          "is_boss": true,
+          "tier": 4
+        }
+      ],
+      "loot": [
+        {
+          "name": "Crown of Command"
+        },
+        {
+          "name": "Legendary Weapon"
+        }
+      ],
+      "hazards": [],
+      "interactive": []
+    },
+    {
+      "id": 5,
+      "type": "normal",
+      "tier": 4,
+      "position": [
+        7,
+        26
+      ],
+      "size": [
+        5,
+        4
+      ],
+      "connections": [
+        4,
+        6
+      ],
+      "enemies": [
+        {
+          "name": "Dragon Wyrmling",
+          "hp": 20,
+          "max_hp": 20,
+          "tier": 4
+        }
+      ],
+      "loot": [
+        {
+          "name": "Legendary Weapon"
+        }
+      ],
+      "hazards": [],
+      "interactive": []
+    },
+    {
+      "id": 6,
+      "type": "normal",
+      "tier": 3,
+      "position": [
+        14,
+        26
+      ],
+      "size": [
+        6,
+        4
+      ],
+      "connections": [
+        7,
+        5,
+        1
+      ],
+      "enemies": [
+        {
+          "name": "Troll",
+          "hp": 14,
+          "max_hp": 14,
+          "tier": 3
+        }
+      ],
+      "loot": [],
+      "hazards": [],
+      "interactive": []
+    },
+    {
+      "id": 7,
+      "type": "treasure",
+      "tier": 4,
+      "position": [
+        23,
+        26
+      ],
+      "size": [
+        6,
+        3
+      ],
+      "connections": [
+        6
+      ],
+      "enemies": [],
+      "loot": [
+        {
+          "name": "Crown of Command"
+        },
+        {
+          "name": "Legendary Weapon"
+        },
+        {
+          "name": "Artifact Fragment"
+        }
+      ],
+      "hazards": [],
+      "interactive": []
+    }
+  ]
+}

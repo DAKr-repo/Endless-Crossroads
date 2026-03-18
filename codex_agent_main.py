@@ -55,6 +55,8 @@ try:
     ASHBURN_AVAILABLE = True
 except ImportError:
     ASHBURN_AVAILABLE = False
+    AshburnHeirEngine = None  # type: ignore[assignment]
+    ASHBURN_LEADERS = None  # type: ignore[assignment]
 
 # Ashburn Tarot Card System
 try:
@@ -62,6 +64,8 @@ try:
     TAROT_AVAILABLE = True
 except ImportError:
     TAROT_AVAILABLE = False
+    render_tarot_card = None  # type: ignore[assignment]
+    get_card_for_context = None  # type: ignore[assignment]
 
 # World Engine (Genesis Module)
 from codex.world.world_wizard import WorldEngine, WorldState, get_world_engine
@@ -72,6 +76,7 @@ try:
     TELEGRAM_AVAILABLE = True
 except ImportError:
     TELEGRAM_AVAILABLE = False
+    run_telegram_bot = None  # type: ignore[assignment]
 
 # Discord Bot (Command Priority System)
 try:
@@ -79,6 +84,7 @@ try:
     DISCORD_BOT_AVAILABLE = True
 except ImportError:
     DISCORD_BOT_AVAILABLE = False
+    CodexDiscordBot = None  # type: ignore[assignment]
 
 # Try to import GenesisEngine (instant random world generator)
 try:
@@ -99,6 +105,11 @@ try:
     FORGE_AVAILABLE = True
 except ImportError:
     FORGE_AVAILABLE = False
+    run_character_forge = None  # type: ignore[assignment]
+    CharacterBuilderEngine = None  # type: ignore[assignment]
+    SystemBuilder = None  # type: ignore[assignment]
+    render_character = None  # type: ignore[assignment]
+    scan_system_content = None  # type: ignore[assignment]
 
 # Burnwillow Game (Roguelike dungeon crawler)
 try:
@@ -106,6 +117,7 @@ try:
     BURNWILLOW_AVAILABLE = True
 except ImportError:
     BURNWILLOW_AVAILABLE = False
+    run_burnwillow_game = None  # type: ignore[assignment]
 
 # Universal Game Loop (FITD + Dungeon engines)
 try:
@@ -116,6 +128,8 @@ try:
     UNIVERSAL_AVAILABLE = True
 except ImportError:
     UNIVERSAL_AVAILABLE = False
+    run_universal_game = None  # type: ignore[assignment]
+    ENGINE_REGISTRY = {}  # type: ignore[assignment]
 
 # Librarian TUI (Mimir's Vault browser)
 try:
@@ -123,6 +137,7 @@ try:
     LIBRARIAN_AVAILABLE = True
 except ImportError:
     LIBRARIAN_AVAILABLE = False
+    LibrarianTUI = None  # type: ignore[assignment]
 
 # Universe Manager (Star Chart & World Registry)
 try:
@@ -130,6 +145,7 @@ try:
     UNIVERSE_MANAGER_AVAILABLE = True
 except ImportError:
     UNIVERSE_MANAGER_AVAILABLE = False
+    UniverseManager = None  # type: ignore[assignment]
 
 # Butler Protocol (Low-Latency Reflex Router)
 try:
@@ -137,9 +153,8 @@ try:
     BUTLER_AVAILABLE = True
 except ImportError:
     BUTLER_AVAILABLE = False
+    CodexButler = None  # type: ignore[assignment]
 
-# WO-V10.0: HybridGameOrchestrator (module not yet implemented)
-ORCHESTRATOR_AVAILABLE = False
 
 # Character Adapter (WO 103 — Wizard-to-Engine bridge)
 try:
@@ -147,24 +162,28 @@ try:
     ADAPTER_AVAILABLE = True
 except ImportError:
     ADAPTER_AVAILABLE = False
+    CharacterAdapter = None  # type: ignore[assignment]
 
 try:
     from codex.core.services.broadcast import GlobalBroadcastManager
     BROADCAST_AVAILABLE = True
 except ImportError:
     BROADCAST_AVAILABLE = False
+    GlobalBroadcastManager = None  # type: ignore[assignment]
 
 try:
     from codex.core.memory import CodexMemoryEngine
     MEMORY_ENGINE_AVAILABLE = True
 except ImportError:
     MEMORY_ENGINE_AVAILABLE = False
+    CodexMemoryEngine = None  # type: ignore[assignment]
 
 try:
     from codex.core.services.trait_handler import TraitHandler
     TRAIT_HANDLER_AVAILABLE = True
 except ImportError:
     TRAIT_HANDLER_AVAILABLE = False
+    TraitHandler = None  # type: ignore[assignment]
 
 # Unified Menu Controller (WO 109)
 from codex.core.menu import CodexMenu
@@ -197,6 +216,7 @@ try:
     TOOLS_AVAILABLE = True
 except ImportError:
     TOOLS_AVAILABLE = False
+    dm_tools = None  # type: ignore[assignment]
 
 # Animated Dice Engine
 try:
@@ -204,6 +224,7 @@ try:
     DICE_ENGINE_AVAILABLE = True
 except ImportError:
     DICE_ENGINE_AVAILABLE = False
+    codex_dice_engine = None  # type: ignore[assignment]
 
 # Load environment variables from Codex directory
 load_dotenv(CODEX_DIR / ".env")
@@ -380,7 +401,7 @@ class CodexCore:
             )
         return self.sessions[user_id]
 
-    async def process_input(self, user_id: str, content: str, game_state_update: dict = None) -> str:
+    async def process_input(self, user_id: str, content: str, game_state_update: dict = None) -> str:  # type: ignore[assignment]
         """Main logic pipeline: Input -> Architect -> Guard -> Output."""
         session = self.get_session(user_id)
         session.last_interaction = datetime.now()
@@ -714,8 +735,16 @@ async def run_crown_campaign(world_state: Optional[dict] = None, mimir: object =
 
     # WO 100: Register engine with Butler for session-aware reflexes
     if butler:
-        butler.register_session(engine)
-        butler.sync_session_to_file()
+        butler.register_session(engine)  # type: ignore[attr-defined]
+        butler.sync_session_to_file()  # type: ignore[attr-defined]
+
+    def _crown_narrate(text: str) -> None:
+        """Narrate text via butler if available (Norse Skald voice)."""
+        if butler and getattr(butler, '_voice_enabled', False):
+            try:
+                butler.narrate(text[:300])  # type: ignore[attr-defined]
+            except Exception:
+                pass
 
     # Title screen
     console.print(Panel(
@@ -779,11 +808,12 @@ async def run_crown_campaign(world_state: Optional[dict] = None, mimir: object =
             border_style=SILVER,
             padding=(1, 2)
         ))
+        _crown_narrate(world)
 
         # WO-V23.0: Tarot card for world prompt
         if TAROT_AVAILABLE:
             try:
-                tarot_text = render_tarot_card("wolf", world)
+                tarot_text = render_tarot_card("wolf", world)  # type: ignore[misc]
                 if tarot_text:
                     console.print(Panel(tarot_text, border_style="dim", title="[dim]🃏 THE CARD[/dim]"))
             except Exception:
@@ -801,6 +831,7 @@ async def run_crown_campaign(world_state: Optional[dict] = None, mimir: object =
             border_style=event_border,
             padding=(1, 2)
         ))
+        _crown_narrate(morning_event['text'])
 
         # Breach day special: Secret Witness appears at dawn (WO-V23.0)
         if engine.is_breach_day():
@@ -867,6 +898,7 @@ async def run_crown_campaign(world_state: Optional[dict] = None, mimir: object =
             border_style=MAGENTA,
             padding=(1, 2)
         ))
+        _crown_narrate(prompt)
 
         # Show DNA accumulation
         dom_tag = engine.get_dominant_tag()
@@ -901,11 +933,12 @@ async def run_crown_campaign(world_state: Optional[dict] = None, mimir: object =
                 border_style="yellow",
                 padding=(1, 2)
             ))
+            _crown_narrate(campfire)
 
             # WO-V23.0: Tarot card for campfire
             if TAROT_AVAILABLE:
                 try:
-                    tarot_text = render_tarot_card("dead_tree", campfire)
+                    tarot_text = render_tarot_card("dead_tree", campfire)  # type: ignore[misc]
                     if tarot_text:
                         console.print(Panel(tarot_text, border_style="dim yellow", title="[dim]🃏 THE CARD[/dim]"))
                 except Exception:
@@ -950,6 +983,7 @@ async def run_crown_campaign(world_state: Optional[dict] = None, mimir: object =
             border_style=GOLD,
             padding=(1, 2)
         ))
+        _crown_narrate(dilemma['prompt'])
 
         console.print()
         while True:
@@ -994,7 +1028,7 @@ async def run_crown_campaign(world_state: Optional[dict] = None, mimir: object =
                 console.print(f"[cyan]{short_msg}[/cyan]")
                 # Short rest does NOT advance day — continue to next iteration
                 if butler:
-                    butler.sync_session_to_file()
+                    butler.sync_session_to_file()  # type: ignore[attr-defined]
                 console.print()
                 await ainput("[dim]Press Enter to continue...[/dim]")
                 continue
@@ -1009,12 +1043,13 @@ async def run_crown_campaign(world_state: Optional[dict] = None, mimir: object =
         if engine.mimir:
             ai_narration = await engine.resolve_day_ai()
             console.print(f"[italic dim]{ai_narration}[/italic dim]")
+            _crown_narrate(ai_narration)
         for line in end_msg.split('\n'):
             console.print(f"[cyan]{line}[/cyan]")
 
         # WO 102: Sync Crown state to bridge file for voice
         if butler:
-            butler.sync_session_to_file()
+            butler.sync_session_to_file()  # type: ignore[attr-defined]
 
         console.print()
         if engine.day <= engine.arc_length:
@@ -1044,7 +1079,7 @@ async def run_crown_campaign(world_state: Optional[dict] = None, mimir: object =
     # WO-V23.0: Tarot card for legacy
     if TAROT_AVAILABLE:
         try:
-            tarot_text = render_tarot_card("moon", report)
+            tarot_text = render_tarot_card("moon", report)  # type: ignore[misc]
             if tarot_text:
                 console.print(Panel(tarot_text, border_style="dim gold1", title="[dim]🃏 THE FINAL CARD[/dim]"))
         except Exception:
@@ -1057,6 +1092,7 @@ async def run_crown_campaign(world_state: Optional[dict] = None, mimir: object =
         border_style=EMERALD,
         padding=(1, 2)
     ))
+    _crown_narrate("Your journey is complete. " + report[:250])
 
     console.print()
     console.print(Panel(
@@ -1081,7 +1117,7 @@ async def run_crown_campaign(world_state: Optional[dict] = None, mimir: object =
 
     # WO 100: Clear Butler session on campaign end
     if butler:
-        butler.clear_session()
+        butler.clear_session()  # type: ignore[attr-defined]
 
     await ainput("\n[dim]Press Enter to return to Main Menu...[/dim]")
 
@@ -1141,8 +1177,8 @@ async def run_ashburn_campaign(world_state: Optional[dict] = None, core: Optiona
     console.clear()
 
     # Display two heir panels side-by-side (or stacked)
-    julian_data = ASHBURN_LEADERS["Julian"]
-    rowan_data = ASHBURN_LEADERS["Rowan"]
+    julian_data = ASHBURN_LEADERS["Julian"]  # type: ignore[index]
+    rowan_data = ASHBURN_LEADERS["Rowan"]  # type: ignore[index]
 
     console.print(Panel(
         "[bold #DAA520]JULIAN ASHBURN[/bold #DAA520]\n"
@@ -1197,7 +1233,7 @@ async def run_ashburn_campaign(world_state: Optional[dict] = None, core: Optiona
     console.clear()
 
     # Instantiate engine
-    engine = AshburnHeirEngine(heir_name=heir_name, world_state=world_state)
+    engine = AshburnHeirEngine(heir_name=heir_name, world_state=world_state)  # type: ignore[misc]
 
     # Briefing
     console.print(Panel(
@@ -1243,7 +1279,7 @@ async def run_ashburn_campaign(world_state: Optional[dict] = None, core: Optiona
             # Morning: World prompt
             world = engine.get_world_prompt()
             if TAROT_AVAILABLE:
-                world_card = render_tarot_card("wolf", world, custom_title="[dim]The Hostile Grounds[/dim]")
+                world_card = render_tarot_card("wolf", world, custom_title="[dim]The Hostile Grounds[/dim]")  # type: ignore[misc]
                 console.print(world_card)
             else:
                 console.print(Panel(
@@ -1308,7 +1344,7 @@ async def run_ashburn_campaign(world_state: Optional[dict] = None, core: Optiona
                 )
 
                 if TAROT_AVAILABLE:
-                    legacy_card = render_tarot_card(
+                    legacy_card = render_tarot_card(  # type: ignore[misc]
                         "moon",
                         legacy_prompt_body,
                         custom_title=f"[bold {ASHBURN_CRIMSON}]⚠️  THE BOARD SUMMONS YOU  ⚠️[/bold {ASHBURN_CRIMSON}]",
@@ -1379,7 +1415,7 @@ async def run_ashburn_campaign(world_state: Optional[dict] = None, core: Optiona
                 if TAROT_AVAILABLE:
                     # Use Sun Ring for Crown, Registry Key for Crew
                     card_key = "sun_ring" if side == 'crown' else "registry_key"
-                    prompt_card = render_tarot_card(card_key, prompt, custom_title=f"[bold]{dilemma_title}[/bold]")
+                    prompt_card = render_tarot_card(card_key, prompt, custom_title=f"[bold]{dilemma_title}[/bold]")  # type: ignore[misc]
                     console.print(prompt_card)
                 else:
                     console.print(Panel(
@@ -1406,7 +1442,7 @@ async def run_ashburn_campaign(world_state: Optional[dict] = None, core: Optiona
                 campfire = engine.get_campfire_prompt()
 
                 if TAROT_AVAILABLE:
-                    campfire_card = render_tarot_card(
+                    campfire_card = render_tarot_card(  # type: ignore[misc]
                         "dead_tree",
                         campfire,
                         custom_title="[dim]The fire burns low. Shadows press close.[/dim]"
@@ -1611,7 +1647,7 @@ async def run_library(core: CodexCore, system_id=None):
     except ImportError:
         pass
 
-    lib = LibrarianTUI(mimir_fn=mimir_fn, system_id=system_id)
+    lib = LibrarianTUI(mimir_fn=mimir_fn, system_id=system_id)  # type: ignore[misc]
     loop = asyncio.get_event_loop()
     await loop.run_in_executor(None, lib.run_loop)
 
@@ -1721,14 +1757,14 @@ async def run_dm_tools_menu(core: CodexCore):
             elif choice == "7":
                 # World Genesis
                 if TAROT_AVAILABLE:
-                    console.print(render_tarot_card(get_card_for_context("world"), "A new world takes shape."))
+                    console.print(render_tarot_card(get_card_for_context("world"), "A new world takes shape."))  # type: ignore[misc]
                 await run_genesis_sub_menu(core)
 
             elif choice == "8":
                 # Character Forge (standalone)
                 if FORGE_AVAILABLE:
                     loop = asyncio.get_event_loop()
-                    await loop.run_in_executor(None, run_character_forge)
+                    await loop.run_in_executor(None, run_character_forge)  # type: ignore[arg-type]
                 else:
                     console.print(Panel(
                         "[yellow]Character Forge module not available.[/yellow]\n\n"
@@ -1776,7 +1812,7 @@ async def run_dice_roller():
 
             try:
                 if DICE_ENGINE_AVAILABLE:
-                    total, rolls, modifier = await codex_dice_engine.animate_terminal_roll(expr, console=console)
+                    total, rolls, modifier = await codex_dice_engine.animate_terminal_roll(expr, console=console)  # type: ignore[union-attr]
                     rolls_display = " + ".join([str(r) for r in rolls])
                     if modifier != 0:
                         mod_str = f"{modifier:+d}"
@@ -1785,7 +1821,7 @@ async def run_dice_roller():
                         console.print(f"\n[bold green]Final Result:[/bold green] {rolls_display} = {total}")
                 else:
                     if TOOLS_AVAILABLE:
-                        total, result_msg = dm_tools.roll_dice(expr)
+                        total, result_msg = dm_tools.roll_dice(expr)  # type: ignore[union-attr]
                         console.print(f"[bold green]{result_msg}[/bold green]")
                     else:
                         console.print("[yellow]Dice engine not available.[/yellow]")
@@ -1822,7 +1858,7 @@ async def run_npc_generator(core: CodexCore):
                 archetype = random.choice(archetypes)
 
             try:
-                npc = dm_tools.generate_npc(archetype)
+                npc = dm_tools.generate_npc(archetype)  # type: ignore[union-attr]
                 console.print(Panel(
                     npc,
                     border_style="green",
@@ -1875,7 +1911,7 @@ async def run_loot_generator():
                     party_size = 4
 
             try:
-                loot = dm_tools.calculate_loot(difficulty, party_size)
+                loot = dm_tools.calculate_loot(difficulty, party_size)  # type: ignore[union-attr]
                 console.print(Panel(
                     loot,
                     border_style="gold1",
@@ -1914,7 +1950,7 @@ async def run_trap_generator():
                 difficulty = random.choice(["easy", "medium", "hard"])
 
             try:
-                trap = dm_tools.generate_trap(difficulty)
+                trap = dm_tools.generate_trap(difficulty)  # type: ignore[union-attr]
                 console.print(Panel(
                     trap,
                     border_style="red",
@@ -1966,7 +2002,7 @@ async def run_session_notes(core: CodexCore):
     try:
         console.print()
         console.print("[cyan]Generating summary...[/cyan]")
-        summary = dm_tools.summarize_context(history_text)
+        summary = dm_tools.summarize_context(history_text)  # type: ignore[union-attr]
         console.print()
         console.print(Panel(
             summary,
@@ -2024,7 +2060,7 @@ async def run_encounter_generator():
                     pass
 
             try:
-                result = dm_tools.generate_encounter(system, tier, party_size)
+                result = dm_tools.generate_encounter(system, tier, party_size)  # type: ignore[union-attr]
                 console.print(Panel(
                     result,
                     border_style="red",
@@ -2052,7 +2088,7 @@ async def run_vault_scan():
 
     console.print("[cyan]Scanning vault...[/cyan]")
     try:
-        result = dm_tools.scan_vault()
+        result = dm_tools.scan_vault()  # type: ignore[union-attr]
         console.print(Panel(
             result,
             border_style="green",
@@ -2118,7 +2154,7 @@ async def run_mimir_chat(core: CodexCore):
 # =============================================================================
 # NEW CAMPAIGN WIZARD
 # =============================================================================
-async def new_campaign_wizard(core: CodexCore = None) -> Optional[GameSave]:
+async def new_campaign_wizard(core: CodexCore = None) -> Optional[GameSave]:  # type: ignore[assignment]
     """Wizard to create a new campaign (async).
 
     When 'Homebrew' is selected, launches the World Genesis Wizard
@@ -2311,7 +2347,7 @@ async def run_codex_chronicles_menu(core: CodexCore):
                     butler = getattr(core, 'butler', None)
                     loop = asyncio.get_event_loop()
                     await loop.run_in_executor(
-                        None, lambda: run_universal_game(
+                        None, lambda: run_universal_game(  # type: ignore[misc]
                             manifest.get("active_system_id", ""),
                             manifest=manifest, butler=butler)
                     )
@@ -2329,12 +2365,12 @@ async def run_codex_chronicles_menu(core: CodexCore):
                     _bw_stype = manifest.get("session_type")
                     if ADAPTER_AVAILABLE and BURNWILLOW_AVAILABLE and manifest.get("characters"):
                         try:
-                            characters = CharacterAdapter.convert_campaign_characters(manifest)
+                            characters = CharacterAdapter.convert_campaign_characters(manifest)  # type: ignore[union-attr]
                             butler = getattr(core, 'butler', None)
                             loop = asyncio.get_event_loop()
                             await loop.run_in_executor(
                                 None,
-                                lambda: run_burnwillow_game(
+                                lambda: run_burnwillow_game(  # type: ignore[misc]
                                     butler=butler, characters=characters,
                                     module_manifest_path=_mm_path,
                                     session_type=_bw_stype)
@@ -2346,7 +2382,7 @@ async def run_codex_chronicles_menu(core: CodexCore):
                         butler = getattr(core, 'butler', None)
                         loop = asyncio.get_event_loop()
                         await loop.run_in_executor(
-                            None, lambda: run_burnwillow_game(
+                            None, lambda: run_burnwillow_game(  # type: ignore[misc]
                                 butler=butler, module_manifest_path=_mm_path,
                                 session_type=_bw_stype)
                         )
@@ -2372,7 +2408,7 @@ async def run_codex_chronicles_menu(core: CodexCore):
                         butler = getattr(core, 'butler', None)
                         loop = asyncio.get_event_loop()
                         await loop.run_in_executor(
-                            None, lambda: run_universal_game(system_id, manifest=manifest, butler=butler)
+                            None, lambda: run_universal_game(system_id, manifest=manifest, butler=butler)  # type: ignore[misc]
                         )
                     else:
                         console.print(f"[yellow]No game loop available for '{system_id}'.[/yellow]")
@@ -2440,7 +2476,7 @@ async def run_codex_chronicles_menu(core: CodexCore):
                 butler = getattr(core, 'butler', None)
                 loop = asyncio.get_event_loop()
                 await loop.run_in_executor(
-                    None, lambda: run_universal_game(system_id, manifest=manifest, butler=butler)
+                    None, lambda: run_universal_game(system_id, manifest=manifest, butler=butler)  # type: ignore[misc]
                 )
 
             elif choice == "4":
@@ -2523,7 +2559,7 @@ async def run_campaign_setup_wizard(core: CodexCore):
         if step == 2:
             console.print("[bold]Step 2/4:[/bold] Choose a game system. [dim](or 'back')[/dim]\n")
 
-            engine = CharacterBuilderEngine()
+            engine = CharacterBuilderEngine()  # type: ignore[misc]
             all_systems = engine.list_systems()
 
             if not all_systems:
@@ -2594,6 +2630,7 @@ async def run_campaign_setup_wizard(core: CodexCore):
                         selected_schema = child_settings[sub_idx - 2]
                 except (ValueError, AttributeError):
                     pass
+            assert selected_schema is not None
             vault_path = selected_schema.vault_path
             console.print(f"[green]System: {selected_schema.display_name}[/green]\n")
             step = 3
@@ -2601,6 +2638,7 @@ async def run_campaign_setup_wizard(core: CodexCore):
 
         # --- Step 3: Select Setting ---
         if step == 3:
+            assert selected_schema is not None
             # If sub-setting already selected in Step 2.5, skip to Step 4
             if selected_schema.setting_id:
                 setting_name = selected_schema.display_name
@@ -2613,10 +2651,10 @@ async def run_campaign_setup_wizard(core: CodexCore):
             if FORGE_AVAILABLE:
                 _parent_vault = None
                 if selected_schema.parent_engine:
-                    _pv = Path(vault_path).parent
+                    _pv = Path(vault_path or "").parent
                     if _pv.is_dir() and _pv.name != "vault":
                         _parent_vault = str(_pv)
-                vault_content = scan_system_content(vault_path, parent_path=_parent_vault)
+                vault_content = scan_system_content(vault_path or "", parent_path=_parent_vault or "")  # type: ignore[union-attr]
                 setting_options = list(vault_content.get("settings", []))
 
             setting_name = None
@@ -2661,6 +2699,7 @@ async def run_campaign_setup_wizard(core: CodexCore):
 
         # --- Step 4: Select Module ---
         if step == 4:
+            assert selected_schema is not None
             console.print(f"[bold]Step 4/4:[/bold] Select Adventure Module for {setting_name}. [dim](or 'back')[/dim]\n")
 
             # Gather modules from the vault (reuse scan if available, with parent merge)
@@ -2669,10 +2708,10 @@ async def run_campaign_setup_wizard(core: CodexCore):
                 if not vault_content:
                     _parent_vault = None
                     if selected_schema.parent_engine:
-                        _pv = Path(vault_path).parent
+                        _pv = Path(vault_path or "").parent
                         if _pv.is_dir() and _pv.name != "vault":
                             _parent_vault = str(_pv)
-                    vault_content = scan_system_content(vault_path, parent_path=_parent_vault)
+                    vault_content = scan_system_content(vault_path or "", parent_path=_parent_vault or "")  # type: ignore[union-attr]
                 module_options = list(vault_content.get("modules", []))
 
             module_name = None
@@ -2715,6 +2754,7 @@ async def run_campaign_setup_wizard(core: CodexCore):
             step = 5  # Break out of the step loop
 
     # --- Step 5: Character Creation Loop ---
+    assert selected_schema is not None
     console.print(Panel(
         f"[bold cyan]CHARACTER CREATION[/bold cyan]\n\n"
         f"[dim]{num_players} player(s) will now create characters using the "
@@ -2738,7 +2778,7 @@ async def run_campaign_setup_wizard(core: CodexCore):
         def _build_character(schema=selected_schema):
             from rich.console import Console as RichConsole
             build_console = RichConsole()
-            builder = SystemBuilder(schema, build_console)
+            builder = SystemBuilder(schema, build_console)  # type: ignore[misc]
             sheet = builder.run()
             return sheet, schema
 
@@ -2746,7 +2786,7 @@ async def run_campaign_setup_wizard(core: CodexCore):
 
         # Display the finished character
         console.print()
-        panel = render_character(sheet, schema)
+        panel = render_character(sheet, schema)  # type: ignore[misc]
         console.print(panel)
         console.print()
 
@@ -2830,10 +2870,10 @@ async def run_campaign_setup_wizard(core: CodexCore):
         console.print("[green]Initializing Prologue Engine...[/green]")
         manifest['prologue_pending'] = True
         manifest['prologue_context'] = {
-            "villain": "The Cult of the Dragon" if "Tyranny" in module_name else "The Shadow",
-            "threat": "Cultists" if "Tyranny" in module_name else "Bandits",
-            "region": "Greenest" if "Tyranny" in module_name else "The Wilds",
-            "mentor": "Governor Nighthill" if "Tyranny" in module_name else "The Old Man",
+            "villain": "The Cult of the Dragon" if "Tyranny" in (module_name or "") else "The Shadow",
+            "threat": "Cultists" if "Tyranny" in (module_name or "") else "Bandits",
+            "region": "Greenest" if "Tyranny" in (module_name or "") else "The Wilds",
+            "mentor": "Governor Nighthill" if "Tyranny" in (module_name or "") else "The Old Man",
         }
         with open(manifest_path, "w") as f:
             json.dump(manifest, f, indent=2)
@@ -2884,21 +2924,21 @@ async def run_campaign_setup_wizard(core: CodexCore):
         loop = asyncio.get_event_loop()
         if ADAPTER_AVAILABLE and characters:
             try:
-                bw_chars = CharacterAdapter.convert_campaign_characters(manifest)
+                bw_chars = CharacterAdapter.convert_campaign_characters(manifest)  # type: ignore[union-attr]
                 await loop.run_in_executor(
-                    None, lambda: run_burnwillow_game(
+                    None, lambda: run_burnwillow_game(  # type: ignore[misc]
                         butler=butler, characters=bw_chars,
                         module_manifest_path=_mm_path)
                 )
             except Exception as e:
                 console.print(f"[red]Character conversion failed: {e}[/red]")
                 await loop.run_in_executor(
-                    None, lambda: run_burnwillow_game(
+                    None, lambda: run_burnwillow_game(  # type: ignore[misc]
                         butler=butler, module_manifest_path=_mm_path)
                 )
         else:
             await loop.run_in_executor(
-                None, lambda: run_burnwillow_game(
+                None, lambda: run_burnwillow_game(  # type: ignore[misc]
                     butler=butler, module_manifest_path=_mm_path)
             )
     elif UNIVERSAL_AVAILABLE and (_routing_id in ENGINE_REGISTRY or system_id in ENGINE_REGISTRY):
@@ -2907,7 +2947,7 @@ async def run_campaign_setup_wizard(core: CodexCore):
         console.print(f"[green]Launching {system_id.upper()} engine...[/green]")
         loop = asyncio.get_event_loop()
         await loop.run_in_executor(
-            None, lambda: run_universal_game(system_id, manifest=manifest, butler=butler)
+            None, lambda: run_universal_game(system_id, manifest=manifest, butler=butler)  # type: ignore[misc]
         )
     else:
         console.print(f"[yellow]No game loop available for '{system_id}'.[/yellow]")
@@ -3335,12 +3375,12 @@ async def main_menu(core: CodexCore):
 
         if action == "play_chronicles":
             if TAROT_AVAILABLE:
-                console.print(render_tarot_card(get_card_for_context("crew"), "Your party assembles."))
+                console.print(render_tarot_card(get_card_for_context("crew"), "Your party assembles."))  # type: ignore[misc]
             await run_codex_chronicles_menu(core)
 
         elif action == "play_crown":
             if TAROT_AVAILABLE:
-                console.print(render_tarot_card(get_card_for_context("crown"), "The Board convenes."))
+                console.print(render_tarot_card(get_card_for_context("crown"), "The Board convenes."))  # type: ignore[misc]
             await run_crown_crew_menu(core)
 
         elif action == "play_burnwillow":
@@ -3348,7 +3388,7 @@ async def main_menu(core: CodexCore):
                 _launch_views()
                 loop = asyncio.get_event_loop()
                 butler = getattr(core, 'butler', None)
-                await loop.run_in_executor(None, lambda: run_burnwillow_game(butler=butler))
+                await loop.run_in_executor(None, lambda: run_burnwillow_game(butler=butler))  # type: ignore[misc]
             else:
                 console.print(Panel(
                     "[yellow]Burnwillow module not available.[/yellow]\n\n"
@@ -3540,7 +3580,7 @@ class CodexBot(commands.Bot):
         await self.process_commands(message)
 
         if self.user in message.mentions or isinstance(message.channel, discord.DMChannel):
-            clean_content = re.sub(rf"<@!?{self.user.id}>", "", message.content).strip()
+            clean_content = re.sub(rf"<@!?{self.user.id}>", "", message.content).strip()  # type: ignore[union-attr]
             async with message.channel.typing():
                 response = await self.core.process_input(str(message.author.id), clean_content)
 
@@ -3553,7 +3593,7 @@ class CodexBot(commands.Bot):
                 if message.author.voice and message.author.voice.channel:
                     if not self.voice_clients:
                         await message.author.voice.channel.connect()
-                    await self.voice.speak(response, self.voice_clients[0])
+                    await self.voice.speak(response, self.voice_clients[0])  # type: ignore[arg-type]
 
 
 class GeneralCommands(commands.Cog):
@@ -3690,27 +3730,27 @@ async def main_async():
 
     # WO 081: Butler Protocol — attach to core for instant reflex routing
     if BUTLER_AVAILABLE:
-        core.butler = CodexButler(core_state=core)
+        core.butler = CodexButler(core_state=core)  # type: ignore[attr-defined, union-attr, misc]
 
     # WO-V10.0: HybridGameOrchestrator — replaced by StackedCommandDispatcher (WO-V60.0)
 
     # Universe Manager — world registry and star chart
     if UNIVERSE_MANAGER_AVAILABLE:
-        core.universe_manager = UniverseManager()
+        core.universe_manager = UniverseManager()  # type: ignore[attr-defined, misc]
 
     # Broadcast Manager — observer-pattern event bus
     if BROADCAST_AVAILABLE:
-        core.broadcast = GlobalBroadcastManager(system_theme="codex")
+        core.broadcast = GlobalBroadcastManager(system_theme="codex")  # type: ignore[attr-defined, misc]
 
     # Memory Engine — shard-based context management
     if MEMORY_ENGINE_AVAILABLE:
-        core.memory = CodexMemoryEngine(
+        core.memory = CodexMemoryEngine(  # type: ignore[attr-defined, misc]
             broadcast_manager=getattr(core, 'broadcast', None)
         )
 
     # Trait Handler — system-agnostic trait resolution
     if TRAIT_HANDLER_AVAILABLE:
-        core.trait_handler = TraitHandler(
+        core.trait_handler = TraitHandler(  # type: ignore[attr-defined, misc]
             broadcast_manager=getattr(core, 'broadcast', None)
         )
 
@@ -3757,7 +3797,7 @@ async def main_async():
     # Telegram bot (WO-V9.5: guard on token presence)
     telegram_token = os.environ.get("TELEGRAM_TOKEN") or os.environ.get("TELEGRAM_BOT_TOKEN")
     if TELEGRAM_AVAILABLE and telegram_token:
-        telegram_task = asyncio.create_task(run_telegram_bot(core=core))
+        telegram_task = asyncio.create_task(run_telegram_bot(core=core))  # type: ignore[misc]
         tasks_to_cancel.append(telegram_task)
         console.print("[dim]Telegram Uplink: [green]ACTIVE[/green][/dim]")
     elif TELEGRAM_AVAILABLE:
@@ -3767,7 +3807,7 @@ async def main_async():
     discord_token = os.getenv("DISCORD_TOKEN")
     if discord_token:
         if DISCORD_BOT_AVAILABLE:
-            bot = CodexDiscordBot(core=core)
+            bot = CodexDiscordBot(core=core)  # type: ignore[misc]
             # WO-V9.4: Wire bot ref to health monitor for voice watchdog
             if _monitor:
                 _monitor._discord_bot = bot

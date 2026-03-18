@@ -261,6 +261,7 @@ class TestEdgeCases:
     def test_temperature_bounce_stays_fatigued_in_band(self):
         """Rapid oscillation between 62°C and 64°C keeps the state FATIGUED (hysteresis band)."""
         cortex = _make_cortex(ThermalStatus.FATIGUED)
+        result: ThermalStatus = ThermalStatus.FATIGUED
         for temp in [64.0, 62.0, 63.5, 61.0, 64.5]:
             result = _thermal_status(cortex, temp)
         # All readings are above 60°C hysteresis floor — should remain FATIGUED

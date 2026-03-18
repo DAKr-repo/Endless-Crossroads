@@ -222,7 +222,7 @@ def synthesize_narrative(
                     manifest.content_hash = _hash_shards(context_shards)
                     manifest.anchored_shards = [s.id for s in ordered]
                 return result
-        except Exception:
+        except (TypeError, ValueError, RuntimeError, OSError, TimeoutError):
             pass
 
     # Fallback: priority-ordered concatenation

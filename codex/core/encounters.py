@@ -810,16 +810,6 @@ class EncounterEngine:
                 result.description = f"Your intrusion triggers {hazard['name']}!"
         return result
 
-    # -------------------------------------------------------------------------
-    # SYSTEM STUBS
-    # -------------------------------------------------------------------------
-
-    def _route_stub(self, ctx: EncounterContext, system: str) -> EncounterResult:
-        """Placeholder for unimplemented systems."""
-        return EncounterResult(
-            encounter_type="empty",
-            description=f"{system} encounter generation not yet implemented.",
-        )
 
 
 # =============================================================================

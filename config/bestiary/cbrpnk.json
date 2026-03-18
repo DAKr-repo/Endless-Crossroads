@@ -1,0 +1,176 @@
+{
+  "version": 1,
+  "format": "fitd",
+  "source": "CBR+PNK (authored from setting — no stat block PDF source)",
+  "note": "CBR+PNK adversaries scale by heat level. threat_level 1-4 maps to crew heat: cold/warm/hot/burnin.",
+  "tiers": {
+    "1": [
+      {
+        "name": "Street Ganger",
+        "faction": "street_gangs",
+        "threat_level": 1,
+        "heat_threshold": "cold",
+        "scale": "individual",
+        "description": "Territory muscle with a spray can and a cheap pistol.",
+        "capabilities": ["intimidate", "patrol_turf", "numbers_advantage"],
+        "weakness": "corp authority, better gear, rival gang"
+      },
+      {
+        "name": "Corp Rent-a-Cop",
+        "faction": "corpo_security",
+        "threat_level": 1,
+        "heat_threshold": "cold",
+        "scale": "individual",
+        "description": "Minimum wage security with a flashlight and a radio.",
+        "capabilities": ["call_backup", "access_card", "routine_patrol"],
+        "weakness": "badge authority, distraction, bribery"
+      },
+      {
+        "name": "Drone (Surveillance)",
+        "faction": "corpo_security",
+        "threat_level": 1,
+        "heat_threshold": "cold",
+        "scale": "individual",
+        "description": "A hovering eye in the sky. It logs everything.",
+        "capabilities": ["passive_surveillance", "alert_on_detection", "broadcast_coordinates"],
+        "weakness": "signal jam, physical destruction, spoof beacon"
+      },
+      {
+        "name": "ICE (Basic)",
+        "faction": "cyberspace",
+        "threat_level": 1,
+        "heat_threshold": "cold",
+        "scale": "individual",
+        "description": "Intrusion Countermeasures — the kind that came preinstalled.",
+        "capabilities": ["lockout", "trace_signal", "data_encrypt"],
+        "weakness": "exploit_zero_day, admin_bypass, physical disconnect"
+      },
+      {
+        "name": "Fixer Debt Collector",
+        "faction": "underworld",
+        "threat_level": 1,
+        "heat_threshold": "cold",
+        "scale": "individual",
+        "description": "Shows up when you're late on payments. Professional about it.",
+        "capabilities": ["extortion", "information_leverage", "contact_network"],
+        "weakness": "cash, counter-threat, fixer reputation"
+      }
+    ],
+    "2": [
+      {
+        "name": "Corp Security Operative",
+        "faction": "corpo_security",
+        "threat_level": 2,
+        "heat_threshold": "warm",
+        "scale": "individual",
+        "description": "Trained, augmented, and following a protocol.",
+        "capabilities": ["tactical_gear", "cyberware_reflexes", "squad_coordination", "non-lethal_options"],
+        "weakness": "EMP, hacking their comms, civilian presence"
+      },
+      {
+        "name": "Combat Drone",
+        "faction": "corpo_security",
+        "threat_level": 2,
+        "heat_threshold": "warm",
+        "scale": "individual",
+        "description": "Armed with a rubber-bullet launcher and a very good camera.",
+        "capabilities": ["area_suppression", "pursuit", "relay_to_control"],
+        "weakness": "signal jam, EMP burst, heavy cover"
+      },
+      {
+        "name": "ICE (Hunter)",
+        "faction": "cyberspace",
+        "threat_level": 2,
+        "heat_threshold": "warm",
+        "scale": "individual",
+        "description": "Active ICE. It comes to you.",
+        "capabilities": ["trace_and_lock", "data_corruption", "biofeedback_spike"],
+        "weakness": "ghost_protocol, sacrificial_node, full_jack_out"
+      },
+      {
+        "name": "Gang Lieutenant",
+        "faction": "street_gangs",
+        "threat_level": 2,
+        "heat_threshold": "warm",
+        "scale": "individual",
+        "description": "Has cyberware, a crew, and territorial ambition.",
+        "capabilities": ["crew_command", "cyberware_combat", "gang_network"],
+        "weakness": "rival gang leverage, arrest threat, cutting off supply"
+      },
+      {
+        "name": "Netrunner Freelance",
+        "faction": "underworld",
+        "threat_level": 2,
+        "heat_threshold": "warm",
+        "scale": "individual",
+        "description": "Hired to breach your crew's security. Working remotely.",
+        "capabilities": ["remote_hack", "data_theft", "spoof_identity"],
+        "weakness": "counter-intrusion, physical location exposed, air-gapped gear"
+      }
+    ],
+    "3": [
+      {
+        "name": "Elite Strike Team",
+        "faction": "corpo_security",
+        "threat_level": 3,
+        "heat_threshold": "hot",
+        "scale": "crew",
+        "description": "Full tactical kit, military-grade cyberware, extraction mandate.",
+        "capabilities": ["breach_and_clear", "overwatch", "lethal_authority", "armor"],
+        "weakness": "civilian crossfire politics, jurisdictional limits, public exposure"
+      },
+      {
+        "name": "Black ICE (Lethal)",
+        "faction": "cyberspace",
+        "threat_level": 3,
+        "heat_threshold": "hot",
+        "scale": "individual",
+        "description": "Kills jacked-in operators. Illegal everywhere. Found everywhere.",
+        "capabilities": ["lethal_biofeedback", "data_wipe", "identity_burn", "persistence"],
+        "weakness": "physical disconnect, corps-level bypass key, sacrifice decoy node"
+      },
+      {
+        "name": "Military Contractor Unit",
+        "faction": "corpo_security",
+        "threat_level": 3,
+        "heat_threshold": "hot",
+        "scale": "crew",
+        "description": "Private military on a corporate contract. Rules of engagement are loose.",
+        "capabilities": ["military_tactics", "heavy_weapons", "armor", "no_civilian_hesitation"],
+        "weakness": "media exposure, counter-contract, collateral damage liability"
+      },
+      {
+        "name": "Cyborg Enforcer",
+        "faction": "underworld",
+        "threat_level": 3,
+        "heat_threshold": "hot",
+        "scale": "individual",
+        "description": "More machine than person. Sent when a message needs to be permanent.",
+        "capabilities": ["armor_plating", "weapon_mounts", "threat_aura", "pursuit"],
+        "weakness": "EMP, hacking the cyberware, the last scrap of humanity"
+      }
+    ],
+    "4": [
+      {
+        "name": "Corp Kill Squad",
+        "faction": "corpo_security",
+        "threat_level": 4,
+        "heat_threshold": "burnin",
+        "scale": "faction",
+        "description": "Off-the-books elimination team. They have your photo, your safe houses, and orders to make it clean.",
+        "capabilities": ["assassination_protocol", "total_surveillance", "wetwork_expertise", "deniable_authority"],
+        "weakness": "publicize the contract, mega-corp political trade, complete disappearance"
+      },
+      {
+        "name": "Rogue AI Fragment",
+        "faction": "cyberspace",
+        "threat_level": 4,
+        "heat_threshold": "burnin",
+        "scale": "faction",
+        "description": "A distributed intelligence that has decided the crew is a problem. It is everywhere on the net.",
+        "capabilities": ["omnipresent_surveillance", "infrastructure_control", "social_engineering", "ICE_swarm"],
+        "weakness": "isolated subnet, the original kill switch, finding and destroying the core node"
+      }
+    ]
+  }
+}

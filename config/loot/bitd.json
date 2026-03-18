@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "format": "fitd",
+  "source": "Blades in the Dark (authored from setting — no stat block PDF source)",
+  "note": "BitD loot uses quality rating instead of gp value. quality 1-4 maps to coin value: 1/3/6/10 coin.",
+  "tiers": {
+    "1": [
+      {"name": "Coin Purse", "rarity": "common", "quality": 1, "value_coin": 1, "source": "authored"},
+      {"name": "Lockpicks (set)", "rarity": "common", "quality": 1, "value_coin": 1, "source": "authored"},
+      {"name": "Stolen Documents", "rarity": "common", "quality": 1, "value_coin": 1, "source": "authored"},
+      {"name": "Electroplasmic Vial (small)", "rarity": "common", "quality": 1, "value_coin": 1, "source": "authored"},
+      {"name": "Bluecoat Badge (fake)", "rarity": "common", "quality": 1, "value_coin": 1, "source": "authored"}
+    ],
+    "2": [
+      {"name": "Contraband Crate (whiskey)", "rarity": "uncommon", "quality": 2, "value_coin": 3, "source": "authored"},
+      {"name": "Spirit Bottle (bound ghost)", "rarity": "uncommon", "quality": 2, "value_coin": 3, "source": "authored"},
+      {"name": "Trade Ledger (incriminating)", "rarity": "uncommon", "quality": 2, "value_coin": 3, "source": "authored"},
+      {"name": "Alchemical Supplies", "rarity": "uncommon", "quality": 2, "value_coin": 3, "source": "authored"},
+      {"name": "Fine Pistol", "rarity": "uncommon", "quality": 2, "value_coin": 3, "source": "authored"}
+    ],
+    "3": [
+      {"name": "Deathseeker Crow (trained)", "rarity": "rare", "quality": 3, "value_coin": 6, "source": "authored"},
+      {"name": "Leviathan Blood (flask)", "rarity": "rare", "quality": 3, "value_coin": 6, "source": "authored"},
+      {"name": "Ghost-slayer Pistol", "rarity": "rare", "quality": 3, "value_coin": 6, "source": "authored"},
+      {"name": "Noble Seal (forged, master quality)", "rarity": "rare", "quality": 3, "value_coin": 6, "source": "authored"},
+      {"name": "Electroplasmic Bomb", "rarity": "rare", "quality": 3, "value_coin": 6, "source": "authored"}
+    ],
+    "4": [
+      {"name": "Void Sea Chart (authentic)", "rarity": "legendary", "quality": 4, "value_coin": 10, "source": "authored"},
+      {"name": "Bound Demon Artifact", "rarity": "legendary", "quality": 4, "value_coin": 10, "source": "authored"},
+      {"name": "Imperials Bank Writ (major)", "rarity": "legendary", "quality": 4, "value_coin": 10, "source": "authored"},
+      {"name": "Spectral Engine Component", "rarity": "very_rare", "quality": 4, "value_coin": 10, "source": "authored"}
+    ]
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "format": "fitd",
+  "source": "Crown (authored from setting — no stat block PDF source)",
+  "note": "Crown loot uses sway_value — the political capital and street worth of items. Some items are most valuable as leverage.",
+  "tiers": {
+    "1": [
+      {"name": "Contraband (small quantity)", "rarity": "common", "sway_value": 1, "value_silver": 10, "source": "authored"},
+      {"name": "Stolen Weapons (bundle)", "rarity": "common", "sway_value": 1, "value_silver": 15, "source": "authored"},
+      {"name": "Street-level Blackmail Dossier", "rarity": "common", "sway_value": 1, "value_silver": 5, "source": "authored"},
+      {"name": "Forged Papers (low quality)", "rarity": "common", "sway_value": 1, "value_silver": 8, "source": "authored"},
+      {"name": "Rumor (actionable, low stakes)", "rarity": "common", "sway_value": 1, "value_silver": 5, "source": "authored"}
+    ],
+    "2": [
+      {"name": "Noble House Seal (authentic)", "rarity": "uncommon", "sway_value": 2, "value_silver": 50, "source": "authored"},
+      {"name": "Political Favor (minor)", "rarity": "uncommon", "sway_value": 2, "value_silver": 40, "source": "authored"},
+      {"name": "Crown Officer Blackmail File", "rarity": "uncommon", "sway_value": 2, "value_silver": 60, "source": "authored"},
+      {"name": "Dunweld Artifact (minor)", "rarity": "uncommon", "sway_value": 2, "value_silver": 45, "source": "authored"},
+      {"name": "Contraband (major shipment manifest)", "rarity": "uncommon", "sway_value": 2, "value_silver": 55, "source": "authored"}
+    ],
+    "3": [
+      {"name": "Political Favor (powerful patron)", "rarity": "rare", "sway_value": 4, "value_silver": 200, "source": "authored"},
+      {"name": "Inquisitor Blackmail File", "rarity": "rare", "sway_value": 4, "value_silver": 250, "source": "authored"},
+      {"name": "Dunweld Artifact (significant)", "rarity": "rare", "sway_value": 4, "value_silver": 300, "source": "authored"},
+      {"name": "Noble House Alliance Letter (sealed)", "rarity": "rare", "sway_value": 4, "value_silver": 200, "source": "authored"}
+    ],
+    "4": [
+      {"name": "Crown Succession Document (forged)", "rarity": "legendary", "sway_value": 8, "value_silver": 1000, "source": "authored"},
+      {"name": "Regent Blackmail Dossier", "rarity": "legendary", "sway_value": 8, "value_silver": 1500, "source": "authored"},
+      {"name": "Dunweld Seal Key (seals a boundary breach)", "rarity": "legendary", "sway_value": 8, "value_silver": 2000, "source": "authored"}
+    ]
+  }
+}

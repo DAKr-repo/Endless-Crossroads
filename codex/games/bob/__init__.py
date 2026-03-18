@@ -584,6 +584,19 @@ class BoBEngine(NarrativeLoomMixin):
         mgr = self._get_campaign_mgr()
         return mgr.time_passes(days=days)
 
+    def _cmd_complication(self, **kwargs) -> str:
+        """Roll a complication from the system's consequence table."""
+        import random as _rng
+        tier = max(1, min(4, kwargs.get("tier", 1)))
+        effective_tier = min(4, tier + (1 if self.legion.pressure >= 4 else 0))
+        pool = COMPLICATION_TABLE.get(effective_tier, COMPLICATION_TABLE[1])
+        entry = _rng.choice(pool)
+        self._add_shard(
+            f"Complication ({entry['type']}): {entry['text']}",
+            "CHRONICLE",
+        )
+        return f"COMPLICATION: {entry['text']}\nEffect: {entry.get('effect', 'none')}"
+
     def _cmd_campaign_status(self, **kwargs) -> str:
         """Display full campaign phase manager status."""
         mgr = self._get_campaign_mgr()
@@ -604,6 +617,35 @@ class BoBEngine(NarrativeLoomMixin):
 # COMMAND DEFINITIONS (WO-V8.0 + Phase2A)
 # =========================================================================
 
+# =========================================================================
+# COMPLICATION TABLE (Gap Fix: per-engine consequences)
+# =========================================================================
+
+COMPLICATION_TABLE: Dict[int, List[Dict[str, Any]]] = {
+    1: [
+        {"type": "supply_shortage", "text": "Rations spoil in the rain. Supply stock takes a hit.", "effect": "supply -1"},
+        {"type": "desertion", "text": "A rookie slips away in the night. Morale wavers.", "effect": "morale -1"},
+        {"type": "undead_ambush", "text": "A handful of rotters stumble into camp. Easily dispatched.", "effect": "stress +1"},
+    ],
+    2: [
+        {"type": "supply_shortage", "text": "The quartermaster reports spoiled water barrels.", "effect": "supply -2"},
+        {"type": "undead_ambush", "text": "An undead patrol finds your rear guard. Casualties possible.", "effect": "stress +2"},
+        {"type": "broken_assault", "text": "Broken scouts probe your perimeter defenses.", "effect": "pressure +1"},
+    ],
+    3: [
+        {"type": "supply_shortage", "text": "A supply wagon is lost crossing a swollen river.", "effect": "supply -3"},
+        {"type": "desertion", "text": "A squad of soldiers deserts, taking weapons with them.", "effect": "morale -2"},
+        {"type": "chosen_sighting", "text": "The Chosen reports disturbing visions of the enemy's advance.", "effect": "pressure +2"},
+        {"type": "broken_assault", "text": "A Broken lieutenant leads a night raid on your camp.", "effect": "stress +3"},
+    ],
+    4: [
+        {"type": "undead_ambush", "text": "A massive undead horde descends on your position.", "effect": "pressure +3"},
+        {"type": "chosen_sighting", "text": "The Chosen is wounded by a Broken assassin.", "effect": "morale -3"},
+        {"type": "broken_assault", "text": "The Cinder King's elite forces assault your position.", "effect": "stress +4"},
+    ],
+}
+
+
 BOB_COMMANDS = {
     # Original commands
     "legion_status":      "Display supply, intel, morale, pressure",
@@ -622,6 +664,7 @@ BOB_COMMANDS = {
     # Phase2A: mission commands
     "mission_plan":       "Plan a mission (type, squad, specialist)",
     "mission_resolve":    "Resolve the current mission (casualties, success level)",
+    "complication":       "Roll a complication from the consequence table",
 }
 
 BOB_CATEGORIES = {
@@ -636,7 +679,7 @@ BOB_CATEGORIES = {
         "mission_plan", "mission_resolve",
     ],
     "Squad":    [
-        "roll_action", "squad_status",
+        "roll_action", "squad_status", "complication",
     ],
 }
 
