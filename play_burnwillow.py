@@ -4800,8 +4800,8 @@ def _enemy_phase(state: GameState) -> List[str]:
         if is_aoe and len(targets_for_attack) > 1:
             messages.append(f"  [bold red]{enemy['name']} unleashes an area attack![/]")
 
-        for target in targets_for_attack:
-            if not target.is_alive():
+        for target in targets_for_attack:  # type: ignore[union-attr]
+            if not target or not target.is_alive():
                 continue
 
             # Check for intercept redirect (only for single-target)
@@ -6163,7 +6163,7 @@ def _resolve_bump(state: GameState, pos: Tuple[int, int]) -> Optional[List[str]]
                     result = roll_dice_pool(
                         char.get_stat_value(StatType.WITS),  # type: ignore[attr-defined]
                         char.gear_grid.get_total_dice_bonus(StatType.WITS),  # type: ignore[attr-defined]
-                        DC(LOCKPICK_DC),
+                        DC(LOCKPICK_DC),  # type: ignore[arg-type]
                     )
                     if result.success:  # type: ignore[attr-defined]
                         obj["locked"] = False
@@ -6651,7 +6651,7 @@ def _dm_screen_menu(state: GameState):
         elif choice == "9":
             try:
                 from codex.core.world.grapes_engine import generate_name
-                names = [generate_name() for _ in range(5)]
+                names = [generate_name() for _ in range(5)]  # type: ignore[call-arg]
                 con.print(f"  Generated names: {', '.join(names)}")
             except ImportError:
                 import random as _rng
