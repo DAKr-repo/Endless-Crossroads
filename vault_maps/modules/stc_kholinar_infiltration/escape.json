@@ -1,0 +1,97 @@
+{
+    "seed": 7804,
+    "width": 60,
+    "height": 15,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "escape",
+        "theme": "STONE",
+        "topology": "dungeon",
+        "display_name": "Flight from Kholinar"
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 5,
+            "y": 3,
+            "width": 16,
+            "height": 10,
+            "room_type": "start",
+            "connections": [1],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The rooftops of the Palace District stretch before you -- a maze of domes, spires, and flat terraces connected by ornamental bridges and drainage channels. Behind you, the Temple of Pailiah glows with the Oathgate's light, a beacon drawing every Fused in the city. Below, streets in chaos. Above, Fused scouts banking toward your position.",
+                "read_aloud": "Rooftops. A city built for giants, now a killing ground for things that fly. Behind you, the Oathgate blazes like a signal fire that announces everything you have done and exactly where you are. Ahead -- the Wall, freedom, and approximately every Fused in Kholinar between here and there. Three scouts bank toward you on wings of Voidlight, trailing red against the dawn sky. The rooftop drainage channels offer cover. The ornamental bridges offer speed. Choose.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Fused Scout (Shanay-im)", "hp": 20, "ac": 13, "attack": 3, "damage": "1d8+2", "count": 2, "notes": "Flying. Gravitation Surgebinding. Dive-attacks from above. Each round spent here, one additional scout arrives.", "special": ["Dive Attack: +2 damage on attacks from above", "Gravitation Lash: DC 13 or target is pulled upward 10 feet"]}
+                ],
+                "loot": [],
+                "services": [],
+                "perception_dc": 14,
+                "perception_success": "The drainage channels between rooftops are deep enough for cover. Moving through them adds one round to traversal but grants full cover from aerial attacks. The ornamental bridges are faster but exposed.",
+                "investigation_dc": 13,
+                "investigation_success": "A rope bridge between two palace towers has been weakened -- cutting it after crossing drops pursuit into the gap and buys two rounds of lead time.",
+                "event_triggers": ["TIMED: Each round spent here, one additional Fused scout arrives. Move or be overwhelmed. The drainage channels grant cover (DC 10 stealth) but cost an extra round. The bridges are faster but exposed."]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 25,
+            "y": 2,
+            "width": 18,
+            "height": 12,
+            "room_type": "chamber",
+            "connections": [0, 2],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The city wall looms sixty feet of ancient Alethi stonework, built to withstand highstorms and siege engines. The wallwalk is patrolled by corrupted garrison guards and Listener warforms. A drainage channel offers a narrow approach to the wall's base, but climbing in gear is a challenge. From the top, a controlled descent to the ground outside.",
+                "read_aloud": "The Wall. Sixty feet of ancient stone that has held against highstorms, siege engines, and the ambitions of a dozen would-be conquerors. Guards on the wallwalk -- corrupted Alethi soldiers who chose the wrong side and Listener warforms who chose theirs. A drainage channel cuts through the rubble at the wall's base, dark and narrow. A horn sounds from the temple district. The patrol doubles. They know the Oathgate is active. They know someone used it. They know you are running.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Corrupted Garrison Guard", "hp": 15, "ac": 12, "attack": 3, "damage": "1d8+2", "count": 2, "notes": "Former Alethi soldiers serving the Fused. Fight with discipline but without conviction."},
+                    {"name": "Listener Warform", "hp": 22, "ac": 13, "attack": 4, "damage": "1d10+3", "count": 1, "notes": "Elite singer warrior. Carapace armor. Fights to the Rhythm of War. Will not retreat.", "special": ["War Rhythm: Adjacent allies gain +1 attack while the warform sings", "Carapace Charge: First attack each combat deals an extra 1d6 impact"]}
+                ],
+                "loot": [
+                    {"name": "Garrison Key", "type": "equipment"},
+                    {"name": "Climbing Harness (military-grade)", "type": "equipment"}
+                ],
+                "services": [],
+                "investigation_dc": 15,
+                "investigation_success": "The drainage channel connects to an old sally port -- a hidden gate used during the Silver Kingdom era. The garrison key from the wallwalk opens it. Bypasses the wall entirely, emerging outside at ground level.",
+                "perception_dc": 13,
+                "perception_success": "The corrupted guards check the drainage channel every fifteen minutes. You have twelve minutes until the next check. Enough time to reach the wall's base but not to climb it without being seen. The sally port is the faster option.",
+                "event_triggers": ["A horn sounds from the temple district. They know the gate is open. The patrol doubles. Approach options: drainage channel (stealth DC 13, slow), direct assault (combat), or sally port (investigation DC 15 to find, garrison key to open)."]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 45,
+            "y": 4,
+            "width": 14,
+            "height": 8,
+            "room_type": "exit",
+            "connections": [1],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Outside the wall. Rocky terrain stretches toward the refugee camp, its fires still burning in the pre-dawn grey. Behind you, Kholinar erupts with Voidlight flares as the Fused realize their Oathgate has been hijacked. But you are outside. You are alive. And cutting through the dawn sky like a blade of hope -- a streak of blue and white. A Windrunner. From Urithiru.",
+                "read_aloud": "You hit the ground running and the ground has never felt better beneath your feet. Kholinar screams behind you -- Voidlight flares painting the sky in angry violet, the Fused mobilizing too late, the city they stole convulsing with the knowledge that its cage has been opened. The refugee camp ahead, fires still burning, people still waiting. And then -- above, cutting through the dawn sky like a blade of hope, a streak of blue and white. A Windrunner. From Urithiru. The Oathgate worked. Captain Torren stands at the camp's edge, his face split by the first genuine smile you have seen on the Shattered Plains. Help is coming. Kholinar will fall, but its people will not.",
+                "npcs": [
+                    {"name": "Captain Torren", "role": "ally", "dialogue": "You did it. Stormfather's breath, you actually did it. The scouts from Urithiru are already inbound. We can start evacuating the camp. Every person here has a chance now. Because of you.", "notes": "Torren completes his narrative arc from the approach zone. His relief is genuine. His next question will be: 'What happened with the Fused Commander?' The answer determines future module hooks."}
+                ],
+                "enemies": [],
+                "loot": [],
+                "services": [],
+                "perception_dc": 12,
+                "perception_success": "The Windrunner descending toward the camp is not alone. Three more Windrunners follow in formation, carrying supply drops. A Lightweaver circles the camp perimeter, projecting an illusion of the camp three hundred yards east -- drawing Fused pursuit away from the real location. Urithiru sent its best.",
+                "event_triggers": ["A Windrunner lands in the camp. Reinforcements from Urithiru are en route. The Oathgate mission is complete. The module concludes with consequences based on the party's choices: Did the Commander follow through? Did the Oathgate close properly? What did you learn in the space between?"]
+            }
+        }
+    }
+}

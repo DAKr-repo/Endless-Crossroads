@@ -23,14 +23,19 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Sadeas War Camp sprawls across the western rim of the Shattered Plains -- a city of tents, cook-fires, and misery arranged with military precision. The smell of sweat, horse dung, and the metallic tang of Soulcast grain hangs over everything like a permanent weather system.",
+                "read_aloud": "Tents stretch to the horizon in ordered rows, broken only by the wooden palisades of the bridge crew compounds. Cook-fires trail smoke into a sky stained amber by the setting sun. Somewhere, a bridge crew drills at a dead sprint, carrying an enormous wooden platform across bare stone. The rhythmic thud of their boots sounds like a failing heartbeat.",
                 "npcs": [
-                    {"name": "Highprince Sadeas", "role": "antagonist", "dialogue": "Ah, new arrivals. How refreshing. Tell me -- do you find bridge duty a noble calling, or merely a necessary one? I find the distinction illuminating."},
-                    {"name": "Quartermaster Hashal", "role": "merchant", "dialogue": "Rations are rations. You eat what you are given. Complain and you eat half of what you are given."}
+                    {"name": "Highprince Sadeas", "role": "antagonist", "dialogue": "Ah, new arrivals. How refreshing. Tell me -- do you find bridge duty a noble calling, or merely a necessary one? I find the distinction illuminating.", "notes": "Sadeas uses bridge crews as disposable arrow shields. He knows exactly what he is doing and considers it efficient warfare."},
+                    {"name": "Quartermaster Hashal", "role": "merchant", "dialogue": "Rations are rations. You eat what you are given. Complain and you eat half of what you are given.", "notes": "Hashal is Sadeas's enforcer in the bridge camps. She enjoys the authority and is universally feared by the crews."}
                 ],
                 "enemies": [],
                 "loot": [],
                 "services": ["warcamp_supplies", "recruitment"],
-                "event_triggers": ["On entry: Bridge crews drill in the distance, carrying enormous wooden bridges at a dead run across the stone ground"]
+                "investigation_dc": 12,
+                "investigation_success": "Supply manifests in the quartermaster's tent show bridge crew rations cut by a third this month. The saved food is being diverted to Sadeas's lighteyed officers.",
+                "perception_dc": 11,
+                "perception_success": "You notice a bridge crew returning from a run. They started with twenty men. Fourteen walk back. No one counts the missing.",
+                "event_triggers": ["On entry: Bridge crews drill in the distance, carrying enormous wooden bridges at a dead run across the stone ground. An officer times them with a sand-clock and shouts corrections."]
             }
         },
         "1": {
@@ -46,16 +51,21 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Bridge Four's barrack is a wind-battered lean-to on the camp's eastern edge, its stormward wall reinforced with salvaged bridge planks. Brands mark every man here -- slaves, criminals, the condemned. But someone has hung curtains, and a stewpot simmers over a careful fire. Someone is trying.",
+                "read_aloud": "The lean-to smells of woodsmoke and Rock's spices -- a warmth that has no business existing in a place this broken. Curtains made from salvaged stormcloth divide the sleeping space into something almost resembling privacy. A tall, dark-haired man stands at the entrance, arms crossed, his shash brand livid against his forehead. His eyes hold the steadiness of someone who has decided to survive and will not be argued out of it.",
                 "npcs": [
-                    {"name": "Kaladin Stormblessed", "role": "ally", "dialogue": "You are not bridge crew. Good -- that means you still have a choice. I did not have one. But I made something of it anyway. The question is what you will make of yours."},
-                    {"name": "Rock", "role": "ally", "dialogue": "Is stew! Very good stew. I am using horneater spices -- they will put hair on your chest. Literally. Horneater thing. You will get used to it."}
+                    {"name": "Kaladin Stormblessed", "role": "ally", "dialogue": "You are not bridge crew. Good -- that means you still have a choice. I did not have one. But I made something of it anyway. The question is what you will make of yours.", "notes": "Kaladin is developing Windrunner abilities he does not yet understand. Spheres near him go dun faster than they should."},
+                    {"name": "Rock", "role": "ally", "dialogue": "Is stew! Very good stew. I am using horneater spices -- they will put hair on your chest. Literally. Horneater thing. You will get used to it.", "notes": "Rock can see spren that others cannot, a trait of his Horneater heritage. He will not fight but will support anyone who protects his crew."}
                 ],
                 "enemies": [],
                 "loot": [
                     {"name": "Rock's Stew (heals 3 HP)", "type": "consumable"}
                 ],
                 "services": ["rest", "bridge_crew_information"],
-                "event_triggers": ["On entry: Kaladin stands at the barrack entrance, arms crossed, evaluating you with eyes that have seen too many bridge runs"]
+                "investigation_dc": 13,
+                "investigation_success": "Kaladin's bunk has a hidden compartment beneath the pallet. Inside: three dun spheres that should be infused -- something is draining them -- and a surgeon's scalpel wrapped in oiled cloth.",
+                "perception_dc": 12,
+                "perception_success": "A tiny windspren circles Kaladin's head whenever he concentrates. It moves too purposefully to be natural. No one else seems to notice.",
+                "event_triggers": ["On entry: Kaladin stands at the barrack entrance, arms crossed, evaluating you with eyes that have seen too many bridge runs. A windspren lands on his shoulder and stays."]
             }
         },
         "2": {
@@ -71,14 +81,19 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Dalinar Kholin's Command Pavilion is a fortress of canvas and discipline. Maps of the Shattered Plains cover three standing tables, weighted down with gemstones. Lighteyed officers move between them, updating positions with the quiet urgency of men who know that every mark on parchment represents lives.",
+                "read_aloud": "The pavilion's interior is cooler than the plains outside -- fabrial-cooled, a luxury reserved for highprinces. Three map tables dominate the space, each depicting the Shattered Plains from a different vantage. Dalinar Kholin stands at the largest, tracing a route with one scarred finger. He looks up as you enter, and his gaze has the weight of a man carrying something he cannot set down.",
                 "npcs": [
-                    {"name": "Dalinar Kholin", "role": "quest_giver", "dialogue": "I have read The Way of Kings. Most consider it outdated philosophy. I consider it prophecy. The codes matter. Honor matters. We have forgotten that, and the Parshendi remember. That imbalance will destroy us."},
-                    {"name": "Adolin Kholin", "role": "ally", "dialogue": "My father sees the big picture. I see the next plateau assault. Between us, we might actually win something. You look capable -- want to join the vanguard?"}
+                    {"name": "Dalinar Kholin", "role": "quest_giver", "dialogue": "I have read The Way of Kings. Most consider it outdated philosophy. I consider it prophecy. The codes matter. Honor matters. We have forgotten that, and the Parshendi remember. That imbalance will destroy us.", "notes": "Dalinar receives visions from the Stormfather during highstorms. He believes he is going mad. He is not."},
+                    {"name": "Adolin Kholin", "role": "ally", "dialogue": "My father sees the big picture. I see the next plateau assault. Between us, we might actually win something. You look capable -- want to join the vanguard?", "notes": "Adolin is skilled but lives in his father's shadow. He is the best duelist in the warcamps but doubts himself in every other domain."}
                 ],
                 "enemies": [],
                 "loot": [],
                 "services": ["military_briefing", "quest_assignment"],
-                "event_triggers": ["On entry: Dalinar traces a route across the plateau map, his scarred hands steady despite the weight of what he is planning"]
+                "investigation_dc": 14,
+                "investigation_success": "Dalinar's private map shows plateau routes that no scout has reported. He has been mapping positions from his highstorm visions -- impossibly accurate battlefield intelligence from four thousand years ago.",
+                "perception_dc": 13,
+                "perception_success": "During a pause in conversation, you hear Dalinar whisper three words under his breath: 'Unite them. Unite them.' He does not appear aware he is speaking.",
+                "event_triggers": ["On entry: Dalinar traces a route across the plateau map, his scarred hands steady despite the weight of what he is planning. Adolin watches from the pavilion entrance, hand resting on his Shardblade."]
             }
         },
         "3": {
@@ -94,17 +109,19 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Plateau Run stretches before you -- a gap of forty feet between two stone mesas, the chasm below lost in shadow. Bridge crews sprint across portable wooden spans while Parshendi arrows rain from the far side. The stone is slick with crem and blood.",
+                "read_aloud": "The chasm yawns beneath the bridge -- forty feet of nothing between you and a darkness that has its own weather. Arrows whistle overhead in singing arcs, thudding into the bridge planks around your feet. War drums pound from the far plateau, the Rhythm of War unmistakable even to those who have never heard it. A man two paces ahead takes an arrow in the shoulder and keeps running. Stopping means dying.",
                 "npcs": [],
                 "enemies": [
-                    {"name": "Parshendi Warrior", "cr": "2"},
-                    {"name": "Parshendi Warrior", "cr": "2"},
-                    {"name": "Parshendi Archer", "cr": "1"}
+                    {"name": "Parshendi Warrior", "hp": 22, "ac": 12, "attack": 3, "damage": "1d8+3", "count": 2},
+                    {"name": "Parshendi Archer", "hp": 11, "ac": 10, "attack": 2, "damage": "1d6+2", "count": 1}
                 ],
                 "loot": [
                     {"name": "Parshendi Carapace Shield", "type": "armor"}
                 ],
                 "services": [],
-                "event_triggers": ["On entry: War drums pound from across the chasm -- the Rhythm of War, unmistakable even to those who have never heard it"]
+                "perception_dc": 13,
+                "perception_success": "The Parshendi are singing in coordinated rhythms -- their attacks sync to the beat. Disrupting their song would break their formation.",
+                "event_triggers": ["On entry: War drums pound from across the chasm -- the Rhythm of War, unmistakable even to those who have never heard it. The bridge planks vibrate beneath your feet."]
             }
         },
         "4": {
@@ -120,17 +137,20 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Gemheart Plateau. At its center, a chrysalis the size of a house splits open like a wound, revealing the prize that drives this entire war -- a gemheart the size of a man's head, pulsing with deep violet Stormlight. Parshendi and Alethi blood stains the stone in equal measure.",
+                "read_aloud": "The chrysalis cracks open with a sound like breaking bone. Stormlight spills from the wound in violet waves, painting the plateau in colors that have no name in Alethi. The gemheart pulses within -- a fist-sized amethyst that throbs with light as if it contains a second heartbeat. Every Parshendi on the plateau begins singing the same note simultaneously, and the stone beneath your feet hums in sympathy.",
                 "npcs": [],
                 "enemies": [
-                    {"name": "Parshendi Elite (Warform)", "cr": "3"},
-                    {"name": "Parshendi Shaman (Stormform)", "cr": "4"}
+                    {"name": "Parshendi Elite (Warform)", "hp": 28, "ac": 13, "attack": 4, "damage": "1d10+4", "count": 1, "notes": "Carapace armor grows over their skin in warform. They are faster and stronger than standard warriors."},
+                    {"name": "Parshendi Shaman (Stormform)", "hp": 32, "ac": 13, "attack": 3, "damage": "2d6+3", "count": 1, "notes": "Can channel Stormlight offensively. Lightning arcs between their hands.", "special": ["Lightning Arc: 2d6 spirit damage to all adjacent enemies"]}
                 ],
                 "loot": [
-                    {"name": "Gemheart (Amethyst, Broam-grade)", "type": "treasure"},
-                    {"name": "Stormlight Sphere (Broam)", "type": "currency"}
+                    {"name": "Gemheart (Amethyst, Broam-grade)", "type": "treasure", "value": 50},
+                    {"name": "Stormlight Sphere (Broam)", "type": "currency", "value": 50}
                 ],
                 "services": [],
-                "event_triggers": ["On entry: The chrysalis cracks open with a sound like breaking bone, and Stormlight spills across the plateau in a violet wave"]
+                "investigation_dc": 15,
+                "investigation_success": "The chrysalis pattern on the plateau stone is not random -- it forms a glyph visible only from above. The chasmfiends are not choosing random plateaus. They are completing a pattern.",
+                "event_triggers": ["On entry: The chrysalis cracks open with a sound like breaking bone, and Stormlight spills across the plateau in a violet wave. The gemheart pulses like a second sun."]
             }
         },
         "5": {
@@ -146,17 +166,22 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Parshendi camp occupies a plateau on the eastern edge of the war zone. Unlike the Alethi camps, there are no tents -- the Parshendi sleep in hollows carved into the stone, their marbled skin providing insulation the Alethi cannot match. War songs echo in overlapping harmonics.",
+                "read_aloud": "No tents. No palisades. No guards visible, because every Parshendi is a guard. They sleep in hollows carved into the living stone, their marbled skin flush against rock that shares their coloring. The singing never stops -- overlapping harmonics in patterns that shift like weather. One voice rises above the others, and the singer regards you with eyes that hold four thousand years of grievance.",
                 "npcs": [
-                    {"name": "Eshonai", "role": "antagonist", "dialogue": "You walk into our home as if the stone belongs to you. It does not. We fought for it. We sing to it. You build your camps and call it conquest. Tell me, human -- what do you hear when the stone speaks?"}
+                    {"name": "Eshonai", "role": "antagonist", "dialogue": "You walk into our home as if the stone belongs to you. It does not. We fought for it. We sing to it. You build your camps and call it conquest. Tell me, human -- what do you hear when the stone speaks?", "notes": "Eshonai is the Parshendi general. She does not want this war but sees no alternative. She carries the burden of her people's secret -- why they killed King Gavilar."}
                 ],
                 "enemies": [
-                    {"name": "Parshendi Warrior (Warform)", "cr": "3"}
+                    {"name": "Parshendi Warrior (Warform)", "hp": 22, "ac": 12, "attack": 3, "damage": "1d8+3", "count": 1}
                 ],
                 "loot": [
                     {"name": "Parshendi War Song Transcription", "type": "quest_item"}
                 ],
                 "services": [],
-                "event_triggers": ["On entry: The Parshendi cease singing. The silence that follows is more unsettling than the war drums"]
+                "investigation_dc": 15,
+                "investigation_success": "The Parshendi sleeping hollows are arranged in the shape of a glyph -- the same pattern as the Dawncity geometry Kabsal studies. The Parshendi have been living inside a map.",
+                "perception_dc": 14,
+                "perception_success": "Eshonai's war song shifts when she looks at you -- a minor key change that the other Parshendi react to with visible discomfort. She sang something about you, and they did not like it.",
+                "event_triggers": ["On entry: The Parshendi cease singing. The silence that follows is more unsettling than the war drums. Eshonai steps forward from the hollow stone."]
             }
         },
         "6": {
@@ -172,15 +197,20 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Chasm Edge -- where the final plateau crumbles into darkness. Rope ladders dangle over the lip, knotted by bridge crews who descend for salvage and never discuss what they find below. The wind that rises from the depths carries the smell of wet stone and something older, something alive.",
+                "read_aloud": "The plateau ends without warning -- stone crumbles to a knife-edge, and beyond it, nothing. Darkness fills the chasm below like black water in a well. Rope ladders dangle over the lip, frayed and knotted at irregular intervals. The wind rising from the depths is warm, wet, and rhythmic. Something below is breathing. The last salvage crew pulled up a bag containing a Shardblade fragment and expressions they will carry to their graves.",
                 "npcs": [
-                    {"name": "Bridge Sergeant Gaz", "role": "merchant", "dialogue": "Chasm duty pays double. That should tell you everything about chasm duty. You want rope? I have got rope. Insurance? That I do not sell."}
+                    {"name": "Bridge Sergeant Gaz", "role": "merchant", "dialogue": "Chasm duty pays double. That should tell you everything about chasm duty. You want rope? I have got rope. Insurance? That I do not sell.", "notes": "Gaz is in debt to loan sharks and skims from bridge crew wages. He is terrified of the chasms but sends men down anyway."}
                 ],
                 "enemies": [],
                 "loot": [
                     {"name": "Chasm Descent Rope (50 ft)", "type": "equipment"}
                 ],
                 "services": ["chasm_descent_access", "salvage_equipment"],
-                "event_triggers": ["On entry: A bridge crew hauls up a salvage bag from the chasm -- it contains a Shardblade fragment and the expression of men who found something else down there they will not name"]
+                "investigation_dc": 13,
+                "investigation_success": "Gaz's ledger shows he pays bridge crews half the listed salvage rate. The difference goes to a name scratched out so thoroughly the page is torn -- a creditor he fears more than the chasms.",
+                "perception_dc": 12,
+                "perception_success": "The rope ladder has been recently cut and re-knotted at the thirty-foot mark. Someone shortened it deliberately. Below the new end, older rope swings free in the updraft -- the original ladder went much deeper.",
+                "event_triggers": ["On entry: A bridge crew hauls up a salvage bag from the chasm -- it contains a Shardblade fragment and the expression of men who found something else down there they will not name."]
             }
         }
     }

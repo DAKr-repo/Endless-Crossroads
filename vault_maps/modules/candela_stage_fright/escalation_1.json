@@ -1,0 +1,100 @@
+{
+  "seed": 4703,
+  "width": 25,
+  "height": 12,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "crane_office",
+    "theme": "GOTHIC",
+    "topology": "settlement",
+    "display_name": "The Detective's Office"
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 0,
+      "y": 0,
+      "width": 8,
+      "height": 8,
+      "room_type": "residence",
+      "connections": [1],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Miles Crane's office. A second-floor walkup above a laundry, the door hanging open on a splintered frame. Someone has already been here. The room has been tossed -- filing cabinets emptied, desk drawers pulled, a chair overturned. At the window, a woman presses herself against the wall, eyes wide. Across the room, a man stands with a revolver leveled at her chest. He is shaking with barely contained fury.",
+        "read_aloud": "The man with the gun does not look at you when you enter. His eyes are fixed on the woman by the window. 'Do you know who I am?' he says. His voice cracks. 'My brother is missing. This detective was supposed to find him. Now the detective is dead and you are in his office. So I will ask you once: where is Andres Aguilar?' The woman raises her hands slowly. 'I do not know any Andres. I am a dance teacher. The detective came to my studio asking questions. I came here to tell him what I remembered. Please put the gun down.'",
+        "npcs": [
+          {
+            "name": "Rosie Sinclair",
+            "role": "witness",
+            "dialogue": "Andres Aguilar was my student. Tuesday evenings, beginner's waltz. He was learning for his anniversary. He was a gentle man. Clumsy, but he tried. He stopped coming two weeks ago. I thought he lost interest. Then the detective came asking questions, and I realized Andres never made it home from his last lesson. My studio is on Florence, across from the Eden Theater. The theater has been empty for years. But Andres -- he mentioned hearing music from inside.",
+            "notes": "She/her. Dance teacher. Runs a small studio near the Eden Theater. Genuinely kind, genuinely frightened. Taught Andres Aguilar the waltz. Remembers him mentioning music from the supposedly-abandoned theater. Has a key to her studio, which has a clear sightline to the theater's stage door."
+          }
+        ],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [
+          "Mick Aguilar is volatile but not hostile to the circle. Once de-escalated, he becomes a determined ally -- armed, angry, and unwilling to wait while his brother is missing.",
+          "OUP periphery officers are stationed outside on the street. They will not intervene unless shots are fired."
+        ],
+        "loot": [],
+        "investigation_dc": 12,
+        "investigation_success": "Crane's case board is still intact on the back of the closet door. Photographs, string, pushpins. He traced Andres's route from Rosie's studio to the Eden Theater's stage door. A final note in Crane's hand: 'Stage door unlocked. Silk on the handle. Something lives inside.'"
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 10,
+      "y": 0,
+      "width": 8,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [0, 2],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Crane's back room. A cot, a hotplate, a window overlooking the street below. Mick Aguilar lowers the revolver. He does not holster it. He leans against the wall, jaw working, eyes red. He is a man holding himself together with anger because the alternative is grief.",
+        "npcs": [
+          {
+            "name": "Mick Aguilar",
+            "role": "informant",
+            "dialogue": "Andres is my little brother. He is all I have. I hired Crane to find him. Now Crane is dead and nobody has answers. If you are Candela, then you know things the OUP does not. You know what that silk is. You know what took the detective's face. Take me with you. I am not asking.",
+            "notes": "He/him. Andres's older brother. Dockworker. Carries a revolver and knows how to use it. Will follow the circle to the Eden Theater with or without permission. His grief makes him reckless. He beat Andres in the past -- a fact that becomes critically important in the climax. Mick is trying to make amends for years of violence by finding his brother."
+          }
+        ],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [
+          "REVEAL: Rosie's dance studio sits directly across from the Eden Theater on Florence and Brighton. The theater has been dark for two years but Andres heard music from inside."
+        ],
+        "loot": []
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 18,
+      "y": 2,
+      "width": 6,
+      "height": 6,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The stairwell down to the street. Through the landing window, you can see the OUP officers below, collar turned up against the rain. Beyond them, the wet rooftops of South Soffit stretch toward the river. Somewhere in that maze of slate and brick, the Eden Theater waits, dark and patient. Mick checks the cylinder of his revolver. Six rounds. He snaps it shut.",
+        "npcs": [],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [
+          "Mick Aguilar insists on accompanying the circle. He is armed and volatile. He may be an asset or a liability depending on what the circle finds inside the Eden Theater."
+        ],
+        "loot": [],
+        "perception_dc": 12,
+        "perception_success": "A single spider silk thread runs from the detective's window frame down to the street, across the road, and over the rooftops toward Florence and Brighton. It is so fine it is nearly invisible. But it is there. And it is vibrating."
+      }
+    }
+  }
+}

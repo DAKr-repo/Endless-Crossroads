@@ -1,0 +1,110 @@
+{
+  "seed": 4604,
+  "width": 25,
+  "height": 15,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "eons_vault",
+    "theme": "GOTHIC",
+    "topology": "dungeon",
+    "display_name": "The Inverted Spire"
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 0,
+      "y": 0,
+      "width": 8,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Beyond the sealed door, a hermetic vault descends into the stone platform -- an inverted spire, spiraling downward. EONS construction, ten years old, poured concrete and reinforced steel. The walls are lined with monitoring equipment, all dead. Emergency lighting flickers in amber cycles. The air is pressurized and stale, recycled by machinery that stopped working years ago.",
+        "read_aloud": "The vault drops away beneath you like a throat. Seven floors, connected by a steel spiral staircase that rings with every step. The EONS monitoring equipment is dark -- power failed years ago. But the emergency lights still pulse in a slow amber cycle, powered by something that is not electricity. The concrete walls are cracked, and through the cracks, a faint orange luminescence bleeds.",
+        "npcs": [],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [
+          "The vault is an EONS containment facility, built ten years ago around a bleed well. Seven floors deep. The monitoring equipment is dead, but the emergency systems are powered by bleed energy itself."
+        ],
+        "loot": [],
+        "investigation_dc": 12,
+        "investigation_success": "Personnel manifests bolted to the wall list a crew of twelve EONS researchers who staffed this facility. All twelve names have been crossed out in red ink. A single annotation: 'No extraction possible. Seal and abandon. -- Director Abbas.'"
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 10,
+      "y": 0,
+      "width": 10,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [0, 2],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The research floor -- level three. Laboratory benches covered in shattered glassware and decomposed notebooks. The vault workers are still here. Twelve of them, seated at their stations, consumed by an orange fungus that has colonized their bodies from the inside out. Fruiting bodies sprout from eye sockets and open mouths, releasing spores into the still air. They have been dead for a decade, but the fungus is thriving.",
+        "read_aloud": "They are still at their desks. Twelve researchers, fossilized in their final moments of work. The orange fungus has replaced their soft tissue entirely -- when the amber light pulses, you can see their skeletons through the translucent mycelia, like insects in amber. Their notebooks are illegible, consumed by the same growth. But the chalkboard behind them is still readable: equations, diagrams, and a single circled word at the center. RELIQUARY.",
+        "npcs": [],
+        "enemies": [
+          {
+            "name": "Bleed-Fungus Cluster",
+            "hp": 15,
+            "max_hp": 15,
+            "ac": 12,
+            "attack": 4,
+            "defense": 12,
+            "count": 2
+          }
+        ],
+        "services": [],
+        "event_triggers": [
+          "THREAT: Corrupt Artifacts (Bleed) -- the orange fungus is a bleed organism. Its spores cause hallucinations and temporal displacement. Breathing them unfiltered risks marks of bleed.",
+          "REVEAL: The researchers were studying something they called 'the Reliquary,' locked seven floors below. It is the source of every ship destruction in the Glass Sea. The bleed readings are off every measurable chart."
+        ],
+        "loot": [
+          {
+            "name": "EONS Research Dossier",
+            "value": 0,
+            "description": "A partially legible folder marked CLASSIFIED -- RELIQUARY PROTOCOL. Surviving pages describe 'a living bleed nexus of unprecedented magnitude' and reference 'containment via isolation' as the primary strategy. One page is a child's drawing -- a stick figure in a circle, surrounded by stars. It is pinned to the dossier with a note: 'Subject produced this during Session 14.'"
+          }
+        ]
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 18,
+      "y": 4,
+      "width": 6,
+      "height": 6,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The archive alcove. Filing cabinets lining the walls, most rusted shut. One is open. Inside: personnel files, psychological evaluations, and a series of photographs documenting the Reliquary's containment. The photographs show a child -- a girl, no older than eight -- seated in a glass chamber, wires attached to her temples. Her eyes are open. They are entirely black.",
+        "npcs": [
+          {
+            "name": "Tarek Abbas",
+            "role": "informant",
+            "dialogue": "My father was the director who sealed this vault. He never told me what was inside. He retired from EONS two months after the sealing and never spoke of the Glass Sea again. He died last year. His final words were: 'Tell them she is still singing.' I did not understand until now.",
+            "notes": "He/they. EONS archivist. Son of the director who ordered the vault sealed. Has been researching the Glass Sea disappearances independently, following his father's classified trail. Joined this expedition to find answers. Carries his father's access codes, which may open deeper vault levels."
+          }
+        ],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [
+          "Tarek's father sealed this vault and abandoned twelve researchers inside. The Reliquary is not an object -- it is a person. A child."
+        ],
+        "loot": [],
+        "perception_dc": 14,
+        "perception_success": "From seven floors below, rising through the concrete and steel: a voice. Singing. A child's melody, wordless and sweet, distorted by distance and stone. It has been singing for ten years."
+      }
+    }
+  }
+}

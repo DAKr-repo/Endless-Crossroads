@@ -54,6 +54,7 @@ COMMANDS = {
     "stats":     ["st"],
     "inventory": ["inv", "i"],
     "save":      [],
+    "talk":      ["npc"],
     "recap":     [],
     "help":      ["h", "?"],
     "tutorial":  ["tut"],
@@ -103,6 +104,9 @@ class BurnwillowBridge:
             "triage": "Heal with Wits check (requires med-kit with [Triage])",
             "rest": "Rest: 'rest short' (50% HP, +1 Doom) or 'rest long' (full, +3 Doom)",
         },
+        "interaction": {
+            "talk": "Talk to an NPC (type freely to chat, 'bye' to end)",
+        },
         "exploration": {
             "search": "Search for loot (+1 Doom)",
             "loot": "Pick up items",
@@ -143,6 +147,10 @@ class BurnwillowBridge:
         self._session_log: list[dict] = []
         self._rooms_visited: set[int] = set()
 
+        # NPC conversation state
+        self._talking_to: str | None = None
+        self._talking_to_npc: dict | None = None
+
         # WO-V35.0: RestManager for short/long rest dispatch
         self._rest_mgr = RestManager()
 
@@ -177,18 +185,41 @@ class BurnwillowBridge:
         verb = parts[0].lower()
         arg = parts[1] if len(parts) > 1 else ""
 
-        # 8-way grid movement (n/s/e/w/ne/nw/se/sw)
+        # 8-way grid movement — auto-exit conversation on move
         grid_dir = _GRID_DIRS.get(verb)
         if grid_dir is not None:
+            if self._talking_to:
+                self._talking_to = None
+                self._talking_to_npc = None
             result = self._cmd_grid_move(grid_dir)
             self._emit_frame()
             return result
+
+        # Conversation mode: bye exits, other input routes to NPC dialogue
+        if self._talking_to:
+            if verb in ("bye", "leave", "goodbye"):
+                name = self._talking_to
+                self._talking_to = None
+                self._talking_to_npc = None
+                result = f"You end your conversation with {name}.\n{self._status_line()}"
+                self._emit_frame()
+                return result
+            # Don't intercept system commands — let them fall through
+            if verb not in ALIAS_MAP:
+                result = self._cmd_npc_dialogue(command.strip())
+                self._emit_frame()
+                return result
 
         canonical = ALIAS_MAP.get(verb)
         if canonical is None:
             result = self._cmd_look()
             self._emit_frame()
             return result
+
+        # Auto-exit conversation on room movement
+        if canonical == "move" and self._talking_to:
+            self._talking_to = None
+            self._talking_to_npc = None
 
         dispatch = {
             "look":      lambda: self._cmd_look(),
@@ -208,6 +239,7 @@ class BurnwillowBridge:
             "stats":     lambda: self._cmd_stats(),
             "inventory": lambda: self._cmd_inventory(),
             "save":      lambda: self._cmd_save(),
+            "talk":      lambda: self._cmd_talk(arg),
             "recap":     lambda: self._cmd_recap(),
             "help":      lambda: self._cmd_help(),
             "tutorial":  lambda: self._cmd_tutorial(),
@@ -289,6 +321,20 @@ class BurnwillowBridge:
                     lines.append(f"  ! {h.get('name', str(h))}")
                 else:
                     lines.append(f"  ! {h}")
+
+        # NPCs
+        npcs = room.get("npcs", [])
+        if npcs:
+            lines.append("")
+            lines.append(f"NPCS ({len(npcs)}):")
+            for npc in npcs:
+                if isinstance(npc, dict):
+                    name = npc.get("name", "Unknown")
+                    role = npc.get("npc_type", npc.get("role", ""))
+                    role_str = f" ({role})" if role else ""
+                    lines.append(f"  @ {name}{role_str}")
+                else:
+                    lines.append(f"  @ {npc}")
 
         # Furniture
         furniture = room.get("furniture", [])
@@ -931,6 +977,8 @@ class BurnwillowBridge:
             "bolster (buff)  - Empower next roll [Bolster]\n"
             "triage (medic)  - Heal with Wits check [Triage]\n"
             "rest (heal)     - Heal ~50% HP (+1 Doom)\n"
+            "--- Interaction ---\n"
+            "talk <npc>      - Talk to an NPC (bye to end)\n"
             "--- Exploration ---\n"
             "search (s)      - Search for loot (+1 Doom)\n"
             "loot            - Pick up items\n"
@@ -1004,6 +1052,86 @@ class BurnwillowBridge:
         """Collect session statistics for recap display (WO-V37.0)."""
         from codex.core.services.narrative_loom import format_session_stats
         return format_session_stats(self._session_log, self._build_engine_snapshot())
+
+    def _cmd_talk(self, arg: str = "") -> str:
+        """Talk to an NPC in the current room."""
+        room = self.engine.get_current_room()
+        if not room:
+            return "ERROR: No dungeon loaded."
+
+        npcs = room.get("npcs", [])
+        if not npcs:
+            return f"No one to talk to here.\n{self._status_line()}"
+
+        arg = arg.strip()
+        if not arg:
+            lines = ["NPCs in this room:"]
+            for npc in npcs:
+                if isinstance(npc, dict):
+                    name = npc.get("name", "Unknown")
+                    role = npc.get("npc_type", npc.get("role", ""))
+                    role_str = f" ({role})" if role else ""
+                    lines.append(f"  * {name}{role_str}")
+            lines.append("")
+            lines.append("Usage: talk <npc name>")
+            lines.append(self._status_line())
+            return "\n".join(lines)
+
+        target = arg.lower()
+        for npc in npcs:
+            if isinstance(npc, dict):
+                name = npc.get("name", "Unknown")
+                if target in name.lower():
+                    lines = [f"=== {name} ==="]
+                    role = npc.get("npc_type", npc.get("role", ""))
+                    if role:
+                        lines.append(f"Role: {role}")
+                    dialogue = npc.get("dialogue", "")
+                    if dialogue:
+                        lines.append(f'"{dialogue}"')
+                    else:
+                        lines.append(f"{name} has nothing to say.")
+                    # Enter conversation mode
+                    self._talking_to = name
+                    self._talking_to_npc = npc
+                    lines.append("")
+                    lines.append("You are now talking to "
+                                 f"{name}. Type freely to chat, 'bye' to end.")
+                    # Offer trade if merchant
+                    if npc.get("npc_type") == "merchant":
+                        trade_tier = npc.get("trade_tier", 1)
+                        lines.append(f"[Trade tier: {trade_tier}]")
+                    lines.append(self._status_line())
+                    return "\n".join(lines)
+
+        return f"No NPC named '{arg}' here.\n{self._status_line()}"
+
+    def _cmd_npc_dialogue(self, player_input: str) -> str:
+        """Route free-form input to Mimir for NPC dialogue."""
+        npc_name = self._talking_to
+        if not npc_name:
+            return f"You're not talking to anyone.\n{self._status_line()}"
+
+        npc_data = self._talking_to_npc or {}
+        room = self.engine.get_current_room()
+        room_desc = room.get("description", "") if room else ""
+
+        try:
+            from codex.core.services.narrative_frame import query_npc_dialogue
+            response = query_npc_dialogue(
+                npc_name, player_input, npc_data,
+                room_desc=room_desc, setting_id="burnwillow",
+            )
+            if response:
+                return f'{npc_name}: "{response}"\n\n{self._status_line()}'
+        except Exception:
+            pass
+
+        # Fallback to static dialogue
+        dialogue = npc_data.get("dialogue", "")
+        if dialogue:
+            return f'{npc_name}: "{dialogue}"\n\n{self._status_line()}'
+        return f"{npc_name} has nothing more to say.\n{self._status_line()}"
 
     def _cmd_tutorial(self) -> str:
         """Show tutorial content for Burnwillow."""

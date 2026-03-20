@@ -1,0 +1,81 @@
+{
+  "seed": 8023,
+  "width": 35,
+  "height": 22,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "old_road",
+    "theme": "STONE",
+    "topology": "dungeon",
+    "mission_types": ["recon", "supply"]
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 2,
+      "y": 8,
+      "width": 8,
+      "height": 6,
+      "room_type": "start",
+      "connections": [1],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The old Panyar road enters the forest through a moss-covered archway of fitted stone, each block carved with spiral patterns that have been worn smooth by rain and time. The road itself is paved -- or was, once. Now the stones are cracked and heaved by root growth, creating a treacherous surface of tilted slabs and gaps. The canopy overhead is thick but not as oppressive as Duresh -- light filters through in dappled patches.",
+        "read_aloud": "The old road stones are cracked and moss-covered. Something was dragged through here recently -- deep furrows score the moss, heading deeper into the forest.",
+        "event_triggers": [
+          "The old road stones are cracked and moss-covered. Something was dragged through here recently."
+        ]
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 14,
+      "y": 4,
+      "width": 10,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [0, 2],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "A crossroads where the old road intersects a game trail. A Panyar waymarker stands at the junction -- a carved stone pillar depicting a sun rising over mountains, Skydagger's silhouette unmistakable. The waymarker has been defaced: a Crow has been nailed to it with iron spikes, its wings spread wide, its eyes pecked out. But the Crow is not dead. It twitches. Its beak opens and closes, producing clicks that echo off the trees.",
+        "enemies": [
+          {"name": "Crow", "hp": 15, "max_hp": 15, "ac": 12, "attack": 5, "defense": 12, "count": 2},
+          {"name": "Hound", "hp": 8, "max_hp": 8, "ac": 10, "attack": 4, "defense": 10, "count": 2}
+        ],
+        "perception_dc": 13,
+        "perception_success": "The nailed Crow is not a victim -- it is a beacon. Its clicks are a signal, drawing its companions. The two circling Crows are responding, triangulating on the sound. Silencing the beacon would blind the patrol.",
+        "event_triggers": [
+          "The nailed Crow's clicks grow faster. From the forest on both sides, answering clicks. They know you are here."
+        ]
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 26,
+      "y": 6,
+      "width": 7,
+      "height": 6,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The road descends into a shallow valley where a stream crosses the path. A stone footbridge spans the water, its handrails carved with Panyar knotwork. The stream runs clear -- a good sign; corruption turns water black. On the far bank, a cairn of fresh-stacked stones marks a Legion cache point. Someone has scratched coordinates into the topmost stone, pointing toward the supply cache concealed behind the waterfall upstream.",
+        "event_triggers": [
+          "The stream runs clear. In the corrupted world, clean water is a small miracle.",
+          "The cairn stones are freshly placed. Halvard's missing scouts passed this way. They made it at least this far."
+        ],
+        "loot": [
+          {"name": "Scout's Cache", "value": 1, "description": "A watertight pouch wedged under the bridge stones. Inside: a signal flare, a coded message for Commander Halvard, and a pressed flower -- a forget-me-not, still blue."}
+        ],
+        "investigation_dc": 11,
+        "investigation_success": "The coded message reads, when deciphered: 'Cache intact. Road clear to waterfall. Heavy presence beyond. Two knights. Returning to report.' They never returned."
+      }
+    }
+  }
+}

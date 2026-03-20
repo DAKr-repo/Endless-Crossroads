@@ -7394,6 +7394,51 @@ def main(butler=None, characters=None, autopilot=False, companion=False,
         except (EOFError, KeyboardInterrupt):
             return
 
+    # Module discovery — offer burnwillow modules if no manifest given
+    if not module_manifest_path:
+        try:
+            from pathlib import Path as _P
+            _mods_dir = _P(__file__).resolve().parent / "vault_maps" / "modules"
+            if _mods_dir.is_dir():
+                _bw_modules = []
+                for _entry in sorted(_mods_dir.iterdir()):
+                    if not _entry.is_dir():
+                        continue
+                    _mf = _entry / "module_manifest.json"
+                    if not _mf.exists():
+                        continue
+                    try:
+                        import json as _json
+                        _data = _json.loads(_mf.read_text())
+                        if _data.get("system_id") == "burnwillow":
+                            _bw_modules.append({
+                                "path": str(_mf),
+                                "name": _data.get("display_name", _entry.name),
+                                "levels": _data.get("recommended_levels", {}),
+                            })
+                    except Exception:
+                        continue
+                if _bw_modules:
+                    con.print("\n[bold]Adventure Modules:[/bold]")
+                    con.print("  [0] [dim]Procedural Dungeon[/dim]")
+                    for _i, _m in enumerate(_bw_modules, 1):
+                        _lvl = _m["levels"]
+                        _lvl_str = f"Tier {_lvl.get('min', '?')}-{_lvl.get('max', '?')}" if _lvl else ""
+                        con.print(f"  [{_i}] {_m['name']}  [dim]{_lvl_str}[/dim]")
+                    try:
+                        _mod_choice = Prompt.ask(
+                            "Select module",
+                            console=con,
+                            choices=[str(i) for i in range(len(_bw_modules) + 1)],
+                            default="0",
+                        )
+                        if int(_mod_choice) > 0:
+                            module_manifest_path = _bw_modules[int(_mod_choice) - 1]["path"]
+                    except (EOFError, KeyboardInterrupt):
+                        return
+        except Exception:
+            pass
+
     # Load module manifest if provided
     _loaded_manifest = None
     if module_manifest_path:

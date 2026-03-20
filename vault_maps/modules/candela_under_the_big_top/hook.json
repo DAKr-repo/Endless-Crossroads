@@ -1,0 +1,73 @@
+{
+  "seed": 7006,
+  "width": 25,
+  "height": 12,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "circus_hook",
+    "theme": "GOTHIC",
+    "topology": "settlement",
+    "display_name": "The Candela Summons"
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 0,
+      "y": 0,
+      "width": 10,
+      "height": 8,
+      "room_type": "residence",
+      "connections": [1],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The Candela chapter house briefing room. Your Lightkeeper has the morning edition spread across the table. The headline: MARCHETTI'S MARVEL CIRCUS RETURNS -- PROMISES WONDERS BEYOND IMAGINATION. Below the fold: NEW ATTRACTION -- THE LIVING CONSTELLATION, A CREATURE FROM BEYOND THE STARS.",
+        "read_aloud": "Your Lightkeeper circles the smaller headline with a red pencil. 'The Marchetti circus acquired something during a stop in the Westmarches. Something alive. Something from a thinning. They're billing it as entertainment. The evening performance is in six hours. Twelve hundred people have tickets.'",
+        "npcs": [
+          {
+            "name": "Lightkeeper Nessa Cole",
+            "role": "briefing",
+            "dialogue": "Old Aldo Marchetti was a Candela contact for twenty years. He understood the dangers. His grandson Enzo is a showman first and a rational man second. He doesn't know what he's acquired. Our sources say the creature was docile when captured but has grown increasingly agitated. An agitated bleed creature in a tent with twelve hundred people. I trust I don't need to draw you a picture.",
+            "notes": "She/her. Has a personal connection to the Marchetti legacy. She'd prefer to resolve this without destroying the circus. The creature's welfare matters to her, but public safety comes first. She can authorize financial assistance to the circus if needed to secure Enzo's cooperation."
+          }
+        ],
+        "enemies": [],
+        "services": ["rumor"],
+        "event_triggers": [
+          "A traveling circus has captured a bleed creature and plans to exhibit it tonight. Twelve hundred people attending. The creature is agitated. Six hours to showtime."
+        ],
+        "loot": []
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 13,
+      "y": 0,
+      "width": 10,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [0],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The chapter house archive on bleed fauna. Slim but specific. A file on ambient bleed organisms -- the subset that feeds on bleed energy rather than organic matter.",
+        "read_aloud": "Most bleed creatures are aggressive, disoriented, or both when they cross through thinnings. But ambient fauna are non-hostile when undisturbed. They're drawn to thinnings like moths to light. Confined, separated from a bleed source, they become erratic. Stressed. Dangerous.",
+        "npcs": [],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [],
+        "loot": [
+          {
+            "name": "Bleed Fauna Behavioral Profile",
+            "value": 0,
+            "description": "Candela's reference on ambient bleed fauna. Key finding: they become violent when confined, starved of bleed energy, or exposed to strong emotional stimuli. A panicking audience of twelve hundred is a worst-case trigger."
+          }
+        ],
+        "investigation_dc": 12,
+        "investigation_success": "The Marchetti circus's route over three years overlaps with three documented thinning sites. They've been traveling bleed territory without knowing it. The creature was likely drawn to their path by residual bleed energy in their equipment -- the circus is a bleed magnet."
+      }
+    }
+  }
+}

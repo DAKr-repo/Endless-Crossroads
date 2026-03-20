@@ -1,0 +1,85 @@
+{
+    "seed": 9004,
+    "width": 35,
+    "height": 25,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "the_mole",
+        "theme": "RUST",
+        "topology": "dungeon",
+        "display_name": "Run 3: The Mole",
+        "description": "Flashback Run. The runners' most trusted ally has been working for Omni Global all along -- replacing gear with decoys, planting false leads, feeding their movements to corporate handlers. The safe house is compromised. The question is not whether to confront the traitor. The question is what happens when the Taskforce shows up thirty seconds later."
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 2,
+            "y": 2,
+            "width": 8,
+            "height": 8,
+            "room_type": "start",
+            "connections": [1],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The compromised safe house. Everything looks normal at first -- the same takeout containers, the same static on the scanner, the same coat hanging by the door. But the ammunition in the drawer has been replaced with blanks. The med-kit syringes are filled with saline. The escape route map on the wall has one street name changed -- enough to funnel anyone who runs straight into a kill zone.",
+                "read_aloud": "Something is wrong. You have been in this room a hundred times but tonight the shadows sit differently. The air tastes like someone else has been breathing it. Your hand finds the pistol in the drawer. It is lighter than it should be.",
+                "npcs": [
+                    {
+                        "name": "The Mole",
+                        "role": "antagonist",
+                        "dialogue": "Before you do something we both regret -- listen. They have my sister. Three years in a black-site medical facility, running experiments on her chrome. Every report I filed bought her another month alive. I am not asking you to forgive me. I am asking you to understand that I had no good choices.",
+                        "notes": "[DM: Function: Antagonist/Tragic Ally. Quirk: Cannot maintain eye contact -- eyes track to the upper left when lying, which the Mole knows and fights visibly. Secret: The sister story is TRUE, but Omni already killed her six months ago. The Mole does not know this yet. Finding proof changes the confrontation entirely. Want: Save the sister. Need: To stop living in the space between betrayals.]"
+                    }
+                ],
+                "event_triggers": [
+                    "The Mole's hands are empty and raised. 'I disabled the tracker in my jacket twenty minutes ago. Omni thinks I am at a dead drop on Seventh. We have maybe fifteen minutes before they realize the signal is spoofed and send the Taskforce here.' A choice: interrogate, forgive, or execute."
+                ],
+                "investigation_dc": 14,
+                "investigation_success": "A hidden pocket in the Mole's jacket contains a data chip. On it: a medical report from an Omni black-site. Subject: 'Asset Sister.' Status: 'Terminated -- organ harvest complete.' Date: six months ago. The Mole does not know."
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 14,
+            "y": 2,
+            "width": 10,
+            "height": 8,
+            "room_type": "boss",
+            "connections": [0, 2],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The confrontation corridor. The hallway outside the safe house. Emergency lighting strips the walls to bones of shadow and amber. The stairwell door has been breached -- shaped charges, professional work. Taskforce boots on the stairs. Poison's signature is in the building's network, a ghost in the wiring, redirecting security cameras and sealing exit routes one by one.",
+                "read_aloud": "The stairwell door blows inward. Flash-bang first, then boots. The Taskforce does not announce itself -- that is a police thing, and these are not police. Poison's voice whispers through every speaker in the hallway: 'Nowhere to run, little runners. The building is mine now.'",
+                "enemies": [
+                    {"name": "Taskforce Operator", "hp": 25, "ac": 14, "attack": 6, "damage": "2d6", "count": 2, "notes": "Paramilitary elite. Heavy tactical armor with optical camouflage that flickers when damaged. Enhanced reflexes. They work in pairs -- one suppresses, one flanks.", "special": ["Suppressive Fire: Can pin down one target, preventing movement for 1 round", "Optical Camo: First attack against this target is at -1d"]},
+                    {"name": "Poison", "hp": 15, "ac": 12, "attack": 4, "damage": "1d8", "count": 1, "notes": "Skilled hacker, neural-linked to building systems. Does not fight physically -- attacks through the environment: doors slamming, lights strobing, fire suppression flooding corridors. Accessible only through the network.", "special": ["Environmental Control: Each round, one environmental hazard activates", "Neural Link: Can only be damaged by Hack actions targeting the building network"]}
+                ],
+                "event_triggers": [
+                    "If the Mole is still alive and unrestrained, a choice: the Mole offers to draw the Taskforce away, buying time but almost certainly dying. Or the Mole can interface with Poison's network -- former colleagues, same training -- and create a 30-second window in the building's lockdown."
+                ]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 14,
+            "y": 14,
+            "width": 8,
+            "height": 6,
+            "room_type": "corridor",
+            "connections": [1],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The escape route. A maintenance shaft behind the building's climate control system. The Mole's original escape plan -- before the betrayal, this was supposed to lead to a waiting vehicle. The shaft drops three stories into a storm drain. It smells like rust and rainwater and the distant chemical tang of the Dust Wall.",
+                "read_aloud": "The shaft is tight. Condensation drips from overhead pipes. Behind you, the sound of the Taskforce clearing rooms methodically. Ahead, the distant roar of storm water. Down is the only direction that does not involve bullets.",
+                "perception_dc": 12,
+                "perception_success": "Scratched into the maintenance shaft wall, recent: a set of GPS coordinates and the words 'GEAR CACHE -- DUST WALL SECTOR 7.' The Mole's handwriting. They were planning for the runners to survive this."
+            }
+        }
+    }
+}

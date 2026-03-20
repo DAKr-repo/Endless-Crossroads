@@ -1,0 +1,114 @@
+{
+  "seed": 4404,
+  "width": 30,
+  "height": 15,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "overmount_woods",
+    "theme": "GOTHIC",
+    "topology": "dungeon",
+    "display_name": "The Overmount Woods"
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 0,
+      "y": 0,
+      "width": 8,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The tree line. A new moon hangs overhead, offering nothing. Your gas lamps carve a sphere of amber light into the darkness, and at the edge of that sphere, things move. The chain of fused bodies continues into the forest, half-buried in pine needles and loam, a grotesque trail of breadcrumbs leading deeper into the black.",
+        "read_aloud": "The woods swallow the town's last light behind you. Pine boughs creak overhead in a wind that was not blowing a moment ago. Your gas lamps push back the dark in a ten-foot radius. Beyond that radius, you see shapes -- low, hunched, skittering between the trunks. They do not enter the light. Not yet.",
+        "npcs": [],
+        "enemies": [
+          {
+            "name": "Night Terror",
+            "hp": 15,
+            "max_hp": 15,
+            "ac": 12,
+            "attack": 4,
+            "defense": 12,
+            "count": 2
+          }
+        ],
+        "services": [],
+        "event_triggers": [
+          "Night Terrors attack at the edge of the lamplight. They are translucent, humanoid, crackling with stolen static. They shy from direct light but will swarm anyone whose lamp gutters.",
+          "THREAT: Night Terrors (Bleed) -- shadowy humanoid figures that feed on electrical current. They avoid bright light but attack aggressively in darkness."
+        ],
+        "loot": []
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 10,
+      "y": 0,
+      "width": 10,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [0, 2],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "A charnel hollow deep in the woods. The chain of fused bodies terminates here in a mound of tangled limbs and torsos, piled waist-high around the base of a dead oak. The bark has been stripped away, revealing wood blackened and vitrified by repeated lightning strikes. Bones protrude from the mass at wrong angles. The air tastes of pennies.",
+        "read_aloud": "You find the nest. A dead oak stands at the center of a clearing, its trunk split and fused back together by something that burned hotter than any lightning. Around its base, a cairn of human remains -- not buried, not scattered, but woven together with terrible precision. Each body is a link in a circuit. And the circuit leads somewhere underground.",
+        "npcs": [],
+        "enemies": [
+          {
+            "name": "Night Terror",
+            "hp": 15,
+            "max_hp": 15,
+            "ac": 12,
+            "attack": 4,
+            "defense": 12,
+            "count": 2
+          }
+        ],
+        "services": [],
+        "event_triggers": [
+          "The Night Terrors flee across a shallow creek, hissing and sparking as they hit the water. Several short-circuit and dissolve into static discharge.",
+          "REVEAL: The Night Terrors short-circuit in water. Running water disrupts their connection to the Light Eater."
+        ],
+        "loot": [
+          {
+            "name": "Vitrified Oak Branch",
+            "value": 0,
+            "description": "A branch from the dead oak, glass-smooth where lightning fused the wood. Hums with residual bleed energy. Could be used as evidence of phenomena origin."
+          }
+        ],
+        "investigation_dc": 14,
+        "investigation_success": "The underground roots of the dead oak have been replaced -- not with wood, but with a network of copper-bright filaments that pulse with faint bioluminescence. The tree is not dead. It has been converted."
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 20,
+      "y": 2,
+      "width": 8,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The creek bed. Shallow water runs over smooth stones, barely ankle-deep. On the far bank, the Night Terrors pace and hiss, unwilling to cross. The chain of fused bodies resumes on the other side, leading toward a low rise where the trees thin and the sky opens up. A faint blue-white glow pulses beyond the ridge.",
+        "npcs": [],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [
+          "The creek provides temporary safety. The Night Terrors will not cross running water. But the glow beyond the ridge is growing brighter, and the hum in the power lines is rising in pitch."
+        ],
+        "loot": [],
+        "perception_dc": 12,
+        "perception_success": "The water in the creek flows uphill for a stretch of about ten feet near the far bank. Something ahead is warping the local physics. The stones in the creek bed are warm to the touch."
+      }
+    }
+  }
+}

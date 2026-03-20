@@ -1,0 +1,175 @@
+{
+    "seed": 7702,
+    "width": 140,
+    "height": 20,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "plateau_assault",
+        "theme": "STONE",
+        "topology": "wilderness",
+        "display_name": "Plateau Seven-Nahn -- The Assault"
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 5,
+            "y": 8,
+            "width": 20,
+            "height": 8,
+            "room_type": "start",
+            "connections": [1],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The bridge approach is a killing field of open stone. Behind you, the warcamp. Ahead, the first chasm -- a crack in the world forty feet wide and deeper than light can reach. The portable bridge lies in sections, carried by men who keep their eyes forward because looking down is a luxury the condemned cannot afford.",
+                "read_aloud": "The bridge sections slam down across the chasm. Forty feet of darkness yawns beneath the timber. The wood groans. The bridgemen sprint back. Across the gap, Plateau Seven-Nahn rises like a stone altar. The Parshendi drums have already started. They beat in a rhythm that your bones recognize before your ears do.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [],
+                "services": [],
+                "investigation_dc": 12,
+                "investigation_success": "One bridge plank is cracked at center-span. Deliberate sabotage -- the cut is too clean for weather damage. Someone wants this bridge to fail on the return crossing.",
+                "perception_dc": 11,
+                "perception_success": "Parshendi archers are taking position on the far plateau. You have one round to cross before they acquire line of sight.",
+                "event_triggers": ["On entry: The bridge is deployed. Parshendi arrow fire begins in one round. Crossing takes one round. The cracked plank: DC 12 to spot before crossing, failure means one character catches the edge."]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 27,
+            "y": 8,
+            "width": 22,
+            "height": 8,
+            "room_type": "corridor",
+            "connections": [0, 2],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The chasm crossing is vertical hell. The gap between plateaus narrows to fifteen feet at the bottom -- a crack of sky visible eighty feet above, the walls slick with chasm moss that glows a faint, unhealthy green. Water drips from somewhere. Handholds are carved into the walls at irregular intervals.",
+                "read_aloud": "The chasm swallows sound. Your breathing echoes off wet stone. Moss clings to the walls in phosphorescent patches, casting enough light to see the handholds -- and the bones at the bottom. Something large died down here. The ribs arc from the chasm floor like the hull of a capsized ship. You climb.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [
+                    {"name": "Parshendi Arrow (salvage)", "type": "equipment"},
+                    {"name": "Chasm Moss (heals 1d4 HP)", "type": "consumable"}
+                ],
+                "services": [],
+                "investigation_dc": 13,
+                "investigation_success": "The bones at the bottom belong to a chasmfiend -- dead, decomposed, enormous. The gemheart cavity is empty. Someone harvested it. The claw marks on the walls suggest the chasmfiend did not die of natural causes.",
+                "perception_dc": 12,
+                "perception_success": "Handholds on the eastern wall are newer than the rest -- carved within the last month. Someone has been making this descent regularly. Fresh boot scuffs at the base confirm it.",
+                "event_triggers": ["Skill Challenge: Chasm Crossing. Three checks: DC 12 physical (climbing), DC 10 cognitive (route-finding), DC 12 physical (final ascent). Each failure deals 1d6 impact damage."]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 51,
+            "y": 5,
+            "width": 22,
+            "height": 10,
+            "room_type": "encounter",
+            "connections": [1, 3],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The plateau edge. You have reached Seven-Nahn from below -- an approach the Parshendi did not expect. Four Parshendi warriors stand at the far side, their carapace armor humming with a song you can feel in your teeth. The chrysalis at the plateau's center pulses with emerald light. The gemheart is close to emerging.",
+                "read_aloud": "Wind screams across the plateau. Four Parshendi stand in formation around the chrysalis, their armor resonating with a war chant that makes the stone vibrate. They sing in a language older than human settlement on Roshar. The chrysalis splits. Light bleeds from the crack -- Stormlight, raw and blinding. The gemheart is inside. The Parshendi reach for it. They have not seen you. Yet.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Parshendi Warrior", "hp": 22, "ac": 12, "attack": 3, "damage": "1d8+3", "count": 4, "notes": "Fight in coordinated pairs. When one is hit, adjacent ally retaliates. Singing buffs adjacent allies +1 attack."}
+                ],
+                "loot": [],
+                "services": [],
+                "investigation_dc": 14,
+                "investigation_success": "The Parshendi war chant is not just morale. Acoustic analysis reveals the frequencies match Stormlight resonance patterns. They are using sound to accelerate the chrysalis opening. Their music is functional, not ceremonial.",
+                "perception_dc": 14,
+                "perception_success": "Ambush opportunity. If undetected, the party gains a surprise round. Two warriors guard while two extract. Extraction takes 3 rounds. Interrupt the extractors to keep the gemheart.",
+                "event_triggers": ["Ambush opportunity: DC 14 stealth for surprise round. The Parshendi shift to defense if detected. Extraction timer: 3 rounds."]
+            }
+        },
+        "3": {
+            "id": 3,
+            "x": 75,
+            "y": 5,
+            "width": 22,
+            "height": 10,
+            "room_type": "encounter",
+            "connections": [2, 4],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The enemy camp is a temporary Parshendi staging area -- no tents, no fortifications, just a circle of carved stone seats around a central firepit that burns without fuel. The Parshendi do not build camps the way humans do. They sit, sing, and the stone rearranges itself.",
+                "read_aloud": "The Parshendi camp is empty -- abandoned minutes ago, the fire still burning without wood or oil. Stone seats arranged in a circle, shaped by hands that did not use tools. The ground hums. Not earthquake. Not wind. Something underneath the stone is vibrating in a rhythm you almost recognize. Supply caches sit in rock formations that look natural until you realize natural stone does not have drawers.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Parshendi Scout (hidden)", "hp": 11, "ac": 12, "attack": 2, "damage": "1d6+2", "count": 1, "notes": "Camouflaged rearguard. DC 14 perception to detect. Ambush advantage if undetected."}
+                ],
+                "loot": [
+                    {"name": "Parshendi War Map (fragment)", "type": "quest_item"},
+                    {"name": "Resonance Stone", "type": "equipment"}
+                ],
+                "services": [],
+                "investigation_dc": 12,
+                "investigation_success": "The firepit burns through Stormlight infusion, not fuel. The Parshendi channel Investiture instinctively. They are not primitive. They are different.",
+                "perception_dc": 14,
+                "perception_success": "Hidden scout detected. Camouflaged against stone using natural carapace coloring. Detecting grants the party choice: engage or bypass (DC 12 stealth to avoid).",
+                "event_triggers": ["On taking the War Map: Resonance stones vibrate in unison -- the Parshendi know their camp is compromised. 5 rounds before reinforcements arrive from the chasms."]
+            }
+        },
+        "4": {
+            "id": 4,
+            "x": 99,
+            "y": 5,
+            "width": 22,
+            "height": 10,
+            "room_type": "treasure",
+            "connections": [3, 5],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The gemheart cache. The chrysalis splits open, revealing the gemheart -- the size of a human head, faceted like a cut jewel but organic, pulsing with Stormlight that cycles through the spectrum. The ground beneath bears claw marks deep enough to lose your hand in. Something larger than any catalogued chasmfiend has been here.",
+                "read_aloud": "The chrysalis is open. The gemheart floats in luminous fluid, pulsing with Stormlight that turns your shadow six colors in sequence. It is beautiful the way a furnace is beautiful -- dangerous to approach, impossible to look away from. The stone beneath bears claw marks deep enough to lose your hand in. Whatever made them was larger than anything in the warcamp's bestiary.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [
+                    {"name": "Gemheart (greatshell chrysalis)", "type": "treasure", "value": 100},
+                    {"name": "Chrysalis Fluid (heals 2d6 HP, grants darkvision 1 hour)", "type": "consumable"}
+                ],
+                "services": [],
+                "investigation_dc": 15,
+                "investigation_success": "The claw marks are not territorial scratches. They form a pattern -- the same spiral geometry found in Dawncity layouts. The chasmfiend was not marking territory. It was writing.",
+                "perception_dc": 14,
+                "perception_success": "The plateau vibrates. Something enormous is moving beneath the stone, drawn by the broken chrysalis. You have 5 rounds to reach the extraction point before it surfaces.",
+                "event_triggers": ["On gemheart extraction: The plateau vibrates. Subsonic rhythm rolls through the stone. The claw marks suddenly look very fresh. 5 rounds to extraction."]
+            }
+        },
+        "5": {
+            "id": 5,
+            "x": 123,
+            "y": 8,
+            "width": 15,
+            "height": 8,
+            "room_type": "exit",
+            "connections": [4],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The extraction point. A natural stone bridge connects Seven-Nahn to the staging plateau. Single file, no railing, wind from both sides. Behind you, the plateau shakes. Something is climbing through the stone itself.",
+                "read_aloud": "The bridge is stone, natural, and barely wide enough for two. The wind hits you from both sides like hands trying to push you off. On the far side, Alethi soldiers wave you forward. Behind you, the plateau erupts. A mandible the size of a wagon wheel punches through the stone surface. The chasmfiend is not climbing up from the chasms. It is coming through the plateau.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [],
+                "services": [],
+                "perception_dc": 12,
+                "perception_success": "The natural bridge has stress fractures from the chasmfiend's emergence. It will hold for two more crossings, maybe three. After that, Seven-Nahn becomes an island with no bridge.",
+                "event_triggers": ["On entry: Cross the bridge in 2 rounds. DC 10 physical per character. Failure: blown to the edge, DC 12 to recover. On all crossing: The chasmfiend erupts behind you. Too large to follow. It screams. The bridge guard cheers. The mission is complete. The chasmfiend remembers you."]
+            }
+        }
+    }
+}

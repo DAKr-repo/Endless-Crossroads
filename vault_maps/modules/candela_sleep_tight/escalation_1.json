@@ -1,0 +1,104 @@
+{
+  "seed": 7010,
+  "width": 30,
+  "height": 15,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "haven_hills_escalation_1",
+    "theme": "GOTHIC",
+    "topology": "dungeon",
+    "display_name": "The Mine at Night"
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 0,
+      "y": 0,
+      "width": 8,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The mine entrance at dusk. A mob of a dozen miners and fathers, armed with pickaxes and lanterns, has gathered outside the gate. They want the creature killed. Constable Reid stands between them and the mine, hands raised, voice level. He sees the investigators and his expression shifts to desperate relief.",
+        "read_aloud": "You hear them before you see them. Lanterns bobbing on the hillside, voices tight with fear and drink. 'It killed a man in his house.' 'My kids sleep twenty feet from that thing.' Reid has his back against the gate. 'Two hours,' he says quietly when you reach him. 'I can hold them two hours. What do you need?'",
+        "npcs": [
+          {
+            "name": "Constable Reid",
+            "role": "ally",
+            "dialogue": "They're not wrong to be frightened. But they're wrong about what to do about it. If they go in with open flames, the methane risk alone kills half of them. I need a plan -- something I can show this crowd. Evidence. A solution they can live with.",
+            "notes": "He/him. Can hold the mob two hours. Will support any plan that protects the village and doesn't require the mob to simply trust the investigators. Evidence from the mine is more useful than reassurance."
+          }
+        ],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [
+          "CLOCK: The mob will breach the mine in two hours. Open flames in the methane-rich tunnels are catastrophic. The relocation must happen tonight.",
+          "If investigators show the mob the mine survey map and explain the creature's natural history, they buy another hour. If they show Redstone's Lamp, the crowd's anger breaks -- half leave."
+        ],
+        "loot": []
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 11,
+      "y": 0,
+      "width": 10,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [0, 2],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Level 2, the lateral shaft junction. The investigators catch the creature mid-commute -- between the mine and the Griggs house. It fills the tunnel: six limbs, flat broad body, bioluminescent eyes exactly as Ellis drew them. Not attacking. Terrified.",
+        "read_aloud": "It fills the tunnel. Six limbs pressed flat against the walls, trying to make itself smaller. Its eyes are blue-white, luminescent, gentle in a face built for darkness. It makes a sound -- not a growl. Something lower, more human. Almost like a word. Almost like 'please.' It can smell Ellis on your clothing. It is choosing not to attack.",
+        "npcs": [],
+        "enemies": [
+          {
+            "name": "The Protector (panicked)",
+            "hp": 30,
+            "max_hp": 30,
+            "ac": 14,
+            "attack": 7,
+            "defense": 14,
+            "count": 1
+          }
+        ],
+        "services": [],
+        "event_triggers": [
+          "THREAT: The Protector is panicked by mob noise above. It attacks if cornered or if investigators move aggressively. It fights to escape, not to kill.",
+          "SPECIAL: If Ellis is present and calm, the creature immediately settles. The child is the only reliable pacifier."
+        ],
+        "loot": [],
+        "perception_dc": 10,
+        "perception_success": "The creature's bioluminescence pulses rapidly -- distress. It recognizes the investigators from Ellis's scent and is actively choosing restraint. Its eyes keep moving to the tunnel fork ahead. It knows the way to the new chamber. It has been there before."
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 20,
+      "y": 2,
+      "width": 8,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The tunnel fork. One path leads up toward the Griggs house and Ellis's bedroom. The other leads deeper toward the undiscovered limestone chamber. The creature stands at the junction, looking between the two routes.",
+        "read_aloud": "The tunnel splits. One path leads toward the boy. The other leads toward safety. The creature looks between them, then looks at you. It is waiting for a decision that is not yours to make. Ellis must make this choice. Bring the boy down, or the creature will simply return to the house.",
+        "npcs": [],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [
+          "DECISION: The relocation requires Ellis's active cooperation. The investigators must retrieve the child and bring him to this junction so he can guide the creature to its new home."
+        ],
+        "loot": []
+      }
+    }
+  }
+}

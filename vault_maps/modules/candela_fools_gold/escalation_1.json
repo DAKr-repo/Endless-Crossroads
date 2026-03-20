@@ -1,0 +1,118 @@
+{
+  "seed": 7012,
+  "width": 50,
+  "height": 30,
+  "start_room_id": 0,
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 2,
+      "y": 2,
+      "width": 12,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false
+    },
+    "1": {
+      "id": 1,
+      "x": 16,
+      "y": 2,
+      "width": 14,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [0, 2, 3],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false
+    },
+    "2": {
+      "id": 2,
+      "x": 32,
+      "y": 3,
+      "width": 10,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false
+    },
+    "3": {
+      "id": 3,
+      "x": 16,
+      "y": 14,
+      "width": 14,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false
+    }
+  },
+  "metadata": {
+    "zone_id": "escalation_1",
+    "theme": "GOTHIC",
+    "topology": "dungeon",
+    "scene_title": "The Waterworks"
+  },
+  "content_hints": {
+    "0": {
+      "description": "The contaminated waterworks junction. An ancient stone cistern where the underground river meets the old containment infrastructure. Copper pipes, green with verdigris, route water through a series of filtration chambers. The filters are long since overwhelmed -- gold deposits clog every outlet.",
+      "read_aloud": "You can see the contamination's path mapped out in gold stains: up from the deep cavern, through the cistern, into the outflow pipes that feed the river. The volume is increasing. What was a trickle last week is now a steady flow. The gold formations are growing toward the pipes like roots seeking water.",
+      "enemies": [
+        {
+          "name": "Transformed Miners",
+          "hp": 15,
+          "ac": 12,
+          "attack": 4,
+          "damage": "1d6",
+          "count": 2,
+          "notes": "Two fully transformed miners working to clear blockages in the contamination channel. They're maintaining the pipeline, directed by the thinning. They attack anyone who interferes.",
+          "special": ["Gold Skin: resistant to piercing", "Contaminating Strike: melee hit inflicts 1 Bleed mark"]
+        }
+      ],
+      "event_triggers": ["The thinning is actively directing the transformed to maintain and expand the contamination pipeline. This isn't passive runoff -- it's an invasion."]
+    },
+    "1": {
+      "description": "The filtration gallery. A long chamber of stone basins, each one meant to trap sediment before the water reaches the river. The basins are overflowing with crystallized bleed that's grown into baroque formations -- towers and arches and shapes that almost look deliberate.",
+      "read_aloud": "The gold formations in the basins aren't random accumulation. They're architecture. Tiny, intricate structures like a city built by something very small or something very far away, projected through the bleed at a scale you can barely comprehend. It's beautiful. It's wrong.",
+      "investigation_dc": 16,
+      "investigation_success": "The structures are a blueprint -- a three-dimensional map of Newfaire's plumbing system, rendered in crystallized bleed. The thinning isn't just contaminating the water. It's mapping the city's infrastructure from the inside. It's planning.",
+      "enemies": [
+        {
+          "name": "Bleed Water Surge",
+          "hp": 15,
+          "ac": 12,
+          "attack": 4,
+          "damage": "1d4",
+          "count": 1,
+          "notes": "Contaminated water animates from the basins, flowing against gravity to engulf investigators.",
+          "special": ["Amorphous: immune to physical damage", "Contaminating: splash inflicts 1 Bleed mark", "Disperses if the basin it originates from is destroyed"]
+        }
+      ],
+      "loot": [
+        {"name": "Wardstone Fragment (Second)", "value": 0, "description": "The second of three original wardstones, embedded in a basin wall. Extracting it disrupts the gold formations nearby -- they collapse like sand castles."}
+      ]
+    },
+    "2": {
+      "description": "A maintenance alcove. The original containment team's forward base -- cots, a cold stove, and a workbench covered in ward-crafting tools. Someone lived here for months, maintaining the seal.",
+      "read_aloud": "A chalkboard on the wall shows a maintenance schedule spanning forty years. Different handwriting for each decade. Candela has been monitoring this thinning in secret for generations. The last entry is dated twelve years ago. Then nothing.",
+      "investigation_dc": 14,
+      "investigation_success": "The maintenance stopped when the last assigned operative died -- natural causes, age eighty-two. No replacement was assigned. An administrative gap. The seal degraded for twelve years before the miners broke through.",
+      "loot": [
+        {"name": "Ward-Crafting Tools", "value": 0, "description": "A set of precision instruments for maintaining thinning containment wards. Functional and necessary for the re-sealing ritual. The tools themselves are lightly bleed-resistant."}
+      ]
+    },
+    "3": {
+      "description": "The deep descent. A vertical shaft dropping into darkness, with iron rungs set into the rock face. The gold veins converge here, pulsing in unison, flowing downward. The air rising from below is hot, wet, and tastes of static.",
+      "read_aloud": "Looking down the shaft, you see the glow intensify with depth. Fifty feet down, the rock transitions entirely to gold -- not veined, not dusted, but solid crystallized bleed. The thinning is close. You can feel it in your teeth, in the hum of your bones.",
+      "perception_dc": 14,
+      "perception_success": "The third wardstone is visible partway down the shaft, wedged into a natural shelf in the rock. The gold growth has almost consumed it. Another day and it would be unreachable.",
+      "event_triggers": ["The thinning is mapping Newfaire's plumbing for a larger contamination event. Candela's monitoring lapsed. The re-sealing window is closing. The investigators must descend."]
+    }
+  }
+}

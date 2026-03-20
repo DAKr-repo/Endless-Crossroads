@@ -1,0 +1,90 @@
+{
+  "seed": 8007,
+  "width": 25,
+  "height": 18,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "way_station",
+    "theme": "STONE",
+    "topology": "settlement",
+    "mission_types": ["escort", "recon"]
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 2,
+      "y": 2,
+      "width": 8,
+      "height": 6,
+      "room_type": "town_square",
+      "connections": [1, 2],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The way station is a squat stone building with walls three feet thick and arrow slits for windows. Built a century ago as a toll house, it has served as rest stop, bandit holdout, and now military waypoint. A Legionnaire flag flies from the chimney. The courtyard is small, cobblestoned, and stained with old blood that no amount of rain has washed away.",
+        "read_aloud": "The last safe stop before the mountain pass. The station master meets you at the gate with a lantern in one hand and a loaded crossbow in the other.",
+        "npcs": [
+          {
+            "name": "Station Master Harven",
+            "role": "supply_contact",
+            "dialogue": "You can rest here tonight, but come dawn you move. I've got three more companies expected behind you and not enough beds for one. The pass is open but not safe -- take the scout's briefing before you go.",
+            "notes": "Harven is a retired Legionnaire who volunteered to run the way station when the retreat began. He has a prosthetic left foot carved from oak and walks with a pronounced limp. He knows the local terrain intimately."
+          },
+          {
+            "name": "Scout Mirra",
+            "role": "intelligence",
+            "dialogue": "I ran the pass two days ago. Crows overhead -- at least two, circling the narrows. Where there are Crows, there are Rotters being herded. The bridge beyond the pass is still standing, but I saw movement on the far side. Something big.",
+            "notes": "Mirra is the best scout in the 3rd Company. She speaks in clipped, precise sentences and never makes eye contact. She sketches maps on any available surface -- her briefings are accompanied by charcoal diagrams scratched onto the table."
+          }
+        ],
+        "services": ["rest", "supply"],
+        "event_triggers": [
+          "Harven locks the gate behind you. The crossbar is a whole oak beam."
+        ]
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 14,
+      "y": 2,
+      "width": 6,
+      "height": 5,
+      "room_type": "barracks",
+      "connections": [0],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The station's bunkroom is narrow and windowless. Eight cots line the walls, three of them occupied by soldiers sleeping with their boots on and weapons at hand. A map of the pass is pinned to the far wall, annotated with Mirra's charcoal marks -- Xs for confirmed enemy sightings, circles for possible positions.",
+        "services": ["rest"],
+        "investigation_dc": 10,
+        "investigation_success": "Mirra's map shows a route through the pass she has not mentioned in her briefing -- a goat trail along the ridge that bypasses the narrows entirely. She marked it with a question mark."
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 2,
+      "y": 10,
+      "width": 7,
+      "height": 5,
+      "room_type": "market",
+      "connections": [0],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The supply room is a converted cellar beneath the station. Iron-bound chests line the walls, each padlocked and labeled. Harven maintains an inventory that borders on obsessive -- every item logged, every disbursement countersigned. The air is cool and dry, smelling of stone and lamp oil.",
+        "services": ["supply"],
+        "npcs": [
+          {
+            "name": "Station Master Harven",
+            "role": "supply_contact",
+            "dialogue": "Sign here, here, and here. Yes, all three copies. The Legion runs on paper almost as much as it runs on food.",
+            "notes": "Supply is limited but available. Harven can provide rations for 3 days and basic ammunition."
+          }
+        ]
+      }
+    }
+  }
+}

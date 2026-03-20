@@ -1,0 +1,335 @@
+{
+  "version": 1,
+  "source": "DMG + SCAG + Dragon Heist + Rime of the Frostmaiden",
+  "dungeons": [
+    {
+      "name": "The Sunless Citadel",
+      "description": "A fortress carved into the walls of a ravine, swallowed by the earth centuries ago. Twisted saplings push through cracked flagstones, and the air reeks of fungal rot and stale water.",
+      "topology": "dungeon",
+      "services": [],
+      "room_type_hint": "ruins"
+    },
+    {
+      "name": "Wave Echo Cave",
+      "description": "An ancient mine where the rhythmic boom of waves echoes through tunnels long abandoned by the Phandelver Pact. Veins of raw mithral still glint in the torchlight between collapsed shafts.",
+      "topology": "dungeon",
+      "services": [],
+      "room_type_hint": "mine"
+    },
+    {
+      "name": "Crypt of the Everflame",
+      "description": "A burial vault beneath a hilltop shrine, its stone sarcophagi carved with warnings in Dethek. The deeper chambers hold older dead and older wards, both failing.",
+      "topology": "dungeon",
+      "services": [],
+      "room_type_hint": "crypt"
+    },
+    {
+      "name": "The Xanathar's Lair",
+      "description": "A sprawling subterranean complex beneath Skullport, patrolled by intellect devourers and decorated with the beholder crime lord's trophies. Every corridor is watched by an unseen eye.",
+      "topology": "dungeon",
+      "services": [],
+      "room_type_hint": "lair"
+    },
+    {
+      "name": "The Yawning Portal Underhalls",
+      "description": "Below the famous tavern's well shaft, crumbling stonework gives way to the uppermost passages of Undermountain. Graffiti from a thousand failed expeditions marks the walls.",
+      "topology": "dungeon",
+      "services": [],
+      "room_type_hint": "ruins"
+    },
+    {
+      "name": "Forge of Spells",
+      "description": "A dwarven workshop deep within Wave Echo Cave where the Phandelver Pact once bound arcane and divine energy into arms and armor. The brazier still hums with residual enchantment.",
+      "topology": "dungeon",
+      "services": [],
+      "room_type_hint": "forge"
+    },
+    {
+      "name": "Tomb of the Nine Gods",
+      "description": "A death-trap ziggurat in the jungles of Chult, its corridors lined with false doors and pressure plates. The trickster gods interred here left gifts as dangerous as their curses.",
+      "topology": "dungeon",
+      "services": [],
+      "room_type_hint": "tomb"
+    },
+    {
+      "name": "The Amber Temple",
+      "description": "A mountaintop sanctum in Barovia where dark vestiges slumber behind amber sarcophagi, whispering bargains to anyone foolish enough to listen. Frost crusts every surface.",
+      "topology": "dungeon",
+      "services": [],
+      "room_type_hint": "temple"
+    },
+    {
+      "name": "Gauntlgrym Foundry",
+      "description": "A primordial forge-city beneath the Sword Mountains, its halls lit by rivers of magma channeled through dwarven aqueducts. The heat warps the air at a hundred paces.",
+      "topology": "dungeon",
+      "services": [],
+      "room_type_hint": "forge"
+    },
+    {
+      "name": "The Sargauth Level",
+      "description": "A flooded sublevel of Undermountain where the River Sargauth winds between fungal grottos and drow outposts. The current carries debris from civilizations stacked above.",
+      "topology": "dungeon",
+      "services": [],
+      "room_type_hint": "sewer"
+    },
+    {
+      "name": "Cragmaw Hideout",
+      "description": "A cave network behind a curtain of vines on the Triboar Trail, claimed by goblin raiders. Crude bridges span an underground stream, and stolen supplies clog every alcove.",
+      "topology": "dungeon",
+      "services": [],
+      "room_type_hint": "cave"
+    },
+    {
+      "name": "Thundertree Ruins",
+      "description": "An overgrown village reclaimed by ash zombies and twig blights after Mount Hotenow's eruption. A young green dragon has settled in the ruined tower at its heart.",
+      "topology": "dungeon",
+      "services": [],
+      "room_type_hint": "ruins"
+    },
+    {
+      "name": "Castle Ravenloft",
+      "description": "Strahd's fortress looms above the village of Barovia, its spires clawing at perpetually overcast skies. Organ music drifts from somewhere within, though no player can be seen.",
+      "topology": "dungeon",
+      "services": [],
+      "room_type_hint": "castle"
+    },
+    {
+      "name": "Kelvin's Cairn Ice Caves",
+      "description": "Wind-hollowed tunnels bored into the flank of Icewind Dale's lone mountain. Walls of blue-white ice amplify every whisper into a chorus, and the temperature never rises above freezing.",
+      "topology": "dungeon",
+      "services": [],
+      "room_type_hint": "cave"
+    },
+    {
+      "name": "The Lost Mine of Phandelver",
+      "description": "Collapsed mine shafts and natural caverns intertwine beneath Phandalin, haunted by a spectator guardian and the restless dead of the original miners.",
+      "topology": "dungeon",
+      "services": [],
+      "room_type_hint": "mine"
+    },
+    {
+      "name": "Candlekeep Vaults",
+      "description": "The sealed archive levels beneath the great library-fortress, where chained books of dangerous lore are kept behind warded iron doors. Knowledge here bites back.",
+      "topology": "dungeon",
+      "services": [],
+      "room_type_hint": "library"
+    },
+    {
+      "name": "Sunblight Fortress",
+      "description": "A duergar stronghold carved into the roots of a glacier, its furnaces feeding the construction of a mechanical dragon. The walls sweat with condensation and dread.",
+      "topology": "dungeon",
+      "services": [],
+      "room_type_hint": "fortress"
+    },
+    {
+      "name": "Tower of Ashaba",
+      "description": "A crumbling mage's tower on the Dalelands frontier, its upper floors open to the sky. Arcane formulae still glow faintly on interior walls when moonlight strikes them.",
+      "topology": "dungeon",
+      "services": [],
+      "room_type_hint": "tower"
+    },
+    {
+      "name": "The Twisted Caverns",
+      "description": "A natural cave system warped by proximity to the Underdark, where bioluminescent fungi provide the only light and the tunnels rearrange themselves between visits.",
+      "topology": "dungeon",
+      "services": [],
+      "room_type_hint": "cave"
+    },
+    {
+      "name": "Hall of the Fire Giant King",
+      "description": "An obsidian throne room deep beneath a volcanic caldera, its pillars carved as bound fire elementals. The heat alone deals damage to the unprepared.",
+      "topology": "dungeon",
+      "services": [],
+      "room_type_hint": "lair"
+    }
+  ],
+  "settlements": [
+    {
+      "name": "Waterdeep",
+      "description": "The City of Splendors, a cosmopolitan metropolis of over a million souls governed by masked Lords and protected by the Griffon Cavalry. Its harbor welcomes ships from every coast.",
+      "topology": "settlement",
+      "services": ["rest", "shop", "rumor", "quest", "heal"],
+      "room_type_hint": "city"
+    },
+    {
+      "name": "Baldur's Gate",
+      "description": "A sprawling port city on the Chionthar River, divided between the wealthy Upper City and the lawless Outer City. The Flaming Fist mercenary company keeps an uneasy peace.",
+      "topology": "settlement",
+      "services": ["rest", "shop", "rumor", "quest", "heal"],
+      "room_type_hint": "city"
+    },
+    {
+      "name": "Neverwinter",
+      "description": "The Jewel of the North, still rebuilding after Mount Hotenow's eruption cracked its walls and opened a chasm to the Underdark. Lord Neverember funds reconstruction with Waterdhavian gold.",
+      "topology": "settlement",
+      "services": ["rest", "shop", "rumor", "quest", "heal"],
+      "room_type_hint": "city"
+    },
+    {
+      "name": "Phandalin",
+      "description": "A frontier mining town in the foothills of the Sword Mountains, recently liberated from Redbrand thugs. New settlers arrive weekly, drawn by rumors of lost mines and fresh opportunity.",
+      "topology": "settlement",
+      "services": ["rest", "shop", "rumor", "quest"],
+      "room_type_hint": "village"
+    },
+    {
+      "name": "Luskan",
+      "description": "The City of Sails, a pirate haven ruled by five High Captains from their ships-turned-strongholds. The Arcane Brotherhood's Hosttower looms over the harbor like a warning.",
+      "topology": "settlement",
+      "services": ["rest", "shop", "rumor", "quest"],
+      "room_type_hint": "city"
+    },
+    {
+      "name": "Bryn Shander",
+      "description": "The largest of the Ten-Towns, its wooden walls sheltering traders, trappers, and refugees from the endless Icewind Dale winter. Speaker Duvessa Shane keeps order with pragmatic resolve.",
+      "topology": "settlement",
+      "services": ["rest", "shop", "rumor", "quest"],
+      "room_type_hint": "town"
+    },
+    {
+      "name": "Targos",
+      "description": "A fishing town on the shores of Maer Dualdon, its docks perpetually crusted with ice. The militia drills daily against knucklehead trout poachers and worse things from the tundra.",
+      "topology": "settlement",
+      "services": ["rest", "shop", "rumor"],
+      "room_type_hint": "town"
+    },
+    {
+      "name": "Caer-Dineval",
+      "description": "A lakeside town in Icewind Dale, dominated by a hilltop castle where the speaker entertains visitors who arrive by night and leave no footprints in the snow.",
+      "topology": "settlement",
+      "services": ["rest", "rumor"],
+      "room_type_hint": "town"
+    },
+    {
+      "name": "Lonelywood",
+      "description": "The most remote of the Ten-Towns, nestled in the forest at the edge of the Reghed Glacier. Its residents came here to disappear, and they do not welcome questions.",
+      "topology": "settlement",
+      "services": ["rest", "rumor"],
+      "room_type_hint": "village"
+    },
+    {
+      "name": "Triboar",
+      "description": "A crossroads town where the Long Road meets the Evermoor Way, famous for its horse market and its tradition of impaling the skulls of defeated monsters on a central post.",
+      "topology": "settlement",
+      "services": ["rest", "shop", "rumor", "quest"],
+      "room_type_hint": "town"
+    },
+    {
+      "name": "Candlekeep",
+      "description": "A fortress-library on the Sword Coast where entry costs a book never before held in its vaults. The Avowed monks who tend the stacks have not left its walls in decades.",
+      "topology": "settlement",
+      "services": ["rest", "rumor"],
+      "room_type_hint": "fortress"
+    },
+    {
+      "name": "Daggerford",
+      "description": "A walled town south of Waterdeep, governed by a duchess who answers to no lord. Caravans stop here to resupply before the long haul north through troll country.",
+      "topology": "settlement",
+      "services": ["rest", "shop", "rumor"],
+      "room_type_hint": "town"
+    },
+    {
+      "name": "Mithral Hall",
+      "description": "The dwarven stronghold reclaimed by Bruenor Battlehammer, its forges burning again after centuries of shadow. The entry hall's ceiling is so high that clouds form inside.",
+      "topology": "settlement",
+      "services": ["rest", "shop", "heal"],
+      "room_type_hint": "fortress"
+    },
+    {
+      "name": "Gauntlgrym",
+      "description": "An ancient dwarven city-forge beneath the Sword Mountains, partially reclaimed from drow and duergar. The Great Forge harnesses a trapped primordial to heat its foundries.",
+      "topology": "settlement",
+      "services": ["rest", "shop", "heal"],
+      "room_type_hint": "fortress"
+    },
+    {
+      "name": "Silverymoon",
+      "description": "The Gem of the North, a center of learning and magic protected by a mythal that warms its streets even in deep winter. Bards say the city itself hums in harmony.",
+      "topology": "settlement",
+      "services": ["rest", "shop", "rumor", "quest", "heal"],
+      "room_type_hint": "city"
+    }
+  ],
+  "waterdeep_wards": [
+    {
+      "name": "Castle Ward",
+      "district": "Castle Ward",
+      "description": "The administrative heart of Waterdeep, dominated by Castle Waterdeep on its rocky promontory and the Palace of Waterdeep where the Lords hold court. The Yawning Portal tavern sits at its southern edge.",
+      "topology": "settlement",
+      "services": ["rest", "shop", "rumor", "quest"],
+      "room_type_hint": "civic"
+    },
+    {
+      "name": "Dock Ward",
+      "district": "Dock Ward",
+      "description": "The roughest quarter of Waterdeep, reeking of brine, tar, and yesterday's catch. Warehouses line the piers, and every third building hides a fencing operation or unlicensed tavern.",
+      "topology": "settlement",
+      "services": ["rest", "shop", "rumor"],
+      "room_type_hint": "docks"
+    },
+    {
+      "name": "North Ward",
+      "district": "North Ward",
+      "description": "The old-money residential district, its cobblestone streets lined with walled estates bearing family crests older than most nations. Servants outnumber residents three to one.",
+      "topology": "settlement",
+      "services": ["rest", "shop"],
+      "room_type_hint": "residential"
+    },
+    {
+      "name": "Sea Ward",
+      "district": "Sea Ward",
+      "description": "Waterdeep's wealthiest district, home to the temples of Tyr, Lathander, and Sune, as well as the Field of Triumph arena. The architecture is marble and ambition.",
+      "topology": "settlement",
+      "services": ["rest", "shop", "heal", "quest"],
+      "room_type_hint": "temple_district"
+    },
+    {
+      "name": "Trades Ward",
+      "district": "Trades Ward",
+      "description": "The commercial engine of the city, a warren of guild halls, counting houses, and market squares that never fully close. The smell of fresh-baked bread wars with tannery fumes.",
+      "topology": "settlement",
+      "services": ["shop", "rumor", "quest"],
+      "room_type_hint": "market"
+    },
+    {
+      "name": "Southern Ward",
+      "district": "Southern Ward",
+      "description": "A working-class district of modest homes and warehouses, its residents the teamsters, laborers, and tradespeople who keep the city fed and supplied. Honest and overlooked.",
+      "topology": "settlement",
+      "services": ["rest", "shop", "rumor"],
+      "room_type_hint": "residential"
+    },
+    {
+      "name": "City of the Dead",
+      "district": "City of the Dead",
+      "description": "Waterdeep's vast walled cemetery, a parkland of mausoleums, statues, and tree-lined paths. By day it is peaceful. By night the gates are locked, and the Watch patrols with silver weapons.",
+      "topology": "settlement",
+      "services": ["heal"],
+      "room_type_hint": "cemetery"
+    },
+    {
+      "name": "Field Ward",
+      "district": "Field Ward",
+      "description": "The newest and poorest ward, a shantytown that grew between the inner and outer walls. No guild jurisdiction, no Watch patrols after dark, and no shortage of desperate people.",
+      "topology": "settlement",
+      "services": ["rest", "rumor"],
+      "room_type_hint": "slum"
+    },
+    {
+      "name": "Undermountain (Dungeon Level)",
+      "district": "Undermountain",
+      "description": "The first level of Halaster Blackcloak's megadungeon, accessible through the Yawning Portal's well. Corridors shift between visits, and the mad wizard watches everything.",
+      "topology": "dungeon",
+      "services": [],
+      "room_type_hint": "dungeon"
+    },
+    {
+      "name": "Skullport",
+      "district": "Skullport",
+      "description": "The Port of Shadow, a lawless subterranean harbor deep beneath Waterdeep where slavers, smugglers, and worse conduct business beneath the gaze of floating flameskulls. Coin buys anything here.",
+      "topology": "settlement",
+      "services": ["rest", "shop", "rumor"],
+      "room_type_hint": "underground_port"
+    }
+  ]
+}

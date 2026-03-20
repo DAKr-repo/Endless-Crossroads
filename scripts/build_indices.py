@@ -339,7 +339,17 @@ def build_index_for_system(
 # ---------------------------------------------------------------------------
 
 def discover_systems(vault_root: Path) -> dict[str, list[Path]]:
-    """Scan vault/*/SOURCE/ directories for PDF files.
+    """Scan vault directories for PDF files under SOURCE/ subdirectories.
+
+    Handles two layouts:
+      - Flat:  vault/<system>/SOURCE/*.pdf         (e.g. dnd5e, stc, burnwillow)
+      - Group: vault/<group>/<system>/SOURCE/*.pdf  (e.g. FITD/bitd, ILLUMINATED_WORLDS/Candela_Obscura)
+
+    Group directories are detected as top-level vault entries that contain no
+    SOURCE/ dir themselves but whose children do (e.g. ``vault/FITD/``).
+
+    Vault directory names that differ from canonical Codex system IDs are
+    normalised via VAULT_DIR_TO_SYSTEM_ID before being added to the result.
 
     Args:
         vault_root: Root of the vault directory.
@@ -348,28 +358,45 @@ def discover_systems(vault_root: Path) -> dict[str, list[Path]]:
         Dict mapping system_id -> sorted list of PDF Paths.
         Systems with no PDFs are excluded.
     """
+    # Map vault directory names → canonical Codex system IDs where they differ.
+    VAULT_DIR_TO_SYSTEM_ID: dict[str, str] = {
+        "Candela_Obscura": "candela",
+        "CBR_PNK": "cbrpnk",
+    }
+
     systems: dict[str, list[Path]] = {}
     if not vault_root.exists():
         return systems
 
-    for system_dir in sorted(vault_root.iterdir()):
-        if not system_dir.is_dir():
-            continue
-        # Skip non-system entries (e.g. vault_manifest.json parent, FITD meta-dirs)
+    def _collect(system_dir: Path) -> None:
+        """Collect PDFs from system_dir/SOURCE/ into systems dict."""
         source_dir = system_dir / "SOURCE"
         if not source_dir.is_dir():
-            continue
-        pdfs = sorted(source_dir.rglob("*.pdf"))
-        pdfs += sorted(source_dir.rglob("*.PDF"))
-        # Deduplicate (case-insensitive filesystems may double-count)
+            return
+        raw_pdfs = sorted(source_dir.rglob("*.pdf"))
+        raw_pdfs += sorted(source_dir.rglob("*.PDF"))
         seen: set[Path] = set()
         unique_pdfs: list[Path] = []
-        for p in pdfs:
+        for p in raw_pdfs:
             if p not in seen:
                 seen.add(p)
                 unique_pdfs.append(p)
         if unique_pdfs:
-            systems[system_dir.name] = unique_pdfs
+            system_id = VAULT_DIR_TO_SYSTEM_ID.get(system_dir.name, system_dir.name)
+            systems[system_id] = unique_pdfs
+
+    for top_dir in sorted(vault_root.iterdir()):
+        if not top_dir.is_dir():
+            continue
+        source_dir = top_dir / "SOURCE"
+        if source_dir.is_dir():
+            # Flat layout — this is a direct system directory
+            _collect(top_dir)
+        else:
+            # Possible group directory — recurse one level into children
+            for child_dir in sorted(top_dir.iterdir()):
+                if child_dir.is_dir() and (child_dir / "SOURCE").is_dir():
+                    _collect(child_dir)
 
     return systems
 

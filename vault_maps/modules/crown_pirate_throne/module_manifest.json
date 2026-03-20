@@ -1,0 +1,16 @@
+{
+    "module_id": "crown_pirate_throne",
+    "display_name": "The Pirate Throne",
+    "system_id": "crown",
+    "source_type": "homebrew_original",
+    "source_pdf": "original",
+    "campaign_json": "campaign.json",
+    "chapters": [
+        {
+            "chapter_id": "the_pirate_throne",
+            "display_name": "The Pirate Throne",
+            "zones": [],
+            "order": 1
+        }
+    ]
+}

@@ -1,0 +1,94 @@
+{
+  "seed": 7024,
+  "width": 40,
+  "height": 30,
+  "start_room_id": 0,
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 2,
+      "y": 2,
+      "width": 10,
+      "height": 8,
+      "room_type": "start",
+      "connections": [1],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false
+    },
+    "1": {
+      "id": 1,
+      "x": 14,
+      "y": 3,
+      "width": 14,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [0, 2],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false
+    },
+    "2": {
+      "id": 2,
+      "x": 14,
+      "y": 15,
+      "width": 12,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false
+    }
+  },
+  "metadata": {
+    "zone_id": "exploration_1",
+    "theme": "GOTHIC",
+    "topology": "dungeon",
+    "scene_title": "The Corvin Estate"
+  },
+  "content_hints": {
+    "0": {
+      "description": "The estate's service entrance. A narrow corridor between the kitchen and the wine cellar. The staff have been dismissed for the evening -- Lyssa confirmed the pattern. On ritual nights, the house empties except for the seven and their guards.",
+      "read_aloud": "The service corridor smells of floor polish and cold stone. Framed photographs line the walls -- Corvin shaking hands with mayors, senators, a foreign dignitary. Each frame hangs slightly crooked, as though the house itself tilts toward the basement.",
+      "npcs": [
+        {
+          "name": "Lyssa Dane",
+          "role": "witness",
+          "dialogue": "The wine cellar has a false wall behind the Bordeaux rack. Pull the third bottle from the left on the top shelf -- it's a lever. The stairs go down three flights. The guards don't patrol below the first landing. They're afraid to.",
+          "notes": "Lyssa provides access but won't enter the basement. She's seen what happens down there and her courage has limits. She'll wait at the service entrance to provide an escape route if needed."
+        }
+      ],
+      "event_triggers": ["The circle infiltrates Corvin's estate through the service entrance. Lyssa provides the access mechanism to the hidden basement."]
+    },
+    "1": {
+      "description": "The wine cellar. Racks of expensive vintages, temperature-controlled, impeccably organized. The false wall behind the Bordeaux section is seamless -- you'd never find it without knowing. The lever clicks. The wall swings inward on silent hinges, revealing stairs descending into lamplight.",
+      "read_aloud": "The stairs are marble, not stone. The walls are paneled in dark wood. This isn't a hidden passage cobbled together in a basement -- it's a purpose-built descending gallery, as carefully appointed as the house above. Oil paintings hang on the walls as you descend: portraits of the seven members, each one depicting them younger than they are now. Much younger.",
+      "investigation_dc": 14,
+      "investigation_success": "The portraits are dated. Corvin's is labeled 1895 -- thirty-one years ago. He would have been a child. But the man in the portrait is an adult, identical to how Corvin looks today. The blood magick isn't just healing. It's reversing age.",
+      "enemies": [
+        {
+          "name": "Cult Guards",
+          "hp": 15,
+          "ac": 12,
+          "attack": 4,
+          "damage": "1d6",
+          "count": 1,
+          "notes": "A guard posted at the first landing. Former military, well-paid, armed with a truncheon and a revolver. He's been told to keep curiosity-seekers out. He hasn't been told what he's guarding.",
+          "special": ["Armed: revolver deals 1d8 at range", "Loyal but uninformed: can be persuaded to stand down if shown evidence of what's below"]
+        }
+      ],
+      "loot": [
+        {"name": "Cult Registry", "value": 0, "description": "A leather-bound book on a side table listing all seven members, their real names, and their 'stake names.' Each entry includes a blood sample sealed in wax. The book radiates faint bleed energy."}
+      ]
+    },
+    "2": {
+      "description": "The second sublevel. A library of occult texts, hand-copied manuscripts, and ritual diagrams. Glass cases display artifacts -- a ceremonial dagger, vials of preserved blood, and seven iron stakes arranged in a fan pattern on a velvet display.",
+      "read_aloud": "The Seven Stakes of Ire. Each one is twelve inches long, forged from dark iron, inscribed with symbols that shift when you're not looking directly at them. They hum. Not audibly -- you feel it in your sternum. These aren't weapons. They're keys.",
+      "investigation_dc": 16,
+      "investigation_success": "The manuscripts describe the Stakes as anchors for the Unabridged ritual. Each stake is driven into the thinning during the final ceremony, binding a practitioner's consciousness to the bleed. The process is irreversible. Once complete, the practitioner is no longer human -- they exist as a bleed entity wearing their original body. The cult plans to complete the ritual on the next new moon.",
+      "perception_dc": 12,
+      "perception_success": "The glass case holding the Stakes is warded. Opening it without the correct key will trigger an alarm that resonates through the bleed -- every cult member will feel it instantly, regardless of distance."
+    }
+  }
+}

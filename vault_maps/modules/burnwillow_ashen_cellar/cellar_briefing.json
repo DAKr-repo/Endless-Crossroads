@@ -1,0 +1,99 @@
+{
+    "seed": 4402,
+    "width": 50,
+    "height": 20,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "cellar_briefing",
+        "theme": "RUST",
+        "topology": "settlement",
+        "display_name": "Emberhome Briefing",
+        "flavor_note": "Warden Voss assigns the party's first mission: clear the corruption festering beneath the old storehouse. A tutorial sequence that teaches movement, shopping, investigation, and descent."
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 5,
+            "y": 8,
+            "width": 14,
+            "height": 8,
+            "room_type": "start",
+            "connections": [1],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Warden's Hall. Voss stands before the zone map, a fresh amber pin stuck into the surface levels -- the old storehouse district. The pin glows faintly, which means the Rot is active and recent. Two bark-strips hang from the bounty board, both marked with the same assignment in Voss's sharp handwriting.",
+                "read_aloud": "Voss does not look up from the map. 'Something stirs below the old storehouse. The Kindlers reported sounds three nights running -- scratching, wet movement, the smell of mushroom rot pushing up through the floorboards. I sent a scout. She came back grey-faced and would not speak about what she saw. The cellar needs clearing before it spreads to the market level. You are the closest thing I have to expendable.' She pins a bark-strip to your chest. 'Bring this back when it is done. Or do not come back at all.'",
+                "npcs": [
+                    {
+                        "name": "Warden Voss",
+                        "role": "quest_giver",
+                        "dialogue": "The cellar is small. Five chambers at most, carved into the root when the storehouse was built. Tier I threats -- Rot Sprites, maybe a Blighted Rat pack. Nothing that should kill you unless you are careless. The concern is the source. Something is feeding the corruption down there. Find it. End it. The DoomClock starts the moment you descend.",
+                        "notes": "This is a tutorial mission. Voss provides explicit mechanical advice: buy supplies at Market Row, check your gear at the Forge, and descend prepared. She will not send unprepared Seekers."
+                    }
+                ],
+                "loot": [],
+                "services": ["quest"],
+                "event_triggers": [
+                    "On quest acceptance: Voss marks the party's names on her survival ledger. 'Current Seeker survival rate for first descents: sixty-two percent. Improve my statistics.'"
+                ]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 22,
+            "y": 8,
+            "width": 14,
+            "height": 8,
+            "room_type": "hub",
+            "connections": [0, 2],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Market Row, compressed into its morning bustle. Birsa has laid out a selection of first-descent essentials on a bark-cloth blanket: tallow candles, a rot-salve pouch, a bundle of iron nails that could serve as lockpicks in a pinch. She watches the party with the calculating gaze of someone who has outfitted many Seekers, most of whom did not return to pay their tabs.",
+                "read_aloud": "Birsa adjusts a candle on her blanket without looking at you. 'First descent? I can tell. You walk like people who still expect to come back. Here -- rot-salve, candles, and something sharp. The salve is worth more than the blade, but you will not believe that until something grey touches your skin.'",
+                "npcs": [
+                    {
+                        "name": "Birsa",
+                        "role": "merchant",
+                        "dialogue": "The cellar? Small job. Everybody starts with the cellar. The ones who come back learn two things: buy the salve, and never assume a room is empty just because nothing moves. The Rot does not always move. Sometimes it waits.",
+                        "notes": "Tutorial merchant interaction. Birsa offers starter supplies at fair prices. Rot-Salve Pouch is the critical purchase -- it cures early Blight contact."
+                    }
+                ],
+                "loot": [
+                    {"name": "Rot-Salve Pouch", "value": 3, "type": "consumable", "notes": "Cures early Blight infection within 1 hour of contact."},
+                    {"name": "Tallow Candle (3-pack)", "value": 1, "type": "consumable", "notes": "4 hours of light each."},
+                    {"name": "Iron Nail Bundle", "value": 2, "type": "tool", "notes": "Improvised lockpicks. -1d6 penalty to Wits lockpick checks but functional."}
+                ],
+                "services": ["shop"],
+                "event_triggers": []
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 40,
+            "y": 8,
+            "width": 12,
+            "height": 8,
+            "room_type": "exit",
+            "connections": [1],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The old storehouse leans against the settlement wall like a drunk against a lamppost. Its planks are swollen with moisture and the ironbark frame has split along old stress fractures. A trapdoor in the floor -- heavy, iron-banded, and recently pried open -- leads to the cellar below. The edges of the trapdoor are furred with grey fungal growth. The smell rising from below is wet earth, mushroom, and something sweeter underneath that makes your stomach turn.",
+                "read_aloud": "The trapdoor is open. Someone forced it recently -- the pry-bar marks are fresh, the rust scraped bright. Grey fuzz clings to the edges like mold on bread, but thicker, and it pulses faintly when you bring a light close. The air from below is cold and smells of turned earth and something living that should not be. Stairs descend into the dark.",
+                "npcs": [],
+                "loot": [],
+                "services": [],
+                "investigation_dc": 10,
+                "event_triggers": [
+                    "On investigation success (DC 10): The grey fuzz recoils from flame. Blight-sign: the corruption is recent, within days. The growth pattern radiates outward from the cellar, not inward. Whatever is down there is pushing up, not something that fell in.",
+                    "On descent: The DoomClock begins. The trapdoor can be left open (escape route) or closed (prevents Rot from spreading upward but cuts off quick retreat)."
+                ]
+            }
+        }
+    }
+}

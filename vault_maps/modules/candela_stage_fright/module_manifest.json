@@ -1,0 +1,72 @@
+{
+  "module_id": "candela_stage_fright",
+  "display_name": "Stage Fright",
+  "system_id": "candela",
+  "source_pdf": null,
+  "source_type": "publisher_licensed",
+  "world_map": null,
+  "starting_location": "south_soffit_hook",
+  "recommended_levels": {"min": 1, "max": 3},
+  "chapters": [
+    {
+      "chapter_id": "discovery",
+      "display_name": "Discovery",
+      "order": 1,
+      "zones": [
+        {
+          "zone_id": "south_soffit_hook",
+          "blueprint": "hook.json",
+          "topology": "settlement",
+          "theme": "GOTHIC",
+          "location_id": "south_soffit",
+          "entry_trigger": "module_start",
+          "exit_trigger": "scene_complete"
+        },
+        {
+          "zone_id": "crime_scene",
+          "blueprint": "arrival.json",
+          "topology": "settlement",
+          "theme": "GOTHIC",
+          "location_id": "south_soffit",
+          "entry_trigger": "scene_complete",
+          "exit_trigger": "scene_complete"
+        }
+      ]
+    },
+    {
+      "chapter_id": "confrontation",
+      "display_name": "Confrontation",
+      "order": 2,
+      "zones": [
+        {
+          "zone_id": "crane_office",
+          "blueprint": "escalation_1.json",
+          "topology": "settlement",
+          "theme": "GOTHIC",
+          "location_id": "south_soffit",
+          "entry_trigger": "scene_complete",
+          "exit_trigger": "scene_complete"
+        },
+        {
+          "zone_id": "eden_theater_lobby",
+          "blueprint": "escalation_2.json",
+          "topology": "dungeon",
+          "theme": "GOTHIC",
+          "location_id": "florence_brighton",
+          "entry_trigger": "scene_complete",
+          "exit_trigger": "scene_complete"
+        },
+        {
+          "zone_id": "eden_theater_stage",
+          "blueprint": "climax.json",
+          "topology": "dungeon",
+          "theme": "GOTHIC",
+          "location_id": "eden_theater",
+          "entry_trigger": "scene_complete",
+          "exit_trigger": "boss_defeated"
+        }
+      ]
+    }
+  ],
+  "freeform_zones": []
+}

@@ -1,0 +1,77 @@
+{
+  "seed": 8011,
+  "width": 35,
+  "height": 25,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "upper_tunnels",
+    "theme": "STONE",
+    "topology": "dungeon",
+    "mission_types": ["supply", "assault"]
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 2,
+      "y": 2,
+      "width": 8,
+      "height": 6,
+      "room_type": "start",
+      "connections": [1],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The first level of the mine. Ore cart rails run along the floor, disappearing into the darkness. The tunnel walls are reinforced with oak timbers, each one stamped with the mine's founding date -- 847 A.U. Lantern hooks are spaced every twenty paces, but most of the lanterns are dark. Your own light pushes back the black by about ten feet.",
+        "read_aloud": "The timbers creak overhead. Picks and tools lie abandoned on the tunnel floor, left where they fell when the miners evacuated.",
+        "event_triggers": [
+          "The timbers creak overhead. Picks and tools lie abandoned."
+        ]
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 14,
+      "y": 8,
+      "width": 10,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [0, 2],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "A junction chamber where three tunnels meet. Mining equipment is piled against one wall -- a winch, coils of rope, a collapsed ore cart. The far tunnel descends at a steep angle toward the deep shaft. The timbers here are scored with deep gouges, as if something with claws dragged itself along the walls. The Rotters came from below, climbing with mindless persistence.",
+        "enemies": [
+          {"name": "Rotter", "hp": 8, "max_hp": 8, "ac": 8, "attack": 3, "defense": 8, "count": 4},
+          {"name": "Heartless", "hp": 15, "max_hp": 15, "ac": 13, "attack": 5, "defense": 13, "count": 1}
+        ],
+        "perception_dc": 12,
+        "perception_success": "The Heartless is wearing a miner's apron. Its hands still grip a pickaxe. It was turned while working and never stopped -- the tunnel wall behind it shows fresh excavation gouges, dug by dead hands with inhuman patience.",
+        "event_triggers": [
+          "A distant rumble from below. The timbers groan. Dust sifts down from the ceiling."
+        ]
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 26,
+      "y": 4,
+      "width": 7,
+      "height": 6,
+      "room_type": "treasure",
+      "connections": [1],
+      "tier": 2,
+      "is_locked": true,
+      "is_secret": false,
+      "content_hints": {
+        "description": "A sealed storage chamber behind a reinforced door. Inside, crates of refined ore and alchemical reagents are stacked to the ceiling. The mine's most valuable output was stored here before transport to the surface. A manifest pinned to the door lists the contents in precise Bartan notation -- enough raw material for hundreds of black-shot rounds.",
+        "loot": [
+          {"name": "Alchemical Ore Cache", "value": 4, "description": "Refined green-veined ore. Enough for the Alchemists to produce black-shot ammunition for the entire march. Supply +2."},
+          {"name": "Mine Manifest", "value": 0, "description": "Detailed inventory and tunnel maps. Reveals the deep shaft's layout and the location of the richest ore vein."}
+        ],
+        "lock_dc": 12
+      }
+    }
+  }
+}

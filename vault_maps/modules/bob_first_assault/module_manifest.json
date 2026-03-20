@@ -1,0 +1,57 @@
+{
+  "module_id": "bob_first_assault",
+  "display_name": "Operation Shattered Citadel",
+  "system_id": "bob",
+  "source_type": "publisher_licensed",
+  "starting_location": "briefing",
+  "recommended_levels": {"min": 1, "max": 4},
+  "chapters": [
+    {
+      "chapter_id": "preparation",
+      "display_name": "Preparation",
+      "order": 0,
+      "zones": [
+        {
+          "zone_id": "briefing",
+          "blueprint": "briefing.json",
+          "topology": "settlement",
+          "theme": "STONE",
+          "entry_trigger": "module_start",
+          "exit_trigger": "player_choice"
+        }
+      ]
+    },
+    {
+      "chapter_id": "operation_shattered_citadel",
+      "display_name": "Operation Shattered Citadel",
+      "order": 1,
+      "zones": [
+        {
+          "zone_id": "deployment",
+          "blueprint": "deployment.json",
+          "topology": "dungeon",
+          "theme": "STONE",
+          "entry_trigger": "player_choice",
+          "exit_trigger": "all_rooms"
+        },
+        {
+          "zone_id": "assault",
+          "blueprint": "assault.json",
+          "topology": "dungeon",
+          "theme": "STONE",
+          "entry_trigger": "player_choice",
+          "exit_trigger": "boss_defeated"
+        },
+        {
+          "zone_id": "extraction",
+          "blueprint": "extraction.json",
+          "topology": "dungeon",
+          "theme": "STONE",
+          "entry_trigger": "player_choice",
+          "exit_trigger": "all_rooms"
+        }
+      ]
+    }
+  ],
+  "freeform_zones": []
+}

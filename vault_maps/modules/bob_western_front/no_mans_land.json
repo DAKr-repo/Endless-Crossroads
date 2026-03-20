@@ -1,0 +1,84 @@
+{
+  "seed": 8002,
+  "width": 40,
+  "height": 25,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "no_mans_land",
+    "theme": "RUST",
+    "topology": "dungeon",
+    "mission_types": ["assault", "recon"]
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 2,
+      "y": 2,
+      "width": 8,
+      "height": 6,
+      "room_type": "start",
+      "connections": [1],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The trench ends and the blasted fields begin. Shell craters pock the grey earth like open sores, their edges crusted with frost. Abandoned equipment lies half-buried in the mud -- a broken cart wheel, a legionnaire's pack with the straps cut, a standard pole snapped in two. The silence is worse than shelling.",
+        "read_aloud": "You climb over the last sandbag wall and into no man's land. The ground is cratered and grey. Nothing moves except the ash drifting down from the burning city.",
+        "enemies": [
+          {"name": "Rotter", "hp": 8, "max_hp": 8, "ac": 8, "attack": 3, "defense": 8, "count": 2}
+        ],
+        "event_triggers": [
+          "Boot prints in the mud -- some heading west, many more heading east. The retreating kind."
+        ]
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 16,
+      "y": 8,
+      "width": 10,
+      "height": 7,
+      "room_type": "normal",
+      "connections": [0, 2],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "A massive crater serves as a natural crossroads. At its center, a toppled siege engine lies on its side, wheels still turning in the wind. The crater rim offers a clear sightline in every direction -- which means anything out there can see you, too. Dark shapes shuffle along the far ridge.",
+        "enemies": [
+          {"name": "Rotter", "hp": 8, "max_hp": 8, "ac": 8, "attack": 3, "defense": 8, "count": 1},
+          {"name": "Hound", "hp": 8, "max_hp": 8, "ac": 10, "attack": 4, "defense": 10, "count": 2}
+        ],
+        "event_triggers": [
+          "The horizon glows orange where the Aldermani city burns. The light pulses, as if the fire has a heartbeat."
+        ],
+        "perception_dc": 12,
+        "perception_success": "Tracks in the crater mud suggest the Hounds circle this position regularly -- a patrol route. They'll return within the hour."
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 30,
+      "y": 4,
+      "width": 8,
+      "height": 6,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The field narrows between two collapsed farmsteads. Stone walls provide cover but also funnel movement into a killing ground. A Legionnaire's body lies propped against the eastern wall, arms folded across his chest -- someone took the time to close his eyes. His ammunition pouch is empty.",
+        "enemies": [
+          {"name": "Rotter", "hp": 8, "max_hp": 8, "ac": 8, "attack": 3, "defense": 8, "count": 3},
+          {"name": "Hound", "hp": 8, "max_hp": 8, "ac": 10, "attack": 4, "defense": 10, "count": 2}
+        ],
+        "investigation_dc": 10,
+        "investigation_success": "The dead Legionnaire's journal is tucked inside his coat. The last entry reads: 'They don't stop. They never stop. But the Knight -- the Knight watches. It's learning.'",
+        "event_triggers": [
+          "Something howls in the distance. Not a wolf. Wolves don't howl like they're in pain."
+        ]
+      }
+    }
+  }
+}

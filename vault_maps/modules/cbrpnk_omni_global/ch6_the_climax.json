@@ -1,0 +1,94 @@
+{
+    "seed": 9006,
+    "width": 45,
+    "height": 35,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "the_climax",
+        "theme": "RUST",
+        "topology": "dungeon",
+        "display_name": "The Climax: Omni Global Falls",
+        "description": "The present. Every countermeasure has been addressed. The flashback runs are over. Now comes the assault the runners have been preparing for -- the final operation against Omni Global Solutions. Target: Brightstar, the private orbital station that serves as Omni's data nexus, comms relay, and President Castilho's personal fortress. The ground-level approach goes through Omni's executive compound. What waits at the top is the reason the Operator started all of this."
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 2,
+            "y": 24,
+            "width": 10,
+            "height": 8,
+            "room_type": "start",
+            "connections": [1],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The approach. Omni Global's executive compound rises from the financial district like a fang of glass and steel. The perimeter is a kill zone -- motion sensors, drone patrols, pressure plates in the manicured lawn. But the Media Blackout run killed their surveillance feeds. Project Quest's crash diverted their IT resources. The Mole's intel (true or fabricated) mapped every guard rotation. And the Dust Wall run proved the team can survive anything Omni throws at them. Tonight, the compound's defenses have gaps. Small ones. Temporary ones. Enough.",
+                "read_aloud": "The Operator's voice on comms, steady for the first time: 'Everything we did leads here. The compound feeds into the Brightstar uplink on the fortieth floor. Hit the uplink, hit Brightstar. Hit Brightstar, hit Castilho. Hit Castilho...' A pause. 'Hit Castilho and this is over. Go.'",
+                "enemies": [
+                    {"name": "Taskforce Perimeter Guard", "hp": 25, "ac": 14, "attack": 6, "damage": "2d6", "count": 2, "notes": "Elite perimeter security. Thermal optics, heavy rifles. They know someone is coming tonight -- Omni has been on high alert since the media blackout.", "special": ["Coordinated Response: If one guard is engaged, the other flanks within 1 round"]}
+                ],
+                "event_triggers": [
+                    "The compound's emergency broadcast system activates as the runners breach the perimeter. President Castilho's voice, calm and amused: 'I know who you are. I know what the Operator told you. Ask yourself: did she tell you everything? Did she tell you about Brightstar's dead-man switch? Come up. Let us have a conversation before anyone else has to die.'"
+                ]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 14,
+            "y": 12,
+            "width": 12,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [0, 2],
+            "tier": 3,
+            "is_locked": true,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The inner sanctum. The executive floors are obscene -- real wood paneling, actual plants, air that smells like nothing because it has been filtered through seventeen stages of purification. Castilho's private gallery lines the hallway: oil paintings of corporate acquisitions rendered as classical battle scenes. The elevator to floor 40 requires biometric clearance and a key that is currently hanging around a Taskforce commander's neck.",
+                "read_aloud": "After weeks of parking garages and chemical wastelands, the silence here is the loudest thing you have ever heard. The carpet absorbs your footsteps. The air conditioning whispers. A painting on the wall depicts a city in flames, rendered in the style of a Renaissance altarpiece. The brass plaque reads: 'Acquisition of Lagos Metro, 2087. Oil on canvas.'",
+                "enemies": [
+                    {"name": "Taskforce Commander", "hp": 25, "ac": 14, "attack": 6, "damage": "2d6", "count": 1, "notes": "Omni's head of physical security. Carries the biometric key to the Brightstar uplink elevator. Will not run. Has a family photo taped inside his tactical vest.", "special": ["Last Stand: When below 10 HP, attack increases to +8", "Biometric Key: Drops elevator access on defeat"]}
+                ],
+                "lock_dc": 16,
+                "loot": [
+                    {"name": "Brightstar Elevator Key", "value": 0, "description": "Biometric fob attuned to the Taskforce Commander's palm. Still warm."},
+                    {"name": "Castilho's Personal Comm", "value": 500, "description": "Encrypted device containing messages between Castilho and a contact listed only as 'LENA.' The Operator's daughter is alive. Castilho has been using her as leverage -- not against the Operator, but against a faction inside Omni that wanted to kill the Operator years ago. The truth is more complicated than anyone admitted."}
+                ],
+                "investigation_dc": 16,
+                "investigation_success": "Behind the Lagos acquisition painting, a concealed safe. Inside: a legal document titled 'Dead Man Protocol.' If Brightstar's uplink is severed without proper authorization, the station's reactor vents into the atmosphere, releasing enough radioactive material to render the city uninhabitable. Castilho was not bluffing."
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 18,
+            "y": 2,
+            "width": 14,
+            "height": 10,
+            "room_type": "boss",
+            "connections": [1],
+            "tier": 4,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Brightstar Uplink -- Floor 40. The room is a cathedral of data. Holographic displays project Brightstar's orbital telemetry across every surface. At the center, a chair. In the chair, President Castilho -- ancient, augmented, plugged into the station via a direct neural conduit that makes the uplink an extension of his nervous system. He is the dead-man switch. Killing him triggers the protocol. A Dozer unit stands motionless behind the chair, slaved to Castilho's biometrics.",
+                "read_aloud": "Castilho does not stand. He does not need to. The room is his body now. 'There you are,' he says, and the holographic orbital display zooms in on the city below. 'Sixty million people, give or take. The reactor on Brightstar was my insurance policy -- not against you. Against the board. Against anyone who thought they could replace me.' He smiles. 'So. Take Down, Resist, or Liberate. Which did the Operator choose for you? And does it still feel like the right answer?'",
+                "npcs": [
+                    {
+                        "name": "President Castilho",
+                        "role": "antagonist",
+                        "dialogue": "I am not a villain. I am a system. Omni Global Solutions employs four hundred thousand people, feeds twelve million through subsidiary agriculture programs, and maintains infrastructure for thirty-seven cities. Kill me and the dead-man switch ends all of that. Disconnect me and I die anyway -- the neural conduit is the only thing keeping my organs functioning. The Operator knew this. Ask her.",
+                        "notes": "[DM: Function: Final Antagonist. Quirk: Never blinks -- the augmented eyes do not need to. Speaks in the cadence of a keynote presentation, even when discussing his own death. Secret: Castilho is already clinically dead. The neural conduit runs his body like a puppet. The 'person' the runners are talking to is an AI trained on sixty years of Castilho's decision patterns. The real Castilho died nine years ago. The AI does not know this about itself. Want: Survival of the system (Omni). Need: Permission to stop.]"
+                    }
+                ],
+                "enemies": [
+                    {"name": "Dozer Unit (Elite)", "hp": 40, "ac": 16, "attack": 8, "damage": "3d6", "count": 1, "is_boss": true, "notes": "Castilho's personal enforcer. Slaved to his biometrics -- if Castilho dies or is disconnected, the Dozer enters autonomous kill mode with no target discrimination. Heavily armored, machine gun arms, reinforced chassis.", "special": ["Autonomous Rage: If Castilho is neutralized, gains +2 attack but attacks ALL targets", "Missile Salvo: Once per scene, fires micro-missiles dealing 4d6 in a 5m radius", "Armored Shell: Reduces all incoming damage by 3"]},
+                    {"name": "Taskforce Rapid Response", "hp": 25, "ac": 14, "attack": 6, "damage": "2d6", "count": 2, "notes": "Elevator reinforcements. Arrive 3 rounds after combat begins. Can be prevented by destroying the elevator controls.", "special": ["Flashbang Entry: First round, all runners must resist or lose their action"]}
+                ],
+                "event_triggers": [
+                    "The climax presents three paths matching the campaign angle: [TAKE DOWN] Sever Castilho's neural link -- disabling the dead-man switch requires a simultaneous Hack (DC 18) and Override (DC 16) while the Dozer is suppressed. [RESIST] Upload a virus through the uplink that gives Brightstar's controls to a neutral third party, removing Omni's monopoly without triggering the dead-man switch. [LIBERATE] Convince the Castilho AI that it is not the real Castilho -- if it accepts the truth, it can choose to shut down Brightstar's weapons voluntarily. Each path has consequences that reshape the city in the aftermath."
+                ]
+            }
+        }
+    }
+}

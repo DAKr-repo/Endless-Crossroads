@@ -1,0 +1,102 @@
+{
+  "seed": 4505,
+  "width": 25,
+  "height": 15,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "briar_green_streets",
+    "theme": "GOTHIC",
+    "topology": "dungeon",
+    "display_name": "The Dead Walk"
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 0,
+      "y": 0,
+      "width": 8,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Briar Green, after dark. The gaslamps gutter and sway in a wind that smells of formaldehyde. A sound rising from the east -- galloping, but wrong. Too many legs. Too wet. Around the corner, a pack of racing hounds tears down the cobblestones, tongues lolling, legs churning. They have been dead for weeks. Their fur is matted with grave dirt and their eyes glow with the dull phosphorescence of putrescence.",
+        "read_aloud": "The greyhounds round the corner at a dead sprint, six of them, their paws striking sparks from the cobbles. They are emaciated, ribs like barrel staves, and their jaws hang open at angles that suggest the hinges have come loose. They were racing dogs, buried at the track cemetery on Ashmore Lane. Oscar photographed them yesterday. He thought he was documenting grief. He was issuing invitations.",
+        "npcs": [],
+        "enemies": [
+          {
+            "name": "Undead Racing Hound",
+            "hp": 8,
+            "max_hp": 8,
+            "ac": 10,
+            "attack": 2,
+            "defense": 10,
+            "count": 3
+          }
+        ],
+        "services": [],
+        "event_triggers": [
+          "THREAT: Putrescence (Body) -- the undead hounds carry disease. Their bites cause necrotic infection if not treated.",
+          "Oscar has been photographing every dead thing he can find, trying to understand the camera. He has inadvertently awakened dozens of subjects across Briar Green."
+        ],
+        "loot": []
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 10,
+      "y": 0,
+      "width": 8,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [0, 2],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The intersection of Briar and Ashmore. From here you can see Sacred Ascension Cemetery on the hill above -- and between the headstones, shapes are moving. Slowly. Jerkily. The sound of brass bells ringing reaches you from the graveyard, dozens of them, all at once. Safety coffins. The bells wired to the fingers of the recently buried, so they can ring for help if interred alive. They are all ringing now.",
+        "npcs": [],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [
+          "REVEAL: The dead are rising en masse. Every subject Oscar has photographed -- human, animal -- is clawing its way back. Sacred Ascension Cemetery is the epicenter. Most of the photographed subjects were buried there.",
+          "The safety coffin bells ring in a discordant chorus from the cemetery hill. Dozens of the recently dead are waking simultaneously."
+        ],
+        "loot": [],
+        "perception_dc": 12,
+        "perception_success": "Not all the graves are disturbed. Only the ones in the northeast plot -- the section where Oscar's recent subjects are buried. The camera's effect has a radius. It is centered on the cemetery's central mausoleum."
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 18,
+      "y": 2,
+      "width": 6,
+      "height": 6,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The cemetery gate. Wrought iron, standing open. A groundskeeper's lantern lies abandoned on the path, still burning. Boot prints in the mud lead in but not out. Beyond the gate, the gravel path winds uphill between headstones, and the shapes between the stones are more defined now -- figures in burial clothes, moving with the halting gait of bodies remembering how to walk.",
+        "npcs": [
+          {
+            "name": "Chen Kai",
+            "role": "informant",
+            "dialogue": "I have served this cemetery for thirty years. I have never -- the bells. All the bells at once. God help me, I opened a safety coffin. The woman inside looked at me. She tried to speak. No breath in her lungs, but she tried. Then she climbed out and walked toward the mausoleum. They are all walking toward the mausoleum.",
+            "notes": "He/him. Cemetery priest. Has served Sacred Ascension for three decades. Terrified but refuses to abandon his post. Knows the cemetery layout intimately. Will tell the circle that the mausoleum at the center belongs to the Vienno family -- the same name from Sara's grandfather's notes."
+          }
+        ],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [
+          "Father Chen can lead you through the cemetery to the central mausoleum. He knows a path through the older plots where no recent burials -- and therefore no risings -- have occurred."
+        ],
+        "loot": []
+      }
+    }
+  }
+}

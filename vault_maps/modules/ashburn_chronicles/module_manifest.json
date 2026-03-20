@@ -1,0 +1,34 @@
+{
+    "module_id": "ashburn_chronicles",
+    "display_name": "The Ashburn Chronicles",
+    "system_id": "crown",
+    "source_type": "homebrew_original",
+    "source_pdf": "original",
+    "campaign_json": "campaign.json",
+    "chapters": [
+        {
+            "chapter_id": "ch1_orientation",
+            "display_name": "Orientation Week",
+            "order": 1,
+            "zones": [],
+            "description": "First days at the academy. Alliances form, secrets surface.",
+            "scenarios": ["library_break_in", "greenhouse_incident", "bell_tower"]
+        },
+        {
+            "chapter_id": "ch2_midterm",
+            "display_name": "Midterm Crisis",
+            "order": 2,
+            "zones": [],
+            "description": "Tensions escalate. The academy's foundations crack.",
+            "scenarios": ["groundskeeper_secret", "transfer_student", "parents_weekend"]
+        },
+        {
+            "chapter_id": "ch3_reckoning",
+            "display_name": "The Final Reckoning",
+            "order": 3,
+            "zones": [],
+            "description": "Truth or tradition. The academy's darkest secrets emerge.",
+            "scenarios": ["the_exam", "storm_cellar", "graduation_rehearsal"]
+        }
+    ]
+}

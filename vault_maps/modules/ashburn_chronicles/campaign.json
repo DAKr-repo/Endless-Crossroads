@@ -1,0 +1,198 @@
+{
+    "campaign_id": "ashburn_chronicles",
+    "display_name": "The Ashburn Chronicles",
+    "description": "An ancient academy hides secrets beneath its ivy and tradition. The Authority demands obedience and silence while a student underground digs for truths the faculty buried generations ago. Seven days until the Final Reckoning -- the exam that decides who graduates, who disappears, and what the academy really is.",
+    "system_id": "crown",
+    "arc_length": 7,
+    "terms": {
+        "crown": "The Academy Authority",
+        "crew": "The Student Underground",
+        "neutral": "The New Student",
+        "campfire": "The Common Room",
+        "world": "Ashburn Academy"
+    },
+    "patrons": [
+        "Dean Ashwick",
+        "Professor Ironwood",
+        "Librarian Quill",
+        "Cathedral Warden"
+    ],
+    "leaders": [
+        "Julian Ashwick (student council president)",
+        "Rowan Thatch (scholarship researcher)",
+        "Lydia Fairchild (athlete and activist)",
+        "Jax Marlow (expelled outsider)"
+    ],
+    "prompts_crown": [
+        "Dean Ashwick stands at the lectern during morning assembly, his voice filling the Great Hall the way it has filled it for twenty-three years. 'The academy endures because its students understand duty,' he says. 'Your talents are not your own. They belong to the institution that shaped them. Remember that.'",
+        "Professor Ironwood pauses mid-lecture, chalk raised, and looks directly at you. 'History is written by the victorious,' he says. 'But it is preserved by the obedient. There is a difference, and this academy was built on the distinction.' He resumes writing. The chalk sounds like bone on stone.",
+        "Dean Ashwick offers you a seat on the Prefect Council -- real authority, private quarters, access to the restricted wing. 'Leadership requires sacrifice,' he says. 'The question is whether you're willing to sacrifice your friendships for the good of the institution.'",
+        "Librarian Quill intercepts you in the stacks. 'I know what you've been reading,' they say, adjusting their spectacles. 'The volumes in Section Nine are restricted for a reason. Not because the knowledge is dangerous -- because the questions it raises are. The academy cannot function if every student decides to be a philosopher.'",
+        "Cathedral Warden lights the evening candles with mechanical precision, one for each founding family. 'The academy was consecrated,' he says. 'Not merely built. Its stones were blessed. Its purpose was sanctified. Those who treat this place as merely a school misunderstand what holds these walls together.'",
+        "Dean Ashwick produces a letter bearing the seal of the Ministry of Education. 'An inspector arrives in three days,' he says. 'Every classroom will be immaculate. Every student will be presentable. Every question will be answered correctly. This is not a request. This is the academy's survival.'",
+        "Professor Ironwood assigns a paper on the Founding -- the official version. He knows there is an unofficial version. He knows you know. 'Write what the academy teaches,' he says quietly, after class. 'What you believe is your business. What you submit is mine.'",
+        "The Academy Authority publishes the honor roll each quarter. Students in the top ten receive privileges: extended library hours, private study rooms, letters of recommendation that open doors for life. Students below the median receive nothing. Students at the bottom receive a visit from the Dean.",
+        "Prefect Sable reports a broken window in the east dormitory. Dean Ashwick orders a lockdown -- all students confined to quarters until the responsible party comes forward. 'Accountability is the first lesson,' he announces over the house speakers. 'A community that protects one transgressor punishes itself.'",
+        "Librarian Quill shows you the academy's charter, preserved under glass in the restricted section. The language is archaic but the meaning is clear: students are entrusted to the academy's care, and the academy's authority over them is absolute until graduation. 'Absolute,' Quill repeats. 'Not partial. Not negotiable.'",
+        "Dean Ashwick invites you to his study. The room is lined with portraits of previous deans -- a dynasty of Ashwicks stretching back to the founding. 'My family built this place,' he says. 'Every stone. Every tradition. Every rule exists because a crisis demanded it. When you question the rules, you question the crises that wrote them.'",
+        "Professor Ironwood returns a student's paper covered in red ink. The student had cited a source not on the approved reading list. 'The curriculum exists to protect you,' Ironwood says. 'An undisciplined mind is a dangerous mind. Learn what we teach first. Question it after you graduate.'",
+        "Cathedral Warden conducts the Founder's Day ceremony with the gravity of a funeral. Incense fills the chapel. Students stand in rows, reciting the academy oath from memory. The words are old. The meaning is older. Some students mouth the words without sound. The Warden notices.",
+        "The academy's disciplinary board meets behind closed doors. A student was caught in the forbidden wing after hours. The board consists of Dean Ashwick, Professor Ironwood, and Librarian Quill. The student is not permitted to speak in their own defense. The verdict is always the same: probation, confession, community service. The student emerges pale and silent.",
+        "Dean Ashwick addresses the parents during visiting weekend. His speech is polished, warm, reassuring. He speaks of tradition, excellence, and the bonds forged between students. He does not mention the three students who left mid-term. He does not mention where they went.",
+        "Professor Ironwood cancels his lecture and replaces it with a documentary about the academy's wartime service. Students watch uniformed graduates march into history. 'This is what the academy produces,' Ironwood says. 'People who serve. Not people who question whether service is worthwhile.'",
+        "Librarian Quill confiscates a notebook from a student's desk -- handwritten, filled with questions about the academy's financial records. 'Curiosity is a virtue,' Quill says, locking the notebook in their desk drawer. 'Directed curiosity is a greater one. Undirected curiosity is just trespassing.'",
+        "The academy's endowment dinner brings wealthy alumni to campus. They tour the grounds, admire the chapel, praise the gardens. They do not visit the east dormitory, where the scholarship students live. They do not see the cracked windows, the single bathroom, the heaters that stopped working in November.",
+        "Dean Ashwick finds you alone in the corridor after curfew. He does not raise his voice. He does not threaten. He simply says: 'I know your friends are planning something. I don't know what, and I don't need to. I need you to understand that this academy has survived every challenge thrown at it for two hundred years. It will survive this one. The question is whether you will.'",
+        "The Academy Authority announces the Final Reckoning -- the comprehensive examination that determines graduation standing. The exam is oral, private, and conducted by the full faculty. No student has ever described what happens in the examination room. The ones who pass don't speak of it. The ones who fail don't come back."
+    ],
+    "prompts_crew": [
+        "Julian Ashwick leans against the common room wall, sleeves rolled up, council pin conspicuously absent. 'My father built this place into what it is,' he says. 'Which means I know exactly where the cracks are. And I know which ones go all the way down to the foundation.'",
+        "Rowan Thatch spreads photocopied pages across the library table -- records, floor plans, financial statements. 'The restricted section isn't restricted because the books are rare,' they say, pushing their glasses up. 'It's restricted because page seventy-three of the charter contradicts everything the Dean told us at assembly.'",
+        "Lydia Fairchild rallies a group of students in the gymnasium. 'The scholarship students live in a building that hasn't been repaired since the seventies,' she says. 'The Dean's residence was renovated last summer. If you need to know what this institution values, follow the money.'",
+        "Jax Marlow sits on the roof of the bell tower, legs dangling over three stories of nothing. 'I've been expelled from two schools,' he says. 'The first time, I broke a rule. The second time, I found out the rule was there to hide something. Guess which one the school cared about more.'",
+        "The Underground meets in the boiler room beneath the east dormitory -- the one room on campus without a security camera. Julian checks the door. Rowan distributes notes. Lydia watches the corridor. Jax picks the lock. 'Four people who don't trust authority,' Julian says. 'The most dangerous thing an academy can produce.'",
+        "Rowan discovers a pattern in the academy's enrollment records. Every seven years, a student disappears mid-term. Not expelled -- the records simply stop. No transfer paperwork. No withdrawal form. Just an empty bed and a name that no one mentions. 'This has happened nine times since the founding,' Rowan says. 'Nine students. Gone.'",
+        "Lydia confronts Professor Ironwood after class. 'You assigned us the official history,' she says. 'But you keep a copy of the unofficial one in your desk. I've seen it. You read it when you think no one's watching.' Ironwood says nothing. His silence is the most honest answer he's ever given.",
+        "Jax finds a tunnel beneath the greenhouse -- old stonework, older than the building above it. It runs toward the cathedral. 'The academy wasn't built on empty ground,' he says, brushing dirt from a carved symbol he doesn't recognize. 'Something was here before. And I don't think it left.'",
+        "Julian's position as council president gives him access to the faculty meeting minutes. Most are mundane. One is not. A motion, passed unanimously, titled 'Continuation of Protocol Seven.' No details. No discussion recorded. Just the vote and a signature from every faculty member, including Ironwood.",
+        "The Underground debates strategy. Lydia wants to go public -- print pamphlets, hold a rally, force the Dean to respond. Rowan wants evidence first -- proof that can't be denied or dismissed. Julian wants leverage -- something that gives them power without exposing the group. Jax wants to kick in the door to the restricted section and see what happens.",
+        "A first-year student approaches the Underground, shaking. She found something in her dormitory wall -- a letter, hidden behind loose plaster, written by a student who lived there decades ago. The letter describes a room beneath the chapel that the student was taken to. She never wrote again. The handwriting is steady at the start and ragged at the end.",
+        "Rowan stays up three nights decoding a cipher found in the margins of a library book -- annotations made by a former student, using a substitution key hidden in the Founder's Day hymn. The decoded text is a warning: 'The exam is not what they tell you. Do not go alone. Do not go unarmed. Do not go.'",
+        "Jax and Lydia stage a diversion during the parents' weekend reception -- a loud, public argument about scholarship funding that draws every faculty member to the Great Hall. Julian uses the twenty-minute window to photograph the contents of the Dean's private filing cabinet. Rowan catalogs the photographs by dawn.",
+        "Julian confronts his father in private. 'I found the records,' he says. 'Protocol Seven. The disappearances. All of it.' Dean Ashwick doesn't deny it. He pours two glasses of water. 'Sit down,' he says. 'I've been waiting for you to find them. You're smarter than I was. I found them in my third year.'",
+        "The Underground distributes anonymous notes under every dormitory door: 'Ask the Dean about the nine missing students.' By noon, the notes are collected and burned. By evening, three students have been called to the Dean's office. By morning, two of them have withdrawn from the academy. The third won't say what happened.",
+        "Lydia organizes a study group as cover -- fifteen students in the common room, textbooks open, the appearance of compliance. Beneath the table, they pass a handwritten copy of the decoded cipher text. One by one, each student reads it. One by one, their faces change.",
+        "Rowan finds Groundskeeper Moss in the garden at dawn, kneeling in the soil with her hands black to the wrists. 'You're looking for the old foundation,' Moss says without looking up. 'It's under the bell tower. Has been since before the Ashwicks. I've been tending it for forty years.' She holds out a rusted key. 'This opens the door they bricked over.'",
+        "Jax returns from the tunnel beneath the greenhouse with a box of artifacts -- old, corroded, pre-academy. Among them: a metal disk engraved with a symbol that matches the one above the examination room door. 'Whatever Protocol Seven is,' Jax says, 'it didn't start with the Ashwicks. It started with whatever was here first.'",
+        "The Underground gathers for what might be their last meeting. The Final Reckoning is tomorrow. Julian has the photographs. Rowan has the decoded cipher. Lydia has fifteen students ready to stand. Jax has the key. 'We go together,' Julian says. 'Whatever's under the bell tower, we face it as a group. That's the one thing the academy never planned for.'",
+        "Lydia writes a letter and seals it. 'If we don't come back from the examination,' she says, 'this goes to the Ministry.' The letter contains everything: the missing students, Protocol Seven, the photographs, the cipher. She hands it to Olive Chen -- the youngest student, the one too young to take the exam. 'Mail this in three days,' Lydia says. 'Only if we don't come back.' Olive nods. Her hands are steady."
+    ],
+    "prompts_world": [
+        "Ashburn Academy rises from the moor like a stone ship run aground -- grey walls stained darker by centuries of rain, turrets capped with verdigrised copper, windows that catch the light at angles suggesting the glass was poured by hands long dead. The main gate bears the motto in iron letters: SCIENTIA CUSTOS -- Knowledge Guards.",
+        "The library occupies the academy's oldest wing. Three floors of shelved stone, ladders on brass rails, a silence so complete that turning a page sounds like cracking bone. The restricted section is marked by a velvet rope and a brass plaque that reads ACCESS BY FACULTY PERMISSION ONLY. The rope is new. The plaque has been there since the founding.",
+        "Morning fog fills the courtyard like milk poured into a bowl. The cobblestones are slick. The clock tower emerges from the grey as a dark vertical stroke, its bell silent until eight. Students cross the quad in clusters, breath visible, book bags held close. The ravens on the chapel roof watch them pass and say nothing useful.",
+        "The east dormitory smells of old wood, damp wool, and the particular mildew that grows where heating pipes meet cold stone. The scholarship students live here -- bunk beds, shared desks, a common bathroom with tiles that remember a pattern they've mostly forgotten. The west dormitory, by contrast, has single rooms and carpeting.",
+        "The greenhouse stands at the edge of the grounds, its glass panels fogged with condensation and breath. Inside: rows of medicinal herbs, climbing ivy that Groundskeeper Moss talks to by name, and a locked door at the back that leads to a root cellar older than the building above it. The air tastes green.",
+        "The bell tower rises six stories above the chapel -- stone stairs spiraling so tight that two people cannot pass. At the top, the bell hangs in its iron cradle, green with age, its clapper wrapped in cloth to muffle the sound. From the belfry, you can see the moor in every direction. There is no other building for miles. The academy chose its isolation.",
+        "The chapel is cold in every season. The pews are carved from a wood that darkens with age rather than lightening. The stained glass depicts the founding: robed figures planting a seed in barren ground, the seed becoming a tree, the tree becoming the academy. In the last panel, the tree's roots are visible beneath the earth. They grip something.",
+        "Rain falls on Ashburn for the third consecutive day. The gutters overflow. The playing fields turn to mud. Students peer through fogged windows at a landscape that looks like a watercolor left in the rain -- blurred edges, dissolved boundaries, the moor and the sky becoming one grey continuum.",
+        "The faculty dining room is separated from the student hall by a wall and two centuries of tradition. Faculty eat on porcelain. Students eat on stoneware. The food is identical. The distinction is not about plates.",
+        "Night falls early this time of year. By five, the corridors are lit by electric sconces that replaced gas lamps that replaced candles that replaced rushes. The light they cast is yellow and uneven, painting shadows that elongate and contract as you walk. The building sighs as it cools -- pipes contracting, wood settling, a hundred small sounds that add up to the impression that the academy is breathing.",
+        "The examination room is on the top floor of the main building -- a circular chamber with a domed ceiling and no windows. The door is oak, reinforced with iron bands. Above the door, carved in stone older than the doorframe: a symbol that none of the faculty have ever explained. The symbol is also on the floor of the root cellar, and on the disk Jax found in the tunnel.",
+        "The academy's grounds extend to the edge of the moor in every direction -- a mile of maintained lawn, hedgerows, and gravel paths before the cultivated world ends and the wild begins. Beyond the boundary wall, the moor is heather and peat and standing stones that predate the academy by millennia. Moss tends the boundary with particular care.",
+        "The common room in the east dormitory is the warmest place on campus -- not by design, but because the boiler room directly below it leaks heat through the floorboards. Students gather here after curfew, boots off, voices low, sharing food smuggled from the kitchen. The carpet is worn to threads. The fireplace hasn't worked in years. It doesn't matter. The warmth is not about temperature.",
+        "A storm breaks over the moor at midnight. Lightning turns the academy into a photograph -- white walls, black windows, frozen in the flash. Thunder shakes the chapel glass. The power goes out for eleven minutes. In the dark, the building feels much older than its two centuries. It feels like something that was always here, wearing the shape of a school the way a hermit crab wears a shell.",
+        "Graduation rehearsal takes place in the Great Hall. Chairs arranged in rows. Faculty in academic robes. The processional music played on an organ whose lowest notes rattle the floor. Everything is practiced, timed, perfected. The ceremony is beautiful. It is also the last thing a student experiences before the private examination. No one mentions this. The beauty is the point."
+    ],
+    "prompts_campfire": [
+        "The common room fire is out but the radiator ticks, and someone has made tea. Rowan sits cross-legged on the floor surrounded by photocopies, connecting names and dates with pencil lines. 'Every seven years,' they murmur. 'Like clockwork. Like a cycle. Like something that needs feeding.'",
+        "Julian stares at the portrait of his grandfather in the corridor outside the common room. Same jaw. Same eyes. Same pin on the lapel. 'He was Dean for thirty years,' Julian says. 'Everyone says I look like him. Nobody asks if I want to.'",
+        "Jax juggles three tangerines stolen from the kitchen, his feet on the table, grinning like someone who has decided that if the world is going to punish him regardless, he might as well enjoy the parts between punishments. 'Tell me about your families,' he says. 'I want to know what normal looks like.'",
+        "Lydia braids her hair with sharp, practiced motions while she talks. 'I got the scholarship because I can run fast,' she says. 'That's it. Fast legs. Fast mouth. The Dean thinks I'm grateful. I am grateful. I'm also angry. You can be both. They never teach you that.'",
+        "Rowan reads aloud from the decoded cipher -- slowly, parsing the archaic language. 'The Reckoning is not an examination of knowledge. It is an examination of the student. The student is measured. The student is weighed. The student is found --' The text stops. The rest of the page is torn away.",
+        "Someone produces a tin of biscuits smuggled from parents' weekend. They're stale. They're shared. Olive Chen takes one and eats it with the concentration of someone for whom every meal is a small ceremony. 'My mum made these,' she says. No one has the heart to tell her the tin says INDUSTRIAL BAKERY.",
+        "Jax teaches the group a card game he learned at his previous school -- a game with complicated rules and no winner. 'That's the point,' he says. 'The game keeps going. You just play until you decide to stop. Like school. Like life. Like everything the Dean pretends has a clear ending.'",
+        "Julian and Lydia argue about tactics. Julian wants patience. Lydia wants action. Rowan referees by pointing out facts. Jax eats an apple and watches. The argument ends when Olive asks, quietly, 'What if you're both right and neither of you is ready?' The silence that follows is the loudest sound in the room.",
+        "Professor Ironwood's name comes up. Julian says he's complicit. Lydia says he's trapped. Rowan says he left clues in every lecture for anyone paying attention. Jax says he doesn't care about Ironwood's motives, only his actions. 'A man who knows the truth and teaches the lie is worse than a man who doesn't know at all,' Jax says. No one argues.",
+        "The wind rattles the dormitory windows. The moor is invisible in the dark -- just a sound, a vast exhalation of wind across open ground. Lydia presses her palm against the glass. 'I grew up in a city,' she says. 'I never knew silence had a sound until I came here. The moor sounds like the world holding its breath.'",
+        "Rowan shows the group a photograph they found in the academy archives: a class picture from fifty years ago. Twenty students, arranged in rows, the chapel behind them. In the second row, third from the left, a face has been scratched out. Not removed -- attacked. Someone took a pin or a blade to the photograph. 'That's the year one of the nine disappeared,' Rowan says.",
+        "The tea runs out. The radiator goes cold. The group huddles closer without anyone suggesting it. Julian tells a story from his childhood -- the one time his father took him to the root cellar as a boy. 'He showed me the symbol on the floor,' Julian says. 'He told me it was the academy's true seal. I was six. I've been afraid of this place ever since.'",
+        "Jax produces a flask of something strong that he shouldn't have. It goes around once. Each person takes a sip and names one thing the academy taught them that they're grateful for. Rowan says research. Lydia says anger. Julian says patience. Jax says lock-picking. Olive says her own name, spoken clearly. It takes a moment to understand what she means.",
+        "The common room clock reads two in the morning. Tomorrow is the Final Reckoning. No one can sleep. Lydia hums a song she can't name. Rowan organizes their evidence into a folder. Julian stares at the ceiling. Jax sharpens a pencil to a dangerous point. Olive sleeps on the sofa, the sealed letter tucked inside her blazer. The academy is quiet. It is waiting.",
+        "Someone asks what happens after. Not after the Reckoning -- after whatever they find. After the truth. Rowan says the truth doesn't solve anything by itself; it just makes the silence harder to maintain. Julian says his family's name will be ruined. Lydia says good. Jax says nothing. He's looking at the door, listening to the building settle around them like an animal shifting in its sleep."
+    ],
+    "morning_events": [
+        {
+            "text": "Morning assembly. Dean Ashwick announces a schedule change: the annual trip to the standing stones is cancelled due to 'unsafe ground conditions.' Groundskeeper Moss, standing at the back of the hall, watches the Dean with an expression that could peel paint.",
+            "bias": "crown",
+            "tag": "SILENCE"
+        },
+        {
+            "text": "A new student arrives mid-term -- rare, almost unprecedented. She carries one suitcase and speaks to no one. Prefect Sable assigns her to the east dormitory. By lunch, three separate people have told you she was expelled from her last school for asking too many questions.",
+            "bias": "neutral",
+            "tag": "GUILE"
+        },
+        {
+            "text": "The greenhouse door is found open at dawn. Nothing appears to be missing, but the root cellar hatch -- normally concealed by a planting table -- has been moved. Groundskeeper Moss replaces it without a word. She adds a second lock.",
+            "bias": "crew",
+            "tag": "DEFIANCE"
+        },
+        {
+            "text": "A surprise inspection. Faculty move through the dormitories, checking closets, desk drawers, under mattresses. They're looking for something specific. They don't find it. Dean Ashwick's expression as he leaves the east dormitory suggests that not finding it was worse than finding it.",
+            "bias": "crown",
+            "tag": "SILENCE"
+        },
+        {
+            "text": "Rain washes a section of the boundary wall clean, revealing carved symbols beneath the lichen -- the same symbols as the examination room door, as the root cellar floor, as the disk from the tunnel. The groundskeeper covers them with a tarp before noon.",
+            "bias": "neutral",
+            "tag": "BLOOD"
+        },
+        {
+            "text": "Chef Bramble serves breakfast with a folded note hidden under a plate of toast. The note reads: 'The faculty met at midnight. They moved something from the restricted section to the examination room. It took four of them to carry it.' No signature. The handwriting smells faintly of rosemary.",
+            "bias": "crew",
+            "tag": "GUILE"
+        },
+        {
+            "text": "The bell tower rings at an unscheduled hour -- three chimes at two in the morning. The Warden blames a mechanical fault. Students who were awake say the bell sounded different. Lower. Older. As if something heavier than a clapper had struck it.",
+            "bias": "neutral",
+            "tag": "BLOOD"
+        },
+        {
+            "text": "Devon Gale corners a first-year and demands to see their notebook. The first-year refuses. Devon escalates. Lydia intervenes. The confrontation draws a crowd. In the confusion, Jax slips into the faculty office and returns twelve minutes later with a photograph of a document he won't show anyone yet.",
+            "bias": "crew",
+            "tag": "DEFIANCE"
+        },
+        {
+            "text": "Parents' weekend approaches. The academy undergoes a transformation: the east dormitory receives fresh paint for the first time in years, the library acquires new furniture, the scholarship students receive blazers that fit. Lydia accepts hers. She does not say thank you.",
+            "bias": "crown",
+            "tag": "HEARTH"
+        },
+        {
+            "text": "Nurse Penny flags you in the corridor. She's been treating a student for nightmares -- the same nightmare, recurring, about a room underground with no windows and a door that locks from the outside. The student transferred in last year. The nightmares started on their first night. 'I've seen this before,' Penny says. 'In the older students. Before they left.'",
+            "bias": "crew",
+            "tag": "HEARTH"
+        }
+    ],
+    "council_dilemmas": [
+        {
+            "prompt": "Julian's photographs reveal that the Dean has been diverting scholarship funds to maintain the chapel crypt -- thousands every year, for decades. Publishing the evidence would expose the financial fraud and likely force the Dean to resign. But it would also bankrupt the scholarship program, and the twenty students it supports have nowhere else to go.",
+            "crown": "Bury the photographs. The scholarship students need this place, corruption or not. Reform from inside.",
+            "crew": "Publish. The students deserve to know what their education costs. If the academy can't survive the truth, it doesn't deserve to survive."
+        },
+        {
+            "prompt": "Groundskeeper Moss offers to show the Underground what lies beneath the bell tower -- but only if they promise not to attempt the Final Reckoning examination. She says the exam is a trap, but she won't explain why. Going with Moss means answers but means forfeiting graduation. Refusing means facing the exam blind.",
+            "crown": "Take the exam. Moss is well-meaning but the examination is the only path to graduation and the future it represents.",
+            "crew": "Go with Moss. Graduation from a corrupt institution is worth less than the truth about what it's hiding."
+        },
+        {
+            "prompt": "Professor Ironwood approaches the Underground in private. He wants to help -- he's been leaving clues for years, waiting for students brave enough to act. But his help comes with a condition: Julian must publicly renounce his father. Ironwood says the Dean will never allow change while an Ashwick stands beside him.",
+            "crown": "Reject Ironwood's condition. You don't ask someone to destroy their family for a cause. Find another way.",
+            "crew": "Accept. Julian knew this was coming. His father's legacy is the problem. Cutting ties is the price of the truth."
+        },
+        {
+            "prompt": "A first-year student -- Olive Chen -- has been following the Underground's work and wants to help. She's brilliant, perceptive, and fearless. She's also twelve, and the underground's next action involves breaking into the examination room at night. Bringing her increases the chance of success. It also puts a child at risk.",
+            "crown": "Leave Olive out. She's too young. Protect her from what's coming, even if she doesn't want to be protected.",
+            "crew": "Let her choose. She's the smartest person in the room and the only one young enough to be outside the exam's scope. She sees things we miss."
+        },
+        {
+            "prompt": "Devon Gale approaches the Underground with information: he overheard the faculty discussing Protocol Seven and knows the date and time of the next activation. His price: protection from the Dean's retaliation when it goes public. Devon has bullied half the students in the Underground. Lydia despises him. His information is genuine.",
+            "crown": "Refuse. Devon is a bully and his information could be a trap. The risk outweighs the gain.",
+            "crew": "Accept. People change when they're scared. If Devon's information is real, it's worth more than our grudges."
+        },
+        {
+            "prompt": "The Underground discovers that the chapel crypt contains records of every student who disappeared -- names, dates, and outcomes. Breaking in would provide definitive proof of the academy's secret. But the crypt is beneath the chapel, and the Cathedral Warden sleeps in the vestry. Waking him means a confrontation with the one faculty member who has never shown any hint of doubt or mercy.",
+            "crown": "Don't risk the crypt. The Warden is the Dean's most loyal ally. A failed break-in ends the Underground tonight.",
+            "crew": "Go. The records in that crypt are the proof we need. The Warden is old and the truth is older. One of them will give."
+        },
+        {
+            "prompt": "Julian discovers that his father is not the architect of Protocol Seven -- he inherited it, like his father before him. Dean Ashwick has been trying to end the protocol for years but claims the founding charter makes it legally binding. He asks Julian for help, claiming they want the same thing. Trusting him means trusting the man who has lied to every student for two decades.",
+            "crown": "Trust the Dean. He's been trapped too. Working together is faster than working against him, and he has the keys.",
+            "crew": "Refuse. The Dean has had twenty-three years to end this and hasn't. His reasons for failing are not our problem. His complicity is."
+        },
+        {
+            "prompt": "Nurse Penny has medical records that document psychological symptoms in students approaching the Final Reckoning -- recurring nightmares, memory gaps, behavioral changes. Releasing the records would support the Underground's case but would violate patient confidentiality for a dozen students who never consented to having their conditions made public.",
+            "crown": "Don't release the records. Medical confidentiality is sacred. Find other evidence.",
+            "crew": "Release them. The records prove harm. The students they describe were harmed by the institution's secrecy. More secrecy doesn't honor them."
+        }
+    ]
+}

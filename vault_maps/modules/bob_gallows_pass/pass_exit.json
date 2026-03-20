@@ -1,0 +1,79 @@
+{
+  "seed": 8015,
+  "width": 30,
+  "height": 20,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "pass_exit",
+    "theme": "GOTHIC",
+    "topology": "dungeon",
+    "mission_types": ["recon", "assault"]
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 2,
+      "y": 8,
+      "width": 8,
+      "height": 6,
+      "room_type": "start",
+      "connections": [1],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The pass widens into a natural amphitheater before the final exit. The cliff walls curve outward, forming a bowl of stone open to the sky. The wind dies here -- sheltered by the rock, the air is still and cold. Unnaturally cold. Your breath plumes white. The stone underfoot is slick with frost that should not exist at this altitude, in this season.",
+        "read_aloud": "Black Oak Knights stand motionless in a line, black armor gleaming. They block the pass exit shoulder to shoulder, two abreast, still as statuary. Behind them, you can see open sky and the road beyond.",
+        "event_triggers": [
+          "Black Oak Knights stand motionless in a line, black armor gleaming with frost that does not melt."
+        ]
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 14,
+      "y": 4,
+      "width": 10,
+      "height": 10,
+      "room_type": "boss",
+      "connections": [0, 2],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The Black Oak Knights do not charge. They advance -- one step at a time, shields locked, in a formation that was drilled into their living bodies and persists in death. Their armor bears the oak-leaf crest of Aldermark's elite cavalry, blackened by corruption until the leaves look like writhing insects. Behind them, Spitters crouch in the shadows, venom pooling on the ground at their feet.",
+        "enemies": [
+          {"name": "Black Oak Knight", "hp": 25, "max_hp": 25, "ac": 15, "attack": 7, "defense": 15, "count": 2},
+          {"name": "Spitter", "hp": 15, "max_hp": 15, "ac": 11, "attack": 5, "defense": 11, "count": 2}
+        ],
+        "event_triggers": [
+          "The Knights' formation is perfect. Even in death, the drill holds. They were the best soldiers in Aldermark once.",
+          "A Spitter's acid hits a Knight's shield. The acid runs off without marking the surface. The corruption protects its own."
+        ],
+        "perception_dc": 14,
+        "perception_success": "The Knights' formation has a gap -- the third position from the left is empty. Someone or something that should be there is missing. The formation compensates, but it creates a blind spot on the left flank."
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 22,
+      "y": 8,
+      "width": 6,
+      "height": 5,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Beyond the checkpoint, the pass opens onto a hillside overlooking forested lowlands. The road descends through switchbacks toward the tree line. The air is warmer here, free of the corruption's chill. For the first time in what feels like days, you can hear birdsong. The retreat continues -- but for this moment, there is sky above and solid ground below.",
+        "loot": [
+          {"name": "Black Oak Knight's Blade", "value": 3, "description": "A cavalry saber of exceptional Orite craftsmanship, corrupted but still razor-sharp. The corruption can be purified by a Panyar blessing. +1 effect on Skirmish if cleansed."}
+        ],
+        "event_triggers": [
+          "Beyond the pass, the road forks toward Sunstrider Camp and Duresh Forest. Choose your path."
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,62 @@
+{
+    "module_id": "stc_war_of_reckoning",
+    "display_name": "Stormlight: War of Reckoning",
+    "system_id": "stc",
+    "source_pdf": "Stormlight RPG - War of Reckoning",
+    "source_type": "publisher_licensed",
+    "world_map": "world_map.json",
+    "starting_location": "warcamp",
+    "campaign_setting": "roshar",
+    "recommended_levels": {"min": 2, "max": 6},
+    "chapters": [
+        {
+            "chapter_id": "ch1_warcamp",
+            "display_name": "Chapter 1: The Warcamp",
+            "order": 1,
+            "zones": [
+                {
+                    "zone_id": "warcamp",
+                    "blueprint": "warcamp.json",
+                    "topology": "settlement",
+                    "theme": "STONE",
+                    "location_id": "shattered_plains",
+                    "entry_trigger": "module_start",
+                    "exit_trigger": "quest_complete"
+                }
+            ]
+        },
+        {
+            "chapter_id": "ch2_plateau_assault",
+            "display_name": "Chapter 2: Plateau Assault",
+            "order": 2,
+            "zones": [
+                {
+                    "zone_id": "plateau_assault",
+                    "blueprint": "plateau_assault.json",
+                    "topology": "wilderness",
+                    "theme": "STONE",
+                    "location_id": "shattered_plains",
+                    "entry_trigger": "quest_complete",
+                    "exit_trigger": "boss_defeated"
+                }
+            ]
+        },
+        {
+            "chapter_id": "ch3_chasmfiend_hunt",
+            "display_name": "Chapter 3: The Chasmfiend Hunt",
+            "order": 3,
+            "zones": [
+                {
+                    "zone_id": "chasmfiend_hunt",
+                    "blueprint": "chasmfiend_hunt.json",
+                    "topology": "dungeon",
+                    "theme": "GOTHIC",
+                    "location_id": "shattered_plains",
+                    "entry_trigger": "boss_defeated",
+                    "exit_trigger": "boss_defeated"
+                }
+            ]
+        }
+    ],
+    "freeform_zones": []
+}

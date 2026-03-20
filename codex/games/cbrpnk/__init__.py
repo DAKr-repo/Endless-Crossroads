@@ -108,6 +108,7 @@ class CBRPNKEngine(NarrativeLoomMixin):
         self._grid_state: Optional[Any] = None
         self._grid_mgr: Optional[Any] = None
         self._chrome_mgr: Optional[Any] = None
+        self._npc_disposition: Optional[Any] = None
 
         self._init_loom()
 
@@ -264,6 +265,7 @@ class CBRPNKEngine(NarrativeLoomMixin):
             # Subsystem state
             "grid_state": self._grid_state.to_dict() if self._grid_state is not None else None,
             "chrome_mgr": self._chrome_mgr.to_dict() if self._chrome_mgr is not None else None,
+            "npc_disposition": self._npc_disposition.to_dict() if self._npc_disposition is not None else None,
         }
         return state
 
@@ -292,6 +294,12 @@ class CBRPNKEngine(NarrativeLoomMixin):
         if chrome_data is not None:
             from codex.games.cbrpnk.chrome import ChromeManager
             self._chrome_mgr = ChromeManager.from_dict(chrome_data)
+
+        # Restore NPC disposition
+        npc_data = data.get("npc_disposition")
+        if npc_data is not None:
+            from codex.core.services.npc_memory import DispositionManager
+            self._npc_disposition = DispositionManager.from_dict(npc_data)
 
     # =====================================================================
     # SETTING-FILTERED ACCESSORS (WO-V46.0)
@@ -335,6 +343,7 @@ class CBRPNKEngine(NarrativeLoomMixin):
         Returns:
             Human-readable result string.
         """
+        cmd = cmd.lower().replace("-", "_")
         if cmd == "trace_fact":
             return self.trace_fact(kwargs.get("fact", ""))
         handler = getattr(self, f"_cmd_{cmd}", None)
@@ -597,6 +606,112 @@ class CBRPNKEngine(NarrativeLoomMixin):
         result = self.chrome_mgr.humanity_check()
         return result["message"]
 
+    # ─── WO-P1: FITD Shared Mechanics ───────────────────────────────────
+
+    def _cmd_fortune(self, **kwargs) -> str:
+        """Roll a fortune die pool (no position/effect)."""
+        from codex.core.services.fitd_engine import FITDFortuneRoll, format_fortune_result
+        dice_count = int(kwargs.get("dice_count", 1))
+        roll = FITDFortuneRoll(dice_count=dice_count)
+        result = roll.roll()
+        self._add_shard(f"Fortune roll ({dice_count}d): {result.outcome}", "CHRONICLE")
+        return format_fortune_result(result)
+
+    def _cmd_resist(self, **kwargs) -> str:
+        """Roll resistance for the lead character."""
+        from codex.core.services.fitd_engine import resistance_roll
+        attribute = kwargs.get("attribute", "")
+        char = self.character
+        if not char:
+            return "No active character."
+        if not attribute:
+            return "Specify attribute (e.g. resist attribute=hack)"
+        dots = getattr(char, attribute, 0)
+        clock = self.stress_clocks.get(char.name)
+        result = resistance_roll(dots, clock)
+        dice_str = ", ".join(str(d) for d in result["dice"])
+        crit_msg = " (CRIT — no stress!)" if result["crit"] else ""
+        trauma_msg = ""
+        if result.get("push_result", {}).get("trauma_triggered"):
+            trauma_msg = f" TRAUMA: {result['push_result']['new_trauma']}!"
+        self._add_shard(
+            f"{char.name} resists ({attribute}): cost {result['stress_cost']} stress{crit_msg}",
+            "CHRONICLE",
+        )
+        return (
+            f"Resistance ({attribute}): [{dice_str}] -> cost {result['stress_cost']} stress{crit_msg}{trauma_msg}"
+        )
+
+    def _cmd_gather_info(self, **kwargs) -> str:
+        """Roll to gather information."""
+        from codex.core.services.fitd_engine import gather_information
+        action = kwargs.get("action", "scan")
+        question = kwargs.get("question", "")
+        char = self.character
+        dots = getattr(char, action, 0) if char else 0
+        result = gather_information(dots, question)
+        dice_str = ", ".join(str(d) for d in result["dice"])
+        self._add_shard(
+            f"Gathered info ({action}): {result['quality']} — {question[:50]}",
+            "CHRONICLE",
+        )
+        return (
+            f"Gather Info ({action}): [{dice_str}] -> {result['outcome'].upper()}\n"
+            f"Quality: {result['quality']}"
+            + (f"\nQuestion: {question}" if question else "")
+        )
+
+    # ─── WO-P7: NPC Disposition ───────────────────────────────────────
+
+    def _get_npc_disposition(self):
+        """Lazily initialise and return the DispositionManager."""
+        if not hasattr(self, '_npc_disposition') or self._npc_disposition is None:
+            from codex.core.services.npc_memory import DispositionManager
+            self._npc_disposition = DispositionManager()
+        return self._npc_disposition
+
+    def _cmd_npc_status(self, **kwargs) -> str:
+        """Show an NPC's disposition and history."""
+        name = kwargs.get("name", "")
+        if not name:
+            return self._get_npc_disposition().list_npcs()
+        return self._get_npc_disposition().get_status(name)
+
+    def _cmd_npc_adjust(self, **kwargs) -> str:
+        """Adjust an NPC's disposition."""
+        name = kwargs.get("name", "")
+        if not name:
+            return "Specify NPC name: npc_adjust name=<name> delta=<int> reason=<str>"
+        delta = int(kwargs.get("delta", 0))
+        reason = kwargs.get("reason", "unspecified")
+        mgr = self._get_npc_disposition()
+        result = mgr.adjust_disposition(name, delta, reason, source="player_action")
+        if result["changed"]:
+            self._add_shard(
+                f"NPC {name} disposition: {result['old_label']} -> {result['new_label']} ({reason})",
+                "CHRONICLE",
+            )
+        return (
+            f"{name}: {result['old_label']} ({result['old']:+d}) -> "
+            f"{result['new_label']} ({result['new']:+d})\n"
+            f"Reason: {reason}"
+        )
+
+    def _cmd_faction_response(self, **kwargs) -> str:
+        """Check faction response for an NPC based on an event."""
+        from codex.core.services.npc_memory import faction_response
+        name = kwargs.get("name", "")
+        event_type = kwargs.get("event_type", "default")
+        if not name:
+            return "Specify NPC name: faction_response name=<name> event_type=<str>"
+        mgr = self._get_npc_disposition()
+        result = mgr.get_faction_response(name, event_type)
+        return (
+            f"Faction response for {name} (event: {event_type}):\n"
+            f"Disposition: {result['disposition_range']} ({result['disposition']:+d})\n"
+            f"Response: {result['response_type'].upper()} — {result['description']}"
+        )
+
     # ─── WO-V67.0: New commands ────────────────────────────────────────
 
     def _cmd_glitch(self, **kwargs) -> str:
@@ -748,12 +863,22 @@ CBRPNK_COMMANDS = {
     "remove_chrome": "Remove chrome by slot or name",
     "chrome_status": "Display installed chrome and humanity",
     "humanity_check": "Run a cyberpsychosis stability check",
+    # WO-P1: FITD shared mechanics
+    "fortune": "Roll a fortune die pool (dice_count=<int>)",
+    "resist": "Roll resistance (attribute=<str>)",
+    "gather_info": "Gather information (action=<str> question=<str>)",
+    # WO-P7: NPC disposition
+    "npc_status": "Show NPC disposition and history",
+    "npc_adjust": "Adjust NPC disposition (name=<str> delta=<int> reason=<str>)",
+    "faction_response": "Check faction response for an NPC (name=<str> event_type=<str>)",
 }
 
 CBRPNK_CATEGORIES = {
     "Grid": ["jack_in", "intrusion", "extract", "jack_out", "grid_status", "glitch_status"],
     "Chrome": ["install_chrome", "remove_chrome", "chrome_status", "humanity_check"],
-    "Action": ["roll_action", "crew_status", "party_status", "glitch", "corp_response", "overclock"],
+    "Action": ["roll_action", "crew_status", "party_status", "glitch", "corp_response", "overclock",
+               "fortune", "resist", "gather_info"],
+    "NPC": ["npc_status", "npc_adjust", "faction_response"],
 }
 
 

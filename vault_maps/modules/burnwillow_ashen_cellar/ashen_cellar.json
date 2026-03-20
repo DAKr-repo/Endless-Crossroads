@@ -1,0 +1,204 @@
+{
+    "seed": 4403,
+    "width": 60,
+    "height": 40,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "ashen_cellar",
+        "theme": "RUST",
+        "topology": "dungeon",
+        "display_name": "The Ashen Cellar",
+        "flavor_note": "A tutorial dungeon beneath the old storehouse. Five chambers of Tier I threats designed to teach core mechanics: combat, investigation, hazard avoidance, DoomClock management, and boss encounters. The Rot has taken root here recently -- this is an early warning, not a deep infection."
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 25,
+            "y": 2,
+            "width": 10,
+            "height": 8,
+            "room_type": "start",
+            "connections": [1],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The cellar stairs are carved directly into petrified root, each step worn into a shallow dish by years of traffic. Ash coats every surface -- not fireplace ash but the fine grey particulate that Blight leaves behind when it consumes organic matter. Your footprints are the only marks. Whatever came through here did not use the stairs.",
+                "read_aloud": "Musty air fills your lungs as you descend. Ash coats the stairs like grey snow, undisturbed except by something thin and many-legged that dragged itself along the wall. The scratches in the root-bark are fresh. At the bottom, the cellar opens into darkness. From somewhere ahead, you hear a wet, rhythmic scratching -- like fingernails on damp wood.",
+                "npcs": [],
+                "loot": [],
+                "services": [],
+                "perception_dc": 10,
+                "event_triggers": [
+                    "On perception success (DC 10): The scratching comes from the east -- Room 1. It is rhythmic, deliberate. Not random scrabbling but something feeding. The sound pauses when you make noise, then resumes.",
+                    "Tutorial hint: Movement costs 1 DoomClock advance per room transition. The cellar is small -- 5 rooms -- but every step counts."
+                ]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 38,
+            "y": 2,
+            "width": 14,
+            "height": 10,
+            "room_type": "chamber",
+            "connections": [0, 2],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The storage room is a shambles. Barrels have been split open from the inside, their contents -- dried grain, salt, preserved mushrooms -- scattered and grey with Blight contamination. Two small figures crouch atop a shattered crate, their translucent bodies pulsing with faint bioluminescence. Rot Sprites: parasitic fungal constructs no larger than a fist, but vicious when cornered.",
+                "read_aloud": "The barrel nearest the door has burst. Something ate through it from the inside -- the wood is laced with grey veins like a diseased lung. Two shapes perch on the wreckage, glowing faintly. They are small, translucent, and wrong -- mushroom-flesh stretched over frameworks of stolen bone. They turn toward your light with movements that are too fast and too coordinated to be mindless.",
+                "npcs": [],
+                "enemies": [
+                    {
+                        "name": "Rot Sprite",
+                        "hp": 4,
+                        "ac": 8,
+                        "attack": 1,
+                        "damage": "1d6",
+                        "notes": "Tier I beast. Spore Burst: on death, DC 8 Grit or -1 to all rolls for 1 round. Small, fast, fragile. Tutorial enemy -- teaches basic combat flow."
+                    },
+                    {
+                        "name": "Rot Sprite",
+                        "hp": 4,
+                        "ac": 8,
+                        "attack": 1,
+                        "damage": "1d6",
+                        "notes": "Tier I beast. Spore Burst: on death, DC 8 Grit or -1 to all rolls for 1 round."
+                    }
+                ],
+                "loot": [
+                    {"name": "Rot-Salve Pouch", "value": 3, "type": "consumable", "notes": "Found in an intact barrel. Still sealed."}
+                ],
+                "services": [],
+                "investigation_dc": 12,
+                "event_triggers": [
+                    "On investigation success (DC 12): Behind the shattered barrels, a hidden cache in the wall -- a Kindler's emergency stash. Contains 5 amber dust and a tallow candle. The cache was sealed with resin that the Rot has not yet reached.",
+                    "Tutorial hint: Rot Sprites explode with spores on death. The Grit save teaches the save mechanic. Killing them at range avoids the burst."
+                ]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 30,
+            "y": 14,
+            "width": 12,
+            "height": 6,
+            "room_type": "corridor",
+            "connections": [1, 3, 4],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "A collapse has torn open the cellar wall, exposing raw root-material and a tangle of severed Aether veins that drip sluggish gold into a puddle on the floor. The tunnel forks: east into a chamber filled with pale blue light, west into darkness where the air is warmer and wetter. Rubble from the collapse litters the floor -- unstable, shifting underfoot.",
+                "read_aloud": "The ceiling groans. A section of root-wall has given way, opening cracks that weep golden sap into a shallow pool at your feet. The puddle is warm. The tunnel splits ahead -- pale blue light to the east, and to the west, a darkness that breathes. Rubble shifts under your boots. This part of the cellar was not carved. Something broke through from below.",
+                "npcs": [],
+                "loot": [],
+                "services": [],
+                "event_triggers": [
+                    "Hazard: Falling Rubble. Moving through the debris field requires a DC 11 Grit check. Failure: 1d6 damage from shifting stone and root-material. The noise advances DoomClock by 1 regardless of success.",
+                    "Tutorial hint: This room teaches hazard navigation. The fork offers a choice -- fungal garden (east, more enemies) or direct path to the boss (west). Both routes lead to Room 4."
+                ]
+            }
+        },
+        "3": {
+            "id": 3,
+            "x": 44,
+            "y": 14,
+            "width": 14,
+            "height": 12,
+            "room_type": "chamber",
+            "connections": [2, 4],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The fungal garden is beautiful and wrong. Bioluminescent mushrooms climb the walls in spiraling patterns, their pale blue glow casting the chamber in underwater light. The floor is soft -- a carpet of mycelium that gives under each step like wet sponge. At the center, a Spore Zombie stands motionless among the mushrooms, its body host to a dozen fruiting caps that have split its skin and clothing apart. Around its feet, a pack of Blighted Rats gnaws at the mycelium, their eyes reflecting blue.",
+                "read_aloud": "Blue light. The chamber glows with it -- mushrooms climbing the walls like luminous ivy, their caps pulsing in slow rhythm. The floor is alive beneath your feet, soft and yielding, and the air tastes of copper and damp earth. Something stands at the center of the garden. It was a person once. Now it is a framework for mushrooms, its arms outstretched, its head tilted back, its mouth open in a silent scream filled with pale fruiting bodies. It does not move. The rats at its feet do.",
+                "npcs": [],
+                "enemies": [
+                    {
+                        "name": "Spore Zombie",
+                        "hp": 11,
+                        "ac": 9,
+                        "attack": 2,
+                        "damage": "1d6+1",
+                        "notes": "Tier I scavenger. Hollowed Kindler. Slow but durable. On death in melee range: massive spore burst, DC 10 Grit or take 1d6 damage and DoomClock +1. Can be destroyed safely at range."
+                    },
+                    {
+                        "name": "Blighted Rat",
+                        "hp": 3,
+                        "ac": 8,
+                        "attack": 1,
+                        "damage": "1d6",
+                        "notes": "Tier I beast. Swarm behavior: 3 rats treated as pack. +1 damage per additional rat in melee."
+                    },
+                    {
+                        "name": "Blighted Rat",
+                        "hp": 3,
+                        "ac": 8,
+                        "attack": 1,
+                        "damage": "1d6",
+                        "notes": "Tier I beast."
+                    },
+                    {
+                        "name": "Blighted Rat",
+                        "hp": 3,
+                        "ac": 8,
+                        "attack": 1,
+                        "damage": "1d6",
+                        "notes": "Tier I beast."
+                    }
+                ],
+                "loot": [
+                    {"name": "Ember Shard", "value": 5, "type": "uncommon", "notes": "Amber currency. Worth enough for a Tier I upgrade at the Forge."}
+                ],
+                "services": [],
+                "event_triggers": [
+                    "On spore zombie killed in melee: The body detonates. A cloud of grey-blue spores fills the chamber. DoomClock +1. All characters in melee range make DC 10 Grit save or take 1d6 spore damage.",
+                    "Tutorial hint: This encounter teaches action economy and positioning. The zombie is the priority target but dangerous up close. Rats are fragile but numerous. Ranged attacks bypass the spore burst."
+                ]
+            }
+        },
+        "4": {
+            "id": 4,
+            "x": 30,
+            "y": 28,
+            "width": 16,
+            "height": 12,
+            "room_type": "boss",
+            "connections": [2, 3],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The deepest chamber. The root-walls here are grey and dead -- the Root-Song has fallen completely silent. At the center, a mass of twisted roots and fungal matter pulses with a slow, wet rhythm, its tendrils sunk deep into the cellar floor. This is the source: a Rotwood Shambler, a parasitic fungal colony that has hijacked a dead root-cluster and animated it into something that moves with terrible purpose. The air is thick with spores. Breathing here costs.",
+                "read_aloud": "A twisted mass of roots and rot pulses at the center of the chamber. It has no face, no eyes, no mouth -- just a writhing column of grey-veined wood and fruiting mushroom flesh that reaches toward the ceiling with blind hunger. The Root-Song is silent here. Completely silent. You have never heard the absence of something you did not know you were listening to. The thing turns toward you -- not with sight, but with something worse. It felt you arrive. The DoomClock ticks. It ticks twice.",
+                "npcs": [],
+                "enemies": [
+                    {
+                        "name": "Rotwood Shambler",
+                        "hp": 15,
+                        "ac": 10,
+                        "attack": 3,
+                        "damage": "1d8",
+                        "is_boss": true,
+                        "notes": "Tutorial boss. Tier I construct/beast hybrid. Slow (acts last in initiative). Root Grasp: on hit, target must DC 10 Grit or be grappled (1d6 automatic damage per round until freed). Vulnerable to fire -- flame damage is doubled. On death: the corruption in the cellar begins to recede. Spores settle. The Root-Song returns as a faint, grateful vibration."
+                    }
+                ],
+                "loot": [
+                    {"name": "Hunter's Shortbow", "value": 8, "type": "uncommon", "notes": "Tier I. R.Hand. Ranged weapon. +1d6 WITS pool."},
+                    {"name": "Scrap Iron", "value": 4, "type": "crafting", "notes": "Tier I crafting material. Enough for one item at the Forge."},
+                    {"name": "Amber Core", "value": 12, "type": "rare", "notes": "A fist-sized amber piece pried from the dead root. Contains a faint memory impression: warmth, the sound of rain on leaves, a voice singing in a language you almost recognize."}
+                ],
+                "services": [],
+                "event_triggers": [
+                    "On room entry: DoomClock +2. The Shambler is aware of the party. There is no surprise round.",
+                    "On boss defeated: The grey recedes from the walls like tide going out. Color returns -- faint amber, the brown of living wood. The Root-Song resumes, faint but present. A vibration that feels like relief.",
+                    "On return to Emberhome: Voss marks the mission complete. 'Sixty-three percent. You improved my statistics.' She almost smiles."
+                ]
+            }
+        }
+    }
+}

@@ -880,6 +880,7 @@ class DnD5eEngine(NarrativeLoomMixin):
 
     def handle_command(self, cmd: str, **kwargs) -> str:
         """Command dispatcher for dashboard integration."""
+        cmd = cmd.lower().replace("-", "_")
         if cmd == "short_rest":
             return self.short_rest()
         elif cmd == "long_rest":
@@ -1035,6 +1036,7 @@ _HAZARD_POOL_FALLBACK: Dict[int, List[str]] = {
 _LOOT_CACHE: Optional[Dict[int, List[str]]] = None
 _HAZARD_CACHE: Optional[Dict[int, List[str]]] = None
 _MAGIC_ITEMS_CACHE: Optional[List[dict]] = None
+_TRAP_CACHE: Optional[Dict[int, List[dict]]] = None
 
 
 def _load_loot_pool() -> Dict[int, List[str]]:
@@ -1093,8 +1095,33 @@ def _load_magic_items() -> List[dict]:
     return _MAGIC_ITEMS_CACHE
 
 
+def _load_trap_pool() -> Dict[int, List[dict]]:
+    """Load trap pool from config/traps/dnd5e.json, empty dict if unavailable."""
+    global _TRAP_CACHE
+    if _TRAP_CACHE is not None:
+        return _TRAP_CACHE
+    from codex.core.config_loader import load_config
+    data = load_config("traps", "dnd5e")
+    if data and "traps" in data:
+        by_tier: Dict[int, List[dict]] = {1: [], 2: [], 3: [], 4: []}
+        for trap in data["traps"]:
+            tier = max(1, min(4, trap.get("tier", 1)))
+            by_tier[tier].append(trap)
+        _TRAP_CACHE = by_tier
+        return _TRAP_CACHE
+    if data and "tiers" in data:
+        result: Dict[int, List[dict]] = {}
+        for tier_key, traps in data["tiers"].items():
+            result[int(tier_key)] = traps
+        _TRAP_CACHE = result
+        return _TRAP_CACHE
+    _TRAP_CACHE = {}
+    return _TRAP_CACHE
+
+
 _LOOT_POOL = _load_loot_pool()
 _HAZARD_POOL = _load_hazard_pool()
+_TRAP_POOL = _load_trap_pool()
 
 
 class DnD5eAdapter:
@@ -1191,6 +1218,14 @@ class DnD5eAdapter:
         if self._rng.random() < 0.2:
             hazard_pool = _HAZARD_POOL.get(tier, _HAZARD_POOL[1])
             content["hazards"].append({"name": self._rng.choice(hazard_pool)})
+
+        # Traps (not start rooms; higher chance in defended rooms with enemies)
+        content["traps"] = []
+        if rtype not in (RoomType.START,):
+            trap_pool = _TRAP_POOL.get(tier, _TRAP_POOL.get(1, []))
+            trap_chance = 0.30 if content["enemies"] else 0.15
+            if trap_pool and self._rng.random() < trap_chance:
+                content["traps"].append(self._rng.choice(trap_pool))
 
         return PopulatedRoom(geometry=room, content=content)
 

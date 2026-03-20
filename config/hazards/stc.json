@@ -6,22 +6,39 @@
     "1": [
       {"name": "Highstorm Winds", "dc": 10, "damage": "1d6", "damage_type": "impact", "source": "Handbook"},
       {"name": "Cracked Chasm Floor", "dc": 10, "damage": "1d6", "damage_type": "impact", "source": "Handbook"},
-      {"name": "Crem Buildup", "dc": 8, "damage": "0", "damage_type": "none", "source": "Handbook"}
+      {"name": "Crem Buildup", "dc": 8, "damage": "0", "damage_type": "none", "source": "Handbook"},
+      {"name": "Crem Slide", "dc": 10, "damage": "1d4", "damage_type": "impact", "description": "A slope of loose, rain-slicked crem shifts underfoot without warning. Failing means a tumble down jagged stone.", "source": "Stormlight RPG Handbook"},
+      {"name": "Rockbud Field", "dc": 9, "damage": "1d4", "damage_type": "impact", "description": "Dense clusters of closed rockbuds form ankle-catching mounds across the path. Moving at speed risks a twisted knee or worse.", "source": "Stormlight RPG Handbook"},
+      {"name": "Shallow Chasm Flood", "dc": 10, "damage": "1d6", "damage_type": "impact", "description": "Runoff from a distant highstorm surges through a shallow chasm in a knee-deep wave of muddy water and tumbling stone.", "source": "Stormlight RPG Handbook"},
+      {"name": "Spren Frenzy", "dc": 9, "damage": "0", "damage_type": "none", "description": "A sudden manifestation of agitation spren clouds perception and rational thought. Those affected act on impulse until the swarm dissipates.", "source": "Stormlight RPG Handbook"}
     ],
     "2": [
       {"name": "Chasm Collapse", "dc": 13, "damage": "2d6", "damage_type": "impact", "source": "Handbook"},
       {"name": "Stormlight Surge", "dc": 12, "damage": "1d8", "damage_type": "spirit", "source": "Handbook"},
-      {"name": "Parshendi Trap", "dc": 12, "damage": "1d6", "damage_type": "keen", "source": "Handbook"}
+      {"name": "Parshendi Trap", "dc": 12, "damage": "1d6", "damage_type": "keen", "source": "Handbook"},
+      {"name": "Highstorm Approach", "dc": 13, "damage": "2d6", "damage_type": "impact", "description": "The stormwall is visible on the horizon. Each round the DC increases by 1 and the damage die steps up as the wind intensifies. Finding shelter is the only real option.", "source": "Stormlight RPG Handbook"},
+      {"name": "Chasm Flash Flood", "dc": 14, "damage": "2d8", "damage_type": "impact", "description": "A wall of stormwater roars through the chasm with no warning. The water carries debris, dead cremlings, and enough force to pin a person against stone.", "source": "Stormlight RPG Handbook"},
+      {"name": "Everstorm Edge", "dc": 13, "damage": "2d6", "damage_type": "impact", "description": "The outer winds of an Everstorm carry red lightning and Voidlight static. Exposed skin prickles, and metal equipment sparks. The true danger is the Voidspren riding the wind.", "source": "Stormlight RPG Handbook"},
+      {"name": "Soulcasting Instability Zone", "dc": 12, "damage": "1d8", "damage_type": "spirit", "description": "A region where failed or overloaded Soulcasting has left the boundary between Physical and Cognitive realms thin. Objects shimmer and briefly become something else.", "source": "Stormlight RPG Handbook"},
+      {"name": "Voidlight Corruption Pool", "dc": 13, "damage": "1d8", "damage_type": "spirit", "description": "A stagnant pool of liquid Voidlight collected in a low depression, glowing with sickly violet light. Contact induces rage, paranoia, and auditory hallucinations of Odium's rhythms.", "source": "Stormlight RPG Handbook"}
     ],
     "3": [
       {"name": "Everstorm Fragment", "dc": 15, "damage": "3d6", "damage_type": "impact", "source": "Handbook"},
       {"name": "Unmade Corruption", "dc": 15, "damage": "2d6", "damage_type": "spirit", "source": "Handbook"},
-      {"name": "Void Rift", "dc": 14, "damage": "2d8", "damage_type": "spirit", "source": "Handbook"}
+      {"name": "Void Rift", "dc": 14, "damage": "2d8", "damage_type": "spirit", "source": "Handbook"},
+      {"name": "Full Highstorm Exposure", "dc": 16, "damage": "3d8", "damage_type": "impact", "description": "Caught in the open during a highstorm. Boulders the size of chulls tumble through the air. Rain falls sideways with enough force to strip flesh. Survival without shelter is a matter of seconds.", "source": "Stormlight RPG Handbook"},
+      {"name": "Thunderclast Tremor", "dc": 15, "damage": "3d6", "damage_type": "impact", "description": "The ground shakes as a Thunderclast pulls free from the bedrock nearby. Fissures split the stone, buildings lean, and anyone standing is thrown to the ground.", "source": "Stormlight RPG Handbook"},
+      {"name": "Unmade Influence Zone (Re-Shephir)", "dc": 16, "damage": "2d8", "damage_type": "spirit", "description": "Shadows move independently of their sources, reaching and grasping. Midnight Essence spawns from the darkness, and fear becomes a physical weight pressing on the chest.", "source": "Stormlight RPG Handbook"},
+      {"name": "Cognitive Realm Rift", "dc": 15, "damage": "2d8", "damage_type": "spirit", "description": "A tear between the Physical and Cognitive Realms. Objects near the rift become translucent. Those who step too close feel the pull of the bead ocean and must resist being drawn into Shadesmar.", "source": "Stormlight RPG Handbook"}
     ],
     "4": [
       {"name": "Full Everstorm", "dc": 18, "damage": "4d8", "damage_type": "impact", "source": "Handbook"},
       {"name": "Odium's Influence", "dc": 18, "damage": "3d8", "damage_type": "spirit", "source": "Handbook"},
-      {"name": "Spiritual Realm Breach", "dc": 17, "damage": "4d6", "damage_type": "spirit", "source": "Handbook"}
+      {"name": "Spiritual Realm Breach", "dc": 17, "damage": "4d6", "damage_type": "spirit", "source": "Handbook"},
+      {"name": "Everstorm Eye", "dc": 19, "damage": "4d8", "damage_type": "impact", "description": "The still center of the Everstorm, where Voidlight saturates the air and red lightning strikes in silence. Stormlight is drained from all gemstones. The Fused gather here to receive Odium's commands.", "source": "Stormlight RPG Handbook"},
+      {"name": "Unmade Manifestation Zone", "dc": 19, "damage": "4d6", "damage_type": "spirit", "description": "An area where an Unmade's power manifests fully. Reality bends to the Unmade's nature: Nergaoul brings blood frenzy, Ashertmarn brings apathy, Sja-anat corrupts spren. Willpower alone determines survival.", "source": "Stormlight RPG Handbook"},
+      {"name": "Honor's Perpendicularity Surge", "dc": 18, "damage": "3d10", "damage_type": "spirit", "description": "A perpendicularity — a junction between all three Realms — flares with uncontrolled Investiture. Raw Stormlight erupts from the ground in a geyser that heals, burns, and transports simultaneously.", "source": "Stormlight RPG Handbook"},
+      {"name": "Odium's Influence Field", "dc": 20, "damage": "4d8", "damage_type": "spirit", "description": "The direct attention of the Shard of Odium focused on a location. Gold light suffuses everything. Emotions are amplified to breaking point. The weak-willed serve without question. The strong burn from the inside out.", "source": "Stormlight RPG Handbook"}
     ]
   }
 }

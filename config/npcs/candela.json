@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "source": "Candela Obscura Core Rulebook pp.171-185, 189",
+  "named_npcs": [
+    {"name": "Avery Choi", "pronouns": "she/her", "role": "scientist", "description": "A brilliant scientist who works for EONS, and often provides information about the organization's inside dealings to Candela Obscura.", "source": "CO p.189"},
+    {"name": "Caerwyn Stone", "pronouns": "they/them", "role": "soldier", "description": "A young, newly enlisted soldier in the Halen Armed Forces.", "source": "CO p.189"},
+    {"name": "Chaska Deloria", "pronouns": "he/they", "role": "merchant", "description": "Runs a well-known stand at the Calinus Market in Groundswell. They sell a wide variety of goods and can track down almost anything for the right price.", "source": "CO p.189"},
+    {"name": "Dr. Michele Lappin", "pronouns": "she/her", "role": "doctor", "description": "A serious doctor with a booming voice who works at the Grayslate Sanatorium in the Sidle.", "source": "CO p.189"},
+    {"name": "Elder Kenneth Krause", "pronouns": "he/him", "role": "elder", "description": "An elder in the Ascendancy with a suspected connection to the Red Hand.", "source": "CO p.189"},
+    {"name": "Ember Rose", "pronouns": "she/they", "role": "performer", "description": "A burlesque performer at the Library in Red Lamp. She is known for her impressive acrobatics performance during the 'Banned & Censored' show.", "source": "CO p.189"},
+    {"name": "Father Timothy Singh", "pronouns": "he/him", "role": "priest", "description": "A priest with possible ties to EONS who works out of a small church still standing on the edge of Westwreck.", "source": "CO p.189"},
+    {"name": "Joseph Abdi", "pronouns": "he/they", "role": "worker", "description": "A surprisingly chipper metro worker at the Seren Street Station in the Varnish.", "source": "CO p.189"},
+    {"name": "Kiana Tumata", "pronouns": "she/they", "role": "dockworker", "description": "A run-down dock worker employed in Hallowharbor.", "source": "CO p.189"},
+    {"name": "Oksana Blum", "pronouns": "she/her", "role": "medium", "description": "A well-known medium who claims to connect with spirits and relay messages from beyond the grave.", "source": "CO p.189"},
+    {"name": "Richard Satanta", "pronouns": "they/them", "role": "employee", "description": "A disgruntled employee at the famous Eternal Heart Spa in the Eaves.", "source": "CO p.189"},
+    {"name": "Alma Baquiran", "pronouns": "they/them", "role": "guard", "description": "A guard at the Brinkley Penitentiary who secretly delivers messages into and out of the prison for the inmates.", "source": "CO p.189"}
+  ],
+  "assignment_npcs": {
+    "light_eater": [
+      {"name": "Tang Yuna", "pronouns": "they/them", "role": "informant", "description": "The foreman for the logging company, Hackley & Wilde, is desperate to get the situation under control.", "source": "CO p.171"},
+      {"name": "Nigel Munro", "pronouns": "he/him", "role": "informant", "description": "The owner of the only bar in town, the Bridle Bar.", "source": "CO p.171"},
+      {"name": "Alice Shelley", "pronouns": "she/her", "role": "witness", "description": "A widow who prefers traditional candlelight instead of modern electricity.", "source": "CO p.171"},
+      {"name": "Lucia Rodriguez", "pronouns": "she/her", "role": "worker", "description": "A logger who's worked for the Hackley & Wilde Timber Co. for nearly a decade. She has seen it all and then some.", "source": "CO p.171"}
+    ],
+    "still_life": [
+      {"name": "Oscar Enfield", "pronouns": "he/him", "role": "victim", "description": "A recently widowed death photographer who has unknowingly been using the Eye of Emrys.", "source": "CO p.175"},
+      {"name": "Sara Khalil", "pronouns": "she/they", "role": "informant", "description": "The owner of The Cracked Lens, a Groundswell camera repair and supply shop that last handled the artifact.", "source": "CO p.175"},
+      {"name": "Jacob Finsky", "pronouns": "they/he", "role": "witness", "description": "The owner of a bodega in Groundswell near Mx. Khalil's camera shop, whose cat was recently photographed by Oscar.", "source": "CO p.175"},
+      {"name": "Chen Kai", "pronouns": "he/him", "role": "priest", "description": "A priest tasked with tending to those who visit the Sacred Ascension Cemetery, who's been receiving alarming reports from groundskeepers.", "source": "CO p.175"}
+    ],
+    "devils_well": [
+      {"name": "Emerson Walsh", "pronouns": "they/them", "role": "informant", "description": "The radio operator who received the distress signals from the dirigible before its crash.", "source": "CO p.179"},
+      {"name": "Bradley Devir", "pronouns": "he/him", "role": "captain", "description": "The daring ship captain taking the team out into the mist.", "source": "CO p.179"},
+      {"name": "Emilia Kowalska", "pronouns": "she/her", "role": "scientist", "description": "An EONS scientist whose notes and audio recordings can be found throughout the Devil's Well.", "source": "CO p.179"},
+      {"name": "Tarek Abbas", "pronouns": "he/they", "role": "archivist", "description": "A former member of EONS charged with caring for the Reliquary. He hid a journal within the walls of the facility.", "source": "CO p.179"}
+    ],
+    "stage_fright": [
+      {"name": "Luis Roe", "pronouns": "they/them", "role": "officer", "description": "OUP officer who calls in Candela Obscura. Luis has no qualms about doing what needs to be done to solve the case.", "source": "CO p.183"},
+      {"name": "Rosie Sinclair", "pronouns": "she/her", "role": "witness", "description": "Coworker of the victim, Andres Aguilar. She and Andres are long-time friends and she is worried about his well-being.", "source": "CO p.183"},
+      {"name": "Rokas Novak", "pronouns": "they/them", "role": "informant", "description": "Food cart operator who worked outside Andres's office. They know everyone who works in the area and have a keen eye for detail.", "source": "CO p.183"},
+      {"name": "Usman Saba", "pronouns": "he/him", "role": "witness", "description": "Former crew member of the Eden Theater who still works in the area. His memory isn't what it used to be.", "source": "CO p.183"}
+    ]
+  }
+}

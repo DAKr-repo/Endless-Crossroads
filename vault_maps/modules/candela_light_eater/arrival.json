@@ -1,0 +1,97 @@
+{
+  "seed": 4402,
+  "width": 30,
+  "height": 15,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "overmount_arrival",
+    "theme": "GOTHIC",
+    "topology": "settlement",
+    "display_name": "The Town of Overmount"
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 0,
+      "y": 0,
+      "width": 8,
+      "height": 8,
+      "room_type": "town_square",
+      "connections": [1, 2],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Overmount's main street radiates outward from the powerhouse like spokes on a wheel, each avenue strung with electric cable. The body lies where it fell -- a logger in his thirties, nightshirt soaked through. The crimson fractal pattern crawls from his left hand up past his collar. His hair stands on end, singed white at the tips. His face is locked in a rictus of shocked agony.",
+        "read_aloud": "The body is still warm. A logger, mid-thirties, his expression frozen in a scream that never made it past his teeth. The same crimson web of Lichtenberg figures you saw on the doorstep man traces up his arms and neck like river deltas burned into flesh. His singed hair crackles with residual static when you move it. The electric lines overhead hum with a low, hungry frequency.",
+        "npcs": [],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [
+          "The electric lines are strung like wheel spokes from the central powerhouse. Every victim was found in a home connected to those lines."
+        ],
+        "loot": [],
+        "investigation_dc": 12,
+        "investigation_success": "The fractal burns originate at the hands -- specifically, at points of contact with electric fixtures. Light switches. Lamp chains. The victims were electrocuted through the wiring itself."
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 10,
+      "y": 0,
+      "width": 8,
+      "height": 8,
+      "room_type": "tavern",
+      "connections": [0],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Munro's Tap House. The only establishment in Overmount with enough sense to keep its gas lamps. A low-ceilinged room stinking of pipe smoke and spruce resin, where loggers crowd three-deep at the bar. Nigel Munro polishes the same glass he has been polishing for the last hour, his eyes tracking every stranger who walks in.",
+        "npcs": [
+          {
+            "name": "Nigel Munro",
+            "role": "informant",
+            "dialogue": "Third one this week. Always at night. Always the ones who leave their electric lights burning. I told them -- I told every one of them -- that current's not natural. But Hackley & Wilde said it was safe. Progress, they called it.",
+            "notes": "He/him. Bar owner. Knows every piece of gossip in town. Bitter about the company's push for electrification. Will mention that Alice Shelley survived because she refused electric lights -- kept her oil lamps."
+          }
+        ],
+        "enemies": [],
+        "services": ["drink", "rumor"],
+        "event_triggers": [],
+        "loot": []
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 20,
+      "y": 0,
+      "width": 8,
+      "height": 8,
+      "room_type": "residence",
+      "connections": [0],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The company houses. Rows of identical timber-frame cottages thrown up cheap by Hackley & Wilde for their logging crews. Inside the nearest one, a woman lies dead in bed, the Lichtenberg pattern burned into her palm where she gripped the bedside lamp chain. The electric wiring runs exposed along the ceiling joists.",
+        "npcs": [
+          {
+            "name": "Tang Yuna",
+            "role": "informant",
+            "dialogue": "The company is in a panic. Three dead in a week, and the investors are asking questions. I need this handled quietly. Whatever is happening, it is not the wiring -- I checked the wiring myself.",
+            "notes": "They/them. Foreman of Hackley & Wilde Timber Co. Tight-lipped, protective of the company's reputation. Genuinely checked the wiring and found nothing mechanically wrong. Knows something is hunting through the power lines but will not say so openly."
+          }
+        ],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [
+          "REVEAL: Only people who left their electric lights on at night were killed. Alice Shelley, the widow on the hill, survived because she kept oil lamps."
+        ],
+        "loot": [],
+        "perception_dc": 10,
+        "perception_success": "The light bulbs in the dead woman's cottage did not merely burn out. The glass imploded inward, as though something pulled the light into itself."
+      }
+    }
+  }
+}

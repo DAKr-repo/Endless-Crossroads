@@ -1,0 +1,462 @@
+{
+  "version": 1,
+  "source": "Burnwillow (original homebrew)",
+  "notes": "Slot values correspond to GearSlot enum in engine.py (Head, Shoulders, Chest, Arms, Legs, R.Hand, L.Hand, R.Ring, L.Ring, Neck). Traits match engine special_traits. Value is in Amber Shards (standard currency). Consumables and utilities have slot 'none'. Tier maps to GearTier: I=Scrap/Wood, II=Iron/Leather, III=Steel/Silver, IV=Mithral/Gold.",
+  "tiers": {
+    "1": [
+      {
+        "name": "Rusted Shortsword",
+        "rarity": "common",
+        "value": 5,
+        "slot": "R.Hand",
+        "tier_material": "Scrap",
+        "traits": [],
+        "description": "Pitted blade with a leather-wrapped grip worn smooth by a dead man's palm. Still sharp enough to matter."
+      },
+      {
+        "name": "Padded Jerkin",
+        "rarity": "common",
+        "value": 8,
+        "slot": "Chest",
+        "tier_material": "Wood",
+        "traits": [],
+        "defense_bonus": 1,
+        "description": "Layers of quilted bark-cloth stitched with sinew. Stops a glancing blow but not much else."
+      },
+      {
+        "name": "Burglar's Gloves",
+        "rarity": "common",
+        "value": 10,
+        "slot": "Arms",
+        "tier_material": "Wood",
+        "traits": ["Lockpick"],
+        "description": "Thin leather gloves with wire-stiffened fingertips. The previous owner's luck ran out, but the gloves didn't."
+      },
+      {
+        "name": "Wooden Buckler",
+        "rarity": "common",
+        "value": 6,
+        "slot": "L.Hand",
+        "tier_material": "Wood",
+        "traits": ["Shield"],
+        "defense_bonus": 1,
+        "description": "A round of layered bark bound with copper wire. Splinters on heavy impacts but holds for the hits that count."
+      },
+      {
+        "name": "Tattered Hood",
+        "rarity": "common",
+        "value": 3,
+        "slot": "Head",
+        "tier_material": "Scrap",
+        "traits": [],
+        "description": "Ash-stained cloth that keeps the worst of the spore-fall out of your eyes. Fashion is not the point."
+      },
+      {
+        "name": "Worn Boots",
+        "rarity": "common",
+        "value": 4,
+        "slot": "Legs",
+        "tier_material": "Scrap",
+        "traits": [],
+        "description": "Cracked leather soles patched with bark strips. They've walked further than you have."
+      },
+      {
+        "name": "Rot-Salve Pouch",
+        "rarity": "common",
+        "value": 8,
+        "slot": "none",
+        "tier_material": "Wood",
+        "traits": [],
+        "consumable": true,
+        "effect": "Heals 1d4 HP",
+        "description": "A leather pouch of grey-green paste that smells of pine resin and something bitter. Burns going on, but the bleeding stops."
+      },
+      {
+        "name": "Torch Bundle",
+        "rarity": "common",
+        "value": 2,
+        "slot": "none",
+        "tier_material": "Scrap",
+        "traits": [],
+        "consumable": true,
+        "effect": "Provides light for 3 rooms",
+        "description": "Three sticks of dried heartwood wrapped in oil-soaked cloth. They burn with a warm amber glow that keeps the dark at arm's length."
+      },
+      {
+        "name": "Scrap Iron",
+        "rarity": "common",
+        "value": 5,
+        "slot": "none",
+        "tier_material": "Scrap",
+        "traits": [],
+        "crafting": true,
+        "description": "Bent nails, broken hinges, a length of chain. Worthless alone, but Weld can make something of it."
+      },
+      {
+        "name": "Hunter's Shortbow",
+        "rarity": "common",
+        "value": 12,
+        "slot": "R.Hand",
+        "tier_material": "Wood",
+        "traits": ["Ranged"],
+        "description": "A short recurve bow carved from fire-hardened branch wood. The string hums faintly in the presence of Aether veins."
+      },
+      {
+        "name": "Leather Bracers",
+        "rarity": "common",
+        "value": 6,
+        "slot": "Arms",
+        "tier_material": "Wood",
+        "traits": [],
+        "defense_bonus": 1,
+        "description": "Stiff hide strapped to the forearms with copper buckles. The leather is cracked but the buckles hold."
+      },
+      {
+        "name": "Crude Hatchet",
+        "rarity": "common",
+        "value": 7,
+        "slot": "R.Hand",
+        "tier_material": "Scrap",
+        "traits": ["Cleave"],
+        "description": "A wedge of iron lashed to a branch handle. Meant for splitting kindling, but splits other things just as well."
+      },
+      {
+        "name": "Bandages",
+        "rarity": "common",
+        "value": 3,
+        "slot": "none",
+        "tier_material": "Scrap",
+        "traits": [],
+        "consumable": true,
+        "effect": "Stabilizes a downed character",
+        "description": "Strips of boiled cloth rolled tight. Sister Tallow makes them by the dozen, and they're never enough."
+      },
+      {
+        "name": "Ember Shard",
+        "rarity": "common",
+        "value": 10,
+        "slot": "none",
+        "tier_material": "Wood",
+        "traits": [],
+        "consumable": true,
+        "effect": "Lights area for 5 rooms. Repels Tier I beasts",
+        "description": "A sliver of crystallized Aether that glows with a steady amber warmth. Creatures of the shallow dark flinch from its light."
+      },
+      {
+        "name": "Rope Coil",
+        "rarity": "common",
+        "value": 4,
+        "slot": "none",
+        "tier_material": "Scrap",
+        "traits": [],
+        "description": "Thirty feet of braided bark-fiber rope. Strong enough for one person's weight. Probably."
+      }
+    ],
+    "2": [
+      {
+        "name": "Forged Longsword",
+        "rarity": "uncommon",
+        "value": 25,
+        "slot": "R.Hand",
+        "tier_material": "Iron",
+        "traits": [],
+        "description": "Proper ironwork from the Ember-Forge, the blade marked with Weld's anvil stamp. It holds an edge through bone and bark alike."
+      },
+      {
+        "name": "Chain Shirt",
+        "rarity": "uncommon",
+        "value": 30,
+        "slot": "Chest",
+        "tier_material": "Iron",
+        "traits": [],
+        "defense_bonus": 2,
+        "damage_reduction": 1,
+        "description": "Interlocking iron rings over a leather backing. Heavy, hot, and the reason you're still breathing."
+      },
+      {
+        "name": "Steel Shield",
+        "rarity": "uncommon",
+        "value": 28,
+        "slot": "L.Hand",
+        "tier_material": "Iron",
+        "traits": ["Shield", "Intercept"],
+        "defense_bonus": 2,
+        "description": "A kite shield with a petrified bark face and iron rim. The Intercept strap lets you throw it between an ally and harm."
+      },
+      {
+        "name": "Iron Helm",
+        "rarity": "uncommon",
+        "value": 20,
+        "slot": "Head",
+        "tier_material": "Iron",
+        "traits": [],
+        "defense_bonus": 1,
+        "description": "An open-faced helm with a nasal guard. The padding inside still smells of the last wearer's sweat."
+      },
+      {
+        "name": "Reinforced Boots",
+        "rarity": "uncommon",
+        "value": 18,
+        "slot": "Legs",
+        "tier_material": "Iron",
+        "traits": [],
+        "defense_bonus": 1,
+        "description": "Leather boots with iron-plate shinguards riveted to the uppers. Your footfalls ring on stone but nothing bites through."
+      },
+      {
+        "name": "Compound Bow",
+        "rarity": "uncommon",
+        "value": 35,
+        "slot": "R.Hand",
+        "tier_material": "Iron",
+        "traits": ["Ranged"],
+        "description": "A recurve bow with iron-reinforced limbs and a silk string. Twice the draw weight of a hunter's bow, twice the killing range."
+      },
+      {
+        "name": "War Hammer",
+        "rarity": "uncommon",
+        "value": 28,
+        "slot": "R.Hand",
+        "tier_material": "Iron",
+        "traits": ["Cleave"],
+        "description": "An iron head on an ironbark haft, weighted for overhead swings that crack chitin and stone alike."
+      },
+      {
+        "name": "Alchemist's Kit",
+        "rarity": "uncommon",
+        "value": 40,
+        "slot": "none",
+        "tier_material": "Iron",
+        "traits": [],
+        "description": "A roll of treated leather containing glass vials, a mortar, copper tongs, and a thumb-sized Aether burner. Elder Maven would trade a great deal for one of these."
+      },
+      {
+        "name": "Greater Rot-Salve",
+        "rarity": "uncommon",
+        "value": 20,
+        "slot": "none",
+        "tier_material": "Iron",
+        "traits": [],
+        "consumable": true,
+        "effect": "Heals 2d4+2 HP. Cures early-stage Blight infection",
+        "description": "A sealed clay jar of concentrated herbal paste, the recipe known only to Sister Tallow and one other she won't name."
+      },
+      {
+        "name": "Ironvein Gauntlets",
+        "rarity": "uncommon",
+        "value": 32,
+        "slot": "Arms",
+        "tier_material": "Iron",
+        "traits": ["Lockpick"],
+        "defense_bonus": 1,
+        "description": "Articulated iron gloves with spring-loaded fingertips. The lockpick mechanisms are built into the index fingers -- a Patchwork Pete original."
+      },
+      {
+        "name": "Scout's Cloak",
+        "rarity": "uncommon",
+        "value": 22,
+        "slot": "Shoulders",
+        "tier_material": "Leather",
+        "traits": [],
+        "description": "A hooded cloak dyed with ash and bark extract, its pattern breaking the wearer's silhouette against stone corridors. Scout Lira swears by them."
+      },
+      {
+        "name": "Firebrand Torch",
+        "rarity": "uncommon",
+        "value": 15,
+        "slot": "none",
+        "tier_material": "Iron",
+        "traits": [],
+        "consumable": true,
+        "effect": "Reduces DoomClock by 1. Burns for 5 rooms. Deals 1d6 fire to rot creatures on contact",
+        "description": "An iron-cased torch soaked in concentrated Aether oil. Burns hotter and brighter than common torches, and the Rot recoils from its flame."
+      }
+    ],
+    "3": [
+      {
+        "name": "Embersteel Blade",
+        "rarity": "rare",
+        "value": 80,
+        "slot": "R.Hand",
+        "tier_material": "Steel",
+        "traits": ["Cleave"],
+        "description": "A longsword forged with Aether-tempered steel, its edge glowing faintly amber in darkness. The blade hums when swung -- not a song, but close."
+      },
+      {
+        "name": "Warden's Plate",
+        "rarity": "rare",
+        "value": 100,
+        "slot": "Chest",
+        "tier_material": "Steel",
+        "traits": ["Intercept"],
+        "defense_bonus": 3,
+        "damage_reduction": 2,
+        "description": "Full plate armor bearing the Emberhome Warden's sigil -- a burning tree. Captain Ashara has authorized exactly three sets for field deployment."
+      },
+      {
+        "name": "Ashward Shield",
+        "rarity": "rare",
+        "value": 75,
+        "slot": "L.Hand",
+        "tier_material": "Steel",
+        "traits": ["Shield", "Intercept"],
+        "defense_bonus": 3,
+        "description": "A tower shield faced with petrified Burnwillow bark. Absorbs rot-energy on impact -- the surface darkens with each blow absorbed, then slowly clears."
+      },
+      {
+        "name": "Crown of Vigilance",
+        "rarity": "rare",
+        "value": 60,
+        "slot": "Head",
+        "tier_material": "Silver",
+        "traits": [],
+        "defense_bonus": 2,
+        "description": "A circlet of twisted silver wire set with a single amber bead. The wearer cannot be surprised and gains +1 to Wits checks in the dark."
+      },
+      {
+        "name": "Strider's Greaves",
+        "rarity": "rare",
+        "value": 55,
+        "slot": "Legs",
+        "tier_material": "Steel",
+        "traits": [],
+        "defense_bonus": 2,
+        "description": "Steel-and-leather leg armor with spring-loaded ankle joints. Movement is silent on stone, and the wearer can cross difficult terrain without penalty."
+      },
+      {
+        "name": "Rotbane Longbow",
+        "rarity": "rare",
+        "value": 90,
+        "slot": "R.Hand",
+        "tier_material": "Steel",
+        "traits": ["Ranged"],
+        "description": "A longbow with Aether-infused limbs and amber-tipped arrows that burn on impact. Deals bonus 1d4 fire damage to rot-touched creatures."
+      },
+      {
+        "name": "Doom-Warded Gauntlets",
+        "rarity": "rare",
+        "value": 70,
+        "slot": "Arms",
+        "tier_material": "Silver",
+        "traits": [],
+        "defense_bonus": 2,
+        "description": "Silver-plated gauntlets inscribed with Elder Kaelen's own warding prayers. DoomClock advances 1 less per room while worn."
+      },
+      {
+        "name": "Phoenix Salve",
+        "rarity": "rare",
+        "value": 50,
+        "slot": "none",
+        "tier_material": "Silver",
+        "traits": [],
+        "consumable": true,
+        "effect": "Heals 3d6 HP. Revives a downed character to 1 HP if applied within 1 round of falling",
+        "description": "A glass vial of liquid amber that radiates warmth through the container. Father Oaken blesses each one individually, and each blessing is different."
+      },
+      {
+        "name": "Emberheart Lantern",
+        "rarity": "rare",
+        "value": 65,
+        "slot": "none",
+        "tier_material": "Silver",
+        "traits": [],
+        "effect": "Permanent light source. Reduces DoomClock by 2 when first lit each run. Reveals hidden Amber Vaults within 2 rooms",
+        "description": "An ironwork lantern housing a shard of the original Sun-Shard that lights the Hearth. Its flame has never gone out."
+      },
+      {
+        "name": "Forgemaster's Tools",
+        "rarity": "rare",
+        "value": 80,
+        "slot": "none",
+        "tier_material": "Steel",
+        "traits": [],
+        "effect": "Allows field repairs: restore 1 tier to a damaged item. 3 uses per run",
+        "description": "A leather roll of specialized implements -- amber-tipped chisels, Aether-threaded needles, a miniature singing fork. Weld made them for himself and refuses to explain how he parted with this set."
+      }
+    ],
+    "4": [
+      {
+        "name": "Sunfire Greatsword",
+        "rarity": "legendary",
+        "value": 200,
+        "slot": "R.Hand",
+        "tier_material": "Mithral",
+        "traits": ["Cleave", "Ritual"],
+        "two_handed": true,
+        "description": "A two-handed blade of Arborist mithral that burns with captured sunlight. The [Ritual] trait allows the wielder to channel the Root-Song through the blade, dealing 2d6 bonus fire damage to Hollows."
+      },
+      {
+        "name": "Aegis of the Last Flame",
+        "rarity": "legendary",
+        "value": 250,
+        "slot": "Chest",
+        "tier_material": "Gold",
+        "traits": ["Shield", "Intercept"],
+        "defense_bonus": 4,
+        "damage_reduction": 3,
+        "description": "Plate armor grown from living ironbark and infused with a Sun-Shard core. It mends itself between combats and casts a circle of warmth that shelters the entire party. The last Arborist Warden wore its twin."
+      },
+      {
+        "name": "Crown of the Unbroken",
+        "rarity": "legendary",
+        "value": 180,
+        "slot": "Head",
+        "tier_material": "Gold",
+        "traits": ["Ritual"],
+        "defense_bonus": 3,
+        "description": "A circlet of living amber that pulses with the Root-Song. The wearer gains Aether 18 (if lower) and can read Memory Seeds without returning to Emberhome."
+      },
+      {
+        "name": "Boots of the Ember Walker",
+        "rarity": "legendary",
+        "value": 160,
+        "slot": "Legs",
+        "tier_material": "Mithral",
+        "traits": [],
+        "defense_bonus": 3,
+        "description": "Boots that leave faintly glowing footprints. The wearer is immune to fire hazards and can walk across lava, magma vents, and Crown-fire zones without harm."
+      },
+      {
+        "name": "Rot Hunter's Bane",
+        "rarity": "legendary",
+        "value": 220,
+        "slot": "R.Hand",
+        "tier_material": "Mithral",
+        "traits": ["Ranged", "Cleave"],
+        "description": "A composite longbow with mithral limbs and a string of braided Root-Song crystal. Its arrows track Hollows unerringly -- +3 to attack rolls against rot-touched creatures. The only ranged weapon capable of piercing the Rot Hunter's DR."
+      },
+      {
+        "name": "The Hollow King's Gauntlets",
+        "rarity": "legendary",
+        "value": 200,
+        "slot": "Arms",
+        "tier_material": "Gold",
+        "traits": ["Lockpick", "Intercept"],
+        "defense_bonus": 3,
+        "description": "Gauntlets of dead amber and blackened mithral, taken from the Hollow King himself. They remember every lock and every throat they ever held. The [Lockpick] trait opens any lock, including Amber Vaults."
+      },
+      {
+        "name": "Elixir of Renewal",
+        "rarity": "legendary",
+        "value": 150,
+        "slot": "none",
+        "tier_material": "Gold",
+        "traits": [],
+        "consumable": true,
+        "effect": "Full HP restoration. Cures all Blight infection. Reduces DoomClock by 5",
+        "description": "A vial of pure liquid Sun-Shard, warm as a held hand. Drinking it feels like the first morning after a long winter. The tree gave this willingly."
+      },
+      {
+        "name": "Beacon of Dawn",
+        "rarity": "legendary",
+        "value": 300,
+        "slot": "none",
+        "tier_material": "Gold",
+        "traits": ["Ritual"],
+        "consumable": true,
+        "effect": "Reduces DoomClock by 10. One use per campaign. Permanently purifies one room of all Rot",
+        "description": "A fist-sized sphere of concentrated Sun-Shard amber, older than Emberhome itself. When shattered, it releases a burst of the tree's original fire -- enough to burn the Rot out of a room forever. The Arborists made twelve. Eleven have been used."
+      }
+    ]
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "seed": 8022,
+  "width": 28,
+  "height": 18,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "talgon_camp",
+    "theme": "STONE",
+    "topology": "settlement",
+    "mission_types": ["recon", "supply"]
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 2,
+      "y": 2,
+      "width": 8,
+      "height": 6,
+      "room_type": "town_square",
+      "connections": [1, 2],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The last major camp before Skydagger Keep, and it shows. Tents are patched with mismatched canvas. Equipment is held together with wire and prayer. The soldiers here have the hollow eyes and mechanical movements of people who have marched too far on too little. The command tent's flag -- once bright blue -- has faded to a grey that matches the faces beneath it. But the perimeter is held, the watches are set, and the fire still burns.",
+        "read_aloud": "Talgon Camp. The last stop before Skydagger Keep. The soldiers here look like they have been carrying the weight of the retreat on their backs, and they have not set it down yet.",
+        "npcs": [
+          {
+            "name": "Commander Halvard",
+            "role": "briefing_officer",
+            "dialogue": "Skydagger is two days' march through the forest. The old Panyar road will get us there if it is still passable. I've sent scouts, but... the scouts have not come back. I need someone to run the road. Find out what is blocking it, clear it if you can, and secure the supply cache at the halfway point. Without those supplies, we arrive at Skydagger with nothing.",
+            "notes": "Halvard is the senior surviving officer of the retreat. He commands through exhaustion by sheer force of habit -- thirty years of service have made leadership reflexive. His hands shake when he is not holding something. He keeps a letter in his breast pocket that he reads every night. He will not say who it is from."
+          },
+          {
+            "name": "Supply Sergeant Niss",
+            "role": "supply_contact",
+            "dialogue": "We are down to four days of rations. Five if we cut portions again, which I do not recommend -- the soldiers are already eating half what they need. The supply cache on the old road was stocked last season. If it is intact, it changes everything. If it is not, we tighten our belts and pray.",
+            "notes": "Niss is brutally honest about supply status and refuses to sugarcoat numbers. She has a photographic memory for inventory and can recite the exact contents of every supply cache the Legion has established in the last decade."
+          }
+        ],
+        "services": ["rest", "supply", "rumor"],
+        "event_triggers": [
+          "A soldier at the fire is telling a story about Skydagger Keep. 'They say the walls have never been breached. They say the mountain itself fights for whoever holds it.' Another soldier laughs, but it is the laugh of someone who needs to believe."
+        ]
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 14,
+      "y": 2,
+      "width": 6,
+      "height": 5,
+      "room_type": "barracks",
+      "connections": [0],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The rest area is a long tent with cots packed so close together that soldiers sleep in shifts to avoid overcrowding. A board on the tent pole lists the watch rotation in chalk. Someone has added, at the bottom, in different handwriting: 'ALMOST THERE.' Below that, another hand: 'That is what they said at Plainsworth.'",
+        "services": ["rest"],
+        "event_triggers": [
+          "The soldier in the next cot is awake, staring at the canvas ceiling. 'Two more days,' she whispers to no one."
+        ]
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 2,
+      "y": 10,
+      "width": 7,
+      "height": 5,
+      "room_type": "market",
+      "connections": [0],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Niss runs supply from a wagon bed, its wheels removed and the axles propped on stones. Every item is logged in her ledger, every disbursement authorized with her stamp. The shelves are thin -- ration boxes stacked three high where they used to be stacked ten. A locked chest beneath the wagon holds the camp's medical supplies, which Niss guards with the ferocity of a dragon over its hoard.",
+        "services": ["supply", "rumor"],
+        "npcs": [
+          {
+            "name": "Supply Sergeant Niss",
+            "role": "supply_contact",
+            "dialogue": "I can give you two days' rations and basic kit. If you secure the cache, we all eat for a week. If you don't, I start calculating which soldiers we can afford to put on quarter rations. Nobody wants me doing that math.",
+            "notes": "Niss can provide limited supplies. She also has camp rumors from soldiers returning from other modules."
+          }
+        ]
+      }
+    }
+  }
+}

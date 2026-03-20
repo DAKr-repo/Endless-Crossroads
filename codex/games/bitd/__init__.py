@@ -6,16 +6,16 @@ Industrial fantasy heist game, the original Forged in the Dark system.
 Crew-based play with faction clocks, turf, and heat mechanics.
 
 Integrates with:
-  - codex/core/services/fitd_engine.py for shared FITD mechanics
+  - codex/core/engines/narrative_base.py for shared FITD mechanics
   - codex/forge/char_wizard.py via vault/FITD/bitd/creation_rules.json
 
 Activated when a Blades in the Dark campaign is loaded.
 """
 
 from dataclasses import dataclass, field
-from typing import Any, Dict, List, Optional
+from typing import Any, Callable, Dict, List, Optional
 
-from codex.core.services.narrative_loom import NarrativeLoomMixin
+from codex.core.engines.narrative_base import NarrativeEngineBase
 
 
 # =========================================================================
@@ -79,23 +79,30 @@ class BitDCharacter:
 # ENGINE
 # =========================================================================
 
-class BitDEngine(NarrativeLoomMixin):
+class BitDEngine(NarrativeEngineBase):
     """Core engine for Blades in the Dark campaigns.
 
     Manages crew operations, faction relationships, and the score cycle.
     Tracks heat, wanted level, rep, coin, and turf as crew resources.
+
+    Inherits from NarrativeEngineBase:
+        create_character, add_to_party, remove_from_party, get_active_party,
+        roll_action, push_stress, get_mood_context, handle_command.
+
+    Lazy-initialized subsystems:
+        _score_state: ScoreState (score lifecycle tracking)
+        _flashback_mgr: FlashbackManager (flashback scenes)
+        _bargain_tracker: DevilsBargainTracker (devil's bargain offers)
+        _downtime_mgr: DowntimeManager (downtime activities)
     """
 
     system_id = "bitd"
     system_family = "FITD"
     display_name = "Blades in the Dark"
 
-    def __init__(self):
-        from codex.core.services.fitd_engine import StressClock, FactionClock  # noqa: F401
-        self.character: Optional[BitDCharacter] = None
-        self.party: List[BitDCharacter] = []
-        self.stress_clocks: Dict[str, Any] = {}
-        self.faction_clocks: List[Any] = []
+    def __init__(self) -> None:
+        """Initialize engine with default state and lazy subsystem placeholders."""
+        super().__init__()
         self.crew_name: str = ""
         self.crew_type: str = ""   # Assassins, Bravos, Cult, Hawkers, Shadows, Smugglers
         self.heat: int = 0
@@ -108,118 +115,63 @@ class BitDEngine(NarrativeLoomMixin):
         self._flashback_mgr: Optional[Any] = None
         self._bargain_tracker: Optional[Any] = None
         self._downtime_mgr: Optional[Any] = None
-        self._init_loom()
-        self.setting_id: str = ""   # WO-V46.0: active sub-setting filter
+        # WO-P2: Claims map (lazy-initialized)
+        self._claims_map: Optional[Any] = None
 
-    def create_character(self, name: str, **kwargs) -> BitDCharacter:
-        """Create a new scoundrel and make them the party lead."""
-        setting_id = kwargs.pop("setting_id", self.setting_id)
-        char = BitDCharacter(name=name, setting_id=setting_id, **kwargs)
-        self.character = char
-        if not self.party:
-            self.party = [char]
-        else:
-            self.party.append(char)
-        if not self.setting_id and setting_id:
-            self.setting_id = setting_id
-        from codex.core.services.fitd_engine import StressClock
-        self.stress_clocks[name] = StressClock()
-        self._add_shard(
-            f"Crew founded. Lead: {name} ({char.playbook or 'Unknown'}). "
-            f"Crew: {self.crew_name or 'Unnamed'} ({self.crew_type or 'Unknown'})",
-            "MASTER",
-        )
-        return char
+    # =====================================================================
+    # HOOKS (NarrativeEngineBase)
+    # =====================================================================
 
-    def add_to_party(self, char: BitDCharacter) -> None:
-        """Add an existing scoundrel to the active crew."""
-        self.party.append(char)
-        from codex.core.services.fitd_engine import StressClock
-        self.stress_clocks[char.name] = StressClock()
-
-    def remove_from_party(self, char: BitDCharacter) -> None:
-        """Remove a scoundrel from the active crew."""
-        if char in self.party:
-            self.party.remove(char)
-            self.stress_clocks.pop(char.name, None)
-
-    def get_active_party(self) -> List[BitDCharacter]:
-        """Return all current crew members."""
-        return list(self.party)
-
-    def roll_action(self, character: Optional[BitDCharacter] = None,
-                    action: str = "skirmish", bonus_dice: int = 0, **kwargs) -> Any:
-        """Roll an FITD action using the character's action dots.
+    def _create_character(self, name: str, **kwargs) -> BitDCharacter:
+        """Create a BitDCharacter from name and kwargs.
 
         Args:
-            character: The acting scoundrel (defaults to lead).
-            action: Action attribute name (e.g. 'skirmish', 'prowl').
-            bonus_dice: Extra dice from teamwork / assist.
-            **kwargs: Accepts 'position' (Position) and 'effect' (Effect).
+            name: Character's name.
+            **kwargs: BitD-specific fields (playbook, heritage, action dots, etc.).
 
         Returns:
-            FITDResult with outcome, dice, and position/effect context.
+            A new BitDCharacter instance.
         """
-        from codex.core.services.fitd_engine import FITDActionRoll, Position, Effect
-        char = character or self.character
-        dots = getattr(char, action, 0) if char else 0
-        position = kwargs.get("position", Position.RISKY)
-        effect = kwargs.get("effect", Effect.STANDARD)
-        roll = FITDActionRoll(dice_count=dots + bonus_dice,
-                              position=position, effect=effect)
-        return roll.roll()
+        return BitDCharacter.from_dict({"name": name, **kwargs})
 
-    def push_stress(self, char_name: str, amount: int = 1) -> dict:
-        """Push stress with trauma shard emission (WO-V61.0).
-
-        Args:
-            char_name: Name of the character whose stress clock to push.
-            amount: Stress points to add.
+    def _get_command_registry(self) -> Dict[str, Callable]:
+        """Map command names to handlers, including base aliases.
 
         Returns:
-            StressClock.push() result dict, or empty dict if no clock found.
+            Dict mapping command strings to bound methods.
         """
-        clock = self.stress_clocks.get(char_name)
-        if not clock:
-            return {}
-        result = clock.push(amount)
-        if result.get("trauma_triggered"):
-            self._add_shard(
-                f"{char_name} suffered trauma: {result['new_trauma']}. "
-                f"Total traumas: {result['total_traumas']}/4.",
-                "ANCHOR", source="session",
-            )
-        return result
-
-    def get_mood_context(self) -> dict:
-        """Return current mechanical state as narrative mood modifiers (WO-V61.0)."""
-        char = self.character
-        clock = self.stress_clocks.get(char.name) if char and hasattr(self, 'stress_clocks') else None
-        stress = clock.current_stress if clock else 0
-        max_stress = clock.max_stress if clock else 9
-        trauma_count = len(clock.traumas) if clock else 0
-        stress_pct = stress / max(1, max_stress)
-        tension = min(1.0, stress_pct + (trauma_count * 0.15))
-
-        words = []
-        if trauma_count >= 2:
-            words.extend(["haunted", "fractured", "unreliable"])
-        if stress_pct > 0.7:
-            words.extend(["fraying", "manic", "reckless"])
-
-        if stress_pct > 0.8 or trauma_count >= 3:
-            condition = "critical"
-        elif stress_pct > 0.5 or trauma_count >= 1:
-            condition = "battered"
-        else:
-            condition = "healthy"
-
         return {
-            "tension": round(tension, 2),
-            "tone_words": words,
-            "party_condition": condition,
-            "system_specific": {"stress": stress, "trauma_count": trauma_count},
+            # crew_status in BitD shows crew heat/coin/rep (not stress/trauma)
+            "crew_status": self._cmd_crew_status,
+            # party_status shows per-member stress (uses base _cmd_crew_stress format)
+            "party_status": self._cmd_party_status,
+            # WO-P2: Territory claims
+            "claim_territory": self._cmd_claim_territory,
+            "claims_map": self._cmd_claims_map,
+            "claims": self._cmd_claims_map,
+            # WO-P2: Economy
+            "spend_coin": self._cmd_spend_coin,
+            # WO-P2: Playbook abilities
+            "use_ability": self._cmd_use_ability,
+            # WO-P2: Inherited FITD mechanics (explicit registration for discoverability)
+            "fortune": self._cmd_fortune,
+            "resist": self._cmd_resist,
+            "gather_info": self._cmd_gather_info,
         }
+
+    def _format_status(self) -> str:
+        """Return BitD-specific status string.
+
+        Returns:
+            Human-readable status including crew name, heat, coin, rep, turf.
+        """
+        lead = self.party[0] if self.party else None
+        return (
+            f"Crew: {self.crew_name or 'Unnamed'} ({self.crew_type or 'Unknown'}) | "
+            f"Heat: {self.heat} | Wanted: {self.wanted_level} | "
+            f"Coin: {self.coin} | Rep: {self.rep} | Turf: {self.turf} | "
+            f"Lead: {lead.name if lead else 'None'}"
+        )
 
     # =====================================================================
     # LAZY SUBSYSTEM ACCESSORS (WO-V41.0)
@@ -252,6 +204,17 @@ class BitDEngine(NarrativeLoomMixin):
             from codex.games.bitd.downtime import DowntimeManager
             self._downtime_mgr = DowntimeManager()
         return self._downtime_mgr
+
+    def _get_claims_map(self) -> Any:
+        """Return the ClaimsMap, creating it on first access."""
+        if self._claims_map is None:
+            from codex.games.bitd.claims import ClaimsMap
+            self._claims_map = ClaimsMap()
+        return self._claims_map
+
+    # =====================================================================
+    # STATUS (override for crew info)
+    # =====================================================================
 
     def get_status(self) -> Dict[str, Any]:
         """Return a summary dict suitable for Butler status display."""
@@ -295,23 +258,30 @@ class BitDEngine(NarrativeLoomMixin):
         from codex.forge.reference_data.setting_filter import filter_by_setting
         return filter_by_setting(CREW_TYPES, self.setting_id)
 
+    # =====================================================================
+    # SAVE / LOAD (extend base with BitD-specific fields)
+    # =====================================================================
+
     def save_state(self) -> Dict[str, Any]:
         """Serialize full engine state for persistence."""
-        return {
-            "system_id": self.system_id,
-            "setting_id": self.setting_id,
-            "party": [c.to_dict() for c in self.party],
-            "stress": {k: v.to_dict() for k, v in self.stress_clocks.items()},
-            "faction_clocks": [c.to_dict() for c in self.faction_clocks],
-            "crew_name": self.crew_name, "crew_type": self.crew_type,
-            "heat": self.heat, "wanted_level": self.wanted_level,
-            "rep": self.rep, "coin": self.coin, "turf": self.turf,
+        state = super().save_state()
+        state.update({
+            "crew_name": self.crew_name,
+            "crew_type": self.crew_type,
+            "heat": self.heat,
+            "wanted_level": self.wanted_level,
+            "rep": self.rep,
+            "coin": self.coin,
+            "turf": self.turf,
             # WO-V41.0: subsystem state
             "score_state": self._score_state.to_dict() if self._score_state else None,
             "flashback_mgr": self._flashback_mgr.to_dict() if self._flashback_mgr else None,
             "bargain_tracker": self._bargain_tracker.to_dict() if self._bargain_tracker else None,
             "downtime_mgr": self._downtime_mgr.to_dict() if self._downtime_mgr else None,
-        }
+            # WO-P2: claims map
+            "claims_map": self._claims_map.to_dict() if self._claims_map else None,
+        })
+        return state
 
     def load_state(self, data: Dict[str, Any]) -> None:
         """Restore engine state from a previously saved dict."""
@@ -341,9 +311,14 @@ class BitDEngine(NarrativeLoomMixin):
             self._bargain_tracker = DevilsBargainTracker.from_dict(data["bargain_tracker"])
         if data.get("downtime_mgr"):
             self._downtime_mgr = DowntimeManager.from_dict(data["downtime_mgr"])
+        # WO-P2: restore claims map
+        claims_data = data.get("claims_map")
+        if claims_data:
+            from codex.games.bitd.claims import ClaimsMap
+            self._claims_map = ClaimsMap.from_dict(claims_data)
 
     # =====================================================================
-    # COMMAND DISPATCHER (WO-V10.0)
+    # COMMAND DISPATCHER — BitD-specific commands
     # =====================================================================
 
     _ENTANGLEMENT_FLAVORS = {
@@ -384,21 +359,12 @@ class BitDEngine(NarrativeLoomMixin):
         ],
     }
 
-    def handle_command(self, cmd: str, **kwargs) -> str:
-        """Dispatch a command string to the appropriate handler."""
-        if cmd == "trace_fact":
-            return self.trace_fact(kwargs.get("fact", ""))
-        handler = getattr(self, f"_cmd_{cmd}", None)
-        if handler:
-            return handler(**kwargs)
-        return f"Unknown command: {cmd}"
-
-    def _cmd_roll_action(self, **kwargs) -> str:
-        from codex.core.services.fitd_engine import format_roll_result
-        result = self.roll_action(**kwargs)
-        return format_roll_result(result)
-
     def _cmd_crew_status(self, **kwargs) -> str:
+        """Display crew name, type, and current resources.
+
+        Returns:
+            Human-readable crew summary string.
+        """
         return (
             f"Crew: {self.crew_name or 'Unnamed'} ({self.crew_type or 'Unknown'})\n"
             f"Heat: {self.heat} | Wanted: {self.wanted_level}\n"
@@ -406,6 +372,11 @@ class BitDEngine(NarrativeLoomMixin):
         )
 
     def _cmd_score_status(self, **kwargs) -> str:
+        """Display current score details.
+
+        Returns:
+            Human-readable score state string, or 'No active score' message.
+        """
         score = self._get_score_state()
         if not score.active:
             return "No active score. Use the engagement command to start one."
@@ -419,6 +390,11 @@ class BitDEngine(NarrativeLoomMixin):
         )
 
     def _cmd_entanglement(self, **kwargs) -> str:
+        """Roll 1d6 + heat modifier for an entanglement complication.
+
+        Returns:
+            Human-readable entanglement roll result with flavour text.
+        """
         import random
         import random as _rng
         roll = random.randint(1, 6)
@@ -432,6 +408,11 @@ class BitDEngine(NarrativeLoomMixin):
         return f"Entanglement Roll: {roll} (heat modifier: +{1 if self.heat >= 4 else 0})\n{flavor}"
 
     def _cmd_party_status(self, **kwargs) -> str:
+        """Show all crew members with stress and trauma info.
+
+        Returns:
+            Human-readable string listing each member's stress clock.
+        """
         lines = ["Crew Members:"]
         for name, clock in self.stress_clocks.items():
             traumas = ", ".join(clock.traumas) if clock.traumas else "none"
@@ -443,7 +424,19 @@ class BitDEngine(NarrativeLoomMixin):
     # ─── WO-V41.0: Score Cycle Commands ───────────────────────────────
 
     def _cmd_engagement(self, **kwargs) -> str:
-        """Roll engagement dice to begin a score and set the opening position."""
+        """Roll engagement dice to begin a score and set the opening position.
+
+        Kwargs:
+            plan_type: Score plan type (e.g. 'infiltration', 'assault').
+            crew_tier: Crew's current tier.
+            detail_bonus: Bonus dice from detailed planning.
+            misc_bonus: Other bonus dice.
+            misc_penalty: Penalty dice.
+            target: Score target name.
+
+        Returns:
+            Human-readable engagement roll result with starting position.
+        """
         from codex.games.bitd.scores import engagement_roll
         plan = kwargs.get("plan_type", "infiltration")
         result = engagement_roll(
@@ -466,7 +459,15 @@ class BitDEngine(NarrativeLoomMixin):
         )
 
     def _cmd_flashback(self, **kwargs) -> str:
-        """Use a flashback scene during a score, costing 0-2 stress."""
+        """Use a flashback scene during a score, costing 0-2 stress.
+
+        Kwargs:
+            description: What the character did in the flashback.
+            complexity: 'simple' (0 stress), 'complex' (1 stress), 'elaborate' (2 stress).
+
+        Returns:
+            Human-readable flashback result with stress cost.
+        """
         mgr = self._get_flashback_mgr()
         desc = kwargs.get("description", "A flashback scene")
         complexity = kwargs.get("complexity", "simple")
@@ -476,7 +477,14 @@ class BitDEngine(NarrativeLoomMixin):
         return f"Flashback ({complexity}): {desc}\nStress cost: {fb['stress_cost']}"
 
     def _cmd_devils_bargain(self, **kwargs) -> str:
-        """Offer a Devil's Bargain — +1d in exchange for a complication."""
+        """Offer a Devil's Bargain — +1d in exchange for a complication.
+
+        Kwargs:
+            category: Bargain category (e.g. 'evidence', 'collateral_damage').
+
+        Returns:
+            Human-readable bargain offer string.
+        """
         tracker = self._get_bargain_tracker()
         category = kwargs.get("category", "")
         bargain = tracker.offer_bargain(category)
@@ -486,7 +494,11 @@ class BitDEngine(NarrativeLoomMixin):
         )
 
     def _cmd_accept_bargain(self, **kwargs) -> str:
-        """Accept the most recently offered Devil's Bargain."""
+        """Accept the most recently offered Devil's Bargain.
+
+        Returns:
+            Confirmation string, or 'No bargain to accept' if none offered.
+        """
         tracker = self._get_bargain_tracker()
         bargain = tracker.accept_bargain()
         if bargain:
@@ -496,7 +508,15 @@ class BitDEngine(NarrativeLoomMixin):
         return "No bargain to accept."
 
     def _cmd_resolve_score(self, **kwargs) -> str:
-        """Resolve and end the active score, awarding rep/heat/coin."""
+        """Resolve and end the active score, awarding rep/heat/coin.
+
+        Kwargs:
+            crew_tier: Crew's tier for reward calculation.
+            target_tier: Target's tier for reward calculation.
+
+        Returns:
+            Human-readable score resolution summary.
+        """
         from codex.games.bitd.scores import resolve_score
         score = self._get_score_state()
         if not score.active:
@@ -508,15 +528,35 @@ class BitDEngine(NarrativeLoomMixin):
         )
         self.rep += result["rep_earned"]
         self.heat += result["heat_generated"]
-        self.coin += result["coin_earned"]
-        self._add_shard(f"Score resolved: {result['summary']}", "CHRONICLE")
+        # Turf bonus: +1 coin per score for each controlled turf beyond the Lair
+        turf_bonus = max(0, self.turf)
+        self.coin += result["coin_earned"] + turf_bonus
+        # Check for crew tier advancement (every 6 rep = +1 tier conceptually)
+        self._add_shard(
+            f"Score resolved: {result['summary']}"
+            + (f" (+{turf_bonus} coin from turf)" if turf_bonus else ""),
+            "CHRONICLE",
+        )
         score.active = False
-        return result["summary"]
+        summary = result["summary"]
+        if turf_bonus:
+            summary += f"\nTurf bonus: +{turf_bonus} coin ({self.turf} controlled territories)"
+        return summary
 
     # ─── WO-V41.0: Extended Downtime Commands ──────────────────────────
 
     def _cmd_downtime_project(self, **kwargs) -> str:
-        """Work on or create a long-term project during downtime."""
+        """Work on or create a long-term project during downtime.
+
+        Kwargs:
+            project_name: Name of the project (required).
+            clock_size: Segments in the project clock (for new projects).
+            description: Project description (for new projects).
+            action_dots: Dots used to work on the project.
+
+        Returns:
+            Creation confirmation or work result string.
+        """
         mgr = self._get_downtime_mgr()
         name = kwargs.get("project_name", "")
         if not name:
@@ -529,7 +569,15 @@ class BitDEngine(NarrativeLoomMixin):
         return result.get("description", str(result))
 
     def _cmd_downtime_acquire(self, **kwargs) -> str:
-        """Acquire a temporary asset during downtime."""
+        """Acquire a temporary asset during downtime.
+
+        Kwargs:
+            crew_tier: Crew's tier for asset quality.
+            quality: Desired asset quality level.
+
+        Returns:
+            Human-readable acquisition result string.
+        """
         mgr = self._get_downtime_mgr()
         result = mgr.acquire_asset(
             crew_tier=kwargs.get("crew_tier", 0),
@@ -538,7 +586,14 @@ class BitDEngine(NarrativeLoomMixin):
         return result.get("description", str(result))
 
     def _cmd_downtime_reduce_heat(self, **kwargs) -> str:
-        """Spend a downtime activity to reduce crew heat."""
+        """Spend a downtime activity to reduce crew heat.
+
+        Kwargs:
+            crew_tier: Crew's tier for heat reduction roll.
+
+        Returns:
+            Human-readable result including current heat after reduction.
+        """
         mgr = self._get_downtime_mgr()
         result = mgr.reduce_heat(crew_tier=kwargs.get("crew_tier", 0))
         heat_reduced = result.get("heat_reduced", 0)
@@ -546,13 +601,27 @@ class BitDEngine(NarrativeLoomMixin):
         return result.get("description", str(result)) + f"\nCurrent heat: {self.heat}"
 
     def _cmd_downtime_recover(self, **kwargs) -> str:
-        """Recover from harm during downtime."""
+        """Recover from harm during downtime.
+
+        Kwargs:
+            healer_dots: Dots in the healing action.
+
+        Returns:
+            Human-readable recovery result string.
+        """
         mgr = self._get_downtime_mgr()
         result = mgr.recover(healer_dots=kwargs.get("healer_dots", 0))
         return result.get("description", str(result))
 
     def _cmd_downtime_train(self, **kwargs) -> str:
-        """Train for XP in a chosen attribute during downtime."""
+        """Train for XP in a chosen attribute during downtime.
+
+        Kwargs:
+            attribute: Attribute to train (insight/prowess/resolve/playbook).
+
+        Returns:
+            Human-readable training result string.
+        """
         mgr = self._get_downtime_mgr()
         result = mgr.train(kwargs.get("attribute", "playbook"))
         return result.get("description", str(result))
@@ -712,7 +781,14 @@ class BitDEngine(NarrativeLoomMixin):
         return msg
 
     def _cmd_complication(self, **kwargs) -> str:
-        """Roll a complication from the system's consequence table."""
+        """Roll a complication from the system's consequence table.
+
+        Kwargs:
+            tier: Base complication tier (1-4); heat >= 4 adds +1.
+
+        Returns:
+            Human-readable complication text and effect.
+        """
         import random as _rng
         tier = max(1, min(4, kwargs.get("tier", 1)))
         effective_tier = min(4, tier + (1 if self.heat >= 4 else 0))
@@ -725,7 +801,15 @@ class BitDEngine(NarrativeLoomMixin):
         return f"COMPLICATION: {entry['text']}\nEffect: {entry.get('effect', 'none')}"
 
     def _cmd_advance(self, **kwargs) -> str:
-        """Mark XP for a character. 8 marks = playbook advance."""
+        """Mark XP for a character. 8 marks = playbook advance.
+
+        Kwargs:
+            character: Optional BitDCharacter to target (defaults to lead).
+            trigger: XP trigger description.
+
+        Returns:
+            Human-readable XP progress string, or advance notification.
+        """
         char = kwargs.get("character") or self.character
         trigger = kwargs.get("trigger", "")
         if not char:
@@ -740,10 +824,118 @@ class BitDEngine(NarrativeLoomMixin):
             return f"{char.name} marks XP ({trigger}). PLAYBOOK ADVANCE! Choose a new ability."
         return f"{char.name} marks XP ({trigger}). {char.xp_marks}/8"
 
+    # ─── WO-P2: Territory, Economy, Abilities ──────────────────────────
 
-# =========================================================================
-# COMMAND DEFINITIONS (WO-V10.0)
-# =========================================================================
+    def _cmd_claim_territory(self, **kwargs) -> str:
+        """Claim a territory node adjacent to a controlled node.
+
+        Kwargs:
+            name: Name of the claim to take (required).
+
+        Returns:
+            Success message with benefit and updated turf count, or error string.
+        """
+        name = kwargs.get("name", "")
+        if not name:
+            return "Specify territory name: claim_territory name=<name>"
+        claims = self._get_claims_map()
+        result = claims.claim(name)
+        if result["success"]:
+            self.turf += 1
+            self._add_shard(f"Claimed territory: {name} — {result['benefit']}", "ANCHOR")
+            return (
+                f"Territory claimed: {name}\n"
+                f"Benefit: {result['benefit']}\n"
+                f"Turf: {self.turf}"
+            )
+        return result["error"]
+
+    def _cmd_claims_map(self, **kwargs) -> str:
+        """Display the crew's full claims map.
+
+        Returns:
+            Multi-line string with all 15 claim nodes and controlled status.
+        """
+        return self._get_claims_map().display()
+
+    def _cmd_spend_coin(self, **kwargs) -> str:
+        """Spend coin for a stated purpose.
+
+        Kwargs:
+            amount: Integer amount to spend (default 1).
+            purpose: Description of what coin is spent on (default 'unspecified').
+
+        Returns:
+            Confirmation with remaining coin, or error if insufficient funds.
+        """
+        amount = int(kwargs.get("amount", 1))
+        purpose = kwargs.get("purpose", "unspecified")
+        if amount <= 0:
+            return "Amount must be positive."
+        if amount > self.coin:
+            return f"Insufficient coin: have {self.coin}, need {amount}."
+        self.coin -= amount
+        self._add_shard(
+            f"Spent {amount} coin: {purpose}. Remaining: {self.coin}",
+            "CHRONICLE",
+        )
+        return f"Spent {amount} coin on: {purpose}\nRemaining: {self.coin}"
+
+    def _cmd_use_ability(self, **kwargs) -> str:
+        """Use a playbook ability for the active character.
+
+        Looks up the ability by name in the character's playbook data.
+
+        Kwargs:
+            name: Ability name (case-insensitive, required).
+
+        Returns:
+            Ability description string, or error listing available abilities.
+        """
+        ability_name = kwargs.get("name", "")
+        if not ability_name:
+            return "Specify ability name: use_ability name=<name>"
+        char = self.character
+        if not char:
+            return "No active character."
+        abilities = self._get_playbook_abilities(char.playbook)
+        matched = None
+        for ab in abilities:
+            if ab["name"].lower() == ability_name.lower():
+                matched = ab
+                break
+        if not matched:
+            available = ", ".join(a["name"] for a in abilities[:5])
+            return f"Unknown ability: {ability_name}. Available: {available}"
+        self._add_shard(
+            f"{char.name} used ability: {matched['name']} — {matched['description'][:60]}",
+            "CHRONICLE",
+        )
+        return f"{char.name} uses [{matched['name']}]\n{matched['description']}"
+
+    def _get_playbook_abilities(self, playbook: str) -> list:
+        """Return a list of ability dicts for the given playbook name.
+
+        Handles both list-of-str and list-of-dict formats in the source data.
+        The key in PLAYBOOKS is 'special_abilities'.
+
+        Args:
+            playbook: Playbook name (e.g. 'Cutter', 'Hound').
+
+        Returns:
+            List of dicts with 'name' and 'description' keys.
+        """
+        from codex.forge.reference_data.bitd_playbooks import PLAYBOOKS
+        pb_data = PLAYBOOKS.get(playbook, {})
+        abilities = pb_data.get("special_abilities", [])
+        result = []
+        for ab in abilities:
+            if isinstance(ab, str):
+                result.append({"name": ab, "description": ab})
+            elif isinstance(ab, dict):
+                result.append(ab)
+        return result
+
 
 # =========================================================================
 # COMPLICATION TABLE (Gap Fix: per-engine consequences)
@@ -799,16 +991,28 @@ BITD_COMMANDS = {
     "downtime_recover": "Recover from harm",
     "downtime_train": "Train for XP",
     "complication": "Roll a complication from the consequence table",
+    # WO-P2: Territory, Economy, Abilities, FITD mechanics
+    "claim_territory": "Claim an adjacent territory node (name=<str>)",
+    "claims_map": "Display the crew's claims map",
+    "spend_coin": "Spend coin for a purpose (amount=<int> purpose=<str>)",
+    "use_ability": "Use a playbook ability (name=<str>)",
+    "fortune": "Roll a fortune die pool (dice_count=<int>)",
+    "resist": "Roll resistance (attribute=<str>)",
+    "gather_info": "Gather information (action=<str> question=<str>)",
 }
 
 BITD_CATEGORIES = {
     "Crew": ["crew_status", "score_status", "entanglement", "heat_status", "rep_status"],
-    "Action": ["roll_action", "party_status"],
+    "Action": [
+        "roll_action", "party_status",
+        "fortune", "resist", "gather_info", "use_ability",
+    ],
     "Score": ["engagement", "entangle", "flashback", "devils_bargain", "accept_bargain", "resolve_score", "complication"],
     "Downtime": [
         "vice", "downtime_vice", "advance", "downtime_project", "downtime_acquire",
         "downtime_reduce_heat", "downtime_recover", "downtime_train", "downtime",
     ],
+    "Territory": ["claim_territory", "claims_map", "spend_coin"],
 }
 
 

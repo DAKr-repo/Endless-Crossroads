@@ -1,0 +1,118 @@
+{
+  "seed": 7014,
+  "width": 35,
+  "height": 20,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "circus_backstage",
+    "theme": "GOTHIC",
+    "topology": "settlement",
+    "display_name": "Backstage"
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 0,
+      "y": 0,
+      "width": 10,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The backstage area behind the big top. Rigging, costume racks, prop crates. Performers warm up in the cleared space. None of them go near the curtained-off area at the back. The acrobat catches your eye and mouths: 'Careful.'",
+        "read_aloud": "Behind the performance space, the circus's working guts. Rope coils, counterweights, the smell of greasepaint. The performers speak in hushed voices. A petition is pinned to the common area board -- twelve signatures requesting cancellation of the Constellation act. Below it in the ringmaster's writing: 'Denied.'",
+        "npcs": [
+          {
+            "name": "Handler Vex",
+            "role": "witness",
+            "dialogue": "He speaks too fast, pupils dilated. 'It talks to me. Not in words -- in pictures. It shows me where it came from. A place of light, no ground, no sky. It was happy there. Then the cave. Then the cage. It's scared. It doesn't understand bars. Where it comes from, nothing is solid. It's getting angrier and I'm the only one who hears it.'",
+            "notes": "He/him. Primary handler. Most bleed-contaminated. Developed a rudimentary psychic link through prolonged exposure. Can communicate the creature's emotional state and basic needs. The link is damaging him -- he has days before the exposure causes permanent harm. Needs medical treatment urgently."
+          }
+        ],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [
+          "Handler Vex's psychic link provides a communication channel to the creature. He knows it is afraid, confined, and broadcasting a distress signal. He can help negotiate with it -- but he needs treatment first."
+        ],
+        "loot": []
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 13,
+      "y": 0,
+      "width": 10,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [0, 2],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The creature's transport cage, up close. Iron bars corroding from bleed radiation. The tarp pulled back for stage prep. The Attraction within is nothing like the poster.",
+        "read_aloud": "The creature is light given form. Not a body -- a presence. It shifts between shapes the way water shifts between containers. One moment a luminous jellyfish; the next, a bird made of aurora borealis; the next, something geometrically impossible. Its light pulses in distress patterns -- fast, arrhythmic. It sees you. It sees everything. And it is afraid.",
+        "npcs": [],
+        "enemies": [
+          {
+            "name": "Bleed-Addled Roustabout",
+            "hp": 12,
+            "max_hp": 12,
+            "ac": 11,
+            "attack": 3,
+            "defense": 11,
+            "count": 1
+          }
+        ],
+        "services": [],
+        "event_triggers": [
+          "THREAT: A stagehand exposed to the cage's radiation for too long has become paranoid and aggressive. He attacks anyone approaching the cage, convinced they're trying to steal the creature. Dr. Asher can sedate him if he's brought to the medical tent.",
+          "SPECIAL: The creature's distress signal is intensifying -- broadcasting to something outside. If its kind answer the signal, the situation escalates catastrophically."
+        ],
+        "loot": [
+          {
+            "name": "Cage Radiation Readings",
+            "value": 0,
+            "description": "Measurements with Candela equipment. Bleed radiation output has doubled in three days. At current levels, the front ten rows during a two-hour performance would experience hallucinations. During a panic, output would spike further."
+          }
+        ],
+        "investigation_dc": 16,
+        "investigation_success": "The creature's light patterns are communication -- complex, layered, faster than the eye can process. With Vex translating emotional states, a pattern emerges: it's broadcasting a distress signal. The cage itself is corroding -- the lock will fail during the show, or shortly after."
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 25,
+      "y": 4,
+      "width": 8,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The performer common area. Twelve signatories on the cancellation petition are gathered here, away from Bellamy. They're ready to walk out. They need someone to tell them it's the right thing to do.",
+        "read_aloud": "The acrobat from earlier sits at the center of the group. 'We've been trying to get Bellamy to listen for three days. He won't. But if we all walk out, there is no show. We just need to know -- is it really that dangerous? Are we actually putting people at risk?' She looks at you steadily. She already knows the answer.",
+        "npcs": [
+          {
+            "name": "Officer Crane",
+            "role": "informant",
+            "dialogue": "He arrived an hour ago, Ordre des Urbanistes Philanthropiques -- OUP crowd control. 'I've been to two of these circuses. Never had a problem. But my instruments are reading something off tonight. My OUP training covers civil disturbances. It does not cover... this.' He shows you a bleed detector -- a Candela-adjacent device, reading elevated levels. 'I need to know what we're dealing with before twelve hundred civilians walk through that gate.'",
+            "notes": "He/him. OUP officer. Has crowd control authority but cannot act without cause. If the investigators provide evidence of the threat, he can order an evacuation. He is an ally -- worried, professional, and increasingly convinced this is outside his jurisdiction."
+          }
+        ],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [
+          "Multiple paths to preventing the show exist: convince Bellamy, trigger a performer walkout, get Officer Crane to order evacuation, or prepare for controlled containment when the creature inevitably escapes."
+        ],
+        "loot": [],
+        "perception_dc": 10,
+        "perception_success": "The performers are divided but the majority are frightened. A successful Sway action with evidence (radiation readings, Vex's testimony) will trigger the walkout. Fifteen of the forty performers leave immediately. The show is impossible without them."
+      }
+    }
+  }
+}

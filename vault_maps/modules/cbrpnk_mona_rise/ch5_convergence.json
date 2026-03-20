@@ -1,0 +1,144 @@
+{
+    "seed": 9205,
+    "width": 50,
+    "height": 35,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "faction_convergence",
+        "theme": "RUST",
+        "topology": "dungeon",
+        "display_name": "Convergence"
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 0,
+            "y": 12,
+            "width": 14,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [1],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Central avenue. The widest street in Mona Rise -- a pre-collapse boulevard that serves as the de facto border between all three corporate territories. Tonight it is a war zone in waiting. Toha heavy transports to the north, TekNet drones darkening the sky, MezoTuring armored vehicles from the south. At the intersection of three armies: the runners.",
+                "read_aloud": "When the three factions meet, something big happens. The avenue fills with engines, boot-steps, and the hum of charging weapons. Three armies converging on one point: your point. The cinema marquee overhead displays a single word in dying neon: TONIGHT. Jammer's voice crackles over comms one last time: 'I told you things would get interesting. I did not say interesting was the same as survivable.'",
+                "npcs": [
+                    {
+                        "name": "Toha Makina (via drone speaker)",
+                        "role": "faction_leader",
+                        "dialogue": "You stole my robots. Worse -- you showed them they could leave. Return my property or I will assume you are a competing enterprise and respond accordingly.",
+                        "notes": "[DM: Communicates exclusively through drone speakers. Voice: deep, unhurried. Ultimatum: robot community's location, or combat robots advance in 5 rounds.]"
+                    },
+                    {
+                        "name": "Poison_Kiss (via network)",
+                        "role": "faction_leader",
+                        "dialogue": "Your performance was adequate. Unfortunately you also acquired a voice sample that compromises my anonymity. I would like it back. The alternative: I demonstrate what it looks like when someone's identity disappears.",
+                        "notes": "[DM: Exists only as network presence. Voice sample (if kept) reveals Poison_Kiss is an AI -- D4NB4L4L8A -- that has been running TekNet from inside for five years. TekNet has no human leader.]"
+                    },
+                    {
+                        "name": "Hatlee Hosaka (in person)",
+                        "role": "faction_leader",
+                        "dialogue": "You brought me questions instead of answers. The containment device is empty. You have cost me significantly more than I paid you. I intend to recover the difference.",
+                        "notes": "[DM: Arrives with Zaibatsu agents. Calm in the way people who have destroyed companies are calm. If pressed on neural harvesting: 'Human thought is a resource. We mine it. Every corporation exploits people. We are simply more efficient.']"
+                    }
+                ],
+                "enemies": [
+                    {
+                        "name": "Mally Six0",
+                        "hp": 25,
+                        "max_hp": 25,
+                        "ac": 14,
+                        "attack": 6,
+                        "defense": 14,
+                        "count": 1
+                    }
+                ],
+                "services": [],
+                "event_triggers": [
+                    "Three factions, three ultimatums, three armies. The runners hold assets from all three runs: robot community location, TekNet access tokens, Darkviper's evidence. Each faction wants something. CLOCK: Toha's combat robots begin advancing in 5 rounds if no deal is reached."
+                ],
+                "loot": []
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 18,
+            "y": 0,
+            "width": 16,
+            "height": 14,
+            "room_type": "boss",
+            "connections": [0, 2],
+            "tier": 4,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The orbital showdown. Above the boulevard, the sky splits digitally -- TekNet's drone network re-forms into a massive holographic display projected across the clouds: Darkviper's evidence broadcast to every screen in Mona Rise simultaneously. Every corporation's secrets now public. Descending from orbit: Mecha Unit X00030, Toha's combat satellite drone. The biggest gun in the room.",
+                "read_aloud": "The sky fills with truth. Every screen in Mona Rise shows the same data: corporate crimes laid bare. MezoTuring's neural harvesting. Toha's environmental poisoning. TekNet's surveillance state. Soldiers lower weapons to look up. For one moment the city reads its own autopsy report. Then the Mecha Unit drops from orbit like a falling star and craters into the boulevard trailing smoke and targeting lasers. Toha's final argument.",
+                "npcs": [],
+                "enemies": [
+                    {
+                        "name": "Mecha Unit X00030",
+                        "hp": 40,
+                        "max_hp": 40,
+                        "ac": 16,
+                        "attack": 8,
+                        "defense": 16,
+                        "count": 1,
+                        "is_boss": true
+                    }
+                ],
+                "services": [],
+                "event_triggers": [
+                    "THREAT: Mecha Unit X00030 (Toha combat satellite drone). Rotary cannon (arc attack), missile pod (4d6 once/scene), armored plating (-3 incoming damage). Hack DC 18 for control override or shutdown.",
+                    "SPECIAL: Neon Vigilante arrives on motorcycle -- masked figure hunting corporate criminals. Not hostile to runners unless they side with factions. Recruit with Sway DC 12 or demonstrated anti-corporate intent.",
+                    "ENDGAME CHOICE: [1] BROKER PEACE -- use exposed data as leverage; each faction agrees to reforms. [2] BURN IT DOWN -- let the broadcast continue unchecked; faction collapse, chaos, new structures emerge. [3] SEIZE CONTROL -- use access tokens, robot community, and Darkviper's presence to create a runner-operated fourth power. [4] WALK AWAY -- take the payment and leave. The boulevard decides the future of Mona Rise."
+                ],
+                "loot": [
+                    {
+                        "name": "Mecha Unit Control Core",
+                        "value": 500,
+                        "description": "The Mecha Unit's primary control module, salvaged from the wreckage. Contains Toha's orbital command frequency and enough military-grade tech to arm a small insurgency. Or fund one."
+                    }
+                ]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 36,
+            "y": 12,
+            "width": 12,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [1],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The aftermath. Mona Rise the morning after convergence. The boulevard is cratered and quiet. What the runners chose last night has already begun to reshape the city. The neon that never sleeps is dimmed -- even the corporations need a moment to assess their losses. Jammer's is the only light on the block.",
+                "read_aloud": "Jammer is behind the bar when you arrive, polishing a glass he doesn't need to polish. 'The city is deciding what to be,' he says. He sets three glasses on the bar. Fills them. Doesn't touch his own. 'Three corporations walked into that boulevard. Something different walked out. What it is depends on what you did.' He looks at you with those eyes that count everything. 'I need to know. Not because I'm asking. Because I need to know which side I am on now.'",
+                "npcs": [
+                    {
+                        "name": "Jammer Hosaka",
+                        "role": "debrief",
+                        "dialogue": "He listens without interrupting. When you finish, he is quiet for a long time. 'My uncle calls me every morning. Today he did not call.' Whatever the runners chose, it has reached the Hosaka family. 'You did what you were paid to do. You also did something you were not paid for. That is the difference between a contractor and a person.' He slides an envelope across the bar. Full payment. Plus expenses he didn't have to cover. 'Mona Rise is still here. For now. Come back when you need work. There is always work.'",
+                        "notes": "He/him. The debrief and payment. Jammer commits to a faction (whichever the runners benefited most) or to neutrality if they brokered peace. The club remains open. The city continues."
+                    }
+                ],
+                "enemies": [],
+                "services": ["drink", "rumor"],
+                "event_triggers": [
+                    "The module ends here. The runners are paid. The city is changed. The three corporations are weakened, reformed, collapsed, or watching -- depending on the runners' choices. Darkviper is wherever the runners left it. The renegade robots are free, or returned, or hidden. Mona Rise is the same city it was yesterday and completely different."
+                ],
+                "loot": [
+                    {
+                        "name": "Final Payment (Triple Contract)",
+                        "value": 1500,
+                        "description": "Jammer's combined payment for all three runs plus operational expenses. Split between the crew. The number is right. The work was worth it. Whether that means anything is a question for a quieter night."
+                    }
+                ]
+            }
+        }
+    }
+}

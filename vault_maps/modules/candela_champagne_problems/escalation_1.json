@@ -1,0 +1,118 @@
+{
+  "seed": 7005,
+  "width": 50,
+  "height": 30,
+  "start_room_id": 0,
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 2,
+      "y": 2,
+      "width": 12,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false
+    },
+    "1": {
+      "id": 1,
+      "x": 16,
+      "y": 2,
+      "width": 14,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [0, 2, 3],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false
+    },
+    "2": {
+      "id": 2,
+      "x": 32,
+      "y": 2,
+      "width": 10,
+      "height": 8,
+      "room_type": "treasure",
+      "connections": [1],
+      "tier": 2,
+      "is_locked": true,
+      "is_secret": false
+    },
+    "3": {
+      "id": 3,
+      "x": 16,
+      "y": 14,
+      "width": 14,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false
+    }
+  },
+  "metadata": {
+    "zone_id": "escalation_1",
+    "theme": "GOTHIC",
+    "topology": "dungeon",
+    "scene_title": "The Back Rooms"
+  },
+  "content_hints": {
+    "0": {
+      "description": "A service corridor behind the bar. The glamour of the speakeasy drops away -- bare brick, exposed pipes dripping something amber. The music is muffled here but never stops. Doors line both sides, each one numbered.",
+      "read_aloud": "The corridor smells of mildew and old perfume. Door handles rattle as you pass, as though someone inside each room wants out -- or wants in. A placard reads 'PRIVATE ROOMS -- GUESTS ONLY' in gilt letters flaking to nothing.",
+      "enemies": [
+        {
+          "name": "Enthralled Guests",
+          "hp": 15,
+          "ac": 12,
+          "attack": 4,
+          "damage": "1d6",
+          "count": 2,
+          "notes": "Guests who have been in the back rooms so long they've become feral. Still in evening wear, but gaunt, hollow-eyed, moving in jerky puppet-like motions.",
+          "special": ["Enthralled: immune to persuasion while the music plays", "Aging Dust: melee attacks cause rapid aging on hit -- 1 additional Body mark"]
+        }
+      ],
+      "event_triggers": ["The back rooms are where the Host keeps guests who've been drained too far to dance. They're still alive, barely, and they're aggressive."]
+    },
+    "1": {
+      "description": "A large dressing room with vanity mirrors lining the walls. Every mirror reflects a different time period -- one shows the room as it was in 1892, another in 1910, another last week. The Host's wardrobe hangs in an open armoire: suits spanning a century.",
+      "read_aloud": "You catch your own reflection in one of the mirrors and freeze. You look older. Just slightly -- crow's feet that weren't there, a gray hair. The room is stealing time from you just by being in it.",
+      "investigation_dc": 16,
+      "investigation_success": "One mirror is newer than the rest and doesn't reflect a time period -- it reflects a face. The Host's face, watching. He knows you're here. Scrawled on the frame: 'I was Aldric Hargrove. I am something else now.'",
+      "enemies": [
+        {
+          "name": "Aging Dust Cloud",
+          "hp": 15,
+          "ac": 12,
+          "attack": 4,
+          "damage": "1d4",
+          "count": 1,
+          "notes": "A swirling cloud of the same dust found on the street. Proximity drains years. It drifts through the dressing room on an unfelt wind.",
+          "special": ["Incorporeal: physical attacks deal half damage", "Life Drain: all investigators in the room take 1 Body mark per round", "Dispersed by strong wind or bleed-warding"]
+        }
+      ],
+      "loot": [
+        {"name": "Hargrove's Personal Diary", "value": 0, "description": "Aldric Hargrove's account of discovering a thinning beneath his shop. He fed it music and champagne. It fed him years. Then it fed ON him, hollowing out his identity until only the Host remained."}
+      ]
+    },
+    "2": {
+      "description": "Hargrove's private office. A desk, a safe, and shelves of accounting ledgers. The safe is locked with a combination -- four digits etched into the back of the Candela agent's signet ring, if they found it.",
+      "read_aloud": "The ledgers record every guest who ever entered the speakeasy. Names, dates of arrival, and a third column labeled 'Yield' -- measured in years. Declan Voss: arrival December 31, yield sixty-two years.",
+      "lock_dc": 16,
+      "loot": [
+        {"name": "Bleed-Infused Champagne Bottle", "value": 0, "description": "An unopened bottle pulsing with concentrated life force. Could be used to restore years to a victim -- or as a weapon against the Host, forcing his own stolen time back into him."},
+        {"name": "Guest Registry", "value": 0, "description": "Complete list of the speakeasy's guests across decades. Some are listed as 'Released' (the rare ones who left), most as 'Consumed.' The registry is evidence of hundreds of disappearances."}
+      ]
+    },
+    "3": {
+      "description": "A narrow passage leading beneath the bandstand. The walls are carved with symbols that pulse in time with the music -- containment wards, Candela will recognize, but inverted. Designed to keep something IN.",
+      "read_aloud": "The wards are bleeding. Dark liquid seeps from the carved lines, pooling on the floor. Whatever these wards once contained has long since outgrown them. The music is deafening here, vibrating in your bones.",
+      "perception_dc": 14,
+      "perception_success": "The wards aren't just inverted -- they've been deliberately modified. Someone with knowledge of magick rewrote them to feed power inward instead of containing it. The Host didn't just escape. He was engineered.",
+      "event_triggers": ["A twist: the Host was once Aldric Hargrove, transformed by prolonged exposure to a thinning. The wards were meant to contain the rift but were corrupted to feed it."]
+    }
+  }
+}

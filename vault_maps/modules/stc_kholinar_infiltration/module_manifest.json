@@ -1,0 +1,77 @@
+{
+    "module_id": "stc_kholinar_infiltration",
+    "display_name": "Stormlight: Kholinar Infiltration",
+    "system_id": "stc",
+    "source_pdf": "Stormlight RPG - Kholinar Infiltration",
+    "source_type": "publisher_licensed",
+    "campaign_setting": "roshar",
+    "recommended_levels": {"min": 3, "max": 8},
+    "starting_location": "approach",
+    "chapters": [
+        {
+            "chapter_id": "ch1_approach",
+            "display_name": "Chapter 1: The Approach",
+            "order": 1,
+            "zones": [
+                {
+                    "zone_id": "approach",
+                    "blueprint": "approach.json",
+                    "topology": "settlement",
+                    "theme": "STONE",
+                    "location_id": "kholinar_outskirts",
+                    "entry_trigger": "module_start",
+                    "exit_trigger": "quest_complete"
+                }
+            ]
+        },
+        {
+            "chapter_id": "ch2_palace_district",
+            "display_name": "Chapter 2: The Palace District",
+            "order": 2,
+            "zones": [
+                {
+                    "zone_id": "palace_district",
+                    "blueprint": "palace_district.json",
+                    "topology": "settlement",
+                    "theme": "STONE",
+                    "location_id": "kholinar",
+                    "entry_trigger": "quest_complete",
+                    "exit_trigger": "quest_complete"
+                }
+            ]
+        },
+        {
+            "chapter_id": "ch3_oathgate",
+            "display_name": "Chapter 3: The Oathgate",
+            "order": 3,
+            "zones": [
+                {
+                    "zone_id": "oathgate",
+                    "blueprint": "oathgate.json",
+                    "topology": "dungeon",
+                    "theme": "STONE",
+                    "location_id": "kholinar",
+                    "entry_trigger": "quest_complete",
+                    "exit_trigger": "boss_defeated"
+                }
+            ]
+        },
+        {
+            "chapter_id": "ch4_escape",
+            "display_name": "Chapter 4: The Escape",
+            "order": 4,
+            "zones": [
+                {
+                    "zone_id": "escape",
+                    "blueprint": "escape.json",
+                    "topology": "dungeon",
+                    "theme": "STONE",
+                    "location_id": "kholinar",
+                    "entry_trigger": "boss_defeated",
+                    "exit_trigger": "exit_reached"
+                }
+            ]
+        }
+    ],
+    "freeform_zones": []
+}

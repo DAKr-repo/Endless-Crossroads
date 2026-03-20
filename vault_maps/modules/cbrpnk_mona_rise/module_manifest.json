@@ -1,0 +1,93 @@
+{
+    "module_id": "cbrpnk_mona_rise",
+    "display_name": "Mona Rise Megalopolis",
+    "system_id": "cbrpnk",
+    "source_pdf": "Mona_Rise_Megalopolis.pdf",
+    "source_type": "publisher_licensed",
+    "world_map": null,
+    "starting_location": "jammers_nightclub",
+    "recommended_levels": {"min": 1, "max": 5},
+    "chapters": [
+        {
+            "chapter_id": "ch1_welcome",
+            "display_name": "Chapter 1: Welcome to Mona Rise",
+            "order": 1,
+            "zones": [
+                {
+                    "zone_id": "jammers_nightclub",
+                    "blueprint": "ch1_welcome.json",
+                    "topology": "settlement",
+                    "theme": "RUST",
+                    "location_id": "nightclub_district",
+                    "entry_trigger": "module_start",
+                    "exit_trigger": "player_choice"
+                }
+            ]
+        },
+        {
+            "chapter_id": "ch2_toha_run",
+            "display_name": "Chapter 2: Toha Run -- Renegade Robots",
+            "order": 2,
+            "zones": [
+                {
+                    "zone_id": "toha_industrial",
+                    "blueprint": "ch2_toha_run.json",
+                    "topology": "dungeon",
+                    "theme": "RUST",
+                    "location_id": "industrial_district",
+                    "entry_trigger": "player_choice",
+                    "exit_trigger": "quest_complete"
+                }
+            ]
+        },
+        {
+            "chapter_id": "ch3_teknet_run",
+            "display_name": "Chapter 3: TekNet Run -- Network Breach",
+            "order": 3,
+            "zones": [
+                {
+                    "zone_id": "teknet_breach",
+                    "blueprint": "ch3_teknet_run.json",
+                    "topology": "dungeon",
+                    "theme": "RUST",
+                    "location_id": "network_district",
+                    "entry_trigger": "quest_complete",
+                    "exit_trigger": "quest_complete"
+                }
+            ]
+        },
+        {
+            "chapter_id": "ch4_mezoturing_run",
+            "display_name": "Chapter 4: MezoTuring Run -- The Exiled AI",
+            "order": 4,
+            "zones": [
+                {
+                    "zone_id": "mezoturing_depths",
+                    "blueprint": "ch4_mezoturing_run.json",
+                    "topology": "dungeon",
+                    "theme": "RUST",
+                    "location_id": "financial_district",
+                    "entry_trigger": "quest_complete",
+                    "exit_trigger": "quest_complete"
+                }
+            ]
+        },
+        {
+            "chapter_id": "ch5_convergence",
+            "display_name": "Chapter 5: Convergence",
+            "order": 5,
+            "zones": [
+                {
+                    "zone_id": "faction_convergence",
+                    "blueprint": "ch5_convergence.json",
+                    "topology": "dungeon",
+                    "theme": "RUST",
+                    "location_id": "central_avenue",
+                    "entry_trigger": "quest_complete",
+                    "exit_trigger": "boss_defeated"
+                }
+            ]
+        }
+    ],
+    "freeform_zones": []
+}

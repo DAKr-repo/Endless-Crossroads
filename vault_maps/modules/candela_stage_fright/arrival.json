@@ -1,0 +1,99 @@
+{
+  "seed": 4702,
+  "width": 25,
+  "height": 12,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "crime_scene",
+    "theme": "GOTHIC",
+    "topology": "settlement",
+    "display_name": "The Investigation Begins"
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 0,
+      "y": 0,
+      "width": 8,
+      "height": 8,
+      "room_type": "town_square",
+      "connections": [1, 2],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "A cramped OUP field office, requisitioned from a shuttered tobacconist. Filing cabinets line the walls. Luis Roe stands over a zinc examination table where the detective's body lies under a sheet. The sheet is flat where the face should be -- concave, even, as though pressed into a mold. Roe lifts the sheet with the practiced detachment of someone who has seen too much and catalogued all of it.",
+        "read_aloud": "Luis Roe does not offer pleasantries. They push a folder across the table and wait while you open it. Inside: crime scene photographs, a coroner's sketch, and a single sentence in Roe's precise handwriting: 'Third faceless body this month. OUP has no leads. You are our last option.' The photographs show the detective's featureless face -- smooth as an egg, no scars, no seams. The face was not cut away. It was absorbed.",
+        "npcs": [
+          {
+            "name": "Luis Roe",
+            "role": "informant",
+            "dialogue": "Three bodies in four weeks. All found in South Soffit, all within six blocks of the Eden Theater. All faceless. The coroner says the faces were not removed surgically -- the tissue simply is not there. As if it was never there. Spider silk at every scene. We have no suspect, no motive, and no explanation. Your organization has resources we do not. Use them.",
+            "notes": "They/them. OUP officer. Professional, exhausted, and deeply uncomfortable with the bleed implications. Has been working the faceless body cases for a month with no progress. Will provide access to crime scene reports and coroner's notes. Knows the cases are connected to the Eden Theater but cannot get a warrant -- the theater has been abandoned for years and the owner of record is deceased."
+          }
+        ],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [
+          "REVEAL: Miles Crane's business card reads 'Florence Brighton -- Eden?' Florence and Brighton are cross-streets. The Eden Theater sits at their intersection. All three faceless bodies were found within six blocks of it."
+        ],
+        "loot": [],
+        "investigation_dc": 10,
+        "investigation_success": "Crane's client file is in the OUP evidence box. He was hired by the wife of Andres Aguilar to find her husband, who disappeared two weeks ago. Andres's brother, Mick Aguilar, has been making inquiries of his own -- aggressively."
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 10,
+      "y": 0,
+      "width": 8,
+      "height": 6,
+      "room_type": "normal",
+      "connections": [0],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The coroner's examination notes, pinned to a corkboard. Three victims, three faceless bodies, three clusters of spider silk. The silk analysis is circled in red: 'Not consistent with any known arachnid species. Tensile strength exceeds steel. Bleed-reactive under UV.' A map of South Soffit on the adjacent wall shows the three body locations forming a triangle. The Eden Theater sits at the triangle's center.",
+        "npcs": [],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [],
+        "loot": [
+          {
+            "name": "Crane's Client File",
+            "value": 0,
+            "description": "Miles Crane was hired to find Andres Aguilar, missing two weeks. Andres was a dockworker who had recently started taking dance lessons at a studio near the Eden Theater. His wife reported him missing after he failed to return from a Tuesday evening class. Crane's notes: 'Studio locked. Theater abandoned. Someone is watching from inside.'"
+          }
+        ]
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 10,
+      "y": 6,
+      "width": 8,
+      "height": 6,
+      "room_type": "normal",
+      "connections": [0],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The alley behind the tobacconist. A food cart is parked at the curb, its awning dripping rain. The vendor -- Rokas Novak -- serves pierogi and black coffee to late-shift workers and OUP officers alike. They see everything on this block and forget nothing.",
+        "npcs": [
+          {
+            "name": "Rokas Novak",
+            "role": "witness",
+            "dialogue": "The detective? He was here every night this week, watching the theater. He bought coffee, asked questions. Wanted to know about the missing dockworker. I told him what I tell everyone: people go missing near the Eden, they stay missing. That theater has been dark for two years, but lights move inside at night. I do not look. Looking is how people disappear.",
+            "notes": "They/them. Food cart operator. Has been stationed on this block for years. Knows the neighborhood rhythms. Saw Crane staking out the Eden Theater. Has also seen Mick Aguilar prowling the same streets, armed, asking the same questions with less patience."
+          }
+        ],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [],
+        "loot": []
+      }
+    }
+  }
+}

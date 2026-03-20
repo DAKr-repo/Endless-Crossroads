@@ -408,6 +408,9 @@ class CrownAndCrewEngine:
     # WO-V69.0 — Day clock for world-simulation time tracking (not a dataclass init arg)
     _day_clock: Optional[Any] = field(default=None, init=False, repr=False)
 
+    # Scene progression runner — optional, set via set_scene_runner() (not a dataclass init arg)
+    _scene_runner: Optional[Any] = field(default=None, init=False, repr=False)
+
     def __post_init__(self):
         """Load world data or fall back to hardcoded defaults."""
 
@@ -824,6 +827,7 @@ class CrownAndCrewEngine:
         Returns:
             Human-readable result string.
         """
+        cmd = cmd.lower().replace("-", "_")
         if cmd == "trace_fact":
             return self.trace_fact(kwargs.get("fact", ""))
 
@@ -1446,6 +1450,60 @@ class CrownAndCrewEngine:
 
 
     # ─────────────────────────────────────────────────────────────────────
+    # SCENE PROGRESSION (optional — backward compatible)
+    # ─────────────────────────────────────────────────────────────────────
+
+    def set_scene_runner(self, runner: Any) -> None:
+        """Attach a CrownSceneRunner for campaign scene progression.
+
+        Args:
+            runner: A CrownSceneRunner instance.  Passing None clears it.
+        """
+        self._scene_runner = runner
+
+    def get_scene_for_today(self) -> Any:
+        """Get the next unresolved scene for the current day, if any.
+
+        Returns:
+            CrownScene instance, or None if no scene runner is attached
+            or no scenes remain.
+        """
+        if self._scene_runner is None:
+            return None
+        return self._scene_runner.get_current_scene(self.day)
+
+    def resolve_scene_choice(self, choice_index: int) -> dict:
+        """Resolve a scene choice and apply its effects to engine state.
+
+        Applies sway delta (clamped to ±3) and increments the matching
+        DNA tag.  Advances the scene runner afterward.
+
+        Args:
+            choice_index: Zero-based index of the player's chosen option.
+
+        Returns:
+            The result dict from CrownScene.resolve() with keys
+            ``sway_effect``, ``tag``, ``next_scene``, ``narrative``.
+            Returns empty dict if there is no active scene.
+        """
+        if self._scene_runner is None:
+            return {}
+        from codex.games.crown.scenes import CrownScene  # local import avoids circular
+        scene: Optional[CrownScene] = self._scene_runner.get_current_scene(self.day)
+        if scene is None:
+            return {}
+        result = scene.resolve(choice_index)
+        # Apply sway effect (clamp to [-3, +3])
+        self.sway = max(-3, min(3, self.sway + result.get("sway_effect", 0)))
+        # Apply DNA tag increment
+        tag = result.get("tag", "")
+        if tag and tag in self.dna:
+            self.dna[tag] += 1
+        # Advance the runner (may bump chapter index)
+        self._scene_runner.advance()
+        return result
+
+    # ─────────────────────────────────────────────────────────────────────
     # SERIALIZATION (v4.0)
     # ─────────────────────────────────────────────────────────────────────
 
@@ -1495,6 +1553,12 @@ class CrownAndCrewEngine:
         if self._day_clock is not None:
             try:
                 data["_day_clock"] = self._day_clock.to_dict()
+            except Exception:
+                pass
+        # Scene progression runner
+        if self._scene_runner is not None:
+            try:
+                data["_scene_runner"] = self._scene_runner.to_dict()
             except Exception:
                 pass
         return data
@@ -1552,6 +1616,14 @@ class CrownAndCrewEngine:
                 engine._day_clock = DayClock(phase=TimeOfDay.MORNING, day=engine.day)
         elif _DAY_CLOCK_AVAILABLE:
             engine._day_clock = DayClock(phase=TimeOfDay.MORNING, day=engine.day)
+
+        # Scene progression runner
+        if "_scene_runner" in data:
+            try:
+                from codex.games.crown.scenes import CrownSceneRunner
+                engine._scene_runner = CrownSceneRunner.from_dict(data["_scene_runner"])
+            except Exception:
+                pass
 
         return engine
 

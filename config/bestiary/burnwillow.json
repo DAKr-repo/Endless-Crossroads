@@ -1,0 +1,375 @@
+{
+  "version": 1,
+  "source": "Burnwillow (original homebrew)",
+  "notes": "Stats use base_ac/base_atk for engine compatibility. Canonical SRD enemies use DC-based checks; base_ac maps to enemy DC, base_atk maps to enemy attack modifier. Scaling rule: +2 Defense and +1 Damage per Zone Depth.",
+  "tiers": {
+    "1": [
+      {
+        "name": "Rot-Beetle",
+        "base_hp": 4,
+        "base_ac": 10,
+        "base_atk": 2,
+        "base_dmg": "1d4",
+        "archetype": "beast",
+        "special": "Skitter: -1d6 to ranged attacks against it",
+        "description": "Thumb-sized insects that scuttle through ash drifts, their carapaces slick with grey-green blight. They click and hiss when cornered."
+      },
+      {
+        "name": "Fungal Mite",
+        "base_hp": 3,
+        "base_ac": 10,
+        "base_atk": 1,
+        "base_dmg": "1d4",
+        "archetype": "beast",
+        "special": "Spore Burst: on death, DC 8 Grit or -1 to rolls for 1 round",
+        "description": "Pale, bloated ticks that cling to rotting bark. Pop wetly underfoot and release a cloud of stinging spores."
+      },
+      {
+        "name": "Scrap Imp",
+        "base_hp": 5,
+        "base_ac": 10,
+        "base_atk": 2,
+        "base_dmg": "1d6",
+        "archetype": "scavenger",
+        "special": "Hoard: 50% extra loot on kill",
+        "description": "Hunched, rat-faced creatures that wear scavenged trinkets like armor. They chatter with delight over anything shiny and flee when outmatched."
+      },
+      {
+        "name": "Blighted Mouse Swarm",
+        "base_hp": 12,
+        "base_ac": 8,
+        "base_atk": 3,
+        "base_dmg": "1d4+1",
+        "archetype": "beast",
+        "special": "Swarm: 6 treated as single entity. Half damage from single-target attacks",
+        "description": "A roiling carpet of grey-furred vermin, each no bigger than a child's fist, their eyes reflecting firelight like tiny embers."
+      },
+      {
+        "name": "Ash Crawler",
+        "base_hp": 6,
+        "base_ac": 10,
+        "base_atk": 2,
+        "base_dmg": "1d4+1",
+        "archetype": "beast",
+        "special": "Ash Trail: leaves difficult terrain in its wake for 1 round",
+        "description": "A segmented centipede the length of a forearm, trailing a ribbon of fine grey ash from every joint. Its mandibles glow faintly with residual heat."
+      },
+      {
+        "name": "Cinder Wolf Pup",
+        "base_hp": 8,
+        "base_ac": 11,
+        "base_atk": 3,
+        "base_dmg": "1d6",
+        "archetype": "beast",
+        "special": "Pack Instinct: +1 damage when another Cinder Wolf is present",
+        "description": "Lean young wolves with ember-tinged fur that smolders at the tips. They hunt in pairs along the Emberhome Approaches, more scared than dangerous -- until they aren't."
+      },
+      {
+        "name": "Rotwood Shambler",
+        "base_hp": 10,
+        "base_ac": 9,
+        "base_atk": 2,
+        "base_dmg": "1d6",
+        "archetype": "beast",
+        "special": "Slow: always acts last in initiative",
+        "description": "A tangle of dead branches and fungal thread that drags itself along on root-tendrils. It smells of wet rot and crumbling peat."
+      },
+      {
+        "name": "Blight Hatchling",
+        "base_hp": 5,
+        "base_ac": 12,
+        "base_atk": 4,
+        "base_dmg": "1d4",
+        "archetype": "beast",
+        "special": "Dive: ignores Guard action when attacking from elevation",
+        "description": "Bat-winged creatures no larger than a raven, with translucent membranes stretched over bone-thin frames. Their shriek echoes through tight corridors."
+      },
+      {
+        "name": "Charred Skeleton",
+        "base_hp": 8,
+        "base_ac": 11,
+        "base_atk": 3,
+        "base_dmg": "1d6",
+        "archetype": "scavenger",
+        "special": "Brittle: takes double damage from bludgeoning",
+        "description": "Blackened bones held together by sinew that should have burned away long ago. The skull's jaw hangs open in a permanent, silent scream."
+      },
+      {
+        "name": "Ember Beetle",
+        "base_hp": 6,
+        "base_ac": 13,
+        "base_atk": 2,
+        "base_dmg": "1d4",
+        "archetype": "beast",
+        "special": "Spark: on hit, target's gear has 25% chance to gain [Singed] condition for 1 round",
+        "description": "Armored insects the size of a boot, their wing-cases crackling with static discharge. They congregate near Aether vein junctions."
+      },
+      {
+        "name": "Spore Zombie",
+        "base_hp": 11,
+        "base_ac": 9,
+        "base_atk": 2,
+        "base_dmg": "1d6",
+        "archetype": "scavenger",
+        "special": "Spore Cloud: on death, DC 10 Grit or poisoned for 2 rounds",
+        "description": "A corpse walking, its features obscured by shelf-fungus growths erupting from every orifice. Mushroom caps bloom from its shoulders like grotesque epaulettes."
+      },
+      {
+        "name": "Gloom Moth",
+        "base_hp": 4,
+        "base_ac": 13,
+        "base_atk": 3,
+        "base_dmg": "1d4",
+        "archetype": "beast",
+        "special": "Warmth Drain: on hit, target's torch radius reduced by half for 1 round",
+        "description": "Giant moths with wingspans wider than outstretched arms, their scales a deep charcoal that drinks in torchlight. The air grows cold in their wake."
+      }
+    ],
+    "2": [
+      {
+        "name": "Cinder Wolf",
+        "base_hp": 18,
+        "base_ac": 13,
+        "base_atk": 5,
+        "base_dmg": "1d8+2",
+        "archetype": "beast",
+        "special": "Pack: +1 dmg per additional Cinder Wolf present. Ember Howl: DC 12 Grit or frightened for 1 round",
+        "description": "Full-grown wolves whose pelts smolder with perpetual heat. They hunt in coordinated packs through the Tangle, driving prey toward ambush points with eerie, reverberating howls."
+      },
+      {
+        "name": "Clockwork Spider",
+        "base_hp": 8,
+        "base_ac": 14,
+        "base_atk": 4,
+        "base_dmg": "1d6+1",
+        "archetype": "construct",
+        "special": "Web: target loses Move action, DC 10 Grit to resist. DR 1",
+        "description": "An Arborist maintenance drone gone feral -- brass gears and ironbark legs clicking against stone. Its spinnerets weave wire-thin filaments that harden on contact with air."
+      },
+      {
+        "name": "Hollowed Scavenger",
+        "base_hp": 14,
+        "base_ac": 13,
+        "base_atk": 5,
+        "base_dmg": "1d6+2",
+        "archetype": "scavenger",
+        "special": "Muscle Memory: uses equipped gear traits with full proficiency",
+        "description": "Once a Seeker like you. Its equipment is battered but functional, and its hands remember the sword drills its mind forgot. The worst part is when you recognize the face."
+      },
+      {
+        "name": "Ironbark Hound",
+        "base_hp": 12,
+        "base_ac": 14,
+        "base_atk": 5,
+        "base_dmg": "1d6+1",
+        "archetype": "beast",
+        "special": "DR 1. Pack: +1 dmg per additional Hound present",
+        "description": "Canines with bark-plated hides that turn aside common blades. Bred by Arborists as sentries, they've gone feral in the lower zones, loyaltyless and hungry."
+      },
+      {
+        "name": "Blight-Hawk",
+        "base_hp": 10,
+        "base_ac": 14,
+        "base_atk": 6,
+        "base_dmg": "1d8+1",
+        "archetype": "beast",
+        "special": "Dive: ignores Guard action when attacking from elevation",
+        "description": "Raptors with rot-blackened talons and a wingspan that fills narrow corridors. They nest in the upper Tangle, swooping through vertical shafts to strike without warning."
+      },
+      {
+        "name": "Char Hulk",
+        "base_hp": 25,
+        "base_ac": 11,
+        "base_atk": 4,
+        "base_dmg": "2d6",
+        "archetype": "scavenger",
+        "special": "Slow: always acts last. Smash: attacks hit all adjacent targets",
+        "description": "A massive humanoid shape made of fused charcoal and compacted ash, standing twice a person's height. Each step leaves craters. Each swing levels furniture."
+      },
+      {
+        "name": "Rotwood Guardian",
+        "base_hp": 22,
+        "base_ac": 12,
+        "base_atk": 4,
+        "base_dmg": "1d10+1",
+        "archetype": "beast",
+        "special": "Root Slam: DC 12 Grit or knocked prone. Vulnerable to fire",
+        "description": "An animated tree-corpse, its trunk split open to reveal pulsing fungal matter where heartwood should be. Its roots tear through stone flooring to lash at anything that moves."
+      },
+      {
+        "name": "Ember Wraith",
+        "base_hp": 14,
+        "base_ac": 15,
+        "base_atk": 6,
+        "base_dmg": "1d8+2",
+        "archetype": "aetherial",
+        "special": "Incorporeal: physical attacks deal half damage. Aether Burn: bypasses DR",
+        "description": "The ghost of a fire that should have gone out. It drifts through stone walls trailing sparks, its form a shifting column of heat-shimmer and grief."
+      },
+      {
+        "name": "Fungal Brute",
+        "base_hp": 20,
+        "base_ac": 11,
+        "base_atk": 4,
+        "base_dmg": "1d10+2",
+        "archetype": "beast",
+        "special": "Regeneration: heals 2 HP per round unless damaged by fire",
+        "description": "A walking colony of mushrooms shaped vaguely like a bear. Shelf-fungi layer its torso like armored plates, and its fists trail threads of mycelium."
+      },
+      {
+        "name": "Doom Herald",
+        "base_hp": 18,
+        "base_ac": 13,
+        "base_atk": 5,
+        "base_dmg": "1d8+2",
+        "archetype": "scavenger",
+        "special": "Doom Pulse: on hit, DoomClock advances by 1. Chant: +1 to all nearby enemy attack rolls",
+        "description": "A hooded figure whose face is a mask of dried amber, cracked and weeping dark sap. It chants in a language that predates Emberhome, and the walls tremble in answer."
+      }
+    ],
+    "3": [
+      {
+        "name": "Blighted Sentinel",
+        "base_hp": 22,
+        "base_ac": 16,
+        "base_atk": 7,
+        "base_dmg": "1d8+3",
+        "archetype": "scavenger",
+        "special": "DR 1. Alert: cannot be ambushed. Rallying Cry: grants +1 to hit for all nearby enemies",
+        "description": "Once an Emberhome Warden. Its armor is pitted with corrosion but still holds, and its tactical instincts survived the rot. It positions, flanks, and covers retreats as though it remembers what duty was."
+      },
+      {
+        "name": "Forge Wraith",
+        "base_hp": 18,
+        "base_ac": 15,
+        "base_atk": 8,
+        "base_dmg": "2d6+2",
+        "archetype": "aetherial",
+        "special": "Aether Burn: bypasses DR, hits Resistance not Defense. Phase: can move through walls",
+        "description": "The spirit of an Arborist smith, still hammering at an invisible anvil. Golden sparks fly from its translucent hands. Its grief is older than Emberhome."
+      },
+      {
+        "name": "Heartwood Serpent",
+        "base_hp": 28,
+        "base_ac": 14,
+        "base_atk": 7,
+        "base_dmg": "1d8+3",
+        "archetype": "beast",
+        "special": "Constrict: grappled target takes 2 dmg/round, automatic. DR 1",
+        "description": "A serpent grown from the Burnwillow's own vascular system, its scales made of layered bark and its blood running with golden sap. It coils around pillars and drops on the unwary."
+      },
+      {
+        "name": "Emberlord Sentinel",
+        "base_hp": 35,
+        "base_ac": 16,
+        "base_atk": 8,
+        "base_dmg": "2d8+3",
+        "archetype": "construct",
+        "special": "DR 2. Fire Aura: 1d4 fire damage to melee attackers. Immune to fire",
+        "description": "An Arborist war-construct still following its last order. Ironbark plates glow cherry-red, and the Aether core in its chest burns with a light that hasn't dimmed in centuries."
+      },
+      {
+        "name": "Blight Matriarch",
+        "base_hp": 30,
+        "base_ac": 15,
+        "base_atk": 7,
+        "base_dmg": "2d8+2",
+        "archetype": "beast",
+        "special": "Spawn: summons 1d3 Fungal Mites per round. Spore Shield: first attack each round is absorbed",
+        "description": "A bloated fungal queen rooted to the floor by a web of mycelium tendrils. Smaller creatures emerge from splits in her flesh like terrible births. The air around her tastes of copper and decay."
+      },
+      {
+        "name": "Cinder Wyrm",
+        "base_hp": 40,
+        "base_ac": 15,
+        "base_atk": 7,
+        "base_dmg": "2d8+4",
+        "archetype": "beast",
+        "special": "Breath Weapon: 3d6 fire in a cone, DC 15 Grit for half. Recharge on 5-6",
+        "description": "A serpentine dragon-kin that nests in volcanic fissures deep in the Aether-Flow. Its scales are fused ember and obsidian, and its passage leaves molten trails in stone."
+      },
+      {
+        "name": "Ironvein Golem",
+        "base_hp": 50,
+        "base_ac": 17,
+        "base_atk": 6,
+        "base_dmg": "2d10+3",
+        "archetype": "construct",
+        "special": "DR 3. Immune to poison and necrotic. Slow: always acts last",
+        "description": "A mining automaton from the Stone-Grip's deepest shafts, encrusted with mineral deposits and still following excavation protocols. It does not distinguish between ore veins and ribcages."
+      },
+      {
+        "name": "Plague Knight",
+        "base_hp": 32,
+        "base_ac": 18,
+        "base_atk": 9,
+        "base_dmg": "2d8+3",
+        "archetype": "scavenger",
+        "special": "DR 2. Rot Strike: on hit, DC 14 Grit or take 1d4 necrotic at start of each turn for 3 rounds. Parry: +2 AC as reaction",
+        "description": "A fallen Warden in corroded plate, green light leaking from the visor slits. It fights with terrible precision -- each strike aimed at joints and tendons, every parry economical. It remembers how to kill. That is all it remembers."
+      }
+    ],
+    "4": [
+      {
+        "name": "The Rot Hunter",
+        "base_hp": 80,
+        "base_ac": 18,
+        "base_atk": 10,
+        "base_dmg": "3d8+5",
+        "archetype": "beast",
+        "special": "DR 3. BFS Pursuit: always moves toward party's last known position. Cannot be defeated with Tier I-II weapons. Drops artifact-quality item on defeat",
+        "description": "The apex predator. A hollow so massive it fills corridors, its form an amalgam of every creature the rot has consumed in this zone. It does not hunt with eyes or ears -- it follows the disturbance in the Root-Song's silence. When it appears, the only wise response is to run."
+      },
+      {
+        "name": "Ambercore Golem",
+        "base_hp": 40,
+        "base_ac": 18,
+        "base_atk": 8,
+        "base_dmg": "2d6+4",
+        "archetype": "construct",
+        "special": "DR 3. Immune to Rot. Drops Core-grade amber on defeat. Amber Pulse: DC 16 Grit or stunned for 1 round",
+        "description": "The last line of defense for an Amber Vault. Its body is ironbark and living amber, ancient memories flickering behind its featureless face. It does not speak. It does not need to."
+      },
+      {
+        "name": "The Clockwork Archon",
+        "base_hp": 65,
+        "base_ac": 19,
+        "base_atk": 11,
+        "base_dmg": "3d8+6",
+        "archetype": "construct",
+        "special": "DR 2. Zone Boss (Rot-Heart). Phase Shift: teleports to any room in the zone. Gear Drain: on crit, target's weapon loses 1 tier until repaired",
+        "description": "The Rot-Heart's warden -- or perhaps its instrument. A towering mechanism of corroded gears and fungal tendrils, its original purpose corrupted beyond recognition. The amber heart in its chest beats with a rhythm that is almost, but not quite, the Root-Song."
+      },
+      {
+        "name": "The Blight Mother",
+        "base_hp": 55,
+        "base_ac": 16,
+        "base_atk": 9,
+        "base_dmg": "3d8+4",
+        "archetype": "beast",
+        "special": "Zone Boss (Aether-Flow). Spawn Wave: summons 1d4 Tier II enemies every 3 rounds. Blight Aura: 1d6 necrotic to all within melee range at start of turn. Regeneration 5 unless damaged by fire",
+        "description": "A cathedral of living fungus. She does not move -- she grows. Tendrils extend through walls and floors, and her children pour from cracks in her flesh. The golden Aether rivers around her run grey and sluggish."
+      },
+      {
+        "name": "The Void Herald",
+        "base_hp": 70,
+        "base_ac": 18,
+        "base_atk": 12,
+        "base_dmg": "3d10+5",
+        "archetype": "aetherial",
+        "special": "Zone Boss (Crown). Wind Shear: ranged attacks against it suffer -1d6. Crown Fire: 4d6 fire in a 30ft radius, DC 17 Grit for half. Flight",
+        "description": "A being of compressed fire and screaming wind that guards the Crown's highest branches. It wears the Burnwillow's rage like a mantle, and its voice is the crack of ancient wood breaking under impossible strain. Sun-Fruits wither in its presence."
+      },
+      {
+        "name": "The Hollow King",
+        "base_hp": 90,
+        "base_ac": 18,
+        "base_atk": 12,
+        "base_dmg": "3d10+6",
+        "archetype": "scavenger",
+        "special": "DR 3. Doom Sovereign: DoomClock advances by 2 each round he is active. Extinguish: fire-based attacks deal half damage to him. Crown of Command: all Hollows within the zone obey his tactical direction. On defeat: DoomClock resets to 0",
+        "description": "The first person the Rot ever took. He wears a crown of dead amber and rules the Hollows not through fungal compulsion but through something worse -- memory. He remembers being alive. He remembers warmth. He wants it extinguished so that nothing else has to lose it."
+      }
+    ]
+  }
+}

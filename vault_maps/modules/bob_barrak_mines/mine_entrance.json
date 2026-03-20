@@ -1,0 +1,82 @@
+{
+  "seed": 8010,
+  "width": 25,
+  "height": 18,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "mine_entrance",
+    "theme": "STONE",
+    "topology": "settlement",
+    "mission_types": ["supply", "assault"]
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 2,
+      "y": 2,
+      "width": 8,
+      "height": 6,
+      "room_type": "town_square",
+      "connections": [1, 2],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The mining camp clings to the mountainside like a barnacle. Timber buildings lean against the rock face, their foundations sunk into the slag heaps of a century of excavation. Ore carts sit on rusted rails leading into the mountain's dark mouth. The miners are gone, replaced by soldiers who move with the nervous energy of people guarding something they do not understand.",
+        "read_aloud": "The mine entrance gapes in the cliff face, timbers framing it like the ribs of some enormous beast. The soldiers here look relieved to see you, and that makes you uneasy.",
+        "npcs": [
+          {
+            "name": "Foreman Daska",
+            "role": "supply_contact",
+            "dialogue": "The upper tunnels are mostly clear -- we sealed off the lower levels when the dead started coming up from the deep shaft. There's alchemical ore down there, the green-veined kind the Alchemists use for black-shot. Enough to supply the whole Legion for the march to Skydagger. But something is guarding it.",
+            "notes": "Daska worked these mines for twenty years before the war. She knows every tunnel, every support beam, every fault line. She also knows the mines connect to natural caverns below that predate human settlement -- and that things lived in those caverns before the miners came."
+          },
+          {
+            "name": "Sapper Greiz",
+            "role": "engineer",
+            "dialogue": "The tunnels are structurally sound above the third level. Below that, the timbers are compromised -- something has been chewing on them. I can shore up a path to the deep shaft, but I need time and I need someone to keep the dead off my back while I work.",
+            "notes": "Greiz is Bartan, methodical, and unflappable. He speaks about structural engineering the way a priest speaks about scripture. He carries a slide rule in a leather case on his belt."
+          }
+        ],
+        "services": ["rest", "supply"],
+        "event_triggers": [
+          "The mine exhales -- a gust of cold, mineral-scented air from deep underground. It smells like stone and something else. Something organic."
+        ]
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 14,
+      "y": 2,
+      "width": 6,
+      "height": 5,
+      "room_type": "forge",
+      "connections": [0],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The camp forge has been converted from ore-smelting to weapon repair. The bellows wheeze, the anvil rings, and the smith -- a silent Zemyati woman with arms like bridge cables -- works with grim efficiency, straightening bent blades and patching split hauberks.",
+        "services": ["supply"],
+        "investigation_dc": 10,
+        "investigation_success": "Among the scrap metal waiting to be re-forged, a broken shield bears the crest of a Chosen -- not the current one. An older symbol, from a previous war. The mines have been contested before."
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 2,
+      "y": 10,
+      "width": 7,
+      "height": 5,
+      "room_type": "barracks",
+      "connections": [0],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The garrison quarters are carved into the rock face itself -- natural alcoves widened by pick and chisel. Each alcove holds a bedroll, a weapon rack, and a candle stub. The soldiers here rotate on four-hour watches; no one sleeps for long. The walls are scratched with tally marks counting days since the retreat began.",
+        "services": ["rest"]
+      }
+    }
+  }
+}

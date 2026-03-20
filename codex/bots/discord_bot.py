@@ -1540,6 +1540,20 @@ class CodexDiscordBot(commands.Bot):
             response = session.handle_travel()
             await ctx.send(response)
 
+        @self.command(name="roll")
+        async def cmd_roll(ctx, *, expression: str = ""):
+            """Roll dice using standard RPG notation (e.g. !roll 2d20+5)."""
+            if not expression:
+                await ctx.send("Usage: `!roll 2d20+5`")
+                return
+            try:
+                from codex.core.dice import get_discord_roll_embed, DiceRollView
+                embed, total, rolls = await get_discord_roll_embed(expression)
+                view = DiceRollView(expression)
+                await ctx.send(embed=embed, view=view)
+            except Exception as e:
+                await ctx.send(f"Roll error: {e}")
+
         @self.command(name="stop", aliases=["quit", "abort", "end"])
         async def cmd_stop(ctx):
             """End current session and return to idle."""

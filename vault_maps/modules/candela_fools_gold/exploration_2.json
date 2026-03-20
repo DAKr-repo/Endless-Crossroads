@@ -1,0 +1,127 @@
+{
+  "seed": 7011,
+  "width": 50,
+  "height": 30,
+  "start_room_id": 0,
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 2,
+      "y": 2,
+      "width": 12,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false
+    },
+    "1": {
+      "id": 1,
+      "x": 16,
+      "y": 2,
+      "width": 14,
+      "height": 12,
+      "room_type": "normal",
+      "connections": [0, 2, 3],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false
+    },
+    "2": {
+      "id": 2,
+      "x": 32,
+      "y": 3,
+      "width": 10,
+      "height": 8,
+      "room_type": "secret",
+      "connections": [1],
+      "tier": 2,
+      "is_locked": true,
+      "is_secret": true
+    },
+    "3": {
+      "id": 3,
+      "x": 16,
+      "y": 16,
+      "width": 14,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false
+    }
+  },
+  "metadata": {
+    "zone_id": "exploration_2",
+    "theme": "GOTHIC",
+    "topology": "dungeon",
+    "scene_title": "The Deep Cavern"
+  },
+  "content_hints": {
+    "0": {
+      "description": "An underground river crossing. The tunnel opens into a natural cavern where the Stentorian's source flows from a fissure in the rock. The water here is brilliant amber, almost molten-looking, steaming faintly. Gold formations grow from the riverbed like coral.",
+      "read_aloud": "The river at its source is barely recognizable as water. It moves too slowly, too deliberately, flowing uphill in places where the gold formations direct it. The air tastes of pennies and static. Your fillings ache.",
+      "npcs": [
+        {
+          "name": "Brenner's Voice",
+          "role": "informant",
+          "dialogue": "It speaks through the water now. Brenner's voice, or something wearing it, echoes from the gold formations: 'Deeper. It wants you to come deeper. It's been alone so long. Don't you want to see? Don't you want to understand? The gold remembers everything.'",
+          "notes": "Not actually Brenner -- the thinning has absorbed enough of his consciousness to mimic him. The voice is a lure, but the information it gives about the cavern's layout is accurate. It genuinely wants visitors."
+        }
+      ],
+      "enemies": [
+        {
+          "name": "Bleed Water Surge",
+          "hp": 15,
+          "ac": 12,
+          "attack": 4,
+          "damage": "1d6",
+          "count": 1,
+          "notes": "The contaminated river rises and strikes with tendrils of gold-laced water. An environmental hazard more than a creature.",
+          "special": ["Amorphous: immune to physical damage, vulnerable to Focus/Sense actions that calm the bleed", "Contaminating: any investigator splashed marks 1 Bleed"]
+        }
+      ],
+      "event_triggers": ["The contamination source is close. The thinning is using absorbed consciousness to communicate, luring investigators deeper."]
+    },
+    "1": {
+      "description": "The cathedral cavern. A vast natural chamber where stalactites and stalagmites have been entirely consumed by gold growth, forming pillars of crystallized bleed. The ceiling is so high the lantern light doesn't reach it. At the center, a pool of liquid gold churns slowly.",
+      "read_aloud": "The gold formations aren't random. They form patterns -- concentric rings radiating from the central pool, with channels carved between them like an enormous circuit board. The pool at the center bubbles. Something is rising.",
+      "enemies": [
+        {
+          "name": "Transformed Miners",
+          "hp": 15,
+          "ac": 12,
+          "attack": 4,
+          "damage": "1d6",
+          "count": 2,
+          "notes": "Three missing prospectors, fully gold-skinned, standing motionless around the pool like sentinels. They animate when investigators approach the center.",
+          "special": ["Gold Skin: resistant to piercing damage", "Contaminating Strike: melee hit inflicts 1 Bleed mark", "Hive Response: if one is damaged, all attack the same target"]
+        }
+      ],
+      "investigation_dc": 16,
+      "investigation_success": "The concentric pattern is a containment circle -- or was. The 1847 survey team built it to cap the thinning. The miners broke through the outer ring when they excavated, cracking the seal. The gold 'vein' they struck was actually the containment barrier itself, mistaken for ore.",
+      "loot": [
+        {"name": "Containment Shard", "value": 0, "description": "A fragment of the original 1847 seal. Still resonates with warding energy. Could be used to re-seal the thinning if enough fragments are gathered and the pattern reconstructed."}
+      ]
+    },
+    "2": {
+      "description": "A sealed chamber behind a gold-encrusted wall panel. Inside, the 1847 survey team's emergency cache: tools, ward components, and a sealed letter.",
+      "read_aloud": "The letter is addressed to 'Whoever finds this after we fail.' It's from a Candela operative embedded in the survey team. The seal bears the Fourth Pharos mark.",
+      "lock_dc": 16,
+      "investigation_dc": 14,
+      "investigation_success": "The letter details the original sealing ritual and its components. Three wardstones placed at cardinal points around the thinning, energized by a Focus action. The wardstones are still in the cavern -- incorporated into the gold formations, but recoverable.",
+      "loot": [
+        {"name": "Sealing Ritual Instructions", "value": 0, "description": "Detailed steps for re-sealing the thinning. Requires three wardstones and a sustained Focus action. Warns that the thinning will resist -- violently."}
+      ]
+    },
+    "3": {
+      "description": "The downstream channel. A low tunnel where contaminated water flows toward the Stentorian River. The gold particulate is thick here -- the water glows bright enough to cast shadows. Infrastructure from the original containment effort lines the walls: iron brackets, spent wardstones, copper piping.",
+      "read_aloud": "This is the contamination pipeline. If you seal the thinning above, this channel will run clean. If you don't, every drop reaches the river, and the river reaches Newfaire. You can see where the original piping was meant to filter the bleed -- but it corroded through decades ago.",
+      "perception_dc": 14,
+      "perception_success": "One of the original wardstones is embedded in the tunnel wall, half-consumed by gold growth. It still hums faintly. Extracting it will require breaking the gold crust -- which will release a burst of bleed energy.",
+      "event_triggers": ["The path to the thinning is clear. The original containment infrastructure provides a blueprint for re-sealing, but the components are scattered and the thinning is aware of the investigators' intent."]
+    }
+  }
+}

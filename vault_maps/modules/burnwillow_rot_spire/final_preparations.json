@@ -1,0 +1,95 @@
+{
+    "seed": 4410,
+    "width": 40,
+    "height": 16,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "final_preparations",
+        "theme": "RUST",
+        "topology": "settlement",
+        "display_name": "Final Preparations",
+        "flavor_note": "The DoomClock nears its zenith. All of Emberhome gathers to see off its last Seekers on a mission that no one expects them to survive. Every NPC has final words. Every service is offered at cost. The Rot Spire rises above the canopy, visible from the settlement for the first time -- a column of grey corruption piercing the fire-leaf sky like a needle through cloth."
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 5,
+            "y": 4,
+            "width": 16,
+            "height": 10,
+            "room_type": "start",
+            "connections": [1],
+            "tier": 4,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Warden's Hall is standing room only. Every Seeker, Kindler, and able body in Emberhome has crowded into the relay station. The zone map on the wall has been updated with a single addition: a charcoal line rising from the deep zones through every level of the Burnwillow, piercing the canopy. The Rot Spire. It appeared three days ago -- grew overnight from the Rot-Heart in Zone 4, punching through stone and root and bark and sky like a fungal lance aimed at the sun. Voss stands before the map. Elder Kaelen sits in a chair someone brought for him. Weld, Kettrick, Birsa, Father Oaken, even Twitch -- they are all here. No one is talking. The silence is the kind that precedes either a funeral or a charge.",
+                "read_aloud": "You have never seen the Warden's Hall this full. Every face in Emberhome is here -- the fighters, the Kindlers, the children pressed against the back wall. Voss stands before the map. The new mark on it is impossible to miss: a line rising from the deep zones through every level of the tree, breaking the canopy, reaching for a sky that has never been touched by corruption before now. The Rot Spire. Three days old and already taller than the Burnwillow's highest branch. Voss speaks without preamble. 'The Spire is a conduit. If it reaches the Crown, it will extinguish the fire-leaves. The Burnwillow dies. Every Root-Road opens. Every Grove falls. We send our best. We send everyone we can afford to lose.' She looks at you. 'Apparently, that is you.'",
+                "npcs": [
+                    {
+                        "name": "Warden Voss",
+                        "role": "quest_giver",
+                        "dialogue": "The Spire grew from the Rot-Heart. It is the Blight's endgame -- a direct assault on the Crown. Inside the Spire, our scouts report four levels: a ground hall defended by Emberlord Sentinels, a stairway guarded by Cinder Wyrms, a laboratory where the plague was studied -- possibly created -- and a throne room. Above all of that, the summit. The Rot Hunter nests there. I am not going to lie to you. The survival rate for this mission is zero. Nobody has gone in. Nobody has come back from not going in because nobody has tried. You will be the first. If you come back, you will be the last. Because it will be over. One way or the other.",
+                        "notes": "Voss drops all pretense of military detachment. This is the final mission. She has prepared everything she can -- supplies, intelligence, her personal sidearm (a Tier III crossbow she has never offered to anyone). If the party has completed previous modules, she acknowledges each one by name."
+                    },
+                    {
+                        "name": "Elder Kaelen",
+                        "role": "lore",
+                        "dialogue": "I opened a Root-Road once. Twenty years ago, out of desperation. Three Seekers died because I thought I could find a way out. There is no way out. There is only through. The Arborists understood that. They did not build the Vaults to preserve treasure. They built them to preserve the knowledge of how to fight this. You carry that knowledge now -- every Memory Seed, every recipe, every piece of gear forged from what the tree gave you. The Arborists sang wood into shape. You have learned to do the same with iron and blood. It is not the same song. But it will have to do.",
+                        "notes": "Kaelen's secret is no longer a secret -- he confesses the Root-Road incident publicly. This is his way of giving the party permission to take risks. His confession lifts a twenty-year weight. He stands straighter afterward."
+                    },
+                    {
+                        "name": "Forgemaster Weld",
+                        "role": "merchant",
+                        "dialogue": "I have spent the last three days at the forge without sleep. Everything I have made is on the table. Take what you need. No charge. The amber does not matter if there is no one left to spend it. Here -- this blade. I talked to it for six hours. It said it wanted to be carried by someone who was not afraid to die. I told it that was everyone in this room. It laughed. I think it was a laugh.",
+                        "notes": "Weld offers all remaining stock at no cost. His Aether theft secret no longer matters -- the settlement's reserves are irrelevant if the Spire is not stopped. He has forged one final piece: a Tier III weapon of the party's choice, custom-built. He calls it his masterwork."
+                    },
+                    {
+                        "name": "Father Oaken",
+                        "role": "healer",
+                        "dialogue": "The Root-Song is weakening. I can feel the pauses growing longer. But it is still there. It is still trying. Before you go, I will ask the tree for everything it has left. This blessing will not be gentle. It will hurt. The tree is pouring its last strength into you because it has no one else to pour it into. You will feel it in your bones for the rest of your lives. However long that is.",
+                        "notes": "Oaken's blessing is a Tier IV buff: +2 to all checks for the duration of the Spire mission. The blessing visibly costs the tree -- the Sun-Shard in the chapel dims by a quarter. Oaken's hands shake afterward. He has given more of the Root-Song than he has left."
+                    },
+                    {
+                        "name": "Birsa",
+                        "role": "merchant",
+                        "dialogue": "I have nothing left to sell you. Everything I had is on that table. But I have something to tell you that I should have told someone a long time ago. I can smell the Blight. On skin, in breath, in the way a person's sweat changes when the grey is growing inside them. I have known since the beginning. Hask at the gate? His amber shard is cracked. It misses infections. I have been the backup. I have caught three. One was Kettrick's apprentice. One was a child. One was -- I am not going to say. But they are treated now. If you come back, I will tell you everything. If you do not come back, it does not matter.",
+                        "notes": "Birsa breaks character completely. Her oblique speech patterns drop. She speaks directly for the first time. This is the moment her secret becomes a gift rather than a burden."
+                    }
+                ],
+                "loot": [
+                    {"name": "Weld's Masterwork (player's choice)", "value": 0, "type": "rare", "notes": "Tier III weapon or armor of the party's choosing. Custom-forged by Weld in a three-day marathon session. Free. 'No charge. Just come back.'"},
+                    {"name": "Voss's Crossbow", "value": 25, "type": "rare", "notes": "Tier III. R.Hand. Ranged. +3d6 WITS pool. [Piercing]: ignores 1 DR. Voss's personal weapon, carried for fifteen years. 'I never fired it at anything I could not kill. Make sure you can say the same.'"},
+                    {"name": "Greater Rot-Salve (x3)", "value": 24, "type": "rare", "notes": "Three doses. Cures Blight at any stage. The settlement's entire remaining supply."}
+                ],
+                "services": ["shop", "upgrade", "heal", "quest"],
+                "event_triggers": [
+                    "On departure: The entire settlement gathers at the gate. No one speaks. Father Oaken hums a note -- a single sustained tone that the Root-Song picks up and amplifies through the settlement walls. The vibration is warm and sad and fierce. Emberhome is singing you out.",
+                    "If previous modules completed: Each NPC references the party's past achievements. Voss names the Ashen Cellar, the Ironvein Mines, the Rotwood Hollow. 'You have bled for every zone between here and the Crown. The Spire is the last one. Make it count.'"
+                ]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 24,
+            "y": 4,
+            "width": 12,
+            "height": 10,
+            "room_type": "exit",
+            "connections": [0],
+            "tier": 4,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Emberhome Gate. The wardens have stepped aside -- there is no inspection for those walking toward the Rot Spire. The approach road descends into the lower canopy, but for the first time in living memory, you can see the Spire from here. It rises above the fire-leaf canopy like a grey needle, its surface alive with fungal bioluminescence that pulses in patterns that look almost like writing. The road to the Spire passes through the Charred Wastes -- a region so thoroughly consumed by the Blight that nothing grows there at all. Not even corruption. Just ash.",
+                "read_aloud": "No one expects you to return. The gate wardens cannot bring themselves to say it. Hask holds his amber lantern up -- the cracked one, the one that misses infections -- and nods once. The road ahead drops into grey. Above the canopy, visible for the first time from Emberhome, the Rot Spire pierces the sky. It is taller than you imagined. It is alive. And it is waiting.",
+                "npcs": [],
+                "loot": [],
+                "services": [],
+                "event_triggers": [
+                    "On departure: DoomClock begins at 5. The Spire's proximity accelerates the clock from the moment you leave Emberhome. The first threshold event is already in effect: 'The torches flicker. Distant growls echo.' The world is hostile from the first step."
+                ]
+            }
+        }
+    }
+}

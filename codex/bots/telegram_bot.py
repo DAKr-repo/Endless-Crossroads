@@ -1625,9 +1625,10 @@ async def run_telegram_bot(core=None):
         logger.error(f"Telegram bot error: {e}")
     finally:
         # Only stop updater if it's running
-        if app.updater.running:
+        if app.updater and app.updater.running:
             await app.updater.stop()
-        await app.stop()
+        if app.running:
+            await app.stop()
         await app.shutdown()
 
 

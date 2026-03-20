@@ -1,0 +1,42 @@
+{
+  "module_id": "bob_long_road",
+  "display_name": "The Long Road",
+  "system_id": "bob",
+  "source_type": "community_authored",
+  "starting_location": "way_station",
+  "recommended_levels": {"min": 1, "max": 5},
+  "chapters": [
+    {
+      "chapter_id": "overland_march",
+      "display_name": "The Overland March",
+      "order": 1,
+      "zones": [
+        {
+          "zone_id": "way_station",
+          "blueprint": "way_station.json",
+          "topology": "settlement",
+          "theme": "STONE",
+          "entry_trigger": "module_start",
+          "exit_trigger": "player_choice"
+        },
+        {
+          "zone_id": "mountain_pass",
+          "blueprint": "mountain_pass.json",
+          "topology": "dungeon",
+          "theme": "STONE",
+          "entry_trigger": "player_choice",
+          "exit_trigger": "all_rooms"
+        },
+        {
+          "zone_id": "bridge_crossing",
+          "blueprint": "bridge_crossing.json",
+          "topology": "dungeon",
+          "theme": "RUST",
+          "entry_trigger": "player_choice",
+          "exit_trigger": "boss_defeated"
+        }
+      ]
+    }
+  ],
+  "freeform_zones": []
+}

@@ -1,0 +1,88 @@
+{
+  "seed": 8019,
+  "width": 28,
+  "height": 18,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "forest_edge",
+    "theme": "STONE",
+    "topology": "settlement",
+    "mission_types": ["recon", "assault"]
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 2,
+      "y": 2,
+      "width": 8,
+      "height": 6,
+      "room_type": "town_square",
+      "connections": [1, 2],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The camp sits at the tree line where cleared farmland meets the wall of Duresh Forest. Felled logs form a rough palisade, their ends sharpened to points. Inside, soldiers and scouts share a fire that is kept deliberately small -- nothing that would draw attention from deeper in the trees. The forest looms at the camp's back like a held breath, dark and dense, its canopy so thick that the interior is black even at midday.",
+        "read_aloud": "The tree line camp. The Ranger is sharpening a hatchet when you arrive. The Orite Officer is studying a map that seems to be mostly blank space marked 'UNKNOWN.'",
+        "npcs": [
+          {
+            "name": "Ranger Falk",
+            "role": "guide",
+            "dialogue": "I know Duresh. I hunted here before the war, back when the worst thing in these woods was boar. The forest is different now. The canopy has thickened -- I think the corruption makes things grow, wrong but fast. Sound doesn't carry right in there. Stay close. Watch the ground, not the trees. The Hounds come low.",
+            "notes": "Falk is a quiet Orite with a hunter's patience and a soldier's discipline. He marks his kills with notches on his hatchet handle -- forty-seven notches, and he remembers the location of every one. He lost his hunting dog to a Hound pack last month and has not spoken of it."
+          },
+          {
+            "name": "Lieutenant Voss",
+            "role": "briefing_officer",
+            "dialogue": "Intelligence says there is an undead concentration deep in the forest -- a lair where they mass before pushing out on raids. If it is an assault mission, we destroy it. If it is recon, we map it and get out. Either way, the Ranger leads. Questions?",
+            "notes": "Voss is young for an officer and knows it. She compensates with rigid formality and a tendency to overcomplicate briefings. She is, however, genuinely competent at reading tactical situations. She defers to Falk on all matters relating to the forest."
+          }
+        ],
+        "services": ["rest", "supply", "briefing"],
+        "event_triggers": [
+          "Something crashes through the underbrush a hundred yards into the forest. Then silence. Falk pauses his sharpening and tilts his head to listen."
+        ]
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 14,
+      "y": 3,
+      "width": 6,
+      "height": 5,
+      "room_type": "barracks",
+      "connections": [0],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The rest area is a row of bedrolls under a stretched canvas lean-to. The canvas is painted with camouflage patterns in forest colors -- Falk's idea. Weapons and packs are staged at the lean-to's edge, ready for immediate deployment. Nobody sleeps without their boots on here.",
+        "services": ["rest"]
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 2,
+      "y": 10,
+      "width": 7,
+      "height": 5,
+      "room_type": "market",
+      "connections": [0],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The supply cache is buried in a shallow pit lined with oilcloth. Falk insists on burying supplies rather than storing them in the open -- 'What you can see, they can smell.' Rations, ammunition, rope, lantern oil, and a small kit of herbal remedies Falk mixed himself from forest plants.",
+        "services": ["supply"],
+        "npcs": [
+          {
+            "name": "Ranger Falk",
+            "role": "guide",
+            "dialogue": "Lantern oil. Take more than you think you need. In Duresh, you lose the sun an hour after you enter. It does not come back until you leave.",
+            "notes": "Falk can provide forest-specific gear: oil, rope, markers."
+          }
+        ]
+      }
+    }
+  }
+}

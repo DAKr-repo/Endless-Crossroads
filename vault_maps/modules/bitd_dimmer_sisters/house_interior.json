@@ -1,0 +1,119 @@
+{
+  "seed": 90004,
+  "width": 30,
+  "height": 30,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "house_interior",
+    "theme": "GOTHIC",
+    "topology": "dungeon",
+    "description": "Inside the Dimmer Sisters' house. The air is thick with the scent of old paper and ozone. Rooms seem larger on the inside than they should be, and the shadows move independently of the light."
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 2,
+      "y": 2,
+      "width": 8,
+      "height": 7,
+      "room_type": "start",
+      "connections": [1, 2],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The attic landing. Dust motes hang motionless in the air as though time moves differently here. Shelves line every wall, crammed with jars of luminescent fluid, coils of etched copper wire, and leather-bound volumes whose spines bear no titles. A staircase descends into darkness.",
+        "read_aloud": "You're inside. The attic is cluttered with decades of arcane accumulation -- glass jars of things that glow, copper instruments whose purpose you can't guess, and books. Hundreds of books. The staircase leading down is wide and dark and entirely silent.",
+        "loot": [
+          {"name": "Jar of refined electroplasm", "value": 4, "description": "Pale blue liquid that moves against gravity when tilted. Worth a fortune to the right buyer."},
+          {"name": "Arcane hand-mirror", "value": 2, "description": "Shows the room as it was fifty years ago when you look into it. The previous occupants stare back."}
+        ],
+        "investigation_dc": 12,
+        "investigation_success": "Among the clutter, you find a manifest in the Sisters' handwriting. It catalogues 'donations' from prominent Duskwall families -- payments for spectral services rendered. Several City Council members are listed."
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 12,
+      "y": 2,
+      "width": 8,
+      "height": 7,
+      "room_type": "normal",
+      "connections": [0, 3],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The ritual gallery. A long room whose walls are painted with concentric circles in silver and bone-white. The floor is a single slab of polished obsidian that reflects nothing. Spirit bottles line a low shelf -- most empty, but three pulse with trapped, swirling light.",
+        "enemies": [
+          {
+            "name": "Weakened Ghost",
+            "hp": 8,
+            "max_hp": 8,
+            "ac": 10,
+            "attack": 2,
+            "defense": 10,
+            "count": 1
+          }
+        ],
+        "event_triggers": [
+          "A shape peels itself from the painted wall -- translucent, flickering, its mouth open in a silent scream. A ghost, but diminished. The ward network is feeding on it."
+        ],
+        "perception_dc": 14,
+        "perception_success": "The spirit bottles are labeled in an old dialect. One reads 'Corro -- debt unpaid.' Another: 'Marell -- witnessed the Arrangement.' These ghosts were people. The Sisters are keeping them as collateral."
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 2,
+      "y": 11,
+      "width": 8,
+      "height": 7,
+      "room_type": "treasure",
+      "connections": [0, 3],
+      "tier": 2,
+      "is_locked": true,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The blue door room. The door is lacquered in deep cobalt, its handle shaped like a coiled serpent. Inside: a writing desk, a spirit-circuit lamp that burns without fuel, and a strongbox of blackened iron bolted to the floor. This is where the Sisters keep the good stuff.",
+        "lock_dc": 14,
+        "loot": [
+          {"name": "Ritual components (rare)", "value": 8, "description": "Vials of void-salt, ghost-iron filings, and a coil of silver wire inscribed with binding formulae."},
+          {"name": "Spirit-ward schema", "value": 6, "description": "Architectural plans showing the ward network for the entire house. Invaluable to anyone planning a heist -- or a counter-ritual."},
+          {"name": "Coin (strongbox)", "value": 12, "description": "Assorted Duskwall coin, some of it very old. Pre-Imperium mint marks on the gold."}
+        ],
+        "investigation_dc": 10,
+        "investigation_success": "The strongbox has a false bottom. Beneath the coin, a sealed letter addressed to the Spirit Wardens. It appears to be a confession -- or a threat."
+      }
+    },
+    "3": {
+      "id": 3,
+      "x": 12,
+      "y": 11,
+      "width": 8,
+      "height": 7,
+      "room_type": "normal",
+      "connections": [1, 2],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The binding circle. A large room at the house's center, its floor inlaid with silver wire forming an elaborate summoning diagram. The air is dense and ionized, like the moment before a lightning strike. Candles burn at five points around the circle, their flames perfectly still.",
+        "enemies": [
+          {
+            "name": "Spirit Ward",
+            "hp": 15,
+            "max_hp": 15,
+            "ac": 12,
+            "attack": 4,
+            "defense": 12,
+            "count": 1
+          }
+        ],
+        "event_triggers": [
+          "The silver wire in the floor blazes white. Something is pulling itself together in the center of the circle -- a shape made of static and malice. The house's primary defense is waking up."
+        ]
+      }
+    }
+  }
+}

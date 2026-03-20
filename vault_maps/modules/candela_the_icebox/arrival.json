@@ -1,0 +1,94 @@
+{
+  "seed": 7016,
+  "width": 40,
+  "height": 25,
+  "start_room_id": 0,
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 2,
+      "y": 2,
+      "width": 12,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false
+    },
+    "1": {
+      "id": 1,
+      "x": 16,
+      "y": 3,
+      "width": 12,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [0, 2],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false
+    },
+    "2": {
+      "id": 2,
+      "x": 30,
+      "y": 2,
+      "width": 8,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false
+    }
+  },
+  "metadata": {
+    "zone_id": "arrival",
+    "theme": "GOTHIC",
+    "topology": "settlement",
+    "scene_title": "The Docks"
+  },
+  "content_hints": {
+    "0": {
+      "description": "Newfaire's frozen harbor. Ships locked in ice at grotesque angles, their hulls creaking under pressure. The HMS Horace sits low, her bow crumpled where she rammed through a pressure ridge. Dock workers give her a wide berth.",
+      "read_aloud": "The Horace smells of fear and frostbite. Her deck is slick with frozen spray. Below decks, the captain's log lies open on his desk, the final entry written in capital letters: DO NOT RETURN TO THE STRUCTURE. DO NOT OPEN THE DOOR. THE COLD COMES FROM INSIDE.",
+      "npcs": [
+        {
+          "name": "Seaman Tobias Wren",
+          "role": "informant",
+          "dialogue": "We found it two days' march on the ice, due north. A dome of black stone jutting from the frozen sea like a boil. The captain thought it was a natural formation. It isn't. There are doors. There are stairs. And at the bottom, there are people. Dead people, standing upright in pillars of ice, their mouths open. Hundreds of them. And something behind the last door that we didn't open. It was already cold enough to kill.",
+          "notes": "Wren is the most reliable surviving witness. He drew a crude map of the structure's exterior and entrance. He won't go back. His right ear is frostbitten black -- from standing too close to one of the ice pillars, not from the weather."
+        },
+        {
+          "name": "Navigator Ilsa Dray",
+          "role": "witness",
+          "dialogue": "I can guide you across the ice. I know the pressure ridges, the thin spots, the wind corridors. But I'll take you to the door and no further. What's inside that place isn't cold. Cold is what your body feels. What's in there is the absence of everything warm that ever existed.",
+          "notes": "Dray is a seasoned ice navigator. Professional, hard-bitten. She can serve as a guide across the frozen sea. She took readings near the vault and her compass spun wildly -- the structure generates its own magnetic field."
+        }
+      ],
+      "event_triggers": ["The HMS Horace crew describes a black stone vault frozen into the sea ice. Dead bodies in ice pillars. Inscriptions in Ancient Fairen. Something sealed behind the last door."],
+      "loot": [
+        {"name": "Wren's Map", "value": 0, "description": "A hand-drawn sketch of the vault exterior showing the dome shape, the entrance stairs, and approximate scale. Annotations mark 'cold spots' where temperature drops are extreme."}
+      ]
+    },
+    "1": {
+      "description": "The harbormaster's office, commandeered as a staging area. Charts of the frozen sea spread across every surface. OUP markers indicate known hazards -- pressure ridges, crevasses, unstable ice shelves.",
+      "read_aloud": "The OUP has been mapping the ice for thirteen years but no one has ventured as far north as the Horace. Beyond the mapped zone, the chart is blank except for a single notation in the harbormaster's hand: 'Here be nothing. Literally nothing. The ice gets too thick for soundings.'",
+      "npcs": [
+        {
+          "name": "Lightkeeper Halke (via pneumatic message)",
+          "role": "informant",
+          "dialogue": "New intelligence from the archives. The inscriptions Wren described match a pre-Fairen dialect associated with the Last War. If this vault predates the current age, the artifact inside could be extraordinarily dangerous. Proceed with extreme caution. Containment is the priority, not retrieval.",
+          "notes": "Delivered by pneumatic canister from the chapter house. Halke has identified the vault as potentially pre-Fairen, making it one of the oldest structures known to Candela."
+        }
+      ],
+      "investigation_dc": 12,
+      "investigation_success": "Cross-referencing the Horace's navigation logs with the ice expansion data reveals that the vault was originally submerged. The Shiver didn't expose it -- the vault generated the Shiver. The ice grows outward from it in annual rings, like a tree."
+    },
+    "2": {
+      "description": "The supply cache at the harbor's edge where the ice begins. Sleds, cold weather gear, ropes, and lanterns have been staged by the chapter house in advance.",
+      "read_aloud": "Beyond the harbor, the ice stretches north in a white plain broken only by pressure ridges and the occasional frozen mast of a trapped ship. The wind carries no sound. The silence is absolute and wrong -- no birds, no waves, no creaking. Just white, and cold, and silence.",
+      "perception_dc": 10,
+      "perception_success": "Looking north with a spyglass, you can just make out a dark shape on the horizon -- too regular to be natural, too far away to identify. The vault. It looks like a bruise on the ice."
+    }
+  }
+}

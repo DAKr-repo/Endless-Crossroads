@@ -1,0 +1,69 @@
+{
+  "version": 1,
+  "source": "Rime of the Frostmaiden (Icewind Dale Gazetteer)",
+  "blizzard_events": [
+    "Whiteout -- visibility drops to 10 feet, all checks at disadvantage",
+    "Frozen gear -- one random piece of equipment becomes unusable until thawed",
+    "Windchill -- Constitution save DC 13 or gain 1 level of exhaustion",
+    "Snow drift blocks path -- Strength DC 15 to push through or find detour",
+    "Ice sheet -- Dexterity save DC 12 or fall prone, slide 20 feet",
+    "Shelter found -- abandoned cabin or ice cave provides short rest opportunity",
+    "Aurora borealis -- strange lights in the sky, spellcasters roll on Wild Magic table",
+    "Temperature plunge -- all non-magical fire sources extinguished"
+  ],
+  "ten_towns_rumors": [
+    "The speaker of Bryn Shander has been acting strangely since the solstice",
+    "Fishers on Maer Dualdon claim something massive lurks beneath the ice",
+    "A duergar was spotted near the outskirts of Easthaven",
+    "The Arcane Brotherhood has agents in every town",
+    "Auril's followers have been leaving offerings at the Stones of Thruun",
+    "A sled dog team returned without their musher from the Spine of the World",
+    "The chardalyn trade has attracted unsavory merchants from the south",
+    "Someone has been stealing knucklehead trout from Good Mead's stores",
+    "Lonely Wood has gone quiet -- no logging teams have returned in days",
+    "A tribe of goliaths was seen near Kelvin's Cairn",
+    "The cold is getting worse -- Auril demands sacrifice",
+    "An elf from the Elven Tomb brought warnings of awakening evil"
+  ],
+  "wilderness_encounters": [
+    {"name": "Crag cat stalking the party", "tier": 1, "terrain": "mountain"},
+    {"name": "Ice troll emerging from snowdrift", "tier": 2, "terrain": "tundra"},
+    {"name": "Yeti hunting pack (1d4+1)", "tier": 2, "terrain": "mountain"},
+    {"name": "Frost giant patrol", "tier": 3, "terrain": "glacier"},
+    {"name": "Chardalyn berserkers", "tier": 2, "terrain": "any"},
+    {"name": "Duergar war party", "tier": 2, "terrain": "underdark_entrance"},
+    {"name": "Goliath hunting band (friendly)", "tier": 1, "terrain": "mountain"},
+    {"name": "Snowy owlbear with cubs", "tier": 2, "terrain": "forest"},
+    {"name": "Frozen undead rising from permafrost", "tier": 1, "terrain": "tundra"},
+    {"name": "Remorhaz bursting through ice", "tier": 3, "terrain": "glacier"},
+    {"name": "White dragon wyrmling", "tier": 2, "terrain": "mountain"},
+    {"name": "Awakened tree grove (hostile)", "tier": 2, "terrain": "forest"},
+    {"name": "Coldlight walker", "tier": 2, "terrain": "tundra"},
+    {"name": "Verbeeg marauders", "tier": 2, "terrain": "hills"},
+    {"name": "Ice mephit swarm", "tier": 1, "terrain": "any"}
+  ],
+  "quest_hooks": [
+    "Find the lost expedition in the Sea of Moving Ice",
+    "Stop the duergar from assembling a chardalyn dragon",
+    "Discover why Auril has cursed Icewind Dale with eternal night",
+    "Escort a caravan between Ten-Towns through a blizzard",
+    "Investigate disappearances near Kelvin's Cairn",
+    "Retrieve a stolen artifact from the Arcane Brotherhood",
+    "Help the goliaths of Wyrmdoom Crag fend off a white dragon",
+    "Explore the lost city of Ythryn beneath the glacier",
+    "Uncover the traitor among the speakers of Ten-Towns",
+    "Break the curse on a frozen village near the Spine of the World"
+  ],
+  "ten_towns": [
+    "Bryn Shander",
+    "Targos",
+    "Easthaven",
+    "Caer-Dineval",
+    "Caer-Konig",
+    "Dougan's Hole",
+    "Good Mead",
+    "Lonelywood",
+    "Bremen",
+    "Termalaine"
+  ]
+}

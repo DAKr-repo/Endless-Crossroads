@@ -1,0 +1,99 @@
+{
+    "seed": 9201,
+    "width": 35,
+    "height": 25,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "jammers_nightclub",
+        "theme": "RUST",
+        "topology": "settlement",
+        "display_name": "Jammer's Nightclub",
+        "description": "Mona Rise Megalopolis. Largest coastal center in Europe, built across the Greek peninsula on the bones of five dead cities. Government neutralized fifty years ago. Three corporations carved up the territory: Toha Heavy Industries, TekNet Megacorp, MezoTuring Hosaka. Somewhere in the neutral zone between their borders, Jammer's Nightclub pulses with bass frequencies that rattle the fillings in your teeth."
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 2,
+            "y": 2,
+            "width": 10,
+            "height": 8,
+            "room_type": "start",
+            "connections": [1, 2],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The main floor. Bass shakes the concrete through three subwoofers buried in the foundation. The crowd is a cross-section of Mona Rise: off-duty Toha machinists with grease under their nails, TekNet hackers with neural jack cables coiled around their wrists like bracelets, MezoTuring salary-workers trying to forget quarterly targets. Holographic dancers move through the crowd -- projections so convincing that newcomers try to buy them drinks. The bar is a slab of reclaimed ship hull, lit from below in shifting ultraviolet. Behind it, Jammer Hosaka watches everything and touches nothing.",
+                "read_aloud": "May the Rastafarian spirits guide your destiny through the dark streets. The bass drops and the floor shakes and for a moment everyone in the club is the same -- no faction, no affiliation, just bodies in sound. Then the music shifts and the crowd parts and a booth in the back corner has a single light above it. Jammer Hosaka nods once. The job is about to find you.",
+                "npcs": [
+                    {
+                        "name": "Jammer Hosaka",
+                        "role": "quest_giver",
+                        "dialogue": "This place is neutral ground. Always has been. Toha does not touch it, TekNet does not scan it, MezoTuring does not audit it. That makes it the only honest room in Mona Rise, which is funny because nothing that happens here is honest. I have three jobs. Each one comes from a different corporation. Each one screws the other two. You take all three, you make everyone happy for exactly as long as it takes them to realize what you did. Then things get interesting.",
+                        "notes": "[DM: Function: Quest Giver/Hub NPC. Quirk: Never handles money directly -- uses an assistant who is always standing just out of the customer's line of sight, like a shadow with a ledger. Speaks in the cadence of someone who learned three languages simultaneously and chose his favorite syllables from each. Secret: Jammer is MezoTuring Hosaka's nephew. He runs the nightclub as a neutral intelligence-gathering operation, selling information to all three factions. His uncle Hatlee knows. The other factions suspect but cannot prove it. Want: To maintain the balance -- the club's neutrality is his power. Need: To choose a side before the convergence forces the choice on him.]"
+                    }
+                ],
+                "services": ["drink", "rumor", "job_briefing"],
+                "event_triggers": [
+                    "Jammer slides three data-chips across the bar. Each one bears a corporate watermark: Toha's interlocking gears, TekNet's orbital eye, MezoTuring's Martian kanji. 'One job per chip. Each faction thinks you are working exclusively for them. The pay is real. The risks are real. The part where you tell any of them about the other two -- that is the part I would strongly recommend against.' He smiles. It does not reach his eyes."
+                ]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 14,
+            "y": 2,
+            "width": 8,
+            "height": 6,
+            "room_type": "tavern",
+            "connections": [0],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The back booth. A semi-private alcove screened from the main floor by sound-dampening curtains. Doc Cold Blood sits with his back to the wall, monitoring three screens simultaneously through glasses that display data on the inside of the lenses. His fingers move over a holographic keyboard that only he can see. Arrested twice, acquitted twice, wanted in four jurisdictions that no longer technically exist. The best hacker in Mona Rise who is not currently employed by a corporation.",
+                "read_aloud": "Doc Cold Blood does not look up. His fingers keep moving over the invisible keyboard. 'I know why you are here. Jammer's triple-play. Toha wants robots found, TekNet wants a base shut down, MezoTuring wants an AI secured. What Jammer did not tell you is that all three jobs lead to the same place.' He finally looks up. Behind the data-glasses, his eyes are the color of old money. 'Sit down. Let me show you the map.'",
+                "npcs": [
+                    {
+                        "name": "Doc Cold Blood",
+                        "role": "informant",
+                        "dialogue": "The renegade robots Toha wants found? They were stolen by TekNet to reverse-engineer Toha's heavy robotics. The base TekNet wants shut down? It is Toha's factory, where MezoTuring has been secretly leasing processing power for their AI projects. And the exiled AI MezoTuring wants secured? It has been hiding in TekNet's orbital servers, using their bandwidth to run calculations that would crash a planet-side mainframe. Every job feeds into every other job. Welcome to Mona Rise.",
+                        "notes": "[DM: Function: Informant/Tactical Advisor. Quirk: Never makes physical contact -- germaphobe, which is ironic for someone who spends his life elbow-deep in other people's data. Wears surgical gloves even while eating. Secret: Doc was arrested for hacking MezoTuring's financial systems. What nobody knows is that he succeeded -- he found something in the Hosaka family's encrypted records that scared him badly enough to delete his own copies. He will not say what it was. Want: To stay out of the game -- advisory only, no fieldwork. Need: To face what he found in the Hosaka files, because it is coming whether he looks at it or not.]"
+                    }
+                ],
+                "services": ["rumor"],
+                "investigation_dc": 14,
+                "investigation_success": "Doc's data-glasses have a secondary display that he thinks is hidden. It shows a live feed of Jammer's private office upstairs. Doc is spying on his employer. The feed shows Jammer on a call, speaking in rapid Martian dialect. The MezoTuring kanji on the screen behind him confirms the connection."
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 2,
+            "y": 12,
+            "width": 10,
+            "height": 8,
+            "room_type": "market",
+            "connections": [0],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The quiet corner. Away from the bass, near the fire exit. Marly sits alone at a table covered in empty glasses, one eye on her wrist-comm, the other on the door. She smells like expensive perfume and cheap trouble. Officially she works freelance data acquisition. Unofficially she works for whoever is paying best this week. Right now, she is between employers -- 'under watch,' which in Mona Rise means someone is deciding whether to hire her or kill her.",
+                "read_aloud": "Marly flags you down with a drink she did not order. 'You are new. Jammer's recruits, right? Word of advice from someone who has been doing runs in this city since before you were interesting: the three factions are not separate entities. They are one organism with three heads. Cut one and the others notice. Cut all three...' She takes a long sip. 'Nobody has ever cut all three.'",
+                "npcs": [
+                    {
+                        "name": "Marly",
+                        "role": "informant",
+                        "dialogue": "I know things about Mona Rise that would make your chrome curl. The 2022 crater in Sector 9? Not a bomb. A test. Toha's orbital program had an accident and they turned a city block into glass rather than admit it. The solar mega-towers? TekNet uses them to power a signal jammer that covers the entire peninsula. Nothing gets in or out of Mona Rise without TekNet knowing about it. And MezoTuring's financial tower? Thirty floors of accountants sitting on top of the most advanced quantum computing array outside of Mars.",
+                        "notes": "[DM: Function: Informant/Wild Card. Quirk: Orders drinks for other people -- never for herself. The glasses on the table are all from conversations she has already had tonight. Catalogues social debts like currency. Secret: Marly is a double agent working for an off-world intelligence service. Her mission is to destabilize all three factions to create a power vacuum that her employers can exploit. She does not care which faction falls first. Want: To complete the mission and leave Mona Rise. Need: A reason to stay -- she has started to care about the people she was supposed to be using.]"
+                    }
+                ],
+                "services": ["rumor", "drink"],
+                "loot": [
+                    {"name": "Mona Rise Street Map (Annotated)", "value": 75, "description": "Marly's personal map of the city. Corporate territory boundaries, neutral zones, safe houses, dead drops, and patrol routes. Updated daily. Written in a cipher that takes 10 minutes to decode or a Hack roll."},
+                    {"name": "Faction Dossier (Partial)", "value": 100, "description": "Profiles on the three faction leaders: Toha Makina, Poison_Kiss, Hatlee Hosaka. Public information only, but cross-referenced with rumor and observation. Better than nothing."}
+                ]
+            }
+        }
+    }
+}

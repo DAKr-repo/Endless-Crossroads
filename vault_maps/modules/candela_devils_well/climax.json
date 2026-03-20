@@ -1,0 +1,109 @@
+{
+  "seed": 4606,
+  "width": 25,
+  "height": 15,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "reliquary_sanctum",
+    "theme": "GOTHIC",
+    "topology": "dungeon",
+    "display_name": "The Inner Sanctum"
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 0,
+      "y": 0,
+      "width": 8,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The antechamber to the inner sanctum. The air is thick with bleed energy -- visible now, a faint amber haze that drifts like pollen. Objects from the vault's history float in lazy orbits: a coffee mug, a clipboard, a child's toy bear with one button eye. The walls are covered in crayon drawings -- hundreds of them, layered over years. Houses. Trees. A family holding hands. A girl alone in a circle. The drawings get darker as they progress. The girl in the circle gets smaller.",
+        "read_aloud": "She drew on the walls because there was nothing else to do. Ten years of crayon on concrete. The early drawings are bright -- houses, flowers, a sun with a smiling face. The later ones are just circles. Circle after circle, drawn in black, getting smaller. The girl in the center getting smaller too, until she is just a dot. The singing has stopped. She knows you are here. She is holding her breath.",
+        "npcs": [],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [
+          "The crayon drawings document ten years of isolation. The Reliquary went from a frightened child to something else -- something that has been alone so long it has forgotten what connection feels like, but never stopped wanting it."
+        ],
+        "loot": []
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 10,
+      "y": 0,
+      "width": 10,
+      "height": 10,
+      "room_type": "boss",
+      "connections": [0, 2],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The inner sanctum. A cylindrical chamber sixty feet across, built around a central well of absolute darkness. The inverted lighthouse beacon hangs from the ceiling, its cracked lens refracting bleed-light into prismatic shards that dance across the walls. At the well's edge, cross-legged, sits a girl. She appears to be eight years old. She has not aged. Her eyes are entirely black -- no iris, no white, just dark. The air around her shimmers with gravitational distortion. She looks up at you. She smiles. The vault shudders.",
+        "read_aloud": "She is so small. Bare feet, a hospital gown gone gray with age, dark hair hanging past her shoulders. She sits at the edge of an abyss and she is not afraid of it -- she is afraid of you. Her black eyes are wet. Her hands twist in her lap. 'You came,' she says, and the lighthouse beacon above you cracks. A chunk of ceiling the size of a table falls in slow motion, rotating gently, suspended by her will. 'Nobody comes. Why did you come? Are you going to leave too?'",
+        "npcs": [
+          {
+            "name": "The Reliquary",
+            "role": "adversary",
+            "dialogue": "They put me here because I break things. I do not mean to break things. It just happens when I am scared. Or sad. Or happy. Everything I feel, the world feels too. They said it was too dangerous. They said I had to stay. They said someone would come. That was a long time ago.",
+            "notes": "The Reliquary is not evil. She is a traumatized child with reality-warping bleed powers, imprisoned by EONS for a decade. Her isolation has made her powers unstable -- her emotions directly affect gravity, space, and matter. Freeing her risks catastrophic bleed release. Leaving her continues her suffering. There may be a third option: Tarek's father left access codes that could safely power down the containment field while Candela provides proper care. But the vault is crumbling. The circle must decide quickly."
+          }
+        ],
+        "enemies": [
+          {
+            "name": "The Reliquary (phenomenon)",
+            "hp": 40,
+            "max_hp": 40,
+            "ac": 16,
+            "attack": 8,
+            "defense": 16,
+            "count": 1
+          }
+        ],
+        "services": [],
+        "event_triggers": [
+          "The Reliquary is the source of every disappearance in the Glass Sea. Her loneliness pulls ships toward her, seeking connection. She does not understand that she is killing people. She just wants someone to stay.",
+          "The vault is crumbling. The Reliquary's emotional state -- hope, fear, joy at seeing people -- is destabilizing the containment field. The circle must act: free her (bleed risk), sedate her (ethical cost), or find Tarek's father's shutdown codes to safely transition her to Candela custody."
+        ],
+        "loot": [
+          {
+            "name": "Reliquary Containment Crystal",
+            "value": 0,
+            "description": "A fist-sized crystal mounted in the lighthouse beacon's lens assembly. It regulates the Reliquary's bleed output. If removed, her powers spike uncontrollably. If left in place while the vault crumbles, it shatters and achieves the same result. Must be handled with extreme care."
+          }
+        ]
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 18,
+      "y": 4,
+      "width": 6,
+      "height": 6,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The control alcove. A bank of instruments built into the sanctum wall, covered in bleed-fungus but still functional. This is the containment field's control interface -- Director Abbas designed it with a failsafe shutdown sequence. Tarek's access codes will work here. The shutdown is not instant -- it takes three minutes, during which the Reliquary's powers will fluctuate wildly. Someone must keep her calm. Someone must keep the vault from collapsing. Someone must stay at the controls.",
+        "npcs": [],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [
+          "The control interface accepts Director Abbas's codes. Shutdown sequence takes three minutes. During those three minutes, the Reliquary's powers surge unpredictably. The circle must divide: one at the controls, one keeping the child calm, the rest preventing structural collapse.",
+          "If the circle chooses to free the Reliquary through the proper shutdown sequence, the vault stabilizes and the girl -- whose name, written on the hospital gown's tag, is Lena -- can be safely extracted. If they choose violence or abandonment, the consequences are proportional and terrible."
+        ],
+        "loot": [],
+        "investigation_dc": 16,
+        "investigation_success": "Behind the control panel, a sealed letter from Director Abbas to his son Tarek: 'If you are reading this, I failed her. Her name is Lena. She likes to sing. She is afraid of the dark, which is why I left the lighthouse running. Please do not leave her alone again. Please.'"
+      }
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "module_id": "bob_barrak_mines",
+  "display_name": "Barrak Mines",
+  "system_id": "bob",
+  "source_type": "community_authored",
+  "starting_location": "mine_entrance",
+  "recommended_levels": {"min": 1, "max": 5},
+  "chapters": [
+    {
+      "chapter_id": "into_the_deep",
+      "display_name": "Into the Deep",
+      "order": 1,
+      "zones": [
+        {
+          "zone_id": "mine_entrance",
+          "blueprint": "mine_entrance.json",
+          "topology": "settlement",
+          "theme": "STONE",
+          "entry_trigger": "module_start",
+          "exit_trigger": "player_choice"
+        },
+        {
+          "zone_id": "upper_tunnels",
+          "blueprint": "upper_tunnels.json",
+          "topology": "dungeon",
+          "theme": "STONE",
+          "entry_trigger": "player_choice",
+          "exit_trigger": "all_rooms"
+        },
+        {
+          "zone_id": "deep_shaft",
+          "blueprint": "deep_shaft.json",
+          "topology": "dungeon",
+          "theme": "GOTHIC",
+          "entry_trigger": "player_choice",
+          "exit_trigger": "boss_defeated"
+        }
+      ]
+    }
+  ],
+  "freeform_zones": []
+}

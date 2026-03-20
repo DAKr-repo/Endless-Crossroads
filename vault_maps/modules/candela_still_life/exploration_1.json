@@ -1,0 +1,67 @@
+{
+  "seed": 4503,
+  "width": 20,
+  "height": 12,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "cracked_lens_front",
+    "theme": "GOTHIC",
+    "topology": "settlement",
+    "display_name": "The Cracked Lens"
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 0,
+      "y": 0,
+      "width": 8,
+      "height": 8,
+      "room_type": "market",
+      "connections": [1],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The Cracked Lens camera repair shop in Groundswell. A narrow storefront wedged between a cobbler and a pawn broker, its window displaying antique cameras and photographic curiosities. The bell above the door is cracked -- it rattles instead of ringing. Inside, every horizontal surface is covered with disassembled cameras, loose lenses, and jars of chemical compounds. The smell of silver nitrate and old leather permeates everything.",
+        "read_aloud": "Sara Khalil looks up from a bellows camera she is stitching back together. They push their magnifying loupe up onto their forehead and study you with the particular intensity of someone accustomed to examining very small things. 'If you are here about the Emrys camera,' they say, before you have opened your mouth, 'I have been expecting someone.'",
+        "npcs": [
+          {
+            "name": "Sara Khalil",
+            "role": "informant",
+            "dialogue": "My grandfather collected cameras. When he died, I inherited the shop and his collection. That camera was in a box I never opened -- his instructions were to destroy it. I did not. I sold it to the Enfield man instead. I should not have. Grandfather's note said it was 'the eye that wakes the sleeping.' I thought it was poetry. It was not poetry.",
+            "notes": "She/they. Camera repair specialist. Inherited The Cracked Lens from her grandfather. Sold the Eye of Emrys camera to Oscar despite her grandfather's warnings. Still has the original box and her grandfather's notes in the back room. Guilt-ridden but practical. Knows more about camera mechanics than anyone in Newfaire."
+          }
+        ],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [
+          "Sara Khalil confirms the camera was found in her grandfather's locked collection. She still has the box it came in, stored in the back room.",
+          "REVEAL: The camera emanates bleed energy. It was called the Eye of Emrys by Sara's grandfather. Purchased from The Cracked Lens."
+        ],
+        "loot": []
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 10,
+      "y": 0,
+      "width": 8,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [0],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The shop floor. Glass display cases hold antique cameras dating back decades -- daguerreotype rigs, tintypes, early plate cameras. Sara's workbench occupies the rear wall, a jeweler's lamp illuminating the guts of a half-disassembled Kodak. Framed photographs line the walls, all taken by Sara's grandfather: street scenes, portraits, landscapes. In every photograph, the shadows are slightly wrong -- too sharp, too dark, as if his cameras always captured something the eye could not see.",
+        "npcs": [],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [],
+        "loot": [],
+        "investigation_dc": 12,
+        "investigation_success": "One photograph on the wall shows Sara's grandfather standing in front of an ornate door marked with the same eye-and-triangle symbol found on the Emrys camera. The location appears to be a mausoleum. A caption on the back reads: 'Vienno's Rest. Never again.'"
+      }
+    }
+  }
+}

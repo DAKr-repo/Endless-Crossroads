@@ -1,0 +1,93 @@
+{
+  "seed": 7010,
+  "width": 40,
+  "height": 30,
+  "start_room_id": 0,
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 2,
+      "y": 2,
+      "width": 10,
+      "height": 8,
+      "room_type": "start",
+      "connections": [1],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false
+    },
+    "1": {
+      "id": 1,
+      "x": 14,
+      "y": 3,
+      "width": 14,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [0, 2],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false
+    },
+    "2": {
+      "id": 2,
+      "x": 14,
+      "y": 15,
+      "width": 12,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false
+    }
+  },
+  "metadata": {
+    "zone_id": "exploration_1",
+    "theme": "GOTHIC",
+    "topology": "dungeon",
+    "scene_title": "The Mine Entrance"
+  },
+  "content_hints": {
+    "0": {
+      "description": "The mine entrance, cut into a limestone bluff above the Stentorian. Timber shoring braces the opening, already warping from moisture. Handcart tracks lead inward on rusted rails. Gold-veined rock glitters in the lantern light.",
+      "read_aloud": "The air changes the moment you step inside. Warmer, wetter, with a metallic sweetness that coats the back of your throat. The gold veins in the walls pulse with a slow, rhythmic light -- not reflection. Bioluminescence. The rock itself is alive.",
+      "npcs": [
+        {
+          "name": "Brenner",
+          "role": "witness",
+          "dialogue": "You can hear it, can't you? The singing. The gold sings. It told me where to dig. It told all of us where to dig. We thought we were lucky. We're not lucky. We're fed.",
+          "notes": "Brenner is in late-stage transformation. His skin is half gold, rigid and cracking at the joints. He's lucid but fading. He can describe the deeper cavern and the 'breathing wall' where the thinning is, but he won't go back. He says it called him by name."
+        }
+      ],
+      "event_triggers": ["Brenner, the first prospector, is nearly fully transformed. He describes the gold as alive, singing, directing the miners to dig deeper. The mine is a lure."]
+    },
+    "1": {
+      "description": "The primary mining gallery. A long, vaulted cavern with gold veins threading the ceiling like circulatory systems. Mining equipment lies abandoned -- picks, lanterns, a half-loaded cart. Water seeps through the floor, carrying gold particulate downstream toward the river.",
+      "read_aloud": "The picks aren't just abandoned -- they're embedded in the walls where miners dropped them mid-swing. Lunchboxes sit open. Coats hang from rail spikes. Everyone left at once, or was made to leave. The water running along the floor channel glows faintly amber.",
+      "enemies": [
+        {
+          "name": "Transformed Miner",
+          "hp": 15,
+          "ac": 12,
+          "attack": 4,
+          "damage": "1d6",
+          "count": 1,
+          "notes": "The missing water inspector, fully transformed. Gold skin, joints fused, moves with mechanical stiffness. Still wearing his city-issued vest. Attacks with a pick embedded in his fused fist.",
+          "special": ["Gold Skin: resistant to piercing damage", "Contaminating Strike: hit transfers gold particulate -- 1 Bleed mark"]
+        }
+      ],
+      "investigation_dc": 14,
+      "investigation_success": "The water channels have been deliberately carved to flow outward toward the river. Not by the miners -- the channels are too precise, too old. Someone or something engineered the contamination pipeline centuries ago. The miners just broke the seal.",
+      "loot": [
+        {"name": "Inspector's Notebook", "value": 0, "description": "Water Inspector Alden Croy's field notes. Final pages describe 'a wall that breathes and a light behind it that knows I'm here.' He documented the water channel system before the transformation took him."}
+      ]
+    },
+    "2": {
+      "description": "A junction where the mine splits. The left tunnel is partially collapsed, timber shoring snapped like matchsticks. The right tunnel descends steeply, and the gold veins grow thicker, pulsing faster. The water channel follows the right path.",
+      "read_aloud": "The right tunnel breathes. Air moves in and out of it in slow, even cycles, warm and humid, carrying the copper-sweet smell stronger than before. The gold veins here are as thick as your forearm and they branch like blood vessels, converging downward.",
+      "perception_dc": 12,
+      "perception_success": "The collapsed left tunnel isn't natural. The timbers were broken from inside, not by settling. Something came through from the deep cavern and tore its way out. Recently. The claw marks in the rock match Brenner's malformed hands.",
+      "event_triggers": ["The deeper passage leads toward the source. The transformation is accelerating. The contaminated water channels are ancient -- this isn't the first time the thinning has been active."]
+    }
+  }
+}

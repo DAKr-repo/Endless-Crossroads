@@ -1,0 +1,65 @@
+{
+  "module_id": "sav_ashen_knives",
+  "display_name": "The Ashen Knives Job",
+  "system_id": "sav",
+  "source_type": "publisher_licensed",
+  "starting_location": "briefing",
+  "recommended_levels": {"min": 1, "max": 3},
+  "chapters": [
+    {
+      "chapter_id": "the_setup",
+      "display_name": "The Setup",
+      "order": 0,
+      "zones": [
+        {
+          "zone_id": "briefing",
+          "blueprint": "briefing.json",
+          "topology": "settlement",
+          "theme": "STONE",
+          "entry_trigger": "module_start",
+          "exit_trigger": "player_choice"
+        },
+        {
+          "zone_id": "approach",
+          "blueprint": "approach.json",
+          "topology": "settlement",
+          "theme": "STONE",
+          "entry_trigger": "player_choice",
+          "exit_trigger": "player_choice"
+        }
+      ]
+    },
+    {
+      "chapter_id": "the_job",
+      "display_name": "The Job",
+      "order": 1,
+      "zones": [
+        {
+          "zone_id": "infiltration",
+          "blueprint": "infiltration.json",
+          "topology": "dungeon",
+          "theme": "STONE",
+          "entry_trigger": "player_choice",
+          "exit_trigger": "quest_complete"
+        },
+        {
+          "zone_id": "extraction",
+          "blueprint": "extraction.json",
+          "topology": "dungeon",
+          "theme": "STONE",
+          "entry_trigger": "player_choice",
+          "exit_trigger": "all_rooms"
+        },
+        {
+          "zone_id": "aftermath",
+          "blueprint": "aftermath.json",
+          "topology": "settlement",
+          "theme": "STONE",
+          "entry_trigger": "player_choice",
+          "exit_trigger": "player_choice"
+        }
+      ]
+    }
+  ],
+  "freeform_zones": []
+}

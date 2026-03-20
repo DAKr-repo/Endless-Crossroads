@@ -1,0 +1,93 @@
+{
+    "seed": 9001,
+    "width": 30,
+    "height": 20,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "runners_hideout",
+        "theme": "RUST",
+        "topology": "settlement",
+        "display_name": "The Hideout",
+        "description": "An abandoned parking structure beneath a condemned overpass. Someone welded the stairwell doors shut and ran power off a spliced municipal line. The walls sweat condensation that smells like ozone and old copper."
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 2,
+            "y": 2,
+            "width": 8,
+            "height": 6,
+            "room_type": "start",
+            "connections": [1, 2],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Operator's war room. A ring of salvaged monitors casts blue-white light across a table made from a car hood. Omni Global Solutions logos rotate on every screen -- corporate filings, satellite feeds, personnel dossiers. A red string map covers the far wall, connecting four photographs to the Omni logo at its center.",
+                "read_aloud": "The monitors flicker. The Operator does not look up. 'You're late. Sit down. We have a problem the size of a megacorp and exactly four ways it can kill us before we get close.'",
+                "npcs": [
+                    {
+                        "name": "The Operator",
+                        "role": "quest_giver",
+                        "dialogue": "Omni Global Solutions. Pristine reputation, paramilitary contractors, orbital assets. They own the media, the grid, and half the politicians in this hemisphere. We take them down or we spend the rest of our short lives looking over our shoulders.",
+                        "notes": "[DM: The Operator has a cybernetic eye that records everything. She is former Omni middle-management who was 'restructured' -- meaning they killed her family and wiped her credit rating. She will not reveal this unless pressed. Function: Quest Giver. Quirk: Drums fingers on table in patterns that match Morse code -- always spelling BRIGHTSTAR. Secret: She has terminal neural degradation from a botched chrome extraction. Six months, maybe less. Want: Destroy Omni Global. Need: Forgiveness from the daughter she abandoned to protect.]"
+                    }
+                ],
+                "services": ["rest", "rumor", "job_briefing"],
+                "event_triggers": [
+                    "The Operator pulls up four photographs on the central monitor. 'Media control. Project Quest. Our mole. The Dust Wall. Four countermeasures, four runs. Each one is a flashback -- something we already did to prepare. Choose your angle: Take Down, Resist, or Liberate. It changes how the climax plays.'"
+                ],
+                "investigation_dc": 12,
+                "investigation_success": "The red string map includes a fifth photograph, face-down. Flipping it reveals a young woman with the Operator's jawline. Written on the back: 'Lena. Safe. Do not contact.'"
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 12,
+            "y": 2,
+            "width": 7,
+            "height": 6,
+            "room_type": "market",
+            "connections": [0],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The gear cage. Chain-link fencing partitions a corner of the garage where weapons, decks, and chrome are laid out on oil-stained blankets. A street contact leans against the cage, cleaning a pistol that probably has a body on it.",
+                "read_aloud": "Fluorescent tubes buzz overhead. The contact counts rounds from a box of ammunition without looking up. 'Need something? Make it quick. Omni's got drones running pattern sweeps every forty minutes.'",
+                "npcs": [
+                    {
+                        "name": "Street Contact",
+                        "role": "merchant",
+                        "dialogue": "I don't ask names and I don't do receipts. You point, I price, you pay. Anything that goes bang, buzz, or breach -- I can source it. Just not Omni-branded. That stuff phones home.",
+                        "notes": "[DM: Function: Merchant. Quirk: Assembles and disassembles a pistol compulsively while talking -- hands never stop. Secret: Working both sides. Sells runner intel to a Burnt Pistons lieutenant for protection money. Will betray the team's location if the heat gets too high. Want: Enough cred to leave the city. Need: Someone to tell him it is okay to stop running.]"
+                    }
+                ],
+                "services": ["buy", "supply"],
+                "loot": [
+                    {"name": "Burner Comm Unit", "value": 50, "description": "Single-use encrypted communicator. Melts its own chip after one call."},
+                    {"name": "EMP Grenade (x2)", "value": 200, "description": "Disables electronics in a 10m radius for 30 seconds. Also disables your chrome."}
+                ]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 2,
+            "y": 10,
+            "width": 8,
+            "height": 6,
+            "room_type": "tavern",
+            "connections": [0],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The crash space. Hammocks strung between concrete pillars. A camp stove heats synthetic coffee that tastes like it was brewed in a radiator. Graffiti covers the walls -- old gang tags layered under newer political slogans. Someone scratched 'OMNI SEES ALL' into the concrete with a knife.",
+                "read_aloud": "The coffee is terrible. The hammocks smell like someone else's fear-sweat. But the junction box in the corner is pulling clean power, the signal jammer overhead keeps this place invisible to grid scans, and for the next twelve hours, this is the safest square meter in the city.",
+                "services": ["rest", "drink"],
+                "perception_dc": 14,
+                "perception_success": "Behind the junction box, a narrow gap leads to a maintenance tunnel. The Operator's emergency exit route -- she has marked it with a small chalk arrow that only appears under UV light."
+            }
+        }
+    }
+}

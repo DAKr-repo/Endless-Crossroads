@@ -1,0 +1,96 @@
+{
+    "seed": 9101,
+    "width": 35,
+    "height": 25,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "selket_heights",
+        "theme": "RUST",
+        "topology": "settlement",
+        "display_name": "Selket Heights Refugee Camp",
+        "description": "Selket Heights -- civilian housing district of Biosphere-5. The dome overhead projects a sky that nobody believes anymore. Since the incident at APX, the agro-botanical zone transmuted into dense jungle that is creeping toward the hab sectors. Refugees crowd the corridors. The air recyclers are losing the war against the spore count."
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 2,
+            "y": 2,
+            "width": 10,
+            "height": 8,
+            "room_type": "start",
+            "connections": [1, 2],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Refugee staging area. The atrium of a residential block repurposed as a triage center. Cots line the floor in rows. The lighting is emergency-amber -- main power was rerouted to the perimeter fences weeks ago. Children sleep under thermal blankets printed with Koloss Heavy Industries logos. The far wall has been converted to a status board: survivor counts, water rationing schedules, and a column labeled 'MISSING' that is longer than the one labeled 'FOUND.'",
+                "read_aloud": "A flare arcs over the dome's inner surface, trailing green phosphor. Somewhere in the jungle sector, something screams -- not human, not quite animal. The refugees closest to the windows flinch but do not look. They have learned not to look.",
+                "services": ["rest", "supply", "rumor"],
+                "event_triggers": [
+                    "A flare goes up in the distance. Screams follow. The camp's emergency siren wails for three seconds, then cuts to static. An automated voice: 'Sector 7 perimeter breach. Non-critical personnel shelter in place.' Nobody moves. They have heard this before."
+                ],
+                "investigation_dc": 12,
+                "investigation_success": "The status board's 'MISSING' column has a pattern. Every name listed in the last seventy-two hours was last seen near the APX facility perimeter. Something is drawing people toward it -- or something from inside is coming out to collect them."
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 14,
+            "y": 2,
+            "width": 8,
+            "height": 8,
+            "room_type": "market",
+            "connections": [0],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Old Finn's corner. A supply closet expanded into a black market stall using stolen modular wall panels. Finn has arranged his inventory with the precision of someone who knows exactly what everything is worth when people are scared: water filters at eye level, ammunition behind the counter, medical supplies in a locked cabinet with a hand-lettered sign reading 'NEGOTIABLE.' The man himself sits on a crate, whittling something that might be a weapon or might be a toy.",
+                "read_aloud": "Finn does not look up from his whittling. 'If you are here to buy, state your budget. If you are here to beg, the charity line is the one with the children crying in it. If you are here about the thing in the jungle--' He pauses, tests the edge of his knife. '--that will cost you extra.'",
+                "npcs": [
+                    {
+                        "name": "Old Finn",
+                        "role": "merchant",
+                        "dialogue": "I have been on Ganymede for eleven years. Survived three habitat breaches, two corporate wars, and a food riot that lasted nine days. I survive because I trade. The jungle? I have heard things. The Corp Sec boys talk when they are buying painkillers they are not supposed to need. Something came out of Lab 19A. Something that hunts. I can tell you more, but information is inventory and inventory has a price.",
+                        "notes": "[DM: Function: Merchant/Information broker. Quirk: Whittles constantly -- the shavings form a pile that he never cleans up, using the depth of the pile to track how long a conversation has lasted. Secret: Finn has a stockpile of weapons cached outside the refugee zone, enough to arm twenty people. He is waiting to see which faction wins before picking a side. Want: Profit and survival. Need: To care about something other than the next transaction -- his late partner's daughter is among the refugees and he has been anonymously leaving supplies at her cot.]"
+                    }
+                ],
+                "services": ["buy", "supply", "rumor"],
+                "loot": [
+                    {"name": "Biosphere Ration Pack (x3)", "value": 30, "description": "Compressed nutrient bars. Taste like cardboard wrapped in regret. Twelve hours of sustenance each."},
+                    {"name": "Spore Filter Mask", "value": 75, "description": "Military-grade respirator. Filters the mutated botanical spores that have been causing hallucinations in unprotected personnel."},
+                    {"name": "Jury-Rigged Flare Gun", "value": 50, "description": "Fires standard flares or, with modification, concussive rounds. The modification voids the warranty and also the structural integrity."}
+                ]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 2,
+            "y": 14,
+            "width": 10,
+            "height": 8,
+            "room_type": "tavern",
+            "connections": [0],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Medical bay overflow. A corridor junction converted to triage. Jane Doe sits on the last cot, wrapped in a thermal blanket, staring at the wall with an expression that is either catatonic or intensely focused. The medical team gave up trying to identify her three days ago -- no records, no implant signatures, no biometric match in any database. She arrived at the perimeter fence covered in jungle sap and blood that was not hers, carrying a piece of tactical armor she should not have been able to lift.",
+                "read_aloud": "The woman on the cot turns to look at you. Her eyes track like gun turrets -- smooth, mechanical, deliberate. 'You are going into the jungle,' she says. Not a question. 'I can tell you what is in there. It will not help. But you should know anyway.'",
+                "npcs": [
+                    {
+                        "name": "Jane Doe",
+                        "role": "informant",
+                        "dialogue": "It hunts in thermal. Infrared overlay, tactical processing, predictive movement algorithms. It catalogues threat levels and prioritizes targets. I know this because I watched it work through an entire Corp Sec squad in fourteen seconds. The suits did not see it until it was already inside the perimeter. The cloak is not perfect -- there is a shimmer when it moves, like heat haze. If you see the heat haze, you have about two seconds.",
+                        "notes": "[DM: Function: Informant/Mystery. Quirk: Speaks in clipped technical language that sounds military, but no military record exists. Her hands shake unless she is holding something -- the shaking stops completely, suggesting a chrome-assisted grip response. Secret: Jane Doe is a synthetic -- a human-form construct created at the APX facility. She is a prototype of the same program that produced the PRDTR. Her memories are real but implanted from a deceased Corp Sec officer. She does not know she is synthetic. The PRDTR does -- and considers her a priority target for recovery or termination. Want: To remember who she is. Need: To accept that the person she remembers being is not the person she is.]"
+                    }
+                ],
+                "event_triggers": [
+                    "Jane Doe pulls the piece of tactical armor from under her cot. It is scored with claw marks that cut through military-grade plating. 'This came off it. I do not know how. I woke up holding it and sixteen hours were gone.' The armor fragment has a serial number: LAB19A-PRDTR-07. APX facility designation."
+                ],
+                "perception_dc": 16,
+                "perception_success": "Jane Doe's pupils do not dilate in response to light changes. They adjust with a barely perceptible mechanical click. Her pulse, visible at the throat, beats at exactly 72 BPM -- never varying. Synthetics have perfect autonomic regulation."
+            }
+        }
+    }
+}

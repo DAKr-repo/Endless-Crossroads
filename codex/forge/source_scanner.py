@@ -100,12 +100,56 @@ def scan_vault_structure(vault_path: str = None) -> dict:
     return result
 
 
+def _infer_system_id(vault_path: str) -> str:
+    """Infer system_id from a vault path.
+
+    E.g. 'vault/FITD/bitd' -> 'bitd', 'vault/dnd5e' -> 'dnd5e',
+    'vault/ILLUMINATED_WORLDS/Candela_Obscura' -> 'candela'.
+    """
+    name = Path(vault_path).name.lower()
+    _ALIASES = {
+        "cbr_pnk": "cbrpnk",
+        "candela_obscura": "candela",
+    }
+    return _ALIASES.get(name, name)
+
+
+def _scan_adventure_modules(system_id: str) -> list:
+    """Scan vault_maps/modules/ for adventure modules matching system_id.
+
+    Returns list of {"name": display_name, "path": manifest_path,
+    "module_id": dir_name} dicts.
+    """
+    import json
+    modules_dir = _ROOT / "vault_maps" / "modules"
+    if not modules_dir.is_dir():
+        return []
+    results = []
+    for entry in sorted(modules_dir.iterdir()):
+        if not entry.is_dir():
+            continue
+        mf = entry / "module_manifest.json"
+        if not mf.exists():
+            continue
+        try:
+            data = json.loads(mf.read_text())
+            if data.get("system_id") == system_id:
+                results.append({
+                    "name": data.get("display_name", entry.name),
+                    "path": str(mf),
+                    "module_id": data.get("module_id", entry.name),
+                })
+        except Exception:
+            continue
+    return results
+
+
 def scan_system_content(vault_path: str, parent_path: str = None) -> dict:
     """Scan a specific system's vault directory for available content.
 
     Categorizes files found under SOURCE/, SETTINGS/, and MODULES/ into
-    rules, settings, and modules. Used by the character wizard and campaign
-    wizard to show players what content is available before committing.
+    rules, settings, and modules. Also scans vault_maps/modules/ for
+    adventure modules matching this system's ID.
 
     Args:
         vault_path: Path to a system's vault dir (e.g. vault/FITD/bitd/)
@@ -127,6 +171,14 @@ def scan_system_content(vault_path: str, parent_path: str = None) -> dict:
             for item in parent_result.get(category, []):
                 if item["name"] not in child_names:
                     result.setdefault(category, []).append(item)
+
+    # Merge adventure modules from vault_maps/modules/
+    system_id = _infer_system_id(vault_path)
+    existing_names = {m["name"] for m in result.get("modules", [])}
+    for mod in _scan_adventure_modules(system_id):
+        if mod["name"] not in existing_names:
+            existing_names.add(mod["name"])
+            result["modules"].append(mod)
 
     return result
 

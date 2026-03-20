@@ -1,0 +1,100 @@
+{
+  "seed": 4502,
+  "width": 25,
+  "height": 12,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "enfield_studio",
+    "theme": "GOTHIC",
+    "topology": "settlement",
+    "display_name": "Briar Green"
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 0,
+      "y": 0,
+      "width": 8,
+      "height": 8,
+      "room_type": "town_square",
+      "connections": [1, 2],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Briar Green -- a quiet residential district of narrow lanes and iron fences. Gaslamps line the cobbled street, their light catching the mist that rolls in off the river. Oscar Enfield waits on his front step, still wearing his darkroom apron, chemical stains on his cuffs. He clutches a stack of photographs against his chest like a man shielding a wound.",
+        "read_aloud": "Oscar's hands shake as he spreads the photographs on the parlor table. Three post-mortem portraits, taken over the past month. In each, the deceased subject stares into the lens with living, anguished eyes. In each, the body vanished after the exposure, leaving only an ink-black shadow burned into whatever surface it touched. 'It started with old Mr. Ferris,' he says. 'Then the Calloway girl. Then -- then Nora.'",
+        "npcs": [
+          {
+            "name": "Oscar Enfield",
+            "role": "informant",
+            "dialogue": "The camera is old. I bought it from a repair shop in Groundswell -- The Cracked Lens. It was the most beautiful thing I had ever seen. Gilded, with filigree like vines. It resonated when I touched it. I thought that was craftsmanship. Now I think it was something else.",
+            "notes": "He/him. Widowed photographer. Deeply in love with his dead wife Nora. Purchased the camera two months ago. Does not yet understand that the camera can also return the dead to their natural state. His grief makes him a liability -- he may resist destroying the camera if he believes it could bring Nora back."
+          }
+        ],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [
+          "Oscar provides the address of The Cracked Lens in Groundswell, where he purchased the camera. The camera itself emanates bleed when examined closely -- a faint vibration felt in the fillings of your teeth.",
+          "REVEAL: The camera resonates with bleed energy. It was purchased from The Cracked Lens in Groundswell."
+        ],
+        "loot": [],
+        "investigation_dc": 12,
+        "investigation_success": "The camera's brass plate bears a maker's mark: an eye within a triangle, surrounded by text in a language you do not recognize. The word 'EMRYS' is legible. Candela records may have a reference."
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 10,
+      "y": 0,
+      "width": 8,
+      "height": 6,
+      "room_type": "residence",
+      "connections": [0],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Oscar's darkroom. The red safelight casts everything in arterial hue. Developing trays line the counter, chemicals in brown bottles. Photographs hang from clips on a wire -- dozens of post-mortem portraits, each one conventional, unremarkable. Then the last three. In these, the subjects' eyes are open. They stare. They are aware.",
+        "npcs": [],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [],
+        "loot": [
+          {
+            "name": "Nora's Final Portrait",
+            "value": 0,
+            "description": "The last photograph Oscar took of his wife. In the image, Nora stares into the lens with an expression of desperate confusion. Her hand is raised, reaching toward the camera. The ink on the photograph is warm to the touch."
+          }
+        ]
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 10,
+      "y": 6,
+      "width": 8,
+      "height": 6,
+      "room_type": "residence",
+      "connections": [0],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The Enfield yard. A small patch of brown grass behind the rowhouse, enclosed by an iron fence. A dead rabbit lies on the path, stiff and cold. Its shadow is burned into the flagstones in impossible detail -- each whisker, each claw. The body has the same faintly metallic sheen as the ink-black shadows left by the human subjects.",
+        "npcs": [
+          {
+            "name": "Jacob Finsky",
+            "role": "witness",
+            "dialogue": "The Enfields were quiet people. Private. But I seen Oscar carrying that camera around at all hours. Photographing dead cats, dead birds. Anything dead. I thought it was grief. Now the dead things are missing and the shadows stay behind. I do not think it is grief.",
+            "notes": "They/he. Bodega owner from the neighboring block. Observant and blunt. Has seen Oscar photographing dead animals in the alley. Knows the neighborhood's comings and goings."
+          }
+        ],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [],
+        "loot": []
+      }
+    }
+  }
+}

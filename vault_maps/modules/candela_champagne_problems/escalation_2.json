@@ -1,0 +1,131 @@
+{
+  "seed": 7006,
+  "width": 50,
+  "height": 30,
+  "start_room_id": 0,
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 2,
+      "y": 2,
+      "width": 14,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [1, 2],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false
+    },
+    "1": {
+      "id": 1,
+      "x": 18,
+      "y": 2,
+      "width": 14,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [0, 3],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false
+    },
+    "2": {
+      "id": 2,
+      "x": 2,
+      "y": 14,
+      "width": 10,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [0],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false
+    },
+    "3": {
+      "id": 3,
+      "x": 34,
+      "y": 2,
+      "width": 12,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false
+    }
+  },
+  "metadata": {
+    "zone_id": "escalation_2",
+    "theme": "GOTHIC",
+    "topology": "dungeon",
+    "scene_title": "The Record Player Stage"
+  },
+  "content_hints": {
+    "0": {
+      "description": "The sub-stage chamber beneath the bandstand. The Host's control room -- a circular space with the speaking tube terminus, walls lined with shelves of wax cylinder recordings, and a massive phonograph at the center connected to the ceiling by copper wires.",
+      "read_aloud": "The phonograph is enormous -- an industrial thing, its brass horn aimed upward through the ceiling into the stage above. A wax cylinder spins on the mandrel, producing the music that fills the entire speakeasy. The needle has worn a groove so deep the cylinder should have shattered decades ago. It hasn't. It pulses with faint violet light.",
+      "npcs": [
+        {
+          "name": "Felix the Bartender",
+          "role": "ally_in_peril",
+          "dialogue": "You found it. The machine. I followed you down -- I don't know why. Maybe because I'm starting to remember. My name was Felix Strand. I had a daughter. She'd be... God. She'd be seventy now. Can you stop it? Can you stop all of it?",
+          "notes": "Felix followed the investigators. If the record is destroyed, the spell breaks and decades of stolen time return to the guests all at once -- killing most of them, including Felix. He knows this. He's asking anyway."
+        }
+      ],
+      "enemies": [
+        {
+          "name": "Enthralled Guests",
+          "hp": 15,
+          "ac": 12,
+          "attack": 4,
+          "damage": "1d6",
+          "count": 3,
+          "notes": "The Host sends a wave of enthralled guests to stop the investigators from reaching the phonograph. They pour down the stairs in evening wear, champagne flutes still in hand.",
+          "special": ["Enthralled: immune to persuasion while the music plays", "Sheer numbers: reinforcements arrive each round until the music stops"]
+        }
+      ],
+      "event_triggers": ["Felix is in peril -- he's remembered who he is, and the Host will target him for it. The investigators must protect him while reaching the phonograph."]
+    },
+    "1": {
+      "description": "A narrow passage between the control room and the Host's sanctum. The walls here aren't brick anymore -- they're compacted dust. Compressed years. The faces of consumed guests press outward from the walls like death masks.",
+      "read_aloud": "You recognize some of the faces from the guest registry. Hundreds of them, layered deep. The walls breathe. The passage narrows. Something ahead is breathing too, heavy and wet, in time with the music.",
+      "enemies": [
+        {
+          "name": "Aging Dust Cloud",
+          "hp": 15,
+          "ac": 12,
+          "attack": 4,
+          "damage": "1d4",
+          "count": 1,
+          "notes": "The passage itself attacks -- dust peels from the walls in sheets, enveloping investigators.",
+          "special": ["Incorporeal: physical attacks deal half damage", "Life Drain: 1 Body mark per round to all in passage", "Collapses if the music stops"]
+        },
+        {
+          "name": "Enthralled Musician",
+          "hp": 15,
+          "ac": 12,
+          "attack": 4,
+          "damage": "1d6",
+          "count": 1,
+          "notes": "The lead trumpeter, sent to guard the passage. Still playing his trumpet one-handed while attacking with the other.",
+          "special": ["Enthralled: immune to persuasion while the music plays"]
+        }
+      ],
+      "perception_dc": 14,
+      "perception_success": "The dust-wall faces aren't dead -- their eyes track you. One mouths a single word, over and over: 'Needle.' Destroy the needle on the phonograph."
+    },
+    "2": {
+      "description": "A side chamber filled with broken phonograph cylinders. Failed recordings, cracked and leaking violet light. Each one plays a fragment of a different song when touched -- moments from parties past, preserved like insects in amber.",
+      "read_aloud": "You touch a cylinder and hear a woman's laugh, cut short. Another: glasses clinking, a toast to the new year. Another: a child asking when they can go home. These aren't recordings. They're memories.",
+      "loot": [
+        {"name": "Intact Memory Cylinder", "value": 0, "description": "A single unbroken cylinder containing the moment Aldric Hargrove first activated the phonograph. Playing it reveals the activation ritual -- and its reversal. The words are in Ancient Fairen."}
+      ]
+    },
+    "3": {
+      "description": "The thinning. A crack in reality at the far end of the passage, pulsing violet and amber. The air here is wrong -- too thick, too sweet. The phonograph's copper wires terminate here, drawing power directly from the rift.",
+      "read_aloud": "The thinning is beautiful and terrible. Through it, you glimpse another place -- not Newfaire, not anywhere. A void where time moves in visible currents, golden streams flowing from this world into nothing. The phonograph siphons those streams and the Host drinks deep.",
+      "perception_dc": 16,
+      "perception_success": "The copper wires aren't just conduits -- they're the only thing keeping the thinning stable. Sever them and the rift collapses, but the bleed backlash will be severe.",
+      "event_triggers": ["The investigators face a choice: destroy the phonograph (killing the enthralled guests whose stolen time will return all at once) or find another way to sever the Host from his power source."]
+    }
+  }
+}

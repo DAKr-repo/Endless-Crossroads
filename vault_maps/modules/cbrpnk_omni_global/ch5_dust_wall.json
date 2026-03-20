@@ -1,0 +1,84 @@
+{
+    "seed": 9005,
+    "width": 45,
+    "height": 30,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "dust_wall",
+        "theme": "RUST",
+        "topology": "dungeon",
+        "display_name": "Run 4: Beyond the Dust Wall",
+        "description": "Flashback Run. Private security contractors pinned down the runners and dumped them in the toxic wastelands beyond the Dust Wall -- the irradiated perimeter where the city's industrial runoff has turned the landscape into a chemical desert. Stripped of gear, exposed to the elements. The gear cache is out here somewhere. So is a Dozer unit on patrol."
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 2,
+            "y": 2,
+            "width": 10,
+            "height": 8,
+            "room_type": "start",
+            "connections": [1],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The wasteland drop point. Chemical fog reduces visibility to arm's length. The ground crunches -- not gravel, but crystallized industrial salts that cut through boot soles. A dead comms tower leans at forty-five degrees, its antenna array fused into a sculpture by acid rain. The city's glow is a smear on the northern horizon, separated from this place by the Dust Wall: a three-kilometer band of particulate pollution so dense it shows up on satellite as a solid mass.",
+                "read_aloud": "You wake up tasting copper and bile. Your gear is gone -- stripped clean. The air burns going down. Through the chemical haze, a shape: the dead comms tower, its warning lights still blinking on battery power that should have died years ago. Something scratched coordinates into your forearm while you were unconscious. Recent. Still bleeding.",
+                "event_triggers": [
+                    "The coordinates on your arm match the Mole's gear cache location from the maintenance shaft. Northwest, roughly two kilometers through the chemical fog. The comms tower's battery has enough charge for one short-range ping -- enough to check if anyone else is alive out here. Or enough to attract whatever is making those heavy, rhythmic impacts in the distance."
+                ],
+                "perception_dc": 14,
+                "perception_success": "The ground vibrations follow a pattern -- mechanical, not seismic. Something bipedal and heavy, roughly 800 meters southeast, moving in a search grid. A Dozer unit. Its thermal sensors will cut through the fog, but the chemical particulate might scatter its infrared targeting if you stay low."
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 16,
+            "y": 8,
+            "width": 10,
+            "height": 8,
+            "room_type": "treasure",
+            "connections": [0, 2],
+            "tier": 3,
+            "is_locked": true,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The gear cache. A buried shipping container, its location marked by a chemical glow-stick jammed into the salt crust. Inside: weapons, armor, medical supplies, and a short-range vehicle -- a stripped-down cargo hauler with enough charge for maybe thirty kilometers. Everything the runners need to get back through the Dust Wall. The container's hatch has a biometric lock keyed to the team.",
+                "read_aloud": "The glow-stick pulses green in the fog like a heartbeat. The container is half-buried, its hull scarred by acid erosion. But the seal is intact. Inside, your gear -- all of it, plus extras. The Mole packed this cache before the betrayal. Everything you need to get home is in this box.",
+                "lock_dc": 12,
+                "enemies": [
+                    {"name": "CorpSecurity Patrol", "hp": 8, "ac": 10, "attack": 2, "damage": "1d6", "count": 2, "notes": "Wasteland patrol. Breathers and chemical suits. They were not expecting to find anyone alive out here and are visibly rattled."}
+                ],
+                "loot": [
+                    {"name": "Recovered Gear Cache", "value": 0, "description": "All previously confiscated weapons and chrome, cleaned and maintained. The Mole was thorough."},
+                    {"name": "Chemical Suit (x4)", "value": 100, "description": "Industrial-grade hazmat protection. Reduces Dust Wall exposure damage to zero for 6 hours."},
+                    {"name": "Cargo Hauler Keycard", "value": 0, "description": "Ignition key for the stripped transport vehicle buried fifty meters north. Thirty kilometers of charge. The Dust Wall is twenty-two."}
+                ]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 30,
+            "y": 12,
+            "width": 12,
+            "height": 10,
+            "room_type": "boss",
+            "connections": [1],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The return crossing. The Dust Wall's southern edge -- a wall of roiling particulate so thick the cargo hauler's headlights penetrate maybe two meters. The ground here is glass, fused by whatever industrial catastrophe created the wall decades ago. And standing in the crossing point, its silhouette cutting black lines through the chemical murk: a Dozer unit. Bipedal drone enforcer, three meters tall, machine gun arms tracking in slow sweeps. Its optical sensors paint red lines through the fog like a laser show at the end of the world.",
+                "read_aloud": "The hauler's proximity alarm screams. Through the windshield, a shape resolves from the particulate wall -- too tall, too angular, too many guns. The Dozer unit plants its feet and the ground cracks beneath it. Its targeting laser finds the hauler's cabin. The machine does not ask you to stop. Machines do not ask.",
+                "enemies": [
+                    {"name": "Dozer Unit", "hp": 25, "ac": 14, "attack": 6, "damage": "2d6", "count": 1, "notes": "Bipedal drone enforcer. Machine gun arms, thermal targeting, armored chassis. Cannot be hacked -- standalone firmware with no network connection. Must be disabled physically or evaded.", "special": ["Suppressive Sweep: Attacks all targets in a 90-degree arc", "Armored Chassis: Reduces incoming damage by 2", "Thermal Lock: Ignores concealment from fog or smoke"]},
+                    {"name": "CorpSecurity Outrider", "hp": 8, "ac": 10, "attack": 2, "damage": "1d6", "count": 2, "notes": "Patrol bikes flanking the Dozer. Fast, fragile. They radio for backup if not dropped quickly."}
+                ],
+                "event_triggers": [
+                    "The Dust Wall is twenty-two kilometers of chemical hell. The hauler can make it if the Dozer does not shred the engine block. Three options: fight through, find an alternate route through the wall (requires Scan, higher DC), or use the EMP grenade (if still carried from Ch1) to disable the Dozer for 30 seconds -- just enough time to punch through the gap."
+                ]
+            }
+        }
+    }
+}

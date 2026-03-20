@@ -1,0 +1,77 @@
+{
+  "seed": 91005,
+  "width": 20,
+  "height": 20,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "aftermath",
+    "theme": "STONE",
+    "topology": "settlement",
+    "description": "Back at port. The cargo delivered, the heat settling. Time to count the coin and see what comes next."
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 2,
+      "y": 2,
+      "width": 7,
+      "height": 6,
+      "room_type": "town_square",
+      "connections": [1, 2],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Kessler Station, Tier 2 berth. A grimy commercial port on the edge of Hegemonic space. Your berth is sandwiched between a water hauler and a decommissioned mining rig. The air tastes of ozone and fried circuitry. Nobody here asks questions. That's the point.",
+        "read_aloud": "You dock at Kessler and the tension bleeds out of the ship like pressure from an airlock. The job is done. The Memish product is off-loaded to the buyer's people within the hour -- three quiet figures in unmarked jumpsuits who move the crates with practiced efficiency and say nothing.",
+        "services": ["rest", "supply"]
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 11,
+      "y": 2,
+      "width": 6,
+      "height": 6,
+      "room_type": "market",
+      "connections": [0],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The fence's berth. A converted shipping container fitted out as an office, its walls lined with display cases of merchandise whose provenance you'd rather not know. The fence sits behind a desk made from a salvaged bulkhead, counting your payment with the unhurried precision of someone who has all the time in the sector.",
+        "npcs": [
+          {
+            "name": "Sable",
+            "role": "fence",
+            "dialogue": "Clean run. Mostly. I heard about the corvette -- word travels fast on the relay. The Knives are pleased, which means I'm pleased, which means you get the full cut. Don't spend it all on fuel.",
+            "notes": "Sable (she/her). Runs a fencing operation out of Kessler. Pragmatic, well-connected, and the closest thing the crew has to a reliable payoff contact. She takes 10% off the top and considers it a bargain."
+          }
+        ],
+        "services": ["sell"],
+        "loot": [
+          {"name": "Job payment", "value": 16, "description": "Cred-sticks loaded and verified. The Ashen Knives pay on delivery."}
+        ]
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 2,
+      "y": 10,
+      "width": 7,
+      "height": 5,
+      "room_type": "tavern",
+      "connections": [0],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The Dead Circuit, Kessler's only bar. Bolted stools, a countertop that's more stain than surface, and a bartender droid whose voice modulator is stuck on 'sarcastic.' The kind of place where you go to not be found, and everyone there is doing the same thing.",
+        "services": ["rest", "rumor"],
+        "event_triggers": [
+          "Citani's holo-image materializes uninvited at your table. 'Good work. The Knives have moved you up to +2. But the Hegemony logged your transponder at Warren gate. You've got heat. I'd recommend laying low -- or taking another job to build up goodwill elsewhere. I have options, if you're interested.'"
+        ]
+      }
+    }
+  }
+}

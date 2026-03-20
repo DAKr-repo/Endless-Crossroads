@@ -1,0 +1,96 @@
+{
+  "module_id": "candela_fools_gold",
+  "display_name": "Fool's Gold",
+  "system_id": "candela",
+  "source_type": "publisher_licensed",
+  "campaign_setting": "newfaire",
+  "starting_location": "chapter_house",
+  "recommended_levels": {"min": 1, "max": 3},
+  "chapters": [
+    {
+      "chapter_id": "discovery",
+      "display_name": "Discovery",
+      "order": 1,
+      "zones": [
+        {
+          "zone_id": "hook",
+          "blueprint": "hook.json",
+          "topology": "settlement",
+          "theme": "GOTHIC",
+          "location_id": "chapter_house",
+          "entry_trigger": "module_start",
+          "exit_trigger": "player_choice"
+        },
+        {
+          "zone_id": "arrival",
+          "blueprint": "arrival.json",
+          "topology": "settlement",
+          "theme": "GOTHIC",
+          "location_id": "stentorian_river_camp",
+          "entry_trigger": "player_choice",
+          "exit_trigger": "player_choice"
+        }
+      ]
+    },
+    {
+      "chapter_id": "investigation",
+      "display_name": "Investigation",
+      "order": 2,
+      "zones": [
+        {
+          "zone_id": "exploration_1",
+          "blueprint": "exploration_1.json",
+          "topology": "dungeon",
+          "theme": "GOTHIC",
+          "location_id": "mine_entrance",
+          "entry_trigger": "player_choice",
+          "exit_trigger": "player_choice"
+        },
+        {
+          "zone_id": "exploration_2",
+          "blueprint": "exploration_2.json",
+          "topology": "dungeon",
+          "theme": "GOTHIC",
+          "location_id": "deep_cavern",
+          "entry_trigger": "player_choice",
+          "exit_trigger": "player_choice"
+        }
+      ]
+    },
+    {
+      "chapter_id": "confrontation",
+      "display_name": "Confrontation",
+      "order": 3,
+      "zones": [
+        {
+          "zone_id": "escalation_1",
+          "blueprint": "escalation_1.json",
+          "topology": "dungeon",
+          "theme": "GOTHIC",
+          "location_id": "contaminated_waterworks",
+          "entry_trigger": "player_choice",
+          "exit_trigger": "player_choice"
+        },
+        {
+          "zone_id": "escalation_2",
+          "blueprint": "escalation_2.json",
+          "topology": "dungeon",
+          "theme": "GOTHIC",
+          "location_id": "the_vein",
+          "entry_trigger": "player_choice",
+          "exit_trigger": "player_choice"
+        },
+        {
+          "zone_id": "climax",
+          "blueprint": "climax.json",
+          "topology": "dungeon",
+          "theme": "GOTHIC",
+          "location_id": "the_thinning_rift",
+          "entry_trigger": "player_choice",
+          "exit_trigger": "boss_defeated"
+        }
+      ]
+    }
+  ],
+  "freeform_zones": []
+}

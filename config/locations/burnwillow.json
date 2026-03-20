@@ -1,0 +1,216 @@
+{
+  "version": 1,
+  "source": "Burnwillow (original homebrew)",
+  "notes": "Topology types: settlement (safe hub, no combat), dungeon (procedural generation, combat), wilderness (travel encounters, overworld). Services reference NPC function roles. Room_type_hint used by spatial engine for room generation.",
+  "locations": [
+    {
+      "name": "The Hearth",
+      "district": "Emberhome",
+      "topology": "settlement",
+      "description": "A massive hollowed-out burl warmed by a Sun-Shard at its center. The Root-Song is strongest here -- a vibration felt in the soles of your feet and the base of your skull. Six centuries of shuffling boots have polished the floor to a dark mirror. The air smells of woodsmoke, pine resin, and the faint sweetness of active Aether.",
+      "services": ["rest", "quest", "lore"],
+      "npcs": ["Elder Kaelen"],
+      "sensory_signature": "Subsonic hum in the floor. Amber warmth on skin. The scent of resin and old fire."
+    },
+    {
+      "name": "The Ember-Forge (Amber-Smithy)",
+      "district": "Emberhome",
+      "topology": "settlement",
+      "description": "A humid, greenhouse-like crafting chamber built around a natural Aether vent. Living tools hang from ironbark racks -- chisels that vibrate, hammers that ring with harmonics. The forge-fire is not fire at all but a column of golden sap-light that Weld feeds with measured care. Kettrick works the secondary bench near the back, surrounded by the smell of hot copper and growing wood.",
+      "services": ["craft", "upgrade", "repair", "memory_seed_decode"],
+      "npcs": ["Weld", "Kettrick"],
+      "sensory_signature": "Humid warmth. Golden light. The tap-tap-tap of small hammers and the creak of shaping wood."
+    },
+    {
+      "name": "The Root-Cellar",
+      "district": "Emberhome",
+      "topology": "settlement",
+      "description": "A cramped, low-ceilinged shop carved into a root hollow, crammed floor-to-ceiling with salvage. Twitch has organized it by some system no one else understands -- items are sorted by the emotions they evoke, not their function. A broken compass sits next to a child's shoe, both labeled 'longing.' The air is thick with dust and the faint hum of something electrical buried in the back pile.",
+      "services": ["buy", "sell", "identify"],
+      "npcs": ["Twitch"],
+      "sensory_signature": "Dust motes in amber light. The tick of an unseen mechanism. Dry paper and old metal."
+    },
+    {
+      "name": "Market Row",
+      "district": "Emberhome",
+      "topology": "settlement",
+      "description": "A narrow corridor of bark stalls and hanging oil-lamps where Emberhome's scarce commerce happens. Birsa's stall anchors the far end -- always the last one you reach, always the one with what you need. Prices are never posted. Everything is negotiation, barter, and the careful exchange of amber shards that carry someone's memories.",
+      "services": ["buy", "sell", "trade", "rumor"],
+      "npcs": ["Birsa", "Grimjaw"],
+      "sensory_signature": "Lamp oil and commerce. Low voices haggling. The clink of amber on wood."
+    },
+    {
+      "name": "Chapel of the Eternal Flame",
+      "district": "Emberhome",
+      "topology": "settlement",
+      "description": "A vaulted chamber where a single Aether flame has burned without fuel for as long as anyone remembers. Father Oaken tends it, and tends the wounded, and tends the grieving -- which is nearly everyone. The pews are carved from a single piece of petrified heartwood. The walls bear the carved names of every Seeker who never returned.",
+      "services": ["heal", "bless", "cure_blight", "funeral"],
+      "npcs": ["Father Oaken", "Sister Tallow"],
+      "sensory_signature": "Candle wax and antiseptic herbs. Warm stone. The quiet of deliberate silence."
+    },
+    {
+      "name": "Warden's Hall",
+      "district": "Emberhome",
+      "topology": "settlement",
+      "description": "A fortified chamber with ironbark doors and a map table scarred by a hundred knife-point discussions. Warden Voss runs operations from here -- Seeker dispatch, threat assessment, salvage bounties. The walls are lined with weapons taken from fallen Hollows, cleaned and racked by caliber. A tally board near the door tracks active Seekers. Some columns are longer than others.",
+      "services": ["bounty", "mission", "intel", "recruit"],
+      "npcs": ["Warden Voss", "Captain Ashara"],
+      "sensory_signature": "Oiled steel and old sweat. The scratch of charcoal on slate. Tension."
+    },
+    {
+      "name": "Refugee Camp",
+      "district": "Emberhome",
+      "topology": "settlement",
+      "description": "Canvas and bark-cloth shelters crowded against the settlement's outer wall, where newcomers wait for permanent housing that may never come. Cook fires burn low. Children who should be louder aren't. The people here arrived with nothing and are slowly learning that Emberhome has little more to give.",
+      "services": ["recruit", "rumor", "quest"],
+      "npcs": [],
+      "generic_npcs": ["weary_refugee", "escaped_prisoner", "rot_touched_villager"],
+      "sensory_signature": "Cook smoke and unwashed cloth. Quiet conversations. A child coughing."
+    },
+    {
+      "name": "Ashwood Outskirts",
+      "topology": "wilderness",
+      "zone": 0,
+      "description": "The petrified forest immediately surrounding Emberhome. Trees stand like grey pillars, their bark cracked and their branches bare. Paths are worn through the ash-carpet by Seeker boots, but the undergrowth reclaims them within days. Fire-leaves still cling to the highest branches, casting amber light that doesn't quite reach the ground.",
+      "encounter_tier": 1,
+      "room_type_hint": "forest_corridor",
+      "sensory_signature": "Ash underfoot. Distant bird calls that might not be birds. The creak of dead wood."
+    },
+    {
+      "name": "Ironvein Ridge",
+      "topology": "wilderness",
+      "zone": 2,
+      "description": "A rocky escarpment where veins of raw iron and copper run through exposed stone, giving the ridge its name. The mines bored into its face are some of the oldest in the Burnwillow -- Arborist-era shafts, most collapsed or flooded. The wind up here carries the tang of metal and the faint sulfur of deep-earth vents.",
+      "encounter_tier": 2,
+      "room_type_hint": "mine_entrance",
+      "sensory_signature": "Metal tang on the tongue. Wind through shaft openings. The groan of settling stone."
+    },
+    {
+      "name": "Rot Marsh",
+      "topology": "wilderness",
+      "zone": 1,
+      "description": "A low-lying depression where Blight-tainted water has pooled into a grey-green wetland. The fog never lifts. Fungal trees grow in twisted columns, their canopies trailing luminescent spore-threads. Movement is slow, footing treacherous, and the smell -- a sweet, cloying rot -- gets into everything.",
+      "encounter_tier": 1,
+      "room_type_hint": "swamp_clearing",
+      "sensory_signature": "Sweet decay. Sucking mud. Fog that dampens sound and light equally."
+    },
+    {
+      "name": "Ember Peaks",
+      "topology": "wilderness",
+      "zone": 3,
+      "description": "Volcanic fissures where superheated Aether vents breach the surface. The stone is black glass and the air shimmers with heat distortion. Cinder Wyrms nest in the deeper vents, and the ground itself is unreliable -- what looks solid may be a thin crust over molten slag.",
+      "encounter_tier": 3,
+      "room_type_hint": "volcanic_chamber",
+      "sensory_signature": "Sulfur and scorched stone. Radiant heat. The hiss of escaping steam."
+    },
+    {
+      "name": "Charred Plains",
+      "topology": "wilderness",
+      "zone": 2,
+      "description": "An open expanse of flat, cracked bark-earth where a fire swept through and left nothing standing. The horizon is an unbroken line of grey under a canopy too high to see. Wind scours the surface clean. There is nowhere to hide, and sound carries for miles.",
+      "encounter_tier": 2,
+      "room_type_hint": "open_wasteland",
+      "sensory_signature": "Wind without obstruction. Cracked earth. The silence of emptied land."
+    },
+    {
+      "name": "Blightwood Hollow",
+      "topology": "wilderness",
+      "zone": 3,
+      "description": "Deep forest where the Rot has advanced unchecked. Every surface is coated in grey fungal growth. The trees are alive but wrong -- bark split to reveal pulsing organic tissue, branches heavy with shelf-fungi that glow a sickly green. The Root-Song is a whisper here, distorted, like a voice through water.",
+      "encounter_tier": 3,
+      "room_type_hint": "corrupted_grove",
+      "sensory_signature": "Wet organic growth. Muted Root-Song. The rustle of things moving just out of sight."
+    },
+    {
+      "name": "Windbreak Pass",
+      "topology": "wilderness",
+      "zone": 2,
+      "description": "A narrow mountain defile between two root-ridges, carved by ancient water flow. The wind channels through at cutting speed, and the walls are scored with horizontal grooves from centuries of airborne debris. Scout Lira mapped a safe route through, marked with her blue-painted cairns.",
+      "encounter_tier": 2,
+      "room_type_hint": "mountain_pass",
+      "sensory_signature": "Screaming wind. Stone dust. The rattle of loose scree."
+    },
+    {
+      "name": "Sunken Ruins",
+      "topology": "wilderness",
+      "zone": 3,
+      "description": "The remains of a pre-Emberhome settlement, half-swallowed by the Burnwillow's shifting roots. Arborist-era architecture -- grown walls, shaped-wood pillars, amber-inlaid doorframes -- protrudes from the bark at odd angles. The place is beautiful and profoundly sad.",
+      "encounter_tier": 3,
+      "room_type_hint": "ruin_exterior",
+      "sensory_signature": "Old amber catching light. The groan of shifting roots. A faint, almost-melody in the walls."
+    },
+    {
+      "name": "The Ashen Cellar",
+      "topology": "dungeon",
+      "zone": 0,
+      "description": "The starter dungeon -- a network of root-tunnels beneath the Emberhome Approaches where new Seekers cut their teeth. The corridors are low and narrow, the enemies small and manageable, and the loot barely worth the boot leather. But everyone starts here. The walls still bear the training marks left by Warden Voss's first squad.",
+      "encounter_tier": 1,
+      "room_type_hint": "cellar",
+      "sensory_signature": "Damp earth and shallow roots. Scuttling sounds. Faint warmth from Emberhome above."
+    },
+    {
+      "name": "Ironvein Mines (Upper Shafts)",
+      "topology": "dungeon",
+      "zone": 2,
+      "description": "The accessible levels of the old Arborist mining complex. Timber-braced tunnels follow iron veins through solid stone, opening into worked chambers where ancient ore carts rust on corroded tracks. Clockwork Spiders infest the upper shafts, spinning wire-webs across intersections.",
+      "encounter_tier": 2,
+      "room_type_hint": "mine_shaft",
+      "sensory_signature": "Dripping water on iron. The click of mechanical legs. Cold stone and copper dust."
+    },
+    {
+      "name": "Ironvein Mines (Deep Shafts)",
+      "topology": "dungeon",
+      "zone": 3,
+      "description": "Below the worked levels, the mine shafts breach into natural caverns where raw Aether seeps through stone. The Ironvein Golems patrol here, still following excavation protocols centuries old. The deeper you go, the warmer it gets, and the walls begin to glow.",
+      "encounter_tier": 3,
+      "room_type_hint": "deep_mine",
+      "sensory_signature": "Seismic vibration. Warm stone. The golden glow of exposed Aether veins."
+    },
+    {
+      "name": "Rotwood Hollow Depths",
+      "topology": "dungeon",
+      "zone": 3,
+      "description": "The interior of the corrupted forest canopy, hollowed out by fungal growth into a dripping organic labyrinth. Walls are living tissue. Floors pulse. The air is a soup of spores and moisture. The Blight Matriarch nests at the deepest point, and her children fill every passage.",
+      "encounter_tier": 3,
+      "room_type_hint": "organic_tunnel",
+      "sensory_signature": "Wet organic walls. The pulse of something enormous breathing. Spore-thick air."
+    },
+    {
+      "name": "The Rot Spire",
+      "topology": "dungeon",
+      "zone": 4,
+      "description": "A vertical shaft of concentrated Blight rising from the Rot-Heart itself. The walls are grey fungal matter hardened to stone-density, and the spiral passages inside are not built but grown -- a cathedral of corruption ascending toward the Burnwillow's core systems. The Root-Song is dead here.",
+      "encounter_tier": 4,
+      "room_type_hint": "spire_interior",
+      "sensory_signature": "Absolute silence. Grey surfaces. The absence of warmth."
+    },
+    {
+      "name": "The Abandoned Forge",
+      "topology": "dungeon",
+      "zone": 2,
+      "description": "An Arborist smithy sealed since the Golden Age, its tools still arranged on workbenches as though the smith just stepped out. The forge-fire is cold but the Aether vein beneath it still flows. Ironbark Hounds have made it their den, drawn by the residual warmth.",
+      "encounter_tier": 2,
+      "room_type_hint": "arborist_ruin",
+      "sensory_signature": "Cold forge-metal. The faint scent of Aether. Claw marks on ancient workbenches."
+    },
+    {
+      "name": "Collapsed Cathedral",
+      "topology": "dungeon",
+      "zone": 3,
+      "description": "A vast chamber that was once a place of worship for the Arborists -- amber-inlaid columns, a shattered altar, pews of shaped heartwood toppled and scattered. The ceiling has partially collapsed, letting Blight-moisture seep in. The dead walk here, their ceremonies continuing in silence.",
+      "encounter_tier": 3,
+      "room_type_hint": "cathedral_ruin",
+      "npcs_dungeon": ["Ghost of Lady Ashwick"],
+      "sensory_signature": "Dripping water on old stone. Echoes that carry too far. The faint glow of amber inlay."
+    },
+    {
+      "name": "Blight Nest",
+      "topology": "dungeon",
+      "zone": 4,
+      "description": "The birthing ground. Organic chambers connected by pulsing tunnels of mycelium, where new Hollows are assembled from raw material -- bone, bark, and Blight. The walls are warm and wet and move. The floor is not floor. Nothing here was built. Everything was grown.",
+      "encounter_tier": 4,
+      "room_type_hint": "organic_nest",
+      "sensory_signature": "Warm flesh and growth. The wet sound of assembly. No Root-Song. No silence. Something else."
+    }
+  ]
+}

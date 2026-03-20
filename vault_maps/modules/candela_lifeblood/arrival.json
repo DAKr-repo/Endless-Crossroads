@@ -1,0 +1,97 @@
+{
+  "seed": 7023,
+  "width": 40,
+  "height": 25,
+  "start_room_id": 0,
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 2,
+      "y": 2,
+      "width": 12,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false
+    },
+    "1": {
+      "id": 1,
+      "x": 16,
+      "y": 3,
+      "width": 12,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [0, 2],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false
+    },
+    "2": {
+      "id": 2,
+      "x": 30,
+      "y": 2,
+      "width": 8,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false
+    }
+  },
+  "metadata": {
+    "zone_id": "arrival",
+    "theme": "GOTHIC",
+    "topology": "settlement",
+    "scene_title": "Haven Hills"
+  },
+  "content_hints": {
+    "0": {
+      "description": "A tea house in the Haven Hills commercial district. Gaslit, genteel, the kind of place where power brokers lunch and scandals are whispered between courses. The informant sits in a corner booth, hat pulled low, stirring a cup she hasn't drunk from.",
+      "read_aloud": "Haven Hills smells of money and old trees. The streets are wider here, the gaslights brighter, the constables better dressed. Lyssa Dane looks up as you approach. She's younger than her voice suggested -- mid-twenties, sharp-featured, with dark circles under her eyes that cosmetics can't quite hide. 'Sit down. Don't look at me like I'm a victim. I joined willingly. I just didn't know what I was joining.'",
+      "npcs": [
+        {
+          "name": "Lyssa Dane",
+          "role": "informant",
+          "dialogue": "Corvin recruited me two years ago. Said the Philanthropic Society was a networking opportunity. The first few meetings were just dinner and politics. Then he showed me the basement. The altar. The thinning. He cut his palm and the wound healed before the blood hit the floor. He said I could have that too. All it cost was loyalty and silence. The sacrifices started six months later.",
+          "notes": "Lyssa is genuinely frightened and genuinely complicit. She participated in rituals (though not sacrifices directly) and benefited from the magick -- accelerated healing, enhanced persuasion. She wants absolution, protection, and to bring down the cult. In that order."
+        },
+        {
+          "name": "Chief Inspector Harlan Greaves",
+          "role": "witness",
+          "dialogue": "If you're here about the missing persons, save your breath. Those cases are closed. Runaways, every one. I've investigated and I'm satisfied. Now if you'll excuse me, I have lunch with Alderman Corvin.",
+          "notes": "Greaves is the Haven Hills police chief. He's not a cult member but he's been compromised -- Corvin handles his wife's medical bills in exchange for burying missing persons cases. He's not evil, just owned."
+        }
+      ],
+      "event_triggers": ["Lyssa Dane provides details: the cult meets at Corvin's estate, uses blood magick from a thinning, and has political immunity. The local police are compromised."],
+      "loot": [
+        {"name": "Estate Layout Sketch", "value": 0, "description": "Lyssa's hand-drawn floor plan of Corvin's estate, including the basement entrance disguised as a wine cellar. Marks guard positions and the location of the altar."}
+      ]
+    },
+    "1": {
+      "description": "The Haven Hills public records office. Marble floors, brass fixtures, clerks in starched collars. Property records, building permits, and zoning documents for every estate in the district.",
+      "read_aloud": "Corvin's estate was built in 1871 on land that the city sold at auction. The previous structure -- demolished before construction -- was a church. Not just any church: a Church of the Ascendancy, built over what the original deed describes as 'a site of spiritual significance.' The church burned in 1869. Two people died in the fire. The case was ruled accidental.",
+      "investigation_dc": 14,
+      "investigation_success": "The building permits for Corvin's basement show three sublevels -- far deeper than any residential building in Haven Hills. The lowest level's permits are signed by a city engineer who died a week after filing them. Cause of death: exsanguination. Ruled a suicide.",
+      "loot": [
+        {"name": "Subterranean Permits", "value": 0, "description": "Building permits revealing three basement levels beneath Corvin's estate. The deepest level was never inspected. The inspector assigned to it requested a transfer to another district and left no notes."}
+      ]
+    },
+    "2": {
+      "description": "A bench in Haven Hills Park, overlooking Corvin's estate across the street. Wrought-iron fence, manicured grounds, gas carriage lamps. Two private guards patrol the perimeter.",
+      "read_aloud": "The estate is handsome and anonymous -- the kind of house that announces wealth without inviting attention. The windows are dark despite the early hour. The guards carry no visible weapons but move with the trained awareness of former military. A delivery van pulls into the service entrance. The logo reads 'Haven Hills Catering' but Lyssa says the cult hasn't hosted a legitimate event in months.",
+      "npcs": [
+        {
+          "name": "Lightkeeper Rede (via dead drop)",
+          "role": "informant",
+          "dialogue": "A sealed letter in a predetermined location. 'Priority update: the Seven Stakes of Ire are referenced in Candela archives. Pre-Fairen ritual implements used to anchor a practitioner's consciousness to the bleed, achieving a form of immortality. The cost is total loss of humanity. The practitioners become Unabridged -- entities of pure bleed wearing human masks. If the cult has the Stakes, time is critical. Retrieve them without exposure if possible.'",
+          "notes": "The Seven Stakes of Ire are the assignment's MacGuffin. They must be purloined from the cult without revealing Candela's involvement -- the political fallout of a public raid would be catastrophic."
+        }
+      ],
+      "perception_dc": 10,
+      "perception_success": "The delivery van's tires leave tracks that don't match the driveway -- they continue around the back of the estate to a service door that leads directly to the basement. The next new moon is in two days. The next ritual is imminent."
+    }
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "seed": 8004,
+  "width": 30,
+  "height": 20,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "refugee_camp",
+    "theme": "STONE",
+    "topology": "settlement",
+    "mission_types": ["supply", "religious"]
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 2,
+      "y": 2,
+      "width": 8,
+      "height": 6,
+      "room_type": "town_square",
+      "connections": [1, 2],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The refugee camp sprawls outside Plainsworth's walls like a wound that will not close. Families huddle under lean-tos made from cart covers and broken furniture. Cook-fires burn low, fueled by whatever scraps can be found. Children stand in line at a communal water barrel, too quiet for their age. The walls of Plainsworth loom above, gates half-shut.",
+        "read_aloud": "The camp smell hits you first -- smoke, unwashed bodies, and the sour edge of desperation. Hundreds of faces turn toward you as you approach. They have learned to watch for uniforms.",
+        "npcs": [
+          {
+            "name": "Vayla Shen",
+            "role": "informant",
+            "dialogue": "You're Legion? Then you should know -- we came from the west road three days ago. There were supply wagons behind us, but we heard fighting and they never arrived. Someone should look into that. Someone with swords.",
+            "notes": "Vayla led forty refugees from her village when the Rotters came. She lost her daughter on the road and will not speak of it. She has a sharp memory for terrain and troop movements -- a former surveyor."
+          },
+          {
+            "name": "Sunpriest Kevarin",
+            "role": "religious_contact",
+            "dialogue": "The Panyar shrine south of here has gone silent. I sent two acolytes to check on it and neither returned. The land there feels wrong -- heavy, like the air before a thunderstorm that never breaks. Something of Blighter's corruption has taken root.",
+            "notes": "Kevarin carries a relic fragment wrapped in oilcloth inside his vestments -- a shard of the Shattered Sun. He believes it can cleanse corrupted holy sites but has never tested the theory."
+          }
+        ],
+        "services": ["rest", "heal", "rumor", "supply"],
+        "event_triggers": [
+          "A child tugs at your sleeve. 'Are you going to make the bad things go away?' She does not wait for an answer."
+        ]
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 14,
+      "y": 2,
+      "width": 6,
+      "height": 5,
+      "room_type": "temple",
+      "connections": [0],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "A canvas pavilion serves as Kevarin's field temple. Prayer beads hang from the tent poles. A circle of river stones marks the sanctified ground where the wounded are laid for blessing. The air smells of sage and the sharp mineral tang of consecrated water.",
+        "npcs": [
+          {
+            "name": "Sunpriest Kevarin",
+            "role": "religious_contact",
+            "dialogue": "Rest here if you need it. The blessings are thin, but they hold. If you mean to cleanse the shrine, come speak to me first -- I have something that may help.",
+            "notes": "Healing and blessing services available."
+          }
+        ],
+        "services": ["heal", "rest"]
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 2,
+      "y": 12,
+      "width": 7,
+      "height": 5,
+      "room_type": "market",
+      "connections": [0],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The camp's supply point is a trestle table under a patched awning. Refugees barter what they carried from their villages -- tools, cloth, preserved food. A Bartan trader named Ossik has set up a scale and does brisk business converting valuables into rations at rates that would be criminal anywhere else.",
+        "services": ["supply", "rumor"],
+        "investigation_dc": 10,
+        "investigation_success": "Ossik is selling information to both the Legion and an unknown third party. His ledger has entries in cipher that match no merchant's shorthand."
+      }
+    }
+  }
+}

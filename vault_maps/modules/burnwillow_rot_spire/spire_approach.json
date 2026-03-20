@@ -1,0 +1,154 @@
+{
+    "seed": 4411,
+    "width": 70,
+    "height": 50,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "spire_approach",
+        "theme": "RUST",
+        "topology": "wilderness",
+        "display_name": "The Approach",
+        "flavor_note": "The march through the Charred Wastes to the base of the Rot Spire. This is the Blight's heartland -- the region closest to the Rot-Heart where the corruption has burned through everything, leaving only ash and the Blight's most powerful servants. The landscape is post-apocalyptic: a blasted expanse of grey ash, dead root-stumps, and the remains of settlements that were consumed decades ago."
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 5,
+            "y": 24,
+            "width": 14,
+            "height": 10,
+            "room_type": "start",
+            "connections": [1],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Charred Wastes begin where the Burnwillow's fire-leaves stop. The canopy above is gone -- burned away, leaving raw sky visible for the first time. The sky is not blue. It is the color of old bone, streaked with grey clouds that move too deliberately to be natural. The ground is ash over dead root-bark, ankle-deep and still warm. Nothing grows here. The Blight consumed everything, then consumed itself, leaving a sterile expanse that stretches to the base of the Spire. Two Doom Heralds patrol the wastes -- tall, gaunt figures in corroded armor, their bodies sustained by the ambient Blight radiation. They were Seekers once, Tier IV warriors who came to fight the Rot-Heart and were absorbed by it.",
+                "read_aloud": "The canopy is gone. For the first time in your life, you see the sky without the Burnwillow's fire-leaves between you and it. The sky is the color of bone. The ground is warm ash. Nothing grows. Nothing moves except the heat-shimmer and two shapes in the distance that move with the deliberate gait of things that have forgotten how to stop walking. They were people once. The armor is Seeker-grade. They carry weapons they no longer know how to use. They do not need weapons. They are weapons now.",
+                "npcs": [],
+                "enemies": [
+                    {
+                        "name": "Doom Herald",
+                        "hp": 22,
+                        "ac": 15,
+                        "attack": 7,
+                        "damage": "2d6+3",
+                        "notes": "Tier III scavenger. Hollowed Seekers. DR 2 (corroded Tier III armor). Dread Aura: DC 13 Grit or -1d6 to all rolls while in combat with a Herald. Carries Tier III gear but cannot use gear traits. On death: the armor is recoverable but Blight-tainted. Requires Greater Rot-Salve to cleanse for use."
+                    },
+                    {
+                        "name": "Doom Herald",
+                        "hp": 22,
+                        "ac": 15,
+                        "attack": 7,
+                        "damage": "2d6+3",
+                        "notes": "Tier III scavenger. Hollowed Seeker. DR 2. Dread Aura: DC 13 Grit."
+                    }
+                ],
+                "loot": [],
+                "services": [],
+                "event_triggers": [
+                    "On entry: The Charred Wastes have no cover, no shade, no shelter. The ash underfoot is warm from residual Blight energy. Characters without head slot armor take 1 damage per room from ash inhalation.",
+                    "On Doom Heralds defeated: Their armor crashes into the ash. Voss's survival ledger recorded these names -- you recognize one. A Seeker who left Emberhome six months ago. The party can recover Tier III armor pieces (Blight-tainted, requires Greater Rot-Salve to cleanse)."
+                ]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 22,
+            "y": 14,
+            "width": 16,
+            "height": 14,
+            "room_type": "chamber",
+            "connections": [0, 2],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Boneyard. A depression in the wasteland where the ash thins and the underlying root-bark is exposed, scored and cracked by decades of Blight erosion. Scattered across the depression: the remains of previous expeditions. Armor fragments, shattered weapons, skeletal remains half-consumed by grey fungal growth. Three Plague Knights stand among the dead, their bodies more Blight than flesh, their armor fused permanently to their frames. They stand in formation. They remember formation. They remember nothing else.",
+                "read_aloud": "A graveyard of ambition. The ash has blown thin here, exposing the root-bark beneath and everything that has accumulated on it: armor plate, shattered swords, a shield with Emberhome's crest half-melted by Blight acid, and bones -- bones everywhere, grey-streaked and fungal-webbed, arranged in patterns that suggest the bodies fell in formation and the Blight rearranged them afterward. Three figures stand among the dead. They are not looting. They are standing guard. Over what? Over the failure. Over the proof that no one gets past this point. Their armor is fused to their bodies. They draw weapons that are extensions of their arms. They have been waiting for you specifically. Everyone who comes this way has to pass the Boneyard. No one has.",
+                "npcs": [],
+                "enemies": [
+                    {
+                        "name": "Plague Knight",
+                        "hp": 28,
+                        "ac": 16,
+                        "attack": 8,
+                        "damage": "2d6+4",
+                        "notes": "Tier III-IV scavenger. DR 2 (fused armor). Blight Strike: on hit, DC 14 Grit or early Blight infection. Formation: while 2+ Knights stand, they share a damage pool -- damage is split between them. Breaking formation (killing one) causes the remainder to fight individually."
+                    },
+                    {
+                        "name": "Plague Knight",
+                        "hp": 28,
+                        "ac": 16,
+                        "attack": 8,
+                        "damage": "2d6+4",
+                        "notes": "Tier III-IV scavenger. DR 2. Blight Strike: DC 14 Grit. Formation."
+                    },
+                    {
+                        "name": "Plague Knight",
+                        "hp": 28,
+                        "ac": 16,
+                        "attack": 8,
+                        "damage": "2d6+4",
+                        "notes": "Tier III-IV scavenger. DR 2. Blight Strike: DC 14 Grit. Formation."
+                    }
+                ],
+                "loot": [
+                    {"name": "Rotbane Longbow", "value": 28, "type": "rare", "notes": "Tier III. R.Hand. Ranged. +3d6 WITS pool. [Rotbane]: attacks against Blight-type creatures ignore DR. Found among the expedition remains -- the only weapon that survived the Blight's consumption. Its string is amber-treated. It still hums."}
+                ],
+                "services": [],
+                "event_triggers": [
+                    "On all Knights defeated: The formation breaks. The bodies collapse into the ash. Among the remains, you find expedition journals -- fragmentary, Blight-damaged, but readable. They describe the Spire's interior in partial detail: the ground floor hall, the spiral stairs, and a 'laboratory where the answers are.' The last journal entry: 'The Rot Hunter is real. We heard it above us. It does not come down. It waits for you to come up.'",
+                    "On investigation DC 15: One set of remains wears a pendant -- Emberhome's Seeker crest, but older, from before Voss's tenure. The name etched into the back: 'Kaelen.' Elder Kaelen's son. He never told anyone his son came here."
+                ]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 42,
+            "y": 10,
+            "width": 12,
+            "height": 10,
+            "room_type": "corridor",
+            "connections": [1, 3],
+            "tier": 4,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Rot River. A channel of liquid corruption flowing from the Spire's base, cutting across the approach like a moat. The liquid is not water -- it is concentrated Blight in fluid form, grey-green and viscous, giving off fumes that blur vision and burn exposed skin. The surface roils periodically as Rot Geysers erupt from subsurface pressure, throwing columns of corrosive fluid twenty feet into the air. There is no bridge. There is no ford. Crossing requires either a skill challenge or a creative solution.",
+                "read_aloud": "A river of corruption. Grey-green, viscous, steaming. The liquid Blight flows from the Spire's base in a channel carved into dead root-bark, and the fumes rising from its surface make the air shimmer and your eyes water. As you watch, the surface bulges -- a geyser erupts, throwing a column of corrosive fluid high enough to hit the ash-clouds above. It falls back in a rain of grey droplets that sizzle where they land. The far bank is thirty feet away. The Spire looms behind it, close enough now to see the individual fungal structures on its surface. Close enough to hear it breathing.",
+                "npcs": [],
+                "loot": [],
+                "services": [],
+                "event_triggers": [
+                    "Hazard: Rot Geyser. Erupts every 2 rounds. All characters within 20 feet of the riverbank must DC 16 Grit or take 3d8 necrotic damage. Characters in the river take 3d8 automatically per round plus Blight infection (no save).",
+                    "Skill Challenge: Crossing the Rot River. Three successes needed before three failures. Options: (1) DC 14 Might to throw a grappling hook to the far bank and swing across. (2) DC 16 Wits to time the geyser pattern and identify a safe crossing window. (3) DC 14 Aether to calm the river's surface temporarily (the Blight responds to the Root-Song, even in opposition). Failure: character falls in, takes 3d8 damage, must be pulled out (DC 12 Might by another character).",
+                    "Alternative: If carrying Emberheart Lantern from Module 4, its fire-light parts the river for 1 round (enough for the full party to sprint across). The lantern dims permanently after this use."
+                ]
+            }
+        },
+        "3": {
+            "id": 3,
+            "x": 56,
+            "y": 6,
+            "width": 14,
+            "height": 12,
+            "room_type": "exit",
+            "connections": [2],
+            "tier": 4,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Spire Base. The Rot Spire rises from the Burnwillow's deepest root junction -- the place where all four Grove-roads once met, now sealed and corrupted beyond recognition. The Spire's exterior is organic: fungal flesh over a framework of consumed trees, its surface textured with bioluminescent nodules that pulse in arterial patterns. An archway at the base stands open. Not invitingly. The way a trap stands open. The interior is visible: a vast hall of grey stone and fungal pillars, lit by Blight-light that casts no shadows. The Spire is waiting. It has been waiting since the first Seeker set foot in the Burnwillow's depths.",
+                "read_aloud": "The Spire. It is not a building. It is a growth -- a fungal eruption the size of a cathedral, its surface alive with bioluminescent patterns that pulse like the heartbeat of something enormous. An archway stands open at its base. The interior glows grey-green. You can see pillars inside, carved from consumed root-material, and at the far end, a stairway spiraling upward into the Spire's interior. The air flowing out of the archway is warm and wet and smells of mushroom and ozone and something underneath both that you recognize but cannot name. It smells like the Root-Song would smell if the Root-Song had a smell. It smells like the tree, dying.",
+                "npcs": [],
+                "loot": [],
+                "services": [],
+                "event_triggers": [
+                    "DoomClock +2 on entry. The Spire's proximity accelerates everything. All DoomClock threshold effects are in play from this point forward.",
+                    "On entry: The archway contracts behind you. Not closing -- narrowing. Retreat is possible but costs 1 round and a DC 14 Grit check to squeeze through. The Spire wants you inside."
+                ]
+            }
+        }
+    }
+}

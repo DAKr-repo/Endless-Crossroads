@@ -1,0 +1,77 @@
+{
+  "seed": 8017,
+  "width": 30,
+  "height": 22,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "sacred_grove",
+    "theme": "GOTHIC",
+    "topology": "dungeon",
+    "mission_types": ["religious"]
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 2,
+      "y": 2,
+      "width": 8,
+      "height": 6,
+      "room_type": "start",
+      "connections": [1],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The path into the sacred grove passes between two ancient oaks, their canopies meeting overhead to form a living archway. Or they did, once. Now the bark is black and peeling, the leaves curled and brown, the branches twisted into shapes that suggest reaching hands. The ground squelches underfoot with a dark, viscous mud that was not here a season ago. Prayer tokens hang from the branches -- sun-wheels and bird-figures, their painted surfaces blistered.",
+        "read_aloud": "The ancient trees bear scars of dark magick. Sap runs black from wounds in the bark, pooling in the hollows like old blood.",
+        "event_triggers": [
+          "The ancient trees bear scars of dark magick. Sap runs black."
+        ]
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 14,
+      "y": 8,
+      "width": 10,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [0, 2],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The grove's central clearing. Once a place of communion where the Chosen spoke with the land's spirits, it is now a wound. The grass is dead in a perfect circle, the soil beneath exposed and grey, veined with the same black corruption that stains the trees. At the clearing's edge, two figures stand motionless -- Panyar warriors, their armor of woven bark still visible beneath the corruption that has consumed them. Heartless. Their eyes are open and weeping black tears.",
+        "enemies": [
+          {"name": "Heartless", "hp": 15, "max_hp": 15, "ac": 13, "attack": 5, "defense": 13, "count": 2}
+        ],
+        "perception_dc": 12,
+        "perception_success": "These were Panyar Sunstriders -- Elsu's own warriors, sent to scout the grove weeks ago. Their bark armor has fused with their skin. The corruption has turned their defensive equipment into a prison.",
+        "event_triggers": [
+          "The Heartless do not attack immediately. They stand and weep. Then, slowly, they raise their weapons.",
+          "The trees creak and groan. Deep in the grove, something pulses -- a bass thrum you feel in your teeth."
+        ]
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 20,
+      "y": 16,
+      "width": 7,
+      "height": 5,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "A narrow deer trail leads deeper into the grove, past trees so corrupted they have collapsed under their own weight. The canopy here blocks all light -- you move through absolute darkness broken only by the faint, sickly glow of corrupted sap in the bark. The air is thick, humid, and smells of decomposition. Ahead, through the trees, a pulsing light marks the ritual site.",
+        "event_triggers": [
+          "The deeper you go, the more the forest feels alive -- alive and hostile. Branches catch at your clothes. Roots shift underfoot."
+        ],
+        "investigation_dc": 10,
+        "investigation_success": "Carved into a fallen tree: Panyar scout marks. They mapped the corruption's spread with dated notches in the wood. The corruption doubled its radius every three days. At this rate, it will reach Sunstrider Camp in less than a week."
+      }
+    }
+  }
+}

@@ -1,0 +1,126 @@
+{
+  "seed": 7013,
+  "width": 50,
+  "height": 30,
+  "start_room_id": 0,
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 2,
+      "y": 2,
+      "width": 14,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [1, 2],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false
+    },
+    "1": {
+      "id": 1,
+      "x": 18,
+      "y": 2,
+      "width": 14,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [0, 3],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false
+    },
+    "2": {
+      "id": 2,
+      "x": 2,
+      "y": 14,
+      "width": 12,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [0],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false
+    },
+    "3": {
+      "id": 3,
+      "x": 34,
+      "y": 3,
+      "width": 12,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false
+    }
+  },
+  "metadata": {
+    "zone_id": "escalation_2",
+    "theme": "GOTHIC",
+    "topology": "dungeon",
+    "scene_title": "The Golden Vein"
+  },
+  "content_hints": {
+    "0": {
+      "description": "The vein chamber. The bottom of the shaft opens into a tunnel made entirely of crystallized bleed. The walls are translucent gold, and shapes move behind them -- shadows of things in another place, pressing against the membrane between worlds.",
+      "read_aloud": "Walking through the golden tunnel is like walking through amber. The light comes from everywhere and nowhere. Shapes press against the walls from the other side -- limbs, faces, geometries that don't correspond to anything human. They follow you as you move.",
+      "npcs": [
+        {
+          "name": "Dr. Maren Solace",
+          "role": "ally_in_peril",
+          "dialogue": "I followed you in. I know, I know -- but Brenner got worse. His legs fused. He can't walk. I thought if I could reach the source, I could understand the mechanism and reverse it. I was wrong. It's not a mechanism. It's a mind.",
+          "notes": "Dr. Solace followed the investigators. She's now trapped -- the gold is growing over the tunnel entrance behind them. She has medical expertise that will be crucial for any attempt to save the transformed miners, but she's in immediate danger of contamination."
+        }
+      ],
+      "enemies": [
+        {
+          "name": "Transformed Miners",
+          "hp": 15,
+          "ac": 12,
+          "attack": 4,
+          "damage": "1d6",
+          "count": 3,
+          "notes": "The thinning's guardians. Fully gold, moving in perfect synchronization. They don't fight individually -- they operate as extensions of a single intelligence.",
+          "special": ["Gold Skin: resistant to piercing", "Contaminating Strike: 1 Bleed mark", "Hive Mind: cannot be surprised, share awareness"]
+        }
+      ],
+      "event_triggers": ["Dr. Solace is trapped with the investigators. The tunnel is closing behind them. The only way out is through."]
+    },
+    "1": {
+      "description": "The approach to the rift. The golden tunnel widens into a chamber where the crystallized bleed thins, becoming almost transparent. Beyond it, reality warps -- geometry folds, light bends, and the air carries sounds from places that shouldn't exist.",
+      "read_aloud": "The thinning is visible now. Not as a crack or a hole, but as a place where the world forgets what shape it should be. Gold flows from it like blood from a wound, crystallizing on contact with your reality. The ground beneath your feet is warm and it pulses.",
+      "enemies": [
+        {
+          "name": "Bleed Water Surge",
+          "hp": 15,
+          "ac": 12,
+          "attack": 4,
+          "damage": "1d6",
+          "count": 1,
+          "notes": "A massive surge of liquid bleed erupts from the rift, filling the chamber ankle-deep. It moves with purpose, trying to separate the investigators from each other.",
+          "special": ["Amorphous: immune to physical damage", "Contaminating: 1 Bleed mark per round to anyone standing in it", "Directed: the thinning controls its movement"]
+        }
+      ],
+      "perception_dc": 16,
+      "perception_success": "The three wardstone positions are visible -- carved platforms in the chamber floor, equidistant from the rift, forming a triangle. The original containment pattern. If the wardstones are placed correctly, the ritual can begin.",
+      "loot": [
+        {"name": "Wardstone Fragment (Third)", "value": 0, "description": "The final wardstone, half-embedded in the chamber floor near the rift. Extracting it triggers a violent bleed surge -- but without it, the sealing ritual cannot proceed."}
+      ]
+    },
+    "2": {
+      "description": "A side chamber -- a pocket of uncontaminated rock, the last clean space this deep. The air is breathable. Old ward-marks on the walls still hold, creating a refuge.",
+      "read_aloud": "Someone sheltered here before. A bedroll, a canteen, carved tally marks on the wall counting days. The last Candela operative assigned to monitor duty. She made it down here regularly for forty years. The wards she maintained are the only thing keeping this pocket safe.",
+      "investigation_dc": 14,
+      "investigation_success": "The operative's final journal entry: 'The thinning is patient. It grows a millimeter a year. At this rate, it will breach the surface in two centuries. Unless someone accelerates it. Mining would do it. God help us if anyone starts mining.'",
+      "loot": [
+        {"name": "Operative's Ward Kit", "value": 0, "description": "A complete set of bleed-warding materials: salt, silver dust, and inscribed copper bands. Enough to protect one person from bleed contamination for approximately one hour."}
+      ]
+    },
+    "3": {
+      "description": "The contamination heart. A natural basin where bleed-water collects before being channeled upward through the rock toward the river. The gold here is so concentrated it's opaque, moving in slow currents like liquid metal.",
+      "read_aloud": "This is the pump. The thinning doesn't just leak -- it pressurizes. The bleed-water is forced upward through capillary channels in the rock, reaching the Stentorian and from there the city. Destroying this basin would cut the supply, but the bleed backlash would be catastrophic at close range.",
+      "perception_dc": 16,
+      "perception_success": "The basin has a weak point -- a natural fault line in the rock beneath it. Collapsing it would drain the bleed-water deeper underground, away from the river. Not a permanent solution, but it would buy time for the sealing ritual.",
+      "event_triggers": ["Full danger. Dr. Solace needs protection. The wardstones must be placed. The contamination pipeline must be disrupted. The thinning fights back."]
+    }
+  }
+}

@@ -1,0 +1,352 @@
+{
+  "version": 1,
+  "source": "Dragon Heist + DMG NPC tables + SCAG + Rime of the Frostmaiden + Out of the Abyss",
+  "named_npcs": [
+    {
+      "name": "Durnan",
+      "pronouns": "he/him",
+      "role": "innkeeper",
+      "description": "The grizzled proprietor of the Yawning Portal tavern, a retired adventurer whose scarred hands pour ale with the same ease they once swung a greatsword. He tolerates fools poorly and charges double for replacing broken furniture.",
+      "source": "Dragon Heist p.18"
+    },
+    {
+      "name": "Volothamp Geddarm",
+      "pronouns": "he/him",
+      "role": "scholar",
+      "description": "A flamboyant travel writer and self-proclaimed expert on everything, whose embellished guidebooks are as famous as they are unreliable. He speaks in the third person when drunk, which is often.",
+      "source": "Dragon Heist p.19"
+    },
+    {
+      "name": "Laeral Silverhand",
+      "pronouns": "she/her",
+      "role": "faction_leader",
+      "description": "The Open Lord of Waterdeep, one of the Seven Sisters chosen by Mystra. She governs with quiet authority and a centuries-long memory, and her patience for political games is matched only by her arcane power.",
+      "source": "Dragon Heist p.200"
+    },
+    {
+      "name": "Vajra Safahr",
+      "pronouns": "she/her",
+      "role": "faction_leader",
+      "description": "The youngest Blackstaff in Waterdeep's history, a prodigy who inherited the sentient staff and all the memories of her predecessors. The weight of their voices sometimes shows in her distant stare.",
+      "source": "Dragon Heist p.201"
+    },
+    {
+      "name": "Mirt the Moneylender",
+      "pronouns": "he/him",
+      "role": "faction_leader",
+      "description": "A rotund, wheezing Harper agent who hides a legendary adventurer's cunning beneath the persona of a debt-collecting merchant. He laughs too loudly and notices everything.",
+      "source": "Dragon Heist p.197"
+    },
+    {
+      "name": "Jarlaxle Baenre",
+      "pronouns": "he/him",
+      "role": "criminal",
+      "description": "A drow mercenary lord who runs Bregan D'aerthe from the shadows of Luskan and Waterdeep alike. His wide-brimmed hat, eye patch, and theatrical bow conceal a mind that plans seven moves ahead.",
+      "source": "Dragon Heist p.196"
+    },
+    {
+      "name": "Manshoon",
+      "pronouns": "he/him",
+      "role": "criminal",
+      "description": "A clone of the original founder of the Zhentarim, operating from a hidden sanctum in Kolat Towers. He seeks to reclaim control of the Black Network through fear, magic, and murder.",
+      "source": "Dragon Heist p.197"
+    },
+    {
+      "name": "Xanathar",
+      "pronouns": "it/its",
+      "role": "criminal",
+      "description": "A paranoid beholder crime lord ruling Waterdeep's underworld from a lair beneath Skullport. It names all its pet goldfish Sylgar and flies into murderous rages when one dies.",
+      "source": "Dragon Heist p.198"
+    },
+    {
+      "name": "Renaer Neverember",
+      "pronouns": "he/him",
+      "role": "noble",
+      "description": "The estranged son of the former Open Lord Dagult Neverember, a young noble who rejects politics in favor of philanthropy. His father's stolen hoard has made him an unwilling target.",
+      "source": "Dragon Heist p.199"
+    },
+    {
+      "name": "Elminster Aumar",
+      "pronouns": "he/him",
+      "role": "scholar",
+      "description": "The Sage of Shadowdale, an ancient Chosen of Mystra whose pipe smoke smells of distant planes. He appears when least expected, offers cryptic advice, and vanishes before the bill arrives.",
+      "source": "SCAG p.112"
+    },
+    {
+      "name": "Drizzt Do'Urden",
+      "pronouns": "he/him",
+      "role": "ranger",
+      "description": "A drow exile who forsook the cruelty of Menzoberranzan, wielding twin scimitars Twinkle and Icingdeath. He walks the surface as a ranger of the North, never entirely free of the prejudice his skin invites.",
+      "source": "SCAG p.133"
+    },
+    {
+      "name": "Bruenor Battlehammer",
+      "pronouns": "he/him",
+      "role": "faction_leader",
+      "description": "King of Mithral Hall, Gauntlgrym, and every dwarven stronghold he has reclaimed by axe and stubbornness. His red beard is singed at the tips from forge-work, and he calls everyone 'ye.'",
+      "source": "SCAG p.131"
+    },
+    {
+      "name": "Remallia Haventree",
+      "pronouns": "she/her",
+      "role": "faction_leader",
+      "description": "A sun elf noble and senior Harper in Waterdeep, whose salon gatherings mask intelligence-gathering operations. Her grief over her husband's murder fuels a quiet, relentless resolve.",
+      "source": "Dragon Heist p.199"
+    },
+    {
+      "name": "Davil Starsong",
+      "pronouns": "he/him",
+      "role": "faction_leader",
+      "description": "A sun elf who leads the Doom Raiders, the moderate faction of the Zhentarim in Waterdeep. He prefers commerce over coercion but keeps a loaded crossbow under his desk.",
+      "source": "Dragon Heist p.196"
+    },
+    {
+      "name": "Jalester Silvermane",
+      "pronouns": "he/him",
+      "role": "faction_leader",
+      "description": "A young, earnest agent of the Lords' Alliance assigned to Waterdeep. He takes his duty with painful seriousness and reports directly to Laeral Silverhand.",
+      "source": "Dragon Heist p.196"
+    },
+    {
+      "name": "Melannor Fellbranch",
+      "pronouns": "he/him",
+      "role": "faction_leader",
+      "description": "A human druid who tends the Phaulkonmere greenhouse in Waterdeep as an Emerald Enclave contact. His hands are always stained green, and he speaks more gently to plants than to people.",
+      "source": "Dragon Heist p.197"
+    },
+    {
+      "name": "Savra Belabranta",
+      "pronouns": "she/her",
+      "role": "faction_leader",
+      "description": "A zealous young paladin of Tyr who leads the Order of the Gauntlet's Waterdeep chapter. Her faith burns bright enough to blind her to moral ambiguity.",
+      "source": "Dragon Heist p.198"
+    },
+    {
+      "name": "Hlam",
+      "pronouns": "he/him",
+      "role": "monk",
+      "description": "An elderly monk who lives in a cave on the slopes of Mount Waterdeep, speaking only in riddles and koans. He is far more dangerous than he appears.",
+      "source": "Dragon Heist p.195"
+    },
+    {
+      "name": "Istrid Horn",
+      "pronouns": "she/her",
+      "role": "criminal",
+      "description": "A dwarven loan shark and Zhentarim enforcer whose ledgers are as precise as her threats. She collects debts in gold or in fingers, at the borrower's preference.",
+      "source": "Dragon Heist p.196"
+    },
+    {
+      "name": "Yagra Stonefist",
+      "pronouns": "she/her",
+      "role": "mercenary",
+      "description": "A half-orc Zhentarim enforcer found brawling in the Yawning Portal. She solves problems with her fists and holds grudges with the patience of stone.",
+      "source": "Dragon Heist p.18"
+    },
+    {
+      "name": "Duvessa Shane",
+      "pronouns": "she/her",
+      "role": "faction_leader",
+      "description": "Speaker of Bryn Shander, the largest of the Ten-Towns. Young for her office, she balances the competing interests of merchants, trappers, and refugees with pragmatic fairness.",
+      "source": "Rime p.177"
+    },
+    {
+      "name": "Auril the Frostmaiden",
+      "pronouns": "she/her",
+      "role": "deity",
+      "description": "A lesser goddess of winter who has cast the Everlasting Rime over Icewind Dale, demanding isolation and sacrifice. She rides the night wind in three successive forms, each colder than the last.",
+      "source": "Rime p.275"
+    },
+    {
+      "name": "Vellynne Harpell",
+      "pronouns": "she/her",
+      "role": "scholar",
+      "description": "A necromancer from the eccentric Harpell family, traveling Icewind Dale with a retinue of animated kobold skeletons. She seeks the lost city of Ythryn for purely academic reasons, she insists.",
+      "source": "Rime p.273"
+    },
+    {
+      "name": "Avarice",
+      "pronouns": "she/her",
+      "role": "criminal",
+      "description": "A tiefling warlock of Levistus and Arcane Brotherhood member, attended by two gargoyles. She seeks power in the frozen wastes with the single-minded devotion of the truly damned.",
+      "source": "Rime p.269"
+    },
+    {
+      "name": "Grazz't",
+      "pronouns": "he/him",
+      "role": "demon_lord",
+      "description": "The Dark Prince, a demon lord of indulgence and treachery whose ebon skin and silver eyes have seduced queens and corrupted kingdoms. He rules three layers of the Abyss through charm rather than brute force.",
+      "source": "Out of the Abyss p.241"
+    },
+    {
+      "name": "Demogorgon",
+      "pronouns": "it/its",
+      "role": "demon_lord",
+      "description": "The Prince of Demons, a towering two-headed monstrosity whose mere presence drives mortals to madness. Its twin heads, Aameul and Hethradiah, scheme against each other as much as against their enemies.",
+      "source": "Out of the Abyss p.236"
+    },
+    {
+      "name": "Orcus",
+      "pronouns": "he/him",
+      "role": "demon_lord",
+      "description": "The Demon Prince of Undeath, a bloated, goat-headed fiend who wields the Wand of Orcus. He despises all life and seeks to replace it with an eternal kingdom of the dead.",
+      "source": "Out of the Abyss p.245"
+    },
+    {
+      "name": "Strahd von Zarovich",
+      "pronouns": "he/him",
+      "role": "noble",
+      "description": "The vampire lord of Barovia, cursed to eternal imprisonment in his own domain. He plays chess with the lives of adventurers drawn into his mists, searching endlessly for the reincarnation of his lost Tatyana.",
+      "source": "CoS p.9"
+    },
+    {
+      "name": "Halaster Blackcloak",
+      "pronouns": "he/him",
+      "role": "scholar",
+      "description": "The Mad Mage of Undermountain, an archmage whose sanity crumbled centuries ago along with his original purpose. He reshapes his megadungeon on whims, treating adventurers as entertainment.",
+      "source": "DotMM p.10"
+    },
+    {
+      "name": "Sylgar",
+      "pronouns": "it/its",
+      "role": "pet",
+      "description": "Xanathar's beloved goldfish, currently Sylgar the seventh -- or possibly the twelfth. The beholder does not know this, and no minion dares tell it. The fate of Waterdeep's underworld hinges on this fish's health.",
+      "source": "Dragon Heist p.198"
+    },
+    {
+      "name": "Wulfgar",
+      "pronouns": "he/him",
+      "role": "barbarian",
+      "description": "A towering barbarian of the Reghed tribes, wielder of the warhammer Aegis-fang. His years of captivity in the Abyss left scars that no cleric can heal, though he hides them behind a warrior's stoicism.",
+      "source": "SCAG p.133"
+    },
+    {
+      "name": "Catti-brie",
+      "pronouns": "she/her",
+      "role": "ranger",
+      "description": "An adopted daughter of Bruenor Battlehammer, reborn by Mielikki's grace as a Chosen with wild magic coursing through her. She carries the Heartseeker bow and walks between the worlds of dwarf and human.",
+      "source": "SCAG p.131"
+    }
+  ],
+  "generic_templates": [
+    {
+      "name": "Veteran Guard",
+      "role": "guard",
+      "description": "A scarred soldier who has served through at least one siege. Follows orders with the mechanical precision of someone who learned long ago not to think too hard about them."
+    },
+    {
+      "name": "Traveling Merchant",
+      "role": "merchant",
+      "description": "A road-worn trader with a mule-drawn cart of sundries, whose prices climb with each mile from the nearest city. Knows every inn between here and the coast."
+    },
+    {
+      "name": "Tavern Keeper",
+      "role": "innkeeper",
+      "description": "A stout, aproned figure who pours drinks, settles fights, and hears everything. Their establishment is their kingdom, and they rule it with a wooden spoon and a sharp tongue."
+    },
+    {
+      "name": "Hedge Wizard",
+      "role": "scholar",
+      "description": "A self-taught spellcaster with ink-stained fingers and a library held together by twine. Sells minor enchantments and identifies curiosities for a modest fee and a chance to study them."
+    },
+    {
+      "name": "Street Urchin",
+      "role": "criminal",
+      "description": "A quick-fingered child of the alleys who knows every shortcut, sewer grate, and unlocked window in the district. Loyalty costs a hot meal; secrets cost silver."
+    },
+    {
+      "name": "Noble Scion",
+      "role": "noble",
+      "description": "A young aristocrat chafing under family expectations, prone to slumming in taverns and funding questionable ventures. Rich enough to be reckless, sheltered enough to be dangerous."
+    },
+    {
+      "name": "Temple Acolyte",
+      "role": "priest",
+      "description": "A devotee in plain robes who tends the sick, sweeps the nave, and prays for a sign that may never come. Knows healing herbs and burial rites in equal measure."
+    },
+    {
+      "name": "Smuggler",
+      "role": "criminal",
+      "description": "A weathered sailor or drover who moves goods the taxman never sees. Speaks in euphemisms, pays in favors, and sleeps with one eye open near the docks."
+    },
+    {
+      "name": "Bounty Hunter",
+      "role": "mercenary",
+      "description": "A laconic tracker who posts bail receipts on their wall like trophies. Works alone, trusts no one's information but their own, and always collects."
+    },
+    {
+      "name": "Sage Librarian",
+      "role": "scholar",
+      "description": "A dust-covered keeper of records who can find any scroll in a chaotic archive by memory alone. Speaks in whispers out of habit, even outdoors, and resents anyone who dog-ears a page."
+    },
+    {
+      "name": "Master Blacksmith",
+      "role": "merchant",
+      "description": "A soot-streaked artisan whose arms are mapped with burn scars. Judges customers by the condition of their weapons and charges extra for rush jobs."
+    },
+    {
+      "name": "Retired Adventurer",
+      "role": "innkeeper",
+      "description": "A former delver who hangs their old gear above the hearth and tells stories that grow taller with each retelling. Still flinches at the sound of scraping stone."
+    },
+    {
+      "name": "Thieves' Guild Contact",
+      "role": "criminal",
+      "description": "A nondescript figure who lingers near market stalls, exchanging coded phrases with passersby. They broker introductions to people who solve problems that the Watch cannot or will not."
+    },
+    {
+      "name": "Caravan Master",
+      "role": "merchant",
+      "description": "A weather-beaten organizer of overland trade who knows every bandit ambush point and safe campsite along the trade routes. Hires guards and never trusts them."
+    },
+    {
+      "name": "Court Minstrel",
+      "role": "performer",
+      "description": "A silver-tongued entertainer who trades songs for secrets and performs at noble courts where the real intrigue happens between verses. Remembers every face and every slight."
+    },
+    {
+      "name": "Dockside Laborer",
+      "role": "worker",
+      "description": "A broad-shouldered loader who hauls crates from dawn until the lamps are lit, knowing exactly which shipments are legitimate and which carry false manifests."
+    },
+    {
+      "name": "Wandering Herbalist",
+      "role": "healer",
+      "description": "A weather-worn gatherer of roots and fungi who travels between villages, trading poultices for shelter. Their remedies work, though they refuse to explain why they mutter over each one."
+    },
+    {
+      "name": "City Watch Sergeant",
+      "role": "guard",
+      "description": "A career officer who knows every alley in their beat and which crimes to investigate and which to ignore. Loyal to the badge, flexible about the law."
+    },
+    {
+      "name": "Dwarven Prospector",
+      "role": "miner",
+      "description": "A grizzled tunnel-digger who tests ore by taste and claims to hear gold singing through the rock. Has maps to three lost mines, all of which are probably traps."
+    },
+    {
+      "name": "Ship Captain",
+      "role": "sailor",
+      "description": "A salt-crusted master of a coastal trader, whose deck is their law and whose word is the only contract that matters at sea. Charges by the risk, not the mile."
+    },
+    {
+      "name": "Elven Envoy",
+      "role": "diplomat",
+      "description": "A long-lived emissary from the Misty Forest or Evereska, whose politeness masks an alien patience. Measures human ambitions against centuries of precedent and finds them wanting."
+    },
+    {
+      "name": "Battlefield Surgeon",
+      "role": "healer",
+      "description": "A blood-spattered medic who sews wounds by torchlight and carries more saw blades than scalpels. Calm under pressure, haunted in the quiet hours."
+    },
+    {
+      "name": "Halfling Cook",
+      "role": "innkeeper",
+      "description": "A cheerful provider of improbably good meals from meager ingredients, whose kitchen is the true heart of any establishment they serve. Gossip flows as freely as the gravy."
+    },
+    {
+      "name": "Fence",
+      "role": "criminal",
+      "description": "A pawnshop owner or curiosity dealer who asks no questions about provenance and pays forty percent of fair value, take it or leave it. Their back room holds the real inventory."
+    }
+  ]
+}

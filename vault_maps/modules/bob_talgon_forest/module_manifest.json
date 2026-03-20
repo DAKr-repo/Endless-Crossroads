@@ -1,0 +1,42 @@
+{
+  "module_id": "bob_talgon_forest",
+  "display_name": "Talgon Forest",
+  "system_id": "bob",
+  "source_type": "community_authored",
+  "starting_location": "talgon_camp",
+  "recommended_levels": {"min": 1, "max": 5},
+  "chapters": [
+    {
+      "chapter_id": "final_stretch",
+      "display_name": "The Final Stretch",
+      "order": 1,
+      "zones": [
+        {
+          "zone_id": "talgon_camp",
+          "blueprint": "talgon_camp.json",
+          "topology": "settlement",
+          "theme": "STONE",
+          "entry_trigger": "module_start",
+          "exit_trigger": "player_choice"
+        },
+        {
+          "zone_id": "old_road",
+          "blueprint": "old_road.json",
+          "topology": "dungeon",
+          "theme": "STONE",
+          "entry_trigger": "player_choice",
+          "exit_trigger": "all_rooms"
+        },
+        {
+          "zone_id": "supply_cache",
+          "blueprint": "supply_cache.json",
+          "topology": "dungeon",
+          "theme": "GOTHIC",
+          "entry_trigger": "player_choice",
+          "exit_trigger": "all_rooms"
+        }
+      ]
+    }
+  ],
+  "freeform_zones": []
+}

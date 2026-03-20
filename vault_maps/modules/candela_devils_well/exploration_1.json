@@ -1,0 +1,103 @@
+{
+  "seed": 4603,
+  "width": 25,
+  "height": 15,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "shipwreck_network",
+    "theme": "GOTHIC",
+    "topology": "dungeon",
+    "display_name": "The Wreck Mass"
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 0,
+      "y": 0,
+      "width": 8,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The outer wreckage. A steamship's cargo hold, its walls buckled inward by the impact of a sailing vessel's bowsprit. Crates of rotted supplies spill their contents across a floor slick with brine and something darker. The preserved bodies of sailors sit at their stations -- hands on wheels that lead nowhere, eyes open, skin gray-green and waxy. They do not move. They do not blink. But when you look away and look back, they have shifted.",
+        "read_aloud": "You climb through a hole in the steamship's hull and into a labyrinth of compressed vessels. Decks have become walls. Masts have become bridges. The geometry of a dozen ships has been crushed into a single navigable structure, and it creaks around you like the ribs of a living thing. The water underfoot is ankle-deep and rising with the tide. Somewhere deeper, metal groans.",
+        "npcs": [],
+        "enemies": [
+          {
+            "name": "Mutant Crustacean Swarm",
+            "hp": 15,
+            "max_hp": 15,
+            "ac": 12,
+            "attack": 4,
+            "defense": 12,
+            "count": 1
+          }
+        ],
+        "services": [],
+        "event_triggers": [
+          "THREAT: Alta Aqua (Body) -- the water is rising. The wreck mass shifts with the tide, opening and closing passages. An investigator may become trapped in sinking mire if they stray from the path.",
+          "Mutated crustaceans swarm from the lower holds -- crabs the size of dinner plates with too many legs and shells that glow faintly with bleed-tainted bioluminescence."
+        ],
+        "loot": []
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 10,
+      "y": 0,
+      "width": 8,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [0, 2],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The central passage. A corridor formed from two ships' keels pressed together, forming a tunnel of blackened timber. Bodies line the walls here -- not scattered, but arranged. Seated. Hands folded. Eyes closed. Someone posed them. The floor slopes downward, and at the far end, a sealed door of riveted iron set into the stone platform. Stenciled across it in faded white paint: THE DEVIL'S WELL. DO NOT OPEN. EONS AUTHORITY.",
+        "read_aloud": "The iron door is cold to the touch. Condensation beads on its surface and runs in rivulets down the EONS stenciling. The seal is ten years old, corroded but intact. Behind the door, you can hear something -- not a sound, exactly, but a pressure. A subsonic vibration that makes your vision blur at the edges. Your bleed detection equipment is screaming.",
+        "npcs": [],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [
+          "REVEAL: A sealed door marked 'THE DEVIL'S WELL -- DO NOT OPEN -- EONS AUTHORITY.' The vault behind it is ten years old and radiating bleed at catastrophic levels.",
+          "The arranged bodies suggest someone -- or something -- has been organizing the wreck mass. The dead are not random debris. They are an audience."
+        ],
+        "loot": [
+          {
+            "name": "EONS Survey Log",
+            "value": 0,
+            "description": "A waterlogged logbook from the original EONS survey team. Entries describe the discovery of 'a naturally occurring bleed well of unprecedented depth' and the decision to build a containment vault around it. The final entry reads: 'Subject contained. Vault sealed. God forgive us for what we found down there.'"
+          }
+        ],
+        "lock_dc": 14
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 18,
+      "y": 2,
+      "width": 6,
+      "height": 6,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "A small side chamber formed from a fishing vessel's overturned hull. The test pilot is here -- alive, barely. Strapped into his flight seat, which has been torn from the gondola and wedged into the wreckage. He is conscious but cannot move. His lips are moving but no sound comes out. When you get close, you can hear him: the same phrase, over and over. 'It is not pulling me down. It is pulling me in.'",
+        "npcs": [],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [
+          "The test pilot is alive but catatonic. He repeats his mayday phrase endlessly. His flight instruments are fused to the hull around him, as if the wreckage absorbed his ship while he was still in it."
+        ],
+        "loot": [],
+        "perception_dc": 12,
+        "perception_success": "The pilot's compass is still functioning. It does not point north. It points down -- directly toward the sealed door. Whatever is behind that door has its own magnetic field."
+      }
+    }
+  }
+}

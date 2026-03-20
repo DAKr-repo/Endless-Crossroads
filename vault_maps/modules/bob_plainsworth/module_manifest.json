@@ -1,0 +1,42 @@
+{
+  "module_id": "bob_plainsworth",
+  "display_name": "Plainsworth",
+  "system_id": "bob",
+  "source_type": "community_authored",
+  "starting_location": "refugee_camp",
+  "recommended_levels": {"min": 1, "max": 5},
+  "chapters": [
+    {
+      "chapter_id": "crossroads",
+      "display_name": "The Crossroads",
+      "order": 1,
+      "zones": [
+        {
+          "zone_id": "refugee_camp",
+          "blueprint": "refugee_camp.json",
+          "topology": "settlement",
+          "theme": "STONE",
+          "entry_trigger": "module_start",
+          "exit_trigger": "player_choice"
+        },
+        {
+          "zone_id": "supply_route",
+          "blueprint": "supply_route.json",
+          "topology": "dungeon",
+          "theme": "STONE",
+          "entry_trigger": "player_choice",
+          "exit_trigger": "all_rooms"
+        },
+        {
+          "zone_id": "abandoned_shrine",
+          "blueprint": "abandoned_shrine.json",
+          "topology": "dungeon",
+          "theme": "GOTHIC",
+          "entry_trigger": "player_choice",
+          "exit_trigger": "quest_complete"
+        }
+      ]
+    }
+  ],
+  "freeform_zones": []
+}

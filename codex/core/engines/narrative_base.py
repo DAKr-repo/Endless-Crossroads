@@ -57,6 +57,7 @@ class NarrativeEngineBase(NarrativeLoomMixin):
         self.stress_clocks: Dict[str, Any] = {}
         self.faction_clocks: List[Any] = []
         self._init_loom()
+        self._npc_disposition: Optional[Any] = None
 
     # =====================================================================
     # Abstract hooks — subclasses must implement
@@ -88,6 +89,28 @@ class NarrativeEngineBase(NarrativeLoomMixin):
             Dict mapping command strings to bound methods.
         """
         return {}
+
+    def _get_trauma_table(self) -> Optional[list]:
+        """Return a custom trauma table for StressClock, or None for default.
+
+        Override in subclasses that use a non-standard trauma table
+        (e.g. Band of Blades uses BOB_TRAUMAS).
+
+        Returns:
+            List of trauma strings, or None to use FITD defaults.
+        """
+        return None
+
+    def _use_stress_clocks(self) -> bool:
+        """Whether this engine uses StressClock-based stress tracking.
+
+        Override to return False for systems like Candela Obscura that
+        use Body/Brain/Bleed tracks instead of a unified stress clock.
+
+        Returns:
+            True if characters get StressClocks (default), False otherwise.
+        """
+        return True
 
     # =====================================================================
     # Optional hooks — subclasses may override
@@ -131,8 +154,13 @@ class NarrativeEngineBase(NarrativeLoomMixin):
             self.party = [char]
         else:
             self.party.append(char)
-        from codex.core.services.fitd_engine import StressClock
-        self.stress_clocks[name] = StressClock()
+        if self._use_stress_clocks():
+            from codex.core.services.fitd_engine import StressClock
+            trauma_table = self._get_trauma_table()
+            if trauma_table:
+                self.stress_clocks[name] = StressClock(trauma_table=trauma_table)
+            else:
+                self.stress_clocks[name] = StressClock()
         self._add_shard(
             f"{self.display_name} crew founded. Lead: {name}.", "MASTER"
         )
@@ -145,8 +173,13 @@ class NarrativeEngineBase(NarrativeLoomMixin):
             char: Character instance to add.
         """
         self.party.append(char)
-        from codex.core.services.fitd_engine import StressClock
-        self.stress_clocks[char.name] = StressClock()
+        if self._use_stress_clocks():
+            from codex.core.services.fitd_engine import StressClock
+            trauma_table = self._get_trauma_table()
+            if trauma_table:
+                self.stress_clocks[char.name] = StressClock(trauma_table=trauma_table)
+            else:
+                self.stress_clocks[char.name] = StressClock()
 
     def remove_from_party(self, char: Any) -> None:
         """Remove a character from the party.
@@ -202,6 +235,82 @@ class NarrativeEngineBase(NarrativeLoomMixin):
             effect=effect,
         )
         return roll.roll()
+
+    def roll_fortune(self, dice_count: int = 1, **kwargs) -> Any:
+        """Roll a FITD fortune roll (no position/effect context).
+
+        Args:
+            dice_count: Number of d6s in the pool. 0 = 2d6 take lowest.
+            **kwargs: Ignored; present for uniform call signature.
+
+        Returns:
+            FortuneResult with outcome ("bad"/"mixed"/"good"/"crit"),
+            highest die, and all_dice list.
+        """
+        from codex.core.services.fitd_engine import FITDFortuneRoll
+        roll = FITDFortuneRoll(dice_count=dice_count)
+        result = roll.roll()
+        self._add_shard(
+            f"Fortune roll ({dice_count}d): {result.outcome}",
+            "CHRONICLE",
+        )
+        return result
+
+    def roll_resistance(
+        self,
+        character: Optional[Any] = None,
+        attribute: str = "",
+        **kwargs,
+    ) -> dict:
+        """Roll resistance for a character using an attribute's action dots.
+
+        Args:
+            character: Acting character (defaults to engine lead).
+            attribute: Attribute name to look up dots on the character.
+            **kwargs: Ignored; present for uniform call signature.
+
+        Returns:
+            resistance_roll() result dict with dice, stress_cost, crit, push_result.
+        """
+        from codex.core.services.fitd_engine import resistance_roll
+        char = character or self.character
+        dots = getattr(char, attribute, 0) if char else 0
+        clock = self.stress_clocks.get(char.name) if char else None
+        result = resistance_roll(dots, clock)
+        cost = result["stress_cost"]
+        self._add_shard(
+            f"{char.name if char else '?'} resists (attribute: {attribute}, cost: {cost} stress)",
+            "CHRONICLE",
+        )
+        return result
+
+    def gather_information(
+        self,
+        character: Optional[Any] = None,
+        action: str = "",
+        question: str = "",
+        **kwargs,
+    ) -> dict:
+        """Gather information using a controlled action roll.
+
+        Args:
+            character: Acting character (defaults to engine lead).
+            action: Action attribute name to look up dots.
+            question: The question being investigated (narrative context).
+            **kwargs: Ignored; present for uniform call signature.
+
+        Returns:
+            gather_information() result dict with outcome, quality, dice.
+        """
+        from codex.core.services.fitd_engine import gather_information
+        char = character or self.character
+        dots = getattr(char, action, 0) if char else 0
+        result = gather_information(dots, question)
+        self._add_shard(
+            f"Gathered info ({action}): {result['quality']} — {question[:50]}",
+            "CHRONICLE",
+        )
+        return result
 
     def push_stress(self, char_name: str, amount: int = 1) -> dict:
         """Push stress for a character with trauma shard emission.
@@ -316,6 +425,7 @@ class NarrativeEngineBase(NarrativeLoomMixin):
         Returns:
             Human-readable result string.
         """
+        cmd = cmd.lower().replace("-", "_")
         if cmd == "trace_fact":
             return self.trace_fact(kwargs.get("fact", ""))
         # Check subclass registry first
@@ -366,6 +476,155 @@ class NarrativeEngineBase(NarrativeLoomMixin):
             lines.append(f"  {clock.name}: [{bar}] {filled}/{segments}")
         return "\n".join(lines)
 
+    def _cmd_fortune(self, **kwargs) -> str:
+        """Roll a fortune die pool.
+
+        Kwargs:
+            dice_count (int): Number of d6s (default 1). 0 = 2d6 take lowest.
+
+        Returns:
+            Formatted fortune roll result string.
+        """
+        from codex.core.services.fitd_engine import format_fortune_result
+        dice_count = int(kwargs.get("dice_count", 1))
+        result = self.roll_fortune(dice_count)
+        return format_fortune_result(result)
+
+    def _cmd_resist(self, **kwargs) -> str:
+        """Roll resistance for the lead character.
+
+        Kwargs:
+            attribute (str): Attribute name to look up dots on the character.
+
+        Returns:
+            Formatted resistance result string including stress cost and
+            any trauma triggered.
+        """
+        from codex.core.services.fitd_engine import resistance_roll as _resist_roll
+        attribute = kwargs.get("attribute", "")
+        char = self.character
+        if not char:
+            return "No active character."
+        if not attribute:
+            return "Specify attribute (e.g. resist attribute=hunt)"
+        dots = getattr(char, attribute, 0)
+        clock = self.stress_clocks.get(char.name)
+        result = _resist_roll(dots, clock)
+        dice_str = ", ".join(str(d) for d in result["dice"])
+        crit_msg = " (CRIT — no stress!)" if result["crit"] else ""
+        trauma_msg = ""
+        if result.get("push_result", {}) and result["push_result"].get("trauma_triggered"):
+            trauma_msg = f" TRAUMA: {result['push_result']['new_trauma']}!"
+        self._add_shard(
+            f"{char.name} resists ({attribute}): cost {result['stress_cost']} stress{crit_msg}",
+            "CHRONICLE",
+        )
+        return (
+            f"Resistance ({attribute}): [{dice_str}] -> cost {result['stress_cost']} stress"
+            f"{crit_msg}{trauma_msg}"
+        )
+
+    def _cmd_gather_info(self, **kwargs) -> str:
+        """Roll to gather information.
+
+        Kwargs:
+            action (str): Action attribute name (default "survey").
+            question (str): The question being investigated.
+
+        Returns:
+            Formatted gather-info result string with outcome and quality.
+        """
+        action = kwargs.get("action", "survey")
+        question = kwargs.get("question", "")
+        result = self.gather_information(action=action, question=question)
+        dice_str = ", ".join(str(d) for d in result["dice"])
+        return (
+            f"Gather Info ({action}): [{dice_str}] -> {result['outcome'].upper()}\n"
+            f"Quality: {result['quality']}"
+            + (f"\nQuestion: {question}" if question else "")
+        )
+
+    # =====================================================================
+    # NPC Disposition (WO-P7)
+    # =====================================================================
+
+    def _get_npc_disposition(self) -> Any:
+        """Lazily initialise and return the DispositionManager.
+
+        Returns:
+            The engine's DispositionManager instance (created on first access).
+        """
+        if self._npc_disposition is None:
+            from codex.core.services.npc_memory import DispositionManager
+            self._npc_disposition = DispositionManager()
+        return self._npc_disposition
+
+    def _cmd_npc_status(self, **kwargs) -> str:
+        """Show an NPC's disposition and history.
+
+        Kwargs:
+            name (str): NPC identifier. Omit to list all tracked NPCs.
+
+        Returns:
+            History summary for the named NPC, or a full listing if no name given.
+        """
+        name = kwargs.get("name", "")
+        if not name:
+            return self._get_npc_disposition().list_npcs()
+        return self._get_npc_disposition().get_status(name)
+
+    def _cmd_npc_adjust(self, **kwargs) -> str:
+        """Adjust an NPC's disposition score.
+
+        Kwargs:
+            name (str): NPC identifier (required).
+            delta (int): Amount to adjust, positive or negative.
+            reason (str): Human-readable reason for the change.
+
+        Returns:
+            Formatted before/after string; emits a CHRONICLE shard if changed.
+        """
+        name = kwargs.get("name", "")
+        if not name:
+            return "Specify NPC name: npc_adjust name=<name> delta=<int> reason=<str>"
+        delta = int(kwargs.get("delta", 0))
+        reason = kwargs.get("reason", "unspecified")
+        mgr = self._get_npc_disposition()
+        result = mgr.adjust_disposition(name, delta, reason, source="player_action")
+        if result["changed"]:
+            self._add_shard(
+                f"NPC {name} disposition: {result['old_label']} -> {result['new_label']} ({reason})",
+                "CHRONICLE",
+            )
+        return (
+            f"{name}: {result['old_label']} ({result['old']:+d}) -> "
+            f"{result['new_label']} ({result['new']:+d})\n"
+            f"Reason: {reason}"
+        )
+
+    def _cmd_faction_response(self, **kwargs) -> str:
+        """Check the faction response for an NPC given an event type.
+
+        Kwargs:
+            name (str): NPC identifier (required).
+            event_type (str): One of score_against, score_near, territory_taken,
+                              aid_given, ignored, or "default".
+
+        Returns:
+            Formatted response string with disposition range and action taken.
+        """
+        name = kwargs.get("name", "")
+        event_type = kwargs.get("event_type", "default")
+        if not name:
+            return "Specify NPC name: faction_response name=<name> event_type=<str>"
+        mgr = self._get_npc_disposition()
+        result = mgr.get_faction_response(name, event_type)
+        return (
+            f"Faction response for {name} (event: {event_type}):\n"
+            f"Disposition: {result['disposition_range']} ({result['disposition']:+d})\n"
+            f"Response: {result['response_type'].upper()} — {result['description']}"
+        )
+
     # =====================================================================
     # Save / Load
     # =====================================================================
@@ -382,6 +641,7 @@ class NarrativeEngineBase(NarrativeLoomMixin):
             "party": [c.to_dict() for c in self.party],
             "stress": {k: v.to_dict() for k, v in self.stress_clocks.items()},
             "faction_clocks": [c.to_dict() for c in self.faction_clocks],
+            "npc_disposition": self._npc_disposition.to_dict() if self._npc_disposition else None,
         }
 
     def load_state(self, data: Dict[str, Any]) -> None:
@@ -419,3 +679,7 @@ class NarrativeEngineBase(NarrativeLoomMixin):
             UniversalClock.from_dict(c)
             for c in data.get("faction_clocks", [])
         ]
+        disp_data = data.get("npc_disposition")
+        if disp_data:
+            from codex.core.services.npc_memory import DispositionManager
+            self._npc_disposition = DispositionManager.from_dict(disp_data)

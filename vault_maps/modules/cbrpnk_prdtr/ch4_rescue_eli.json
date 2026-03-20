@@ -1,0 +1,91 @@
+{
+    "seed": 9104,
+    "width": 40,
+    "height": 30,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "scavenger_territory",
+        "theme": "RUST",
+        "topology": "dungeon",
+        "display_name": "Rescue Eli",
+        "description": "Objective C: The Insurgency leader Eli has been captured by Scavengers operating from a booby-trapped hideout in the jungle rim. Eli is a charismatic synthetic who carries the DATABASE -- a comprehensive record of Koloss and APX operations that could be uploaded to an orbital station and broadcast to the inner planets. Without Eli, the truth stays buried. Sarge and his Corp Sec patrol are also closing in on the Scavenger position -- for their own reasons."
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 2,
+            "y": 2,
+            "width": 10,
+            "height": 8,
+            "room_type": "start",
+            "connections": [1],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Jungle approach. The canopy is so dense the dome's projected sky is invisible -- replaced by a ceiling of interlocking fronds and bioluminescent fungal clusters that drip phosphorescent condensation. The ground is treacherous: root tangles over collapsed hab-sector plating. Trip-wires glint between the stems -- Scavenger perimeter defenses, crude but effective. A wrong step here detonates a fragmentation canister made from a recycled oxygen tank.",
+                "read_aloud": "The jungle breathes. Humidity condenses on every surface. Your boots find steel beneath the roots -- you are walking on the ceiling of a buried corridor. Somewhere ahead, through the green murk, voices. And below the voices, a steady electronic hum: the Scavengers have power. That means Eli is alive. Prisoners are worth more when they are operational.",
+                "event_triggers": [
+                    "A trip-wire snaps. Not yours -- something larger triggered it fifty meters to the east. The fragmentation canister detonates with a muffled crump. Through the smoke, a figure in Corp Sec armor rises from the undergrowth, brushing jungle debris from tactical plating. Sarge. He has been tracking the Scavengers independently. His expression when he sees you is complicated."
+                ],
+                "perception_dc": 14,
+                "perception_success": "Three more trip-wires visible in the immediate area, plus a pressure plate disguised as a floor panel. The Scavengers' defenses are oriented outward -- they are expecting an assault from the habitat sectors, not from deeper jungle. The southern approach is less defended."
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 14,
+            "y": 8,
+            "width": 12,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [0, 2],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Scavenger camp. A clearing hacked from the jungle around a junction of pre-collapse corridors. The Scavengers have built a compound from salvaged hab-panels and cargo containers. Chem-lights on strings provide a sickly yellow illumination. Three Scavengers visible: two on watch, one dismantling a piece of tech at a makeshift workbench. Behind them, a cargo container with a padlocked door and ventilation holes drilled through the walls. Eli is inside -- you can hear the faint sound of someone humming a melody that does not belong to any human musical tradition.",
+                "read_aloud": "The Scavengers are not soldiers. They are survivors who decided that taking is easier than asking. The one at the workbench is stripping a Corp Sec drone for parts. The two on watch scan the jungle with jury-rigged thermals that probably work half the time. The cargo container hums with Eli's song -- an algorithmic melody that shifts key every seven bars. A synthetic's lullaby.",
+                "enemies": [
+                    {"name": "Scavenger", "hp": 8, "ac": 10, "attack": 2, "damage": "1d6", "count": 3, "notes": "Opportunists, not fighters. Improvised weapons: sharpened pipe, shock-rigged glove, a pistol with maybe four rounds left. They will negotiate if outmatched, fight dirty if cornered. One carries the padlock key."}
+                ],
+                "npcs": [
+                    {
+                        "name": "Eli",
+                        "role": "rescue_target",
+                        "dialogue": "You found me. I had calculated a 34% probability of rescue within this timeframe, which I considered optimistic. The DATABASE is intact -- they could not access it because it is encoded in my neural architecture, not a removable device. I am the device. Which is, I suspect, why they have been debating whether to sell me to Corp Sec or disassemble me for parts.",
+                        "notes": "[DM: Function: Rescue Target/Ally. Quirk: Speaks with precise grammar and emotional cadence that is almost human but lands slightly wrong -- like an excellent translation that misses idiom. Hums algorithmic melodies when stressed. Secret: Eli's DATABASE contains proof that Koloss Heavy Industries knew the APX experiments would destabilize Biosphere-5 and authorized them anyway. Uploading it to an orbital relay would reach Earth, Mars, and the Jovian colonies. It would destroy Koloss. It would also reveal that Ganymede's entire population was an expendable test group. Want: To transmit the DATABASE. Need: To believe that truth changes things, when every data model suggests power structures self-repair around inconvenient facts.]"
+                    }
+                ],
+                "event_triggers": [
+                    "If Sarge followed the runners, he arrives 2 rounds after combat begins. He offers a temporary truce: 'I want the Scavengers. You want the synthetic. We can share or we can bleed. Your call.' If the runners refused contact earlier, Sarge storms the camp independently -- making extraction messier but also distracting the Scavengers."
+                ],
+                "investigation_dc": 14,
+                "investigation_success": "The Scavenger workbench has a comm unit tuned to Corp Sec frequencies. They have been selling information to Sarge -- locations of other survivor groups, supply cache coordinates. The Scavengers are not just opportunists. They are informants."
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 28,
+            "y": 14,
+            "width": 10,
+            "height": 8,
+            "room_type": "boss",
+            "connections": [1],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The orbital upload point. A communications relay tower at the jungle rim -- one of the original Biosphere-5 infrastructure nodes, still connected to the orbital antenna array on the dome's apex. The relay has been damaged by jungle overgrowth but its core systems are functional. Eli can interface directly, using synthetic neural architecture as both transmitter and encryption engine. But the upload takes time, the relay's power signature will be visible to every sensor in the habitat, and Sarge is not the only one watching.",
+                "read_aloud": "The relay tower rises from the jungle like a skeletal finger pointing at the dome above. Eli places both hands on the interface panel and closes their eyes. 'Uploading. Estimated time: four minutes. The signal will reach Earth in thirty-seven minutes after that. I suggest you make sure I have four minutes.' The relay's antenna array extends through a gap in the dome's surface. For the first time since you arrived on Ganymede, you can see actual stars.",
+                "enemies": [
+                    {"name": "Sarge -- Markus Heinlein", "hp": 25, "ac": 14, "attack": 6, "damage": "2d6", "count": 1, "notes": "Only appears if hostile. Skilled Corp Sec agent, infamous war veteran. Heavily armed. He wants the DATABASE destroyed -- not for Koloss, but because it contains his own war crimes from before Ganymede. His motivations are personal, not corporate.", "special": ["Tactical Veteran: Cannot be surprised; always acts first in initiative", "Suppressive Fire: Can pin one target per round"]},
+                    {"name": "Corp Sec Reinforcement", "hp": 8, "ac": 10, "attack": 2, "damage": "1d6", "count": 2, "notes": "Arrive with Sarge if hostile. Standard patrol equipment."}
+                ],
+                "event_triggers": [
+                    "Upload progress: Round 1 -- 25%. Round 2 -- 50%. Round 3 -- 75%. Round 4 -- 100%. Each round, a complication: Round 1 -- power fluctuation, someone must hold a bypass switch. Round 2 -- the PRDTR's signature appears on thermal, 400 meters and closing (Slaughter track advances). Round 3 -- Eli's voice changes, speaking in the dead researcher Dr. Vasquez's speech patterns, relaying data from the DATABASE involuntarily. Round 4 -- upload complete. Every comm unit in the habitat receives a burst header: 'KOLOSS INTERNAL MEMO: PROJECT BIOSPHERE EXPENDABLE POPULATION DIRECTIVE.'"
+                ]
+            }
+        }
+    }
+}

@@ -1,0 +1,71 @@
+{
+  "seed": 90003,
+  "width": 25,
+  "height": 25,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "exterior",
+    "theme": "GOTHIC",
+    "topology": "dungeon",
+    "description": "The rooftop approach to the Dimmer Sisters' house. Slate tiles slick with condensation, chimneys belching coal smoke, and a city that doesn't care what you're doing up here."
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 2,
+      "y": 2,
+      "width": 7,
+      "height": 6,
+      "room_type": "start",
+      "connections": [1],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The rooftop of the adjacent building. Slate tiles groan underfoot, slick with condensation from the canal fog below. A gap of perhaps six feet separates this roof from the Sisters' house. Dowler said the jump was easy. Dowler also weighs half what you do.",
+        "read_aloud": "You pull yourself onto the roof. The city spreads out below you -- a maze of chimneys and fog and gas-lamp halos. The Dimmer Sisters' house is right there, close enough to touch. The gap between rooftops is narrow but the drop is three stories to the alley below.",
+        "investigation_dc": 10,
+        "investigation_success": "Scratch marks on the slate tiles. Someone has crossed this gap before -- recently. Dowler's route checks out."
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 11,
+      "y": 2,
+      "width": 7,
+      "height": 6,
+      "room_type": "normal",
+      "connections": [0, 2],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The Sisters' rooftop. The tiles here are different -- darker, older, and faintly warm to the touch despite the night air. Iron weathervanes shaped like ravens perch at each corner, and you could swear one of them just turned to watch you.",
+        "perception_dc": 14,
+        "perception_success": "The weathervanes are Spirit Anchors -- old ones, pre-Unity War. They channel spectral energy into the house's ward network. Destroying one would create a gap in the wards, but the Sisters would know immediately."
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 11,
+      "y": 10,
+      "width": 7,
+      "height": 6,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 1,
+      "is_locked": true,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The attic window. It looks ordinary -- wooden frame, iron latch, old glass rippled with age. But the lock shimmers with a faint blue luminescence that has nothing to do with the gas lamps. This is a spirit ward, woven into the mechanism itself.",
+        "read_aloud": "The lock on the attic window shimmers with arcane energy. This is no ordinary lock. The metal feels wrong under your fingers -- too cold, and something inside it hums at a frequency that sets your teeth on edge.",
+        "lock_dc": 14,
+        "event_triggers": [
+          "The lock on the attic window shimmers with arcane energy. This is no ordinary lock."
+        ],
+        "investigation_dc": 12,
+        "investigation_success": "The ward is anchored to a glyph carved into the window frame's underside. A Whisper could disrupt it with electroplasm. A Lurk might bypass it by removing the entire frame. Brute force would shatter the ward -- and alert everything inside."
+      }
+    }
+  }
+}

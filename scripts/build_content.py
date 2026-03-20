@@ -46,18 +46,39 @@ try:
 except ImportError:
     # Fallback stubs if build_indices unavailable
     def discover_systems(vault_root: Path) -> dict:
+        """Fallback discover_systems — handles flat and group vault layouts.
+
+        Flat:  vault/<system>/SOURCE/*.pdf
+        Group: vault/<group>/<system>/SOURCE/*.pdf  (e.g. FITD/bitd)
+
+        Vault directory names that differ from canonical Codex system IDs are
+        normalised via the local mapping before being added to the result.
+        """
+        _DIR_TO_ID = {"Candela_Obscura": "candela", "CBR_PNK": "cbrpnk"}
         systems = {}
         if not vault_root.exists():
             return systems
+
+        def _collect(system_dir: Path) -> None:
+            src = system_dir / "SOURCE"
+            if not src.is_dir():
+                return
+            pdfs = sorted(src.rglob("*.pdf")) + sorted(src.rglob("*.PDF"))
+            unique = list(dict.fromkeys(pdfs))
+            if unique:
+                system_id = _DIR_TO_ID.get(system_dir.name, system_dir.name)
+                systems[system_id] = unique
+
         for d in sorted(vault_root.iterdir()):
             if not d.is_dir():
                 continue
-            src = d / "SOURCE"
-            if not src.is_dir():
-                continue
-            pdfs = sorted(src.rglob("*.pdf")) + sorted(src.rglob("*.PDF"))
-            if pdfs:
-                systems[d.name] = list(dict.fromkeys(pdfs))
+            if (d / "SOURCE").is_dir():
+                _collect(d)
+            else:
+                # Group directory — check children
+                for child in sorted(d.iterdir()):
+                    if child.is_dir() and (child / "SOURCE").is_dir():
+                        _collect(child)
         return systems
 
     def extract_pdf_text(pdf_path: Path) -> list:
@@ -136,6 +157,26 @@ def classify_chunk(
             "If no class feature found, return null.\n\n"
             "Text:\n{text}"
         ),
+        "locations": (
+            "Extract the location/place from this text as JSON. "
+            "Return ONLY a JSON object with keys: name, description, topology "
+            "(one of: settlement, dungeon, wilderness). "
+            "If no location found, return null.\n\n"
+            "Text:\n{text}"
+        ),
+        "npcs": (
+            "Extract the NPC/character from this text as JSON. "
+            "Return ONLY a JSON object with keys: name, role, description. "
+            "If no NPC found, return null.\n\n"
+            "Text:\n{text}"
+        ),
+        "traps": (
+            "Extract the trap/hazard mechanism from this text as JSON. "
+            "Return ONLY a JSON object with keys: name, trigger, dc_detect, "
+            "dc_disarm, damage, damage_type, description. "
+            "If no trap found, return null.\n\n"
+            "Text:\n{text}"
+        ),
     }
 
     prompt_template = prompts.get(content_type)
@@ -205,11 +246,66 @@ SYSTEM_PROFILES: Dict[str, dict] = {
         "feature_pattern": r"(?:Invocation|Infusion|Maneuver|Metamagic).*?(?:Prerequisite:|effect)",
         "loot_table_pattern": r"(?:Treasure|Hoard|Individual).*?(?:cp|sp|gp|pp)",
         "trap_pattern": r"(?:Trap|Hazard).*?(?:DC\s+\d+|damage)",
+        "npc_pattern": r"(?:NPC|Character|Personality).*?(?:role|occupation|description)",
+        "location_pattern": r"(?:Location|Area|Room|Ward|District).*?(?:description|features)",
+        "table_pattern": r"(?:d\d+|Table|Random|Roll).*?(?:\d+\.\s|\d+\s{2,})",
     },
     "stc": {
         "stat_block_pattern": r"Tier\s+\d+\s+(?:Minion|Rival|Boss).*?Health",
         "loot_pattern": r"(?:Sphere|Fabrial|Shardblade|Equipment)",
         "hazard_pattern": r"(?:Highstorm|Everstorm|Void|Chasm).*?(?:damage|DC)",
+        "npc_pattern": r"(?:NPC|Character|Bridgeman|Knight|Scholar)",
+        "location_pattern": r"(?:Location|City|Warcamp|Chasm|Plateau)",
+        "table_pattern": r"(?:d\d+|Table|Random|Roll).*?(?:\d+\.\s|\d+\s{2,})",
+    },
+    # ---- FITD systems -------------------------------------------------------
+    # Patterns are designed to find FITD-style narrative content: gangs/factions
+    # as stat-block equivalents, coin/items as loot, devil's bargains/entanglements
+    # as hazards, named contacts as NPCs, and district/terrain descriptions as locations.
+    "bitd": {
+        # FITD uses Tier + scale for adversaries; no HP/AC
+        "stat_block_pattern": r"(?:Tier\s+[IVX\d]+|Gang|Faction|Crew).*?(?:scale|strength|hold)",
+        "loot_pattern": r"(?:Coin|Stash|Score|Rep|Vault|Payoff|Fence)",
+        "hazard_pattern": r"(?:Entanglement|Heat|Wanted Level|Devil's Bargain|Consequence)",
+        "npc_pattern": r"(?:Contact|Ally|Rival|Friend|Enemy|NPC|Faction Leader)",
+        "location_pattern": r"(?:District|Ward|Den|Lair|The\s+[A-Z][a-z]+|Doskvol|Duskwall)",
+        "table_pattern": r"(?:d\d+|Table|Random|Roll|Downtime|Entanglement).*?(?:\d+\.\s|\d+\s{2,})",
+    },
+    "sav": {
+        # Scum and Villainy: ships/crews as adversaries, credits as loot
+        "stat_block_pattern": r"(?:Tier\s+[IVX\d]+|Ship|Crew|Gang|Squadron).*?(?:scale|power|hold)",
+        "loot_pattern": r"(?:Credit|Cred|Stash|Score|Cargo|Contraband|Haul)",
+        "hazard_pattern": r"(?:Wanted Level|Heat|Faction Trouble|Complication|Consequence|Patrol)",
+        "npc_pattern": r"(?:Contact|Ally|Rival|NPC|Faction\s+\w+|Captain|Commander|Agent)",
+        "location_pattern": r"(?:Planet|Station|System|Sector|Port|The\s+[A-Z][a-z]+|Procyon)",
+        "table_pattern": r"(?:d\d+|Table|Random|Roll|Downtime|Entanglement).*?(?:\d+\.\s|\d+\s{2,})",
+    },
+    "bob": {
+        # Band of Blades: military campaign, soldiers and commanders
+        "stat_block_pattern": r"(?:Broken|Chosen|Legion|Undead|Enemy\s+\w+).*?(?:Threat|Tier|Scale)",
+        "loot_pattern": r"(?:Supply|Morale|Loot|Equipment|Spoils|Resources|Food)",
+        "hazard_pattern": r"(?:Mission|Assault|Skirmish|Bleed|Pressure|Danger|Hazard)",
+        "npc_pattern": r"(?:Soldier|Commander|Specialist|Officer|NPC|Named\s+\w+)",
+        "location_pattern": r"(?:Camp|Fort|Road|Village|Retreat|Territory|Eastern\s+Kingdoms)",
+        "table_pattern": r"(?:d\d+|Table|Random|Roll|Assignment|Mission).*?(?:\d+\.\s|\d+\s{2,})",
+    },
+    "candela": {
+        # Candela Obscura: investigators vs. bleed/gilded/horrors
+        "stat_block_pattern": r"(?:Monster|Horror|Threat|Adversary|Creature|Specter|Gilded)",
+        "loot_pattern": r"(?:Candle|Wick|Token|Evidence|Artifact|Relic|Device)",
+        "hazard_pattern": r"(?:Bleed|Scar|Mark|Condition|Gilded\s+Effect|Haunt|Anomaly)",
+        "npc_pattern": r"(?:Circle\s+Member|Contact|Witness|NPC|Inspector|Archivist|Patron)",
+        "location_pattern": r"(?:District|Quarter|Salon|Manor|Library|Newfaire|The\s+[A-Z][a-z]+)",
+        "table_pattern": r"(?:d\d+|Table|Random|Roll|Investigation).*?(?:\d+\.\s|\d+\s{2,})",
+    },
+    "cbrpnk": {
+        # CBR+PNK: corpo-dystopia, runners vs. megacorp security
+        "stat_block_pattern": r"(?:Threat|Corp\s+Security|Agent|Hunter|Drone|Construct).*?(?:Tier|Scale|Harm)",
+        "loot_pattern": r"(?:Credit|Cred|Gear|Cyberware|Weapon|Implant|Data\s+Core)",
+        "hazard_pattern": r"(?:Heat|Exposure|Pursuit|Corporate\s+Response|Consequence|Feedback)",
+        "npc_pattern": r"(?:Contact|Fixer|Corpo|NPC|Runner|Hacker|Dealer)",
+        "location_pattern": r"(?:District|Sector|Zone|Hub|Megaplex|The\s+[A-Z][a-z]+|Corp\s+Tower)",
+        "table_pattern": r"(?:d\d+|Table|Random|Roll|Contract|Run).*?(?:\d+\.\s|\d+\s{2,})",
     },
 }
 
@@ -381,14 +477,72 @@ def extract_loot(
             "entries": 0,
             "status": "skipped (exists)",
         }
-    # Loot extraction from PDFs requires significant regex per system.
-    # For systems without a profile, skip.
+
+    profile = SYSTEM_PROFILES.get(system_id, {})
+    pattern = profile.get("loot_table_pattern") or profile.get("loot_pattern")
+    if not pattern:
+        return {
+            "system_id": system_id,
+            "content_type": "loot",
+            "entries": 0,
+            "status": "no profile",
+        }
+
+    regex = re.compile(pattern, re.IGNORECASE | re.DOTALL)
+    entries_by_tier: Dict[int, list] = {1: [], 2: [], 3: [], 4: []}
+    seen_names: set = set()
+
+    for pdf_path in pdf_paths:
+        try:
+            pages = extract_pdf_text(pdf_path)
+        except Exception:
+            continue
+        for page_text in pages:
+            for chunk in chunk_text(page_text, chunk_size=600, overlap=80):
+                if not regex.search(chunk):
+                    continue
+                entry = _regex_extract_loot(chunk, system_id)
+                if not entry and not no_llm:
+                    entry = classify_chunk(chunk, "loot", no_llm=no_llm)
+                if entry and entry.get("name") and entry["name"] not in seen_names:
+                    seen_names.add(entry["name"])
+                    gp = entry.get("value_gp", entry.get("value", 0))
+                    try:
+                        gp = int(gp)
+                    except (TypeError, ValueError):
+                        gp = 0
+                    tier = 1 if gp <= 50 else 2 if gp <= 500 else 3 if gp <= 5000 else 4
+                    entry["tier"] = tier
+                    entries_by_tier[tier].append(entry)
+
+    total = sum(len(v) for v in entries_by_tier.values())
+    if total > 0:
+        out_path.parent.mkdir(parents=True, exist_ok=True)
+        data = {
+            "version": 1,
+            "source": f"Extracted from vault PDFs ({len(pdf_paths)} files)",
+            "tiers": {str(k): v for k, v in entries_by_tier.items()},
+        }
+        out_path.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
+
     return {
         "system_id": system_id,
         "content_type": "loot",
-        "entries": 0,
-        "status": "no profile" if system_id not in SYSTEM_PROFILES else "skipped (no PDF loot tables detected)",
+        "entries": total,
+        "status": "ok" if total > 0 else "no entries found",
     }
+
+
+def _regex_extract_loot(chunk: str, system_id: str) -> Optional[dict]:
+    """Try regex extraction of a loot item from text."""
+    name_match = re.search(r'^([A-Z][a-zA-Z\'-]+(?:[ ][A-Za-z\'-]+)*)', chunk)
+    gp_match = re.search(r'(\d[\d,]*)\s*gp', chunk, re.IGNORECASE)
+    if name_match and gp_match:
+        return {
+            "name": name_match.group(1).strip(),
+            "value_gp": int(gp_match.group(1).replace(",", "")),
+        }
+    return None
 
 
 def extract_hazards(
@@ -407,12 +561,75 @@ def extract_hazards(
             "entries": 0,
             "status": "skipped (exists)",
         }
+
+    profile = SYSTEM_PROFILES.get(system_id, {})
+    pattern = profile.get("trap_pattern") or profile.get("hazard_pattern")
+    if not pattern:
+        return {
+            "system_id": system_id,
+            "content_type": "hazards",
+            "entries": 0,
+            "status": "no profile",
+        }
+
+    regex = re.compile(pattern, re.IGNORECASE | re.DOTALL)
+    entries_by_tier: Dict[int, list] = {1: [], 2: [], 3: [], 4: []}
+    seen_names: set = set()
+
+    for pdf_path in pdf_paths:
+        try:
+            pages = extract_pdf_text(pdf_path)
+        except Exception:
+            continue
+        for page_text in pages:
+            for chunk in chunk_text(page_text, chunk_size=600, overlap=80):
+                if not regex.search(chunk):
+                    continue
+                entry = _regex_extract_hazard(chunk, system_id)
+                if not entry and not no_llm:
+                    entry = classify_chunk(chunk, "hazards", no_llm=no_llm)
+                if entry and entry.get("name") and entry["name"] not in seen_names:
+                    seen_names.add(entry["name"])
+                    dc = entry.get("dc", 0)
+                    try:
+                        dc = int(dc)
+                    except (TypeError, ValueError):
+                        dc = 0
+                    tier = 1 if dc <= 12 else 2 if dc <= 15 else 3 if dc <= 18 else 4
+                    entry["tier"] = tier
+                    entries_by_tier[tier].append(entry)
+
+    total = sum(len(v) for v in entries_by_tier.values())
+    if total > 0:
+        out_path.parent.mkdir(parents=True, exist_ok=True)
+        data = {
+            "version": 1,
+            "source": f"Extracted from vault PDFs ({len(pdf_paths)} files)",
+            "tiers": {str(k): v for k, v in entries_by_tier.items()},
+        }
+        out_path.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
+
     return {
         "system_id": system_id,
         "content_type": "hazards",
-        "entries": 0,
-        "status": "no profile" if system_id not in SYSTEM_PROFILES else "skipped (no PDF hazard tables detected)",
+        "entries": total,
+        "status": "ok" if total > 0 else "no entries found",
     }
+
+
+def _regex_extract_hazard(chunk: str, system_id: str) -> Optional[dict]:
+    """Try regex extraction of a hazard/trap from text."""
+    name_match = re.search(r'^([A-Z][a-zA-Z\'-]+(?:[ ][A-Za-z\'-]+)*)', chunk)
+    dc_match = re.search(r'DC\s+(\d+)', chunk, re.IGNORECASE)
+    dmg_match = re.search(r'(\d+d\d+(?:\s*\+\s*\d+)?)', chunk)
+    if name_match and (dc_match or dmg_match):
+        return {
+            "name": name_match.group(1).strip(),
+            "dc": int(dc_match.group(1)) if dc_match else 10,
+            "damage": dmg_match.group(1) if dmg_match else "",
+            "damage_type": "",
+        }
+    return None
 
 
 def extract_magic_items(
@@ -536,11 +753,331 @@ def extract_features(
             "status": "not applicable",
         }
 
+    profile = SYSTEM_PROFILES.get(system_id, {})
+    pattern = profile.get("feature_pattern")
+    if not pattern:
+        return {
+            "system_id": system_id,
+            "content_type": "features",
+            "entries": 0,
+            "status": "no profile",
+        }
+
+    regex = re.compile(pattern, re.IGNORECASE | re.DOTALL)
+    features: list = []
+    seen: set = set()
+
+    for pdf_path in pdf_paths:
+        try:
+            pages = extract_pdf_text(pdf_path)
+        except Exception:
+            continue
+        for page_text in pages:
+            for chunk in chunk_text(page_text, chunk_size=600, overlap=80):
+                if not regex.search(chunk):
+                    continue
+                entry = _regex_extract_feature(chunk)
+                if not entry and not no_llm:
+                    entry = classify_chunk(chunk, "features", no_llm=no_llm)
+                if entry and entry.get("name") and entry["name"] not in seen:
+                    seen.add(entry["name"])
+                    features.append(entry)
+
+    if features:
+        out_path.parent.mkdir(parents=True, exist_ok=True)
+        data = {
+            "version": 1,
+            "source": f"Extracted from vault PDFs ({len(pdf_paths)} files)",
+            "features": features,
+        }
+        out_path.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
+
     return {
         "system_id": system_id,
         "content_type": "features",
-        "entries": 0,
-        "status": "skipped (no PDF feature blocks detected)",
+        "entries": len(features),
+        "status": "ok" if features else "no entries found",
+    }
+
+
+def _regex_extract_feature(chunk: str) -> Optional[dict]:
+    """Try regex extraction of a class feature from text."""
+    name_match = re.search(r'^([A-Z][a-zA-Z\'-]+(?:[ ][A-Za-z\'-]+)*)', chunk)
+    prereq_match = re.search(r'[Pp]rerequisite:\s*(.+?)(?:\n|$)', chunk)
+    if name_match:
+        return {
+            "name": name_match.group(1).strip(),
+            "prerequisite": prereq_match.group(1).strip() if prereq_match else "",
+            "effect": chunk[:300].strip(),
+        }
+    return None
+
+
+def extract_locations(
+    system_id: str,
+    pdf_paths: List[Path],
+    *,
+    no_llm: bool = False,
+    force: bool = False,
+) -> dict:
+    """Extract location/place entries from PDFs."""
+    out_path = CONFIG_ROOT / "locations" / f"{system_id}.json"
+    if out_path.exists() and not force:
+        return {
+            "system_id": system_id,
+            "content_type": "locations",
+            "entries": 0,
+            "status": "skipped (exists)",
+        }
+
+    profile = SYSTEM_PROFILES.get(system_id, {})
+    pattern = profile.get("location_pattern")
+    if not pattern:
+        return {
+            "system_id": system_id,
+            "content_type": "locations",
+            "entries": 0,
+            "status": "no profile",
+        }
+
+    regex = re.compile(pattern, re.IGNORECASE | re.DOTALL)
+    locations: list = []
+    seen: set = set()
+
+    for pdf_path in pdf_paths:
+        try:
+            pages = extract_pdf_text(pdf_path)
+        except Exception:
+            continue
+        for page_text in pages:
+            for chunk in chunk_text(page_text, chunk_size=600, overlap=80):
+                if regex.search(chunk):
+                    entry = classify_chunk(chunk, "locations", no_llm=no_llm)
+                    if entry and entry.get("name") and entry["name"] not in seen:
+                        seen.add(entry["name"])
+                        locations.append(entry)
+
+    if locations:
+        out_path.parent.mkdir(parents=True, exist_ok=True)
+        data = {
+            "version": 1,
+            "source": f"Extracted from vault PDFs ({len(pdf_paths)} files)",
+            "locations": locations,
+        }
+        out_path.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
+
+    return {
+        "system_id": system_id,
+        "content_type": "locations",
+        "entries": len(locations),
+        "status": "ok" if locations else "no entries found",
+    }
+
+
+def extract_npcs(
+    system_id: str,
+    pdf_paths: List[Path],
+    *,
+    no_llm: bool = False,
+    force: bool = False,
+) -> dict:
+    """Extract NPC entries from PDFs."""
+    out_path = CONFIG_ROOT / "npcs" / f"{system_id}.json"
+    if out_path.exists() and not force:
+        return {
+            "system_id": system_id,
+            "content_type": "npcs",
+            "entries": 0,
+            "status": "skipped (exists)",
+        }
+
+    profile = SYSTEM_PROFILES.get(system_id, {})
+    pattern = profile.get("npc_pattern")
+    if not pattern:
+        return {
+            "system_id": system_id,
+            "content_type": "npcs",
+            "entries": 0,
+            "status": "no profile",
+        }
+
+    regex = re.compile(pattern, re.IGNORECASE | re.DOTALL)
+    npcs: list = []
+    seen: set = set()
+
+    for pdf_path in pdf_paths:
+        try:
+            pages = extract_pdf_text(pdf_path)
+        except Exception:
+            continue
+        for page_text in pages:
+            for chunk in chunk_text(page_text, chunk_size=600, overlap=80):
+                if regex.search(chunk):
+                    entry = classify_chunk(chunk, "npcs", no_llm=no_llm)
+                    if entry and entry.get("name") and entry["name"] not in seen:
+                        seen.add(entry["name"])
+                        npcs.append(entry)
+
+    if npcs:
+        out_path.parent.mkdir(parents=True, exist_ok=True)
+        data = {
+            "version": 1,
+            "source": f"Extracted from vault PDFs ({len(pdf_paths)} files)",
+            "named_npcs": npcs,
+        }
+        out_path.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
+
+    return {
+        "system_id": system_id,
+        "content_type": "npcs",
+        "entries": len(npcs),
+        "status": "ok" if npcs else "no entries found",
+    }
+
+
+def extract_traps(
+    system_id: str,
+    pdf_paths: List[Path],
+    *,
+    no_llm: bool = False,
+    force: bool = False,
+) -> dict:
+    """Extract trap entries from PDFs."""
+    out_path = CONFIG_ROOT / "traps" / f"{system_id}.json"
+    if out_path.exists() and not force:
+        return {
+            "system_id": system_id,
+            "content_type": "traps",
+            "entries": 0,
+            "status": "skipped (exists)",
+        }
+
+    profile = SYSTEM_PROFILES.get(system_id, {})
+    pattern = profile.get("trap_pattern")
+    if not pattern:
+        return {
+            "system_id": system_id,
+            "content_type": "traps",
+            "entries": 0,
+            "status": "no profile",
+        }
+
+    regex = re.compile(pattern, re.IGNORECASE | re.DOTALL)
+    traps: list = []
+    seen: set = set()
+
+    for pdf_path in pdf_paths:
+        try:
+            pages = extract_pdf_text(pdf_path)
+        except Exception:
+            continue
+        for page_text in pages:
+            for chunk in chunk_text(page_text, chunk_size=600, overlap=80):
+                if regex.search(chunk):
+                    entry = classify_chunk(chunk, "traps", no_llm=no_llm)
+                    if entry and entry.get("name") and entry["name"] not in seen:
+                        seen.add(entry["name"])
+                        traps.append(entry)
+
+    if traps:
+        out_path.parent.mkdir(parents=True, exist_ok=True)
+        data = {
+            "version": 1,
+            "source": f"Extracted from vault PDFs ({len(pdf_paths)} files)",
+            "traps": traps,
+        }
+        out_path.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
+
+    return {
+        "system_id": system_id,
+        "content_type": "traps",
+        "entries": len(traps),
+        "status": "ok" if traps else "no entries found",
+    }
+
+
+def extract_tables(
+    system_id: str,
+    pdf_paths: List[Path],
+    *,
+    no_llm: bool = False,
+    force: bool = False,
+) -> dict:
+    """Extract random/generation tables from PDFs.
+
+    Searches for d100/d20/d12/d8/d6 roll tables and structured generation
+    tables.  Results are written to config/tables/{system_id}_extracted.json.
+    """
+    out_path = CONFIG_ROOT / "tables" / f"{system_id}_extracted.json"
+    if out_path.exists() and not force:
+        return {
+            "system_id": system_id,
+            "content_type": "tables",
+            "entries": 0,
+            "status": "skipped (exists)",
+        }
+
+    profile = SYSTEM_PROFILES.get(system_id, {})
+    pattern = profile.get("table_pattern")
+    if not pattern:
+        return {
+            "system_id": system_id,
+            "content_type": "tables",
+            "entries": 0,
+            "status": "no profile",
+        }
+
+    regex = re.compile(pattern, re.IGNORECASE | re.DOTALL)
+    # Detect d-roll tables: "d100", "d20", "d12", "d8", "d6"
+    dice_regex = re.compile(r'\b[dD](\d+)\b')
+    row_regex = re.compile(r'^\s*(\d+(?:\s*[-–]\s*\d+)?)\s+(.+)$', re.MULTILINE)
+
+    tables: Dict[str, list] = {}
+    table_count = 0
+
+    for pdf_path in pdf_paths:
+        try:
+            pages = extract_pdf_text(pdf_path)
+        except Exception:
+            continue
+
+        for page_idx, page_text in enumerate(pages):
+            for chunk in chunk_text(page_text, chunk_size=1200, overlap=150):
+                if not regex.search(chunk) and not dice_regex.search(chunk):
+                    continue
+                # Extract table rows
+                rows = row_regex.findall(chunk)
+                if len(rows) >= 3:  # At least 3 rows to qualify as a table
+                    # Try to find table title
+                    title_match = re.search(
+                        r'(?:Table[:\s]+)?([A-Z][A-Za-z\s]+?)(?:\n|d\d)',
+                        chunk,
+                    )
+                    title = title_match.group(1).strip() if title_match else f"table_p{page_idx}_{table_count}"
+                    table_key = re.sub(r'\s+', '_', title.lower())[:40]
+
+                    entries = []
+                    for roll, desc in rows:
+                        entries.append({"roll": roll.strip(), "result": desc.strip()})
+
+                    if table_key not in tables:
+                        tables[table_key] = entries
+                        table_count += 1
+
+    if tables:
+        out_path.parent.mkdir(parents=True, exist_ok=True)
+        data = {
+            "version": 1,
+            "source": f"Auto-extracted from vault PDFs ({len(pdf_paths)} files)",
+            "tables": tables,
+        }
+        out_path.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
+
+    return {
+        "system_id": system_id,
+        "content_type": "tables",
+        "entries": table_count,
+        "status": "ok" if table_count > 0 else "no tables found",
     }
 
 
@@ -554,6 +1091,10 @@ EXTRACTORS: Dict[str, Callable] = {
     "hazards": extract_hazards,
     "magic_items": extract_magic_items,
     "features": extract_features,
+    "locations": extract_locations,
+    "npcs": extract_npcs,
+    "traps": extract_traps,
+    "tables": extract_tables,
 }
 
 

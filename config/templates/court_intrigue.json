@@ -1,0 +1,110 @@
+{
+  "template_id": "court_intrigue",
+  "display_name": "The Court Intrigue",
+  "description": "Navigate the halls of power: attend court, meet the factions, uncover the scheme, survive the betrayal, shape the outcome.",
+  "version": 1,
+  "compatible_engine_types": ["fitd", "spatial", "standalone"],
+  "scenes": [
+    {
+      "scene_id": "audience",
+      "role": "hub",
+      "display_name_template": "The {audience_location}",
+      "topology": "settlement",
+      "room_type_hint": "town_square",
+      "tier_offset": 0,
+      "npc_slots": [
+        {"role": "quest_giver", "required": true},
+        {"role": "guard", "required": true},
+        {"role": "informant", "required": false}
+      ],
+      "enemy_slots": [],
+      "loot_slots": [],
+      "services": ["audience", "petition"],
+      "event_triggers": ["The ruler grants you an audience. Choose your words carefully."],
+      "room_count": 4
+    },
+    {
+      "scene_id": "factions",
+      "role": "recon",
+      "display_name_template": "The {factions_location}",
+      "topology": "settlement",
+      "room_type_hint": null,
+      "tier_offset": 0,
+      "npc_slots": [
+        {"role": "informant", "required": true},
+        {"role": "merchant", "required": true},
+        {"role": "informant", "required": false},
+        {"role": "ally", "required": false}
+      ],
+      "enemy_slots": [],
+      "loot_slots": [{"count": 1}],
+      "services": ["drinks", "rumors", "bribes"],
+      "event_triggers": ["Every faction wants something. The question is what you're willing to trade."],
+      "room_count": 5
+    },
+    {
+      "scene_id": "scheme",
+      "role": "approach",
+      "display_name_template": "The {scheme_location}",
+      "topology": "dungeon",
+      "room_type_hint": null,
+      "tier_offset": 1,
+      "npc_slots": [
+        {"role": "guard", "required": true}
+      ],
+      "enemy_slots": [
+        {"count": 2, "role": "guardian"}
+      ],
+      "loot_slots": [{"count": 1}],
+      "services": [],
+      "event_triggers": ["You discover the conspiracy. Someone powerful is behind this."],
+      "room_count": 4
+    },
+    {
+      "scene_id": "betrayal",
+      "role": "boss",
+      "display_name_template": "The {betrayal_location}",
+      "topology": "dungeon",
+      "room_type_hint": null,
+      "tier_offset": 2,
+      "npc_slots": [],
+      "enemy_slots": [
+        {"count": 2, "role": "guardian"},
+        {"count": 1, "role": "boss", "is_boss": true}
+      ],
+      "loot_slots": [{"count": 1}],
+      "services": [],
+      "event_triggers": ["The mask falls. An ally reveals themselves as the true enemy."],
+      "room_count": 3
+    },
+    {
+      "scene_id": "resolution",
+      "role": "debrief",
+      "display_name_template": "The {resolution_location}",
+      "topology": "settlement",
+      "room_type_hint": "town_square",
+      "tier_offset": 0,
+      "npc_slots": [
+        {"role": "quest_giver", "required": true},
+        {"role": "ally", "required": false}
+      ],
+      "enemy_slots": [],
+      "loot_slots": [{"count": 2}],
+      "services": ["payment", "titles", "favors"],
+      "event_triggers": ["The court reconvenes. Your actions have reshaped the balance of power."],
+      "room_count": 3
+    }
+  ],
+  "chapter_structure": [
+    {"chapter_id": "arrival", "display_name": "Arrival at Court", "scenes": ["audience", "factions"]},
+    {"chapter_id": "shadow", "display_name": "Shadow and Steel", "scenes": ["scheme", "betrayal"]},
+    {"chapter_id": "judgment", "display_name": "Judgment", "scenes": ["resolution"]}
+  ],
+  "name_pools": {
+    "audience_location": ["Throne Room", "Grand Hall", "Court Chamber", "Royal Gallery", "Audience Hall", "High Seat"],
+    "factions_location": ["Noble Quarter", "Banquet Hall", "Garden Terrace", "Faction Wing", "Private Salon", "Embassy Row"],
+    "scheme_location": ["Secret Passage", "Hidden Archive", "Spy's Alcove", "Sealed Vault", "Poison Garden", "Underground Meeting"],
+    "betrayal_location": ["Ambush Chamber", "Traitor's Quarters", "Midnight Balcony", "Ritual Room", "War Room Coup", "Throne Room Clash"],
+    "resolution_location": ["Judgment Hall", "Victory Feast", "Treaty Table", "Coronation Chamber", "Memorial Garden", "New Court"]
+  }
+}

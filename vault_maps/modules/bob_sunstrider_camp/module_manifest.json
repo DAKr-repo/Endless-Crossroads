@@ -1,0 +1,42 @@
+{
+  "module_id": "bob_sunstrider_camp",
+  "display_name": "Sunstrider Camp",
+  "system_id": "bob",
+  "source_type": "community_authored",
+  "starting_location": "camp_hearth",
+  "recommended_levels": {"min": 1, "max": 5},
+  "chapters": [
+    {
+      "chapter_id": "reclaiming_the_grove",
+      "display_name": "Reclaiming the Grove",
+      "order": 1,
+      "zones": [
+        {
+          "zone_id": "camp_hearth",
+          "blueprint": "camp_hearth.json",
+          "topology": "settlement",
+          "theme": "STONE",
+          "entry_trigger": "module_start",
+          "exit_trigger": "player_choice"
+        },
+        {
+          "zone_id": "sacred_grove",
+          "blueprint": "sacred_grove.json",
+          "topology": "dungeon",
+          "theme": "GOTHIC",
+          "entry_trigger": "player_choice",
+          "exit_trigger": "all_rooms"
+        },
+        {
+          "zone_id": "ritual_site",
+          "blueprint": "ritual_site.json",
+          "topology": "dungeon",
+          "theme": "GOTHIC",
+          "entry_trigger": "player_choice",
+          "exit_trigger": "boss_defeated"
+        }
+      ]
+    }
+  ],
+  "freeform_zones": []
+}

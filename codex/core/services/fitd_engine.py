@@ -20,7 +20,7 @@ entirely new code with no existing overlap.
 import random
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import Optional
+from typing import Dict, Optional
 
 
 # =========================================================================
@@ -268,6 +268,232 @@ def format_roll_result(result: FITDResult) -> str:
         f"Dice: [{dice_str}] -> {outcome_label}\n"
         f"Position: {result.position.value} | Effect: {result.effect.value}"
     )
+
+
+# =========================================================================
+# FORTUNE ROLL (WO-P1)
+# =========================================================================
+
+@dataclass
+class FortuneResult:
+    """Outcome of a FITD fortune roll (no position/effect context)."""
+    outcome: str       # "bad", "mixed", "good", "crit"
+    highest: int
+    all_dice: list[int]
+
+
+@dataclass
+class FITDFortuneRoll:
+    """Fortune roll: d6 pool with no position/effect.
+
+    Used for info gathering, random events, off-screen actions, etc.
+    If dice_count <= 0, rolls 2d6 and takes the lowest (disadvantage).
+    Tiers: 1-3 = "bad", 4-5 = "mixed", 6 = "good", 2+ sixes = "crit".
+    """
+    dice_count: int
+
+    def roll(self, rng: Optional[random.Random] = None) -> FortuneResult:
+        """Execute the fortune roll.
+
+        Args:
+            rng: Optional seeded Random instance for deterministic tests.
+
+        Returns:
+            FortuneResult with outcome, highest die, and all dice.
+        """
+        _rng = rng or random.Random()
+        if self.dice_count <= 0:
+            # Zero-dice: roll 2d6 take lowest
+            dice = sorted([_rng.randint(1, 6) for _ in range(2)])
+            highest = dice[0]
+        else:
+            dice = [_rng.randint(1, 6) for _ in range(self.dice_count)]
+            highest = max(dice)
+
+        sixes = dice.count(6)
+        if sixes >= 2:
+            outcome = "crit"
+        elif highest == 6:
+            outcome = "good"
+        elif highest >= 4:
+            outcome = "mixed"
+        else:
+            outcome = "bad"
+
+        return FortuneResult(outcome=outcome, highest=highest, all_dice=dice)
+
+
+def format_fortune_result(result: FortuneResult) -> str:
+    """Format a FortuneResult into a human-readable string.
+
+    Args:
+        result: FortuneResult from FITDFortuneRoll.roll().
+
+    Returns:
+        e.g. "Fortune: [3, 5] -> MIXED"
+    """
+    dice_str = ", ".join(str(d) for d in result.all_dice)
+    return f"Fortune: [{dice_str}] -> {result.outcome.upper()}"
+
+
+# =========================================================================
+# RESISTANCE ROLL (WO-P1)
+# =========================================================================
+
+def resistance_roll(
+    attribute_dice: int,
+    stress_clock: Optional[StressClock] = None,
+    rng: Optional[random.Random] = None,
+) -> dict:
+    """Roll resistance and optionally push stress onto a StressClock.
+
+    Cost = 6 - highest die (minimum 0 on a crit of 2+ sixes).
+
+    Args:
+        attribute_dice: Number of d6s in the pool. 0 or less = 2d6 take lowest.
+        stress_clock: Optional StressClock to push the cost onto.
+        rng: Optional seeded Random for deterministic tests.
+
+    Returns:
+        Dict with: dice, highest, stress_cost, crit (bool), push_result.
+    """
+    _rng = rng or random.Random()
+    if attribute_dice <= 0:
+        dice = sorted([_rng.randint(1, 6) for _ in range(2)])
+        highest = dice[0]
+    else:
+        dice = [_rng.randint(1, 6) for _ in range(attribute_dice)]
+        highest = max(dice)
+
+    sixes = dice.count(6)
+    if sixes >= 2:
+        stress_cost = 0   # Crit: no stress
+    else:
+        stress_cost = 6 - highest
+
+    push_result = None
+    if stress_clock and stress_cost > 0:
+        push_result = stress_clock.push(stress_cost)
+
+    return {
+        "dice": dice,
+        "highest": highest,
+        "stress_cost": stress_cost,
+        "crit": sixes >= 2,
+        "push_result": push_result,
+    }
+
+
+# =========================================================================
+# GATHER INFORMATION (WO-P1)
+# =========================================================================
+
+def gather_information(
+    action_dots: int,
+    question: str = "",
+    rng: Optional[random.Random] = None,
+) -> dict:
+    """Thin wrapper on FITDActionRoll for structured information gathering.
+
+    Always uses Position.CONTROLLED and Effect.STANDARD — info gathering
+    is not directly dangerous.
+
+    Args:
+        action_dots: Action rating dots for the chosen action.
+        question: The question being investigated (narrative context).
+        rng: Optional seeded Random for deterministic tests.
+
+    Returns:
+        Dict with: outcome, dice, highest, quality (narrative string), question.
+    """
+    roll = FITDActionRoll(
+        dice_count=action_dots,
+        position=Position.CONTROLLED,
+        effect=Effect.STANDARD,
+    )
+    result = roll.roll(rng)
+    quality_map: Dict[str, str] = {
+        "failure": "nothing useful",
+        "mixed": "partial/incomplete",
+        "success": "good detail",
+        "critical": "exceptional detail + extra",
+    }
+    return {
+        "outcome": result.outcome,
+        "dice": result.all_dice,
+        "highest": result.highest,
+        "quality": quality_map.get(result.outcome, "unknown"),
+        "question": question,
+    }
+
+
+# =========================================================================
+# CONSEQUENCE TABLE (WO-P1)
+# =========================================================================
+
+# Default consequence types keyed by position -> outcome
+CONSEQUENCE_TYPES: Dict[str, Dict[str, list]] = {
+    "controlled": {
+        "failure": ["reduced effect"],
+        "mixed": ["reduced effect", "complication"],
+    },
+    "risky": {
+        "failure": ["complication", "harm"],
+        "mixed": ["complication", "reduced effect", "worse position"],
+    },
+    "desperate": {
+        "failure": ["severe harm", "complication", "worse position", "lost opportunity"],
+        "mixed": ["complication", "harm", "worse position"],
+    },
+}
+
+
+@dataclass
+class ConsequenceTable:
+    """Position x outcome -> consequence types.
+
+    Per-system overrides are applied on top of the defaults via the
+    ``overrides`` dict.  Entries in overrides fully replace (not extend)
+    the default list for that position/outcome combination.
+    """
+    overrides: Dict[str, Dict[str, list]] = field(default_factory=dict)
+
+    def get_consequences(self, position: str, outcome: str) -> list:
+        """Return consequence type list for the given position/outcome pair.
+
+        Args:
+            position: "controlled", "risky", or "desperate".
+            outcome: "failure", "mixed", "success", "critical".
+
+        Returns:
+            List of consequence type strings (may be empty for success/crit).
+        """
+        position = position.lower()
+        outcome = outcome.lower()
+        if position in self.overrides and outcome in self.overrides[position]:
+            return list(self.overrides[position][outcome])
+        base = CONSEQUENCE_TYPES.get(position, {})
+        return list(base.get(outcome, []))
+
+    def to_dict(self) -> dict:
+        """Serialize to JSON-safe dict.
+
+        Returns:
+            Dict with 'overrides' key.
+        """
+        return {"overrides": self.overrides}
+
+    @classmethod
+    def from_dict(cls, data: dict) -> "ConsequenceTable":
+        """Restore from a previously serialized dict.
+
+        Args:
+            data: Dict from to_dict().
+
+        Returns:
+            ConsequenceTable instance.
+        """
+        return cls(overrides=data.get("overrides", {}))
 
 
 # Engine registration

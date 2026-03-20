@@ -1,34 +1,83 @@
 {
   "version": 1,
-  "source": "DMG + SRD (baseline from hardcoded pools)",
+  "source": "DMG + SRD + PHB Equipment Tables + XGtE Downtime Treasures",
   "tiers": {
     "1": [
       {"name": "Potion of Healing", "rarity": "common", "value_gp": 50, "source": "DMG p.188"},
       {"name": "Shortsword +1", "rarity": "uncommon", "value_gp": 500, "source": "DMG p.213"},
       {"name": "50 gp", "rarity": "currency", "value_gp": 50, "source": "SRD"},
       {"name": "Scroll of Shield", "rarity": "common", "value_gp": 25, "source": "DMG p.200"},
-      {"name": "Rope of Climbing", "rarity": "uncommon", "value_gp": 500, "source": "DMG p.197"}
+      {"name": "Rope of Climbing", "rarity": "uncommon", "value_gp": 500, "source": "DMG p.197"},
+      {"name": "Chain Shirt", "rarity": "common", "value_gp": 50, "source": "PHB p.145"},
+      {"name": "Scale Mail", "rarity": "common", "value_gp": 50, "source": "PHB p.145"},
+      {"name": "Shield", "rarity": "common", "value_gp": 10, "source": "PHB p.145"},
+      {"name": "Scroll of Cure Wounds", "rarity": "common", "value_gp": 25, "source": "DMG p.200"},
+      {"name": "Potion of Climbing", "rarity": "common", "value_gp": 50, "source": "DMG p.187"},
+      {"name": "Silvered Shortsword", "rarity": "common", "value_gp": 110, "source": "PHB p.148"},
+      {"name": "Driftglobe", "rarity": "uncommon", "value_gp": 200, "source": "DMG p.166"},
+      {"name": "Gold Ring", "rarity": "common", "value_gp": 25, "source": "DMG p.135"},
+      {"name": "Silk Bolt", "rarity": "common", "value_gp": 15, "source": "PHB p.157"},
+      {"name": "Fine Wine (Cask)", "rarity": "common", "value_gp": 10, "source": "PHB p.158"},
+      {"name": "Ivory Statuette", "rarity": "common", "value_gp": 40, "source": "DMG p.135"},
+      {"name": "Spyglass", "rarity": "common", "value_gp": 100, "source": "PHB p.150"},
+      {"name": "25 gp", "rarity": "currency", "value_gp": 25, "source": "SRD"}
     ],
     "2": [
       {"name": "Potion of Greater Healing", "rarity": "uncommon", "value_gp": 150, "source": "DMG p.188"},
       {"name": "Longsword +1", "rarity": "uncommon", "value_gp": 500, "source": "DMG p.213"},
       {"name": "200 gp", "rarity": "currency", "value_gp": 200, "source": "SRD"},
       {"name": "Wand of Magic Missiles", "rarity": "uncommon", "value_gp": 500, "source": "DMG p.211"},
-      {"name": "Cloak of Protection", "rarity": "uncommon", "value_gp": 500, "source": "DMG p.159"}
+      {"name": "Cloak of Protection", "rarity": "uncommon", "value_gp": 500, "source": "DMG p.159"},
+      {"name": "Bag of Holding", "rarity": "uncommon", "value_gp": 500, "source": "DMG p.153"},
+      {"name": "Boots of Elvenkind", "rarity": "uncommon", "value_gp": 500, "source": "DMG p.155"},
+      {"name": "Gauntlets of Ogre Power", "rarity": "uncommon", "value_gp": 1000, "source": "DMG p.171"},
+      {"name": "Scroll of Fireball", "rarity": "uncommon", "value_gp": 200, "source": "DMG p.200"},
+      {"name": "Pearl Necklace", "rarity": "uncommon", "value_gp": 250, "source": "DMG p.135"},
+      {"name": "Breastplate", "rarity": "common", "value_gp": 400, "source": "PHB p.145"},
+      {"name": "Potion of Resistance (Fire)", "rarity": "uncommon", "value_gp": 300, "source": "DMG p.188"},
+      {"name": "Gem-Studded Amulet", "rarity": "uncommon", "value_gp": 350, "source": "DMG p.135"},
+      {"name": "Sending Stones", "rarity": "uncommon", "value_gp": 500, "source": "DMG p.199"},
+      {"name": "Goggles of Night", "rarity": "uncommon", "value_gp": 500, "source": "DMG p.172"},
+      {"name": "Longbow +1", "rarity": "uncommon", "value_gp": 500, "source": "DMG p.213"},
+      {"name": "Tapestry (Fine Elven)", "rarity": "uncommon", "value_gp": 250, "source": "DMG p.135"},
+      {"name": "500 gp", "rarity": "currency", "value_gp": 500, "source": "SRD"}
     ],
     "3": [
       {"name": "Potion of Superior Healing", "rarity": "rare", "value_gp": 500, "source": "DMG p.188"},
       {"name": "Greatsword +2", "rarity": "rare", "value_gp": 4000, "source": "DMG p.213"},
       {"name": "750 gp", "rarity": "currency", "value_gp": 750, "source": "SRD"},
       {"name": "Ring of Protection", "rarity": "rare", "value_gp": 4000, "source": "DMG p.191"},
-      {"name": "Staff of the Python", "rarity": "uncommon", "value_gp": 2000, "source": "DMG p.204"}
+      {"name": "Staff of the Python", "rarity": "uncommon", "value_gp": 2000, "source": "DMG p.204"},
+      {"name": "Cloak of Displacement", "rarity": "rare", "value_gp": 5000, "source": "DMG p.158"},
+      {"name": "Flame Tongue Longsword", "rarity": "rare", "value_gp": 5000, "source": "DMG p.170"},
+      {"name": "Scroll of Greater Restoration", "rarity": "rare", "value_gp": 500, "source": "DMG p.200"},
+      {"name": "Potion of Speed", "rarity": "very_rare", "value_gp": 2500, "source": "DMG p.188"},
+      {"name": "Potion of Invisibility", "rarity": "very_rare", "value_gp": 2500, "source": "DMG p.188"},
+      {"name": "Platinum Crown", "rarity": "rare", "value_gp": 2500, "source": "DMG p.135"},
+      {"name": "Half Plate +1", "rarity": "rare", "value_gp": 5000, "source": "DMG p.152"},
+      {"name": "Amulet of Health", "rarity": "rare", "value_gp": 5000, "source": "DMG p.150"},
+      {"name": "Belt of Dwarvenkind", "rarity": "rare", "value_gp": 5000, "source": "DMG p.155"},
+      {"name": "Necklace of Fireballs", "rarity": "rare", "value_gp": 4000, "source": "DMG p.182"},
+      {"name": "Wand of Lightning Bolts", "rarity": "rare", "value_gp": 4000, "source": "DMG p.211"},
+      {"name": "1500 gp", "rarity": "currency", "value_gp": 1500, "source": "SRD"}
     ],
     "4": [
-      {"name": "Potion of Supreme Healing", "rarity": "very rare", "value_gp": 5000, "source": "DMG p.188"},
+      {"name": "Potion of Supreme Healing", "rarity": "very_rare", "value_gp": 5000, "source": "DMG p.188"},
       {"name": "Holy Avenger", "rarity": "legendary", "value_gp": 50000, "source": "DMG p.174"},
       {"name": "2500 gp", "rarity": "currency", "value_gp": 2500, "source": "SRD"},
-      {"name": "Rod of the Pact Keeper +3", "rarity": "very rare", "value_gp": 20000, "source": "DMG p.197"},
-      {"name": "Vorpal Sword", "rarity": "legendary", "value_gp": 50000, "source": "DMG p.209"}
+      {"name": "Rod of the Pact Keeper +3", "rarity": "very_rare", "value_gp": 20000, "source": "DMG p.197"},
+      {"name": "Vorpal Sword", "rarity": "legendary", "value_gp": 50000, "source": "DMG p.209"},
+      {"name": "Plate Armor +3", "rarity": "legendary", "value_gp": 50000, "source": "DMG p.152"},
+      {"name": "Staff of Power", "rarity": "very_rare", "value_gp": 25000, "source": "DMG p.202"},
+      {"name": "Ring of Spell Storing", "rarity": "rare", "value_gp": 10000, "source": "DMG p.192"},
+      {"name": "Scroll of Teleportation Circle", "rarity": "rare", "value_gp": 1000, "source": "DMG p.200"},
+      {"name": "Robe of Stars", "rarity": "very_rare", "value_gp": 25000, "source": "DMG p.194"},
+      {"name": "Helm of Brilliance", "rarity": "very_rare", "value_gp": 20000, "source": "DMG p.173"},
+      {"name": "Tome of Clear Thought", "rarity": "very_rare", "value_gp": 25000, "source": "DMG p.208"},
+      {"name": "Dragon Slayer", "rarity": "rare", "value_gp": 8000, "source": "DMG p.166"},
+      {"name": "Efreeti Bottle", "rarity": "very_rare", "value_gp": 15000, "source": "DMG p.167"},
+      {"name": "Luck Blade", "rarity": "legendary", "value_gp": 50000, "source": "DMG p.179"},
+      {"name": "5000 gp", "rarity": "currency", "value_gp": 5000, "source": "SRD"}
     ]
   }
 }

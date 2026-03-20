@@ -1,0 +1,250 @@
+{
+    "version": 1,
+    "source": "Ashburn (original homebrew)",
+    "named_npcs": [
+        {
+            "name": "Julian Ashwick",
+            "pronouns": "he/him",
+            "role": "leader",
+            "title": "The Gilded Son",
+            "description": "Charismatic student council president. Old money family with an academy legacy stretching back to the founding. Charming exterior hides ruthless ambition -- he learned to smile before he learned to walk, and both were calculated. His blazer is always pressed, his handshake always firm, his eyes always measuring.",
+            "ability": "Connections: can open any door on campus, literal and figurative. Faculty defer to his family name. Donors take his calls.",
+            "risk": "May sacrifice others to protect his family's reputation. When the Ashwick name is threatened, loyalty becomes expendable.",
+            "betrayal_trigger": "If corruption reveals his family's role in the academy's dark founding -- the Founding Fire, the original pact, the binding ceremony.",
+            "secrets": [
+                "His family's fortune comes from a pact made during the academy's founding -- a binding that traded something for permanence",
+                "He has been reading restricted texts since age twelve, using a key his father gave him that the administration doesn't know exists",
+                "He is genuinely afraid of the graduation ceremony and has been since he found his grandfather's journal"
+            ],
+            "relationships": {
+                "rowan": "Respects their intelligence. Fears their curiosity. Knows Rowan is the one most likely to uncover the family secret.",
+                "lydia": "Political alliance disguised as friendship. They need each other's constituencies but trust each other about as far as a thrown stone.",
+                "jax": "Fascinated and disturbed in equal measure. Jax sees through the performance and Julian knows it.",
+                "ironwood": "The professor knows more about the Ashwick family than Julian is comfortable with. Their conversations are polite minefields."
+            }
+        },
+        {
+            "name": "Rowan Thatch",
+            "pronouns": "they/them",
+            "role": "leader",
+            "title": "The Ash Walker",
+            "description": "Quiet scholarship student, brilliant but socially awkward, knows the library better than anyone alive -- including Librarian Quill. They speak in careful sentences, as if each word is being weighed on a scale. Their uniform is always slightly rumpled, their pockets always full of index cards covered in tiny handwriting.",
+            "ability": "Archive Access: knows the location of every book, record, and document in the academy -- including the restricted section. Can find information that doesn't want to be found.",
+            "risk": "Knowledge without boundaries. Rowan doesn't distinguish between 'should know' and 'shouldn't know.' Their curiosity has no ethical governor.",
+            "betrayal_trigger": "If they discover the academy has been deliberately suppressing knowledge that could help people. Intellectual censorship is the one thing Rowan cannot forgive.",
+            "secrets": [
+                "They mapped the restricted section from memory during their first year, including three books the catalogue doesn't list",
+                "Their scholarship was funded by an anonymous donor they have been quietly investigating for two years",
+                "They found a journal entry from a student who attended the academy a hundred years ago -- the handwriting matches their own"
+            ],
+            "relationships": {
+                "julian": "Wary respect. They know Julian is hiding something about his family. They haven't pushed -- yet.",
+                "quill": "Librarian Quill is the closest thing Rowan has to a mentor. They share a language of references and cross-citations. Quill is protective in a way that sometimes feels like warning.",
+                "olive": "Protective. Olive reminds Rowan of themselves at that age -- too smart, too young, too visible.",
+                "moss": "Moss is the only person who has never asked Rowan to stop looking. That trust means everything."
+            }
+        },
+        {
+            "name": "Lydia Fairchild",
+            "pronouns": "she/her",
+            "role": "leader",
+            "title": "The Velvet Chancellor",
+            "description": "Athlete and activist, the loudest voice in every room and the first to stand between power and the people it's aimed at. Captain of the debate team, star of the lacrosse field, organizer of every protest the academy has seen in five years. Behind the conviction, she hides personal doubts that wake her at three in the morning.",
+            "ability": "Diplomatic Immunity: can nullify one Crown vote per round through political maneuvering, rallying student opinion, or leveraging her public platform.",
+            "risk": "Known double-agent. Lydia plays both sides to protect as many people as possible. If exposed, the fallout costs everyone -- instant political crisis.",
+            "betrayal_trigger": "If she discovers the Crew has been using her activism as cover for something she wouldn't endorse. Lydia's loyalty is to principles, not factions.",
+            "secrets": [
+                "Her family is not wealthy -- the Fairchild name is borrowed, adopted when she was six. Her real name is in a sealed file in the Dean's office",
+                "She writes anonymous letters to the Board critiquing their policies. The Board thinks they're from a faculty member",
+                "She applied to transfer last year. The application was denied. She never found out who blocked it"
+            ],
+            "relationships": {
+                "julian": "Political alliance, mutual suspicion. She needs his connections. He needs her credibility. Neither trusts the arrangement to survive pressure.",
+                "jax": "Complicated. She respects his honesty but fears his recklessness. He's the only person who has seen her cry and didn't mention it afterward.",
+                "sable": "Rivals. Sable follows every rule Lydia breaks. They argue in the halls and study in the same corner of the library.",
+                "penny": "Nurse Penny sees through the performance. Lydia goes to the infirmary when she needs to stop being Lydia Fairchild for twenty minutes."
+            }
+        },
+        {
+            "name": "Jax Marlow",
+            "pronouns": "he/him",
+            "role": "leader",
+            "title": "The Signal Ghost",
+            "description": "Rebel outsider, expelled from his previous school for reasons the official record describes as 'behavioral concerns' and Jax describes as 'telling the truth at a volume they didn't appreciate.' Sharp wit masks deep loyalty to the few people he's decided are worth trusting. His uniform jacket is always unbuttoned, his boots never polished, and there's usually charcoal under his fingernails from drawing in his notebook.",
+            "ability": "Dead Drop: can secretly pass intelligence to the Crew without a vote or a paper trail. His network of hiding spots, coded messages, and trusted intermediaries is invisible to the administration.",
+            "risk": "Paranoid. One-in-six chance of misreading a situation and burning an alliance he built. His instinct for self-preservation sometimes overrides his loyalty.",
+            "betrayal_trigger": "If he discovers someone he trusts has been reporting to the Board. Jax has been betrayed before. He doesn't survive it the same way twice.",
+            "secrets": [
+                "He was expelled from his previous school because he found evidence of financial fraud in the administration and published it in the school paper",
+                "His notebook is not just sketches -- it's a coded record of every secret he's uncovered at Ashburn, encrypted in a cipher of his own design",
+                "He found a diagram in the restricted section that suggests the graduation ceremony is a binding ritual, not a symbolic one"
+            ],
+            "relationships": {
+                "julian": "Mutual fascination, mutual distrust. Julian is everything Jax despises about institutions, and also the most interesting person in the school.",
+                "lydia": "The only person whose anger matches his own. They argue about methods but agree on the problem.",
+                "rowan": "Allies. Rowan provides the research. Jax provides the distribution. They're the most effective intelligence team the academy has never officially recognized.",
+                "bramble": "Chef Bramble is the only adult at Ashburn that Jax respects without reservation. Bramble feeds him extra portions and doesn't ask questions. Jax suspects Bramble has a past."
+            }
+        },
+        {
+            "name": "Professor Ironwood",
+            "pronouns": "he/him",
+            "role": "teacher",
+            "title": "The Living Archive",
+            "description": "History professor who knows more than he teaches and teaches more than the curriculum permits. Silver-haired, precise, with wire-rimmed spectacles and a habit of pausing mid-lecture as if deciding how much truth the room can absorb. His office smells of old paper and pipe tobacco. He hasn't smoked in twenty years, but the smell persists.",
+            "ability": "Institutional Memory: knows the academy's complete history, including the chapters the administration has redacted. Can provide context that changes the meaning of any event.",
+            "risk": "Complicit. Ironwood has known the truth for decades and chose to stay. His silence protected the school -- and protected whatever the school is protecting.",
+            "secrets": [
+                "He was a student at Ashburn. He participated in the graduation ceremony. He knows exactly what the iron keys do",
+                "He has been slowly, deliberately leaving clues for the right student to find -- a breadcrumb trail through the curriculum that leads to the restricted section",
+                "He petitioned the Board to open the archives fifteen years ago. They refused. He hasn't spoken to the Dean privately since"
+            ],
+            "relationships": {
+                "julian": "Teaches Julian with visible care and visible wariness. He watched Julian's father and grandfather walk the same halls.",
+                "rowan": "Recognizes a fellow scholar. Has been feeding Rowan reading recommendations that are not entirely accidental.",
+                "quill": "Old friends. They share a secret that predates most of the current faculty. Their silences are conversations.",
+                "moss": "Moss and Ironwood are the two oldest employees at the academy. They drink tea together every Sunday. They never discuss work."
+            }
+        },
+        {
+            "name": "Groundskeeper Moss",
+            "pronouns": "she/her",
+            "role": "staff",
+            "title": "The Root Memory",
+            "description": "Has been at the academy longer than anyone remembers -- faculty records list her start date as 'prior to current filing system.' Small, wiry, with hands like tree roots and eyes that see through pretense the way sunlight sees through glass. She speaks rarely and means everything she says. The grounds obey her.",
+            "ability": "Earth Knowledge: knows every passage, tunnel, root cellar, and hidden space on the academy grounds. The land tells her things the buildings don't.",
+            "risk": "Protective to a fault. Moss guards the academy's physical secrets with a ferocity that doesn't distinguish between students and threats. Cross a boundary she's drawn, and the warmth disappears.",
+            "secrets": [
+                "She is not the first Groundskeeper Moss. The name is a title, passed down through a lineage of women who have tended these grounds since before the academy existed",
+                "The ruins beyond the treeline are not ruins -- they're a foundation. Moss has been maintaining something underneath them for her entire tenure",
+                "She can hear the binding in the graduation ceremony when it activates. It sounds like roots tearing"
+            ],
+            "relationships": {
+                "ironwood": "Trust built over decades. They are the school's true memory. What one can't say, the other shows.",
+                "rowan": "Sees Rowan as the student most capable of understanding the truth without being destroyed by it.",
+                "olive": "Watches over Olive with a grandmother's attention. The youngest student reminds Moss of someone she won't name.",
+                "dean": "Antagonistic silence. The Dean wants the grounds to be decorative. Moss knows they're structural."
+            }
+        },
+        {
+            "name": "Nurse Penny",
+            "pronouns": "she/her",
+            "role": "staff",
+            "title": "The Quiet Witness",
+            "description": "School nurse with steady hands and a memory for injuries that borders on forensic. She sees every bruise, every burn, every hand that shakes, every student who stops eating. Her infirmary is the one room in the academy where rank doesn't matter and the truth is a medical necessity. She keeps files. She keeps them locked.",
+            "ability": "Clinical Observation: can detect when someone is lying about an injury, hiding pain, or showing early signs of corruption. Her diagnostic instinct extends beyond the physical.",
+            "risk": "Confidentiality. Penny knows enough about every student and staff member to dismantle the school's social fabric overnight. Her files are leverage she refuses to use -- until she can't refuse anymore.",
+            "secrets": [
+                "She has treated injuries in students that match no natural cause -- burns that form patterns, bruises that appear in the shape of symbols, wounds that heal too quickly or not at all",
+                "She keeps a second set of files in her home, off-campus. The school's files are edited. Hers are not",
+                "She recognized Wren Lark's burn immediately. She has treated that exact injury before, in a student who graduated twenty years ago"
+            ],
+            "relationships": {
+                "lydia": "Maternal. Penny is the one person Lydia doesn't perform for. The infirmary visits are Lydia's pressure valve.",
+                "wren": "Professional concern masking alarm. The burn on Wren's arm connects to a pattern Penny has been tracking for years.",
+                "bramble": "Fellow staff survivors. They eat lunch together in the kitchen, trading campus intelligence over sandwiches.",
+                "dean": "Penny submitted a report about student health anomalies three years ago. It was acknowledged and filed. Nothing changed."
+            }
+        },
+        {
+            "name": "Librarian Quill",
+            "pronouns": "they/them",
+            "role": "staff",
+            "title": "The Gatekeeper",
+            "description": "Guards the restricted section with the dedication of someone who knows what's in it and why it matters. Their hair is perpetually ink-stained, their cardigan has leather elbow patches worn through, and their reading glasses hang on a chain made of antique watch links. They move through the library without making a sound.",
+            "ability": "Restricted Access: controls what knowledge enters and leaves the library. Can grant or deny access to texts that reshape understanding of the academy's history.",
+            "risk": "Rebellious past. Quill was not always a librarian. Before they became the gatekeeper, they were the kind of person gates are built to stop. That instinct hasn't died -- it's been filed in the restricted section along with everything else.",
+            "secrets": [
+                "They were a student activist at another institution. Their records are sealed by mutual agreement with an administration that was happy to see them leave",
+                "They have been systematically cataloguing the restricted section's contents into a hidden index that only they can access. It cross-references every text to the academy's founding documents",
+                "They were in the auditorium at 2:45 AM the night of the graduation sabotage. They will not say why. But the diagram Jax found was not there before that night"
+            ],
+            "relationships": {
+                "rowan": "Mentor and ward. Quill sees in Rowan the scholar they wished they'd been at that age -- methodical, patient, relentless.",
+                "ironwood": "Old alliance. They share a key that opens a door neither discusses. Their friendship predates their employment.",
+                "jax": "Wary sympathy. Quill recognizes the rebel in Jax because they were that rebel once. They slip him books they shouldn't.",
+                "dean": "Professional hostility disguised as deference. The Dean has tried to transfer Quill three times. Quill has refused three times."
+            }
+        },
+        {
+            "name": "Chef Bramble",
+            "pronouns": "he/him",
+            "role": "staff",
+            "title": "The Retired Blade",
+            "description": "Kitchen master, former adventurer, current provider of both sustenance and information. Built like a wardrobe, with forearms scarred by more than kitchen burns and a laugh that shakes the pots hanging from the ceiling. He feeds everyone -- students, staff, the occasional stray cat -- and remembers every conversation held over his serving counter.",
+            "ability": "The Grapevine: feeds information along with meals. His kitchen is the most democratic space in the academy -- everyone eats, everyone talks, and Bramble remembers all of it.",
+            "risk": "His past is not as retired as he claims. Bramble left a violent life behind, but the skills haven't atrophied. Under sufficient provocation, the chef becomes something else.",
+            "secrets": [
+                "Before the academy, he was a mercenary. Before that, a soldier. Before that, something he doesn't discuss. The scars on his arms are not all from cooking",
+                "He recognized the stonework in the storm cellar instantly -- he has seen architecture like it before, in places that are no longer on any map",
+                "He keeps a locked chest in the pantry. Inside: not ingredients. He checks it every morning before the staff arrives"
+            ],
+            "relationships": {
+                "jax": "Surrogate father figure. Bramble feeds Jax extra portions and listens without judgment. He sees a younger version of himself -- angry, principled, breakable.",
+                "penny": "Kitchen alliance. They share lunch and intelligence. Bramble trusts Penny's observations more than any official report.",
+                "moss": "Mutual recognition. They both came to the academy to leave something behind. They don't discuss what. The silence is companionable.",
+                "devon": "Bramble is the one person Devon doesn't bully. Whether this is respect or fear, Bramble hasn't decided. He serves Devon the same portions as everyone else."
+            }
+        },
+        {
+            "name": "Prefect Sable",
+            "pronouns": "she/her",
+            "role": "rival_student",
+            "title": "The Mirror",
+            "description": "Model student. Perfect grades, perfect attendance, perfect uniform, perfect compliance. She follows every rule because she believes the rules are the only thing preventing the academy from consuming itself. Behind the perfection: jealousy so corrosive it keeps her awake. She wanted to be a leader. She became a prefect instead. The distinction eats at her.",
+            "ability": "Protocol: knows every regulation, bylaw, and procedural code in the student handbook. Can cite chapter and verse for any rule violation. The administration trusts her reports without question.",
+            "risk": "Her loyalty is to the system, not to the people in it. If the system demands something cruel, Sable will enforce it with clear eyes and a steady hand. She will also go home and stare at the ceiling for hours afterward.",
+            "secrets": [
+                "She applied for the student council presidency. Julian won. She has never mentioned this to anyone. The application is still in her desk drawer",
+                "She has been documenting every rule violation she witnesses in a private journal. Not to report -- to understand why people break rules. She doesn't have an answer yet",
+                "She overheard a conversation between the Dean and a Board member about the binding ceremony. She filed it away. She hasn't told anyone. She isn't sure she believes what she heard"
+            ],
+            "relationships": {
+                "julian": "Professional respect hiding personal resentment. He has the position she wanted. She is better qualified. Both of them know it.",
+                "lydia": "Rivals who mirror each other. Sable enforces rules. Lydia breaks them. They argue constantly and study in the same corner of the library because neither will cede the territory.",
+                "olive": "Protective. Olive is the one student Sable's rigidity softens for. The youngest student reminds Sable of why rules matter -- to protect people who can't protect themselves.",
+                "dean": "The Dean relies on Sable and does not appreciate her. She knows this. It doesn't change her behavior."
+            }
+        },
+        {
+            "name": "Devon Gale",
+            "pronouns": "he/him",
+            "role": "rival_student",
+            "title": "The Hound",
+            "description": "Bully with political connections, not as stupid as he acts. His father sits on the academy's Board of Donors. Devon uses this leverage the way a carpenter uses a hammer -- bluntly, effectively, and without apology. He's loud, physical, and deliberately intimidating. But he reads the room faster than anyone gives him credit for, and his cruelty has a tactical precision that stupidity can't produce.",
+            "ability": "Leverage: his family's Board position gives him access to institutional power that students shouldn't have. He can escalate problems to the administration level with a phone call.",
+            "risk": "Unpredictable loyalty. Devon serves Devon. His family connections are tools, not principles. If the Board stops being useful, he'll find another lever.",
+            "secrets": [
+                "His father doesn't hit him. His father ignores him. The bullying is not learned behavior -- it's a bid for the attention his family won't provide",
+                "He followed Moss to the ruins not to report her but because he's curious about what's beyond the treeline. He hasn't told anyone what he actually saw",
+                "He keeps a collection of pressed flowers between the pages of his history textbook. They're from the academy garden. He's been collecting them since his first year. He would rather die than have anyone find out"
+            ],
+            "relationships": {
+                "jax": "Antagonists. Devon bullies. Jax resists. The dynamic is almost ritualistic. Neither has ever escalated to real harm. Both are one bad day from crossing that line.",
+                "sable": "Uncomfortable alliance. Sable enforces rules. Devon's father makes them. They're on the same side of the power structure and neither likes it.",
+                "bramble": "The one adult Devon doesn't challenge. Bramble's physical presence and refusal to be intimidated short-circuits Devon's usual tactics.",
+                "olive": "Devon has never bullied Olive. This is the one restraint he exercises. He doesn't explain why."
+            }
+        },
+        {
+            "name": "Olive Chen",
+            "pronouns": "she/her",
+            "role": "student",
+            "title": "The Unfinished Key",
+            "description": "Youngest student at the academy. Prodigy. Accepted two years early on a merit so obvious the Board couldn't ignore it. Small, quiet, observant in a way that makes adults uncomfortable -- she watches everything, processes everything, and remembers everything. She carries a notebook and draws what she sees. Her drawings are precise, clinical, and occasionally depict things that haven't happened yet.",
+            "ability": "Perception: sees patterns that adults miss. Her drawings record details that the conscious mind overlooks -- a door left ajar, a hand gesture repeated, a shadow that doesn't match its source.",
+            "risk": "Innocence is not armor. Olive is surrounded by secrets that could break someone three times her age. Her perceptiveness makes her valuable to every faction and safe to none of them.",
+            "secrets": [
+                "Her drawings sometimes precede events by days. She doesn't know why. She thinks it's coincidence. It is not",
+                "Aldara Voss -- her guardian -- told her something about the academy before she enrolled. Olive has never repeated it. She draws it sometimes, in the margins of her notebooks",
+                "She found a door in the storm cellar passage that none of the adults noticed. She drew it. She hasn't shown anyone the drawing"
+            ],
+            "relationships": {
+                "rowan": "Adopted sibling energy. Rowan is the older student Olive gravitates to -- quiet, careful, and safe.",
+                "moss": "Grandmother figure. Moss watches over Olive with a tenderness she doesn't show anyone else. Olive draws Moss often -- always with roots growing from her feet.",
+                "sable": "Sable protects Olive through rules. Olive appreciates the protection but wishes Sable would relax sometimes.",
+                "devon": "Olive isn't afraid of Devon. She sees the pressed flowers. She hasn't said anything. She drew a picture of a flower and left it on his desk. He kept it."
+            }
+        }
+    ]
+}

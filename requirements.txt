@@ -33,7 +33,6 @@ pydantic==2.12.5
 pydantic_core==2.41.5
 Pygments==2.19.2
 pyparsing==3.3.2
-pyte>=0.8.2
 pypdf==6.6.2
 python-dotenv==1.2.1
 python-telegram-bot==22.6

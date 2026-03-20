@@ -1,0 +1,127 @@
+{
+  "seed": 7011,
+  "width": 30,
+  "height": 15,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "haven_hills_escalation_2",
+    "theme": "GOTHIC",
+    "topology": "dungeon",
+    "display_name": "The Bedroom Standoff"
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 0,
+      "y": 0,
+      "width": 8,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The Griggs house ground floor, late evening. Torchlight flickers through the curtains. Constable Reid holds the front door against the mob while the investigators work. A belt still hangs from the hook by the door. The blood stain on the kitchen floor is dry now.",
+        "read_aloud": "Reid has his back against the door. 'Whatever you're doing upstairs, do it faster.' Through the kitchen window: Foreman Decker at the back of the crowd, not joining but not stopping anyone. His face is guilt and indecision. From upstairs, a low rhythmic purr. The creature is home. The mob can hear it.",
+        "npcs": [
+          {
+            "name": "Constable Reid",
+            "role": "ally",
+            "dialogue": "Ten minutes. Maybe fifteen. I need something I can show them -- proof it's not going to kill again, or a commitment that it's leaving tonight. Words won't hold that crowd. Give me something real.",
+            "notes": "He/him. Will hold as long as he can. Evidence from the mine (survey map, Redstone's lamp) would help him disperse the crowd. Ultimately needs the creature to visibly leave the house."
+          }
+        ],
+        "enemies": [
+          {
+            "name": "Angry Miners",
+            "hp": 15,
+            "max_hp": 15,
+            "ac": 12,
+            "attack": 4,
+            "defense": 12,
+            "count": 3
+          }
+        ],
+        "services": [],
+        "event_triggers": [
+          "If the front door breaks before the creature leaves, the miners pour in. Ellis is upstairs. The creature responds to the threat by becoming fully hostile.",
+          "SPECIAL: Showing the miners Redstone's Lamp or the survey map breaks the mob's confidence. Three leave immediately. The remaining two can be talked down individually."
+        ],
+        "loot": []
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 11,
+      "y": 0,
+      "width": 10,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [0, 2],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Ellis's bedroom. The creature has emerged from under the bed and positioned itself between Ellis and the door. Six-limbed, flat-bodied, iridescent. Ellis has his hand on its back. The creature watches the investigators with an intelligence that goes beyond animal.",
+        "read_aloud": "The creature is beautiful. Six limbs grip the floorboards with climbing-animal precision, talons sinking into the wood. Ellis stands behind it, one small hand on its back. 'It's okay,' the boy whispers. 'They're friends.' The creature looks at you. It doesn't believe him yet.",
+        "npcs": [
+          {
+            "name": "Ellis Griggs",
+            "role": "ally",
+            "dialogue": "My friend knows they're coming. He wants to fight. I told him no. I told him you'd help us find the garden place underground. Will you take us there? Both of us, together?",
+            "notes": "Seven years old. The key to the resolution. If the investigators agree to guide both Ellis and the creature to the new chamber, Ellis becomes the bridge. The creature will follow the boy anywhere. Coercion triggers the protective response -- Ellis must choose freely."
+          }
+        ],
+        "enemies": [
+          {
+            "name": "The Protector (defensive stance)",
+            "hp": 25,
+            "max_hp": 25,
+            "ac": 14,
+            "attack": 6,
+            "defense": 14,
+            "count": 1
+          }
+        ],
+        "services": [],
+        "event_triggers": [
+          "THREAT: The Protector attacks any aggressive movement toward Ellis. It can be calmed by Ellis's direct instruction, the creature's shed samples, or a sustained Sense action.",
+          "SPECIAL: The creature communicates through subsonic vibration. Ellis translates: it is afraid of the mob and wants to go back underground but will not leave without Ellis's blessing."
+        ],
+        "loot": [
+          {
+            "name": "The Creature's Gift",
+            "value": 0,
+            "description": "A smooth warm stone pushed from beneath the bed -- it glows faintly blue-green. An offering. A gesture of trust, presented to whichever investigator the creature deems least threatening."
+          }
+        ],
+        "perception_dc": 14,
+        "perception_success": "The creature is communicating through subsonic vibration. Ellis translates haltingly: 'He says there's a home underground. A garden. But he's scared to go back alone. He wants me to come with him to the door and say it's safe.'"
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 22,
+      "y": 2,
+      "width": 6,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The back garden. The kitchen hatch is open. The tunnel descends to the mine. From below, the faint subsonic rumble of the new chamber -- warm, still, mineral. The creature's head turns toward it. Its posture softens for the first time.",
+        "read_aloud": "Ellis kneels at the hatch. The creature lowers its head beside him, six eyes blinking in the lamplight. 'I'll walk you to the door,' the boy whispers. 'I'll tell you it's safe. And then I'll visit. They said I can visit.' He looks at you for confirmation. You realize the whole resolution rests on whether a seven-year-old trusts you right now.",
+        "npcs": [],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [
+          "If Ellis guides the creature to the hatch, it descends. The mob outside sees the creature leave the house via a back-garden tunnel and disperses. Constable Reid closes the mine gate. The crisis is over -- for tonight."
+        ],
+        "loot": []
+      }
+    }
+  }
+}

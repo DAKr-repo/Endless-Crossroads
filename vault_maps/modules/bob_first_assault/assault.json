@@ -1,0 +1,144 @@
+{
+  "seed": 92003,
+  "width": 30,
+  "height": 30,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "assault",
+    "theme": "STONE",
+    "topology": "dungeon",
+    "description": "Inside Talstadt. The sewers give way to the church courtyard and the Doctor's alchemical lab. The stench of rot and green chemical fire. Cages full of people. The war made flesh."
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 2,
+      "y": 2,
+      "width": 8,
+      "height": 7,
+      "room_type": "start",
+      "connections": [1],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The sewer tunnel beneath the church. Waist-deep green water. The walls are slick with something that glows faintly in the dark -- alchemical runoff pooling in the mortar between stones. The current moves against you, warm and thick. Somewhere ahead, light filters down through a drain grate set into the ceiling.",
+        "read_aloud": "The stench of rot is ten times worse than the sewer entrance. The water here is warm -- body temperature -- and the things floating in it are better left unexamined. Light bleeds through a grate above. Through the iron bars, you can see the church courtyard. What you see there will stay with you.",
+        "perception_dc": 12,
+        "perception_success": "The grate is not bolted from above. It's held in place by its own weight and centuries of corrosion. Two soldiers could lift it -- quietly, with luck.",
+        "enemies": [
+          {
+            "name": "Rotter",
+            "hp": 8,
+            "max_hp": 8,
+            "ac": 10,
+            "attack": 2,
+            "defense": 10,
+            "count": 2
+          }
+        ],
+        "event_triggers": [
+          "Something moves in the water ahead. A shape, hunched, dragging itself through the green murk. Then another. Rotters -- using the sewers as a patrol route. They haven't seen you, but they're between you and the grate."
+        ]
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 12,
+      "y": 2,
+      "width": 8,
+      "height": 7,
+      "room_type": "normal",
+      "connections": [0, 2],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The church courtyard. Once a place of gathering and prayer. Now a charnel yard. Huge piles of bodies stacked against the walls -- some fresh, most not. Iron cages stand in rows, some containing prisoners too broken to cry for help. Rotters idle between the cages like guards who have forgotten what they're guarding.",
+        "read_aloud": "The stench of rot is ten times worse than the sewer. A church courtyard with cages full of people, badly mangled. The Rotters shuffle between the cages with the aimless patience of the dead. Beyond the courtyard, the church doors stand open, and green light spills from the nave like something alive.",
+        "enemies": [
+          {
+            "name": "Rotter",
+            "hp": 8,
+            "max_hp": 8,
+            "ac": 10,
+            "attack": 2,
+            "defense": 10,
+            "count": 3
+          },
+          {
+            "name": "Gut-Sack",
+            "hp": 15,
+            "max_hp": 15,
+            "ac": 12,
+            "attack": 4,
+            "defense": 12,
+            "count": 1
+          }
+        ],
+        "event_triggers": [
+          "One of the prisoners sees you. A woman, Bartan by her features, grips the cage bars and mouths a single word: 'Please.' The Rotter nearest her cage turns its head, slowly, in your direction."
+        ],
+        "investigation_dc": 14,
+        "investigation_success": "The cage locks are standardized -- military issue, pre-war. A single key would open them all. The Gut-Sack has something metallic on a chain around its neck."
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 12,
+      "y": 11,
+      "width": 8,
+      "height": 7,
+      "room_type": "boss",
+      "connections": [1, 3],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The Doctor's lab. The church nave, desecrated beyond recognition. Pews ripped out, replaced by operating tables stained black with old blood. Glass vessels line the altar, connected by copper tubing to vats of bubbling green fluid. Half-completed experiments lie strapped to tables -- neither living nor dead, caught somewhere unspeakable in between.",
+        "enemies": [
+          {
+            "name": "Horror",
+            "hp": 25,
+            "max_hp": 25,
+            "ac": 14,
+            "attack": 6,
+            "defense": 14,
+            "count": 1
+          }
+        ],
+        "event_triggers": [
+          "The Horror drops from the rafters. It was human, once. Now it's something else -- seven feet of stitched muscle and alchemical tubing, its face hidden behind a mask of fused iron. The Doctor's masterwork. It doesn't roar. It just reaches for you with hands that end in surgical blades."
+        ],
+        "loot": [
+          {"name": "Cage key (from Gut-Sack)", "value": 0, "description": "Military-issue iron key. Opens all prisoner cages in the courtyard."},
+          {"name": "Doctor's research journal", "value": 5, "description": "Leather-bound, written in a cramped hand. Details the alchemical process that creates Rotters and Gut-Sacks. The Marshal will want this."}
+        ],
+        "investigation_dc": 12,
+        "investigation_success": "The green fluid in the vats is pressurized. If the copper tubing is ruptured, the reaction will go critical. Alchemical fire. The whole nave will burn. You'll have minutes to get clear."
+      }
+    },
+    "3": {
+      "id": 3,
+      "x": 22,
+      "y": 11,
+      "width": 6,
+      "height": 7,
+      "room_type": "secret",
+      "connections": [2],
+      "tier": 2,
+      "is_locked": true,
+      "is_secret": true,
+      "content_hints": {
+        "description": "The Doctor's private study. Hidden behind a false wall in the vestry. A small, cold room lit by a single spirit lamp. A desk covered in correspondence -- letters to and from Blighter herself, sealed with black wax. The Doctor was taking orders. This lab was sanctioned at the highest level.",
+        "lock_dc": 14,
+        "loot": [
+          {"name": "Blighter's correspondence", "value": 8, "description": "Sealed letters revealing the Doctor's supply chain, Blighter's strategic objectives, and the names of three other labs operating behind Legion lines. Intelligence gold."},
+          {"name": "Refined alchemical catalyst", "value": 4, "description": "A sealed vial of concentrated catalyst. Could be weaponized, studied, or destroyed. The Marshal will have opinions."}
+        ],
+        "investigation_dc": 10,
+        "investigation_success": "A map pinned to the wall marks three other locations with the Doctor's glyph -- other labs. One is dangerously close to the Legion's fallback position."
+      }
+    }
+  }
+}

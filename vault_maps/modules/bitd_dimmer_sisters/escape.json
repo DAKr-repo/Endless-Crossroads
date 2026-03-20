@@ -1,0 +1,69 @@
+{
+  "seed": 90005,
+  "width": 25,
+  "height": 25,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "escape",
+    "theme": "GOTHIC",
+    "topology": "dungeon",
+    "description": "The escape route. The alarm is raised. Something stirs in the deeper rooms. The Sisters know you're here, and the house itself seems to be waking up."
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 2,
+      "y": 2,
+      "width": 7,
+      "height": 6,
+      "room_type": "start",
+      "connections": [1],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The upper hallway. The wallpaper is peeling itself off the walls in long strips, curling toward you like fingers. Doors that were closed are now open. Doors that were open are now closed. The gas lamps along the corridor have all gone out except one, at the far end, which burns a deep and unnatural violet.",
+        "read_aloud": "Something stirs in the deeper rooms. The Sisters know you're here. The house groans around you -- not settling, not the wind. Groaning. Like something old and vast turning over in its sleep.",
+        "event_triggers": [
+          "Something stirs in the deeper rooms. The Sisters know you're here."
+        ]
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 11,
+      "y": 2,
+      "width": 7,
+      "height": 6,
+      "room_type": "normal",
+      "connections": [0, 2],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The stairwell. The stairs descend in a tight spiral, the banister carved from a single piece of blackwood. Each step creaks in a different pitch, like a discordant scale being played underfoot. Cold air rises from below, carrying the smell of canal water and old stone.",
+        "perception_dc": 12,
+        "perception_success": "Faint footsteps from two floors below -- measured, deliberate. Not running. Whoever it is knows you have to come down eventually."
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 11,
+      "y": 10,
+      "width": 7,
+      "height": 6,
+      "room_type": "town_gate",
+      "connections": [1],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The servant's exit. A narrow door half-hidden behind a mouldering curtain, opening onto a wrought-iron fire escape that drops to the alley. The canal is fifty yards south. Freedom -- if you can reach it before the Spirit Wardens respond to whatever alarm the house just sent up.",
+        "read_aloud": "The alley. Cold air. The city. You're out. Behind you the house stands dark and silent again, as though nothing happened. But you can feel it watching. The Dimmer Sisters will know who did this. It's just a question of when they come collecting.",
+        "event_triggers": [
+          "A bell-tower somewhere in Six Towers begins to toll -- the Spirit Warden signal. You have minutes, not hours, before they arrive."
+        ]
+      }
+    }
+  }
+}

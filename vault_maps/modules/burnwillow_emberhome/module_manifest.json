@@ -1,0 +1,28 @@
+{
+    "module_id": "burnwillow_emberhome",
+    "display_name": "Emberhome: The Last Bastion",
+    "system_id": "burnwillow",
+    "source_pdf": "original",
+    "source_type": "homebrew_original",
+    "starting_location": "emberhome",
+    "recommended_levels": {"min": 1, "max": 4},
+    "chapters": [
+        {
+            "chapter_id": "ch1_emberhome",
+            "display_name": "Emberhome",
+            "order": 1,
+            "zones": [
+                {
+                    "zone_id": "emberhome_settlement",
+                    "blueprint": "emberhome_settlement.json",
+                    "topology": "settlement",
+                    "theme": "RUST",
+                    "location_id": "emberhome",
+                    "entry_trigger": "module_start",
+                    "exit_trigger": "player_choice"
+                }
+            ]
+        }
+    ],
+    "freeform_zones": []
+}

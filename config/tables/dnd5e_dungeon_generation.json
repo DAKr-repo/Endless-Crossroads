@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "source": "DMG Appendix A (Random Dungeons, pp.289-319)",
+  "chamber_shapes": [
+    "Square, 20x20",
+    "Square, 30x30",
+    "Square, 40x40",
+    "Rectangular, 20x30",
+    "Rectangular, 30x40",
+    "Rectangular, 40x50",
+    "Circular, 30 diameter",
+    "Circular, 50 diameter",
+    "Octagonal, 40x40",
+    "Hexagonal, 30x30",
+    "Trapezoidal, 20x30",
+    "L-shaped, 30x40",
+    "T-shaped, 40x40"
+  ],
+  "passage_types": [
+    "10ft wide, straight",
+    "10ft wide, turns left",
+    "10ft wide, turns right",
+    "5ft wide, straight",
+    "20ft wide, straight",
+    "10ft wide, ends in T-intersection",
+    "10ft wide, ends in four-way intersection",
+    "Stairs down",
+    "Stairs up",
+    "Dead end"
+  ],
+  "door_types": [
+    "Wooden, unlocked",
+    "Wooden, stuck (DC 10)",
+    "Wooden, locked (DC 15)",
+    "Iron, locked (DC 20)",
+    "Stone, locked (DC 20)",
+    "Portcullis, locked (DC 20)",
+    "Secret door (DC 15 to find)",
+    "Trapped door (DC 15 to detect)",
+    "One-way door",
+    "Barred from inside"
+  ],
+  "dungeon_purpose": [
+    "Death trap",
+    "Lair",
+    "Maze",
+    "Mine",
+    "Planar gate",
+    "Stronghold",
+    "Temple or shrine",
+    "Tomb",
+    "Treasure vault"
+  ],
+  "dungeon_creator": [
+    "Beholder",
+    "Cult or religion",
+    "Dwarves",
+    "Elves",
+    "Giants",
+    "Hobgoblins",
+    "Humans (bandits)",
+    "Humans (noble)",
+    "Lich",
+    "Mind flayers",
+    "Yuan-ti",
+    "No creator (natural)"
+  ],
+  "chamber_contents_d20": [
+    {"roll": "1-4", "content": "empty"},
+    {"roll": "5-8", "content": "monster_only"},
+    {"roll": "9-12", "content": "monster_with_treasure"},
+    {"roll": "13-14", "content": "trap"},
+    {"roll": "15-16", "content": "trap_with_treasure"},
+    {"roll": "17", "content": "hazard"},
+    {"roll": "18", "content": "trick_or_puzzle"},
+    {"roll": "19-20", "content": "treasure_only"}
+  ],
+  "chamber_state": [
+    "Collapsed, partially blocked",
+    "Pristine, recently used",
+    "Flooded ankle-deep",
+    "Filled with rubble",
+    "Contains a pool or fountain",
+    "Desecrated altar",
+    "Covered in webs",
+    "Strange fungal growth",
+    "Extreme temperature",
+    "Magical darkness"
+  ]
+}

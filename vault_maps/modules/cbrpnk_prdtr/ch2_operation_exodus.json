@@ -1,0 +1,93 @@
+{
+    "seed": 9102,
+    "width": 50,
+    "height": 30,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "operation_exodus",
+        "theme": "RUST",
+        "topology": "dungeon",
+        "display_name": "Operation Exodus",
+        "description": "Objective A: Escort six survivors to the dropship on the Eastern Launchpad. The route cuts through the transit corridor -- a pressurized skyway connecting the residential sector to the launchpad complex. Corp Sec maintains a checkpoint at the midpoint. They are not letting civilians through. The official reason is 'contamination screening.' The real reason is that the dropship seats are reserved for Koloss executives."
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 2,
+            "y": 12,
+            "width": 10,
+            "height": 8,
+            "room_type": "start",
+            "connections": [1],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Refugee staging point. Six survivors huddle near the transit corridor entrance. They carry what they could grab: a child's backpack, a water container, a photograph in a cracked frame. The eldest is a hydroponic technician named Mara who keeps checking a dosimeter clipped to her belt -- the radiation levels here are still within tolerance, but the needle has been drifting right all day. The youngest is a boy, maybe eight, who has not spoken since the incident.",
+                "read_aloud": "Mara looks at you the way people look at a lifeboat. 'The Corp Sec checkpoint is half a klick down the transit tube. They turned back the last three groups. Said the launchpad is restricted. Restricted to who?' She checks the dosimeter again. The needle twitches. 'We do not have time to argue with soldiers. Can you get us through?'",
+                "npcs": [
+                    {
+                        "name": "Mara",
+                        "role": "escort",
+                        "dialogue": "I built the irrigation system for Agro-Sector Nine. Twenty-two years of growing things in alien soil. When the jungle bloomed -- that was not growth. Growth has structure, logic, seasons. This was detonation. The plants did not grow. They erupted. And they are still erupting. The hab sectors have maybe two weeks before the root systems breach the foundation walls.",
+                        "notes": "[DM: Function: Escort/Exposition. Quirk: Checks her dosimeter every thirty seconds -- a nervous habit that provides real-time radiation data. Secret: Mara designed the irrigation system that APX co-opted for their experiments. The nutrient solution she formulated was the medium they used. She suspects this but cannot bring herself to ask. Want: Get the survivors to the dropship. Need: Absolution for the part she played, however unwitting.]"
+                    }
+                ],
+                "event_triggers": [
+                    "The silent boy tugs on your sleeve and points down the transit corridor. Through the reinforced glass walls, something moves in the jungle canopy below -- a ripple in the foliage, too fast, too deliberate. Then it is gone. The boy signs three words in hand language: 'IT. SEES. US.'"
+                ]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 16,
+            "y": 8,
+            "width": 12,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [0, 2],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Corp Sec checkpoint. The transit corridor widens into a junction where blast doors have been welded to the walls as a makeshift gatehouse. Four Corp Sec officers behind sandbag positions, visors down, rifles at rest but ready. A scanner arch frames the only path forward -- it reads radiation levels, implant signatures, and authorization codes. Behind the checkpoint, through the glass walls, the launchpad complex is visible: landing cradles, fuel lines, and one functional dropship with its running lights on.",
+                "read_aloud": "The sergeant steps forward. He has the look of a man who has been saying no for three days straight and is running out of ways to feel okay about it. 'Checkpoint is closed to non-essential personnel. Turn your people around. The dropship is allocated.' He does not say to whom. He does not need to.",
+                "enemies": [
+                    {"name": "Corp Sec Officer", "hp": 8, "ac": 10, "attack": 2, "damage": "1d6", "count": 4, "notes": "Standard issue: riot armor, sidearms, rifles. They are not hostile by default -- they are following orders. Can be talked past (Sway DC 14), bribed (500 cred), hacked (Override the scanner arch, DC 16), or fought. Fighting triggers a station-wide alert and the launchpad locks down for 10 minutes."}
+                ],
+                "event_triggers": [
+                    "The scanner arch pings. The sergeant checks his display and his expression changes. 'Perimeter alert. Sector 7 again.' He keys his radio. Static. Tries again. More static. From beyond the glass walls, deep in the jungle canopy, a flare goes up -- then cuts out mid-arc, like something snatched it from the sky. The officers exchange looks. This is your window."
+                ],
+                "investigation_dc": 14,
+                "investigation_success": "The scanner arch's maintenance panel is accessible from the left sandbag position. Inside, a bypass switch -- the same model used in every Koloss installation. Flip it and the arch reads everyone as 'AUTHORIZED - EXECUTIVE PRIORITY.' The officers will not question their own equipment."
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 32,
+            "y": 4,
+            "width": 12,
+            "height": 12,
+            "room_type": "boss",
+            "connections": [1],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Eastern Launchpad. Open-air platform (or what passes for open air under a dome) with three landing cradles bolted to reinforced concrete. Two cradles are empty -- their ships launched days ago with corporate evacuees. The third holds a Koloss-model dropship, engines warm, cargo bay open. Between you and the ship: a hundred meters of exposed tarmac with no cover. And something is wrong -- the ground crew is gone. Tools scattered. A fuel line disconnected and leaking. Someone left in a hurry. Or was taken.",
+                "read_aloud": "The dropship is right there. Running lights green, ramp down, engines idling. Mara's dosimeter clicks faster. The survivors start running before you can stop them. Then the ambush hits -- not from the jungle this time. From the maintenance tunnels beneath the tarmac. Hatches blow open and Corp Sec reinforcements pour out. Someone called ahead.",
+                "enemies": [
+                    {"name": "Corp Sec Ambush Team", "hp": 15, "ac": 12, "attack": 4, "damage": "1d8", "count": 3, "notes": "Heavily armed response team. Emerged from maintenance tunnels. Fighting to retake the launchpad for executive evacuation. They do not care about the survivors -- they care about the ship.", "special": ["Tunnel Flanking: Can emerge from any maintenance hatch, ignoring line-of-sight for first attack"]},
+                    {"name": "Corp Sec Drone Operator", "hp": 8, "ac": 10, "attack": 2, "damage": "1d6", "count": 1, "notes": "Controls two surveillance drones from a portable terminal. The drones do not attack -- they provide targeting data. If the operator is neutralized, the ambush team loses their coordination bonus.", "special": ["Drone Spotting: Ambush team gains +1 attack while drones are active"]}
+                ],
+                "event_triggers": [
+                    "The survivors scatter across the tarmac. Mara shields the silent boy with her body. The dropship's automated systems detect unauthorized weapons fire and begin a 60-second security lockdown -- the ramp will close unless someone reaches the cockpit and overrides. A choice: protect the survivors on the tarmac or sprint for the cockpit to keep the escape route open."
+                ],
+                "loot": [
+                    {"name": "Dropship Flight Log", "value": 200, "description": "Previous passenger manifests. Koloss executives were evacuated 48 hours before the civilian advisory was issued. They knew."},
+                    {"name": "Corp Sec Tactical Comm", "value": 100, "description": "Military-band radio. Allows monitoring of Corp Sec channels. Sarge's callsign appears frequently: 'HOUND-1.'"}
+                ]
+            }
+        }
+    }
+}

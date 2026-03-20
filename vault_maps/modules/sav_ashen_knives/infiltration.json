@@ -1,0 +1,90 @@
+{
+  "seed": 91003,
+  "width": 25,
+  "height": 25,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "infiltration",
+    "theme": "STONE",
+    "topology": "dungeon",
+    "description": "The Ashen Knives' warehouse district on Warren. Converted cargo bays stacked three deep, lit by sodium lamps and the faint hum of overworked life support."
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 2,
+      "y": 2,
+      "width": 7,
+      "height": 6,
+      "room_type": "start",
+      "connections": [1],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The dock level. Cargo containers stacked in rows, each one tagged with Ashen Knives sigils -- a curved blade wreathed in smoke. The air smells of packing foam and something sweetly chemical that catches in the back of the throat. Memish product, you'd guess, even sealed.",
+        "read_aloud": "You dock at Bay 14, as instructed. The cargo level is quiet except for the rhythmic clang of an automated loader cycling somewhere out of sight. A figure detaches from the shadows between containers -- tall, armored in light composite, the Ashen Knives emblem on her shoulder.",
+        "npcs": [
+          {
+            "name": "Ashen Knives Lieutenant Vesh",
+            "role": "contact",
+            "dialogue": "The shipment's ready. But we're moving it tonight -- Hegemonic Intelligence has been sniffing around. My people spotted a surveillance drone on Level 3 two hours ago. We scragged it, but where there's one there's more. Load fast, fly faster.",
+            "notes": "Lieutenant Vesh (she/her). Professional, terse, and visibly on edge. She's armed with a plasma carbine and hasn't holstered it since you arrived. The Ashen Knives are friendly, but Vesh makes it clear: if this job goes sideways, the crew takes the heat, not her people."
+          }
+        ]
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 11,
+      "y": 2,
+      "width": 7,
+      "height": 6,
+      "room_type": "treasure",
+      "connections": [0, 2],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The cargo hold. Twelve sealed crates of Memish psychedelics, each one the size of a coffin and twice as heavy. The product inside is packed in thermal gel to defeat scan detection. Vesh's crew has already moved the crates onto mag-sleds for transfer. All you need to do is get them to the Faraday.",
+        "loot": [
+          {"name": "Memish psychedelics (12 crates)", "value": 24, "description": "Sealed cargo. Do not open. The thermal gel keeps the contents scan-invisible for approximately six hours before it degrades."}
+        ],
+        "event_triggers": [
+          "Vesh's comm chirps. Her expression goes flat. 'We've got company. Hegemonic agent, Level 2, moving this way. Could be coincidence. I don't believe in coincidence.'"
+        ]
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 11,
+      "y": 10,
+      "width": 7,
+      "height": 6,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The loading corridor. A narrow passage between container stacks leading back to your docking bay. Emergency lights paint everything in alternating bands of red and shadow. The mag-sleds hum along the deck plating, carrying your very illegal cargo toward the ship.",
+        "enemies": [
+          {
+            "name": "Hegemonic Agent",
+            "hp": 15,
+            "max_hp": 15,
+            "ac": 12,
+            "attack": 4,
+            "defense": 12,
+            "count": 1
+          }
+        ],
+        "event_triggers": [
+          "A figure steps from behind a container stack. Plain clothes, but the posture is military. One hand rests on a concealed sidearm. 'Interesting cargo for a registered freight hauler. Mind if I take a closer look?'"
+        ],
+        "investigation_dc": 10,
+        "investigation_success": "The agent is alone. No backup comm, no visible body cam. This might be off-books surveillance -- a solo intelligence op. If they disappear, nobody comes looking. At least, not immediately."
+      }
+    }
+  }
+}

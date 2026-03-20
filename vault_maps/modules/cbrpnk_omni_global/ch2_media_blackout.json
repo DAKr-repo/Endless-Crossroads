@@ -1,0 +1,92 @@
+{
+    "seed": 9002,
+    "width": 40,
+    "height": 30,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "media_blackout",
+        "theme": "RUST",
+        "topology": "dungeon",
+        "display_name": "Run 1: Media Blackout",
+        "description": "Flashback Run. Omni's media outlets are spreading misinformation, staining the runners' reputation and cutting off every ally willing to stick their neck out. The source is a broadcast relay tower in the media district. The truth needs uploading. The lies need deleting."
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 2,
+            "y": 20,
+            "width": 8,
+            "height": 6,
+            "room_type": "start",
+            "connections": [1],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Street approach. Rain hammers the asphalt outside the MedCorp Broadcasting building. The lobby's glass facade glows with scrolling ticker feeds -- all of them carrying the same fabricated story about 'domestic terror cells' with the runners' descriptions. Two CorpSec guards stand behind a reception desk that doubles as a ballistic barrier.",
+                "read_aloud": "Your face scrolls past on the ticker feed overhead. The description is wrong -- they gave you an extra scar and ten kilos -- but the name is right. The lobby guards have not looked up from their screens yet.",
+                "enemies": [
+                    {"name": "CorpSecurity Guard", "hp": 8, "ac": 10, "attack": 2, "damage": "1d6", "count": 2, "notes": "Riot armor, sidearms. One carries a radio -- if alerted, reinforcements arrive in 3 rounds."}
+                ],
+                "event_triggers": [
+                    "The lobby screens flicker with a BREAKING NEWS banner: 'Omni Global Solutions CEO President Castilho announces expanded civic partnership program.' The guards glance at the screen, momentarily distracted."
+                ],
+                "perception_dc": 12,
+                "perception_success": "A service entrance around the east side of the building. The door's electronic lock has been bypassed -- someone stuck a wad of conductive gum in the card reader. Recent. Someone else wants in."
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 12,
+            "y": 12,
+            "width": 10,
+            "height": 8,
+            "room_type": "normal",
+            "connections": [0, 2],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The media tower's production floor. Rows of editing bays where content fabricators assemble tomorrow's narratives from stock footage and deepfake templates. The air smells like burnt coffee and desperation. Half the terminals display 'OMNI APPROVED' watermarks on every outgoing file. An elevator at the far end requires a keycard to reach the server floor.",
+                "read_aloud": "The night shift is skeleton crew -- three editors in noise-cancelling headsets, oblivious to anything that is not on their screens. The fabrication tools are sophisticated: real-time facial reconstruction, voice synthesis, emotional manipulation algorithms. This is not journalism. This is a weapon.",
+                "enemies": [
+                    {"name": "CorpSecurity Patrol", "hp": 8, "ac": 10, "attack": 2, "damage": "1d6", "count": 1, "notes": "Roving guard on 5-minute circuit. Carries a stun baton and a radio."}
+                ],
+                "loot": [
+                    {"name": "Editor's Keycard", "value": 0, "description": "Access badge for floor 47. The photo shows someone who quit six months ago."},
+                    {"name": "Misinformation Dossier", "value": 100, "description": "Printed briefing detailing Omni's media manipulation campaign. Names, dates, directives. Proof."}
+                ],
+                "investigation_dc": 14,
+                "investigation_success": "One of the editing terminals has an unsent message draft: 'I can't keep doing this. The Castilho piece uses footage of real casualties. If anyone finds the raw files on 47, it's over for all of us.' The sender's name has been redacted."
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 14,
+            "y": 2,
+            "width": 10,
+            "height": 8,
+            "room_type": "boss",
+            "connections": [1],
+            "tier": 2,
+            "is_locked": true,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Server room, floor 47. Banks of blade servers hum behind climate-controlled glass partitions. The temperature is eighteen degrees cooler than the rest of the building. A central terminal glows amber -- the broadcast relay control node. From here, every screen in the city can be fed whatever truth you choose to upload. The room's Encryption protocol materializes as holographic interference when you approach the terminal.",
+                "read_aloud": "The servers breathe cold air. Every blinking light is a lie being transmitted to a million screens. The central terminal waits. Behind you, the elevator pings. Someone else is coming up.",
+                "enemies": [
+                    {"name": "CorpSecurity Sergeant", "hp": 15, "ac": 12, "attack": 4, "damage": "1d8", "count": 1, "notes": "Heavy armor, assault rifle. Called in via silent alarm on the elevator."},
+                    {"name": "Encryption Protocol", "hp": 15, "ac": 12, "attack": 4, "damage": "1d8", "count": 1, "notes": "Network defense ICE. Attacks anyone attempting to access the terminal without proper clearance. Manifests as cascading error fields that cause neural feedback through any connected interface.", "special": ["Neural Feedback: On hit, target's next Hack roll is at -1d", "Firewall Cascade: Once per scene, resets upload progress to zero"]}
+                ],
+                "event_triggers": [
+                    "Uploading the truth takes 3 rounds of uninterrupted terminal access. Each round, the Encryption Protocol attempts to purge the upload. If the upload completes, every screen in the media district goes dark for one second -- then lights up with the real story."
+                ],
+                "lock_dc": 14,
+                "loot": [
+                    {"name": "Omni Broadcast Access Codes", "value": 300, "description": "Root-level access to Omni's media distribution network. Could be used again -- or sold to the highest bidder."},
+                    {"name": "Raw Footage Archive", "value": 200, "description": "Unedited recordings proving Omni fabricated the terror cell narrative. Insurance."}
+                ]
+            }
+        }
+    }
+}

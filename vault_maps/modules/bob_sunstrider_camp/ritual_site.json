@@ -1,0 +1,58 @@
+{
+  "seed": 8018,
+  "width": 25,
+  "height": 20,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "ritual_site",
+    "theme": "GOTHIC",
+    "topology": "dungeon",
+    "mission_types": ["religious"]
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 8,
+      "y": 2,
+      "width": 8,
+      "height": 6,
+      "room_type": "start",
+      "connections": [1],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The ritual site was once the grove's heartwood -- the oldest, largest tree, so wide that its trunk was hollowed out for ceremonies. The tree is dead now, its heartwood split and blackened, but the space inside remains. The floor is covered in a layer of corrupted sap, ankle-deep and warm. Carved into the inner walls, the old prayer-signs still glow -- faintly, stubbornly, fighting the corruption that tries to smother them.",
+        "read_aloud": "The ritual circle pulses with stolen life force. The Horror guards it possessively, standing at the center of the dead heartwood like a grotesque idol.",
+        "event_triggers": [
+          "The ritual circle pulses with stolen life force. The Horror guards it possessively."
+        ]
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 6,
+      "y": 10,
+      "width": 12,
+      "height": 8,
+      "room_type": "boss",
+      "connections": [0],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The Horror is built from the grove itself -- wood and root and bone, woven together by the corruption into something that mimics life without possessing it. It stands twelve feet tall, its body a knot of twisted branches with a human skeleton at its core. The ritual circle it guards is carved into the dead tree's root system -- channels in the wood that direct the flow of stolen life force from the land into the corruption network. Destroying the circle will cut this node from Blighter's web. The Horror will not allow it.",
+        "enemies": [
+          {"name": "Horror", "hp": 25, "max_hp": 25, "ac": 15, "attack": 7, "defense": 15, "count": 1}
+        ],
+        "event_triggers": [
+          "The Horror does not roar. It creaks -- the sound of a tree bending in a storm, amplified until it vibrates in your chest.",
+          "When the Horror takes damage, the prayer-signs on the walls glow brighter. The old magic is fighting back through whatever channel remains.",
+          "If the Sunfire Distillate is used here, the vial shatters against the ritual circle and golden fire races along the corruption channels. The Horror screams -- the first sound it makes that is recognizably a voice."
+        ],
+        "perception_dc": 14,
+        "perception_success": "The skeleton at the Horror's core is wearing a Chosen's talisman. This was a guardian of the grove once -- a holy warrior consumed by the very corruption they were meant to prevent. Elsu would recognize the talisman."
+      }
+    }
+  }
+}

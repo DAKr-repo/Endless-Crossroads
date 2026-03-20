@@ -643,6 +643,76 @@ from codex.core.mechanics.clock import UniversalClock, DoomClock  # noqa: F401
 
 
 # =============================================================================
+# CONFIG-DRIVEN CONTENT LOADERS
+# Augment hardcoded CANOPY tables with entries from config/bestiary|loot|hazards/burnwillow.json
+# =============================================================================
+
+_BW_BESTIARY_CACHE: Optional[Dict[int, List[dict]]] = None
+_BW_LOOT_CACHE: Optional[Dict[int, List[dict]]] = None
+_BW_HAZARD_CACHE: Optional[Dict[int, List[dict]]] = None
+
+
+def _load_bw_bestiary() -> Dict[int, List[dict]]:
+    """Load burnwillow bestiary from config, empty dict if unavailable."""
+    global _BW_BESTIARY_CACHE
+    if _BW_BESTIARY_CACHE is not None:
+        return _BW_BESTIARY_CACHE
+    try:
+        from codex.core.config_loader import load_config
+        data = load_config("bestiary", "burnwillow")
+        if data and "tiers" in data:
+            result: Dict[int, List[dict]] = {}
+            for tier_key, entries in data["tiers"].items():
+                result[int(tier_key)] = entries
+            _BW_BESTIARY_CACHE = result
+            return result
+    except Exception:
+        pass
+    _BW_BESTIARY_CACHE = {}
+    return _BW_BESTIARY_CACHE
+
+
+def _load_bw_loot() -> Dict[int, List[dict]]:
+    """Load burnwillow loot from config, empty dict if unavailable."""
+    global _BW_LOOT_CACHE
+    if _BW_LOOT_CACHE is not None:
+        return _BW_LOOT_CACHE
+    try:
+        from codex.core.config_loader import load_config
+        data = load_config("loot", "burnwillow")
+        if data and "tiers" in data:
+            result: Dict[int, List[dict]] = {}
+            for tier_key, items in data["tiers"].items():
+                result[int(tier_key)] = items
+            _BW_LOOT_CACHE = result
+            return result
+    except Exception:
+        pass
+    _BW_LOOT_CACHE = {}
+    return _BW_LOOT_CACHE
+
+
+def _load_bw_hazards() -> Dict[int, List[dict]]:
+    """Load burnwillow hazards from config, empty dict if unavailable."""
+    global _BW_HAZARD_CACHE
+    if _BW_HAZARD_CACHE is not None:
+        return _BW_HAZARD_CACHE
+    try:
+        from codex.core.config_loader import load_config
+        data = load_config("hazards", "burnwillow")
+        if data and "tiers" in data:
+            result: Dict[int, List[dict]] = {}
+            for tier_key, hazards in data["tiers"].items():
+                result[int(tier_key)] = hazards
+            _BW_HAZARD_CACHE = result
+            return result
+    except Exception:
+        pass
+    _BW_HAZARD_CACHE = {}
+    return _BW_HAZARD_CACHE
+
+
+# =============================================================================
 # BURNWILLOW ENGINE
 # =============================================================================
 
@@ -1207,7 +1277,10 @@ class BurnwillowEngine:
             "is_secret": pop_room.geometry.is_secret,
             "connections": pop_room.geometry.connections,
             "description": pop_room.content.get("description", "An empty room."),
-            "enemies": pop_room.content.get("enemies", []),
+            "enemies": [e for e in pop_room.content.get("enemies", [])
+                        if not (isinstance(e, dict) and e.get("is_npc"))],
+            "npcs": [e for e in pop_room.content.get("enemies", [])
+                     if isinstance(e, dict) and e.get("is_npc")],
             "loot": pop_room.content.get("loot", []),
             "hazards": pop_room.content.get("hazards", []),
             "furniture": pop_room.content.get("furniture", []),
@@ -1629,6 +1702,10 @@ class BurnwillowEngine:
                 if rng.random() < 0.4:
                     content["loot"].append(
                         self._canopy_loot(tier, rng, CANOPY_LOOT_TABLES))
+                # Config-driven hazards (20 % chance per room)
+                cfg_hazards = _load_bw_hazards().get(tier, [])
+                if cfg_hazards and rng.random() < 0.2:
+                    content["hazards"].append(rng.choice(cfg_hazards))
 
             self.populated_rooms[room_id] = PopulatedRoom(
                 geometry=room, content=content)

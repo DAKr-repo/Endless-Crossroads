@@ -1,0 +1,88 @@
+{
+  "seed": 7002,
+  "width": 40,
+  "height": 25,
+  "start_room_id": 0,
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 2,
+      "y": 2,
+      "width": 12,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false
+    },
+    "1": {
+      "id": 1,
+      "x": 16,
+      "y": 3,
+      "width": 10,
+      "height": 7,
+      "room_type": "normal",
+      "connections": [0, 2],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false
+    },
+    "2": {
+      "id": 2,
+      "x": 28,
+      "y": 2,
+      "width": 10,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 1,
+      "is_locked": true,
+      "is_secret": false
+    }
+  },
+  "metadata": {
+    "zone_id": "arrival",
+    "theme": "GOTHIC",
+    "topology": "settlement",
+    "scene_title": "Hargrove's Apothecary"
+  },
+  "content_hints": {
+    "0": {
+      "description": "Briar Street, cordoned off with OUP rope. The abandoned Hargrove's Apothecary squats between a shuttered hatmaker and a pawnbroker's. The front window is painted black from inside. A chalk outline marks where the body crumbled.",
+      "read_aloud": "The rain has washed most of the dust away, but a faint residue clings to the cobblestones -- like ash, but finer. It smells of champagne gone flat and something older, sweeter. A woman in a damp shawl stands under the pawnbroker's awning, watching.",
+      "npcs": [
+        {
+          "name": "Constable Petra Vane",
+          "role": "informant",
+          "dialogue": "I've been OUP fifteen years. Bodies decompose. They don't age sixty years in a night. My report says cardiac arrest and I'd appreciate it if you lot didn't make a liar of me.",
+          "notes": "Vane is terrified. She touched the dust and felt a chill that hasn't left her hand. She won't admit this."
+        },
+        {
+          "name": "Essie Greaves",
+          "role": "witness",
+          "dialogue": "I heard him come out. Declan. He was laughing, stumbling like he'd had a grand time. Then he just... stopped. Went stiff. And he got old, right there on the street, like watching a flower wilt.",
+          "notes": "Essie lives across the street. She's seen others enter Hargrove's over the years. None came back looking right."
+        }
+      ],
+      "event_triggers": ["The first clue: champagne-scented dust and a witness who saw the victim emerge laughing before aging to death."],
+      "perception_dc": 10,
+      "perception_success": "Faint music -- a muffled jazz melody -- leaks from somewhere below the apothecary's foundation. It stops when you press your ear to the wall."
+    },
+    "1": {
+      "description": "The apothecary interior. Shelves of brown glass bottles thick with dust. A counter with a brass register frozen mid-transaction. Behind it, a narrow hallway leads to a stockroom. The air tastes stale, preserved, like a room sealed since the last century.",
+      "read_aloud": "Everything here stopped. A calendar on the wall reads December 31, 1892. A half-wrapped parcel sits on the counter. The dust is undisturbed except for a single trail of footprints leading toward the back.",
+      "investigation_dc": 12,
+      "investigation_success": "The footprints are fresh -- Declan's. They lead to the stockroom. But there's a second set, older, that walks the same path over and over, wearing a groove in the dust. Someone has been making this trip for decades.",
+      "loot": [
+        {"name": "Apothecary Ledger", "value": 0, "description": "The final entry reads: 'Basement sealed per Mr. Hargrove's instruction. Guests to be admitted by invitation only.' Invitation to what?"}
+      ]
+    },
+    "2": {
+      "description": "The stockroom. Crates of patent medicines and empty tincture bottles. In the floor, a trapdoor with a heavy iron ring. Fresh scratches around the edges. The lock has been forced -- recently.",
+      "read_aloud": "When you pull the ring, a breath of warm air rises from below, carrying champagne fizz, cigarette smoke, and the unmistakable swing of a jazz band playing something that hasn't been popular in forty years.",
+      "lock_dc": 14,
+      "event_triggers": ["The trapdoor is open. Music drifts up from below. The party has been going on for decades."]
+    }
+  }
+}

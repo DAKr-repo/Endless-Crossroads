@@ -241,6 +241,37 @@ class TestVaultScan:
                         return_value=mock_changes):
                 wizard.vault_scan()  # Should not raise
 
+    def test_content_scan_finds_modules(self):
+        """_scan_content_and_modules() detects adventure modules."""
+        from maintenance.codex_boot_wizard import BootWizard
+
+        result = BootWizard._scan_content_and_modules()
+        assert isinstance(result, dict)
+        assert result["module_count"] > 0, "No modules detected by scanner"
+        assert len(result["modules_by_system"]) > 0
+
+    def test_content_scan_finds_config(self):
+        """_scan_content_and_modules() detects config JSON files."""
+        from maintenance.codex_boot_wizard import BootWizard
+
+        result = BootWizard._scan_content_and_modules()
+        assert result["total_config_files"] > 0, "No config files detected"
+        categories = [c["name"] for c in result["config_categories"]]
+        assert "bestiary" in categories
+        assert "loot" in categories
+
+    def test_vault_scan_shows_content_inventory(self):
+        """vault_scan() shows content inventory even with no PDF changes."""
+        from maintenance.codex_boot_wizard import BootWizard
+
+        mock_changes = {"new": [], "changed": [], "total_vault": 0, "total_tracked": 5}
+
+        with patch.object(BootWizard, "__init__", lambda self: None):
+            wizard = BootWizard()
+            with patch("maintenance.codex_index_builder.check_vault_changes",
+                        return_value=mock_changes):
+                wizard.vault_scan()  # Should show content inventory, not "up to date"
+
 
 # =========================================================================
 # Phase 2C: Maestro Importability

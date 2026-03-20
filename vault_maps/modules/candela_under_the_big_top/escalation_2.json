@@ -1,0 +1,127 @@
+{
+  "seed": 7019,
+  "width": 30,
+  "height": 15,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "circus_escalation_2",
+    "theme": "GOTHIC",
+    "topology": "dungeon",
+    "display_name": "The Burning Fairgrounds"
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 0,
+      "y": 0,
+      "width": 8,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The fairgrounds exterior. The big top is on fire. The creature has escaped through the cut canvas roof and floats a hundred feet above -- a blazing, terrified star radiating bleed energy across the entire fairground. Audience members pour from the exits.",
+        "read_aloud": "The creature floats above the circus, pulsing with light so bright it casts noon-sharp shadows. It spins, contracts, expands, broadcasting distress. Below it, the fairground burns. Some audience members run. Some are collapsed. Some stand motionless, staring upward with expressions of stunned wonder as bleed radiation washes over them.",
+        "npcs": [
+          {
+            "name": "Handler Vex",
+            "role": "ally_in_peril",
+            "dialogue": "He staggers from the tent, blood on his face, the resonance chamber clutched to his chest. 'I can reach it. The link -- I can use it to guide it away. But I need high ground. The calliope tower.' He points to the ornamental tower at the midway's center -- thirty feet tall. 'Play the chamber from up there and it'll hear me. It'll follow.'",
+            "notes": "He/him. His plan is sound but the climb will expose him to maximum bleed radiation. He may not survive sustained contact at this range. But he's the only one with the link. Dr. Asher has adrenaline that could sustain him for one climb."
+          }
+        ],
+        "enemies": [
+          {
+            "name": "Bleed-Infected Audience Members",
+            "hp": 12,
+            "max_hp": 12,
+            "ac": 10,
+            "attack": 4,
+            "defense": 10,
+            "count": 3
+          }
+        ],
+        "services": [],
+        "event_triggers": [
+          "THREAT: Three severely affected audience members -- not hostile but unpredictable. Some attack imaginary threats. Some walk toward the creature into fire.",
+          "The creature is free but the crisis has shifted: hundreds affected, fires spreading, the creature needs guiding away. The calliope tower is the plan."
+        ],
+        "loot": []
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 11,
+      "y": 0,
+      "width": 10,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [0, 2],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The calliope tower. Thirty feet of hot iron rungs, the steam calliope at the top. The structure is warm from the spreading fire but intact. At the top, you'd be at eye level with the creature.",
+        "read_aloud": "The climb is thirty feet of hot iron, rungs slick with condensation. At the top, the calliope's pipes point skyward. The creature hovers nearby, its light washing over you in waves of heat and unreality. This close, you can see it clearly: not a body but a process, a continuous unfolding of light and geometry. It sees you. Up here, face to face, it pauses.",
+        "npcs": [],
+        "enemies": [
+          {
+            "name": "Circus Fire",
+            "hp": 15,
+            "max_hp": 15,
+            "ac": 12,
+            "attack": 5,
+            "defense": 12,
+            "count": 1
+          }
+        ],
+        "services": [],
+        "event_triggers": [
+          "THREAT: The fire reaches the tower base. Climbing up is possible but climbing down may not be. The boiler overheats -- if not vented, it explodes in five rounds.",
+          "SPECIAL: Face to face with the creature, the resonance chamber sounds like home to it. It stills. Its distress-white light shifts to warmer colors. It will follow the tone."
+        ],
+        "loot": [
+          {
+            "name": "Calliope Steam Whistle",
+            "value": 0,
+            "description": "Detachable from the calliope mechanism. Produces a sustained tone similar to the resonance chamber but louder, audible for miles. Can serve as a beacon to guide the creature toward the lighthouse thinning."
+          }
+        ],
+        "perception_dc": 14,
+        "perception_success": "Face to face with the creature, you understand something the files never captured: it's not just scared. It's lonely. Where it comes from, there are millions like it -- a sky full of living light. Here, it's the only one. The tone doesn't just calm it. It sounds like home."
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 22,
+      "y": 2,
+      "width": 6,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The midway, where Bellamy stands watching his circus burn. The performers huddle behind him. His showman's smile is finally gone. The mirrored funhouse wagon sits nearby -- if the resonance chamber is played inside, the tone amplifies and focuses into a directional beacon.",
+        "read_aloud": "Bellamy's face is a ruin of guilt. 'My grandfather would have known.' He watches the creature floating above -- a star he tried to put in a cage. 'What do you need? Whatever it is. The mirrored wagon -- you can amplify that tone. We've got horses. I know the coast road. I'll drive myself.'",
+        "npcs": [
+          {
+            "name": "Ringmaster Bellamy",
+            "role": "ally",
+            "dialogue": "Cooperating fully, no showmanship left. 'The mirrored wagon will project the tone in a focused beam -- the creature will follow it like a spotlight follows an actor. Two miles to the lighthouse. If that's where it needs to go, I'll get it there.'",
+            "notes": "He/him. Cooperating out of genuine remorse. Provides the mirrored wagon as an amplification solution. Drives the lead horse himself. The circus performers, unified by the disaster, all help."
+          }
+        ],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [
+          "The plan: resonance chamber inside the mirrored wagon, projected as a directional beacon. Vex maintains the psychic link. Bellamy drives. Investigators manage the creature's approach. Two miles to the lighthouse thinning."
+        ],
+        "loot": []
+      }
+    }
+  }
+}

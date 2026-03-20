@@ -1,0 +1,74 @@
+{
+  "seed": 7004,
+  "width": 25,
+  "height": 15,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "haven_hills_hook",
+    "theme": "GOTHIC",
+    "topology": "settlement",
+    "display_name": "The Late Assignment"
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 0,
+      "y": 0,
+      "width": 10,
+      "height": 8,
+      "room_type": "residence",
+      "connections": [1],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The Candela chapter house briefing room, late evening. A single case file lies on the table: a miner's death report, a constable's note, and a child's crayon drawing of a dark shape with kind eyes hiding under a bed.",
+        "read_aloud": "Your Lightkeeper sets down the file without ceremony. 'Tobias Griggs. Miner. Found dead in his home three nights ago in Haven Hills. Claw marks -- deep, precise, nothing local. His son Ellis, seven years old, was asleep in the next room. Unharmed. The boy says a friend lives under his bed. The friend protects him.' She slides the crayon drawing across the table. The dark shape in it is smiling.",
+        "npcs": [
+          {
+            "name": "Lightkeeper Sera Voss",
+            "role": "briefing",
+            "dialogue": "The wounds were not made in anger. Every strike was anatomically precise -- each one hit something vital. This was a killing, not an attack. Whatever killed Tobias Griggs was defending something. The newest shaft in the Haven Hills colliery broke into a sealed cavern two months ago. We believe it displaced a bonded bleed creature. Your priority is the child's safety and the creature's containment. Destruction is a last resort.",
+            "notes": "She/her. Aware of Tobias Griggs's history of domestic violence but will not say so in the briefing. She believes the creature acted in the child's defense. She is sending the circle in with the expectation they will find a way to relocate the creature, not destroy it."
+          }
+        ],
+        "enemies": [],
+        "services": ["rumor"],
+        "event_triggers": [
+          "A miner killed in Haven Hills. Deep claw marks. A child unharmed, claims a friend lives under his bed. The creature may be protective, not predatory.",
+          "Candela's records indicate a similar displacement event in 1901 -- a bonded bleed creature successfully relocated to a cave system outside a town. The child suffered psychic distress during the move but recovered."
+        ],
+        "loot": []
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 13,
+      "y": 0,
+      "width": 10,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [0],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The chapter house archive. Bestiaries, field reports, sketched anatomies of bleed fauna. A dedicated folio on bonded creatures, thin but specific.",
+        "read_aloud": "The folio is titled 'Hearth Lurker: Documented Occurrences, 1887-1908.' Six cases. Each involves a mining or excavation event, a child, and a creature that formed a protective bond. In every recorded case, the child was in danger -- from poverty, from neglect, from violence. The creature sought the child, not the other way around.",
+        "npcs": [],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [],
+        "loot": [
+          {
+            "name": "Hearth Lurker Folio",
+            "value": 0,
+            "description": "Candela field reports on six bonded Hearth Lurker cases. Notes: territorial, non-aggressive unless bond is threatened. Bonds exclusively with children in psychological distress. Successfully relocated in four of six cases. Two cases ended in creature destruction and lasting psychic damage to the child."
+          }
+        ],
+        "investigation_dc": 12,
+        "investigation_success": "One entry matches the Haven Hills claw marks exactly: a Hearth Lurker from the 1904 Ashford mining incident. The relocation was achieved by involving the bonded child in guiding the creature to its new habitat. Forcing the creature without the child's cooperation caused extreme aggression."
+      }
+    }
+  }
+}

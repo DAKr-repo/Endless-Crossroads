@@ -1,0 +1,112 @@
+{
+  "seed": 7005,
+  "width": 35,
+  "height": 15,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "haven_hills_arrival",
+    "theme": "GOTHIC",
+    "topology": "settlement",
+    "display_name": "Haven Hills"
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 0,
+      "y": 0,
+      "width": 10,
+      "height": 8,
+      "room_type": "town_square",
+      "connections": [1, 2],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Haven Hills. Thirty houses along a muddy track, the coal tipple cutting the sky. The mood is fearful -- curtains drawn, children kept inside, men walking in pairs. The Griggs house sits at the end of the lane with constable tape across the door.",
+        "read_aloud": "The village holds its breath. Women watch from porches without speaking. A dog barks once and is hushed. The Griggs house is at the end of the lane, door sealed with constable tape, windows dark save one upstairs -- the child's room. A light burns there, steady, unflickering. As you approach, something large shifts in the shadow behind that curtain.",
+        "npcs": [
+          {
+            "name": "Constable Reid",
+            "role": "informant",
+            "dialogue": "Tobias was a hard man. Drank. The kind of father who used his belt more than his words. Nobody's saying it, but nobody's surprised something got him. The boy? Not a scratch. Found him sleeping while his father lay dead ten feet away with his chest opened. I've seen mining accidents. This was not an accident.",
+            "notes": "He/him. Village constable. Suspects domestic violence in the Griggs household but has no legal standing to act on it now. He's noticed the village is more frightened of the creature than grieved by Tobias's death. He wants this handled quietly."
+          }
+        ],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [
+          "The village fears the creature but mourns Tobias little. Witnesses describe a protective bond between the entity and the child. The creature arrived when the mine expanded two months ago."
+        ],
+        "loot": [
+          {
+            "name": "Constable's Incident Report",
+            "value": 0,
+            "description": "Handwritten notes on the Griggs death. Notes the precision of the wounds, no forced entry, the child's serene demeanor. A separate, crossed-out line reads: 'Third domestic disturbance complaint this year.'"
+          }
+        ],
+        "investigation_dc": 12,
+        "investigation_success": "The mine expansion logs show the sealed cavern was breached eleven weeks ago. Agnes Kelley's accounts place the sounds under the Griggs house beginning nine weeks ago -- the creature relocated in roughly two weeks, following the lateral shaft directly to the nearest house."
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 13,
+      "y": 0,
+      "width": 10,
+      "height": 8,
+      "room_type": "tavern",
+      "connections": [0],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The Pickaxe pub. Coal-fire warm, low ceiling, men drinking quietly. Foreman Decker holds court at the bar, arm in a sling from a recent tunnel collapse.",
+        "read_aloud": "Decker buys you a drink without asking. 'You're here about the Griggs killing. Good. Because I've got a mine that's been making sounds since we cut the new shaft three months ago. Not settling sounds. Something else. Something living.' His sling smells of antiseptic and coal dust. 'When the boy's father turned up dead, I knew I'd caused it.'",
+        "npcs": [
+          {
+            "name": "Foreman Decker",
+            "role": "witness",
+            "dialogue": "The new shaft hit a void -- a natural cavern. Walls covered in claw marks, old ones. Something lived there a long time. We sealed it and kept cutting. A week later the night watchman reported movement in the upper tunnels. Large. Fast. Staying outside the lantern light. Then Tobias gets killed and I put two and two together.",
+            "notes": "He/him. Guilt-ridden. He ordered the cavern sealed despite the signs. He knows the mine displaced the creature and holds himself responsible for Tobias's death. Will cooperate fully and provide access to the sealed cavern. Carries a key to the mine gate."
+          }
+        ],
+        "enemies": [],
+        "services": ["drink", "rumor"],
+        "event_triggers": [],
+        "loot": []
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 25,
+      "y": 0,
+      "width": 8,
+      "height": 8,
+      "room_type": "residence",
+      "connections": [0],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Martha Voss's house, adjacent to the Griggs property. The shared wall is thin enough to hear next door clearly. Martha keeps her curtains half-open, watching the Griggs house.",
+        "read_aloud": "Martha Voss answers the door before you knock. She's been expecting someone. 'I've been hearing it through the wall for months,' she says, and steps aside to let you in. 'Sit down. I'll tell you everything.'",
+        "npcs": [
+          {
+            "name": "Martha Voss",
+            "role": "witness",
+            "dialogue": "I heard Tobias screaming. Not the boy -- Tobias. Then silence. Then this sound, like a very large cat purring. I looked through the gap in the wall and I swear I saw a shadow under the boy's bed that was the wrong shape. Too many limbs. But Ellis was calm. He had his hand over the mattress edge and the shadow was holding it.",
+            "notes": "She/her. The most reliable witness. Has been hearing strange sounds from the Griggs house for months -- scraping beneath the floorboards, purring when Ellis is home. She believes the creature has been there since the mine expansion. She also overheard Tobias striking the boy on at least three occasions before his death."
+          }
+        ],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [
+          "REVEAL: Martha heard the creature purring while holding Ellis's hand before the killing. It had a domestic routine. It was integrated. Tobias's attack on Ellis was what triggered it."
+        ],
+        "loot": [],
+        "perception_dc": 10,
+        "perception_success": "Through the shared wall, very faintly: a low, rhythmic sound. Not mechanical. Organic. The creature is still in the house, and it is still calm. It is waiting for Ellis to come home."
+      }
+    }
+  }
+}

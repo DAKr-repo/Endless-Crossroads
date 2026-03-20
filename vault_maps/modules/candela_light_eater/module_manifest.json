@@ -1,0 +1,79 @@
+{
+  "module_id": "candela_light_eater",
+  "display_name": "The Light Eater of Bridleborne",
+  "system_id": "candela",
+  "source_pdf": null,
+  "source_type": "publisher_licensed",
+  "world_map": null,
+  "starting_location": "overmount_hook",
+  "recommended_levels": {"min": 1, "max": 3},
+  "chapters": [
+    {
+      "chapter_id": "discovery",
+      "display_name": "Discovery",
+      "order": 1,
+      "zones": [
+        {
+          "zone_id": "overmount_hook",
+          "blueprint": "hook.json",
+          "topology": "settlement",
+          "theme": "GOTHIC",
+          "location_id": "overmount",
+          "entry_trigger": "module_start",
+          "exit_trigger": "scene_complete"
+        },
+        {
+          "zone_id": "overmount_arrival",
+          "blueprint": "arrival.json",
+          "topology": "settlement",
+          "theme": "GOTHIC",
+          "location_id": "overmount",
+          "entry_trigger": "scene_complete",
+          "exit_trigger": "scene_complete"
+        }
+      ]
+    },
+    {
+      "chapter_id": "investigation",
+      "display_name": "Investigation",
+      "order": 2,
+      "zones": [
+        {
+          "zone_id": "shelley_cottage",
+          "blueprint": "exploration.json",
+          "topology": "settlement",
+          "theme": "GOTHIC",
+          "location_id": "overmount_outskirts",
+          "entry_trigger": "scene_complete",
+          "exit_trigger": "scene_complete"
+        }
+      ]
+    },
+    {
+      "chapter_id": "confrontation",
+      "display_name": "Confrontation",
+      "order": 3,
+      "zones": [
+        {
+          "zone_id": "overmount_woods",
+          "blueprint": "escalation.json",
+          "topology": "dungeon",
+          "theme": "GOTHIC",
+          "location_id": "overmount_woods",
+          "entry_trigger": "scene_complete",
+          "exit_trigger": "scene_complete"
+        },
+        {
+          "zone_id": "light_eater_lair",
+          "blueprint": "climax.json",
+          "topology": "dungeon",
+          "theme": "GOTHIC",
+          "location_id": "overmount_woods",
+          "entry_trigger": "scene_complete",
+          "exit_trigger": "boss_defeated"
+        }
+      ]
+    }
+  ],
+  "freeform_zones": []
+}

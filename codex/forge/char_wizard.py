@@ -169,6 +169,41 @@ class CharacterSheet:
     flaws: List[str] = field(default_factory=list)
     gold: int = 0
     equipment_mode: str = "package"
+    # FITD / Illuminated Worlds fields
+    action_ratings: Dict[str, int] = field(default_factory=dict)
+    gilded_actions: List[str] = field(default_factory=list)
+    drives: Dict[str, int] = field(default_factory=dict)
+    resistances: Dict[str, int] = field(default_factory=dict)
+    abilities: List[str] = field(default_factory=list)
+    catalyst: str = ""
+    question: str = ""
+    style: str = ""
+    pronouns: str = ""
+    relationships: List[Dict[str, str]] = field(default_factory=list)
+    # Circle fields (shared across party)
+    circle_name: str = ""
+    circle_chapter_house: str = ""
+    circle_abilities: List[str] = field(default_factory=list)
+    circle_resources: Dict[str, int] = field(default_factory=dict)
+    # FITD extended fields (BitD/SaV/BoB)
+    background: str = ""
+    alias: str = ""
+    look: str = ""
+    friend: str = ""
+    rival: str = ""
+    vice_purveyor: str = ""
+    heritage_detail: str = ""
+    # STC / Cosmere fields
+    skills: Dict[str, int] = field(default_factory=dict)
+    expertises: List[str] = field(default_factory=list)
+    talents: List[str] = field(default_factory=list)
+    purpose: str = ""
+    obstacle: str = ""
+    # Group creation (generalized from circle)
+    group_name: str = ""
+    group_type: str = ""
+    group_abilities: List[str] = field(default_factory=list)
+    group_resources: Dict[str, int] = field(default_factory=dict)
 
     @property
     def race(self) -> str:
@@ -260,6 +295,47 @@ class CharacterSheet:
             lines.append(f"Spells: {', '.join(self.spells_known)}")
         if self.personality_traits:
             lines.append(f"Trait: {self.personality_traits[0]}")
+        if self.action_ratings:
+            ar_str = "  ".join(f"{k}: {v}" for k, v in self.action_ratings.items() if v > 0)
+            lines.append(f"Actions: {ar_str}")
+        if self.gilded_actions:
+            lines.append(f"Gilded: {', '.join(self.gilded_actions)}")
+        if self.drives:
+            dr_str = "  ".join(f"{k}: {v}" for k, v in self.drives.items())
+            lines.append(f"Drives: {dr_str}")
+        if self.resistances:
+            res_str = "  ".join(f"{k}: {v}" for k, v in self.resistances.items())
+            lines.append(f"Resistances: {res_str}")
+        if self.abilities:
+            lines.append(f"Abilities: {', '.join(self.abilities)}")
+        if self.catalyst:
+            lines.append(f"Catalyst: {self.catalyst}")
+        if self.pronouns:
+            lines.append(f"Pronouns: {self.pronouns}")
+        if self.background:
+            lines.append(f"Background: {self.background}")
+        if self.alias:
+            lines.append(f"Alias: {self.alias}")
+        if self.look:
+            lines.append(f"Look: {self.look}")
+        if self.friend:
+            lines.append(f"Friend: {self.friend}")
+        if self.rival:
+            lines.append(f"Rival: {self.rival}")
+        if self.skills:
+            sk_str = "  ".join(f"{k}: {v}" for k, v in self.skills.items() if v > 0)
+            if sk_str:
+                lines.append(f"Skills: {sk_str}")
+        if self.expertises:
+            lines.append(f"Expertises: {', '.join(self.expertises)}")
+        if self.talents:
+            lines.append(f"Talents: {', '.join(self.talents)}")
+        if self.purpose:
+            lines.append(f"Purpose: {self.purpose}")
+        if self.obstacle:
+            lines.append(f"Obstacle: {self.obstacle}")
+        if self.group_name:
+            lines.append(f"Group: {self.group_name}")
         return lines
 
 
@@ -378,13 +454,22 @@ class SystemBuilder:
                     self._step_stat_roll(step)
                 elif step_type == "stat_pool_allocate":
                     self._step_stat_pool(step)
+                elif step_type == "dependent_choice":
+                    self._step_dependent_choice(step)
+                elif step_type == "point_allocate":
+                    self._step_point_allocate(step)
+                elif step_type == "auto_derive":
+                    self._step_auto_derive(step)
+                elif step_type == "ability_select":
+                    self._step_ability_select(step)
                 idx += 1
             except self._BackStep:
                 if idx > 0:
                     idx -= 1
                     self.console.print(f"[dim]Returning to step {idx + 1}...[/dim]")
                 else:
-                    self.console.print(f"[dim]Already at first step.[/dim]")
+                    # Propagate so the caller can return to the campaign wizard
+                    raise
 
         # WO Blueprint — Post-step processing (D&D-specific)
         if self.sheet.system_id == "dnd5e" and self.sheet.stats:
@@ -1187,6 +1272,32 @@ class SystemBuilder:
         self.sheet.choices[step_id] = value
         if step_id == "name":
             self.sheet.name = value
+        elif step_id == "catalyst":
+            self.sheet.catalyst = value
+        elif step_id == "question":
+            self.sheet.question = value
+        elif step_id == "style":
+            self.sheet.style = value
+        elif step_id == "pronouns":
+            self.sheet.pronouns = value
+        elif step_id == "background":
+            self.sheet.background = value
+        elif step_id == "alias":
+            self.sheet.alias = value
+        elif step_id == "look":
+            self.sheet.look = value
+        elif step_id == "friend":
+            self.sheet.friend = value
+        elif step_id == "rival":
+            self.sheet.rival = value
+        elif step_id == "vice_purveyor":
+            self.sheet.vice_purveyor = value
+        elif step_id == "heritage_detail":
+            self.sheet.heritage_detail = value
+        elif step_id == "purpose":
+            self.sheet.purpose = value
+        elif step_id == "obstacle":
+            self.sheet.obstacle = value
 
     def _step_choice(self, step: Dict):
         label = step.get("label", "Choose")
@@ -1233,7 +1344,16 @@ class SystemBuilder:
         if choice.lower() in ("back", "b"):
             raise self._BackStep()
         picked = options[int(choice) - 1]
-        self.sheet.choices[step.get("id", label.lower())] = picked
+        sid = step.get("id", label.lower())
+        self.sheet.choices[sid] = picked
+        # Store relationship on sheet
+        if sid == "relationship":
+            rel_val = picked.get("value", picked.get("label", "")) if isinstance(picked, dict) else str(picked)
+            self.sheet.relationships.append({"type": rel_val})
+        # Store background on sheet field
+        elif sid == "background":
+            bg_val = picked.get("value", picked.get("label", picked.get("id", ""))) if isinstance(picked, dict) else str(picked)
+            self.sheet.background = bg_val
 
     def _step_stat_roll(self, step: Dict):
         label = step.get("label", "Roll Stats")
@@ -1335,6 +1455,509 @@ class SystemBuilder:
         )
         self.console.print(f"  Final: {stat_line}")
 
+    # ------------------------------------------------------------------
+    # NEW STEP TYPES (WO — Char Wizard Overhaul)
+    # ------------------------------------------------------------------
+
+    def _resolve_dependency(self, depends_on: str) -> str:
+        """Resolve a depends_on key to its current value from sheet.choices."""
+        val = self.sheet.choices.get(depends_on, "")
+        if isinstance(val, dict):
+            return val.get("value", val.get("label", val.get("id", "")))
+        return str(val)
+
+    def _step_dependent_choice(self, step: dict):
+        """Options filtered by a previous choice. Supports two modes:
+
+        Mode 1 — option_groups: standard dependent choice (e.g. Specialty depends on Role).
+        Mode 2 — preset_gilded + choose_count: preset one value, let user pick additional
+                  (used for gilded actions).
+        """
+        step_id = step.get("id", step.get("label", "").lower())
+        label = step.get("label", "Choose")
+        prompt_text = step.get("prompt", "Select one:")
+        depends_on = step.get("depends_on", "")
+        parent_val = self._resolve_dependency(depends_on)
+
+        self.console.print(f"[bold {FORGE_GOLD}]{label}[/]")
+        if step.get("description"):
+            self.console.print(f"  [dim]{step['description']}[/]")
+
+        # Mode 2: Gilded actions (preset + choose additional)
+        preset_gilded = step.get("preset_gilded")
+        if preset_gilded is not None:
+            preset = preset_gilded.get(parent_val, "")
+            choose_count = step.get("choose_count", 1)
+            from_list = step.get("from", [])
+
+            gilded = [preset] if preset else []
+            if preset:
+                self.console.print(f"  [dim]Specialty gilded action: [{FORGE_CYAN}]{preset}[/][/]")
+
+            remaining = [a for a in from_list if a != preset]
+            for _ in range(choose_count):
+                if not remaining:
+                    break
+                self.console.print(f"\n  [dim]{prompt_text}[/]")
+                for j, opt in enumerate(remaining, 1):
+                    self.console.print(f"  [{FORGE_CYAN}]{j}[/] {opt}")
+                valid = [str(n) for n in range(1, len(remaining) + 1)]
+                pick = self._prompt("  Choice", valid, default="1")
+                chosen = remaining.pop(int(pick) - 1)
+                gilded.append(chosen)
+                self.console.print(f"  [dim]Gilded: {chosen}[/dim]")
+
+            self.sheet.gilded_actions = gilded
+            self.sheet.choices[step_id] = gilded
+            return
+
+        # Mode 1: Standard dependent choice
+        option_groups = step.get("option_groups", {})
+        options = option_groups.get(parent_val, [])
+        if not options:
+            self.console.print(f"  [dim]No options available for {parent_val}.[/dim]")
+            return
+
+        self.console.print(f"  [dim]{prompt_text}[/]")
+        for j, opt in enumerate(options, 1):
+            if isinstance(opt, dict):
+                desc = opt.get("description", "")
+                val_str = opt.get("value", opt.get("label", ""))
+                self.console.print(
+                    f"  [{FORGE_CYAN}]{j}[/] {val_str}"
+                    + (f"  [dim]- {desc}[/]" if desc else "")
+                )
+            else:
+                self.console.print(f"  [{FORGE_CYAN}]{j}[/] {opt}")
+
+        valid = [str(n) for n in range(1, len(options) + 1)]
+        pick = self._prompt("  Choice", valid, default="1")
+        picked = options[int(pick) - 1]
+        if isinstance(picked, dict):
+            val = picked.get("value", picked.get("label", ""))
+        else:
+            val = picked
+        self.sheet.choices[step_id] = val
+        # Store on named sheet fields
+        if step_id == "friend":
+            self.sheet.friend = str(val)
+        elif step_id == "rival":
+            self.sheet.rival = str(val)
+
+    def _step_point_allocate(self, step: dict):
+        """Distribute N points across categories with preset base values."""
+        import math
+        step_id = step.get("id", step.get("label", "").lower())
+        label = step.get("label", "Allocate Points")
+        desc = step.get("description", "")
+        points = step.get("points", 3)
+        max_per = step.get("max_per_category", 2)
+        categories = step.get("categories", [])
+        category_groups = step.get("category_groups", {})
+        preset_key = step.get("preset_key", "")
+        presets = step.get("presets", {})
+        zero_raise = step.get("zero_raise", False)
+
+        self.console.print(f"[bold {FORGE_GOLD}]{label}[/]")
+        if desc:
+            self.console.print(f"  [dim]{desc}[/]")
+
+        # Resolve preset base values from specialty/role
+        preset_val = self._resolve_dependency(preset_key) if preset_key else ""
+        base = presets.get(preset_val, {})
+        current = {cat: base.get(cat, 0) for cat in categories}
+
+        # Show base values
+        if base:
+            base_str = ", ".join(f"{k} {v}" for k, v in base.items() if v > 0)
+            self.console.print(f"  [dim]Specialty base: {base_str}[/]")
+
+        # Zero-raise: let player raise one 0-rating action to 1
+        if zero_raise:
+            zeros = [cat for cat in categories if current[cat] == 0]
+            if zeros:
+                self.console.print(f"\n  [bold]Raise one untrained action to 1:[/]")
+                for j, cat in enumerate(zeros, 1):
+                    self.console.print(f"  [{FORGE_CYAN}]{j}[/] {cat}")
+                valid = [str(n) for n in range(1, len(zeros) + 1)]
+                pick = self._prompt("  Raise", valid, default="1")
+                raised = zeros[int(pick) - 1]
+                current[raised] = 1
+                self.console.print(f"  [dim]{raised} raised to 1[/dim]")
+
+        # Interactive point distribution
+        remaining = points
+        allocations = []  # (category, amount) for undo
+
+        def _show_current():
+            if category_groups:
+                for group_name, group_cats in category_groups.items():
+                    cats_str = "  ".join(
+                        f"{c}: [{FORGE_CYAN}]{current[c]}[/]" for c in group_cats
+                    )
+                    self.console.print(f"  [{FORGE_GOLD}]{group_name}[/]: {cats_str}")
+            else:
+                cats_str = "  ".join(
+                    f"{c}: [{FORGE_CYAN}]{current[c]}[/]" for c in categories
+                )
+                self.console.print(f"  {cats_str}")
+
+        while remaining > 0:
+            self.console.print(f"\n  [dim]Points remaining: [{FORGE_CYAN}]{remaining}[/][/]")
+            _show_current()
+
+            available = [cat for cat in categories if current[cat] < max_per]
+            if not available:
+                self.console.print(f"  [dim]All categories at max.[/dim]")
+                break
+
+            for j, cat in enumerate(available, 1):
+                self.console.print(f"  [{FORGE_CYAN}]{j}[/] {cat} (currently {current[cat]})")
+
+            valid = [str(n) for n in range(1, len(available) + 1)]
+            try:
+                pick = self._prompt(f"  Add point to", valid, default="1")
+            except self._BackStep:
+                if allocations:
+                    cat, _ = allocations.pop()
+                    current[cat] -= 1
+                    remaining += 1
+                    self.console.print(f"  [dim]Undid +1 to {cat}[/dim]")
+                    continue
+                else:
+                    raise
+            chosen_cat = available[int(pick) - 1]
+            current[chosen_cat] += 1
+            remaining -= 1
+            allocations.append((chosen_cat, 1))
+            self.console.print(f"  [dim]+1 {chosen_cat} (now {current[chosen_cat]})[/dim]")
+
+        # Final display
+        self.console.print(f"\n  [bold]Final allocation:[/]")
+        _show_current()
+
+        # Store on sheet
+        if step_id == "action_ratings":
+            self.sheet.action_ratings = dict(current)
+        elif step_id == "drives":
+            self.sheet.drives = dict(current)
+        elif step_id == "skills":
+            self.sheet.skills = dict(current)
+        elif step_id == "attributes":
+            self.sheet.stats = dict(current)
+        self.sheet.choices[step_id] = dict(current)
+
+    def _step_auto_derive(self, step: dict):
+        """Calculate values from previous choices — no user input needed.
+
+        Supports two modes:
+        - Single source + formula: e.g. resistances = floor(drives / 3)
+        - Multi-field derivations: list of {name, formula, sources} dicts
+          for STC-style final calcs (Health=10+STR, Focus=2+WIL, etc.)
+        """
+        import math
+        step_id = step.get("id", step.get("label", "").lower())
+        label = step.get("label", "Derived Values")
+        desc = step.get("description", "")
+        source = step.get("source", "")
+        formula = step.get("formula", "")
+        derivations = step.get("derivations", [])
+
+        self.console.print(f"[bold {FORGE_GOLD}]{label}[/]")
+        if desc:
+            self.console.print(f"  [dim]{desc}[/]")
+
+        # Mode 2: Multi-field derivations (STC final calcs)
+        if derivations:
+            derived = {}
+            for d in derivations:
+                name = d["name"]
+                f = d["formula"]
+                result = self._eval_derivation(f)
+                derived[name] = result
+                self.console.print(
+                    f"  [{FORGE_BONE}]{name}[/]: [{FORGE_CYAN}]{result}[/]"
+                    f"  [dim]({f})[/]"
+                )
+            self.sheet.choices[step_id] = derived
+            return
+
+        # Mode 1: Single source + formula
+        source_data = self.sheet.choices.get(source, {})
+        if isinstance(source_data, dict):
+            derived = {}
+            for key, value in source_data.items():
+                if formula == "floor(value / 3)":
+                    derived[key] = math.floor(value / 3)
+                else:
+                    derived[key] = value
+
+            # Display
+            for key, value in derived.items():
+                src_val = source_data.get(key, 0)
+                self.console.print(
+                    f"  [{FORGE_BONE}]{key}[/]: {src_val} drive -> "
+                    f"[{FORGE_CYAN}]{value}[/] resistance"
+                )
+
+            # Store
+            if step_id == "resistances":
+                self.sheet.resistances = derived
+            self.sheet.choices[step_id] = derived
+
+    def _eval_derivation(self, formula: str) -> int:
+        """Evaluate a derivation formula like '10 + Strength + Speed'.
+
+        Looks up attribute names in sheet.stats and sheet.choices['attributes'].
+        """
+        import re
+        attrs = {}
+        attrs.update(self.sheet.stats)
+        attrs.update(self.sheet.choices.get("attributes", {}))
+        attrs.update(self.sheet.choices.get("skills", {}))
+        result = 0
+        for token in re.split(r'\s*\+\s*', formula.strip()):
+            try:
+                result += int(token)
+            except ValueError:
+                result += attrs.get(token, 0)
+        return result
+
+    def _step_ability_select(self, step: dict):
+        """Pick N abilities from role/specialty-filtered lists.
+
+        Supports two modes:
+        - pools + depends_on: filtered by parent choice (Candela/BitD)
+        - pool (flat list): direct list of abilities (STC talents)
+        """
+        step_id = step.get("id", step.get("label", "").lower())
+        label = step.get("label", "Choose Ability")
+        desc = step.get("description", "")
+        count = step.get("count", 1)
+        depends_on = step.get("depends_on", "")
+        pools = step.get("pools", {})
+        flat_pool = step.get("pool", [])
+
+        self.console.print(f"[bold {FORGE_GOLD}]{label}[/]")
+        if desc:
+            self.console.print(f"  [dim]{desc}[/]")
+
+        if flat_pool:
+            available = list(flat_pool)
+        elif depends_on:
+            parent_val = self._resolve_dependency(depends_on)
+            available = pools.get(parent_val, [])
+        else:
+            available = []
+
+        if not available:
+            self.console.print(f"  [dim]No abilities available.[/dim]")
+            return
+
+        # Normalize: pool items can be strings or dicts with name+description
+        def _ability_name(item):
+            return item["name"] if isinstance(item, dict) else item
+
+        def _ability_desc(item):
+            return item.get("description", "") if isinstance(item, dict) else ""
+
+        # Filter out already-chosen abilities
+        already = list(self.sheet.abilities)
+        remaining = [a for a in available if _ability_name(a) not in already]
+
+        chosen = []
+        pick_num = 0
+        while pick_num < count and remaining:
+            self.console.print()
+            for j, ability in enumerate(remaining, 1):
+                name = _ability_name(ability)
+                desc = _ability_desc(ability)
+                if desc:
+                    self.console.print(f"  [{FORGE_CYAN}]{j}[/] {name}")
+                    self.console.print(f"    [dim]{desc}[/]")
+                else:
+                    self.console.print(f"  [{FORGE_CYAN}]{j}[/] {name}")
+
+            valid = [str(n) for n in range(1, len(remaining) + 1)]
+            try:
+                pick = self._prompt(
+                    f"  Ability {pick_num + 1}/{count}", valid, default="1"
+                )
+            except self._BackStep:
+                if chosen:
+                    undone = chosen.pop()
+                    remaining.append(undone)
+                    pick_num -= 1
+                    self.console.print(f"  [dim]Undid: {_ability_name(undone)}[/dim]")
+                    continue
+                else:
+                    raise
+            picked = remaining.pop(int(pick) - 1)
+            chosen.append(picked)
+            pick_num += 1
+            self.console.print(f"  [dim]Selected: {_ability_name(picked)}[/dim]")
+
+        # Store plain names for downstream consumers
+        chosen_names = [_ability_name(c) for c in chosen]
+        if step_id == "talents":
+            self.sheet.talents.extend(chosen_names)
+        else:
+            self.sheet.abilities.extend(chosen_names)
+        self.sheet.choices[step_id] = chosen_names
+
+    def run_group_creation(self) -> dict:
+        """Run group creation phase (circle/crew/ship/legion). Returns group data dict.
+
+        Searches derived for any key ending in '_creation' (circle_creation,
+        crew_creation, ship_creation, legion_creation) and runs it.
+        """
+        group_section = None
+        group_key = ""
+        for key in self.schema.derived:
+            if key.endswith("_creation"):
+                group_section = self.schema.derived[key]
+                group_key = key
+                break
+        if not group_section:
+            return {}
+
+        steps = group_section.get("steps", [])
+        if not steps:
+            return {}
+
+        group_label = group_key.replace("_creation", "").replace("_", " ").title()
+        self.console.print(f"\n[bold {FORGE_GOLD}]--- {group_label} Creation ---[/]")
+        self.console.print(f"  [dim]Now create your {group_label} together.[/dim]")
+
+        circle_data: dict = {}
+        total = len(steps)
+        idx = 0
+        while idx < total:
+            step = steps[idx]
+            self.console.print(
+                f"\n[{FORGE_DIM}]{group_label} Step {idx + 1}/{total}[/]"
+            )
+            step_type = step.get("type", "text_input")
+            step_id = step.get("id", step.get("label", "").lower())
+
+            try:
+                if step_type == "text_input":
+                    label = step.get("label", "Input")
+                    prompt_text = step.get("prompt", "Enter value:")
+                    self.console.print(f"[bold {FORGE_GOLD}]{label}[/]")
+                    value = Prompt.ask(f"  {prompt_text}", console=self.console)
+                    if value.strip().lower() in ("back", "b"):
+                        raise self._BackStep()
+                    circle_data[step_id] = value
+
+                elif step_type == "choice":
+                    label = step.get("label", "Choose")
+                    prompt_text = step.get("prompt", "Select one:")
+                    options = step.get("options", [])
+                    self.console.print(f"[bold {FORGE_GOLD}]{label}[/]")
+                    self.console.print(f"  [dim]{prompt_text}[/]")
+                    for j, opt in enumerate(options, 1):
+                        if isinstance(opt, dict):
+                            desc = opt.get("description", "")
+                            self.console.print(
+                                f"  [{FORGE_CYAN}]{j}[/] {opt.get('value', opt.get('label', ''))}"
+                                + (f"  [dim]- {desc}[/]" if desc else "")
+                            )
+                        else:
+                            self.console.print(f"  [{FORGE_CYAN}]{j}[/] {opt}")
+                    valid = [str(n) for n in range(1, len(options) + 1)]
+                    pick = self._prompt("  Choice", valid, default="1")
+                    picked = options[int(pick) - 1]
+                    if isinstance(picked, dict):
+                        circle_data[step_id] = picked.get("value", picked.get("label", ""))
+                    else:
+                        circle_data[step_id] = picked
+
+                elif step_type == "ability_select":
+                    label = step.get("label", "Choose Ability")
+                    desc = step.get("description", "")
+                    count = step.get("count", 1)
+                    pool = step.get("pool", [])
+                    self.console.print(f"[bold {FORGE_GOLD}]{label}[/]")
+                    if desc:
+                        self.console.print(f"  [dim]{desc}[/]")
+                    chosen = []
+                    remaining = list(pool)
+                    for _ in range(count):
+                        if not remaining:
+                            break
+                        for j, ab in enumerate(remaining, 1):
+                            self.console.print(f"  [{FORGE_CYAN}]{j}[/] {ab}")
+                        valid = [str(n) for n in range(1, len(remaining) + 1)]
+                        pick = self._prompt("  Ability", valid, default="1")
+                        picked = remaining.pop(int(pick) - 1)
+                        chosen.append(picked)
+                        self.console.print(f"  [dim]Selected: {picked}[/dim]")
+                    circle_data[step_id] = chosen
+
+                elif step_type == "point_allocate":
+                    label = step.get("label", "Allocate")
+                    desc = step.get("description", "")
+                    pts = step.get("points", 3)
+                    cats = step.get("categories", [])
+                    max_per = step.get("max_per_category", 3)
+                    self.console.print(f"[bold {FORGE_GOLD}]{label}[/]")
+                    if desc:
+                        self.console.print(f"  [dim]{desc}[/]")
+                    current = {c: 0 for c in cats}
+                    rem = pts
+                    while rem > 0:
+                        avail = [c for c in cats if current[c] < max_per]
+                        if not avail:
+                            break
+                        self.console.print(f"\n  [dim]Points remaining: {rem}[/]")
+                        for j, c in enumerate(avail, 1):
+                            self.console.print(f"  [{FORGE_CYAN}]{j}[/] {c} ({current[c]})")
+                        valid = [str(n) for n in range(1, len(avail) + 1)]
+                        pick = self._prompt("  Add to", valid, default="1")
+                        ch = avail[int(pick) - 1]
+                        current[ch] += 1
+                        rem -= 1
+                    circle_data[step_id] = current
+
+                idx += 1
+            except self._BackStep:
+                if idx > 0:
+                    idx -= 1
+                    self.console.print(f"[dim]Going back...[/dim]")
+                else:
+                    self.console.print(f"[dim]Already at first step.[/dim]")
+
+        # Apply to sheet — circle-specific fields (backward compat)
+        if group_key == "circle_creation":
+            self.sheet.circle_name = circle_data.get("circle_name", "")
+            self.sheet.circle_chapter_house = circle_data.get("chapter_house", "")
+            self.sheet.circle_abilities = circle_data.get("circle_abilities", [])
+            self.sheet.circle_resources = circle_data.get("circle_resources", {})
+        # Generic group fields for crew/ship/legion
+        for k in ("crew_name", "ship_name", "legion_name", "group_name"):
+            if k in circle_data:
+                self.sheet.group_name = circle_data[k]
+                break
+        for k in ("crew_type", "ship_type", "group_type"):
+            if k in circle_data:
+                self.sheet.group_type = circle_data[k]
+                break
+        for k in ("crew_abilities", "ship_modules", "group_abilities"):
+            if k in circle_data:
+                self.sheet.group_abilities = circle_data[k]
+                break
+        for k in ("crew_resources", "ship_resources", "group_resources"):
+            if k in circle_data:
+                self.sheet.group_resources = circle_data[k]
+                break
+
+        return circle_data
+
+    def run_circle_creation(self) -> dict:
+        """Backward-compatible alias for run_group_creation."""
+        return self.run_group_creation()
+
 
 # ---------------------------------------------------------------------------
 # VIEWS: Paper Doll vs Stat Block
@@ -1345,18 +1968,95 @@ def render_stat_block_view(sheet: CharacterSheet, schema: CreationSchema) -> Pan
     content.add_column(style=f"{FORGE_GOLD} bold", justify="right")
     content.add_column(style=FORGE_BONE, justify="left")
 
-    for line in sheet.summary_lines():
-        if ": " in line:
-            key, val = line.split(": ", 1)
-            content.add_row(key + ":", val)
-        else:
-            content.add_row("", line)
+    # FITD / Illuminated Worlds enhanced display
+    if sheet.action_ratings:
+        content.add_row("Name:", sheet.name)
+        if sheet.pronouns:
+            content.add_row("Pronouns:", sheet.pronouns)
 
-    # Derived stats
-    if schema.derived:
+        # Role + Specialty
+        role = sheet.choices.get("role", "")
+        if isinstance(role, dict):
+            role = role.get("value", role.get("label", ""))
+        specialty = sheet.choices.get("specialty", "")
+        if role:
+            content.add_row("Role:", str(role))
+        if specialty:
+            content.add_row("Specialty:", str(specialty))
+
         content.add_row("", "")
-        for key, formula in schema.derived.items():
-            content.add_row(key.upper() + ":", str(formula))
+
+        # Action ratings grouped by drive
+        category_groups = schema.steps[3].get("category_groups", {}) if len(schema.steps) > 3 else {}
+        if category_groups:
+            for group_name, actions in category_groups.items():
+                drive_val = sheet.drives.get(group_name, 0)
+                resist_val = sheet.resistances.get(group_name, 0)
+                content.add_row(
+                    f"{group_name}:",
+                    f"Drive {drive_val} | Resistance {resist_val}"
+                )
+                for action in actions:
+                    rating = sheet.action_ratings.get(action, 0)
+                    gilded = " *" if action in sheet.gilded_actions else ""
+                    pips = "\u25cf" * rating + "\u25cb" * (3 - rating)
+                    content.add_row("", f"  {action}: {pips}{gilded}")
+        else:
+            for line in sheet.summary_lines():
+                if ": " in line:
+                    key, val = line.split(": ", 1)
+                    content.add_row(key + ":", val)
+
+        content.add_row("", "")
+
+        # Abilities
+        if sheet.abilities:
+            content.add_row("Abilities:", ", ".join(sheet.abilities))
+
+        # Catalyst / Question / Style
+        if sheet.catalyst:
+            content.add_row("Catalyst:", sheet.catalyst)
+        if sheet.question:
+            content.add_row("Question:", sheet.question)
+        if sheet.style:
+            content.add_row("Style:", sheet.style)
+
+        # Relationships
+        if sheet.relationships:
+            rel_strs = [r.get("type", "?") for r in sheet.relationships]
+            content.add_row("Relationship:", ", ".join(rel_strs))
+
+        # Circle info
+        if sheet.circle_name:
+            content.add_row("", "")
+            content.add_row("Circle:", sheet.circle_name)
+            if sheet.circle_chapter_house:
+                content.add_row("Chapter House:", sheet.circle_chapter_house)
+            if sheet.circle_abilities:
+                content.add_row("Circle Abilities:", ", ".join(sheet.circle_abilities))
+
+        # Derived stats (body/brain/bleed)
+        derived_display = {k: v for k, v in schema.derived.items() if k != "circle_creation"}
+        if derived_display:
+            content.add_row("", "")
+            for key, formula in derived_display.items():
+                content.add_row(key.upper() + ":", str(formula))
+    else:
+        # Standard stat block for non-FITD systems
+        for line in sheet.summary_lines():
+            if ": " in line:
+                key, val = line.split(": ", 1)
+                content.add_row(key + ":", val)
+            else:
+                content.add_row("", line)
+
+        # Derived stats
+        if schema.derived:
+            content.add_row("", "")
+            for key, formula in schema.derived.items():
+                if key == "circle_creation":
+                    continue
+                content.add_row(key.upper() + ":", str(formula))
 
     return Panel(
         content,
@@ -1610,6 +2310,11 @@ def main():
     builder = SystemBuilder(selected, console)
     sheet = builder.run()
 
+    # Circle creation phase (if schema supports it)
+    circle_data = {}
+    if selected.derived.get("circle_creation"):
+        circle_data = builder.run_circle_creation()
+
     # Render final character
     console.print()
     console.print(render_character(sheet, selected))
@@ -1633,6 +2338,20 @@ def main():
             "choices": sheet.choices,
             "stats": sheet.stats,
         }
+        # FITD / Illuminated Worlds fields
+        if sheet.action_ratings:
+            save_data["action_ratings"] = sheet.action_ratings
+            save_data["gilded_actions"] = sheet.gilded_actions
+            save_data["drives"] = sheet.drives
+            save_data["resistances"] = sheet.resistances
+            save_data["abilities"] = sheet.abilities
+            save_data["catalyst"] = sheet.catalyst
+            save_data["question"] = sheet.question
+            save_data["style"] = sheet.style
+            save_data["pronouns"] = sheet.pronouns
+            save_data["relationships"] = sheet.relationships
+        if circle_data:
+            save_data["circle"] = circle_data
         # Serialize choice dicts cleanly
         with open(save_path, "w") as f:
             json.dump(save_data, f, indent=2, default=str)

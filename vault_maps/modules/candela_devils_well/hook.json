@@ -1,0 +1,62 @@
+{
+  "seed": 4601,
+  "width": 20,
+  "height": 10,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "airship_hook",
+    "theme": "GOTHIC",
+    "topology": "settlement",
+    "display_name": "The Mayday"
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 0,
+      "y": 0,
+      "width": 8,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The helm of a pristine airship, brass fittings gleaming, steam gauge hissing steady at cruising pressure. A lone test pilot sits at the wheel, fingers white-knuckled on the grips. The moon is full and enormous through the forward glass, painting the clouds below in silver. Then the clouds part, and beneath them: not land, but a sea of glass -- the Glass Sea, where light bends wrong and compasses spin.",
+        "read_aloud": "The radio crackles: 'Lightkeeper Station to Test Flight Seven, you are approaching restricted airspace. The Glass Sea is a known navigational hazard. Advise immediate course correction.' The pilot does not respond. The steam gauge needle drops. Ahead, an inky mist rises from the glass surface like breath from a sleeping mouth. The airship shudders. Instruments spin. The mist opens, and inside it: wreckage. Dozens of hulls, interlocking like the teeth of a maw. The airship plunges in.",
+        "npcs": [],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [
+          "A test pilot's airship crashes into a mass of interlocking shipwrecks suspended above the Glass Sea. The wreckage has been accumulating for at least a decade. No survivors have been recovered from any prior disappearance.",
+          "The Glass Sea: a region where bleed concentrations warp light, gravity, and radio transmissions. Known for unexplained disappearances. EONS has been monitoring it for years."
+        ],
+        "loot": []
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 10,
+      "y": 0,
+      "width": 8,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [0],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The wreckage. The airship's envelope has torn on a spar of twisted metal, spilling hydrogen into the mist. The gondola hangs at a thirty-degree angle, lodged in the ribcage of a much older vessel. Through the shattered forward glass, you can see the scope of the graveyard: ships from every era -- sailing vessels, steamers, early airships -- all crushed and woven together on a platform of dark stone that should not exist this high above the sea.",
+        "npcs": [],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [
+          "The pilot's mayday was received by Lightkeeper Station. Candela Obscura is called in. The bleed readings from the Glass Sea have spiked to unprecedented levels."
+        ],
+        "loot": [],
+        "perception_dc": 10,
+        "perception_success": "The stone platform beneath the wreckage is not natural. It has been carved -- or grown. Its surface is covered in the same geometric patterns found on ancient bleed containment vessels. Something was built here, long before the first ship disappeared."
+      }
+    }
+  }
+}

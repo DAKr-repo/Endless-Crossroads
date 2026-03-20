@@ -1,0 +1,124 @@
+{
+  "seed": 4506,
+  "width": 25,
+  "height": 15,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "sacred_ascension",
+    "theme": "GOTHIC",
+    "topology": "dungeon",
+    "display_name": "Sacred Ascension Cemetery"
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 0,
+      "y": 0,
+      "width": 8,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The cemetery proper. Headstones lean at drunken angles in the fog, and between them, the Shutters walk. They move in jerking, stop-motion increments -- frozen for a heartbeat, then lurching forward three steps, then frozen again. They wear burial whites gone gray with grave dirt. Their faces are slack, expressionless, but their eyes track you with desperate lucidity. They are aware. They did not ask for this.",
+        "read_aloud": "They come out of the fog like frames from a broken film reel. A woman in a christening gown, her skin the color of tallow. A man in his Sunday suit, one shoe missing, grave dirt packed under his fingernails. A child clutching a stuffed rabbit whose button eyes stare with more life than its owner's. They move in stuttering jitters, stopping and starting, their joints clicking audibly. They are not hostile. They are confused. They are afraid.",
+        "npcs": [],
+        "enemies": [
+          {
+            "name": "The Shutters",
+            "hp": 8,
+            "max_hp": 8,
+            "ac": 10,
+            "attack": 2,
+            "defense": 10,
+            "count": 4
+          }
+        ],
+        "services": [],
+        "event_triggers": [
+          "THREAT: The Shutters (Bleed) -- reanimated dead who move in stop-motion increments. Not inherently hostile, but their touch drains warmth and vitality. Proximity to the Shutters causes marks of bleed.",
+          "The Shutters are drawn toward the mausoleum at the cemetery's center. They are not attacking -- they are congregating. Something is calling them home."
+        ],
+        "loot": []
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 10,
+      "y": 0,
+      "width": 10,
+      "height": 10,
+      "room_type": "boss",
+      "connections": [0, 2],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The Vienno Mausoleum. Oscar stands at the threshold, the Eye of Emrys mounted on its tripod, aimed at the approaching dead. He is photographing them -- one by one, plate by plate -- and with each flash, a Shutter collapses back into genuine death, its ink-black shadow dissolving into the grass. He is crying. He is saving them. He has two plates left.",
+        "read_aloud": "Oscar works the camera with a photographer's precision even as tears run into his collar. Flash. A woman in burial whites crumples, the false life draining from her eyes, and she is simply dead again -- at peace. Flash. A man in a threadbare suit folds to the ground with what might be gratitude. Oscar reaches for the last plate. His hands stop. From the fog, a figure emerges that he recognizes. Nora. His Nora. Dead three weeks and walking toward him with her arms outstretched, an ornate hairpin glinting in her matted hair. 'Stop,' he whispers. 'I cannot say goodbye again.'",
+        "npcs": [
+          {
+            "name": "Oscar Enfield",
+            "role": "ally_in_peril",
+            "dialogue": "She is right there. She is looking at me. How can you ask me to -- she is my wife. She is my wife and she is looking at me and I cannot -- I will not --",
+            "notes": "He/him. Oscar must choose: use the final plate on Nora to return her to death, or keep her walking. If the circle convinces him, he takes the photograph himself. If not, someone else must operate the camera. If no one acts, Nora reaches Oscar and her touch drains the life from him -- his shadow burns into the mausoleum steps."
+          }
+        ],
+        "enemies": [
+          {
+            "name": "The Eye of Emrys (phenomenon)",
+            "hp": 25,
+            "max_hp": 25,
+            "ac": 14,
+            "attack": 6,
+            "defense": 14,
+            "count": 1
+          }
+        ],
+        "services": [],
+        "event_triggers": [
+          "Oscar must choose: photograph Nora and say goodbye forever, or let her walk. The circle can convince him, take the camera themselves, or find another way. This is the dramatic question: what is the cost of letting go?",
+          "If the Eye of Emrys is destroyed without returning the Shutters to death, they will walk forever -- trapped between life and death. The camera is the cure and the disease."
+        ],
+        "loot": [
+          {
+            "name": "The Eye of Emrys",
+            "value": 0,
+            "description": "A gilded bellows camera with filigree like climbing vines. Its lens chamber contains vitrified bleed precipitate. Each glass plate captures or releases one soul. Extremely dangerous -- must be contained or destroyed. Candela Obscura will have opinions about which."
+          },
+          {
+            "name": "Nora's Hairpin",
+            "value": 0,
+            "description": "An ornate silver hairpin with a cameo portrait. If Oscar photographs Nora, this is all that remains. He will carry it for the rest of his life. If he does not photograph her, the hairpin is found on the mausoleum steps, still warm."
+          }
+        ]
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 18,
+      "y": 4,
+      "width": 6,
+      "height": 6,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Inside the Vienno Mausoleum. A small stone chamber lined with niches for the family dead. Father Vienno's sarcophagus dominates the center -- the same priest Sara's grandfather accidentally awakened decades ago. His stone lid is cracked. Someone sealed him back in with iron bands and lead sheeting. The same containment approach as the camera box. The same desperate improvisation.",
+        "npcs": [],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [
+          "Father Vienno's sarcophagus is sealed with the same wards found on the camera's lead box. If the Eye of Emrys is destroyed here, atop the sarcophagus, the bleed circuit closes and all remaining Shutters fall to rest simultaneously."
+        ],
+        "loot": [],
+        "investigation_dc": 14,
+        "investigation_success": "Scratched into the inner wall of the mausoleum in Sara's grandfather's handwriting: 'The eye opens both ways. What it wakes, it can also close. But only at the source.' The sarcophagus is the source -- the first subject ever photographed with the Eye of Emrys."
+      }
+    }
+  }
+}

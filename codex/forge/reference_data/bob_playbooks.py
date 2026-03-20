@@ -317,6 +317,63 @@ PLAYBOOKS: Dict[str, Dict[str, Any]] = {
             "Rations",
         ],
     },
+    "Sniper": {
+        "setting": "eastern_kingdoms",
+        # SOURCE: Band of Blades.pdf, pp.95-99 (Sniper playbook)
+        "description": (
+            "A deadly marksman who eliminates high-value targets from a distance. "
+            "Patience and precision are your weapons. You wait for the perfect "
+            "moment, then end the fight with a single shot."
+        ),
+        "xp_trigger": (
+            "Earn xp when you helped your squad through precision or patience."
+        ),
+        "specialist_action": "AIM",
+        "starting_action_ratings": {
+            "Aim": 1,  # SOURCE: p.95 — Sniper starts with 1 rank in Aim
+        },
+        "special_abilities": [
+            {
+                "name": "One Eye",
+                # SOURCE: Band of Blades.pdf, p.96
+                "description": (
+                    "When you Aim and fire, you may spend an additional Aim use "
+                    "to ignore the effects of cover or concealment on your target."
+                ),
+            },
+            {
+                "name": "Akimbo",
+                # SOURCE: Band of Blades.pdf, p.96
+                "description": (
+                    "You can dual-wield pistols effectively. When you Shoot with "
+                    "two pistols, you may attack two separate targets."
+                ),
+            },
+            {
+                "name": "Cover Fire",
+                # SOURCE: Band of Blades.pdf, p.96
+                "description": (
+                    "When you provide suppressing fire, your allies gain +1d to "
+                    "Maneuver rolls to reposition."
+                ),
+            },
+            {
+                "name": "Notches",
+                # SOURCE: Band of Blades.pdf, p.96
+                "description": (
+                    "Each confirmed kill grants you a notch. At the end of a "
+                    "mission, clear 1 stress for each notch (max 3)."
+                ),
+            },
+        ],
+        "items": [
+            "Fine Long Rifle",
+            "Spyglass",
+            "Camouflage Netting",
+            "Light Armor",
+            "Ammo",
+        ],
+    },
 }
 
 # =========================================================================

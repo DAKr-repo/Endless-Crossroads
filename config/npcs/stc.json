@@ -1,0 +1,242 @@
+{
+  "version": 1,
+  "source": "Stormlight RPG Handbook + Adventures (First Step, Bridge Nine, Stonewalkers)",
+  "named_npcs": [
+    {
+      "name": "Brightlord Vadam",
+      "pronouns": "he/him",
+      "role": "commander",
+      "description": "A scarred Kholin officer who commands the forward plateau assault teams. He speaks in clipped military cadence and measures every person he meets by their usefulness in the next assault. Lost his left hand to a chasmfiend and wears a prosthetic of carved stone.",
+      "source": "Bridge Nine adventure"
+    },
+    {
+      "name": "Ral",
+      "pronouns": "he/him",
+      "role": "bridgeman",
+      "description": "A former darkeyes farmer conscripted into bridge duty after his village was burned in the civil war. He has the thousand-yard stare of a man who has carried the bridge too many times, but still shares his chouta with newcomers without being asked.",
+      "source": "Bridge Nine adventure"
+    },
+    {
+      "name": "Shalah",
+      "pronouns": "she/her",
+      "role": "guide",
+      "description": "A Stoneward squire with a deep tan and hands calloused from climbing. She speaks slowly and deliberately, testing each word for truth before releasing it. Carries a fossilized rockbud she claims was her grandmother's.",
+      "source": "Stonewalkers adventure"
+    },
+    {
+      "name": "Teft-ul-Kholin",
+      "pronouns": "he/him",
+      "role": "sergeant",
+      "description": "A grizzled bridge sergeant who has survived more plateau assaults than anyone cares to count. He watches new recruits with a mixture of pity and calculation, determining which ones will break and which might be worth training.",
+      "source": "Bridge Nine adventure"
+    },
+    {
+      "name": "Merem",
+      "pronouns": "she/her",
+      "role": "purelaker",
+      "description": "A cheerful Purelaker fisherwoman who wades the shallows barefoot and speaks about highstorms the way others discuss weather. She trades in rare fish that she claims bring good fortune, and never seems to be in a hurry about anything.",
+      "source": "First Step adventure"
+    },
+    {
+      "name": "Ardent Ellista",
+      "pronouns": "she/her",
+      "role": "scholar",
+      "description": "A bookish ardent stationed at the Palaneum who resents any interruption to her reading. She speaks in footnotes and citations, referencing obscure texts mid-sentence. Knows more about Dawncity architecture than any living person.",
+      "source": "Stormlight RPG Handbook"
+    },
+    {
+      "name": "Zu",
+      "pronouns": "she/her",
+      "role": "radiant",
+      "description": "A Stoneward of the Third Ideal with a booming laugh and an unsettling habit of pressing her palm flat against stone walls to feel what lies beneath. She treats new Radiants with rough affection and old Radiants with earned respect.",
+      "source": "Stonewalkers adventure"
+    },
+    {
+      "name": "Lhan",
+      "pronouns": "he/him",
+      "role": "ardent",
+      "description": "A lazy but perceptive ardent who prefers sampling wine to copying texts. He notices everything and comments on nothing unless asked directly. His indolence conceals a sharp theological mind that the church hierarchy finds inconvenient.",
+      "source": "Stormlight RPG Handbook"
+    },
+    {
+      "name": "Khen",
+      "pronouns": "she/her",
+      "role": "listener ambassador",
+      "description": "A listener in workform who serves as an envoy between her people and the Alethi. She hums to the Rhythm of Peace when speaking and shifts to the Rhythm of Anxiety when she thinks no one is listening. She carries no weapons but is not defenseless.",
+      "source": "Stormlight RPG Handbook"
+    },
+    {
+      "name": "Palona",
+      "pronouns": "she/her",
+      "role": "administrator",
+      "description": "A Herdazian woman who manages Dalinar's household logistics with terrifying efficiency. She can recite supply manifests from memory and has opinions about everyone's dietary habits. The cooks fear her more than the Fused.",
+      "source": "Stormlight RPG Handbook"
+    },
+    {
+      "name": "Roshone",
+      "pronouns": "he/him",
+      "role": "lighteyes official",
+      "description": "A disgraced lighteyes citylord exiled to a rural posting, bitter and petty in equal measure. He taxes darkeyes heavily and hoards spheres in his manor. Rumors say he once served in Kholinar's court before a scandal brought him low.",
+      "source": "Stormlight RPG Handbook"
+    },
+    {
+      "name": "Nanha",
+      "pronouns": "she/her",
+      "role": "artifabrian",
+      "description": "A Thaylen artifabrian whose workshop smells of molten bronze and ozone. She adjusts her spectacles constantly and speaks to fabrials the way others speak to pets. Her spanreeds are the fastest on the coast, and she knows it.",
+      "source": "Stormlight RPG Handbook"
+    },
+    {
+      "name": "Huio",
+      "pronouns": "he/him",
+      "role": "soldier",
+      "description": "A Herdazian soldier with a gap-toothed grin who insults people as a form of affection. He fights with a spear and shield and treats every meal as if it might be his last, eating with gleeful abandon. He is fiercely loyal to his cousins.",
+      "source": "Stormlight RPG Handbook"
+    },
+    {
+      "name": "Ishar-son-Ishar",
+      "pronouns": "he/him",
+      "role": "madman",
+      "description": "A wild-eyed Shin man found wandering the Unclaimed Hills, babbling about ancient oaths and broken promises. He claims to have been alive for thousands of years. Most dismiss him as a madman, but his knowledge of pre-Desolation geography is disturbingly accurate.",
+      "source": "Stormlight RPG Handbook"
+    },
+    {
+      "name": "Mrall",
+      "pronouns": "he/him",
+      "role": "bodyguard",
+      "description": "An enormous man who serves as a personal bodyguard. He speaks rarely and moves with predatory economy. His eyes miss nothing, and he positions himself in every room to cover the most exits simultaneously.",
+      "source": "Stormlight RPG Handbook"
+    },
+    {
+      "name": "Thresh",
+      "pronouns": "they/them",
+      "role": "spren envoy",
+      "description": "An honorspren who manifests as a figure of shifting blue-white light. They speak with formal precision and judge every human action against an impossibly rigid moral code. They are searching for a Radiant worthy of bonding.",
+      "source": "Stormlight RPG Handbook"
+    },
+    {
+      "name": "Tai",
+      "pronouns": "he/him",
+      "role": "stormwarden",
+      "description": "A gaunt man who charts highstorm patterns on vast rolls of paper covered in mathematical notation. He speaks only in predictions and probabilities, refuses to make promises, and taps his quill against his teeth when anxious.",
+      "source": "Stormlight RPG Handbook"
+    },
+    {
+      "name": "Vasha",
+      "pronouns": "she/her",
+      "role": "gemstone trader",
+      "description": "An Azish merchant who weighs spheres with jeweler's precision and haggles with bureaucratic patience. She keeps detailed records of every transaction and can quote exchange rates between all ten polestones from memory.",
+      "source": "Stormlight RPG Handbook"
+    },
+    {
+      "name": "Gref",
+      "pronouns": "he/him",
+      "role": "cook",
+      "description": "A Horneater with arms like bridge timbers and a laugh that carries across the warcamp. He makes a stew from whatever is available and insists it is always better than what they serve in the officers' mess. He is not wrong.",
+      "source": "Stormlight RPG Handbook"
+    },
+    {
+      "name": "Inda",
+      "pronouns": "she/her",
+      "role": "spy",
+      "description": "A woman who presents herself as a minor lighteyes' attendant but reports to interests she does not name. She sketches constantly in a small notebook, and her drawings of people are uncomfortably accurate. She deflects questions with questions.",
+      "source": "Stormlight RPG Handbook"
+    },
+    {
+      "name": "Axies",
+      "pronouns": "he/him",
+      "role": "researcher",
+      "description": "An Aimian naturalist who catalogs spren with obsessive thoroughness, tattooing his findings directly onto his skin. He regenerates overnight, so the tattoos must be refreshed daily. He is cheerfully resigned to this Sisyphean task.",
+      "source": "Stormlight RPG Handbook"
+    },
+    {
+      "name": "Skar",
+      "pronouns": "he/him",
+      "role": "scout",
+      "description": "A wiry former bridgeman who now serves as a scout and trainer. He moves silently and speaks quietly, but when he gives an order, veterans obey without hesitation. He keeps a small collection of cremling carapaces in his pocket.",
+      "source": "Bridge Nine adventure"
+    }
+  ],
+  "generic_templates": [
+    {
+      "name": "Darkeyes Soldier",
+      "role": "soldier",
+      "description": "A rank-and-file Alethi spearman with calloused hands and a resigned expression. Trained to fight in formation on the plateaus, loyal to whichever highprince pays the wages."
+    },
+    {
+      "name": "Lighteyes Scholar",
+      "role": "scholar",
+      "description": "A minor lighteyes who spends more time in the Palaneum than on the battlefield. Speaks with learned precision and considers martial prowess vulgar."
+    },
+    {
+      "name": "Ardent Healer",
+      "role": "healer",
+      "description": "A Vorin ardent trained in surgery and herbalism, carrying a leather case of scalpels and poultices. Serves anyone regardless of eye color, as the church demands."
+    },
+    {
+      "name": "Shin Farmer",
+      "role": "civilian",
+      "description": "A soft-spoken Shin with large, childlike eyes who tends crops in actual soil. Considers warriors the lowest caste and treats swords with superstitious dread."
+    },
+    {
+      "name": "Bridgeman",
+      "role": "laborer",
+      "description": "A condemned man forced to carry bridge sections across the Shattered Plains under arrow fire. Gaunt, exhausted, and stripped of hope, but occasionally possessed of desperate courage."
+    },
+    {
+      "name": "Plateau Scout",
+      "role": "scout",
+      "description": "A nimble darkeyes who maps chasm routes and monitors Parshendi movements from concealed positions. Carries rope, chalk, and a long knife."
+    },
+    {
+      "name": "Stormwarden",
+      "role": "forecaster",
+      "description": "A scholar-mathematician who predicts highstorm timing using complex calculations. Technically a man engaging in a feminine art, so they write their findings and pretend not to read."
+    },
+    {
+      "name": "Artifabrian",
+      "role": "craftsperson",
+      "description": "A trained engineer who builds and maintains fabrials: spanreeds, painrials, heatrials, and alerters. Works with trapped spren and gemstone housings."
+    },
+    {
+      "name": "Voidbringer Cultist",
+      "role": "antagonist",
+      "description": "A human who has turned to Odium's cause, chanting rhythms they should not know and bearing the strange calm of someone who has surrendered their will. Their eyes occasionally flash gold."
+    },
+    {
+      "name": "Gemstone Trader",
+      "role": "merchant",
+      "description": "A shrewd merchant who deals in spheres, broams, and raw gemstones. Knows the current infusion rates of every polestone and adjusts prices based on highstorm forecasts."
+    },
+    {
+      "name": "Ghostblood Agent",
+      "role": "spy",
+      "description": "A member of the secretive Ghostbloods, identifiable only by a triangle tattoo on the inner arm. Pursues objectives that serve neither crown nor church, and kills without hesitation when cornered."
+    },
+    {
+      "name": "Windrunner Squire",
+      "role": "squire",
+      "description": "A newly bonded or aspiring Windrunner who can draw Stormlight near their master but cannot yet speak Ideals of their own. Earnest, idealistic, and recklessly brave."
+    },
+    {
+      "name": "Edgedancer Acolyte",
+      "role": "healer",
+      "description": "A follower of the Edgedancer path who focuses on healing and protecting the forgotten. Moves with unnatural grace and leaves Stormlight trails when running."
+    },
+    {
+      "name": "Listener Warform",
+      "role": "warrior",
+      "description": "A singer who has adopted warform, gaining a carapace of natural armor and enhanced physical strength. Hums to rhythms as they fight. Not inherently hostile, but fiercely territorial."
+    },
+    {
+      "name": "Fused Operative",
+      "role": "antagonist",
+      "description": "An ancient singer soul reborn in a modern body, carrying memories of the Desolations. Wields Voidlight surges and speaks with the weight of centuries. Views humans as an infestation to be corrected."
+    },
+    {
+      "name": "Thaylen Sailor",
+      "role": "civilian",
+      "description": "A long-bearded Thaylen merchant sailor who keeps a ledger in their eyebrow-length beard and navigates by star patterns most Alethi have never charted."
+    }
+  ]
+}

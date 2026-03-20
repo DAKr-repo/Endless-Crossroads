@@ -2,10 +2,11 @@
     "module_id": "stc_bridge_nine",
     "display_name": "Stormlight: Bridge Nine",
     "system_id": "stc",
-    "source_pdf": null,
-    "source_type": "community_authored",
+    "source_pdf": "Stormlight RPG - Bridge Nine",
+    "source_type": "publisher_licensed",
     "world_map": "world_map.json",
     "starting_location": "bridge_crews",
+    "campaign_setting": "roshar",
     "recommended_levels": {"min": 1, "max": 3},
     "chapters": [
         {

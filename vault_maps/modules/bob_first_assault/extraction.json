@@ -1,0 +1,86 @@
+{
+  "seed": 92004,
+  "width": 25,
+  "height": 25,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "extraction",
+    "theme": "STONE",
+    "topology": "dungeon",
+    "description": "The lab is burning. Green alchemical fire spreads through the church. The Doctor's Crow screams from the bell tower. Now get out alive."
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 2,
+      "y": 2,
+      "width": 8,
+      "height": 7,
+      "room_type": "start",
+      "connections": [1],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The burning nave. Green fire crawls up the church walls with unnatural speed, consuming the wooden rafters and sending showers of sparks into the night sky through the collapsing roof. The operating tables are melting. The vats have ruptured. The air itself tastes of poison and burned copper.",
+        "read_aloud": "Green alchemical fire spreads through the lab. The Doctor's Crow shrieks and takes flight from the bell tower, a black shape against the green-lit sky. The church is collapsing. You have minutes -- maybe less -- before the entire structure comes down.",
+        "event_triggers": [
+          "Green alchemical fire spreads through the lab. The Doctor's Crow shrieks and takes flight. The bell tower groans, its timbers cracking."
+        ],
+        "perception_dc": 14,
+        "perception_success": "The Crow is circling, not fleeing. It's looking for you. And from the far side of the courtyard, something massive is pulling itself through the church's shattered side door. The Doctor's Horror -- the real one. What you fought inside was a prototype."
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 12,
+      "y": 2,
+      "width": 8,
+      "height": 7,
+      "room_type": "boss",
+      "connections": [0, 2],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The courtyard, burning. The cages are open -- prisoners freed or fled. Green fire has jumped from the church to the adjacent buildings. The Doctor's Horror blocks the exit, its surgical-blade hands dripping with alchemical residue that burns wherever it falls. Behind it, the gate to Talstadt's east wall and your extraction route.",
+        "enemies": [
+          {
+            "name": "The Doctor's Horror",
+            "hp": 40,
+            "max_hp": 40,
+            "ac": 16,
+            "attack": 8,
+            "defense": 16,
+            "count": 1,
+            "is_boss": true
+          }
+        ],
+        "event_triggers": [
+          "The Horror steps into the courtyard. It's bigger than the one inside -- nine feet, at least, its body a grotesque patchwork of muscle and iron plating. The Doctor's masterpiece. A 6-clock starts: if the Doctor departs before you destroy the Horror, she escapes with her research intact."
+        ],
+        "investigation_dc": 14,
+        "investigation_success": "The Horror's iron plating is bolted to its skeleton, not grown. The bolts at the shoulder joints are corroded -- a targeted strike there could sever an arm. The alchemical tubing along its spine is the weak point. Rupture it and the thing loses cohesion."
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 22,
+      "y": 2,
+      "width": 6,
+      "height": 7,
+      "room_type": "town_gate",
+      "connections": [1],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The east wall breach. Talstadt's shattered gate, framed by burning buildings. The mountain path stretches upward into darkness. Behind you, the church collapses in a fountain of green sparks that light the valley like a second dawn. Aurora's rifle cracks from the ridge -- covering fire. Phaera is counting heads.",
+        "read_aloud": "You're out. The mountain air hits you like cold water. Behind you, Talstadt burns green against the night sky, the church a gutted skeleton of timber and stone. Phaera counts: one, two, three, four. All present. The Ghost Owls are intact. This time. Aurora meets you at the ridge, rifle still warm. Nobody speaks on the walk back. There's nothing to say that the fire hasn't already said.",
+        "event_triggers": [
+          "The church's bell tower collapses with a sound like the world breaking. The Crow circles once more, screams something that isn't language, and flies north. Toward Blighter. It will report what happened here. The Doctor's other labs will be warned."
+        ]
+      }
+    }
+  }
+}

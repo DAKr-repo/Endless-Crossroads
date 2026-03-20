@@ -1,0 +1,64 @@
+{
+    "seed": 9003,
+    "width": 35,
+    "height": 25,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "project_quest",
+        "theme": "RUST",
+        "topology": "dungeon",
+        "display_name": "Run 2: Project Quest",
+        "description": "Flashback Run. Omni launched Project Quest -- a citywide AR game that turns every citizen with a device into a bounty hunter. Runners appear as high-value targets in the game overlay. Millions of civilians are tracking you for Mega Points redeemable at Omni-branded stores. The game's infrastructure runs through a hub downtown. Time to change the rules."
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 2,
+            "y": 16,
+            "width": 8,
+            "height": 7,
+            "room_type": "start",
+            "connections": [1],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The game hub's street-level entrance. A converted convention center plastered with neon AR overlays only visible through compatible lenses. Kids cluster around charging stations, comparing Mega Points on their wrist displays. The building's core infrastructure is somewhere below -- the overlay renders it as a 'Restricted Quest Zone' with a skull icon. Burnt Pistons gang members loiter near the service ramp, hired as physical security under the guise of 'Event Staff.'",
+                "read_aloud": "Through AR lenses the building is a candy-colored fantasy castle. Without them it is a concrete box with reinforced doors and a loading dock that smells like diesel. The Burnt Pistons by the ramp are not wearing AR gear. They are watching the real world.",
+                "enemies": [
+                    {"name": "Burnt Pistons Enforcer", "hp": 8, "ac": 10, "attack": 2, "damage": "1d6", "count": 3, "notes": "Small gang muscle. Pistols and SMGs. Hired by Omni through three layers of shell companies. They do not know who they actually work for and do not care."}
+                ],
+                "event_triggers": [
+                    "A nearby teenager's wrist display pings. She looks up, scans the runners' faces, and her eyes go wide. 'Holy crap -- that's a THOUSAND Mega Points!' She raises her device to take a photo. The alert will propagate to every player in a six-block radius within 90 seconds."
+                ]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 12,
+            "y": 4,
+            "width": 10,
+            "height": 10,
+            "room_type": "boss",
+            "connections": [0],
+            "tier": 2,
+            "is_locked": true,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The network core. Three floors below street level, behind blast doors with biometric locks. Server racks arranged in concentric rings around a central holographic display -- the game's master map. Every device in the city appears as a dot of light. Runner profiles pulse red. The Firewall Defender manifests here as a shifting geometric shape that reforms whenever damaged, a self-healing ICE construct protecting the game's targeting database.",
+                "read_aloud": "The master map fills the room with cold light. You can see yourself on it -- a red dot, pulsing, surrounded by a constellation of blue dots converging on your position. The game thinks you are still upstairs. You have maybe ten minutes before it figures out you are not.",
+                "enemies": [
+                    {"name": "Firewall Defender", "hp": 15, "ac": 12, "attack": 4, "damage": "1d8", "count": 1, "notes": "Self-healing ICE construct. Reforms 2 HP per round unless the source node is disabled first. Attacks manifest as AR hallucinations that cause real pain through neural interface feedback.", "special": ["Regeneration: Recovers 2 HP at start of each round", "AR Hallucination: On hit, target must resist or lose next action to phantom stimulus"]}
+                ],
+                "event_triggers": [
+                    "Three options at the central terminal: [1] Delete runner profiles from the targeting database (removes bounty), [2] Redirect the game to target Omni executives instead (chaos, but effective), [3] Crash the entire system (kills Project Quest but also takes down the city's AR infrastructure for days -- collateral). The Operator's voice crackles over comms: 'Your call. Make it count.'"
+                ],
+                "lock_dc": 16,
+                "loot": [
+                    {"name": "Project Quest Source Code", "value": 400, "description": "The complete AR targeting framework. Could be weaponized, sold, or used to build something better."},
+                    {"name": "Mega Points Exploit", "value": 150, "description": "A buffer overflow in the rewards system. Unlimited Mega Points. Worthless on principle, priceless in practice."}
+                ]
+            }
+        }
+    }
+}

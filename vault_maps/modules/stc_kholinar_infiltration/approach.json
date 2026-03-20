@@ -1,0 +1,157 @@
+{
+    "seed": 7801,
+    "width": 100,
+    "height": 20,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "approach",
+        "theme": "STONE",
+        "topology": "settlement",
+        "display_name": "The Approach -- Kholinar Outskirts",
+        "flavor_note": "Kholinar has fallen. The Fused hold the city. Refugees clog the roads. The Oathgate in the temple district is the objective -- activate it, and reinforcements can arrive from Urithiru. But first, you have to get inside walls held by an enemy that can fly."
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 5,
+            "y": 5,
+            "width": 22,
+            "height": 10,
+            "room_type": "hub",
+            "connections": [1, 2, 3],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The refugee camp sprawls across a rocky depression a mile east of Kholinar's outer wall -- a city of tents, lean-tos, and desperation. Thousands of displaced Alethi shelter here, their possessions reduced to what they could carry. Campfires dot the landscape like fallen stars. The smell is woodsmoke, unwashed bodies, and the acrid tang of fear made physical. Above the camp, the Wall of Kholinar rises -- massive, ancient, its stonework darkened by centuries of highstorm weathering. Fused patrol the wallwalk in pairs, their forms silhouetted against a sky the color of old copper.",
+                "read_aloud": "The camp stretches across the rock shelf like a wound. Thousands of tents. Thousands of people with nowhere else to go. Campfires burn low against the dawn. Above everything, the Wall of Kholinar rises -- dark stone, ancient stone, built to last forever. The Fused walk the wallwalk in pairs, their red-eyed forms moving with a grace that gravity forgot to apply to. The city behind the wall is silent. Cities are not supposed to be silent.",
+                "npcs": [
+                    {
+                        "name": "Captain Torren",
+                        "role": "quest_giver",
+                        "dialogue": "A Kholin loyalist officer who escaped the fall. His uniform is torn, his rank pin is polished. Old habits. 'The Oathgate is in the temple district,' he says, unfolding a map drawn from memory. 'Four districts between us and it. The Fused control the walls and the air. The streets belong to whoever's willing to bleed for them. I can get you inside. Getting to the Oathgate is your problem.'"
+                    },
+                    {
+                        "name": "Refugee Elder Hesina",
+                        "role": "info",
+                        "dialogue": "A former darkeyed merchant, her hands still bear the calluses of a trade she'll never practice again. 'The Fused don't patrol the sewers,' she says. 'They consider it beneath them. Literally. But the sewers flood during highstorms, and there's something living in the cisterns since the fall. People who went in to hide didn't come out. Not all of them.'"
+                    }
+                ],
+                "enemies": [],
+                "loot": [],
+                "services": ["quest_board", "rumor"],
+                "investigation_dc": 12,
+                "investigation_success": "Torren's map has marks he did not explain -- safe houses inside the city, each marked with a glyph meaning 'anchor.' The resistance has been preparing for this assault. You are not the first team sent in. You are the first team he expects to survive.",
+                "perception_dc": 11,
+                "perception_success": "Hesina's hands shake when she mentions the cisterns. She has lost someone down there. Her intelligence is not academic -- it is a mother looking for her son.",
+                "event_triggers": [
+                    "On entry: Captain Torren briefs the party on the city's layout and Fused patrol patterns. Three entry points: the secret entrance (sewer), the guard checkpoint (bluff), and the inner city streets (wall breach)."
+                ]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 30,
+            "y": 2,
+            "width": 20,
+            "height": 8,
+            "room_type": "investigation",
+            "connections": [0],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The secret entrance is a drainage culvert beneath the eastern wall -- ancient stonework from the Silver Kingdom era, its mouth half-submerged in stagnant water that smells of minerals and decay. The culvert is four feet high, wide enough for single file, and extends two hundred yards through the wall's foundation. Inside, the stone is worn smooth by centuries of drainage. Glyphs carved into the walls at intervals are too old to read, their language predating modern Alethi by millennia. Something has been scratching at the glyphs -- not erasing them, but adding to them.",
+                "read_aloud": "The culvert mouth yawns from the wall's base like an open wound. Four feet of headroom. Stagnant water to the ankles. Two hundred yards of dark. Captain Torren marks the entrance on your map. 'Silver Kingdom construction,' he says. 'Older than Kholinar itself. The Fused haven't found it because they don't look down. Stay quiet. Stay low. And don't touch the glyphs.'",
+                "npcs": [],
+                "enemies": [],
+                "loot": [
+                    {"name": "Silver Kingdom Glyph Rubbing", "type": "quest_item", "notes": "A charcoal impression of the ancient glyphs in the culvert. A scholar at Urithiru would pay well for this -- or be terrified by it. The newer scratches appear to be in a language that shouldn't exist anymore."}
+                ],
+                "services": [],
+                "investigation_dc": 14,
+                "investigation_success": "The scratches on the glyphs are recent -- within the last month. Made by fingernails, not tools. The writing is Dawnchant. Someone in the sewers can write in a language dead for four thousand years.",
+                "perception_dc": 12,
+                "perception_success": "Water marks on the culvert walls show flooding reaches ceiling height during highstorms. The next storm is eighteen hours out. Time your exit.",
+                "event_triggers": [
+                    "Hazard: The culvert narrows at the halfway point. DC 12 physical to squeeze through. Failure: stuck for one round. On completing: The party emerges inside Kholinar's eastern district. Curfew. Stormlight lamps burn at every intersection for the Fused patrols."
+                ]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 30,
+            "y": 12,
+            "width": 20,
+            "height": 8,
+            "room_type": "encounter",
+            "connections": [0],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The guard checkpoint is the western gate -- still functional, still manned, but the guards are not Alethi soldiers. Singer patrols control the gate, checking papers and identities with an efficiency that suggests they learned bureaucracy from their conquerers. The line of people waiting to enter stretches back a quarter mile: merchants with essential goods, healers, and people with nowhere else to go. The Fused permit limited civilian traffic because a starving city is harder to hold than a fed one. The checkpoint is a bottleneck, a risk, and possibly the fastest way in.",
+                "read_aloud": "The gate is open. That's the first surprise. Singer guards check documents with methodical patience. The line of supplicants stretches back into the camp -- merchants, healers, the desperate. The Fused permit entry because dead civilians make poor subjects. A singer guard in warform looks at you with eyes that glow a faint red. 'Papers,' he says. 'Purpose of visit. Duration of stay.' His Alethi is flawless. His tone is civil. His spear is not sheathed.",
+                "npcs": [
+                    {
+                        "name": "Singer Gate Guard",
+                        "role": "gate",
+                        "dialogue": "A singer in warform, armored in carapace, carrying an Alethi-design spear. He speaks perfect Alethi with an accent that predates the modern language. 'The city is under new management,' he says without malice. 'You may enter if your business is legitimate. Weapons must be surrendered at the gate. You may collect them when you leave.' He pauses. 'If you leave.'"
+                    }
+                ],
+                "enemies": [
+                    {
+                        "name": "Singer Soldier (warform)",
+                        "hp": 16,
+                        "deflect": 2,
+                        "damage_type": "impact",
+                        "is_boss": false,
+                        "notes": "Four present at the checkpoint. Combat is possible but inadvisable -- it alerts every Fused patrol within a mile. Bluff (DC 14) or forged papers (DC 12 + preparation) are the intended solutions. If combat occurs, the party has 3 rounds before Fused aerial reinforcements arrive."
+                    }
+                ],
+                "loot": [],
+                "services": [],
+                "event_triggers": [
+                    "Social challenge: DC 14 bluff to enter with a convincing cover story. DC 12 with forged papers (preparable at the refugee camp with Torren's help). DC 10 if the party surrenders weapons voluntarily (but enters unarmed).",
+                    "On bluff failure: The gate guard becomes suspicious but doesn't immediately attack. He calls for a senior singer to examine the party. DC 16 to recover with a secondary lie. Second failure: combat.",
+                    "On entering unarmed: The party passes through the checkpoint legally. Weapons can be recovered from a dead drop inside the city (Torren has one prepared). The disarmament is temporary but the compliance earns a passage token that prevents random patrols from stopping the party."
+                ],
+                "dm_notes": "Entry route B: social-focused. The checkpoint rewards preparation (forged papers) and creative bluffing. Combat is possible but triggers immediate escalation. The unarmed option is the most interesting -- trading combat readiness for movement freedom inside the city. The passage token is a valuable item that has mechanical consequences in Act 2."
+            }
+        },
+        "3": {
+            "id": 3,
+            "x": 55,
+            "y": 5,
+            "width": 20,
+            "height": 10,
+            "room_type": "urban",
+            "connections": [0],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The inner streets of Kholinar's outer district are a ghost town in daylight and a hunting ground after dark. Buildings stand intact but empty -- their doors marked with singer glyphs that indicate 'cleared' or 'claimed' or 'contaminated.' The streets are clean. Too clean. The Fused have organized sanitation crews from the remaining population, and the result is a city that looks functional from a distance and feels hollow up close. Stormlight lamps burn at every intersection -- not for the humans, but for the Fused's nighttime patrols. The light makes the emptiness visible.",
+                "read_aloud": "Kholinar's streets are clean. That's the wrong word, but it's the right one. The cobblestones are swept. The gutters are clear. The buildings stand with their doors closed and singer glyphs painted on the lintels. It looks like a city. It feels like a diorama of one. Stormlight lamps burn at every intersection, throwing light that serves the Fused's aerial patrols. You walk in the gaps between the lights. The gaps are narrow and getting narrower.",
+                "npcs": [
+                    {
+                        "name": "Kholinar Civilian (darkeyed)",
+                        "role": "info",
+                        "dialogue": "A woman sweeping a doorstep -- part of the mandatory sanitation detail. She doesn't look at you directly. She speaks to the broom. 'The palace district is locked down. Only lighteyes and essential workers. The temple is worse -- the Fused go there at night. All of them. Every night. Like worship, except what they worship makes the ground shake.' She sweeps harder. 'I didn't tell you anything.'"
+                    }
+                ],
+                "enemies": [],
+                "loot": [
+                    {"name": "Singer Glyph Dictionary (partial)", "type": "quest_item", "notes": "Scratched onto a piece of pottery by someone translating the singer door markings. Partial but useful: 'cleared' (safe to enter), 'claimed' (singer occupied), 'sealed' (do not enter). The translation of 'sealed' has been crossed out and rewritten three times, each version more alarmed."}
+                ],
+                "services": [],
+                "event_triggers": [
+                    "Urban navigation: The outer district requires DC 12 stealth to move between blocks without being spotted by aerial Fused patrols. Passage tokens from the checkpoint reduce this to DC 8.",
+                    "On reaching the palace district boundary: A barrier of grown crystal blocks the main road -- not placed, but grown from the stone itself, a Fused construction method. No gate. No guards. Just a wall of living mineral that hums when you touch it. Entry requires finding an alternative route (servants' quarters, rooftop, or underground).",
+                    "Random encounter (1 in 6 per block): A Fused passes overhead, its form trailing red light against the dark sky. DC 14 stealth or DC 12 to find cover. Detection triggers pursuit by singer ground troops."
+                ],
+                "dm_notes": "Urban traversal room. The streets establish the occupation's character: organized, efficient, and deeply unsettling. The civilian provides intelligence about the temple (Oathgate) and the Fused's nightly ritual. The singer glyph dictionary is a useful tool for navigating the rest of the city. The crystal barrier at the palace district boundary forces creative problem-solving -- the main road is blocked by something that can't be broken or bypassed conventionally."
+            }
+        }
+    }
+}

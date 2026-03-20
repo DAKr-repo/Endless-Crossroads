@@ -1,0 +1,107 @@
+{
+  "template_id": "heist",
+  "display_name": "The Heist",
+  "description": "A classic score: meet the fixer, recon the target, breach, extract, debrief.",
+  "version": 1,
+  "compatible_engine_types": ["fitd", "spatial", "standalone"],
+  "scenes": [
+    {
+      "scene_id": "hub",
+      "role": "hub",
+      "display_name_template": "The {hub_location}",
+      "topology": "settlement",
+      "room_type_hint": "tavern",
+      "tier_offset": 0,
+      "npc_slots": [
+        {"role": "quest_giver", "required": true},
+        {"role": "merchant", "required": false}
+      ],
+      "enemy_slots": [],
+      "loot_slots": [{"count": 1}],
+      "services": ["drinks", "job_briefing", "buy_equipment"],
+      "event_triggers": ["The contact signals from the back of the room."],
+      "room_count": 3
+    },
+    {
+      "scene_id": "recon",
+      "role": "recon",
+      "display_name_template": "The {recon_location}",
+      "topology": "settlement",
+      "room_type_hint": null,
+      "tier_offset": 0,
+      "npc_slots": [
+        {"role": "informant", "required": true}
+      ],
+      "enemy_slots": [
+        {"count": 1, "role": "patrol"}
+      ],
+      "loot_slots": [{"count": 1}],
+      "services": [],
+      "event_triggers": [],
+      "room_count": 3
+    },
+    {
+      "scene_id": "approach",
+      "role": "approach",
+      "display_name_template": "The {approach_location}",
+      "topology": "dungeon",
+      "room_type_hint": null,
+      "tier_offset": 1,
+      "npc_slots": [
+        {"role": "guard", "required": false}
+      ],
+      "enemy_slots": [
+        {"count": 2, "role": "guardian"}
+      ],
+      "loot_slots": [{"count": 1}],
+      "services": [],
+      "event_triggers": ["Security measures activate."],
+      "room_count": 4
+    },
+    {
+      "scene_id": "target",
+      "role": "boss",
+      "display_name_template": "The {target_location}",
+      "topology": "dungeon",
+      "room_type_hint": null,
+      "tier_offset": 2,
+      "npc_slots": [],
+      "enemy_slots": [
+        {"count": 2, "role": "guardian"},
+        {"count": 1, "role": "boss", "is_boss": true}
+      ],
+      "loot_slots": [{"count": 2}],
+      "services": [],
+      "event_triggers": ["The final obstacle stands between you and the objective."],
+      "room_count": 5
+    },
+    {
+      "scene_id": "debrief",
+      "role": "debrief",
+      "display_name_template": "The {debrief_location}",
+      "topology": "settlement",
+      "room_type_hint": "tavern",
+      "tier_offset": 0,
+      "npc_slots": [
+        {"role": "quest_giver", "required": true}
+      ],
+      "enemy_slots": [],
+      "loot_slots": [{"count": 1}],
+      "services": ["payment", "healing", "resupply"],
+      "event_triggers": ["The fixer is waiting. Time to collect."],
+      "room_count": 2
+    }
+  ],
+  "chapter_structure": [
+    {"chapter_id": "setup", "display_name": "The Setup", "scenes": ["hub", "recon"]},
+    {"chapter_id": "execution", "display_name": "The Job", "scenes": ["approach", "target"]},
+    {"chapter_id": "aftermath", "display_name": "The Aftermath", "scenes": ["debrief"]}
+  ],
+  "name_pools": {
+    "hub_location": ["Back Alley Bar", "Underground Parlor", "Abandoned Warehouse", "Rooftop Lounge", "Dimly Lit Tavern", "Smoky Den"],
+    "recon_location": ["Observation Post", "Street Corner", "Informant's Room", "Surveillance Perch", "Market Stall", "Alley Overlook"],
+    "approach_location": ["Service Entrance", "Loading Dock", "Maintenance Shaft", "Sewer Access", "Side Passage", "Fire Escape"],
+    "target_location": ["Vault", "Inner Sanctum", "Throne Room", "Command Deck", "Strongroom", "Archive"],
+    "debrief_location": ["Safe House", "Dead Drop", "Return Point", "Fixer's Office", "Hidden Cellar", "Quiet Corner"]
+  }
+}

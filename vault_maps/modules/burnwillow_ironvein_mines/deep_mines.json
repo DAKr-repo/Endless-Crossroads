@@ -1,0 +1,225 @@
+{
+    "seed": 4406,
+    "width": 80,
+    "height": 60,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "deep_mines",
+        "theme": "RUST",
+        "topology": "dungeon",
+        "display_name": "Deep Mines",
+        "flavor_note": "Below the worked tunnels, the mine opens into natural caverns where the Burnwillow's root structure meets raw stone. Ironvein Spiders breed here in numbers. The Queen nests in the deepest chamber, surrounded by her brood. The singing iron the miners discovered pulses with trapped Root-Song -- a wound in the tree that the spiders were born to seal."
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 35,
+            "y": 2,
+            "width": 14,
+            "height": 10,
+            "room_type": "start",
+            "connections": [1, 2],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The crystal cavern takes your breath before you can spend it. Natural formations of amber-infused quartz climb the walls like frozen flames, each crystal singing -- actually singing -- a sustained harmonic tone that resonates in your teeth and sternum. This is the singing iron the miners found: not iron at all, but crystallized Root-Song made physical. The light here is warm gold, sourceless, emanating from the crystals themselves. For the first time since entering the mine, you feel the Burnwillow's presence -- not as vibration but as warmth, like standing near a fire that has been burning since before you were born.",
+                "read_aloud": "Gold. The cavern glows with it -- amber crystals climbing the walls like frozen fire, each one humming a note that harmonizes with the others in a chord that has been sustaining itself for centuries. The Root-Song is here. Not the faint vibration of Emberhome, not the distant pulse of the upper tunnels. Here, the Song is a presence. It fills the cavern like water fills a bowl. You breathe it in. It tastes of sap and memory. Something very old is watching you through these crystals. Something that is not unkind.",
+                "npcs": [],
+                "loot": [],
+                "services": [],
+                "event_triggers": [
+                    "On entry: Characters with Aether 12+ receive a vision -- a flash of the cavern in its original state, before the miners came. The crystals were taller, unbroken, and the Song was louder. The vision carries an emotion: protective urgency. The tree is asking you to stop the damage. The spiders are its response, but they have grown beyond its control.",
+                    "On crystal harvested: Each crystal is worth 15 amber, but harvesting one breaks the harmony. DoomClock +1 per crystal taken. The Root-Song dims perceptibly. Characters with Aether 14+ feel the tree's grief."
+                ]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 15,
+            "y": 14,
+            "width": 14,
+            "height": 10,
+            "room_type": "corridor",
+            "connections": [0, 2, 3],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Rot has reached the deep mines. A vein of grey corruption runs through the root-wall like an infected artery, and the crystal Song falters here into discord. The floor is slick with a substance that is half-amber, half-Blight -- a horrifying hybrid that glows sickly green-gold. Two Ashwalker Warriors stand in the passage, their bodies encased in hardened Rot-bark that serves as natural armor. Unlike Hollows, Ashwalkers retain tactical awareness. They coordinate.",
+                "read_aloud": "The gold turns grey. A vein of corruption splits the wall, weeping something that is neither amber nor Blight but both -- a liquid that glows wrong, green where it should be gold. Two figures block the passage ahead. They were human once, armored in bark that has fused with their skin, grey and hard as stone. They move in unison. They have been waiting.",
+                "npcs": [],
+                "enemies": [
+                    {
+                        "name": "Ashwalker Warrior",
+                        "hp": 18,
+                        "ac": 13,
+                        "attack": 5,
+                        "damage": "1d6+3",
+                        "notes": "Tier II scavenger. DR 1 (rot-bark armor). Coordinated: +1 attack when adjacent to another Ashwalker. Retains tactical awareness -- will flank, retreat to chokepoints, and protect the Rot Vein behind them."
+                    },
+                    {
+                        "name": "Ashwalker Warrior",
+                        "hp": 18,
+                        "ac": 13,
+                        "attack": 5,
+                        "damage": "1d6+3",
+                        "notes": "Tier II scavenger. DR 1 (rot-bark armor). Coordinated: +1 attack when adjacent to another Ashwalker."
+                    }
+                ],
+                "loot": [],
+                "services": [],
+                "event_triggers": [
+                    "Hazard: Deep Rot Pool. Contact with the hybrid amber-Blight substance requires DC 13 Grit save. Failure: 2d6 necrotic damage and early Blight infection (curable with Rot-Salve within 1 hour). The pool cannot be crossed without contact -- it fills the corridor floor.",
+                    "On Rot Vein investigated (DC 14): The corruption is traveling along an old Aether channel, hijacking the tree's own circulatory system. It originated from deeper in the mine -- the direction of the Spider Queen's lair. The Rot is not the Queen's doing, but she nests near it because the warmth of corruption mimics the warmth of living wood."
+                ]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 50,
+            "y": 14,
+            "width": 16,
+            "height": 12,
+            "room_type": "chamber",
+            "connections": [0, 3],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "An ancient forge chamber, older than the mine by centuries. The architecture is unmistakable: smooth-grown walls, amber-veined archways, the graceful curves of Arborist construction. This forge was not built -- it was sung into shape from living wood and then hardened with Aether until it became stronger than stone. The hearth still burns, fed by a deep Aether vein that pulses with sluggish golden light. The heat is extraordinary. A figure works the anvil -- or rather, stands frozen in the act of working, hammer raised, as though waiting for permission to strike.",
+                "read_aloud": "The forge is old. Older than the mine, older than Emberhome, older than anyone alive has a right to remember. Arborist-made -- you can tell by the walls that curve without joints, the archways that flow like frozen water. The hearth fire still burns. It has been burning since before the Rot, feeding on an Aether vein that runs hot and golden through the floor. A figure stands at the anvil, hammer raised, perfectly still. Then it blinks. 'Oh. Visitors. I was starting to think everyone had forgotten where I was.'",
+                "npcs": [
+                    {
+                        "name": "Patchwork Pete",
+                        "role": "merchant",
+                        "dialogue": "Name is Pete. Well, it is now -- had another name before, but I have been down here so long the mine sort of adopted me. Lost my legs to a spider ambush, built new ones from scrap iron and singing crystal. Lost my left arm to the Char Hulk upstairs -- fashioned a replacement from a mine cart axle. At this point I am more forge than flesh. But I can still smith. The old way, mostly. I listened to the walls down here for years. They taught me things. Bring me materials and I will build you something that remembers what it was before it was broken.",
+                        "notes": "Patchwork Pete is a self-repaired survivor who has been living in the Arborist forge for years. His prosthetics are crude but functional -- scrap iron legs, a mine-cart-axle arm. He has learned basic Arborist forge techniques by osmosis from the forge itself (the Root-Song teaches through the tools). Can craft Tier II items and upgrade Tier I to Tier II. SECRET: He found a Memory Seed in the forge's storage alcove but cannot carry it to Emberhome alone. Will ask the party to escort it back. This is a genuine Memory Seed escort quest with all attendant penalties."
+                    }
+                ],
+                "loot": [
+                    {"name": "Chain Shirt", "value": 14, "type": "uncommon", "notes": "Tier II. Chest slot. DR 1. +1 Defense. Forged by Pete from ironvein ore."}
+                ],
+                "services": ["shop", "upgrade"],
+                "investigation_dc": 15,
+                "event_triggers": [
+                    "On investigation success (DC 15): Behind the forge's hearth, a storage alcove sealed with Arborist resin. Inside: a Memory Seed, glowing with soft Aether light. Pete knows it is there. 'I found it months ago. Cannot carry it myself -- the legs are not built for speed, and that thing draws every spider in the mine. I need legs. You need recipes. Shall we trade problems?'",
+                    "On services: Pete can forge any Tier II weapon or armor given raw materials (iron ore from the upper mines). Upgrade Tier I items to Tier II for 10 amber. His work is crude but honest. The items sometimes hum faintly -- a residual effect of the Arborist forge."
+                ]
+            }
+        },
+        "3": {
+            "id": 3,
+            "x": 30,
+            "y": 30,
+            "width": 16,
+            "height": 12,
+            "room_type": "chamber",
+            "connections": [1, 2, 4],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The spider nest fills a natural cavern with metallic web so dense it forms walls, floors, and ceiling -- a second architecture built inside the stone. Egg clusters hang from the web-ceiling in translucent sacs, each containing a half-formed spider curled in amniotic fluid that shimmers with iron flecks. Three Ironvein Spiders patrol the nest perimeter, their movements precise and mechanical. A Steel Shield lies discarded near the entrance, half-encased in web -- a relic of some previous expedition that made it this far and no further.",
+                "read_aloud": "The cavern is a cathedral of web. Silver strands form walls and archways in geometric patterns that would be beautiful if they were not a trap designed by something that thinks in angles and ambush points. Egg sacs hang overhead -- dozens of them, each pulsing with movement. Three spiders pace the perimeter in formation. They see you immediately. One raises a foreleg and taps the web. The vibration carries. Somewhere deeper, something very large begins to move.",
+                "npcs": [],
+                "enemies": [
+                    {
+                        "name": "Ironvein Spider",
+                        "hp": 16,
+                        "ac": 12,
+                        "attack": 4,
+                        "damage": "1d6+2",
+                        "notes": "Tier II. Web: DC 10 Grit or lose Move action. DR 1."
+                    },
+                    {
+                        "name": "Ironvein Spider",
+                        "hp": 16,
+                        "ac": 12,
+                        "attack": 4,
+                        "damage": "1d6+2",
+                        "notes": "Tier II. Web: DC 10 Grit or lose Move action. DR 1."
+                    },
+                    {
+                        "name": "Ironvein Spider",
+                        "hp": 16,
+                        "ac": 12,
+                        "attack": 4,
+                        "damage": "1d6+2",
+                        "notes": "Tier II. Web: DC 10 Grit or lose Move action. DR 1."
+                    }
+                ],
+                "loot": [
+                    {"name": "Steel Shield", "value": 12, "type": "uncommon", "notes": "Tier II. L.Hand. +1 Defense. +2d6 GRIT pool when using Guard action. Partially webbed -- requires 1 round to free."}
+                ],
+                "services": [],
+                "event_triggers": [
+                    "On egg sacs destroyed: The cavern trembles. The remaining spiders retreat toward Room 4. Destroying all egg sacs enrages the Queen -- she gains +2 attack in the boss fight but the nest cannot produce reinforcements.",
+                    "On egg sacs left intact: Spiders reinforced in the boss fight -- one additional Ironvein Spider per round until the eggs are destroyed."
+                ]
+            }
+        },
+        "4": {
+            "id": 4,
+            "x": 30,
+            "y": 44,
+            "width": 18,
+            "height": 14,
+            "room_type": "boss",
+            "connections": [3, 5],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Queen's lair is the deepest point of the mine -- a vast natural cavern where the Burnwillow's root system meets raw stone. The Spider Queen occupies the center, her body the size of a mine cart, her carapace a gleaming patchwork of iron and amber that refracts light into prismatic patterns. She does not spin webs. She is the web. Every strand in the mine connects to her, and through them she feels everything that moves in her domain. She has known you were coming since the elevator.",
+                "read_aloud": "She is waiting. Of course she is waiting -- she felt every footstep, heard every whisper through the web that is her nervous system. The Ironvein Spider Queen fills the cavern center like a living chandelier, her carapace iron-bright and amber-veined, her eight eyes reflecting your lantern light in sixteen points of cold intelligence. She is beautiful in the way that a drawn blade is beautiful. She does not attack immediately. She watches. She is deciding whether you are a threat to her brood or merely food. The distinction matters to her. It should matter to you.",
+                "npcs": [],
+                "enemies": [
+                    {
+                        "name": "Ironvein Spider Queen",
+                        "hp": 30,
+                        "ac": 15,
+                        "attack": 7,
+                        "damage": "2d8+2",
+                        "is_boss": true,
+                        "notes": "Tier II boss. DR 2. Web Snare: ranged attack, DC 12 Grit or immobilized (cannot move or dodge, auto-hit until freed by DC 14 Might check). Brood Call: summons 1 Ironvein Spider per round if eggs intact in Room 3. Iron Carapace: critical hits deflected on 5+ (roll 1d6). On death: the web network collapses throughout the mine. All remaining spiders lose coordination and scatter. The singing iron falls silent -- the tree's immune response, fulfilled or exhausted."
+                    }
+                ],
+                "loot": [
+                    {"name": "Compound Bow", "value": 18, "type": "rare", "notes": "Tier II. R.Hand. +2d6 WITS pool. Ranged. Crafted from the Queen's own metallic silk, strung on an ironvein frame. Hums when drawn."},
+                    {"name": "Greater Rot-Salve", "value": 8, "type": "rare", "notes": "Consumable. Cures Blight infection at any stage, not just early contact. One use."},
+                    {"name": "Ironvein Silk Bundle", "value": 10, "type": "crafting", "notes": "Tier II crafting material. Weld can use this to create items with the [Web] trait."}
+                ],
+                "services": [],
+                "event_triggers": [
+                    "DoomClock +2 on room entry. The Queen is aware and hostile.",
+                    "On Queen defeated: The web collapses. Every strand in the mine goes slack simultaneously, a sound like a thousand harp strings snapping. The singing crystals in Room 0 pulse once -- a single, resonant chord that carries through the stone. Then silence. The mine is clear.",
+                    "On return to surface: Grod stands at the mine entrance, his dog beside him. 'You did it, then. I felt the webs go slack from up here. The iron stopped singing.' He looks at his dog. The grey in its eyes has not receded. 'Some things do not fix themselves just because you kill the cause.'"
+                ]
+            }
+        },
+        "5": {
+            "id": 5,
+            "x": 52,
+            "y": 50,
+            "width": 10,
+            "height": 8,
+            "room_type": "exit",
+            "connections": [4],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Behind the Queen's nest, a natural fissure in the stone leads upward through a chimney of raw rock and root-fiber. The passage is tight but climbable, emerging into daylight -- or what passes for daylight beneath the Burnwillow's canopy. The fire-leaves above cast everything in amber and crimson. After the darkness of the deep mines, even this filtered light feels like a blessing.",
+                "read_aloud": "A crack in the stone. Light above -- actual light, amber and warm, filtering down through a chimney of raw root and rock. You climb. The passage is tight enough to scrape skin and catch packs, but it goes up. Up toward air that does not taste of iron and spores. You emerge blinking, ash-covered, bloodied, into the perpetual autumn of the Burnwillow's canopy light. The mining camp is a short walk west. Grod's tent still smokes.",
+                "npcs": [],
+                "loot": [],
+                "services": [],
+                "event_triggers": [
+                    "Escape tunnel timer: After the Queen's death, the mine begins to collapse as the web-reinforced tunnels lose structural support. Party has 3 rounds to reach this exit before the ceiling comes down. DC 12 Grit per round to navigate falling debris. Failure: 2d6 damage per failed round.",
+                    "On successful escape: DoomClock does not advance. The Burnwillow provides -- the escape chimney is a natural Aether vent, and the tree opened it for you. Characters with Aether 12+ feel a pulse of gratitude through the root-walls."
+                ]
+            }
+        }
+    }
+}

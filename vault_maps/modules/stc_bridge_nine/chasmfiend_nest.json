@@ -23,15 +23,20 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Chasm Entrance gapes like a wound in the plateau's edge -- a vertical drop into wet darkness that smells of mineral water and organic decay. Iron pitons hammered into the rock by previous expeditions form a crude ladder descending into the gloom. Three of the pitons are bent. Two are missing entirely.",
+                "read_aloud": "The chasm opens at your feet like a mouth that has been waiting. Darkness fills it like black water -- absolute, liquid, patient. Iron pitons trail down the cliff face, hammered in by hands that are probably dead now. Three pitons are bent at angles that suggest something heavy grabbed them. Two are missing, leaving gaps in the descent that require a five-foot drop between handholds. From below: the chemical scent of chitin pheromones. The nest is active.",
                 "npcs": [
-                    {"name": "Scout Leyten", "role": "guide", "dialogue": "Last crew that went down came back with two less men and one more secret they will not talk about. The gemheart scouts say there is a nest down there worth a fortune. Question is what a fortune buys when you are dead."}
+                    {"name": "Scout Leyten", "role": "guide", "dialogue": "Last crew that went down came back with two less men and one more secret they will not talk about. The gemheart scouts say there is a nest down there worth a fortune. Question is what a fortune buys when you are dead.", "notes": "Leyten volunteered for nest scouting because it pays triple bridge duty wages. He is sending the money to his mother in Kholinar. She thinks he is a merchant."}
                 ],
                 "enemies": [],
                 "loot": [
                     {"name": "Climbing Piton Kit", "type": "equipment"}
                 ],
                 "services": ["descent_preparation"],
-                "event_triggers": ["On entry: A warm updraft carries the scent of chitin and something chemical -- a pheromone marker, the scouts say, that means the nest is active"]
+                "investigation_dc": 12,
+                "investigation_success": "The bent pitons were not damaged by a chasmfiend. The metal was deformed by extreme heat -- localized, precise, as if something touched them with a finger that burned at forge temperature. Something intelligent was here.",
+                "perception_dc": 11,
+                "perception_success": "A warm updraft carries the scent of chitin and something chemical -- pheromone markers that mean the nest is active. But layered beneath the chemical scent: the smell of worked metal. Something down there is not organic.",
+                "event_triggers": ["On entry: A warm updraft carries the scent of chitin and something chemical -- a pheromone marker, the scouts say, that means the nest is active. Leyten checks his rope. His hands do not shake. Anymore."]
             }
         },
         "1": {
@@ -47,17 +52,22 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Bone Gallery. Shed exoskeletons and skeletal remains line the chasm walls in geological layers -- decades of accumulated death, compressed and calcified. Greatshell bones form arches overhead, their hollow interiors home to colonies of luminescent cremlings that provide the only light. The air tastes of calcium and old violence.",
+                "read_aloud": "Death compresses here like geological strata -- layers of shed exoskeletons and skeletal remains calcified into the chasm walls over decades, each generation of the dead supporting the next. Greatshell bones arch overhead, their hollow interiors colonized by luminescent cremlings that pulse blue-green in slow waves. The light they cast turns everything the color of drowned things. The air tastes of calcium, old blood, and the sweet-chemical tang of chitin decomposition.",
                 "npcs": [],
                 "enemies": [
-                    {"name": "Cremling Swarm (Luminescent)", "cr": "1"},
-                    {"name": "Skyeel (Cave Variant)", "cr": "1"}
+                    {"name": "Cremling Swarm (Luminescent)", "hp": 8, "ac": 10, "attack": 1, "damage": "1d4+1", "count": 1, "notes": "Bioluminescent. Provides light. Swarm -- half damage from single-target attacks."},
+                    {"name": "Skyeel (Cave Variant)", "hp": 6, "ac": 10, "attack": 1, "damage": "1d4+1", "count": 1, "notes": "Echolocation. Not affected by darkness. Dives from ceiling."}
                 ],
                 "loot": [
                     {"name": "Greatshell Bone Shard", "type": "material"},
                     {"name": "Fossilized Cremling Cluster", "type": "material"}
                 ],
                 "services": [],
-                "event_triggers": ["On entry: The luminescent cremlings pulse brighter when you enter, then dim -- a warning signal rippling through the colony toward the deeper chambers"]
+                "investigation_dc": 13,
+                "investigation_success": "Among the calcified remains: a human skeleton wearing armor that predates Alethi military design by centuries. The armor bears the glyph of an unknown Radiant Order -- or perhaps a very old one, before the Orders were formalized.",
+                "perception_dc": 12,
+                "perception_success": "The luminescent cremlings pulse brighter when you enter, then dim -- a warning signal rippling through the colony toward the deeper chambers. Something down there is listening for the light-change.",
+                "event_triggers": ["On entry: The luminescent cremlings pulse brighter when you enter, then dim -- a warning signal rippling through the colony toward the deeper chambers. In the blue-green light, the bone arches look like the ribs of something that swallowed the world."]
             }
         },
         "2": {
@@ -73,11 +83,16 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Narrow Squeeze. The chasm pinches to a gap barely wide enough for one person to pass sideways, the stone walls pressing against your chest and back. Claw marks six inches deep score both walls at irregular heights -- something large forces itself through here regularly. The marks are fresh. The stone dust has not settled.",
+                "read_aloud": "The chasm narrows until stone presses against your chest and back simultaneously, and your breath comes in shallow draws that taste of mineral dust. Six-inch claw marks score both walls at heights that suggest something the size of a wagon forces itself through this gap regularly. The marks are fresh -- stone dust still sifts from the grooves. Your torch gutters in a draft from below. Warm. Wet. Rhythmic. Something enormous is breathing.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [],
                 "services": [],
-                "event_triggers": ["On entry: Your torch gutters in a draft from below -- warm, wet, rhythmic. Something enormous is breathing down there."]
+                "perception_dc": 13,
+                "perception_success": "The claw marks alternate between two sizes -- an adult and a juvenile chasmfiend use this passage. The adult's marks are deeper and more recent, suggesting it passed through within the last few hours.",
+                "investigation_dc": 14,
+                "investigation_success": "Wedged between the walls at the narrowest point: a piece of Shardplate, cracked and drained of Stormlight. Someone in full Plate was crushed here. The Plate fragment bears a glyph you have never seen -- not Alethi, not Parshendi.",
+                "event_triggers": ["On entry: Your torch gutters in a draft from below -- warm, wet, rhythmic. Something enormous is breathing down there. The stone dust from the claw marks settles on your shoulders like grey snow."]
             }
         },
         "3": {
@@ -93,17 +108,22 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Chrysalis Chamber. Dozens of translucent chrysalises hang from the ceiling and walls, each containing the half-formed shape of a chasmfiend in various stages of metamorphosis. The largest are the size of wagons. Stormlight pulses through them in slow waves, feeding the creatures within. One chrysalis near the floor has cracked -- whatever was inside has already hatched.",
+                "read_aloud": "They hang from every surface like grotesque fruit -- translucent chrysalises the size of wagons, each containing a half-formed chasmfiend suspended in amber fluid. Limbs press against membranes. Compound eyes track light through the translucent walls. Stormlight pulses through the chrysalises in synchronized waves, feeding the creatures within. One near the floor has cracked open, its membrane peeled back like skin from a wound. The contents are gone. The fluid is still warm.",
                 "npcs": [],
                 "enemies": [
-                    {"name": "Chasmfiend Hatchling (Freshly Emerged)", "cr": "2"},
-                    {"name": "Chasmfiend Hatchling", "cr": "2"}
+                    {"name": "Chasmfiend Hatchling (Freshly Emerged)", "hp": 14, "ac": 11, "attack": 3, "damage": "1d6+3", "count": 1, "notes": "Freshly hatched. Soft carapace. Takes double damage from keen weapons."},
+                    {"name": "Chasmfiend Hatchling", "hp": 14, "ac": 11, "attack": 3, "damage": "1d6+3", "count": 1, "notes": "Pack tactics. Advantage when ally is adjacent."}
                 ],
                 "loot": [
                     {"name": "Chrysalis Fluid (Stormlight-Infused)", "type": "material"},
-                    {"name": "Stormlight Sphere (Mark)", "type": "currency"}
+                    {"name": "Stormlight Sphere (Mark)", "type": "currency", "value": 10}
                 ],
                 "services": [],
-                "event_triggers": ["On entry: A chrysalis near you shifts -- the creature inside presses against the membrane with a limb that has too many joints. You can see its compound eyes tracking you through the translucent wall."]
+                "investigation_dc": 14,
+                "investigation_success": "The chrysalises are arranged in a spiral pattern that mirrors the Stormlight conduit crystal formations found deeper in the chasms. The chasmfiends are not choosing nesting sites randomly. They are building to a pattern as old as Roshar.",
+                "perception_dc": 13,
+                "perception_success": "A chrysalis near you shifts -- the creature inside presses against the membrane with a limb that has too many joints. You can see its compound eyes tracking you through the translucent wall. It is not afraid. It is memorizing.",
+                "event_triggers": ["On entry: A chrysalis near you shifts -- the creature inside presses against the membrane with a limb that has too many joints. You can see its compound eyes tracking you through the translucent wall. It blinks. Creatures that size should not blink with recognition."]
             }
         },
         "4": {
@@ -119,16 +139,21 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Larval Pool. A shallow basin of mineral-rich water fills a natural depression in the chasm floor, warm from geothermal vents below. Chasmfiend larvae -- pale, segmented things the length of your forearm -- swim in slow circles. Gemstones litter the pool floor, carried here by water currents from the crystal veins above. The larvae ignore them. They are not yet old enough to grow gemhearts.",
+                "read_aloud": "Warm water fills a natural basin, heated by geothermal vents that bubble through mineral deposits the color of rust and copper. Chasmfiend larvae swim in lazy spirals -- pale, segmented, the length of your forearm, each one a potential titan. Gemstones litter the pool floor like scattered coins, carried here by currents from the crystal formations above. The larvae swim over them without interest. They are too young to grow gemhearts. Too young to be dangerous. Too young to remember what they are becoming.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [
-                    {"name": "Sapphire (Raw, Broam-grade)", "type": "gemstone"},
-                    {"name": "Ruby Cluster (Infused)", "type": "gemstone"},
+                    {"name": "Sapphire (Raw, Broam-grade)", "type": "gemstone", "value": 50},
+                    {"name": "Ruby Cluster (Infused)", "type": "gemstone", "value": 35},
                     {"name": "Chasmfiend Larva (Specimen)", "type": "material"},
-                    {"name": "Stormlight Sphere (Broam)", "type": "currency"}
+                    {"name": "Stormlight Sphere (Broam)", "type": "currency", "value": 50}
                 ],
                 "services": [],
-                "event_triggers": ["On entry: The larvae sense you and school together in the pool's center. They are not afraid -- they have never encountered a predator in this place. That tells you what you need to know about what protects them."]
+                "investigation_dc": 14,
+                "investigation_success": "The larvae are not swimming randomly. They follow the same spiral pattern as the chrysalis arrangement above. This behavior is not learned -- it is encoded. The chasmfiends carry a blueprint in their biology older than human civilization.",
+                "perception_dc": 13,
+                "perception_success": "The larvae sense you and school together in the pool's center. They are not afraid -- they have never encountered a predator here. That tells you what protects them. The water ripples from a direction that has no visible source.",
+                "event_triggers": ["On entry: The larvae sense you and school together in the pool's center. They have never encountered a predator in this place. That innocence is the most frightening thing about this chamber -- nothing threatens the young of a chasmfiend."]
             }
         },
         "5": {
@@ -144,20 +169,24 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Adult Nest. The chasm opens into a vast natural amphitheater, its floor strewn with the shattered carapaces of defeated rivals and the bones of everything that was not fast enough to escape. An adult chasmfiend fills the space -- seventy feet of armored legs, mandibles that could shear through steel, and compound eyes that reflect your torch-light back as a hundred burning points. Its gemheart glows through its carapace like a second sun.",
+                "read_aloud": "The chasm opens into an amphitheater that could hold a warcamp. Shattered carapaces litter the floor like the ruins of a siege -- the remains of rival chasmfiends that challenged this territory and lost. The adult fills the space the way a king fills a throne room: completely, absolutely, with the patient certainty of something that has never met its equal. Seventy feet of armored legs and mandibles and compound eyes that reflect your torchlight as a hundred burning points. Its gemheart glows through its carapace like a star trapped in amber. It clicks its mandibles once. The sound is a lock engaging.",
                 "npcs": [],
                 "enemies": [
-                    {"name": "Chasmfiend (Adult)", "cr": "7"},
-                    {"name": "Chasmfiend Hatchling (Guard)", "cr": "2"},
-                    {"name": "Chasmfiend Hatchling (Guard)", "cr": "2"}
+                    {"name": "Chasmfiend (Adult)", "hp": 55, "ac": 15, "attack": 5, "damage": "2d8+5", "count": 1, "is_boss": true, "notes": "Legendary greatshell. Carapace provides damage resistance. Gemheart visible when below half HP -- destroying it ends the fight instantly.", "special": ["Mandible Crush: 2d10+5, target grappled (DC 15 to escape)", "Tail Sweep: All targets in 15ft arc, 1d10+3 impact damage", "Tremor Slam: All targets, DC 13 or knocked prone"]},
+                    {"name": "Chasmfiend Hatchling (Guard)", "hp": 14, "ac": 11, "attack": 3, "damage": "1d6+3", "count": 2, "notes": "Guard behavior. Will not leave the nest area."}
                 ],
                 "loot": [
-                    {"name": "Chasmfiend Gemheart (Grand)", "type": "treasure"},
+                    {"name": "Chasmfiend Gemheart (Grand)", "type": "treasure", "value": 100},
                     {"name": "Chasmfiend Mandible (Trophy)", "type": "weapon"},
                     {"name": "Ancient Parshendi Offering", "type": "quest_item"},
                     {"name": "Shardplate Fragment (Chest)", "type": "armor"}
                 ],
                 "services": [],
-                "event_triggers": ["On entry: The chasmfiend does not roar. It clicks its mandibles once -- a sound like a lock engaging. Then it charges. The ground shakes so violently that stalactites fall from the ceiling like stone rain."]
+                "investigation_dc": 16,
+                "investigation_success": "The Ancient Parshendi Offering is a gemstone carved with glyphs that predate both Alethi and Parshendi writing. It was placed here deliberately -- not as tribute to the chasmfiend, but as a seal. The chasmfiend is not guarding its nest. It is guarding what is beneath it.",
+                "perception_dc": 15,
+                "perception_success": "The chasmfiend does not roar. It clicks its mandibles once -- a sound like a lock engaging. Then it waits. It is not mindless. It is evaluating. If you back away from the hatchlings, its posture shifts. There may be a way through this that does not end in blood.",
+                "event_triggers": ["On entry: The chasmfiend does not roar. It clicks its mandibles once -- a sound like a lock engaging. Then it charges. The ground shakes so violently that stalactites fall from the ceiling like stone rain. The hatchlings scatter behind it. It is not attacking. It is defending."]
             }
         }
     }

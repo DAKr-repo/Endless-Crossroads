@@ -1,0 +1,101 @@
+{
+  "seed": 7009,
+  "width": 35,
+  "height": 20,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "haven_hills_exploration_2",
+    "theme": "GOTHIC",
+    "topology": "settlement",
+    "display_name": "The Haven Hills Colliery"
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 0,
+      "y": 0,
+      "width": 10,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The mine entrance. Timber frame, iron gate, pulley cage elevator. The lower tunnels have been closed since the displacement event. Foreman Decker's key gets you past the lock.",
+        "read_aloud": "The mine breathes cold air from below. Decker leads you to the gate. 'New shaft is Level 3, eastward. That's where we hit the cavern. Runs directly under the Griggs property via a lateral.' He opens the gate. 'I'll take you as far as Level 2. After that -- I don't go down there anymore.'",
+        "npcs": [
+          {
+            "name": "Foreman Decker",
+            "role": "guide",
+            "dialogue": "I ordered the cavern sealed despite the signs. I know I caused this. I'll get you access to whatever you need -- map, lanterns, my own key. I just can't go past Level 2. Not since the sounds started changing.",
+            "notes": "He/him. Guilt-ridden. Provides a mine survey map showing the lateral shaft running under the Griggs property. His arm is injured from a falling beam he believes the creature knocked loose as a warning."
+          }
+        ],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [
+          "The mine's lateral shaft connects directly to the Griggs house crawl space. The creature's original habitat -- the sealed cavern -- is on Level 3."
+        ],
+        "loot": [
+          {
+            "name": "Mine Survey Map",
+            "value": 0,
+            "description": "Decker's map of the lateral shaft system. Shows the direct route between the sealed cavern and the Griggs property foundation. Annotated: 'tunnel not in original survey -- bored recently, no mining tools used.'"
+          }
+        ]
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 13,
+      "y": 0,
+      "width": 10,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [0, 2],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Level 3, the new shaft. The rock changes here -- limestone giving way to something older and darker. Ancient claw marks cover the walls, centuries old. The sealed cavern door is a wooden barrier braced with iron bolts.",
+        "read_aloud": "Level 3 feels different. Older. The claw marks on the walls predate the mine by generations. Beyond the sealed barrier, silence so complete it has a texture. Something pushed at this barrier from the other side -- the wood shows stress marks from within.",
+        "npcs": [],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [
+          "The sealed cavern is the creature's original habitat. If re-opened and protected from the mine expansion, it could serve as a permanent relocation site.",
+          "DECISION POINT: The investigators must negotiate with Decker to stop expansion near this cavern, or find a separate cave system for relocation."
+        ],
+        "loot": [],
+        "investigation_dc": 12,
+        "investigation_success": "The cavern walls bear gentle, deliberate claw marks identical to those in the creature's tunnel near Ellis's room. This creature lived here peacefully for decades. The mine found it, not the other way around."
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 25,
+      "y": 4,
+      "width": 8,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "A natural side-passage off the new shaft, not on any survey map. Runs upward at a slight angle, stone smoothed by water over millennia. Warm air flows up from below. A small limestone chamber -- undisturbed, unexploited, outside the expansion path.",
+        "read_aloud": "The chamber is beautiful. Limestone formations catch the lamplight and scatter it. A small underground spring feeds a clear pool. The air is warm and mineral. Nothing has disturbed this place. The mine expansion goes the other direction entirely. This is a perfect habitat for something that needs quiet, darkness, and safety.",
+        "npcs": [],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [
+          "REVEAL: A viable relocation habitat exists within the mine itself -- undiscovered, outside the expansion path. The spring connects to the surface water table. If the creature is guided here with Ellis's help, it could remain near the boy."
+        ],
+        "loot": [],
+        "perception_dc": 10,
+        "perception_success": "The spring feeds upward -- a natural connection to the surface. The creature could maintain a route to visit Ellis from this chamber without living under the house. Near, but separate. A compromise."
+      }
+    }
+  }
+}

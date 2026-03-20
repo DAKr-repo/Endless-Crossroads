@@ -78,20 +78,7 @@ def _make_mock_engine(system_id="dnd5e", exits=None, room_type="NORMAL"):
 
 def _make_bridge(engine):
     from codex.games.bridge import UniversalGameBridge
-    from codex.core.mechanics.rest import RestManager
-
-    bridge = object.__new__(UniversalGameBridge)
-    bridge.engine = engine
-    bridge.dead = False
-    bridge.last_frame = None
-    bridge._broadcast = None
-    bridge._system_tag = engine.system_id.upper()
-    bridge._rest_mgr = RestManager()
-    bridge._butler = None
-    bridge.show_dm_notes = False  # WO-V54.0
-    bridge._talking_to = None    # WO-V54.0
-    bridge._session_log = []     # WO-V61.0
-    return bridge
+    return UniversalGameBridge.create_lightweight(engine)
 
 
 # =========================================================================

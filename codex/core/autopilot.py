@@ -69,6 +69,10 @@ class GenericAutopilotAgent:
             "DND5E": self._snapshot_dnd5e,
             "STC": self._snapshot_cosmere,
             "BITD": self._snapshot_bitd,
+            "SAV": self._snapshot_bitd,
+            "BOB": self._snapshot_bitd,
+            "CBRPNK": self._snapshot_bitd,
+            "CANDELA": self._snapshot_bitd,
             "CROWN": self._snapshot_crown,
         }.get(self.system_tag, self._snapshot_generic)
         return builder(engine, phase)
@@ -171,7 +175,11 @@ class GenericAutopilotAgent:
             "BURNWILLOW": self._execute_burnwillow,
             "DND5E": self._execute_dnd5e,
             "STC": self._execute_cosmere,
-            "BITD": self._execute_bitd,
+            "BITD": self._execute_fitd,
+            "SAV": self._execute_fitd,
+            "BOB": self._execute_fitd,
+            "CBRPNK": self._execute_fitd,
+            "CANDELA": self._execute_fitd,
             "CROWN": self._execute_crown,
         }.get(self.system_tag, self._execute_generic)
         return executor(action, engine)
@@ -221,11 +229,28 @@ class GenericAutopilotAgent:
             return "Companion: can't move there."
         return f"Companion: {action}"
 
-    def _execute_bitd(self, action: str, engine) -> str:
-        """BitD: route through handle_command."""
+    def _execute_fitd(self, action: str, engine) -> str:
+        """FITD systems: route actions through handle_command with action mapping."""
+        _ACTION_MAP = {
+            "attack": ("roll_action", {"action": "skirmish"}),
+            "search": ("roll_action", {"action": "survey"}),
+            "triage": ("roll_action", {"action": "doctor"}),
+        }
+        mapped = _ACTION_MAP.get(action)
+        if mapped and hasattr(engine, 'handle_command'):
+            cmd, kwargs = mapped
+            try:
+                return engine.handle_command(cmd, **kwargs)
+            except Exception:
+                return f"Companion: {action}"
         if action in ("end", "guard"):
             return f"Companion: {action}"
-        return engine.handle_command(action) if hasattr(engine, 'handle_command') else f"Companion: {action}"
+        if hasattr(engine, 'handle_command'):
+            try:
+                return engine.handle_command(action)
+            except Exception:
+                pass
+        return f"Companion: {action}"
 
     def _execute_crown(self, action: str, engine) -> str:
         """Crown: narrative actions."""
@@ -244,6 +269,50 @@ class GenericAutopilotAgent:
         elif phase == "hub":
             return self.agent.decide_hub(snapshot)
         return self.agent.decide_exploration(snapshot)
+
+    # ─── Hybrid LLM Narration ──────────────────────────────────────────
+
+    def narrate_action(self, action: str, engine, context: str = "") -> str:
+        """Generate narrative text for a companion action via mimir.
+
+        Uses Ollama/mimir for narrative moments when available. Falls back
+        to static templates from companion_maps if mimir is unavailable
+        (timeout, thermal throttle, import error).
+
+        Args:
+            action: The action string (e.g. "attack 0", "guard", "search").
+            engine: The game engine for context.
+            context: Optional situation description.
+
+        Returns:
+            Narration string, or empty string if nothing available.
+        """
+        comp_name = self.personality.name or "Companion"
+        verb = action.split()[0] if action else "act"
+
+        try:
+            from codex.integrations.mimir import query_mimir
+            prompt = (
+                f"You are {comp_name}, a {self.personality.archetype} "
+                f"companion. {self.personality.description} "
+                f"Quirk: {self.personality.quirk}\n"
+                f"Current situation: {context}\n"
+                f"You decided to: {action}\n"
+                f"Write one short sentence (max 20 words) narrating this "
+                f"action in character."
+            )
+            result = query_mimir(prompt, namespace="companion")
+            if result and isinstance(result, str) and len(result.strip()) > 0:
+                return result.strip()
+        except Exception:
+            pass
+
+        # Fallback to static narration templates
+        try:
+            from codex.core.companion_maps import narrate_decision
+            return narrate_decision(verb, self.personality.archetype, comp_name)
+        except Exception:
+            return ""
 
     def toggle(self, on: Optional[bool] = None) -> str:
         """Toggle companion on/off."""

@@ -1,0 +1,77 @@
+{
+  "seed": 8006,
+  "width": 30,
+  "height": 25,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "abandoned_shrine",
+    "theme": "GOTHIC",
+    "topology": "dungeon",
+    "mission_types": ["religious"]
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 10,
+      "y": 2,
+      "width": 8,
+      "height": 6,
+      "room_type": "start",
+      "connections": [1],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The path to the shrine winds through a copse of birch trees. Their bark has turned black from the roots up, as if diseased from the soil itself. Prayer ribbons hang from the lower branches -- faded, rain-soaked, their inscriptions bleeding into illegibility. The air grows colder with each step.",
+        "read_aloud": "The sacred symbols on the walls have been defaced. A cold, unnatural wind blows from within the shrine, carrying a smell like old graves and spoiled incense.",
+        "event_triggers": [
+          "The sacred symbols on the walls have been defaced with deep gouges. The stone around them is stained black."
+        ]
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 10,
+      "y": 10,
+      "width": 10,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [0, 2],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The shrine's main chamber is a vaulted stone hall open to the sky through a collapsed roof. Rain pools on the cracked floor tiles, each puddle reflecting a sky that looks darker than it should. The altar stone at the center has been split in two. Something black and viscous seeps from the crack, pooling at the base. The two acolytes Kevarin sent lie slumped against the far wall, motionless. They are not dead. They are not alive either.",
+        "enemies": [
+          {"name": "Heartless", "hp": 15, "max_hp": 15, "ac": 13, "attack": 5, "defense": 13, "count": 2}
+        ],
+        "perception_dc": 12,
+        "perception_success": "The Heartless were the acolytes. Their vestments are still visible beneath the corruption -- Kevarin's sun-disc emblem half-covered by black growth.",
+        "event_triggers": [
+          "The acolytes' eyes are open but see nothing. Their skin has the waxy pallor of the recently Broken. Corruption veins crawl up their necks."
+        ]
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 12,
+      "y": 20,
+      "width": 6,
+      "height": 4,
+      "room_type": "boss",
+      "connections": [1],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Beneath the altar, a narrow stair descends to the shrine's sanctum. The walls are carved with Panyar sun-prayers, but the carvings weep that same black fluid. At the center of the sanctum, a corrupted font pulses with stolen warmth -- life force drawn from the land itself, pooling here like water in a cistern. The corruption has a source, and this is it.",
+        "event_triggers": [
+          "Destroying the font will cleanse the shrine but release a shockwave of dark energy. The corruption will not go quietly.",
+          "If Kevarin's relic fragment is used here, the cleansing is quieter -- painful light instead of explosive force."
+        ],
+        "investigation_dc": 14,
+        "investigation_success": "The font is not a natural corruption. Someone built this -- carved channels in the stone floor to direct the flow. This is Blighter's infrastructure, not a random infection. The corruption is being farmed."
+      }
+    }
+  }
+}

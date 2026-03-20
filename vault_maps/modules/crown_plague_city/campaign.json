@@ -1,0 +1,198 @@
+{
+    "campaign_id": "crown_plague_city",
+    "display_name": "The Plague City",
+    "description": "A walled city festers under quarantine. The Authority burns entire districts to stop the spread while underground healers risk infection to save lives the council has already written off. Five days until the gates open or the city eats itself.",
+    "system_id": "crown",
+    "arc_length": 5,
+    "terms": {
+        "crown": "The Quarantine Authority",
+        "crew": "The Underground",
+        "neutral": "The Forsaken",
+        "campfire": "The Vigil",
+        "world": "The Walled City"
+    },
+    "patrons": [
+        "Plague Doctor Maren",
+        "Alderman Brock",
+        "Cathedral Warden",
+        "Merchant Prince Orel"
+    ],
+    "leaders": [
+        "Sister Hollow (healer nun)",
+        "Ash (street orphan leader)",
+        "Dr. Corvin (disgraced physician)",
+        "Thorn (smuggler with a heart)"
+    ],
+    "prompts_crown": [
+        "Plague Doctor Maren adjusts her mask -- the long-beaked kind, stuffed with juniper and rue. 'District Seven reported twelve new cases overnight,' she says. 'I recommend we seal it. Seal it and burn the bedding. The people can relocate.' She doesn't say where.",
+        "Alderman Brock unfolds a map of the infected zones. Red ink covers half the city. He draws a line through the Narrows. 'Everything south of this line is lost,' he says. 'We save the north. That's the mathematics of survival.'",
+        "The Quarantine Authority offers clean water rations to anyone who reports unlicensed healers operating in the lower districts. The reward is generous. The water is real. The healers are the only thing keeping the Narrows alive.",
+        "Cathedral Warden stands at the pulpit and declares the plague a divine punishment. 'Obedience is the cure,' he intones. 'Those who submit to quarantine submit to salvation. Those who resist have chosen their fate.'",
+        "Merchant Prince Orel keeps his warehouses locked -- grain, medicine, clean cloth, all hoarded behind iron doors while the Narrows starve. 'Supply and demand,' he says, adjusting his perfumed gloves. 'I didn't create the plague. I'm simply responding to market conditions.'",
+        "The Authority's enforcers carry limewater and brands. When they find an infected household, they mark the door with a white cross and nail it shut. From the inside, you can hear the arguments. Then the coughing. Then nothing.",
+        "Maren offers you a position on the Quarantine Board -- real authority, a clean house in the upper district, food that hasn't been rationed. 'The city needs competent people making hard decisions,' she says. 'Not compassionate ones. Competent ones.'",
+        "A family of six is discovered hiding in a cellar below a condemned building. Three are symptomatic. The Authority's protocol is clear: relocation to the pest house. No one has ever returned from the pest house. The father offers you his wedding ring to look the other way.",
+        "Alderman Brock reveals the Authority's contingency plan: if the plague reaches the upper district, they will collapse the bridges connecting the two halves of the city. Fifteen thousand people live south of the river. The demolition charges are already set.",
+        "The Authority publishes a list of the dead each morning -- names, addresses, occupations. They call it transparency. The Underground calls it a map of empty houses to raid. Both are right.",
+        "Plague Doctor Maren believes she is close to identifying the plague's source -- a contaminated well in the Tannery district. Sealing it would stop new infections. But the Tannery is home to three hundred people who have nowhere else to draw water.",
+        "The Quarantine Authority is not heartless. They simply believe that a city saved at ninety percent is better than a city mourned at a hundred. The math is clean. The bodies in the lime pits are not.",
+        "Orel offers to open his grain stores -- at triple the pre-plague price. The Authority considers it. 'A fed populace is a docile populace,' Brock says. 'Let the merchant have his profit. We need the order more than we need the coin.'",
+        "The Authority's census takers go door to door in the lower districts, counting the living and cataloguing the dead. They carry sealed ledgers. When they leave, the households they visited receive extra rations. The ones they don't visit receive nothing.",
+        "Cathedral Warden announces a Day of Purification -- a citywide fast followed by the burning of all personal possessions from infected homes. 'Material attachment invites contagion,' he declares. 'Sacrifice cleanses.' The smoke will be visible for miles.",
+        "Maren confides in you: the plague is not natural. She found traces of something in the first victims -- an alchemical compound, introduced deliberately. She hasn't told the Authority. 'If the city learns it was manufactured,' she says, 'the quarantine collapses within the hour.'",
+        "The Authority mandates the wearing of plague masks in all public spaces. Those without masks are confined to their homes. The masks cost six pennies each. Half the lower district earns less than that in a week.",
+        "A Crown physician presents evidence that the plague burns itself out in fourteen days if the infected are properly isolated. Proper isolation means locking people in their homes with nailed-shut doors. The survival rate, he admits, is roughly half.",
+        "Brock orders the construction of a second wall -- inside the city, dividing the infected south from the untouched north. The labor crews are drawn from the healthy poor. They are not asked. They are told.",
+        "Orel's bodyguards beat a woman caught stealing bread from one of his locked warehouses. She's six months pregnant. 'Property law doesn't pause for plague,' Orel says. 'If it did, civilization would follow.'"
+    ],
+    "prompts_crew": [
+        "Sister Hollow operates a clinic in a flooded cellar beneath the old brewery. She treats the sick by candlelight with boiled rags and willow bark tea. 'I can't cure the plague,' she says, hanging linens to dry. 'But I can make sure no one dies alone.'",
+        "Ash leads a network of orphaned children through the sewer tunnels beneath the quarantine walls. They carry food, medicine, messages. 'The Authority sealed the streets,' Ash says, grinning with teeth too big for his face. 'They forgot about the sewers.'",
+        "Dr. Corvin was stripped of his medical license for refusing to participate in the Authority's forced quarantine program. Now he treats patients in a hidden surgery behind a bookshop. 'They want compliance,' he says, stitching a wound by lamplight. 'I want outcomes.'",
+        "Thorn's smuggling network runs clean water into the Narrows through a gap in the old aqueduct. It's not enough. It's never enough. But every barrel she moves means a family that doesn't have to drink from the contaminated wells. 'I used to smuggle brandy,' she says. 'Water pays less but sleeps better.'",
+        "The Underground discovers that the Authority's pest house is not a treatment facility. It's a charnel house. Patients enter. No one leaves. The building has no doctors, no medicine, no beds. Just lime and a locked door.",
+        "Ash brings you a map drawn by a dying cartographer -- every sewer tunnel, every forgotten passage, every gap in the quarantine wall. 'He wanted someone to have it,' Ash says. 'He said the city has more doors than the Authority knows.'",
+        "Sister Hollow refuses to turn away the infected, even as her own volunteers fall sick. 'If we close our doors, we become them,' she says. 'The difference between the Authority and us is that we don't decide who deserves to live.'",
+        "Dr. Corvin believes the plague can be treated -- not cured, but managed -- with a compound he can't synthesize without supplies locked in Orel's warehouses. He hands you a list. 'Steal it, buy it, beg for it,' he says. 'I don't care how. I need it by morning.'",
+        "A group of infected refugees storm the clinic, desperate for treatment. There aren't enough supplies for all of them. Sister Hollow starts triage. She's calm. She's been calm every day for two weeks. Her hands shake only when she thinks no one is watching.",
+        "Thorn's runners bring news: the Authority is planning a night raid on suspected Underground clinics. Three locations are compromised. You have four hours to move patients, supplies, and staff to safe houses that might not exist anymore.",
+        "The Underground debates whether to reveal Maren's secret -- that the plague was manufactured. The truth could rally the city against the Authority. It could also cause a panic that kills more people than the plague itself. Corvin wants to publish. Hollow wants to wait.",
+        "Ash brings a child to the clinic. She's not sick -- she's hungry. She walked three miles through quarantined streets because someone told her the Underground feeds people. She's five. She came alone. 'Where are your parents?' Ash asks. She points south, toward the lime pits.",
+        "An Authority enforcer knocks on the clinic door. He's not raiding -- he's sick. He peels off his mask and you see the black rings under his eyes. 'Please,' he says. It's the first time you've heard an enforcer say the word.",
+        "Thorn offers a choice: she has enough smuggling capacity to move either a hundred doses of medicine or thirty healthy people out of the city. Not both. The medicine saves lives inside the wall. The people survive outside it. The choice is yours.",
+        "Dr. Corvin's experimental treatment shows promise -- three patients have improved. But the compound requires a rare herb that grows only in the Cathedral's private garden. The Cathedral Warden has declared all herbs sacred and untouchable. Breaking in means defying both the Authority and the church.",
+        "The Underground is fracturing. Some want open rebellion -- tear down the quarantine walls, storm Orel's warehouses, drag the Authority into the streets. Others want to keep working in the shadows, saving who they can without provoking a crackdown that would destroy what little infrastructure remains.",
+        "Sister Hollow asks you to help her carry a dead man to the canal. He died in the clinic an hour ago. She knew his name. She knows all their names. 'The Authority counts the dead,' she says, lowering him into the water. 'We remember them.'",
+        "A mother brings her infant to Dr. Corvin -- healthy, uninfected, but born during quarantine. The child has no papers. Without papers, the Authority considers it nonexistent. 'When the gates open,' the mother says, 'my daughter doesn't exist. Help me make her real.'",
+        "Thorn intercepts an Authority communication: Alderman Brock has been selling exemption passes to wealthy citizens, allowing them to leave the city through a private gate. The passes cost more than most families earn in a year. The gate exists. The corruption is real.",
+        "The Underground has kept two thousand people alive for fourteen days with stolen medicine, smuggled food, and volunteer labor. No one will write about it. No one will remember it. The Authority's history will say the quarantine worked. Hollow says it doesn't matter. Corvin says it matters more than anything."
+    ],
+    "prompts_world": [
+        "The plague city wakes to the sound of bells -- not church bells, but the handbell of the death cart, rattling through empty streets before dawn. The carter wears a waxed cloak and doesn't look at the bundles he collects. The wheels leave tracks in ash that used to be flower gardens.",
+        "Smoke hangs over the southern districts like a permanent twilight. The Authority burns infected bedding on the hour -- great pyres that send columns of grey spiraling above the rooftops. From the upper district, it looks like weather. From the Narrows, it smells like home.",
+        "The quarantine wall bisects the market square. It went up in two days -- rough stone and iron stakes, manned by enforcers in leather masks. Families separated by the wall press their palms against the stone and whisper through the mortar gaps. The enforcers pretend not to hear.",
+        "Rain falls on the plague city and turns the gutters to rivers of grey water. The cobblestones are slick with something that isn't entirely rain. Rats move openly now -- the cats died first, and no one has replaced them. The rats watch you pass with an appraiser's eye.",
+        "The cathedral's stained glass windows glow amber at dusk, lit by a hundred candles burning for the dead. From outside, it looks beautiful. From inside, the pews are empty. The faithful pray at home now, behind locked doors, with wet cloth pressed over their mouths.",
+        "The Narrows at night is a labyrinth of boarded windows and chalk crosses. Candles flicker behind shutters -- proof of life, or habit. A dog howls somewhere in the dark. It's the only sound that hasn't changed since the quarantine began.",
+        "The city's fountains have been drained and sealed -- contamination protocol. Stone fish mouths gape dry over basins crusted with green algae. Children used to throw pennies in for luck. The pennies are still there. The luck is not.",
+        "A market operates in the shadow of the quarantine wall -- black market, no pretense otherwise. Medicine trades for jewelry. Food trades for labor. Information trades for silence. The currency of a dying city is whatever keeps you breathing until tomorrow.",
+        "The plague masks of the Authority give the enforcers the look of enormous crows. They patrol in pairs, their footsteps echoing off empty storefronts. When they pass, shutters close. When they leave, shutters crack open. The city breathes in the gaps between patrols.",
+        "Morning light reveals what the dark conceals: white sheets hung from upper windows, the signal for 'plague within.' There are more sheets today than yesterday. The street that connects the Narrows to the river is entirely white, a corridor of surrender flags.",
+        "The tannery district reeks of lye and quicklime -- the Authority's decontamination effort, applied with the subtlety of a mallet. The leather workers' guild hall has been converted to a sorting station: the living go north, the symptomatic go south, the dead go into the river.",
+        "A mural on the old brewery wall -- painted before the plague, a scene of harvest celebration -- has been defaced with a single word in red paint: ABANDONED. Below it, someone else has written in smaller letters: NOT YET.",
+        "The harbor is sealed. Ships sit at anchor, crews confined aboard, their masts a skeletal forest against the grey sky. Seagulls perch on the quarantine buoys and scream. The tide brings debris from the sewer outflows. No one fishes anymore.",
+        "Dusk brings the curfew bell and the sound of doors bolting. The streets empty in minutes. Those caught outside after dark face confinement -- the Authority's word for being locked in whichever building you're standing nearest to. Some people have been confined in strangers' houses for days.",
+        "The graveyard is full. It has been full for a week. The Authority designated a section of the old sheep pasture as overflow, but the ground there is clay and the gravediggers' shovels ring off it like iron. They've started stacking."
+    ],
+    "prompts_campfire": [
+        "The vigil candle burns low in the cellar clinic. Sister Hollow sits on an overturned bucket, flexing her raw hands. 'I used to pray for the sick,' she says. 'Now I just count them. When did I stop praying?'",
+        "Dr. Corvin cleans his instruments by the light of a tallow candle -- each one laid on a cloth, each one polished until it catches the flame. 'My mentor said a physician's hands are never truly clean,' he says. 'I thought he meant the blood. He meant the choices.'",
+        "Ash falls asleep mid-sentence, slumped against the wall like a dropped puppet. He's twelve. He runs a supply network that feeds two hundred people. He snores like a kitten. Someone drapes a blanket over him without being asked.",
+        "Thorn pours a measure of smuggled wine into chipped cups. One for each person in the room. 'To the ones we couldn't reach,' she says. No one drinks immediately. The silence is the ceremony.",
+        "A patient in the clinic -- delirious, past help -- calls out a name. No one here knows it. Sister Hollow sits beside him and holds his hand. 'I'm here,' she says. It's the right thing to say. It's always the right thing to say.",
+        "Dr. Corvin confesses he left the medical academy voluntarily, not expelled. 'They wanted me to write a paper justifying forced quarantine as effective treatment,' he says. 'I couldn't prove it because it isn't true. So I left. The paper was published anyway, with someone else's name.'",
+        "The underground runners share a meal of black bread and boiled water. It tastes of nothing. One of the children pretends the bread is cake. The others play along. For five minutes, it's a birthday party in a plague cellar.",
+        "Someone found a lute in an abandoned house. It's missing two strings. They play it anyway -- a slow melody that sounds like something from before the quarantine, when the market was loud and the fountains ran and the streets smelled of bread instead of lime.",
+        "Hollow shows you a list she keeps in her apron pocket -- every name of every person who died in her clinic. Forty-three names in fourteen days. 'The Authority keeps statistics,' she says. 'I keep people.'",
+        "Thorn sits on the roof of the safehouse, looking over the city's chimney-pots. 'Before the plague, I smuggled luxuries,' she says. 'Silks, spices, rare wines. Things people wanted but didn't need. Now I smuggle water.' She laughs. It doesn't reach her eyes. 'I'm finally doing something that matters.'",
+        "A child asks Dr. Corvin if the plague will ever end. He kneels to her eye level. 'Yes,' he says. 'All plagues end.' She asks how. He pauses longer than a doctor should. 'People survive,' he says. 'That's how plagues end. People survive them.'",
+        "The vigil candle gutters and almost dies. Someone cups their hand around it until the flame steadies. In that small gesture -- fingers curved around light in a city full of dark -- something holds. Something refuses to go out.",
+        "Ash draws on the cellar wall with charcoal -- not a map this time, but a picture. A house. A tree. A sun. Things that exist outside the wall. Things he remembers from before. 'I'm going to live there,' he says, pointing at the house. 'When it's over.'",
+        "A runner brings news that the Authority lost three enforcers to the plague today. The room is silent. Thorn speaks first: 'They had families too.' It's not forgiveness. But it's something close to it.",
+        "The cellar clinic is quiet for the first time in days. Everyone sleeps. The candle flame reflects in the puddles on the stone floor like scattered stars. For one breath, in the silence between coughs, the cellar feels almost holy."
+    ],
+    "morning_events": [
+        {
+            "text": "A new quarantine zone is declared overnight -- the Chandler's Row, previously untouched. Authority enforcers are already nailing doors shut. Screaming from inside. The new zone is three blocks from the clinic.",
+            "bias": "crown",
+            "tag": "SILENCE"
+        },
+        {
+            "text": "The plague has jumped the river. Three cases confirmed in the upper district. Alderman Brock has called an emergency session. The wealthy are finally afraid. This changes everything.",
+            "bias": "neutral",
+            "tag": "BLOOD"
+        },
+        {
+            "text": "Thorn's supply run was successful -- twelve barrels of clean water, four crates of linen bandages, and a sack of dried herbs. Not enough. Never enough. But enough for today.",
+            "bias": "crew",
+            "tag": "HEARTH"
+        },
+        {
+            "text": "An infected man was discovered hiding in the Authority's own administrative building. He'd been sleeping in a storage closet for three days. The resulting panic among the clerks shut down quarantine processing for six hours.",
+            "bias": "crew",
+            "tag": "DEFIANCE"
+        },
+        {
+            "text": "A rumor spreads through the Narrows: Sister Hollow has found the cure. She hasn't -- it's Dr. Corvin's experimental treatment, exaggerated through a dozen retellings. The clinic is mobbed by dawn. Hope can be a weapon or a stampede.",
+            "bias": "neutral",
+            "tag": "GUILE"
+        },
+        {
+            "text": "The death bells ring seven times at dawn -- each ring for a district reporting more than ten new cases. Yesterday it was five rings. The day before, three. The arithmetic of plague is simple and merciless.",
+            "bias": "crown",
+            "tag": "BLOOD"
+        },
+        {
+            "text": "Rain. Heavy, steady, cold. It washes the streets clean for the first time in a week. People stand in doorways with their mouths open, catching water. The Authority warns that rainwater may be contaminated. People drink it anyway.",
+            "bias": "neutral",
+            "tag": "HEARTH"
+        },
+        {
+            "text": "Ash's runners intercepted a courier carrying sealed orders from Alderman Brock to the harbor master: 'Prepare one vessel. Crew of four. Provisions for twenty. Depart at my signal.' Brock is building himself an escape route.",
+            "bias": "crew",
+            "tag": "GUILE"
+        },
+        {
+            "text": "A bonfire of infected belongings burns in the market square -- furniture, clothing, toys, a violin case. The Authority calls it sanitation. The people who owned those things watch from behind the quarantine wall. Some of them are crying. Some of them aren't anything anymore.",
+            "bias": "crown",
+            "tag": "SILENCE"
+        },
+        {
+            "text": "A family of four -- healthy, uninfected, papers in order -- is turned away at the upper district gate. The gate guard says the daily quota has been reached. The family has nowhere to go. They sit on the cobblestones and wait for a quota that resets at dawn.",
+            "bias": "crew",
+            "tag": "DEFIANCE"
+        }
+    ],
+    "council_dilemmas": [
+        {
+            "prompt": "The Authority plans to burn District Seven to create a firebreak against plague spread. Two hundred people still live there, many too sick to move. Evacuation would take three days. The Authority says we have one.",
+            "crown": "Begin the burn on schedule. The firebreak saves thousands. The math is terrible but clear.",
+            "crew": "Demand the three days. Move everyone who can walk. Carry those who can't. The math doesn't account for names."
+        },
+        {
+            "prompt": "A family of refugees arrives at the Underground clinic -- healthy but undocumented. Taking them in risks exposing the clinic's location. Turning them away sends them into the quarantine zone with no resources and no immunity.",
+            "crown": "Turn them away. The clinic's survival protects everyone it currently serves. One family cannot outweigh hundreds.",
+            "crew": "Take them in. The moment we start deciding who deserves shelter, we become the Authority."
+        },
+        {
+            "prompt": "Dr. Corvin's experimental treatment requires testing on a living patient. One volunteer has come forward -- a woman in the late stages of the plague who will die within days regardless. Her family has given consent. But Corvin isn't sure the treatment won't accelerate her death.",
+            "crown": "Forbid the test. We don't experiment on the dying. That's the line between medicine and butchery.",
+            "crew": "Allow it. She volunteered. Her death is certain either way. If the treatment works, it could save hundreds."
+        },
+        {
+            "prompt": "Thorn can smuggle medicine from Orel's warehouse tonight -- enough to supply the clinic for a week. But the raid will be traced to the Underground. Orel will retaliate by cutting off all black market trade, including food. The clinic gains medicine. The Narrows loses its food supply.",
+            "crown": "Don't raid. Food keeps more people alive than medicine right now. Find another source for the clinic.",
+            "crew": "Raid. Medicine saves the dying. Food sustains the living. Right now, the dying need us more."
+        },
+        {
+            "prompt": "An Authority enforcer offers to defect. He has access to quarantine records -- the real ones, showing that the plague mortality rate is half what the Authority publishes. The real numbers would undermine the Authority's justification for extreme measures. But the enforcer wants safe passage for his family first, and his family lives in the upper district.",
+            "crown": "Reject the offer. Smuggling a family out of the upper district is impossible and risks the entire network.",
+            "crew": "Accept. The truth is worth the risk. If the Authority is lying about the death count, everything they've done is built on fraud."
+        },
+        {
+            "prompt": "The Cathedral Warden offers sanctuary in the church -- food, clean water, protection from the Authority's enforcers. His price: the Underground must publicly submit to the Cathedral's authority and declare the plague a matter of faith, not medicine. Dr. Corvin refuses. Sister Hollow hesitates.",
+            "crown": "Accept the Warden's terms. Ideology is a luxury. The church has resources we need, and submission costs nothing that matters.",
+            "crew": "Refuse. The moment we declare this a matter of faith, we abandon every scientific principle that might end the plague. Corvin is right."
+        },
+        {
+            "prompt": "The Underground discovers a functioning water pump in the old brewery basement -- enough clean water for the entire Narrows. But activating it requires power from the Authority's generator. Requesting access means revealing the Underground's presence in the brewery. Not requesting means the Narrows stays thirsty.",
+            "crown": "Don't activate. The brewery is the Underground's last secure position. Clean water isn't worth losing the only safe place left.",
+            "crew": "Activate. Negotiate with the Authority if we have to, fight them if we must. Water is life. Everything else is politics."
+        },
+        {
+            "prompt": "A plague-stricken Authority official offers the Underground a trade: he knows the location of Brock's emergency exit -- the ship, the gate, the whole escape plan. He'll give it all in exchange for treatment. But treating him means using resources meant for six other patients who arrived first.",
+            "crown": "Treat him last. The queue is the queue. His information doesn't change his place in line.",
+            "crew": "Treat him first. Brock's escape plan could be leverage that saves thousands. Six patients can wait. Fifteen thousand can't."
+        }
+    ]
+}

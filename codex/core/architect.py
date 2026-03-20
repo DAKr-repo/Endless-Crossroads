@@ -388,10 +388,13 @@ class Architect:
                     mode=decision.mode,
                 )
 
-        # Get persona and thermal modifiers for system prompt
-        base_persona_prompt = self.cortex.get_base_persona_prompt()
+        # Persona is Mimir-only; Academy/Experimental use caller's system prompt
         thermal_modifier = self.cortex.get_system_prompt_modifier()
-        full_system_prompt = base_persona_prompt + thermal_modifier + system_prompt
+        if decision.mode == ThinkingMode.REFLEX:
+            base_persona_prompt = self.cortex.get_base_persona_prompt()
+            full_system_prompt = base_persona_prompt + thermal_modifier + system_prompt
+        else:
+            full_system_prompt = thermal_modifier + system_prompt
 
         # Format conversation history into the prompt
         # Take the last 10 messages to maintain context without overwhelming the model

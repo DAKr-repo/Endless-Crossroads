@@ -1,0 +1,91 @@
+{
+  "seed": 7021,
+  "width": 40,
+  "height": 30,
+  "start_room_id": 0,
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 2,
+      "y": 2,
+      "width": 12,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false
+    },
+    "1": {
+      "id": 1,
+      "x": 16,
+      "y": 2,
+      "width": 16,
+      "height": 14,
+      "room_type": "boss",
+      "connections": [0, 2],
+      "tier": 4,
+      "is_locked": false,
+      "is_secret": false
+    },
+    "2": {
+      "id": 2,
+      "x": 16,
+      "y": 18,
+      "width": 10,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false
+    }
+  },
+  "metadata": {
+    "zone_id": "climax",
+    "theme": "GOTHIC",
+    "topology": "dungeon",
+    "scene_title": "The Artifact Chamber"
+  },
+  "content_hints": {
+    "0": {
+      "description": "The threshold. The last few steps before the artifact chamber. The frost patterns here have frozen into a permanent configuration: one final plea in every language the vault has ever known. SILENCE. SILENCE. SILENCE.",
+      "read_aloud": "You step into absolute zero. Not temperature -- sound. The artifact chamber is the quietest place in existence. Your heartbeat is deafening. The rustle of your coat is a thunderclap. The artifact sits on its plinth of clear ice, and now, this close, you can see it: a bell. A small bronze bell, tarnished green, hanging from a chain. Perfectly ordinary except for the fact that every atom of cold in a hundred-mile radius radiates from it.",
+      "perception_dc": 14,
+      "perception_success": "Through the containment mask, the bell blazes with energy -- a white-hot sun of compressed bleed, bound into an object no larger than your fist. The containment field is a hair-thin membrane of light wrapped around it, pulsing with the last of the Warden's strength."
+    },
+    "1": {
+      "description": "The artifact chamber. Circular. Twenty feet across. The plinth at the center. The bell. The silence. And surrounding it all, the Warden -- what's left of it -- a ring of frost on the floor, barely visible, the last ember of a construct that has burned for three thousand years.",
+      "read_aloud": "The bell does not move. It does not glow. It does not hum. It simply is, and everything around it -- the ice, the vault, the Shiver, the frozen sea, the silence -- exists because of it. Touching it would be easy. Ringing it would be easier. And then there would be winter. Not a season. Not a Shiver. Winter. Forever, everywhere, until the last star goes cold.",
+      "enemies": [
+        {
+          "name": "The Warden",
+          "hp": 40,
+          "ac": 16,
+          "attack": 8,
+          "damage": "2d8",
+          "count": 1,
+          "is_boss": true,
+          "notes": "The Warden manifests as a final defense if the investigators attempt to take the bell without reinforcing containment. Not malevolent -- desperate. A dying intelligence expending its last energy to prevent catastrophe. Appears as a human-shaped figure of compressed frost and grief.",
+          "special": [
+            "Absolute Cold: all investigators take 1 Body mark per round from proximity",
+            "Frost Cage: can immobilize one target in a pillar of ice (Control to break free)",
+            "Shiver Blast: ranged attack, 2d8 cold damage and 1 Brain mark (the cold carries visions of the Last War)",
+            "Sacrifice: if reduced to 0 HP, the Warden collapses into the bell's containment field, restoring the seal for one year -- buying time, not solving the problem",
+            "Pacified: if investigators use the ward-inscription chisel and containment mask to reinforce the seal, the Warden stands down and assists, adding its remaining energy to theirs"
+          ]
+        }
+      ],
+      "event_triggers": ["The dramatic question: take the bell (risking catastrophe), reinforce the seal (condemning future guardians), or destroy the bell (unknown consequences -- can a weapon of the Last War be destroyed?). The Warden's response depends on the investigators' choice."],
+      "loot": [
+        {"name": "The Winter Bell", "value": 0, "description": "A bronze bell of pre-Fairen make. If contained properly and transported to Candela's deepest vault, it can be studied -- carefully. If rung, it generates cold sufficient to flash-freeze everything within a radius measured in miles. The Shiver is merely its idle hum."},
+        {"name": "Warden Core Fragment", "value": 0, "description": "If the Warden sacrifices itself, a shard of its ice-sphere remains -- a fragment of ancient intelligence that could be used to construct a new containment system. Or studied to understand pre-Fairen construct engineering. Handle with reverence."}
+      ]
+    },
+    "2": {
+      "description": "The vault exit. The return path through the pillar gallery, the corridor, the stairs. Outside, the frozen sea. The three-day clock is ticking.",
+      "read_aloud": "Whatever choice you made in the artifact chamber, the vault begins to change behind you. If the seal was reinforced, the ice refreezes, the cracks heal, the remaining guardians settle back into their pillars. If the bell was taken, the vault begins to thaw -- water drips from the ceiling, the basalt walls crack, and the ancient structure that has endured three thousand years begins its slow collapse. Either way, Navigator Dray is waiting at the camp, spyglass trained south. She sees you coming and doesn't ask what you found. The look on your faces is answer enough.",
+      "event_triggers": ["The return journey. The Shiver persists (if sealed) or begins to slowly recede (if the bell is removed). Candela will have questions. The circle will have scars. Some questions about the Last War are better left frozen."]
+    }
+  }
+}

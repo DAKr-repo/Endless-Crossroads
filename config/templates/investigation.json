@@ -1,0 +1,88 @@
+{
+  "template_id": "investigation",
+  "display_name": "The Investigation",
+  "description": "A mystery unfolds: examine the scene, interview witnesses, follow leads, confront the truth.",
+  "version": 1,
+  "compatible_engine_types": ["fitd", "spatial", "standalone"],
+  "scenes": [
+    {
+      "scene_id": "crime_scene",
+      "role": "recon",
+      "display_name_template": "The {crime_location}",
+      "topology": "settlement",
+      "room_type_hint": null,
+      "tier_offset": 0,
+      "npc_slots": [
+        {"role": "informant", "required": true},
+        {"role": "guard", "required": false}
+      ],
+      "enemy_slots": [],
+      "loot_slots": [{"count": 1}],
+      "services": [],
+      "event_triggers": ["Something terrible happened here. The evidence is fresh."],
+      "room_count": 3
+    },
+    {
+      "scene_id": "witnesses",
+      "role": "hub",
+      "display_name_template": "The {witness_location}",
+      "topology": "settlement",
+      "room_type_hint": "tavern",
+      "tier_offset": 0,
+      "npc_slots": [
+        {"role": "informant", "required": true},
+        {"role": "merchant", "required": false},
+        {"role": "informant", "required": false}
+      ],
+      "enemy_slots": [],
+      "loot_slots": [],
+      "services": ["drinks", "rumors"],
+      "event_triggers": [],
+      "room_count": 3
+    },
+    {
+      "scene_id": "leads",
+      "role": "approach",
+      "display_name_template": "The {lead_location}",
+      "topology": "dungeon",
+      "room_type_hint": null,
+      "tier_offset": 1,
+      "npc_slots": [
+        {"role": "guard", "required": true}
+      ],
+      "enemy_slots": [
+        {"count": 2, "role": "guardian"}
+      ],
+      "loot_slots": [{"count": 1}],
+      "services": [],
+      "event_triggers": ["The trail leads deeper. Someone does not want this found."],
+      "room_count": 4
+    },
+    {
+      "scene_id": "confrontation",
+      "role": "boss",
+      "display_name_template": "The {confrontation_location}",
+      "topology": "dungeon",
+      "room_type_hint": null,
+      "tier_offset": 2,
+      "npc_slots": [],
+      "enemy_slots": [
+        {"count": 1, "role": "boss", "is_boss": true}
+      ],
+      "loot_slots": [{"count": 2}],
+      "services": [],
+      "event_triggers": ["The truth is revealed. Now you must decide what to do with it."],
+      "room_count": 3
+    }
+  ],
+  "chapter_structure": [
+    {"chapter_id": "discovery", "display_name": "The Discovery", "scenes": ["crime_scene", "witnesses"]},
+    {"chapter_id": "pursuit", "display_name": "The Pursuit", "scenes": ["leads", "confrontation"]}
+  ],
+  "name_pools": {
+    "crime_location": ["Ransacked Study", "Bloodied Alley", "Burned Workshop", "Shattered Sanctum", "Empty Quarters"],
+    "witness_location": ["Crowded Tavern", "Market Square", "Dockside Inn", "Temple Steps", "Guild Hall"],
+    "lead_location": ["Hidden Basement", "Abandoned Mine", "Secret Archive", "Smuggler's Tunnel", "Sealed Chamber"],
+    "confrontation_location": ["Inner Sanctum", "Rooftop Showdown", "Underground Lair", "Ritual Chamber", "Traitor's Den"]
+  }
+}

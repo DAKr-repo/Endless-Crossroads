@@ -1,0 +1,106 @@
+{
+  "seed": 7006,
+  "width": 35,
+  "height": 20,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "haven_hills_exploration_1",
+    "theme": "GOTHIC",
+    "topology": "settlement",
+    "display_name": "The Griggs House"
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 0,
+      "y": 0,
+      "width": 10,
+      "height": 8,
+      "room_type": "residence",
+      "connections": [1],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The Griggs house ground floor. A miner's cottage -- two rooms down, two up. Sparse furniture, thin walls. A dark stain on the kitchen floor where Tobias died. Constable tape still across the door. A belt hangs from a hook near the entrance, leather worn smooth.",
+        "read_aloud": "The house smells of coal dust and old beer. A photograph on the mantel: Tobias, his late wife, and Ellis as a baby. Tobias's face is hard even in a portrait. Empty bottles line the counter. The blood stain on the kitchen floor is shaped like a man falling backward. The belt by the door is not decorative.",
+        "npcs": [],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [
+          "The Griggs house is both a crime scene and a lair. The creature is present, hiding beneath the floorboards, aware of the investigators but not hostile. It is waiting for Ellis."
+        ],
+        "loot": [],
+        "investigation_dc": 10,
+        "investigation_success": "The claw marks on Tobias's body are consistent with a defensive strike pattern -- the creature placed itself between Tobias and something behind him. The something was Ellis, cornered against the staircase."
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 13,
+      "y": 0,
+      "width": 10,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [0, 2],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Ellis's bedroom. Narrow bed, wooden toy box, crayon drawings covering every wall. Every drawing shows the same dark shape with many limbs and two bright eyes, always positioned between Ellis and a raised hand. The space under the bed is too dark. The darkness breathes.",
+        "read_aloud": "Cave cold in here despite the season. The bed has been pushed slightly from the wall. Scratch marks on the floorboards -- something wide and flat sliding in and out. The bedsheets smell of coal dust and moss. In the drawings on the wall, the creature's eyes glow blue. In every single picture, it is smiling.",
+        "npcs": [],
+        "enemies": [
+          {
+            "name": "The Protector (territorial response)",
+            "hp": 25,
+            "max_hp": 25,
+            "ac": 14,
+            "attack": 6,
+            "defense": 14,
+            "count": 1
+          }
+        ],
+        "services": [],
+        "event_triggers": [
+          "THREAT: The Protector -- if investigators attempt to enter the crawl space or disturb the nest, it reacts defensively. Warning strikes, bluff charges, terrifying vocalizations. It attacks to drive away, not to kill. It disengages if investigators retreat from the bedroom.",
+          "SPECIAL: If Ellis is present and calm, The Protector will not fight. The child's presence is the only reliable pacifier."
+        ],
+        "loot": [
+          {
+            "name": "Ellis's Drawing Collection",
+            "value": 0,
+            "description": "Twenty-three crayon drawings documenting the creature over weeks. Anatomically consistent: six limbs, broad flat body, bioluminescent eyes. Several show it bringing Ellis food. One shows it standing between Ellis and a raised hand. In every drawing it is smiling."
+          }
+        ],
+        "investigation_dc": 14,
+        "investigation_success": "Beneath the bed, through the floorboard gap, a nest in the crawl space: shredded newspaper, an old blanket Ellis described giving his friend, a depression in the earth sized for a large animal. The creature was here very recently. It will return tonight."
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 25,
+      "y": 4,
+      "width": 8,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The crawl space beneath the Griggs house. Accessible through the kitchen hatch. Low, damp, dirt-floored. A tunnel descends at a shallow angle toward the mine's lateral shaft -- the creature's commute route.",
+        "read_aloud": "The tunnel is sized for something flat and six-limbed, not a human adult. The walls are smooth -- worn by nightly passage, clay polished to a dull shine. It descends toward the mine. The creature comes up every evening, spends the night under Ellis's bed, returns to the mine before dawn. A routine of devotion.",
+        "npcs": [],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [
+          "REVEAL: The tunnel connects the house to the mine. The creature commutes nightly. To relocate it permanently, the investigators must find a suitable new habitat and involve Ellis in guiding it there."
+        ],
+        "loot": [],
+        "perception_dc": 12,
+        "perception_success": "The tunnel walls bear claw marks at intervals -- territory markers. Near Ellis's end, they are gentle and deliberate. Deeper toward the mine, they become frantic, desperate. The creature was fleeing something when it originally dug this passage."
+      }
+    }
+  }
+}

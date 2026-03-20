@@ -1,0 +1,196 @@
+{
+  "version": 1,
+  "source": "Burnwillow (original homebrew)",
+  "notes": "DCs use Burnwillow scale: Routine(8), Hard(12), Heroic(16), Legendary(20). Damage types: fire, necrotic, poison, bludgeoning, slashing, piercing. Some hazards advance DoomClock or apply conditions instead of/in addition to damage.",
+  "tiers": {
+    "1": [
+      {
+        "name": "Rot Pool",
+        "dc": 10,
+        "damage": "1d6",
+        "damage_type": "necrotic",
+        "description": "A shallow depression filled with grey-green liquid that smells of spoiled copper. Stepping in dissolves boot leather and bites into flesh. The pool pulses faintly, as if breathing."
+      },
+      {
+        "name": "Collapsing Beam",
+        "dc": 11,
+        "damage": "1d6",
+        "damage_type": "bludgeoning",
+        "description": "The ceiling groans. A timber the length of a man swings free from corroded brackets, slamming down on whatever crosses beneath. The dust cloud afterwards tastes of old fire."
+      },
+      {
+        "name": "Ember Geyser",
+        "dc": 10,
+        "damage": "1d6",
+        "damage_type": "fire",
+        "description": "A hairline crack in the floor vents superheated air from an Aether vein below. The stone around it is scorched black and faintly warm to the touch -- a half-second before it erupts."
+      },
+      {
+        "name": "Blight Spores",
+        "dc": 10,
+        "damage": "1d4",
+        "damage_type": "poison",
+        "description": "Clusters of pale mushrooms release a cloud of grey spores when disturbed by vibration. The spores sting exposed skin and burn the lungs. Covering your mouth helps. Mostly."
+      },
+      {
+        "name": "Rusted Floor",
+        "dc": 10,
+        "damage": "1d4",
+        "damage_type": "slashing",
+        "description": "What appears to be solid stone is actually a thin crust over corroded metal grating. It gives way underfoot, and the jagged edges bite through boot soles."
+      },
+      {
+        "name": "Trapped Chest",
+        "dc": 12,
+        "damage": "1d6",
+        "damage_type": "piercing",
+        "description": "A spring-loaded mechanism inside a salvaged chest, rigged by some long-dead scavenger who didn't want visitors. The needle is tipped with something brown and flaking."
+      },
+      {
+        "name": "Falling Rubble",
+        "dc": 11,
+        "damage": "1d6",
+        "damage_type": "bludgeoning",
+        "description": "The Burnwillow thrashes in its sleep. The ceiling cracks, and fist-sized chunks of petrified bark rain down. The shaking lasts three heartbeats, then stillness."
+      },
+      {
+        "name": "Slippery Ash",
+        "dc": 10,
+        "damage": "0",
+        "damage_type": "none",
+        "condition": "prone",
+        "description": "A thick layer of fine grey ash covers the floor like snow. It compresses to a frictionless surface underfoot. You don't realize you're falling until you're down."
+      }
+    ],
+    "2": [
+      {
+        "name": "Deep Rot Pool",
+        "dc": 13,
+        "damage": "2d6",
+        "damage_type": "necrotic",
+        "condition": "DC 12 Grit or early-stage Blight infection",
+        "description": "A waist-deep depression of concentrated Blight fluid, its surface iridescent with decay. The liquid is warm and clings to skin. Immersion for more than a round risks infection."
+      },
+      {
+        "name": "Flame Jet",
+        "dc": 13,
+        "damage": "2d6",
+        "damage_type": "fire",
+        "description": "A ruptured Aether vein sprays pressurized sap-fire in a horizontal arc. The jet sweeps back and forth on a six-second interval. Timing the dash is the only way through."
+      },
+      {
+        "name": "Fungal Burst",
+        "dc": 12,
+        "damage": "2d4",
+        "damage_type": "poison",
+        "condition": "blinded for 1 round on failed save",
+        "description": "A swollen puffball mushroom the size of a human head, stretched taut and glistening. A footstep's vibration is enough to rupture it. The cloud is thick, acrid, and utterly opaque."
+      },
+      {
+        "name": "Collapse Zone",
+        "dc": 14,
+        "damage": "2d8",
+        "damage_type": "bludgeoning",
+        "description": "A section of tunnel where the petrified bark has been weakened by root-rot. The floor sags visibly, and dust trickles from above. Running through triggers a full collapse."
+      },
+      {
+        "name": "Cursed Altar",
+        "dc": 13,
+        "damage": "2d6",
+        "damage_type": "necrotic",
+        "condition": "DoomClock advances by 1",
+        "description": "A stone slab carved with pre-Arborist sigils, sticky with old offerings. Touching it sends a jolt of cold through the body, and somewhere deep in the tree, something stirs in response."
+      },
+      {
+        "name": "Mine Gas Pocket",
+        "dc": 12,
+        "damage": "2d6",
+        "damage_type": "fire",
+        "condition": "Extinguishes all open flames in the room",
+        "description": "Invisible, odorless gas pooled in a low depression. A single spark from a torch or ember shard ignites the pocket in a flash-detonation that leaves ears ringing and eyebrows gone."
+      },
+      {
+        "name": "Ironvein Spike Trap",
+        "dc": 14,
+        "damage": "2d6",
+        "damage_type": "piercing",
+        "description": "Iron spikes driven into a pivoting stone plate -- an Arborist mining-safety barrier repurposed as a weapon by something with hands and malice. The pressure plate is hidden under a layer of gravel."
+      }
+    ],
+    "3": [
+      {
+        "name": "Doom Fissure",
+        "dc": 16,
+        "damage": "3d6",
+        "damage_type": "necrotic",
+        "condition": "DoomClock advances by 2",
+        "description": "A crack in the tunnel wall that exhales concentrated Blight energy as visible grey vapor. The air tastes of endings. Standing near it feels like remembering something terrible you've forgotten."
+      },
+      {
+        "name": "Magma Vent",
+        "dc": 15,
+        "damage": "3d6",
+        "damage_type": "fire",
+        "description": "A fissure in the stone floor where raw Aether has superheated the bedrock to molten slag. The air above it shimmers, and metal carried too close begins to glow cherry-red."
+      },
+      {
+        "name": "Blight Storm",
+        "dc": 15,
+        "damage": "2d8",
+        "damage_type": "necrotic",
+        "condition": "Exhaustion: -1 to all rolls until long rest",
+        "description": "A localized weather event where Blight spores, rot-moisture, and fungal filaments swirl in a vortex that fills a corridor. Visibility drops to arm's length. Every breath is a gamble."
+      },
+      {
+        "name": "Rot Geyser",
+        "dc": 16,
+        "damage": "3d8",
+        "damage_type": "necrotic",
+        "condition": "DC 14 Grit or Blight infection (immediate stage 1)",
+        "description": "A pressurized column of liquid Blight that erupts from the floor in timed intervals. The spray coats everything within ten feet in grey-green slime that seeps into open wounds."
+      },
+      {
+        "name": "Collapsing Floor to Void",
+        "dc": 17,
+        "damage": "4d6",
+        "damage_type": "bludgeoning",
+        "condition": "Victim falls to a lower zone. Party must find alternate route to regroup",
+        "description": "The floor is a thin shell of petrified bark over a vertical shaft that drops into the zone below. The fall is survivable. What lives at the bottom may not be."
+      }
+    ],
+    "4": [
+      {
+        "name": "The Hollow King's Curse",
+        "dc": 18,
+        "damage": "4d8",
+        "damage_type": "necrotic",
+        "condition": "On failure, character cannot benefit from healing for 3 rounds",
+        "description": "An invisible field of entropic will that radiates from sites sacred to the Hollow King. The body forgets how to mend. Wounds weep grey instead of red."
+      },
+      {
+        "name": "Ember Apocalypse Zone",
+        "dc": 18,
+        "damage": "4d6",
+        "damage_type": "fire",
+        "condition": "All gear takes 1 point of degradation per round of exposure",
+        "description": "A chamber where a ruptured Aether main has ignited and cannot be quenched. The walls glow white-hot. Metal warps and leather chars. Even Tier III armor begins to soften at the edges."
+      },
+      {
+        "name": "DoomClock Surge",
+        "dc": 19,
+        "damage": "5d6",
+        "damage_type": "necrotic",
+        "condition": "DoomClock advances by 3. All party members must save individually",
+        "description": "The DoomClock is not just a mechanic -- it is the tree's failing heartbeat. At critical mass, the Burnwillow convulses, and a wave of raw Blight energy pulses through every corridor. The Root-Song screams."
+      },
+      {
+        "name": "Rot Singularity",
+        "dc": 20,
+        "damage": "6d6",
+        "damage_type": "necrotic",
+        "condition": "On failure, character gains permanent Blight Stage 1 (requires Sun-Fruit to cure). DoomClock advances by 2",
+        "description": "The heart of the infection. A point of absolute Rot concentration where reality itself seems to grey and thin. Colors fade. Sound dampens. The Root-Song is not silent here -- it is absent, as though it never existed."
+      }
+    ]
+  }
+}

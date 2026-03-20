@@ -71,7 +71,10 @@ except ImportError:
 
 # WO-V61.0: Companion system
 try:
-    from codex.core.companion_maps import COMPANION_CLASS_MAP, narrate_decision, get_companion_class
+    from codex.core.companion_maps import (
+        COMPANION_CLASS_MAP, narrate_decision, get_companion_class,
+        pick_weighted_class, create_companion_character,
+    )
     from codex.core.trait_evolution import TraitEvolution
     _COMPANION_AVAILABLE = True
 except ImportError:
@@ -747,7 +750,8 @@ def _load_stacked_save(save_data: dict) -> Optional[dict]:
 # FITD GAME LOOP
 # =========================================================================
 
-def _render_status_panel(con: Console, engine, system_id: str):
+def _render_status_panel(con: Console, engine, system_id: str,
+                        companion_agent=None):
     """Render a Rich Panel showing engine status."""
     status = engine.get_status()
     lines = [f"[bold]{engine.display_name}[/bold]"]
@@ -756,6 +760,14 @@ def _render_status_panel(con: Console, engine, system_id: str):
             continue
         label = k.replace("_", " ").title()
         lines.append(f"  {label}: {v}")
+
+    # Show companion info if present
+    if companion_agent and companion_agent.enabled:
+        comp_name = companion_agent.personality.name or "Companion"
+        arch = companion_agent.personality.archetype
+        sys_class = getattr(companion_agent, '_system_class', arch)
+        lines.append(f"  [cyan]Companion: {comp_name} ({arch.title()} {sys_class})[/cyan]")
+
     con.print(Panel("\n".join(lines), title="Status", border_style="cyan",
                     box=box.ROUNDED))
 
@@ -784,6 +796,7 @@ def _render_command_table(con: Console, system_id: str):
     # Built-in commands
     table.add_row("[bold yellow]System[/bold yellow]", "")
     table.add_row("  roll <action>", "Shorthand for roll_action")
+    table.add_row("  dice <expr>", "Free-form dice roll (e.g. dice 2d20+5)")
     table.add_row("  status", "Show engine status")
     table.add_row("  sheet", "Full character sheet")
     table.add_row("  save", "Save current game")
@@ -797,7 +810,11 @@ def _render_command_table(con: Console, system_id: str):
 
 
 def _handle_companion_command(con: Console, engine, bridge_or_state, args: str = "") -> None:
-    """WO-V61.0: Handle companion recruitment and status display."""
+    """WO-V61.0/V66.0: Handle companion recruitment and status display.
+
+    Creates a full PC companion via create_companion_character() factory,
+    picking from the full range of system classes weighted by archetype.
+    """
     if not _COMPANION_AVAILABLE:
         con.print("[dim]Companion system not available.[/dim]")
         return
@@ -807,8 +824,12 @@ def _handle_companion_command(con: Console, engine, bridge_or_state, args: str =
     if companion:
         # Show companion status
         p = companion.get_effective_personality()
-        con.print(f"\n[bold cyan]Companion: {companion.personality.name}[/]")
+        comp_name = companion.personality.name or "Companion"
+        con.print(f"\n[bold cyan]Companion: {comp_name}[/]")
         con.print(f"  Archetype: {companion.personality.archetype}")
+        # Show system class if available
+        if hasattr(companion, '_system_class'):
+            con.print(f"  Class: {companion._system_class}")
         con.print(f"  Aggression: {p.aggression:.2f}  Curiosity: {p.curiosity:.2f}  Caution: {p.caution:.2f}")
         if companion.evolution and companion.evolution.deltas:
             con.print(f"  Evolution: {companion.evolution.get_evolution_summary()}")
@@ -834,46 +855,96 @@ def _handle_companion_command(con: Console, engine, bridge_or_state, args: str =
             con.print("[dim]Invalid choice.[/dim]")
             return
     except ValueError:
-        # Try matching by name
         archetype = choice.lower().strip()
         if archetype not in archetypes:
             con.print("[dim]Invalid choice.[/dim]")
             return
 
-    # Create companion
     system_id = getattr(engine, 'system_id', 'unknown')
-    class_info = get_companion_class(system_id, archetype)
 
     try:
         from codex.core.autopilot import GenericAutopilotAgent
-        from codex.games.burnwillow.autopilot import CompanionPersonality, PERSONALITY_POOL
+        from codex.games.burnwillow.autopilot import (
+            CompanionPersonality, PERSONALITY_POOL, COMPANION_NAME_POOL,
+            _roll_biography,
+        )
     except ImportError:
         con.print("[dim]Companion system not available.[/dim]")
         return
 
-    # Find personality matching archetype
+    # Pick name
+    rng = random.Random()
+    existing_names = set()
+    if hasattr(engine, 'party'):
+        existing_names = {getattr(c, 'name', '') for c in engine.party}
+    available_names = [n for n in COMPANION_NAME_POOL if n not in existing_names]
+    comp_name = rng.choice(available_names) if available_names else rng.choice(COMPANION_NAME_POOL)
+
+    # Find personality matching archetype, set name + biography
     personality = None
     for _p in PERSONALITY_POOL:
         if _p.archetype == archetype:
             personality = _p
             break
     if not personality:
-        personality = CompanionPersonality(
-            name=archetype.title(),
-            archetype=archetype,
-            aggression=0.5,
-            curiosity=0.5,
-            caution=0.5,
-            biography=f"A {archetype} companion.",
-        )
+        personality = CompanionPersonality(archetype=archetype)
 
+    personality.name = comp_name
+    personality.biography = _roll_biography(rng)
+
+    # Pick weighted class from full system list
+    chosen_class = pick_weighted_class(system_id, archetype, rng)
+
+    # Create actual PC in engine party
+    char = create_companion_character(engine, system_id, archetype, comp_name, rng)
+
+    # Build agent
     agent = GenericAutopilotAgent(personality, system_id)
+    agent._system_class = chosen_class
     agent.init_evolution()
+    agent.enabled = True
     bridge_or_state._companion_agent = agent
 
-    class_desc = str(class_info) if class_info else archetype
-    con.print(f"\n[green]{personality.name} ({archetype}) joins as companion![/]")
-    con.print(f"  System class: {class_desc}")
+    con.print(f"\n[green]{comp_name} ({archetype.title()} {chosen_class}) joins as companion![/]")
+    if personality.biography:
+        con.print(f"  [dim]{personality.biography}[/dim]")
+
+
+# ─── WO-V66.0: Companion Turn Helper ──────────────────────────────────────
+
+
+def _run_companion_turn(ctx) -> None:
+    """Execute a companion turn after the player's command resolves.
+
+    Runs the companion's decide → execute → narrate pipeline and
+    displays the result via Rich formatting.
+    """
+    agent = ctx.companion_agent
+    if not agent or not agent.enabled:
+        return
+
+    try:
+        # Determine phase from context
+        phase = "exploration"
+        if ctx.scene_state:
+            phase = "exploration"  # FITD scenes are narrative
+        elif ctx.bridge:
+            phase = "exploration"
+
+        action = agent.decide(ctx.engine, phase)
+        if not action or action == "end":
+            return
+
+        result = agent.execute(action, ctx.engine)
+        narration = agent.narrate_action(action, ctx.engine)
+
+        comp_name = agent.personality.name or "Companion"
+        if narration:
+            ctx.con.print(f"  [cyan]{narration}[/cyan]")
+        elif result:
+            ctx.con.print(f"  [dim]{comp_name}: {result}[/dim]")
+    except Exception:
+        pass
 
 
 # ─── WO-V64.0: Far Travel Loop ────────────────────────────────────────────
@@ -1021,7 +1092,8 @@ def _run_far_travel(
 def _run_fitd_loop(con: Console, engine, system_id: str, butler=None,
                    scene_state: Optional[_FITDSceneState] = None,
                    stacked_char: Optional[StackedCharacter] = None,
-                   dispatcher: Optional[StackedCommandDispatcher] = None):
+                   dispatcher: Optional[StackedCommandDispatcher] = None,
+                   companion_agent=None):
     """FITD game loop — command dispatch via engine.handle_command().
 
     Args:
@@ -1069,6 +1141,18 @@ def _run_fitd_loop(con: Console, engine, system_id: str, butler=None,
             if desc:
                 _fitd_narrate(desc[:300])
 
+    # ── Command handlers ──────────────────────────────────────────
+    from codex.core.command_handlers import (
+        LoopContext, SharedCommandHandler, FITDCommandHandler,
+    )
+    ctx = LoopContext(
+        con=con, engine=engine, system_id=system_id, butler=butler,
+        stacked_char=stacked_char, dispatcher=dispatcher,
+        scene_state=scene_state, companion_agent=companion_agent,
+    )
+    _shared = SharedCommandHandler()
+    _fitd = FITDCommandHandler()
+
     while True:
         try:
             user_input = con.input("\n[bold cyan]> [/bold cyan]").strip()
@@ -1081,417 +1165,26 @@ def _run_fitd_loop(con: Console, engine, system_id: str, butler=None,
         parts = user_input.split()
         verb = parts[0].lower()
 
-        # ── Conversation mode intercept (FITD roleplay) ──────────
-        if scene_state and scene_state.talking_to:
-            if verb in ("bye", "leave", "goodbye"):
-                name = scene_state.exit_conversation()
-                con.print(f"[dim]You end your conversation with {name}.[/dim]")
-                continue
-            # Accept job while talking to quest_giver
-            if verb == "accept" and scene_state.pending_offer:
-                job = scene_state.pending_offer
-                scene_state.accepted_jobs.append(job)
-                scene_state.pending_offer = None
-                con.print(Panel(
-                    f"[bold green]Job Accepted:[/bold green] {job['title']}",
-                    border_style="green",
-                ))
-                continue
-            # Route free-form input to Mimir NPC dialogue
-            npc_data = scene_state._talking_to_npc or {}
-            npc_name = scene_state.talking_to
-            scene = scene_state.current_scene()
-            room_desc = ""
-            events = []
-            if scene:
-                room_desc = scene.description if hasattr(scene, 'description') else scene.get("description", "")
-                events = scene.event_triggers if hasattr(scene, 'event_triggers') else scene.get("event_triggers", [])
-            setting_id = getattr(engine, 'setting_id', '')
-            from codex.core.services.narrative_frame import query_npc_dialogue
-            response = query_npc_dialogue(
-                npc_name, user_input, npc_data,
-                room_desc=room_desc, events=events, setting_id=setting_id,
-            )
-            if response:
-                con.print(Panel(
-                    f'{npc_name}: "{response}"',
-                    border_style="cyan",
-                ))
-            else:
-                # Fallback to static dialogue
-                dialogue = npc_data.get("dialogue", "")
-                if dialogue:
-                    con.print(Panel(f'{npc_name}: "{dialogue}"', border_style="cyan"))
-                else:
-                    con.print(f"[dim]{npc_name} has nothing more to say.[/dim]")
-            continue
-
-        # Built-in commands
-        if verb in ("quit", "exit", "q"):
-            con.print("[dim]Returning to main menu...[/dim]")
+        # Dispatch through handler chain: shared -> FITD -> engine fallback
+        action = _shared.dispatch(ctx, verb, parts)
+        if action == "break":
             break
-
-        if verb == "help":
-            _render_command_table(con, system_id)
-            if scene_state:
-                con.print(Panel(
-                    "scene / look    - Show current scene\n"
-                    "next            - Advance to next scene\n"
-                    "scenes          - List all scenes in zone\n"
-                    "talk <npc>      - Talk to scene NPC\n"
-                    "bye             - End conversation\n"
-                    "services        - List scene services\n"
-                    "investigate     - Investigation check\n"
-                    "accept          - Accept a job offer\n"
-                    "jobs            - List accepted jobs\n"
-                    "sheet           - Full character sheet",
-                    title="Scene Commands", border_style="magenta",
-                ))
+        if action == "continue":
+            # Sync mutated context back to local vars (transition may change these)
+            engine = ctx.engine
+            system_id = ctx.system_id
+            stacked_char = ctx.stacked_char
+            dispatcher = ctx.dispatcher
+            # Companion turn after player command
+            _run_companion_turn(ctx)
             continue
 
-        if verb == "status":
-            _render_status_panel(con, engine, system_id)
-            continue
-
-        if verb in ("sheet", "doll", "character"):
-            from codex.core.sheet_renderer import render_sheet
-            con.print(render_sheet(engine, system_id))
-            continue
-
-        if verb == "save":
-            try:
-                if stacked_char:
-                    _save_stacked(con, engine, system_id, stacked_char)
-                else:
-                    data = engine.save_state()
-                    # Persist FITD scene progression
-                    if scene_state and hasattr(scene_state, 'to_dict'):
-                        data["fitd_scene_state"] = scene_state.to_dict()
-                    # WO-V61.0: Persist companion evolution if present
-                    _comp = getattr(scene_state, '_companion_agent', None)
-                    if _comp and _comp.evolution:
-                        data["companion"] = {
-                            "archetype": _comp.personality.archetype,
-                            "name": _comp.personality.name,
-                            "evolution": _comp.evolution.to_dict(),
-                        }
-                    _SAVES_DIR.mkdir(parents=True, exist_ok=True)
-                    save_path = _SAVES_DIR / f"{system_id}_save.json"
-                    save_path.write_text(json.dumps(data, indent=2, default=str))
-                    con.print(f"[green]Game saved to {save_path.name}.[/green]")
-            except Exception as e:
-                con.print(f"[red]Save failed: {e}[/red]")
-            continue
-
-        # ── WO-V60.0: Engine stacking commands ────────────────────
-        if verb == "transition":
-            result = _transition_system(con, engine, stacked_char, system_id)
-            if result:
-                engine = result["engine"]
-                system_id = result["system_id"]
-                stacked_char = result["stacked_char"]
-                dispatcher = result["dispatcher"]
-                _render_status_panel(con, engine, system_id)
-            continue
-
-        if verb == "layers":
-            if stacked_char:
-                _show_layers(con, stacked_char)
-            else:
-                con.print("[dim]No engine stack active. Use 'transition' to start one.[/dim]")
-            continue
-
-        # WO-V62.0: Character export
-        if verb == "export":
-            from codex.core.character_export import export_character, save_exported_character
-            char = engine.party[0] if hasattr(engine, 'party') and engine.party else None
-            if char:
-                char_data = engine.save_state() if hasattr(engine, 'save_state') else {}
-                exported = export_character(char_data, system_id)
-                path = save_exported_character(exported)
-                con.print(f"[green]Character exported to {path.name}[/green]")
-            else:
-                con.print("[dim]No character to export.[/dim]")
-            continue
-
-        # WO-V61.0: Companion command
-        if verb == "companion":
-            _handle_companion_command(con, engine, scene_state, " ".join(parts[1:]))
-            continue
-
-        # ── Scene commands (WO-V52.0) ──────────────────────────────
-        if scene_state:
-            if verb in ("scene", "look", "l"):
-                scene = scene_state.current_scene()
-                if scene:
-                    room_id, _ = scene_state.current_room_node()
-                    title = f"Scene {scene_state.scene_idx + 1}/{scene_state.scene_count()}"
-                    con.print(Panel(
-                        scene_state.format_scene(scene),
-                        title=title, border_style="magenta", box=box.ROUNDED,
-                    ))
-                else:
-                    con.print("[dim]No scene loaded.[/dim]")
-                continue
-
-            if verb in ("next",) or (verb == "scene" and len(parts) > 1 and parts[1] == "next"):
-                # Auto-exit conversation on scene advance
-                if scene_state.talking_to:
-                    scene_state.exit_conversation()
-                scene = scene_state.advance_scene()
-                if scene is None:
-                    # Zone end — prompt for chapter advance
-                    con.print(Panel(
-                        f"[bold green]Zone Complete![/bold green]\n"
-                        f"[dim]All {scene_state.scene_count()} scenes visited.[/dim]",
-                        border_style="green",
-                    ))
-                    if not scene_state.zm.module_complete:
-                        choice = con.input("[bold cyan]Continue to next chapter? (y/n): [/bold cyan]").strip().lower()
-                        if choice in ("y", "yes", ""):
-                            if scene_state.advance_zone():
-                                scene = scene_state.current_scene()
-                                if scene:
-                                    con.print(Panel(
-                                        scene_state.format_scene(scene),
-                                        title=f"{scene_state.zm.chapter_name} — Scene 1",
-                                        border_style="magenta", box=box.ROUNDED,
-                                    ))
-                                    scene_state.play_scene_audio()  # WO-V54.0
-                                    _desc = getattr(scene, 'description', None) or (scene.get("description", "") if isinstance(scene, dict) else "")
-                                    if _desc:
-                                        _fitd_narrate(_desc[:300])
-                            else:
-                                con.print(Panel(
-                                    f"[bold gold1]MODULE COMPLETE![/bold gold1]\n"
-                                    f"{scene_state.zm.module_name} finished!",
-                                    border_style="gold1", box=box.DOUBLE,
-                                ))
-                else:
-                    room_id, _ = scene_state.current_room_node()
-                    title = f"Scene {scene_state.scene_idx + 1}/{scene_state.scene_count()}"
-                    con.print(Panel(
-                        scene_state.format_scene(scene),
-                        title=title, border_style="magenta", box=box.ROUNDED,
-                    ))
-                    scene_state.play_scene_audio()  # WO-V54.0
-                    _desc = getattr(scene, 'description', None) or (scene.get("description", "") if isinstance(scene, dict) else "")
-                    if _desc:
-                        _fitd_narrate(_desc[:300])
-                continue
-
-            if verb in ("scenes",) or (verb == "scene" and len(parts) > 1 and parts[1] == "list"):
-                lines_out = []
-                for i, (rid, rnode) in enumerate(scene_state.scene_list):
-                    marker = ">" if i == scene_state.scene_idx else " "
-                    visited = "[VISITED]" if rid in scene_state.visited else ""
-                    rtype = getattr(rnode, 'room_type', '')
-                    rtype_str = f" ({rtype.name})" if hasattr(rtype, 'name') else ""
-                    lines_out.append(f" {marker} Scene {i + 1}{rtype_str} {visited}")
-                con.print(Panel(
-                    "\n".join(lines_out),
-                    title=f"Scenes — {scene_state.zm.zone_name}",
-                    border_style="cyan",
-                ))
-                continue
-
-            if verb in ("talk", "npc"):
-                arg = " ".join(parts[1:]) if len(parts) > 1 else ""
-                scene = scene_state.current_scene()
-                if not scene:
-                    con.print("[dim]No scene loaded.[/dim]")
-                    continue
-                npcs = scene.npcs if hasattr(scene, 'npcs') else scene.get("npcs", [])
-                if not npcs:
-                    con.print("[dim]No NPCs in this scene.[/dim]")
-                    continue
-                if not arg:
-                    lines_out = ["NPCs in this scene:"]
-                    for npc in npcs:
-                        name = npc.name if hasattr(npc, 'name') else npc.get("name", "Unknown")
-                        role = npc.role if hasattr(npc, 'role') else npc.get("role", "")
-                        role_str = f" ({role})" if role else ""
-                        lines_out.append(f"  * {name}{role_str}")
-                    con.print(Panel("\n".join(lines_out), border_style="cyan"))
-                else:
-                    target = arg.lower()
-                    found = False
-                    for npc in npcs:
-                        name = npc.name if hasattr(npc, 'name') else npc.get("name", "Unknown")
-                        if target in name.lower():
-                            dialogue = npc.dialogue if hasattr(npc, 'dialogue') else npc.get("dialogue", "")
-                            role = npc.role if hasattr(npc, 'role') else npc.get("role", "")
-                            # Build npc_data dict for conversation mode
-                            if isinstance(npc, dict):
-                                npc_dict = npc
-                            else:
-                                npc_dict = {
-                                    "name": name, "role": role,
-                                    "dialogue": dialogue,
-                                    "notes": getattr(npc, 'notes', '') or '',
-                                }
-                            lines_out = [f"[bold]{name}[/bold]"]
-                            if role:
-                                lines_out.append(f"Role: {role}")
-                            if dialogue:
-                                lines_out.append(f'"{dialogue}"')
-                            else:
-                                lines_out.append(f"{name} has nothing to say.")
-                            # Enter conversation mode
-                            scene_state.enter_conversation(name, npc_dict)
-                            lines_out.append("")
-                            lines_out.append(
-                                "[dim]Chat freely or 'bye' to end.[/dim]"
-                            )
-                            # Offer quest if NPC is a quest_giver
-                            if "quest" in role.lower() or "fixer" in role.lower():
-                                scene_state.pending_offer = {
-                                    "title": dialogue[:60] if dialogue else f"Job from {name}",
-                                    "npc": name,
-                                    "scene_idx": scene_state.scene_idx,
-                                }
-                                lines_out.append(
-                                    "[dim]Type 'accept' to take this job.[/dim]"
-                                )
-                            con.print(Panel("\n".join(lines_out), border_style="cyan"))
-                            found = True
-                            break
-                    if not found:
-                        con.print(f"[dim]No NPC named '{arg}' in this scene.[/dim]")
-                continue
-
-            # ── Quest commands ──────────────────────────────────────
-            if verb == "accept":
-                if scene_state.pending_offer:
-                    job = scene_state.pending_offer
-                    scene_state.accepted_jobs.append(job)
-                    scene_state.pending_offer = None
-                    con.print(Panel(
-                        f"[bold green]Job Accepted:[/bold green] {job['title']}",
-                        border_style="green",
-                    ))
-                else:
-                    con.print("[dim]No pending job offer. Talk to a quest NPC first.[/dim]")
-                continue
-
-            if verb in ("jobs", "journal"):
-                if not scene_state.accepted_jobs:
-                    con.print("[dim]No jobs accepted yet.[/dim]")
-                else:
-                    lines_out = []
-                    for i, job in enumerate(scene_state.accepted_jobs, 1):
-                        lines_out.append(f"  {i}. {job['title']} (from {job['npc']})")
-                    con.print(Panel(
-                        "\n".join(lines_out),
-                        title="Accepted Jobs", border_style="yellow",
-                    ))
-                continue
-
-            if verb == "services":
-                scene = scene_state.current_scene()
-                if not scene:
-                    con.print("[dim]No scene loaded.[/dim]")
-                    continue
-                services = scene.services if hasattr(scene, 'services') else scene.get("services", [])
-                if not services:
-                    con.print("[dim]No services in this scene.[/dim]")
-                else:
-                    svc_text = "\n".join(f"  * {s}" for s in services)
-                    con.print(Panel(svc_text, title="Services", border_style="cyan"))
-                continue
-
-            if verb == "investigate":
-                scene = scene_state.current_scene()
-                if not scene:
-                    con.print("[dim]No scene loaded.[/dim]")
-                    continue
-                dc = scene.investigation_dc if hasattr(scene, 'investigation_dc') else scene.get("investigation_dc", 0)
-                if not dc:
-                    con.print("[dim]Nothing to investigate here.[/dim]")
-                else:
-                    # Use engine's action roll if available
-                    try:
-                        result = engine.handle_command("roll_action", action="study")
-                        con.print(Panel(result, title=f"Investigation (DC {dc})",
-                                        border_style="yellow"))
-                    except Exception:
-                        con.print(f"[dim]Investigation DC: {dc}[/dim]")
-                continue
-
-            # WO-V54.0: Check if typed command matches a scene service
-            scene = scene_state.current_scene()
-            if scene:
-                scene_services = scene.services if hasattr(scene, 'services') else scene.get("services", [])
-                service_match = next(
-                    (s for s in scene_services
-                     if verb in str(s).lower() or str(s).lower() in verb),
-                    None,
-                )
-                if service_match:
-                    from codex.core.services.narrative_frame import get_service_flavor
-                    flavor = get_service_flavor(str(service_match).lower(), system_id)
-                    if flavor:
-                        svc_result = flavor
-                    else:
-                        # Fall back to bridge dispatch for mechanical services
-                        try:
-                            from codex.games.bridge import UniversalGameBridge
-                            _tmp_bridge = object.__new__(UniversalGameBridge)
-                            _tmp_bridge.engine = engine
-                            _tmp_bridge.dead = False
-                            _tmp_bridge._system_tag = system_id.upper()
-                            _tmp_bridge._butler = None
-                            _tmp_bridge.show_dm_notes = False
-                            _tmp_bridge._talking_to = None
-                            svc_result = _tmp_bridge._dispatch_service(str(service_match).lower())
-                        except Exception:
-                            svc_result = f"You use the {service_match} service."
-                    con.print(Panel(svc_result, border_style="cyan"))
-                    continue
-
-        # Roll shorthand: "roll skirmish" -> handle_command("roll_action", action="skirmish")
-        if verb == "roll" and len(parts) >= 2:
-            action = parts[1].lower()
-            try:
-                result = engine.handle_command("roll_action", action=action)
-                con.print(Panel(result, title="Roll Result", border_style="yellow"))
-                _fitd_narrate(result[:200])
-            except Exception as e:
-                con.print(f"[red]Roll failed: {e}[/red]")
-            continue
-
-        # WO-V68.0: resist <action> — spend stress to resist a consequence
-        if verb == "resist":
-            action = parts[1].lower() if len(parts) >= 2 else "resist"
-            # Locate StressClock on the engine or its first party member
-            stress_clock = getattr(engine, 'stress_clock', None)
-            if stress_clock is None and hasattr(engine, 'party') and engine.party:
-                stress_clock = getattr(engine.party[0], 'stress_clock', None)
-            if stress_clock is None:
-                con.print("[dim]No stress clock available for this engine.[/dim]")
-                continue
-            # Resistance roll: 2d6, each 6 reduces cost by 1 (min 0), floor at 6 stress
-            import random as _rng
-            dice = [_rng.randint(1, 6) for _ in range(2)]
-            sixes = dice.count(6)
-            # Standard FITD resist: stress cost = 6 - number of 6s rolled
-            stress_cost = max(0, 6 - sixes)
-            result = stress_clock.resist(stress_cost)
-            dice_str = ", ".join(str(d) for d in dice)
-            lines_r = [
-                f"[bold]Resist:[/bold] {action}",
-                f"Dice: [{dice_str}]  Sixes: {sixes}  Stress cost: {stress_cost}",
-                f"Stress: {result['new_stress']}/{stress_clock.max_stress}",
-            ]
-            if result.get("trauma_triggered"):
-                lines_r.append(
-                    f"[bold red]TRAUMA:[/bold red] {result['new_trauma']} — "
-                    "stress cleared, trauma gained."
-                )
-            if result.get("broken"):
-                lines_r.append("[bold red]You are BROKEN (4 traumas).[/bold red]")
-            con.print(Panel("\n".join(lines_r), title="Resistance Roll",
-                            border_style="yellow"))
+        action = _fitd.dispatch(ctx, verb, parts)
+        if action == "break":
+            break
+        if action == "continue":
+            engine = ctx.engine
+            _run_companion_turn(ctx)
             continue
 
         # Dispatch to engine.handle_command()
@@ -1531,13 +1224,76 @@ def _run_fitd_loop(con: Console, engine, system_id: str, butler=None,
                 else:
                     con.print(f"[dim]Unknown command. Try 'help' for options.[/dim]")
             else:
-                con.print(Panel(result, title=cmd.replace("_", " ").title(),
-                                border_style="blue"))
+                # WO-V69.0: Styled dice panel for FITD roll results
+                if isinstance(result, str) and result.startswith("Dice: ["):
+                    _render_fitd_dice_panel(con, result, cmd)
+                else:
+                    con.print(Panel(result, title=cmd.replace("_", " ").title(),
+                                    border_style="blue"))
                 # Narrate significant command outputs (skip short status lines)
                 if isinstance(result, str) and len(result) > 40:
                     _fitd_narrate(result[:250])
         except Exception as e:
             con.print(f"[red]Command error: {e}[/red]")
+
+        # Companion turn after engine command
+        _run_companion_turn(ctx)
+
+
+# =========================================================================
+# FITD DICE PANEL (WO-V69.0)
+# =========================================================================
+
+def _render_fitd_dice_panel(con: Console, result: str, cmd: str):
+    """Render a styled Rich panel for FITD dice roll results.
+
+    Parses the engine's ``Dice: [4, 6] -> SUCCESS`` format and renders
+    a color-coded panel: green for crit, red for fail, gold for normal.
+    """
+    import re as _re
+
+    # Extract dice values from "Dice: [4, 6]" prefix
+    dice_match = _re.search(r"Dice:\s*\[([^\]]+)\]", result)
+    dice_vals: List[int] = []
+    if dice_match:
+        try:
+            dice_vals = [int(x.strip()) for x in dice_match.group(1).split(",")]
+        except ValueError:
+            pass
+
+    # Determine outcome from result text
+    upper = result.upper()
+    if "CRITICAL" in upper and "SUCCESS" in upper:
+        border = "bold green"
+        title = "CRITICAL SUCCESS!"
+        dice_style = "bold green"
+    elif "CRITICAL" in upper and "FAIL" in upper:
+        border = "bold red"
+        title = "CRITICAL FAIL!"
+        dice_style = "bold red"
+    elif "FAIL" in upper:
+        border = "red"
+        title = cmd.replace("_", " ").title()
+        dice_style = "red"
+    else:
+        border = "gold1"
+        title = cmd.replace("_", " ").title()
+        dice_style = "bold yellow"
+
+    # Build dice face line
+    if dice_vals:
+        faces = "  ".join(f"[{dice_style}][{d}][/{dice_style}]" for d in dice_vals)
+        # Show the full result below the dice
+        con.print(Panel(
+            f"{faces}\n\n{result}",
+            title=f"[bold]{title}[/bold]",
+            border_style=border,
+            box=box.DOUBLE,
+        ))
+    else:
+        # Fallback if parsing fails
+        con.print(Panel(result, title=cmd.replace("_", " ").title(),
+                        border_style="blue"))
 
 
 # =========================================================================
@@ -1671,7 +1427,8 @@ def _render_full_map(con: Console, engine, bridge) -> Optional[Any]:
 def _run_dungeon_loop(con: Console, engine, system_id: str, butler=None,
                       zone_manager=None,
                       stacked_char: Optional[StackedCharacter] = None,
-                      dispatcher: Optional[StackedCommandDispatcher] = None):
+                      dispatcher: Optional[StackedCommandDispatcher] = None,
+                      companion_agent=None):
     """Dungeon crawl loop for map-based engines (dnd5e, stc).
 
     Args:
@@ -1734,6 +1491,19 @@ def _run_dungeon_loop(con: Console, engine, system_id: str, butler=None,
     else:
         con.print(Panel(result, title="Current Room", border_style="blue"))
 
+    # ── Command handlers ──────────────────────────────────────────
+    from codex.core.command_handlers import (
+        LoopContext, SharedCommandHandler, DungeonCommandHandler,
+    )
+    ctx = LoopContext(
+        con=con, engine=engine, system_id=system_id, butler=butler,
+        stacked_char=stacked_char, dispatcher=dispatcher,
+        zone_manager=zone_manager, bridge=bridge,
+        companion_agent=companion_agent,
+    )
+    _shared = SharedCommandHandler()
+    _dungeon = DungeonCommandHandler()
+
     while True:
         try:
             user_input = con.input("\n[bold cyan]> [/bold cyan]").strip()
@@ -1744,73 +1514,26 @@ def _run_dungeon_loop(con: Console, engine, system_id: str, butler=None,
             continue
 
         verb = user_input.split()[0].lower()
+        parts = user_input.split()
 
-        if verb in ("quit", "exit", "q"):
-            con.print("[dim]Returning to main menu...[/dim]")
+        # Dispatch through handler chain: shared -> dungeon -> bridge
+        action = _shared.dispatch(ctx, verb, parts)
+        if action == "break":
             break
-
-        if verb in ("sheet", "doll", "character"):
-            from codex.core.sheet_renderer import render_sheet
-            con.print(render_sheet(engine, system_id))
+        if action == "continue":
+            engine = ctx.engine
+            system_id = ctx.system_id
+            stacked_char = ctx.stacked_char
+            dispatcher = ctx.dispatcher
+            bridge = ctx.bridge
+            _run_companion_turn(ctx)
             continue
 
-        # WO-V60.0: Engine stacking commands (dungeon loop)
-        if verb == "transition":
-            result = _transition_system(con, engine, stacked_char, system_id)
-            if result:
-                engine = result["engine"]
-                system_id = result["system_id"]
-                stacked_char = result["stacked_char"]
-                dispatcher = result["dispatcher"]
-                # Rebuild bridge for new engine
-                bridge = _EngineWrappedBridge(engine)
-                if butler and hasattr(bridge._bridge, 'set_butler'):
-                    bridge._bridge.set_butler(butler)
-                _render_status_panel(con, engine, system_id)
-            continue
-
-        if verb == "layers":
-            if stacked_char:
-                _show_layers(con, stacked_char)
-            else:
-                con.print("[dim]No engine stack active. Use 'transition' to start one.[/dim]")
-            continue
-
-        # WO-V62.0: Character export
-        if verb == "export":
-            from codex.core.character_export import export_character, save_exported_character
-            char = engine.party[0] if hasattr(engine, 'party') and engine.party else None
-            if char:
-                char_data = engine.save_state()
-                exported = export_character(char_data, system_id)
-                path = save_exported_character(exported)
-                con.print(f"[green]Character exported to {path.name}[/green]")
-            else:
-                con.print("[dim]No character to export.[/dim]")
-            continue
-
-        # WO-V61.0: Companion command
-        if verb == "companion":
-            _handle_companion_command(con, engine, bridge, " ".join(user_input.split()[1:]))
-            continue
-
-        # Zone status command
-        if verb in ("zone", "progress", "module"):
-            if zone_manager and not zone_manager.module_complete:
-                con.print(Panel(
-                    f"[bold]{zone_manager.module_name}[/bold]\n"
-                    f"Chapter: {zone_manager.chapter_name}\n"
-                    f"Zone: {zone_manager.zone_name}\n"
-                    f"Progress: {zone_manager.zone_progress}",
-                    title="Module Progress", border_style="cyan",
-                ))
-            else:
-                con.print("[dim]No active module.[/dim]")
-            continue
-
-        # WO-V64.0: Journey/travel command from dungeon
-        if verb == "journey":
-            con.print("[dim]No active journey. Travel is triggered between zones.[/dim]")
+        action = _dungeon.dispatch(ctx, verb, parts)
+        if action == "break":
+            break
+        if action == "continue":
+            _run_companion_turn(ctx)
             continue
 
         result = bridge.step(user_input)
@@ -1836,6 +1559,9 @@ def _run_dungeon_loop(con: Console, engine, system_id: str, butler=None,
             con.print(Panel(result, title="Combat", border_style="red"))
         else:
             con.print(Panel(result, title=verb.title(), border_style="cyan"))
+
+        # Companion turn after player action
+        _run_companion_turn(ctx)
 
         # Zone exit check: after each action, see if engine reports zone complete
         if zone_manager and not zone_manager.module_complete:
@@ -1913,18 +1639,7 @@ class _EngineWrappedBridge:
         from codex.games.bridge import UniversalGameBridge
         # Create a bridge but swap its engine with our pre-initialized one
         # We bypass __init__ to avoid re-creating the engine
-        self._bridge = object.__new__(UniversalGameBridge)
-        self._bridge.engine = engine
-        self._bridge.dead = False
-        self._bridge.last_frame = None
-        self._bridge._broadcast = None
-        self._bridge._system_tag = getattr(engine, 'system_id', 'unknown').upper()
-        from codex.core.mechanics.rest import RestManager
-        self._bridge._rest_mgr = RestManager()
-        self._bridge._butler = None  # WO-V50.0
-        self._bridge.show_dm_notes = False  # WO-V54.0
-        self._bridge._talking_to = None  # WO-V54.0
-        self._bridge._session_log = []  # WO-V61.0
+        self._bridge = UniversalGameBridge.create_lightweight(engine)
 
     @property
     def dead(self):
@@ -2147,6 +1862,106 @@ def main_stacked(save_data: dict, butler=None):
         con.print(f"[yellow]No game loop available for {system_id}.[/yellow]")
 
 
+def _campaign_loading_sequence(con, engine, resolved_id, manifest, zm):
+    """Show a Rich progress loading screen and synthesize memory shards.
+
+    Handles engine-init acknowledgment, MASTER/ANCHOR shard creation,
+    dungeon generation for spatial systems, and visual progress feedback.
+
+    Returns:
+        Tuple of (CodexMemoryEngine, dungeon_result_or_None).
+    """
+    from rich.progress import Progress, SpinnerColumn, TextColumn, BarColumn
+    from codex.core.memory import CodexMemoryEngine
+
+    mem = CodexMemoryEngine()
+
+    is_spatial = resolved_id in DUNGEON_SYSTEMS
+    needs_dungeon = is_spatial and not (zm and zm.current_graph is not None)
+
+    stages = [
+        ("Engine Init", f"Initializing {resolved_id} engine..."),
+        ("Memory Shards", "Synthesizing world context..."),
+        ("Game State", "Anchoring current state..."),
+    ]
+    if needs_dungeon:
+        stages.append(("Dungeon", "Generating environment..."))
+    elif is_spatial and zm:
+        stages.append(("Module Zone", f"Loading {zm.zone_name}..."))
+    stages.append(("Ready", "Adventure awaits..."))
+
+    dungeon_result = None
+
+    with Progress(
+        SpinnerColumn(),
+        TextColumn("[progress.description]{task.description}"),
+        BarColumn(bar_width=30),
+        TextColumn("[progress.percentage]{task.percentage:>3.0f}%"),
+        console=con,
+    ) as progress:
+        task = progress.add_task("[cyan]Preparing...", total=len(stages))
+
+        for stage_name, stage_desc in stages:
+            progress.update(task, description=f"[cyan]{stage_desc}")
+
+            if stage_name == "Memory Shards":
+                # Create MASTER shard with world context
+                world_info = []
+                if manifest:
+                    if manifest.get("campaign_name"):
+                        world_info.append(
+                            f"Campaign: {manifest['campaign_name']}")
+                    if manifest.get("system_theme"):
+                        world_info.append(
+                            f"Theme: {manifest['system_theme']}")
+                world_info.append(f"System: {resolved_id}")
+                if zm and hasattr(zm, 'manifest') and zm.manifest:
+                    world_info.append(
+                        f"Module: {zm.manifest.display_name}")
+                mem.create_shard(
+                    content="\n".join(world_info),
+                    shard_type="MASTER",
+                    tags=["world", "init"],
+                    source="system",
+                    pinned=True,
+                )
+
+            elif stage_name == "Game State":
+                # Create ANCHOR shard with initial game state
+                state_info = ["Day 1 — Session start"]
+                party = getattr(engine, 'party', [])
+                if party:
+                    names = [getattr(c, 'name', str(c)) for c in party[:4]]
+                    state_info.append(f"Party: {', '.join(names)}")
+                loc = getattr(engine, 'current_location', None)
+                if loc:
+                    state_info.append(f"Location: {loc}")
+                mem.create_shard(
+                    content="\n".join(state_info),
+                    shard_type="ANCHOR",
+                    tags=["session_start", "game_state"],
+                    source="system",
+                )
+
+            elif stage_name == "Dungeon":
+                dungeon_result = engine.generate_dungeon()
+
+            progress.advance(task)
+
+    # Post-progress summary
+    if dungeon_result:
+        con.print(
+            f"[green]Dungeon ready: "
+            f"{dungeon_result['total_rooms']} rooms[/green]")
+    elif is_spatial and zm and zm.current_graph is not None:
+        con.print(
+            f"[green]Module zone loaded: {zm.zone_name}[/green]")
+
+    con.print(f"[dim]Memory shards: {len(mem.shards)} synthesized[/dim]")
+
+    return mem, dungeon_result
+
+
 def main(system_id: str, manifest: Optional[dict] = None, butler=None):
     """Launch the universal game loop for any registered engine.
 
@@ -2170,6 +1985,16 @@ def main(system_id: str, manifest: Optional[dict] = None, butler=None):
     # Look up engine class using resolved parent ID
     engine_class = ENGINE_REGISTRY.get(resolved_id)
     if not engine_class:
+        # Redirect standalone systems that have their own game loops
+        if resolved_id == "burnwillow":
+            import play_burnwillow as _bw
+            _bw_manifest_path = manifest.get("module_manifest_path") if manifest else None
+            _bw.main(
+                butler=butler,
+                module_manifest_path=_bw_manifest_path,
+                session_type=manifest.get("session_type") if manifest else None,
+            )
+            return
         con.print(f"[red]Unknown game system: {system_id}[/red]")
         con.print(f"[dim]Available: {', '.join(ENGINE_REGISTRY.keys())}[/dim]")
         return
@@ -2209,6 +2034,53 @@ def main(system_id: str, manifest: Optional[dict] = None, butler=None):
         # Default character — prompt for name
         name = con.input("[bold]Enter character name:[/bold] ").strip() or "Adventurer"
         engine.create_character(name)
+
+    # Apply group data (Circle/Crew/Ship/Legion) from wizard manifest
+    if manifest and manifest.get("group_data"):
+        gd = manifest["group_data"]
+        if hasattr(engine, 'circle_name') and gd.get("circle_name"):
+            engine.circle_name = gd["circle_name"]
+        if hasattr(engine, 'circle_abilities'):
+            engine.circle_abilities = gd.get("circle_abilities", [])
+
+    # Initialize AI companion from manifest
+    _companion_agent = None
+    if manifest and manifest.get("ai_companion") and manifest["ai_companion"].get("enabled"):
+        try:
+            from codex.core.autopilot import GenericAutopilotAgent, PERSONALITY_POOL
+            from codex.games.burnwillow.autopilot import COMPANION_NAME_POOL, _roll_biography
+            _comp_archetype = manifest["ai_companion"].get("personality", "")
+            _comp_personality = next(
+                (p for p in PERSONALITY_POOL if p.archetype == _comp_archetype),
+                PERSONALITY_POOL[0] if PERSONALITY_POOL else None,
+            )
+            if _comp_personality:
+                # Set name + biography if not already present
+                if not _comp_personality.name:
+                    _comp_rng = random.Random()
+                    _comp_personality.name = _comp_rng.choice(COMPANION_NAME_POOL)
+                    _comp_personality.biography = _roll_biography(_comp_rng)
+
+                _companion_agent = GenericAutopilotAgent(
+                    personality=_comp_personality,
+                    system_tag=resolved_id,
+                )
+                _companion_agent.enabled = True
+
+                # Pick weighted class and create PC in party
+                _comp_class = pick_weighted_class(resolved_id, _comp_archetype)
+                _companion_agent._system_class = _comp_class
+                create_companion_character(
+                    engine, resolved_id, _comp_archetype,
+                    _comp_personality.name,
+                )
+                con.print(
+                    f"[dim]AI Companion: {_comp_personality.name} "
+                    f"({_comp_archetype.title()} {_comp_class}) — "
+                    f"{_comp_personality.description}[/dim]"
+                )
+        except Exception:
+            pass
 
     # Resolve module manifest for zone-based progression
     zm = None
@@ -2377,26 +2249,38 @@ def main(system_id: str, manifest: Optional[dict] = None, butler=None):
         _session_frame.opening_hook = _hook
         con.print(Panel(f"[italic]{_hook}[/italic]", border_style="dim"))
 
-    # For dungeon systems, generate dungeon (unless module already loaded a graph)
+    # Campaign loading screen — progress bar + memory shard synthesis
+    _mem_engine, _dungeon_result = _campaign_loading_sequence(
+        con, engine, resolved_id, manifest, zm)
+
+    # Auto-open investigation case for Candela if no active case
+    if resolved_id == "candela" and hasattr(engine, '_cmd_open_case'):
+        _case_module = "Unknown Assignment"
+        if manifest:
+            # Derive case name from module layer
+            for layer in manifest.get("world_layers", []):
+                if layer.get("type") == "module" and layer.get("name"):
+                    _case_module = layer["name"]
+                    break
+        try:
+            engine._cmd_open_case(case_name=_case_module, clues_needed=5)
+        except Exception:
+            pass
+
+    # Route to the appropriate game loop
     if resolved_id in DUNGEON_SYSTEMS:
-        if zm and zm.current_graph is not None:
-            # Module zone already loaded — skip procedural generation
-            con.print(f"[green]Module zone loaded: "
-                      f"{zm.zone_name}[/green]")
-        else:
-            con.print("[dim]Generating dungeon...[/dim]")
-            result = engine.generate_dungeon()
-            con.print(f"[green]Dungeon ready: {result['total_rooms']} rooms[/green]")
-        _run_dungeon_loop(con, engine, resolved_id, butler=butler, zone_manager=zm)
+        _run_dungeon_loop(con, engine, resolved_id, butler=butler,
+                          zone_manager=zm, companion_agent=_companion_agent)
     elif resolved_id in FITD_SYSTEMS:
         # WO-V52.0: Pass scene state if a module was loaded
         fitd_ss = locals().get('_fitd_scene_state')
         _run_fitd_loop(con, engine, resolved_id, butler=butler,
-                       scene_state=fitd_ss)
+                       scene_state=fitd_ss, companion_agent=_companion_agent)
     else:
         # Fallback: try FITD-style if engine has handle_command
         if hasattr(engine, 'handle_command'):
-            _run_fitd_loop(con, engine, resolved_id, butler=butler)
+            _run_fitd_loop(con, engine, resolved_id, butler=butler,
+                           companion_agent=_companion_agent)
         else:
             con.print(f"[yellow]No game loop available for {system_id}.[/yellow]")
 

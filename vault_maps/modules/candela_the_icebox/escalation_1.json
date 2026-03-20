@@ -1,0 +1,118 @@
+{
+  "seed": 7019,
+  "width": 50,
+  "height": 30,
+  "start_room_id": 0,
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 2,
+      "y": 2,
+      "width": 12,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false
+    },
+    "1": {
+      "id": 1,
+      "x": 16,
+      "y": 2,
+      "width": 14,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [0, 2, 3],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false
+    },
+    "2": {
+      "id": 2,
+      "x": 32,
+      "y": 3,
+      "width": 10,
+      "height": 8,
+      "room_type": "treasure",
+      "connections": [1],
+      "tier": 3,
+      "is_locked": true,
+      "is_secret": false
+    },
+    "3": {
+      "id": 3,
+      "x": 16,
+      "y": 14,
+      "width": 14,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false
+    }
+  },
+  "metadata": {
+    "zone_id": "escalation_1",
+    "theme": "GOTHIC",
+    "topology": "dungeon",
+    "scene_title": "The Vault Corridors"
+  },
+  "content_hints": {
+    "0": {
+      "description": "The inner vault antechamber. The door to the central containment is here -- a slab of black basalt ten inches thick, covered in layered inscriptions from multiple eras. Each layer is a different civilization's attempt to reinforce the original seal.",
+      "read_aloud": "The door is warm. Everything in this vault is frozen beyond survival, but the door is warm to the touch. Not from heat -- from energy. The containment is working so hard to hold whatever is behind this door that the stone itself radiates with effort. Cracks run through it. Fresh ones.",
+      "enemies": [
+        {
+          "name": "Frozen Revenants",
+          "hp": 15,
+          "ac": 12,
+          "attack": 4,
+          "damage": "1d6",
+          "count": 2,
+          "notes": "The last line of guardian defense. These two are the most intact -- recently frozen, within the last century. They move with fluid coordination, blocking access to the door.",
+          "special": ["Cold Aura: melee attackers take 1 Body mark", "Relentless: fights until destroyed", "Containment Duty: will not pursue beyond this room -- they guard the door, not the vault"]
+        }
+      ],
+      "event_triggers": ["The containment door is cracking. The guardians defend it not to keep intruders out, but to keep the thing inside from getting through. The investigators face a twist: the door is failing regardless. Opening it on their terms may be better than waiting for it to breach."]
+    },
+    "1": {
+      "description": "A side chamber where the Horace crew made camp. Bedrolls, empty ration tins, and a makeshift fire pit (the fire wouldn't light -- the cold snuffed every flame). Scratched into the wall: tally marks counting hours. They spent sixteen hours here before fleeing.",
+      "read_aloud": "The Horace crew left in a hurry. Gear scattered, bedrolls thrown aside. On the wall beside the tally marks, someone carved a final message: IT TALKS THROUGH THE ICE. IT KNOWS YOUR NAME.",
+      "investigation_dc": 16,
+      "investigation_success": "Among the scattered gear: the Horace captain's personal log. His final entry describes hearing a voice from behind the inner door -- calm, reasonable, asking to be released. The voice knew the captain's childhood nickname. Something his dead mother used to call him.",
+      "enemies": [
+        {
+          "name": "Shiver Wind",
+          "hp": 15,
+          "ac": 12,
+          "attack": 4,
+          "damage": "1d6",
+          "count": 1,
+          "notes": "A focused blast of supernatural cold sweeps through the chamber at irregular intervals -- the vault's failing containment venting excess energy.",
+          "special": ["Incorporeal: immune to physical damage", "Hypothermia: hit inflicts 1 Body mark", "Periodic: attacks once every 3 rounds, predictable if observed"]
+        }
+      ],
+      "loot": [
+        {"name": "Captain's Log (HMS Horace)", "value": 0, "description": "Details the crew's sixteen-hour ordeal inside the vault. Describes the voice behind the door, its persuasion, and how three crew members attempted to open the door before the rest dragged them away."}
+      ]
+    },
+    "2": {
+      "description": "An armory alcove sealed behind an ice-locked door. Inside, weapons and tools designed for vault maintenance -- not combat weapons, but instruments for reinforcing containment wards.",
+      "read_aloud": "The tools are beautifully made, from an era when craftsmanship and magick were inseparable. Silver chisels for re-inscribing wards. A tuning hammer for adjusting the resonance of containment pillars. A mask of black glass that, when worn, allows the user to see the containment field as visible light.",
+      "lock_dc": 16,
+      "loot": [
+        {"name": "Containment Mask", "value": 0, "description": "Black glass mask that reveals the containment field. Wearing it in the artifact chamber will show the exact shape and weak points of the remaining seal -- essential for reinforcement or controlled breach."},
+        {"name": "Ward-Inscription Chisel", "value": 0, "description": "Silver tool for carving containment inscriptions. Still functional after centuries. Required to reinforce or repair the failing seal on the inner door."}
+      ]
+    },
+    "3": {
+      "description": "The Warden's heart. A small chamber where the frost patterns converge into a single point -- a sphere of ice hovering at chest height, rotating slowly. This is the Warden: not a creature but a construct, an intelligence woven from the cold itself.",
+      "read_aloud": "The Warden speaks. Not in words but in images that form in the frost on every surface: the vault's construction, thousands of years ago. The artifact being sealed. The first guardians volunteering. Centuries of watch. And now, the cracks. The failure. The ice sphere pulses with something that might be grief.",
+      "perception_dc": 16,
+      "perception_success": "The Warden is dying. Its sphere is smaller than the impressions left in the chamber floor suggest it once was. It's burning its own substance to maintain the containment. When it runs out, the seal breaks entirely. Days, perhaps. Maybe hours.",
+      "event_triggers": ["The Warden is an ancient construct, not an adversary. It's dying to maintain containment. The investigators must choose: reinforce the seal (condemning more guardians to eternal watch), remove the artifact (risking catastrophic release), or find a third option."]
+    }
+  }
+}

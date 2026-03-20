@@ -1,0 +1,63 @@
+{
+  "seed": 7022,
+  "width": 30,
+  "height": 20,
+  "start_room_id": 0,
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 2,
+      "y": 2,
+      "width": 12,
+      "height": 8,
+      "room_type": "tavern",
+      "connections": [1],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false
+    },
+    "1": {
+      "id": 1,
+      "x": 16,
+      "y": 3,
+      "width": 10,
+      "height": 7,
+      "room_type": "normal",
+      "connections": [0],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false
+    }
+  },
+  "metadata": {
+    "zone_id": "hook",
+    "theme": "GOTHIC",
+    "topology": "settlement",
+    "scene_title": "The Anonymous Call"
+  },
+  "content_hints": {
+    "0": {
+      "description": "The chapter house communications room. A bank of pneumatic tubes and a telephone switchboard manned by a clerk who hasn't slept in thirty hours. An incoming call has been routed to a private booth -- the caller asked for Candela Obscura by name.",
+      "read_aloud": "The voice on the line is distorted, deliberately masked. 'I'm a member of the Primordial Covenant. That's the name they use when it's just us. Publicly we're the Haven Hills Philanthropic Society. We use blood magick. Real magick, not parlor tricks. And the people running this organization are some of the most powerful politicians in Newfaire. I want out. They won't let me leave alive.'",
+      "npcs": [
+        {
+          "name": "The Informant (voice only)",
+          "role": "briefing",
+          "dialogue": "They meet every new moon in the basement of Alderman Corvin's estate in Haven Hills. There are seven of them. The Seven Stakes -- that's what they call themselves. They've found a thinning and they're using blood sacrifices to draw power from it. They think they can live forever. They're wrong. The last sacrifice didn't die. It changed. Something came through wearing her face and none of them noticed but me.",
+          "notes": "The informant is Lyssa Dane, junior member of the cult and assistant to Alderman Corvin. She joined for political advancement and discovered the magick was real. She's terrified. She'll agree to meet the circle in person but only in a public place."
+        }
+      ],
+      "services": ["rumor"],
+      "event_triggers": ["An anonymous call exposes a blood cult among Haven Hills politicians. They're drawing power from a thinning through sacrifice. Something has already come through."]
+    },
+    "1": {
+      "description": "The chapter house research alcove. A corkboard pinned with photographs and newspaper clippings of Haven Hills politicians. Social registers, campaign finance records, charity gala guest lists.",
+      "read_aloud": "Seven faces stare back from the corkboard. Alderman Corvin, Chair of Public Works. Senator Emile Vaast, chair of the Appropriations Committee. Judge Helena Breck. Three more city officials and a shipping magnate. All pillars of society. All regular attendees of the same private dinner club.",
+      "investigation_dc": 12,
+      "investigation_success": "Cross-referencing missing persons reports with the cult's meeting schedule reveals a pattern: someone disappears within two days of every new moon. Twelve meetings a year. Twelve disappearances. For three years. Thirty-six people.",
+      "loot": [
+        {"name": "Cult Dossier", "value": 0, "description": "Photographs and profiles of the seven cult members. All politically connected, all wealthy, all with access to power that would make exposing them extremely dangerous."}
+      ]
+    }
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "seed": 8020,
+  "width": 35,
+  "height": 25,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "deep_woods",
+    "theme": "GOTHIC",
+    "topology": "dungeon",
+    "mission_types": ["recon", "assault"]
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 2,
+      "y": 2,
+      "width": 8,
+      "height": 6,
+      "room_type": "start",
+      "connections": [1],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Thirty paces past the tree line and the world changes. The canopy seals overhead like a closing fist, reducing the light to a dim, greenish twilight. The forest floor is a carpet of dead leaves and moss, silent underfoot. Every sound is muffled -- your own breathing seems too loud. Falk moves ahead, hatchet in one hand, marking trees with chalk as he goes.",
+        "read_aloud": "The canopy blocks the sun. Shadows move between the trunks, shapes that could be wind-blown branches or something less innocent.",
+        "event_triggers": [
+          "The canopy blocks the sun. Shadows move between the trunks."
+        ]
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 14,
+      "y": 8,
+      "width": 10,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [0, 2],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "A natural clearing where a massive oak has fallen, taking several smaller trees with it. The root ball stands twenty feet tall, a wall of earth and tangled roots. The fallen trunk creates a bridge over a shallow ravine. Hounds have been here -- the bark of the fallen oak is scored with claw marks, and the ground is churned to mud by running paws. They hunt in packs of three to five, circling, cutting off escape routes, driving prey toward the Rotters.",
+        "enemies": [
+          {"name": "Hound", "hp": 8, "max_hp": 8, "ac": 10, "attack": 4, "defense": 10, "count": 3},
+          {"name": "Rotter", "hp": 8, "max_hp": 8, "ac": 8, "attack": 3, "defense": 8, "count": 2}
+        ],
+        "perception_dc": 12,
+        "perception_success": "The Hounds are not wandering. They are patrolling a perimeter -- a wide circle around something deeper in the forest. Falk confirms: 'They are guarding the lair. We are inside the ring.'",
+        "event_triggers": [
+          "Falk holds up a fist. Stop. He points to the mud. Fresh tracks, overlapping, in a circle. A patrol pattern."
+        ]
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 26,
+      "y": 4,
+      "width": 7,
+      "height": 6,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The forest thickens to near-impassability. Game trails provide the only passage through walls of thorny undergrowth and closely packed birch. The smell changes here -- the clean scent of leaf-mold replaced by something sour and metallic. Corruption seepage. The bark of the nearest trees is streaked with black veins. Ahead, through the thicket, an unnatural glow -- firelight? Alchemical light? Something worse?",
+        "event_triggers": [
+          "The trees thin abruptly. Beyond the thicket, a clearing. The lair.",
+          "Falk crouches and draws a diagram in the dirt. 'The clearing is maybe fifty paces across. The Horror is at the center. Rotters around it. At least one Spitter in the tree line. Your call, Commander.'"
+        ],
+        "investigation_dc": 11,
+        "investigation_success": "Among the thorns, a Legionnaire's dog tag on a broken chain. The name is still readable. Falk recognizes it -- one of his hunting companions from before the war. He says nothing, pockets the tag, and moves on."
+      }
+    }
+  }
+}

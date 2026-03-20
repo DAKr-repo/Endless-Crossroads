@@ -1,0 +1,63 @@
+{
+  "seed": 7001,
+  "width": 30,
+  "height": 20,
+  "start_room_id": 0,
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 2,
+      "y": 2,
+      "width": 12,
+      "height": 8,
+      "room_type": "tavern",
+      "connections": [1],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false
+    },
+    "1": {
+      "id": 1,
+      "x": 16,
+      "y": 3,
+      "width": 10,
+      "height": 7,
+      "room_type": "normal",
+      "connections": [0],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false
+    }
+  },
+  "metadata": {
+    "zone_id": "hook",
+    "theme": "GOTHIC",
+    "topology": "settlement",
+    "scene_title": "The Late Night Call"
+  },
+  "content_hints": {
+    "0": {
+      "description": "The Fourth Pharos chapter house, late evening. Rain streaks the leaded glass. A single gaslight gutters above the briefing table, casting long shadows across old case files stacked in towers that lean like drunk men.",
+      "read_aloud": "Your Lightkeeper's voice is clipped, urgent. 'A body outside Hargrove's Apothecary on Briar Street. Aged beyond recognition -- turned to dust when the coroner tried to move it. OUP has already closed the block. We need eyes on this before they bury it.'",
+      "npcs": [
+        {
+          "name": "Lightkeeper Maren Ashwick",
+          "role": "briefing",
+          "dialogue": "The corpse was identified by a pocket watch engraved to one Declan Voss. Voss was twenty-six years old. The body looked ninety. I trust I don't need to spell out why this concerns us.",
+          "notes": "Ashwick knows more than she says. She investigated Hargrove's Apothecary a decade ago and found nothing. The case haunts her."
+        }
+      ],
+      "services": ["rumor"],
+      "event_triggers": ["A body has been found outside an abandoned drugstore, aged impossibly. Candela Obscura dispatches the circle."]
+    },
+    "1": {
+      "description": "The chapter house records room. Filing cabinets line the walls, each drawer labeled in a cipher only Candela operatives can read. A pneumatic tube connects to the main archive below.",
+      "read_aloud": "Dusty files on Hargrove's Apothecary reveal it closed in 1892 after the owner vanished. Neighbors reported music from the basement for years afterward -- then silence.",
+      "investigation_dc": 12,
+      "investigation_success": "A faded incident report from 1908: an OUP officer responded to a noise complaint at Hargrove's and was never seen again. His badge was found on the sidewalk, tarnished black.",
+      "loot": [
+        {"name": "Hargrove's Case File", "value": 0, "description": "A thin folder containing a floor plan of the apothecary, a list of former employees, and a photograph of the basement door -- padlocked from the outside."}
+      ]
+    }
+  }
+}

@@ -23,13 +23,16 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Assembly Point. The bridge crews form up in columns behind their bridges -- massive wooden platforms that four men wide carry at shoulder height. The bridge itself is Bridge Nine's burden: twelve hundred pounds of Soulcast lumber, still smelling of the stone it was transmuted from. Ahead, seven chasms wait.",
+                "read_aloud": "Twelve hundred pounds of Soulcast timber rests on your shoulders and the shoulders of nineteen other men. The wood still smells of the stone it was transmuted from -- mineral and cold, like carrying a piece of the mountain itself. Ahead, the Shattered Plains unfold in fracture patterns that repeat at every scale: mesa, chasm, mesa, chasm, all the way to a horizon that shimmers with heat and the distant shapes of Parshendi war drums.",
                 "npcs": [
-                    {"name": "Sergeant Talno", "role": "ally", "dialogue": "Steady pace to the first chasm, then sprint formation. Arrows will come from the east. Keep the bridge between you and the Parshendi. That is not cowardice -- that is geometry."}
+                    {"name": "Sergeant Talno", "role": "ally", "dialogue": "Steady pace to the first chasm, then sprint formation. Arrows will come from the east. Keep the bridge between you and the Parshendi. That is not cowardice -- that is geometry.", "notes": "Talno positions Bridge Nine's sprint to minimize arrow exposure. His tactical adaptations have made Bridge Nine the most survivable crew in Sadeas's army."}
                 ],
                 "enemies": [],
                 "loot": [],
                 "services": [],
-                "event_triggers": ["On entry: The lighteyed company captain raises his Shardblade. The sun catches it and for a moment the blade looks like frozen lightning. The advance begins."]
+                "perception_dc": 12,
+                "perception_success": "The highstorm wall is visible on the eastern horizon -- closer than the weather-wardens predicted. At current pace, you have four hours before it arrives. The plateau run takes three. The margin is razor-thin.",
+                "event_triggers": ["On entry: The lighteyed company captain raises his Shardblade. The sun catches it and for a moment the blade looks like frozen lightning. The advance begins. Talno calls cadence."]
             }
         },
         "1": {
@@ -45,14 +48,18 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Chasm Crossing. Bridge Nine slams its burden down across a forty-foot gap while Parshendi arrows arc overhead in whistling clouds. The bridge bounces once, twice, then holds. Men sprint across wood that flexes beneath their weight, the chasm yawning below -- a darkness so deep it has its own weather.",
+                "read_aloud": "The bridge hits stone with a crack that echoes down the chasm like thunder. It bounces once -- your stomach drops -- then settles. 'SPRINT!' Talno roars, and twenty men surge across wood that flexes and groans beneath their collective weight. Arrows whistle from the eastern plateau in singing arcs, thudding into planks, sparking off stone, and finding flesh. A man two paces ahead grunts and keeps running. The chasm below is darkness with its own gravity.",
                 "npcs": [],
                 "enemies": [
-                    {"name": "Parshendi Archer", "cr": "1"},
-                    {"name": "Parshendi Archer", "cr": "1"}
+                    {"name": "Parshendi Archer", "hp": 11, "ac": 10, "attack": 2, "damage": "1d6+2", "count": 2, "notes": "Fires from elevated position. Half cover."}
                 ],
                 "loot": [],
                 "services": [],
-                "event_triggers": ["On entry: Arrows thud into the bridge planks around your feet. A man two paces ahead takes one in the shoulder and keeps running -- stopping means dying, and dying means the bridge falls."]
+                "perception_dc": 13,
+                "perception_success": "The Parshendi archers are singing as they fire -- the Rhythm of War. Their arrows land in patterns that match the beat. Disrupting their rhythm (loud noise, counter-song) would scatter their aim for one round.",
+                "investigation_dc": 12,
+                "investigation_success": "The bridge planks have been weakened at the center -- not by age, but by deliberate cuts from below. Someone is sabotaging the bridges. The cuts are precise. Made with a very sharp blade. A Shardblade.",
+                "event_triggers": ["On entry: Arrows thud into the bridge planks around your feet. A man two paces ahead takes one in the shoulder and keeps running -- stopping means dying, and dying means the bridge falls. Jaks sprints point, drawing fire."]
             }
         },
         "2": {
@@ -68,17 +75,21 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Plateau Approach. Open stone mesa under an unforgiving sky. The Parshendi have taken defensive positions on the far side, their warforms settling into battle stances with the mechanical precision of soldiers who fight to a rhythm only they can hear. Their songs carry across the stone -- beautiful and terrible in equal measure.",
+                "read_aloud": "Open plateau stretches before you -- bare stone under a sky turning the purple-black of an approaching highstorm. The Parshendi hold the far edge in warform, their carapace armor grown thick over marbled skin. They sing. The Rhythm of Resolve becomes the Rhythm of War in a shift that tightens every muscle in your body. Their voices harmonize in patterns that predate human music by millennia. They are beautiful. They are about to kill you.",
                 "npcs": [],
                 "enemies": [
-                    {"name": "Parshendi Warrior (Warform)", "cr": "2"},
-                    {"name": "Parshendi Warrior (Warform)", "cr": "2"},
-                    {"name": "Parshendi Archer", "cr": "1"}
+                    {"name": "Parshendi Warrior (Warform)", "hp": 22, "ac": 12, "attack": 3, "damage": "1d8+3", "count": 2, "notes": "Warform carapace provides natural armor. Attacks coordinated to the Rhythm of War."},
+                    {"name": "Parshendi Archer", "hp": 11, "ac": 10, "attack": 2, "damage": "1d6+2", "count": 1, "notes": "Repositions after each volley. Fires to the rhythm."}
                 ],
                 "loot": [
                     {"name": "Parshendi Warform Gauntlet", "type": "armor"}
                 ],
                 "services": [],
-                "event_triggers": ["On entry: The Parshendi switch from the Rhythm of Resolve to the Rhythm of War -- a shift in tempo that tightens every muscle in your body"]
+                "perception_dc": 14,
+                "perception_success": "One Parshendi warrior is not singing. She stands apart from the formation, her warform carapace thinner than the others, her eyes tracking the battle with an intensity that suggests command. Removing her would break the coordination.",
+                "investigation_dc": 13,
+                "investigation_success": "The Parshendi defensive positions mirror formations from the Codes of War -- the Alethi military manual. They have been studying human tactics and adapting their own to counter them.",
+                "event_triggers": ["On entry: The Parshendi switch from the Rhythm of Resolve to the Rhythm of War -- a shift in tempo that tightens every muscle in your body. The highstorm wall is visible behind them, a curtain of darkness eating the sky."]
             }
         },
         "3": {
@@ -94,17 +105,22 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Gemheart Platform. The chrysalis sits at the plateau's center, splitting open in slow organic pulses. Inside, the gemheart glows with deep emerald Stormlight -- worth a king's ransom, worth the blood of every man who died crossing the chasms to reach it. Parshendi and Alethi soldiers fight in a tightening circle around it.",
+                "read_aloud": "The chrysalis splits like an overripe fruit, its membranes peeling back to reveal the gemheart -- an emerald the size of a man's fist, pulsing with Stormlight so intense it casts shadows through the flesh that held it. Worth a highprince's ransom. Worth the lives of every man who died crossing seven chasms to reach this plateau. The Parshendi sing the Rhythm of Mourning as they fight for it. They grieve the creature whose heart this was. They fight for it anyway.",
                 "npcs": [],
                 "enemies": [
-                    {"name": "Parshendi Elite (Warform)", "cr": "3"}
+                    {"name": "Parshendi Elite (Warform)", "hp": 28, "ac": 13, "attack": 4, "damage": "1d10+4", "count": 1, "notes": "Elite warrior. Carapace thickened to plate-equivalent. Fights with paired stone axes.", "special": ["Paired Strike: Two attacks per round at +4/+3"]}
                 ],
                 "loot": [
-                    {"name": "Gemheart (Emerald, Broam-grade)", "type": "treasure"},
-                    {"name": "Stormlight Sphere (Broam)", "type": "currency"},
+                    {"name": "Gemheart (Emerald, Broam-grade)", "type": "treasure", "value": 50},
+                    {"name": "Stormlight Sphere (Broam)", "type": "currency", "value": 50},
                     {"name": "Parshendi Song Crystal", "type": "quest_item"}
                 ],
                 "services": [],
-                "event_triggers": ["On entry: The chrysalis splits fully open and the gemheart pulses with light so intense it casts shadows through solid stone. Every Parshendi on the plateau begins singing the same song simultaneously."]
+                "investigation_dc": 15,
+                "investigation_success": "The Song Crystal vibrates at a frequency that matches the Parshendi mourning song. It is not a weapon or a tool. It is a recording device -- the Parshendi have been preserving their history in gemstone, the same way the ancient Radiants preserved memories in the Gem Archive.",
+                "perception_dc": 14,
+                "perception_success": "The highstorm is thirty minutes out. The wind is already strong enough to stagger. If you do not secure the gemheart and retreat within twenty minutes, no one will retreat at all.",
+                "event_triggers": ["On entry: The chrysalis splits fully open and the gemheart pulses with light so intense it casts shadows through solid stone. Every Parshendi on the plateau begins singing the same song simultaneously. The highstorm wall is twenty minutes behind them."]
             }
         },
         "4": {
@@ -120,18 +136,20 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Parshendi Battle Line. A Shardbearer stands among the Parshendi warriors -- carapace grown over Shardplate in a fusion of biology and ancient technology. The Shardblade in her hand hums with a frequency that makes your teeth ache. She sings the Rhythm of Command, and every Parshendi on the plateau moves as one.",
+                "read_aloud": "She stands a head taller than the warforms around her, carapace grown over Shardplate in a fusion of biology and ancient technology that should not be possible. The Shardblade in her hand hums at a frequency your teeth feel before your ears hear. She sings -- not the Rhythm of War, but the Rhythm of Command -- and every Parshendi on the plateau moves as one organism. She raises her blade. The singing stops. In the silence, she speaks a single word in accented Alethi: 'Enough.'",
                 "npcs": [],
                 "enemies": [
-                    {"name": "Parshendi Shardbearer", "cr": "5"},
-                    {"name": "Parshendi Warrior (Warform)", "cr": "2"},
-                    {"name": "Parshendi Warrior (Warform)", "cr": "2"}
+                    {"name": "Parshendi Shardbearer", "hp": 45, "ac": 15, "attack": 5, "damage": "2d8+5", "count": 1, "is_boss": true, "notes": "Shardplate absorbs first 10 damage per hit until cracked. Shardblade kills on hit to unarmored limbs.", "special": ["Shardplate: Absorbs 10 damage per hit, cracks after 30 total absorbed", "Rhythm of Command: All Parshendi allies gain +2 attack while she sings", "Shardblade Sweep: All targets in melee range, 2d8+5 damage"]},
+                    {"name": "Parshendi Warrior (Warform)", "hp": 22, "ac": 12, "attack": 3, "damage": "1d8+3", "count": 2}
                 ],
                 "loot": [
                     {"name": "Shardplate Fragment (Leg)", "type": "armor"},
                     {"name": "Parshendi Battle Standard", "type": "quest_item"}
                 ],
                 "services": [],
-                "event_triggers": ["On entry: The Parshendi Shardbearer raises her blade and the singing stops. In the silence, she speaks a single word in Alethi: 'Enough.'"]
+                "perception_dc": 15,
+                "perception_success": "The Shardbearer's carapace growth is not covering the Plate -- it is replacing it. Where the Plate has cracked, carapace fills the gaps. This is not a Parshendi wearing human armor. This is something new.",
+                "event_triggers": ["On entry: The Parshendi Shardbearer raises her blade and the singing stops. In the silence, she speaks a single word in Alethi: 'Enough.' The highstorm reaches the far edge of the plateau. You have minutes."]
             }
         },
         "5": {
@@ -147,15 +165,20 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Retreat Path. The plateau run is over -- won or lost, the survivors must cross the bridges back before the Parshendi regroup. Bridge Nine carries its wounded and its bridge simultaneously. The chasms gape below. The sun sets in the west, painting the Shattered Plains the color of old blood.",
+                "read_aloud": "The retreat is a sprint with no room for dignity. Bridge Nine carries its wounded across shoulders and its bridge across backs, and the chasms do not care which falls first. The highstorm arrives. Not gently -- it hits the eastern edge of the plateau like a fist, and the leading wall of wind nearly tears the bridge from your grip. Talno counts heads. The number comes up short. His expression is the most honest thing you have seen on these plains.",
                 "npcs": [
-                    {"name": "Medic Lirin", "role": "ally", "dialogue": "Pressure on the wound. Hold it. No, harder than that -- you are not going to hurt him more than the arrow already did. We have three men down and one bridge crossing left. Everyone walks back or no one does."}
+                    {"name": "Medic Lirin", "role": "ally", "dialogue": "Pressure on the wound. Hold it. No, harder than that -- you are not going to hurt him more than the arrow already did. We have three men down and one bridge crossing left. Everyone walks back or no one does.", "notes": "Lirin is a trained surgeon pressed into bridge crew service. He saves lives with field medicine that would shame a lighteyed healer. He refuses to carry weapons, even for self-defense."}
                 ],
                 "enemies": [],
                 "loot": [
                     {"name": "Battlefield Healing Kit", "type": "consumable"}
                 ],
                 "services": ["field_healing"],
-                "event_triggers": ["On entry: Talno counts heads. His expression when the number comes up short is the most honest thing you have seen on this plateau."]
+                "investigation_dc": 13,
+                "investigation_success": "Lirin's medical kit contains instruments of surgical quality -- not salvaged, but maintained. He was a professional surgeon before he was branded. The reason for his branding is sealed in Sadeas's records.",
+                "perception_dc": 14,
+                "perception_success": "The highstorm shelter is two chasms away. The storm is three minutes out. The bridge crossing takes four minutes. Someone will not make it. Talno knows. He is deciding who runs first and who stays behind with him.",
+                "event_triggers": ["On entry: Talno counts heads. His expression when the number comes up short is the most honest thing you have seen on this plateau. The highstorm wall turns the eastern sky to black. 'MOVE!' he roars. 'Shelter or stone, your choice.'"]
             }
         }
     }

@@ -1,0 +1,16 @@
+{
+    "module_id": "crown_plague_city",
+    "display_name": "The Plague City",
+    "system_id": "crown",
+    "source_type": "homebrew_original",
+    "source_pdf": "original",
+    "campaign_json": "campaign.json",
+    "chapters": [
+        {
+            "chapter_id": "the_plague_city",
+            "display_name": "The Plague City",
+            "zones": [],
+            "order": 1
+        }
+    ]
+}

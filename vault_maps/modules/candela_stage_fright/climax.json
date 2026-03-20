@@ -1,0 +1,116 @@
+{
+  "seed": 4705,
+  "width": 25,
+  "height": 15,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "eden_theater_stage",
+    "theme": "GOTHIC",
+    "topology": "dungeon",
+    "display_name": "The Recluse's Stage"
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 0,
+      "y": 0,
+      "width": 10,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The auditorium. Five hundred seats, arranged in a gentle arc facing the stage. Every seat is occupied. The audience sits in perfect stillness, hands folded in laps, heads tilted toward the stage at identical angles. They have no faces. Smooth skin from hairline to chin, featureless as eggs. Some wear evening dress. Some wear work clothes. Some are in nightgowns. They have been collected from across South Soffit over months, and now they sit in the dark and watch a show that never ends.",
+        "read_aloud": "Five hundred faces. Five hundred stolen faces, all of them gone, all of them here. The audience sits in absolute silence, their featureless heads turned toward the stage with the patient attention of the permanently captive. You recognize clothing -- the detective's overcoat in row seven. A dockworker's boots in the balcony. They are alive. Their chests rise and fall. Their fingers twitch. But they cannot see. They cannot speak. They cannot scream. They can only watch.",
+        "npcs": [],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [
+          "THREAT: Faceless Bodies -- the Recluse's collection. Hundreds of people, alive but faceless, arranged as an audience. They are not hostile. They are prisoners. Restoring their faces requires defeating the Recluse.",
+          "Mick spots Andres in the third row. He starts toward him. Andres's faceless head turns, tracking the sound of Mick's boots. He cannot see, but he knows his brother's footsteps."
+        ],
+        "loot": []
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 8,
+      "y": 2,
+      "width": 10,
+      "height": 10,
+      "room_type": "boss",
+      "connections": [0, 2],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The stage. Under a single spotlight, two men stand locked in an embrace that is not an embrace. Andres Aguilar and another man, a stranger, their bodies pressed together, faces inches apart. Andres's mouth is moving. When he speaks, the voice that comes out is not his -- it is Miles Crane's, the dead detective's. 'You... will... be... useful... in the future.' The stranger's face shifts, ripples, and reforms into Andres's missing features. The Recluse is wearing Andres like a costume.",
+        "read_aloud": "Mick freezes. On the stage, his brother stands in the spotlight, held by a man whose face is Andres's face -- but wrong. Too smooth. Too symmetrical. Too still. Andres speaks with a dead man's voice, his lips moving out of sync with the words, a puppet on invisible strings. Then the curtain behind them trembles. Something enormous moves in the darkness backstage. Eight legs. A body the size of a carriage. The Recluse emerges from the flies, suspended from silk cables as thick as rope, and from its abdomen, threads descend to the puppet on stage -- the false Andres, dancing on strings of spider silk, wearing a stolen face.",
+        "npcs": [
+          {
+            "name": "Mick Aguilar",
+            "role": "ally_in_peril",
+            "dialogue": "Andres! ANDRES! -- Let him go, you -- I will kill every --",
+            "notes": "Mick loses control when he sees his brother. He fires the revolver at the puppet-Andres, which is a mistake -- the bullets pass through the silk puppet and hit the stage floor. The real Andres is in the audience, faceless but alive. The puppet is bait. Mick is the real target -- the Recluse collects people with strong emotional connections. Mick's grief and guilt over his past violence toward Andres make him a perfect specimen."
+          }
+        ],
+        "enemies": [
+          {
+            "name": "The Recluse",
+            "hp": 40,
+            "max_hp": 40,
+            "ac": 16,
+            "attack": 8,
+            "defense": 16,
+            "count": 1
+          }
+        ],
+        "services": [],
+        "event_triggers": [
+          "The Recluse is a massive spider-creature, ten feet tall, with a body like polished obsidian and eight legs that end in hands -- human hands, each one stolen. It wears faces on its abdomen like medals, overlapping, twitching, cycling through expressions. It does not eat its victims. It collects them. It stages them. It is building an audience for a show only it understands.",
+          "The puppet-Andres speaks with the Recluse's voice now: 'Stay. Everyone stays. The show is not over. The show is never over. I need you to watch. I need someone to watch.' The Recluse lowers itself to the stage on silk cables, its stolen-hand legs clicking on the boards. The spotlight widens to include it. Opening night."
+        ],
+        "loot": [
+          {
+            "name": "Recluse Silk Gland",
+            "value": 0,
+            "description": "Harvested from the creature's remains. Produces bleed-infused silk of extraordinary tensile strength. Candela Obscura will want this for research -- or destruction. The silk still vibrates faintly, as if searching for a web to join."
+          }
+        ]
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 16,
+      "y": 4,
+      "width": 6,
+      "height": 6,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Backstage. The flies are thick with silk cocoons -- dozens of them, each containing a face. Preserved in silk, expressions frozen mid-scream, mid-laugh, mid-whisper. They are trophies. The faces are still alive in some terrible sense -- eyes track movement, lips mouth silent words. If the Recluse is killed, the faces may be recoverable. If the cocoons are destroyed, the victims in the audience will never be whole again.",
+        "npcs": [],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [
+          "The silk cocoons backstage contain the stolen faces. They can be restored to their owners if the Recluse is defeated and the cocoons are carefully opened. Damaging the cocoons destroys the face inside permanently.",
+          "If the circle defeats the Recluse, the silk network across South Soffit goes slack. The faceless audience members can be guided out of the theater. Restoring their faces is painstaking work -- each cocoon must be matched to its owner. But it is possible. Not all of them will want to remember."
+        ],
+        "loot": [
+          {
+            "name": "Collection of Stolen Faces",
+            "value": 0,
+            "description": "Dozens of preserved human faces in silk cocoons. Each one is still animate -- eyes move, lips twitch. They can be restored to their owners if matched correctly. Candela Obscura will need to coordinate with OUP and medical authorities for the restoration process."
+          }
+        ],
+        "investigation_dc": 14,
+        "investigation_success": "Among the cocoons, one face is different -- older, more deteriorated, the first face the Recluse ever took. The theater's previous owner. His expression is not fear. It is rapture. He invited the Recluse in. He fed it his audience. The final playbill makes sense now: 'The Crimson Masque' was not cancelled. It was completed."
+      }
+    }
+  }
+}

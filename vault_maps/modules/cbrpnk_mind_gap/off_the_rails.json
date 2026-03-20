@@ -1,0 +1,178 @@
+{
+    "seed": 9010,
+    "width": 80,
+    "height": 20,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "off_the_rails",
+        "theme": "RUST",
+        "topology": "linear",
+        "display_name": "Transmetropolitan Monorail -- Cars 10-12",
+        "flavor_note": "The PCs are inside a Simulacrum. They do not know this yet. Everything looks real. The glitches are subtle at first."
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 5,
+            "y": 8,
+            "width": 20,
+            "height": 8,
+            "room_type": "start",
+            "connections": [1],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Car 10 -- Smoke and Crowd. The flashbang detonated three seconds ago. Your ears ring. The monorail car is packed with commuters who are not reacting the way people should -- too slow, too uniform, faces turned away like background geometry. Fluorescent strips flicker overhead. You have a package. You do not know what is in it. The BLACK HOUNDS are already pushing through the crowd from the rear door, neural-linked weapons raised, assault gear catching the dying light. The far door -- Car 11 -- is electronically locked. Something on this train knows you are here.",
+                "read_aloud": "The flashbang's echo fades. Smoke drifts between bodies that sway like metronomes. Someone is singing at half-speed. A PA crackles: 'Running can cause accidents. Please, do not run. Go back instead.' The Black Hounds are close. The door ahead is locked. You have a package and no plan.",
+                "npcs": [
+                    {
+                        "name": "Commuter: Middle-Aged Man",
+                        "role": "environmental",
+                        "dialogue": "He is staring at a digipaper that is visibly turned off. His eyes move as if reading. He does not look up when the flashbang goes off. He does not look up now."
+                    },
+                    {
+                        "name": "Commuter: Young Teen",
+                        "role": "environmental",
+                        "dialogue": "She is singing under her breath at roughly half the speed of any recognizable song. Her lips move with mechanical regularity. She does not blink."
+                    },
+                    {
+                        "name": "Service Robot: Gray One-Armed Unit",
+                        "role": "environmental",
+                        "dialogue": "Its LED face cycles through expressions. It extends its one arm and asks, flatly: 'Assistance today? Assistance today? Assistance today?' It will ask until you answer or leave."
+                    },
+                    {
+                        "name": "Commuter: Couple",
+                        "role": "environmental",
+                        "dialogue": "They raise phones to take a selfie. The photo happens. They lower their phones. They raise their phones again. The same selfie. Over and over, same angle, same smile, same flash."
+                    }
+                ],
+                "enemies": [
+                    {
+                        "name": "Black Hound",
+                        "hp": 15,
+                        "ac": 12,
+                        "atk": 4,
+                        "damage_type": "ballistic",
+                        "notes": "Paramilitary. Slow but relentless. Neural-linked to their weapons. If this unit is killed, a new team respawns at Car 9 and pushes forward. They are always coming."
+                    },
+                    {
+                        "name": "Black Hound",
+                        "hp": 15,
+                        "ac": 12,
+                        "atk": 4,
+                        "damage_type": "ballistic",
+                        "notes": "Paramilitary. Slow but relentless. Neural-linked to their weapons."
+                    }
+                ],
+                "loot": [
+                    {"name": "The Package (sealed, warm)", "type": "quest_item", "notes": "Unknown contents. Deliver to Car 22. Do not open. Do not lose it."}
+                ],
+                "services": [],
+                "event_triggers": [
+                    "On entry: PA announcement crackles overhead -- 'Running can cause accidents. Please, do not run. Go back instead.' The voice sounds almost like someone you know.",
+                    "On combat start: The Neural Network notices. The lights flicker in a pattern. A surveillance droid in the corner rotates its camera toward you.",
+                    "On communication attempt (radio/hack/interface): GLITCH. The message goes out wrong. Static where words should be. Text comes back garbled. The Neural Network is listening.",
+                    "On PC death: They are not just down. If a PC dies here, they die in real life. The connection severs. The simulation does not forgive.",
+                    "Reality Check 1: The PA announcements use phrases that sound remarkably familiar -- as though someone wrote them specifically for you."
+                ],
+                "dm_notes": "This is an action scene. No services, no downtime. The locked door to Car 11 requires either the hack action or a full Black Hound defeat to open. The commuters are glitching NPCs -- they will not help and cannot be harmed in any meaningful way. They are rendered geometry."
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 27,
+            "y": 8,
+            "width": 20,
+            "height": 8,
+            "room_type": "corridor",
+            "connections": [0, 2],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Car 11 -- The Middle Car. Narrower than Car 10. The commuters here are sparser but stranger. A toddler in green overalls stands in the aisle -- but you saw the same toddler in Car 10. A person stares through the window; their reflection in the glass belongs to someone else's face entirely. The Neural Network's interference is intensifying. The walls hum at a frequency that vibrates behind your eyes.",
+                "read_aloud": "Car 11. Less crowded. The toddler from the last car is here too, same green overalls, watching you with no expression. In the window, someone else's reflection looks back from behind your face. The PA: 'Ads. Ads. Ads. Don't run. Face them. Destroy now. Go back. I'm here.' The Black Hounds are one car behind.",
+                "npcs": [
+                    {
+                        "name": "Commuter: Same Toddler (Green Overalls)",
+                        "role": "environmental",
+                        "dialogue": "She was in the last car. She is in this one. She watches. She does not speak. When you move past her, she is already ahead of you."
+                    },
+                    {
+                        "name": "Commuter: Window Watcher",
+                        "role": "environmental",
+                        "dialogue": "He stares through the window at the cityscape outside. His reflection in the glass is a different person -- different face, different clothes, wrong posture. He does not seem to notice."
+                    },
+                    {
+                        "name": "Commuter: Elder in VR Goggles",
+                        "role": "environmental",
+                        "dialogue": "He is wearing old VR goggles and slowly mimicking the movements of the Black Hounds -- raising an arm when they raise an arm, turning when they turn. His connection to them is invisible and exact."
+                    },
+                    {
+                        "name": "Commuter: Two Punks Arguing",
+                        "role": "environmental",
+                        "dialogue": "They are yelling at each other. Their voices are fine at first. Then the argument continues and their voices begin bleeding into radio chatter -- frequency hops, call signs, dead air. Neither of them reacts to this."
+                    }
+                ],
+                "enemies": [
+                    {
+                        "name": "Black Hound",
+                        "hp": 15,
+                        "ac": 12,
+                        "atk": 4,
+                        "damage_type": "ballistic",
+                        "notes": "Pushed through from Car 10 if the party did not stop them. Neural-linked weapons. Slow advance."
+                    }
+                ],
+                "loot": [],
+                "services": [],
+                "event_triggers": [
+                    "On entry: The ads on every screen in this car all display variations of the same message: 'don't run, face them, destroy now, go back, I'm here' and any number that includes 12.",
+                    "Reality Check 2: Every advertisement in the car carries a message that feels like it is addressed to someone specifically. To you.",
+                    "On looking out the window: The cityscape outside is on a loop. The same building passes every forty seconds. You are not moving as far as you think.",
+                    "Glitch: A faceless person at the end of the car is having a business phone conversation. They have no face. Their voice is professional and normal."
+                ],
+                "dm_notes": "Car 11 is the escalating strangeness corridor. The glitches here are undeniable if the PCs are paying attention -- but deniable if they are not. The Reality Check track should be advancing if players investigate the commuters or the window."
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 49,
+            "y": 8,
+            "width": 20,
+            "height": 8,
+            "room_type": "town_gate",
+            "connections": [1],
+            "tier": 1,
+            "is_locked": true,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Car 12 -- The Forward Door. The door to Car 12 is electronically locked with Simulacrum-grade security -- heavier than any transit door should be. Through the smudged glass panel you can see the next car: empty seats, lights steady, no commuters, no enemies. A sign above the door reads CAR 12 in clean sans-serif. The Neural Network does not want you to go through. Or it very much does. It is hard to tell which.",
+                "read_aloud": "The door to Car 12 is locked. The glass panel shows an empty car beyond -- no commuters, no Black Hounds, just rows of clean seats. The PA interrupts: 'Dear passengers, please get the fuck out of car 12. Not 22. Twelve.' The door hums under your hand.",
+                "npcs": [
+                    {
+                        "name": "Commuter: Badly Hurt Person",
+                        "role": "environmental",
+                        "dialogue": "Someone is slumped in a seat near the locked door with obvious injuries from the earlier conflict -- bleeding, labored breathing. They do not react to being touched, spoken to, or healed. They look up once, make no expression, and look away."
+                    },
+                    {
+                        "name": "Commuter: Person Weeping",
+                        "role": "environmental",
+                        "dialogue": "If bumped or touched, they begin weeping. And then they begin to disintegrate -- pixels pulling apart from the edges inward. In eight seconds they are gone. The seat is empty. Nobody else reacts."
+                    }
+                ],
+                "enemies": [],
+                "loot": [],
+                "services": [],
+                "event_triggers": [
+                    "On lock bypass (hack/force): The Neural Network resists. Surveillance droids converge. Two Black Hounds from the rear begin pushing faster.",
+                    "On entry (if unlocked): PA -- 'Dear passengers, please get the fuck out of car 12. Not 22. Twelve.' The message repeats twice. Then silence.",
+                    "Reality Check 3: Outside the window, the same cityscape as Car 11. Still looping. You have been seeing the same tower for ten minutes.",
+                    "Reality Check 5 (if advanced this far): Opening a door in this car leads back to the opposite side door of the same car. Pac-Man loop. The Neural Network's topology is failing."
+                ],
+                "dm_notes": "This is the Act 1 exit. Reaching Car 12 transitions to Act 2 -- but the Reality Check track must be at 3+ for the full revelation. If the party bypasses straight to Car 12 without investigating, they carry only suspicion into Act 2. The locked door IS the act break. The Pac-Man loop (Reality Check 5) is reserved for a group that is really pushing the investigation."
+            }
+        }
+    }
+}

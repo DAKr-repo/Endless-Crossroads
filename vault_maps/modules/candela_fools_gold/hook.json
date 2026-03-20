@@ -1,0 +1,63 @@
+{
+  "seed": 7008,
+  "width": 30,
+  "height": 20,
+  "start_room_id": 0,
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 2,
+      "y": 2,
+      "width": 12,
+      "height": 8,
+      "room_type": "tavern",
+      "connections": [1],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false
+    },
+    "1": {
+      "id": 1,
+      "x": 16,
+      "y": 3,
+      "width": 10,
+      "height": 7,
+      "room_type": "normal",
+      "connections": [0],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false
+    }
+  },
+  "metadata": {
+    "zone_id": "hook",
+    "theme": "GOTHIC",
+    "topology": "settlement",
+    "scene_title": "The Lightkeeper's Study"
+  },
+  "content_hints": {
+    "0": {
+      "description": "The Lightkeeper's private study, paneled in dark oak. A map of Newfaire's waterworks covers one wall, red pins marking contamination reports. A glass of water sits untouched on the desk -- the Lightkeeper won't drink from the tap.",
+      "read_aloud": "Your Lightkeeper slides a broadsheet across the desk. The headline reads: GOLD RUSH ON THE STENTORIAN -- FORTUNE SEEKERS FLOCK TO RIVERSIDE CAMPS. Below, in smaller type: UNEXPLAINED ILLNESS STRIKES MINING SETTLEMENT. THREE DEAD. 'The illness,' your Lightkeeper says quietly, 'turns their skin to gold.'",
+      "npcs": [
+        {
+          "name": "Lightkeeper Callum Rede",
+          "role": "briefing",
+          "dialogue": "The OUP thinks it's chemical runoff from the mining. They're wrong. Our sources say the miners struck something beneath the riverbed. Something that bleeds. The contamination is flowing downstream toward the municipal intake. If it reaches Newfaire's plumbing, we'll have a citywide crisis.",
+          "notes": "Rede has seen bleed contamination before -- his predecessor died from it. He's more frightened than he lets on. The circle has perhaps two days before the contamination reaches the city's water treatment facility."
+        }
+      ],
+      "services": ["rumor"],
+      "event_triggers": ["A gold rush has uncovered a thinning beneath the Stentorian River. The bleed is contaminating the water supply. The clock is ticking."]
+    },
+    "1": {
+      "description": "The chapter house archive's geological section. Rolled maps in honeycomb shelves, mineral samples in glass cases, and survey reports from the Stentorian River basin dating back centuries.",
+      "read_aloud": "A geological survey from 1847 notes 'anomalous mineral deposits' in the exact location of the current gold rush. The surveyor's addendum, written in a shaking hand: 'Recommend no further excavation. The gold is not gold. It grows.'",
+      "investigation_dc": 12,
+      "investigation_success": "Cross-referencing Candela's records: a thinning was documented in the Stentorian River basin in 1602 but classified as 'dormant.' The miners' excavation appears to have reactivated it. The gold they're finding isn't mineral -- it's crystallized bleed.",
+      "loot": [
+        {"name": "1847 Survey Report", "value": 0, "description": "Detailed geological survey of the Stentorian basin. Marks the exact coordinates of the anomalous deposits and includes a hand-drawn cross-section of the underground formation."}
+      ]
+    }
+  }
+}

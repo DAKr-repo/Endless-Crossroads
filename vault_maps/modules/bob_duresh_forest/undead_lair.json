@@ -1,0 +1,82 @@
+{
+  "seed": 8021,
+  "width": 35,
+  "height": 25,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "undead_lair",
+    "theme": "RUST",
+    "topology": "dungeon",
+    "mission_types": ["recon", "assault"]
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 2,
+      "y": 10,
+      "width": 8,
+      "height": 6,
+      "room_type": "start",
+      "connections": [1],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The lair's perimeter. Trees have been torn down in a rough circle, their trunks dragged into a barricade of wood and bone. The construction is not random -- there is a brutal logic to it, angles designed to funnel attackers into killing zones. Inside the barricade, Rotters stand in loose clusters, swaying. They do not patrol. They wait.",
+        "read_aloud": "The trees have been torn down to make a crude fort of bone and wood. The construction is not random. Something intelligent built this.",
+        "event_triggers": [
+          "The trees have been torn down to make a crude fort of bone and wood."
+        ]
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 14,
+      "y": 6,
+      "width": 12,
+      "height": 10,
+      "room_type": "boss",
+      "connections": [0, 2],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The clearing's center. The Horror stands on a mound of packed earth -- a burial mound, ancient, pre-dating the forest itself. The Horror has incorporated the mound into its body, roots and soil and bone fused together. Around it, Rotters kneel in concentric rings, motionless, their heads bowed as if in prayer. A Spitter perches in the branches of the one remaining tree, its acid eroding the bark in a slow, steady drip. The Horror's eyes -- if those hollow sockets can be called eyes -- track your movement the moment you breach the barricade.",
+        "enemies": [
+          {"name": "Horror", "hp": 25, "max_hp": 25, "ac": 15, "attack": 7, "defense": 15, "count": 1},
+          {"name": "Rotter", "hp": 8, "max_hp": 8, "ac": 8, "attack": 3, "defense": 8, "count": 4},
+          {"name": "Spitter", "hp": 15, "max_hp": 15, "ac": 11, "attack": 5, "defense": 11, "count": 1}
+        ],
+        "event_triggers": [
+          "The Horror raises one arm. The Rotters stand as one. The prayer is over.",
+          "When the first Rotter falls, the others do not react. They are puppets. Only the Horror matters."
+        ],
+        "perception_dc": 14,
+        "perception_success": "The burial mound predates the corruption. It is channeling something older -- ley energy, spirit flow, whatever the Panyar call it. The Horror is using the mound as an anchor, drawing power from the land itself. Destroying the mound's capstone would sever that connection."
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 26,
+      "y": 12,
+      "width": 7,
+      "height": 5,
+      "room_type": "treasure",
+      "connections": [1],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Behind the mound, a cache of salvage: weapons, armor, personal effects stripped from the dead and piled without order. Among the detritus, items of real value -- a Chosen's reliquary, a Bartan engineer's field kit, a satchel of dispatches that never reached their destination. The dispatches contain intelligence on undead movements that is weeks old but still useful -- patrol patterns, force concentrations, the name of the Broken commanding this sector.",
+        "loot": [
+          {"name": "Intelligence Dispatches", "value": 3, "description": "Detailed undead movement reports. Intel +2 for the next mission."},
+          {"name": "Chosen's Reliquary", "value": 2, "description": "A small iron box containing a finger bone wrapped in silver thread. Elsu at Sunstrider Camp would recognize it."},
+          {"name": "Bartan Field Kit", "value": 1, "description": "Engineering tools in a leather roll. Sapper Greiz at Barrak Mines would make good use of these."}
+        ],
+        "event_triggers": [
+          "The dispatches name the Broken commanding this sector: Lieutenant Breaker, a former Legion officer. Falk's hand tightens on his hatchet. He knows the name."
+        ]
+      }
+    }
+  }
+}

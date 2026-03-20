@@ -1,0 +1,101 @@
+{
+  "seed": 4405,
+  "width": 25,
+  "height": 15,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "light_eater_lair",
+    "theme": "GOTHIC",
+    "topology": "dungeon",
+    "display_name": "The Light Eater"
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 0,
+      "y": 0,
+      "width": 8,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The ridge above the creek. Static charge crackles across every surface -- your hair stands on end, metal buttons spark against fabric. Below, the town of Overmount is visible as a scatter of oil-lamp pinpricks. As you watch, those pinpricks go dark, one by one. Not the oil lamps. The electric lights. Every bulb in town blinks out in a wave radiating from the powerhouse.",
+        "read_aloud": "Your compass needle spins. The air hums with a subsonic vibration that makes your teeth ache. Below, Overmount goes dark -- not slowly, not in stages, but in a single rolling blackout that sweeps from the powerhouse to the furthest company cottage in three heartbeats. The electric grid is dead. Something has eaten all of it.",
+        "npcs": [],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [
+          "Every electric light in Overmount dies simultaneously. The Light Eater has consumed the entire grid. It is fully fed and about to emerge."
+        ],
+        "loot": []
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 10,
+      "y": 0,
+      "width": 10,
+      "height": 10,
+      "room_type": "boss",
+      "connections": [0, 2],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The clearing beyond the ridge. The chain of warped bodies converges here from three directions, a grotesque delta of fused flesh feeding into a single massive form. The Light Eater. Thirty feet tall, a shadow given terrible weight, its hide black and rippling like oil on water. Its mouth crackles with stolen electricity -- blue-white arcs jumping between teeth that are not teeth but filaments. It grows as it feeds, and it has just consumed an entire town's worth of current.",
+        "read_aloud": "It stands in the clearing like a wound in the night. Thirty feet of shadow and static, its outline flickering between solid and translucent. Where its mouth should be, a cage of electrical arcs snaps and pops, illuminating a gullet that goes down forever. The bodies at its feet are not dead -- they twitch and spark, still conducting, still feeding it. It turns toward your light. It is hungry. It is always hungry.",
+        "npcs": [],
+        "enemies": [
+          {
+            "name": "The Light Eater",
+            "hp": 40,
+            "max_hp": 40,
+            "ac": 16,
+            "attack": 8,
+            "defense": 16,
+            "count": 1
+          }
+        ],
+        "services": [],
+        "event_triggers": [
+          "THREAT: The Light Eater (Body/Bleed) -- 30+ feet tall, black hide crackling with stolen electricity. Grows stronger as it feeds on current. Vulnerable to water, which short-circuits its conductivity.",
+          "The Light Eater's attacks arc electricity through conductive materials. Metal weapons, wet clothing, and standing water all become hazards. The creature sends waves of Night Terrors from its body like sparks from a bonfire."
+        ],
+        "loot": [
+          {
+            "name": "Light Eater Core",
+            "value": 0,
+            "description": "A fist-sized sphere of vitrified flesh and copper filament pulled from the creature's remains. It hums with residual bleed energy and glows faintly blue-white in darkness. Extremely dangerous -- Candela Obscura will want this contained."
+          }
+        ]
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 18,
+      "y": 4,
+      "width": 6,
+      "height": 6,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The Overmount Volunteer Fire Station. A timber shed on the clearing's edge, its doors hanging open. Inside: a hand-tub fire engine -- a manually-pumped water cannon on iron wheels. Two hundred gallons of creek water in its cistern. The pump handles are worn smooth by decades of volunteer hands.",
+        "read_aloud": "A fire station. Barely more than a shed, but inside sits the town's hand-tub engine -- a brass-fitted water pump on iron wheels, its cistern still full from the last drill. Two hundred gallons. The pump handles are right there. The Light Eater is right there. The math is simple. The execution will not be.",
+        "npcs": [],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [
+          "The hand-tub fire engine holds 200 gallons of water and can be pumped to produce a pressurized stream. If the circle can get the engine close enough and douse the Light Eater, its conductivity will short-circuit catastrophically.",
+          "Pumping the engine requires at least two people working in concert. The Light Eater will not stand still. Someone will need to hold its attention."
+        ],
+        "loot": []
+      }
+    }
+  }
+}

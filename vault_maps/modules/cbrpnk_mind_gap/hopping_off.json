@@ -1,0 +1,148 @@
+{
+    "seed": 9012,
+    "width": 60,
+    "height": 40,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "hopping_off",
+        "theme": "RUST",
+        "topology": "dungeon",
+        "display_name": "Underground Facility -- The Real World",
+        "flavor_note": "The PCs have left the Simulacrum. Whether they exited through Car 12 or Car 22, they wake up here. The resolution depends entirely on what they chose in Act 2."
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 20,
+            "y": 5,
+            "width": 20,
+            "height": 12,
+            "room_type": "start",
+            "connections": [1],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Recovery Room. You wake up. Cables everywhere -- thick neural-link bundles running from the base of your skull into black conduit that threads through holes in the floor. Plugs in your heads. Wires monitoring vital signs. The equipment is makeshift: salvaged monitors duct-taped to salvaged server racks, mismatched interfaces jury-rigged together with actual physical wire rather than wireless connection. Everything smells of machine oil and old concrete. The light comes from strip LEDs strung along the ceiling at irregular intervals. This is a real place. You were not on a train.",
+                "read_aloud": "You wake up. Cables in your skull. Wires on your chest reading your heartbeat. The room is concrete and salvage -- makeshift tech, strip lighting, the kind of place built by people who needed it to work more than they needed it to look like anything. Nobody else is awake yet. The monitors still show the Simulacrum's vital feeds, ticking down.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [
+                    {"name": "Neural Link Hardware (your own)", "type": "equipment", "notes": "The hardware that put you in the simulation. Still warm. Whoever built this facility used non-standard connectors -- this is custom work."},
+                    {"name": "Facility Access Badge (found on floor)", "type": "equipment", "notes": "Dropped or abandoned. Laminated, handwritten, no corp logo. Someone made this themselves."}
+                ],
+                "services": [],
+                "event_triggers": [
+                    "On entry: The Simulacrum feed on the nearest monitor clicks off. A timestamp. You were under for however long it took to reach Car 22 or Car 12.",
+                    "On standing up: The cables disconnect with a physical pull. Real pain. Real body. The floor is cold concrete.",
+                    "Act 2 outcome -- delivered (Car 22): One of the monitors shows a different feed. A network topology map. A spreading dark patch at the center -- the Virus, already moving through the Neural Network's core. Whatever it was going to do, it is doing it now.",
+                    "Act 2 outcome -- exited (Car 12): The monitors show the Simulacrum still running -- but the Package feed is terminated. The Virus was stopped or scattered. The Neural Network's topology looks clean. For now.",
+                    "Act 2 outcome -- destroyed Package: Same as Car 12 exit, but one monitor shows a recovery process running -- the Network absorbed Virus fragments during the fight. It may have gotten something after all."
+                ],
+                "dm_notes": "This is the awakening room. Quiet. Physical. Real. Let the PCs process the sensory contrast -- they were on a train, now they are in a concrete box with wires in their heads. No enemies here. No immediate threat. This is the breath before Act 3's consequences arrive."
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 10,
+            "y": 20,
+            "width": 40,
+            "height": 10,
+            "room_type": "corridor",
+            "connections": [0, 2, 3],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Server Hall. The facility's main corridor. Racks of salvaged servers line both walls -- consumer hardware modified past spec, pushed hard enough that three units have their cooling fans held in place with wire ties. Cable management is a suggestion that someone once considered and abandoned. The servers are running something. Indicators suggest high utilization, all cores maxed. This is not a storage facility. This is an active operation. Someone is running a serious workload from a place that looks like it was assembled in the dark.",
+                "read_aloud": "The corridor is server racks and cables. Everything runs hot -- the fans scream at maximum. Three units have their fans wired down by hand, rattling in their mounts. Whatever is being processed here is maxing out every core. You can feel the heat through the floor.",
+                "npcs": [
+                    {
+                        "name": "Facility Operator (if found)",
+                        "role": "neutral",
+                        "dialogue": "Whoever runs this place may or may not be here when the PCs wake up. If present: they are alone, unarmed, and very calm about the fact that the runners have just woken up. 'You made it. Good. Or not good, depending. What did you do with the Package?' Their reaction to the answer shapes the rest of Act 3."
+                    }
+                ],
+                "enemies": [],
+                "loot": [
+                    {"name": "Facility Server Log (partial)", "type": "quest_item", "notes": "Readable with any tech roll. Shows access history, Simulacrum uptime, and one entry that lists the PCs by name -- entered before they were plugged in."},
+                    {"name": "Salvaged Stim-Pack", "type": "consumable"},
+                    {"name": "Facility Schematic (hand-drawn)", "type": "quest_item", "notes": "Rough map of the facility. Shows a third room not yet found -- labeled only with a question mark and an arrow."}
+                ],
+                "services": [],
+                "event_triggers": [
+                    "On entry: The servers' workload spikes as you enter. Something noticed you.",
+                    "On examining servers: The workload is the Neural Network. This facility is a direct tap into it. Whoever built this has live access to the same network the Simulacrum ran on.",
+                    "Act 2 outcome -- delivered: One server bank begins showing error cascades. The Virus is propagating. If not stopped from here, it will reach critical saturation in the Neural Network within an estimated hour.",
+                    "Act 2 outcome -- stopped/destroyed: The servers run clean. Whatever was planned did not complete. The facility operator (if present) has mixed feelings."
+                ],
+                "dm_notes": "The server hall is where the world-state consequences of Act 2 become visible. The PCs are now looking at the tools that put them inside the Simulacrum. The facility operator is optional -- leave them out for a colder, more ambiguous ending. Include them for a confrontational Act 3 with direct answers."
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 5,
+            "y": 32,
+            "width": 20,
+            "height": 8,
+            "room_type": "normal",
+            "connections": [1],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Plug-In Bay. Six more chairs -- identical to the one you woke up in. Four are occupied. People still under, vital signs steady, cables in skulls. Their faces cycle through microexpressions: frustration, calculation, fear. They are still in the Simulacrum. On a whiteboard behind the chairs: names, systems, objectives. The PCs' names are there. So are others. Someone is running a crew of runners through a neural network and none of them agreed to this in any way that anyone would recognize.",
+                "read_aloud": "Six chairs. Four still occupied -- runners still under, faces twitching with the interior logic of whatever simulation they are running. A whiteboard behind them lists names and objectives in dry-erase marker. Your name is on it. The objective next to it was 'DELIVERY.' Past tense, either way.",
+                "npcs": [
+                    {
+                        "name": "Runner: Still Under",
+                        "role": "neutral",
+                        "dialogue": "Not reachable. Inside a Simulacrum. Their vital signs are stable. They do not respond to external contact. They look like people having a bad dream. Disconnecting them without a safe exit protocol could be fatal -- the PCs have no way to know if there is a safe exit protocol."
+                    }
+                ],
+                "enemies": [],
+                "loot": [
+                    {"name": "Whiteboard Data (photographed)", "type": "quest_item", "notes": "The names, the systems, the objectives. Evidence of operation scope. More than one run is in progress."},
+                    {"name": "Safe Exit Protocol Chip (on a nearby shelf)", "type": "equipment", "notes": "If used correctly, allows a runner to be brought out without neural damage. If used incorrectly, or used without knowing what it is, it forces a hard disconnect."}
+                ],
+                "services": [],
+                "event_triggers": [
+                    "On entry: One of the still-under runners twitches hard. A vital sign monitor spikes and recovers. They are in contact with something hostile.",
+                    "On examining whiteboard: The PCs' mission was listed as DELIVERY. There is no listed exit condition. They were never supposed to realize what they were carrying.",
+                    "On disconnecting a runner (safe): They wake up disoriented and hostile. They were in the middle of their run. They do not know where they are or what you are.",
+                    "On disconnecting a runner (unsafe): Flatline. Same consequence as PC death in the Simulacrum. Real."
+                ],
+                "dm_notes": "The plug-in bay is the ethical gut-punch. The PCs were not special -- there are other crews running other packages through other Simulacrums right now. The scale of the operation is visible here. What they do with the other runners, and with the whiteboard information, is the last major choice of the scenario."
+            }
+        },
+        "3": {
+            "id": 3,
+            "x": 35,
+            "y": 32,
+            "width": 20,
+            "height": 8,
+            "room_type": "town_gate",
+            "connections": [1],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Exit. A metal door, no handle on the inside. It takes a tool or a pry-bar to open it from this direction -- it was designed to keep people in, not out. Beyond it: a service tunnel, damp, unlit, smelling of old groundwater. The tunnel runs approximately forty meters and exits through a storm drain grate into a street you do not immediately recognize. The city is above you. Whatever just happened is behind you. The Neural Network is still running. The Virus either is or is not inside it. The other runners are either saved or not. This is over if you make it out the door.",
+                "read_aloud": "The exit is a door with no interior handle. You find a way through. The tunnel beyond smells like a city's lower intestine. Forty meters to a storm drain. Above the grate: street noise, rain, neon. The city does not know what just happened. It never does.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [
+                    {"name": "What you came in with (minus what you lost)", "type": "equipment", "notes": "Personal effects are stacked near the door. Someone -- or something -- organized them before you woke up."}
+                ],
+                "services": ["exit_facility"],
+                "event_triggers": [
+                    "On exit: The storm drain grate opens onto a street in the lower city. Rain. Neon. No indication of which district. You are out.",
+                    "Act 2 outcome -- delivered: Somewhere in the city's infrastructure, the Neural Network manages traffic, transit, financial systems, building climate controls. The Virus is in there now. Something will change. You will hear about it.",
+                    "Act 2 outcome -- stopped: The Neural Network runs clean tonight. Whoever sent you -- whoever the facility operator worked for, whoever's name is not on that whiteboard -- knows it failed. They will try again.",
+                    "Coda PA (optional, heard faintly from the facility behind you as the door closes): 'Enjoy refreshments from our vending machines.'"
+                ],
+                "dm_notes": "The exit is the end. No resolution is clean. The scenario's three endings all lead here but with different weights: Delivered (the Virus is loose, was this liberation or catastrophe?), Stopped (the operation failed, but it will be attempted again), Destroyed but partial (the Network absorbed fragments, unknown outcome). Leave the coda PA line to the GM's discretion -- it works best if the players are already out the door."
+            }
+        }
+    }
+}

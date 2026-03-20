@@ -1,0 +1,109 @@
+{
+  "seed": 7012,
+  "width": 30,
+  "height": 15,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "haven_hills_climax",
+    "theme": "GOTHIC",
+    "topology": "dungeon",
+    "display_name": "The Garden Below"
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 0,
+      "y": 0,
+      "width": 8,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The mine tunnel descending. Ellis walks ahead, one hand on the tunnel wall, the other resting on the creature's back. The creature moves with fluid grace in its natural environment, six limbs finding purchase on every surface, eyes casting soft blue-green light.",
+        "read_aloud": "Ellis hums a lullaby his mother used to sing. The creature's subsonic rumble harmonizes, a frequency you feel in your chest more than hear. The tunnel opens ahead. The bioluminescent moss brightens, as though the garden senses the creature returning. From somewhere below, something large answers.",
+        "npcs": [],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [
+          "The creature is returning home for the first time. Ellis is braver than anyone his age should need to be. The garden ahead glows with life."
+        ],
+        "loot": [],
+        "perception_dc": 12,
+        "perception_success": "The creature is communicating with something below through subsonic vibration. The tone from below shifts from searching to recognition. The moss brightens in response. Something has been waiting."
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 11,
+      "y": 0,
+      "width": 10,
+      "height": 10,
+      "room_type": "boss",
+      "connections": [0, 2],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The limestone chamber. The underground spring, the bioluminescent moss, the warm mineral air -- and in the center, a second creature. Larger. Older. Scars from years of protecting what it loves. Its eyes are the same blue-green as the smaller creature's. It has been searching. It has found.",
+        "read_aloud": "The larger creature surges forward. The juvenile flinches, pressing against Ellis. The boy stands his ground. 'It's okay,' he tells the creature. 'That's family.' The elder stops. It looks at Ellis with an intelligence beyond animal, then lowers its massive head to his level. Ellis reaches out. His small hand touches its face. Contact. The subsonic rumble of both creatures syncs into one deep chord that makes the walls vibrate and the moss blaze with light.",
+        "npcs": [],
+        "enemies": [
+          {
+            "name": "The Protector (final test)",
+            "hp": 30,
+            "max_hp": 30,
+            "ac": 14,
+            "attack": 7,
+            "defense": 14,
+            "count": 1
+          }
+        ],
+        "services": [],
+        "event_triggers": [
+          "THREAT: The elder tests the investigators with a bluff charge. If no one attacks, it accepts them. If anyone retaliates, both creatures become hostile.",
+          "SPECIAL: Standing firm without attacking earns the elder's respect. Ellis stepping between the investigators and the elder pacifies both creatures instantly. The resolution depends on trusting the child.",
+          "SUCCESS: If pacified, the elder and juvenile reunite. The moss blazes. The chamber fills with subsonic harmonics. The colony garden is restored."
+        ],
+        "loot": [
+          {
+            "name": "Colony Covenant Stone",
+            "value": 0,
+            "description": "After the reunion, the elder pushes a large warm stone toward the investigators -- covered in scratch-patterns from the colony's communication language. A gift. An agreement. The colony accepts the investigators as protectors, as J. Redstone was before them."
+          }
+        ]
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 22,
+      "y": 2,
+      "width": 6,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The surface at dawn. Haven Hills below, pale smoke from the first chimneys. The mine gate is closed. Ellis stands at the entrance looking back into the dark. The blue-green glow recedes as the creatures return to their garden.",
+        "read_aloud": "Ellis is quiet for a long time. 'Will he remember me?' From deep in the mine, very faintly, you hear it -- the subsonic purr. Steady, rhythmic. The creature remembers. Ellis smiles. It is the first time you have seen him smile. Foreman Decker stands at the mine gate with a new sign: SEALED. He nods. The covenant holds.",
+        "npcs": [],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [
+          "The colony is restored. The mine expansion is rerouted. Ellis will live with Martha Voss next door -- close enough that the creature can reach him through the spring connection. The thinning is stable. The garden glows. The creatures remember."
+        ],
+        "loot": [
+          {
+            "name": "Redstone's Lamp (returned)",
+            "value": 0,
+            "description": "The elder returned the brass lamp to Ellis before the investigators left. The boy holds it carefully. 'For when I visit,' he says."
+          }
+        ]
+      }
+    }
+  }
+}

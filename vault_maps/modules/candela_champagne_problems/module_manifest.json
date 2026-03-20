@@ -1,0 +1,96 @@
+{
+  "module_id": "candela_champagne_problems",
+  "display_name": "Champagne Problems",
+  "system_id": "candela",
+  "source_type": "publisher_licensed",
+  "campaign_setting": "newfaire",
+  "starting_location": "chapter_house",
+  "recommended_levels": {"min": 1, "max": 3},
+  "chapters": [
+    {
+      "chapter_id": "discovery",
+      "display_name": "Discovery",
+      "order": 1,
+      "zones": [
+        {
+          "zone_id": "hook",
+          "blueprint": "hook.json",
+          "topology": "settlement",
+          "theme": "GOTHIC",
+          "location_id": "chapter_house",
+          "entry_trigger": "module_start",
+          "exit_trigger": "player_choice"
+        },
+        {
+          "zone_id": "arrival",
+          "blueprint": "arrival.json",
+          "topology": "settlement",
+          "theme": "GOTHIC",
+          "location_id": "abandoned_drugstore",
+          "entry_trigger": "player_choice",
+          "exit_trigger": "player_choice"
+        }
+      ]
+    },
+    {
+      "chapter_id": "investigation",
+      "display_name": "Investigation",
+      "order": 2,
+      "zones": [
+        {
+          "zone_id": "exploration_1",
+          "blueprint": "exploration_1.json",
+          "topology": "dungeon",
+          "theme": "GOTHIC",
+          "location_id": "hidden_staircase",
+          "entry_trigger": "player_choice",
+          "exit_trigger": "player_choice"
+        },
+        {
+          "zone_id": "exploration_2",
+          "blueprint": "exploration_2.json",
+          "topology": "dungeon",
+          "theme": "GOTHIC",
+          "location_id": "speakeasy_floor",
+          "entry_trigger": "player_choice",
+          "exit_trigger": "player_choice"
+        }
+      ]
+    },
+    {
+      "chapter_id": "confrontation",
+      "display_name": "Confrontation",
+      "order": 3,
+      "zones": [
+        {
+          "zone_id": "escalation_1",
+          "blueprint": "escalation_1.json",
+          "topology": "dungeon",
+          "theme": "GOTHIC",
+          "location_id": "back_rooms",
+          "entry_trigger": "player_choice",
+          "exit_trigger": "player_choice"
+        },
+        {
+          "zone_id": "escalation_2",
+          "blueprint": "escalation_2.json",
+          "topology": "dungeon",
+          "theme": "GOTHIC",
+          "location_id": "record_player_stage",
+          "entry_trigger": "player_choice",
+          "exit_trigger": "player_choice"
+        },
+        {
+          "zone_id": "climax",
+          "blueprint": "climax.json",
+          "topology": "dungeon",
+          "theme": "GOTHIC",
+          "location_id": "the_hosts_sanctum",
+          "entry_trigger": "player_choice",
+          "exit_trigger": "boss_defeated"
+        }
+      ]
+    }
+  ],
+  "freeform_zones": []
+}

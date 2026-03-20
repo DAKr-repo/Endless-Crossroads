@@ -1,0 +1,74 @@
+{
+  "seed": 90002,
+  "width": 30,
+  "height": 20,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "crows_foot",
+    "theme": "GOTHIC",
+    "topology": "settlement",
+    "description": "The streets of Crow's Foot at night. Gas lamps flicker in the perpetual fog of Duskwall. Somewhere a canal barge horn sounds, low and mournful."
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 2,
+      "y": 2,
+      "width": 8,
+      "height": 6,
+      "room_type": "town_gate",
+      "connections": [1, 2],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The mouth of Cinder Lane, where Crow's Foot thins into cramped alleys choked with fog. Gas lamps paint everything the colour of old brass. The cobblestones are slick with canal runoff, and the walls lean inward overhead like conspirators sharing a secret.",
+        "read_aloud": "The gas-lit streets of Crow's Foot are eerily quiet tonight. The usual hawkers and drunks are absent. Only the fog moves, curling between the lamp posts like something alive.",
+        "event_triggers": [
+          "The gas-lit streets of Crow's Foot are eerily quiet tonight. Even the rats seem to have found somewhere else to be."
+        ]
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 12,
+      "y": 2,
+      "width": 8,
+      "height": 6,
+      "room_type": "normal",
+      "connections": [0, 2],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "A narrow passage between two leaning tenements. Laundry lines crisscross overhead like trip wires. The fog is thicker here, pooling at knee height. A painted sign -- 'Tangletown Baths' -- hangs by a single nail, its hinges long rusted through.",
+        "npcs": [
+          {
+            "name": "Bluecoat Watchman",
+            "role": "patrol",
+            "dialogue": "Move along. Curfew's in an hour and I don't want the paperwork if you're still here when the bell tolls.",
+            "notes": "Tier 1 patrol. Can be bribed (2 coin), avoided (Prowl), or fast-talked (Sway). If engaged, will whistle for backup in 2 rounds."
+          }
+        ],
+        "perception_dc": 12,
+        "perception_success": "You spot the Bluecoat's patrol pattern -- he circles the block every eight minutes, leaving a forty-second gap at the alley junction."
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 22,
+      "y": 2,
+      "width": 6,
+      "height": 6,
+      "room_type": "town_gate",
+      "connections": [0, 1],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The edge of Crow's Foot where it meets the canal district. A stone bridge arches over black water. Beyond it, the Dimmer Sisters' house rises against the skyline -- a three-story townhouse with dark windows that seem to drink the lamplight rather than reflect it.",
+        "read_aloud": "There it is. The Dimmer Sisters' house. It looks ordinary enough from the street -- a tall, narrow townhouse with iron railings and shuttered windows. But nothing about the Sisters is ordinary, and you can feel it from here. Something presses against the back of your skull, like a sound too low to hear."
+      }
+    }
+  }
+}

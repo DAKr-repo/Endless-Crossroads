@@ -1,0 +1,198 @@
+{
+    "campaign_id": "crown_pirate_throne",
+    "display_name": "The Pirate Throne",
+    "description": "The Royal Navy hunts a pirate fleet through contested waters while an island-hopping power struggle decides whether the seas belong to empires or to those who sail them. Five days until the trade summit -- or the last broadside.",
+    "system_id": "crown",
+    "arc_length": 5,
+    "terms": {
+        "crown": "The Admiralty",
+        "crew": "The Fleet",
+        "neutral": "The Castaway",
+        "campfire": "The Lantern Watch",
+        "world": "The Shattered Isles"
+    },
+    "patrons": [
+        "Admiral Stone",
+        "Governor Whitmore",
+        "Harbormaster Plume",
+        "Naval Inquisitor Vane"
+    ],
+    "leaders": [
+        "Captain Redwave (pirate queen)",
+        "Barnacle Jim (old smuggler)",
+        "Navigator Zia (charts the unknown)",
+        "Bosun Creel (keeps order below decks)"
+    ],
+    "prompts_crown": [
+        "Admiral Stone's flagship blocks the strait, cannons run out, pennants snapping in the wind. His terms are posted on every harbor wall: 'Surrender the Fleet's captains and the crew walks free. Resist and the Navy burns every hull afloat.' He has never bluffed in thirty years of service.",
+        "Governor Whitmore controls the trade licenses. Without one, no ship sells cargo at any imperial port. He offers you a license -- clean, legal, your name in the register. 'Sail under our flag,' he says. 'You'll earn more in a month than Redwave steals in a year.'",
+        "Harbormaster Plume shows you the ledgers: trade volumes before the pirates, and after. The numbers tell a story of ruined merchants, bankrupt fishermen, and coastal villages that can't afford to rebuild. 'The Fleet calls it freedom,' Plume says. 'The people who lost everything call it something else.'",
+        "Naval Inquisitor Vane is a quiet man with a reputation that enters rooms before he does. He offers you immunity from prosecution -- past crimes forgiven, slate wiped clean -- in exchange for the Fleet's anchorage locations. He already knows three of the five. He's asking you for the last two.",
+        "A captured pirate sits in the Navy brig. He's been beaten. He hasn't talked. Vane offers you the key. 'You were one of them,' he says. 'He'll talk to you. You know the language of desperate men.' The prisoner looks up when you enter. He recognizes your face.",
+        "The Admiralty protects the sea lanes that feed twelve coastal cities. Without patrols, the merchant convoys stop. Without convoys, the cities starve. It's not a question of politics -- it's arithmetic. Every ship the Fleet sinks costs a hundred families their bread.",
+        "Stone offers you a commission: lieutenant, with your own sloop and a crew of thirty. Real rank. Real pay. Real authority. 'The sea needs order,' he says. 'And order needs people who know both sides of the water.' He holds out a Navy coat. It's your size.",
+        "Governor Whitmore shows you the orphanage his taxes fund -- children of sailors killed by pirates. Forty beds. Every one full. 'Redwave calls herself a liberator,' Whitmore says. 'These children call her something their mothers taught them.'",
+        "A merchant captain petitions you in the harbor: the Fleet robbed him three weeks ago. Took everything -- cargo, charts, his wedding ring. They left him alive, which he acknowledges. 'But I'm ruined,' he says. 'Alive and ruined. Is that freedom?'",
+        "Vane intercepts a message between pirate captains -- coordinates for a rendezvous at the Bone Reef. If the Navy strikes now, they can scatter the Fleet in a single action. Hundreds of pirates. Dozens of ships. Some of them are people you know by name.",
+        "The Admiralty's code is carved above the naval academy entrance: 'ORDER UPON THE WATERS.' Stone recites it from memory every morning. He built his career on it. His sons serve under it. The sea is not free -- it is managed, and management requires force.",
+        "Plume offers to falsify port records -- make it look like the Fleet's cargo is legitimate, legally sold, customs paid. 'It smooths the edges,' he says. 'The Navy gets its statistics. The merchants get their goods. Everyone pretends the pirates aren't pirates. It's how the world actually works.'",
+        "A Navy frigate limps into port, hull breached below the waterline. Fourteen dead. The Fleet hit them at dawn, no warning, no quarter. Stone stands on the dock and watches the wounded carried past. His jaw is set. He doesn't blink. He's already planning the reprisal.",
+        "Whitmore reveals the Admiralty's long-term strategy: fortify every anchorage in the Shattered Isles, install permanent garrisons, deny the Fleet any safe harbor. It will take five years and a thousand soldiers. 'When we're done,' he says, 'the word pirate will be a memory.'",
+        "The Navy intercepted a slave ship running under pirate colors. Fifty souls in chains below deck. The Fleet claims it was a rogue captain, not policy. The Navy claims it proves what pirates really are. The fifty people in chains don't care about the argument. They want to be free.",
+        "Vane produces a ledger of debts -- every merchant, every port official, every captain who owes the Fleet money or favors. He lays it on the table. 'This is how empires die,' he says. 'Not from cannon fire. From corruption so deep that no one remembers which side they're on.'",
+        "Admiral Stone invites you to dinner aboard his flagship. The cabin is paneled in oak, the silverware is real, the wine is from the mainland. He eats simply and speaks plainly. 'I don't hate Redwave,' he says. 'I hate what happens to the sea when no one is in charge of it.'",
+        "A coastal village petitions the Navy for protection. They've been raided three times this year. Their fishing boats are gone. Their nets are burned. The children hide when sails appear on the horizon. They don't distinguish between Navy sails and pirate sails anymore. They're afraid of all of them.",
+        "The Admiralty offers a pardon to any pirate who surrenders before the trade summit. Real paper, imperial seal. Fifty have taken the offer. Barnacle Jim's nephew was one of them. Jim hasn't spoken since he heard.",
+        "Stone stands at the bow of his flagship as the Fleet's sails appear on the horizon. He counts them. Seventeen. More than intelligence suggested. He turns to you. 'This is the part where we find out if civilization is worth the cost of defending it,' he says. He doesn't look away from the horizon."
+    ],
+    "prompts_crew": [
+        "Captain Redwave holds court on the quarterdeck, her red coat snapping in the trade wind. 'The Navy says we're criminals,' she announces. 'But a criminal is just a person the empire hasn't found a use for yet. They'll tax the air you breathe if you let them. We don't let them.'",
+        "Barnacle Jim patches a sail with hands that haven't stopped shaking since the last engagement. He's sixty-three and has been at sea since he could walk. 'I've sailed under Navy colors and pirate colors,' he says. 'The only difference is who signs the orders to kill you.'",
+        "Navigator Zia spreads her charts on the capstan -- hand-drawn, ink-stained, worth more than the ship beneath them. 'The Navy charts mark the known waters,' she says, tracing a line through uncharted blue. 'My charts mark the waters they don't want you to know about. That's where the real world is.'",
+        "Bosun Creel runs a tight ship. His discipline is harder than the Navy's -- no flogging, no brig, just a quiet conversation and a look that peels paint. 'Freedom isn't chaos,' he says, coiling rope with mechanical precision. 'Freedom is choosing your own rules and keeping them.'",
+        "The Fleet votes on every major decision -- attack, retreat, alliance, division of cargo. Every crew member gets one voice. The captain gets one voice. 'The Admiralty has admirals,' Redwave says. 'We have consensus. It's slower. It's messier. And no one dies for a decision they didn't make.'",
+        "A young sailor asks Zia why she left the Navy. She rolls up her sleeve and shows a brand on her forearm -- the deserter's mark, burned there by a naval court. 'I corrected a chart,' she says. 'The correction would have saved a convoy. The admiral whose chart I corrected had it burned. Then he had me burned.'",
+        "Jim brings you below decks. The cargo hold is full -- not gold, not jewels, but grain. Sacks of it, enough to feed a village for a month. 'We raided a Navy supply ship,' he says. 'The grain was heading to the admiral's private estate. It was earmarked as surplus.' He lets the word sit.",
+        "Redwave shows you the Fleet's articles of agreement -- written, signed, witnessed. Every pirate's share is calculated by the same formula. Injured sailors receive compensation. Families of the dead receive a portion. 'Show me a Navy pension that's half as fair,' she says. 'I'll wait.'",
+        "Creel breaks up a fight on the gun deck. Two sailors arguing over a gold chain from the last prize. He confiscates it, adds it to the common chest. 'This is the part people get wrong,' he says. 'Piracy isn't about taking. It's about sharing what you took. The Navy takes and calls it taxation. We take and split it even.'",
+        "Zia plots a course through the Bone Reef -- a maze of coral and wrecks that the Navy won't follow. 'Their ships draw too much water,' she says. 'Ours were built to sneak. That's the advantage of being hunted: you learn the terrain the hunters never see.'",
+        "A merchant ship signals surrender before the Fleet fires a shot. The captain comes aboard, hat in hand. 'Take the cargo,' he says. 'I don't care. I was losing money running it for Whitmore anyway. He takes seventy percent in fees and calls it trade.' He asks to join the Fleet.",
+        "Jim tells you the story of his first pirate captain -- a woman named Salt Anna who never took a life if she could help it. 'She boarded a Navy man-o-war with a skeleton crew and a fiddle,' he says. 'Played the marines a jig while her people emptied the hold. Nobody died. The admiral never lived it down.'",
+        "Redwave receives a letter from her sister -- married to a Navy officer, living in a stone house with a garden and a pension. The letter asks Redwave to surrender. It promises safety. It promises comfort. Redwave reads it twice, folds it, and feeds it to the lantern. 'Safety is a leash,' she says.",
+        "The Fleet shelters in a hidden cove after a storm. The ships are battered, the crews exhausted, the stores low. Creel organizes repairs with the efficiency of a man who has rebuilt a ship at sea more times than he can count. 'This is freedom,' he says, driving a nail. 'Fixing your own hull in your own time.'",
+        "A captured Navy lieutenant sits in the hold. He's terrified. Redwave pours him a drink and sits across from him. 'I'm not going to hurt you,' she says. 'I'm going to ask you one question: if the Navy paid you enough, would you stay?' He doesn't answer. He doesn't have to. They both know.",
+        "Zia discovers an uncharted island -- fresh water, fruit trees, a natural harbor. No Navy presence, no settlements, no flags. 'This is what the maps don't show,' she says. 'A place that belongs to no one. Which means it could belong to everyone.' The Fleet votes to call it Haven.",
+        "Creel catches a sailor stealing from the common chest. The articles prescribe marooning. The crew votes. The thief is a good sailor, a loyal fighter, a friend to half the crew. Creel reads the articles aloud. 'These are the rules you all signed,' he says. 'If they don't mean anything when it's hard, they never meant anything at all.'",
+        "A typhoon scatters the Fleet across fifty miles of open water. Three ships are unaccounted for. Redwave stands at the helm for thirty-six hours, guiding her ship through waves taller than the mast. When the storm breaks, she counts sails on the horizon. She counts twice. Then she turns the ship to find the missing.",
+        "Jim opens a sealed chest he's carried for twenty years. Inside: the Navy commission he never used. He was offered a captaincy once, before the desertion, before everything. 'I'd have been a good Navy man,' he says. 'That's what scared me. A good Navy man does terrible things and calls them duty.'",
+        "The Fleet gathers for Redwave's last address before the trade summit. She stands on a barrel, coat stained with salt, voice carrying across the water. 'They want us to disappear,' she says. 'To become names in a ledger, lessons in a naval academy, warnings to children. I say we give them something better to remember.'"
+    ],
+    "prompts_world": [
+        "The Shattered Isles stretch across the horizon like teeth in a broken jaw. Volcanic peaks trail smoke into a sky the color of bruised copper. Between the islands, the water changes color every mile -- jade green over sand, ink blue over deep trenches, white where the coral reaches for the hull.",
+        "A tropical storm builds in the southwest, its anvil cloud swelling into the upper atmosphere like a fist. The barometer drops. The sea goes flat and oily, waiting. Zia reads the clouds like a book and says: 'Two hours. Maybe three. After that, it's God's ocean, not ours.'",
+        "The volcanic island smokes from its summit -- a thin grey thread that smears the sunset orange and red. The black sand beach radiates heat even at dusk. Somewhere inland, the earth groans. The last eruption buried a harbor town. The ruins are still visible at low tide, rooftops breaking the surface like drowning hands.",
+        "A hidden cove opens behind a curtain of jungle vines -- still water, sand white as bone, and the rotting ribs of a galleon that ran aground decades ago. The figurehead still watches the entrance with wooden eyes. Fish nest in the cannon ports.",
+        "The port town of Caskwall sprawls along a crescent harbor -- taverns built on pilings over the water, fishing nets hung between buildings like festival bunting, the smell of tar and dried fish and rum. Every third building flies a different flag. No one asks which one is real.",
+        "Coral reefs surround the outer islands like fortifications. At low tide, the reef breaks the surface -- a labyrinth of razor-sharp stone that has killed more ships than any navy. Zia navigates by the color of the water and the behavior of the birds. The rest of us hold our breath.",
+        "A shipwreck sits upright on a sandbar, its masts intact, its sails rotted to lace. From a distance, it looks seaworthy. Up close, the hull is open to the sky. Inside, someone has made a home -- a hammock, a cookfire, a fishing line trailing into the lagoon. The castaway is gone. The fire is cold.",
+        "The sea at dusk turns the color of spilled wine. Flying fish break the surface in silver arcs. A whale sounds off the port bow, its spout catching the last light. For a moment -- one breath, one heartbeat -- the war between the Navy and the Fleet feels very small and very far away.",
+        "The Navy anchorage at Ironhaven is a fortress of stone and chain. Gun batteries cover every approach. The harbor chain can seal the entrance in minutes. Stone built it to last a century. From the water, it looks permanent. From the inside, the garrison is half-strength and the chain mechanism hasn't been oiled in a year.",
+        "Monsoon season turns the Isles into a grey world of rain and wind. The horizon disappears. Navigation becomes a matter of faith and dead reckoning. Ships that were enemies yesterday now share anchorage, waiting out the weather in silence. The monsoon is the only peace treaty the Isles have ever honored.",
+        "A sea cave opens at the base of the cliffs -- the entrance wide enough for a longboat, the interior a cathedral of dripping stone and phosphorescent water. The Fleet uses it as a dead drop. Messages in sealed bottles, wedged between stalagmites. The Navy has never found it.",
+        "The fishing village on Tide's End has changed hands four times this year -- Navy, pirates, Navy, pirates. The buildings are pockmarked with cannon shot. The dock is rebuilt from salvage. The villagers don't fly any flag. They fish. They sell to whoever anchors. They survive.",
+        "Dawn breaks through a gap in the storm clouds and turns the sea to hammered gold. The Shattered Isles stand black against the light -- silhouettes of mountains and palms and the angular geometry of fortifications. From this distance, the Navy ships and pirate ships look identical. Just shapes on the water, waiting for the wind.",
+        "The trade route between the mainland and the Isles is marked by floating buoys -- each one stamped with the Admiralty seal. The Fleet has moved six of them. Ships following the official route now sail in circles for three days before realizing the markers are wrong. Zia calls it cartographic warfare.",
+        "A pod of dolphins escorts the ship through the narrow strait, leaping in the bow wave. Barnacle Jim watches them with something close to reverence. 'Dolphins don't sail under flags,' he says. 'They go where the water takes them. There's a lesson in that, if you're willing to hear it.'"
+    ],
+    "prompts_campfire": [
+        "The ship's lantern swings in the swell, casting moving shadows across the deck. Barnacle Jim produces a bottle of rum that predates the war. He pours a measure for everyone and one for the sea. 'For those who didn't make port,' he says. The waves accept their portion without comment.",
+        "Zia traces constellations with a scarred finger. 'My mother named me for the southern star,' she says. 'She said if I could always find it, I could always find my way home.' She points at a patch of empty sky. 'It's behind the clouds tonight. It's always behind the clouds when I need it most.'",
+        "Captain Redwave sits apart from the crew, mending a tear in her coat with a bone needle. She learned to sew in prison. She doesn't talk about prison often. Tonight, she mentions a cellmate who taught her the stitch -- a woman hanged the morning Redwave escaped. She doesn't say her name.",
+        "Creel cleans the ship's bell, polishing the brass until it catches the moonlight. 'This bell has rung for births, deaths, battles, and storm warnings,' he says. 'It doesn't know the difference. It just rings when you pull the rope. There's a lesson in that.'",
+        "A sailor asks Redwave what she'd do if the war ended tomorrow. She thinks for a long time. 'Sail,' she says finally. 'Just sail. No chasing, no running, no flag. Just the wind and the water and the line of the horizon.' The sailor nods. It's the same answer everyone gives.",
+        "Jim tells the story of the biggest haul he ever made -- a Navy pay ship carrying two years of garrison wages in gold. 'We divided it by the articles,' he says. 'Every sailor got more money than they'd seen in their lives. Know what most of them did? Drank it in a week. Freedom is hard to hold when you've never had it.'",
+        "The watch fire -- a lantern hung from the stern, shielded to show only seaward -- attracts moths that shouldn't exist this far from land. Zia catches one and studies its wings. 'There's an island out there we haven't charted,' she says. 'Moths don't fly from nowhere.'",
+        "Someone produces a fiddle. The music starts slow -- a mainland ballad about a sailor who never comes home. By the second verse, half the crew is singing. By the third, the song has changed to a sea shanty about a captain who steals the moon. No one remembers when the switch happened.",
+        "Redwave tells you why she chose the name. 'My real name belongs to a girl who followed orders and trusted the wrong people,' she says. 'Redwave belongs to the woman who decided to stop. You choose your name out here. That's the first freedom and the one that matters most.'",
+        "Creel stands at the rail, watching the moon lay a silver road across the water. 'I've been at sea forty years,' he says. 'Thirty of them under Navy discipline. I was punished for thinking and rewarded for obedience. The day I stopped was the day I started living. It was also the hardest day of my life.'",
+        "The cook serves a stew made from yesterday's catch and whatever herbs grew wild on the last island. It's not good. It's not bad. It's hot and it's shared and everyone eats from the same pot. 'In the Navy,' Jim says, 'officers eat different food than sailors. Think about what that means.'",
+        "Zia shows you her private chart -- not of waters, but of stars. Every port she's visited, she recorded the sky above it. 'This is my real map,' she says. 'The ocean changes. The islands move. The stars stay where they are.' She pauses. 'Mostly.'",
+        "A clear night. The Milky Way spills across the sky like a river of light. The ship creaks. The water whispers against the hull. Someone on the midnight watch hums a tune that no one recognizes -- a melody from a country none of them have been to. It fits the sea perfectly.",
+        "Barnacle Jim shows the crew a scar on his chest -- round, the size of a coin. 'Navy musket ball,' he says. 'Could have killed me. Surgeon said it was a miracle.' He pulls a chain from under his shirt. On it: the musket ball, flattened, threaded with wire. 'I call it my second pension,' he says.",
+        "The lantern watch ends. The relief takes over. Before you go below, you look back at the water -- black glass stretching to a horizon you can't see. Somewhere out there, the Navy waits. Somewhere behind you, the Fleet follows. Between them, the sea is neither theirs nor yours. It's its own."
+    ],
+    "morning_events": [
+        {
+            "text": "Sails on the horizon -- two masts, Navy colors. They're running parallel, a mile out, matching your course. Shadowing. Zia adjusts the heading three degrees. The Navy ship adjusts three degrees. The dance begins.",
+            "bias": "crown",
+            "tag": "SILENCE"
+        },
+        {
+            "text": "An uncharted island appears off the starboard bow -- low, green, ringed with white sand. The charts show open water. Zia marks the position with a grin. 'The Navy doesn't know about this one,' she says. 'Not yet.'",
+            "bias": "crew",
+            "tag": "DEFIANCE"
+        },
+        {
+            "text": "A storm passes in the night, leaving the sea littered with debris -- shattered planks, a torn sail, a ship's figurehead bobbing face-up. Someone lost a vessel. No survivors visible. No flag visible either. It could be anyone's dead.",
+            "bias": "neutral",
+            "tag": "BLOOD"
+        },
+        {
+            "text": "A trading sloop hails your ship, flying neutral colors. The captain offers fresh fruit and intelligence: the Navy is assembling a battle group at Ironhaven. Six ships. 'They're not patrolling,' he says. 'They're hunting.'",
+            "bias": "crew",
+            "tag": "GUILE"
+        },
+        {
+            "text": "A sea turtle the size of a longboat surfaces alongside the ship, barnacled and ancient. Jim watches it with something like reverence. 'That turtle has been swimming these waters longer than the Navy has existed,' he says. The crew takes it as a good omen. Jim takes it as a reminder.",
+            "bias": "neutral",
+            "tag": "HEARTH"
+        },
+        {
+            "text": "Whispers below decks: three sailors are talking about taking the Navy's pardon offer. Creel hears them and says nothing. Redwave hears them and says nothing louder. By noon, two of the three have changed their minds. The third won't meet anyone's eyes.",
+            "bias": "crown",
+            "tag": "GUILE"
+        },
+        {
+            "text": "A pod of whales breaches off the bow -- enormous, grey, their spouts catching the morning light. The lookout nearly calls them ships. The helmsman nearly changes course. Nature doesn't care about your war. It shows up anyway.",
+            "bias": "neutral",
+            "tag": "HEARTH"
+        },
+        {
+            "text": "Zia reports a current shift -- the seasonal trade winds are turning early, which changes every sailing calculation for the next week. What was a three-day voyage to the Bone Reef is now five. What was a safe anchorage is now a lee shore. The sea just rewrote the rules.",
+            "bias": "neutral",
+            "tag": "BLOOD"
+        },
+        {
+            "text": "A barrel washes up against the hull during the night watch. Inside: hardtack, dried meat, a waterproofed map case. The map shows a Navy supply route that isn't on any published chart. Someone put this barrel in the water on purpose. Someone on the inside.",
+            "bias": "crew",
+            "tag": "DEFIANCE"
+        },
+        {
+            "text": "A cannon shot echoes across the water at dawn -- distant, single, final. The Navy's execution signal. Someone was hanged at the yardarm this morning. The Fleet doesn't know who. They know it was one of theirs. The silence that follows is heavier than the report.",
+            "bias": "crown",
+            "tag": "SILENCE"
+        }
+    ],
+    "council_dilemmas": [
+        {
+            "prompt": "A merchant vessel flies a flag of truce. Her captain offers a deal: safe passage through Fleet territory in exchange for half his cargo -- spices, cloth, iron nails. The cargo is legitimate trade, bound for a coastal village that depends on the shipment. Taking half means the village goes short. Refusing means the merchant tries the Navy-patrolled route and probably loses everything.",
+            "crown": "Refuse the deal. Let the merchant pass unmolested. The Fleet's reputation matters more than one cargo.",
+            "crew": "Take the deal. Half a cargo is better than none, and the village gets the other half. Fair trade."
+        },
+        {
+            "prompt": "A rival pirate captain -- Scarjaw, who has been raiding independently and killing prisoners -- requests an alliance with the Fleet. His ships would double your strength against the Navy. But his methods are brutal, his reputation is poison, and accepting him means endorsing everything he's done.",
+            "crown": "Refuse. Scarjaw is everything the Navy says we are. Allying with him proves them right.",
+            "crew": "Accept, with conditions. Put him under the articles. Creel watches his crew. If he breaks the code, he answers to the Fleet."
+        },
+        {
+            "prompt": "The Fleet captures a Navy supply ship carrying medicine bound for Ironhaven's garrison hospital. Sixty sailors are sick with typhus. Without the medicine, some will die. Keeping it deprives the enemy of health. Returning it acknowledges that even enemies deserve treatment.",
+            "crown": "Return the medicine under flag of truce. Warfare is one thing. Letting sick men die of neglect is another.",
+            "crew": "Keep it. The Fleet has sick sailors too, and the Navy never sent us medicine. War is not a courtesy exchange."
+        },
+        {
+            "prompt": "Redwave wants to sail directly to the trade summit and make a public declaration of the Fleet's rights -- in front of every merchant prince, naval officer, and colonial governor in the Isles. It would be the boldest political act in pirate history. It would also put every ship in the Fleet within range of the Navy's assembled guns.",
+            "crown": "Stay away from the summit. It's a trap dressed as an opportunity. The Navy wants us in one place.",
+            "crew": "Go. The world needs to see us as more than criminals. If we don't speak for ourselves, Stone speaks for us."
+        },
+        {
+            "prompt": "Navigator Zia has charted a passage through the Bone Reef that would cut two days off the Fleet's voyage to Haven. But the passage is narrow, tidal, and one miscalculation would wreck three ships on the coral. She's confident. Creel is not.",
+            "crown": "Take the long route. Losing three ships to save two days is a gamble we can't afford.",
+            "crew": "Trust Zia. She hasn't been wrong yet. Two days is the difference between reaching Haven before the Navy and not."
+        },
+        {
+            "prompt": "A port town offers the Fleet safe harbor and resupply -- in exchange for protection from a nearby warlord who's been raiding their fishing boats. Accepting means a fight the Fleet didn't plan for, against an enemy with nothing to lose. Refusing means sailing past people who asked for help.",
+            "crown": "Refuse. The Fleet fights the Navy, not every bully with a boat. We can't protect everyone.",
+            "crew": "Accept. This is what the Fleet is for. If we won't defend people who can't defend themselves, what makes us different from Stone?"
+        },
+        {
+            "prompt": "Barnacle Jim's nephew -- the one who took the Navy pardon -- sends a message through a neutral fisherman. He has intelligence about the Navy's battle plan but won't share it unless Jim personally guarantees his safety. Jim hasn't spoken his nephew's name since the defection.",
+            "crown": "Ignore the message. A man who took the pardon made his choice. His intelligence could be a trap.",
+            "crew": "Meet him. Jim's pride is not worth more than the Fleet's survival. Family is family, pardon or no."
+        },
+        {
+            "prompt": "The Fleet discovers the Navy is using enslaved oarsmen on its galley ships -- prisoners of war, debtors, petty criminals. Freeing them would require attacking a heavily armed galley in open water. The risk is enormous. The moral imperative is obvious. Creel points out that freed oarsmen can't sail and would need to be fed.",
+            "crown": "Don't attack. We can't save everyone, and a failed raid costs more lives than it saves.",
+            "crew": "Attack. Slavery is the one thing the Fleet exists to oppose. If we sail past people in chains, we deserve the Navy's name for us."
+        }
+    ]
+}

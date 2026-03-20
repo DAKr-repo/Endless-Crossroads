@@ -1,0 +1,149 @@
+{
+    "seed": 7703,
+    "width": 120,
+    "height": 20,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "chasmfiend_hunt",
+        "theme": "GOTHIC",
+        "topology": "dungeon",
+        "display_name": "The Deep Chasms -- Chasmfiend Hunt"
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 5,
+            "y": 8,
+            "width": 20,
+            "height": 8,
+            "room_type": "start",
+            "connections": [1],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The chasm descent begins at a fissure in the plateau floor -- wide enough for two abreast, its walls polished smooth by millennia of highstorm drainage. The first twenty feet are easy. After that, the walls angle inward and the light from above becomes a memory. The smell changes as you descend: stone, then moss, then something animal and vast.",
+                "read_aloud": "The crack swallows you one at a time. Stone closes overhead. The light narrows to a strip, then a thread, then nothing. Your fingers find the ropes -- some taut, some slack, some ending in frayed stumps where something tested them. Forty feet down, the chasm opens into a cathedral of dark stone. The air is warm and thick and smells of something alive. Something that breathes in rhythms your chest wants to match.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [
+                    {"name": "Scout's Journal (waterlogged)", "type": "quest_item"}
+                ],
+                "services": [],
+                "investigation_dc": 12,
+                "investigation_success": "The journal reveals critical intelligence: the chasmfiend hunts by vibration, not sight. Moving quietly is more important than moving quickly. The last entry trails off mid-sentence.",
+                "perception_dc": 11,
+                "perception_success": "Three of the anchor ropes have been cut, not frayed -- the cuts are clean, made by something sharp at specific heights. The chasmfiend is pruning the ropes. It does not want prey climbing back out.",
+                "event_triggers": ["On entry: Descent requires DC 10 physical check. Failure: controlled slide, 1d6 impact damage. The journal is found wedged in a crevice at the thirty-foot mark."]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 27,
+            "y": 8,
+            "width": 22,
+            "height": 8,
+            "room_type": "normal",
+            "connections": [0, 2],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The lair entrance is a gallery of natural stone pillars -- stalagmites and stalactites fused over geological time into columns thick as trees. The floor is layered with brittle highstorm sediment that cracks underfoot like breaking glass. Territorial silk strands stretch between columns -- a detection network.",
+                "read_aloud": "Stone pillars rise from floor to ceiling, fused by time into a forest of mineral. The floor is crusted sediment that cracks underfoot like breaking glass. The sound echoes. Everything echoes. Between the columns, thick strands of organic silk catch your Stormlight -- a web of territorial markings that vibrate when you breathe. Something enormous lives here. Something that is listening.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [],
+                "services": [],
+                "investigation_dc": 12,
+                "investigation_success": "The territorial silk strands vibrate in response to sound. They are a detection network -- the chasmfiend feels intruders through its web. Cutting the strands (DC 10) creates safe corridors but the cut strands retract audibly.",
+                "perception_dc": 14,
+                "perception_success": "The brittle floor has patches of solid stone between the sediment plates. Stepping only on the solid stone eliminates noise. DC 12 to map a silent path through the gallery.",
+                "event_triggers": ["Stealth hazard: DC 14 stealth to cross silently. Each failure echoes. After 3 cumulative failures, the chasmfiend becomes alert -- no surprise round in the boss fight."]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 51,
+            "y": 8,
+            "width": 22,
+            "height": 8,
+            "room_type": "normal",
+            "connections": [1, 3],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The nesting chamber is a vast, egg-shaped cavity in the stone. The floor is littered with bones: greatshell carapace, chull armor, and human ribcages in Alethi military uniforms. Three chrysalises in the center hold dormant hatchlings, pulsing with Stormlight.",
+                "read_aloud": "The chamber opens like a throat. Warm stone. Smooth walls. And bones -- everywhere, bones. Greatshell armor. Chull plates. Human ribs in Alethi blue and gold. The nest sits at the center: three chrysalises, each the size of a dog, pulsing with Stormlight. They are the chasmfiend's young. The floor vibrates beneath your feet. The mother is close.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Chasmfiend Hatchling", "hp": 8, "ac": 11, "attack": 2, "damage": "1d4+2", "count": 3, "notes": "Emerge from chrysalises if nest disturbed. Distress calls reduce boss approach timer by 2 rounds. Can be avoided entirely."}
+                ],
+                "loot": [
+                    {"name": "Alethi Officer's Insignia", "type": "quest_item"},
+                    {"name": "Minor Gemheart (hatchling chrysalis)", "type": "treasure", "value": 20}
+                ],
+                "services": [],
+                "investigation_dc": 13,
+                "investigation_success": "The officer's insignia belongs to Captain Dalar of the 14th Highprince's army, reported missing two months ago. Returning it to the warcamp reveals that Dalar was investigating the same gemheart discrepancies Navara discovered.",
+                "perception_dc": 14,
+                "perception_success": "The hatchlings are dormant in their chrysalises. DC 14 stealth bypasses the chamber without waking them. Disturbing the nest summons hatchlings AND alerts the adult.",
+                "event_triggers": ["On entry: The nest can be observed safely. Hatchlings are dormant unless physically disturbed. Moral choice: loot the hatchlings for gemhearts or bypass them."]
+            }
+        },
+        "3": {
+            "id": 3,
+            "x": 75,
+            "y": 5,
+            "width": 25,
+            "height": 12,
+            "room_type": "boss",
+            "connections": [2, 4],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The gemheart chamber is the deepest point in the chasm -- a cavern so vast that Stormlight does not reach the ceiling. The young chasmfiend crouches at the center over a natural spring. Thirty feet of armored nightmare, twelve legs gripping stone with claws that have carved grooves in the bedrock.",
+                "read_aloud": "The chamber has no ceiling you can see. Mineral light paints the walls in pale blues and greens. At the center, the chasmfiend drinks from a spring that bubbles from living rock. Thirty feet of armored nightmare. Twelve legs. Mandibles that could split stone. And eyes -- dozens of them, catching your light, throwing it back in shattered rainbows. It turns. It has always been turning. It was waiting for you to arrive.",
+                "npcs": [],
+                "enemies": [
+                    {"name": "Young Chasmfiend", "hp": 40, "ac": 13, "attack": 4, "damage": "2d6+4", "count": 1, "is_boss": true, "notes": "Phase 1 (40-21 HP): Claw swipe attacks. Targets loudest character (vibration hunting). DC 14 stealth each round to avoid primary targeting. Phase 2 (20-1 HP): Enraged, adds tail sweep.", "special": ["Vibration Hunt: Targets the character who made the most noise (failed stealth checks)", "Tail Sweep (Phase 2): All adjacent targets, 1d8+3 impact damage", "Exposed Gemheart (Phase 2): Carapace cracks, attacks against cavity ignore deflect", "Falling Stone (Phase 2): Each round, random DC 10 physical or 1d4 impact from debris"]}
+                ],
+                "loot": [
+                    {"name": "Chasmfiend Gemheart (young)", "type": "treasure", "value": 200},
+                    {"name": "Chasmfiend Carapace Plate", "type": "armor"}
+                ],
+                "services": [],
+                "investigation_dc": 15,
+                "investigation_success": "The chamber walls bear symbols that predate the Parshendi. They match no Alethi archive. Cross-referencing with the Stonewalkers module reveals they are Dawnsinger script -- the original inhabitants of Roshar. This chasm was sacred to them.",
+                "perception_dc": 14,
+                "perception_success": "If approached stealthily, the chasmfiend is drinking with its back exposed. The gemheart cavity is faintly visible through a gap in the dorsal plates. Surprise round available.",
+                "event_triggers": ["On entry (stealthy): Surprise round. Back exposed. On entry (alerted): No surprise. Immediate charge. Phase 2 at 20 HP: The chamber destabilizes. Rocks fall. The gemheart cavity cracks open."]
+            }
+        },
+        "4": {
+            "id": 4,
+            "x": 102,
+            "y": 8,
+            "width": 16,
+            "height": 8,
+            "room_type": "exit",
+            "connections": [3],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The escape route is a natural chimney -- a vertical shaft carved by highstorm drainage, angled at sixty degrees. Water stains mark flood levels on the walls. The next highstorm is eight hours away. Above, a circle of sky. Below, the chamber where the chasmfiend's body cools.",
+                "read_aloud": "A shaft of grey sky opens above you. The chimney climbs sixty feet at a steep angle, its walls carved by storm drainage into a rough ladder. Water stains ring the walls like the markings inside a measuring glass. The next highstorm is eight hours out. You do not want to be in this shaft when it arrives. The chasmfiend's body cools below you. Its gemheart burns in your pack. Climb.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [],
+                "services": [],
+                "perception_dc": 12,
+                "perception_success": "The flood stains show that during a highstorm, water fills this shaft in under three minutes. The early drainage arrives sooner. You have 5 rounds before the first water reaches you.",
+                "event_triggers": ["Timed exit: 5 rounds to climb. DC 10 physical per round, 2 successes required. Failure: slip, lose one round. On all characters surfacing: The chimney begins to fill behind you. The warcamp is visible two miles west. Module complete."]
+            }
+        }
+    }
+}

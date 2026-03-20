@@ -9,10 +9,19 @@ tarot card rendering, and Mimir's Vault access.
 Version: 2.0 (Rest + Quests + Tarot)
 """
 
+import json
 import time
 import sys
 import os
+from pathlib import Path
 from codex.games.crown.engine import CrownAndCrewEngine
+
+# Scene progression system (optional — backward compatible)
+try:
+    from codex.games.crown.scenes import CrownSceneRunner
+    SCENES_AVAILABLE = True
+except ImportError:
+    SCENES_AVAILABLE = False
 
 # Optional Rich + Tarot imports with fallback
 try:
@@ -140,8 +149,103 @@ def rest_choice(engine: CrownAndCrewEngine) -> str:
         return engine.trigger_long_rest()
 
 
+def _parse_module_arg() -> str:
+    """Return the value of --module <path> from sys.argv, or empty string."""
+    for i, arg in enumerate(sys.argv[1:], 1):
+        if arg == "--module" and i < len(sys.argv):
+            return sys.argv[i + 1]
+        if arg.startswith("--module="):
+            return arg.split("=", 1)[1]
+    return ""
+
+
+def _load_campaign_json(module_dir: str) -> dict:
+    """Load campaign.json from a module directory.
+
+    Args:
+        module_dir: Path to the module directory.
+
+    Returns:
+        Parsed campaign.json dict, or empty dict on failure.
+    """
+    campaign_path = Path(module_dir) / "campaign.json"
+    if not campaign_path.exists():
+        return {}
+    try:
+        with open(campaign_path, encoding="utf-8") as f:
+            return json.load(f)
+    except Exception as e:
+        print(f"  [Warning: could not load campaign.json — {e}]")
+        return {}
+
+
+def _discover_crown_modules() -> list:
+    """Scan vault_maps/modules/ for crown module directories.
+
+    Returns list of dicts with 'path' (module dir) and 'name' (display name).
+    """
+    modules_dir = Path(__file__).resolve().parent / "vault_maps" / "modules"
+    if not modules_dir.is_dir():
+        return []
+    results = []
+    for entry in sorted(modules_dir.iterdir()):
+        if not entry.is_dir():
+            continue
+        # Check for campaign.json (crown modules) or module_manifest.json with system_id=crown
+        campaign = entry / "campaign.json"
+        manifest = entry / "module_manifest.json"
+        if campaign.exists():
+            try:
+                data = json.loads(campaign.read_text())
+                results.append({
+                    "path": str(entry),
+                    "name": data.get("campaign_title", entry.name),
+                })
+                continue
+            except Exception:
+                pass
+        if manifest.exists():
+            try:
+                data = json.loads(manifest.read_text())
+                if data.get("system_id") == "crown":
+                    results.append({
+                        "path": str(entry),
+                        "name": data.get("display_name", entry.name),
+                    })
+            except Exception:
+                continue
+    return results
+
+
 def main():
     clear_screen()
+
+    # --- Module argument (--module <path>) ---
+    module_dir = _parse_module_arg()
+    campaign_data: dict = {}
+    if module_dir:
+        campaign_data = _load_campaign_json(module_dir)
+        if campaign_data:
+            print(f"  [Module loaded: {Path(module_dir).name}]")
+
+    # --- Module discovery (interactive) ---
+    if not module_dir:
+        crown_mods = _discover_crown_modules()
+        if crown_mods:
+            print("\n  Adventure Modules:")
+            print("  [0] Original Campaign")
+            for i, m in enumerate(crown_mods, 1):
+                print(f"  [{i}] {m['name']}")
+            try:
+                choice = input("  Select module [0]: ").strip() or "0"
+                idx = int(choice)
+                if 0 < idx <= len(crown_mods):
+                    module_dir = crown_mods[idx - 1]["path"]
+                    campaign_data = _load_campaign_json(module_dir)
+                    if campaign_data:
+                        print(f"  [Module loaded: {Path(module_dir).name}]")
+            except (ValueError, EOFError, KeyboardInterrupt):
+                pass
 
     # --- Quest Selection ---
     print("=" * 58)
@@ -151,15 +255,29 @@ def main():
     quest = select_quest()
     if quest is not None:
         world_state = quest.to_world_state()
+        # Merge module world_state fields if present (module takes lower priority)
+        if campaign_data.get("world_state"):
+            merged = dict(campaign_data["world_state"])
+            merged.update(world_state)
+            world_state = merged
         engine = CrownAndCrewEngine(
             world_state=world_state,
             arc_length=quest.arc_length,
             rest_config=quest.rest_config,
         )
         campaign_title = quest.name
+    elif campaign_data.get("world_state"):
+        engine = CrownAndCrewEngine(world_state=campaign_data["world_state"])
+        campaign_title = campaign_data.get("campaign_title", "The Prologue March")
     else:
         engine = CrownAndCrewEngine()
-        campaign_title = "The Prologue March"
+        campaign_title = campaign_data.get("campaign_title", "The Prologue March")
+
+    # --- Attach scene runner if campaign data contains scene definitions ---
+    if SCENES_AVAILABLE and campaign_data:
+        runner = CrownSceneRunner.from_campaign_json(campaign_data)
+        if not runner.is_complete() or runner.chapters:
+            engine.set_scene_runner(runner)
 
     clear_screen()
 
@@ -228,6 +346,42 @@ def main():
             witness = engine.get_secret_witness()
             display_card("legacy", witness, "[bold red]THE BREACH — Secret Witness[/bold red]")
             print("[You must decide how to react to what you saw...]")
+
+        # --- SCENE PHASE (optional, from campaign.json) ---
+        scene = engine.get_scene_for_today()
+        if scene:
+            print()
+            if RICH_AVAILABLE:
+                scene_title = scene.location if scene.location else f"Day {engine.day} — Scene"
+                console.print(Panel(
+                    scene.description,
+                    title=f"[bold]{scene_title}[/bold]",
+                    border_style="cyan",
+                    width=60,
+                ))
+            else:
+                loc = scene.location or f"Day {engine.day}"
+                print(f"\n--- {loc} ---")
+                print(f"  {scene.description}")
+
+            for i, text in enumerate(scene.get_choice_texts()):
+                print(f"  [{i + 1}] {text}")
+
+            scene_input = ""
+            while not scene_input.isdigit() or not (1 <= int(scene_input) <= len(scene.choices)):
+                scene_input = input("\n> Your choice: ").strip()
+                if not scene_input:
+                    scene_input = "1"
+
+            result = engine.resolve_scene_choice(int(scene_input) - 1)
+            if result.get("narrative"):
+                print(f"\n  {result['narrative']}")
+            sway_delta = result.get("sway_effect", 0)
+            if sway_delta != 0:
+                direction = "toward the Crown" if sway_delta > 0 else "toward the Crew"
+                print(f"  [Sway shifts {direction}. Now: {engine.sway:+d}]")
+            print()
+            input("[Press Enter to continue...]")
 
         # --- Allegiance Choice ---
         print(f"\nWho do you serve tonight?")

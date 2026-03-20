@@ -1,0 +1,62 @@
+{
+  "version": 1,
+  "source": "Stormlight RPG GM Tools + Adventures",
+  "patron_types": [
+    "Highprince seeking military advantage",
+    "Ardent researching ancient Radiants",
+    "Darkeyes community leader protecting their own",
+    "Ghostblood agent with hidden agenda",
+    "Thaylen merchant guild protecting trade routes",
+    "Azish government official maintaining order",
+    "Windrunner order rebuilding their numbers",
+    "Listener ambassador seeking peace"
+  ],
+  "objectives": [
+    "Retrieve a gemheart from a chasmfiend",
+    "Escort a scholar to ancient Dawncity ruins",
+    "Investigate reports of Voidbringer activity",
+    "Protect a highstorm shelter during an attack",
+    "Scout enemy positions on the Shattered Plains",
+    "Deliver a diplomatic message across hostile territory",
+    "Find and rescue captured bridgemen",
+    "Recover a stolen Soulcaster",
+    "Map an unexplored chasm network",
+    "Investigate a Cult of the Lost (Unmade worshippers)",
+    "Secure an Oathgate for the war effort",
+    "Negotiate with a listener parshendi clan"
+  ],
+  "complications": [
+    "A highstorm changes the timeline -- shelter or die",
+    "The patron has a hidden agenda conflicting with the mission",
+    "A rival faction is pursuing the same objective",
+    "An Unmade's influence causes madness in the area",
+    "A trusted ally turns out to be a spy",
+    "The target location has been Soulcast into something else",
+    "An everstorm strikes during the operation",
+    "Fused are already present at the destination",
+    "The real objective is not what was described",
+    "A Radiant's bond is being tested by the mission's moral choices"
+  ],
+  "rewards": [
+    "Spheres (amount by tier: T1=50, T2=200, T3=1000, T4=5000 broams)",
+    "Gemheart (rare, can power fabrials)",
+    "Shardblade fragment (partial, still dangerous)",
+    "Soulcaster access (limited charges)",
+    "Political favor from a Highprince",
+    "Radiant mentor willing to train",
+    "Map to a hidden Dawncity",
+    "Alliance with a listener clan",
+    "Fabrial device (custom utility)",
+    "Promotion in military rank (darkeyes to tenner, lighteyes to higher dahn)"
+  ],
+  "setting_twists": [
+    "The quest target is in the Cognitive Realm (Shadesmar)",
+    "The patron is secretly one of the Fused",
+    "The location shifts during a highstorm",
+    "An ancient Dawncity trap activates",
+    "The Stormfather intervenes with a vision",
+    "A Shard's influence warps reality in the area",
+    "Parshendi and humans must cooperate to survive",
+    "The true enemy is an Unmade, not a mortal foe"
+  ]
+}

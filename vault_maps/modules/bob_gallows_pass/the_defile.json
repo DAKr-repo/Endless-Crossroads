@@ -1,0 +1,78 @@
+{
+  "seed": 8014,
+  "width": 35,
+  "height": 25,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "the_defile",
+    "theme": "STONE",
+    "topology": "dungeon",
+    "mission_types": ["recon", "assault"]
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 2,
+      "y": 12,
+      "width": 8,
+      "height": 6,
+      "room_type": "start",
+      "connections": [1],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The pass entrance is marked by a stone archway carved with warnings in three languages -- Orite, Bartan, and one so old no one can read it. The cliff walls rise sheer on both sides, narrowing the sky to a strip of grey directly overhead. The ground is packed earth, worn into a path by centuries of feet, hooves, and wheels. And now, by the shuffling drag of dead feet.",
+        "read_aloud": "You descend into Gallows Pass. The cliffs close in overhead. The old gallows are visible ahead, silhouetted against the grey strip of sky. Bodies hang from them. Some of them are moving.",
+        "event_triggers": [
+          "The stone archway bears a carved warning. The words have been scratched through and replaced with a single symbol -- Blighter's mark."
+        ]
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 14,
+      "y": 6,
+      "width": 10,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [0, 2],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The gallows. Six wooden frames, ancient and grey, standing in a row at the narrowest point of the pass. Five bodies hang from frayed ropes, turning slowly in the wind that funnels through the defile. They wear Legion uniforms -- scouts, by their gear. As you approach, the bodies stop turning. One of them raises its head. Then another. Then all of them, jerking against their ropes with a sound like wet twigs snapping.",
+        "enemies": [
+          {"name": "Rotter", "hp": 8, "max_hp": 8, "ac": 8, "attack": 3, "defense": 8, "count": 3},
+          {"name": "Crow", "hp": 15, "max_hp": 15, "ac": 12, "attack": 5, "defense": 12, "count": 2}
+        ],
+        "event_triggers": [
+          "Bodies hang from the old gallows, twitching. Not all of them are dead.",
+          "The Crows drop from their nesting niches in the cliff face. They do not attack immediately -- they circle, clicking, assessing."
+        ],
+        "perception_dc": 13,
+        "perception_success": "The Crows are communicating with something beyond the pass exit -- short, staccato calls answered by a low resonance from the far end. They are calling in the Black Oak Knights."
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 26,
+      "y": 10,
+      "width": 7,
+      "height": 6,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Beyond the gallows, the pass widens slightly before its final approach to the exit. Rubble from a recent rockfall partially blocks the path, creating natural chokepoints. Old execution niches are carved into the cliff walls -- shallow alcoves where the condemned were displayed. Several still contain bones. One contains something that gleams.",
+        "loot": [
+          {"name": "Executioner's Medallion", "value": 2, "description": "A silver disc etched with the old judiciary seal. The Lorekeeper says these were once used to command the gallows' bound spirits. It hums faintly in the presence of the undead."}
+        ],
+        "investigation_dc": 12,
+        "investigation_success": "The rockfall is not natural. The stone was deliberately cut from the cliff face and dropped to create a barricade. Sapper marks are visible on the cut faces -- this was Legion demolition work. Someone tried to seal the pass from this side and failed."
+      }
+    }
+  }
+}

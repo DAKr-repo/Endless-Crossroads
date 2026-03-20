@@ -798,6 +798,113 @@ def _generate_hint(
     return rng.choice(_HINT_TEMPLATES)
 
 
+# =========================================================================
+# PHENOMENA TRACKER
+# =========================================================================
+
+@dataclass
+class PhenomenaTracker:
+    """4-stage phenomena escalation clock: dormant -> stirring -> active -> consuming.
+
+    Tracks how close a supernatural phenomenon is to fully manifesting.
+    Each tick advances the clock; enough ticks in a stage push it to the next.
+    Successful containment actions can reduce the tick count.
+    """
+
+    STAGES = ["dormant", "stirring", "active", "consuming"]
+
+    stage: str = "dormant"
+    escalation_ticks: int = 0
+    escalation_threshold: int = 4  # Ticks needed to advance stage
+    phenomena_name: str = ""
+
+    def tick(self, amount: int = 1) -> dict:
+        """Add escalation ticks. Advances stage when threshold is reached.
+
+        Args:
+            amount: Number of ticks to add. Default 1.
+
+        Returns:
+            Dict with old_stage, new_stage, advanced bool, current ticks,
+            and threshold.
+        """
+        old_stage = self.stage
+        self.escalation_ticks += amount
+        advanced = False
+        while self.escalation_ticks >= self.escalation_threshold:
+            idx = self.STAGES.index(self.stage)
+            if idx < len(self.STAGES) - 1:
+                self.stage = self.STAGES[idx + 1]
+                self.escalation_ticks -= self.escalation_threshold
+                advanced = True
+            else:
+                # Already at consuming — cap ticks
+                self.escalation_ticks = self.escalation_threshold
+                break
+        return {
+            "old_stage": old_stage,
+            "new_stage": self.stage,
+            "advanced": advanced,
+            "ticks": self.escalation_ticks,
+            "threshold": self.escalation_threshold,
+        }
+
+    def reduce(self, amount: int = 1) -> dict:
+        """Reduce escalation ticks (from successful containment).
+
+        Args:
+            amount: Number of ticks to remove. Default 1. Floors at 0.
+
+        Returns:
+            Dict with old_ticks, new_ticks, and current stage.
+        """
+        old_ticks = self.escalation_ticks
+        self.escalation_ticks = max(0, self.escalation_ticks - amount)
+        return {
+            "old_ticks": old_ticks,
+            "new_ticks": self.escalation_ticks,
+            "stage": self.stage,
+        }
+
+    def get_status(self) -> str:
+        """Human-readable status line for the phenomena tracker.
+
+        Returns:
+            Multi-line string showing name, stage, ticks, and stage ladder.
+        """
+        return (
+            f"Phenomena: {self.phenomena_name or 'Unknown'}\n"
+            f"Stage: {self.stage.upper()} ({self.escalation_ticks}/{self.escalation_threshold})\n"
+            f"Stages: {' -> '.join(s.upper() if s == self.stage else s for s in self.STAGES)}"
+        )
+
+    def to_dict(self) -> dict:
+        """Serialize to a plain dict for save/load."""
+        return {
+            "stage": self.stage,
+            "escalation_ticks": self.escalation_ticks,
+            "escalation_threshold": self.escalation_threshold,
+            "phenomena_name": self.phenomena_name,
+        }
+
+    @classmethod
+    def from_dict(cls, data: dict) -> "PhenomenaTracker":
+        """Deserialize from a plain dict.
+
+        Args:
+            data: Dict previously produced by to_dict().
+
+        Returns:
+            Reconstructed PhenomenaTracker instance.
+        """
+        return cls(
+            stage=data.get("stage", "dormant"),
+            escalation_ticks=data.get("escalation_ticks", 0),
+            escalation_threshold=data.get("escalation_threshold", 4),
+            phenomena_name=data.get("phenomena_name", ""),
+        )
+
+
 __all__ = [
     "INVESTIGATION_METHODS",
     "ILLUMINATION_OUTCOMES",
@@ -805,4 +912,5 @@ __all__ = [
     "ClueTracker",
     "CaseState",
     "InvestigationManager",
+    "PhenomenaTracker",
 ]

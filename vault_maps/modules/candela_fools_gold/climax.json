@@ -1,0 +1,91 @@
+{
+  "seed": 7014,
+  "width": 40,
+  "height": 30,
+  "start_room_id": 0,
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 2,
+      "y": 2,
+      "width": 12,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false
+    },
+    "1": {
+      "id": 1,
+      "x": 16,
+      "y": 2,
+      "width": 16,
+      "height": 14,
+      "room_type": "boss",
+      "connections": [0, 2],
+      "tier": 4,
+      "is_locked": false,
+      "is_secret": false
+    },
+    "2": {
+      "id": 2,
+      "x": 16,
+      "y": 18,
+      "width": 10,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false
+    }
+  },
+  "metadata": {
+    "zone_id": "climax",
+    "theme": "GOTHIC",
+    "topology": "dungeon",
+    "scene_title": "The Thinning Rift"
+  },
+  "content_hints": {
+    "0": {
+      "description": "The rift antechamber. The three wardstone platforms form a triangle around the central rift. The gold formations here move visibly, growing and retracting like breathing. The air crackles with bleed energy.",
+      "read_aloud": "The wardstones hum in your hands, resonating with the platforms beneath your feet. The rift pulses faster, sensing what you intend. The gold formations throughout the cavern system shudder. Every transformed miner, every golden vein, every contaminated drop of water -- they're all connected to this point. Seal it, and you sever a mind.",
+      "perception_dc": 14,
+      "perception_success": "The rift isn't just leaking bleed into this world -- it's pulling matter from this side through to the other. Rock, water, organic material. The transformed miners aren't being destroyed. They're being collected. The thinning is building something with them on the other side."
+    },
+    "1": {
+      "description": "The rift itself. A wound in reality fifteen feet across, vertical, pulsing with amber and violet light. Through it, a landscape of crystallized gold extends to an impossible horizon. Shapes move there -- vast, slow, patient. The Thinning is not a place. It is an intelligence.",
+      "read_aloud": "The rift screams when you approach with the wardstones. Not sound -- pressure. Your ears pop. Your vision doubles. For a moment you see through to the other side and it sees through to you. A presence beyond the rift focuses on your circle with the attention of something that has been waiting for centuries. It does not want to be sealed. It was so close to being free.",
+      "enemies": [
+        {
+          "name": "The Thinning",
+          "hp": 40,
+          "ac": 16,
+          "attack": 8,
+          "damage": "2d8",
+          "count": 1,
+          "is_boss": true,
+          "notes": "Not a creature but an intelligence manifesting through the rift. Attacks by warping reality in a radius around the rift -- gold eruptions, gravity shifts, temporal distortions. Cannot be killed, only sealed.",
+          "special": [
+            "Reality Warp: all investigators take 1 Brain mark at the start of each round from spatial distortion",
+            "Gold Eruption: ranged attack -- crystallized bleed erupts from the floor, 2d8 damage and 1 Bleed mark",
+            "Assimilate: grapple attack -- touched target begins rapid transformation, 2 Body marks per round until broken free",
+            "Regeneration: the rift heals 10 HP per round unless a wardstone is actively placed on a platform",
+            "Sealed: placing all three wardstones and completing the Focus ritual reduces HP to 0 (sealed, not destroyed)"
+          ]
+        }
+      ],
+      "event_triggers": ["The final confrontation. The thinning must be sealed using the three wardstones and the ritual. The rift fights back with everything it has. Dr. Solace's medical knowledge can help stabilize investigators during the ritual, but she must be protected."],
+      "loot": [
+        {"name": "Crystallized Bleed Sample", "value": 0, "description": "A fist-sized crystal of pure bleed, severed from the rift during the sealing. Pulses with residual energy. Candela will want this for study -- and containment."},
+        {"name": "Wardstone Keystone", "value": 0, "description": "The central locking mechanism of the containment seal. Formed when all three wardstones activate. Must be maintained by future operatives to prevent the seal from degrading again."}
+      ]
+    },
+    "2": {
+      "description": "The aftermath chamber. The tunnel back to the surface. As the seal activates, the gold formations throughout the mine begin to dim and harden, becoming inert. The contaminated water clears, running clean for the first time in weeks.",
+      "read_aloud": "The climb back is quiet. The pulsing stops. The gold is just gold now -- inert, worthless metal, no longer alive with bleed. At the surface, Brenner is sitting against a rock, his gold skin cracking and flaking away in patches, revealing raw pink flesh beneath. 'It stopped singing,' he says. He's crying.",
+      "event_triggers": ["The thinning is sealed. The contamination stops. The transformed miners begin slowly reverting -- painfully, incompletely. Newfaire's water supply is safe. For now."]
+    }
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "seed": 7017,
+  "width": 35,
+  "height": 20,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "circus_handlers",
+    "theme": "GOTHIC",
+    "topology": "settlement",
+    "display_name": "The Handler's Wagon"
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 0,
+      "y": 0,
+      "width": 10,
+      "height": 8,
+      "room_type": "residence",
+      "connections": [1],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Handler Vex's wagon. Walls covered in sketches of light-shapes, attempts to draw the creature's shifting forms. His hands shake. His eyes are wrong. He's been sleeping here since the symptoms started.",
+        "read_aloud": "The drawings cover every surface -- light patterns, geometric shapes that don't resolve into anything solid. Vex sits in the center of them like a man who has been drowning slowly and drawn maps of the water. 'It talks to me in pictures. It shows me where it came from -- a place of light, no ground, no sky. It was happy there. Then the cave. Then the cage. It knows the lock is failing. It's just waiting.'",
+        "npcs": [
+          {
+            "name": "Handler Vex",
+            "role": "ally",
+            "dialogue": "I can ask it to wait -- through the link, I can tell it help is coming. But I need you to mean it. It knows when I believe what I'm saying. If you're going to tell me it'll be free by morning, you need to actually make that true. And I know where there's a thinning. The old lighthouse on the coast, two miles. It called to the creature before we even arrived in Newfaire.",
+            "notes": "He/him. The investigators' best asset. Can act as psychic intermediary if they commit to releasing the creature. Knows about the coastal lighthouse thinning. Needs medical treatment -- Dr. Asher can stabilize him for the duration. Without treatment, he'll lose the link."
+          }
+        ],
+        "enemies": [],
+        "services": ["heal"],
+        "event_triggers": [
+          "Vex can calm the creature and guide it to the lighthouse thinning -- but only if the investigators commit to release by dawn.",
+          "REVEAL: Sustained tones calm the creature. The orchestra's percussion is the worst possible soundtrack. A violin, singing bowl, or sustained vocal note would work."
+        ],
+        "loot": [
+          {
+            "name": "Vex's Light Sketches",
+            "value": 0,
+            "description": "Forty drawings of the creature's light patterns. A Candela scholar could decode them as a partial language -- the creature has been communicating its history through Vex's drawings without either of them realizing it."
+          }
+        ]
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 13,
+      "y": 0,
+      "width": 10,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [0, 2],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The animal trainer's equipment tent. Among the standard sedatives and chains, an anomaly: a brass resonance chamber the size of a hat box, old, pre-dating Bellamy's management. Aldo's equipment.",
+        "read_aloud": "The resonance chamber is Candela-made -- the same manufacture as standard investigator equipment. It produces a sustained low tone. Among Aldo's wagon papers, a note: 'Resonance chamber, bleed fauna pacification, range 30 feet, two hours battery. They follow the tone like moths to a lamp. Do not cage them. Invite them.'",
+        "npcs": [],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [
+          "REVEAL: The resonance chamber is the key. It calms the creature and can guide it. Aldo knew about bleed fauna and left this tool for exactly this situation."
+        ],
+        "loot": [
+          {
+            "name": "Aldo's Resonance Chamber",
+            "value": 0,
+            "description": "Candela-issue bleed fauna pacification device. Produces a sustained low tone that calms ambient bleed creatures. Range: thirty feet. Battery: approximately two hours -- exactly the duration of the show."
+          },
+          {
+            "name": "Aldo's Thinning Map",
+            "value": 0,
+            "description": "Three documented thinning sites within fifty miles of Newfaire, mapped over twenty years. The nearest is the old coastal lighthouse, two miles from the fairgrounds."
+          }
+        ],
+        "investigation_dc": 14,
+        "investigation_success": "Aldo's private files, folded inside the chamber's case, describe a protocol for returning a captured bleed creature to a thinning: calm it with the resonance chamber, open a path to the nearest thinning, maintain the sustained tone during transport. The creature follows the tone like a lantern in the dark."
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 25,
+      "y": 4,
+      "width": 8,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The medical tent. Dr. Asher's domain. Three roustabouts with radiation burns lie on cots. Through the tent door, the old coastal lighthouse is visible on the skyline -- dark, decommissioned, two miles along the cliff.",
+        "read_aloud": "Dr. Asher is treating a handler's burns when you arrive. 'The radiation output spikes during emotional moments -- applause, laughter, fear. The audience itself will amplify the creature's distress. You need to cancel the show, or failing that, have a containment plan ready when the creature escapes. Because it will escape. The cage lock has maybe an hour.'",
+        "npcs": [
+          {
+            "name": "Dr. Asher",
+            "role": "ally",
+            "dialogue": "I can stabilize Vex for long enough to guide the creature. After that he'll need twenty-four hours of rest. I can also triage affected audience members during the incident -- I've got enough sedatives for thirty people. What I cannot do is contain a bleed creature. That's your department.",
+            "notes": "They/them. Will treat Vex and prepare for mass-casualty triage. Has emergency kit with sedatives, bandages, and bleed-exposure treatment. Confirms the lighthouse has historical anomaly records consistent with a thinning."
+          }
+        ],
+        "enemies": [],
+        "services": ["heal"],
+        "event_triggers": [
+          "The plan is assembled: Vex guides, resonance chamber calms, lighthouse thinning is the destination. Dr. Asher handles casualties. Crane handles the crowd. The investigators execute."
+        ],
+        "loot": []
+      }
+    }
+  }
+}

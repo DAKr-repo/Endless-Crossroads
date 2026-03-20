@@ -1,0 +1,86 @@
+{
+  "seed": 92001,
+  "width": 20,
+  "height": 20,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "briefing",
+    "theme": "STONE",
+    "topology": "settlement",
+    "description": "The Legion camp. Canvas and timber in the foothills, smoke from cook-fires threading upward into grey skies. The war is somewhere ahead. It's always somewhere ahead."
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 2,
+      "y": 2,
+      "width": 8,
+      "height": 7,
+      "room_type": "town_square",
+      "connections": [1, 2],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The command tent. A broad canvas pavilion staked into mud-churned ground, its interior dominated by a map table built from ammunition crates. Tin soldiers mark positions on a hand-drawn chart of Talstadt and its approaches. The Marshal stands at the head of the table, her jaw set in the expression that means someone is about to have a very bad day.",
+        "read_aloud": "The Marshal doesn't look up when you enter. She's studying the map -- or maybe she's already memorized it and is deciding how many of you she can afford to lose. When she speaks, her voice is the flat, clipped cadence of someone who has given too many briefings that ended with a body count.",
+        "npcs": [
+          {
+            "name": "The Marshal",
+            "role": "commander",
+            "dialogue": "Blighter's been quiet since she crossed the big river, but plumes of green smoke are rising from Talstadt. Our scouts report an alchemical lab in the old church -- the Doctor is running experiments on prisoners. Your mission: get in, find the lab, destroy it. The Doctor is Infamous. Her Horror rides a Crow. Expect Rotters on the streets and Crows on the rooftops. Questions?",
+            "notes": "The Marshal (she/her). Exhausted, pragmatic, and carrying the weight of a retreating army on her shoulders. She's already written the after-action report in her head. Mission type: Assault. Rewards: +2 Morale, +1 Supply. Penalty on failure: +1 Pressure."
+          }
+        ],
+        "services": ["rest", "supply"],
+        "event_triggers": [
+          "The Marshal pins a charcoal sketch of Talstadt's church to the tent pole. 'The Doctor's lab is in the nave. Sewers run under the east wall -- your entry point. Expect resistance above ground. Below, the water's been running green for a week. Stay out of it if you can.'"
+        ]
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 12,
+      "y": 2,
+      "width": 6,
+      "height": 7,
+      "room_type": "forge",
+      "connections": [0],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The quartermaster's wagon. A converted supply cart where Ghost Owls draw their mission kit. Racks of blackened blades, bundles of crossbow bolts, and sealed jars of oil and bandages. The quartermaster is a one-armed veteran who moves with the efficiency of someone who has outfitted a thousand missions and expects most of the gear back.",
+        "services": ["supply"],
+        "loot": [
+          {"name": "Alchemical fire flask (x2)", "value": 3, "description": "Clay flasks sealed with wax. The contents burn green and hot enough to melt iron. The Doctor would appreciate the irony."},
+          {"name": "Silver-tipped bolts (x6)", "value": 2, "description": "Crossbow bolts with silver caps. Standard issue for missions involving Horrors."}
+        ]
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 2,
+      "y": 11,
+      "width": 8,
+      "height": 5,
+      "room_type": "residence",
+      "connections": [0],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The Ghost Owls' bivouac. Four bedrolls around a cook-fire that's been banked to embers. Phaera is sharpening her heavy blade with slow, meditative strokes. Aurora sits apart, cleaning her rifle's optics with a cloth that was once white. Red Striking Pyre stares into the coals. Harish -- the rookie -- is checking his kit for the third time.",
+        "services": ["rest"],
+        "npcs": [
+          {
+            "name": "Marchioness Phaera Rodano",
+            "role": "squad_leader",
+            "dialogue": "We go at midnight. Cold approach through the foothills -- no fires, no lights, no noise. Aurora takes overwatch when we reach the ridge. The rest of us go in through the sewers. Harish, stay close to me.",
+            "notes": "Phaera (she/her). Heavy specialist, Orite. Carries a two-handed blade she calls the Argument. Has led the Ghost Owls through six missions. Lost two soldiers. Remembers both their names."
+          }
+        ]
+      }
+    }
+  }
+}

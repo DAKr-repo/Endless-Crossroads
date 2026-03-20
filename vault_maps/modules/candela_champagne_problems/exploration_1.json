@@ -1,0 +1,92 @@
+{
+  "seed": 7003,
+  "width": 40,
+  "height": 30,
+  "start_room_id": 0,
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 2,
+      "y": 2,
+      "width": 10,
+      "height": 8,
+      "room_type": "start",
+      "connections": [1],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false
+    },
+    "1": {
+      "id": 1,
+      "x": 14,
+      "y": 3,
+      "width": 12,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [0, 2],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false
+    },
+    "2": {
+      "id": 2,
+      "x": 28,
+      "y": 4,
+      "width": 10,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false
+    }
+  },
+  "metadata": {
+    "zone_id": "exploration_1",
+    "theme": "GOTHIC",
+    "topology": "dungeon",
+    "scene_title": "The Hidden Staircase"
+  },
+  "content_hints": {
+    "0": {
+      "description": "A narrow brick staircase spiraling down. The walls sweat condensation that smells of old cork. Gas lamps flicker at each landing, their mantles glowing a sickly amber. The music grows louder with every step.",
+      "read_aloud": "Twenty steps down. Thirty. The brick gives way to polished marble. The temperature rises. By the time you reach the bottom, you can feel the bass in your teeth.",
+      "npcs": [
+        {
+          "name": "Emmerich Sable",
+          "role": "witness",
+          "dialogue": "You can hear it, can't you? I got out three nights ago. Or three years. I can't tell anymore. My hands -- look at my hands. They were steady once. The party takes something from you, but you don't notice until you leave.",
+          "notes": "Emmerich escaped but is rapidly aging. He has perhaps days left. He was a guest for what he thought was one evening -- it was eleven years. He can describe the layout and warn about the Host."
+        }
+      ],
+      "event_triggers": ["An escaped guest reveals the truth: time moves differently inside. The party has been running for decades. Leaving costs you the years the party stole."]
+    },
+    "1": {
+      "description": "A coat check vestibule. Hundreds of coats hang on brass hooks -- fur stoles, military greatcoats, flapper wraps, modern overcoats. Decades of fashion pressed together. Name tags dangle from each hanger in copperplate script.",
+      "read_aloud": "The coats span generations. You find military dress from the Fairelands Campaign. A debutante's cape from the Century Ball. A leather jacket with a cinema stub in the pocket dated last Thursday. All unclaimed.",
+      "investigation_dc": 14,
+      "investigation_success": "Declan Voss's coat is here -- a gray wool overcoat with a champagne flute still in the pocket. Inside the lining: a folded invitation on cream paper that reads 'You are cordially invited to the Eternal Revel. Admit one. No departure guaranteed.'",
+      "enemies": [
+        {
+          "name": "Enthralled Coat-Check Attendant",
+          "hp": 15,
+          "ac": 12,
+          "attack": 4,
+          "damage": "1d6",
+          "count": 1,
+          "notes": "A man in a moth-eaten waistcoat, eyes glazed, who insists on taking your coat. Becomes violent if refused. Has been checking coats since 1903.",
+          "special": ["Enthralled: immune to persuasion while the music plays"]
+        }
+      ],
+      "loot": [
+        {"name": "Voss's Invitation", "value": 0, "description": "Cream card stock, embossed in gold. The ink shimmers faintly with bleed residue."}
+      ]
+    },
+    "2": {
+      "description": "A velvet curtain separates the vestibule from the speakeasy proper. Through the gap, golden light spills across the marble floor. The music is intoxicating -- a twelve-piece orchestra playing something that makes your pulse quicken.",
+      "read_aloud": "You pull the curtain aside. The speakeasy opens before you like a wound. Crystal chandeliers. A bar that stretches the length of the room. Dozens of guests laughing, dancing, drinking -- none of them aware that the world above has moved on without them.",
+      "perception_dc": 12,
+      "perception_success": "The guests' smiles don't reach their eyes. Their laughter is mechanical, looping. A woman at the bar orders the same drink every ninety seconds, word for word. They're not celebrating. They're trapped."
+    }
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "seed": 8009,
+  "width": 30,
+  "height": 20,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "bridge_crossing",
+    "theme": "RUST",
+    "topology": "dungeon",
+    "mission_types": ["escort", "recon"]
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 2,
+      "y": 8,
+      "width": 8,
+      "height": 6,
+      "room_type": "start",
+      "connections": [1],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The near side of the bridge. Stone abutments anchor the arch to the cliff face, worn smooth by centuries of traffic. Old toll markers jut from the ground, their inscriptions weathered to ghosts. The bridge itself is solid -- good Bartan engineering -- but the far side is obscured by a wall of bodies pressed against each other, jostling for position on the narrow span.",
+        "read_aloud": "The bridge groans under the weight of the undead pressing from the far side. The stone is old and strong, but nothing was built to bear this.",
+        "event_triggers": [
+          "The bridge groans under the weight of the undead pressing from the far side."
+        ]
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 12,
+      "y": 6,
+      "width": 10,
+      "height": 8,
+      "room_type": "boss",
+      "connections": [0, 2],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The bridge span. Twenty paces wide, a hundred long, with a drop to white water below that no one would survive. The Hounds came first -- fast, scrambling over the stone railing, flanking wide. Behind them, the mass of Rotters surges forward, driven by the acid-spitting thing crouched on the far bridgehead. The stone underfoot is slick with river spray and something else. Something that burns.",
+        "enemies": [
+          {"name": "Hound", "hp": 8, "max_hp": 8, "ac": 10, "attack": 4, "defense": 10, "count": 3},
+          {"name": "Spitter", "hp": 15, "max_hp": 15, "ac": 11, "attack": 5, "defense": 11, "count": 1}
+        ],
+        "event_triggers": [
+          "The Spitter's acid hits the bridge stone. The surface hisses and pits. This bridge will not survive many more impacts.",
+          "A Legionnaire's voice from behind: 'Do we hold it or drop it? Commander -- the charges are set!'"
+        ],
+        "perception_dc": 11,
+        "perception_success": "Demolition charges have been wired to the bridge supports -- Bartan explosive, the good stuff. A detonator cord trails back to the near abutment. The bridge can be destroyed, but only if you are on the right side when it goes."
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 22,
+      "y": 8,
+      "width": 6,
+      "height": 5,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The far bridgehead. If the bridge is held, this is where the Legion plants its flag. If the bridge is blown, this area is visible through the dust and spray as the stone arch collapses into the gorge. Either way, the road continues east -- toward Barrak Mines, toward Gallows Pass, toward whatever comes next in the long retreat.",
+        "event_triggers": [
+          "The road ahead forks. A weathered signpost reads: BARRAK MINES - 2 DAYS. GALLOWS PASS - 3 DAYS. Both arrows point into country you cannot see."
+        ],
+        "loot": [
+          {"name": "Bridge Warden's Cache", "value": 2, "description": "Emergency supplies stored in the bridgehead guardhouse. Rations for a squad, a signal mirror, and a sealed letter addressed to Skydagger Keep."}
+        ]
+      }
+    }
+  }
+}

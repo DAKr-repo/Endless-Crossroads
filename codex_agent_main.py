@@ -712,7 +712,12 @@ def render_vitals(cortex: Cortex):
 # Council Dilemmas now sourced from engine.get_council_dilemma() (WO-V23.0)
 
 
-async def run_crown_campaign(world_state: Optional[dict] = None, mimir: object = None, butler: object = None):
+async def run_crown_campaign(
+    world_state: Optional[dict] = None,
+    mimir: object = None,
+    butler: object = None,
+    campaign_data: Optional[dict] = None,
+):
     """
     Run the Crown & Crew 5-Day Narrative Campaign.
 
@@ -721,6 +726,10 @@ async def run_crown_campaign(world_state: Optional[dict] = None, mimir: object =
                      If None, uses hardcoded defaults.
         mimir: Optional AI bridge (Architect instance) for narrative generation.
         butler: Optional Butler instance for session-aware reflexes (WO 100).
+        campaign_data: Optional parsed campaign.json dict. When provided,
+                       the scene progression system is activated for the
+                       campaign if it contains ``scene_chapters`` or
+                       ``scenes_by_day`` keys.
 
     Daily Cycle:
     1. MORNING   - World Card + Travel interaction
@@ -732,6 +741,16 @@ async def run_crown_campaign(world_state: Optional[dict] = None, mimir: object =
     console.clear()
 
     engine = CrownAndCrewEngine(world_state=world_state, mimir=mimir)
+
+    # Attach scene runner if campaign_data contains scene definitions
+    if campaign_data:
+        try:
+            from codex.games.crown.scenes import CrownSceneRunner
+            _scene_runner = CrownSceneRunner.from_campaign_json(campaign_data)
+            if _scene_runner.chapters:
+                engine.set_scene_runner(_scene_runner)
+        except Exception:
+            pass
 
     # WO 100: Register engine with Butler for session-aware reflexes
     if butler:
@@ -848,6 +867,63 @@ async def run_crown_campaign(world_state: Optional[dict] = None, mimir: object =
 
         console.print()
         await ainput("\n[dim][Press Enter to continue...][/dim]")
+
+        # =====================================================================
+        # PHASE 1.5: SCENE — Optional narrative choice (from campaign_data)
+        # =====================================================================
+        _scene = engine.get_scene_for_today()
+        if _scene:
+            console.clear()
+            console.print(Panel(
+                f"[bold]{engine.get_status()}[/bold]",
+                title=f"[bold gold1]DAY {day} — {region}[/bold gold1]",
+                box=box.HEAVY,
+                border_style=GOLD
+            ))
+            console.print()
+            console.print("[bold cyan]🎭 A SCENE UNFOLDS[/bold cyan]")
+            console.print()
+
+            _scene_title = _scene.location if _scene.location else f"Day {day} — Scene"
+            console.print(Panel(
+                f"[italic]{_scene.description}[/italic]",
+                title=f"[bold]{_scene_title}[/bold]",
+                border_style="cyan",
+                padding=(1, 2)
+            ))
+            console.print()
+
+            for idx, text in enumerate(_scene.get_choice_texts()):
+                console.print(f"  [bold][{idx + 1}][/bold] {text}")
+
+            console.print()
+            _scene_input = ""
+            while True:
+                _scene_raw = (await ainput("[cyan]Your choice: [/]")).strip()
+                if _scene_raw.isdigit() and 1 <= int(_scene_raw) <= len(_scene.choices):
+                    _scene_input = _scene_raw
+                    break
+                if not _scene_raw and _scene.choices:
+                    _scene_input = "1"
+                    break
+                console.print(f"[dim]Enter a number between 1 and {len(_scene.choices)}[/dim]")
+
+            _scene_result = engine.resolve_scene_choice(int(_scene_input) - 1)
+            if _scene_result.get("narrative"):
+                console.print()
+                console.print(Panel(
+                    f"[italic]{_scene_result['narrative']}[/italic]",
+                    border_style="dim cyan",
+                    padding=(1, 2)
+                ))
+
+            _sway_delta = _scene_result.get("sway_effect", 0)
+            if _sway_delta != 0:
+                _direction = "toward the Crown" if _sway_delta > 0 else "toward the Crew"
+                console.print(f"[dim]Sway shifts {_direction}. Now: {engine.sway:+d}[/dim]")
+
+            console.print()
+            await ainput("[dim][Press Enter to continue...][/dim]")
 
         # =====================================================================
         # PHASE 2: NIGHT — The Choice (Blind Allegiance)
@@ -2391,10 +2467,23 @@ async def run_codex_chronicles_menu(core: CodexCore):
                         await ainput("\n[dim]Press Enter to continue...[/dim]")
                 elif system_id in ("crown", "ashburn"):
                     # Crown & Crew / Ashburn
+                    _crown_campaign_data: Optional[dict] = None
+                    _crown_module_path = manifest.get("module_manifest_path")
+                    if _crown_module_path:
+                        try:
+                            from pathlib import Path as _Path
+                            import json as _json
+                            _campaign_json = _Path(_crown_module_path).parent / "campaign.json"
+                            if _campaign_json.exists():
+                                with open(_campaign_json, encoding="utf-8") as _f:
+                                    _crown_campaign_data = _json.load(_f)
+                        except Exception:
+                            pass
                     await run_crown_campaign(
                         world_state=selected_save.state or None,
                         mimir=getattr(core, 'architect', None),
-                        butler=getattr(core, 'butler', None)
+                        butler=getattr(core, 'butler', None),
+                        campaign_data=_crown_campaign_data,
                     )
                 elif UNIVERSAL_AVAILABLE:
                     # Resolve sub-setting for registry lookup (e.g. stc_roshar -> stc)
@@ -2537,6 +2626,7 @@ async def run_campaign_setup_wizard(core: CodexCore):
     setting_file = None
     module_name = None
     module_file = None
+    _selected_module_id = None  # module_id from vault_maps/modules/ selection
     step = 1
 
     while step <= 4:
@@ -2714,6 +2804,33 @@ async def run_campaign_setup_wizard(core: CodexCore):
                     vault_content = scan_system_content(vault_path or "", parent_path=_parent_vault or "")  # type: ignore[union-attr]
                 module_options = list(vault_content.get("modules", []))
 
+            # Also scan vault_maps/modules/ for adventure modules matching this system
+            _sys_id = selected_schema.system_id.lower()
+            _modules_dir = CODEX_DIR / "vault_maps" / "modules"
+            _seen_names = {m["name"] for m in module_options}
+            if _modules_dir.is_dir():
+                for _entry in sorted(_modules_dir.iterdir()):
+                    if not _entry.is_dir():
+                        continue
+                    _mf = _entry / "module_manifest.json"
+                    if not _mf.exists():
+                        continue
+                    try:
+                        _mdata = json.loads(_mf.read_text())
+                        if _mdata.get("system_id") != _sys_id:
+                            continue
+                        _dname = _mdata.get("display_name", _entry.name)
+                        if _dname in _seen_names:
+                            continue
+                        _seen_names.add(_dname)
+                        module_options.append({
+                            "name": _dname,
+                            "path": str(_mf),
+                            "module_id": _mdata.get("module_id", _entry.name),
+                        })
+                    except (json.JSONDecodeError, KeyError):
+                        continue
+
             module_name = None
             module_file = None
 
@@ -2730,6 +2847,7 @@ async def run_campaign_setup_wizard(core: CodexCore):
             console.print(mod_table)
             console.print()
 
+            _selected_module_id = None  # Track module_id for vault_maps modules
             mod_choice = await ainput(f"[gold1]Select module [1-{freeform_idx}]:[/] ")
             if mod_choice.strip().lower() in ("back", "b"):
                 step = 3
@@ -2739,6 +2857,7 @@ async def run_campaign_setup_wizard(core: CodexCore):
                 if 0 <= mod_idx < len(module_options):
                     module_name = module_options[mod_idx]["name"]
                     module_file = os.path.basename(module_options[mod_idx].get("path", ""))
+                    _selected_module_id = module_options[mod_idx].get("module_id")
             except (ValueError, AttributeError):
                 pass
 
@@ -2772,17 +2891,27 @@ async def run_campaign_setup_wizard(core: CodexCore):
             f"[bold gold1]Player {player_num}, step up to the forge.[/bold gold1]",
             border_style=GOLD
         ))
-        await ainput("[dim]Press Enter when ready...[/dim]")
+        ready_input = await ainput("[dim]Press Enter when ready (or 'back' to cancel)...[/dim]")
+        if ready_input.strip().lower() in ("back", "b"):
+            console.print("[dim]Returning to campaign setup...[/dim]")
+            return
 
         # SystemBuilder.run() is synchronous (uses Prompt.ask) — run in executor
         def _build_character(schema=selected_schema):
             from rich.console import Console as RichConsole
             build_console = RichConsole()
             builder = SystemBuilder(schema, build_console)  # type: ignore[misc]
-            sheet = builder.run()
+            try:
+                sheet = builder.run()
+            except SystemBuilder._BackStep:
+                return None  # User backed out at step 1
             return sheet, schema
 
-        sheet, schema = await loop.run_in_executor(None, _build_character)
+        result = await loop.run_in_executor(None, _build_character)
+        if result is None:
+            console.print("[dim]Returning to campaign setup...[/dim]")
+            return
+        sheet, schema = result
 
         # Display the finished character
         console.print()
@@ -2799,6 +2928,63 @@ async def run_campaign_setup_wizard(core: CodexCore):
         })
 
         console.print(f"[green]Character '{sheet.name}' forged![/green]\n")
+
+    # --- Step 5b: Group Creation (Circle/Crew/Ship/Legion) ---
+    # Run once after all characters, since the group is shared
+    _group_data: dict = {}
+    if selected_schema.derived and any(
+        k.endswith("_creation") for k in selected_schema.derived
+    ):
+        def _build_group(schema=selected_schema):
+            from rich.console import Console as RichConsole
+            build_console = RichConsole()
+            builder = SystemBuilder(schema, build_console)
+            return builder.run_group_creation()
+
+        _group_data = await loop.run_in_executor(None, _build_group)
+        if _group_data:
+            console.print(f"[green]Group forged![/green]\n")
+
+    # --- Step 5c: AI Companion ---
+    _ai_companion = None
+    console.print(Panel(
+        "[bold gold1]AI COMPANION[/bold gold1]\n"
+        "[dim]Would you like an AI companion to join your party?\n"
+        "They act autonomously, offering advice and taking actions in play.[/dim]",
+        border_style=GOLD
+    ))
+    companion_choice = await ainput("[gold1]Add AI companion? [y/N]:[/] ")
+    if companion_choice.strip().lower() in ("y", "yes"):
+        try:
+            from codex.core.autopilot import GenericAutopilotAgent, PERSONALITY_POOL
+            import random as _rng
+            # Let the player choose a companion archetype
+            console.print("[bold]Choose a companion:[/bold]")
+            for ci, cp in enumerate(PERSONALITY_POOL, 1):
+                console.print(
+                    f"  [{ci}] [bold]{cp.archetype.title()}[/bold] — {cp.description}"
+                    f"\n      [dim]{cp.quirk}[/dim]"
+                )
+            _cp_choice = await ainput(
+                f"[gold1]Select companion [1-{len(PERSONALITY_POOL)}]:[/] "
+            )
+            try:
+                _cp_idx = int(_cp_choice.strip()) - 1
+                personality = PERSONALITY_POOL[max(0, min(_cp_idx, len(PERSONALITY_POOL) - 1))]
+            except (ValueError, IndexError):
+                personality = _rng.choice(PERSONALITY_POOL)
+            _ai_companion = {
+                "archetype": personality.archetype,
+                "personality": personality.archetype,
+                "description": personality.description,
+                "enabled": True,
+            }
+            console.print(
+                f"[green]Companion '{personality.archetype.title()}' will join your party![/green]\n"
+                f"[dim]{personality.description}[/dim]\n"
+            )
+        except Exception as e:
+            console.print(f"[yellow]Companion unavailable: {e}[/yellow]\n")
 
     # --- Step 6: Save Campaign ---
     default_campaign = f"{setting_name}_{module_name}".replace(" ", "_")
@@ -2825,11 +3011,18 @@ async def run_campaign_setup_wizard(core: CodexCore):
         "memory_shards": [],
         "session_type": None,  # WO-V63.0: Persisted when game engine starts
         "created": datetime.now().isoformat(),
+        "group_data": _group_data or {},
+        "ai_companion": _ai_companion,
     }
 
     # Resolve module_manifest.json for spatial zone progression
     if module_name:
-        _mod_slug = module_name.lower().replace(" ", "_").replace("'", "")
+        # Prefer module_id from selection (exact dir match), fall back to slug
+        _mod_slug = (
+            _selected_module_id
+            if _selected_module_id
+            else module_name.lower().replace(" ", "_").replace("'", "")
+        )
         _mod_manifest = CODEX_DIR / "vault_maps" / "modules" / _mod_slug / "module_manifest.json"
         if _mod_manifest.exists():
             manifest["module_manifest_path"] = str(_mod_manifest)
@@ -2890,7 +3083,6 @@ async def run_campaign_setup_wizard(core: CodexCore):
     butler = getattr(core, 'butler', None)
 
     await ainput("\n[dim]Press Enter to launch your campaign...[/dim]")
-    _launch_views()  # WO-V63.0: spawn views when game starts
 
     # WO-V63.0: Run pending prologue before main game
     if manifest.get('prologue_pending'):
@@ -2916,7 +3108,23 @@ async def run_campaign_setup_wizard(core: CodexCore):
         # Crown & Crew / Ashburn: narrative-only engine
         mimir = getattr(core, 'architect', None)
         world_state = manifest.get("prologue_context")
-        await run_crown_campaign(world_state=world_state, mimir=mimir, butler=butler)
+        # Load campaign.json from module directory if one is referenced
+        _crown_cd: Optional[dict] = None
+        _crown_mp = manifest.get("module_manifest_path")
+        if _crown_mp:
+            try:
+                from pathlib import Path as _CPath
+                import json as _cjson
+                _cj = _CPath(_crown_mp).parent / "campaign.json"
+                if _cj.exists():
+                    with open(_cj, encoding="utf-8") as _cf:
+                        _crown_cd = _cjson.load(_cf)
+            except Exception:
+                pass
+        await run_crown_campaign(
+            world_state=world_state, mimir=mimir, butler=butler,
+            campaign_data=_crown_cd,
+        )
     elif _routing_id == "burnwillow" and BURNWILLOW_AVAILABLE:
         # Burnwillow: dedicated dungeon crawler
         console.print("[green]Launching Burnwillow...[/green]")
@@ -3374,13 +3582,9 @@ async def main_menu(core: CodexCore):
             continue
 
         if action == "play_chronicles":
-            if TAROT_AVAILABLE:
-                console.print(render_tarot_card(get_card_for_context("crew"), "Your party assembles."))  # type: ignore[misc]
             await run_codex_chronicles_menu(core)
 
         elif action == "play_crown":
-            if TAROT_AVAILABLE:
-                console.print(render_tarot_card(get_card_for_context("crown"), "The Board convenes."))  # type: ignore[misc]
             await run_crown_crew_menu(core)
 
         elif action == "play_burnwillow":

@@ -430,6 +430,9 @@ class TestModuleManifestSourceType:
     def test_community_authored_modules_have_source_type(self):
         """All module manifests with source_pdf null should have source_type set."""
         import os
+        _VALID_SOURCE_TYPES = {
+            "community_authored", "publisher_licensed", "homebrew_original",
+        }
         modules_dir = PROJECT_ROOT / "vault_maps" / "modules"
         for module_dir in modules_dir.iterdir():
             manifest_path = module_dir / "module_manifest.json"
@@ -441,6 +444,6 @@ class TestModuleManifestSourceType:
                 assert "source_type" in data, (
                     f"{module_dir.name}/module_manifest.json has null source_pdf but no source_type"
                 )
-                assert data["source_type"] == "community_authored", (
-                    f"{module_dir.name}: expected source_type='community_authored', got '{data['source_type']}'"
+                assert data["source_type"] in _VALID_SOURCE_TYPES, (
+                    f"{module_dir.name}: unexpected source_type='{data['source_type']}'"
                 )

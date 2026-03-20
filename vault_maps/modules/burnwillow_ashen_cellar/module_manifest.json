@@ -1,0 +1,44 @@
+{
+    "module_id": "burnwillow_ashen_cellar",
+    "display_name": "The Ashen Cellar",
+    "system_id": "burnwillow",
+    "source_pdf": "original",
+    "source_type": "homebrew_original",
+    "starting_location": "emberhome",
+    "recommended_levels": {"min": 1, "max": 1},
+    "chapters": [
+        {
+            "chapter_id": "ch1_emberhome_briefing",
+            "display_name": "Emberhome Briefing",
+            "order": 1,
+            "zones": [
+                {
+                    "zone_id": "cellar_briefing",
+                    "blueprint": "cellar_briefing.json",
+                    "topology": "settlement",
+                    "theme": "RUST",
+                    "location_id": "emberhome",
+                    "entry_trigger": "module_start",
+                    "exit_trigger": "player_choice"
+                }
+            ]
+        },
+        {
+            "chapter_id": "ch2_the_ashen_cellar",
+            "display_name": "The Ashen Cellar",
+            "order": 2,
+            "zones": [
+                {
+                    "zone_id": "ashen_cellar",
+                    "blueprint": "ashen_cellar.json",
+                    "topology": "dungeon",
+                    "theme": "RUST",
+                    "location_id": "old_storehouse",
+                    "entry_trigger": "player_choice",
+                    "exit_trigger": "boss_defeated"
+                }
+            ]
+        }
+    ],
+    "freeform_zones": []
+}

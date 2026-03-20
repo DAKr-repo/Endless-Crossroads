@@ -23,13 +23,19 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Oathgate Platform occupies the tower's base -- a circular stone dais inlaid with ten interlocking glyph patterns, one for each Order. The air shimmers where Stormlight pools in the mechanism's seams. Stepping onto the platform feels like stepping onto a held breath.",
+                "read_aloud": "The Oathgate dais stretches fifty paces across, its surface inlaid with ten interlocking glyph patterns carved in metals that gleam like captured starlight. Stormlight pools in the seams between symbols, flowing in channels you can almost follow before the patterns shift and your eye loses the thread. The platform hums beneath your feet -- a frequency that matches your pulse for three beats, then diverges into something older.",
                 "npcs": [
-                    {"name": "Oathgate Attendant Ral", "role": "guide", "dialogue": "Place your hand on the glyph and infuse. That is the simple version. The complicated version involves explaining why half of them do not work anymore. Which would you prefer?"}
+                    {"name": "Oathgate Attendant Ral", "role": "guide", "dialogue": "Place your hand on the glyph and infuse. That is the simple version. The complicated version involves explaining why half of them do not work anymore. Which would you prefer?", "notes": "Ral is one of the few people who can partially operate the Oathgate. He does not understand why it works for him. He is an unknowing proto-Radiant."},
+                    {"name": "Ardent Researcher Ellista", "role": "scholar", "dialogue": "Seventeen translations of the Oathgate inscription and not one of them agrees with the others. Either the ancient Radiants were poor writers or we are poor readers. I suspect the latter, but do not tell the head ardent I said that.", "notes": "Ellista specializes in dead languages. She has made more progress translating the Oathgate glyphs than anyone realizes -- and what she has found terrifies her."}
                 ],
                 "enemies": [],
                 "loot": [],
                 "services": ["oathgate_travel", "orientation"],
-                "event_triggers": ["On entry: The Oathgate hums beneath your feet, its frequency shifting as if recognizing your approach"]
+                "investigation_dc": 14,
+                "investigation_success": "The tenth glyph pattern -- the one for the Bondsmiths -- pulses at a different frequency than the other nine. It is not dormant. It is waiting.",
+                "perception_dc": 12,
+                "perception_success": "Ellista's hands shake when she copies certain inscriptions. She is not cold. She is translating something she wishes she had not found.",
+                "event_triggers": ["On entry: The Oathgate hums beneath your feet, its frequency shifting as if recognizing your approach. Three of the ten glyph patterns brighten. The rest remain dark."]
             }
         },
         "1": {
@@ -45,17 +51,22 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Ground Level Markets fill a vast atrium carved from living rock, its ceiling lost in shadow far above. Merchants from every princedom have staked claims here -- Thaylen gem traders, Azish bureaucrats selling permits for permits, Herdazian cooks whose chouta stalls trail fragrant smoke like signal fires.",
+                "read_aloud": "The market atrium rises into shadow -- a cathedral of commerce carved from the mountain itself. Thaylen gem traders display stones on velvet beneath fabrial-lamps. An Azish bureaucrat stamps permits with mechanical precision at a desk surrounded by a queue that wraps twice around a pillar. And above it all, the smell of Herdazian chouta -- fried flatbread and meat in spices that make your eyes water from thirty feet.",
                 "npcs": [
-                    {"name": "Merchant Vstim", "role": "merchant", "dialogue": "I have traded in six kingdoms, friend, and I will tell you this -- Urithiru's market is the strangest of all. Where else can you buy a Soulcaster on the same floor as dried lavis? Nowhere. That is the answer."},
-                    {"name": "Herdazian Cook Lopen", "role": "merchant", "dialogue": "Chouta! Fresh chouta! Made with one hand, twice the flavor! My cousin, he says the spices are too strong. My cousin is wrong about many things. This is only the most recent."}
+                    {"name": "Merchant Vstim", "role": "merchant", "dialogue": "I have traded in six kingdoms, friend, and I will tell you this -- Urithiru's market is the strangest of all. Where else can you buy a Soulcaster on the same floor as dried lavis? Nowhere. That is the answer.", "notes": "Vstim trained Rysn in trade. He is one of the few merchants who deals fairly with all races and castes."},
+                    {"name": "Herdazian Cook Lopen", "role": "merchant", "dialogue": "Chouta! Fresh chouta! Made with one hand, twice the flavor! My cousin, he says the spices are too strong. My cousin is wrong about many things. This is only the most recent.", "notes": "Lopen lost an arm in the bridge crews but never lost his humor. He is developing Edgedancer abilities without knowing it -- his food heals slightly more than it should."}
                 ],
                 "enemies": [],
                 "loot": [
                     {"name": "Chouta Wrap (heals 2 HP)", "type": "consumable"},
-                    {"name": "Thaylen Gemstone Pouch", "type": "currency"}
+                    {"name": "Thaylen Gemstone Pouch", "type": "currency", "value": 15}
                 ],
                 "services": ["buy_equipment", "sell_goods", "food", "rumors"],
-                "event_triggers": ["On entry: A scribe's spanreed twitches to life mid-sentence, relaying news from Kholinar -- the tone is urgent"]
+                "investigation_dc": 13,
+                "investigation_success": "Lopen's chouta stall has a hollow leg. Inside: a collection of infused spheres that should have gone dun weeks ago. They remain lit. Lopen does not know why.",
+                "perception_dc": 11,
+                "perception_success": "A spanreed on a scribe's desk twitches to life mid-sentence, relaying news from Kholinar. The scribe's face drains of color. She folds the message and hurries toward the upper tiers.",
+                "event_triggers": ["On entry: A scribe's spanreed twitches to life mid-sentence, relaying news from Kholinar -- the tone is urgent. Merchants pause their haggling to listen."]
             }
         },
         "2": {
@@ -71,9 +82,10 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Library of Urithiru stretches across three tiers connected by ramps worn smooth by ten millennia of scholars' feet. Shelves cut directly into the stone walls hold thousands of volumes -- most written in languages no living person can read. Glyphs on the ceiling pulse with residual Stormlight, casting the chamber in amber light that shifts like living things.",
+                "read_aloud": "Three tiers of shelves carved from the mountain's heart rise above you, connected by ramps worn to glass by ten thousand years of scholars' feet. Books fill every alcove -- vellum, pressed reed, stone tablets, and materials you cannot identify. Ceiling glyphs pulse with residual Stormlight, their amber glow shifting like firelight without fire. A book falls from a shelf untouched. It lands open on a page that describes your party in a text written four millennia ago.",
                 "npcs": [
-                    {"name": "Jasnah Kholin", "role": "quest_giver", "dialogue": "History is not merely what happened. It is the pattern of what happened, and therefore the prediction of what will happen again. I have found references to the Desolations that contradict everything the Vorin church teaches. Do you have the courage to hear uncomfortable truths?"},
-                    {"name": "Renarin Kholin", "role": "ally", "dialogue": "The visions my father sees -- I see them too, but differently. Through a cracked lens. I am not sure what that makes me. Can I show you something? These glyphs on the wall -- they change when no one is looking."}
+                    {"name": "Jasnah Kholin", "role": "quest_giver", "dialogue": "History is not merely what happened. It is the pattern of what happened, and therefore the prediction of what will happen again. I have found references to the Desolations that contradict everything the Vorin church teaches. Do you have the courage to hear uncomfortable truths?", "notes": "Jasnah is an Elsecaller bonded to the inkspren Ivory. She has visited the Cognitive Realm and returned. She trusts no one fully, including herself."},
+                    {"name": "Renarin Kholin", "role": "ally", "dialogue": "The visions my father sees -- I see them too, but differently. Through a cracked lens. I am not sure what that makes me. Can I show you something? These glyphs on the wall -- they change when no one is looking.", "notes": "Renarin's Truthwatcher abilities are corrupted by a spren of Odium posing as an honorspren. His visions are accurate but delivered through a lens of fear."}
                 ],
                 "enemies": [],
                 "loot": [
@@ -81,7 +93,11 @@
                     {"name": "Translation Key (partial)", "type": "quest_item"}
                 ],
                 "services": ["lore", "research", "translation"],
-                "event_triggers": ["On entry: A book falls from a shelf untouched. When you open it, the page it lands on describes your party -- in a text written four thousand years ago"]
+                "investigation_dc": 16,
+                "investigation_success": "Cross-referencing Jasnah's Desolation timeline with Kabsal's Dawncity geometry reveals a pattern: every Desolation was preceded by an alignment of ten cities. The alignment is happening again.",
+                "perception_dc": 14,
+                "perception_success": "Renarin's shadow does not match his movements. When he turns left, the shadow lags a fraction of a second. When he reaches for a book, the shadow reaches for a different one.",
+                "event_triggers": ["On entry: A book falls from a shelf untouched. When you open it, the page it lands on describes your party -- in a text written four thousand years ago. The ink is fresh."]
             }
         },
         "3": {
@@ -97,13 +113,18 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Residential Tier occupies the tower's midsection -- hundreds of chambers carved with geometric precision, each identical, each designed for a Knight Radiant who lived here millennia ago. The new occupants have draped Alethi banners over Radiant glyphs and stuffed rockbud planters into arrow slits. The tower tolerates the redecoration.",
+                "read_aloud": "Hundreds of chambers line the corridor, each carved with identical precision -- doorways exactly seven feet tall, walls exactly fifteen paces apart, floors polished to a sheen by millennia of absence. The new occupants have made them almost human: Alethi banners cover Radiant glyphs, rockbud planters fill arrow slits, and someone has scratched a cooking recipe into a wall that once held instructions for a Surge. The tower does not complain.",
                 "npcs": [
-                    {"name": "Navani Kholin", "role": "quest_giver", "dialogue": "These rooms were not built for comfort. They were built for function -- each one connects to a fabrial network we do not understand. I have mapped the conduits on three floors. The patterns suggest the tower itself is a fabrial. The largest one ever constructed."}
+                    {"name": "Navani Kholin", "role": "quest_giver", "dialogue": "These rooms were not built for comfort. They were built for function -- each one connects to a fabrial network we do not understand. I have mapped the conduits on three floors. The patterns suggest the tower itself is a fabrial. The largest one ever constructed.", "notes": "Navani is reverse-engineering the tower's systems. She is closer to reactivating them than she knows, and what she activates will change the war."}
                 ],
                 "enemies": [],
                 "loot": [],
                 "services": ["rest", "fabrial_consultation"],
-                "event_triggers": ["On entry: The room's gemstone sconces flicker to life as you enter, responding to your presence after four thousand years of darkness"]
+                "investigation_dc": 14,
+                "investigation_success": "Navani's conduit maps, when overlaid, form a three-dimensional circuit. The tower is not merely a fabrial -- it is a weapon. Or a shield. The distinction depends on which conduits are activated first.",
+                "perception_dc": 12,
+                "perception_success": "The room's gemstone sconces flicker to life as you enter, responding to your presence after four thousand years of darkness. They dim when you leave. The tower is watching.",
+                "event_triggers": ["On entry: The room's gemstone sconces flicker to life as you enter, responding to your presence after four thousand years of darkness. The light follows you down the corridor."]
             }
         },
         "4": {
@@ -119,15 +140,20 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Training Grounds occupy an open terrace jutting from the tower's eastern face, high enough that clouds drift below. Wind hammers the platform from every direction -- by design, the Radiants trained in conditions worse than any battlefield. Weapon racks hold practice blades, and the stone floor is inscribed with sparring circle glyphs.",
+                "read_aloud": "Wind tears across the terrace with enough force to stagger you. Clouds drift below -- you are above the weather here, training where the Radiants trained, in conditions designed to break anyone who was not ready. Practice blades rattle in their racks. Sparring circles carved into the stone floor glow faintly, their edges still sharp after four thousand years of wind erosion. A man in a simple robe sparrs three soldiers simultaneously without drawing a weapon.",
                 "npcs": [
-                    {"name": "Swordmaster Zahel", "role": "trainer", "dialogue": "Stance. Grip. Breath. Everything else is decoration. You want to learn to fight, you learn those three things until they are reflex. You want to learn to kill, that is a different lesson. I teach both."}
+                    {"name": "Swordmaster Zahel", "role": "trainer", "dialogue": "Stance. Grip. Breath. Everything else is decoration. You want to learn to fight, you learn those three things until they are reflex. You want to learn to kill, that is a different lesson. I teach both.", "notes": "Zahel is Vasher from Nalthis, a Returned god who gave up his divine Breath. He carries a sentient sword he keeps hidden. He is the most dangerous person in Urithiru and tells no one."}
                 ],
                 "enemies": [],
                 "loot": [
                     {"name": "Practice Shardblade (Weighted)", "type": "weapon"}
                 ],
                 "services": ["combat_training", "weapon_purchase"],
-                "event_triggers": ["On entry: Zahel is sparring with three soldiers simultaneously. He has not drawn his own blade. He does not appear to need it."]
+                "investigation_dc": 15,
+                "investigation_success": "Zahel's quarters contain a locked trunk with no visible keyhole. Inside (if you could open it): a black sword that whispers. Zahel's 'simple robe' is actually woven with Investiture from a world that is not Roshar.",
+                "perception_dc": 13,
+                "perception_success": "Zahel's fighting style uses no Rosharan forms. His footwork follows patterns from a martial tradition that does not exist on this continent. His eyes, in certain light, flash a color that is not natural.",
+                "event_triggers": ["On entry: Zahel is sparring with three soldiers simultaneously. He has not drawn his own blade. He does not appear to need it. A windspren orbits the combat, confused by movement it cannot follow."]
             }
         },
         "5": {
@@ -143,10 +169,15 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Stormfather's Balcony crowns the tower's highest accessible tier -- a stone platform that extends into empty sky. From here, Roshar curves at the horizon. Highstorms are visible as walls of cloud and lightning hundreds of miles wide, advancing across the continent like the anger of a god who has not yet decided where to strike.",
+                "read_aloud": "The sky opens around you like a held breath released. Roshar curves at the horizon, its surface a patchwork of storm-scoured stone and the green-brown of crem-fed vegetation. To the east, a highstorm advances -- a wall of cloud and lightning that stretches from horizon to horizon, boiling toward you at the speed of cavalry. The stone vibrates. The air tastes of ozone. And then a voice speaks that is not a voice -- a pressure behind your eyes, a gravity in your chest.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [],
                 "services": ["meditation", "stormlight_infusion"],
+                "investigation_dc": 16,
+                "investigation_success": "The balcony's railing bears ten handprints worn into the stone -- one for each Radiant Order. Placing your hand in the correct print infuses your spheres instantly, as if you held them in a highstorm.",
+                "perception_dc": 15,
+                "perception_success": "The Stormfather's voice is not merely sound. It carries images -- a flash of ten warriors standing on this balcony, their Shardblades raised, swearing an oath in unison. The vision lasts one heartbeat, but the weight of it lasts hours.",
                 "event_triggers": ["On entry: The Stormfather speaks -- not in words, but in a pressure behind your eyes, a gravity in your chest. 'YOU HAVE CLIMBED FAR, CHILD. THE QUESTION IS WHETHER YOU CLIMBED TOWARD SOMETHING, OR AWAY.'"]
             }
         },
@@ -163,17 +194,23 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Gem Archive -- a sealed vault at Urithiru's apex, accessible only through a door that responds to Stormlight of specific frequencies. Inside, gemstones the size of fists sit in recessed alcoves, each one storing a captured memory from the time of the Knights Radiant. Touch one, and you live a moment from four thousand years ago.",
+                "read_aloud": "The vault door yields to Stormlight with a sound like a sigh held four thousand years. Inside, gemstones the size of fists line the walls in recessed alcoves, each pulsing with its own rhythm, its own color, its own trapped moment. The air is thick with Investiture -- breathing feels like drinking light. A Midnight Essence uncurls from the shadows between two alcoves, its form a shifting negative of the Stormlight around it.",
                 "npcs": [],
                 "enemies": [
-                    {"name": "Midnight Essence Guardian", "cr": "4"}
+                    {"name": "Midnight Essence Guardian", "hp": 16, "ac": 11, "attack": 2, "damage": "1d6+2", "count": 2, "notes": "Reforms in 3 rounds unless destroyed with Stormlight-infused weapons.", "special": ["Shadow Reform: Regenerates 3 HP per round unless hit by Stormlight"]}
                 ],
                 "loot": [
                     {"name": "Memory Gemstone (Radiant's Last Stand)", "type": "quest_item"},
                     {"name": "Shardplate Gauntlet (cracked)", "type": "armor"},
-                    {"name": "Stormlight Sphere (Broam)", "type": "currency"}
+                    {"name": "Stormlight Sphere (Broam)", "type": "currency", "value": 50}
                 ],
                 "services": [],
-                "event_triggers": ["On entry: The gemstones pulse in sequence -- a heartbeat preserved in light, still counting after four millennia"]
+                "lock_dc": 16,
+                "investigation_dc": 17,
+                "investigation_success": "The Memory Gemstone labeled 'Radiant's Last Stand' contains not a battle, but a conversation. Two Radiants discussing why they must break their oaths. The reason they give contradicts everything the Vorin church teaches about the Recreance.",
+                "perception_dc": 14,
+                "perception_success": "One alcove is empty, its dust pattern fresh. Someone has already been here and taken a gemstone. Footprints in the dust lead to a wall with no door -- but the stone there is warm.",
+                "event_triggers": ["On entry: The gemstones pulse in sequence -- a heartbeat preserved in light, still counting after four millennia. Then the Midnight Essence uncurls from the dark between alcoves."]
             }
         }
     }

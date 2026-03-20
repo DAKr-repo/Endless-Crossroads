@@ -1,0 +1,82 @@
+{
+  "seed": 91001,
+  "width": 20,
+  "height": 20,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "briefing",
+    "theme": "STONE",
+    "topology": "settlement",
+    "description": "Aboard the Faraday. The ship's common room, cramped and smelling of recycled air and engine grease. Star charts pinned to every flat surface."
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 2,
+      "y": 2,
+      "width": 7,
+      "height": 6,
+      "room_type": "town_square",
+      "connections": [1, 2],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The Faraday's common room. Bolted-down benches ring a central holo-table that flickers with the blue ghost of a star chart. Cable bundles run along the ceiling like mechanical veins. Someone has taped a faded pin-up from Rin's Cantina over a hull patch that's been welded twice.",
+        "read_aloud": "Citani's projection stabilizes on the holo-table. Their face is its usual mask of professional neutrality, but their eyes are sharper than usual. 'I have a job. Pays well. Short window. The Ashen Knives have product to move and Hegemonic attention to avoid.'",
+        "npcs": [
+          {
+            "name": "Citani",
+            "role": "info_broker",
+            "dialogue": "The Ashen Knives have a large shipment of Memish psychedelics. Hegemonic patrols are heavy on the route to Warren. The Knives are friendly -- for now -- but that's conditional on you not screwing this up. The plan is deception: forged manifests. Captain, this is your show.",
+            "notes": "Citani (they/them) is the crew's primary info broker. Operates through encrypted holo-channels only. Has never been seen in person by anyone aboard. Their intel is always good, but their price goes up every time. The Ashen Knives are +1 Friendly with the crew."
+          }
+        ],
+        "services": ["rest", "supply"],
+        "event_triggers": [
+          "Citani transmits encrypted coordinates and a manifest template. 'Forge it well. Hegemonic customs at the Warren gate are running double shifts since the Yaru incident. You get flagged, you're on your own.'"
+        ]
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 11,
+      "y": 2,
+      "width": 6,
+      "height": 6,
+      "room_type": "forge",
+      "connections": [0],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The engine bay. Hayley Griffen's domain. Tools hang from magnetic strips in precise rows. The Faraday's main drive hums behind its housing like a caged animal. Griffen has left a diagnostic running -- green lights cascade across a wall panel in rhythmic pulses.",
+        "npcs": [
+          {
+            "name": "Hayley Griffen",
+            "role": "mechanic",
+            "dialogue": "The drive's tuned. Transponder's clean. I can rig a secondary ident beacon if you want a fallback -- takes an hour and a bottle of that Ishtari rum Aleera's been hiding.",
+            "notes": "Hayley Griffen, the Faraday's mechanic. Notable quality: Fixed. She cannot leave a broken thing alone. Currently nursing a grudge against the portside attitude thruster, which she insists has a personality."
+          }
+        ],
+        "services": ["supply"]
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 2,
+      "y": 10,
+      "width": 7,
+      "height": 5,
+      "room_type": "residence",
+      "connections": [0],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Crew quarters. Four bunks, three occupied by personal effects that define their owners -- Aleera's flight manual dog-eared to the chapter on evasive maneuvers, Rogan's meditation beads hung from a bunk strut, Ray's collection of forged credentials spread across his mattress like a hand of cards.",
+        "services": ["rest"]
+      }
+    }
+  }
+}

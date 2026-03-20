@@ -1,0 +1,76 @@
+{
+    "module_id": "burnwillow_rot_spire",
+    "display_name": "The Rot Spire",
+    "system_id": "burnwillow",
+    "source_pdf": "original",
+    "source_type": "homebrew_original",
+    "starting_location": "emberhome",
+    "recommended_levels": {"min": 4, "max": 4},
+    "chapters": [
+        {
+            "chapter_id": "ch1_final_preparations",
+            "display_name": "Final Preparations",
+            "order": 1,
+            "zones": [
+                {
+                    "zone_id": "final_preparations",
+                    "blueprint": "final_preparations.json",
+                    "topology": "settlement",
+                    "theme": "RUST",
+                    "location_id": "emberhome",
+                    "entry_trigger": "module_start",
+                    "exit_trigger": "player_choice"
+                }
+            ]
+        },
+        {
+            "chapter_id": "ch2_the_approach",
+            "display_name": "The Approach",
+            "order": 2,
+            "zones": [
+                {
+                    "zone_id": "spire_approach",
+                    "blueprint": "spire_approach.json",
+                    "topology": "wilderness",
+                    "theme": "RUST",
+                    "location_id": "charred_wastes",
+                    "entry_trigger": "player_choice",
+                    "exit_trigger": "player_choice"
+                }
+            ]
+        },
+        {
+            "chapter_id": "ch3_the_rot_spire",
+            "display_name": "The Rot Spire",
+            "order": 3,
+            "zones": [
+                {
+                    "zone_id": "rot_spire",
+                    "blueprint": "rot_spire.json",
+                    "topology": "dungeon",
+                    "theme": "RUST",
+                    "location_id": "rot_spire_interior",
+                    "entry_trigger": "player_choice",
+                    "exit_trigger": "boss_defeated"
+                }
+            ]
+        },
+        {
+            "chapter_id": "ch4_the_rot_hunter",
+            "display_name": "The Rot Hunter",
+            "order": 4,
+            "zones": [
+                {
+                    "zone_id": "rot_hunter_apex",
+                    "blueprint": "rot_hunter_apex.json",
+                    "topology": "dungeon",
+                    "theme": "RUST",
+                    "location_id": "spire_summit",
+                    "entry_trigger": "boss_defeated",
+                    "exit_trigger": "boss_defeated"
+                }
+            ]
+        }
+    ],
+    "freeform_zones": []
+}

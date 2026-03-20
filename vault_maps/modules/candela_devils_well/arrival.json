@@ -1,0 +1,96 @@
+{
+  "seed": 4602,
+  "width": 25,
+  "height": 12,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "glass_sea_arrival",
+    "theme": "GOTHIC",
+    "topology": "settlement",
+    "display_name": "The Glass Sea"
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 0,
+      "y": 0,
+      "width": 8,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [1, 2],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Lightkeeper Station. A research outpost perched on a granite promontory overlooking the Glass Sea. Banks of radio equipment line one wall, their dials flickering with interference. A large map of the Sea is pinned to a corkboard, dotted with red pins marking every disappearance over the last decade. The newest pin is still wet with ink.",
+        "read_aloud": "A warped radio transmission plays on a loop from the monitoring equipment. Through the static, a voice -- the test pilot's -- repeating a single phrase: 'It is not pulling me down. It is pulling me in.' The signal cuts to white noise, then silence. Emerson Walsh turns from the radio bank, removes their headphones, and says, 'That transmission came from inside the wreckage. Not above it. Inside.'",
+        "npcs": [
+          {
+            "name": "Emerson Walsh",
+            "role": "informant",
+            "dialogue": "I have been monitoring Glass Sea transmissions for two years. Ships go in, signals stop. But this one -- this pilot is broadcasting from inside the wreck mass. That should not be possible. The wreckage has no power source. Unless something in there is generating its own signal.",
+            "notes": "They/them. Radio operator at Lightkeeper Station. Has been tracking disappearances and correlating them with bleed spikes. Knows the wreck mass has been growing -- each new ship adds to the structure. Believes something at the center is attracting them deliberately."
+          }
+        ],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [
+          "Emerson's data shows the wreck mass has been growing for at least a decade. Each new ship is pulled in and incorporated into the structure. The bleed readings are strongest at the center."
+        ],
+        "loot": []
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 10,
+      "y": 0,
+      "width": 8,
+      "height": 6,
+      "room_type": "normal",
+      "connections": [0],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Captain Devir's vessel -- a shallow-draft survey ship built for coastal work, now pressed into service as transport to the wreck mass. The deck is bolted with measuring equipment and bleed-detection instruments that EONS provided. Devir himself stands at the wheel, chewing an unlit cigar, eyeing the mist with the resigned calm of a man who has seen worse and expects to again.",
+        "npcs": [
+          {
+            "name": "Bradley Devir",
+            "role": "informant",
+            "dialogue": "I have sailed these waters for thirty years. Never gone into the mist, mind. That is a fool's errand. But your organization is paying fool's wages, so here we are. I will get you to the wreck mass and I will wait. If you are not back by dawn, I am leaving. That is not negotiable.",
+            "notes": "He/him. Ship captain. Practical, unsentimental. Will transport the circle to the wreck mass but will not enter it. Knows the tides and currents of the Glass Sea better than anyone. Has seen the wreck mass from a distance -- says it 'breathes,' expanding and contracting with the tides."
+          }
+        ],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [],
+        "loot": []
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 10,
+      "y": 6,
+      "width": 8,
+      "height": 6,
+      "room_type": "normal",
+      "connections": [0],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The approach. Devir's boat cuts through glass-smooth water that reflects the moon like a mirror. The mist closes behind you. Ahead, the wreck mass resolves from shadow into substance -- a floating island of interlocking hulls rising thirty feet above the waterline, barnacled and rusted, creaking with the tide. Bodies are visible in the wreckage. Some dating back years. None have decomposed.",
+        "npcs": [],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [
+          "REVEAL: The wreck mass contains ships and bodies dating back over a decade. None of the bodies have decomposed -- the bleed is preserving them. Something at the center needs them intact.",
+          "The stone platform at the base of the wreck mass is carved with containment sigils. This was a deliberate construction -- a vault, built to hold something."
+        ],
+        "loot": [],
+        "investigation_dc": 12,
+        "investigation_success": "Among the wreckage, you find an EONS survey marker -- dated ten years ago. EONS knew about this place. They built something here. And then they sealed it."
+      }
+    }
+  }
+}

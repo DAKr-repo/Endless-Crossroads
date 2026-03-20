@@ -1,26 +1,60 @@
 {
   "version": 1,
-  "source": "DMG (baseline from hardcoded pools)",
+  "source": "DMG pp.105-110, 122-123 + XGtE pp.113-117",
   "tiers": {
     "1": [
       {"name": "Pit Trap", "dc": 10, "damage": "2d6", "damage_type": "bludgeoning", "source": "DMG p.122"},
       {"name": "Poison Dart Trap", "dc": 12, "damage": "1d4", "damage_type": "poison", "source": "DMG p.123"},
-      {"name": "Alarm Glyph", "dc": 10, "damage": "0", "damage_type": "none", "source": "DMG p.122"}
+      {"name": "Alarm Glyph", "dc": 10, "damage": "0", "damage_type": "none", "source": "DMG p.122"},
+      {"name": "Yellow Mold", "dc": 11, "damage": "2d10", "damage_type": "poison", "source": "DMG p.105"},
+      {"name": "Brown Mold", "dc": 10, "damage": "4d10", "damage_type": "cold", "source": "DMG p.105"},
+      {"name": "Green Slime", "dc": 10, "damage": "1d10", "damage_type": "acid", "source": "DMG p.105"},
+      {"name": "Shrieker Fungus", "dc": 10, "damage": "0", "damage_type": "none", "source": "DMG p.138"},
+      {"name": "Webs (Giant Spider)", "dc": 12, "damage": "0", "damage_type": "none", "source": "DMG p.105"},
+      {"name": "Quicksand", "dc": 10, "damage": "0", "damage_type": "none", "source": "DMG p.110"},
+      {"name": "Caltrops", "dc": 11, "damage": "1", "damage_type": "piercing", "source": "PHB p.151"},
+      {"name": "Loose Rubble", "dc": 10, "damage": "1d6", "damage_type": "bludgeoning", "source": "DMG p.110"},
+      {"name": "Stinking Cloud Spore", "dc": 11, "damage": "0", "damage_type": "poison", "source": "DMG p.105"}
     ],
     "2": [
       {"name": "Swinging Blade", "dc": 14, "damage": "3d6", "damage_type": "slashing", "source": "DMG p.123"},
       {"name": "Poison Gas", "dc": 13, "damage": "2d6", "damage_type": "poison", "source": "DMG p.123"},
-      {"name": "Collapsing Floor", "dc": 12, "damage": "2d6", "damage_type": "bludgeoning", "source": "DMG p.122"}
+      {"name": "Collapsing Floor", "dc": 12, "damage": "2d6", "damage_type": "bludgeoning", "source": "DMG p.122"},
+      {"name": "Russet Mold", "dc": 13, "damage": "3d6", "damage_type": "poison", "source": "VGtM p.196"},
+      {"name": "Violet Fungus", "dc": 13, "damage": "4d6", "damage_type": "necrotic", "source": "MM p.138"},
+      {"name": "Phosphorescent Moss", "dc": 12, "damage": "2d6", "damage_type": "radiant", "source": "DMG p.105"},
+      {"name": "Magma Pool", "dc": 14, "damage": "6d10", "damage_type": "fire", "source": "DMG p.110"},
+      {"name": "Freezing Water", "dc": 12, "damage": "2d6", "damage_type": "cold", "source": "DMG p.110"},
+      {"name": "Thin Ice", "dc": 12, "damage": "2d6", "damage_type": "cold", "source": "DMG p.110"},
+      {"name": "Cave-In", "dc": 14, "damage": "4d6", "damage_type": "bludgeoning", "source": "DMG p.110"},
+      {"name": "Flooding Passage", "dc": 13, "damage": "2d6", "damage_type": "bludgeoning", "source": "DMG p.110"},
+      {"name": "Razorvine", "dc": 12, "damage": "1d10", "damage_type": "slashing", "source": "DMG p.110"}
     ],
     "3": [
       {"name": "Flame Jet", "dc": 15, "damage": "4d6", "damage_type": "fire", "source": "DMG p.123"},
       {"name": "Teleport Trap", "dc": 16, "damage": "0", "damage_type": "none", "source": "DMG p.123"},
-      {"name": "Anti-Magic Zone", "dc": 15, "damage": "0", "damage_type": "none", "source": "DMG p.122"}
+      {"name": "Anti-Magic Zone", "dc": 15, "damage": "0", "damage_type": "none", "source": "DMG p.122"},
+      {"name": "Desecrated Ground", "dc": 15, "damage": "3d6", "damage_type": "necrotic", "source": "DMG p.110"},
+      {"name": "Wild Magic Zone", "dc": 15, "damage": "special", "damage_type": "special", "source": "DMG p.110"},
+      {"name": "Avalanche", "dc": 16, "damage": "6d6", "damage_type": "bludgeoning", "source": "DMG p.110"},
+      {"name": "Whirlpool", "dc": 15, "damage": "4d6", "damage_type": "bludgeoning", "source": "DMG p.110"},
+      {"name": "Psychic Scream Resonance", "dc": 16, "damage": "6d6", "damage_type": "psychic", "source": "XGtE p.115"},
+      {"name": "Arcane Feedback Storm", "dc": 15, "damage": "4d8", "damage_type": "force", "source": "XGtE p.115"},
+      {"name": "Necrotic Miasma", "dc": 16, "damage": "5d6", "damage_type": "necrotic", "source": "DMG p.110"},
+      {"name": "Hallowed Ground (Inverted)", "dc": 15, "damage": "4d6", "damage_type": "radiant", "source": "DMG p.110"},
+      {"name": "Corrupted Ley Line", "dc": 16, "damage": "5d8", "damage_type": "force", "source": "XGtE p.116"}
     ],
     "4": [
       {"name": "Sphere of Annihilation", "dc": 18, "damage": "10d10", "damage_type": "force", "source": "DMG p.201"},
       {"name": "Symbol of Death", "dc": 18, "damage": "10d10", "damage_type": "necrotic", "source": "DMG p.123"},
-      {"name": "Prismatic Wall", "dc": 17, "damage": "special", "damage_type": "special", "source": "DMG p.123"}
+      {"name": "Prismatic Wall", "dc": 17, "damage": "special", "damage_type": "special", "source": "DMG p.123"},
+      {"name": "Elder Evil Presence", "dc": 18, "damage": "8d6", "damage_type": "psychic", "source": "XGtE p.117"},
+      {"name": "Dimensional Rift", "dc": 18, "damage": "10d6", "damage_type": "force", "source": "DMG p.110"},
+      {"name": "Far Realm Bleed", "dc": 19, "damage": "8d8", "damage_type": "psychic", "source": "XGtE p.117"},
+      {"name": "Entropic Collapse", "dc": 18, "damage": "10d8", "damage_type": "necrotic", "source": "XGtE p.117"},
+      {"name": "Planar Vortex", "dc": 19, "damage": "8d10", "damage_type": "force", "source": "DMG p.110"},
+      {"name": "Dead Magic Zone", "dc": 18, "damage": "0", "damage_type": "none", "source": "DMG p.110"},
+      {"name": "Aboleth Mucus Cloud", "dc": 17, "damage": "6d6", "damage_type": "poison", "source": "MM p.14"}
     ]
   }
 }

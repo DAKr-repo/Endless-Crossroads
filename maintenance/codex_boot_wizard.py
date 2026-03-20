@@ -472,59 +472,147 @@ class BootWizard:
         console.print("[dim]Settings are configured in thermal_profiles.yaml[/dim]")
         console.input("\n[dim]Press Enter to continue...[/dim]")
 
+    @staticmethod
+    def _scan_content_and_modules() -> dict:
+        """Scan config/ and vault_maps/modules/ for content inventory.
+
+        Returns dict with:
+            config_categories: list of config dirs with file counts
+            module_count: total adventure modules found
+            modules_by_system: dict of system_id -> list of module names
+            total_config_files: total JSON files across config/
+        """
+        result = {
+            "config_categories": [],
+            "module_count": 0,
+            "modules_by_system": {},
+            "total_config_files": 0,
+        }
+
+        # Scan config/ categories
+        config_dir = CODEX_DIR / "config"
+        if config_dir.is_dir():
+            for cat_dir in sorted(config_dir.iterdir()):
+                if not cat_dir.is_dir():
+                    continue
+                jsons = list(cat_dir.glob("*.json"))
+                if jsons:
+                    result["config_categories"].append({
+                        "name": cat_dir.name,
+                        "count": len(jsons),
+                    })
+                    result["total_config_files"] += len(jsons)
+
+        # Scan vault_maps/modules/
+        modules_dir = CODEX_DIR / "vault_maps" / "modules"
+        if modules_dir.is_dir():
+            for entry in sorted(modules_dir.iterdir()):
+                if not entry.is_dir():
+                    continue
+                manifest = entry / "module_manifest.json"
+                if not manifest.exists():
+                    continue
+                try:
+                    data = json.loads(manifest.read_text())
+                    sid = data.get("system_id", "unknown")
+                    name = data.get("display_name", entry.name)
+                    result["module_count"] += 1
+                    result["modules_by_system"].setdefault(sid, []).append(name)
+                except Exception:
+                    continue
+
+        return result
+
     def vault_scan(self):
-        """Scan vault for new/changed PDFs and optionally launch Maestro."""
+        """Scan vault for new/changed PDFs and content inventory."""
+        # Phase 1: PDF vault changes
+        vault_new = 0
+        vault_changed = 0
+        vault_tracked = 0
+        vault_files = []
         try:
             from maintenance.codex_index_builder import check_vault_changes
             changes = check_vault_changes()
-        except Exception as e:
-            console.print(f"[dim]Vault scan skipped: {e}[/dim]")
-            return
+            vault_new = len(changes.get("new", []))
+            vault_changed = len(changes.get("changed", []))
+            vault_tracked = changes.get("total_tracked", 0)
+            vault_files = changes.get("new", []) + changes.get("changed", [])
+        except Exception:
+            pass
 
-        new_count = len(changes.get("new", []))
-        changed_count = len(changes.get("changed", []))
+        # Phase 2: Content and module inventory
+        content = self._scan_content_and_modules()
+        module_count = content["module_count"]
+        config_count = content["total_config_files"]
+        systems = content["modules_by_system"]
 
-        if new_count == 0 and changed_count == 0:
+        # Build display
+        has_vault_changes = vault_new > 0 or vault_changed > 0
+        has_content = module_count > 0 or config_count > 0
+
+        if not has_vault_changes and not has_content:
             console.print(Panel(
                 f"[{EMERALD}]Library up to date[/] — "
-                f"{changes.get('total_tracked', 0)} tomes catalogued.",
+                f"{vault_tracked} tomes catalogued.",
                 border_style=EMERALD,
                 box=box.ROUNDED,
             ))
             return
 
-        # Build file list display (truncated to 10)
-        all_files = changes.get("new", []) + changes.get("changed", [])
-        display_files = all_files[:10]
-        lines = [f"  [dim]•[/dim] {f}" for f in display_files]
-        if len(all_files) > 10:
-            lines.append(f"  [dim]... and {len(all_files) - 10} more[/dim]")
+        lines = []
 
-        file_list = "\n".join(lines)
-        summary_parts = []
-        if new_count:
-            summary_parts.append(f"[bold]{new_count}[/bold] new tome{'s' if new_count != 1 else ''}")
-        if changed_count:
-            summary_parts.append(f"[bold]{changed_count}[/bold] changed scroll{'s' if changed_count != 1 else ''}")
+        # Content inventory summary
+        if has_content:
+            lines.append(f"[{EMERALD}]Content Library:[/]")
+            if config_count:
+                cats = ", ".join(
+                    f"{c['name']}({c['count']})"
+                    for c in content["config_categories"]
+                )
+                lines.append(f"  Config: [bold]{config_count}[/bold] files across {cats}")
+            if module_count:
+                sys_summary = ", ".join(
+                    f"{sid}({len(mods)})"
+                    for sid, mods in sorted(systems.items())
+                )
+                lines.append(
+                    f"  Modules: [bold]{module_count}[/bold] adventures across {sys_summary}"
+                )
+            lines.append("")
 
+        # Vault PDF changes
+        if has_vault_changes:
+            summary_parts = []
+            if vault_new:
+                summary_parts.append(f"[bold]{vault_new}[/bold] new tome{'s' if vault_new != 1 else ''}")
+            if vault_changed:
+                summary_parts.append(f"[bold]{vault_changed}[/bold] changed scroll{'s' if vault_changed != 1 else ''}")
+            lines.append(f"[{GOLD}]Vault changes:[/] {', '.join(summary_parts)}")
+            display_files = vault_files[:8]
+            for f in display_files:
+                lines.append(f"  [dim]•[/dim] {f}")
+            if len(vault_files) > 8:
+                lines.append(f"  [dim]... and {len(vault_files) - 8} more[/dim]")
+
+        border = GOLD if has_vault_changes else EMERALD
         console.print(Panel(
-            f"[{GOLD}]Vault changes detected:[/] {', '.join(summary_parts)}\n\n"
-            f"{file_list}",
-            title="[bold]📚 Vault Scanner[/bold]",
-            border_style=GOLD,
+            "\n".join(lines),
+            title="[bold]Library Scanner[/bold]",
+            border_style=border,
             box=box.ROUNDED,
         ))
 
-        if Confirm.ask(f"[{GOLD}]Run the Maestro to index them?[/]", default=True):
-            try:
-                from maintenance.codex_maestro import _run_all
-                console.print(f"\n[{GOLD}]Launching Maestro...[/]")
-                _run_all()
-                console.print(f"[{EMERALD}]Maestro complete.[/]")
-            except Exception as e:
-                console.print(f"[{CRIMSON}]Maestro error: {e}[/]")
-        else:
-            console.print(f"[dim]Skipping — you can run Maestro later from the menu.[/dim]")
+        if has_vault_changes:
+            if Confirm.ask(f"[{GOLD}]Run the Maestro to index them?[/]", default=True):
+                try:
+                    from maintenance.codex_maestro import _run_all
+                    console.print(f"\n[{GOLD}]Launching Maestro...[/]")
+                    _run_all()
+                    console.print(f"[{EMERALD}]Maestro complete.[/]")
+                except Exception as e:
+                    console.print(f"[{CRIMSON}]Maestro error: {e}[/]")
+            else:
+                console.print(f"[dim]Skipping — you can run Maestro later from the menu.[/dim]")
 
     def launch_maestro(self):
         """Launch the Maestro maintenance wizard."""

@@ -5,7 +5,7 @@
     "start_room_id": 0,
     "metadata": {
         "zone_id": "shinovar",
-        "theme": "VILLAGE",
+        "theme": "STONE",
         "topology": "settlement",
         "display_name": "Shinovar -- The Forbidden Land"
     },
@@ -23,13 +23,19 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Mountain Pass descends through a gap in the Misted Mountains where the air shifts from Rosharan dry to something impossibly humid. The stone underfoot gives way to dirt -- actual dirt, dark and loamy and yielding. Trees grow here with bark instead of carapace, their leaves broad and soft. Nothing retracts at your approach. The world has stopped flinching.",
+                "read_aloud": "The world changes in three steps. Stone becomes soil -- dark, loamy, yielding beneath your weight in a way that Rosharan ground never does. Trees rise around you with bark instead of carapace, their leaves broad and soft and impossibly green. A breeze carries the scent of blossoms. Nothing retracts at your approach. No rockbuds seal shut. No vines coil away. For the first time on Roshar, the world does not flinch from you. The Shin border guard stands in the path, barefoot on sacred ground, his large eyes studying your weapons with the expression of a man examining something shameful.",
                 "npcs": [
-                    {"name": "Shin Border Guard Tien", "role": "guard", "dialogue": "You carry weapons. Among us, only the lowliest caste bears steel. You will be treated as such unless you surrender them. This is not a threat -- it is hospitality."}
+                    {"name": "Shin Border Guard Tien", "role": "guard", "dialogue": "You carry weapons. Among us, only the lowliest caste bears steel. You will be treated as such unless you surrender them. This is not a threat -- it is hospitality.", "notes": "Tien follows the Shin caste system strictly: farmers at the top, warriors at the bottom. He is genuinely trying to help by warning you. Surrendering weapons earns immediate respect."},
+                    {"name": "Stoneward Aspirant Melishi", "role": "ally", "dialogue": "I am called Melishi. I sought the Stoneward path because I believe the stone remembers. Not metaphor -- literal memory, encoded in the mineral structure of Roshar itself. The Stone Shamans teach this. The rest of Roshar has forgotten. Will you walk with me?", "notes": "Melishi has bonded with a peakspren but has not yet spoken the Third Ideal. She senses vibrations in stone that others cannot -- a Stoneward ability called Tension. She believes the Stone Shambles contains a message left by the original Stonewards."}
                 ],
                 "enemies": [],
                 "loot": [],
                 "services": ["border_crossing", "weapon_storage"],
-                "event_triggers": ["On entry: A Shin child stares at you from behind a fence. Not at your face -- at your boots. She has never seen stone-treading soles before."]
+                "investigation_dc": 13,
+                "investigation_success": "The soil at the border crossing is layered -- topmost is Shin loam, but beneath it, at arm's depth, you find Rosharan crem-stone. Shinovar's soil is not natural. It was placed here, deliberately, over bedrock identical to the rest of Roshar.",
+                "perception_dc": 12,
+                "perception_success": "A Shin child stares at you from behind a fence. Not at your face -- at your boots. She has never seen stone-treading soles before. She whispers to another child, who whispers to an adult. Within minutes, the entire village knows outsiders have arrived.",
+                "event_triggers": ["On entry: A Shin child stares at you from behind a fence. Not at your face -- at your boots. She has never seen stone-treading soles before. Melishi kneels and removes her own boots, pressing bare feet to the soil with an expression of reverence."]
             }
         },
         "1": {
@@ -45,9 +51,11 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Farmer's Village spreads across rolling green hills in a pattern that would make an Alethi cartographer weep -- no walls, no fortifications, no defensive geometry whatsoever. Stone buildings with thatched roofs cluster around a communal well. Gardens burst with vegetables that grow in soil. Chickens -- actual chickens, not axehounds -- peck at the ground.",
+                "read_aloud": "Green. Impossibly, overwhelmingly green. Hills roll in gentle waves planted with crops that grow in soil rather than clinging to stone. Buildings cluster around a communal well with no walls, no palisades, no defensive geometry -- a settlement designed by people who have never been attacked and cannot imagine why anyone would be. Chickens peck at the ground. An elder sits beside the well, reading from a book that is not written in any Alethi script. He looks up at your approach with eyes that hold welcome and wariness in equal measure.",
                 "npcs": [
-                    {"name": "Elder Neturo", "role": "quest_giver", "dialogue": "You are outsiders. This is neither good nor bad -- the Almighty sends what the Almighty sends. But you must understand: we do not value what you value. The warrior is the lowest among us. The farmer, the highest. If you wish respect here, learn to plant."},
-                    {"name": "Farmer Szeth-daughter-Valam", "role": "merchant", "dialogue": "I can trade you grain for those strange spheres you carry. Yes, the glowing ones. We use them for children's toys here. Pretty lights, nothing more."}
+                    {"name": "Elder Neturo", "role": "quest_giver", "dialogue": "You are outsiders. This is neither good nor bad -- the Almighty sends what the Almighty sends. But you must understand: we do not value what you value. The warrior is the lowest among us. The farmer, the highest. If you wish respect here, learn to plant.", "notes": "Neturo guards the secret that the Stone Shamans serve a dual purpose: guarding the Honorblades AND maintaining a seal on something beneath the Stone Shambles. He will not share this willingly."},
+                    {"name": "Farmer Szeth-daughter-Valam", "role": "merchant", "dialogue": "I can trade you grain for those strange spheres you carry. Yes, the glowing ones. We use them for children's toys here. Pretty lights, nothing more.", "notes": "Szeth-daughter-Valam is unrelated to the more famous Szeth. She is a simple farmer who genuinely considers infused spheres to be toys. Her grain is excellent and heals as if Stormlight-touched."},
+                    {"name": "Stoneshaper Keshira", "role": "ally", "dialogue": "The stones here speak differently than in the east. In Alethkar, the stone screams from the highstorms. Here, it hums. A contented sound, like a mother singing to a child. I am learning to hum back. The stone responds. Would you like to feel it?", "notes": "Keshira is a Shin woman who has bonded a peakspren but follows the Stoneward path in secret -- the Stone Shamans consider bonding spren to be dangerous. She can make stone vibrate at specific frequencies through touch."}
                 ],
                 "enemies": [],
                 "loot": [
@@ -55,7 +63,11 @@
                     {"name": "Chicken Egg (rare on Roshar)", "type": "trade_good"}
                 ],
                 "services": ["food", "lodging", "trade", "local_information"],
-                "event_triggers": ["On entry: A farmer offers you a drink of water from the communal well. The water is clean. Not purified, not Soulcast -- naturally clean. The novelty is staggering."]
+                "investigation_dc": 14,
+                "investigation_success": "The communal well is deeper than it should be -- far deeper. At a certain depth, the stone lining changes character. The lower stones are carved with the same glyph patterns found in Urithiru. This well was not dug. It was a Radiant structure, repurposed.",
+                "perception_dc": 12,
+                "perception_success": "Keshira's humming causes the stones at her feet to resonate visibly. Pebbles shift. Dust arranges itself in patterns. When she stops, a glyph remains in the dirt -- the same glyph as the Stoneward Order. She scuffs it out quickly when she notices you watching.",
+                "event_triggers": ["On entry: A farmer offers you a drink of water from the communal well. The water is clean. Not purified, not Soulcast -- naturally clean. The novelty is staggering. Keshira watches your reaction with quiet amusement."]
             }
         },
         "2": {
@@ -71,16 +83,22 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Stone Shamans' Temple rises from the village's highest hill -- the only stone structure of any grandeur in Shinovar. Its walls are carved with glyphs that predate the Vorin writing system by millennia. Inside, the Stone Shamans tend the Honorblades in a vault beneath the altar, guarding weapons that could unmake nations with the same reverence a farmer gives a seed.",
+                "read_aloud": "The temple rises from the hilltop like a fist of worked stone thrust from the gentle earth. Its walls bear glyphs that predate Vorin script by millennia -- angular, precise, carved with tools that left no waste marks. Inside, the air hums with a frequency that settles in your bones. Stone Shamans in robes the color of granite move between alcoves where gemstones pulse with ancient Stormlight. Beneath the altar, a vault door stands open -- unusual, the acolytes say. Something inside is resonating. One of the Honorblades has begun to glow.",
                 "npcs": [
-                    {"name": "High Shaman Vallano", "role": "quest_giver", "dialogue": "The Honorblades are not weapons. They are responsibilities. Eight remain -- two were taken. The two that were taken have caused more suffering than the eight we guard have prevented. This is the mathematics of power, outsider. It never balances."},
-                    {"name": "Acolyte Shin-da", "role": "scholar", "dialogue": "The Stone Shamans remember what the rest of Roshar forgot. The Desolations. The Oathpact. The true nature of the spren. We remember because forgetting would be the greatest sin."}
+                    {"name": "High Shaman Vallano", "role": "quest_giver", "dialogue": "The Honorblades are not weapons. They are responsibilities. Eight remain -- two were taken. The two that were taken have caused more suffering than the eight we guard have prevented. This is the mathematics of power, outsider. It never balances.", "notes": "Vallano knows that the Stone Shambles ruins beneath the mountains contain a functioning connection to the Cognitive Realm. He fears that the resonating Honorblade means someone -- or something -- is approaching from the other side."},
+                    {"name": "Acolyte Shin-da", "role": "scholar", "dialogue": "The Stone Shamans remember what the rest of Roshar forgot. The Desolations. The Oathpact. The true nature of the spren. We remember because forgetting would be the greatest sin.", "notes": "Shin-da is young and idealistic. He has memorized every Shin text about the Desolations and can recite the names of all ten Heralds in the original Dawnchant pronunciation."},
+                    {"name": "Stoneward Keeper Talenelat", "role": "ally", "dialogue": "I have stood watch at this vault for thirty-seven years. The Honorblades do not change. They do not age. They do not diminish. But today, one of them woke. It hums a note I have heard only once before -- in the text that describes the last Desolation. I am... concerned.", "notes": "Talenelat shares his name with the Herald Talenel, though he is not the Herald himself. He is the vault's primary guardian and can sense Stormlight fluctuations through the stone floor -- a latent Stoneward ability he attributes to 'experience.'"}
                 ],
                 "enemies": [],
                 "loot": [
                     {"name": "Shaman's Blessing (restores 3 Focus)", "type": "consumable"}
                 ],
                 "services": ["lore", "spiritual_guidance", "honorblade_viewing"],
-                "event_triggers": ["On entry: The vault door stands open -- unusual, the acolytes say. Something inside is resonating. One of the Honorblades has begun to glow."]
+                "investigation_dc": 16,
+                "investigation_success": "The Honorblade that glows is the Stoneward blade -- the one associated with Cohesion and Tension. Its resonance frequency matches the vibrations Keshira and Melishi sense in the stone. It is not waking randomly. It is calling.",
+                "perception_dc": 14,
+                "perception_success": "The vault door stands open -- unusual, the acolytes say. But the hinges are not merely unlatched. They are melted. Something opened this door from the inside with heat intense enough to liquify stone. The shamans have not noticed. Or they are pretending not to.",
+                "event_triggers": ["On entry: The vault door stands open -- unusual, the acolytes say. Something inside is resonating. One of the Honorblades has begun to glow with a light that pulses in time with a heartbeat that is not your own."]
             }
         },
         "3": {
@@ -96,15 +114,21 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Truthless Prison. A stone hut on the village outskirts, windowless, its door sealed with seven locks of different metals. Inside, a man sits in absolute darkness, his forehead branded with a glyph that marks him as Truthless -- condemned to obey any master who holds his Oathstone. The brand is old. The man is patient.",
+                "read_aloud": "Seven locks of seven metals seal the windowless hut -- iron, steel, copper, bronze, tin, pewter, and one you cannot identify. Inside, absolute darkness, and in the darkness, a man who has not seen light in years. His forehead bears a glyph burned so deep the scar tissue has its own topography. He does not look up. He already knows you are there. He has been expecting someone for a very long time.",
                 "npcs": [
-                    {"name": "The Truthless", "role": "ally", "dialogue": "I have served seventeen masters. Killed for twelve. The Shamans say I spoke heresy. I said the Voidbringers had returned. I was not wrong. But being right and being free are different things."}
+                    {"name": "The Truthless", "role": "ally", "dialogue": "I have served seventeen masters. Killed for twelve. The Shamans say I spoke heresy. I said the Voidbringers had returned. I was not wrong. But being right and being free are different things.", "notes": "The Truthless is a former Shin warrior of considerable skill. His 'heresy' was reporting that he sensed Voidspren through the Cognitive Realm connection beneath the Stone Shambles. He was punished for being right too early. His Oathstone is held by High Shaman Vallano."}
                 ],
                 "enemies": [],
                 "loot": [
                     {"name": "Oathstone (cracked)", "type": "quest_item"}
                 ],
                 "services": [],
-                "event_triggers": ["On entry: The Truthless does not look up. He already knows you are there. He has been expecting someone for a very long time."]
+                "lock_dc": 15,
+                "investigation_dc": 15,
+                "investigation_success": "The seven metals of the locks correspond to the seven metals of Allomantic significance -- a tradition from another world entirely. The Shin did not invent these locks. They inherited them from someone who understood metallic arts that predate Roshar's magic system.",
+                "perception_dc": 14,
+                "perception_success": "The Truthless does not look up. He already knows you are there. His breathing has not changed. His muscles have not tensed. But his fingers rest on the cracked Oathstone in a pattern that spells, in old Shin finger-language: 'The door beneath is open. Something came through.'",
+                "event_triggers": ["On entry: The Truthless does not look up. He already knows you are there. He has been expecting someone for a very long time. His voice, when it comes, carries the weight of decades of patience: 'You heard the stone sing. That is why you are here.'"]
             }
         },
         "4": {
@@ -120,13 +144,19 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Sacred Groves occupy a valley where trees grow taller than any structure in Kholinar. These are not the stunted rockbuds of eastern Roshar -- they are true trees, with rings that count centuries and roots that drink from aquifers no highstorm could reach. The Shin plant a tree for every death. The groves are ancient, and very full.",
+                "read_aloud": "Trees taller than Kholinar's towers rise from loam so rich it stains your boots black. These are not rockbuds or shalebark -- they are true trees, with rings that count centuries and bark that smells of sap and memory. The Shin plant a tree for every death. The oldest grove is four thousand years old and so dense that sunlight reaches the forest floor only in shifting columns of gold. Keshira presses her palm to a trunk and closes her eyes. The bark warms beneath her touch.",
                 "npcs": [
-                    {"name": "Grove Keeper Nan-dar", "role": "guide", "dialogue": "Each tree carries a name. Touch the bark and speak it, and you will feel the echo of the person who grew here. Not a ghost -- a resonance. The Shin do not haunt. We root."}
+                    {"name": "Grove Keeper Nan-dar", "role": "guide", "dialogue": "Each tree carries a name. Touch the bark and speak it, and you will feel the echo of the person who grew here. Not a ghost -- a resonance. The Shin do not haunt. We root.", "notes": "Nan-dar has tended the groves for forty years. He can identify every tree by touch and recite the name of the person it represents. The oldest trees resonate with something that is not merely memory -- they are connected to the Cognitive Realm through their root systems."},
+                    {"name": "Cognitive Scholar Ishi", "role": "scholar", "dialogue": "The trees connect to something. Not the Physical Realm -- something adjacent. I have studied the peakspren who visit the oldest groves. They do not come from the sky. They emerge from the root systems. The Cognitive Realm touches Shinovar through the soil itself.", "notes": "Ishi is a Shin scholar who has independently theorized the existence of the Cognitive Realm. She does not have the vocabulary to describe it precisely, but her observations are accurate. The oldest trees serve as natural conduits between realms."}
                 ],
                 "enemies": [],
                 "loot": [],
                 "services": ["meditation", "ancestral_communion"],
-                "event_triggers": ["On entry: You touch a tree and feel warmth in the bark -- a pulse, like a heartbeat, from wood that has been alive for four hundred years"]
+                "investigation_dc": 15,
+                "investigation_success": "The oldest trees have root systems that extend impossibly deep -- deeper than the soil, into the bedrock, following channels that glow faintly with Stormlight when the sun sets. The roots are not seeking water. They are seeking something below.",
+                "perception_dc": 13,
+                "perception_success": "You touch a tree and feel warmth in the bark -- a pulse, like a heartbeat, from wood that has been alive for four hundred years. But beneath the heartbeat: a second rhythm, fainter, colder, from somewhere below the roots. Something is responding from the other side.",
+                "event_triggers": ["On entry: You touch a tree and feel warmth in the bark -- a pulse, like a heartbeat, from wood that has been alive for four hundred years. Melishi gasps. She feels it too. The stone beneath the roots is singing."]
             }
         },
         "5": {
@@ -142,15 +172,20 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Western Road descends from the Shin highlands toward the coast, following a path worn smooth by centuries of trade caravans. Beyond the last farmstead, the terrain shifts -- soil giving way to rock, grass yielding to moss and lichen. Roshar reasserts itself. The mountains ahead hide the Stone Shambles.",
+                "read_aloud": "The road descends from green to grey in a gradient that feels like a farewell. Soil thins to dust. Grass gives way to lichen. Trees shrink to rockbuds. Roshar reasserts itself with the patience of stone that has been waiting. The mountains ahead are scarred with the entrance to the Stone Shambles -- ruins that the Shin say were old when their ancestors first planted these hills. The last Shin farmer you pass makes a gesture of farewell: palms down, toward the soil. Among the Shin, the ground is sacred. They are commending you to it.",
                 "npcs": [
-                    {"name": "Caravan Master Lesh", "role": "merchant", "dialogue": "I trade between worlds -- Shin grain for Rosharan spheres. Both sides think they are getting the better deal. That is the secret of good trade: everyone walks away feeling clever."}
+                    {"name": "Caravan Master Lesh", "role": "merchant", "dialogue": "I trade between worlds -- Shin grain for Rosharan spheres. Both sides think they are getting the better deal. That is the secret of good trade: everyone walks away feeling clever.", "notes": "Lesh has traveled the Western Road a hundred times but has never entered the Stone Shambles. He tells stories of blue lights visible from the ruins at night and sounds that carry across the valley -- not wind, but voices speaking a language that was old when the Shin were young."}
                 ],
                 "enemies": [],
                 "loot": [
                     {"name": "Shin Trade Provisions", "type": "consumable"}
                 ],
                 "services": ["exit_settlement", "trade_provisions", "travel_escort"],
-                "event_triggers": ["On entry: The last Shin farmer you pass makes a gesture of farewell -- palms down, toward the soil. Among the Shin, the ground is sacred. They are commending you to it."]
+                "investigation_dc": 12,
+                "investigation_success": "Lesh's caravan manifests include deliveries to 'the watchers' -- an unnamed group that receives supplies at the Stone Shambles entrance every new moon. He does not know who they are. He does not ask. The payment is always exact and always in spheres that glow with a light that is not quite Stormlight.",
+                "perception_dc": 12,
+                "perception_success": "The last Shin farmer makes the farewell gesture -- palms down, toward the soil. But her eyes flick upward, toward the mountains, and the gesture shifts subtly. She is not commending you to the ground. She is warning you about what is beneath it.",
+                "event_triggers": ["On entry: The last Shin farmer you pass makes a gesture of farewell -- palms down, toward the soil. Among the Shin, the ground is sacred. They are commending you to it. Melishi touches the stone at the road's edge and flinches. The singing has stopped."]
             }
         }
     }

@@ -1,0 +1,126 @@
+{
+  "seed": 7004,
+  "width": 50,
+  "height": 30,
+  "start_room_id": 0,
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 2,
+      "y": 2,
+      "width": 14,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [1, 2],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false
+    },
+    "1": {
+      "id": 1,
+      "x": 18,
+      "y": 2,
+      "width": 12,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [0, 3],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false
+    },
+    "2": {
+      "id": 2,
+      "x": 2,
+      "y": 14,
+      "width": 10,
+      "height": 8,
+      "room_type": "secret",
+      "connections": [0],
+      "tier": 2,
+      "is_locked": true,
+      "is_secret": true
+    },
+    "3": {
+      "id": 3,
+      "x": 32,
+      "y": 3,
+      "width": 14,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false
+    }
+  },
+  "metadata": {
+    "zone_id": "exploration_2",
+    "theme": "GOTHIC",
+    "topology": "dungeon",
+    "scene_title": "The Eternal Revel"
+  },
+  "content_hints": {
+    "0": {
+      "description": "The speakeasy main floor. A vast underground ballroom with vaulted ceilings and art deco molding picked out in tarnished gold. Guests dance in slow circles. The bar gleams. Champagne flows from bottles that never empty.",
+      "read_aloud": "The music wraps around you like warm arms. A waiter appears at your elbow with a tray of champagne flutes, each one fizzing with pale gold liquid that catches the light strangely -- almost iridescent. 'Compliments of the Host,' he says, smiling too wide.",
+      "npcs": [
+        {
+          "name": "Felix the Bartender",
+          "role": "informant",
+          "dialogue": "You're new. I can always tell -- the new ones still blink. Don't drink the champagne. It's how he hooks you. Me, I stopped drinking years ago. Decades, maybe. I just pour. It's all I remember how to do.",
+          "notes": "Felix retains some awareness because he never drinks. He knows the Host feeds on the guests but cannot bring himself to leave -- he's forgotten what 'outside' means. He can point the circle toward the record player."
+        }
+      ],
+      "enemies": [
+        {
+          "name": "Enthralled Guests",
+          "hp": 15,
+          "ac": 12,
+          "attack": 4,
+          "damage": "1d6",
+          "count": 2,
+          "notes": "Guests who turn hostile if investigators refuse to dance, disrupt the music, or try to leave with another guest.",
+          "special": ["Enthralled: fight to protect the party", "Life Drain Proximity: investigators within arm's reach lose 1 Body per round from accelerated aging"]
+        }
+      ],
+      "event_triggers": ["The revel is hypnotic. The champagne is a trap. The bartender knows more than he should."]
+    },
+    "1": {
+      "description": "The bandstand. A twelve-piece orchestra plays on a raised stage, their instruments polished to a mirror shine. Their faces are gaunt, fingers skeletal. They've been playing without pause for longer than any human should survive.",
+      "read_aloud": "The lead trumpeter's lips are split and bleeding, but the notes that come out are flawless. The pianist's fingers are worn to bone at the tips. None of them acknowledge you. None of them can stop.",
+      "investigation_dc": 14,
+      "investigation_success": "Behind the bandstand, a speaking tube runs down into the floor -- connected to a room below. A voice occasionally whispers up through it: song requests, tempo changes. Someone is conducting this orchestra from beneath the stage.",
+      "enemies": [
+        {
+          "name": "Enthralled Musician",
+          "hp": 15,
+          "ac": 12,
+          "attack": 4,
+          "damage": "1d6",
+          "count": 1,
+          "notes": "The drummer. If anyone approaches the speaking tube, he abandons his kit and attacks with drumsticks that hit like clubs.",
+          "special": ["Enthralled: immune to persuasion while the music plays"]
+        }
+      ],
+      "loot": [
+        {"name": "Sheet Music - 'The Last Waltz'", "value": 0, "description": "Hand-written score with annotations in a language that isn't Fairen. The margins contain ritual diagrams. Playing this piece backward might disrupt the enchantment."}
+      ]
+    },
+    "2": {
+      "description": "A private booth hidden behind a velvet curtain and a false wall panel. Inside, a small table with two chairs, a cold meal, and a skeleton in evening wear slumped against the wall.",
+      "read_aloud": "This guest found a hiding spot and simply waited for rescue that never came. The skeleton wears a Candela Obscura signet ring.",
+      "investigation_dc": 16,
+      "investigation_success": "The skeleton clutches a journal. Final entry: 'The record player is the anchor. The Host cannot exist without the music. Destroy the record and the spell breaks -- but the years will come due for everyone still inside. God forgive me, I couldn't do it. There are children here.'",
+      "loot": [
+        {"name": "Agent Harlow's Journal", "value": 0, "description": "A Candela operative's field journal documenting the speakeasy. The final pages detail the Host's mechanism and the terrible cost of breaking it."}
+      ]
+    },
+    "3": {
+      "description": "The champagne cellar. Floor-to-ceiling racks of bottles, each one labeled with a guest's name and a date. The bottles glow faintly, pulsing in time with the music above. Some are nearly empty.",
+      "read_aloud": "Each bottle corresponds to a guest. The fuller the bottle, the more life the guest has left. You find Declan Voss's bottle -- bone dry, cork crumbled. Felix the bartender's bottle is nearly full. He's barely been touched.",
+      "perception_dc": 14,
+      "perception_success": "One rack at the far end holds bottles with no names -- just symbols. These pulse brighter than the rest. They aren't guests' life force. They're something the Host is storing for himself.",
+      "event_triggers": ["The champagne bottles are vessels for stolen life force. The Host feeds through the music, stores through the wine."]
+    }
+  }
+}

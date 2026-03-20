@@ -2,16 +2,80 @@
     "module_id": "cbrpnk_mind_gap",
     "display_name": "CBR+PNK: Mind the Gap",
     "system_id": "cbrpnk",
-    "source_pdf": null,
-    "source_type": "community_authored",
+    "source_pdf": "cbrpnk_06_mindthegap.pdf",
+    "source_type": "publisher_licensed",
     "world_map": "world_map.json",
     "starting_location": "fixer_den",
     "recommended_levels": {"min": 1, "max": 3},
+    "editions": {
+        "pdf_sourced": {
+            "label": "Mind the Gap (Emanuel Melo, PDF)",
+            "starting_zone": "off_the_rails",
+            "note": "Monorail Simulacrum scenario. PCs do not know they are in a virtual environment. Package is a Virus. Three-act structure with reversing objective."
+        },
+        "community_authored": {
+            "label": "Mind the Gap (Community Version)",
+            "starting_zone": "fixer_den",
+            "note": "Original community-authored version: Fixer den -> corpo tower heist -> cyberspace grid."
+        }
+    },
     "chapters": [
+        {
+            "chapter_id": "act1_off_the_rails",
+            "display_name": "Act 1: Off the Rails",
+            "order": 1,
+            "edition": "pdf_sourced",
+            "zones": [
+                {
+                    "zone_id": "off_the_rails",
+                    "blueprint": "off_the_rails.json",
+                    "topology": "linear",
+                    "theme": "RUST",
+                    "location_id": "monorail_car_10",
+                    "entry_trigger": "module_start",
+                    "exit_trigger": "door_unlocked"
+                }
+            ]
+        },
+        {
+            "chapter_id": "act2_up_to_speed",
+            "display_name": "Act 2: Up to Speed",
+            "order": 2,
+            "edition": "pdf_sourced",
+            "zones": [
+                {
+                    "zone_id": "up_to_speed",
+                    "blueprint": "up_to_speed.json",
+                    "topology": "linear",
+                    "theme": "RUST",
+                    "location_id": "monorail_cars_12_22",
+                    "entry_trigger": "door_unlocked",
+                    "exit_trigger": "simulacrum_exited"
+                }
+            ]
+        },
+        {
+            "chapter_id": "act3_hopping_off",
+            "display_name": "Act 3: Hopping Off",
+            "order": 3,
+            "edition": "pdf_sourced",
+            "zones": [
+                {
+                    "zone_id": "hopping_off",
+                    "blueprint": "hopping_off.json",
+                    "topology": "dungeon",
+                    "theme": "RUST",
+                    "location_id": "underground_facility",
+                    "entry_trigger": "simulacrum_exited",
+                    "exit_trigger": "exit_reached"
+                }
+            ]
+        },
         {
             "chapter_id": "ch1",
             "display_name": "Act 1: The Job",
-            "order": 1,
+            "order": 4,
+            "edition": "community_authored",
             "zones": [
                 {
                     "zone_id": "fixer_den",
@@ -27,7 +91,8 @@
         {
             "chapter_id": "ch2",
             "display_name": "Act 2: The Heist",
-            "order": 2,
+            "order": 5,
+            "edition": "community_authored",
             "zones": [
                 {
                     "zone_id": "corpo_tower",
@@ -43,7 +108,8 @@
         {
             "chapter_id": "ch3",
             "display_name": "Act 3: The Grid",
-            "order": 3,
+            "order": 6,
+            "edition": "community_authored",
             "zones": [
                 {
                     "zone_id": "the_grid",

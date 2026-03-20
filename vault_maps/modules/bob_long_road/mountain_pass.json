@@ -1,0 +1,77 @@
+{
+  "seed": 8008,
+  "width": 35,
+  "height": 25,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "mountain_pass",
+    "theme": "STONE",
+    "topology": "dungeon",
+    "mission_types": ["escort", "recon"]
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 2,
+      "y": 12,
+      "width": 8,
+      "height": 6,
+      "room_type": "start",
+      "connections": [1],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The pass begins where the road climbs between two granite outcroppings. The rock walls close in overhead, turning the path into a natural corridor barely wide enough for a wagon. Lichen clings to the stone in patches of pale green and grey. The wind funnels through the gap with a low, constant moan.",
+        "read_aloud": "The pass narrows. Above, dark shapes circle against the grey sky -- Crows, riding the thermals, watching.",
+        "event_triggers": [
+          "The pass narrows. Above, dark shapes circle against the grey sky."
+        ]
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 14,
+      "y": 6,
+      "width": 10,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [0, 2],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "A wide shelf in the rock where the pass opens briefly before narrowing again. A stone cairn marks the spot -- old, older than the road, stacked by hands that predated the Legion. The Crows are closer here, their wingbeats audible. Among the boulders, Rotters wait with the terrible patience of the dead, positioned where the cairn blocks the line of retreat.",
+        "enemies": [
+          {"name": "Crow", "hp": 15, "max_hp": 15, "ac": 12, "attack": 5, "defense": 12, "count": 2},
+          {"name": "Rotter", "hp": 8, "max_hp": 8, "ac": 8, "attack": 3, "defense": 8, "count": 3}
+        ],
+        "perception_dc": 13,
+        "perception_success": "The Crows are directing the Rotters with clicks and whistles -- an improvised command language. Kill the Crows and the Rotters will revert to wandering. Leave the Crows alive and reinforcements will arrive.",
+        "event_triggers": [
+          "One of the Crows lands on the cairn and tilts its head. It has human eyes."
+        ]
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 26,
+      "y": 10,
+      "width": 7,
+      "height": 6,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The pass descends toward the bridge crossing. Here the rock gives way to scree and loose shale that shifts underfoot. A narrow ledge overlooks the river gorge below -- the bridge is visible from here, a stone arch spanning the chasm. Something is on the bridge. Something is on both sides of the bridge.",
+        "event_triggers": [
+          "From the ledge, you can see the bridge below. Shapes move on the far side -- many shapes, packed close together. They are waiting."
+        ],
+        "investigation_dc": 12,
+        "investigation_success": "The scree slope has been deliberately loosened. Someone -- or something -- rigged it as a trap. A single push at the keystone boulder would send half the slope into the gorge, taking anyone on it along."
+      }
+    }
+  }
+}

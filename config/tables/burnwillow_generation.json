@@ -1,0 +1,191 @@
+{
+  "version": 1,
+  "source": "Burnwillow (original homebrew)",
+  "notes": "Procedural generation tables for dungeon dressing, random events, quest hooks, and DoomClock threshold events. Entries are flavor text; mechanical effects are handled by engine.py.",
+
+  "dungeon_dressing": [
+    "Charred beams lean against crumbling walls, their surfaces etched with the growth-rings of centuries.",
+    "A carpet of grey ash covers the floor, disturbed by recent footprints that are not yours.",
+    "Bioluminescent fungi glow sickly green along the ceiling, casting shadows that move when you don't.",
+    "Rusted chains hang from iron hooks set in the stone, the links fused together by corrosion.",
+    "A faint smell of sulfur and decay permeates the air, strongest near the floor.",
+    "Claw marks score the walls in parallel lines -- something was dragged through here. Recently.",
+    "An overturned cart spills corroded tools across the passage. The wood has begun to sprout mushrooms.",
+    "Water drips from a crack in the ceiling into a shallow pool that reflects no light.",
+    "The petrified bark walls bear the faded ghost of an Arborist mural -- a tree in bloom, half-obscured by fungal growth.",
+    "A collapsed doorframe reveals a room beyond, sealed by a wall of solidified amber. Something is preserved inside.",
+    "Roots push through the ceiling in thick tangles, their surfaces slick with dark sap.",
+    "The floor is covered in a thin layer of fine glass-like shards -- the remnants of shattered amber.",
+    "An old campfire ring holds cold ashes and the bones of a small animal, picked clean.",
+    "The walls here are warm to the touch. An Aether vein runs behind the stone, pulsing faintly.",
+    "A Seeker's pack lies abandoned against the wall. The straps are cut, not unbuckled.",
+    "Shelf-fungi grow from the walls in shelf-like formations, their edges dripping a clear, viscous liquid.",
+    "The air here is noticeably colder. Frost patterns trace the stone where the Ashenmere Root-Road passes deep below.",
+    "An ironbark door stands intact in a ruined frame, its surface carved with a symbol no one in Emberhome recognizes.",
+    "The corridor narrows to a crawl-space. Scratches on the stone show where others have squeezed through -- and where some got stuck.",
+    "A broken Arborist mechanism lies scattered across the floor -- gears, amber lenses, and copper wire, all corroded beyond function.",
+    "The ceiling here is impossibly high, vanishing into darkness. Occasional sounds drift down from above -- clicks, shuffles, the scrape of chitin.",
+    "A row of empty alcoves lines the wall, each sized to hold a humanoid figure. Three of the six are stained with grey residue.",
+    "The stone floor is cracked in a radial pattern, as if something heavy landed here from a great height.",
+    "A thin stream of golden sap trickles down the wall, pooling in a natural basin. The liquid glows faintly.",
+    "Someone has scratched a message into the wall at knee height: 'TURN BACK. THE SONG STOPS HERE.'",
+    "An intact Arborist light-sconce flickers on the wall, its amber lens casting a warm circle on the opposite stone. Everything outside the circle is darker than it should be.",
+    "The passage branches around a pillar of petrified heartwood, its grain still visible under centuries of dust. Both paths look equally dangerous.",
+    "A colony of pale, blind beetles covers the lower walls, flowing around obstacles like living water. They avoid the light.",
+    "The floor here is sticky with dried rot-fluid. Bootprints preserved in the residue lead deeper, then stop.",
+    "An amber-inlaid bench stands against the wall, perfectly preserved amid the ruin. It looks like it was placed here yesterday."
+  ],
+
+  "random_events": [
+    "The DoomClock ticks forward -- distant rumbling shakes loose a rain of stone dust.",
+    "A rot-touched animal wanders past, ignoring the party. Its movements are mechanical, purposeless.",
+    "Ash rain begins falling from cracks in the ceiling, coating everything in a fine grey layer.",
+    "A distant scream echoes through the corridors. Human. Recent. Then silence.",
+    "The torches flicker and dim momentarily, as if something drew the warmth from the air.",
+    "The Root-Song shifts -- a pulse of urgency vibrates through the floor, then fades.",
+    "A Hollow shambles past a side corridor, carrying salvage in its arms. It does not notice the party.",
+    "The walls creak and groan as the Burnwillow thrashes in its sleep. A new crack splits the ceiling.",
+    "A faint amber glow pulses from behind a sealed wall. An Amber Vault is nearby.",
+    "The smell of woodsmoke reaches you from an impossible direction. Someone else is in the dungeon.",
+    "A Scrap Imp darts across the corridor clutching something shiny, chittering with glee.",
+    "The temperature drops sharply. Breath becomes visible. The cold lasts exactly ten heartbeats, then passes.",
+    "A section of floor gives way, revealing a lower passage. The drop is survivable. Probably.",
+    "An echo of the Root-Song carries a fragment of memory -- a glimpse of the tree in its Golden Age, green and whole.",
+    "A patrol of Charred Skeletons marches past in formation, following a route they walked in life. They do not deviate.",
+    "Spore-fall begins -- a slow drift of pale particles from fungal colonies above. The air tastes of copper.",
+    "The light from your torch catches something metallic embedded in the wall. A key? A trap mechanism? A relic?",
+    "A tremor shakes the corridor. When it stops, a previously sealed door stands slightly ajar.",
+    "The sound of running water comes from ahead -- an underground stream, or a ruptured Aether vein.",
+    "A Cinder Wolf howls in the distance. A second answers from a different direction. Then a third.",
+    "You find a Seeker's journal, its last entry dated three days ago: 'Found the Vault. Can't open it. Something follows.'",
+    "The fungi on the walls pulse in unison, brightening and dimming like a slow heartbeat.",
+    "A draft carries the scent of growing things -- impossible this deep. Fresh sap. Green leaves. It fades.",
+    "The stone beneath your feet vibrates with a rhythm that matches your heartbeat. When you stop, it stops.",
+    "A Blight-Hawk circles overhead in a vertical shaft, riding thermals. It watches you pass, but does not descend."
+  ],
+
+  "quest_hook_generator": {
+    "patron": [
+      "Warden Voss",
+      "Father Oaken",
+      "Scout Lira",
+      "Elder Maven",
+      "Keeper Elara",
+      "A desperate refugee",
+      "The Wanderer",
+      "Captain Ashara",
+      "Patchwork Pete",
+      "Old Miner Grod"
+    ],
+    "objective": [
+      "Clear a dungeon floor of Hollow activity",
+      "Rescue a lost Seeker team from the lower tunnels",
+      "Retrieve a forge component from the Abandoned Forge",
+      "Scout a new Rot incursion in the Blightwood Hollow",
+      "Find a Blight cure sample from the Fungal Hermit",
+      "Deliver supplies to a forward outpost beyond the Charred Plains",
+      "Slay a specific creature that has been raiding the Emberhome Approaches",
+      "Investigate strange sounds from the Collapsed Cathedral",
+      "Recover an Arborist relic from a sealed Amber Vault",
+      "Map an unexplored passage in the Ironvein Mines",
+      "Escort a pilgrim safely to the Chapel of the Eternal Flame",
+      "Retrieve amber specimens for Elder Maven's research"
+    ],
+    "complication": [
+      "The DoomClock spikes unexpectedly during the mission",
+      "A second enemy faction arrives from an unexpected direction",
+      "The target has already been corrupted by the Blight",
+      "An NPC ally's secret is revealed at the worst possible moment",
+      "The environment shifts mid-mission -- the Burnwillow thrashes",
+      "Reinforcements cut off the escape route",
+      "A civilian is discovered in the crossfire",
+      "The real threat is hidden behind the obvious one",
+      "The objective is trapped or warded with Arborist defenses",
+      "A Rot Hunter begins tracking the party"
+    ],
+    "reward": [
+      "Tier-appropriate gear from the Warden's armory",
+      "Forge materials for Weld's upgrade bench",
+      "DoomClock reduction (-1d4) from Father Oaken's blessing",
+      "A new ally or recruit joins the party",
+      "Access to a previously sealed area",
+      "A rare crafting recipe decoded from a Memory Seed fragment",
+      "Permanent merchant discount from Birsa or Grimjaw",
+      "A lore revelation about the Burnwillow's history",
+      "An amber shard containing a memory of the Golden Age",
+      "A map fragment showing a shortcut through the Veins"
+    ]
+  },
+
+  "doomclock_events": {
+    "5": [
+      "The torches flicker. Distant growls echo through the stone.",
+      "Rot creatures in adjacent rooms become alert and begin patrolling.",
+      "A faint ashfall begins drifting from the ceiling.",
+      "The Root-Song carries a note of warning -- urgent, low, insistent."
+    ],
+    "10": [
+      "Something stirs at the dungeon entrance. The hunt begins.",
+      "The Rot Hunter spawns at the entry room and begins tracking the party.",
+      "Corrupted NPCs in the zone become hostile.",
+      "The air thickens with spores. Visibility drops."
+    ],
+    "13": [
+      "Patrol routes shift. Every enemy in the zone is now actively searching.",
+      "All enemy DC checks increase by +2.",
+      "New hazards appear in previously safe rooms.",
+      "A secondary entrance to the zone seals shut."
+    ],
+    "17": [
+      "The Blight spreads visibly -- fungal growth covers walls in minutes.",
+      "HP cannot be restored naturally. Healing items work at half effect.",
+      "The Root-Song falls completely silent.",
+      "Tier escalation: all enemies gain +2 to hit and +2 to damage."
+    ],
+    "22": [
+      "The dungeon seals. No escape. Root-Road exits lock.",
+      "Must fight to the zone boss or die trying.",
+      "The DoomClock cannot be reduced below 17.",
+      "All remaining Hollows in the zone converge on the party's position."
+    ]
+  },
+
+  "room_name_fragments": {
+    "prefix": [
+      "Ash", "Ember", "Root", "Iron", "Rot", "Blight", "Cinder", "Hollow",
+      "Fungal", "Stone", "Amber", "Dark", "Charred", "Deep", "Broken",
+      "Lost", "Sealed", "Forgotten", "Sunken", "Twisted"
+    ],
+    "suffix": [
+      "Chamber", "Hall", "Gallery", "Passage", "Cellar", "Vault", "Den",
+      "Hollow", "Nest", "Alcove", "Crossing", "Junction", "Well", "Pit",
+      "Stairway", "Bridge", "Forge", "Chapel", "Barracks", "Study"
+    ]
+  },
+
+  "ambient_sounds": [
+    "The slow drip of water on stone",
+    "A distant, rhythmic tapping -- metal on rock",
+    "The creak and groan of the Burnwillow settling",
+    "Scuttling in the walls, just out of sight",
+    "A subsonic hum that you feel more than hear",
+    "The whisper of ash settling on a flat surface",
+    "A faint, melodic sound -- the ghost of Root-Song",
+    "The click-click-click of Clockwork Spider legs",
+    "Something large breathing in the dark beyond the light",
+    "Silence. Complete, oppressive, unnatural silence."
+  ],
+
+  "scavenge_finds": [
+    "A handful of corroded copper coins, worthless but historical",
+    "A cracked amber chip containing a fragment of a child's laughter",
+    "An Arborist tool -- function unknown, handle warm to the touch",
+    "A Seeker's map fragment, partially accurate, partially wishful thinking",
+    "A sealed glass vial containing clear liquid that glows faintly blue",
+    "A bone trinket carved in the shape of a leaf, worn smooth by handling",
+    "Iron nails, straight and usable -- valuable as crafting material",
+    "A journal page describing a room that matches no known location",
+    "A fungal growth that, when crushed, emits a sharp white light for ten seconds",
+    "An amber bead on a leather cord -- Birsa would pay well for this"
+  ]
+}

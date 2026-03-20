@@ -1,0 +1,286 @@
+{
+  "version": 1,
+  "source": "Stormlight RPG World Guide + Handbook",
+  "locations": [
+    {
+      "name": "Palace District",
+      "district": "Kholinar",
+      "description": "The gleaming heart of Kholinar, where the palace rises in tiered platforms of pale stone. Highprince banners snap in the ever-present wind, and lighteyes in embroidered havah and sharp military uniforms move between guarded gates.",
+      "topology": "settlement",
+      "services": ["quest", "shop", "rest"],
+      "room_type_hint": "palace"
+    },
+    {
+      "name": "Darkeye Market",
+      "district": "Kholinar",
+      "description": "A sprawling bazaar of canvas stalls and carved stone booths where darkeyes hawk lavis grain, dried longroots, and salvaged military surplus. The air smells of soulcast bread and rockbud wine. Ardents weigh spheres at counting tables.",
+      "topology": "settlement",
+      "services": ["shop", "rumor", "quest"],
+      "room_type_hint": "market"
+    },
+    {
+      "name": "Lighteye Quarter",
+      "district": "Kholinar",
+      "description": "Broad avenues lined with symmetrical mansions, each displaying house glyphs above their storm-facing doors. Carriages pulled by chulls clatter over soulcast stone roads. Guards in house colors patrol at every intersection.",
+      "topology": "settlement",
+      "services": ["rest", "shop"],
+      "room_type_hint": "residential"
+    },
+    {
+      "name": "Windrunner Training Grounds",
+      "district": "Kholinar",
+      "description": "An open plateau within the city walls where squires practice lashings under the watchful gaze of full Windrunners. Stormlight leaks from cracked gemstones embedded in training pylons, and the ground is scarred by countless crash-landings.",
+      "topology": "settlement",
+      "services": ["quest", "heal"],
+      "room_type_hint": "barracks"
+    },
+    {
+      "name": "Oathgate Platform",
+      "district": "Kholinar",
+      "description": "A massive circular platform of ancient stone, etched with geometric patterns that pre-date recorded history. The air hums with residual Stormlight when a highstorm has recently passed. Soldiers guard the perimeter day and night.",
+      "topology": "settlement",
+      "services": ["quest"],
+      "room_type_hint": "plaza"
+    },
+    {
+      "name": "Ground Floor Markets",
+      "district": "Urithiru",
+      "description": "The cavernous entry level of the tower city, where makeshift stalls crowd beneath vaulted ceilings painted with faded murals of the Heralds. Echoes carry for hundreds of feet. Stormlight lanterns cast long, wavering shadows between the pillars.",
+      "topology": "settlement",
+      "services": ["shop", "rumor", "rest"],
+      "room_type_hint": "market"
+    },
+    {
+      "name": "Radiant Living Quarters",
+      "district": "Urithiru",
+      "description": "Floors of individual chambers carved directly from the mountain stone, each room shaped with eerie precision by ancient Soulcasters. The walls still carry faint patterns that glow when infused gemstones are brought near.",
+      "topology": "settlement",
+      "services": ["rest"],
+      "room_type_hint": "residential"
+    },
+    {
+      "name": "Gemstone Reserves",
+      "district": "Urithiru",
+      "description": "Deep within the tower, behind doors of storm-tempered steel, lies the vault where Stormlight-infused gemstones are stored in geometric arrays. The air itself feels thick with investiture, and exposed skin prickles with static charge.",
+      "topology": "settlement",
+      "services": ["shop"],
+      "room_type_hint": "vault"
+    },
+    {
+      "name": "Tower Peak Observatory",
+      "district": "Urithiru",
+      "description": "The highest accessible level of Urithiru, open to the sky above the cloud line. The Shattered Plains stretch to the east like a cracked mirror, and on clear days the distant shimmer of the Purelake is visible to the northwest.",
+      "topology": "settlement",
+      "services": ["quest", "research"],
+      "room_type_hint": "tower"
+    },
+    {
+      "name": "Oathgate Hub",
+      "district": "Urithiru",
+      "description": "Ten massive platforms arranged in a ring at the tower's base, each keyed to a different kingdom. Only a handful are operational. The stone between them is worn smooth by the passage of armies and refugees.",
+      "topology": "settlement",
+      "services": ["quest"],
+      "room_type_hint": "plaza"
+    },
+    {
+      "name": "Dalinar's Warcamp",
+      "district": "Shattered Plains",
+      "description": "A permanent military encampment of stone barracks and canvas extensions, organized with Kholin discipline. Blue banners mark every intersection. The camp has the feel of a small city, complete with markets, a tavern, and an ardent's chapel.",
+      "topology": "settlement",
+      "services": ["rest", "shop", "quest", "heal"],
+      "room_type_hint": "barracks"
+    },
+    {
+      "name": "Sadeas Warcamp",
+      "district": "Shattered Plains",
+      "description": "A larger but more chaotic camp than Dalinar's, its perimeter marked by crude bridgeman pens and lumber yards. The smell of smoke, sweat, and unwashed soldiers hangs over everything. Green-and-white Sadeas banners are stained by crem.",
+      "topology": "settlement",
+      "services": ["shop", "rumor"],
+      "room_type_hint": "barracks"
+    },
+    {
+      "name": "Bridge Four Barracks",
+      "district": "Shattered Plains",
+      "description": "A converted lumberyard where Bridge Four sleeps, trains, and eats. The walls are painted with the Bridge Four glyph, and a communal fire pit serves as the gathering place. Sacks of dried chouta and stacked bridge sections line the perimeter.",
+      "topology": "settlement",
+      "services": ["rest", "rumor"],
+      "room_type_hint": "barracks"
+    },
+    {
+      "name": "Chasm Floor",
+      "district": "Shattered Plains",
+      "description": "Narrow canyons between the plateaus, perpetually damp and dim. Pools of stagnant highstorm runoff collect in depressions. The bones of dead chasmfiends lie half-buried in crem. Moss and rockbuds cling to every surface, and cremlings scuttle in the shadows.",
+      "topology": "wilderness",
+      "services": [],
+      "room_type_hint": "chasm"
+    },
+    {
+      "name": "Plateau Target",
+      "district": "Shattered Plains",
+      "description": "A flat-topped mesa connected to the warcamps by a series of narrow land bridges. A chrysalis sits at its center, the gemheart within still pulsing with faint stormlight. Parshendi drums echo from the eastern approach.",
+      "topology": "wilderness",
+      "services": [],
+      "room_type_hint": "battlefield"
+    },
+    {
+      "name": "The Palaneum",
+      "district": "Kharbranth",
+      "description": "A vast underground library carved into the cliffs beneath the Conclave, its shelves spiraling downward into darkness. Thousands of books and scrolls fill alcoves lit by infused gemstones. Ardent librarians enforce strict silence with iron will.",
+      "topology": "settlement",
+      "services": ["research", "quest"],
+      "room_type_hint": "library"
+    },
+    {
+      "name": "Thaylen City Gem Reserve",
+      "district": "Thaylen City",
+      "description": "A fortified vault district built into the seawall, where the wealth of Thaylen merchant princes is stored in gemstone form. Long-bearded Thaylen traders negotiate in clipped, precise sentences. The salt air carries through every corridor.",
+      "topology": "settlement",
+      "services": ["shop", "quest"],
+      "room_type_hint": "vault"
+    },
+    {
+      "name": "Prime Aqasix Palace",
+      "district": "Azimir",
+      "description": "A palace of elegant bronze domes and tiled courtyards, where the highest-ranked bureaucrat in Azir holds court. Scribes in formal robes carry stacks of documentation between chambers. Every decision requires forms in triplicate.",
+      "topology": "settlement",
+      "services": ["quest", "research"],
+      "room_type_hint": "palace"
+    },
+    {
+      "name": "Farmer's Valley",
+      "district": "Shinovar",
+      "description": "Rolling green hills unlike anywhere else on Roshar, where grass grows freely without retreating from touch. Shin farmers tend crops with bare hands in soft soil. The silence is unnerving to anyone accustomed to the constant Rosharan wind.",
+      "topology": "wilderness",
+      "services": ["rest", "shop"],
+      "room_type_hint": "farmland"
+    },
+    {
+      "name": "Greatshell Shell-Town",
+      "district": "Reshi Isles",
+      "description": "A settlement built directly on the back of a living greatshell, its buildings lashed to the shell with woven ropes and anchored with carved bone pegs. The town rises and falls with the creature's breathing. Reshi traders climb between levels on rope ladders.",
+      "topology": "settlement",
+      "services": ["rest", "shop", "rumor"],
+      "room_type_hint": "dock"
+    },
+    {
+      "name": "Vedenar",
+      "district": "Jah Keved",
+      "description": "The capital of Jah Keved, still scarred by civil war. Whole districts stand empty, their soulcast stone walls cracked and stained. Those who remain cluster near the central market, where wary merchants sell at inflated prices.",
+      "topology": "settlement",
+      "services": ["shop", "rumor", "rest"],
+      "room_type_hint": "market"
+    },
+    {
+      "name": "Herdazian Military Outpost",
+      "district": "Herdaz",
+      "description": "A stone fort perched on a coastal ridge, flying the Herdazian flag. Soldiers with calloused hands and ready grins trade insults and chouta between watches. The fort commands a view of the bay and the approaching storm front.",
+      "topology": "settlement",
+      "services": ["rest", "quest"],
+      "room_type_hint": "barracks"
+    },
+    {
+      "name": "Purelake Fishing Village",
+      "district": "Purelake",
+      "description": "Ankle-deep warm water stretches to the horizon in every direction, dotted with low reed huts on stilted platforms. Purelakers wade between homes with no urgency, trailing fingers through water thick with tiny fish. Time moves differently here.",
+      "topology": "settlement",
+      "services": ["rest", "rumor"],
+      "room_type_hint": "village"
+    },
+    {
+      "name": "Lasting Integrity",
+      "district": "Shadesmar",
+      "description": "A fortress of living stone in the Cognitive Realm, home to the honorspren who have withdrawn from the Physical Realm in bitter judgment. Its walls shift and rearrange according to principles mortals find difficult to perceive. The air tastes of ozone and obligation.",
+      "topology": "settlement",
+      "services": ["quest", "research"],
+      "room_type_hint": "fortress"
+    },
+    {
+      "name": "Celebrant Market",
+      "district": "Shadesmar",
+      "description": "A trading post in the Cognitive Realm where spren of all kinds barter in Stormlight. Buildings are formed from solidified concepts, and the beads of the Physical Realm lap at the shore like an ocean of glass spheres. Inkspren merchants keep meticulous ledgers.",
+      "topology": "settlement",
+      "services": ["shop", "rumor", "quest"],
+      "room_type_hint": "market"
+    },
+    {
+      "name": "Ancient Dawncity Ruins",
+      "district": "Eastern Crownlands",
+      "description": "Symmetrical stone structures half-buried in crem, their proportions too perfect to be natural. Glyphs carved into the walls predate the Vorin church by millennia. The deeper chambers still hold faint traces of Stormlight in their stone.",
+      "topology": "dungeon",
+      "services": [],
+      "room_type_hint": "ruins"
+    },
+    {
+      "name": "Chasm Depths",
+      "district": "Shattered Plains",
+      "description": "The deepest reaches of the chasms, where highstorm runoff has carved tunnels through living rock. Chasmfiend carcasses block passages. Bioluminescent cremlings provide the only light, and the walls vibrate during distant storms.",
+      "topology": "dungeon",
+      "services": [],
+      "room_type_hint": "chasm"
+    },
+    {
+      "name": "Highstorm Shelter Caves",
+      "district": "Central Roshar",
+      "description": "Natural cave systems worn smooth by centuries of highstorm overflow. Shallow pools of stormwater collect in depressions, still faintly infused. Previous occupants have carved crude glyphs into the walls and left ash rings from old fires.",
+      "topology": "dungeon",
+      "services": ["rest"],
+      "room_type_hint": "cave"
+    },
+    {
+      "name": "Thunderclast Battlefield",
+      "district": "Thaylen City outskirts",
+      "description": "A devastated stretch of coastline where a Thunderclast tore free from the bedrock during the Battle of Thaylen Field. Shattered stone slabs jut at impossible angles. The ground still trembles occasionally, as if the earth remembers.",
+      "topology": "dungeon",
+      "services": [],
+      "room_type_hint": "battlefield"
+    },
+    {
+      "name": "Voidbringer Encampment",
+      "district": "Emul borderlands",
+      "description": "A forward camp of singer forces, its perimeter marked by corrupted rockbuds that pulse with Voidlight. Stormform soldiers patrol in tight formations. The rhythm of their chanting carries for miles across the barren plateau.",
+      "topology": "dungeon",
+      "services": [],
+      "room_type_hint": "camp"
+    },
+    {
+      "name": "Unmade Corruption Zone",
+      "district": "Kholinar undercity",
+      "description": "A district consumed by the Unmade's influence, where shadows move against the light and walls weep black ichor. Citizens who remained have gone hollow-eyed and speak in whispers that trail off into the rhythms of Odium.",
+      "topology": "dungeon",
+      "services": [],
+      "room_type_hint": "corrupted"
+    },
+    {
+      "name": "Spren Migration Route",
+      "district": "Shadesmar wilderness",
+      "description": "A path through the Cognitive Realm where spren travel in vast columns between cities. The bead ocean churns beneath a sky of inverted storm clouds. Predatory spren lurk at the margins, picking off stragglers.",
+      "topology": "dungeon",
+      "services": [],
+      "room_type_hint": "trail"
+    },
+    {
+      "name": "Soulcaster's Workshop",
+      "district": "Urithiru lower levels",
+      "description": "A sealed chamber deep in the tower, its walls lined with drained gemstones in brass settings. A soulcasting table occupies the center, its surface scarred by failed transmutations. The air smells of smoke and hot metal, though no fire burns.",
+      "topology": "dungeon",
+      "services": [],
+      "room_type_hint": "workshop"
+    },
+    {
+      "name": "Listener War Camp",
+      "district": "Eastern Shattered Plains",
+      "description": "An ancient campsite used by listeners for generations, marked by carved pillars depicting the forms. Firepits ringed with carapace fragments dot the plateau. The rhythms are stronger here, audible even to humans as a faint, maddening hum.",
+      "topology": "dungeon",
+      "services": [],
+      "room_type_hint": "camp"
+    },
+    {
+      "name": "Everstorm Eye",
+      "district": "Open plains",
+      "description": "The calm, terrible center of the Everstorm, where Voidlight pools in the air like liquid shadow. Red lightning arcs silently overhead. The ground is scoured clean of all life, and the silence is absolute save for the distant howl of the storm wall.",
+      "topology": "dungeon",
+      "services": [],
+      "room_type_hint": "storm"
+    }
+  ]
+}

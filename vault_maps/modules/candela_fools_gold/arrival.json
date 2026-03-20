@@ -1,0 +1,102 @@
+{
+  "seed": 7009,
+  "width": 40,
+  "height": 25,
+  "start_room_id": 0,
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 2,
+      "y": 2,
+      "width": 12,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false
+    },
+    "1": {
+      "id": 1,
+      "x": 16,
+      "y": 3,
+      "width": 12,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [0, 2],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false
+    },
+    "2": {
+      "id": 2,
+      "x": 30,
+      "y": 2,
+      "width": 8,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false
+    }
+  },
+  "metadata": {
+    "zone_id": "arrival",
+    "theme": "GOTHIC",
+    "topology": "settlement",
+    "scene_title": "The Prospector's Camp"
+  },
+  "content_hints": {
+    "0": {
+      "description": "The riverbank camp. Canvas tents pitched on muddy ground, cooking fires smoking in the drizzle. Panning stations line the Stentorian's edge where prospectors sift gray water through wire screens. The river itself runs unusually bright -- a faint amber luminescence beneath the surface.",
+      "read_aloud": "The camp buzzes with greed and sickness in equal measure. Men argue over claims while others lie in tents, shivering despite the mild weather. A woman at the nearest panning station holds up a nugget the size of her thumb and whoops. The nugget pulses once, faintly, like a heartbeat.",
+      "npcs": [
+        {
+          "name": "Harlow Ketch",
+          "role": "informant",
+          "dialogue": "I staked this camp three weeks ago when old Brenner pulled the first nugget from the riverbed. We've pulled forty pounds of gold since. But people are getting sick. Their veins go gold first, then their skin hardens. Doc Maren says it's mercury poisoning but I've seen mercury poisoning and it don't look like that.",
+          "notes": "Ketch is the camp leader. Pragmatic, greedy, but not stupid. He suspects something is wrong but won't shut down a profitable operation without proof. His right hand has a faint gold shimmer he's hiding with a glove."
+        },
+        {
+          "name": "Essra Nills",
+          "role": "witness",
+          "dialogue": "I was in the mine when they broke through the wall. There was a sound -- not a sound, a feeling. Like the earth exhaled. And the gold was just... there. Veins of it, thick as your arm, running down into the dark. I touched it. I shouldn't have touched it.",
+          "notes": "Essra is in early transformation. Gold veins visible on her neck and forearms. She's terrified but can describe the cavern and the moment the thinning was breached."
+        }
+      ],
+      "event_triggers": ["The gold is crystallized bleed. Contact with it triggers bodily transformation. The miners are infected and the water carries the contamination downstream."]
+    },
+    "1": {
+      "description": "The camp's sick tent. Six cots, five occupied. The patients lie still, their exposed skin showing branching gold veins like tree roots pushing through from inside. The air smells of copper and river mud.",
+      "read_aloud": "A woman in a stained apron moves between cots, checking pulses with fingers that tremble. She looks up as you enter. 'Are you from the city? Please tell me you're from the city. I've sent three messages and no one's come.'",
+      "npcs": [
+        {
+          "name": "Dr. Maren Solace",
+          "role": "informant",
+          "dialogue": "It's not mercury. It's not arsenic. It's not anything I've ever seen. The gold grows. It starts subcutaneous, follows the vascular system, then surfaces. The end stage -- I've only seen it once. The prospector named Brenner. He's in the mine. He won't come out. He says the gold talks to him.",
+          "notes": "Dr. Solace is a field surgeon, competent and overwhelmed. She's been filtering water through charcoal and it slows the progression but doesn't stop it. She suspects the source is underground."
+        }
+      ],
+      "investigation_dc": 12,
+      "investigation_success": "Examining a patient reveals the gold follows neural pathways, not just blood vessels. It's not a toxin -- it's restructuring the body, replacing organic tissue with crystallized bleed. The transformation is deliberate, patterned. Something is redesigning these people.",
+      "loot": [
+        {"name": "Water Sample (Contaminated)", "value": 0, "description": "A sealed glass vial of river water with visible gold particulate suspended in it. The particles move against the current when tilted, as if drawn toward something."}
+      ]
+    },
+    "2": {
+      "description": "The water inspector's station at the river's edge. A portable testing kit laid out on a folding table. Upstream, the river narrows toward the mine entrance carved into the bluff.",
+      "read_aloud": "The city sent an inspector last week. His equipment is still here but he isn't. His final report, half-written, trails off mid-sentence: 'Particulate concentration exceeds all known parameters. Recommend immediate shut--'",
+      "npcs": [
+        {
+          "name": "Ranger Colm Adair",
+          "role": "witness",
+          "dialogue": "The water inspector went into the mine to find the source. That was four days ago. I'm OUP Waterways and my jurisdiction ends at the riverbank -- I can't order these miners to do anything. But I can tell you the water downstream is getting worse by the hour.",
+          "notes": "Adair is an OUP ranger assigned to waterway monitoring. Professional, frustrated. He's mapped the contamination plume and estimates it will reach Newfaire's intake in 36 hours."
+        }
+      ],
+      "perception_dc": 10,
+      "perception_success": "The inspector's abandoned toolkit includes a spectroscope. Looking at the river water through it reveals the gold particles are moving in coordinated patterns -- not random dispersal. They're being directed. Something in the mine is broadcasting."
+    }
+  }
+}

@@ -1,0 +1,138 @@
+{
+  "version": 1,
+  "source": "Candela Obscura Core Rulebook p.188",
+  "chapter_houses": [
+    {
+      "name": "Antiquarian Estate",
+      "district": "the Eaves",
+      "description": "A large mansion in the Eaves owned by Lightkeeper Quinton Lee.",
+      "topology": "settlement",
+      "services": ["rest", "research", "briefing"]
+    },
+    {
+      "name": "Harvest Cabin",
+      "district": "Tottergrass",
+      "description": "A cabin on the outskirts of Tottergrass, bordering the Stentorian River.",
+      "topology": "settlement",
+      "services": ["rest", "supply"]
+    },
+    {
+      "name": "Haven Hills House",
+      "district": "Haven Hills",
+      "description": "A run-down but structurally sound cottage near the entrance to one of the mines in the Haven Hills.",
+      "topology": "settlement",
+      "services": ["rest", "supply"]
+    },
+    {
+      "name": "Levy House",
+      "district": "the Sidle",
+      "description": "A small townhouse tucked away on a side street near the Kline & Daughters Typewriter Shop in the Sidle.",
+      "topology": "settlement",
+      "services": ["rest", "research"]
+    },
+    {
+      "name": "Rust Pine Reach",
+      "district": "Bridleborne Mountains",
+      "description": "A log cabin situated high in the Bridleborne Mountains, accessible only by a long hike or travel by airship.",
+      "topology": "wilderness",
+      "services": ["rest"]
+    },
+    {
+      "name": "Shriveline Sanctuary",
+      "district": "Church grounds",
+      "description": "A small chapter house for Candela members to use, provided they pay a small fee to the Church in exchange.",
+      "topology": "settlement",
+      "services": ["rest", "heal", "bless"]
+    }
+  ],
+  "newfaire_locations": [
+    {
+      "name": "The Capitol Bank",
+      "district": "Newfaire central",
+      "description": "A government-run bank that serves any citizen of Newfaire -- for a fee, of course.",
+      "topology": "settlement",
+      "services": ["banking"],
+      "room_type_hint": "bank"
+    },
+    {
+      "name": "The Empress Exchange",
+      "district": "Newfaire central",
+      "description": "A store that specializes in luxury goods, including fine jewelry and high-end apparel. Their loyal customers include numerous members of Newfaire's elite society.",
+      "topology": "settlement",
+      "services": ["buy"],
+      "room_type_hint": "market"
+    },
+    {
+      "name": "Finch's Farmacy",
+      "district": "Newfaire central",
+      "description": "A dimly lit store that smells of chemicals and herbs. Shelves filled with glass bottles line the walls, and the sound of a mortar and pestle can be heard as the pharmacist works to prepare tinctures and ointments for ailing customers.",
+      "topology": "settlement",
+      "services": ["heal", "buy"],
+      "room_type_hint": "apothecary"
+    },
+    {
+      "name": "The Mercantile",
+      "district": "Newfaire central",
+      "description": "A department store that caters to a more practical clientele. The Mercantile offers a wide variety of goods at reasonable prices.",
+      "topology": "settlement",
+      "services": ["buy", "sell"],
+      "room_type_hint": "market"
+    },
+    {
+      "name": "The Magnificent Myriad",
+      "district": "traveling",
+      "description": "A circus that travels across the entire northern region. They make their way through Hale each year, putting up a variety of tents filled with wonders.",
+      "topology": "settlement",
+      "services": ["entertainment"],
+      "room_type_hint": "plaza"
+    },
+    {
+      "name": "The Parlor Cafe",
+      "district": "Newfaire central",
+      "description": "Located on a bustling street, this intimate and inviting space has plush velvet seating, delicate floral wallpapers, and a warm fireplace. The perfect spot to enjoy a cup of tea and indulge in some freshly baked pastries.",
+      "topology": "settlement",
+      "services": ["drink", "rumor"],
+      "room_type_hint": "tavern"
+    },
+    {
+      "name": "The Restful Arms",
+      "district": "Newfaire central",
+      "description": "A small, run-down, and crowded soup kitchen that also operates as a shelter. This location is open day and night for those in need.",
+      "topology": "settlement",
+      "services": ["rest", "rumor"],
+      "room_type_hint": "inn"
+    },
+    {
+      "name": "The Rosewood Hotel",
+      "district": "Newfaire central",
+      "description": "A charming establishment with a rustic and eclectic ambiance. With its mismatched furniture and antique decor, it feels more like a cozy home than a hotel.",
+      "topology": "settlement",
+      "services": ["rest"],
+      "room_type_hint": "inn"
+    },
+    {
+      "name": "Salt & Sea",
+      "district": "Hallowharbor",
+      "description": "This small nautical-themed restaurant is loved by locals, and it features fresh seafood caught daily.",
+      "topology": "settlement",
+      "services": ["drink", "rumor"],
+      "room_type_hint": "tavern"
+    },
+    {
+      "name": "Tin Street Diner",
+      "district": "Newfaire central",
+      "description": "A small diner tucked in a narrow alley, this establishment is known for its hearty breakfast and robust coffee served day and night.",
+      "topology": "settlement",
+      "services": ["drink"],
+      "room_type_hint": "tavern"
+    },
+    {
+      "name": "The Velvet Curtain",
+      "district": "Red Lamp",
+      "description": "A smoking lounge that exclusively offers illegal scarlet. They're known for their wide variety of flavors of the resin, and servers prepare the herbal mixtures with the same care and showmanship exhibited at a fine cocktail bar.",
+      "topology": "settlement",
+      "services": ["drink", "rumor"],
+      "room_type_hint": "tavern"
+    }
+  ]
+}

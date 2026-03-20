@@ -1,0 +1,122 @@
+{
+  "seed": 7026,
+  "width": 50,
+  "height": 30,
+  "start_room_id": 0,
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 2,
+      "y": 2,
+      "width": 12,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false
+    },
+    "1": {
+      "id": 1,
+      "x": 16,
+      "y": 2,
+      "width": 14,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [0, 2, 3],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false
+    },
+    "2": {
+      "id": 2,
+      "x": 32,
+      "y": 3,
+      "width": 10,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false
+    },
+    "3": {
+      "id": 3,
+      "x": 16,
+      "y": 14,
+      "width": 14,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false
+    }
+  },
+  "metadata": {
+    "zone_id": "escalation_1",
+    "theme": "GOTHIC",
+    "topology": "dungeon",
+    "scene_title": "The Politician's Study"
+  },
+  "content_hints": {
+    "0": {
+      "description": "Corvin's private study on the second sublevel. A gentleman's office rendered grotesque by context -- leather armchairs, a mahogany desk, and a crystal decanter of brandy, all within earshot of the temple below. He conducts politics and murder from the same chair.",
+      "read_aloud": "Corvin's desk is organized with the precision of a man who controls every detail. A leather appointment book. A telephone. Correspondence from the mayor's office. And on a side table, as casually displayed as a family photograph: a ceremonial dagger with a blade that doesn't reflect light.",
+      "enemies": [
+        {
+          "name": "Cult Guards",
+          "hp": 15,
+          "ac": 12,
+          "attack": 4,
+          "damage": "1d6",
+          "count": 2,
+          "notes": "Corvin's personal guards, stationed in the study. Blood-enhanced and fanatically loyal. They've witnessed the rituals and believe the Covenant is the future of civilization.",
+          "special": ["Blood-Enhanced: advantage on first attack each round", "Fanatical: fight to the death, cannot be intimidated"]
+        }
+      ],
+      "investigation_dc": 16,
+      "investigation_success": "The appointment book contains coded entries. Decoded using Lyssa's cipher: Corvin has been meeting privately with the thinning for months. Not performing rituals -- having conversations. The thinning is intelligent and it's been coaching Corvin on the Unabridged transformation. Corvin isn't leading the cult. The thinning is.",
+      "event_triggers": ["A twist: Corvin isn't the mastermind. The thinning itself has been manipulating the cult, guiding them toward the Unabridged ritual for its own purposes. Corvin is a puppet who thinks he's the puppeteer."]
+    },
+    "1": {
+      "description": "The correspondence vault. A room of locked filing cabinets containing three years of blackmail material, political leverage, and evidence of the cult's secular crimes. Enough to destroy careers even without the supernatural element.",
+      "read_aloud": "Corvin didn't just recruit followers -- he compromised them. Every cult member's darkest secret is catalogued here. Financial fraud. Affairs. A judge who accepted bribes. A senator who falsified military records. The cult isn't held together by belief. It's held together by mutual destruction.",
+      "enemies": [
+        {
+          "name": "Blood Magick Ward",
+          "hp": 15,
+          "ac": 12,
+          "attack": 4,
+          "damage": "1d4",
+          "count": 1,
+          "notes": "A protective ward on the filing cabinets. When triggered, it floods the room with bleed energy -- a defensive measure Corvin installed to protect his leverage.",
+          "special": ["Incorporeal: immune to physical damage", "Bleed Pulse: all investigators in the room take 1 Bleed mark per round", "Disarmed by disrupting the ward sigil inscribed on the floor beneath the cabinets"]
+        }
+      ],
+      "loot": [
+        {"name": "Blackmail Archive", "value": 0, "description": "Complete dossiers on all seven cult members, documenting both their supernatural and secular crimes. Enough to end political careers, but using it publicly would expose Candela's investigation."},
+        {"name": "Stake Case Key", "value": 0, "description": "A small iron key, warded against bleed alarm. Opens the glass case containing the Seven Stakes of Ire without triggering the alert. Hidden in a false bottom of Corvin's desk drawer."}
+      ]
+    },
+    "2": {
+      "description": "The containment cell. Behind the locked door from the preparation chamber: a small room with a cot, a bucket, and a person. The surviving sacrifice -- alive, confused, and exhibiting signs of bleed resistance that the cult found inconvenient.",
+      "read_aloud": "She looks up when the door opens. Young, mid-twenties, wrists bruised from restraints, eyes red from crying but dry now. 'Are you with them?' she asks. 'Because if you are, you should know -- whatever they did to me, it didn't work. And now I can see things. The blood on the walls. It's moving. It's always moving.'",
+      "npcs": [
+        {
+          "name": "Senna Park",
+          "role": "witness",
+          "dialogue": "They drugged me at a charity gala. I woke up on the slab. They cut me and the blood flowed into the channels but the thing -- the red thing in the air -- it spat me back. Rejected. Like I tasted wrong. Since then I can see it. The bleed. It's everywhere in this building, in the walls, in their eyes. Corvin's eyes are the worst. There's something behind his eyes that isn't him.",
+          "notes": "Senna developed bleed-sight from the failed sacrifice -- she can see bleed energy and entities. A rare and valuable ability. She can confirm that Corvin is partially Unabridged and identify which other cult members have begun the transformation."
+        }
+      ],
+      "event_triggers": ["Senna Park, the surviving sacrifice, has developed bleed-sight. She can see the thinning's influence throughout the estate -- and she can confirm Corvin is no longer fully human."]
+    },
+    "3": {
+      "description": "The ritual preparation room. Seven ceremonial robes hang on hooks. Seven brass chalices sit on a shelf. A basin of water and a mirror -- the cult's cleansing ritual before ceremonies. But the mirror doesn't work correctly anymore.",
+      "read_aloud": "You look in the mirror and see yourself, but behind your reflection, the room continues deeper than it should -- a long corridor stretching into red darkness. Figures move in the corridor. They're wearing the cult's robes. They're walking toward the thinning. Their reflections have no faces.",
+      "perception_dc": 14,
+      "perception_success": "The mirror is a bleed artifact -- not intentionally, but contaminated by proximity to the thinning. It shows the bleed-reflection of whoever looks into it: what you would become if you stepped through. For the cult members, their reflections are already Unabridged. The process has begun whether they complete the ritual or not."
+    }
+  }
+}

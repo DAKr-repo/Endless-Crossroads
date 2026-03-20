@@ -478,17 +478,7 @@ class TestTraitHandlerBurnwillow:
         }
         engine._trait_handler = handler
 
-        bridge = object.__new__(UniversalGameBridge)
-        bridge.engine = engine
-        bridge.dead = False
-        bridge.last_frame = None
-        bridge._broadcast = None
-        bridge._system_tag = "BURNWILLOW"
-        bridge._rest_mgr = MagicMock()
-        bridge._butler = None
-        bridge.show_dm_notes = False
-        bridge._talking_to = None
-        bridge._session_log = []     # WO-V61.0
+        bridge = UniversalGameBridge.create_lightweight(engine)
 
         result = bridge._handle_use("gloves")
         handler.activate_trait.assert_called_once()
@@ -649,6 +639,64 @@ class TestV65DeadCodePurge:
         b = BurnwillowBridge("Tester", seed=42)
         result = b.step("tutorial")
         assert "=== Room" not in result
+
+    def test_talk_command_exists(self):
+        """'talk' command should dispatch, not fall through to look."""
+        from codex.games.burnwillow.bridge import BurnwillowBridge
+        b = BurnwillowBridge("Tester", seed=42)
+        result = b.step("talk")
+        # Should say "No one to talk to" or list NPCs, not a room description
+        assert "=== Room" not in result or "NPCs" in result or "No one" in result
+
+    def test_talk_alias_npc(self):
+        """'npc' alias should dispatch to talk handler."""
+        from codex.games.burnwillow.bridge import BurnwillowBridge
+        b = BurnwillowBridge("Tester", seed=42)
+        result = b.step("npc")
+        assert "=== Room" not in result or "NPCs" in result or "No one" in result
+
+    def test_npcs_shown_in_look(self):
+        """NPCs should appear in room look output when present."""
+        from codex.games.burnwillow.bridge import BurnwillowBridge
+        b = BurnwillowBridge("Tester", seed=42)
+        # Inject a test NPC into the current room
+        pop = b.engine.populated_rooms.get(b.engine.current_room_id)
+        if pop:
+            pop.content.setdefault("enemies", []).append({
+                "name": "Scrap Peddler", "is_npc": True,
+                "npc_type": "merchant", "dialogue": "Got wares.",
+            })
+        result = b.step("look")
+        assert "Scrap Peddler" in result
+        assert "NPCS" in result
+
+    def test_conversation_mode_and_bye(self):
+        """Entering and exiting conversation mode works."""
+        from codex.games.burnwillow.bridge import BurnwillowBridge
+        b = BurnwillowBridge("Tester", seed=42)
+        # Inject NPC
+        pop = b.engine.populated_rooms.get(b.engine.current_room_id)
+        if pop:
+            pop.content.setdefault("enemies", []).append({
+                "name": "Lost Miner", "is_npc": True,
+                "npc_type": "informant", "dialogue": "Don't go east.",
+            })
+        result = b.step("talk miner")
+        assert "Lost Miner" in result
+        assert b._talking_to == "Lost Miner"
+        # Exit conversation
+        result = b.step("bye")
+        assert "end your conversation" in result.lower()
+        assert b._talking_to is None
+
+    def test_movement_exits_conversation(self):
+        """Grid movement should auto-exit conversation mode."""
+        from codex.games.burnwillow.bridge import BurnwillowBridge
+        b = BurnwillowBridge("Tester", seed=42)
+        b._talking_to = "Test NPC"
+        b._talking_to_npc = {"name": "Test NPC", "dialogue": "Hello"}
+        b.step("n")  # grid movement
+        assert b._talking_to is None
 
     def test_burnwillow_trait_map_has_all_traits(self):
         from codex.games.burnwillow.engine import BurnwillowTraitResolver

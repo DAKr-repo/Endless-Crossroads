@@ -1,0 +1,90 @@
+{
+  "seed": 8016,
+  "width": 28,
+  "height": 18,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "camp_hearth",
+    "theme": "STONE",
+    "topology": "settlement",
+    "mission_types": ["religious", "supply"]
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 2,
+      "y": 2,
+      "width": 8,
+      "height": 6,
+      "room_type": "town_square",
+      "connections": [1, 2],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The Panyar camp is different from Legion encampments. No orderly rows of tents -- instead, shelters are woven from living branches bent into arches, thatched with fern and moss. A central hearth burns with fragrant wood that smells of pine and sage, its smoke rising in a thin column that catches the light. Panyar soldiers sit in a wide circle around the fire, their weapons laid across their knees, singing in low voices. The song has no words you recognize, but it settles into your bones.",
+        "read_aloud": "The Sunstrider Camp welcomes you with warmth and the smell of real food cooking. The Panyar way is older than the Legion, and it shows in every woven shelter and carved prayer-post.",
+        "npcs": [
+          {
+            "name": "Shaman Elsu",
+            "role": "religious_leader",
+            "dialogue": "The grove is sick. I feel it in the soil, in the water, in the way the wind turns. Blighter's corruption has taken root in the oldest part of the forest -- where the Chosen once spoke to the spirits of the land. If we lose that place, we lose something that cannot be rebuilt. I need warriors. Not soldiers -- warriors. People who understand that some fights are not won with steel.",
+            "notes": "Elsu is old, sharp-eyed, with hands stained green from decades of working with living plants. She carries a staff of pale birch carved with spiraling symbols. She was a Chosen's attendant in her youth and remembers what the grove was like before the corruption. She does not trust the Legion's way of fighting -- all force and no finesse."
+          },
+          {
+            "name": "Camp Cook Tashen",
+            "role": "supply_contact",
+            "dialogue": "Sit. Eat. You look like you have been running on nothing but anger and dried meat. I have stew. It is not good stew, but it is hot and there is enough.",
+            "notes": "Tashen is a large, gentle Panyar man with a missing ring finger. He cooks for the entire camp and knows everyone's name. He hoards a small supply of medicinal herbs that he distributes quietly to those in need, bypassing the official supply chain."
+          }
+        ],
+        "services": ["rest", "heal", "bless", "supply"],
+        "event_triggers": [
+          "The singing around the fire falters when the wind shifts from the south. It carries a smell like wet rot and cold iron. The grove."
+        ]
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 14,
+      "y": 2,
+      "width": 6,
+      "height": 5,
+      "room_type": "temple",
+      "connections": [0],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Elsu's prayer shelter is hung with dried herbs, feathers, and small bone carvings that spin in the breeze. The floor is packed earth covered with woven mats. A shallow bowl of water sits at the center, its surface reflecting light in a way that seems too bright for the dim interior. Elsu says the water is from the grove's spring -- the last clean water drawn before the corruption reached the source.",
+        "services": ["heal", "bless"],
+        "npcs": [
+          {
+            "name": "Shaman Elsu",
+            "role": "religious_leader",
+            "dialogue": "If you mean to enter the grove, take a blessing first. It will not protect you, but it will help you feel what the corruption touches. The difference between the sick land and the healthy land will be... clear.",
+            "notes": "Bless service provides +1d to resist corruption effects in the grove scenes."
+          }
+        ]
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 2,
+      "y": 10,
+      "width": 7,
+      "height": 5,
+      "room_type": "market",
+      "connections": [0],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The supply area is an open-sided shelter piled with forage, preserved game, and bundles of medicinal plants. Tashen manages it with cheerful disorganization that somehow always produces what is needed. A separate chest, locked and set apart, contains the camp's alchemical supplies -- healing salves, anti-corruption tinctures, and a single vial of something that glows pale gold.",
+        "services": ["supply"],
+        "investigation_dc": 12,
+        "investigation_success": "The gold vial is labeled in Panyar script: 'Sunfire Distillate.' Elsu's notes indicate it was made from the last harvest of uncorrupted sap from the grove's heartwood. It is devastatingly effective against undead -- but there is only one dose."
+      }
+    }
+  }
+}

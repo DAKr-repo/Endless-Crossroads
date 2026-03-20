@@ -1,0 +1,133 @@
+{
+  "version": 1,
+  "source": "Dragon Heist + SCAG (Waterdeep sections)",
+  "ward_encounters": {
+    "castle_ward": [
+      "City Watch patrol (2d4 guards)",
+      "Noble's carriage blocking the street",
+      "Street performer drawing a crowd",
+      "Griffon Cavalry rider landing at a tower",
+      "Masked Lords agent observing from a rooftop"
+    ],
+    "dock_ward": [
+      "Bar fight spilling into the street",
+      "Zhentarim thugs shaking down a merchant",
+      "Smuggler's ship unloading suspicious cargo at night",
+      "Press gang looking for sailors",
+      "Sea creature washed up on the dock"
+    ],
+    "north_ward": [
+      "Noble's garden party (invitation only)",
+      "Wizard's familiar delivering a message",
+      "Theft from a wealthy manor",
+      "Duel between two nobles' champions",
+      "Rare book auction at a collector's townhouse"
+    ],
+    "sea_ward": [
+      "Temple procession through the streets",
+      "Statue in the park comes alive",
+      "Magical mishap from Blackstaff Tower",
+      "High-society masquerade ball",
+      "Foreign dignitary's escort blocking traffic"
+    ],
+    "trades_ward": [
+      "Guild dispute blocking traffic",
+      "Pickpocket working the crowd",
+      "Merchant hawking suspicious potions",
+      "Construction collapse trapping workers",
+      "Tax collector dispute with a shopkeeper"
+    ],
+    "southern_ward": [
+      "Street urchins running a con",
+      "Caravan arriving from the south",
+      "Sewer gas explosion",
+      "Homeless encampment dispute with Watch",
+      "Rat swarm emerging from an alley"
+    ],
+    "field_ward": [
+      "Refugees from the north seeking shelter",
+      "Unlicensed magic dealer hawking wares",
+      "Underground fighting ring",
+      "Fence selling stolen goods from a cart",
+      "Cult recruitment disguised as charity"
+    ]
+  },
+  "faction_missions": {
+    "harpers": [
+      "Spy on a suspected Zhentarim safehouse in the Dock Ward",
+      "Protect a bard carrying sensitive information through the city",
+      "Infiltrate a noble's party to gather intelligence",
+      "Deliver a coded message to a deep-cover agent in the Field Ward",
+      "Investigate a magical anomaly in the Dock Ward"
+    ],
+    "zhentarim": [
+      "Collect a debt from a reluctant merchant in the Trades Ward",
+      "Escort a valuable shipment through the city undetected",
+      "Eliminate a rival gang encroaching on territory in the Southern Ward",
+      "Plant evidence against a City Watch captain",
+      "Recruit a disgruntled guild member in the Trades Ward"
+    ],
+    "lords_alliance": [
+      "Investigate corruption among city officials in the Castle Ward",
+      "Escort a diplomat to a secret meeting",
+      "Recover stolen city treasury documents",
+      "Mediate a dispute between noble houses in the North Ward",
+      "Track down a fugitive from Neverwinter hiding in Waterdeep"
+    ],
+    "emerald_enclave": [
+      "Investigate reports of blight in Undercliff farmland",
+      "Protect a sacred grove from urban development",
+      "Track an escaped exotic beast through city streets",
+      "Inspect food supplies at the market for magical contamination",
+      "Rescue animals from an illegal fighting pit in the Field Ward"
+    ],
+    "order_of_gauntlet": [
+      "Purge an undead infestation in the City of the Dead",
+      "Investigate a cult operating in the sewers beneath the Dock Ward",
+      "Escort a holy relic through dangerous territory",
+      "Challenge a corrupt priest abusing their position",
+      "Protect pilgrims visiting the temples of the Sea Ward"
+    ]
+  },
+  "urban_random_events": [
+    "A building catches fire -- bucket brigade forming",
+    "A famous adventurer is spotted in a tavern",
+    "Magical fireworks celebration in the Sea Ward",
+    "Sewer backup floods a major street",
+    "A portal opens briefly in a market square",
+    "City Watch announces a new bounty poster",
+    "A street vendor sells a genuine magic item unknowingly",
+    "A noble challenges someone to a duel of honor",
+    "Rain of frogs (minor magical disturbance)",
+    "A ship from Chult arrives with exotic goods and diseases",
+    "The Blackstaff's tower emits an unusual glow",
+    "A festival day -- all businesses closed, celebrations in the streets",
+    "Earthquake tremor -- something stirs beneath the city",
+    "A dragon turtle surfaces in the harbor",
+    "Two rival guilds have a public standoff in the Trades Ward"
+  ],
+  "chase_complications": [
+    "A large cart blocks the path (DC 10 Athletics or lose 1 round)",
+    "A crowd fills the street (DC 12 Acrobatics to weave through)",
+    "A low archway or fence (DC 10 Athletics to vault over)",
+    "A dog snaps at your heels (DC 10 Animal Handling or stumble)",
+    "A construction site blocks the alley (DC 12 Athletics to climb scaffolding)",
+    "A vendor's stall tips over (DC 10 Dexterity save or hit by debris)",
+    "A group of drunks stumbles into the path (DC 10 Acrobatics to dodge)",
+    "A City Watch patrol blocks the intersection (DC 12 Deception or Persuasion to pass)",
+    "A clothesline at neck height (DC 10 Perception to spot, DC 12 Acrobatics to duck)",
+    "The street is slippery from rain (DC 10 Dexterity save or fall prone)"
+  ],
+  "waterdeep_wards": [
+    "Castle Ward",
+    "City of the Dead",
+    "Dock Ward",
+    "Field Ward",
+    "Mountainside",
+    "North Ward",
+    "Sea Ward",
+    "Southern Ward",
+    "Trades Ward",
+    "Undercliff"
+  ]
+}

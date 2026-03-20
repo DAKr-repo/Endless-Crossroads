@@ -1,0 +1,82 @@
+{
+  "seed": 8003,
+  "width": 35,
+  "height": 25,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "enemy_position",
+    "theme": "GOTHIC",
+    "topology": "dungeon",
+    "mission_types": ["assault", "recon"]
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 2,
+      "y": 12,
+      "width": 8,
+      "height": 6,
+      "room_type": "start",
+      "connections": [1],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The approach to the enemy fortification is a narrow defile between collapsed buildings. The walls have been reinforced with bone -- femurs and ribs woven together in a lattice that holds the rubble in place. It is disturbingly functional. The air smells of turned earth and something sweet, like rotting fruit.",
+        "read_aloud": "The fortification rises from the ruined village like a growth. Bone-braced walls, a gate of lashed timber, and above it all, a banner of black fabric that moves even when the wind does not.",
+        "enemies": [
+          {"name": "Spitter", "hp": 15, "max_hp": 15, "ac": 11, "attack": 5, "defense": 11, "count": 1}
+        ],
+        "event_triggers": [
+          "A banner of Blighter's forces hangs from the ramparts, black fabric writhing as if something lives inside it."
+        ]
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 14,
+      "y": 6,
+      "width": 10,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [0, 2],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The inner courtyard of the fortification. What was once a village square has been converted into a staging ground. Rotters stand in motionless ranks, their dead eyes fixed forward, awaiting orders that come from somewhere deeper inside. A Spitter crouches on the rooftop of a collapsed inn, acid dripping from its distended jaw.",
+        "enemies": [
+          {"name": "Spitter", "hp": 15, "max_hp": 15, "ac": 11, "attack": 5, "defense": 11, "count": 1},
+          {"name": "Black Oak Knight", "hp": 25, "max_hp": 25, "ac": 15, "attack": 7, "defense": 15, "count": 1}
+        ],
+        "perception_dc": 14,
+        "perception_success": "The Black Oak Knight's armor bears the crest of an Orite cavalry regiment -- this was a Legionnaire once. The corruption has fused the armor to the body beneath.",
+        "event_triggers": [
+          "The Black Oak Knight turns its helm toward you. No sound. No breath. Just the slow, deliberate movement of something that used to be human."
+        ]
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 26,
+      "y": 2,
+      "width": 7,
+      "height": 6,
+      "room_type": "treasure",
+      "connections": [1],
+      "tier": 3,
+      "is_locked": true,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Behind a barricaded door, a cellar holds salvageable supplies -- Legion crates marked with the quartermaster's seal. Someone stacked them here before the position was overrun. Ration tins, bandages, a crate of black-shot ammunition. On the wall, scratched into the stone with a knife point: 'WE HELD FOR THREE DAYS. REMEMBER US.'",
+        "loot": [
+          {"name": "Legion Supply Cache", "value": 3, "description": "Enough rations and ammunition to resupply a squad. Supply +2."},
+          {"name": "Black-Shot Ammunition", "value": 1, "description": "Alchemical rounds effective against undead. +1 effect on Skirmish actions vs. Broken."}
+        ],
+        "lock_dc": 12,
+        "investigation_dc": 10,
+        "investigation_success": "The crates are stamped with the 5th Company insignia -- Field Commander Alaria's original unit. She would want to know about this."
+      }
+    }
+  }
+}

@@ -1,0 +1,60 @@
+{
+    "module_id": "burnwillow_rotwood_hollow",
+    "display_name": "Rotwood Hollow",
+    "system_id": "burnwillow",
+    "source_pdf": "original",
+    "source_type": "homebrew_original",
+    "starting_location": "emberhome",
+    "recommended_levels": {"min": 3, "max": 3},
+    "chapters": [
+        {
+            "chapter_id": "ch1_emberhome_departure",
+            "display_name": "Emberhome Departure",
+            "order": 1,
+            "zones": [
+                {
+                    "zone_id": "rotwood_departure",
+                    "blueprint": "rotwood_departure.json",
+                    "topology": "settlement",
+                    "theme": "RUST",
+                    "location_id": "emberhome",
+                    "entry_trigger": "module_start",
+                    "exit_trigger": "player_choice"
+                }
+            ]
+        },
+        {
+            "chapter_id": "ch2_ashwood_path",
+            "display_name": "The Ashwood Path",
+            "order": 2,
+            "zones": [
+                {
+                    "zone_id": "ashwood_path",
+                    "blueprint": "ashwood_path.json",
+                    "topology": "wilderness",
+                    "theme": "RUST",
+                    "location_id": "ashwood_forest",
+                    "entry_trigger": "player_choice",
+                    "exit_trigger": "player_choice"
+                }
+            ]
+        },
+        {
+            "chapter_id": "ch3_rotwood_hollow",
+            "display_name": "Rotwood Hollow",
+            "order": 3,
+            "zones": [
+                {
+                    "zone_id": "rotwood_hollow",
+                    "blueprint": "rotwood_hollow.json",
+                    "topology": "dungeon",
+                    "theme": "RUST",
+                    "location_id": "rotwood_heart",
+                    "entry_trigger": "player_choice",
+                    "exit_trigger": "boss_defeated"
+                }
+            ]
+        }
+    ],
+    "freeform_zones": []
+}

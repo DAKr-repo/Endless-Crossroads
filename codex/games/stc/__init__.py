@@ -776,6 +776,7 @@ class CosmereEngine(NarrativeLoomMixin):
 
     def handle_command(self, cmd: str, **kwargs) -> str:
         """Command dispatcher for dashboard integration."""
+        cmd = cmd.lower().replace("-", "_")
         # ── Existing commands ──────────────────────────────────────────
         if cmd == "swear_ideal":
             return self.swear_ideal(kwargs.get("name", ""))
@@ -1064,6 +1065,7 @@ _HAZARD_POOL_FALLBACK: Dict[int, List[str]] = {
 _STC_BESTIARY_CACHE: Optional[Dict[int, List[dict]]] = None
 _STC_LOOT_CACHE: Optional[Dict[int, List[str]]] = None
 _STC_HAZARD_CACHE: Optional[Dict[int, List[str]]] = None
+_STC_TRAP_CACHE: Optional[Dict[int, List[dict]]] = None
 
 
 def _load_bestiary() -> Dict[int, List[dict]]:
@@ -1121,6 +1123,30 @@ def _load_hazard_pool() -> Dict[int, List[str]]:
     return _STC_HAZARD_CACHE
 
 
+def _load_trap_pool() -> Dict[int, List[dict]]:
+    """Load STC trap pool from config/traps/stc.json, empty dict if unavailable."""
+    global _STC_TRAP_CACHE
+    if _STC_TRAP_CACHE is not None:
+        return _STC_TRAP_CACHE
+    from codex.core.config_loader import load_config
+    data = load_config("traps", "stc")
+    if data and "traps" in data:
+        by_tier: Dict[int, List[dict]] = {1: [], 2: [], 3: [], 4: []}
+        for trap in data["traps"]:
+            tier = max(1, min(4, trap.get("tier", 1)))
+            by_tier[tier].append(trap)
+        _STC_TRAP_CACHE = by_tier
+        return _STC_TRAP_CACHE
+    if data and "tiers" in data:
+        result: Dict[int, List[dict]] = {}
+        for tier_key, traps in data["tiers"].items():
+            result[int(tier_key)] = traps
+        _STC_TRAP_CACHE = result
+        return _STC_TRAP_CACHE
+    _STC_TRAP_CACHE = {}
+    return _STC_TRAP_CACHE
+
+
 # Tier-scaled pools — populated from config with fallback
 _ENEMY_POOL: Dict[int, List[str]] = {
     tier: [m["name"] for m in monsters]
@@ -1128,6 +1154,7 @@ _ENEMY_POOL: Dict[int, List[str]] = {
 }
 _LOOT_POOL = _load_loot_pool()
 _HAZARD_POOL = _load_hazard_pool()
+_TRAP_POOL = _load_trap_pool()
 
 _ENEMY_POOL_REGISTRY: Dict[str, Dict[int, List[str]]] = {"roshar": _ENEMY_POOL}
 _LOOT_POOL_REGISTRY: Dict[str, Dict[int, List[str]]] = {"roshar": _LOOT_POOL}
@@ -1210,6 +1237,14 @@ class CosmereAdapter:
         if self._rng.random() < 0.2:
             hazard_pool = self._hazards.get(tier, self._hazards[1])
             content["hazards"].append({"name": self._rng.choice(hazard_pool)})
+
+        # Traps (not start rooms; higher chance in defended rooms with enemies)
+        content["traps"] = []
+        if rtype not in (RoomType.START,):
+            trap_pool = _TRAP_POOL.get(tier, _TRAP_POOL.get(1, []))
+            trap_chance = 0.30 if content["enemies"] else 0.15
+            if trap_pool and self._rng.random() < trap_chance:
+                content["traps"].append(self._rng.choice(trap_pool))
 
         return PopulatedRoom(geometry=room, content=content)
 

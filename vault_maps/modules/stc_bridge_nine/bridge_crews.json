@@ -23,14 +23,20 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Bridge Nine's quarters -- a lean-to of salvaged bridge timber and storm-beaten canvas, barely large enough for twenty men to sleep shoulder to shoulder. The branded men here wear their shash glyphs like uniforms. Someone has scratched a tally of bridge runs on the support beam: forty-seven marks, twelve crossed out. The crossed-out ones are the runs everyone came back from.",
+                "read_aloud": "Canvas walls snap in the perpetual wind, stained dark at the edges where crem buildup has turned fabric to something closer to stone. Twenty branded men sleep here shoulder to shoulder on salvaged bridge planks. A tally on the central beam counts forty-seven runs in scratch marks -- twelve crossed out. A sergeant stands at the entrance, his eyes counting heads the way a merchant counts spheres.",
                 "npcs": [
-                    {"name": "Sergeant Talno", "role": "quest_giver", "dialogue": "You are Bridge Nine now. That means you carry the bridge, you run when told, and you do not die unless I give permission. I have not given permission to anyone yet. That is why we still have twenty men."},
-                    {"name": "Pav", "role": "ally", "dialogue": "Do not listen to the sergeant's bluster. He cried last time we lost someone. In private, sure, but the canvas walls do not hide much."}
+                    {"name": "Sergeant Talno", "role": "quest_giver", "dialogue": "You are Bridge Nine now. That means you carry the bridge, you run when told, and you do not die unless I give permission. I have not given permission to anyone yet. That is why we still have twenty men.", "notes": "Talno was a lighteyed officer demoted to bridge crew for refusing an order to execute prisoners. He leads by competence, not cruelty. He has never lost a man he could have saved."},
+                    {"name": "Pav", "role": "ally", "dialogue": "Do not listen to the sergeant's bluster. He cried last time we lost someone. In private, sure, but the canvas walls do not hide much.", "notes": "Pav is the crew's unofficial morale officer. He memorizes every man's name and backstory. When someone dies, he carves their name into the support beam."},
+                    {"name": "Pointman Jaks", "role": "ally", "dialogue": "I run front-left. That means I am the first person the Parshendi archers see. The trick is making them miss. The bigger trick is not thinking about the arrows while you are making them miss.", "notes": "Jaks is the fastest runner in Bridge Nine. He volunteered for point position because the previous pointman was killed. He has a wife in Kholinar he has not seen in two years."}
                 ],
                 "enemies": [],
                 "loot": [],
                 "services": ["rest", "crew_information"],
-                "event_triggers": ["On entry: A branded man looks up from sharpening a salvaged knife and nods -- not a greeting, but an acknowledgment that you exist, which is apparently the highest compliment here"]
+                "investigation_dc": 11,
+                "investigation_success": "Pav's support beam carvings include a name scratched deeper than the others -- 'Dunny.' Below it, a date. Below the date, two words: 'arrow, run 33.' Pav touches it every morning.",
+                "perception_dc": 10,
+                "perception_success": "Talno's hands bear old burn scars -- not from fire, but from rope. He has caught a falling bridge with his bare hands. The crew does not speak of it. They do not need to.",
+                "event_triggers": ["On entry: A branded man looks up from sharpening a salvaged knife and nods -- not a greeting, but an acknowledgment that you exist, which is apparently the highest compliment here. Talno counts you with his eyes."]
             }
         },
         "1": {
@@ -46,16 +52,22 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Mess Hall is a generous name for a tarpaulin stretched over four poles with a fire pit underneath. The stew tastes of whatever animal wandered too close to camp that day, thickened with Soulcast grain that has the texture and flavor of wet chalk. Men eat it without complaint. Complaining takes energy better spent on surviving.",
+                "read_aloud": "Four poles and a tarp. A fire pit ringed with salvaged stones. A pot of something that was once alive, now reduced to a grey suspension that smells of boiled leather and regret. Men eat in silence, hunched over their bowls like they are protecting a secret. Maps is the exception -- he has unrolled a hand-drawn chart on the mess table, and the men who can read gather around it with the intensity of generals planning a campaign.",
                 "npcs": [
-                    {"name": "Cook Shen", "role": "merchant", "dialogue": "It is food. It fills the belly. If you want flavor, become a lighteyes. If you want seconds, bring me something worth cooking. A chull steak, maybe. Or a cremling -- I am not proud."},
-                    {"name": "Maps", "role": "ally", "dialogue": "They call me Maps because I drew the plateau runs from memory. Forty-seven runs, every chasm crossing, every Parshendi ambush point. The officers do not care. Bridge crews are not supposed to think. But Bridge Nine thinks anyway."}
+                    {"name": "Cook Shen", "role": "merchant", "dialogue": "It is food. It fills the belly. If you want flavor, become a lighteyes. If you want seconds, bring me something worth cooking. A chull steak, maybe. Or a cremling -- I am not proud.", "notes": "Shen is a parshman who joined the bridge crew voluntarily. He speaks rarely and cooks competently. The crew treats him as one of their own, which is extraordinary in Alethi society."},
+                    {"name": "Maps", "role": "ally", "dialogue": "They call me Maps because I drew the plateau runs from memory. Forty-seven runs, every chasm crossing, every Parshendi ambush point. The officers do not care. Bridge crews are not supposed to think. But Bridge Nine thinks anyway.", "notes": "Maps was a cartographer before he was branded. His plateau charts are more accurate than the lighteyed officers' versions. Dalinar would pay a fortune for them if he knew they existed."},
+                    {"name": "Scout Eth", "role": "ally", "dialogue": "I run ahead of the bridge. Alone. Without armor. My job is to see the Parshendi before they see us and report back before the arrows start. The survival rate for bridge scouts is four runs. I have done twenty-three. I am either very lucky or very fast. Probably both.", "notes": "Eth has an uncanny sense for Parshendi ambush positions. He does not realize it, but he is sensing their rhythms through subtle vibrations in the stone -- a nascent Stoneward ability."}
                 ],
                 "enemies": [],
                 "loot": [
                     {"name": "Soulcast Rations (heals 1 HP)", "type": "consumable"}
                 ],
                 "services": ["food", "crew_morale"],
-                "event_triggers": ["On entry: Maps unfurls a hand-drawn chart on the mess table -- every plateau run Bridge Nine has survived, marked with the names of men who did not"]
+                "investigation_dc": 12,
+                "investigation_success": "Maps's charts include notations in a code only Bridge Nine understands. Decoded, they reveal safe routes through the chasms that bypass every known Parshendi position. These maps could save hundreds of lives -- or end the war, if the wrong highprince got them.",
+                "perception_dc": 11,
+                "perception_success": "Shen hums while he cooks. The tune is not Alethi. It follows a rhythm that the other bridge crew members cannot quite hear -- but their movements unconsciously sync to it. He is singing the Rhythm of Peace.",
+                "event_triggers": ["On entry: Maps unfurls a hand-drawn chart on the mess table -- every plateau run Bridge Nine has survived, marked with the names of men who did not. The crew gathers around it in silence."]
             }
         },
         "2": {
@@ -71,13 +83,18 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Training Yard is a patch of bare stone behind the barracks where Sergeant Talno drills the crew before dawn. Bridge carriers need legs like iron and shoulders that can bear four hundred pounds at a dead sprint. The training is brutal and effective -- the men who survive it survive the runs. The correlation is not coincidental.",
+                "read_aloud": "Bare stone scoured flat by wind and boots. Two men sprint carrying a log between them -- 'BRIDGE' carved into its side in letters you can read from fifty paces. Talno stands with arms crossed, counting cadence in a voice that carries like a war drum. Hobber demonstrates proper bridge-grip on a timber frame, his forearms corded with muscle that comes only from carrying twelve hundred pounds at a dead run while arrows fall like rain.",
                 "npcs": [
-                    {"name": "Hobber", "role": "ally", "dialogue": "Lift with the legs, not the back. And when the arrows start, do not flinch. Flinching slows you down, and the man behind you trips, and then the bridge drops, and then everyone dies. So do not flinch."}
+                    {"name": "Hobber", "role": "ally", "dialogue": "Lift with the legs, not the back. And when the arrows start, do not flinch. Flinching slows you down, and the man behind you trips, and then the bridge drops, and then everyone dies. So do not flinch.", "notes": "Hobber lost the use of his legs on run thirty-one. He was healed by a Radiant's touch and walks again. He does not know what happened. He tells everyone it was 'stubbornness.'"}
                 ],
                 "enemies": [],
                 "loot": [],
                 "services": ["training"],
-                "event_triggers": ["On entry: Talno is making two men sprint while carrying a log between them. The log has 'BRIDGE' carved into it. The metaphor is not subtle."]
+                "investigation_dc": 12,
+                "investigation_success": "Talno's training regimen is based on Alethi military officer drills, adapted for bridge crews. It is far more sophisticated than a slave camp sergeant should know. His methods have cut Bridge Nine's casualty rate by forty percent.",
+                "perception_dc": 11,
+                "perception_success": "Hobber's gait is wrong. Not injured-wrong, but impossibly-healed-wrong. His leg was shattered on run thirty-one. Two days later he walked. No surgeon can explain it. Hobber claims he does not remember.",
+                "event_triggers": ["On entry: Talno is making two men sprint while carrying a log between them. The log has 'BRIDGE' carved into it. The metaphor is not subtle. A highstorm warning bell rings in the distance."]
             }
         },
         "3": {
@@ -93,13 +110,19 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Lashing Post stands at the camp's crossroads -- a weathered wooden pillar stained dark at waist height from a decade of punishments. Today it is empty. The guards say that is a good day. The bridge crews say that means tomorrow will be worse, because discipline always catches up.",
+                "read_aloud": "The pillar stands at the crossroads like a dead tree that refuses to fall. Dark stains at waist height tell its story better than any words could. A guard leans against it, picking his teeth with a splinter, his whip coiled at his belt like a sleeping snake. The post is empty today. The guard seems disappointed.",
                 "npcs": [
-                    {"name": "Guard Hav", "role": "guard", "dialogue": "Keep your brands visible and your mouth shut. The highprince does not tolerate dissent from bridge crews. The last man who spoke up is still tied to the medical tent. You do not want to know what for."}
+                    {"name": "Guard Hav", "role": "guard", "dialogue": "Keep your brands visible and your mouth shut. The highprince does not tolerate dissent from bridge crews. The last man who spoke up is still tied to the medical tent. You do not want to know what for.", "notes": "Hav enjoys his authority but is not cruel by nature -- he simply lacks the imagination to question orders. He can be bribed with three marks of infused spheres to look the other way."},
+                    {"name": "Runner Bisig", "role": "ally", "dialogue": "The highstorm shelters are three minutes from the barracks at a sprint. That is too slow for some of the older men. I have been timing routes. There is a shortcut through the supply depot that shaves forty seconds. Forty seconds is the difference between shelter and death.", "notes": "Bisig is the youngest member of Bridge Nine, barely sixteen. He memorizes everything and forgets nothing. His ability to calculate optimal routes under pressure borders on supernatural."}
                 ],
                 "enemies": [],
                 "loot": [],
                 "services": [],
-                "event_triggers": ["On entry: A man stumbles past, fresh welts on his back, heading toward the barracks. No one helps him. Not because they do not care, but because helping marks you as sympathetic, and sympathy is a punishable offense."]
+                "investigation_dc": 13,
+                "investigation_success": "Fresh marks on the post do not match a whip. They match bindings -- someone was tied here during the last highstorm. Left outside. That is not discipline. That is execution.",
+                "perception_dc": 12,
+                "perception_success": "Hav's hand drifts to his whip whenever a bridge crew member makes eye contact. It is a reflex, not a conscious choice. But his eyes flick to the barracks first -- checking if Talno is watching. He is afraid of the sergeant.",
+                "event_triggers": ["On entry: A man stumbles past, fresh welts on his back, heading toward the barracks. No one helps him. Not because they do not care, but because helping marks you as sympathetic, and sympathy is a punishable offense. The highstorm warning bell sounds again, closer."]
             }
         },
         "4": {
@@ -115,15 +138,20 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Sergeant's Tent is the only fully enclosed structure in the bridge crew compound -- a double-walled canvas shelter with an actual cot, a locked chest, and a map of tomorrow's plateau run pinned to the center pole. The luxury is relative, but among branded men, a tent with walls is a palace.",
+                "read_aloud": "Double-walled canvas -- a luxury that means the difference between sleeping dry and sleeping in crem-water. Talno's cot is regulation military, his chest locked with a mechanism that was not standard issue. A map of tomorrow's run pins to the center pole, its ink still wet. Seven chasms marked in red. Two contested plateaus marked in black. A single gemheart waypoint circled three times. Talno's hand trembles once as he pins it. Then steadies.",
                 "npcs": [
-                    {"name": "Sergeant Talno", "role": "quest_giver", "dialogue": "Tomorrow's run is a long one -- seven chasms, two contested plateaus. The gemheart scouts say the chrysalis is ripe. That means the Parshendi know too. I need every man sharp. No injuries, no arguments, no incidents. Can Bridge Nine manage that?"}
+                    {"name": "Sergeant Talno", "role": "quest_giver", "dialogue": "Tomorrow's run is a long one -- seven chasms, two contested plateaus. The gemheart scouts say the chrysalis is ripe. That means the Parshendi know too. I need every man sharp. No injuries, no arguments, no incidents. Can Bridge Nine manage that?", "notes": "The locked chest contains Talno's officer's commission, signed by Dalinar Kholin himself. Talno refused to burn it. It is the last proof that he was once an honorable man, and he intends to be one again."}
                 ],
                 "enemies": [],
                 "loot": [
                     {"name": "Tomorrow's Plateau Run Map", "type": "quest_item"}
                 ],
                 "services": ["mission_briefing", "squad_assignment"],
-                "event_triggers": ["On entry: Talno pins a new run map to the pole. His hand trembles once, briefly, before steadying. He does not look up."]
+                "investigation_dc": 14,
+                "investigation_success": "Talno's locked chest (DC 14 to pick) contains an officer's commission signed by Dalinar Kholin and a letter that reads: 'Sergeant -- your request for transfer is denied. Sadeas needs bridge crews more than Kholin needs officers. I am sorry. -- D.K.' The letter is three years old.",
+                "perception_dc": 12,
+                "perception_success": "Talno pins a new run map to the pole. His hand trembles once, briefly, before steadying. He does not look up. But when he thinks you are not watching, he touches the locked chest with two fingers -- a gesture soldiers make toward their dead.",
+                "event_triggers": ["On entry: Talno pins a new run map to the pole. His hand trembles once, briefly, before steadying. He does not look up. Outside, the highstorm warning shifts to a three-bell pattern -- shelter recommended within the hour."]
             }
         },
         "5": {
@@ -139,13 +167,18 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Camp Gate is a gap in the perimeter stakes where bridge crews are mustered for their runs. Beyond it, the Shattered Plains stretch under a sky that never looks the same twice -- pale amber before highstorm, deep blue after, and right now a bruised purple that promises nothing good.",
+                "read_aloud": "Perimeter stakes frame the Shattered Plains like teeth in a jaw that never closes. Beyond the gate, stone mesas stretch to every horizon, separated by chasms that split the earth in fracture patterns no geologist can explain. The sky is bruised purple -- highstorm weather, incoming from the east, its leading edge visible as a wall of cloud that swallows the horizon. The assembly horn sounds. Bridge crews form up in silence. The war resumes.",
                 "npcs": [
-                    {"name": "Sutler Goshel", "role": "merchant", "dialogue": "Knives, bandages, dried meat. One sphere each, no haggling. I do not extend credit to bridge crews. Nothing personal -- it is a poor investment."}
+                    {"name": "Sutler Goshel", "role": "merchant", "dialogue": "Knives, bandages, dried meat. One sphere each, no haggling. I do not extend credit to bridge crews. Nothing personal -- it is a poor investment.", "notes": "Goshel sells at inflated prices because he is the only merchant willing to trade with branded men. He is not heartless -- he donates half his profits to a widow's fund in Kholinar. He tells no one."}
                 ],
                 "enemies": [],
                 "loot": [],
                 "services": ["buy_supplies", "exit_camp"],
-                "event_triggers": ["On entry: The assembly horn sounds. Bridge crews form up at the gate in practiced silence. Somewhere, a gemheart is growing, and two nations are about to fight for it."]
+                "investigation_dc": 12,
+                "investigation_success": "Goshel's ledger has two columns -- the prices he charges and the prices he pays. The difference goes to an account labeled only 'K.W.F.' -- the Kholinar Widows' Fund. He has been supporting bridge crew families for three years.",
+                "perception_dc": 13,
+                "perception_success": "The highstorm wall is closer than it should be. The weather-wardens miscalculated arrival time by at least two hours. Any crew caught on the plateaus when it hits will not survive. Talno needs to know.",
+                "event_triggers": ["On entry: The assembly horn sounds. Bridge crews form up at the gate in practiced silence. Somewhere, a gemheart is growing, and two nations are about to fight for it. The highstorm wall eats another mile of horizon."]
             }
         }
     }

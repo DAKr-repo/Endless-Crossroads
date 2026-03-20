@@ -1,0 +1,66 @@
+{
+  "seed": 4701,
+  "width": 20,
+  "height": 10,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "south_soffit_hook",
+    "theme": "GOTHIC",
+    "topology": "settlement",
+    "display_name": "South Soffit by Night"
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 0,
+      "y": 0,
+      "width": 8,
+      "height": 8,
+      "room_type": "town_square",
+      "connections": [1],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "South Soffit, after midnight. Rain slicks the cobblestones and turns the gaslamp light into smeared amber puddles. A narrow alley between a pawnbroker and a closed butcher's shop. A detective in a rain-darkened overcoat runs, his footsteps splashing. He is chasing something -- or being chased by it. A shadow moves on the rooftop above, too large, too many limbs.",
+        "read_aloud": "A gunshot cracks the rain-silence. Then another. The detective stumbles out of the alley, clutching his right hand to his chest. His right hand is gone -- severed at the wrist, the stump cauterized by something that is not heat. Silk threads trail from the wound, gossamer-thin, connecting his severed hand to the shadow on the rooftop above. Spiders pour from the roofline. Thousands of them. They swarm the detective's body in a chitinous wave, and when they disperse thirty seconds later, the body has no face.",
+        "npcs": [],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [
+          "A private detective is killed in South Soffit. His face is removed by a swarm of spiders. His severed hand is connected to the rooftop by silk threads. Candela Obscura is notified through irregular channels.",
+          "The detective's name is Miles Crane. He was hired to find a missing person. He found something else."
+        ],
+        "loot": []
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 10,
+      "y": 0,
+      "width": 8,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [0],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The crime scene, minutes later. The rain is washing away the blood. Spider silk threads glisten on every surface -- lampposts, gutters, window ledges -- forming a web that radiates outward from the alley. The detective's body lies face-down in a puddle. When you turn it over, the face is simply gone -- not torn, not eaten, but removed. Smooth skin where features should be. A business card protrudes from his breast pocket.",
+        "npcs": [],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [
+          "The spider silk is not natural. Under magnification, each strand contains a faint bioluminescent core that pulses with bleed energy. The web is a sensory network -- whatever built it can feel vibrations across the entire district."
+        ],
+        "loot": [
+          {
+            "name": "Miles Crane's Business Card",
+            "value": 0,
+            "description": "Front: 'Miles Crane, Private Investigations. Discretion Guaranteed.' Back, handwritten in pencil: 'Florence Brighton -- Eden?' A lead. Florence and Brighton are cross-streets in South Soffit. The Eden Theater sits at their intersection."
+          }
+        ]
+      }
+    }
+  }
+}

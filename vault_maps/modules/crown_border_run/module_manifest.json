@@ -1,0 +1,16 @@
+{
+    "module_id": "crown_border_run",
+    "display_name": "The Border Run",
+    "system_id": "crown",
+    "source_type": "homebrew_original",
+    "source_pdf": "original",
+    "campaign_json": "campaign.json",
+    "chapters": [
+        {
+            "chapter_id": "the_border_run",
+            "display_name": "The Border Run",
+            "zones": [],
+            "order": 1
+        }
+    ]
+}

@@ -1,0 +1,93 @@
+{
+    "module_id": "cbrpnk_prdtr",
+    "display_name": "PRDTR: Biosphere-5",
+    "system_id": "cbrpnk",
+    "source_pdf": "cbrpnk_04_prdtr.pdf",
+    "source_type": "publisher_licensed",
+    "world_map": null,
+    "starting_location": "selket_heights",
+    "recommended_levels": {"min": 1, "max": 5},
+    "chapters": [
+        {
+            "chapter_id": "ch1_arrival",
+            "display_name": "Chapter 1: Arrival",
+            "order": 1,
+            "zones": [
+                {
+                    "zone_id": "selket_heights",
+                    "blueprint": "ch1_arrival.json",
+                    "topology": "settlement",
+                    "theme": "RUST",
+                    "location_id": "selket_heights",
+                    "entry_trigger": "module_start",
+                    "exit_trigger": "player_choice"
+                }
+            ]
+        },
+        {
+            "chapter_id": "ch2_operation_exodus",
+            "display_name": "Chapter 2: Operation Exodus",
+            "order": 2,
+            "zones": [
+                {
+                    "zone_id": "operation_exodus",
+                    "blueprint": "ch2_operation_exodus.json",
+                    "topology": "dungeon",
+                    "theme": "RUST",
+                    "location_id": "eastern_sector",
+                    "entry_trigger": "player_choice",
+                    "exit_trigger": "quest_complete"
+                }
+            ]
+        },
+        {
+            "chapter_id": "ch3_the_sample",
+            "display_name": "Chapter 3: The Sample",
+            "order": 3,
+            "zones": [
+                {
+                    "zone_id": "apx_facility",
+                    "blueprint": "ch3_the_sample.json",
+                    "topology": "dungeon",
+                    "theme": "RUST",
+                    "location_id": "apx_underground",
+                    "entry_trigger": "quest_complete",
+                    "exit_trigger": "quest_complete"
+                }
+            ]
+        },
+        {
+            "chapter_id": "ch4_rescue_eli",
+            "display_name": "Chapter 4: Rescue Eli",
+            "order": 4,
+            "zones": [
+                {
+                    "zone_id": "scavenger_territory",
+                    "blueprint": "ch4_rescue_eli.json",
+                    "topology": "dungeon",
+                    "theme": "RUST",
+                    "location_id": "jungle_rim",
+                    "entry_trigger": "quest_complete",
+                    "exit_trigger": "quest_complete"
+                }
+            ]
+        },
+        {
+            "chapter_id": "ch5_slaughter",
+            "display_name": "Chapter 5: Slaughter",
+            "order": 5,
+            "zones": [
+                {
+                    "zone_id": "prdtr_hunt",
+                    "blueprint": "ch5_slaughter.json",
+                    "topology": "dungeon",
+                    "theme": "RUST",
+                    "location_id": "biosphere_core",
+                    "entry_trigger": "quest_complete",
+                    "exit_trigger": "boss_defeated"
+                }
+            ]
+        }
+    ],
+    "freeform_zones": []
+}

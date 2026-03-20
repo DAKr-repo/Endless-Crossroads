@@ -12,6 +12,7 @@ Tests for:
 """
 
 import pytest
+from unittest.mock import MagicMock
 
 from codex.core.services.narrative_loom import (
     ANCHOR_EVENT_TYPES,
@@ -224,12 +225,9 @@ class TestUniversalBridgeLogging:
 
     def _make_bridge(self):
         """Create a minimal bridge without engine init."""
-        bridge = object.__new__(UniversalGameBridge)
-        bridge._session_log = []
-        bridge._butler = None
-        bridge.show_dm_notes = False
-        bridge._talking_to = None
-        bridge.dead = False
+        engine = MagicMock()
+        engine.system_id = "test"
+        bridge = UniversalGameBridge.create_lightweight(engine)
         return bridge
 
     def test_bridge_has_session_log(self):

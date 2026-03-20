@@ -1,0 +1,76 @@
+{
+  "seed": 8013,
+  "width": 25,
+  "height": 18,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "scouts_perch",
+    "theme": "STONE",
+    "topology": "settlement",
+    "mission_types": ["recon", "assault"]
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 2,
+      "y": 2,
+      "width": 8,
+      "height": 6,
+      "room_type": "town_square",
+      "connections": [1, 2],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "A flat-topped ridge overlooking the pass below. The Scouts have established a camp here -- low tents staked against the wind, a signal fire ready to light, and a crude observation platform built from lashed timber. The view is commanding: the entire length of Gallows Pass is visible, a dark scar between the cliffs, the old gallows still standing at the narrowest point like rotten teeth.",
+        "read_aloud": "High ground above Gallows Pass. The Scout Leader is waiting for you, crouched at the observation platform with a spyglass pressed to her eye. She does not look up.",
+        "npcs": [
+          {
+            "name": "Scout Leader Tova",
+            "role": "briefing_officer",
+            "dialogue": "Count with me. Fourteen Rotters in the defile, clustered around the gallows. Two Crows on the cliff walls -- they roost in the old execution niches. And at the far end, where the pass opens up, two Black Oak Knights blocking the exit. They've been there for three days. They don't move. They don't need to.",
+            "notes": "Tova is Zemyati, thin as wire, with a scar from hairline to jaw that she got from a Crow's talons. She speaks numbers instead of opinions. Her briefings are precise, clinical, and devoid of hope. She respects competence and nothing else."
+          }
+        ],
+        "services": ["rest", "briefing"],
+        "event_triggers": [
+          "Tova hands you the spyglass. Through it, the gallows are close enough to touch. The bodies hanging from them are twitching."
+        ]
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 14,
+      "y": 3,
+      "width": 6,
+      "height": 5,
+      "room_type": "barracks",
+      "connections": [0],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The scout camp's rest area is a shallow cave in the ridge, enlarged with picks and draped with oilcloth to keep out the rain. Bedrolls, weapon caches, and a small cold-food store. No fire is permitted after dark -- the Crows watch for light.",
+        "services": ["rest"],
+        "investigation_dc": 10,
+        "investigation_success": "Carved into the cave wall, behind a bedroll: a map of the pass drawn by a previous scout team. It shows a narrow chimney in the cliff face -- a climbing route that bypasses the defile entirely. Someone has crossed it out and written 'COLLAPSED' next to it. But the rock around the chimney looks sound."
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 2,
+      "y": 10,
+      "width": 7,
+      "height": 5,
+      "room_type": "barracks",
+      "connections": [0],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The signal station. A pile of oil-soaked kindling ready to ignite, a horn for sounding the alarm, and a canvas pouch of signal flags. If the pass is breached, this is where the warning goes out. The flags are color-coded: red for undead, black for Broken, white for all-clear. No one has flown white in weeks.",
+        "services": ["briefing"]
+      }
+    }
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "seed": 4403,
+  "width": 25,
+  "height": 15,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "shelley_cottage",
+    "theme": "GOTHIC",
+    "topology": "settlement",
+    "display_name": "The Shelley Cottage"
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 0,
+      "y": 0,
+      "width": 8,
+      "height": 8,
+      "room_type": "residence",
+      "connections": [1],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Alice Shelley's cottage sits on the hill above town, the only house never wired for electricity. Oil lamps glow warm in every window. The garden out back has been torn up -- not by tools, but by something dragging itself through the soil. Mrs. Shelley sits in her rocking chair with a quilt over her knees and a loaded rifle across her lap.",
+        "read_aloud": "The widow's cottage smells of lavender sachets and lamp oil. Every surface gleams with the particular cleanliness of a woman who fills her grief with housework. Mrs. Shelley regards you from her rocker, rifle balanced across her knees. 'I know why you are here,' she says. 'I heard the digging again last night.'",
+        "npcs": [
+          {
+            "name": "Alice Shelley",
+            "role": "witness",
+            "dialogue": "Three nights now, something digs in my garden after dark. I will not look. I heard -- sounds. Wet sounds. Like meat being pulled apart and pressed back together wrong. My Harold told me never to go outside when the static starts. He knew something. He died before he could tell me what.",
+            "notes": "She/her. Widow. Her late husband Harold worked the night shift at the powerhouse before he died of 'heart failure' six months ago -- the first victim, unrecognized. She refused electric lights out of superstition Harold encouraged. The rifle is loaded with rock salt."
+          }
+        ],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [
+          "Mrs. Shelley describes digging sounds in her garden at night -- something pulling at the earth. She has not looked. She will not look."
+        ],
+        "loot": [],
+        "investigation_dc": 10,
+        "investigation_success": "A framed photograph on the mantle shows Harold Shelley standing beside the powerhouse turbine. His hands bear the same faint fractal scarring as the dead -- but healed over. He survived contact with whatever this is."
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 10,
+      "y": 0,
+      "width": 10,
+      "height": 10,
+      "room_type": "town_square",
+      "connections": [0, 2],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The garden behind the Shelley cottage. The earth is churned and trenched in long furrows leading toward the nearest power line pole. Something has been digging here -- not downward, but outward, toward the hum of the wires. The soil is cold and smells of copper.",
+        "read_aloud": "You drive the spade in and hit something solid after two feet. Not stone. Flesh. A man's arm, gray-skinned and rigid, fused at the elbow to a second body's shoulder. The joints have melted together like candle wax. You dig further. A chain of warped human remains stretches from the garden toward the nearest power line, each corpse fused to the next, a grotesque human centipede of conductive tissue.",
+        "npcs": [],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [
+          "Exhuming the garden reveals a chain of fused human bodies leading toward the power lines. Static electricity crackles along the chain. The corpses are conductors.",
+          "REVEAL: The chain of fused bodies continues out of the garden, through the tree line, and deep into the woods beyond Overmount. Something is building itself a power line made of flesh."
+        ],
+        "loot": [],
+        "perception_dc": 12,
+        "perception_success": "The bodies are not decomposing. Their skin has a faint metallic sheen, and when you touch one, a static shock jolts up your arm. These corpses are still carrying current."
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 15,
+      "y": 5,
+      "width": 6,
+      "height": 6,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The power line pole at the garden's edge. The wooden post vibrates with a low hum that you feel in your back teeth. The chain of fused bodies terminates here, the last corpse's hand wrapped around the base of the pole, fingers sunk into the wood like roots. Scorch marks radiate outward in a starburst pattern.",
+        "npcs": [
+          {
+            "name": "Lucia Rodriguez",
+            "role": "witness",
+            "dialogue": "I work the north ridge crew. We have been hearing things at night -- like trees cracking, but there is no wind. Last Tuesday, Briggs went to check the lines after the second death. He never came back. We found his boots by the creek, full of ash.",
+            "notes": "She/her. Logger. Knows the woods better than anyone in town. Will offer to guide the circle into the forest if asked. Carries an axe and a gas lantern. Terrified but stubborn."
+          }
+        ],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [],
+        "loot": [
+          {
+            "name": "Harold Shelley's Work Journal",
+            "value": 0,
+            "description": "Found in the garden soil near the first body. Water-damaged pages describe 'the hum that talks' and sketches of a massive shadow seen near the powerhouse at night. The last entry reads: 'It is not using the electricity. It IS the electricity.'"
+          }
+        ]
+      }
+    }
+  }
+}

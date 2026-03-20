@@ -1,0 +1,78 @@
+{
+  "seed": 90001,
+  "width": 20,
+  "height": 20,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "crew_lair",
+    "theme": "GOTHIC",
+    "topology": "settlement",
+    "description": "The crew's lair in Crow's Foot. A converted warehouse near the docks, its walls papered with stolen maps and score plans. The air tastes of cheap coffee and lamp oil."
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 2,
+      "y": 2,
+      "width": 7,
+      "height": 6,
+      "room_type": "town_square",
+      "connections": [1, 2],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The common room of the crew's lair. A scarred table dominates the center, covered in charcoal sketches of the Dimmer Sisters' house. Three gas lamps throw unsteady light across walls stained by decades of Duskwall damp. A half-eaten meat pie sits forgotten on a side table.",
+        "read_aloud": "Your lair. The table is already laid out with everything Dowler brought you -- rough floor plans, a handful of spirit-warding tokens, and a bottle of something strong enough to strip varnish.",
+        "npcs": [
+          {
+            "name": "Dowler",
+            "role": "contact",
+            "dialogue": "I've been on that rooftop before. The approach is clear, but watch for wards once you're inside. The Sisters don't rely on locks -- they rely on things that bite back from the other side of the veil.",
+            "notes": "Dowler is an explorer of Duskwall's forgotten places. He discovered the rooftop approach three weeks ago while mapping the old canal routes. He owes the crew a debt from a prior job where they pulled him out of a bad spot in Charhollow."
+          }
+        ],
+        "services": ["rest", "supply", "rumor"],
+        "event_triggers": [
+          "Dowler spreads a creased map across the table. 'The Sisters keep to the upper floors after midnight. Ground level's mostly storage and their collection of... curiosities. The prize you want is on the second floor, in the room with the blue door.'"
+        ]
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 11,
+      "y": 2,
+      "width": 6,
+      "height": 6,
+      "room_type": "market",
+      "connections": [0],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The supply alcove. Shelves of climbing gear, lockpicks in oiled leather rolls, a crate of smoke bombs that Stev swears are still good. The wall rack holds two crossbows and a bandolier of throwing knives.",
+        "services": ["supply"],
+        "loot": [
+          {"name": "Fine lockpicks", "value": 2, "description": "A set of picks in a leather roll, each one needle-thin and perfectly weighted."},
+          {"name": "Smoke bomb (x2)", "value": 1, "description": "Glass spheres filled with dense grey powder. Shatter on impact."}
+        ]
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 2,
+      "y": 10,
+      "width": 7,
+      "height": 5,
+      "room_type": "residence",
+      "connections": [0],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The crew's bunks. Hammocks strung between iron columns, each curtained off with salvaged canvas. Someone's scratched kill tallies into the nearest beam. A guttering candle throws long shadows across a collection of wanted posters tacked to the far wall -- including yours.",
+        "services": ["rest"]
+      }
+    }
+  }
+}

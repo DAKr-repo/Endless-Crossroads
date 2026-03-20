@@ -44,11 +44,13 @@ NARRATION_MODEL = "mimir"          # Narrates results (qwen2.5:0.5b)
 class CompanionPersonality:
     """Personality profile for an AI-controlled companion."""
     archetype: str          # "vanguard", "scholar", "scavenger", "healer"
-    description: str        # For Mimir narration prompts
-    quirk: str              # Character flavor
-    aggression: float       # 0.0-1.0
-    curiosity: float        # 0.0-1.0
-    caution: float          # 0.0-1.0
+    description: str = ""   # For Mimir narration prompts
+    quirk: str = ""         # Character flavor
+    aggression: float = 0.5 # 0.0-1.0
+    curiosity: float = 0.5  # 0.0-1.0
+    caution: float = 0.5    # 0.0-1.0
+    name: str = ""          # Companion display name
+    biography: str = ""     # Generated biography text
 
     def to_dict(self) -> dict:
         return {
@@ -58,11 +60,17 @@ class CompanionPersonality:
             "aggression": self.aggression,
             "curiosity": self.curiosity,
             "caution": self.caution,
+            "name": self.name,
+            "biography": self.biography,
         }
 
     @classmethod
     def from_dict(cls, data: dict) -> "CompanionPersonality":
-        return cls(**data)
+        # Filter to only known fields for backwards compat
+        known = {"archetype", "description", "quirk", "aggression",
+                 "curiosity", "caution", "name", "biography"}
+        filtered = {k: v for k, v in data.items() if k in known}
+        return cls(**filtered)
 
 
 PERSONALITY_POOL: List[CompanionPersonality] = [

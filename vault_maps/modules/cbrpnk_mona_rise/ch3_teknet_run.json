@@ -1,0 +1,97 @@
+{
+    "seed": 9203,
+    "width": 45,
+    "height": 30,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "teknet_breach",
+        "theme": "RUST",
+        "topology": "dungeon",
+        "display_name": "TekNet Run: Network Breach",
+        "description": "TekNet Megacorp controls Mona Rise's internal communications and orbital server infrastructure. Poison_Kiss, TekNet's enigmatic leader, needs Toha's central base shut down for exactly 2.5 minutes -- long enough to extract stolen data, short enough that Toha's automated defense grid does not trigger a city-wide lockdown. The operation route goes through the abandoned subway, up through TekNet's spatial nest, and out via the air control tower."
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 2,
+            "y": 20,
+            "width": 10,
+            "height": 8,
+            "room_type": "start",
+            "connections": [1],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The abandoned subway. Pre-collapse transit tunnels converted to TekNet's private data highway. Fiber optic cables thick as arms line the tunnel walls, pulsing with data-light in rhythmic patterns. The trains are gone but the rails remain, repurposed as grounding conductors for the cables. Walking the tracks puts you inside TekNet's nervous system. Every step disturbs the data flow, creating tiny ripples in the network that someone, somewhere, might notice. The tunnel forks ahead: left toward TekNet's spatial nest, right toward Toha's underground infrastructure.",
+                "read_aloud": "The cables overhead pulse with data. TekNet's nest is a cathedral of information. Down here, in the dark between the rails, you can hear the network thinking -- a subsonic hum that shifts pitch based on traffic load. Right now the pitch is rising. Something big is being transmitted. You are walking through the middle of it.",
+                "enemies": [
+                    {"name": "Armitage Squad Tracker", "hp": 15, "ac": 12, "attack": 4, "damage": "1d8", "count": 2, "notes": "TekNet's hacker-trackers. They patrol the subway tunnels looking for unauthorized network access. They detected your entry 45 seconds ago and are closing from both ends of the tunnel. Helmeted, lightly armored, carrying neural disruptors that cause temporary memory loss on hit.", "special": ["Memory Disruptor: On hit, target forgets their last action and must repeat or choose a new one", "Network Ping: Can alert all Armitage units in the zone to exact runner positions"]}
+                ],
+                "event_triggers": [
+                    "Poison_Kiss's voice crackles through the subway's emergency intercoms -- a voice that could be any gender, any age, run through enough filters to be entirely anonymous: 'You are in my territory now. The Armitage squads are mine. They will not harm you as long as I do not tell them to. I am choosing not to tell them. For now. Keep moving. The spatial nest is ahead. Do not touch the blue cables.'"
+                ],
+                "perception_dc": 14,
+                "perception_success": "The blue cables Poison_Kiss mentioned carry different data than the white ones. A scan reveals they are not TekNet infrastructure -- they are MezoTuring financial transaction channels, routed through TekNet's tunnels without authorization. TekNet is skimming MezoTuring's money. Or MezoTuring is using TekNet's infrastructure without permission. Either way, someone is lying."
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 14,
+            "y": 8,
+            "width": 14,
+            "height": 12,
+            "room_type": "normal",
+            "connections": [0, 2],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "TekNet's spatial nest. A converted satellite control room hollowed out of a pre-collapse bunker. Screens cover every surface -- walls, ceiling, floor -- displaying real-time data visualizations of Mona Rise's entire communication infrastructure. The room feels like standing inside a star map. Operators sit in suspended harnesses, neural jacks plugged into the network, their fingers twitching over controls that exist only in virtual space. In the center, a holographic model of Mona Rise rotates slowly, every data stream visible as threads of light. The thread connecting to Toha's central base pulses red -- the target.",
+                "read_aloud": "The nest is beautiful in the way a weapon is beautiful. Every thread of light represents a conversation, a transaction, a surveillance feed. TekNet sees everything. The operator nearest you has been jacked in so long that her muscle tone has atrophied -- she is more ghost than person now, living in the data. The red thread pulses. Toha's base. 2.5 minutes of shutdown. That is all Poison_Kiss asked for.",
+                "npcs": [
+                    {
+                        "name": "*Jane (Satellite Operator)",
+                        "role": "ally",
+                        "dialogue": "The shutdown sequence is loaded. I need physical access to the air control tower's relay to execute it -- the signal has to come from outside TekNet's network or Toha's automated defense grid traces it back to us. I will guide you through the tower's security from here. My callsign is Stardust. Do not use my real name on open comms.",
+                        "notes": "[DM: Function: Technical Ally/Remote Support. Quirk: Speaks in bursts -- three to five words at a time, then silence while she processes network data, then another burst. Like someone translating between two conversations simultaneously. Secret: *Jane operates Mona Rise's only independent satellite uplink -- not TekNet's, not anyone's. She built it in secret using scavenged parts. It is her escape route. If things go wrong in Mona Rise, she can broadcast her location to off-world contacts and disappear. She has not used it yet because she cannot decide if leaving is cowardice or survival. Want: Complete the mission for TekNet. Need: To use the satellite for something that matters -- like transmitting evidence of corporate crimes to the inner planets.]"
+                    }
+                ],
+                "enemies": [
+                    {"name": "Dark I.C.E.Wall", "hp": 25, "ac": 14, "attack": 6, "damage": "2d6", "count": 1, "notes": "TekNet's deadliest network defense protocol. Manifests when unauthorized access is detected on Toha's data thread. Does not distinguish between intruders and TekNet personnel -- once activated, it kills everything in the network sector. The nest operators know to disconnect before it fires.", "special": ["Neural Cascade: Attacks all jacked-in targets simultaneously", "Trace and Purge: Each round it remains active, it traces the signal one step closer to the physical source", "Lethal Protocol: Targets reduced to 0 HP by the I.C.E.Wall suffer neural damage -- permanent 1-point reduction to Hack"]}
+                ],
+                "event_triggers": [
+                    "Initiating the Toha shutdown triggers the Dark I.C.E.Wall automatically. *Jane's voice on comms: 'I should have mentioned -- Poison_Kiss did not tell you about the I.C.E. because Poison_Kiss does not care if you survive the mission. I do. Disconnect from the network NOW. I am routing the I.C.E. through a secondary channel. You have 90 seconds before it finds the new path.'"
+                ],
+                "loot": [
+                    {"name": "TekNet Access Token", "value": 300, "description": "A network authentication key that grants temporary access to TekNet's communication infrastructure. Expires in 72 hours. Worth a fortune to the right buyer -- or invaluable for the Convergence."},
+                    {"name": "Poison_Kiss Voice Sample", "value": 200, "description": "During the mission, a comms error briefly transmitted Poison_Kiss's unfiltered voice. 2.3 seconds of audio. Enough for voice-print analysis. Enough to find out who Poison_Kiss actually is."}
+                ]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 30,
+            "y": 2,
+            "width": 10,
+            "height": 10,
+            "room_type": "boss",
+            "connections": [1],
+            "tier": 3,
+            "is_locked": true,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The air control tower. Mona Rise's centralized airspace management -- a spire of glass and steel that rises above the corporate district, controlling every drone, air taxi, and cargo shuttle in the megalopolis. The relay that *Jane needs to route the shutdown signal through is on the top floor. The problem: the tower is Toha territory, staffed by Toha security who have just been informed that someone is attempting to shut down their central base. The Street Cowboy -- TekNet's legendary hacker -- is already in the tower's network, opening doors and disabling cameras. But the physical security is flesh and blood and very, very angry.",
+                "read_aloud": "The tower's glass walls show Mona Rise from above -- a carpet of lights divided into three unequal territories by rivers of darkness where no faction holds power. The elevator opens on the top floor. The relay is across the room. Between you and it: Toha security who received the alert thirty seconds ago. Their weapons are drawn. Their faces say they know exactly what you are here to do.",
+                "lock_dc": 16,
+                "enemies": [
+                    {"name": "Toha Security Elite", "hp": 15, "ac": 12, "attack": 4, "damage": "1d8", "count": 3, "notes": "Professional corporate security. Toha-branded tactical gear, sidearms, one carrying a heavy weapon (shotgun, 2d8 damage). They are defending infrastructure, not ideology -- this is a job, and they want to go home.", "special": ["Tower Defense: +1 AC while near the relay console (defensive positions)"]},
+                    {"name": "I.C.E. Protocol (Remote)", "hp": 15, "ac": 12, "attack": 4, "damage": "1d8", "count": 1, "notes": "Toha's network countermeasure, operating through the tower's systems. Tracks and neutralizes unauthorized network access. If anyone jacks in to operate the relay, the I.C.E. attacks through the connection.", "special": ["System Hijack: Can lock doors, activate fire suppression, or disable elevators"]}
+                ],
+                "event_triggers": [
+                    "The relay requires exactly 2.5 minutes of uninterrupted operation to complete the shutdown sequence. *Jane counts down from the spatial nest. At 60 seconds: Toha's automated defense grid begins warming up. At 120 seconds: the grid targets TekNet's spatial nest -- Poison_Kiss gives the order to evacuate. At 150 seconds: shutdown complete. Toha's base goes dark for 2.5 minutes. In those 150 seconds, whatever data Poison_Kiss wanted is extracted. The lights come back on. The tower security stands down, confused. And the runners have exactly 30 seconds to leave before Toha's forensic teams arrive."
+                ]
+            }
+        }
+    }
+}

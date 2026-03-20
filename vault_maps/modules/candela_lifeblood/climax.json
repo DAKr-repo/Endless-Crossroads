@@ -1,0 +1,103 @@
+{
+  "seed": 7028,
+  "width": 40,
+  "height": 30,
+  "start_room_id": 0,
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 2,
+      "y": 2,
+      "width": 12,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false
+    },
+    "1": {
+      "id": 1,
+      "x": 16,
+      "y": 2,
+      "width": 16,
+      "height": 14,
+      "room_type": "boss",
+      "connections": [0, 2],
+      "tier": 4,
+      "is_locked": false,
+      "is_secret": false
+    },
+    "2": {
+      "id": 2,
+      "x": 16,
+      "y": 18,
+      "width": 10,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false
+    }
+  },
+  "metadata": {
+    "zone_id": "climax",
+    "theme": "GOTHIC",
+    "topology": "dungeon",
+    "scene_title": "The Thinning Altar"
+  },
+  "content_hints": {
+    "0": {
+      "description": "The altar approach. The ritual circle is breaking apart. Corvin has seized the Stakes from the case and driven three into the thinning already. The rift is widening. Two cult members have collapsed. The others are screaming.",
+      "read_aloud": "Corvin's robe has fallen away. His skin is translucent -- you can see the bleed running through him like black blood through glass veins. He is grinning. The thing behind his face is grinning through him. 'Three down,' he says, his voice layered with something else. 'Four to go. And then, my friends, the door opens and it never closes again.'",
+      "enemies": [
+        {
+          "name": "Cult Guards",
+          "hp": 15,
+          "ac": 12,
+          "attack": 4,
+          "damage": "1d6",
+          "count": 2,
+          "notes": "The last guards, panicking but still fighting. They're beginning to realize something is very wrong with Corvin.",
+          "special": ["Blood-Enhanced: advantage on first attack", "Wavering: can be persuaded to stand down with evidence of Corvin's Unabridged state"]
+        }
+      ],
+      "perception_dc": 14,
+      "perception_success": "Senator Vaast has broken the circle. He's backed against the wall, shaking his head, chanting stopped. Judge Breck is still in position but her eyes are vacant -- she may be enthralled. The remaining four cultists are split between loyalty and terror."
+    },
+    "1": {
+      "description": "The altar and the thinning. Corvin stands at the heart of the ritual, three Stakes driven into the rift behind him, four more clutched in his hands. The thinning is screaming -- a sound that bypasses the ears and lands directly in the brain. The membrane between worlds is tissue-thin.",
+      "read_aloud": "Corvin turns to face you. His eyes are entirely black now. The politician's smile is still there but it's stretched over something with too many teeth. 'You could have joined us,' he says, and his voice is a chorus. 'The door was always open. You chose to stand on the wrong side of it.' He raises the fourth Stake.",
+      "enemies": [
+        {
+          "name": "Alderman Corvin (The Unabridged)",
+          "hp": 40,
+          "ac": 16,
+          "attack": 8,
+          "damage": "2d8",
+          "count": 1,
+          "is_boss": true,
+          "notes": "Corvin has fully Unabridged. The human politician is gone, replaced by a bleed entity wearing his body. Fights to complete the ritual -- driving the remaining four Stakes into the thinning. Each Stake driven in makes him stronger and the thinning wider.",
+          "special": [
+            "Blood Magick: ranged attack -- lashes of bleed energy, 2d8 damage and 1 Bleed mark",
+            "Political Immunity: at half HP, threatens to expose the investigators if they don't stand down (a bluff -- the entity doesn't understand human politics, it just has Corvin's memories)",
+            "Stake Drive: uses one action per round to drive a Stake into the thinning unless interrupted. Each successful drive restores 10 HP and increases the thinning's size",
+            "Unabridged Resilience: immune to bleed damage, resistant to physical damage",
+            "Vulnerability: the pre-Fairen warning tablet, if read aloud in the original language, disrupts his connection to the thinning for one round. The Seven Stakes can be pulled from the rift by anyone willing to take 2 Bleed marks per Stake."
+          ]
+        }
+      ],
+      "event_triggers": ["The final confrontation. Stop Corvin from driving the remaining Stakes. Pull the embedded Stakes from the thinning. Seal the rift using the original method -- freely given life force, not stolen. This will cost the investigators dearly: each participant in the sealing gives a permanent resource mark."],
+      "loot": [
+        {"name": "The Seven Stakes of Ire", "value": 0, "description": "Seven iron stakes of pre-Fairen make, recovered from the thinning. Each one pulses with contained bleed energy. Candela will secure them in the deepest vault. They must never be used again."},
+        {"name": "Corvin's Signet Ring", "value": 0, "description": "The alderman's ring of office, found on the entity's discarded body after it dissipates. The ring is evidence -- but using it means explaining how a sitting alderman died in a secret basement. Candela's clean-up team will handle the politics."}
+      ]
+    },
+    "2": {
+      "description": "The aftermath. The temple, the estate above, the sealed thinning. What remains when the fight is over.",
+      "read_aloud": "The thinning seals with a sound like a held breath finally released. The blood channels in the floor crack and dry. The candlelight dims to normal. Somewhere above, a clock chimes midnight. The surviving cult members sit in stunned silence -- Senator Vaast weeping, Judge Breck staring at her hands as though they belong to someone else. They'll face justice, but not tonight. Tonight you climb the stairs, step through the wine cellar, and walk out into Haven Hills where the gaslights burn clean and the neighbors sleep soundly, unaware how close they came to something that would have swallowed the world.",
+      "event_triggers": ["The thinning is sealed. The cult is broken. The Stakes are secured. The political fallout will be managed by Candela through quiet channels -- careers ending in 'retirement,' not prison. Senna Park is free. Lyssa Dane will disappear into witness protection. And beneath the estate, the sealed thinning waits, patient as stone."]
+    }
+  }
+}

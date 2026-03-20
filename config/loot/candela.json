@@ -1,0 +1,69 @@
+{
+  "version": 1,
+  "format": "fitd",
+  "source": "Candela Obscura Core Rulebook pp.190-191",
+  "note": "Candela uses gear slots (3 per character). Tier 1: standard gear (free), Tier 2: special gear (costs gear slot), Tier 3-4: artifacts (powerful, bleed-related costs).",
+  "tiers": {
+    "1": [
+      {"name": "Atomizer", "rarity": "common", "quality": 1, "value_coin": 0, "source": "CO p.190"},
+      {"name": "Basic First Aid Kit", "rarity": "common", "quality": 1, "value_coin": 0, "source": "CO p.190"},
+      {"name": "Binoculars", "rarity": "common", "quality": 1, "value_coin": 0, "source": "CO p.190"},
+      {"name": "City Guide", "rarity": "common", "quality": 1, "value_coin": 0, "source": "CO p.190"},
+      {"name": "Compass", "rarity": "common", "quality": 1, "value_coin": 0, "source": "CO p.190"},
+      {"name": "Construction Tools", "rarity": "common", "quality": 1, "value_coin": 0, "source": "CO p.190"},
+      {"name": "Crowbar", "rarity": "common", "quality": 1, "value_coin": 0, "source": "CO p.190"},
+      {"name": "Dictaphone", "rarity": "common", "quality": 1, "value_coin": 0, "source": "CO p.190"},
+      {"name": "Disguise Kit", "rarity": "common", "quality": 1, "value_coin": 0, "source": "CO p.190"},
+      {"name": "Fancy Pocket Watch", "rarity": "common", "quality": 1, "value_coin": 0, "source": "CO p.190"},
+      {"name": "Flammable Material", "rarity": "common", "quality": 1, "value_coin": 0, "source": "CO p.190"},
+      {"name": "Flashlight", "rarity": "common", "quality": 1, "value_coin": 0, "source": "CO p.190"},
+      {"name": "Flint & Steel", "rarity": "common", "quality": 1, "value_coin": 0, "source": "CO p.190"},
+      {"name": "Gas Lantern", "rarity": "common", "quality": 1, "value_coin": 0, "source": "CO p.190"},
+      {"name": "Lighter", "rarity": "common", "quality": 1, "value_coin": 0, "source": "CO p.190"},
+      {"name": "Loyal Hound", "rarity": "common", "quality": 1, "value_coin": 0, "source": "CO p.190"},
+      {"name": "Magnifying Glass", "rarity": "common", "quality": 1, "value_coin": 0, "source": "CO p.190"},
+      {"name": "Map", "rarity": "common", "quality": 1, "value_coin": 0, "source": "CO p.190"},
+      {"name": "Membership Card", "rarity": "common", "quality": 1, "value_coin": 0, "source": "CO p.190"},
+      {"name": "Motion Picture Camera", "rarity": "common", "quality": 1, "value_coin": 0, "source": "CO p.190"},
+      {"name": "Needle & Thread", "rarity": "common", "quality": 1, "value_coin": 0, "source": "CO p.190"},
+      {"name": "Padlock & Key", "rarity": "common", "quality": 1, "value_coin": 0, "source": "CO p.190"},
+      {"name": "Pocket Microscope", "rarity": "common", "quality": 1, "value_coin": 0, "source": "CO p.190"},
+      {"name": "Precision Tools", "rarity": "common", "quality": 1, "value_coin": 0, "source": "CO p.190"},
+      {"name": "Rope", "rarity": "common", "quality": 1, "value_coin": 0, "source": "CO p.190"},
+      {"name": "Shears", "rarity": "common", "quality": 1, "value_coin": 0, "source": "CO p.190"},
+      {"name": "Whistle", "rarity": "common", "quality": 1, "value_coin": 0, "source": "CO p.190"}
+    ],
+    "2": [
+      {"name": "Cassandra's Enchanting Perfume", "rarity": "uncommon", "quality": 2, "value_coin": 3, "effect": "+1 Sway, -1 Hide for next 6 hours. 5 uses.", "source": "CO p.190"},
+      {"name": "Dr. Malcolm's Alchemical Reference Guide", "rarity": "uncommon", "quality": 2, "value_coin": 3, "effect": "+1 Focus on rolls that have to do with alchemy or magick.", "source": "CO p.190"},
+      {"name": "Elio's Brass Knuckles", "rarity": "uncommon", "quality": 2, "value_coin": 3, "effect": "When rolling Strike, take a Body mark to add +1d.", "source": "CO p.190"},
+      {"name": "Esther's Spy Glass", "rarity": "uncommon", "quality": 2, "value_coin": 3, "effect": "Can roll Survey from much farther away.", "source": "CO p.190"},
+      {"name": "Mechanical Glove", "rarity": "uncommon", "quality": 2, "value_coin": 3, "effect": "When rolling Control, take a Brain mark to add +1d.", "source": "CO p.190"},
+      {"name": "Morphine Vial", "rarity": "uncommon", "quality": 2, "value_coin": 3, "effect": "Soak 1 Body. 1 use.", "source": "CO p.190"},
+      {"name": "Obsidian Ward", "rarity": "uncommon", "quality": 2, "value_coin": 3, "effect": "Soak 1 Bleed. 1 use.", "source": "CO p.190"},
+      {"name": "Otto & Son's Herbal Tea", "rarity": "uncommon", "quality": 2, "value_coin": 3, "effect": "+1 Focus on next roll. 3 uses.", "source": "CO p.190"},
+      {"name": "Phosphenes' Lights", "rarity": "uncommon", "quality": 2, "value_coin": 3, "effect": "Handheld illuminators that produce a glow only the holder can see.", "source": "CO p.190"},
+      {"name": "Porcelain Pills", "rarity": "uncommon", "quality": 2, "value_coin": 3, "effect": "Take 1 Body mark to soak 1 Bleed mark. 3 uses.", "source": "CO p.190"},
+      {"name": "Smelling Salts", "rarity": "uncommon", "quality": 2, "value_coin": 3, "effect": "Soak 1 Brain. 1 use.", "source": "CO p.190"},
+      {"name": "Taylor House Coffee", "rarity": "uncommon", "quality": 2, "value_coin": 3, "effect": "+1 Move, -1 Control for next 6 hours. 3 uses.", "source": "CO p.190"}
+    ],
+    "3": [
+      {"name": "Ascendant's Assistant", "rarity": "rare", "quality": 3, "value_coin": 6, "effect": "A holy symbol of the Divine Herald. +1 Sway and +1 Sense, take 1 Bleed for every roll with a 3 or less as its result.", "source": "CO p.191"},
+      {"name": "Chains of Protection", "rarity": "rare", "quality": 3, "value_coin": 6, "effect": "A pair of bracelets that allow the wearers to take any marks meant for the person wearing the other.", "source": "CO p.191"},
+      {"name": "Copper Spirit Board", "rarity": "rare", "quality": 3, "value_coin": 6, "effect": "Creates a connection beyond the veil. Take 1 Bleed and roll Sense. Mixed success: one question. Full success: three.", "source": "CO p.191"},
+      {"name": "Ellington's Rifle", "rarity": "rare", "quality": 3, "value_coin": 6, "effect": "Less recoil, smooth shot. When rolling Control to shoot this gun, take a Bleed mark to get +2d.", "source": "CO p.191"},
+      {"name": "The Grim Radio", "rarity": "rare", "quality": 3, "value_coin": 6, "effect": "When plugged into a dead body, hear the voice of the dead. Roll Sense. Mixed: one question. Full: three. One use per body.", "source": "CO p.191"},
+      {"name": "Lady Grace's Amethyst Pendant", "rarity": "rare", "quality": 3, "value_coin": 6, "effect": "Draws eyes away from one's faults. When rolling Sway, take a Bleed mark to get +2d.", "source": "CO p.191"},
+      {"name": "Masks of the Recluse", "rarity": "rare", "quality": 3, "value_coin": 6, "effect": "Recovered from the spider-creature. Assume the face and voice of a different person. Take a Bleed mark when put on and when removed.", "source": "CO p.191"}
+    ],
+    "4": [
+      {"name": "The Petrified Pendulum", "rarity": "very_rare", "quality": 4, "value_coin": 10, "effect": "Amplifies connection to spirits. If hung, swings on its own. When rolling Sense, take a Bleed mark to get +2d.", "source": "CO p.191"},
+      {"name": "Scales of Justice", "rarity": "very_rare", "quality": 4, "value_coin": 10, "effect": "Safely measure bleed in an item. Roll Sense. Partial: general idea. Full: precise answer. Cannot take Bleed marks from a miss or mixed success.", "source": "CO p.191"},
+      {"name": "Shadow Soap", "rarity": "very_rare", "quality": 4, "value_coin": 10, "effect": "Scrubs the shadow off of anyone who uses it to wash. Effect wears off the dirtier a person becomes. Lasts no longer than one day.", "source": "CO p.191"},
+      {"name": "Spectacles of True Sight", "rarity": "very_rare", "quality": 4, "value_coin": 10, "effect": "See a person's true intentions with more clarity. Universally unfashionable. When rolling Read, take a Bleed mark to get +2d.", "source": "CO p.191"},
+      {"name": "The Unbroken Band", "rarity": "legendary", "quality": 4, "value_coin": 10, "effect": "Ancient ring of protection. When wearer should take marks, can soak all by rolling 1d6. On 4-: take 1 Bleed. On 1: incapacitated and scarred.", "source": "CO p.191"},
+      {"name": "The Whisper Point", "rarity": "legendary", "quality": 4, "value_coin": 10, "effect": "A needle to stitch a piece of your body onto another person's skin. Once complete, communicate across any distance. Both take 1 Body and 1 Bleed.", "source": "CO p.191"},
+      {"name": "The Eye of Emrys", "rarity": "legendary", "quality": 4, "value_coin": 10, "effect": "Camera artifact that awakens the dead. Can also return them to natural state. Extremely dangerous and saturated with bleed.", "source": "CO p.175"}
+    ]
+  }
+}

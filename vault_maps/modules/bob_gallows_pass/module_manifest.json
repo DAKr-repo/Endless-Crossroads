@@ -1,0 +1,42 @@
+{
+  "module_id": "bob_gallows_pass",
+  "display_name": "Gallows Pass",
+  "system_id": "bob",
+  "source_type": "community_authored",
+  "starting_location": "scouts_perch",
+  "recommended_levels": {"min": 1, "max": 5},
+  "chapters": [
+    {
+      "chapter_id": "through_the_gallows",
+      "display_name": "Through the Gallows",
+      "order": 1,
+      "zones": [
+        {
+          "zone_id": "scouts_perch",
+          "blueprint": "scouts_perch.json",
+          "topology": "settlement",
+          "theme": "STONE",
+          "entry_trigger": "module_start",
+          "exit_trigger": "player_choice"
+        },
+        {
+          "zone_id": "the_defile",
+          "blueprint": "the_defile.json",
+          "topology": "dungeon",
+          "theme": "STONE",
+          "entry_trigger": "player_choice",
+          "exit_trigger": "all_rooms"
+        },
+        {
+          "zone_id": "pass_exit",
+          "blueprint": "pass_exit.json",
+          "topology": "dungeon",
+          "theme": "GOTHIC",
+          "entry_trigger": "player_choice",
+          "exit_trigger": "boss_defeated"
+        }
+      ]
+    }
+  ],
+  "freeform_zones": []
+}

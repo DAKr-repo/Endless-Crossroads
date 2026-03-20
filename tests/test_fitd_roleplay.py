@@ -171,16 +171,9 @@ class TestServiceFlavor:
     def test_bridge_dispatch_uses_flavor(self):
         """bridge._dispatch_service() returns flavor text for known services."""
         from codex.games.bridge import UniversalGameBridge
-        bridge = object.__new__(UniversalGameBridge)
         engine = MagicMock()
         engine.system_id = "cbrpnk"
-        bridge.engine = engine
-        bridge.dead = False
-        bridge._system_tag = "CBRPNK"
-        bridge._butler = None
-        bridge.show_dm_notes = False
-        bridge._talking_to = None
-        bridge._session_log = []     # WO-V61.0
+        bridge = UniversalGameBridge.create_lightweight(engine)
 
         result = bridge._dispatch_service("hacking_support")
         # Should contain flavor text, not generic "You use the X service"
@@ -317,7 +310,6 @@ class TestBridgeNpcDialogueRefactor:
     def test_fallback_to_static_dialogue(self):
         """When Mimir fails, bridge falls back to static dialogue."""
         from codex.games.bridge import UniversalGameBridge
-        bridge = object.__new__(UniversalGameBridge)
         engine = MagicMock()
         engine.system_id = "dnd5e"
         engine.setting_id = ""
@@ -328,13 +320,8 @@ class TestBridgeNpcDialogueRefactor:
             "event_triggers": [],
         })
         engine.populated_rooms = {1: pop}
-        bridge.engine = engine
-        bridge.dead = False
+        bridge = UniversalGameBridge.create_lightweight(engine)
         bridge._talking_to = "Bob"
-        bridge._system_tag = "DND5E"
-        bridge._butler = None
-        bridge.show_dm_notes = False
-        bridge._session_log = []     # WO-V61.0
 
         # Mock query_npc_dialogue to return None (simulating Mimir failure)
         with patch("codex.core.services.narrative_frame.query_npc_dialogue", return_value=None):
@@ -344,7 +331,6 @@ class TestBridgeNpcDialogueRefactor:
     def test_returns_mimir_response(self):
         """When Mimir succeeds, bridge returns its response."""
         from codex.games.bridge import UniversalGameBridge
-        bridge = object.__new__(UniversalGameBridge)
         engine = MagicMock()
         engine.system_id = "dnd5e"
         engine.setting_id = ""
@@ -355,13 +341,8 @@ class TestBridgeNpcDialogueRefactor:
             "event_triggers": [],
         })
         engine.populated_rooms = {1: pop}
-        bridge.engine = engine
-        bridge.dead = False
+        bridge = UniversalGameBridge.create_lightweight(engine)
         bridge._talking_to = "Bob"
-        bridge._system_tag = "DND5E"
-        bridge._butler = None
-        bridge.show_dm_notes = False
-        bridge._session_log = []     # WO-V61.0
 
         with patch("codex.core.services.narrative_frame.query_npc_dialogue",
                    return_value="Stand back, citizen."):
@@ -371,18 +352,11 @@ class TestBridgeNpcDialogueRefactor:
     def test_not_talking_to_anyone(self):
         """bridge._handle_npc_dialogue returns error when not in conversation."""
         from codex.games.bridge import UniversalGameBridge
-        bridge = object.__new__(UniversalGameBridge)
         engine = MagicMock()
         engine.system_id = "dnd5e"
         engine.current_room_id = 1
         engine.populated_rooms = {}
-        bridge.engine = engine
-        bridge.dead = False
-        bridge._talking_to = None
-        bridge._system_tag = "DND5E"
-        bridge._butler = None
-        bridge.show_dm_notes = False
-        bridge._session_log = []     # WO-V61.0
+        bridge = UniversalGameBridge.create_lightweight(engine)
 
         result = bridge._handle_npc_dialogue("Hello")
         assert "not talking" in result.lower()
@@ -390,7 +364,6 @@ class TestBridgeNpcDialogueRefactor:
     def test_nothing_more_to_say_fallback(self):
         """When no dialogue and Mimir fails, show 'nothing more to say'."""
         from codex.games.bridge import UniversalGameBridge
-        bridge = object.__new__(UniversalGameBridge)
         engine = MagicMock()
         engine.system_id = "dnd5e"
         engine.setting_id = ""
@@ -401,13 +374,8 @@ class TestBridgeNpcDialogueRefactor:
             "event_triggers": [],
         })
         engine.populated_rooms = {1: pop}
-        bridge.engine = engine
-        bridge.dead = False
+        bridge = UniversalGameBridge.create_lightweight(engine)
         bridge._talking_to = "Silent"
-        bridge._system_tag = "DND5E"
-        bridge._butler = None
-        bridge.show_dm_notes = False
-        bridge._session_log = []     # WO-V61.0
 
         with patch("codex.core.services.narrative_frame.query_npc_dialogue", return_value=None):
             result = bridge._handle_npc_dialogue("Hey")

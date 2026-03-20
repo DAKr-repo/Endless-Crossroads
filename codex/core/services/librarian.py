@@ -339,6 +339,20 @@ class LibrarianTUI:
             self._pdf_total_pages = len(self._pdf_reader.pages)
             self._pdf_page = 0
             self._pdf_mode = True
+
+            # Check if the PDF has any readable text (sample first 5 pages)
+            sample_count = min(5, self._pdf_total_pages)
+            has_text = any(
+                (p.extract_text() or "").strip()
+                for p in self._pdf_reader.pages[:sample_count]
+            )
+            if not has_text and self._pdf_total_pages <= 5:
+                # Small PDF with no extractable text at all (image-only)
+                self._current_text = (
+                    "[yellow]This PDF has no readable text (image-only).[/yellow]"
+                )
+                return True  # Still open it — user may want to navigate
+
             self._load_pdf_page(0)
             return True
         except Exception as e:
@@ -348,16 +362,36 @@ class LibrarianTUI:
             return False
 
     def _load_pdf_page(self, page_idx: int):
-        """Extract and sanitize a single page for display."""
+        """Extract and sanitize a single page for display, auto-skipping empty pages."""
         if not self._pdf_reader:
             return
         if page_idx < 0 or page_idx >= self._pdf_total_pages:
             return
+
+        # Try to find a non-empty page starting from page_idx
+        original_idx = page_idx
+        skipped = 0
+        raw = ""
+        while page_idx < self._pdf_total_pages:
+            raw = self._pdf_reader.pages[page_idx].extract_text() or ""
+            if raw.strip():
+                break
+            skipped += 1
+            page_idx += 1
+
+        if not raw.strip():
+            # All remaining pages are empty — stay on original
+            self._pdf_page = original_idx
+            self._current_text = "(No extractable text on this or following pages)"
+            return
+
         self._pdf_page = page_idx
-        raw = self._pdf_reader.pages[page_idx].extract_text() or ""
-        self._current_text = (
-            self._sanitize_pdf_text(raw) if raw else "(No extractable text)"
-        )
+        page_indicator = f"Page {page_idx + 1}/{self._pdf_total_pages}"
+        if skipped > 0:
+            page_indicator += f" ({skipped} empty skipped)"
+
+        sanitized = self._sanitize_pdf_text(raw)
+        self._current_text = f"[dim]{page_indicator}[/dim]\n{sanitized}"
 
     def _close_pdf(self):
         """Exit PDF reader mode and release resources."""

@@ -1,0 +1,144 @@
+{
+  "template_id": "candela_assignment",
+  "display_name": "Candela Obscura Assignment",
+  "description": "A Candela Obscura investigation structured in seven phases: hook, arrival, two explorations, two escalations, and a climax. Each phase has a key reveal that drives the mystery forward.",
+  "version": 1,
+  "compatible_engine_types": ["fitd"],
+  "scenes": [
+    {
+      "scene_id": "hook",
+      "role": "hub",
+      "display_name_template": "The {hook_location}",
+      "topology": "settlement",
+      "room_type_hint": "tavern",
+      "tier_offset": 0,
+      "npc_slots": [
+        {"role": "briefing", "required": true}
+      ],
+      "enemy_slots": [],
+      "loot_slots": [],
+      "services": ["rumor"],
+      "event_triggers": ["Something terrible has happened. Candela Obscura has been called in."],
+      "room_count": 2
+    },
+    {
+      "scene_id": "arrival",
+      "role": "recon",
+      "display_name_template": "The {arrival_location}",
+      "topology": "settlement",
+      "room_type_hint": null,
+      "tier_offset": 0,
+      "npc_slots": [
+        {"role": "informant", "required": true},
+        {"role": "witness", "required": false}
+      ],
+      "enemy_slots": [],
+      "loot_slots": [{"count": 1}],
+      "services": [],
+      "event_triggers": ["The first reveal: a critical clue that points the circle in the right direction."],
+      "room_count": 3
+    },
+    {
+      "scene_id": "exploration_1",
+      "role": "approach",
+      "display_name_template": "The {exploration_1_location}",
+      "topology": "dungeon",
+      "room_type_hint": null,
+      "tier_offset": 0,
+      "npc_slots": [
+        {"role": "witness", "required": true}
+      ],
+      "enemy_slots": [
+        {"count": 1, "role": "guardian"}
+      ],
+      "loot_slots": [{"count": 1}],
+      "services": [],
+      "event_triggers": ["The investigation deepens. Evidence points toward the bigger mystery."],
+      "room_count": 3
+    },
+    {
+      "scene_id": "exploration_2",
+      "role": "approach",
+      "display_name_template": "The {exploration_2_location}",
+      "topology": "dungeon",
+      "room_type_hint": null,
+      "tier_offset": 1,
+      "npc_slots": [
+        {"role": "informant", "required": false}
+      ],
+      "enemy_slots": [
+        {"count": 2, "role": "guardian"}
+      ],
+      "loot_slots": [{"count": 1}],
+      "services": [],
+      "event_triggers": ["Rising tension. The path to the truth becomes clear -- and dangerous."],
+      "room_count": 4
+    },
+    {
+      "scene_id": "escalation_1",
+      "role": "target",
+      "display_name_template": "The {escalation_1_location}",
+      "topology": "dungeon",
+      "room_type_hint": null,
+      "tier_offset": 1,
+      "npc_slots": [],
+      "enemy_slots": [
+        {"count": 2, "role": "guardian"},
+        {"count": 1, "role": "elite"}
+      ],
+      "loot_slots": [{"count": 1}],
+      "services": [],
+      "event_triggers": ["A twist -- something here is not what it seems. Things go wrong."],
+      "room_count": 4
+    },
+    {
+      "scene_id": "escalation_2",
+      "role": "target",
+      "display_name_template": "The {escalation_2_location}",
+      "topology": "dungeon",
+      "room_type_hint": null,
+      "tier_offset": 2,
+      "npc_slots": [
+        {"role": "ally_in_peril", "required": false}
+      ],
+      "enemy_slots": [
+        {"count": 3, "role": "guardian"},
+        {"count": 1, "role": "elite"}
+      ],
+      "loot_slots": [{"count": 1}],
+      "services": [],
+      "event_triggers": ["Full danger. An ally is in peril. The investigators push toward the finale."],
+      "room_count": 4
+    },
+    {
+      "scene_id": "climax",
+      "role": "boss",
+      "display_name_template": "The {climax_location}",
+      "topology": "dungeon",
+      "room_type_hint": null,
+      "tier_offset": 2,
+      "npc_slots": [],
+      "enemy_slots": [
+        {"count": 1, "role": "boss", "is_boss": true}
+      ],
+      "loot_slots": [{"count": 2}],
+      "services": [],
+      "event_triggers": ["The final reveal. The dramatic question is answered. The adversary must be confronted."],
+      "room_count": 3
+    }
+  ],
+  "chapter_structure": [
+    {"chapter_id": "discovery", "display_name": "Discovery", "scenes": ["hook", "arrival"]},
+    {"chapter_id": "investigation", "display_name": "Investigation", "scenes": ["exploration_1", "exploration_2"]},
+    {"chapter_id": "confrontation", "display_name": "Confrontation", "scenes": ["escalation_1", "escalation_2", "climax"]}
+  ],
+  "name_pools": {
+    "hook_location": ["Chapter House Briefing", "Late Night Call", "Candela Summons", "Lightkeeper's Study", "Emergency Assembly"],
+    "arrival_location": ["Crime Scene", "First Contact", "Scene of the Incident", "Ground Zero", "Initial Survey"],
+    "exploration_1_location": ["First Lead", "Witness Account", "Evidence Trail", "Hidden Connection", "Following the Thread"],
+    "exploration_2_location": ["Deeper Evidence", "Second Location", "Hidden Archive", "The Trail Darkens", "Closer to the Truth"],
+    "escalation_1_location": ["Things Go Wrong", "The Twist", "Ambush Point", "Dangerous Turn", "Unmasked"],
+    "escalation_2_location": ["Race Against Time", "Full Peril", "Final Approach", "Desperate Hours", "The Darkest Hour"],
+    "climax_location": ["Adversary's Lair", "Final Confrontation", "Heart of Darkness", "The Showdown", "Point of No Return"]
+  }
+}

@@ -23,13 +23,19 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Palace Gates of Kholinar loom forty feet high, carved from a single slab of granite hauled from the Sunmaker Mountains three centuries past. Lighteyed guards in blue and white tabards inspect every entrant with the practiced boredom of men who have done this ten thousand times.",
+                "read_aloud": "Granite towers frame the gate passage like the jaws of some patient beast. The storm bells ring three times overhead -- the all-clear after a recent highstorm -- and crem dust sifts down from the carvings like pale snow. A guard captain steps forward, one hand resting on a side-sword whose pommel bears the Kholin glyph.",
                 "npcs": [
-                    {"name": "Captain Niter", "role": "guard", "dialogue": "State your business. And keep your hands where I can see them -- we have had incidents with Soulcasters this week."}
+                    {"name": "Captain Niter", "role": "guard", "dialogue": "State your business. And keep your hands where I can see them -- we have had incidents with Soulcasters this week.", "notes": "Niter is suspicious of anyone carrying infused spheres in quantity. He lost a cousin to a Soulcaster accident."},
+                    {"name": "Purelaker Ishikk", "role": "guide", "dialogue": "Ah, you carry the look of travelers from the east, yes? I am Ishikk. I fish the Purelake, but a man must eat in every city. Let me show you the market -- I know where the chouta is fresh and where it is yesterday's rewarmed.", "notes": "Ishikk is a Purelaker guide who hires out to foreigners. He knows the city layout intimately and can be hired for 2 chips per day."}
                 ],
                 "enemies": [],
                 "loot": [],
                 "services": ["entry_pass"],
-                "event_triggers": ["On entry: The storm bells ring three times -- the all-clear signal after a recent highstorm"]
+                "investigation_dc": 12,
+                "investigation_success": "You notice scratches on the gate mechanism -- someone attempted to force it open during the last highstorm. The guards have not noticed.",
+                "perception_dc": 10,
+                "perception_success": "A robed figure watches your arrival from a window above the gate, sketching rapidly in a notebook before withdrawing.",
+                "event_triggers": ["On entry: The storm bells ring three times -- the all-clear signal after a recent highstorm. Crem dust falls from the bell tower in pale curtains."]
             }
         },
         "1": {
@@ -45,9 +51,11 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Kholinar Market sprawls beneath a canopy of taut stormcloth, its stalls arranged in concentric rings around a central fountain that runs dry between highstorms. The air carries the sharp sweetness of chouta frying in oil, the wet-mineral scent of fresh crem, and the shouting of a hundred merchants who all believe theirs is the only voice worth hearing.",
+                "read_aloud": "The market roars to life around you -- a hundred voices haggling in three languages, the sizzle of chouta on iron, the clink of spheres changing hands. Stormcloth canopies snap in the breeze above, casting the stalls in shifting amber light. A tall man in a fool's motley catches your eye from across the crowd and raises a cup in greeting, as if he was expecting you.",
                 "npcs": [
-                    {"name": "Wit", "role": "storyteller", "dialogue": "Ah, new faces. I collect those, you know. Faces. Not literally -- well, not usually. Sit, sit. I have a story about a man who walked into a chasm and found a door. What was behind it? That depends entirely on who is asking."},
-                    {"name": "Merchant Hahvah", "role": "merchant", "dialogue": "Spheres only, darkeyes. Dun spheres get you dun goods. Infused get you the real stock."}
+                    {"name": "Wit", "role": "storyteller", "dialogue": "Ah, new faces. I collect those, you know. Faces. Not literally -- well, not usually. Sit, sit. I have a story about a man who walked into a chasm and found a door. What was behind it? That depends entirely on who is asking.", "notes": "Wit knows far more than he should. His stories contain encoded information about upcoming threats. Listen carefully to his word choices."},
+                    {"name": "Merchant Hahvah", "role": "merchant", "dialogue": "Spheres only, darkeyes. Dun spheres get you dun goods. Infused get you the real stock.", "notes": "Hahvah secretly trades information to Sadeas's agents. She notes who buys military-grade equipment."},
+                    {"name": "Ardent Palona", "role": "scholar", "dialogue": "Forgive the intrusion, but I could not help noticing your equipment. You are not from Kholinar, are you? I study the migration patterns of outsiders to the city. Purely academic. Would you consent to answering a few questions about your route?", "notes": "Palona is genuinely academic but her research is funded by House Sadeas. Her questions are innocent; the data's use is not."}
                 ],
                 "enemies": [],
                 "loot": [
@@ -55,7 +63,11 @@
                     {"name": "Stormlight Sphere (Chip)", "type": "currency"}
                 ],
                 "services": ["buy_equipment", "sell_goods", "rumors", "food"],
-                "event_triggers": ["On entry: Wit catches your eye from across the market and raises a cup in greeting, as if he was expecting you"]
+                "investigation_dc": 13,
+                "investigation_success": "Among the market stalls, a locked chest beneath Hahvah's counter bears the glyph of House Sadeas. She is not merely a merchant.",
+                "perception_dc": 11,
+                "perception_success": "You catch Wit's gaze lingering on you a beat too long. When he looks away, you notice he palms something -- a small, glowing gemstone -- and drops it into his drink.",
+                "event_triggers": ["On entry: Wit catches your eye from across the market and raises a cup in greeting, as if he was expecting you. A windspren circles his head lazily."]
             }
         },
         "2": {
@@ -71,13 +83,19 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Lighteyes District rises on terraced stone above the market quarter. Every home is fronted with carved stormwork and displays the house glyphs of its patron. The streets are swept clean of crem by a small army of darkeyed servants, and the air smells of incense burned in honor of the Almighty.",
+                "read_aloud": "The stone here changes character -- from the market's trampled grey to polished white granite veined with quartz. House glyphs carved above every doorway declare allegiance in a language of symbols older than the dynasty that uses them. A servant girl sweeps crem from a threshold, her eyes carefully averted as a palanquin passes bearing someone whose safehand sleeve is embroidered with the glyph for 'truth.'",
                 "npcs": [
-                    {"name": "Brightlord Amaram", "role": "quest_giver", "dialogue": "The codes of war are not merely tradition. They are the only thing separating us from the Parshendi. I need soldiers who understand that distinction. Are you such soldiers?"}
+                    {"name": "Brightlord Amaram", "role": "quest_giver", "dialogue": "The codes of war are not merely tradition. They are the only thing separating us from the Parshendi. I need soldiers who understand that distinction. Are you such soldiers?", "notes": "Amaram presents himself as honorable but has killed men to steal a Shardblade. His quest assignments further his personal ambitions disguised as duty."},
+                    {"name": "Ardent Scholar Kadash", "role": "scholar", "dialogue": "The devotaries teach that the Almighty shaped this world in seven days and rested on the eighth. What they do not teach is that the Almighty's rest was not voluntary. I have found texts that suggest He was... prevented. From finishing.", "notes": "Kadash is a former soldier turned ardent. He questions Vorin orthodoxy privately and possesses a fragment of Dawnchant translation."}
                 ],
                 "enemies": [],
                 "loot": [],
                 "services": ["patron_audience", "military_recruitment"],
-                "event_triggers": ["On entry: A servant ushers you aside as a lighteyed woman passes in a palanquin, her safehand sleeve embroidered with the glyph for 'truth'"]
+                "investigation_dc": 14,
+                "investigation_success": "Behind Amaram's quarters, a locked strongbox bears scratch marks from a Shardblade -- not damage, but deliberate cutting. Someone used a Shardblade to open this lock.",
+                "perception_dc": 12,
+                "perception_success": "A servant's hand trembles as she serves wine to Amaram. Her eyes flick to the door twice. She is terrified of him.",
+                "event_triggers": ["On entry: A servant ushers you aside as a lighteyed woman passes in a palanquin, her safehand sleeve embroidered with the glyph for 'truth'. Amaram watches from a balcony, his expression unreadable."]
             }
         },
         "3": {
@@ -93,15 +111,22 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Darkeyes Quarter presses tight against the outer wall -- a maze of tenements stacked three and four stories high, their rain-catches bristling from every rooftop like iron quills. Laundry snaps on lines strung between buildings, and children play with cremling carapaces in the gutters.",
+                "read_aloud": "The streets narrow and the buildings crowd overhead until the sky is a ribbon of grey between eaves. Rain-catches jut from every rooftop, collecting highstorm water in rust-stained cisterns. A group of branded men argue about bridge crew assignments, their voices raw with exhaustion. A child tugs your sleeve and offers to carry your pack for a chip. She is missing two fingers on her left hand -- a workshop accident, by the scarring.",
                 "npcs": [
-                    {"name": "Teft", "role": "ally", "dialogue": "You have the look of bridge crew about you. Do not take that as an insult -- those men are the toughest bastards in this city. Follow me if you want to meet someone worth meeting."}
+                    {"name": "Teft", "role": "ally", "dialogue": "You have the look of bridge crew about you. Do not take that as an insult -- those men are the toughest bastards in this city. Follow me if you want to meet someone worth meeting.", "notes": "Teft is a former soldier with a firemoss addiction he fights daily. He recognizes the signs of Radiant potential in others."},
+                    {"name": "Purelaker Fishmonger Ahu", "role": "merchant", "dialogue": "Fish from the Purelake, still cold! The Nu Ralik blesses the catch, and Vun Makak keeps the spoiling away. You want the longfin or the white? The longfin tastes better. The white is cheaper. This is the eternal negotiation of life, yes?", "notes": "Ahu is a genuine Purelaker who worships the old lake gods. His fish are legitimately the freshest in the quarter, and he overhears everything said within twenty feet of his stall."}
                 ],
                 "enemies": [],
                 "loot": [
-                    {"name": "Darkeyed Worker's Knife", "type": "weapon"}
+                    {"name": "Darkeyed Worker's Knife", "type": "weapon"},
+                    {"name": "Purelake Longfin (heals 2 HP)", "type": "consumable"}
                 ],
                 "services": ["lodging", "street_information"],
-                "event_triggers": ["On entry: A group of darkeyed men argue loudly about bridge crew assignments, their voices bitter with exhaustion"]
+                "investigation_dc": 11,
+                "investigation_success": "Scratched into the tenement wall at knee height: a glyph meaning 'safe house' in bridge crew shorthand. The marks are recent.",
+                "perception_dc": 10,
+                "perception_success": "You notice a man on the rooftop opposite watching the street below through a spyglass. He wears no house colors.",
+                "event_triggers": ["On entry: A group of darkeyed men argue loudly about bridge crew assignments, their voices bitter with exhaustion. A spanreed message courier sprints past, nearly knocking you flat."]
             }
         },
         "4": {
@@ -117,16 +142,21 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Devotary of Purity stands apart from the city's bustle, its walls built from white stone that seems to glow even without Stormlight. Inside, ardents in grey robes tend rows of glowing gemstones mounted in fabrials of exquisite craft. The air hums with a frequency that settles in your teeth.",
+                "read_aloud": "White stone walls drink the noise of the city and return silence. Inside the devotary, gemstones set in silver housings pulse with infused Stormlight, casting the hall in shifting amber that moves like something alive. An ardent kneels before a sand-covered plate, humming a single note. The sand arranges itself into a glyph. She stops humming. The glyph remains.",
                 "npcs": [
-                    {"name": "Ardent Kabsal", "role": "scholar", "dialogue": "The geometry of the city is not accidental. Kholinar's layout mirrors the shape of a Dawncity -- a pattern from before recorded history. I have been mapping the correspondence. Would you like to see?"},
-                    {"name": "Head Ardent Ilara", "role": "merchant", "dialogue": "The Devotary offers healing fabrials to those in need. We ask only a donation of infused spheres in return. The Almighty provides, but gemstones do not infuse themselves."}
+                    {"name": "Ardent Kabsal", "role": "scholar", "dialogue": "The geometry of the city is not accidental. Kholinar's layout mirrors the shape of a Dawncity -- a pattern from before recorded history. I have been mapping the correspondence. Would you like to see?", "notes": "Kabsal is a spy for the Ghostbloods, using his academic cover to search for information about the Oathgates. His research on Dawncity geometry is genuine."},
+                    {"name": "Head Ardent Ilara", "role": "merchant", "dialogue": "The Devotary offers healing fabrials to those in need. We ask only a donation of infused spheres in return. The Almighty provides, but gemstones do not infuse themselves.", "notes": "Ilara suspects Kabsal of ulterior motives but cannot prove it. She keeps a coded journal of his movements."}
                 ],
                 "enemies": [],
                 "loot": [
                     {"name": "Healing Fabrial (Minor)", "type": "consumable"}
                 ],
                 "services": ["healing", "lore", "fabrial_purchase"],
-                "event_triggers": ["On entry: An ardent looks up from a cymatics experiment -- sand on a vibrating plate has formed a glyph no one recognizes"]
+                "investigation_dc": 14,
+                "investigation_success": "Kabsal's cymatics experiment produces a glyph that matches no known Alethi symbol. Cross-referencing Ardent Kadash's Dawnchant fragment would reveal it means 'gateway.'",
+                "perception_dc": 13,
+                "perception_success": "Ilara watches Kabsal from behind a pillar, her expression guarded. She has a small notebook in her safehand that she writes in whenever he moves to a new section of the devotary.",
+                "event_triggers": ["On entry: An ardent looks up from a cymatics experiment -- sand on a vibrating plate has formed a glyph no one recognizes. The glyph pulses once, then the sand falls flat."]
             }
         },
         "5": {
@@ -142,8 +172,9 @@
             "is_secret": true,
             "content_hints": {
                 "description": "A cellar beneath an abandoned dye-works, its entrance hidden behind a false wall of stacked crem bricks. Inside, maps cover every surface -- the Shattered Plains, Urithiru, coastlines that match no known geography. A bedroll in the corner still carries warmth.",
+                "read_aloud": "The false wall swings inward on oiled hinges, revealing a cellar lit by a single infused sphere suspended from the ceiling. Maps plaster every surface -- the Shattered Plains rendered in meticulous detail, Urithiru drawn from angles that suggest the artist has been there, and coastlines that match no known geography. A bedroll in the corner is still warm. Someone was here moments ago.",
                 "npcs": [
-                    {"name": "Shallan Davar", "role": "ally", "dialogue": "Do not be alarmed. I am not a spy. Well -- I am, technically. But not against you. Probably. I need to get to the Shattered Plains, and I think you need the same thing. Shall we stop pretending we are strangers?"}
+                    {"name": "Shallan Davar", "role": "ally", "dialogue": "Do not be alarmed. I am not a spy. Well -- I am, technically. But not against you. Probably. I need to get to the Shattered Plains, and I think you need the same thing. Shall we stop pretending we are strangers?", "notes": "Shallan is a Lightweaver whose Memory sketches are supernaturally accurate. She drew the party's faces before meeting them, guided by her spren Pattern."}
                 ],
                 "enemies": [],
                 "loot": [
@@ -151,7 +182,12 @@
                     {"name": "Stormlight Sphere (Mark)", "type": "currency"}
                 ],
                 "services": ["intelligence", "cartography"],
-                "event_triggers": ["On entry: A Memory sketch pinned to the wall shows your face -- drawn before you arrived in the city"]
+                "lock_dc": 14,
+                "investigation_dc": 15,
+                "investigation_success": "The coastline maps depict landmasses that existed before the Shattering of the Plains. This cartographer is working from sources thousands of years old.",
+                "perception_dc": 12,
+                "perception_success": "A Memory sketch pinned to the wall shows your face -- drawn before you arrived in the city. The detail is impossibly precise. Beside it, a creature made of shifting geometric patterns watches you from the corner of the sketch.",
+                "event_triggers": ["On entry: A Memory sketch pinned to the wall shows your face -- drawn before you arrived in the city. The ink is still drying."]
             }
         },
         "6": {
@@ -167,13 +203,19 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The City Wall Gate faces east toward the Shattered Plains. The stone here is scarred with the impact marks of a hundred highstorms, and the crem buildup on the lee side has been carved into crude reliefs by generations of bored gate guards -- battles, highstorms, and one surprisingly detailed chasmfiend.",
+                "read_aloud": "The eastern gate frames a view of the Shattered Plains that stretches to the horizon -- a fractured landscape of mesas and chasms beneath a sky the color of old bruises. Wind funnels through the gate passage, carrying dust and the smell of stone baked by Stormlight. A caravan master argues with the gate warden, gesturing east with increasing desperation.",
                 "npcs": [
-                    {"name": "Gate Warden Beld", "role": "guard", "dialogue": "East road is open, but I would not recommend it. Three caravans have gone missing this month. Parshendi? Bandits? Nobody who went to find out has come back to say."}
+                    {"name": "Gate Warden Beld", "role": "guard", "dialogue": "East road is open, but I would not recommend it. Three caravans have gone missing this month. Parshendi? Bandits? Nobody who went to find out has come back to say.", "notes": "Beld has been gate warden for twenty years. He keeps a private tally of missing caravans and suspects Sadeas's forces are responsible, not Parshendi."},
+                    {"name": "Caravan Master Roshone", "role": "merchant", "dialogue": "I have goods for the warcamps and men willing to carry them. What I need is an escort. The road pays twelve marks to Sadeas Warcamp, half up front. You will earn every chip of it.", "notes": "Roshone is desperate. His last three caravans were hit. He does not mention that two of his guards deserted after seeing what attacked the third."}
                 ],
                 "enemies": [],
                 "loot": [],
                 "services": ["exit_city", "travel_provisions"],
-                "event_triggers": ["On entry: A caravan master argues with the gate warden, insisting the eastern road is safe despite the evidence"]
+                "investigation_dc": 12,
+                "investigation_success": "The crem reliefs carved by gate guards include dates. The most recent depicts a chasmfiend attacking a caravan -- and the date is only two weeks ago.",
+                "perception_dc": 11,
+                "perception_success": "Roshone's hands shake when he gestures toward the plains. He has seen something out there that he will not describe in front of the gate warden.",
+                "event_triggers": ["On entry: A caravan master argues with the gate warden, insisting the eastern road is safe despite the evidence. His voice cracks on the word 'safe.'"]
             }
         }
     }

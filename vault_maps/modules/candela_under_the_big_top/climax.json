@@ -1,0 +1,117 @@
+{
+  "seed": 7020,
+  "width": 30,
+  "height": 15,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "circus_climax",
+    "theme": "GOTHIC",
+    "topology": "dungeon",
+    "display_name": "The Lighthouse Thinning"
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 0,
+      "y": 0,
+      "width": 8,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The coast road, two miles from the fairgrounds. The mirrored wagon rolls through Newfaire's outskirts, resonance chamber humming inside. Above, the creature follows -- a blazing star moving across the night sky, drawn by the tone. It leaves a trail of fading light, like a comet. Vex rides in the wagon.",
+        "read_aloud": "The night road is empty. The creature keeps pace above -- slower now, calmer, its light shifting from distress-white to warmer colors. Vex whispers: 'It's listening. It knows we're taking it somewhere. It's choosing to follow. God, it's so tired. It's been alone since the cave.' The lighthouse appears on the cliff ahead, dark, decommissioned. Its base glows faintly violet.",
+        "npcs": [],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [
+          "The creature is calm and following. The lighthouse thinning is ahead. The final challenge is surviving the surge when the creature reaches the bleed energy it has been starving for."
+        ],
+        "loot": [],
+        "perception_dc": 12,
+        "perception_success": "The creature's light patterns have changed. The distress pulses are gone, replaced by a slow, rhythmic glow. Vex translates: it's communicating gratitude. Not to anyone specifically. To the fact that someone tried to help. It forgot that was possible."
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 11,
+      "y": 0,
+      "width": 10,
+      "height": 10,
+      "room_type": "boss",
+      "connections": [0, 2],
+      "tier": 4,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The lighthouse. The thinning within glows faintly violet -- warm, inviting, the frequency the creature has been starving for. When it senses the thinning, its light transforms. Color floods through it. Aurora greens, sunset golds, deep ocean blues. It descends toward the lighthouse, and for the first time it makes a sound -- not subsonic, but heard.",
+        "read_aloud": "The creature's light transforms. Color floods through its form that wasn't there before. It descends toward the lighthouse door, and makes a sound -- a note, pure and clear, the tone of something finally finding its way home. Then the bleed energy hits it and it overloads. The surge is not hostile. It's a creature absorbing home-frequency after months of starvation. But the radiation output is devastating.",
+        "npcs": [],
+        "enemies": [
+          {
+            "name": "The Attraction (homecoming surge)",
+            "hp": 40,
+            "max_hp": 40,
+            "ac": 16,
+            "attack": 8,
+            "defense": 16,
+            "count": 1
+          }
+        ],
+        "services": [],
+        "event_triggers": [
+          "THREAT: The surge is not an attack. The creature is absorbing bleed energy after months of starvation. All investigators within 50 feet take 1 Body + 1 Brain mark per round. Resonance chamber halves the damage. The creature cannot be stopped -- only guided. It moves toward the thinning each round.",
+          "SPECIAL: The creature's beauty is overwhelming. Investigators must Focus to take any action. Failure means losing a round to wonder.",
+          "RESOLUTION: Once the creature reaches the thinning and passes through, the radiation drops to zero. The surge ends. HP represents radiation intensity, not the creature's life -- reaching 0 HP means the surge is weathered, not that the creature is harmed.",
+          "The only way to 'win' is to endure the surge and let it go home."
+        ],
+        "loot": [
+          {
+            "name": "Constellation Fragment",
+            "value": 0,
+            "description": "As the creature passes through the thinning, it sheds a single crystallized fragment of its light. It floats down like a falling star. The fragment glows permanently -- a piece of another world, solid enough to hold. Candela will study it for decades."
+          }
+        ]
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 22,
+      "y": 2,
+      "width": 6,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Dawn at the lighthouse. The thinning has settled to a stable, faint glow. The creature is gone. The circus performers sit on the cliff edge watching the sunrise.",
+        "read_aloud": "Vex sleeps in the wagon, finally at peace. The psychic link severed cleanly when the creature passed through -- he'll recover. No fatalities confirmed. Bellamy sits on a rock with Aldo's thinning map. 'He knew,' the ringmaster says quietly. 'He chose to protect instead of exploit.' He folds the map carefully. 'I'd like to do the same.' Candela has a new traveling asset. And somewhere beyond the thinning, in a sky that has no ground and no ceiling, a creature of living light rejoins its kind.",
+        "npcs": [
+          {
+            "name": "Ringmaster Bellamy",
+            "role": "informant",
+            "dialogue": "If you'll have me -- I'd like to do what my grandfather did. Report what we find. Protect what we can. The circus routes cover territory no Candela chapter reaches. I know every back road and waystation in the Fairelands. Use us.",
+            "notes": "He/him. Sincere offer. Candela gains a traveling intelligence asset and an inheritance of twenty years of Aldo's bleed fauna documentation. The circus survives."
+          }
+        ],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [
+          "The creature is returned. The thinning stabilizes. No fatalities. Vex recovers. The Marchetti Circus continues under Bellamy's reformed leadership as Candela's newest traveling asset. Aldo Marchetti's legacy, broken and restored."
+        ],
+        "loot": [
+          {
+            "name": "Aldo's Resonance Chamber (depleted)",
+            "value": 0,
+            "description": "Battery spent but mechanism intact. Can be recharged. Candela will want it for future bleed fauna encounters. Aldo's legacy, finally understood and honored."
+          }
+        ]
+      }
+    }
+  }
+}

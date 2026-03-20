@@ -1,0 +1,96 @@
+{
+  "seed": 8001,
+  "width": 30,
+  "height": 20,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "frontline_camp",
+    "theme": "STONE",
+    "topology": "settlement",
+    "mission_types": ["assault", "recon"]
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 2,
+      "y": 2,
+      "width": 8,
+      "height": 6,
+      "room_type": "town_square",
+      "connections": [1, 2],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The forward camp sprawls across a trampled field ringed by earthworks and sharpened stakes. Canvas tents sag under the weight of ash-fall, their guy-ropes fraying. A signal fire burns at the camp's center, its smoke the only thing standing between the Legion and the darkness to the west. Soldiers move in tired, purposeful silence.",
+        "read_aloud": "You pass through the outer picket line into the Legion's forward camp. The air tastes of woodsmoke and iron. Somewhere behind the command tent, a soldier is praying.",
+        "npcs": [
+          {
+            "name": "Field Commander Alaria",
+            "role": "briefing_officer",
+            "dialogue": "You're the relief squad? Good. We've held this line for nine days. The Aldermani city fell two nights ago -- you can still see the glow. I need people who can move fast and stay quiet. Or people who can hit hard. Pick your poison.",
+            "notes": "Alaria has not slept in three days. Her left hand trembles when she thinks no one is watching. She commanded the rearguard at Ettenmark and lost her entire original squad there."
+          },
+          {
+            "name": "Quartermaster Dresh",
+            "role": "supply_contact",
+            "dialogue": "Supply's tight. I can outfit you, but don't come back expecting replacements. What leaves this tent is what you've got until Plainsworth.",
+            "notes": "Dresh keeps a private tally of the dead scratched into the lid of his supply chest. He trades extra rations with scouts for intelligence about the road ahead."
+          }
+        ],
+        "services": ["rest", "supply", "briefing"],
+        "event_triggers": [
+          "The horizon glows a dull, sick orange where the Aldermani city burns. The light never dims."
+        ]
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 14,
+      "y": 2,
+      "width": 6,
+      "height": 5,
+      "room_type": "barracks",
+      "connections": [0],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "A long trench covered by tarps and scavenged timber. Soldiers sleep in shifts on straw pallets laid over duckboards. Weapons hang from pegs driven into the trench wall, within arm's reach of every bunk.",
+        "npcs": [
+          {
+            "name": "Field Commander Alaria",
+            "role": "briefing_officer",
+            "dialogue": "The briefing board's in the command tent. I've pinned two missions -- an assault on the enemy position to the west, and a recon sweep through no man's land. Your Marshal picks.",
+            "notes": "Briefing available here as well as town square."
+          }
+        ],
+        "services": ["briefing"]
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 2,
+      "y": 12,
+      "width": 7,
+      "height": 5,
+      "room_type": "market",
+      "connections": [0],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Dresh's supply tent is an organized chaos of crates, barrels, and salvage. Everything is labelled in his cramped shorthand. A lantern hangs from the ridgepole, casting long shadows over stacked ammunition boxes and bundled bandages.",
+        "npcs": [
+          {
+            "name": "Quartermaster Dresh",
+            "role": "supply_contact",
+            "dialogue": "Take what you need from the crates on the left. The ones on the right are spoken for -- rearguard gets priority. Don't test me on it.",
+            "notes": "Dresh can provide basic equipment and rations. He will trade intelligence for extra supply."
+          }
+        ],
+        "services": ["supply", "rest"]
+      }
+    }
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "seed": 4504,
+  "width": 20,
+  "height": 12,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "cracked_lens_back",
+    "theme": "GOTHIC",
+    "topology": "dungeon",
+    "display_name": "The Grandfather's Archive"
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 0,
+      "y": 0,
+      "width": 8,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 2,
+      "is_locked": true,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The back room of The Cracked Lens. Sara unlocks a door that has not been opened in years. Behind it, a workshop frozen in time -- her grandfather's private sanctum. Dust sheets cover the workbenches. The air is stale and dry, preserved like the inside of a tomb. A wooden crate sits on the central table, its lid pried off long ago. Inside: velvet lining shaped to hold a camera. The camera is gone -- sold to Oscar -- but the velvet still hums with residual bleed.",
+        "read_aloud": "The box is lined with lead. You can feel the residual bleed before you touch it -- a pins-and-needles sensation crawling up your wrists. The velvet interior still holds the impression of the camera, and around that impression, Sara's grandfather scratched symbols into the lead with a nail. Wards. Containment sigils. He knew what the camera was, and he built a cage for it.",
+        "npcs": [],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [
+          "The lead-lined box contained the Eye of Emrys. Grandfather's containment wards are scratched into the lead. The camera was sealed deliberately."
+        ],
+        "loot": [
+          {
+            "name": "Grandfather's Lead-Lined Box",
+            "value": 0,
+            "description": "The original containment vessel for the Eye of Emrys. Lead-lined with hand-scratched ward symbols. Could potentially be used to contain the camera again -- or to shield against its effects during use."
+          }
+        ],
+        "lock_dc": 12
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 10,
+      "y": 0,
+      "width": 8,
+      "height": 8,
+      "room_type": "treasure",
+      "connections": [0],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "A roll-top desk against the far wall, its cubbyholes stuffed with papers in three languages. Sara's grandfather was meticulous. Among the papers: a blueprint for the Eye of Emrys, drawn in ink on vellum. The camera's internal mechanism includes a chamber lined with a material that does not exist in any engineering manual. Beside the blueprint, a journal entry in shaking handwriting.",
+        "read_aloud": "The journal is written in a hand that starts steady and ends in a tremor. The final relevant passage reads: 'Father Vienno was dead three days when I turned the Eye upon him. He sat up. He reached for me. His eyes were alive but his flesh was still cold. I sealed the camera and I will never use it again. The Eye does not merely capture the dead -- it wakes them. But if it can wake them, it can also return them to sleep. The process is reversible. It must be. The alternative is unthinkable.'",
+        "npcs": [],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [
+          "REVEAL: The Eye of Emrys can both reanimate the dead AND return them to their natural state. The process is reversible. The camera is the weapon and the cure.",
+          "Grandfather's notes describe the camera's bleed-infused lens chamber. Each exposure consumes a glass plate. The camera has a limited number of plates remaining."
+        ],
+        "loot": [
+          {
+            "name": "Eye of Emrys Blueprint",
+            "value": 0,
+            "description": "A detailed technical drawing of the camera's internal mechanism. The lens chamber contains a material annotated as 'vitrified bleed precipitate.' The blueprint shows how to load and aim the camera for maximum effect -- and how to reverse the process."
+          }
+        ],
+        "investigation_dc": 14,
+        "investigation_success": "Hidden beneath the desk's false bottom: three unused glass plates for the Eye of Emrys, wrapped in lead foil. Each plate can capture -- or release -- one subject. Only three shots remain."
+      }
+    }
+  }
+}

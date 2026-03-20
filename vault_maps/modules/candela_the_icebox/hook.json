@@ -1,0 +1,63 @@
+{
+  "seed": 7015,
+  "width": 30,
+  "height": 20,
+  "start_room_id": 0,
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 2,
+      "y": 2,
+      "width": 12,
+      "height": 8,
+      "room_type": "tavern",
+      "connections": [1],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false
+    },
+    "1": {
+      "id": 1,
+      "x": 16,
+      "y": 3,
+      "width": 10,
+      "height": 7,
+      "room_type": "normal",
+      "connections": [0],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false
+    }
+  },
+  "metadata": {
+    "zone_id": "hook",
+    "theme": "GOTHIC",
+    "topology": "settlement",
+    "scene_title": "The Emergency Assembly"
+  },
+  "content_hints": {
+    "0": {
+      "description": "The chapter house war room. A nautical chart of the Newfaire harbor and the frozen Shivering Sea dominates the central table. Ice samples in sealed jars line a shelf, each one labeled with a date. The newest jar contains ice that glows faintly blue.",
+      "read_aloud": "Your Lightkeeper is not alone tonight. A man sits in the corner wrapped in three blankets, shaking so violently the chair legs chatter against the floor. His lips are blue. His eyes are wide with something beyond cold -- the kind of terror that comes from seeing a thing the mind refuses to hold.",
+      "npcs": [
+        {
+          "name": "Lightkeeper Orin Halke",
+          "role": "briefing",
+          "dialogue": "The HMS Horace limped into port two hours ago. Skeleton crew. The rest are dead or deserted on the ice. This man -- Seaman Wren -- is the only one coherent enough to speak. He describes an ancient structure frozen into the sea ice. A prison, he calls it. Pillars of dead bodies. Inscriptions in Ancient Fairen. And something that watched them from behind the walls.",
+          "notes": "Halke has cross-referenced Wren's description with Candela archives. The 'prison' matches legends of a pre-Fairen vault used to contain dangerous artifacts. The Shiver may not be a natural phenomenon -- it may be containment."
+        }
+      ],
+      "services": ["rumor"],
+      "event_triggers": ["A sailor from the HMS Horace raves about an arctic prison trapped in the frozen sea. Candela suspects a pre-Fairen containment vault has been exposed by shifting ice."]
+    },
+    "1": {
+      "description": "The archive alcove. Shelves of leather-bound folios on the Shiver -- thirteen years of meteorological data, expedition logs, and failed attempts to explain why the sea froze.",
+      "read_aloud": "The Shiver began without warning in 1913. One morning the harbor was liquid; the next, ice three feet thick stretched to the horizon. No natural explanation has held. The ice doesn't melt, even in summer. It grows.",
+      "investigation_dc": 12,
+      "investigation_success": "A Candela folio from 1914 proposes a theory: the Shiver originated from a single point in the deep sea, spreading outward in concentric rings. The center of the pattern aligns precisely with the coordinates Seaman Wren provided for the prison.",
+      "loot": [
+        {"name": "Shiver Origin Coordinates", "value": 0, "description": "Triangulated center-point of the Shiver's expansion, cross-referenced with Wren's prison sighting. They match. Whatever is in that vault may be causing the Shiver itself."}
+      ]
+    }
+  }
+}

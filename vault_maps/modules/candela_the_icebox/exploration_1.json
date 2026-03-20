@@ -1,0 +1,93 @@
+{
+  "seed": 7017,
+  "width": 40,
+  "height": 30,
+  "start_room_id": 0,
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 2,
+      "y": 2,
+      "width": 10,
+      "height": 8,
+      "room_type": "start",
+      "connections": [1],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false
+    },
+    "1": {
+      "id": 1,
+      "x": 14,
+      "y": 3,
+      "width": 14,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [0, 2],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false
+    },
+    "2": {
+      "id": 2,
+      "x": 14,
+      "y": 15,
+      "width": 12,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false
+    }
+  },
+  "metadata": {
+    "zone_id": "exploration_1",
+    "theme": "GOTHIC",
+    "topology": "dungeon",
+    "scene_title": "The Frozen Sea"
+  },
+  "content_hints": {
+    "0": {
+      "description": "The ice field. Two days' march north of Newfaire across the frozen Shivering Sea. The ice is thick enough to drive wagons on, but the deeper you go, the stranger it becomes -- translucent, revealing shapes frozen far below. Fish. Whale bones. Ships.",
+      "read_aloud": "Day two on the ice. Navigator Dray calls a halt where the surface changes. Beneath your feet, the ice is no longer white but black -- obsidian dark, as though the water froze around something that swallowed the light. Ahead, the vault rises from the ice like a rotten tooth.",
+      "npcs": [
+        {
+          "name": "Navigator Ilsa Dray",
+          "role": "witness",
+          "dialogue": "This is where my compass died on the Horace's expedition. The needle just stopped. Not spinning -- stopped. Pointing at the vault. Everything points at the vault. I'll wait here. You have three days before the wind corridor shifts and I can't guarantee the route back.",
+          "notes": "Dray will wait at this camp as a lifeline. She marks the return route with signal flags. If the investigators don't return in three days, she'll report to Candela and leave."
+        }
+      ],
+      "event_triggers": ["The vault is visible. The guide will go no further. The ice around the vault is supernaturally cold and compass-dead. The clock starts: three days."]
+    },
+    "1": {
+      "description": "The vault exterior. A dome of black basalt thirty feet across, rising from the ice like it was placed here rather than built. No mortar, no tool marks. The stone is seamless. Stairs descend from a doorway on the south face, carved with symbols in Ancient Fairen.",
+      "read_aloud": "The doorway has no door -- just an opening into absolute darkness. The cold radiating from it is physical, a pressure against your skin. Frost forms on your eyebrows. Your lantern flame shrinks to a blue point. The Ancient Fairen inscription above the entrance reads, roughly: WHAT IS KEPT HERE IS KEPT FOR REASON. WHAT IS FREED HERE IS FREED FOREVER.",
+      "investigation_dc": 14,
+      "investigation_success": "The inscriptions are warnings, but also instructions. The vault was designed as a containment facility -- not a prison for people, but for objects. Artifacts too dangerous to destroy, too powerful to leave unguarded. The 'dead bodies' Wren described aren't victims. They're guardians.",
+      "enemies": [
+        {
+          "name": "Shiver Wind",
+          "hp": 15,
+          "ac": 12,
+          "attack": 4,
+          "damage": "1d6",
+          "count": 1,
+          "notes": "A localized blast of supernatural cold that guards the entrance. Not a creature -- a ward, still functioning after millennia.",
+          "special": ["Incorporeal: immune to physical damage", "Hypothermia: hit inflicts 1 Body mark (frostbite)", "Disperses for one round if fire or bleed-warding is applied"]
+        }
+      ],
+      "loot": [
+        {"name": "Fairen Inscription Rubbing", "value": 0, "description": "A charcoal rubbing of the entrance inscription. Linguistic analysis will take time but the warning is clear even in partial translation."}
+      ]
+    },
+    "2": {
+      "description": "The entrance stairs. Thirty steps descending into the dome's interior. The black basalt absorbs lantern light. The temperature drops with every step -- already past what should be survivable. Frost crystals form in the air, hanging motionless.",
+      "read_aloud": "At the bottom of the stairs, the vault opens into a corridor of polished black stone. The walls are smooth as glass and your reflection walks beside you, but it's wrong -- slightly delayed, slightly misshapen. The corridor branches ahead. The cold is beyond cold now. It's a sound, a low hum that vibrates in your chest.",
+      "perception_dc": 12,
+      "perception_success": "The reflections in the wall aren't reflections. They're images of people who walked this corridor before you. Sailors in Horace uniforms, terrified, pressed against the walls. Ancient figures in robes, calm, purposeful. The walls record everyone who enters.",
+      "event_triggers": ["Inside the vault. The walls record visitors. The cold is supernatural, emanating from deeper within. The corridor leads toward the pillar gallery Wren described."]
+    }
+  }
+}

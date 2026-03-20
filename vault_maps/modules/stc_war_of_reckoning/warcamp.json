@@ -1,0 +1,158 @@
+{
+    "seed": 7701,
+    "width": 120,
+    "height": 20,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "warcamp",
+        "theme": "STONE",
+        "topology": "settlement",
+        "display_name": "The Warcamp -- Shattered Plains Forward Base"
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 5,
+            "y": 5,
+            "width": 22,
+            "height": 10,
+            "room_type": "hub",
+            "connections": [1, 2, 3, 4],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The command tent stands at the warcamp's center -- a massive pavilion of woven shalebark cloth, anchored with iron stakes driven into the stone plateau. Maps of the Shattered Plains cover every surface, each plateau numbered and annotated in a half-dozen hands. The air smells of ink, stormlight residue, and the particular tension of men who have been at war long enough to forget why.",
+                "read_aloud": "The command tent is a cathedral of canvas and ambition. Maps paper every surface -- each plateau of the Shattered Plains numbered, annotated, and stained with the coffee rings of a hundred late-night strategy sessions. Officers argue over plateau assignments, their voices layered like the strata in the rock beneath your feet. A brightlord in blue and gold looks up from a terrain model built of carved stone chips. 'You are the new scouts. Good. We lost the last ones.'",
+                "npcs": [
+                    {"name": "Brightlord Dalios", "role": "quest_giver", "dialogue": "The next plateau run is in two days. We need scouts who can cross the chasms fast and report Parshendi positions accurately. The last team was good at the first part. Not the second.", "notes": "Dalios is a pragmatic soldier who respects competence over rank. His Shardplate rests on a stand behind him, scarred across the breastplate. He lost his brother on the last plateau run."},
+                    {"name": "Scribe Navara", "role": "info", "dialogue": "The numbers do not lie. We spend more recovering gemhearts than they are worth. But the highstorms do not negotiate, and neither does the Alethi economy.", "notes": "Navara tracks every gemheart, every casualty, every sphere. She has quietly been compiling a report proving the war is economically unsustainable. No one has asked to read it."}
+                ],
+                "enemies": [],
+                "loot": [],
+                "services": ["quest_board", "briefing"],
+                "investigation_dc": 13,
+                "investigation_success": "Navara's ledger shows a discrepancy: three gemhearts are missing from the official count. Someone in the command structure is diverting gemhearts before they reach the highprince's treasury.",
+                "perception_dc": 11,
+                "perception_success": "Dalios's hand drifts to the scar on his Shardplate whenever he mentions Plateau Seven-Nahn. His brother died there. This is not just a mission briefing. It is personal.",
+                "event_triggers": ["On entry: Brightlord Dalios assigns the scouting mission. Plateau Seven-Nahn has been contested three times this month. The Parshendi keep reaching it first."]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 30,
+            "y": 2,
+            "width": 20,
+            "height": 8,
+            "room_type": "encounter",
+            "connections": [0],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The training grounds are a flattened expanse of stone where soldiers drill in formations that have not changed in centuries. Spearmen practice thrusts against straw-stuffed Parshendi effigies. A Shardbearer runs through kata at the far end, her Blade leaving afterimages in the morning light.",
+                "read_aloud": "The crack of spear against shield carries across the plateau. Soldiers drill in the heat, their uniforms dark with sweat. A Shardbearer practices alone at the far edge, her Blade a ribbon of light that hums like a tuning fork struck by a storm. Sergeant Kal watches the sparring with an eye that does not track right anymore -- a Parshendi arrow grazed the socket three plateau runs ago.",
+                "npcs": [
+                    {"name": "Sergeant Kal", "role": "trainer", "dialogue": "You want to survive the Plains? Forget what the lighteyes teach. Learn to read the chasms. The stone talks if you listen. The wind tells you when the Parshendi are close. Everything else is just dying with style.", "notes": "Bridge crew veteran, three years of plateau runs. His left eye does not track. He teaches combat with a survivor's pragmatism rather than a soldier's doctrine."}
+                ],
+                "enemies": [
+                    {"name": "Training Sparring Partner", "hp": 12, "ac": 11, "attack": 2, "damage": "1d6+1", "count": 1, "notes": "Non-lethal sparring encounter. Tests party combat readiness. Defeat earns tactical advice."}
+                ],
+                "loot": [
+                    {"name": "Chipped Spearhead (salvage)", "type": "equipment"}
+                ],
+                "services": ["training"],
+                "investigation_dc": 12,
+                "investigation_success": "Kal's training drills are not standard Alethi military. They incorporate Parshendi movement patterns -- he has been studying the enemy's rhythm-based combat and adapting defenses against it.",
+                "perception_dc": 12,
+                "perception_success": "The Shardbearer practicing kata at the far end is not running through standard forms. She is improvising -- her movements respond to something only she can hear. A windspren circles her blade.",
+                "event_triggers": ["On entry: Sergeant Kal challenges the party to a sparring match. 'Show me what you have got. The Parshendi will not be this gentle.'"]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 30,
+            "y": 12,
+            "width": 20,
+            "height": 8,
+            "room_type": "shop",
+            "connections": [0],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The supply depot is controlled chaos of crates, barrels, and requisition arguments. Quartermasters in ink-stained uniforms weigh spheres and measure grain with the precision of gemcutters. Everything has a price. Everything has a line.",
+                "read_aloud": "Crates stacked higher than a man. The depot hums with commerce -- soldiers trading spheres for arrows, healers bartering for bandages, a cook arguing over the quality of grain that arrived on last week's caravan. Quartermaster Shen stands behind a counter of salvaged stone, weighing your spheres with professional skepticism. A crate behind him is labeled 'KINDLING.' Below it, in smaller text: 'SUGGESTIONS.'",
+                "npcs": [
+                    {"name": "Quartermaster Shen", "role": "merchant", "dialogue": "Supply caravan is three days out. What I have got is what there is. Prices are firm. Complaints go in the suggestion crate.", "notes": "Shen counts spheres by weight, not denomination. His ledger is more fortified than the warcamp perimeter. He is fair but does not extend credit."}
+                ],
+                "enemies": [],
+                "loot": [
+                    {"name": "Alethi Military Rations (3 days)", "type": "consumable"},
+                    {"name": "Reinforced Rope (50 ft)", "type": "equipment"},
+                    {"name": "Stormlight Sphere (Chip)", "type": "currency", "value": 1}
+                ],
+                "services": ["buy", "sell"],
+                "investigation_dc": 13,
+                "investigation_success": "Shen's manifests show deliveries to an unlisted recipient: 'S.P.' receives premium supplies -- healing fabrials, infused spheres, and food better than officer rations. Someone important is operating outside the command structure.",
+                "perception_dc": 11,
+                "perception_success": "Shen palms a second set of ledger pages beneath the counter when certain officers approach. His real books differ from the official ones.",
+                "event_triggers": ["On entry: Quartermaster Shen sizes up the party's gear with visible judgment. 'Scouts, eh? You will want rope. Lots of rope. The chasms do not negotiate.'"]
+            }
+        },
+        "3": {
+            "id": 3,
+            "x": 55,
+            "y": 5,
+            "width": 20,
+            "height": 8,
+            "room_type": "info",
+            "connections": [0],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The scout post perches at the warcamp's eastern edge -- a timber platform raised on stone pillars, facing the vast fracture-scape of the Shattered Plains. From here, the plateaus stretch to the horizon like a broken mirror. Signal flags flutter on a line. A telescope mounted on a brass gimbal tracks movement on the nearest contested plateau.",
+                "read_aloud": "The view steals your breath. The Shattered Plains extend east in every direction -- a maze of broken stone separated by chasms that drop into permanent shadow. The wind carries the scent of chasm moss and something older, deeper, like the smell before a highstorm. Scout Taya lowers her telescope. 'Parshendi on Seven-Nahn,' she says. 'At least thirty. They brought drums.'",
+                "npcs": [
+                    {"name": "Scout Taya", "role": "info", "dialogue": "Parshendi move in rhythm. Drums first, warriors after. When the drums stop, they have reached the gemheart. After that, you have got maybe ten minutes before they crack it out and disappear. We have never beaten them to a chrysalis. Not once.", "notes": "Taya is wiry, windburned, and speaks in rationed sentences. She has mapped three approach routes to Seven-Nahn: north (fast, exposed), south (chasm cover, climbing), center (chasmfiend territory)."}
+                ],
+                "enemies": [],
+                "loot": [],
+                "services": ["intelligence"],
+                "investigation_dc": 14,
+                "investigation_success": "Taya's telescope has been modified with a gemstone lens that amplifies Stormlight. Looking through it, you can see Parshendi auras -- faint outlines of light around their warforms. The modification is not Alethi. Someone from Azir built this.",
+                "perception_dc": 13,
+                "perception_success": "Taya marks three approach routes, but her finger lingers on the center path. She does not recommend it, but her eyes say she has taken it. And survived. Whatever she saw in chasmfiend territory changed the way she looks at the chasms.",
+                "event_triggers": ["On entry: Scout Taya briefs the party on Parshendi behavior patterns, chasm crossing techniques, and the layout of Plateau Seven-Nahn. Three routes. One choice."]
+            }
+        },
+        "4": {
+            "id": 4,
+            "x": 55,
+            "y": 15,
+            "width": 20,
+            "height": 5,
+            "room_type": "rest",
+            "connections": [0],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The barracks are carved into the plateau's windward face -- storm shelters that double as sleeping quarters, their entrances reinforced with timber and stone. Inside, hammocks hang in rows. A fire pit smolders in the common area, heating a pot of something that might be stew.",
+                "read_aloud": "Stone walls keep the wind out but not the cold. Hammocks sway in a draft that comes from somewhere deeper than the entrance. The fire is low, the stew is dubious, and every surface bears the marks of soldiers who have carved their names, their prayers, and their tallies of plateau runs into the rock. Some tallies have stopped mid-count. Bridgeman Dorn stares into the fire and does not turn when you approach.",
+                "npcs": [
+                    {"name": "Bridgeman Dorn", "role": "ambient", "dialogue": "I ran sixteen plateau assaults carrying the bridge. Sixteen times across the chasms with arrows coming down like rain. They freed me after the sixteenth. Said I had earned my keep. The stew is free now, too. Funny how that works.", "notes": "Former bridgeman. Shoulders still bear beam calluses. Reveals that chasmfiends have been migrating closer to the warcamps this season. Something is driving them from the deep chasms."}
+                ],
+                "enemies": [],
+                "loot": [],
+                "services": ["rest", "heal"],
+                "investigation_dc": 11,
+                "investigation_success": "The tally marks on the walls include a pattern: soldiers who survived more than twelve plateau runs all carved a small glyph beside their name. It is the Stoneward glyph. They did not know what it meant. They carved it because it 'felt right.'",
+                "perception_dc": 12,
+                "perception_success": "During rest, a distant highstorm rumbles on the horizon. The barracks shake. Stormlight spheres glow brighter momentarily. Dorn does not wake. But his lips move, murmuring words in a cadence that matches the Parshendi Rhythm of Peace.",
+                "event_triggers": ["On rest: The party recovers HP. During the night, a distant highstorm rumbles. Dorn murmurs in his sleep about chasmfiends migrating closer. 'Something is driving them out of the deep chasms. The Parshendi are scared too. You can hear it in their drums.'"]
+            }
+        }
+    }
+}

@@ -1,0 +1,87 @@
+{
+  "seed": 91004,
+  "width": 25,
+  "height": 25,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "extraction",
+    "theme": "STONE",
+    "topology": "dungeon",
+    "description": "Getting the cargo back to the Faraday. The Hegemonic patrol has been tipped off. The docking ring is crawling with attention you do not want."
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 2,
+      "y": 2,
+      "width": 8,
+      "height": 6,
+      "room_type": "start",
+      "connections": [1],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The Faraday's cargo bay, half-loaded. Crates are mag-locked to the deck in hasty rows. The ship's hull groans as Warren's docking clamps disengage. Through the viewport, you can see docking control lights cycling from green to amber. Someone has flagged your berth.",
+        "read_aloud": "Aleera's voice cuts through the intercom: 'We've got a problem. Hegemonic patrol corvette just dropped out of FTL in the departure lane. They're running active scans on everything leaving Warren. We go now or we don't go at all.'",
+        "event_triggers": [
+          "A Legion corvette drops out of FTL directly ahead. They're hailing you."
+        ]
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 12,
+      "y": 2,
+      "width": 8,
+      "height": 6,
+      "room_type": "normal",
+      "connections": [0, 2],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Open space -- the departure lane outside Warren. Stars and the cold geometry of the system gate ahead. The corvette sits between you and freedom, its weapons arrays tracking your hull. Two escort fighters peel off from the corvette's flanks, angling to bracket you.",
+        "enemies": [
+          {
+            "name": "Hegemonic Patrol Corvette",
+            "hp": 15,
+            "max_hp": 15,
+            "ac": 12,
+            "attack": 4,
+            "defense": 12,
+            "count": 1
+          },
+          {
+            "name": "Hegemonic Escort Fighter",
+            "hp": 8,
+            "max_hp": 8,
+            "ac": 10,
+            "attack": 2,
+            "defense": 10,
+            "count": 2
+          }
+        ],
+        "event_triggers": [
+          "'Vessel Faraday, cut engines and prepare for boarding inspection. This is your only warning.' The corvette's forward batteries power up -- you can see the heat bloom through the viewport."
+        ]
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 22,
+      "y": 2,
+      "width": 6,
+      "height": 6,
+      "room_type": "town_gate",
+      "connections": [1],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The system gate. A ring of ancient alloy spinning with channeled energy, its aperture shimmering with the bruised purple of compressed space-time. One jump and you're clear. The corvette is falling behind -- or deciding whether pursuit is worth the fuel.",
+        "read_aloud": "The gate swallows you. For one nauseating second, you exist in two places at once. Then Warren is gone, replaced by the cold empty between systems. Aleera kills the drive and lets the Faraday coast. In the silence, someone starts laughing. The cargo's aboard. You're alive. Now you just need to get paid."
+      }
+    }
+  }
+}

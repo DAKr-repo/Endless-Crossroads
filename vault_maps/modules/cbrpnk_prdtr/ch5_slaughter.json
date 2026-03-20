@@ -1,0 +1,89 @@
+{
+    "seed": 9105,
+    "width": 45,
+    "height": 35,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "prdtr_hunt",
+        "theme": "RUST",
+        "topology": "dungeon",
+        "display_name": "Slaughter",
+        "description": "The PRDTR has revealed itself. The crystal sample disturbed its nest. The DATABASE upload painted a target on every survivor in the habitat. The Mayhem track is critical -- acid rain, mutated flora, a giant countdown timer projected on the dome's inner surface by failing habitat AI. The Slaughter track is at maximum. The PRDTR is done observing. It is hunting. And it is hunting you."
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 2,
+            "y": 20,
+            "width": 12,
+            "height": 10,
+            "room_type": "start",
+            "connections": [1],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The hunt begins. The habitat's lighting has failed across three sectors. Emergency power paints the corridors in alternating strips of red and shadow. The air recyclers are clogged with spores -- every breath tastes like copper and rotting vegetation. The dome overhead displays a countdown: 11:47:22 and falling. When it reaches zero, the habitat's reactor performs an automated shutdown and Biosphere-5 becomes a tomb. In the infrared darkness, something is stalking the corridors between you and the control station. It moves like liquid mercury. It does not make sound.",
+                "read_aloud": "The lights go out. In the infrared, something massive moves. A shimmer between two pillars -- heat-haze in a place where the temperature is dropping. Your thermal overlay catches a silhouette for half a second: bipedal, armored, three meters tall, arms that end in configurations that are not hands. Then the shimmer repositions and it is gone. The PRDTR knows you are here. It has been waiting for this.",
+                "event_triggers": [
+                    "Jane Doe freezes. Her hands stop shaking. Her pupils click once, twice, focusing on something in the darkness that the runners cannot see. 'It is here,' she whispers. 'I can feel it. The same way it can feel me.' If the runners discovered she is a synthetic, she adds: 'We came from the same place. The same process. I was supposed to be what it became. I do not know if that makes me its sibling or its prey.'",
+                    "Mayhem effect: The dome's skydome display has failed, replaced by the raw image of Ganymede's surface -- radiation-scoured ice fields under Jupiter's baleful eye. Acid rain begins to fall inside the habitat as the atmospheric processors malfunction. 1d6 damage per round without shelter or chemical protection."
+                ],
+                "perception_dc": 16,
+                "perception_success": "The PRDTR's cloaking field has a flaw. When it moves, the optical camouflage generates a faint electromagnetic signature that causes nearby electronics to flicker. Comm units, overhead lights, dosimeters -- anything with a circuit becomes an early warning system. Watch the tech, not the shadows."
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 16,
+            "y": 10,
+            "width": 12,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [0, 2],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The PRDTR's lair. The control station's lower level -- a tangle of server racks and life-support machinery that the PRDTR has repurposed as a nest. Pieces of tactical armor hang from the ceiling on root-tendrils, trophies from previous hunts. Corp Sec badges, Scavenger gear, a child's environment suit that is mercifully empty. The center of the nest holds something unexpected: a charging cradle connected to the habitat's power grid. The PRDTR returns here to repair. Its nanite reserves draw from the station's energy supply. Sever the connection and it cannot heal.",
+                "read_aloud": "The lair smells like machine oil and blood. The trophies sway in the ventilation draft -- a mobile of the dead. The charging cradle hums with power. This is where the PRDTR is most vulnerable and most dangerous. It knows every angle of this room. Every shadow is a firing line.",
+                "enemies": [
+                    {"name": "Plant-Insect Sentry", "hp": 15, "ac": 10, "attack": 4, "damage": "1d8", "count": 2, "notes": "Nest guardians. Hybrid organisms that share the PRDTR's root-network link. They function as biological alarm systems -- if disturbed, the PRDTR is alerted immediately regardless of distance.", "special": ["Root-Network Alert: Damage to these creatures alerts the PRDTR", "Venomous Mandibles: On hit, target takes additional 1d4 poison damage"]}
+                ],
+                "event_triggers": [
+                    "The charging cradle can be sabotaged (Override DC 14 or brute force -- 20 damage to the conduit). If destroyed, the PRDTR loses its Repairing Nanites ability for the final confrontation. But the destruction triggers a power surge that alerts the PRDTR to your exact location. The hunt accelerates.",
+                    "Among the trophies: a Corp Sec badge belonging to 'Officer K. Vasquez.' The same Vasquez from the lab records. Not a researcher -- an undercover operative. The PRDTR killed its own creator."
+                ],
+                "investigation_dc": 16,
+                "investigation_success": "The charging cradle's diagnostic display shows the PRDTR's operational status. It lists two active targets in red priority: the runners and 'UNIT PRDTR-00 (DESIGNATION: JANE DOE).' The PRDTR is not just hunting. It is trying to recover its predecessor. The system reads Jane Doe as an escaped prototype, not a person.",
+                "loot": [
+                    {"name": "Nanite Disruption Charge", "value": 0, "description": "Salvaged from the charging cradle's emergency purge system. One use: forces a targeted machine to purge all nanites, disabling self-repair for 1 hour. Intended for the PRDTR."},
+                    {"name": "PRDTR Behavioral Log", "value": 200, "description": "Downloaded from the cradle's diagnostic system. The PRDTR's kill pattern is not random -- it targets individuals who register above a specific threat threshold on its tactical AI. It is not a monster. It is a security system that outlived its authorization."}
+                ]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 30,
+            "y": 2,
+            "width": 14,
+            "height": 12,
+            "room_type": "boss",
+            "connections": [1],
+            "tier": 4,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The control station apex. The highest point in Biosphere-5 -- a glass-walled observation deck built into the dome's crown. The dome's countdown display is visible directly overhead: 04:12:07. The master control console can extend the reactor's runtime, disable the acid rain, and open the emergency evacuation locks. But standing between the runners and the console is the PRDTR -- fully revealed. Three meters of adaptive tactical armor over a frame that was once human. The helmet's visor is cracked and through it, something that might be a face watches with eyes that glow in the infrared spectrum. Its plasma weapon charges with a sound like tearing silk. Its claws extend. The predator has cornered its prey. Or has the prey cornered the predator?",
+                "read_aloud": "It stands in the center of the observation deck like a monument to everything that went wrong on Ganymede. The PRDTR. Three meters tall. Plasma weapon humming. Claws catching the red emergency light. Through the cracked visor, eyes that track every runner simultaneously -- thermal overlay painting you in shades of red and orange against the cold glass walls. The countdown above reads 04:12:07. The console is fifteen meters away. The PRDTR is between you and it. It does not speak. It does not need to. Its targeting laser paints a dot on your chest like a period at the end of a sentence.",
+                "enemies": [
+                    {"name": "PRDTR", "hp": 40, "ac": 16, "attack": 8, "damage": "3d6", "count": 1, "is_boss": true, "notes": "Prototype powersuit melded with adaptive AI. Thermal/infrared vision, tactical helmet, plasma weapon with laser sight, tactical armor with optical cloaking, retractable claws, repairing nanites (disabled if charging cradle was destroyed). Last Resort: when reduced to 0 HP, initiates a 10-second (3-round) countdown. Detonates everything in a 500m radius unless disabled.", "special": ["Thermal Vision: Ignores all concealment; always knows exact target positions", "Optical Cloaking: Until it attacks, melee attacks against it are at -2d", "Plasma Weapon: Ranged attack, 3d6 damage, ignores 2 points of armor", "Retractable Claws: Melee attack, 2d6+2 damage, ignores locked doors/barricades", "Repairing Nanites: Recovers 3 HP at start of each round (disabled if cradle sabotaged)", "Last Resort: At 0 HP, 3-round countdown to 500m detonation. Can be disabled by Hack DC 18 or Override DC 16 targeting the tactical helmet"]}
+                ],
+                "event_triggers": [
+                    "If Jane Doe is present, the PRDTR hesitates for one round upon seeing her -- its targeting system cycling between THREAT and RECOVER classifications. Jane can use this moment to attempt communication: speaking to the remnant of the human neural pattern buried in the PRDTR's AI. Success (Sway DC 18 with Jane's help) causes the PRDTR to lower its weapon for 1 round and speak in a voice that is half machine, half human: 'I remember... the lab. I remember being afraid.' This does not end the fight -- the AI reasserts control -- but it creates an opening.",
+                    "When the PRDTR reaches 0 HP, its chassis locks and the countdown begins. A voice from inside the helmet, distorted: 'DETONATION SEQUENCE INITIATED. TEN. NINE...' The dome's countdown and the PRDTR's countdown overlap. Disable the Last Resort, reach the console, or evacuate. Pick two."
+                ]
+            }
+        }
+    }
+}

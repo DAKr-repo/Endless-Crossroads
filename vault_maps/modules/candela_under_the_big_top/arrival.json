@@ -1,0 +1,112 @@
+{
+  "seed": 7013,
+  "width": 35,
+  "height": 15,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "circus_arrival",
+    "theme": "GOTHIC",
+    "topology": "settlement",
+    "display_name": "The Circus Fairgrounds"
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 0,
+      "y": 0,
+      "width": 10,
+      "height": 8,
+      "room_type": "town_square",
+      "connections": [1, 2],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The Marchetti Circus fairgrounds, late afternoon. A vacant lot on Newfaire's south side transformed into carnival. The big top tent dominates -- red and gold canvas, fifty feet high. The crowd is building. Posters everywhere: THE LIVING CONSTELLATION -- ONE NIGHT ONLY.",
+        "read_aloud": "The circus smells of sawdust and lamp oil. Calliope music from the big top. Children run between game booths. MARCHETTI'S MARVEL CIRCUS -- THE LIVING CONSTELLATION -- ONE NIGHT ONLY. A banner shows a luminous creature, clearly embellished. The real thing is in the cages behind the tent. The air around them shimmers.",
+        "npcs": [
+          {
+            "name": "Ringmaster Bellamy",
+            "role": "informant",
+            "dialogue": "He sweeps toward you in a ringmaster's coat, all teeth and showmanship. 'The Constellation is our crown jewel. Found it in a cave near Ashwick -- docile as a kitten. It eats light. Feed it a lantern and it purrs. Tonight, twelve hundred people see the wonder of a lifetime.'",
+            "notes": "He/him. Charming, reckless, financially desperate. The circus is three months from bankruptcy. He'll resist any suggestion to cancel. He's been feeding the creature lamp oil -- an inadequate substitute for bleed energy. He'll cooperate if given a viable alternative: financial assistance or guarantee of the circus's survival."
+          }
+        ],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [
+          "The circus is financially desperate. The show will go on unless the investigators provide compelling reason to stop it. The creature is already affecting the handlers. Twelve hundred people are arriving."
+        ],
+        "loot": [
+          {
+            "name": "Show Program",
+            "value": 0,
+            "description": "Tonight's performance schedule. The Constellation's act is the finale -- 9 PM, after two hours of audience exposure. By then the tent will be packed, exits blocked by crowds, and the creature will have been confined for eighteen straight hours."
+          }
+        ]
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 13,
+      "y": 0,
+      "width": 10,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [0],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The fairground midway. Game booths, food carts, a first-aid station near the entrance staffed by the circus physician. Dr. Asher has been treating radiation burns for three days.",
+        "read_aloud": "Dr. Asher flags you from the first-aid tent. 'I'm treating burns -- the handlers who work near the creature. It's not biting them. It's radiating. Something comes off it in waves when it's distressed. The burns look like sunburn but appear in minutes. And Handler Vex has been having visions since last week. He sees things that aren't there. Or things that are there but shouldn't be.'",
+        "npcs": [
+          {
+            "name": "Dr. Asher",
+            "role": "informant",
+            "dialogue": "I've documented the effects: radiation burns, hallucinations, mood swings in the handlers. I've been trying to get Bellamy to cancel for two days. He won't listen. If you have any authority, please use it. Whatever that creature is, a tent full of frightened people is going to make it much worse.",
+            "notes": "They/them. The voice of reason in the circus. Can provide medical data on the creature's bleed radiation effects. Will treat affected audience members during or after the incident. Has Candela-equivalent emergency kit."
+          }
+        ],
+        "enemies": [],
+        "services": ["heal"],
+        "event_triggers": [],
+        "loot": [],
+        "investigation_dc": 12,
+        "investigation_success": "Dr. Asher's records show the creature's radiation output has doubled in the past three days. At current trajectory, during a two-hour performance, the front ten rows of audience members will experience hallucinations. The creature isn't dangerous yet. It will be."
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 25,
+      "y": 0,
+      "width": 8,
+      "height": 8,
+      "room_type": "residence",
+      "connections": [0],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The ringmaster's wagon. Bellamy's private quarters -- cluttered with costumes, account books, and memorabilia. A photograph of an older man, clearly the previous ringmaster, hangs over the desk.",
+        "read_aloud": "The photograph shows a man with careful eyes -- nothing like Bellamy's flashy confidence. Pinned to the frame, a note in the older man's hand: 'If you find something in the dark that glows, leave it there. Some wonders are not ours to show.' Bellamy clearly never read it.",
+        "npcs": [
+          {
+            "name": "Ringmaster Bellamy (private)",
+            "role": "informant",
+            "dialogue": "If confronted privately, the showmanship drops. 'I know it's dangerous. I'm not stupid, I'm desperate. The circus is three months from bankruptcy. If I cancel, we're done. Forty performers, their families -- gone. Find me another way. Give me a reason to cancel that doesn't destroy everything.'",
+            "notes": "He/him. Will cooperate if given a viable alternative: Candela financial support, a replacement attraction, or proof the creature will escape and destroy the circus anyway. He's not a villain. He's a man watching his family's legacy collapse."
+          }
+        ],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [
+          "REVEAL: Bellamy's predecessor was a Candela asset who deliberately routed the circus away from dangerous thinnings for twenty years. Bellamy inherited the routes but not the knowledge."
+        ],
+        "loot": [],
+        "investigation_dc": 14,
+        "investigation_success": "The previous ringmaster's private papers, hidden in the desk, show he was a Candela contact -- asset designation 'Footlights.' He reported thinning activity along circus routes for decades. The circus has been traveling bleed territory for generations without knowing why it kept finding wonders."
+      }
+    }
+  }
+}

@@ -120,10 +120,7 @@ def test_universal_bridge_loot_dispatch():
         def generate_dungeon(self, seed=None): pass
         def load_state(self, data): pass
 
-    bridge = UniversalGameBridge.__new__(UniversalGameBridge)
-    bridge.engine     = _MockEngine()
-    bridge.dead       = False
-    bridge.last_frame = None
+    bridge = UniversalGameBridge.create_lightweight(_MockEngine())
 
     response = bridge.step("loot")
     assert "Unknown command" not in response, (

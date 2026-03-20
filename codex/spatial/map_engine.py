@@ -51,6 +51,9 @@ class RoomType(Enum):
     RETURN_GATE = "return_gate"  # Extraction point back to hub
     HIDDEN_PORTAL = "hidden_portal"      # D&D 5e arcane portal (deep dungeon)
     BORDER_CROSSING = "border_crossing"  # Crown & Crew forward-infra
+    EXIT = "exit"                  # Zone exit / transition point
+    CHAMBER = "chamber"            # Large encounter room
+    HUB = "hub"                    # Multi-path junction / service hub
     # Settlement building types
     TAVERN = "tavern"              # Inn / social hub
     FORGE = "forge"                # Crafting / repair

@@ -1,0 +1,109 @@
+{
+    "module_id": "cbrpnk_omni_global",
+    "display_name": "Long Shot: Omni Global Solutions",
+    "system_id": "cbrpnk",
+    "source_pdf": "cbrpnk_03_framework.pdf",
+    "source_type": "publisher_licensed",
+    "world_map": null,
+    "starting_location": "runners_hideout",
+    "recommended_levels": {"min": 1, "max": 5},
+    "chapters": [
+        {
+            "chapter_id": "ch1_the_setup",
+            "display_name": "Chapter 1: The Setup",
+            "order": 1,
+            "zones": [
+                {
+                    "zone_id": "runners_hideout",
+                    "blueprint": "ch1_hideout.json",
+                    "topology": "settlement",
+                    "theme": "RUST",
+                    "location_id": "hideout",
+                    "entry_trigger": "module_start",
+                    "exit_trigger": "player_choice"
+                }
+            ]
+        },
+        {
+            "chapter_id": "ch2_media_blackout",
+            "display_name": "Chapter 2: Run 1 -- Media Blackout",
+            "order": 2,
+            "zones": [
+                {
+                    "zone_id": "media_blackout",
+                    "blueprint": "ch2_media_blackout.json",
+                    "topology": "dungeon",
+                    "theme": "RUST",
+                    "location_id": "media_district",
+                    "entry_trigger": "player_choice",
+                    "exit_trigger": "quest_complete"
+                }
+            ]
+        },
+        {
+            "chapter_id": "ch3_project_quest",
+            "display_name": "Chapter 3: Run 2 -- Project Quest",
+            "order": 3,
+            "zones": [
+                {
+                    "zone_id": "project_quest",
+                    "blueprint": "ch3_project_quest.json",
+                    "topology": "dungeon",
+                    "theme": "RUST",
+                    "location_id": "ar_infrastructure",
+                    "entry_trigger": "quest_complete",
+                    "exit_trigger": "quest_complete"
+                }
+            ]
+        },
+        {
+            "chapter_id": "ch4_the_mole",
+            "display_name": "Chapter 4: Run 3 -- The Mole",
+            "order": 4,
+            "zones": [
+                {
+                    "zone_id": "the_mole",
+                    "blueprint": "ch4_the_mole.json",
+                    "topology": "dungeon",
+                    "theme": "RUST",
+                    "location_id": "safe_house",
+                    "entry_trigger": "quest_complete",
+                    "exit_trigger": "boss_defeated"
+                }
+            ]
+        },
+        {
+            "chapter_id": "ch5_dust_wall",
+            "display_name": "Chapter 5: Run 4 -- Beyond the Dust Wall",
+            "order": 5,
+            "zones": [
+                {
+                    "zone_id": "dust_wall",
+                    "blueprint": "ch5_dust_wall.json",
+                    "topology": "dungeon",
+                    "theme": "RUST",
+                    "location_id": "toxic_wasteland",
+                    "entry_trigger": "boss_defeated",
+                    "exit_trigger": "quest_complete"
+                }
+            ]
+        },
+        {
+            "chapter_id": "ch6_the_climax",
+            "display_name": "Chapter 6: The Climax",
+            "order": 6,
+            "zones": [
+                {
+                    "zone_id": "the_climax",
+                    "blueprint": "ch6_the_climax.json",
+                    "topology": "dungeon",
+                    "theme": "RUST",
+                    "location_id": "omni_global_hq",
+                    "entry_trigger": "quest_complete",
+                    "exit_trigger": "boss_defeated"
+                }
+            ]
+        }
+    ],
+    "freeform_zones": []
+}

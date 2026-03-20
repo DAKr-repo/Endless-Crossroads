@@ -2,10 +2,11 @@
     "module_id": "stc_stonewalkers",
     "display_name": "Stormlight: Stonewalkers",
     "system_id": "stc",
-    "source_pdf": null,
-    "source_type": "community_authored",
+    "source_pdf": "Stormlight RPG - Stonewalkers",
+    "source_type": "publisher_licensed",
     "world_map": "world_map.json",
     "starting_location": "shinovar",
+    "campaign_setting": "roshar",
     "recommended_levels": {"min": 3, "max": 7},
     "chapters": [
         {
@@ -17,7 +18,7 @@
                     "zone_id": "shinovar",
                     "blueprint": "shinovar.json",
                     "topology": "settlement",
-                    "theme": "VILLAGE",
+                    "theme": "STONE",
                     "location_id": "shinovar",
                     "entry_trigger": "module_start",
                     "exit_trigger": "quest_complete"

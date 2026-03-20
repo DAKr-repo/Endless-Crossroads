@@ -1,0 +1,65 @@
+{
+  "module_id": "bitd_dimmer_sisters",
+  "display_name": "Infiltrating the Dimmer Sisters' House",
+  "system_id": "bitd",
+  "source_type": "publisher_licensed",
+  "starting_location": "crew_lair",
+  "recommended_levels": {"min": 1, "max": 3},
+  "chapters": [
+    {
+      "chapter_id": "planning",
+      "display_name": "Planning the Score",
+      "order": 0,
+      "zones": [
+        {
+          "zone_id": "crew_lair",
+          "blueprint": "crew_lair.json",
+          "topology": "settlement",
+          "theme": "GOTHIC",
+          "entry_trigger": "module_start",
+          "exit_trigger": "player_choice"
+        },
+        {
+          "zone_id": "crows_foot",
+          "blueprint": "crows_foot.json",
+          "topology": "settlement",
+          "theme": "GOTHIC",
+          "entry_trigger": "player_choice",
+          "exit_trigger": "player_choice"
+        }
+      ]
+    },
+    {
+      "chapter_id": "the_score",
+      "display_name": "The Score",
+      "order": 1,
+      "zones": [
+        {
+          "zone_id": "exterior",
+          "blueprint": "exterior.json",
+          "topology": "dungeon",
+          "theme": "GOTHIC",
+          "entry_trigger": "player_choice",
+          "exit_trigger": "all_rooms"
+        },
+        {
+          "zone_id": "house_interior",
+          "blueprint": "house_interior.json",
+          "topology": "dungeon",
+          "theme": "GOTHIC",
+          "entry_trigger": "player_choice",
+          "exit_trigger": "quest_complete"
+        },
+        {
+          "zone_id": "escape",
+          "blueprint": "escape.json",
+          "topology": "dungeon",
+          "theme": "GOTHIC",
+          "entry_trigger": "player_choice",
+          "exit_trigger": "all_rooms"
+        }
+      ]
+    }
+  ],
+  "freeform_zones": []
+}

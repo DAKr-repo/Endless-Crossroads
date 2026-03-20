@@ -1,0 +1,125 @@
+{
+  "seed": 7018,
+  "width": 50,
+  "height": 30,
+  "start_room_id": 0,
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 2,
+      "y": 2,
+      "width": 12,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false
+    },
+    "1": {
+      "id": 1,
+      "x": 16,
+      "y": 2,
+      "width": 16,
+      "height": 12,
+      "room_type": "normal",
+      "connections": [0, 2, 3],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false
+    },
+    "2": {
+      "id": 2,
+      "x": 34,
+      "y": 3,
+      "width": 10,
+      "height": 8,
+      "room_type": "secret",
+      "connections": [1],
+      "tier": 2,
+      "is_locked": true,
+      "is_secret": true
+    },
+    "3": {
+      "id": 3,
+      "x": 16,
+      "y": 16,
+      "width": 14,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false
+    }
+  },
+  "metadata": {
+    "zone_id": "exploration_2",
+    "theme": "GOTHIC",
+    "topology": "dungeon",
+    "scene_title": "The Ice Prison"
+  },
+  "content_hints": {
+    "0": {
+      "description": "The outer gallery. A circular chamber ringed with alcoves, each one containing an object sealed in ice -- weapons, scrolls, crystalline devices, things with no recognizable form. A catalog of dangerous artifacts, frozen in time.",
+      "read_aloud": "Each alcove bears an inscription in Ancient Fairen and a symbol you're beginning to recognize as a hazard classification. Red triangles for weapons. Blue circles for objects of influence. Black squares for things that defy classification. Most of the alcoves are intact. Some are empty, their ice melted, their contents long removed.",
+      "npcs": [
+        {
+          "name": "The Frozen Witness",
+          "role": "informant",
+          "dialogue": "A figure in one of the pillars opens its eyes as you pass. Its mouth moves behind the ice, forming words you can barely hear: 'Guardian... three hundred... years. The Warden... wakes... when the artifact... is touched. Do not... touch.' The eyes close. The pillar refreezes.",
+          "notes": "One of the original guardians, frozen alive as part of the containment system. Three centuries of unbroken watch. Can provide fragmentary warnings but communication is extremely limited -- each exchange costs the guardian more of their remaining life."
+        }
+      ],
+      "event_triggers": ["The vault is an artifact containment facility. The guardians are frozen alive, sustaining the containment with their own life force. The Warden is the vault's defense system."],
+      "enemies": [
+        {
+          "name": "Frozen Revenant",
+          "hp": 15,
+          "ac": 12,
+          "attack": 4,
+          "damage": "1d6",
+          "count": 1,
+          "notes": "A guardian whose pillar has cracked. Partially thawed, moving in broken jerks, still trying to perform its duty -- patrolling a route it walked three hundred years ago. Attacks anything that approaches the sealed artifacts.",
+          "special": ["Cold Aura: melee attackers take 1 Body mark (frostbite)", "Relentless: does not feel pain, fights until destroyed"]
+        }
+      ]
+    },
+    "1": {
+      "description": "The pillar gallery. The chamber Wren described. A vast hall of ice pillars, each one containing a human figure frozen in mid-stride or mid-gesture. Hundreds of them, arranged in concentric rings around a central dais. Their mouths are open. Their eyes are open. They are not dead.",
+      "read_aloud": "The guardians stand in eternal vigil. You can see the effort frozen on their faces -- duty, sacrifice, exhaustion held in amber-clear ice for centuries. Some wear robes. Others wear armor from eras you don't recognize. The newest -- perhaps fifty years old -- wears a Candela Obscura uniform. The oldest are barely human, their features eroded by time until only the shapes of eyes and mouths remain.",
+      "investigation_dc": 16,
+      "investigation_success": "The Candela operative frozen in ice wears a badge with a name: Agent Corsair, Fourth Pharos, dispatched 1878. Their hand is raised, pointing toward the central dais and the door beyond it. A warning, or a direction. On their wrist, an inscription burned into the skin: THE KEY IS SILENCE.",
+      "enemies": [
+        {
+          "name": "Frozen Revenants",
+          "hp": 15,
+          "ac": 12,
+          "attack": 4,
+          "damage": "1d6",
+          "count": 2,
+          "notes": "Two more cracked pillars. These guardians are more intact than the first -- they move with purpose, coordinating to herd intruders away from the central door.",
+          "special": ["Cold Aura: melee attackers take 1 Body mark", "Relentless: fights until destroyed", "Coordinated: flanking bonus when two or more attack the same target"]
+        }
+      ],
+      "loot": [
+        {"name": "Agent Corsair's Badge", "value": 0, "description": "Fourth Pharos identification, 1878. The back is inscribed with a Candela emergency code that can be decoded at the chapter house -- it contains Corsair's final report, compressed into cipher."}
+      ]
+    },
+    "2": {
+      "description": "A hidden maintenance chamber behind a false panel in the gallery wall. A pre-Fairen workbench with tools of unfamiliar design. Schematics etched into copper plates show the vault's containment architecture.",
+      "read_aloud": "The schematics are staggering in their complexity. The vault is a machine, and the frozen guardians are its power source -- their life force maintains the cold that keeps the artifacts inert. The central artifact, whatever it is, requires the most containment. Every guardian, every frozen pillar, feeds energy toward the last door.",
+      "lock_dc": 16,
+      "loot": [
+        {"name": "Containment Schematics", "value": 0, "description": "Copper plates showing the vault's design. The central artifact is labeled only with a symbol: a circle with a line through it. Universal across cultures. It means 'forbidden.'"}
+      ]
+    },
+    "3": {
+      "description": "The approach to the inner vault. A corridor narrower than the rest, lined not with ice but with frost that moves -- crawling across the walls in fractal patterns that grow and dissolve. The temperature here is impossible. Breath freezes into solid crystals that fall to the floor like glass beads.",
+      "read_aloud": "The frost patterns form words as you watch. Ancient Fairen, then modern Fairen, then fragments of languages you don't know. All saying the same thing: TURN BACK. TURN BACK. TURN BACK. The patterns grow faster the deeper you go, the words larger, more desperate.",
+      "perception_dc": 14,
+      "perception_success": "The frost isn't a ward -- it's the Warden communicating. The entity that maintains the vault is trying to warn you, not threaten you. It doesn't want you here because the artifact's containment is failing. Anyone who enters the inner chamber risks accelerating the failure.",
+      "event_triggers": ["The Warden is not hostile -- it's desperate. The containment is failing. The Shiver is a symptom: the artifact's cold is leaking outward. The investigators must decide whether to shore up the containment or remove the artifact."]
+    }
+  }
+}

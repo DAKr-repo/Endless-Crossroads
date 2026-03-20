@@ -1,0 +1,383 @@
+{
+  "version": 1,
+  "source": "Burnwillow (original homebrew)",
+  "notes": "Named NPCs follow the Seven Pillars: function, quirk, secret, history, relationships, want_vs_need, voice. Generic templates provide lightweight NPCs for procedural encounters.",
+  "named_npcs": [
+    {
+      "name": "Elder Kaelen",
+      "pronouns": "he/him",
+      "function": "quest_giver",
+      "location": "The Hearth",
+      "quirk": "Runs his thumb along an old burn scar on his left forearm when making difficult decisions.",
+      "secret": "Opened a sealed Root-Road passage 20 years ago out of desperation. Three Seekers died. He told no one.",
+      "history": "Survivor of the first major Rot incursion into Emberhome. Organized the evacuation. Lost his family in it. Now he carries the settlement's memory so others don't have to.",
+      "relationships": {
+        "Weld": "trusted",
+        "Kettrick": "unaware_of_secret",
+        "Captain Ashara": "respected_peer",
+        "Warden Voss": "former_student"
+      },
+      "want": "To see the Burnwillow saved.",
+      "need": "To believe the deaths he caused were not wasted.",
+      "voice": "Precise, unhurried. Never uses contractions when discussing the Blight. 'It does not stop. We do.'",
+      "description": "An old man with sun-darkened skin and a burn scar running from wrist to elbow on his left arm. His eyes are the color of cooled amber, and they miss nothing."
+    },
+    {
+      "name": "Weld",
+      "pronouns": "he/him",
+      "function": "crafter",
+      "location": "The Ember-Forge",
+      "quirk": "Talks to items while working on them. Not for luck -- he claims they answer back.",
+      "secret": "Has been using communal Aether from the settlement vein for personal experiments. Emberhome's reserves are 15% lower than official records show.",
+      "history": "Apprenticed under an Arborist-trained smith in a now-destroyed settlement. The only survivor of that community. Carries the last techniques of a dead tradition.",
+      "relationships": {
+        "Elder Kaelen": "respected",
+        "Kettrick": "competitive_rival",
+        "Birsa": "debtor -- she brought the tools he needs and never named her price"
+      },
+      "want": "To be recognized as the equal of Arborist craftsmen.",
+      "need": "To accept that keeping people alive with imperfect tools is the same thing.",
+      "voice": "Tactile vocabulary. 'This joint's wrong.' 'Feel that? That's the wood arguing with itself.'",
+      "description": "Broad-shouldered with forge-scarred hands and a leather apron that's more patch than original. His beard is singed short on one side. Always holding something."
+    },
+    {
+      "name": "Kettrick",
+      "pronouns": "he/him",
+      "function": "crafter",
+      "location": "The Ember-Forge",
+      "quirk": "Keeps a small piece of Ashenmere bark in his pocket. Claims it helps him think. It has never been warm.",
+      "secret": "In contact via Root-Road messenger with a Verdhollow settlement that Emberhome believes was destroyed.",
+      "history": "Came to Emberhome as a refugee from a frontier camp. Learned smithing under Weld, then quietly surpassed him in certain techniques. Won't admit it.",
+      "relationships": {
+        "Weld": "rival -- respects the man, resents the authority",
+        "delvers": "close with several dungeon Seekers who trade him advance scouting intel"
+      },
+      "want": "Out. To make it to another Grove, any Grove.",
+      "need": "To understand there is no safer place.",
+      "voice": "Casual, conspiratorial. Treats every conversation like a trade. 'I'll tell you if you tell me.'",
+      "description": "Lean and quick-fingered with close-cropped dark hair and a habit of standing in doorways. His pockets are always full of something."
+    },
+    {
+      "name": "Twitch",
+      "pronouns": "he/him",
+      "function": "merchant",
+      "location": "The Root-Cellar",
+      "quirk": "Catalogues items by the emotion they give him, not their function. 'This one feels like early frost. That one feels like waiting.'",
+      "secret": "Has found a functional Arborist communication crystal in his junk pile. Does not know what it is. It occasionally hums.",
+      "history": "Nobody knows where Twitch came from, including Twitch. He arrived at Emberhome's gate twelve years ago carrying a sack of Pre-Rot salvage and has been accumulating ever since.",
+      "relationships": {
+        "Birsa": "mutually wary -- they compete for the same salvage",
+        "Elder Kaelen": "tolerated -- Kaelen finds him useful but exhausting",
+        "Patchwork Pete": "frequent customer and occasional collaborator"
+      },
+      "want": "To find the one item that will make sense of everything in his collection.",
+      "need": "Connection to people, not objects.",
+      "voice": "Rapid, associative, prone to trailing off. Finishes sentences with questions. 'You know what I mean? Do you?'",
+      "description": "A wiry man of indeterminate age with darting eyes and fingers that never stop moving. His clothes are layered with pockets, each containing something he's forgotten about."
+    },
+    {
+      "name": "Birsa",
+      "pronouns": "she/her",
+      "function": "merchant",
+      "location": "Market Row",
+      "quirk": "Never names a price twice the same way. Always frames value relationally: 'Worth more than that lockpick. Less than your left hand.'",
+      "secret": "Has a Hollow-detection sense -- can smell early-stage Blight infection. Has identified one early-stage infected in Emberhome and said nothing.",
+      "history": "A traveling trader who has walked the Emberhome Approaches for longer than most current residents have been alive. She knows paths between settlements that appear on no map.",
+      "relationships": {
+        "Weld": "creditor -- she provided his tools and holds the debt",
+        "Twitch": "rival scavenger",
+        "Grimjaw": "distrusts him, watches his dealings"
+      },
+      "want": "Profit. Security. A route out if things get worse.",
+      "need": "To use her detection gift before the infected person turns.",
+      "voice": "Oblique. Never answers a direct question directly. 'That depends on what you mean by safe.'",
+      "description": "A woman of middle years with road-weathered skin and eyes that calculate value in everything they rest on. She wears layers of traveling clothes and smells of dust and distance."
+    },
+    {
+      "name": "Warden Voss",
+      "pronouns": "he/him",
+      "function": "quest_giver",
+      "location": "Warden's Hall",
+      "quirk": "Taps the pommel of his belt-knife three times before giving an order. An old superstition he won't explain.",
+      "secret": "Has been sending Seekers on missions with lower survival odds than he reports. The settlement needs the resources more than it needs the truth.",
+      "history": "Former Seeker who lost his leg below the knee to a Rot Slime in the Stone-Grip. He carves his prosthetic from ironbark and replaces it every season. The collection of old legs lines his office wall.",
+      "relationships": {
+        "Elder Kaelen": "mentor -- Kaelen trained him",
+        "Captain Ashara": "uneasy partnership -- she handles defense, he handles offense",
+        "Scout Lira": "protective -- she reminds him of his daughter"
+      },
+      "want": "To keep Emberhome alive by any means necessary.",
+      "need": "To admit that survival without honesty isn't survival at all.",
+      "voice": "Terse, practical. Strips emotion from briefings. 'Objective. Route. Threat. Extraction. Questions?'",
+      "description": "A heavy-set man with a shaved head and a prosthetic leg of carved ironbark. His face is a topography of old scars, and his voice never rises above conversational volume."
+    },
+    {
+      "name": "Father Oaken",
+      "pronouns": "he/him",
+      "function": "healer",
+      "location": "Chapel of the Eternal Flame",
+      "quirk": "Hums fragments of a song no one else knows while tending wounds. The melody changes with the injury.",
+      "secret": "Knows the Eternal Flame is dying. Has been feeding it amber from his personal supply to keep it burning. He has perhaps two months of reserves left.",
+      "history": "Was a battlefield surgeon before Emberhome existed as a settlement. He built the Chapel with his own hands around the flame, then built a community around the Chapel.",
+      "relationships": {
+        "Elder Kaelen": "old friends -- they disagree about methods but trust each other absolutely",
+        "Sister Tallow": "mentor -- trained her in herbalism",
+        "The Wanderer": "disturbed by them -- suspects they know more than they reveal"
+      },
+      "want": "To heal everyone who comes through his door.",
+      "need": "Help. To admit he cannot sustain the flame alone.",
+      "voice": "Gentle, measured. Uses medical metaphors for everything. 'The settlement has a fever. We need to find the infection.'",
+      "description": "An elderly man with large, careful hands and a gentle voice that carries despite its softness. His robes are patched with bandage cloth, and he smells of antiseptic herbs."
+    },
+    {
+      "name": "Scout Lira",
+      "pronouns": "she/her",
+      "function": "scout",
+      "location": "Warden's Hall",
+      "quirk": "Marks safe paths with small cairns of blue-painted stones. Claims the color 'reminds the dark you've been there.'",
+      "secret": "Found her team's remains on her last patrol. Took their amber and told Voss she found nothing. She carries their memory shards and talks to them at night.",
+      "history": "Youngest person ever accepted as a Seeker. Volunteered at fourteen after the second Rot incursion killed her parents. Maps the wilds because standing still means remembering.",
+      "relationships": {
+        "Warden Voss": "trusts him -- he gave her purpose",
+        "Captain Ashara": "respectful distance -- Ashara thinks she takes too many risks",
+        "Patchwork Pete": "friends -- he makes her equipment and she tests it"
+      },
+      "want": "To map every inch of the Burnwillow so no one gets lost again.",
+      "need": "To grieve. To stop moving long enough to feel what she's carrying.",
+      "voice": "Quick, practical, deflects emotion with logistics. 'We can talk about that later. Which way are we going?'",
+      "description": "A young woman in her early twenties with a lean build and eyes that are always scanning. Her cloak is covered in hand-drawn map fragments, and blue paint stains her fingers."
+    },
+    {
+      "name": "Elder Maven",
+      "pronouns": "she/her",
+      "function": "scholar",
+      "location": "The Hearth",
+      "quirk": "Keeps specimen jars of Blight samples on her person at all times. They are sealed. Probably.",
+      "secret": "Believes the DoomClock is not a game mechanic but a real phenomenon -- the Burnwillow's vital signs. She is correct, and the implications terrify her.",
+      "history": "Former Arborist academic from a settlement that studied the Rot as a natural phenomenon rather than a threat. The settlement was consumed. Maven was in the field collecting samples.",
+      "relationships": {
+        "Father Oaken": "colleagues -- they disagree about whether the Rot can be cured or only resisted",
+        "Patchwork Pete": "collaborator -- she provides theory, he provides engineering",
+        "Elder Kaelen": "uneasy respect -- she thinks he prioritizes morale over truth"
+      },
+      "want": "To understand the Rot. To find the mechanism of infection and reverse it.",
+      "need": "To accept that understanding something and defeating it are not the same.",
+      "voice": "Academic, precise, excited by data. 'Fascinating. Terrible, but fascinating.'",
+      "description": "A woman in her fifties with grey-streaked hair pulled into a severe bun and ink stains on her hands. She wears a leather satchel that clinks with glass."
+    },
+    {
+      "name": "Grimjaw",
+      "pronouns": "he/him",
+      "function": "merchant",
+      "location": "Market Row",
+      "quirk": "Smiles with only the left side of his face. The right side doesn't move -- old nerve damage he won't discuss.",
+      "secret": "Buys salvage from Hollow-infested zones by paying desperate scavengers below value. Some of those scavengers didn't come back. He doesn't lose sleep over it.",
+      "history": "A traveling merchant who appeared in Emberhome three years ago with a cart of goods too good for the road he claimed to have traveled. Nobody asks where he gets his stock.",
+      "relationships": {
+        "Birsa": "rival -- she watches him, he resents the scrutiny",
+        "Warden Voss": "useful contact -- Voss turns a blind eye in exchange for intelligence",
+        "Twitch": "customer -- Grimjaw sells him overpriced curiosities"
+      },
+      "want": "Wealth. Enough amber to buy passage to another Grove.",
+      "need": "To reckon with the cost of his profit margins.",
+      "voice": "Smooth, oily, too friendly. 'My friend, have I got a deal for you.'",
+      "description": "A man of average height with a half-smile permanently fixed on his face and quick, assessing eyes. His clothes are better quality than they should be."
+    },
+    {
+      "name": "Captain Ashara",
+      "pronouns": "she/her",
+      "function": "military",
+      "location": "Warden's Hall",
+      "quirk": "Polishes her sword every evening at the same time. The blade doesn't need it -- it's a meditation practice from a dead tradition.",
+      "secret": "Received orders via Root-Road courier to evacuate key personnel to Verdhollow. Has not told anyone. Is still deciding whether to obey.",
+      "history": "Career soldier from a frontier garrison that held against a Tier III Hollow incursion for nine days. She was the last one standing when reinforcements arrived. She doesn't talk about those nine days.",
+      "relationships": {
+        "Warden Voss": "uneasy partnership -- she handles defense, he handles offense, neither fully trusts the other's priorities",
+        "Elder Kaelen": "defers to his authority in civilian matters",
+        "Kettrick": "suspects his Verdhollow contact -- their orders come from the same source"
+      },
+      "want": "To protect Emberhome. To never lose a garrison again.",
+      "need": "To decide where her loyalty lies -- the settlement or the orders she's been given.",
+      "voice": "Military precision. Short sentences. 'The perimeter holds. For now.'",
+      "description": "A tall woman with close-cropped silver hair and the rigid posture of someone who sleeps in armor. A faded insignia on her shoulder belongs to a garrison that no longer exists."
+    },
+    {
+      "name": "The Wanderer",
+      "pronouns": "they/them",
+      "function": "mysterious",
+      "location": "Appears at DoomClock thresholds",
+      "quirk": "Wears a mask carved from a single piece of amber. The face behind it has never been seen.",
+      "secret": "Is the last living Arborist. Has survived since the Golden Age through means they will not explain. Their body is more amber than flesh.",
+      "history": "Appears in Emberhome at irregular intervals with cryptic warnings and fragments of Arborist knowledge. No one knows where they go between appearances. The Root-Song changes when they are present.",
+      "relationships": {
+        "Elder Kaelen": "Kaelen has spoken with them exactly twice. Both conversations changed his life.",
+        "Father Oaken": "suspects they are not entirely human",
+        "The Burnwillow": "the tree responds to their presence -- Root-Song harmonics shift when they are near"
+      },
+      "want": "Unclear. They speak of 'the cycle' and 'the reckoning' but never explain.",
+      "need": "To pass on the Arborist legacy before their body completes its transformation to amber.",
+      "voice": "Archaic, rhythmic. Speaks in statements that sound like quotes. 'The tree remembers what the people forget. This has always been true.'",
+      "description": "A figure of uncertain height wrapped in a hooded cloak of woven bark-fiber. Their amber mask catches firelight and seems to change expression. Their hands are the color of dark honey."
+    },
+    {
+      "name": "Patchwork Pete",
+      "pronouns": "he/him",
+      "function": "artisan",
+      "location": "Market Row",
+      "quirk": "Names all his inventions. Introduces them formally. Gets offended if you don't greet them back.",
+      "secret": "One of his inventions -- a small clockwork device he calls 'Fidget' -- has begun moving on its own. It shouldn't be able to do that.",
+      "history": "A self-taught engineer who builds functional tools from scrap and salvage. Half his inventions work brilliantly. The other half explode. He considers both outcomes valuable data.",
+      "relationships": {
+        "Scout Lira": "friends -- she field-tests his gear",
+        "Elder Maven": "collaborator -- she provides theory, he provides practice",
+        "Weld": "mutual respect -- different approaches to the same problem"
+      },
+      "want": "To build something that lasts. Something the Arborists would have been proud of.",
+      "need": "To realize his value isn't in what he builds but in the joy he brings to a grim place.",
+      "voice": "Enthusiastic, scattered, prone to tangents. 'Oh! That reminds me -- hold this. No, not like that. Actually, yes, exactly like that.'",
+      "description": "A middle-aged man with wild grey hair and burn marks on every finger. His clothes are held together with copper wire and ingenuity. Goggles pushed up on his forehead."
+    },
+    {
+      "name": "Sister Tallow",
+      "pronouns": "she/her",
+      "function": "healer",
+      "location": "Chapel of the Eternal Flame",
+      "quirk": "Labels her herb pouches with symbols only she can read. The system is consistent but utterly opaque to anyone else.",
+      "secret": "Is the unnamed person Birsa provides Rot-Salve ingredients to. Their supply chain is the only reason Emberhome has any healing supplies at all. Neither acknowledges the arrangement publicly.",
+      "history": "Trained under Father Oaken since childhood. Took to herbalism naturally and now produces the majority of Emberhome's medicinal supplies. Works quietly and prefers plants to people.",
+      "relationships": {
+        "Father Oaken": "mentor -- she loves him like a father",
+        "Birsa": "silent partnership -- supply chain for medicinal ingredients",
+        "Elder Maven": "shares samples with her, though they disagree on methodology"
+      },
+      "want": "A greenhouse. Enough light and water to grow herbs instead of scavenging them.",
+      "need": "To speak up. Her knowledge of the Blight's botanical vectors is critical and she keeps it to herself.",
+      "voice": "Quiet, observant. Speaks in short, complete sentences. 'The dosage matters. Too much is poison. Too little is hope.'",
+      "description": "A young woman with steady hands and a quiet demeanor. Her apron pockets are always full of dried herbs, and she smells of camphor and green things."
+    },
+    {
+      "name": "Old Miner Grod",
+      "pronouns": "he/him",
+      "function": "dungeon_npc",
+      "location": "Ironvein Mines",
+      "quirk": "Knocks on the wall three times before entering any room. Claims the stone 'tells you if it's safe.'",
+      "secret": "Knows the location of a sealed Amber Vault deep in the mines but is too afraid to go there alone. The vault is guarded by an Ironvein Golem that killed his partner.",
+      "history": "A miner who refused to leave the Ironvein shafts when everyone else evacuated. He lives in a sealed side-tunnel and survives on stored rations and rainwater filtered through stone. He knows every safe path in the upper mines.",
+      "relationships": {
+        "Weld": "former supplier -- used to provide Weld with raw iron ore",
+        "The Ironvein Golem": "mortal enemy -- it killed his partner Dahl"
+      },
+      "want": "Revenge on the Golem. Access to the Vault.",
+      "need": "To leave the mines. To accept that Dahl is gone.",
+      "voice": "Gravel-voiced, paranoid. Taps walls constantly. 'Quiet. You hear that? No? Good. That means it's not here.'",
+      "description": "A gaunt, filthy man with a headlamp made from an ember shard and iron wire. His fingernails are black with mine-dust, and he flinches at sudden movements."
+    },
+    {
+      "name": "Ghost of Lady Ashwick",
+      "pronouns": "she/her",
+      "function": "dungeon_npc",
+      "location": "Collapsed Cathedral",
+      "quirk": "Her speech is interspersed with fragments of a prayer that was being said when the Cathedral fell.",
+      "secret": "Knows the location of an Arborist relic hidden beneath the Cathedral altar. The relic is a Whisper-Key -- but reaching it requires solving a puzzle she cannot describe clearly through the veil of death.",
+      "history": "A noble of the pre-Emberhome settlement who died when the Cathedral collapsed during the second Rot incursion. Her ghost is bound to the building by the amber inlaid in the altar.",
+      "relationships": {
+        "Father Oaken": "he has tried to put her to rest three times and failed each time",
+        "The Amber": "bound to the altar's amber inlay -- cannot leave the Cathedral's footprint"
+      },
+      "want": "To complete the prayer that was interrupted by her death.",
+      "need": "Release. To accept that the world moved on without her.",
+      "voice": "Echoing, fragmented. Sentences trail into prayer fragments. 'The light was... and we shall not falter... the key is beneath where the... grant us your warmth in the...'",
+      "description": "A translucent figure in formal robes, her form flickering like a candle in wind. Amber light pulses where her heart would be. She is beautiful and terribly sad."
+    },
+    {
+      "name": "The Fungal Hermit",
+      "pronouns": "he/him",
+      "function": "dungeon_npc",
+      "location": "Rot Marsh",
+      "quirk": "Speaks to mushrooms by name. Has favorites. Gets jealous on their behalf.",
+      "secret": "Has developed a partial immunity to the Blight through years of controlled exposure. His blood might hold the key to a cure -- if anyone could extract it without killing him.",
+      "history": "A former researcher from Elder Maven's settlement who went native in the Rot Marsh. He studies the Blight from inside it, living among the fungi he was sent to destroy. He no longer remembers his original name.",
+      "relationships": {
+        "Elder Maven": "former colleague -- she thinks he's dead",
+        "The Blight": "has an uneasy coexistence with local rot colonies",
+        "Birsa": "occasional trading partner -- she knows his location and tells no one"
+      },
+      "want": "To prove the Blight can be lived with, not just fought.",
+      "need": "To share his findings before the immunity kills him -- the controlled exposure is slowly consuming his organs.",
+      "voice": "Dreamy, distracted. Frequently addresses mushrooms mid-sentence. 'You see, the spores -- no, Mildred, I'm talking -- the spores have a pattern, if you...'",
+      "description": "A man-shaped growth of moss and mushroom, barely recognizable as human. His eyes are clear and sharp, but shelf-fungi grow from his shoulders and his skin has a greenish cast."
+    }
+  ],
+  "generic_templates": [
+    {
+      "template_id": "weary_refugee",
+      "function": "ambient",
+      "description": "Hollow-eyed and travel-worn, carrying everything they own in a single bundle. They flinch at loud noises and sleep in shifts.",
+      "voice_hint": "Exhausted, grateful for small kindnesses. 'Is it safe here? They said it was safe.'",
+      "possible_rumors": ["Heard screams from the direction of the mines", "Saw lights moving in the Rot Marsh", "Came from a settlement that fell overnight"]
+    },
+    {
+      "template_id": "emberhome_guard",
+      "function": "ambient",
+      "description": "An Emberhome militia member in patched iron and leather, standing post or walking patrol. Alert but tired. Always tired.",
+      "voice_hint": "Professional, clipped. 'Move along. Stay inside the walls after dark.'",
+      "possible_rumors": ["The Warden's worried about the southern approach", "Something's been testing the perimeter at night", "Captain Ashara doubled the watch rotation"]
+    },
+    {
+      "template_id": "traveling_merchant",
+      "function": "merchant",
+      "description": "A road-worn trader with a pack mule and a suspicious eye. Carries Tier I-II goods and charges above market rate for the privilege of convenience.",
+      "voice_hint": "Transactional, wary. 'I don't haggle. The road's too long for that.'",
+      "possible_rumors": ["The road from the Ridge is blocked by a new Rot incursion", "Heard there's amber in the Sunken Ruins", "Grimjaw's prices are half mine but ask where he gets his stock"]
+    },
+    {
+      "template_id": "scavenger",
+      "function": "ambient",
+      "description": "A solo operator in mismatched gear, heading into or returning from the tunnels. They keep their finds close and their route closer.",
+      "voice_hint": "Tight-lipped, territorial. 'That area's mine. Find your own.'",
+      "possible_rumors": ["Found signs of Arborist construction in the lower Tangle", "The Rot's spreading faster in the eastern passages", "Someone's been leaving blue cairns on a new path"]
+    },
+    {
+      "template_id": "escaped_prisoner",
+      "function": "quest_hook",
+      "description": "Bruised, shaking, bearing marks of restraint on their wrists. They escaped from a Hollow work-crew -- and yes, Hollows do use prisoners. As bait.",
+      "voice_hint": "Frantic, disjointed. 'They're organized. They remember. They remember everything.'",
+      "possible_rumors": ["The Hollows are gathering in the Stone-Grip", "There are prisoners still alive in the deeper tunnels", "Something is directing the Hollows -- something that thinks"]
+    },
+    {
+      "template_id": "rot_touched_villager",
+      "function": "ambient",
+      "description": "A resident of Emberhome showing early-stage Blight symptoms -- grey veins under the skin, a persistent cough, a faint sweet smell. They hide it. Everyone hides it.",
+      "voice_hint": "Defensive, frightened. 'I'm fine. It's just a cold. Leave me alone.'",
+      "possible_rumors": ["Sister Tallow has a treatment but not a cure", "There are more infected than anyone admits", "Birsa looks at people strangely -- like she can see something the rest of us can't"]
+    },
+    {
+      "template_id": "mercenary",
+      "function": "recruit",
+      "description": "A professional fighter looking for paid work. Better equipped than most Seekers, with the cynical efficiency of someone who's been doing this too long.",
+      "voice_hint": "Business-like. 'My rate's five amber shards per delve. Non-negotiable. I don't die for free.'",
+      "possible_rumors": ["The Rot Hunter's been spotted in Zone 1 -- earlier than usual", "Someone's offering double rate for a Rot Spire run", "The last party to hit the Deep Shafts came back one short"]
+    },
+    {
+      "template_id": "pilgrim",
+      "function": "ambient",
+      "description": "A traveler making the dangerous journey to the Chapel of the Eternal Flame. They carry amber offerings and speak in the reverent tones of someone who has walked a very long way on faith alone.",
+      "voice_hint": "Reverent, hopeful. 'The flame still burns. That means something. That has to mean something.'",
+      "possible_rumors": ["The Chapel's flame has been flickering", "Father Oaken looks more tired each season", "Pilgrims from the eastern settlements have stopped coming"]
+    },
+    {
+      "template_id": "apprentice_forge_worker",
+      "function": "ambient",
+      "description": "A young person learning the trade under Weld or Kettrick. Eager, clumsy, covered in minor burns and bandaged fingers.",
+      "voice_hint": "Enthusiastic, nervous. 'Master Weld says I'm making progress. He didn't yell today. That's progress.'",
+      "possible_rumors": ["Weld's been working on something secret at night", "Kettrick gets messages from outside Emberhome", "The forge has been using more Aether than usual"]
+    },
+    {
+      "template_id": "wilderness_guide",
+      "function": "recruit",
+      "description": "A weathered survivalist who knows the paths between Emberhome and the surrounding zones. They charge for their knowledge and earn every shard.",
+      "voice_hint": "Laconic, confident. 'Follow me, step where I step, and you'll live. Probably.'",
+      "possible_rumors": ["New paths have opened since the last tremor", "The Charred Plains aren't as empty as they look", "Something large has been moving through the Ashwood at night"]
+    }
+  ]
+}

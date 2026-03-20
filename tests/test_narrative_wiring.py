@@ -247,17 +247,6 @@ class TestAllStandings:
 def _make_bridge():
     """Construct a minimal UniversalGameBridge without a real engine."""
     from codex.games.bridge import UniversalGameBridge
-    bridge = object.__new__(UniversalGameBridge)
-    bridge.dead = False
-    bridge.last_frame = None
-    bridge._broadcast = None
-    bridge._butler = None
-    bridge.show_dm_notes = False
-    bridge._talking_to = None
-    bridge._session_log = []
-    bridge._momentum_handler = None
-    bridge._pending_momentum_msgs = []
-
     # Minimal mock engine
     engine = MagicMock()
     engine.system_id = "dnd5e"
@@ -268,9 +257,8 @@ def _make_bridge():
     engine.party = []
     engine.character = None
     engine.populated_rooms = {}
-    bridge.engine = engine
-    bridge._system_tag = "DND5E"
-    bridge._rest_mgr = MagicMock()
+
+    bridge = UniversalGameBridge.create_lightweight(engine)
 
     # Reputation tracker
     from codex.core.mechanics.reputation import ReputationTracker

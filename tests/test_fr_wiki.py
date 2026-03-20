@@ -461,20 +461,7 @@ def _make_mock_engine(exits=None, room_id=0):
 def _make_bridge(engine):
     """Create a UniversalGameBridge bypassing __init__."""
     from codex.games.bridge import UniversalGameBridge
-    from codex.core.mechanics.rest import RestManager
-
-    bridge = object.__new__(UniversalGameBridge)
-    bridge.engine = engine
-    bridge.dead = False
-    bridge.last_frame = None
-    bridge._broadcast = None
-    bridge._system_tag = engine.system_id.upper()
-    bridge._rest_mgr = RestManager()
-    bridge._butler = None
-    bridge.show_dm_notes = False
-    bridge._talking_to = None
-    bridge._session_log = []     # WO-V61.0
-    return bridge
+    return UniversalGameBridge.create_lightweight(engine)
 
 
 class TestLoreCommand:

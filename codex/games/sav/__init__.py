@@ -6,7 +6,7 @@ Space opera heist game using the Forged in the Dark framework.
 Uses three action categories (Insight, Prowess, Resolve) with d6 pools.
 
 Integrates with:
-  - codex/core/services/fitd_engine.py for shared FITD mechanics
+  - codex/core/engines/narrative_base.py for shared FITD mechanics
   - codex/forge/char_wizard.py via vault/FITD/sav/creation_rules.json
   - codex/games/sav/ships.py for ship management
   - codex/games/sav/jobs.py for job phase management
@@ -15,9 +15,9 @@ Activated when a Scum & Villainy campaign is loaded.
 """
 
 from dataclasses import dataclass, field
-from typing import Any, Dict, List, Optional
+from typing import Any, Callable, Dict, List, Optional
 
-from codex.core.services.narrative_loom import NarrativeLoomMixin
+from codex.core.engines.narrative_base import NarrativeEngineBase
 
 
 # =========================================================================
@@ -79,11 +79,15 @@ class SaVCharacter:
 # ENGINE
 # =========================================================================
 
-class SaVEngine(NarrativeLoomMixin):
+class SaVEngine(NarrativeEngineBase):
     """Core engine for Scum & Villainy campaigns.
 
     Manages crew, ship state, faction relationships, and the job cycle.
     Tracks heat, rep, and coin as crew resources.
+
+    Inherits from NarrativeEngineBase:
+        create_character, add_to_party, remove_from_party, get_active_party,
+        roll_action, push_stress, get_mood_context, handle_command.
 
     Lazy-initialized subsystems:
         _ship_state: ShipState (ship management)
@@ -96,11 +100,7 @@ class SaVEngine(NarrativeLoomMixin):
 
     def __init__(self) -> None:
         """Initialize engine with default state and lazy subsystem placeholders."""
-        from codex.core.services.fitd_engine import StressClock, FactionClock  # noqa: F401
-        self.character: Optional[SaVCharacter] = None
-        self.party: List[SaVCharacter] = []
-        self.stress_clocks: Dict[str, Any] = {}
-        self.faction_clocks: List[Any] = []
+        super().__init__()
         self.ship_name: str = ""
         self.ship_class: str = ""
         self.heat: int = 0        # Wanted level (0-6)
@@ -109,19 +109,56 @@ class SaVEngine(NarrativeLoomMixin):
         # Lazy-init subsystem references
         self._ship_state: Optional[Any] = None    # ShipState
         self._job_manager: Optional[Any] = None   # JobPhaseManager
-        self._init_loom()
-        self.setting_id: str = ""
+        self._downtime_mgr: Optional[Any] = None  # SaVDowntimeManager
+        self._planning_phase: Optional[Any] = None  # PlanningPhase
+
+    # =====================================================================
+    # HOOKS (NarrativeEngineBase)
+    # =====================================================================
+
+    def _create_character(self, name: str, **kwargs) -> SaVCharacter:
+        """Create a SaVCharacter from name and kwargs."""
+        return SaVCharacter.from_dict({"name": name, **kwargs})
+
+    def _get_command_registry(self) -> Dict[str, Callable]:
+        """Map command names to handlers, including base aliases."""
+        return {
+            # Alias base crew stress display to SaV's command name
+            "crew_status": self._cmd_crew_stress,
+            # Planning phase
+            "plan_job": self._cmd_plan_job,
+            # Downtime commands
+            "downtime_acquire": self._cmd_downtime_acquire,
+            "downtime_recover": self._cmd_downtime_recover,
+            "downtime_vice": self._cmd_downtime_vice,
+            "downtime_project": self._cmd_downtime_project,
+            "downtime_train": self._cmd_downtime_train,
+            "downtime_repair": self._cmd_downtime_repair,
+            "downtime_resupply": self._cmd_downtime_resupply,
+            # Post-job faction response
+            "faction_response": self._cmd_faction_response,
+            # Inherited narrative base commands (explicit registration for discoverability)
+            "fortune": self._cmd_fortune,
+            "resist": self._cmd_resist,
+            "gather_info": self._cmd_gather_info,
+        }
+
+    def _format_status(self) -> str:
+        """Return SaV-specific status string."""
+        lead = self.party[0] if self.party else None
+        return (
+            f"Ship: {self.ship_name or 'Unnamed'} ({self.ship_class or 'Unknown'}) | "
+            f"Heat: {self.heat} | Coin: {self.coin} | Rep: {self.rep} | "
+            f"Crew: {len(self.party)} | "
+            f"Lead: {lead.name if lead else 'None'}"
+        )
 
     # =====================================================================
     # LAZY ACCESSORS
     # =====================================================================
 
     def _get_ship_state(self) -> Any:
-        """Lazily initialize and return the ShipState.
-
-        Returns:
-            Active ShipState instance (created from ship_name/ship_class if needed).
-        """
+        """Lazily initialize and return the ShipState."""
         if self._ship_state is None:
             from codex.games.sav.ships import ShipState
             self._ship_state = ShipState(
@@ -131,164 +168,32 @@ class SaVEngine(NarrativeLoomMixin):
         return self._ship_state
 
     def _get_job_manager(self) -> Any:
-        """Lazily initialize and return the JobPhaseManager.
-
-        Returns:
-            Active JobPhaseManager instance.
-        """
+        """Lazily initialize and return the JobPhaseManager."""
         if self._job_manager is None:
             from codex.games.sav.jobs import JobPhaseManager
             self._job_manager = JobPhaseManager()
         return self._job_manager
 
-    # =====================================================================
-    # CHARACTER MANAGEMENT
-    # =====================================================================
+    def _get_downtime_mgr(self) -> Any:
+        """Lazily initialize and return the SaVDowntimeManager."""
+        if self._downtime_mgr is None:
+            from codex.games.sav.downtime import SaVDowntimeManager
+            self._downtime_mgr = SaVDowntimeManager()
+        return self._downtime_mgr
 
-    def create_character(self, name: str, **kwargs) -> SaVCharacter:
-        """Create a new character and make them the party lead.
-
-        Args:
-            name: Character's name.
-            **kwargs: Additional SaVCharacter fields (playbook, heritage, etc.).
-
-        Returns:
-            Newly created SaVCharacter.
-        """
-        setting_id = kwargs.pop("setting_id", self.setting_id)
-        char = SaVCharacter(name=name, setting_id=setting_id, **kwargs)
-        self.character = char
-        if not self.party:
-            self.party = [char]
-        else:
-            self.party.append(char)
-        if not self.setting_id and setting_id:
-            self.setting_id = setting_id
-        from codex.core.services.fitd_engine import StressClock
-        self.stress_clocks[name] = StressClock()
-        self._add_shard(
-            f"Ship crew founded. Lead: {name} ({char.playbook or 'Unknown'}). "
-            f"Ship: {self.ship_name or 'Unnamed'}",
-            "MASTER",
-        )
-        return char
-
-    def add_to_party(self, char: SaVCharacter) -> None:
-        """Add an existing character to the active party.
-
-        Args:
-            char: The SaVCharacter to add.
-        """
-        self.party.append(char)
-        from codex.core.services.fitd_engine import StressClock
-        self.stress_clocks[char.name] = StressClock()
-
-    def remove_from_party(self, char: SaVCharacter) -> None:
-        """Remove a character from the active party.
-
-        Args:
-            char: The SaVCharacter to remove.
-        """
-        if char in self.party:
-            self.party.remove(char)
-            self.stress_clocks.pop(char.name, None)
-
-    def get_active_party(self) -> List[SaVCharacter]:
-        """Return all current party members.
-
-        Returns:
-            List of active SaVCharacter instances.
-        """
-        return list(self.party)
+    def _get_planning_phase(self) -> Any:
+        """Lazily initialize and return the PlanningPhase."""
+        if self._planning_phase is None:
+            from codex.games.sav.jobs import PlanningPhase
+            self._planning_phase = PlanningPhase()
+        return self._planning_phase
 
     # =====================================================================
-    # ACTION ROLLS
-    # =====================================================================
-
-    def roll_action(self, character: Optional[SaVCharacter] = None,
-                    action: str = "scrap", bonus_dice: int = 0, **kwargs) -> Any:
-        """Roll an FITD action using the character's action dots.
-
-        Args:
-            character: The acting character (defaults to lead).
-            action: Action attribute name (e.g. 'hack', 'helm').
-            bonus_dice: Extra dice from teamwork / assist.
-            **kwargs: Accepts 'position' (Position) and 'effect' (Effect).
-
-        Returns:
-            FITDResult with outcome, dice, and position/effect context.
-        """
-        from codex.core.services.fitd_engine import FITDActionRoll, Position, Effect
-        char = character or self.character
-        dots = getattr(char, action, 0) if char else 0
-        position = kwargs.get("position", Position.RISKY)
-        effect = kwargs.get("effect", Effect.STANDARD)
-        roll = FITDActionRoll(dice_count=dots + bonus_dice,
-                              position=position, effect=effect)
-        return roll.roll()
-
-    def push_stress(self, char_name: str, amount: int = 1) -> dict:
-        """Push stress with trauma shard emission (WO-V61.0).
-
-        Args:
-            char_name: Name of the character whose stress clock to push.
-            amount: Stress points to add.
-
-        Returns:
-            StressClock.push() result dict, or empty dict if no clock found.
-        """
-        clock = self.stress_clocks.get(char_name)
-        if not clock:
-            return {}
-        result = clock.push(amount)
-        if result.get("trauma_triggered"):
-            self._add_shard(
-                f"{char_name} suffered trauma: {result['new_trauma']}. "
-                f"Total traumas: {result['total_traumas']}/4.",
-                "ANCHOR", source="session",
-            )
-        return result
-
-    def get_mood_context(self) -> dict:
-        """Return current mechanical state as narrative mood modifiers (WO-V61.0)."""
-        char = self.character
-        clock = self.stress_clocks.get(char.name) if char and hasattr(self, 'stress_clocks') else None
-        stress = clock.current_stress if clock else 0
-        max_stress = clock.max_stress if clock else 9
-        trauma_count = len(clock.traumas) if clock else 0
-        stress_pct = stress / max(1, max_stress)
-        tension = min(1.0, stress_pct + (trauma_count * 0.15))
-
-        words = []
-        if trauma_count >= 2:
-            words.extend(["haunted", "fractured", "unreliable"])
-        if stress_pct > 0.7:
-            words.extend(["fraying", "manic", "reckless"])
-
-        if stress_pct > 0.8 or trauma_count >= 3:
-            condition = "critical"
-        elif stress_pct > 0.5 or trauma_count >= 1:
-            condition = "battered"
-        else:
-            condition = "healthy"
-
-        return {
-            "tension": round(tension, 2),
-            "tone_words": words,
-            "party_condition": condition,
-            "system_specific": {"stress": stress, "trauma_count": trauma_count},
-        }
-
-    # =====================================================================
-    # STATUS
+    # STATUS (override for ship info)
     # =====================================================================
 
     def get_status(self) -> Dict[str, Any]:
-        """Return a summary dict suitable for Butler status display.
-
-        Returns:
-            Dict with system, party_size, lead, playbook, ship, heat, coin.
-        """
+        """Return a summary dict suitable for Butler status display."""
         lead = self.party[0] if self.party else None
         ship = self._ship_state
         return {
@@ -334,42 +239,37 @@ class SaVEngine(NarrativeLoomMixin):
         return filter_by_setting(SHIP_CLASSES, self.setting_id)
 
     # =====================================================================
-    # SAVE / LOAD
+    # SAVE / LOAD (extend base with SaV-specific fields)
     # =====================================================================
 
     def save_state(self) -> Dict[str, Any]:
-        """Serialize full engine state for persistence.
-
-        Returns:
-            Dict containing all engine state including subsystem state.
-        """
-        return {
-            "system_id": self.system_id,
-            "setting_id": self.setting_id,
-            "party": [c.to_dict() for c in self.party],
-            "stress": {k: v.to_dict() for k, v in self.stress_clocks.items()},
-            "faction_clocks": [c.to_dict() for c in self.faction_clocks],
-            "ship_name": self.ship_name, "ship_class": self.ship_class,
-            "heat": self.heat, "rep": self.rep, "coin": self.coin,
-            # Subsystem state
+        """Serialize full engine state for persistence."""
+        state = super().save_state()
+        state.update({
+            "ship_name": self.ship_name,
+            "ship_class": self.ship_class,
+            "heat": self.heat,
+            "rep": self.rep,
+            "coin": self.coin,
             "ship_state": self._ship_state.to_dict() if self._ship_state else None,
             "job_manager": self._job_manager.to_dict() if self._job_manager else None,
-        }
+            "downtime_mgr": self._downtime_mgr.to_dict() if self._downtime_mgr else None,
+            "planning_phase": self._planning_phase.to_dict() if self._planning_phase else None,
+        })
+        return state
 
     def load_state(self, data: Dict[str, Any]) -> None:
-        """Restore engine state from a previously saved dict.
-
-        Args:
-            data: Dict from a previous save_state() call.
-        """
+        """Restore engine state from a previously saved dict."""
+        # Use SaVCharacter.from_dict for party (base uses _create_character)
         from codex.core.services.fitd_engine import StressClock, UniversalClock
+        self.setting_id = data.get("setting_id", "")
         self.party = [SaVCharacter.from_dict(d) for d in data.get("party", [])]
         self.character = self.party[0] if self.party else None
         self.stress_clocks = {k: StressClock.from_dict(v)
                               for k, v in data.get("stress", {}).items()}
         self.faction_clocks = [UniversalClock.from_dict(c)
                                for c in data.get("faction_clocks", [])]
-        self.setting_id = data.get("setting_id", "")
+        # SaV-specific fields
         self.ship_name = data.get("ship_name", "")
         self.ship_class = data.get("ship_class", "")
         self.heat = data.get("heat", 0)
@@ -384,47 +284,18 @@ class SaVEngine(NarrativeLoomMixin):
         if job_data:
             from codex.games.sav.jobs import JobPhaseManager
             self._job_manager = JobPhaseManager.from_dict(job_data)
+        dt_data = data.get("downtime_mgr")
+        if dt_data:
+            from codex.games.sav.downtime import SaVDowntimeManager
+            self._downtime_mgr = SaVDowntimeManager.from_dict(dt_data)
+        pp_data = data.get("planning_phase")
+        if pp_data:
+            from codex.games.sav.jobs import PlanningPhase
+            self._planning_phase = PlanningPhase.from_dict(pp_data)
 
     # =====================================================================
-    # COMMAND DISPATCHER
+    # SHIP COMMANDS
     # =====================================================================
-
-    def handle_command(self, cmd: str, **kwargs) -> str:
-        """Dispatch a command string to the appropriate handler.
-
-        Args:
-            cmd: Command identifier string.
-            **kwargs: Command-specific keyword arguments.
-
-        Returns:
-            Human-readable result string.
-        """
-        if cmd == "trace_fact":
-            return self.trace_fact(kwargs.get("fact", ""))
-        handler = getattr(self, f"_cmd_{cmd}", None)
-        if handler:
-            return handler(**kwargs)
-        return f"Unknown command: {cmd}"
-
-    # ─── Crew commands ────────────────────────────────────────────────
-
-    def _cmd_roll_action(self, **kwargs) -> str:
-        """Roll an FITD action check."""
-        from codex.core.services.fitd_engine import format_roll_result
-        result = self.roll_action(**kwargs)
-        return format_roll_result(result)
-
-    def _cmd_crew_status(self, **kwargs) -> str:
-        """Show crew stress and trauma."""
-        lines = ["Crew Stress/Trauma:"]
-        for name, clock in self.stress_clocks.items():
-            traumas = ", ".join(clock.traumas) if clock.traumas else "none"
-            lines.append(f"  {name}: stress {clock.current_stress}/{clock.max_stress} | traumas: {traumas}")
-        if not self.stress_clocks:
-            lines.append("  No crew members registered.")
-        return "\n".join(lines)
-
-    # ─── Ship commands ────────────────────────────────────────────────
 
     def _cmd_ship_status(self, **kwargs) -> str:
         """Display ship name, class, systems, and modules."""
@@ -447,11 +318,7 @@ class SaVEngine(NarrativeLoomMixin):
         return "\n".join(lines)
 
     def _cmd_ship_upgrade(self, **kwargs) -> str:
-        """Install a module on the ship.
-
-        Kwargs:
-            module: Module name to install (str).
-        """
+        """Install a module on the ship."""
         module_name = kwargs.get("module", "")
         if not module_name:
             return "Specify a module: ship_upgrade module=<module_name>"
@@ -461,12 +328,7 @@ class SaVEngine(NarrativeLoomMixin):
         return result["message"]
 
     def _cmd_ship_combat(self, **kwargs) -> str:
-        """Roll ship combat using a specified system.
-
-        Kwargs:
-            system: System to use (engines/hull/comms/weapons). Default: weapons.
-            bonus_dice: Additional dice. Default: 0.
-        """
+        """Roll ship combat using a specified system."""
         from codex.games.sav.ships import ship_combat_roll
         ship = self._get_ship_state()
         system = kwargs.get("system", "weapons")
@@ -478,12 +340,7 @@ class SaVEngine(NarrativeLoomMixin):
         )
 
     def _cmd_ship_repair(self, **kwargs) -> str:
-        """Repair a ship system during downtime.
-
-        Kwargs:
-            system: System to repair (str).
-            mechanic_dots: Mechanic's rig dots. Default: 0.
-        """
+        """Repair a ship system during downtime."""
         from codex.games.sav.ships import repair_system
         ship = self._get_ship_state()
         system = kwargs.get("system", "hull")
@@ -497,11 +354,7 @@ class SaVEngine(NarrativeLoomMixin):
         )
 
     def _cmd_install_module(self, **kwargs) -> str:
-        """Install a module on the ship.
-
-        Kwargs:
-            module: Module name to install (str).
-        """
+        """Install a named module on the ship."""
         module_name = kwargs.get("module", "")
         if not module_name:
             return "Specify a module: install_module module=<module_name>"
@@ -523,12 +376,7 @@ class SaVEngine(NarrativeLoomMixin):
         return result["message"]
 
     def _cmd_set_course(self, **kwargs) -> str:
-        """Plot a hyperspace jump to a destination.
-
-        Kwargs:
-            destination: Target system or sector (str).
-            nav_dots: Pilot's helm dots. Default: 0.
-        """
+        """Plot a hyperspace jump to a destination."""
         from codex.games.sav.jobs import jump_planning
         destination = kwargs.get("destination", "unknown destination")
         nav_dots = int(kwargs.get("nav_dots", 0))
@@ -560,25 +408,185 @@ class SaVEngine(NarrativeLoomMixin):
         )
         return f"COMPLICATION: {entry['text']}\nEffect: {entry.get('effect', 'none')}"
 
-    # ─── Job commands ─────────────────────────────────────────────────
+    # =====================================================================
+    # PLANNING PHASE COMMANDS
+    # =====================================================================
 
-    def _cmd_engagement(self, **kwargs) -> str:
-        """Roll the engagement roll for a job.
+    def _cmd_plan_job(self, **kwargs) -> str:
+        """Set the plan type and detail before engagement.
 
         Kwargs:
-            target: Job target (str).
-            plan_type: Plan approach key (str). Default: assault.
-            detail_bonus: Bonus dice from actionable detail. Default: 0.
+            plan_type (str): One of assault/deception/infiltration/mystic/social/transport.
+            detail (str): Specific actionable context for the engagement bonus.
+
+        Returns:
+            Confirmation string or error message.
         """
+        plan_type = kwargs.get("plan_type", "assault")
+        detail = kwargs.get("detail", "")
+        phase = self._get_planning_phase()
+        result = phase.set_plan(plan_type, detail)
+        if not result["success"]:
+            return result["error"]
+        self._add_shard(f"Job planned: {plan_type} — {detail}", "CHRONICLE")
+        return f"Plan set: {plan_type}\nDetail: {detail or '(none)'}"
+
+    # =====================================================================
+    # DOWNTIME COMMANDS
+    # =====================================================================
+
+    def _cmd_downtime_acquire(self, **kwargs) -> str:
+        """Acquire a temporary asset during downtime.
+
+        Kwargs:
+            crew_tier (int): Crew tier as dice pool base (default: party size).
+            quality (int): Desired asset quality (default 1).
+
+        Returns:
+            Result description string.
+        """
+        mgr = self._get_downtime_mgr()
+        crew_tier = int(kwargs.get("crew_tier", max(1, len(self.party))))
+        quality = int(kwargs.get("quality", 1))
+        result = mgr.acquire_asset(crew_tier, quality)
+        return result["description"]
+
+    def _cmd_downtime_recover(self, **kwargs) -> str:
+        """Recover from harm during downtime.
+
+        Kwargs:
+            healer_dots (int): Healer's relevant action dots (default 0).
+
+        Returns:
+            Result description string.
+        """
+        mgr = self._get_downtime_mgr()
+        healer_dots = int(kwargs.get("healer_dots", 0))
+        result = mgr.recover(healer_dots)
+        return result["description"]
+
+    def _cmd_downtime_vice(self, **kwargs) -> str:
+        """Indulge vice for stress recovery.
+
+        Automatically reduces lead character's stress clock if present.
+
+        Returns:
+            Result description string.
+        """
+        mgr = self._get_downtime_mgr()
+        char = self.character
+        result = mgr.vice_indulgence()
+        if char and char.name in self.stress_clocks:
+            self.stress_clocks[char.name].recover(result["stress_recovered"])
+        return result["description"]
+
+    def _cmd_downtime_project(self, **kwargs) -> str:
+        """Work on a long-term project clock.
+
+        Kwargs:
+            project_name (str): Name of the project (required).
+            action_dots (int): Relevant action dots for the roll (default 1).
+            clock_size (int): Project clock size if new (default 8).
+
+        Returns:
+            Progress description string or error if name missing.
+        """
+        mgr = self._get_downtime_mgr()
+        name = kwargs.get("project_name", "")
+        if not name:
+            return "Specify project_name."
+        action_dots = int(kwargs.get("action_dots", 1))
+        clock_size = int(kwargs.get("clock_size", 8))
+        result = mgr.long_term_project(name, action_dots, clock_size)
+        if result["completed"]:
+            self._add_shard(f"Project completed: {name}", "ANCHOR")
+        return result["description"]
+
+    def _cmd_downtime_train(self, **kwargs) -> str:
+        """Train for XP in an attribute.
+
+        Kwargs:
+            attribute (str): Attribute to mark XP in (default "playbook").
+
+        Returns:
+            Confirmation string with XP gained.
+        """
+        mgr = self._get_downtime_mgr()
+        result = mgr.train(kwargs.get("attribute", "playbook"))
+        return result["description"]
+
+    def _cmd_downtime_repair(self, **kwargs) -> str:
+        """Repair the ship during downtime using the rig or mechanic action.
+
+        Kwargs:
+            system (str): Ship system to repair (default "hull").
+            mechanic_dots (int): Mechanic's rig/hack dots (default 0).
+
+        Returns:
+            Repair result description string.
+        """
+        system = kwargs.get("system", "hull")
+        mechanic_dots = int(kwargs.get("mechanic_dots", 0))
+        ship = self._get_ship_state()
+        from codex.games.sav.ships import repair_system
+        result = repair_system(ship, system, mechanic_dots)
+        if "error" in result:
+            return result["error"]
+        self._add_shard(
+            f"Ship repair ({system}): quality {result['system_before']} -> {result['system_after']}",
+            "CHRONICLE",
+        )
+        return (
+            f"Downtime repair ({system}): {result['description']}\n"
+            f"Quality: {result['system_before']} -> {result['system_after']}"
+        )
+
+    def _cmd_downtime_resupply(self, **kwargs) -> str:
+        """Resupply the ship — restore 1 gambit during downtime.
+
+        Returns:
+            Confirmation with current gambit count.
+        """
+        ship = self._get_ship_state()
+        old = ship.gambits
+        ship.gambits = min(4, ship.gambits + 1)
+        self._add_shard(f"Ship resupply: gambits {old} -> {ship.gambits}", "CHRONICLE")
+        return f"Ship resupplied. Gambits: {old} -> {ship.gambits}/4"
+
+    def _cmd_faction_response(self, **kwargs) -> str:
+        """Post-job faction reaction based on current heat level.
+
+        Returns:
+            Description of the faction response.
+        """
+        import random as _rng
+        responses = {
+            0: "The factions haven't noticed your crew yet.",
+            1: "Minor faction attention — a warning message delivered.",
+            2: "A faction sends enforcers to make their displeasure known.",
+            3: "Faction retaliation — they strike at your operations.",
+            4: "Full faction war — they're coming for your crew.",
+        }
+        heat_tier = min(4, self.heat)
+        response = responses[heat_tier]
+        roll = _rng.randint(1, 6)
+        if roll >= 5:
+            response += " But an opportunity presents itself..."
+        self._add_shard(f"Faction response (heat {self.heat}): {response}", "CHRONICLE")
+        return f"Faction Response (heat {self.heat}): {response}"
+
+    # =====================================================================
+    # JOB COMMANDS
+    # =====================================================================
+
+    def _cmd_engagement(self, **kwargs) -> str:
+        """Roll the engagement roll for a job."""
         manager = self._get_job_manager()
         target = kwargs.get("target", "Unknown target")
         plan_type = kwargs.get("plan_type", "assault")
         detail_bonus = int(kwargs.get("detail_bonus", 0))
         crew_tier = max(1, len(self.party))
-
-        # Start the job
         manager.start_job(target, plan_type)
-
         result = manager.job_engagement_roll(
             crew_tier=crew_tier,
             plan_type=plan_type,
@@ -596,41 +604,27 @@ class SaVEngine(NarrativeLoomMixin):
         )
 
     def _cmd_resolve_job(self, **kwargs) -> str:
-        """Resolve the current job and collect rewards.
-
-        Kwargs:
-            target_tier: Tier of the job target (int). Default: 2.
-        """
+        """Resolve the current job and collect rewards."""
         manager = self._get_job_manager()
         target_tier = int(kwargs.get("target_tier", 2))
         crew_tier = max(1, len(self.party))
-
         result = manager.resolve_job(
             crew_tier=crew_tier,
             target_tier=target_tier,
         )
         if "error" in result:
             return result["error"]
-
-        # Apply rewards to engine state
         self.coin += result["cred"]
         self.rep += result["rep"]
         self.heat += result["heat"]
-
-        # Refresh gambits for next job
         ship = self._get_ship_state()
         ship.gambits = min(4, ship.gambits + 1)
-
         self._add_shard(
             f"Job resolved. +{result['cred']} cred, +{result['rep']} rep, +{result['heat']} heat.",
             "CHRONICLE",
         )
         return result["summary"]
 
-
-# =========================================================================
-# COMMAND DEFINITIONS
-# =========================================================================
 
 # =========================================================================
 # COMPLICATION TABLE (Gap Fix: per-engine consequences)
@@ -661,23 +655,40 @@ COMPLICATION_TABLE: Dict[int, List[Dict[str, Any]]] = {
 }
 
 
+# =========================================================================
+# COMMAND DEFINITIONS
+# =========================================================================
+
 SAV_COMMANDS = {
     # Ship commands
-    "ship_status":      "Display ship name, class, systems, and modules",
-    "ship_upgrade":     "Install a module on the ship (module=<name>)",
-    "ship_combat":      "Roll ship combat with a system (system=<engines|hull|comms|weapons>)",
-    "ship_repair":      "Repair a ship system during downtime (system=<name>, mechanic_dots=<int>)",
-    "install_module":   "Install a named module (module=<name>)",
-    "use_gambit":       "Spend 1 gambit for +1d on next ship action",
-    "set_course":       "Plot hyperspace jump (destination=<name>, nav_dots=<int>)",
-    "jump":             "Execute a hyperspace jump (alias for set_course)",
+    "ship_status":          "Display ship name, class, systems, and modules",
+    "ship_upgrade":         "Install a module on the ship (module=<name>)",
+    "ship_combat":          "Roll ship combat with a system (system=<engines|hull|comms|weapons>)",
+    "ship_repair":          "Repair a ship system during downtime (system=<name>, mechanic_dots=<int>)",
+    "install_module":       "Install a named module (module=<name>)",
+    "use_gambit":           "Spend 1 gambit for +1d on next ship action",
+    "set_course":           "Plot hyperspace jump (destination=<name>, nav_dots=<int>)",
+    "jump":                 "Execute a hyperspace jump (alias for set_course)",
     # Job commands
-    "engagement":       "Roll job engagement (target=<name>, plan_type=<str>)",
-    "resolve_job":      "Resolve active job and collect cred/rep/heat (target_tier=<int>)",
+    "engagement":           "Roll job engagement (target=<name>, plan_type=<str>)",
+    "resolve_job":          "Resolve active job and collect cred/rep/heat (target_tier=<int>)",
+    "plan_job":             "Set plan type and detail before job engagement",
+    "faction_response":     "Check faction reaction based on heat level",
+    # Downtime commands
+    "downtime_acquire":     "Acquire a temporary asset (crew_tier=<int>, quality=<int>)",
+    "downtime_recover":     "Recover from harm during downtime (healer_dots=<int>)",
+    "downtime_vice":        "Indulge vice for stress recovery",
+    "downtime_project":     "Work on a long-term project clock (project_name=<str>)",
+    "downtime_train":       "Train for XP in an attribute (attribute=<str>)",
+    "downtime_repair":      "Repair a ship system during downtime (system=<str>, mechanic_dots=<int>)",
+    "downtime_resupply":    "Resupply the ship — restore 1 gambit",
     # Crew commands
-    "roll_action":      "Roll an FITD action check",
-    "crew_status":      "Show crew stress and trauma",
-    "complication":     "Roll a complication from the consequence table",
+    "roll_action":          "Roll an FITD action check",
+    "crew_status":          "Show crew stress and trauma",
+    "complication":         "Roll a complication from the consequence table",
+    "fortune":              "Roll a fortune die pool (dice_count=<int>)",
+    "resist":               "Roll resistance (attribute=<str>)",
+    "gather_info":          "Gather information (action=<str>, question=<str>)",
 }
 
 SAV_CATEGORIES = {
@@ -685,8 +696,13 @@ SAV_CATEGORIES = {
         "ship_status", "ship_upgrade", "ship_combat", "ship_repair",
         "install_module", "use_gambit", "set_course", "jump",
     ],
-    "Jobs": ["engagement", "resolve_job"],
-    "Crew": ["roll_action", "crew_status", "complication"],
+    "Jobs": ["engagement", "resolve_job", "plan_job", "faction_response"],
+    "Downtime": [
+        "downtime_acquire", "downtime_recover", "downtime_vice",
+        "downtime_project", "downtime_train",
+        "downtime_repair", "downtime_resupply",
+    ],
+    "Crew": ["roll_action", "crew_status", "complication", "fortune", "resist", "gather_info"],
 }
 
 

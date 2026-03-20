@@ -67,10 +67,10 @@ class TestBoBPlaybookData:
     """Verify that all four specialist playbooks load with required fields."""
 
     def test_four_playbooks_present(self):
-        # SOURCE: Band of Blades.pdf, pp.79-115 — Heavy, Medic, Officer, Scout
-        # are the four core playbooks (Sniper/Rookie/Soldier are in SPECIALISTS)
-        assert len(PLAYBOOKS) == 4
-        for key in ("Heavy", "Medic", "Officer", "Scout"):
+        # SOURCE: Band of Blades.pdf, pp.79-115 — Heavy, Medic, Officer, Scout, Sniper
+        # are the five specialist playbooks (Rookie/Soldier are rank-and-file)
+        assert len(PLAYBOOKS) == 5
+        for key in ("Heavy", "Medic", "Officer", "Scout", "Sniper"):
             assert key in PLAYBOOKS, f"Missing playbook: {key}"
 
     def test_playbook_has_required_keys(self):

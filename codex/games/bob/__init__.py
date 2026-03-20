@@ -6,6 +6,7 @@ Dark military fantasy using FITD. Manages the Legion's retreat
 and campaign-level resources (supply, intel, morale, pressure).
 
 Integrates with:
+  - codex/core/engines/narrative_base.py (shared FITD mechanics)
   - codex/core/services/fitd_engine.py (FITD core + LegionState)
   - codex/forge/char_wizard.py via vault/FITD/bob/creation_rules.json
   - codex/games/bob/campaign.py (CampaignPhaseManager, PressureClock)
@@ -15,9 +16,9 @@ Activated when a Band of Blades campaign is loaded.
 """
 
 from dataclasses import dataclass, field
-from typing import Any, Dict, List, Optional
+from typing import Any, Callable, Dict, List, Optional
 
-from codex.core.services.narrative_loom import NarrativeLoomMixin
+from codex.core.engines.narrative_base import NarrativeEngineBase
 
 
 # =========================================================================
@@ -62,41 +63,111 @@ class BoBCharacter:
 # ENGINE
 # =========================================================================
 
-class BoBEngine(NarrativeLoomMixin):
+class BoBEngine(NarrativeEngineBase):
     """Core engine for Band of Blades campaigns.
 
     Manages both individual Legionnaires and the Legion's campaign state
     (supply, intel, morale, pressure) via LegionState from fitd_engine.
     Also wires in CampaignPhaseManager (march/camp/mission cycle) and
     MissionResolver (engagement rolls, casualty rolls, outcome resolution).
+
+    Inherits from NarrativeEngineBase:
+        create_character, add_to_party, remove_from_party, get_active_party,
+        roll_action, push_stress, get_mood_context, handle_command.
+
+    Lazy-initialized subsystems:
+        _campaign_mgr: CampaignPhaseManager
+        _mission_resolver: MissionResolver
     """
 
     system_id = "bob"
     system_family = "FITD"
     display_name = "Band of Blades"
 
-    def __init__(self):
-        from codex.core.services.fitd_engine import StressClock, FactionClock, LegionState  # noqa: F401
-        self.character: Optional[BoBCharacter] = None
-        self.party: List[BoBCharacter] = []
-        self.stress_clocks: Dict[str, Any] = {}
-        self.faction_clocks: List[Any] = []
+    def __init__(self) -> None:
+        """Initialize engine with default state and lazy subsystem placeholders."""
+        super().__init__()
+        from codex.core.services.fitd_engine import LegionState
         self.legion: Any = LegionState()
         self.chosen: str = ""       # The Chosen (special NPC ally)
         self.campaign_phase: str = "march"  # march, camp, mission
 
-        # WO-Phase2A: Lazy-init subsystems
+        # Lazy-init subsystems
         self._campaign_mgr: Optional[Any] = None   # CampaignPhaseManager
         self._mission_resolver: Optional[Any] = None  # MissionResolver
 
-        self._init_loom()
-        self.setting_id: str = ""
+        # Campaign tracking
+        self._fallen_legionnaires: List[str] = []
+        self._missions_completed: int = 0
+
+    # =====================================================================
+    # HOOKS (NarrativeEngineBase)
+    # =====================================================================
+
+    def _create_character(self, name: str, **kwargs) -> BoBCharacter:
+        """Create a BoBCharacter from name and kwargs.
+
+        Args:
+            name: Character's name.
+            **kwargs: BoBCharacter-specific fields (playbook, heritage, etc.).
+
+        Returns:
+            Newly created BoBCharacter instance.
+        """
+        return BoBCharacter.from_dict({"name": name, **kwargs})
+
+    def _get_trauma_table(self) -> list:
+        """Return BoB's custom trauma table for StressClock.
+
+        Returns:
+            List of BoB trauma strings (BOB_TRAUMAS from fitd_engine).
+        """
+        from codex.core.services.fitd_engine import BOB_TRAUMAS
+        return list(BOB_TRAUMAS)
+
+    def _get_command_registry(self) -> Dict[str, Callable]:
+        """Map command aliases to handlers.
+
+        Returns:
+            Dict mapping command strings to bound methods.
+        """
+        return {
+            # Alias base crew stress display to BoB's squad_status name
+            "squad_status": self._cmd_squad_status,
+            # Extended camp activities
+            "religious_services": self._cmd_religious_services,
+            "liberty": self._cmd_liberty,
+            "scrounge": self._cmd_scrounge,
+            "memorial": self._cmd_memorial,
+            "record_casualty": self._cmd_record_casualty,
+            "legion_advance": self._cmd_legion_advance,
+            # Inherited narrative base commands (explicit registration for discoverability)
+            "fortune": self._cmd_fortune,
+            "resist": self._cmd_resist,
+            "gather_info": self._cmd_gather_info,
+        }
+
+    def _format_status(self) -> str:
+        """Return BoB-specific status string.
+
+        Returns:
+            Status string showing Legion resources and campaign phase.
+        """
+        lead = self.party[0] if self.party else None
+        return (
+            f"Chosen: {self.chosen or 'None'} | "
+            f"Supply: {self.legion.supply}/10 | "
+            f"Morale: {self.legion.morale}/10 | "
+            f"Pressure: {self.legion.pressure}/6 | "
+            f"Phase: {self.campaign_phase} | "
+            f"Lead: {lead.name if lead else 'None'}"
+        )
 
     # =====================================================================
     # LAZY SUBSYSTEM ACCESSORS
     # =====================================================================
 
-    def _get_campaign_mgr(self):
+    def _get_campaign_mgr(self) -> Any:
         """Lazily initialise and return the CampaignPhaseManager."""
         if self._campaign_mgr is None:
             from codex.games.bob.campaign import CampaignPhaseManager
@@ -108,7 +179,7 @@ class BoBEngine(NarrativeLoomMixin):
             )
         return self._campaign_mgr
 
-    def _get_mission_resolver(self):
+    def _get_mission_resolver(self) -> Any:
         """Lazily initialise and return the MissionResolver."""
         if self._mission_resolver is None:
             from codex.games.bob.missions import MissionResolver
@@ -116,118 +187,8 @@ class BoBEngine(NarrativeLoomMixin):
         return self._mission_resolver
 
     # =====================================================================
-    # CHARACTER MANAGEMENT
+    # STATUS (override for Legion info)
     # =====================================================================
-
-    def create_character(self, name: str, **kwargs) -> BoBCharacter:
-        """Create a new Legionnaire and make them the party lead."""
-        setting_id = kwargs.pop("setting_id", self.setting_id)
-        char = BoBCharacter(name=name, setting_id=setting_id, **kwargs)
-        self.character = char
-        if not self.party:
-            self.party = [char]
-        else:
-            self.party.append(char)
-        from codex.core.services.fitd_engine import StressClock, BOB_TRAUMAS
-        self.stress_clocks[name] = StressClock(trauma_table=list(BOB_TRAUMAS))
-        self._add_shard(
-            f"Legion squad formed. Lead: {name} ({char.playbook or 'Unknown'}). "
-            f"Chosen: {self.chosen or 'None'}",
-            "MASTER",
-        )
-        if not self.setting_id and setting_id:
-            self.setting_id = setting_id
-        return char
-
-    def add_to_party(self, char: BoBCharacter) -> None:
-        """Add an existing Legionnaire to the active party."""
-        self.party.append(char)
-        from codex.core.services.fitd_engine import StressClock, BOB_TRAUMAS
-        self.stress_clocks[char.name] = StressClock(trauma_table=list(BOB_TRAUMAS))
-
-    def remove_from_party(self, char: BoBCharacter) -> None:
-        """Remove a Legionnaire from the active party."""
-        if char in self.party:
-            self.party.remove(char)
-            self.stress_clocks.pop(char.name, None)
-
-    def get_active_party(self) -> List[BoBCharacter]:
-        """Return all current party members."""
-        return list(self.party)
-
-    def roll_action(self, character: Optional[BoBCharacter] = None,
-                    action: str = "skirmish", bonus_dice: int = 0, **kwargs) -> Any:
-        """Roll an FITD action using the character's action dots.
-
-        Args:
-            character: The acting character (defaults to lead).
-            action: Action attribute name (e.g. 'skirmish', 'scout_action').
-            bonus_dice: Extra dice from teamwork / assist.
-            **kwargs: Accepts 'position' (Position) and 'effect' (Effect).
-
-        Returns:
-            FITDResult with outcome, dice, and position/effect context.
-        """
-        from codex.core.services.fitd_engine import FITDActionRoll, Position, Effect
-        char = character or self.character
-        dots = getattr(char, action, 0) if char else 0
-        position = kwargs.get("position", Position.RISKY)
-        effect = kwargs.get("effect", Effect.STANDARD)
-        roll = FITDActionRoll(dice_count=dots + bonus_dice,
-                              position=position, effect=effect)
-        return roll.roll()
-
-    def push_stress(self, char_name: str, amount: int = 1) -> dict:
-        """Push stress with trauma shard emission (WO-V61.0).
-
-        Args:
-            char_name: Name of the character whose stress clock to push.
-            amount: Stress points to add.
-
-        Returns:
-            StressClock.push() result dict, or empty dict if no clock found.
-        """
-        clock = self.stress_clocks.get(char_name)
-        if not clock:
-            return {}
-        result = clock.push(amount)
-        if result.get("trauma_triggered"):
-            self._add_shard(
-                f"{char_name} suffered trauma: {result['new_trauma']}. "
-                f"Total traumas: {result['total_traumas']}/4.",
-                "ANCHOR", source="session",
-            )
-        return result
-
-    def get_mood_context(self) -> dict:
-        """Return current mechanical state as narrative mood modifiers (WO-V61.0)."""
-        char = self.character
-        clock = self.stress_clocks.get(char.name) if char and hasattr(self, 'stress_clocks') else None
-        stress = clock.current_stress if clock else 0
-        max_stress = clock.max_stress if clock else 9
-        trauma_count = len(clock.traumas) if clock else 0
-        stress_pct = stress / max(1, max_stress)
-        tension = min(1.0, stress_pct + (trauma_count * 0.15))
-
-        words = []
-        if trauma_count >= 2:
-            words.extend(["haunted", "fractured", "unreliable"])
-        if stress_pct > 0.7:
-            words.extend(["fraying", "manic", "reckless"])
-
-        if stress_pct > 0.8 or trauma_count >= 3:
-            condition = "critical"
-        elif stress_pct > 0.5 or trauma_count >= 1:
-            condition = "battered"
-        else:
-            condition = "healthy"
-
-        return {
-            "tension": round(tension, 2),
-            "tone_words": words,
-            "party_condition": condition,
-            "system_specific": {"stress": stress, "trauma_count": trauma_count},
-        }
 
     def get_status(self) -> Dict[str, Any]:
         """Return a summary dict suitable for Butler status display."""
@@ -277,24 +238,37 @@ class BoBEngine(NarrativeLoomMixin):
     # =====================================================================
 
     def save_state(self) -> Dict[str, Any]:
-        """Serialize full engine state for persistence."""
-        state: Dict[str, Any] = {
-            "system_id": self.system_id,
-            "setting_id": self.setting_id,
-            "party": [c.to_dict() for c in self.party],
-            "stress": {k: v.to_dict() for k, v in self.stress_clocks.items()},
-            "faction_clocks": [c.to_dict() for c in self.faction_clocks],
+        """Serialize full engine state for persistence.
+
+        Calls super().save_state() for base fields (party, stress, faction_clocks),
+        then adds BoB-specific fields (legion, chosen, campaign_phase, subsystems).
+
+        Returns:
+            Dict suitable for JSON serialization.
+        """
+        state = super().save_state()
+        state.update({
             "legion": self.legion.to_dict(),
             "chosen": self.chosen,
             "campaign_phase": self.campaign_phase,
-            # WO-Phase2A: subsystem state
+            # Subsystem state (None if never initialised)
             "campaign_mgr": self._campaign_mgr.to_dict() if self._campaign_mgr else None,
             "mission_resolver": self._mission_resolver.to_dict() if self._mission_resolver else None,
-        }
+            # Campaign tracking
+            "fallen_legionnaires": list(self._fallen_legionnaires),
+            "missions_completed": self._missions_completed,
+        })
         return state
 
     def load_state(self, data: Dict[str, Any]) -> None:
-        """Restore engine state from a previously saved dict."""
+        """Restore engine state from a previously saved dict.
+
+        Full override: uses BoBCharacter.from_dict for correct character type,
+        then restores BoB-specific fields and subsystems.
+
+        Args:
+            data: Dict from a previous save_state() call.
+        """
         from codex.core.services.fitd_engine import StressClock, UniversalClock, LegionState
         self.setting_id = data.get("setting_id", "")
         self.party = [BoBCharacter.from_dict(d) for d in data.get("party", [])]
@@ -307,7 +281,7 @@ class BoBEngine(NarrativeLoomMixin):
         self.chosen = data.get("chosen", "")
         self.campaign_phase = data.get("campaign_phase", "march")
 
-        # WO-Phase2A: restore subsystems if present
+        # Restore subsystems if present
         campaign_data = data.get("campaign_mgr")
         if campaign_data:
             from codex.games.bob.campaign import CampaignPhaseManager
@@ -318,36 +292,17 @@ class BoBEngine(NarrativeLoomMixin):
             from codex.games.bob.missions import MissionResolver
             self._mission_resolver = MissionResolver.from_dict(mission_data)
 
+        # Campaign tracking
+        self._fallen_legionnaires = list(data.get("fallen_legionnaires", []))
+        self._missions_completed = data.get("missions_completed", 0)
+
     # =====================================================================
-    # COMMAND DISPATCHER (WO-V10.0 + Phase2A expansion)
+    # COMMAND DISPATCHER CONSTANTS
     # =====================================================================
 
     _PHASE_CYCLE = ["march", "camp", "mission"]
 
-    def handle_command(self, cmd: str, **kwargs) -> str:
-        """Dispatch a command string to the appropriate handler.
-
-        Args:
-            cmd: Command name (e.g. 'march', 'camp', 'mission_plan').
-            **kwargs: Command-specific keyword arguments.
-
-        Returns:
-            Human-readable result string.
-        """
-        if cmd == "trace_fact":
-            return self.trace_fact(kwargs.get("fact", ""))
-        handler = getattr(self, f"_cmd_{cmd}", None)
-        if handler:
-            return handler(**kwargs)
-        return f"Unknown command: {cmd}"
-
-    # ── Original commands (unchanged) ──────────────────────────────────
-
-    def _cmd_roll_action(self, **kwargs) -> str:
-        """Roll an FITD action check."""
-        from codex.core.services.fitd_engine import format_roll_result
-        result = self.roll_action(**kwargs)
-        return format_roll_result(result)
+    # ── Original commands ──────────────────────────────────────────────
 
     def _cmd_legion_status(self, **kwargs) -> str:
         """Display supply, intel, morale, pressure from LegionState."""
@@ -372,7 +327,7 @@ class BoBEngine(NarrativeLoomMixin):
         chosen_name = self.chosen or "No Chosen selected"
         return f"Chosen: {chosen_name}\nCampaign Phase: {self.campaign_phase}"
 
-    # ── Supply check (enhanced from stub) ─────────────────────────────
+    # ── Supply check ───────────────────────────────────────────────────
 
     def _cmd_supply_check(self, **kwargs) -> str:
         """Check and modify legion supply.
@@ -391,7 +346,7 @@ class BoBEngine(NarrativeLoomMixin):
         self._add_shard(msg, "CHRONICLE")
         return msg
 
-    # ── Campaign advance (enhanced from stub) ─────────────────────────
+    # ── Campaign advance ───────────────────────────────────────────────
 
     def _cmd_campaign_advance(self, **kwargs) -> str:
         """Advance campaign phase (march/camp/mission) using CampaignPhaseManager."""
@@ -405,7 +360,7 @@ class BoBEngine(NarrativeLoomMixin):
         )
         return f"Campaign phase: {old_phase} -> {new_phase}"
 
-    # ── Phase2A new command handlers ───────────────────────────────────
+    # ── Phase command handlers ─────────────────────────────────────────
 
     def _cmd_march(self, **kwargs) -> str:
         """Move the Legion to a new destination.
@@ -538,6 +493,10 @@ class BoBEngine(NarrativeLoomMixin):
             mgr.add_relic(relic_name)
             relic_str = f"\nRelic acquired: {relic_name}"
 
+        # Track mission completion for legion advancement
+        self._missions_completed += 1
+        advance_msg = self._check_legion_advancement()
+
         lines = [
             f"Mission resolved: {result['mission_type']} — {result['success_level'].upper()}",
             f"Casualties: {result['casualty_outcome']['label']}",
@@ -547,10 +506,35 @@ class BoBEngine(NarrativeLoomMixin):
         ]
         if relic_str:
             lines.append(relic_str)
+        lines.append(f"Missions completed: {self._missions_completed}")
+        if advance_msg:
+            lines.append(advance_msg)
 
         msg = "\n".join(lines)
         self._add_shard(msg, "CHRONICLE")
         return msg
+
+    def _check_legion_advancement(self) -> str:
+        """Check if the legion has crossed an advancement threshold.
+
+        Returns upgrade message if a threshold was just reached, empty string otherwise.
+        """
+        THRESHOLDS = {
+            3: ("Improved Supply Lines", "supply", 1),
+            6: ("Veteran Tactics", "intel", 1),
+            10: ("Elite Legion", "morale", 2),
+        }
+        entry = THRESHOLDS.get(self._missions_completed)
+        if entry:
+            label, resource, amount = entry
+            self.legion.adjust(resource, amount)
+            self._add_shard(
+                f"LEGION ADVANCEMENT: {label} (mission #{self._missions_completed}). "
+                f"{resource} +{amount}.",
+                "ANCHOR",
+            )
+            return f"LEGION ADVANCEMENT: {label}! ({resource} +{amount})"
+        return ""
 
     def _cmd_pressure_check(self, **kwargs) -> str:
         """Roll to see if Pressure increases.
@@ -597,6 +581,134 @@ class BoBEngine(NarrativeLoomMixin):
         )
         return f"COMPLICATION: {entry['text']}\nEffect: {entry.get('effect', 'none')}"
 
+    # =====================================================================
+    # EXTENDED CAMP ACTIVITIES
+    # =====================================================================
+
+    def _cmd_religious_services(self, **kwargs) -> str:
+        """Camp activity: hold religious services to boost morale.
+
+        Rolls 1d6. 4-5 = morale +1; 6 = morale +2.
+
+        Returns:
+            Result string with roll, morale gain, and current morale.
+        """
+        import random as _rng
+        roll = _rng.randint(1, 6)
+        if roll == 6:
+            morale_gain = 2
+        elif roll >= 4:
+            morale_gain = 1
+        else:
+            morale_gain = 0
+        self.legion.adjust("morale", morale_gain)
+        self._add_shard(f"Religious services: morale +{morale_gain}", "CHRONICLE")
+        return (
+            f"Religious services held. Roll: {roll}\n"
+            f"Morale: +{morale_gain} (now {self.legion.morale}/10)"
+        )
+
+    def _cmd_liberty(self, **kwargs) -> str:
+        """Camp activity: grant liberty to reduce stress (risk of overindulgence).
+
+        Rolls 1d6 for stress relief. Rolling 6 triggers overindulgence (-1 morale).
+
+        Returns:
+            Result string with stress relief and any overindulgence penalty.
+        """
+        import random as _rng
+        roll = _rng.randint(1, 6)
+        stress_relief = roll
+        overindulged = roll >= 6
+        msg = f"Liberty granted. Stress relief: {stress_relief}"
+        if overindulged:
+            self.legion.adjust("morale", -1)
+            msg += f"\nOVERINDULGENCE! Morale -1 (now {self.legion.morale}/10)"
+        self._add_shard(
+            f"Liberty: stress -{stress_relief}{' (overindulgence!)' if overindulged else ''}",
+            "CHRONICLE",
+        )
+        return msg
+
+    def _cmd_scrounge(self, **kwargs) -> str:
+        """Camp activity: scrounge for supplies.
+
+        Rolls 1d6. 1-3 = nothing; 4-5 = supply +1; 6 = supply +2.
+
+        Returns:
+            Result string with roll, supply gain, and current supply.
+        """
+        import random as _rng
+        roll = _rng.randint(1, 6)
+        if roll == 6:
+            supply_gain = 2
+        elif roll >= 4:
+            supply_gain = 1
+        else:
+            supply_gain = 0
+        self.legion.adjust("supply", supply_gain)
+        msg = f"Scrounge roll: {roll}\nSupply: +{supply_gain} (now {self.legion.supply}/10)"
+        if supply_gain == 0:
+            msg += "\nNothing useful found."
+        self._add_shard(f"Scrounge: supply +{supply_gain}", "CHRONICLE")
+        return msg
+
+    def _cmd_memorial(self, **kwargs) -> str:
+        """Honor the fallen legionnaires.
+
+        Returns:
+            Memorial roster or message if no fallen.
+        """
+        if not self._fallen_legionnaires:
+            return "No fallen legionnaires to honor. The Legion endures."
+        lines = ["=== Memorial for the Fallen ==="]
+        for name in self._fallen_legionnaires:
+            lines.append(f"  * {name}")
+        lines.append(f"\nTotal fallen: {len(self._fallen_legionnaires)}")
+        lines.append("Their sacrifice is remembered.")
+        return "\n".join(lines)
+
+    def _cmd_record_casualty(self, **kwargs) -> str:
+        """Record a legionnaire casualty.
+
+        Kwargs:
+            name (str): Name of the fallen legionnaire (required).
+
+        Returns:
+            Confirmation string with morale cost and running total.
+        """
+        name = kwargs.get("name", "")
+        if not name:
+            return "Specify name of the fallen."
+        self._fallen_legionnaires.append(name)
+        self.legion.adjust("morale", -1)
+        self._add_shard(f"Legionnaire {name} has fallen. Morale -1.", "ANCHOR")
+        return (
+            f"{name} has fallen. They will be remembered.\n"
+            f"Morale: {self.legion.morale}/10\n"
+            f"Total fallen: {len(self._fallen_legionnaires)}"
+        )
+
+    def _cmd_legion_advance(self, **kwargs) -> str:
+        """Check for legion advancement based on missions completed.
+
+        Returns:
+            Status string showing unlocked and pending upgrades.
+        """
+        thresholds = {
+            3: "Improved Supply Lines (+1 supply cap)",
+            6: "Veteran Tactics (+1d to engagement)",
+            10: "Elite Legion (unlock specialist abilities)",
+        }
+        lines = [f"Missions completed: {self._missions_completed}"]
+        for threshold, upgrade in thresholds.items():
+            if self._missions_completed >= threshold:
+                status = "UNLOCKED"
+            else:
+                status = f"({threshold - self._missions_completed} more needed)"
+            lines.append(f"  [{threshold}] {upgrade} — {status}")
+        return "\n".join(lines)
+
     def _cmd_campaign_status(self, **kwargs) -> str:
         """Display full campaign phase manager status."""
         mgr = self._get_campaign_mgr()
@@ -612,10 +724,6 @@ class BoBEngine(NarrativeLoomMixin):
             lines.append(f"Route: {' -> '.join(status['route'][-5:])}")
         return "\n".join(lines)
 
-
-# =========================================================================
-# COMMAND DEFINITIONS (WO-V8.0 + Phase2A)
-# =========================================================================
 
 # =========================================================================
 # COMPLICATION TABLE (Gap Fix: per-engine consequences)
@@ -646,6 +754,10 @@ COMPLICATION_TABLE: Dict[int, List[Dict[str, Any]]] = {
 }
 
 
+# =========================================================================
+# COMMAND DEFINITIONS (WO-V8.0 + Phase2A)
+# =========================================================================
+
 BOB_COMMANDS = {
     # Original commands
     "legion_status":      "Display supply, intel, morale, pressure",
@@ -665,21 +777,35 @@ BOB_COMMANDS = {
     "mission_plan":       "Plan a mission (type, squad, specialist)",
     "mission_resolve":    "Resolve the current mission (casualties, success level)",
     "complication":       "Roll a complication from the consequence table",
+    # P3: extended camp activities
+    "religious_services": "Hold religious services (morale boost)",
+    "liberty":            "Grant liberty (stress relief, overindulgence risk)",
+    "scrounge":           "Scrounge for supplies",
+    "memorial":           "Honor the fallen legionnaires",
+    "record_casualty":    "Record a legionnaire casualty (name=<str>)",
+    "legion_advance":     "Check legion advancement thresholds",
+    # P3: inherited narrative mechanics
+    "fortune":            "Roll a fortune die pool (dice_count=<int>)",
+    "resist":             "Roll resistance (attribute=<str>)",
+    "gather_info":        "Gather information (action=<str>, question=<str>)",
 }
 
 BOB_CATEGORIES = {
-    "Legion":   [
+    "Legion": [
         "legion_status", "campaign_advance", "supply_check", "chosen_status",
-        "campaign_status",
+        "campaign_status", "legion_advance",
     ],
     "Campaign": [
         "march", "camp", "pressure_check", "time_passes",
     ],
-    "Mission":  [
+    "Mission": [
         "mission_plan", "mission_resolve",
     ],
-    "Squad":    [
-        "roll_action", "squad_status", "complication",
+    "Camp Extended": [
+        "religious_services", "liberty", "scrounge", "memorial", "record_casualty",
+    ],
+    "Squad": [
+        "roll_action", "squad_status", "complication", "fortune", "resist", "gather_info",
     ],
 }
 

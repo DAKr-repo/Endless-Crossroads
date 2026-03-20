@@ -23,15 +23,20 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Ruin Entrance yawns open where the mountainside collapsed millennia ago, revealing architecture that should not exist -- walls of seamless stone with no mortar joints, no chisel marks, no evidence of human construction at all. The stone is warm despite the mountain chill, and when you press your palm to it, you feel a vibration like a held note.",
+                "read_aloud": "The mountain splits where architecture meets geology -- seamless stone walls emerging from the collapse without mortar, without chisel marks, without any evidence of the hands that built them. The stone is warm. Not sun-warmed -- internally warm, as if the walls themselves generate heat. Melishi presses her palm flat against the threshold and goes still. 'It is not just vibrating,' she whispers. 'It is speaking. I can almost understand it.' Glyphs carved into the threshold illuminate as you cross, matching your heartbeat for three pulses before diverging into a rhythm older than humanity.",
                 "npcs": [
-                    {"name": "Archaeologist Rushu", "role": "guide", "dialogue": "These ruins predate the Shin. They predate the Desolations. Whatever built this place was working with principles of Surgebinding we have no name for. Touch nothing with exposed skin. The last team that did lost three days they cannot account for."}
+                    {"name": "Archaeologist Rushu", "role": "guide", "dialogue": "These ruins predate the Shin. They predate the Desolations. Whatever built this place was working with principles of Surgebinding we have no name for. Touch nothing with exposed skin. The last team that did lost three days they cannot account for.", "notes": "Rushu is Navani's protege, sent to study the ruins independently. Her field journal contains observations that, when cross-referenced with Jasnah's Desolation research, reveal the Stone Shambles was built by the Stonewards as a deliberate bridge between the Physical and Cognitive Realms."}
                 ],
                 "enemies": [],
                 "loot": [
                     {"name": "Archaeologist's Field Journal (partial)", "type": "quest_item"}
                 ],
                 "services": ["ruin_orientation"],
-                "event_triggers": ["On entry: Glyphs carved into the threshold illuminate as you cross -- a sequence that matches your heartbeat for three pulses, then diverges into a rhythm you do not recognize"]
+                "investigation_dc": 13,
+                "investigation_success": "The threshold glyphs are not decorative. They are a warning in Dawnchant: 'Those who pass beyond carry the boundary with them.' Rushu has not translated this passage. It would change her understanding of everything.",
+                "perception_dc": 12,
+                "perception_success": "Glyphs carved into the threshold illuminate as you cross -- a sequence that matches your heartbeat for three pulses, then diverges into a rhythm you do not recognize. The divergent rhythm matches the resonance from the Sacred Groves. The ruins are connected to the same source.",
+                "event_triggers": ["On entry: Glyphs carved into the threshold illuminate as you cross -- a sequence that matches your heartbeat for three pulses, then diverges into a rhythm you do not recognize. Melishi's peakspren materializes above her shoulder, its crystalline form vibrating in sympathy."]
             }
         },
         "1": {
@@ -47,16 +52,21 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Collapsed Gallery was once a corridor of considerable grandeur -- vaulted ceiling, pillared walls, floor inlaid with metals that still gleam despite the ages. Half of it has fallen in, stone blocks the size of carriages tumbled across the path. Between the rubble, murals survive on the remaining walls: figures wielding Surges, but with anatomies that are not quite human.",
+                "read_aloud": "Grandeur survives in fragments -- a vaulted ceiling that soars where it has not collapsed, pillared walls inlaid with metals that refuse to tarnish after millennia. Stone blocks the size of carriages block the path, their edges sharp as the day they fell. Between the rubble, murals blaze with color undimmed by time: figures wielding Surges of Cohesion and Tension, reshaping stone with bare hands. Their anatomies are almost human. Almost. The proportions are wrong in ways that suggest the artists were not working from imagination.",
                 "npcs": [],
                 "enemies": [
-                    {"name": "Ancient Construct (Sentry)", "cr": "3"},
-                    {"name": "Rogue Spren (Cryptic, corrupted)", "cr": "2"}
+                    {"name": "Ancient Construct (Sentry)", "hp": 28, "ac": 13, "attack": 4, "damage": "1d10+4", "count": 1, "notes": "Stone construct animated by residual Investiture. Immune to spirit damage. Vulnerable to Stormlight disruption.", "special": ["Stone Fist: 1d10+4 impact damage", "Glyph Shield: Once per combat, negate one attack entirely"]},
+                    {"name": "Rogue Spren (Cryptic, corrupted)", "hp": 16, "ac": 11, "attack": 2, "damage": "1d6+2", "count": 1, "notes": "Corrupted by proximity to the Cognitive breach. Speaks in truths that hurt.", "special": ["Painful Truth: Target must pass DC 12 or be stunned for 1 round"]}
                 ],
                 "loot": [
                     {"name": "Mural Fragment (Surgebinder Anatomy)", "type": "quest_item"}
                 ],
                 "services": [],
-                "event_triggers": ["On entry: A construct embedded in the rubble activates -- one arm free, the other pinned beneath a fallen pillar. Its crystal eye focuses on you and emits a sound that might be a greeting or a threat. The language has been dead for four thousand years."]
+                "investigation_dc": 15,
+                "investigation_success": "The mural figures are not human Surgebinders. Their proportions match descriptions of the Dawnsingers -- the original inhabitants of Roshar before the human migration from Ashyn. The Stonewards did not build these ruins. They inherited them.",
+                "perception_dc": 14,
+                "perception_success": "A construct embedded in the rubble activates -- one arm free, the other pinned beneath a fallen pillar. Its crystal eye focuses on you and emits a sound that might be a greeting. The language has been dead for four thousand years, but Melishi's peakspren vibrates in response. The construct reaches toward you. Not aggressively. Imploringly.",
+                "event_triggers": ["On entry: A construct embedded in the rubble activates -- one arm free, the other pinned beneath a fallen pillar. Its crystal eye focuses on you and emits a sound that might be a greeting or a threat. The language has been dead for four thousand years. Melishi says: 'It is saying welcome home.'"]
             }
         },
         "2": {
@@ -72,17 +82,22 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Inscription Hall. Every surface -- floor, walls, ceiling -- is covered in text carved at varying depths, as if the builders ran out of surfaces and simply carved over older inscriptions. The languages shift every few feet: Dawnchant, proto-Shin, and three scripts no living scholar can identify. Stormlight-infused gemstones set into the walls provide illumination, still burning after millennia.",
+                "read_aloud": "Text covers every surface -- carved at depths that range from whisper-shallow to finger-deep, layered over older inscriptions like geological strata of language. Dawnchant gives way to proto-Shin gives way to scripts that have no living readers. Gemstones set into the walls still burn with Stormlight after millennia, their amber glow shifting as if the light itself is reading. The Inkspren scholar materializes from a shadow between two inscriptions, its form a silhouette filled with starlight.",
                 "npcs": [
-                    {"name": "Spren Scholar (Inkspren)", "role": "scholar", "dialogue": "These inscriptions describe a war fought before the Oathpact. Not the Desolations you know -- something older. Something the Heralds themselves chose to forget. I can translate fragments, but the truth in them may be more dangerous than the ruins."}
+                    {"name": "Spren Scholar (Inkspren)", "role": "scholar", "dialogue": "These inscriptions describe a war fought before the Oathpact. Not the Desolations you know -- something older. Something the Heralds themselves chose to forget. I can translate fragments, but the truth in them may be more dangerous than the ruins.", "notes": "The Inkspren has been trapped in the Stone Shambles since the Recreance. It possesses complete translations of the Dawnchant inscriptions, which describe the original human migration to Roshar as an invasion, not a settlement. This truth contradicts every Vorin text."}
                 ],
                 "enemies": [],
                 "loot": [
                     {"name": "Dawnchant Translation Key", "type": "quest_item"},
                     {"name": "Pre-Oathpact Historical Fragment", "type": "quest_item"},
-                    {"name": "Gemstone (Topaz, ancient infusion)", "type": "gemstone"}
+                    {"name": "Gemstone (Topaz, ancient infusion)", "type": "gemstone", "value": 35}
                 ],
                 "services": ["translation", "lore"],
-                "event_triggers": ["On entry: As you read one inscription, the text on the adjacent wall rearranges itself -- the ruins are responding to which passages are being studied"]
+                "investigation_dc": 16,
+                "investigation_success": "The deepest inscriptions -- the oldest layer -- are not in any known language. They are in patterns that correspond to Stormlight frequencies. Not text. Music. The original builders wrote in song, encoded in stone. This is how the Dawnsingers communicated.",
+                "perception_dc": 14,
+                "perception_success": "As you read one inscription, the text on the adjacent wall rearranges itself -- the ruins are responding to which passages are being studied. The Stone Shambles is not a passive archive. It is an active teaching system that has been waiting for students.",
+                "event_triggers": ["On entry: As you read one inscription, the text on the adjacent wall rearranges itself -- the ruins are responding to which passages are being studied. The Inkspren says: 'It does that. It has been doing that for four thousand years, for an audience of one.'"]
             }
         },
         "3": {
@@ -98,17 +113,22 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Spren Binding Chamber is a circular room with ten alcoves arranged around a central platform. Each alcove once held a spren in stasis -- nine are empty, their binding mechanisms shattered. The tenth still hums with Investiture, its occupant visible as a shimmer of light trapped in a lattice of ancient fabrial-work. The spren inside has been waiting a very long time.",
+                "read_aloud": "Ten alcoves ring a central platform in a geometry that mirrors the Radiant Orders. Nine are empty, their fabrial lattices shattered, their occupants long freed -- or destroyed. The tenth hums with Investiture that makes the air around it ripple like heat-haze. Inside the lattice, a shimmer of light takes shape: an honorspren, ancient, its form carrying the weight of millennia spent in a cage made of light. It turns toward you with the slow deliberation of a being that has forgotten what hurry means.",
                 "npcs": [
-                    {"name": "Bound Spren (Honorspren, ancient)", "role": "ally", "dialogue": "I was placed here by the last generation of Radiants -- not as punishment, but as preservation. They knew the Recreance was coming. They knew the bonds would break. I was to carry a message forward. It has been four thousand years. May I deliver it now?"}
+                    {"name": "Bound Spren (Honorspren, ancient)", "role": "ally", "dialogue": "I was placed here by the last generation of Radiants -- not as punishment, but as preservation. They knew the Recreance was coming. They knew the bonds would break. I was to carry a message forward. It has been four thousand years. May I deliver it now?", "notes": "The message: 'The enemy is not Odium. The enemy is the seal between realms. It was not built to keep the Voidbringers out. It was built to keep humanity in. We broke an oath older than the Oathpact when we came to Roshar. Honor knew. Honor forgave. Cultivation remembers.' This information would reshape the war."}
                 ],
                 "enemies": [
-                    {"name": "Rogue Spren (Voidspren)", "cr": "3"}
+                    {"name": "Rogue Spren (Voidspren)", "hp": 20, "ac": 12, "attack": 3, "damage": "1d8+2", "count": 1, "notes": "Corrupted by Odium's influence. Feeds on the honorspren's Investiture to sustain itself.", "special": ["Investiture Drain: Heals 1d4 HP when hitting a target that has Focus/Stormlight", "Void Whisper: DC 13 or target attacks nearest ally on next turn"]}
                 ],
                 "loot": [
                     {"name": "Ancient Binding Fabrial", "type": "quest_item"}
                 ],
                 "services": [],
-                "event_triggers": ["On entry: The bound spren flares bright enough to cast shadows through solid stone. Nine empty alcoves. Nine broken bonds. One message preserved across four millennia."]
+                "investigation_dc": 16,
+                "investigation_success": "The binding fabrial can be reversed. Instead of trapping a spren, it can project one across the boundary between Physical and Cognitive Realms. The Stonewards used it to communicate with beings in Shadesmar without physically crossing over.",
+                "perception_dc": 15,
+                "perception_success": "Nine empty alcoves. Nine broken bonds. But look closer: the shattering patterns are different. Seven were broken from inside -- spren escaping. Two were broken from outside -- someone freed those spren deliberately. Recently. The dust in those alcoves has not settled.",
+                "event_triggers": ["On entry: The bound spren flares bright enough to cast shadows through solid stone. Nine empty alcoves. Nine broken bonds. One message preserved across four millennia. The Voidspren circles the lattice like a shark around a wounded seal."]
             }
         },
         "4": {
@@ -124,9 +144,10 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Abandoned Forge still holds heat -- not from fire, but from Investiture channeled through fabrial conduits in the walls. The anvil is carved from a single gemstone, its surface scarred by thousands of hammer strikes. Molds for Shardplate components line the walls, most shattered, but a few intact. This is where the Radiants armed themselves.",
+                "read_aloud": "Heat without fire. The forge glows with Investiture channeled through conduits carved into the walls -- patterns that Navani would recognize as a fabrial network of unprecedented complexity. The anvil is a single gemstone, scarred by ten thousand hammer strikes, each one leaving a mark that pulses with residual Stormlight. Shardplate molds line the walls: gauntlets, greaves, helms, each shaped to specifications that suggest the Plate was grown as much as forged. The Forge Guardian stirs.",
                 "npcs": [],
                 "enemies": [
-                    {"name": "Ancient Construct (Forge Guardian)", "cr": "4"}
+                    {"name": "Ancient Construct (Forge Guardian)", "hp": 35, "ac": 14, "attack": 4, "damage": "2d6+4", "count": 1, "notes": "Forge-hardened stone construct. Immune to fire/heat damage. Weak to cold.", "special": ["Forge Hammer: 2d6+4 impact damage, target's armor loses 1 AC until repaired", "Heat Pulse: All targets within 10ft take 1d6 fire damage"]}
                 ],
                 "loot": [
                     {"name": "Shardplate Mold (Gauntlet)", "type": "crafting"},
@@ -134,7 +155,11 @@
                     {"name": "Raw Aluminum Ingot", "type": "material"}
                 ],
                 "services": ["ancient_forging"],
-                "event_triggers": ["On entry: The forge activates at your presence -- conduits in the walls pulse with Stormlight, and the temperature rises twenty degrees in seconds. The construct guardian stirs."]
+                "investigation_dc": 15,
+                "investigation_success": "The aluminum ingot is significant -- aluminum is Investiture-neutral, invisible to Allomancy, and immune to Surgebinding. The Stonewards stockpiled it here. Whatever they were building was designed to resist all forms of magical interference. A weapon against gods.",
+                "perception_dc": 14,
+                "perception_success": "The forge activates at your presence -- conduits in the walls pulse with Stormlight, and the temperature rises twenty degrees. But the heat is not uniform. It follows your movement, concentrating where you stand. The forge is trying to work with you, not against you.",
+                "event_triggers": ["On entry: The forge activates at your presence -- conduits in the walls pulse with Stormlight, and the temperature rises twenty degrees in seconds. The construct guardian stirs, its gemstone eyes cycling through ten colors before settling on amber. Amber means: assess."]
             }
         },
         "5": {
@@ -150,16 +175,22 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Honorblade Vault. A sealed chamber behind a door that responds only to Stormlight of precisely calibrated frequency. Inside, a single pedestal holds the imprint of a blade -- the Honorblade that was kept here has been removed, recently, the dust pattern still sharp. But the vault was not empty. A second pedestal, hidden behind the first, holds something the Stone Shamans never mentioned.",
+                "read_aloud": "The vault door responds to Stormlight -- not volume, but frequency. The pitch must be exact: the resonant frequency of the Stoneward Order, a note that Melishi instinctively knows. Inside, a single pedestal bears the ghost-imprint of a blade in the dust. Removed recently. But behind it, hidden by the first pedestal's shadow: a second pedestal holds something the Stone Shamans never mentioned. It is not a blade. It is a key. A key carved from aluminum, shaped like a spren, humming with a light that is not Stormlight.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [
                     {"name": "Unknown Blade (Dormant, Pre-Oathpact)", "type": "weapon"},
                     {"name": "Honorblade Vault Key", "type": "quest_item"},
-                    {"name": "Stormlight Sphere (Grand Broam)", "type": "currency"},
+                    {"name": "Stormlight Sphere (Grand Broam)", "type": "currency", "value": 100},
                     {"name": "Shardplate Fragment (Helm)", "type": "armor"}
                 ],
                 "services": [],
-                "event_triggers": ["On entry: The vault's interior glows with residual Stormlight from the missing Honorblade. On the second pedestal, the unknown blade vibrates at a frequency that makes your Stormlight-infused spheres go dark, one by one."]
+                "lock_dc": 16,
+                "investigation_dc": 17,
+                "investigation_success": "The aluminum key does not open a physical door. It opens a resonance -- a frequency that, when struck against stone, creates a temporary passage between the Physical and Cognitive Realms. The Stonewards did not merely visit Shadesmar. They commuted.",
+                "perception_dc": 15,
+                "perception_success": "The unknown blade vibrates at a frequency that makes your Stormlight-infused spheres go dark, one by one. But where the Stormlight dies, a different light appears -- warmer, golden, pulsing with the rhythm of the Sacred Groves. The blade is a conduit. It channels something that is not Stormlight but works like it.",
+                "event_triggers": ["On entry: The vault's interior glows with residual Stormlight from the missing Honorblade. On the second pedestal, the unknown blade vibrates at a frequency that makes your Stormlight-infused spheres go dark, one by one. Melishi reaches for it. Her peakspren screams."]
             }
         },
         "6": {
@@ -175,20 +206,24 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Guardian Construct Chamber. The room was designed as a final defense -- a sphere of seamless stone with no corners and no exits save the one you entered. At its center, a construct of ancient design unfolds from a resting configuration: twelve feet of articulated stone limbs, gemstone eyes, and Surgebinding capabilities woven into its very structure. It was built to stop the Voidbringers. It does not distinguish between threats.",
+                "read_aloud": "A sphere of seamless stone. No corners. No exits save the one behind you. The geometry is deliberate -- sound reflects perfectly, Stormlight circulates without loss, and at the center, something unfolds. Twelve feet of articulated stone limbs emerge from a resting configuration that looked, moments ago, like a natural boulder. Gemstone eyes cycle through ten colors -- one for each Radiant Order -- before settling on red. Red was not one of the original ten. Someone has modified this construct since it was built. It raises arms that end in shapes designed to channel Surges, and the air in the chamber becomes heavy with Investiture.",
                 "npcs": [],
                 "enemies": [
-                    {"name": "Guardian Construct (Surgebinder-Class)", "cr": "7"},
-                    {"name": "Repair Drone (Minor Construct)", "cr": "2"},
-                    {"name": "Repair Drone (Minor Construct)", "cr": "2"}
+                    {"name": "Guardian Construct (Surgebinder-Class)", "hp": 55, "ac": 15, "attack": 5, "damage": "2d8+5", "count": 1, "is_boss": true, "notes": "Ancient Stoneward construct corrupted by an unknown force. Uses Cohesion and Tension offensively. Red crystal eye indicates corruption.", "special": ["Stone Surge (Cohesion): Reshapes floor, DC 14 or target is restrained", "Tension Pulse: 15ft cone, 2d6+3 impact damage", "Repair Cycle: At half HP, repairs 15 HP over 2 rounds from chamber stone"]},
+                    {"name": "Repair Drone (Minor Construct)", "hp": 12, "ac": 11, "attack": 2, "damage": "1d6+2", "count": 2, "notes": "Repairs the Guardian for 1d6 HP per round if adjacent. Destroying them is priority."}
                 ],
                 "loot": [
-                    {"name": "Guardian Core Crystal", "type": "treasure"},
+                    {"name": "Guardian Core Crystal", "type": "treasure", "value": 80},
                     {"name": "Surgebinding Schematic (fragmented)", "type": "quest_item"},
                     {"name": "Ancient Shardplate (complete, dormant)", "type": "armor"},
-                    {"name": "Stormlight Sphere (Grand Broam)", "type": "currency"}
+                    {"name": "Stormlight Sphere (Grand Broam)", "type": "currency", "value": 100}
                 ],
                 "services": [],
-                "event_triggers": ["On entry: The construct's gemstone eyes cycle through ten colors -- one for each Radiant Order -- before settling on red. Red was not one of the original ten. Someone has modified this construct since it was built."]
+                "investigation_dc": 17,
+                "investigation_success": "The Guardian's core crystal contains a final message, accessible only after the construct is defeated: 'The boundary thins. What sleeps beneath the stone wakes. Carry the key to the Reshi Isles. The tai-na remember. The door must be sealed from the other side.' This message directs you to Act 3.",
+                "perception_dc": 15,
+                "perception_success": "The construct's gemstone eyes cycle through ten colors before settling on red. Red was not one of the original ten. The corruption emanates from a point below the chamber floor -- from the Cognitive Realm boundary itself. Something on the other side is controlling this construct.",
+                "event_triggers": ["On entry: The construct's gemstone eyes cycle through ten colors -- one for each Radiant Order -- before settling on red. Red was not one of the original ten. Someone has modified this construct since it was built. Melishi draws her blade. Her peakspren crystallizes into armor around her fist. The Guardian charges."]
             }
         }
     }

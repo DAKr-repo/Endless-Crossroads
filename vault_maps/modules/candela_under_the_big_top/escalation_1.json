@@ -1,0 +1,125 @@
+{
+  "seed": 7018,
+  "width": 30,
+  "height": 15,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "circus_escalation_1",
+    "theme": "GOTHIC",
+    "topology": "dungeon",
+    "display_name": "The Show"
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 0,
+      "y": 0,
+      "width": 8,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The big top at eight o'clock. Twelve hundred seats filling. The orchestra tuning with a martial march. The creature's cage on a wheeled platform, still covered. The tent glows from within at the edges of the tarp. The crowd is jubilant. The animal tent goes completely silent.",
+        "read_aloud": "The calliope fires up. Twelve hundred voices rise in anticipation. Children on parents' shoulders. The front rows are eight feet from the stage. From beneath the tarp, the creature's light pulses faster, responding to the emotional energy flooding the tent. Vex appears at the tent edge, his face gray. 'It can feel all of them,' he says. 'Twelve hundred people's excitement. It's overwhelming. It has fifteen minutes before it breaks.'",
+        "npcs": [
+          {
+            "name": "Handler Vex",
+            "role": "ally",
+            "dialogue": "If the investigators haven't committed to release: 'Tell me the plan. Right now. I need to tell it something real or it will not wait.' If they have: 'Good. I'll hold it. Fifteen minutes from when they pull that tarp. Get to the resonance chamber and have it playing before Bellamy finishes his introduction. The tone before the reveal -- that's the only chance.'",
+            "notes": "He/him. At the cage. Can delay the creature's escape for fifteen minutes if the investigators have committed to the lighthouse plan. After that, Bellamy pulls the tarp and everything accelerates."
+          }
+        ],
+        "enemies": [
+          {
+            "name": "Bleed-Affected Audience Members",
+            "hp": 10,
+            "max_hp": 10,
+            "ac": 10,
+            "attack": 3,
+            "defense": 10,
+            "count": 2
+          }
+        ],
+        "services": [],
+        "event_triggers": [
+          "THREAT: Two front-row audience members are already hallucinating from early radiation exposure. Their erratic behavior will escalate unless Dr. Asher can sedate them.",
+          "CLOCK: Bellamy will pull the tarp in fifteen minutes. The resonance chamber must be playing before that moment."
+        ],
+        "loot": []
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 11,
+      "y": 0,
+      "width": 10,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [0, 2],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Center stage. Bellamy reaches for the tarp. The moment the investigators have been dreading. If the resonance chamber is playing, the creature hears it and holds. If it isn't, Bellamy pulls the tarp and twelve hundred people see The Attraction in full distress.",
+        "read_aloud": "Bellamy's voice fills the tent: 'Ladies and gentlemen -- the Living Constellation!' He reaches for the tarp. If the resonance chamber is playing: the creature stills. The tarp falls to reveal a calm, beautiful form of shifting light. The audience gasps in wonder. The investigators have perhaps twenty minutes before the chamber battery dies and the creature's distress returns. If it isn't playing: the tarp falls, the creature blazes, twelve hundred people scream, and the tent begins to fill with bleed radiation.",
+        "npcs": [],
+        "enemies": [
+          {
+            "name": "The Attraction (escaping)",
+            "hp": 20,
+            "max_hp": 20,
+            "ac": 13,
+            "attack": 5,
+            "defense": 13,
+            "count": 1
+          }
+        ],
+        "services": [],
+        "event_triggers": [
+          "THREAT: If the resonance chamber is not playing, The Attraction breaks its cage. It doesn't attack -- it panics and tries to escape upward through the tent canvas. Bleed radiation affects everyone within thirty feet.",
+          "SPECIAL: The resonance chamber, if playing, holds the creature calm for twenty minutes. This is the window to guide it out via the back exit toward the lighthouse."
+        ],
+        "loot": [
+          {
+            "name": "Bellamy's Master Key",
+            "value": 0,
+            "description": "Dropped in the chaos if things go wrong. Opens every lock in the circus including the back exits and the cage mechanism."
+          }
+        ]
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 22,
+      "y": 2,
+      "width": 6,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The tent's rear exit. A clear path to the coastal road. The lighthouse is visible two miles along the cliff. If the resonance chamber is playing, the creature's cage can be wheeled through this exit before the battery dies.",
+        "read_aloud": "The back exit opens onto the coast road. The lighthouse is visible at the cliff's edge, dark, waiting. The stars above are wrong -- brighter than they should be, and moving. The creature, in the cage or freed, will follow the resonance tone. The road is clear. The window is closing.",
+        "npcs": [
+          {
+            "name": "Officer Crane",
+            "role": "ally",
+            "dialogue": "If controlled: 'My officers have the exits. I've told the crowd there's a technical delay. Six minutes before they start pushing. Whatever you're moving, move it.' If chaotic: 'I'm ordering evacuation. Three short whistle blasts. Get out of the tent -- now.'",
+            "notes": "He/him. Has staged an evacuation perimeter regardless. If the investigators have given him the radiation evidence, he can delay the crowd six minutes. If it's gone badly, he's already pulling people out."
+          }
+        ],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [
+          "DECISION: Guide the creature out the back via the resonance chamber (controlled), or survive the escape and chase it to the lighthouse (chaotic). Both paths lead to the same destination."
+        ],
+        "loot": []
+      }
+    }
+  }
+}

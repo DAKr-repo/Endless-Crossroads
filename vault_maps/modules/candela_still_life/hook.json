@@ -1,0 +1,62 @@
+{
+  "seed": 4501,
+  "width": 20,
+  "height": 10,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "briar_green_hook",
+    "theme": "GOTHIC",
+    "topology": "settlement",
+    "display_name": "The Photographer's Parlor"
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 0,
+      "y": 0,
+      "width": 8,
+      "height": 8,
+      "room_type": "residence",
+      "connections": [1],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Oscar Enfield's photography studio. Velvet drapes and a painted backdrop of rolling hills. A high-backed chair at center, positioned before a bellows camera on a mahogany tripod. The air smells of collodion and lavender water. Oscar stands behind the camera, adjusting a woman's posture in the chair -- tilting her chin, straightening her collar, folding her hands just so. The woman does not blink. The woman is dead.",
+        "read_aloud": "The photographer works with the tenderness of a man dressing his beloved for a dance. He adjusts the corpse's lace collar. Smooths the hair. Tilts the head so the gaslight catches the cheekbone. His hands tremble. He steps behind the camera, squeezes the bulb. The flash powder ignites. In the white-hot instant of exposure, you see something in the developing tray that should not be there -- a woman staring directly down the camera barrel, her eyes open, her mouth working silently. The dead woman in the chair has not moved.",
+        "npcs": [],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [
+          "Oscar develops the photograph. In the image, the dead woman -- his wife Nora -- stares directly into the lens with living eyes. But on the chair, only an ink-black shadow remains where the body sat. The body is gone.",
+          "Post-mortem photography: a common practice. Families commission photographers to take final portraits of the deceased, posing them as if alive. Oscar specializes in this work."
+        ],
+        "loot": []
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 10,
+      "y": 0,
+      "width": 8,
+      "height": 8,
+      "room_type": "residence",
+      "connections": [0],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The sitting room behind the studio. Oscar's personal space -- grief made domestic. Nora's teacup still sits on the side table, unwashed. Her reading glasses rest on an open novel, bookmark untouched. A wedding photograph hangs over the fireplace: Oscar and Nora, young and bright-eyed, a gilded camera visible on the table between them.",
+        "npcs": [],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [
+          "On the chair where Nora's body sat, an ink-black shadow has been cast permanently into the upholstery -- not a stain, not a burn, but a shadow with no source, impossibly dark, in the precise shape of a seated woman."
+        ],
+        "loot": [],
+        "perception_dc": 10,
+        "perception_success": "A dead rabbit lies in the yard outside the window. It has been dead for days, but there are no flies. Its shadow on the grass is too dark, too defined, as though painted there."
+      }
+    }
+  }
+}

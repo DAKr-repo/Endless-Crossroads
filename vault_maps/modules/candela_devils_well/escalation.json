@@ -1,0 +1,104 @@
+{
+  "seed": 4605,
+  "width": 25,
+  "height": 15,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "vault_depths",
+    "theme": "GOTHIC",
+    "topology": "dungeon",
+    "display_name": "The Deep Vault"
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 0,
+      "y": 0,
+      "width": 8,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Level five -- living quarters. Small dormitory cells line the corridor, each one identical: cot, desk, personal effects preserved under a decade of dust. But the geometry is wrong. The corridor is longer on the inside than it should be. A door opens into a room that is simultaneously occupied and empty -- you can see both states at once, superimposed, like a double exposure. Your inner ear rebels. Someone retches.",
+        "read_aloud": "Physics are failing. A coffee mug sits on a desk, steam rising from liquid that evaporated years ago. A clock on the wall shows three times simultaneously, its hands occupying every position at once. When you walk down the corridor, the floor tilts -- not physically, but perceptually. You are walking downhill and uphill at the same time. The singing is louder here. Sweet and sad and wrong in a way that has nothing to do with pitch.",
+        "npcs": [],
+        "enemies": [
+          {
+            "name": "Revenant",
+            "hp": 25,
+            "max_hp": 25,
+            "ac": 14,
+            "attack": 6,
+            "defense": 14,
+            "count": 1
+          }
+        ],
+        "services": [],
+        "event_triggers": [
+          "THREAT: Revenants (Brain) -- the dead researchers, animated by bleed proximity, inhabit the deep vault levels. They are not aggressive but their presence warps perception and memory. Sustained contact causes temporal displacement -- you lose minutes, then hours.",
+          "Reality is breaking down. The Reliquary's proximity warps space-time. Rooms exist in multiple states simultaneously. Trust your instruments, not your eyes."
+        ],
+        "loot": [],
+        "perception_dc": 14,
+        "perception_success": "The dormitory cells are not identical. Each one represents a different time period -- the same room at different stages of occupation. The vault is not just a space. It is a timeline, and the Reliquary is the fixed point at its center."
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 10,
+      "y": 0,
+      "width": 10,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [0, 2],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Level six -- the observation gallery. A long room with one wall made entirely of reinforced glass, looking down into the final floor. The glass is cracked in a starburst pattern, each fracture line glowing with amber bleed-light. Through it, you can see the inner sanctum below: an inverted lighthouse beacon, its lens pointed downward into a well of absolute darkness. At the edge of the well, a shape. Small. Human. Sitting cross-legged. Singing.",
+        "read_aloud": "The observation glass gives you your first clear look at what EONS buried here. The inner sanctum is a cylindrical chamber, sixty feet across, built around a central well that drops into nothing. An inverted lighthouse beacon hangs from the ceiling, its lens cracked but still refracting the bleed-light that rises from the well in slow, pulsing waves. And at the well's edge, a girl sits singing. Her voice carries through ten years of concrete and steel as clearly as if she were beside you.",
+        "npcs": [],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [
+          "REVEAL: The Reliquary is a child -- a girl, imprisoned here for a decade. Her singing grows louder as you descend. She knows you are coming. She has been waiting.",
+          "The gravity fluctuations intensify near the observation gallery. Objects float. Water runs upward. The girl's isolation has made her desperate, and her desperation warps the physics of the vault."
+        ],
+        "loot": [
+          {
+            "name": "Director Abbas's Final Report",
+            "value": 0,
+            "description": "Found in the observation booth. A sealed envelope marked 'TO BE OPENED IN THE EVENT OF CONTAINMENT FAILURE.' Inside: 'The subject is a child. She was brought to EONS at age four, exhibiting bleed abilities beyond any recorded precedent. We built this vault to contain her. We told ourselves it was protection. It was a prison. She does not understand why we left. She only knows that we did. -- Abbas, Director, Year One.'"
+          }
+        ]
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 18,
+      "y": 4,
+      "width": 6,
+      "height": 6,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The stairwell to level seven. The spiral staircase here has been twisted by gravitational anomalies -- steps jut at impossible angles, some inverted, some missing entirely. The handrail floats six inches from its mounts. Descending requires climbing as much as walking. The singing echoes up the shaft, reverberating off the metal, and for a moment it resolves into words: 'Are you coming to see me? Please. Please come see me.'",
+        "npcs": [],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [
+          "The final descent. The stairwell is warped by gravity fluctuations -- the Reliquary's emotional state is destabilizing the vault's structural integrity. She knows you are close. She is excited. The vault may not survive her excitement."
+        ],
+        "loot": [],
+        "investigation_dc": 14,
+        "investigation_success": "The structural warping follows a pattern -- it intensifies when the singing grows louder and calms when it softens. The gravity fluctuations are not random. They are emotional. The child's feelings are literally reshaping the space around her."
+      }
+    }
+  }
+}

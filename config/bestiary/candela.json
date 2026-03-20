@@ -1,0 +1,263 @@
+{
+  "version": 1,
+  "format": "fitd",
+  "source": "Candela Obscura Core Rulebook pp.65-69, 171-185",
+  "note": "Candela phenomena use Body/Brain/Bleed damage types. threat_level is narrative difficulty (1-4). Adversaries are worked as countdown dice, not HP pools.",
+  "tiers": {
+    "1": [
+      {
+        "name": "Civilians",
+        "faction": "mundane",
+        "tier": 1,
+        "quality": 1,
+        "threat_level": 1,
+        "scale": "individual",
+        "description": "People here are not afraid to commit violence to protect their land or their neighbors.",
+        "damage_type": "body",
+        "capabilities": ["brawl", "intimidate", "mob_mentality"],
+        "weakness": "authority, reason, superior numbers",
+        "source": "The Light Eater of Bridleborne p.171"
+      },
+      {
+        "name": "Night Terrors",
+        "faction": "phenomena",
+        "tier": 1,
+        "quality": 1,
+        "threat_level": 1,
+        "scale": "group",
+        "description": "Smaller, more chaotic versions of their parent that feed off the electricity the Light Eater gathers.",
+        "damage_type": "bleed",
+        "capabilities": ["swarm", "shadow_form", "electrical_discharge"],
+        "weakness": "water, daylight, severing power source",
+        "source": "The Light Eater of Bridleborne p.171"
+      },
+      {
+        "name": "Recluse Minions",
+        "faction": "phenomena",
+        "tier": 1,
+        "quality": 1,
+        "threat_level": 1,
+        "scale": "group",
+        "description": "Small spider-like creatures that have infested areas the Recluse frequents. They will attempt to burrow under a PC's skin and lay eggs.",
+        "damage_type": "bleed",
+        "capabilities": ["burrow", "infest", "swarm"],
+        "weakness": "fire, light, crushing",
+        "source": "Stage Fright p.183"
+      },
+      {
+        "name": "Glitching Commuters",
+        "faction": "mundane",
+        "tier": 1,
+        "quality": 1,
+        "threat_level": 1,
+        "scale": "individual",
+        "description": "Ordinary-looking people behaving strangely: staring at turned-off digipaper, singing at half speed, swapping faces.",
+        "damage_type": "brain",
+        "capabilities": ["unsettle", "distract", "block_path"],
+        "weakness": "easily avoided, fragile illusion",
+        "source": "Candela Obscura setting"
+      }
+    ],
+    "2": [
+      {
+        "name": "Putrescence",
+        "faction": "phenomena",
+        "tier": 2,
+        "quality": 2,
+        "threat_level": 2,
+        "scale": "individual",
+        "description": "If you touch any beings reanimated by the camera, the maggots and rot will infect your body.",
+        "damage_type": "body",
+        "capabilities": ["contact_infection", "rot_spread", "body_horror"],
+        "weakness": "fire, distance, protective gear",
+        "source": "Still Life p.175"
+      },
+      {
+        "name": "Corpse Conduit",
+        "faction": "phenomena",
+        "tier": 2,
+        "quality": 2,
+        "threat_level": 2,
+        "scale": "individual",
+        "description": "The twisted, warped, and fused body chain is horrifying to behold. Mangled flesh climbs power poles, swallowing transformers.",
+        "damage_type": "brain",
+        "capabilities": ["static_electricity", "chain_growth", "horror_aura"],
+        "weakness": "water, severing the chain, cutting power",
+        "source": "The Light Eater of Bridleborne p.171"
+      },
+      {
+        "name": "Bodies Rise",
+        "faction": "phenomena",
+        "tier": 2,
+        "quality": 2,
+        "threat_level": 2,
+        "scale": "group",
+        "description": "The bleed of the Eye of Emrys is causing the hundreds of bodies buried beneath Newfaire to rise to the surface. Animals, livestock, and all matter of undead crawl through the night.",
+        "damage_type": "brain",
+        "capabilities": ["swarm", "revenant_strength", "horror_aura"],
+        "weakness": "the Eye of Emrys camera, daylight, consecration",
+        "source": "Still Life p.175"
+      },
+      {
+        "name": "Alta Aqua",
+        "faction": "phenomena",
+        "tier": 2,
+        "quality": 2,
+        "threat_level": 2,
+        "scale": "hazard",
+        "description": "A flesh-eating orange phosphorescent fungus that clings to the walls of the underwater vault.",
+        "damage_type": "body",
+        "capabilities": ["contact_damage", "spore_spread", "bioluminescence"],
+        "weakness": "fire, cold, sealed containers",
+        "source": "The Devil's Well p.179"
+      },
+      {
+        "name": "Revenants",
+        "faction": "phenomena",
+        "tier": 2,
+        "quality": 2,
+        "threat_level": 2,
+        "scale": "group",
+        "description": "Figures of people who once worked within the Devil's Well appear, like ghosts, still working and protecting artifacts.",
+        "damage_type": "brain",
+        "capabilities": ["intangibility", "guard_duty", "whisper"],
+        "weakness": "bleed neutralization, ritual dismissal, the Reliquary's will",
+        "source": "The Devil's Well p.179"
+      },
+      {
+        "name": "Faceless Bodies",
+        "faction": "phenomena",
+        "tier": 2,
+        "quality": 2,
+        "threat_level": 2,
+        "scale": "group",
+        "description": "The bodies left behind by the Recluse are so unnerving that merely looking at them is dangerous to a person's well-being.",
+        "damage_type": "brain",
+        "capabilities": ["horror_aura", "unsettle", "mimic_voice"],
+        "weakness": "averting gaze, destroying the Recluse",
+        "source": "Stage Fright p.183"
+      },
+      {
+        "name": "Mick Aguilar",
+        "faction": "mundane",
+        "tier": 2,
+        "quality": 2,
+        "threat_level": 2,
+        "scale": "individual",
+        "description": "Mick is the jealous husband of Andres, the man the private detective is investigating. He is a chamberlain of the Primacy.",
+        "damage_type": "body",
+        "capabilities": ["political_influence", "armed_revolver", "periphery_connections"],
+        "weakness": "emotional vulnerability, exposure, the truth about Andres",
+        "source": "Stage Fright p.183"
+      }
+    ],
+    "3": [
+      {
+        "name": "The Shutters",
+        "faction": "phenomena",
+        "tier": 3,
+        "quality": 3,
+        "threat_level": 3,
+        "scale": "group",
+        "description": "The bodies of the people the camera reanimated. They hunt for the souls of living people to steal and fill their hollow bodies. They move in jerking jitters, as if caught in the flash of a camera's still frame.",
+        "damage_type": "bleed",
+        "capabilities": ["soul_drain", "unnatural_movement", "swarm", "pursuit"],
+        "weakness": "the Eye of Emrys, bright flash, containment ritual",
+        "source": "Still Life p.177"
+      },
+      {
+        "name": "Corrupt Artifacts",
+        "faction": "phenomena",
+        "tier": 3,
+        "quality": 3,
+        "threat_level": 3,
+        "scale": "hazard",
+        "description": "EONS hid powerful artifacts twisted by bleed within the Devil's Well. Their proximity inflicts massive bleed.",
+        "damage_type": "bleed",
+        "capabilities": ["bleed_aura", "reality_warp", "corruption"],
+        "weakness": "Scales of Justice, proper containment, distance",
+        "source": "The Devil's Well p.179"
+      },
+      {
+        "name": "Undead Racing Hounds",
+        "faction": "phenomena",
+        "tier": 3,
+        "quality": 3,
+        "threat_level": 3,
+        "scale": "group",
+        "description": "A pack of ravenous undead racing hounds, killed in a terrible accident and reanimated by the Eye of Emrys. Cold, dead eyes, mouths dripping with blood and viscera.",
+        "damage_type": "body",
+        "capabilities": ["pack_tactics", "speed", "savage_bite", "relentless"],
+        "weakness": "the Eye of Emrys camera, containment, fire",
+        "source": "Still Life p.177"
+      },
+      {
+        "name": "Mutated Crustaceans",
+        "faction": "phenomena",
+        "tier": 3,
+        "quality": 3,
+        "threat_level": 3,
+        "scale": "group",
+        "description": "A vicious mutated swarm of crustaceans surrounding the sealed entrance to the Devil's Well, empowered by bleed.",
+        "damage_type": "body",
+        "capabilities": ["swarm", "armor_shell", "pincer_crush", "bleed_mutation"],
+        "weakness": "fire, blunt force, luring away",
+        "source": "The Devil's Well p.180"
+      }
+    ],
+    "4": [
+      {
+        "name": "The Light Eater",
+        "faction": "phenomena",
+        "tier": 4,
+        "quality": 4,
+        "threat_level": 4,
+        "scale": "massive",
+        "description": "A shadowy entity that feeds off electricity, allowing it to expand in size and strength. Covered in a thick mat of black hide, with limbs protruding from a humanoid body that stands over 30 feet tall. For centuries it relied on lightning strikes, but the proliferation of electricity has allowed it to expand its consumption and size.",
+        "damage_type": "all",
+        "capabilities": ["electrocution", "size_growth", "electric_wire_of_fused_flesh", "crackling_magick"],
+        "weakness": "cutting off electricity, water, the fire station hose",
+        "source": "The Light Eater of Bridleborne p.171"
+      },
+      {
+        "name": "The Eye of Emrys",
+        "faction": "artifact",
+        "tier": 4,
+        "quality": 4,
+        "threat_level": 4,
+        "scale": "artifact",
+        "description": "A camera artifact that awakens the bodies of the deceased. When photos are taken, bodies are reanimated by a supernatural power, then kill the living to take their souls. It can also return them to their natural state.",
+        "damage_type": "bleed",
+        "capabilities": ["reanimate_dead", "soul_transfer", "bleed_emanation", "photograph_curse"],
+        "weakness": "can be used in reverse, destroying the camera, Nora Enfield's hairpin",
+        "source": "Still Life p.175"
+      },
+      {
+        "name": "The Reliquary",
+        "faction": "phenomena",
+        "tier": 4,
+        "quality": 4,
+        "threat_level": 4,
+        "scale": "individual",
+        "description": "A child corrupted by bleed and locked in a vault within the Devil's Well. Empowered by energies from beyond the Flare, she has developed deadly supernatural abilities. Her isolation and loneliness cause fluctuations in gravity that wreck ships and pull dirigibles from the sky.",
+        "damage_type": "all",
+        "capabilities": ["gravity_manipulation", "reality_warp", "bleed_aura", "emotional_connection"],
+        "weakness": "empathy, emotional connection, freeing her from isolation",
+        "source": "The Devil's Well p.181"
+      },
+      {
+        "name": "The Recluse",
+        "faction": "phenomena",
+        "tier": 4,
+        "quality": 4,
+        "threat_level": 4,
+        "scale": "massive",
+        "description": "A massive spider-creature with an appendage shaped like a human, which it puppets to attract its prey. It steals the faces and mimics the voices of its victims. Eight sharp legs that can pierce human flesh with ease.",
+        "damage_type": "all",
+        "capabilities": ["face_theft", "voice_mimicry", "web_trap", "human_puppet", "paralytic_venom"],
+        "weakness": "light, destroying the puppet appendage, fire",
+        "source": "Stage Fright p.183"
+      }
+    ]
+  }
+}

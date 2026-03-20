@@ -1,0 +1,198 @@
+{
+    "seed": 4412,
+    "width": 80,
+    "height": 70,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "rot_spire",
+        "theme": "RUST",
+        "topology": "dungeon",
+        "display_name": "The Rot Spire",
+        "flavor_note": "The interior of the Rot Spire. Four ascending levels culminating in the throne of the Emberlord Primarch -- the Blight's most powerful servant, a being that was once something else entirely. The Spire is the Blight's cathedral, its command structure, and its final defense. Every enemy here is Tier IV. Every trap is lethal. The architecture itself is hostile."
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 30,
+            "y": 2,
+            "width": 20,
+            "height": 14,
+            "room_type": "start",
+            "connections": [1],
+            "tier": 4,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The ground floor is a cathedral of ruin. Massive pillars of consumed root-wood support a ceiling sixty feet above, their surfaces carved with patterns that predate the Blight -- Arborist architecture, consumed and repurposed. The original function of this space is unmistakable: it was a Root-Road junction. The Grand Junction. The place where all four Grove-roads once met in a chamber large enough to hold a thousand travelers. Now it holds three Emberlord Sentinels: towering constructs of Blight-hardened wood and amber corruption, their bodies wreathed in grey flame that burns without heat. They stand at the base of the spiral stair. They have been standing there since the Spire grew. They will stand there until something removes them.",
+                "read_aloud": "The hall takes your breath. Not from beauty -- from scale. Sixty feet to the ceiling, held up by pillars the width of ancient oaks. This was a junction once. You can see the Root-Road archways sealed into the walls -- four of them, one for each Grove, their surfaces covered in Arborist glyphs now choked with grey fungal growth. The Burnwillow built this place for meetings, for commerce, for the passage of civilizations between seasons. The Blight built a fortress on top of it. Three figures stand at the stair. They burn with grey flame. They are made of the same wood as the pillars -- Arborist-grade, the strongest material in existence, turned against the tree that grew it. They see you. The grey flames brighten.",
+                "npcs": [],
+                "enemies": [
+                    {
+                        "name": "Emberlord Sentinel",
+                        "hp": 35,
+                        "ac": 16,
+                        "attack": 8,
+                        "damage": "2d6+4",
+                        "notes": "Tier IV construct. DR 3 (Arborist-grade bark). Grey Flame: melee attackers take 3 necrotic damage per hit. Immune to Blight and fire. Vulnerable to the Root-Song: characters with Aether 14+ can attempt DC 16 Aether to stun a Sentinel for 1 round (the Arborist wood remembers its original allegiance)."
+                    },
+                    {
+                        "name": "Emberlord Sentinel",
+                        "hp": 35,
+                        "ac": 16,
+                        "attack": 8,
+                        "damage": "2d6+4",
+                        "notes": "Tier IV construct. DR 3. Grey Flame: 3 necrotic per melee hit. Vulnerable to Root-Song stun (DC 16 Aether)."
+                    },
+                    {
+                        "name": "Emberlord Sentinel",
+                        "hp": 35,
+                        "ac": 16,
+                        "attack": 8,
+                        "damage": "2d6+4",
+                        "notes": "Tier IV construct. DR 3. Grey Flame: 3 necrotic per melee hit. Vulnerable to Root-Song stun (DC 16 Aether)."
+                    }
+                ],
+                "loot": [],
+                "services": [],
+                "event_triggers": [
+                    "On room entry: The four Root-Road archways pulse faintly -- gold beneath the grey, the Arborist glyphs trying to activate. Characters with Aether 14+ hear the Root-Song here, distorted, as though it is being spoken through a medium that changes the words. The Song is saying: 'Remember. Remember what this place was.'",
+                    "On all Sentinels defeated: The grey flame extinguishes. The pillars groan -- settling, relaxing, as though a tension has been released. The Root-Road archways pulse brighter for a moment. One day, they might open again. Not today."
+                ]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 35,
+            "y": 18,
+            "width": 12,
+            "height": 12,
+            "room_type": "corridor",
+            "connections": [0, 2],
+            "tier": 4,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The spiral stair ascends through the Spire's interior in a helix of consumed wood and fungal tissue. The steps are organic -- grown, not carved -- and they shift underfoot with each step, as though the Spire is reconfiguring its own anatomy to slow your ascent. Traps are embedded in the walls: spore jets triggered by pressure, root-tendrils that lash out at passing limbs, and at the midpoint, two Cinder Wyrms coiled around the central column -- serpentine Blight-constructs made of charred wood and smoldering fungal cord, their bodies radiating the same grey flame as the Sentinels below.",
+                "read_aloud": "The stairs twist. Not architecturally -- physically. The steps beneath your feet shift as you climb, narrowing, tilting, as though the Spire is trying to shake you loose. Spore jets hiss from cracks in the walls. A root-tendril lashes at ankle height and retracts before you can cut it. Halfway up, the stairway opens into a wider coil and two shapes unwind from the central column -- serpents of charred wood and smoldering fungal fiber, their eyes ember-bright, their bodies long enough to encircle the entire stair. They do not hiss. They crackle. Like a fire about to catch.",
+                "npcs": [],
+                "enemies": [
+                    {
+                        "name": "Cinder Wyrm",
+                        "hp": 28,
+                        "ac": 14,
+                        "attack": 7,
+                        "damage": "2d6+3",
+                        "notes": "Tier IV beast. Constrict: on hit, DC 14 Grit or grappled (2d6 automatic fire/necrotic damage per round until freed, DC 14 Might). Ember Breath: 15ft cone, DC 14 Grit or 3d6 fire damage (once per 3 rounds). Immune to fire. Vulnerable to cold/water."
+                    },
+                    {
+                        "name": "Cinder Wyrm",
+                        "hp": 28,
+                        "ac": 14,
+                        "attack": 7,
+                        "damage": "2d6+3",
+                        "notes": "Tier IV beast. Constrict: DC 14 Grit. Ember Breath: 15ft cone, DC 14 Grit, 3d6 fire. Immune to fire."
+                    }
+                ],
+                "loot": [],
+                "services": [],
+                "event_triggers": [
+                    "Hazard: Stair Traps. Every 2 rounds, one random character must DC 12 Grit (spore jet) or DC 12 Wits (root-tendril lash). Spore jet: 1d6 damage + Blight contact. Root-tendril: 1d6 damage + lose next Move action.",
+                    "On Wyrms defeated: The central column cracks. Through the crack -- a glimpse of the Spire's interior structure. It is hollow. The entire Spire is hollow, and something is growing in the empty center, ascending alongside you. You cannot see it clearly. You do not want to."
+                ]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 25,
+            "y": 32,
+            "width": 18,
+            "height": 14,
+            "room_type": "chamber",
+            "connections": [1, 3],
+            "tier": 4,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The laboratory. This room does not belong in the Spire. Its walls are smooth-grown Arborist wood -- not consumed, not corrupted, but preserved. Glass vessels line shelves carved into the walls, containing amber samples in various states of contamination: pure gold, gold-streaked-grey, grey, black. Notes in an Arborist script cover a workbench. A ghost stands at the bench, writing, its translucent hands moving a pen that no longer exists. The ghost of the researcher who studied the Blight. Who perhaps created it. The notes are readable. The truth is in this room.",
+                "read_aloud": "The laboratory is clean. That is what stops you. In a fortress of corruption, this room is pristine -- Arborist-made, preserved in an amber-sealed bubble that the Blight has not breached. Glass vessels line the walls, each containing a sample of amber at a different stage of infection. The progression is clinical. Scientific. Someone studied this. Someone watched the Blight consume amber and took notes. The ghost at the workbench is still taking them. Its hands move over a surface that no longer exists, writing observations no one will read. Until now.",
+                "npcs": [
+                    {
+                        "name": "Ghost of Researcher Vaelith",
+                        "role": "lore",
+                        "dialogue": "[Responds to investigation, not conversation] The notes are in Arborist script. Characters with Aether 14+ or a Dowsing Rod can translate fragments: 'The Blight is not an invasion. It is an immune response. The Groves are connected -- Root-Road, Root-Song, shared circulatory system. When one Grove dies, the others compensate. When Ashenmere went still, the remaining three Groves strained to maintain the cycle. The strain produced the Rot. Not a disease. A fever. The tree is trying to burn out its own weakness. The Rot Hunter is the fever's apex -- the tree's own antibody, corrupted beyond recognition, attacking the body it was made to protect. If the Rot Hunter is destroyed, the fever breaks. The tree can heal. But only if the Crown still burns.'",
+                        "notes": "This is the central lore revelation of the campaign. The Blight is the Burnwillow's immune response to the loss of Ashenmere. The Rot Hunter is a corrupted antibody. Killing it does not harm the tree -- it cures it. This information fundamentally recontextualizes every previous encounter. The Ironvein Spiders, the Rotwood Hollow, the Sentinels -- all corrupted defenses. The tree has been trying to save itself and making everything worse."
+                    }
+                ],
+                "loot": [
+                    {"name": "Crown of Vigilance", "value": 35, "type": "rare", "notes": "Tier III. Head slot. +3d6 AETHER pool. [Resonant]: hums near Root-Song. [True Sight]: immune to hallucination effects. Grants ability to read Arborist script. Researcher Vaelith's personal crown, left on the workbench beside her notes. It still carries the warmth of a living mind."}
+                ],
+                "services": [],
+                "investigation_dc": 18,
+                "event_triggers": [
+                    "On investigation success (DC 18): Full translation of Vaelith's notes. The final entry: 'The Rot Hunter can be weakened. It draws power from the Spire itself. Sever the connection between the Hunter and the Spire -- destroy the Primarch in the throne room, who serves as the conduit -- and the Hunter fights alone. Alone, it can be killed. I know this because I helped build it. May the Song forgive me.' The researcher was an Arborist. The Blight was her mistake.",
+                    "On Crown of Vigilance equipped: The ghost looks up. For the first time, it sees you. Its expression shifts from concentration to recognition to grief. It mouths a single word -- 'Please' -- and fades. The crown grows warm on your brow. The Root-Song pulses through it like a second heartbeat."
+                ]
+            }
+        },
+        "3": {
+            "id": 3,
+            "x": 28,
+            "y": 48,
+            "width": 20,
+            "height": 16,
+            "room_type": "boss",
+            "connections": [2, 4],
+            "tier": 4,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The throne room. At the apex of the Spire's interior, beneath the platform that leads to the summit, the Emberlord Primarch sits on a throne of consumed Root-Road archways -- the four sealed passages from the ground floor, pulled upward through the Spire's body and fused into a seat of power. The Primarch is enormous: twelve feet tall, its body a fusion of Arborist wood and Blight-flesh, one hand resting on an armrest of golden amber, the other holding a greatsword of grey flame. Its face is a mask of bark with two ember eyes that have been burning since the Collapse. It was an Arborist once. The last Arborist. The one who stayed when the others fled through the Root-Roads.",
+                "read_aloud": "The throne is made of archways. Four Root-Road gates, torn from the junction below, fused into a seat that spans the chamber's width. The thing that sits on it has been waiting since before Emberhome was built. Twelve feet of Arborist wood and Blight corruption, one hand amber-gold, the other grey-dead, its face a bark mask split by two eyes that burn with the last fire of someone who watched the world end and decided to sit down. The Emberlord Primarch does not stand when you enter. It has been sitting for centuries. When it speaks, the voice is the Root-Song -- corrupted, discordant, but recognizable. 'You have read Vaelith's notes. Then you know what I am. What I was. I stayed to fight the fever. The fever consumed me. Now I am the disease I swore to cure. Kill me. It is the first kind thing anyone has done for me in four hundred years.'",
+                "npcs": [],
+                "enemies": [
+                    {
+                        "name": "Emberlord Primarch",
+                        "hp": 65,
+                        "ac": 19,
+                        "attack": 11,
+                        "damage": "3d6+5",
+                        "is_boss": true,
+                        "notes": "Tier IV boss. DR 3 (Arborist-grade). Grey Flame Greatsword: melee, +3d6 necrotic on hit. Rot Conduit: while alive, the Rot Hunter at the summit regenerates 5 HP/round. Destroying the Primarch severs this link. Command Aura: all Blight creatures within the Spire fight at +1 attack while Primarch lives. Root-Song Vulnerability: characters with Crown of Vigilance can attempt DC 18 Aether to bypass DR for 1 round (speaking to the Arborist wood inside the corruption). Phase 2 (below 30 HP): The Primarch stands. Its full height fills the chamber. It draws a second sword from the throne itself -- attacks twice per round. 'I am sorry. The disease fights the cure even when the host wants to die.'"
+                    }
+                ],
+                "loot": [
+                    {"name": "Sunfire Greatsword", "value": 45, "type": "epic", "notes": "Tier IV. R.Hand. Two-handed. +4d6 MIGHT pool. [Resonant]: hums with the Root-Song. [Sunfire]: deals fire damage instead of physical -- Blight creatures take double damage. The Primarch's personal weapon, cleansed of corruption by the act of the Primarch's death. The grey flame turns gold."},
+                    {"name": "Doom-Warded Gauntlets", "value": 40, "type": "epic", "notes": "Tier IV. Arms slot. +4d6 WITS pool. [Doom Ward]: DoomClock advances at half rate while equipped. [Arborist-Made]: +2 to all Aether checks. Pulled from the Primarch's golden hand -- the last piece of Arborist craftsmanship made before the Collapse."}
+                ],
+                "services": [],
+                "event_triggers": [
+                    "DoomClock +3 on room entry. The Spire channels all remaining power into the Primarch's defense.",
+                    "On Primarch defeated: The throne crumbles. The four Root-Road archways separate and fall, crashing to the floor, their surfaces clearing of corruption. Arborist glyphs glow gold beneath the grey. The Spire shudders -- with the conduit severed, the structure begins to destabilize. A stairway to the summit platform opens in the ceiling. The Rot Hunter is above. It is alone now.",
+                    "If Crown of Vigilance worn during fight: The Primarch pauses mid-swing once. Its ember eyes focus. 'Vaelith's crown. She would have wanted you to have it. She would have wanted this to end.' The pause grants a free attack against the Primarch (bonus action, no roll required, automatic hit)."
+                ]
+            }
+        },
+        "4": {
+            "id": 4,
+            "x": 35,
+            "y": 64,
+            "width": 12,
+            "height": 8,
+            "room_type": "exit",
+            "connections": [3],
+            "tier": 4,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The apex stairway. A final ascent through the Spire's hollow core to the summit platform. The stairs are crumbling -- the Primarch's death has begun the Spire's collapse. Wind howls through cracks in the fungal walls, carrying ash and the scent of fire-leaves from the canopy above. Through the cracks, you can see the sky -- not the bone-white of the Charred Wastes but the amber-gold of the Burnwillow's Crown, still burning, still alive. The last fire in the world.",
+                "read_aloud": "The stairs climb into the wind. The Spire is dying around you -- walls cracking, fungal tissue drying and curling, the bioluminescence flickering out section by section like a city losing power. Through the gaps, the sky. Not the dead sky of the wastes but the living sky of the Crown -- fire-leaves burning amber and gold against a darkness that has been trying to extinguish them for centuries. The stairs end at a platform open to the sky. Something waits above. You can hear it breathing. It has been breathing since the world began to die.",
+                "npcs": [],
+                "loot": [],
+                "services": [],
+                "event_triggers": [
+                    "On ascent: The stairs collapse behind you. There is no retreat. The summit is the only destination. The Rot Hunter awaits."
+                ]
+            }
+        }
+    }
+}

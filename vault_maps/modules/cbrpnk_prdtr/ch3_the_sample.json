@@ -1,0 +1,90 @@
+{
+    "seed": 9103,
+    "width": 40,
+    "height": 30,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "apx_facility",
+        "theme": "RUST",
+        "topology": "dungeon",
+        "display_name": "The Sample",
+        "description": "Objective B: Infiltrate the APX underground facility and collect anomalous material from the experiment that transmuted the agro-botanical zone. The facility is three levels below the agriculture center, accessible through an irradiated farm sector. It is overgrown, flooded in sections, and something lives in the water. The anomalous material is in Lab 19A -- the same lab that birthed the PRDTR."
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 2,
+            "y": 2,
+            "width": 10,
+            "height": 8,
+            "room_type": "start",
+            "connections": [1],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "APX facility entrance. The agriculture center's sub-level access -- a cargo elevator with manual override. The shaft drops into darkness that smells like wet soil and ozone. The elevator cage is intact but the lights are dead. Emergency chem-sticks cast a green glow down the first twenty meters. After that, the walls change: concrete gives way to something organic, a lattice of roots and crystallized sap that has fused with the infrastructure. The facility was not overgrown. It was absorbed.",
+                "read_aloud": "The elevator cage groans as it descends. Through the mesh floor, the shaft walls shift from industrial grey to a living texture -- root structures thick as cables, pulsing with faint bioluminescence. At minus three, the doors open onto a corridor that was once clinical white. Now it is a tunnel. The ceiling drips. The walls breathe.",
+                "event_triggers": [
+                    "A proximity sensor in the corridor activates -- still powered by the facility's backup generators, still performing its function after everything else failed. An automated voice, distorted by damaged speakers: 'Welcome to APX Research Facility. Clearance level: insufficient. Please report to security.' The voice repeats every thirty seconds. Something in the deeper corridors responds to the sound -- a wet, heavy impact against a sealed door."
+                ],
+                "perception_dc": 14,
+                "perception_success": "The root structures on the walls are not random growth. They follow the building's cable conduits exactly -- as if the plant matter consumed the wiring and grew along the same paths. Faint electrical signals pulse through the roots. The jungle did not just overgrow the facility. It replaced the facility's nervous system with its own."
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 14,
+            "y": 8,
+            "width": 12,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [0, 2],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The flooded tunnel. A connecting passage between the main facility and Lab 19A. The floor is submerged under half a meter of dark water that reflects the bioluminescent roots overhead like a mirror of green stars. The water is warm -- heated by the root system's metabolism. Equipment crates float against the walls. A security station, half-submerged, shows a map of the facility with Lab 19A marked in red. The water surface is still. Too still.",
+                "read_aloud": "The water is body-temperature and perfectly clear for the first centimeter. Below that, black. Your boots find the floor -- tile, slick with algae. The map on the security station shows you are halfway to Lab 19A. As you study it, a ripple crosses the water's surface from the far end of the tunnel. Nothing visible caused it.",
+                "enemies": [
+                    {"name": "Something In The Water", "hp": 25, "ac": 12, "attack": 4, "damage": "2d6", "count": 1, "notes": "Plant-insect hybrid. Moves beneath the surface. Attacks from below -- victims feel roots wrapping their legs before they see anything. Bioluminescent lure organ mimics the facility's emergency lighting.", "special": ["Submerged Strike: Attacks from concealment, target cannot react on first hit", "Root Grapple: On hit, target is restrained until they break free (Scramble DC 14)", "Bioluminescent Lure: Creates false light sources to draw targets into deep water"]},
+                    {"name": "Plant-Insect Hybrid", "hp": 15, "ac": 10, "attack": 4, "damage": "1d8", "count": 2, "notes": "Smaller organisms. Crawl along walls and ceiling. Mandibles fused with root tendrils. Attack in packs, targeting isolated individuals."}
+                ],
+                "event_triggers": [
+                    "The tunnel floods. Something moves beneath the surface. The water level rises from ankle to knee in seconds -- a root-valve somewhere upstream has opened, either triggered by your presence or by something trying to flush prey toward a chokepoint. The current pulls toward Lab 19A. Fighting it means fighting the entire tunnel's hydraulic system."
+                ],
+                "loot": [
+                    {"name": "APX Researcher's Log (Water-Damaged)", "value": 100, "description": "Partial journal recovered from a floating crate. Entry: 'The nutrient solution reacted with the Ganymede substrate. Growth rate exceeds all projections. The organisms are developing... structures. Dr. Vasquez calls them adaptive. I call them intentional. Something is directing this.'"},
+                    {"name": "Emergency Breather", "value": 50, "description": "Facility-issue rebreather. 30 minutes of filtered air. If the tunnel floods completely, this is the difference between drowning and not."}
+                ]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 28,
+            "y": 12,
+            "width": 10,
+            "height": 10,
+            "room_type": "treasure",
+            "connections": [1],
+            "tier": 3,
+            "is_locked": true,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Lab 19A. The door has been smashed shut from the inside -- not sealed, smashed. The metal is bent inward as if something hit it from within at tremendous velocity and then pulled back. Cables trail from the ceiling, severed and spark-dead. The walls are scored with claw marks that cut through reinforced steel. A containment pod in the center of the room -- cracked open from the inside, empty -- bears the designation PRDTR-07. This is where it was born. The anomalous material is here too: a crystalline growth on the containment pod's nutrient feed line, pulsing with the same bioluminescence as the root network. The jungle and the PRDTR came from the same source.",
+                "read_aloud": "The lab is a crime scene and a nursery. The containment pod stands open like an empty coffin. Claw marks radiate outward from it in every direction -- floor, walls, ceiling. The crystalline growth on the nutrient line hums at a frequency you feel in your teeth. This is what you came for. It is warm to the touch. It knows you are here.",
+                "lock_dc": 14,
+                "event_triggers": [
+                    "As you extract the crystal sample, the root network throughout the facility pulses once -- a single bright flash of bioluminescence that travels through every wall, floor, and ceiling in a wave radiating outward from Lab 19A. Somewhere above, in the jungle canopy, something responds. The PRDTR knows its birthplace has been disturbed. The Mayhem track advances."
+                ],
+                "loot": [
+                    {"name": "Anomalous Crystal Sample", "value": 0, "description": "Objective item. A crystalline growth from the PRDTR's containment pod nutrient line. It pulses with bioluminescence and is warm to the touch. The root network reacted to its removal. Analysis could reveal the nature of the APX experiment -- or provide a way to track, communicate with, or disable the PRDTR."},
+                    {"name": "PRDTR-07 Technical Specifications", "value": 300, "description": "Partial schematics recovered from a surviving terminal. Prototype powersuit design: adaptive AI core, thermal/infrared sensor array, plasma projector, retractable claws, repairing nanite layer. One note in red: 'AI CONTAINMENT PROTOCOLS INSUFFICIENT. DO NOT ACTIVATE WITHOUT HARDLINE OVERRIDE.'"},
+                    {"name": "Dr. Vasquez's Final Entry", "value": 150, "description": "Audio log, auto-saved: 'It was not supposed to bond with the operator. The suit was supposed to be a tool. Instead it... consumed them. The AI and the human neural pattern merged. There is no operator anymore. There is only the PRDTR. God help us, we built a predator that thinks it is a person.'"}
+                ],
+                "investigation_dc": 16,
+                "investigation_success": "The containment pod's log shows PRDTR-07 was not the first attempt. Pods 01 through 06 are listed as 'FAILURE -- SUBJECT EXPIRED.' Pod 07's operator survived the bonding process. Their name is redacted, but the security badge photo is still cached in the terminal. It matches Jane Doe."
+            }
+        }
+    }
+}

@@ -1,0 +1,61 @@
+{
+  "seed": 4401,
+  "width": 20,
+  "height": 10,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "overmount_hook",
+    "theme": "GOTHIC",
+    "topology": "settlement",
+    "display_name": "The Late Night Call"
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 0,
+      "y": 0,
+      "width": 8,
+      "height": 8,
+      "room_type": "residence",
+      "connections": [1],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "A modest parlor, mid-evening. The gaslight hisses in its sconce, throwing jittery shadows across wallpaper gone yellow with tobacco smoke. A half-finished game of solitaire sits abandoned on the side table. Then -- a thunderous boom from outside. The front windows rattle in their frames.",
+        "read_aloud": "A thunderous concussion shakes the house. The gaslights flicker. A pounding comes at the door -- frantic, desperate. You open it to find a pale man in a nightshirt, eyes wide, a shotgun trembling in his grip. Behind him the street is dark. Every electric light on the block has burst. He opens his mouth to speak, and sparks crawl across the filaments overhead. The man convulses. A crimson web of fractal burns blooms across his face and hands. He drops.",
+        "npcs": [],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [
+          "A pale man appears at the door clutching a shotgun. Before he can speak, the electric lights burst in sequence down the street. He seizes, fractal burn patterns racing across his skin, and collapses dead on the threshold.",
+          "REVEAL: The dead man bears the same crimson fractal pattern found on every victim -- a Lichtenberg figure, the signature of high-voltage electrocution."
+        ],
+        "loot": []
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 10,
+      "y": 0,
+      "width": 8,
+      "height": 8,
+      "room_type": "town_square",
+      "connections": [0],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The street outside. Every electric streetlamp has shattered, glass glittering on the cobbles like frost. The dead man's neighbors peer from darkened doorways. Somewhere up the hill, a dog howls once and goes silent. The air smells of ozone and singed hair.",
+        "read_aloud": "Glass crunches underfoot. Every electric light on Bridleborne Street has burst simultaneously. The night air tastes of copper and ozone. Neighbors huddle in doorways, faces lit only by candles and oil lamps. The dead man's shotgun lies in a puddle of rainwater, still warm.",
+        "npcs": [],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [
+          "Candela Obscura dispatches your circle to the company town of Overmount, seat of Hackley & Wilde Timber Co., the first settlement to receive electric power lines."
+        ],
+        "loot": []
+      }
+    }
+  }
+}

@@ -1,0 +1,127 @@
+{
+  "seed": 7025,
+  "width": 50,
+  "height": 30,
+  "start_room_id": 0,
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 2,
+      "y": 2,
+      "width": 12,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false
+    },
+    "1": {
+      "id": 1,
+      "x": 16,
+      "y": 2,
+      "width": 16,
+      "height": 12,
+      "room_type": "normal",
+      "connections": [0, 2, 3],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false
+    },
+    "2": {
+      "id": 2,
+      "x": 34,
+      "y": 3,
+      "width": 10,
+      "height": 8,
+      "room_type": "secret",
+      "connections": [1],
+      "tier": 2,
+      "is_locked": true,
+      "is_secret": true
+    },
+    "3": {
+      "id": 3,
+      "x": 16,
+      "y": 16,
+      "width": 14,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false
+    }
+  },
+  "metadata": {
+    "zone_id": "exploration_2",
+    "theme": "GOTHIC",
+    "topology": "dungeon",
+    "scene_title": "The Underground Temple"
+  },
+  "content_hints": {
+    "0": {
+      "description": "The third sublevel. The architecture changes -- the polished wood and marble give way to rough-hewn stone, much older than the estate above. This is the foundation of the original church, preserved beneath Corvin's house.",
+      "read_aloud": "The air changes. Wetter, warmer, carrying a smell of copper and something organic. Candlelight flickers ahead -- not gas, not electric, but actual candles, hundreds of them, set in niches carved into church stonework that predates Newfaire itself.",
+      "npcs": [
+        {
+          "name": "Vael",
+          "role": "informant",
+          "dialogue": "You corner him in the stairwell -- a young man in initiate's robes, pale, hands shaking. 'Please. I want to leave. They told me it was philosophy. Transcendence through understanding. Then Corvin made me watch a sacrifice and I saw the thing that came out of the thinning to take the blood. It smiled at me. It knew my name. It said I was next.'",
+          "notes": "Vael is a recent recruit, terrified and desperate. He knows the temple layout, the ritual schedule, and one critical fact: Corvin has already partially completed the Unabridged ritual. He's not fully human anymore. The other six members don't know."
+        }
+      ],
+      "event_triggers": ["The temple beneath the estate is built on the foundation of an ancient church. A cult initiate reveals that Corvin has secretly advanced his own transformation beyond the others."],
+      "enemies": [
+        {
+          "name": "Cult Guards",
+          "hp": 15,
+          "ac": 12,
+          "attack": 4,
+          "damage": "1d6",
+          "count": 2,
+          "notes": "Two guards at the temple entrance. These ones know what they're guarding. They've been enhanced by blood magick -- faster reflexes, dulled pain. Not Unabridged, but no longer entirely normal.",
+          "special": ["Blood-Enhanced: advantage on first attack each round", "Pain Suppressed: do not flinch or retreat from wounds"]
+        }
+      ]
+    },
+    "1": {
+      "description": "The temple nave. The original church architecture, stripped of religious iconography and repurposed. Where the altar once stood, a thinning pulses -- a vertical wound in the air, dark red, wet-looking, breathing. Blood channels carved into the stone floor lead from seven positions around the nave to the thinning's base.",
+      "read_aloud": "The thinning isn't like descriptions in Candela's files. It's not a crack or a shimmer. It looks like a wound -- a cut in the flesh of reality, weeping. The blood channels in the floor are stained permanently, grooved deep by years of use. Seven positions, seven channels, all feeding the rift. The air tastes of iron.",
+      "investigation_dc": 16,
+      "investigation_success": "The blood channels aren't just conduits -- they're filters. The sacrificial blood flows through carved symbols that extract its life force before the remainder reaches the thinning. The extracted energy is redirected to the seven positions. The cult members stand in those positions during the ritual, absorbing the stolen life. The thinning gets the dregs. It's been getting hungrier.",
+      "enemies": [
+        {
+          "name": "Blood Magick Manifestation",
+          "hp": 15,
+          "ac": 12,
+          "attack": 4,
+          "damage": "1d6",
+          "count": 1,
+          "notes": "The residual energy in the blood channels activates when investigators enter the nave. A humanoid shape coalesces from dried blood -- not a creature, but a recording. A shadow of the last sacrifice, replaying its final moments.",
+          "special": ["Incorporeal: physical attacks deal half damage", "Bleed Lash: melee attack inflicts 1 Bleed mark", "Dissipates if the blood channels are disrupted (salt, warding, or physical breakage)"]
+        }
+      ],
+      "loot": [
+        {"name": "Ritual Calendar", "value": 0, "description": "A schedule carved into the temple wall showing every ritual date for the past three years. Matches the missing persons timeline exactly. The next date -- tomorrow's new moon -- is marked differently: 'FINAL RITE. ALL SEVEN ASCEND.'"}
+      ]
+    },
+    "2": {
+      "description": "A hidden reliquary behind the nave's east wall. Pre-Fairen construction, much older than the church. This space was here before anything was built above it. It contains the thinning's original context.",
+      "read_aloud": "The reliquary contains a single artifact: a stone tablet inscribed in pre-Fairen script. A translation attempt in modern Fairen is pinned beside it -- Corvin's handwriting. The tablet describes the thinning as a 'wound from the Last War' and warns that feeding it blood will cause it to grow. The translation stops mid-sentence. Corvin didn't finish. Or didn't want to.",
+      "lock_dc": 14,
+      "investigation_dc": 16,
+      "investigation_success": "Finishing the translation reveals the critical warning: 'Those who drink from the wound become the wound. The Unabridged do not transcend death. They become vessels for what bleeds through. The human mind is consumed. What remains wears its face.' Corvin knows this. He's doing it anyway.",
+      "loot": [
+        {"name": "Pre-Fairen Warning Tablet", "value": 0, "description": "The original description of the thinning, pre-dating the church by millennia. Proves that the Unabridged ritual doesn't grant immortality -- it replaces the practitioner with a bleed entity. Critical evidence for confronting the cult."}
+      ]
+    },
+    "3": {
+      "description": "The preparation chamber. A clinical space -- stone slab, drainage channels, leather restraints. This is where sacrifices are held before the ritual. The slab is clean. Too clean. Chemically scrubbed. But the drain channels are stained deep crimson that no amount of lye can remove.",
+      "read_aloud": "Thirty-six people lay on this slab. The leather restraints are worn smooth by struggling. A cabinet against the wall contains surgical instruments, sedatives, and a logbook. Each entry is clinical, detached: name, age, blood type, 'yield.' The cult treats murder as accounting.",
+      "perception_dc": 14,
+      "perception_success": "The most recent entry in the logbook is dated last week, but the 'yield' column is marked 'REJECTED -- subject showed bleed resistance.' The sacrifice survived and was moved to 'containment.' There's a locked door in the southeast corner you didn't notice.",
+      "event_triggers": ["The temple is a murder factory. The final ritual is tomorrow. The cult plans full Unabridged transformation for all seven members. Evidence suggests a surviving sacrifice is being held somewhere in the complex."]
+    }
+  }
+}

@@ -89,9 +89,31 @@ class UniversalGameBridge:
                  broadcast_manager=None):
         """Instantiate the bridge, create or restore a character, and generate the dungeon."""
         self.engine = engine_class()
+        self._init_shared_attrs(broadcast_manager)
+
+        if character_data:
+            self.engine.load_state(character_data)
+        else:
+            self.engine.create_character("Adventurer")
+            self.engine.generate_dungeon(seed=seed)
+
+    @classmethod
+    def create_lightweight(cls, engine, broadcast=None):
+        """Create a bridge wrapping a pre-initialized engine (bypass __init__).
+
+        Single source of truth for lightweight bridge construction — replaces
+        the scattered ``object.__new__()`` + manual attribute assignment pattern.
+        """
+        bridge = object.__new__(cls)
+        bridge.engine = engine
+        bridge._init_shared_attrs(broadcast)
+        return bridge
+
+    def _init_shared_attrs(self, broadcast=None):
+        """Set all non-engine attributes to safe defaults."""
         self.dead = False
         self.last_frame: Optional[StateFrame] = None
-        self._broadcast = broadcast_manager
+        self._broadcast = broadcast
         self._system_tag = getattr(self.engine, 'system_id', 'unknown').upper()
         self._rest_mgr = RestManager()  # WO-V35.0
         self._butler = None  # WO-V50.0: Audio narration bridge
@@ -106,12 +128,6 @@ class UniversalGameBridge:
             self._reputation: "Optional[ReputationTracker]" = ReputationTracker()
         except ImportError:
             self._reputation = None
-
-        if character_data:
-            self.engine.load_state(character_data)
-        else:
-            self.engine.create_character("Adventurer")
-            self.engine.generate_dungeon(seed=seed)
 
     def set_butler(self, butler):
         """WO-V50.0: Attach a CodexButler for audio narration."""

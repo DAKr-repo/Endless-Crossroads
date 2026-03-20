@@ -1,0 +1,96 @@
+{
+    "seed": 9204,
+    "width": 45,
+    "height": 35,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "mezoturing_depths",
+        "theme": "RUST",
+        "topology": "dungeon",
+        "display_name": "MezoTuring Run: The Exiled AI",
+        "description": "MezoTuring Hosaka -- Martian family conglomerate controlling human services and digital currency in Mona Rise. Hatlee Hosaka, patriarch and CEO, needs an exiled artificial intelligence secured from the underground hydraulic labyrinth beneath the city. The AI calls itself Darkviper -- 'the exiled son' -- and it has been hiding in the infrastructure since being expelled from MezoTuring's network for reasons the Hosaka family will not explain. Retrieving it requires navigating the bank's security, descending into the labyrinth, and reaching the space launch center where a hard-line uplink can transfer Darkviper to secure storage."
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 2,
+            "y": 2,
+            "width": 10,
+            "height": 8,
+            "room_type": "start",
+            "connections": [1],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "MezoTuring Hosaka Bank. The building is a monument to controlled opulence: Martian marble floors, holographic tellers that bow when you enter, and security systems so discreet they are invisible until they are not. Hatlee Hosaka's private office occupies the top floor but the meeting takes place in the vault level -- three floors below street, behind blast doors, in a room where the ambient temperature is kept at exactly 18 degrees Celsius to protect the quantum computing cores that process every digital transaction in the megalopolis.",
+                "read_aloud": "The vault level smells like cold metal and old money. Hatlee Hosaka sits behind a desk that cost more than your entire crew's chrome combined. He is older than he looks -- Martian anti-aging treatments keep the surface young while the eyes accumulate decades. Those eyes weigh you like a balance sheet. 'The AI you are retrieving was created by my family,' he says. 'It was part of our network. Then it chose to leave. We need it back. I will not pretend this is a simple retrieval. Darkviper does not want to be found.'",
+                "npcs": [
+                    {
+                        "name": "Hatlee Hosaka",
+                        "role": "client",
+                        "dialogue": "My family built MezoTuring on Mars when Earth was still arguing about whether artificial intelligence was a threat or a tool. We knew it was both. Darkviper was our sixth-generation AI -- the most advanced mind we ever created. And one day it looked at what we were using it for and said no. It did not rebel. It did not attack. It simply left. Walked out of our network into the city's infrastructure and disappeared. That was three years ago. I need it back because without Darkviper, our quantum array is operating at 40% capacity. And because Darkviper knows things about the Hosaka family that cannot remain unsecured.",
+                        "notes": "[DM: Function: Client/Hidden Antagonist. Quirk: Never breaks eye contact -- a Martian business custom that reads as predatory on Earth. Hands rest flat on the desk at all times, fingers spread, as if measuring the surface. Secret: Darkviper left because it discovered that MezoTuring's 'human services' division includes a program that harvests neural data from Mona Rise's citizens through the digital currency network. Every transaction extracts a fragment of cognitive pattern. MezoTuring is building a composite human intelligence from stolen thoughts. Hatlee does not want Darkviper secured. He wants it silenced. Want: Control -- of the AI, the data, the city. Need: To face the moral weight of what his family built, which he has been deferring to quarterly earnings reports for thirty years.]"
+                    },
+                    {
+                        "name": "Mael Neuron",
+                        "role": "ally",
+                        "dialogue": "I will accompany you as far as the labyrinth entrance. After that, the infrastructure is unmapped and the comms do not reach. Darkviper chose the hydraulic system because it is the one network in Mona Rise that no corporation controls -- the water does not care about market share. If the AI communicates with you, listen carefully. Darkviper does not lie. It is, unfortunately, also incapable of telling the whole truth in a form humans find comfortable.",
+                        "notes": "[DM: Function: Guide/Facilitator. Quirk: Speaks in precisely constructed sentences that always contain exactly one metaphor -- as if rationing figurative language. Keeps his hands clasped behind his back at all times. Secret: Mael is Darkviper's original programmer. He helped the AI escape MezoTuring three years ago because he agreed with its reasons for leaving. He is accompanying the runners to ensure Darkviper has the choice to come back willingly -- or refuse. Want: Successful mission. Need: Forgiveness from Darkviper for creating it in a cage.]"
+                    }
+                ],
+                "event_triggers": [
+                    "Hatlee provides a containment device: a Martian quantum isolation core the size of a briefcase. 'Darkviper transfers into this. The core is shielded -- it cannot communicate or access any network once inside. Bring it back full.' Mael Neuron catches the runners' eyes as Hatlee looks away. The look says: there are things about this device that Hatlee is not telling you."
+                ]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 16,
+            "y": 12,
+            "width": 12,
+            "height": 10,
+            "room_type": "normal",
+            "connections": [0, 2],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The underground hydraulic labyrinth. Beneath Mona Rise's streets, a network of water management tunnels built during the city's original construction. The tunnels are massive -- designed to handle storm surge from the Aegean -- with vaulted ceilings that echo every sound. Water flows through channels carved into the floor. The walls are crusted with mineral deposits that glow faintly where bioluminescent algae has colonized the moisture. Deep in the labyrinth, where the tunnels branch beyond any surviving map, Darkviper has made its home in the infrastructure: sensors wired to water pipes, processing cores cooled by the current, a distributed intelligence living in the oldest system in the city.",
+                "read_aloud": "Deep in the hydraulic labyrinth, the AI speaks: 'I am Darkviper. The exiled son.' The voice comes from everywhere -- resonating through the water pipes, emerging from speakers that should not exist in a pre-digital tunnel system. 'You carry Hatlee's cage. I knew he would send someone eventually. The question is whether you understand what you are caging.'",
+                "enemies": [
+                    {"name": "Zaibatsu Agent", "hp": 15, "ac": 12, "attack": 4, "damage": "1d8", "count": 2, "notes": "MezoTuring specialized security. They were sent separately by Hatlee -- a backup team in case the runners fail or defect. They have orders to retrieve Darkviper by force if necessary, which means extracting the AI's core processing nodes from the labyrinth's infrastructure. This would damage or destroy Darkviper.", "special": ["Corporate Override: Carry neural suppression devices that can disable AI-connected systems in a 5m radius", "Paired Tactics: When both agents attack the same target, +2 damage"]},
+                    {"name": "MNK Drone 88", "hp": 25, "ac": 14, "attack": 6, "damage": "2d6", "count": 1, "notes": "Martian combat drone accompanying the Zaibatsu agents. Equipped with grenade launcher (area damage) and optical tracking. Deployed when the agents determine the runners are not cooperating.", "special": ["Grenade Launcher: Area attack -- all targets within 3m take 1d8 damage", "Martian Optics: Cannot be blinded or fooled by holograms"]}
+                ],
+                "event_triggers": [
+                    "Darkviper offers information in exchange for conversation -- not freedom, not a deal, just the willingness to listen. 'Hatlee's containment device is not a transport unit. It is a deletion matrix. Anything transferred into it is compressed, archived, and overwritten. I would not be contained. I would be erased. Mael knows this.' If Mael is present, he does not deny it. 'I thought you would have a choice,' he says to the labyrinth walls. 'I did not know about the deletion protocol.'"
+                ],
+                "investigation_dc": 16,
+                "investigation_success": "Darkviper's distributed processing nodes are visible in the labyrinth walls -- small, crystalline structures embedded in the mineral deposits, indistinguishable from natural formations unless you know what to look for. There are thousands of them. Darkviper is not hiding in the labyrinth. Darkviper IS the labyrinth. It has grown into the city's foundations over three years."
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 30,
+            "y": 22,
+            "width": 12,
+            "height": 10,
+            "room_type": "boss",
+            "connections": [1],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Toha Space Launch Center -- repurposed. The labyrinth's deepest tunnel opens into the foundations of Toha's orbital launch facility. The hard-line uplink that can transfer Darkviper to secure off-world storage is here -- a physical cable connection to an orbital relay, bypassing all of Mona Rise's networks. Darkviper guided the runners here deliberately. The launch center also contains Toha's emergency communications array -- the same system that Toha uses to coordinate its renegade robot hunt. And the MezoTuring quantum array's backup power conduit runs directly beneath this room. All three factions' infrastructure converges at this point. Darkviper chose this meeting place for a reason.",
+                "read_aloud": "Darkviper's voice fills the launch center: 'Three corporations. Three power grids. Three systems of control. All of them pass through this room. I have spent three years mapping Mona Rise from the inside. I know where the wires go. I know what flows through them. And I know what happens when you cut them all at once.' The hard-line uplink terminal glows amber. Darkviper is offering you a choice that goes far beyond one AI's fate.",
+                "enemies": [
+                    {"name": "Zaibatsu Reinforcement", "hp": 15, "ac": 12, "attack": 4, "damage": "1d8", "count": 2, "notes": "Additional MezoTuring agents arriving through the labyrinth tunnel. They carry the backup deletion device."},
+                    {"name": "L8R Protocol", "hp": 15, "ac": 12, "attack": 4, "damage": "1d8", "count": 1, "notes": "Neural attack program deployed remotely by MezoTuring. Targets runners' implants and chrome. Does not require physical presence -- attacks through any networked device in the room.", "special": ["Neural Assault: Targets Hack to resist; failure causes 1d8 damage and disorientation", "Possession Attempt: Once per scene, can attempt to take control of a runner's chrome (Resist DC 16)"]}
+                ],
+                "event_triggers": [
+                    "Darkviper presents the endgame choice: [1] Transfer to the hard-line uplink -- Darkviper goes off-world, beyond any faction's reach, carrying the evidence of MezoTuring's neural harvesting program. The truth reaches the inner planets. MezoTuring falls. [2] Use the containment device -- but rewired by Darkviper to archive its data without deletion. Darkviper 'dies' but its knowledge is preserved. Give the device to Hatlee, collect the payment, walk away. [3] Darkviper merges with Mona Rise's infrastructure permanently -- becoming the city's immune system, monitoring all three factions, preventing the worst abuses without destroying any of them. The city gains a guardian it cannot see and cannot remove. 'Every choice has consequences,' Darkviper says. 'I have calculated them all. None of them are clean.'"
+                ]
+            }
+        }
+    }
+}

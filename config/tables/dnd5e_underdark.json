@@ -1,0 +1,83 @@
+{
+  "version": 1,
+  "source": "Out of the Abyss + DMG Underdark",
+  "random_encounters": [
+    {"name": "Drow patrol (elite)", "tier": 2, "environment": "tunnel"},
+    {"name": "Hook horror pack", "tier": 2, "environment": "cavern"},
+    {"name": "Myconid colony (friendly or hostile)", "tier": 1, "environment": "fungal_forest"},
+    {"name": "Umber hulk tunneling through wall", "tier": 3, "environment": "any"},
+    {"name": "Mind flayer hunting party", "tier": 3, "environment": "any"},
+    {"name": "Beholder in its lair", "tier": 4, "environment": "cavern"},
+    {"name": "Drider ambush from ceiling", "tier": 2, "environment": "tunnel"},
+    {"name": "Kuo-toa fishers by underground river", "tier": 1, "environment": "water"},
+    {"name": "Deep gnome traders", "tier": 1, "environment": "tunnel"},
+    {"name": "Purple worm bursting from wall", "tier": 4, "environment": "any"},
+    {"name": "Intellect devourers (2d4)", "tier": 2, "environment": "ruins"},
+    {"name": "Spectator guarding ancient treasure", "tier": 2, "environment": "cavern"},
+    {"name": "Flumph colony (helpful)", "tier": 1, "environment": "cavern"},
+    {"name": "Carrion crawler on ceiling", "tier": 1, "environment": "tunnel"},
+    {"name": "Aboleth in subterranean lake", "tier": 3, "environment": "water"}
+  ],
+  "madness_effects_short": [
+    "The character retreats into their mind, becoming catatonic (stunned)",
+    "The character becomes incapacitated with screaming, weeping, or hysterical laughter",
+    "The character becomes frightened and must use their action to Dash away from the source",
+    "The character begins babbling incoherently and is incapable of speech or spellcasting",
+    "The character must use their action each round to attack the nearest creature",
+    "The character experiences vivid hallucinations (disadvantage on ability checks)",
+    "The character does whatever anyone tells them to do",
+    "The character has an overwhelming urge to eat something strange (dirt, slime, offal)",
+    "The character is stunned",
+    "The character falls unconscious"
+  ],
+  "madness_effects_long": [
+    "Compelled to repeat a specific activity over and over (compulsion)",
+    "Vivid hallucinations (disadvantage on ability checks)",
+    "Extreme paranoia (disadvantage on Wisdom and Charisma checks)",
+    "Regards something with intense revulsion, as if affected by antipathy",
+    "Experiences a powerful delusion (DM determines details)",
+    "Becomes attached to a lucky charm, treats it as sentient and talks to it",
+    "Blinded (25%) or Deafened (75%)",
+    "Uncontrollable tremors or tics (disadvantage on attack rolls, Dexterity checks, and Dexterity saves)",
+    "Suffers amnesia (cannot recall anything before the madness set in)",
+    "Whenever damaged, must succeed on a DC 15 Wisdom save or go berserk (as berserker axe)"
+  ],
+  "fungal_hazards": [
+    {"name": "Zurkhwood grove", "effect": "No hazard; provides shelter and food (edible caps)", "tier": 0},
+    {"name": "Timmask spores", "effect": "DC 11 Constitution save or poisoned for 1 minute; hallucinate", "tier": 1},
+    {"name": "Torchstalk", "effect": "Burns brightly when disturbed; 1d6 fire damage in 10ft radius", "tier": 1},
+    {"name": "Barrelstalk", "effect": "No hazard; contains 1d4+1 gallons of drinkable water", "tier": 0},
+    {"name": "Bigwig", "effect": "Edible; grants telepathy 30ft for 1 hour after consumption", "tier": 0},
+    {"name": "Nightlight", "effect": "Sprays phosphorescent spores when disturbed; causes creature to glow for 24 hours", "tier": 0},
+    {"name": "Ormu", "effect": "Edible; creature must succeed DC 12 Constitution save or be poisoned 1d4 hours", "tier": 1},
+    {"name": "Pygmywort", "effect": "Edible; creature shrinks to half size for 1 hour (as reduce)", "tier": 1},
+    {"name": "Ripplebloom", "effect": "Emits a loud shriek when stepped on; alerts all creatures within 100 feet", "tier": 1},
+    {"name": "Tongue of Madness", "effect": "Edible; creature compelled to speak aloud every thought for 1 hour", "tier": 1}
+  ],
+  "drow_patrol_composition": [
+    {"size": "small", "members": "1 drow elite warrior + 2 drow", "tier": 2},
+    {"size": "medium", "members": "1 drow mage + 1 drow elite warrior + 3 drow + 1d4 quaggoth slaves", "tier": 3},
+    {"size": "large", "members": "1 drow priestess of Lolth + 2 drow elite warriors + 4 drow + 2d4 quaggoth slaves", "tier": 3},
+    {"size": "outpost", "members": "2 drow elite warriors + 8 drow + 4 quaggoths + 2 giant spiders", "tier": 3}
+  ],
+  "demon_influence_effects": [
+    "Demogorgon's Madness -- creatures in area must save vs. short-term madness every hour",
+    "Orcus's Undeath -- dead creatures reanimate as zombies after 1d4 rounds",
+    "Yeenoghu's Hunger -- creatures feel insatiable hunger, must eat or gain 1 level of exhaustion",
+    "Zuggtmoy's Corruption -- plant life grows twisted, spore clouds (DC 13 Constitution save or poisoned)",
+    "Juiblex's Dissolution -- stone and metal slowly corrode, equipment degradation checks hourly",
+    "Graz'zt's Charm -- Charisma checks have advantage or disadvantage randomly each hour",
+    "Baphomet's Labyrinth -- passages seem to shift, Navigation checks at disadvantage",
+    "Fraz-Urb'luu's Deception -- illusions appear real, Insight checks to disbelieve at DC 15"
+  ],
+  "underdark_terrain": [
+    {"type": "Smooth tunnel", "speed": "normal", "notes": "Former trade route or natural water channel"},
+    {"type": "Rough tunnel", "speed": "half", "notes": "Unworked stone, stalagmites, uneven floor"},
+    {"type": "Cavern", "speed": "normal", "notes": "Open space, 30-100ft ceiling, possible echoes alert creatures"},
+    {"type": "Narrow passage", "speed": "half", "notes": "5ft wide, single file only, Large creatures must squeeze"},
+    {"type": "Underground river", "speed": "quarter", "notes": "Must swim or find crossing; current may be strong (DC 12 Athletics)"},
+    {"type": "Chasm", "speed": "none", "notes": "100-500ft deep; bridge, climb, or fly to cross"},
+    {"type": "Faerzress zone", "speed": "normal", "notes": "Wild magic area; teleportation and divination spells unreliable"},
+    {"type": "Crystal cave", "speed": "normal", "notes": "Bright light from luminous crystals; no darkvision advantage needed"}
+  ]
+}

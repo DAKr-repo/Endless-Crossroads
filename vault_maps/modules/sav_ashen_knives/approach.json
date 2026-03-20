@@ -1,0 +1,74 @@
+{
+  "seed": 91002,
+  "width": 25,
+  "height": 20,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "approach",
+    "theme": "STONE",
+    "topology": "settlement",
+    "description": "The Warren system gates. Hegemonic patrol vessels hang in formation against the star-field, their running lights blinking in officious synchrony."
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 2,
+      "y": 2,
+      "width": 8,
+      "height": 6,
+      "room_type": "town_gate",
+      "connections": [1],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Final approach to Warren's outer gate. The system gate looms ahead -- a ring of Hegemonic alloy three hundred meters across, studded with sensor arrays and weapons platforms. Two patrol corvettes hold station at flanking positions. Your forged manifests are loaded into the transponder. Time to sell it.",
+        "read_aloud": "Hegemonic patrol vessel scans your transponder. Your forged manifests need to hold up. The comm crackles: 'Vessel Faraday, transmit cargo manifest and crew registry for inspection. Maintain current heading and reduce to docking speed.'",
+        "event_triggers": [
+          "Hegemonic patrol vessel scans your transponder. Your forged manifests need to hold up."
+        ]
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 12,
+      "y": 2,
+      "width": 8,
+      "height": 6,
+      "room_type": "normal",
+      "connections": [0, 2],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Secondary inspection lane. The Faraday has been flagged for a closer look. A customs shuttle locks on to your port airlock with a magnetic thunk that reverberates through the hull. Through the viewport, you can see the inspector's silhouette moving behind frosted glass.",
+        "npcs": [
+          {
+            "name": "Gate Inspector Korath",
+            "role": "official",
+            "dialogue": "Papers seem in order... wait. Your cargo weight doesn't match the displacement your drive signature is outputting. Care to explain, Captain, or should I flag this for a physical search?",
+            "notes": "Inspector Korath (he/him). Meticulous, underpaid, and one bad day from either accepting a bribe or calling in a Legion frigate. He's noticed the discrepancy but hasn't decided how much it's worth to him yet. Sway or bribe to resolve."
+          }
+        ],
+        "perception_dc": 12,
+        "perception_success": "Korath keeps glancing at a personal datapad he's trying to hide. Debts, maybe. Or messages from someone he doesn't want Command to know about. He's vulnerable to the right kind of pressure."
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 22,
+      "y": 2,
+      "width": 6,
+      "height": 6,
+      "room_type": "town_gate",
+      "connections": [1],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Warren approach corridor. The gate slides open and Warren fills the viewport -- a sprawling orbital station built on the bones of three decommissioned freighters welded together. Docking lights pulse in welcome. The hard part is supposed to be over. It never is.",
+        "read_aloud": "You're through. Warren's docking ring opens ahead of you, all corroded alloy and flickering guide lights. Somewhere in that maze of converted cargo bays and makeshift corridors, the Ashen Knives are waiting with a hold full of Memish product and a ticking clock."
+      }
+    }
+  }
+}

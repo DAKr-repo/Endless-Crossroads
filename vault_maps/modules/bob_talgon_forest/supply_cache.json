@@ -1,0 +1,85 @@
+{
+  "seed": 8024,
+  "width": 30,
+  "height": 22,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "supply_cache",
+    "theme": "GOTHIC",
+    "topology": "dungeon",
+    "mission_types": ["supply"]
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 2,
+      "y": 8,
+      "width": 8,
+      "height": 6,
+      "room_type": "start",
+      "connections": [1],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The waterfall tumbles thirty feet down a mossy cliff face, the spray catching what light filters through the canopy. The roar of the water drowns conversation at anything less than a shout. Behind the curtain of water, barely visible, a dark opening in the rock -- the cache entrance. The approach path is a narrow ledge along the cliff, slick with spray. And the ledge is not unguarded.",
+        "read_aloud": "The cache entrance is concealed behind a waterfall. Claw marks scar the rock face around the opening, deep gouges in solid granite. Something knows the cache is here.",
+        "event_triggers": [
+          "The cache entrance is concealed behind a waterfall. Claw marks scar the rock face."
+        ],
+        "enemies": [
+          {"name": "Heartless", "hp": 15, "max_hp": 15, "ac": 13, "attack": 5, "defense": 13, "count": 1}
+        ]
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 14,
+      "y": 4,
+      "width": 10,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [0, 2],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Behind the waterfall, a natural cave extends deep into the cliff. The cave floor is dry -- the water flows over the entrance but does not penetrate. Legion supply crates are stacked along the walls, each stamped with Niss's unmistakable inventory marks. The cache is intact. But the cave is not empty. Halvard's missing scouts are here -- two of them, slumped against the supply crates, their throats torn out. A third stands in the shadows at the back of the cave, swaying. The third one is not dead.",
+        "enemies": [
+          {"name": "Heartless", "hp": 15, "max_hp": 15, "ac": 13, "attack": 5, "defense": 13, "count": 1},
+          {"name": "Rotter", "hp": 8, "max_hp": 8, "ac": 8, "attack": 3, "defense": 8, "count": 3}
+        ],
+        "event_triggers": [
+          "The scouts' body armor is intact. They were killed by something that came from inside the cave, not outside it. The cache was trapped.",
+          "The Heartless scout still wears its signal flare on its belt. The flare pin is pulled. It never had time to fire it."
+        ],
+        "perception_dc": 12,
+        "perception_success": "The Rotters are wearing shackles -- prison irons from a Legion stockade. These are not battlefield casualties. These are prisoners who were turned. Someone is converting the Legion's own captives into undead and seeding them in caches. This is sabotage."
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 22,
+      "y": 8,
+      "width": 6,
+      "height": 5,
+      "room_type": "treasure",
+      "connections": [1],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The deepest part of the cache. The most valuable supplies are here -- medical stores, alchemical reagents, preserved food sealed in wax, and a locked strongbox containing the Legion's emergency funds. A folded map on top of the strongbox shows the final day's march to Skydagger Keep, annotated with rest points, water sources, and defensive positions. Niss's handwriting. She planned this cache a year ago, when the retreat was still theoretical.",
+        "loot": [
+          {"name": "Full Supply Cache", "value": 6, "description": "Medical stores, rations, alchemical reagents, and emergency funds. Supply +4. Enough to march the Legion to Skydagger at full strength."},
+          {"name": "March Plan to Skydagger", "value": 2, "description": "Detailed march plan with waypoints, water sources, and fallback positions. Intel +1."},
+          {"name": "Scouts' Dog Tags", "value": 0, "description": "Three sets of identification tags. Commander Halvard should have these. He will want to know what happened to his people."}
+        ],
+        "event_triggers": [
+          "The cache is secure. For the first time in weeks, the Legion will eat well. Skydagger is two days away.",
+          "Inside the strongbox, beneath the coins, a letter in Halvard's handwriting: 'If you are reading this, we made it far enough. The rest is walls and will. -- H.'"
+        ]
+      }
+    }
+  }
+}

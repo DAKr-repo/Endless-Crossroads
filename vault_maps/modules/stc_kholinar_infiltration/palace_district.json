@@ -1,0 +1,185 @@
+{
+    "seed": 7802,
+    "width": 120,
+    "height": 20,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "palace_district",
+        "theme": "STONE",
+        "topology": "settlement",
+        "display_name": "The Palace District -- Occupied Kholinar",
+        "flavor_note": "The palace district is the heart of occupied Kholinar -- where the Fused hold court, where lighteyed collaborators maintain a thin fiction of governance, and where the Oathgate temple waits behind walls that hum with ancient Surgebinding. Every step closer to the temple is a step deeper into enemy territory."
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 5,
+            "y": 5,
+            "width": 22,
+            "height": 10,
+            "room_type": "social",
+            "connections": [1, 2],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The noble quarter retains its grandeur the way a corpse retains its features -- the shape is right but the life is gone. Mansions of carved stone line boulevards designed for carriages and courtly display. The Fused have claimed the largest estates. Singer guards stand at gates that once admitted lighteyed families to garden parties. A few Alethi lighteyes remain -- collaborators who exchanged loyalty for survival. They walk the streets in finery that looks increasingly theatrical, performing normalcy for an audience of conquerors.",
+                "read_aloud": "The mansions stand like monuments to a world that ended. Stone facades, carved gardens, gates that once admitted the powerful. Singer guards have replaced human ones. A lighteyed woman in a green havah walks past, her composure so perfect it must be practiced. She doesn't look at you. Nobody in the noble quarter looks at anybody. Eye contact is a currency no one can afford.",
+                "npcs": [
+                    {
+                        "name": "Lighteyes Melin",
+                        "role": "social",
+                        "dialogue": "A former minor brightlord, now a 'civic liaison' between the Fused and the remaining Alethi nobility. His smile doesn't reach his eyes by about six inches. 'The Fused value cooperation,' he says, adjusting cuffs that have been turned inside out to hide the fraying. 'They've been remarkably reasonable. The curfew is for our protection. The food rationing is temporary. The temple lockdown is -- well.' He pauses. 'That one I can't explain. I've stopped trying.'"
+                    },
+                    {
+                        "name": "Resistance Contact: Mara",
+                        "role": "info",
+                        "dialogue": "A woman who poses as a servant in Melin's household. She approaches in the servants' corridor, hands full of linen. 'The Fused go to the temple every night at the same hour,' she whispers. 'Twelve of them. They enter through the main doors and don't come out until dawn. The guards change shift at the third bell. That's your window. Fifteen minutes between shifts. Don't waste them.'"
+                    }
+                ],
+                "enemies": [],
+                "loot": [],
+                "services": [],
+                "event_triggers": [
+                    "Social encounter: Melin can be charmed (DC 14) or intimidated (DC 16) into providing a pass to the palace gardens. Charm is easier; intimidation risks him alerting the Fused.",
+                    "On meeting Mara: She provides critical intelligence about the Fused's nightly temple visits and the guard shift window. She also reveals that the servants' quarters connect to the palace gardens through an underground passage used by the old staff.",
+                    "Investigation DC 12: Melin's household records show he's been skimming supplies from the Fused's stores and distributing them to the outer districts. His collaboration is a cover for quiet resistance. He won't admit this unless confronted with proof and a promise of secrecy."
+                ],
+                "dm_notes": "Social room. Melin is a morally complex NPC -- a collaborator who is also a secret resister. The party can judge him or use him. Mara is the clean intelligence source who provides the timing window for the Oathgate approach. The social dynamics of occupation are the point: everyone is performing, everyone has secrets, and trust is the scarcest resource in the city."
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 30,
+            "y": 2,
+            "width": 22,
+            "height": 8,
+            "room_type": "investigation",
+            "connections": [0, 3],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The palace gardens occupy a terraced plateau overlooking the city -- once the pride of Kholinar's lightweaving artists, now maintained by singer gardeners who tend the plants with a reverence that suggests horticulture predates the occupation. The gardens are architectural: stone walkways between raised beds of cultivated rockbuds, shalebark sculptures grown into impossible shapes, and a central fountain that feeds from an underground spring. Lifespren cluster around the healthiest plants. The gardens are beautiful. They are also an open-air surveillance platform -- every walkway is visible from the palace windows above.",
+                "read_aloud": "The gardens are impossibly beautiful. Rockbuds bloom in terraced beds. Shalebark has been grown into sculptures that defy biology. Lifespren swirl around the plantings like green confetti. The central fountain runs clear and cold from a spring that predates the city. And every walkway is visible from the palace windows, where curtains move without wind. The gardens are a cage made of flowers.",
+                "npcs": [
+                    {
+                        "name": "Singer Gardener",
+                        "role": "ambient",
+                        "dialogue": "A singer in workform, humming a rhythm that makes the rockbuds open wider. She doesn't wear armor. Her tools are Alethi-made. She looks up at your approach with caution, not hostility. 'These gardens have been here longer than the palace,' she says. 'Longer than the humans. We tended them once. Before.' She returns to humming. The rockbuds sway to a rhythm you can almost hear."
+                    }
+                ],
+                "enemies": [],
+                "loot": [
+                    {"name": "Palace Layout Sketch", "type": "quest_item", "notes": "Found tucked beneath a loose paving stone near the fountain -- left by a previous resistance operative. Shows the servants' route from the gardens to the servants' quarters, including a locked door (DC 14 to pick) that bypasses the main corridor."}
+                ],
+                "services": [],
+                "event_triggers": [
+                    "Investigation DC 14: The fountain's water source connects to the same underground system as the sewer culvert. A small access panel at the fountain's base leads to a maintenance tunnel. Too narrow for an armored soldier but passable for an unarmored infiltrator.",
+                    "Stealth DC 12: Moving through the gardens without being spotted from the palace windows. Success: approach the servants' quarters entrance unseen. Failure: a curtain moves. You have 2 rounds before a singer patrol investigates.",
+                    "On speaking with the singer gardener: She doesn't betray the party or help them. She is genuinely neutral -- a singer who remembers caring for these plants in a previous life, thousands of years ago. If treated with respect, she mentions that the temple doors are sealed with ancient Surgebinding. 'The lock responds to oaths,' she says. 'Not keys.'"
+                ],
+                "dm_notes": "Investigation room. The gardens are beautiful and dangerous. The singer gardener is not an enemy -- she's a being with a complex relationship to the land she's tending. Her clue about the Oathgate lock ('responds to oaths, not keys') is critical for Act 3. The fountain maintenance tunnel is a secondary route. The palace layout sketch rewards thorough searching. The surveillance from palace windows creates constant stealth pressure."
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 30,
+            "y": 12,
+            "width": 22,
+            "height": 8,
+            "room_type": "info",
+            "connections": [0, 3],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The servants' quarters are a maze of narrow corridors and small rooms beneath the palace proper -- built for function, not comfort, they house the human staff that the Fused retain for tasks they consider beneath their station. Cooking, cleaning, laundry, maintenance: the invisible labor that keeps a palace operational regardless of who claims the throne above. The quarters are low-ceilinged, poorly lit, and full of whispered conversations that stop when you enter a room.",
+                "read_aloud": "The corridors are narrow enough to touch both walls. Low ceilings. Lamp oil running low. The servants' quarters smell of lye and boiled linen and the muted fear of people who serve masters they didn't choose. Conversations stop as you pass. Hands still on fabric. Eyes evaluate you in the time between heartbeats. Someone coughs. Work resumes. You were not here. Nobody is ever here.",
+                "npcs": [
+                    {
+                        "name": "Head Servant Palona",
+                        "role": "info",
+                        "dialogue": "A woman who runs the household with the precision of a military operation and the exhaustion of someone who has been doing it under occupation for months. 'The Fused don't come down here,' she says, folding sheets with movements that have been optimized over decades. 'We're invisible to them. The same way we were invisible to the lighteyes before them.' She pauses. 'I keep my staff alive by keeping them useful. Don't make them useless by getting caught in my corridors.'"
+                    }
+                ],
+                "enemies": [],
+                "loot": [
+                    {"name": "Servant's Uniform (disguise)", "type": "equipment", "notes": "Plain, worn, unremarkable. Wearing it grants advantage on stealth checks in the palace district. The Fused don't look at servants. Neither did the previous occupants."},
+                    {"name": "Skeleton Key (servants' passages)", "type": "equipment", "notes": "Opens internal service doors throughout the palace. Palona parts with it reluctantly and only if convinced the party's mission will improve conditions for her staff."}
+                ],
+                "services": [],
+                "event_triggers": [
+                    "Social DC 12: Convince Palona to help. She responds to practical arguments (the Oathgate opens supply lines) more than idealistic ones (liberation). She has lost faith in causes. She believes in logistics.",
+                    "On receiving the skeleton key: Palona marks a route through the service corridors to the throne approach. 'The Fused Commander uses the throne room as his headquarters,' she says. 'He's there during the day. At night, he goes to the temple with the others. Plan accordingly.'",
+                    "Investigation DC 10: The servants' quarters show signs of a network -- coded marks on doorframes, items arranged in patterns that communicate messages. Palona's staff are not just surviving. They're organizing. Quietly."
+                ],
+                "dm_notes": "Information and disguise room. Palona is the most practically useful NPC in the module -- she provides uniforms, keys, and route intelligence. She is not heroic. She is a survivor managing impossible circumstances. The servant's uniform disguise has significant mechanical value. The skeleton key opens doors throughout the palace. The coded marks suggest a larger resistance network that the party can connect with or ignore."
+            }
+        },
+        "3": {
+            "id": 3,
+            "x": 55,
+            "y": 5,
+            "width": 22,
+            "height": 10,
+            "room_type": "stealth",
+            "connections": [1, 2, 4],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The throne approach is the long corridor connecting the palace's residential wing to the throne room -- a gallery of stone arches, each carved with the glyphs of Alethi history. The floor is polished to a mirror sheen. The ceiling vaults forty feet overhead. And at the far end, the throne room doors stand open, spilling stormlight into the corridor. The Fused Commander holds court inside -- a being older than the Desolations, wearing a stolen human body like an ill-fitting coat, seated on a throne that was built for Gavilar Kholin.",
+                "read_aloud": "The corridor stretches ahead -- stone arches, polished floor, the weight of Alethi history carved into every surface. The throne room doors are open. Stormlight pours from within like spilled mercury. A silhouette sits on the Kholin throne -- too tall, too still, its proportions wrong in ways that register as wrongness before they register as specific. The Fused Commander. He is not here to receive you. You are here to get past him.",
+                "npcs": [],
+                "enemies": [
+                    {
+                        "name": "Fused Sentinel",
+                        "hp": 20,
+                        "deflect": 3,
+                        "damage_type": "keen",
+                        "is_boss": false,
+                        "notes": "Two present, flanking the throne room entrance. Ancient warriors in stolen bodies. They carry weapons of fused carapace and metal. If alerted, they fight to delay -- not to kill. Their purpose is to buy time for the Fused Commander to mobilize. Can be bypassed via the servants' passages (skeleton key) or stealth (DC 16)."
+                    }
+                ],
+                "loot": [],
+                "services": [],
+                "event_triggers": [
+                    "Stealth approach: DC 16 to pass the throne room entrance unseen. Servant disguise reduces to DC 12. Skeleton key allows a service corridor bypass that avoids the corridor entirely.",
+                    "On detection: The Fused Sentinels engage. The Fused Commander does not -- he observes from the throne. He is interested, not threatened. If the party is clearly heading for the temple, he lets them go. He says one word as they pass: 'Interesting.' He does not pursue. This should unsettle the party more than combat would.",
+                    "On reaching the temple approach: A crystal-sealed doorway marks the transition from palace to temple district. The seal is ancient, Surgebinding-reinforced, and humming with a frequency that vibrates your teeth. The singer gardener's words echo: 'The lock responds to oaths, not keys.'"
+                ],
+                "dm_notes": "Stealth gauntlet. The throne approach is the highest-tension stealth challenge in the module. The Fused Commander is NOT a combat encounter -- he is a presence. His decision to let the party pass if they're heading to the temple is deliberate: he wants to see what happens at the Oathgate. The Sentinels are the real threat if stealth fails. The crystal-sealed doorway transitions to Act 3. The skeleton key and servant disguise from room 2 have direct mechanical value here."
+            }
+        },
+        "4": {
+            "id": 4,
+            "x": 80,
+            "y": 5,
+            "width": 22,
+            "height": 10,
+            "room_type": "encounter",
+            "connections": [3],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The royal chambers have been repurposed as the Fused Commander's private quarters -- a violation so profound it borders on the sacred. The bed where Kholin kings slept has been replaced with a meditation stone, levitating three inches off the floor through ambient Surgebinding. The walls are covered in writing -- not Alethi, not singer, but something older, scratched into the stone in a hand that shakes with age and certainty. Maps of Kholinar, diagrams of the Oathgate, lists of names in a language that shouldn't exist. The Commander's plans are on the walls. The Commander is not here.",
+                "read_aloud": "The king's bedchamber. Except the bed is gone, replaced by a stone that floats on nothing. The walls are covered in writing -- ancient, shaking, certain. Not Alethi. Not any language you recognize. Maps. Diagrams. The Oathgate, drawn from an angle that suggests the artist was looking at it from above. From very far above. The Fused Commander's plans are written on the walls of a Kholin king's bedroom. He wants you to see them. That's why the door was unlocked.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [
+                    {"name": "Fused Commander's War Journal (fragment)", "type": "quest_item", "notes": "A stone tablet etched in Dawnchant. If translated (DC 16 cognitive, or taken to a scholar): the Commander has been alive for seven thousand years. He has tried to activate the Oathgate himself. It rejected him. He needs a human with oaths to do it. He is using the party."},
+                    {"name": "Oathgate Diagram (annotated)", "type": "quest_item", "notes": "A precise architectural diagram of the Oathgate mechanism, annotated by the Commander. Shows the spren corridor, the lock mechanism, and the activation chamber. Critical intelligence for Act 3."}
+                ],
+                "services": [],
+                "event_triggers": [
+                    "Investigation DC 14: The writing on the walls is the same Dawnchant found in the sewer culvert. The Commander didn't write it -- it was here when he claimed the room. Someone has been writing on Kholinar's walls for a very long time.",
+                    "On taking the war journal: The floating meditation stone settles to the floor. A pulse of Stormlight ripples through the room. Somewhere in the palace, the Fused Commander pauses. He knows. He does not intervene.",
+                    "Trap: The door locks behind the party when the journal is taken. DC 14 to pick, or the skeleton key opens it. The lock is a delay mechanism, not a prison -- the Commander wants the party to have the information. He just wants them to earn the time it costs."
+                ],
+                "dm_notes": "Optional intelligence room. The royal chambers are the Commander's gambit -- he left the information for the party to find because he needs someone with oaths to activate the Oathgate. The war journal reveals his plan (using the party). The Oathgate diagram provides mechanical advantage in Act 3. The trap is a time cost, not a lethal threat. The Dawnchant connection links to the sewer culvert glyphs and establishes a deeper mystery. The Commander is the most sophisticated antagonist in the module -- an enemy who helps you because your success serves his purpose."
+            }
+        }
+    }
+}

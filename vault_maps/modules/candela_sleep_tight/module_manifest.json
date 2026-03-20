@@ -1,0 +1,98 @@
+{
+  "module_id": "candela_sleep_tight",
+  "display_name": "Sleep Tight",
+  "system_id": "candela",
+  "source_pdf": null,
+  "source_type": "publisher_licensed",
+  "world_map": null,
+  "content_warnings": ["Parental Abuse"],
+  "starting_location": "haven_hills_hook",
+  "recommended_levels": {"min": 1, "max": 3},
+  "chapters": [
+    {
+      "chapter_id": "discovery",
+      "display_name": "Discovery",
+      "order": 1,
+      "zones": [
+        {
+          "zone_id": "haven_hills_hook",
+          "blueprint": "hook.json",
+          "topology": "settlement",
+          "theme": "GOTHIC",
+          "location_id": "haven_hills",
+          "entry_trigger": "module_start",
+          "exit_trigger": "scene_complete"
+        },
+        {
+          "zone_id": "haven_hills_arrival",
+          "blueprint": "arrival.json",
+          "topology": "settlement",
+          "theme": "GOTHIC",
+          "location_id": "haven_hills",
+          "entry_trigger": "scene_complete",
+          "exit_trigger": "scene_complete"
+        }
+      ]
+    },
+    {
+      "chapter_id": "investigation",
+      "display_name": "Investigation",
+      "order": 2,
+      "zones": [
+        {
+          "zone_id": "haven_hills_exploration_1",
+          "blueprint": "exploration_1.json",
+          "topology": "settlement",
+          "theme": "GOTHIC",
+          "location_id": "haven_hills",
+          "entry_trigger": "scene_complete",
+          "exit_trigger": "scene_complete"
+        },
+        {
+          "zone_id": "haven_hills_exploration_2",
+          "blueprint": "exploration_2.json",
+          "topology": "settlement",
+          "theme": "GOTHIC",
+          "location_id": "haven_hills_mine",
+          "entry_trigger": "scene_complete",
+          "exit_trigger": "scene_complete"
+        }
+      ]
+    },
+    {
+      "chapter_id": "confrontation",
+      "display_name": "Confrontation",
+      "order": 3,
+      "zones": [
+        {
+          "zone_id": "haven_hills_escalation_1",
+          "blueprint": "escalation_1.json",
+          "topology": "dungeon",
+          "theme": "GOTHIC",
+          "location_id": "haven_hills_mine",
+          "entry_trigger": "scene_complete",
+          "exit_trigger": "scene_complete"
+        },
+        {
+          "zone_id": "haven_hills_escalation_2",
+          "blueprint": "escalation_2.json",
+          "topology": "dungeon",
+          "theme": "GOTHIC",
+          "location_id": "haven_hills_mine",
+          "entry_trigger": "scene_complete",
+          "exit_trigger": "scene_complete"
+        },
+        {
+          "zone_id": "haven_hills_climax",
+          "blueprint": "climax.json",
+          "topology": "dungeon",
+          "theme": "GOTHIC",
+          "location_id": "haven_hills_mine",
+          "entry_trigger": "scene_complete",
+          "exit_trigger": "boss_defeated"
+        }
+      ]
+    }
+  ],
+  "freeform_zones": []
+}

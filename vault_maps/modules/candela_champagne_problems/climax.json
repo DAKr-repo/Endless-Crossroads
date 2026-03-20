@@ -1,0 +1,91 @@
+{
+  "seed": 7007,
+  "width": 40,
+  "height": 30,
+  "start_room_id": 0,
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 2,
+      "y": 2,
+      "width": 12,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false
+    },
+    "1": {
+      "id": 1,
+      "x": 16,
+      "y": 2,
+      "width": 16,
+      "height": 14,
+      "room_type": "boss",
+      "connections": [0, 2],
+      "tier": 4,
+      "is_locked": false,
+      "is_secret": false
+    },
+    "2": {
+      "id": 2,
+      "x": 16,
+      "y": 18,
+      "width": 10,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false
+    }
+  },
+  "metadata": {
+    "zone_id": "climax",
+    "theme": "GOTHIC",
+    "topology": "dungeon",
+    "scene_title": "The Host's Sanctum"
+  },
+  "content_hints": {
+    "0": {
+      "description": "The antechamber. A round room with a domed ceiling painted as a night sky -- but the stars move, drifting in slow circles. The floor is a mosaic depicting a man raising a champagne glass to a crowd. His face has been scratched away.",
+      "read_aloud": "The music reaches a crescendo as you enter. Every surface vibrates. The mosaic man is Aldric Hargrove, you realize -- his face removed not by time but by something that didn't want to remember what it used to be.",
+      "perception_dc": 14,
+      "perception_success": "The mosaic contains a hidden panel at Hargrove's feet. Beneath it: a silver tuning fork inscribed with Candela wards. Agent Harlow must have placed it here. Striking it produces a tone that causes the Host visible pain."
+    },
+    "1": {
+      "description": "The Host's sanctum. A grand ballroom within a ballroom, impossibly large for the space it occupies. The ceiling is lost in darkness. A single spotlight illuminates a figure at the room's center -- the Host, standing behind a podium made of compacted dust, conducting the music with skeletal hands.",
+      "read_aloud": "He turns to face you. The Host wears Aldric Hargrove's face like an ill-fitting mask -- handsome from one angle, hollow from another. His eyes are champagne gold. His smile is the warmest, most welcoming thing you have ever seen, and it fills you with dread. 'Welcome,' he says. 'I've been expecting company. The party never ends, you know. It simply... evolves. Won't you stay for one last dance?'",
+      "enemies": [
+        {
+          "name": "The Host",
+          "hp": 40,
+          "ac": 16,
+          "attack": 8,
+          "damage": "2d8",
+          "count": 1,
+          "is_boss": true,
+          "notes": "The entity wearing Aldric Hargrove's identity. Draws power from the phonograph and the thinning. Drains life force through proximity and touch. His attacks age the target decades in seconds.",
+          "special": [
+            "Life Drain: melee hit inflicts 2 Body marks (rapid aging)",
+            "Conductor's Command: as an action, commands all enthralled guests to attack a target",
+            "Champagne Toast: raises a glass -- all investigators must resist (Focus) or drink, gaining 2 Brain marks",
+            "Temporal Shield: while the phonograph plays, the Host regenerates 5 HP per round",
+            "Vulnerability: the silver tuning fork or the reversed activation ritual disrupts his control for one round"
+          ]
+        }
+      ],
+      "event_triggers": ["The final confrontation. The Host must be defeated or the phonograph destroyed -- but each choice carries a terrible cost for the guests trapped in the eternal revel."],
+      "loot": [
+        {"name": "The Host's Champagne Glass", "value": 0, "description": "A crystal flute that never empties. Contains concentrated bleed essence. Candela will want this secured -- or destroyed."},
+        {"name": "Hargrove's Pocket Watch", "value": 0, "description": "Stopped at 11:59 PM, December 31, 1892. If the Host is defeated, the hands begin to move again. The watch ticks backward, counting down the years he stole."}
+      ]
+    },
+    "2": {
+      "description": "The escape route. A service tunnel behind the sanctum leading up to Briar Street. The brickwork is original -- Hargrove built this as his personal exit, before he became something that never needed to leave.",
+      "read_aloud": "If the phonograph is destroyed, the music dies. The silence is absolute. Then the screaming starts as decades of stolen time crash back into the guests. If the Host is severed from the thinning without destroying the phonograph, the music slows, warps, and the guests begin to wake -- confused, terrified, but alive. Either way, you climb.",
+      "event_triggers": ["The aftermath. The investigators emerge onto Briar Street. Dawn is breaking. The choice they made below will echo through Newfaire for years."]
+    }
+  }
+}

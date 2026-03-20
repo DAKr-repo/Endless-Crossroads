@@ -1,64 +1,300 @@
 {
-  "scenarios": [
-    {
-      "id": "lunar_flicker",
-      "title": "The Lunar Flicker",
-      "theme": "Werewolf tension / Lunar Filter malfunction",
-      "intro_text": "The Lunar Filter above the East Wing stutters — three seconds of raw moonlight breach the glass. In that silver flash, you see Jax's shadow twist wrong. Too long. Too many limbs. By morning, the Filter is repaired and no one speaks of it. But you saw. And Jax knows you saw.",
-      "immediate_dilemma": {
-        "crown": {
-          "label": "Report the Flicker to Headmaster Alaric",
-          "description": "The Board rewards loyalty. Alaric will contain the situation — and owe you a favor. But Jax will know who talked.",
-          "sway_effect": -1,
-          "corruption_effect": 0
+    "version": 1,
+    "source": "Ashburn (original homebrew)",
+    "scenarios": [
+        {
+            "id": "lunar_flicker",
+            "title": "The Lunar Flicker",
+            "theme": "Werewolf tension / Lunar Filter malfunction",
+            "intro_text": "The Lunar Filter above the East Wing stutters — three seconds of raw moonlight breach the glass. In that silver flash, you see Jax's shadow twist wrong. Too long. Too many limbs. By morning, the Filter is repaired and no one speaks of it. But you saw. And Jax knows you saw.",
+            "immediate_dilemma": {
+                "crown": {
+                    "label": "Report the Flicker to Headmaster Alaric",
+                    "description": "The Board rewards loyalty. Alaric will contain the situation — and owe you a favor. But Jax will know who talked.",
+                    "sway_effect": -1,
+                    "corruption_effect": 0
+                },
+                "crew": {
+                    "label": "Confront Jax directly in the Sub-Basement",
+                    "description": "The Crew protects its own. Jax may have answers about the Filter — and about what the school is hiding. But raw moonlight changes people.",
+                    "sway_effect": 1,
+                    "corruption_effect": 0
+                }
+            }
         },
-        "crew": {
-          "label": "Confront Jax directly in the Sub-Basement",
-          "description": "The Crew protects its own. Jax may have answers about the Filter — and about what the school is hiding. But raw moonlight changes people.",
-          "sway_effect": 1,
-          "corruption_effect": 0
-        }
-      }
-    },
-    {
-      "id": "registry_audit",
-      "title": "The Registry Audit",
-      "theme": "Iron Order / Blackmail tension",
-      "intro_text": "A leather-bound ledger appears in your dormitory — no note, no sender. Inside: names, dates, and debts. Every student who ever owed the Board. Every favor called in. Every secret leveraged. Your name is on page 47. The entry reads: 'PENDING.' Someone wants you to see this before the Iron Order's audit begins tomorrow.",
-      "immediate_dilemma": {
-        "crown": {
-          "label": "Deliver the ledger to the Board before the audit",
-          "description": "Returning it proves loyalty and erases your 'PENDING' entry. The Board will see you as trustworthy. But whoever sent it to you will see you as a traitor.",
-          "sway_effect": -1,
-          "corruption_effect": 1
+        {
+            "id": "registry_audit",
+            "title": "The Registry Audit",
+            "theme": "Iron Order / Blackmail tension",
+            "intro_text": "A leather-bound ledger appears in your dormitory — no note, no sender. Inside: names, dates, and debts. Every student who ever owed the Board. Every favor called in. Every secret leveraged. Your name is on page 47. The entry reads: 'PENDING.' Someone wants you to see this before the Iron Order's audit begins tomorrow.",
+            "immediate_dilemma": {
+                "crown": {
+                    "label": "Deliver the ledger to the Board before the audit",
+                    "description": "Returning it proves loyalty and erases your 'PENDING' entry. The Board will see you as trustworthy. But whoever sent it to you will see you as a traitor.",
+                    "sway_effect": -1,
+                    "corruption_effect": 1
+                },
+                "crew": {
+                    "label": "Copy the ledger and distribute it to the Crew",
+                    "description": "Knowledge is power. If every student knows the Board's leverage, no one can be blackmailed. But the Iron Order will hunt the source.",
+                    "sway_effect": 1,
+                    "corruption_effect": 0
+                }
+            }
         },
-        "crew": {
-          "label": "Copy the ledger and distribute it to the Crew",
-          "description": "Knowledge is power. If every student knows the Board's leverage, no one can be blackmailed. But the Iron Order will hunt the source.",
-          "sway_effect": 1,
-          "corruption_effect": 0
-        }
-      }
-    },
-    {
-      "id": "fay_court",
-      "title": "The Fay Court",
-      "theme": "Social debt / Theater tension",
-      "intro_text": "Lydia's annual Fay Court Masquerade is tonight — the one event where Crown and Crew pretend to be equals behind porcelain masks. You receive two invitations: one on gold card stock from the Board's table, one on ash-grey paper slipped under your door. Both say 'RSVP MANDATORY.' Attending one means insulting the other. The Masquerade has rules. The first rule: every mask hides a debt.",
-      "immediate_dilemma": {
-        "crown": {
-          "label": "Accept the Board's gold invitation",
-          "description": "Sit at the high table. Lydia will introduce you to the Inner Circle. Power flows upward at the Fay Court — but so do obligations.",
-          "sway_effect": -1,
-          "corruption_effect": 0
+        {
+            "id": "fay_court",
+            "title": "The Fay Court",
+            "theme": "Social debt / Theater tension",
+            "intro_text": "Lydia's annual Fay Court Masquerade is tonight — the one event where Crown and Crew pretend to be equals behind porcelain masks. You receive two invitations: one on gold card stock from the Board's table, one on ash-grey paper slipped under your door. Both say 'RSVP MANDATORY.' Attending one means insulting the other. The Masquerade has rules. The first rule: every mask hides a debt.",
+            "immediate_dilemma": {
+                "crown": {
+                    "label": "Accept the Board's gold invitation",
+                    "description": "Sit at the high table. Lydia will introduce you to the Inner Circle. Power flows upward at the Fay Court — but so do obligations.",
+                    "sway_effect": -1,
+                    "corruption_effect": 0
+                },
+                "crew": {
+                    "label": "Follow the ash-grey invitation to the lower gallery",
+                    "description": "The Crew's masks are simpler but their conversations are real. Rowan has information about the Masquerade's true purpose. But the Board watches the lower gallery.",
+                    "sway_effect": 1,
+                    "corruption_effect": 0
+                }
+            }
         },
-        "crew": {
-          "label": "Follow the ash-grey invitation to the lower gallery",
-          "description": "The Crew's masks are simpler but their conversations are real. Rowan has information about the Masquerade's true purpose. But the Board watches the lower gallery.",
-          "sway_effect": 1,
-          "corruption_effect": 0
+        {
+            "scenario_id": "library_break_in",
+            "display_name": "The Library Break-In",
+            "description": "Someone broke into the restricted section of the academy library. Ancient texts are missing. Crown suspects student radicals; Crew thinks the faculty is covering up what was taken.",
+            "title": "The Library Break-In",
+            "theme": "Knowledge & Control",
+            "intro_text": "The library's iron gate hangs open, its lock sheared clean. The restricted section -- three shelves of texts older than the academy itself -- has been emptied. Not ransacked. Emptied. Carefully, deliberately, by someone who knew exactly what they were looking for. Security found nothing. The Dean found silence. You found a page torn from a text you've never seen, wedged beneath the circulation desk. The handwriting on it is your grandfather's.",
+            "crown_angle": "Report the break-in, help security investigate, accept that restricted knowledge should stay restricted",
+            "crew_angle": "The knowledge belongs to everyone. Find out what the faculty is hiding. Protect the students who took it.",
+            "corruption_risk": 1,
+            "tags": ["GUILE", "SILENCE"],
+            "immediate_dilemma": {
+                "crown": {
+                    "label": "Report the torn page to the Dean",
+                    "description": "Institutional trust demands transparency. Even when it costs you.",
+                    "sway_effect": 1,
+                    "corruption_effect": 0
+                },
+                "crew": {
+                    "label": "Hide the page and investigate alone",
+                    "description": "Your grandfather's handwriting. Your family's secrets. Your problem.",
+                    "sway_effect": -1,
+                    "corruption_effect": 0
+                }
+            }
+        },
+        {
+            "scenario_id": "greenhouse_incident",
+            "display_name": "The Greenhouse Incident",
+            "description": "Rare plants in the academy greenhouse are dying -- withered overnight, roots turned black. The groundskeeper blames sabotage. The botany professor blames neglect. Neither mentions the locked cabinet of alchemical fertilizers that's been pried open.",
+            "title": "The Greenhouse Incident",
+            "theme": "Science & Ethics",
+            "intro_text": "The greenhouse smells wrong. Not the usual wet-earth warmth but something acrid and chemical, like a lab accident. Seventeen rare specimens -- some irreplaceable, some older than the school -- lie wilted in their beds, roots rotted to black mush overnight. Groundskeeper Moss stands among the damage with her hands shaking. Professor Ironwood examines the soil with a lens and says nothing. The locked cabinet where the experimental fertilizers are stored has been forced. Someone was running unauthorized experiments. The question isn't what killed the plants. It's what the plants were being used for.",
+            "crown_angle": "Launch a formal investigation. Secure the evidence. If experiments were unauthorized, the responsible party faces academic tribunal.",
+            "crew_angle": "The experiments were meant to synthesize something the academy doesn't want students to know about. Protect whoever was close to a breakthrough.",
+            "corruption_risk": 1,
+            "tags": ["DEFIANCE", "BLOOD"],
+            "immediate_dilemma": {
+                "crown": {
+                    "label": "Seal the greenhouse and report to the Dean",
+                    "description": "Protocol exists for a reason. Evidence must be preserved.",
+                    "sway_effect": 1,
+                    "corruption_effect": 0
+                },
+                "crew": {
+                    "label": "Help Moss salvage what she can before security arrives",
+                    "description": "The plants matter more than the politics. Save what can be saved.",
+                    "sway_effect": -1,
+                    "corruption_effect": 0
+                }
+            }
+        },
+        {
+            "scenario_id": "bell_tower",
+            "display_name": "The Bell Tower",
+            "description": "Strange sounds from the bell tower at night -- not the bells themselves, but something beneath them. Tapping, scraping, a rhythm that doesn't match any maintenance schedule. Crown wants a curfew. Crew suspects someone is hiding up there.",
+            "title": "The Bell Tower",
+            "theme": "Sanctuary & Surveillance",
+            "intro_text": "The bell tower has been sealed since last term -- structural concerns, the administration said. But every night this week, after the midnight bell stops ringing, a second sound begins. Irregular. Deliberate. Like someone tapping code on the inside of the copper bells. Prefect Sable reported it to security. Security reported it to the Dean. The Dean ordered a curfew extension. No one has actually gone up to look. You found a thread hanging from the tower's service door -- blue wool, recently caught. The same color as the missing transfer student's scarf.",
+            "crown_angle": "Enforce the curfew. Report the thread to security. The tower is off-limits for a reason.",
+            "crew_angle": "Someone is hiding up there -- scared, alone, and avoiding the administration. Find them before security does.",
+            "corruption_risk": 1,
+            "tags": ["HEARTH", "SILENCE"],
+            "immediate_dilemma": {
+                "crown": {
+                    "label": "Report the thread to Prefect Sable",
+                    "description": "Security handles security. That's how the system works.",
+                    "sway_effect": 1,
+                    "corruption_effect": 0
+                },
+                "crew": {
+                    "label": "Climb the tower yourself tonight",
+                    "description": "Whoever is up there chose to hide from the school. Maybe the school is the problem.",
+                    "sway_effect": -1,
+                    "corruption_effect": 0
+                }
+            }
+        },
+        {
+            "scenario_id": "groundskeeper_secret",
+            "display_name": "The Groundskeeper's Secret",
+            "description": "Groundskeeper Moss has been seen leaving campus after dark, heading toward the old ruins beyond the treeline. She returns before dawn with soil on her hands and something in her pockets she won't show anyone.",
+            "title": "The Groundskeeper's Secret",
+            "theme": "Loyalty & Legacy",
+            "intro_text": "Moss has worked the academy grounds for longer than any living person can remember. She knows every root, every stone, every drain. She also knows something about the old ruins -- the foundations that predate the school by centuries, half-buried in the woods beyond the sports fields. Devon Gale followed her last Tuesday and says she was digging. Planting something, or excavating it. He wants to report her to the Board. Moss hasn't said a word about it. But when you passed her this morning, she pressed a smooth stone into your palm and said: 'Some things are older than permission.'",
+            "crown_angle": "Report Moss's nocturnal activities. The ruins are off-limits. If she's excavating academy property, the Board needs to know.",
+            "crew_angle": "Moss has protected this school for decades. Whatever she's doing at the ruins, she has a reason. Find out what it is before the Board does.",
+            "corruption_risk": 2,
+            "tags": ["SILENCE", "HEARTH"],
+            "immediate_dilemma": {
+                "crown": {
+                    "label": "Tell Professor Ironwood what Devon saw",
+                    "description": "Faculty oversight protects everyone -- including Moss.",
+                    "sway_effect": 1,
+                    "corruption_effect": 0
+                },
+                "crew": {
+                    "label": "Follow Moss to the ruins tonight",
+                    "description": "She gave you the stone. That was an invitation.",
+                    "sway_effect": -1,
+                    "corruption_effect": 1
+                }
+            }
+        },
+        {
+            "scenario_id": "transfer_student",
+            "display_name": "The Transfer Student",
+            "description": "A new student arrives mid-term with sealed records and unusual abilities. The faculty watches her too closely. The students watch her not closely enough.",
+            "title": "The Transfer Student",
+            "theme": "Identity & Belonging",
+            "intro_text": "Her name is Wren Lark. She arrived three days ago with a single trunk, sealed academic records, and a letter of introduction from an institution no one has heard of. She doesn't eat in the dining hall. She doesn't sleep in the dormitory -- or if she does, no one has seen her there. What people have seen: lights under the door of her assigned study room at three in the morning. A stack of library books on subjects the curriculum doesn't cover. And Nurse Penny treating a burn on Wren's arm that Wren insists came from a candle. Penny says it didn't come from any candle she's ever seen.",
+            "crown_angle": "Monitor the new student. Request her unsealed records through proper channels. Report the unusual activity to the Dean.",
+            "crew_angle": "Wren is being watched by people with authority over her. She needs an ally, not another monitor. Get to her before the faculty decides what to do with her.",
+            "corruption_risk": 1,
+            "tags": ["GUILE", "DEFIANCE"],
+            "immediate_dilemma": {
+                "crown": {
+                    "label": "Request Wren's full records from the registrar",
+                    "description": "Sealed records at an academy mean someone has something to hide.",
+                    "sway_effect": 1,
+                    "corruption_effect": 0
+                },
+                "crew": {
+                    "label": "Introduce yourself to Wren directly",
+                    "description": "She's alone in a school full of people who are studying her. Someone should just talk to her.",
+                    "sway_effect": -1,
+                    "corruption_effect": 0
+                }
+            }
+        },
+        {
+            "scenario_id": "parents_weekend",
+            "display_name": "Parent's Weekend",
+            "description": "A parent arrives for the annual visit and begins asking questions that make the faculty uncomfortable. She knows things about the academy's founding that aren't in the official history. She's threatening to go public.",
+            "title": "Parent's Weekend",
+            "theme": "Truth & Reputation",
+            "intro_text": "Aldara Voss arrived for Parent's Weekend in a hired car, wearing a grey coat and carrying a folder three inches thick. She is Olive Chen's mother -- or rather, her aunt and legal guardian. Within an hour of arriving, she had cornered Professor Ironwood in the faculty lounge and asked him about the Founding Fire. Within two hours, the Dean had asked her to leave campus. She refused. The folder, you later learn, contains documents from the municipal archive -- deeds, insurance claims, a coroner's report from 1883. She says the academy was built on a lie. Julian Ashwick's family says nothing. They say it loudly.",
+            "crown_angle": "Manage the situation. The academy's reputation affects every student's future. Help the administration contain the story before it damages the school.",
+            "crew_angle": "Aldara Voss is right, and the school knows it. Help her get the truth out before the Board buries it again.",
+            "corruption_risk": 2,
+            "tags": ["GUILE", "BLOOD"],
+            "immediate_dilemma": {
+                "crown": {
+                    "label": "Warn Julian that his family is being investigated",
+                    "description": "He deserves to know. And his family's connections could resolve this quietly.",
+                    "sway_effect": 1,
+                    "corruption_effect": 1
+                },
+                "crew": {
+                    "label": "Offer to help Aldara access the school archives",
+                    "description": "If the truth is in those documents, it belongs to everyone who walks these halls.",
+                    "sway_effect": -1,
+                    "corruption_effect": 0
+                }
+            }
+        },
+        {
+            "scenario_id": "the_exam",
+            "display_name": "The Exam",
+            "description": "Evidence of widespread cheating on the mid-term examination surfaces. The scope is larger than anyone expected -- and the exam itself may have been deliberately designed to fail the scholarship students.",
+            "title": "The Exam",
+            "theme": "Justice & Inequality",
+            "intro_text": "Thirty-seven students scored identically on the Arcane Theory mid-term. Not approximately -- identically. Same answers, same phrasing, same errors. The evidence is damning. But Rowan Thatch noticed something else: the exam's questions drew exclusively from supplementary materials available only in the premium study collection -- books the scholarship students can't afford. The paying students had access. The scholarship students didn't. The cheating is real. So is the structural disadvantage. The Dean wants to expel the cheaters. Rowan wants to challenge the exam. Prefect Sable wants both. The scholarship students want to know why the system was stacked against them before anyone noticed the cheating.",
+            "crown_angle": "Enforce academic integrity. The cheating is documented. Prosecute it cleanly, then address curriculum access as a separate issue.",
+            "crew_angle": "The exam was unfair before anyone cheated. Punishing students for gaming a rigged system while ignoring the rigging is not justice.",
+            "corruption_risk": 1,
+            "tags": ["DEFIANCE", "GUILE"],
+            "immediate_dilemma": {
+                "crown": {
+                    "label": "Present the cheating evidence to the academic tribunal",
+                    "description": "Rules apply equally. Start with what's provable.",
+                    "sway_effect": 1,
+                    "corruption_effect": 0
+                },
+                "crew": {
+                    "label": "Help Rowan compile the access disparity data",
+                    "description": "Before anyone is punished, the school needs to answer for its own failure.",
+                    "sway_effect": -1,
+                    "corruption_effect": 0
+                }
+            }
+        },
+        {
+            "scenario_id": "storm_cellar",
+            "display_name": "The Storm Cellar",
+            "description": "Heavy flooding reveals sealed passages beneath the academy -- tunnels and chambers that predate the school. The administration wants them sealed. The passages hold the academy's true history.",
+            "title": "The Storm Cellar",
+            "theme": "Discovery & Denial",
+            "intro_text": "Three days of rain collapsed the east wall of the old storm cellar. Behind the rubble: a passage. Not a pipe or a foundation wall -- a passage, carved from stone, with iron brackets for torches and a flagstone floor worn smooth by centuries of feet. It descends. Groundskeeper Moss saw it and went pale. The Dean saw it and ordered it bricked up immediately. Chef Bramble -- who claims to have been an adventurer before he was a cook -- says the stonework predates the academy by at least two hundred years. Librarian Quill says nothing, but you notice they've pulled three books from the restricted section and haven't returned them.",
+            "crown_angle": "The passages are a safety hazard. Support the administration's decision to seal them. The school's structural integrity matters more than curiosity.",
+            "crew_angle": "The academy was built on top of something. Whatever is down there, the administration already knows about it -- and they're afraid of what happens if the students find out.",
+            "corruption_risk": 2,
+            "tags": ["BLOOD", "DEFIANCE"],
+            "immediate_dilemma": {
+                "crown": {
+                    "label": "Help the construction crew seal the passage",
+                    "description": "The Dean gave an order. Students don't explore condemned structures.",
+                    "sway_effect": 1,
+                    "corruption_effect": 0
+                },
+                "crew": {
+                    "label": "Enter the passage before the bricks go up",
+                    "description": "Whatever the school is hiding, it's behind that wall. And they're about to put it behind another one.",
+                    "sway_effect": -1,
+                    "corruption_effect": 1
+                }
+            }
+        },
+        {
+            "scenario_id": "graduation_rehearsal",
+            "display_name": "Graduation Rehearsal",
+            "description": "Someone sabotaged the graduation ceremony preparations -- the stage collapsed during setup, the ceremonial items are missing, and a message was left in the auditorium: 'THE RITE IS THE CAGE.' Someone knows what the ceremony really is.",
+            "title": "Graduation Rehearsal",
+            "theme": "Ritual & Liberation",
+            "intro_text": "The auditorium stage collapsed at 3 AM -- supports sawn through, not broken. The ceremonial regalia is gone: the Founder's Medallion, the Torch of Passage, the four iron keys that the graduates traditionally receive. In their place, someone arranged a circle of ash on the stage floor. Written in the ash, in careful block letters: THE RITE IS THE CAGE. The Dean is furious. Julian is terrified -- and trying very hard not to show it. Librarian Quill was seen leaving the auditorium at 2:45 AM. They deny it. Jax Marlow says he found a diagram in the restricted section that shows the graduation ceremony isn't symbolic. It's a binding ritual. He says the iron keys aren't gifts. They're locks.",
+            "crown_angle": "Find the saboteur. Protect the ceremony. The graduation tradition has stood for over a century. It binds the school together.",
+            "crew_angle": "The ceremony is the problem -- it's a ritual that binds graduates to the academy, literally. Whoever sabotaged it was trying to break the chain. Help them finish what they started.",
+            "corruption_risk": 3,
+            "tags": ["BLOOD", "SILENCE"],
+            "immediate_dilemma": {
+                "crown": {
+                    "label": "Help security review the auditorium footage",
+                    "description": "Sabotage is a crime. Find who did it. Then ask why.",
+                    "sway_effect": 1,
+                    "corruption_effect": 0
+                },
+                "crew": {
+                    "label": "Find Jax and examine the diagram",
+                    "description": "If the ceremony is what he says it is, the saboteur is the only honest person in the school.",
+                    "sway_effect": -1,
+                    "corruption_effect": 1
+                }
+            }
         }
-      }
-    }
-  ]
+    ]
 }

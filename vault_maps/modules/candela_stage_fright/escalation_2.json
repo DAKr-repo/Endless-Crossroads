@@ -1,0 +1,103 @@
+{
+  "seed": 4704,
+  "width": 25,
+  "height": 15,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "eden_theater_lobby",
+    "theme": "GOTHIC",
+    "topology": "dungeon",
+    "display_name": "The Eden Theater"
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 0,
+      "y": 0,
+      "width": 8,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Rosie's dance studio. A single room above a padlocked hardware store, mirrored wall, barre, scuffed hardwood floor. Through the rain-streaked windows, the Eden Theater looms across the street -- a three-story brick facade, its marquee dark, the gilt letters spelling EDEN half-fallen and hanging by rusted bolts. The theater's stage door is visible from here. It stands ajar. Silk threads catch the gaslight in the gap.",
+        "read_aloud": "The Eden Theater has been dark for two years, since the last owner died of causes the coroner listed as 'indeterminate cardiac event.' The padlock on the front entrance is rusted shut. But the stage door, visible from Rosie's studio window, hangs open by six inches. In that gap, spider silk catches the light -- not a web, but individual threads radiating outward like the spokes of a wheel, each one connected to a different building, a different rooftop, a different corner of South Soffit. A sensory network. You are standing in it.",
+        "npcs": [],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [
+          "The stage door is open. The silk threads radiating from it form a sensory web spanning the entire district. The Recluse knows you are coming. It has known since you arrived in South Soffit."
+        ],
+        "loot": []
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 10,
+      "y": 0,
+      "width": 10,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [0, 2],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The Eden Theater lobby. Gilt and velvet gone to rot and dust. The chandelier hangs at an angle, half its crystals missing. Playbills from the final season paper the walls -- a revival of 'The Crimson Masque,' cancelled after three performances. Every surface is covered in spider silk, thick as gauze, draped from the ceiling in curtains that sway in a draft that has no source. The silk is warm to the touch.",
+        "read_aloud": "You push through curtains of silk that part with a wet, reluctant sound. The lobby is a cathedral of webbing -- every bannister, every sconce, every inch of the faded carpet wrapped in translucent threads that pulse faintly with bioluminescent light. Bundles hang from the ceiling at regular intervals, each one the size of a person. As you pass, one of the bundles splits open and a rain of spiders cascades to the floor -- thumb-sized, pale, eyeless, scattering in every direction before vanishing into the silk.",
+        "npcs": [
+          {
+            "name": "Usman Saba",
+            "role": "witness",
+            "dialogue": "Please -- I have been here for three days. I was the theater's last crew member. I came back to collect my tools and the door locked behind me. The spiders -- they do not bite. They watch. They herd you. They want you to go through that door. The one without silk. Every other door is webbed shut. That one is clear. They want you in the auditorium.",
+            "notes": "He/him. Former Eden Theater stagehand. Came back to retrieve personal tools and was trapped by the Recluse's web network. Dehydrated, terrified, but coherent. Knows the theater's layout -- backstage, catwalks, trap doors. Can guide the circle if rescued. The Recluse has been keeping him alive deliberately -- bait for future visitors."
+          }
+        ],
+        "enemies": [
+          {
+            "name": "Recluse Minion (Spider Swarm)",
+            "hp": 8,
+            "max_hp": 8,
+            "ac": 10,
+            "attack": 2,
+            "defense": 10,
+            "count": 2
+          }
+        ],
+        "services": [],
+        "event_triggers": [
+          "THREAT: Recluse Minions -- swarms of pale, eyeless spiders that serve as the Recluse's sensory network and herding mechanism. Not immediately lethal, but their bites cause numbness and paralysis in the affected limb.",
+          "Massive creature has shredded the wallpaper where it passed. Claw marks six inches deep gouge the plaster, far too large for any natural spider."
+        ],
+        "loot": []
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 18,
+      "y": 4,
+      "width": 6,
+      "height": 6,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The auditorium doors. Double doors of carved mahogany, their surface clean of silk. Every other surface in the lobby is webbed. These doors are immaculate. Polished. The brass handles gleam. Beyond them, you can hear something: a low, rhythmic vibration, like a massive heartbeat. The smell of old velvet and something sweeter -- like formaldehyde mixed with honey.",
+        "npcs": [],
+        "enemies": [],
+        "services": [],
+        "event_triggers": [
+          "REVEAL: One door in the lobby is clear of webbing -- the entrance to the theater auditorium. The Recluse wants you inside. Every silk thread, every herded spider, every open door has been guiding you to this moment.",
+          "Mick Aguilar grips his revolver and stares at the auditorium doors. His brother is in there. He can feel it. He will not wait."
+        ],
+        "loot": [],
+        "perception_dc": 14,
+        "perception_success": "The silk curtains in the lobby are not random. They form a pattern -- viewed from above, they would describe a spiral, tightening toward the auditorium doors. The entire theater is a web, and you have been walking its spiral since you entered."
+      }
+    }
+  }
+}

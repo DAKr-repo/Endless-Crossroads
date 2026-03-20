@@ -1,0 +1,60 @@
+{
+    "module_id": "burnwillow_ironvein_mines",
+    "display_name": "The Ironvein Mines",
+    "system_id": "burnwillow",
+    "source_pdf": "original",
+    "source_type": "homebrew_original",
+    "starting_location": "emberhome",
+    "recommended_levels": {"min": 2, "max": 2},
+    "chapters": [
+        {
+            "chapter_id": "ch1_mine_entrance",
+            "display_name": "Mine Entrance",
+            "order": 1,
+            "zones": [
+                {
+                    "zone_id": "mining_camp",
+                    "blueprint": "mining_camp.json",
+                    "topology": "settlement",
+                    "theme": "RUST",
+                    "location_id": "ironvein_surface",
+                    "entry_trigger": "module_start",
+                    "exit_trigger": "player_choice"
+                }
+            ]
+        },
+        {
+            "chapter_id": "ch2_upper_mines",
+            "display_name": "Upper Mines",
+            "order": 2,
+            "zones": [
+                {
+                    "zone_id": "upper_mines",
+                    "blueprint": "upper_mines.json",
+                    "topology": "dungeon",
+                    "theme": "RUST",
+                    "location_id": "ironvein_upper",
+                    "entry_trigger": "player_choice",
+                    "exit_trigger": "player_choice"
+                }
+            ]
+        },
+        {
+            "chapter_id": "ch3_deep_mines",
+            "display_name": "Deep Mines",
+            "order": 3,
+            "zones": [
+                {
+                    "zone_id": "deep_mines",
+                    "blueprint": "deep_mines.json",
+                    "topology": "dungeon",
+                    "theme": "RUST",
+                    "location_id": "ironvein_deep",
+                    "entry_trigger": "player_choice",
+                    "exit_trigger": "boss_defeated"
+                }
+            ]
+        }
+    ],
+    "freeform_zones": []
+}

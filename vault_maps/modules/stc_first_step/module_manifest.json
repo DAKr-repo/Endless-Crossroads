@@ -2,10 +2,11 @@
     "module_id": "stc_first_step",
     "display_name": "Stormlight: The First Step",
     "system_id": "stc",
-    "source_pdf": null,
-    "source_type": "community_authored",
+    "source_pdf": "Stormlight RPG - The First Step",
+    "source_type": "publisher_licensed",
     "world_map": "world_map.json",
     "starting_location": "kholinar",
+    "campaign_setting": "roshar",
     "recommended_levels": {"min": 1, "max": 5},
     "chapters": [
         {

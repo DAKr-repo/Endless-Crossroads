@@ -1,0 +1,206 @@
+{
+    "seed": 4401,
+    "width": 60,
+    "height": 30,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "emberhome_settlement",
+        "theme": "RUST",
+        "topology": "settlement",
+        "display_name": "Emberhome: The Last Bastion",
+        "flavor_note": "The last permanent settlement in the Burnwillow. Two hundred souls cling to petrified root-bark while the world-tree shudders around them. The Hearth-fire has burned for ninety years. Everything here smells of woodsmoke and resin."
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 5,
+            "y": 14,
+            "width": 12,
+            "height": 8,
+            "room_type": "start",
+            "connections": [1, 2, 3],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The gate is a wound in the ironbark wall, framed by petrified root-ribs and sealed with resin-slathered planks. Two wardens stand watch behind slits cut into the bark, their amber lanterns casting long orange fingers across the ash-dusted approach road. A crude quarantine circle -- chalk and salt -- marks the threshold where newcomers stand for inspection.",
+                "read_aloud": "Smoke rises from somewhere deep inside the settlement, carrying the scent of pine resin and charred sap. The gate wardens watch you approach with the flat, appraising stare of people who have learned that not everything walking upright is still alive. One raises an amber lantern to your face. The other keeps a hand on a crossbow bolt notched with ironbark. 'Hold there. Arms out. Let us see your veins.'",
+                "npcs": [
+                    {
+                        "name": "Gate Warden Hask",
+                        "role": "guard",
+                        "dialogue": "Arms out. Palms up. I need to see the veins at your wrists -- grey means the Rot has you, and you do not come through this gate grey. Nothing personal. We buried three of our own last season who passed inspection.",
+                        "notes": "Hask lost his partner to a Hollow that passed a visual check. Now tests with an amber shard held to the skin -- it dims near Blight infection. DC 14 Wits to notice the shard is cracked and unreliable."
+                    }
+                ],
+                "loot": [],
+                "services": [],
+                "event_triggers": [
+                    "On entry: The settlement shakes -- a low, grinding tremor from deep below. Dust sifts from the ceiling. The wardens do not react. They have learned to sleep through it.",
+                    "On failed Blight check: Hask hesitates. His amber shard flickers. He waves you through anyway, but marks your name on a bark-strip manifest with a small 'x' beside it."
+                ]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 22,
+            "y": 4,
+            "width": 14,
+            "height": 10,
+            "room_type": "hub",
+            "connections": [0, 2, 5],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Forge Quarter is a vaulted burl-chamber where the air shimmers with forge-heat and the walls sweat amber condensation. Weld's primary forge sits at the center -- a living-wood crucible fed by an Aether vein tap that pulses with faint golden light. Racks of half-finished weapons and armor line the walls, each piece tagged with a bark-strip label in Weld's cramped hand. The sound of his hammer carries a rhythm that almost sounds deliberate, as though he is keeping time with something only he can hear.",
+                "read_aloud": "Heat hits you like a wall. The forge-chamber glows amber from the Aether vein running through its ceiling, dripping liquid gold into a crucible that hisses and spits. A broad-shouldered figure works the anvil without looking up, muttering to the half-formed blade under his hammer. 'Easy now. You want to be a shortsword, I can feel it. Stop fighting me.'",
+                "npcs": [
+                    {
+                        "name": "Forgemaster Weld",
+                        "role": "merchant",
+                        "dialogue": "Feel that grain? That is living wood remembering what it was. I do not shape these things -- I remind them. Arborists could sing a blade into being. Best I can do is hum and hope the wood listens. What do you need? I have got steel if you have got amber.",
+                        "notes": "Weld talks to items while working -- claims they answer back. SECRET: He has been siphoning communal Aether for personal experiments. Emberhome reserves are 15% lower than records show. He owes a debt to Birsa that she has never named a price for. Respects Elder Kaelen. Competitive with Kettrick."
+                    }
+                ],
+                "loot": [
+                    {"name": "Iron Shortsword", "value": 8, "type": "common", "notes": "Tier II. R.Hand. +2d6 MIGHT pool."},
+                    {"name": "Leather Jerkin", "value": 6, "type": "common", "notes": "Tier II. Chest. DR 1."},
+                    {"name": "Ironbark Buckler", "value": 10, "type": "uncommon", "notes": "Tier II. L.Hand. +1 Defense."}
+                ],
+                "services": ["shop", "upgrade"],
+                "investigation_dc": 14,
+                "event_triggers": [
+                    "On investigation success (DC 14): You notice the Aether vein tap drips slower than it should. The reservoir gauge on the wall reads three-quarters, but the amber level is visibly lower. Someone has been drawing from the communal supply."
+                ]
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 22,
+            "y": 16,
+            "width": 14,
+            "height": 10,
+            "room_type": "hub",
+            "connections": [0, 1, 3, 4],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Market Row is a narrow gallery carved into a horizontal root-vein, its ceiling low enough that tall folk stoop. Salvage blankets line both walls -- scavenged gear, dried rations, fungal tinctures, and the occasional pre-Rot curiosity laid out on bark-cloth. Amber lanterns swing on copper wire overhead, casting restless shadows that make the merchandise seem to shift when you look away. The air smells of dried mushroom, tallow, and the faintly metallic tang of old blood someone tried to wash out of a leather coat.",
+                "read_aloud": "The market is a tunnel of desperate commerce. Blankets spread across the root-floor hold everything from rusted daggers to jars of luminous fungal paste. A one-eyed woman weighs an amber shard against a handful of iron nails, lips moving as she calculates a price she will never say the same way twice.",
+                "npcs": [
+                    {
+                        "name": "Birsa",
+                        "role": "merchant",
+                        "dialogue": "That blade? Worth more than your left boot. Less than whatever is chasing you into the deep. I do not set prices -- I read the room. And the room says you are desperate. So am I. Shall we be desperate together?",
+                        "notes": "Birsa never names a price twice the same way. Frames value relationally. SECRET: Has a Hollow-detection sense -- can smell early-stage Blight infection. Has identified one early-stage infected in Emberhome and said nothing. Her oblique speech is not affectation; it is survival strategy."
+                    }
+                ],
+                "loot": [
+                    {"name": "Rot-Salve Pouch", "value": 3, "type": "consumable", "notes": "Cures early Blight infection if applied within 1 hour of contact."},
+                    {"name": "Amber Dust Pouch", "value": 2, "type": "common", "notes": "Trade currency. Enough for minor purchases."},
+                    {"name": "Scrap Iron Bundle", "value": 4, "type": "crafting", "notes": "Tier I crafting material. Enough for one weapon or armor piece."},
+                    {"name": "Tallow Candle (6-pack)", "value": 1, "type": "consumable", "notes": "4 hours of light each. The Rot hates fire."}
+                ],
+                "services": ["shop", "buy"],
+                "event_triggers": [
+                    "On repeated visits: Birsa's prices shift based on your reputation. Seekers who return alive get better rates. Seekers who return empty-handed get pity prices -- worse, but offered gently."
+                ]
+            }
+        },
+        "3": {
+            "id": 3,
+            "x": 40,
+            "y": 10,
+            "width": 16,
+            "height": 12,
+            "room_type": "hub",
+            "connections": [0, 2, 4, 5],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Rumor Well is a sunken tavern built into a hollowed-out root knot, its floor polished smooth by decades of shuffling boots. A central fire-pit burns low, fed by bark shavings and the occasional amber chip that makes the flames flash gold. The walls are carved with tallies -- expedition counts, names of the lost, a crooked calendar measuring days since the last Hollow incursion. The corner booth still bears knife-carved initials from a drunken argument between two Seekers who never came back.",
+                "read_aloud": "The tavern smells of smoke and fermented sap-wine. A dozen faces turn toward the door when you enter, then turn away -- the universal gesture of people who have stopped expecting good news. The keeper behind the bar, a gaunt woman with ash-grey hair tied in a rope knot, sets down a clay mug without being asked. 'Sit. Drink. Then tell me what you have seen out there.'",
+                "npcs": [
+                    {
+                        "name": "Keeper Elara",
+                        "role": "quest_giver",
+                        "dialogue": "Every Seeker who walks through my door has a story. Most of them are lies. The ones that are not -- those I remember. Last week a pair came back from the Tangle babbling about roots that moved on their own. Not the tree's usual thrashing. Deliberate movement. Something down there is thinking. You want to know more? Buy a drink first. I have bills and a dead husband's tab to settle.",
+                        "notes": "Elara is the settlement's informal intelligence hub. Every rumor passes through the Rumor Well eventually. She trades information for drinks, stories, and amber. Her dead husband was a Seeker who became a Hollow -- she identified the body herself. She will not discuss this unless trust is very high."
+                    }
+                ],
+                "loot": [
+                    {"name": "Sap-Wine Flask", "value": 1, "type": "consumable", "notes": "Fermented Aether sap. Tastes of burnt honey. Restores 1 HP but imposes -1 to Wits checks for 1 hour."}
+                ],
+                "services": ["rest", "rumor", "drink"],
+                "event_triggers": [
+                    "On 'rumor' service: Elara leans in. Roll on the Rumor Table -- quest hooks for the Ashen Cellar, Ironvein Mines, or Rotwood Hollow depending on party tier.",
+                    "On rest: The fire dims. The tallies on the wall seem to lengthen in the low light. Someone scratches a new name into the 'missing' column when they think no one is watching."
+                ]
+            }
+        },
+        "4": {
+            "id": 4,
+            "x": 40,
+            "y": 24,
+            "width": 14,
+            "height": 8,
+            "room_type": "hub",
+            "connections": [2, 3],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Chapel of the Eternal Flame is a vertical burl-chamber where a shard of the original Sun-Shard has been mounted in a cradle of living ironbark. The light it casts is warm and golden -- the only light in Emberhome that does not flicker. Root-Song is strongest here, a subsonic hum felt in the chest and the teeth. The walls are hung with bark-cloth banners painted with the names of every Seeker who has not returned. There are a great many banners.",
+                "read_aloud": "The light does not flicker. That is the first thing you notice. Every other light in Emberhome gutters and sways, but the Sun-Shard in its ironbark cradle burns steady and gold, as though the tree itself is holding its breath around it. A robed figure kneels before the light, his hands pressed flat to the root-floor. When he speaks, you feel the words in your ribs before you hear them. 'The tree remembers you. It remembers everyone. That is why it hurts.'",
+                "npcs": [
+                    {
+                        "name": "Father Oaken",
+                        "role": "healer",
+                        "dialogue": "I do not worship the tree. I listen to it. The Root-Song carries fragments -- grief, mostly. Sometimes gratitude. Once, years ago, I felt something I can only call laughter. The Arborists understood this language. I catch syllables at best. But I know enough to ask the tree for its blessing before you descend. It does not always answer. When it does, you feel it in your bones for days.",
+                        "notes": "Father Oaken is the closest thing Emberhome has to a priest. He communes with the Root-Song through prolonged meditation. His blessings are genuine mechanical buffs (+1 to Grit checks for the next dungeon run). SECRET: He has felt the Root-Song weakening for months. The pauses between pulses are growing longer. He has told no one because there is no solution and panic would destroy morale."
+                    }
+                ],
+                "loot": [],
+                "services": ["heal", "rest"],
+                "perception_dc": 16,
+                "event_triggers": [
+                    "On heal service: Father Oaken presses his palm to the Sun-Shard and hums. The vibration passes through the floor and into your bones. HP restored to full. The light dims briefly, as though something was spent.",
+                    "On perception success (DC 16): The Root-Song falters. A gap -- half a heartbeat -- where the vibration stops entirely. Father Oaken's hands tighten on the floor. He noticed too. He says nothing."
+                ]
+            }
+        },
+        "5": {
+            "id": 5,
+            "x": 22,
+            "y": 0,
+            "width": 14,
+            "height": 6,
+            "room_type": "hub",
+            "connections": [1, 3],
+            "tier": 1,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Warden's Hall is a former Arborist relay station, its original purpose lost but its architecture unmistakable -- smooth-grown walls that curve without joints, amber-veined doorframes that still faintly glow. Warden Voss has repurposed it as Emberhome's military command. A bark-cloth map of the known Burnwillow zones covers one wall, pinned with amber-tipped markers showing last known Hollow concentrations. The markers cluster thickly around the deep zones. There are fewer markers near the surface now -- not because the danger has lessened, but because the scouts stopped coming back.",
+                "read_aloud": "The Warden's Hall smells of iron filings and old decisions. A woman in scarred leather armor stands before the zone map, moving amber pins with the deliberate slowness of someone who knows each pin represents a dead scout. She does not turn when you enter. 'If you are here to volunteer, the board is on your left. If you are here for sympathy, the tavern is back the way you came.'",
+                "npcs": [
+                    {
+                        "name": "Warden Voss",
+                        "role": "quest_giver",
+                        "dialogue": "I send people into the deep and most of them do not come back. That is not a confession -- it is a job description. The Tangle is overrun. The mines have gone silent. And something in the Rotwood is building, not just spreading. I need Seekers, not heroes. Heroes die with speeches. Seekers die quiet and come back with useful intelligence. Which are you?",
+                        "notes": "Voss is Emberhome's military commander. Pragmatic to the point of cruelty. She posts bounties, assigns missions, and tracks Seeker survival rates on a bark-strip ledger. SECRET: Her survival rate calculations show Emberhome cannot sustain itself beyond two more seasons at current attrition. She has begun quietly stockpiling supplies for an evacuation she hopes will never happen. Relationship: Defers to Elder Kaelen on civic matters but overrides him on military decisions."
+                    }
+                ],
+                "loot": [],
+                "services": ["quest", "bounty"],
+                "event_triggers": [
+                    "On 'quest' service: Voss pulls a bark-strip from the board. Available missions scale with party tier: Tier I gets Ashen Cellar, Tier II gets Ironvein Mines, Tier III gets Rotwood Hollow, Tier IV gets the Rot Spire.",
+                    "On 'bounty' service: Voss checks her ledger. Bounties available for specific Hollow types or zone boss kills. Amber reward scales with target tier."
+                ]
+            }
+        }
+    }
+}

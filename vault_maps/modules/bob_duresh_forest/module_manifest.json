@@ -1,0 +1,42 @@
+{
+  "module_id": "bob_duresh_forest",
+  "display_name": "Duresh Forest",
+  "system_id": "bob",
+  "source_type": "community_authored",
+  "starting_location": "forest_edge",
+  "recommended_levels": {"min": 1, "max": 5},
+  "chapters": [
+    {
+      "chapter_id": "through_the_trees",
+      "display_name": "Through the Trees",
+      "order": 1,
+      "zones": [
+        {
+          "zone_id": "forest_edge",
+          "blueprint": "forest_edge.json",
+          "topology": "settlement",
+          "theme": "STONE",
+          "entry_trigger": "module_start",
+          "exit_trigger": "player_choice"
+        },
+        {
+          "zone_id": "deep_woods",
+          "blueprint": "deep_woods.json",
+          "topology": "dungeon",
+          "theme": "GOTHIC",
+          "entry_trigger": "player_choice",
+          "exit_trigger": "all_rooms"
+        },
+        {
+          "zone_id": "undead_lair",
+          "blueprint": "undead_lair.json",
+          "topology": "dungeon",
+          "theme": "RUST",
+          "entry_trigger": "player_choice",
+          "exit_trigger": "boss_defeated"
+        }
+      ]
+    }
+  ],
+  "freeform_zones": []
+}

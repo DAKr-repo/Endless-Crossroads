@@ -1,0 +1,88 @@
+{
+  "module_id": "candela_devils_well",
+  "display_name": "The Devil's Well",
+  "system_id": "candela",
+  "source_pdf": null,
+  "source_type": "publisher_licensed",
+  "world_map": null,
+  "starting_location": "airship_hook",
+  "recommended_levels": {"min": 1, "max": 3},
+  "chapters": [
+    {
+      "chapter_id": "discovery",
+      "display_name": "Discovery",
+      "order": 1,
+      "zones": [
+        {
+          "zone_id": "airship_hook",
+          "blueprint": "hook.json",
+          "topology": "settlement",
+          "theme": "GOTHIC",
+          "location_id": "glass_sea_airspace",
+          "entry_trigger": "module_start",
+          "exit_trigger": "scene_complete"
+        },
+        {
+          "zone_id": "glass_sea_arrival",
+          "blueprint": "arrival.json",
+          "topology": "settlement",
+          "theme": "GOTHIC",
+          "location_id": "glass_sea",
+          "entry_trigger": "scene_complete",
+          "exit_trigger": "scene_complete"
+        }
+      ]
+    },
+    {
+      "chapter_id": "investigation",
+      "display_name": "Investigation",
+      "order": 2,
+      "zones": [
+        {
+          "zone_id": "shipwreck_network",
+          "blueprint": "exploration_1.json",
+          "topology": "dungeon",
+          "theme": "GOTHIC",
+          "location_id": "glass_sea_wreckage",
+          "entry_trigger": "scene_complete",
+          "exit_trigger": "scene_complete"
+        },
+        {
+          "zone_id": "eons_vault",
+          "blueprint": "exploration_2.json",
+          "topology": "dungeon",
+          "theme": "GOTHIC",
+          "location_id": "inverted_spire",
+          "entry_trigger": "scene_complete",
+          "exit_trigger": "scene_complete"
+        }
+      ]
+    },
+    {
+      "chapter_id": "confrontation",
+      "display_name": "Confrontation",
+      "order": 3,
+      "zones": [
+        {
+          "zone_id": "vault_depths",
+          "blueprint": "escalation.json",
+          "topology": "dungeon",
+          "theme": "GOTHIC",
+          "location_id": "inverted_spire_depths",
+          "entry_trigger": "scene_complete",
+          "exit_trigger": "scene_complete"
+        },
+        {
+          "zone_id": "reliquary_sanctum",
+          "blueprint": "climax.json",
+          "topology": "dungeon",
+          "theme": "GOTHIC",
+          "location_id": "inner_sanctum",
+          "entry_trigger": "scene_complete",
+          "exit_trigger": "boss_defeated"
+        }
+      ]
+    }
+  ],
+  "freeform_zones": []
+}

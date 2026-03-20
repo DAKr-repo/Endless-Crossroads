@@ -7,11 +7,12 @@ Manages the full job lifecycle (SaV's equivalent of BitD's scores):
   - Complication management
   - Job resolution (cred, rep, heat)
   - Hyperspace jump planning
+  - Pre-engagement planning phase
 """
 
 import random
 from dataclasses import dataclass, field
-from typing import Dict, List, Optional
+from typing import ClassVar, Dict, List, Optional
 
 
 # =========================================================================
@@ -64,6 +65,80 @@ JUMP_OUTCOMES: Dict[str, str] = {
     "clean":     "Clean jump — you arrive at the destination without incident.",
     "excellent": "Excellent jump — you arrive early with bonus time or favorable positioning.",
 }
+
+
+# =========================================================================
+# PLANNING PHASE
+# =========================================================================
+
+@dataclass
+class PlanningPhase:
+    """Pre-engagement planning phase for SaV jobs.
+
+    Allows the crew to choose an approach and specific detail before
+    the engagement roll, potentially earning a bonus die.
+
+    Attributes:
+        plan_type: The approach type (assault/deception/infiltration/mystic/social/transport).
+        detail: A specific actionable detail that grants the engagement bonus.
+        loadout: Equipment load chosen for the job (light/normal/heavy).
+        completed: Whether a plan has been set.
+    """
+
+    plan_type: str = ""
+    detail: str = ""
+    loadout: str = "normal"
+    completed: bool = False
+
+    VALID_PLANS: ClassVar[List[str]] = [
+        "assault", "deception", "infiltration", "mystic", "social", "transport"
+    ]
+
+    def set_plan(self, plan_type: str, detail: str = "") -> dict:
+        """Set the plan type and optional detail.
+
+        Args:
+            plan_type: Must be one of VALID_PLANS.
+            detail: Specific actionable context for the engagement bonus.
+
+        Returns:
+            Dict with success bool and plan_type/detail on success, or error on failure.
+        """
+        if plan_type.lower() not in self.VALID_PLANS:
+            return {
+                "success": False,
+                "error": f"Invalid plan type. Valid: {', '.join(self.VALID_PLANS)}",
+            }
+        self.plan_type = plan_type.lower()
+        self.detail = detail
+        self.completed = True
+        return {"success": True, "plan_type": self.plan_type, "detail": self.detail}
+
+    def to_dict(self) -> dict:
+        """Serialize to plain dict for save/load."""
+        return {
+            "plan_type": self.plan_type,
+            "detail": self.detail,
+            "loadout": self.loadout,
+            "completed": self.completed,
+        }
+
+    @classmethod
+    def from_dict(cls, data: dict) -> "PlanningPhase":
+        """Deserialize from a plain dict.
+
+        Args:
+            data: Dict from a previous to_dict() call.
+
+        Returns:
+            Restored PlanningPhase instance.
+        """
+        return cls(
+            plan_type=data.get("plan_type", ""),
+            detail=data.get("detail", ""),
+            loadout=data.get("loadout", "normal"),
+            completed=data.get("completed", False),
+        )
 
 
 # =========================================================================

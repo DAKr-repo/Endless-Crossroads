@@ -1,0 +1,140 @@
+{
+    "seed": 7803,
+    "width": 100,
+    "height": 20,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "oathgate",
+        "theme": "STONE",
+        "topology": "dungeon",
+        "display_name": "The Temple of the Oathgate",
+        "flavor_note": "The Oathgate is ancient -- older than Kholinar, older than the Alethi, older than human memory. It was built by beings who understood that connection between distant places requires more than engineering. It requires commitment. The lock answers to oaths. The corridor answers to spren. The Fused Commander waits at the end because your success is his success, and that is the most dangerous thing about him."
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 5,
+            "y": 8,
+            "width": 22,
+            "height": 8,
+            "room_type": "start",
+            "connections": [1],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The temple approach is a processional avenue of carved stone -- each pillar depicting a different Order of Knights Radiant in poses that might be combat or might be prayer. The avenue is lit by Stormlight that seeps from the stone itself, trapped there since the Recreance. At the avenue's end, the temple doors rise fifty feet high, sealed with a lattice of crystal that grows from the doorframe like living ice. The seal is beautiful. It is also impervious to every physical force the Fused have brought against it. The scratches on the crystal's surface are proof of their frustration.",
+                "read_aloud": "The avenue of the Orders. Ten pillars, one for each. Their stone faces are worn by millennia of highstorms, but the postures are clear: Windrunners in flight, Edgedancers in motion, Stonewards braced against something coming from below. The temple doors ahead are sealed in crystal that grows from the stone like winter on a windowpane. The Fused have tried to break it. The scratches prove it. They failed. The crystal is waiting for something the Fused cannot give. An oath.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [],
+                "services": [],
+                "investigation_dc": 14,
+                "investigation_success": "The Radiant pillars each bear an inscription in Dawnchant. The Windrunner pillar reads: 'I will protect those who cannot protect themselves.' These are the First Ideals. Speaking one genuinely causes the crystal seal to retract.",
+                "perception_dc": 13,
+                "perception_success": "The scratches on the crystal seal are from Fused claws -- dozens of attempts over months. But one set of marks is different: human fingernails, at the crystal's base. Someone tried to get in before you. The marks lead to a small shrine behind the first pillar containing a prayer written on crem-paper.",
+                "event_triggers": [
+                    "The Lock: Speaking a genuine oath causes the crystal to retract. False oaths deal 1d4 spirit damage. The DM judges sincerity, not wording."
+                ]
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 30,
+            "y": 5,
+            "width": 25,
+            "height": 12,
+            "room_type": "puzzle",
+            "connections": [0, 2],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The spren corridor is not a corridor in any architectural sense. It is a space between spaces -- a transitional zone where the Physical and Cognitive Realms overlap. The walls shift between stone and something translucent, like viewing the world through water. Spren manifest here freely: windspren, lifespren, creationspren, and others that have no names in modern Alethi. They swirl through the corridor in patterns that are not random. They are testing. Each spren reacts to the party's emotions, oaths, and intentions with visible displays -- light for truth, shadow for deception, warmth for commitment, cold for doubt.",
+                "read_aloud": "The corridor is not solid. The walls shimmer between stone and light, as if the building can't decide which realm it belongs to. Spren fill the air -- hundreds of them, types you've never seen, behaving in patterns that feel like language. A windspren circles your head and stops in front of your eyes. It looks at you. Not past you. At you. It is not a mindless mote of light. It is evaluating you. They all are.",
+                "npcs": [
+                    {
+                        "name": "Ancient Spren (unnamed)",
+                        "role": "puzzle",
+                        "dialogue": "A spren larger than the others -- the size of a person, vaguely humanoid, made of overlapping geometric light. It doesn't speak in words. It communicates in impressions: images of the Radiants, emotions of duty and sacrifice, the weight of oaths kept and broken. When it 'speaks,' you don't hear it. You understand it. The impression it conveys most strongly: 'Why are you here?'"
+                    }
+                ],
+                "enemies": [],
+                "loot": [],
+                "services": [],
+                "event_triggers": [
+                    "Puzzle: The spren corridor tests sincerity. Each party member must answer the ancient spren's question ('Why are you here?') truthfully. Lies cause disorientation (DC 12 cognitive check or lose one round). Truths -- even uncomfortable ones -- cause the corridor to stabilize and the path to clarify.",
+                    "On all party members answering: The spren corridor solidifies into a physical passage. The ancient spren leads the way to the Oathgate platform. The smaller spren form an escort, their light providing illumination in patterns that suggest approval.",
+                    "On attempted violence against spren: The corridor becomes hostile. Walls close. Light dims. The party is ejected back to room 0. The crystal seal requires a new oath to reopen. Do not fight the spren."
+                ],
+                "dm_notes": "Roleplaying puzzle. The spren corridor is the module's emotional heart. Each character must answer honestly about their motivations. This is not a pass/fail -- it's a character development moment. The DM should use the ancient spren's 'impressions' to reflect each character's oath potential. Violent solutions are punished immediately and completely. The corridor rewards authenticity, not correctness. A character who admits they're here for glory instead of duty still passes -- because the admission is honest."
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 58,
+            "y": 5,
+            "width": 25,
+            "height": 12,
+            "room_type": "boss",
+            "connections": [1, 3],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Oathgate platform is a circular chamber a hundred feet across, its floor inlaid with a massive glyph that pulses with dormant Stormlight. The ceiling is open to the sky -- a shaft that rises through the temple's center like a chimney, stars visible at its apex. The platform is the Oathgate itself: a transportation device that connects Kholinar to Urithiru, activated by Surgebinding and sworn oaths. The Fused Commander stands at the platform's center, his stolen body rigid, his ancient eyes reflecting Stormlight from the floor glyph. He has been waiting. He planned for this. He needs you.",
+                "read_aloud": "The chamber opens like an eye. A hundred feet of circular floor, inlaid with a glyph that pulses with sleeping Stormlight. The ceiling is open sky -- stars stare down through the shaft. The Oathgate. The connection between Kholinar and Urithiru. Dormant for centuries. The Fused Commander stands at the center, arms crossed, ancient eyes burning red. He turns to face you. 'I have been waiting,' he says. His voice sounds like stone remembering how to speak. 'Activate the gate. Open the way. I will not stop you.' He pauses. 'I will follow you through.'",
+                "npcs": [],
+                "enemies": [
+                    {
+                        "name": "Fused Commander",
+                        "hp": 35,
+                        "deflect": 4,
+                        "damage_type": "spirit",
+                        "is_boss": true,
+                        "notes": "Seven thousand years old. Fights with gravitation Surgebinding -- alters gravity direction for individual targets (DC 14 physical save or be flung to ceiling/wall for 2d6 impact). Phase 1 (35-18 HP): Talks during combat, explaining his plan. He WANTS the Oathgate activated. He will try to follow the party through to Urithiru. Phase 2 (17-1 HP): Drops pretense. Full combat. His Surgebinding destabilizes the platform -- the floor glyph flickers, gravity shifts across the room. On defeat: His stolen body collapses. His spirit form -- a shadow of red light -- screams something in Dawnchant and disperses. Fused don't die permanently. He will return."
+                    }
+                ],
+                "loot": [
+                    {"name": "Fused Commander's Blade", "type": "equipment", "notes": "A weapon of fused carapace and ancient metal, resonating with Voidlight. Damage type: spirit. Deflect +1 when wielded. Whispers in Dawnchant when drawn. The whispers are not hostile. They are sad."},
+                    {"name": "Voidlight Sphere (major)", "type": "currency", "notes": "Infused with Voidlight instead of Stormlight. Scholars at Urithiru will want to study this. The sphere feels wrong in your hand -- not painful, but inverted, like holding your breath."}
+                ],
+                "services": [],
+                "event_triggers": [
+                    "On entry: The Fused Commander makes his offer. He won't stop the activation. He wants to follow the party to Urithiru. Accepting means opening the gate with a Fused Commander on the other side. Refusing means fighting him before activation.",
+                    "On refusing his offer: Combat begins. The Commander fights with calculated precision. He doesn't want to kill the party -- he wants to exhaust them and activate the gate himself using their bodies as a conduit. He targets the party member who spoke the oath at the crystal seal.",
+                    "Oathgate activation: Requires one character standing on the central glyph and speaking the First Ideal ('Life before death. Strength before weakness. Journey before destination.') while infusing the platform with Stormlight. Activation takes one full round during which the character cannot take other actions.",
+                    "On activation: The Oathgate blazes. The chamber fills with Stormlight. The platform SHIFTS -- reality bends, the sky changes, and for one disorienting moment, the party sees both Kholinar and Urithiru simultaneously. Then they're through. Or they would be, if the Commander doesn't follow."
+                ],
+                "dm_notes": "Boss encounter with a philosophical dimension. The Commander is not a simple villain -- he is an ancient being using the party's heroism as a tool. His offer (let me follow you) creates a genuine dilemma: fighting him is dangerous, but letting him through to Urithiru is strategically catastrophic. The combat has two phases: tactical (he talks, explains, tries to manipulate) and desperate (full power, gravity manipulation). The Oathgate activation is the win condition but requires a character to be vulnerable for one round. Defending the activator while fighting the Commander is the tactical challenge. The Commander's non-permanent death is canonical -- Fused are reborn."
+            }
+        },
+        "3": {
+            "id": 3,
+            "x": 86,
+            "y": 8,
+            "width": 12,
+            "height": 8,
+            "room_type": "skill_challenge",
+            "connections": [2],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The activation chamber is not a room but a state -- the moment between the Oathgate firing and arrival at Urithiru. Reality is transparent. The party stands on a platform that exists in both cities simultaneously, overlaid like double-exposed glass. Kholinar below, Urithiru above, and between them a shaft of pure Stormlight that connects the two like a pillar of white fire. The spren from the corridor are here -- thousands of them, holding the connection open, straining against the weight of distance and time.",
+                "read_aloud": "You are between. Kholinar is below, its streets visible through the transparent floor. Urithiru is above, its tower-city inverted, reaching down. Between them: light. Pure Stormlight, a column of it, connecting two cities across a continent. The spren hold it open. They strain. The connection is not stable. You have moments. Step forward into Urithiru. Step back into Kholinar. Or stay between and learn what the space between places has to teach.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [],
+                "services": [],
+                "event_triggers": [
+                    "Skill Challenge: Stabilize the connection. Three checks: DC 12 spiritual (channel Stormlight to reinforce the spren), DC 14 cognitive (navigate the dual reality without disorientation), DC 12 physical (physically cross the threshold into Urithiru against the dimensional resistance).",
+                    "On full success: Clean transit. The party arrives at Urithiru intact, oriented, and with full awareness of what happened. The Oathgate closes behind them. The Fused Commander, if still active, is locked out.",
+                    "On partial success (1-2 failures): Rough transit. The party arrives at Urithiru but disoriented (disadvantage on all checks for 10 minutes). Some equipment may be lost in transit. The Oathgate flickers -- it may not have closed completely.",
+                    "On full failure: The party arrives at Urithiru scattered across different levels of the tower. Equipment is randomized. The Oathgate definitely did not close properly. The Commander may follow at any time. This is the worst outcome mechanically but the most interesting narratively."
+                ],
+                "dm_notes": "Skill challenge exit. The activation chamber is the module's climax in terms of spectacle. The three checks determine the quality of the transit -- clean, rough, or scattered. All outcomes result in reaching Urithiru (the module doesn't fail), but the consequences vary significantly. The open/closed state of the Oathgate is the major narrative consequence: a properly closed gate means Kholinar is still occupied but the Fused can't follow. An improperly closed gate means the Commander can pursue at any time -- a hook for future modules. The 'space between' is a brief window into the Cognitive Realm that rewards characters who pause to observe."
+            }
+        }
+    }
+}

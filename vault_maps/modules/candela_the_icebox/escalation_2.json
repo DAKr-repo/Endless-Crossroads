@@ -1,0 +1,121 @@
+{
+  "seed": 7020,
+  "width": 50,
+  "height": 30,
+  "start_room_id": 0,
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 2,
+      "y": 2,
+      "width": 14,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [1, 2],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false
+    },
+    "1": {
+      "id": 1,
+      "x": 18,
+      "y": 2,
+      "width": 14,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [0, 3],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false
+    },
+    "2": {
+      "id": 2,
+      "x": 2,
+      "y": 14,
+      "width": 12,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [0],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false
+    },
+    "3": {
+      "id": 3,
+      "x": 34,
+      "y": 3,
+      "width": 12,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false
+    }
+  },
+  "metadata": {
+    "zone_id": "escalation_2",
+    "theme": "GOTHIC",
+    "topology": "dungeon",
+    "scene_title": "The Pillar Gallery"
+  },
+  "content_hints": {
+    "0": {
+      "description": "The inner door, breached. Whether the investigators opened it or the containment failed on its own, the black basalt slab has cracked down the center. Cold pours through the gap -- not air, not wind, but cold as a substance, a liquid absence of heat that pools on the floor.",
+      "read_aloud": "Through the crack, you see the artifact chamber. A single room, circular, smaller than you expected. At its center, on a plinth of clear ice, sits something that your eyes refuse to focus on. It's there -- you can feel its weight in the room -- but looking directly at it is like trying to read in a dream. The Warden's sphere, hovering at your shoulder, dims.",
+      "npcs": [
+        {
+          "name": "The Warden",
+          "role": "ally_in_peril",
+          "dialogue": "The Warden's frost-images become urgent, fragmentary: the artifact being used in the Last War. Cities frozen in an instant. Armies turned to ice sculptures. Then the vault, built by the survivors of both sides to ensure it was never used again. The image repeats: A CIRCLE WITH A LINE THROUGH IT. FORBIDDEN. Then the sphere flickers. It's nearly spent.",
+          "notes": "The Warden is moments from dissolution. If the investigators can reinforce the seal, the Warden survives. If they remove the artifact, the Warden dies -- its purpose fulfilled, its substance consumed. It shows no preference. It was built to contain, not to choose."
+        }
+      ],
+      "enemies": [
+        {
+          "name": "Frozen Revenants",
+          "hp": 15,
+          "ac": 12,
+          "attack": 4,
+          "damage": "1d6",
+          "count": 3,
+          "notes": "The breach triggers a mass thaw. Guardians throughout the pillar gallery crack free of their ice, confused, disoriented, defaulting to their final order: protect the artifact. They attack anything moving.",
+          "special": ["Cold Aura: melee attackers take 1 Body mark", "Relentless: fights until destroyed", "Confused: may attack each other if investigators disengage"]
+        }
+      ],
+      "event_triggers": ["The inner seal is breached. The guardians are waking. The Warden is failing. Everything converges on the artifact chamber."]
+    },
+    "1": {
+      "description": "The inner ring of guardian pillars. These are the oldest -- pre-Fairen figures in robes and armor of unknown make. Their ice pillars are cracking in sequence, a cascade of failures as the containment collapses inward.",
+      "read_aloud": "They wake screaming. Three centuries of frozen silence breaking into wails that echo through the vault. The oldest guardians don't remember who they are. They attack with hands that were powerful once and are now brittle as glass. Each one that falls reduces the containment by another fraction.",
+      "enemies": [
+        {
+          "name": "Shiver Wind",
+          "hp": 15,
+          "ac": 12,
+          "attack": 4,
+          "damage": "1d6",
+          "count": 1,
+          "notes": "The containment's death rattle. A sustained blast of supernatural cold sweeps the chamber in waves as the seal hemorrhages energy.",
+          "special": ["Incorporeal: immune to physical damage", "Hypothermia: 1 Body mark per hit", "Sustained: attacks every round, growing stronger as containment fails"]
+        }
+      ],
+      "perception_dc": 16,
+      "perception_success": "Through the containment mask, you can see the seal's structure -- a web of light connecting every guardian pillar to the central plinth. As guardians fall, threads snap. The web is down to its last strands."
+    },
+    "2": {
+      "description": "A collapsed section of the pillar gallery. Ice and stone rubble block a passage that once led to deeper vault levels. Among the debris: a guardian who fell centuries ago, their body preserved in ice fragments.",
+      "read_aloud": "This guardian died before being frozen -- a wound in their side, old and healed badly. They chose to be sealed in ice while already injured, knowing it would kill them. In their hands, clutched to their chest: a journal bound in frozen leather.",
+      "loot": [
+        {"name": "Guardian's Testament", "value": 0, "description": "Written in Old Fairen. Describes the artifact as 'The Winter That Ends' -- a weapon designed to freeze an entire civilization. The guardians are volunteers from both sides of the Last War, united in the belief that some weapons must never be wielded again. The testament ends: 'We chose the cold over the silence.'"}
+      ]
+    },
+    "3": {
+      "description": "The plinth anteroom. The final stretch before the artifact chamber. The walls here are covered in names -- every guardian who ever stood watch, carved by their own hand before they were frozen. Hundreds of names spanning millennia.",
+      "read_aloud": "Agent Corsair's name is here. 1878. Below it, in a steadier hand than the frantic carving in the pillar gallery: 'The key is silence. The artifact responds to sound. In silence, it sleeps. Speak in its presence and you wake it. I will not speak again.' Corsair's ice pillar is one of the most intact in the vault.",
+      "investigation_dc": 14,
+      "investigation_success": "Agent Corsair's insight is crucial: the artifact is sound-activated. The containment works because the ice deadens all vibration. The Shiver spreading outward is the artifact generating cold to maintain its own silence. It doesn't want to be used. It's protecting itself.",
+      "event_triggers": ["The artifact responds to sound. Silence is containment. The investigators must navigate the artifact chamber without speaking, without dropping tools, without even breathing too loudly."]
+    }
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "seed": 92002,
+  "width": 25,
+  "height": 25,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "deployment",
+    "theme": "STONE",
+    "topology": "dungeon",
+    "description": "Mountain approach to Talstadt. Scree slopes and stunted pines under a sky the colour of old bone. The town is visible below -- gates shattered, green mist pooling in the streets."
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 2,
+      "y": 2,
+      "width": 7,
+      "height": 6,
+      "room_type": "start",
+      "connections": [1],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The ridge overlook. A shelf of wind-scoured rock above Talstadt. The town sits in the valley below like a wound -- gates shattered inward, streets empty, and a faint green haze hanging over everything like breath on a cold morning. The church steeple is visible above the rooftops, its bell tower dark.",
+        "read_aloud": "You've been climbing for three hours in the dark. No fires. No talking. The mountain doesn't care about your war. From the ridge, Talstadt looks dead -- but the green smoke rising from the church says otherwise. Something is very much alive in there.",
+        "perception_dc": 12,
+        "perception_success": "Movement on the church rooftop. A Crow -- the raven-beaked mask is unmistakable even at this distance. It's scanning the approaches, head moving in slow, mechanical arcs. It hasn't seen you yet.",
+        "event_triggers": [
+          "A few pebbles fall. A Crow's raven-beaked mask peers down from a rock above, its black cloak moving but no sound escaping. It hasn't seen the full squad yet -- but it's seen something."
+        ]
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 11,
+      "y": 2,
+      "width": 7,
+      "height": 6,
+      "room_type": "normal",
+      "connections": [0, 2],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The scree descent. A treacherous slope of loose stone that funnels down toward Talstadt's shattered east wall. Every footfall sends a trickle of pebbles clattering downward. Aurora has taken position on the ridge behind you, her rifle tracking the Crow on the church roof. If it turns this way, she'll buy you time.",
+        "enemies": [
+          {
+            "name": "Crow Scout",
+            "hp": 15,
+            "max_hp": 15,
+            "ac": 14,
+            "attack": 4,
+            "defense": 14,
+            "count": 1
+          }
+        ],
+        "event_triggers": [
+          "Aurora's rifle cracks once -- a flat, sharp sound that echoes off the mountain. The Crow on the rock above jerks sideways, cloak flaring, and drops to the scree in a clatter of stone and black fabric. It's not dead. It's turning toward you, one arm hanging wrong, the mask's eye-holes burning with greenish light."
+        ],
+        "investigation_dc": 10,
+        "investigation_success": "The Crow's cloak is stitched with warding symbols -- alchemical, not arcane. The Doctor's work. This scout was enhanced. The others inside will be too."
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 11,
+      "y": 10,
+      "width": 7,
+      "height": 6,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The sewer entrance. A rusted grate set into Talstadt's east wall, half-submerged in stagnant water that has turned an unhealthy shade of green. The smell is indescribable -- rot, chemicals, and something sweetly organic that clings to the back of the throat. Phaera grips the grate bars and pulls. The metal groans but holds.",
+        "read_aloud": "The sewer grate. Thick iron, corroded but solid. The water flowing out is green and viscous, carrying streaks of something darker. Phaera braces her boots against the wall and hauls. The grate comes free with a shriek of tortured metal that you pray doesn't carry to the streets above.",
+        "lock_dc": 12,
+        "perception_dc": 14,
+        "perception_success": "The green water isn't just discolored -- it's faintly luminescent. Whatever the Doctor is doing in that lab, the runoff is contaminating the entire sewer system. Don't let it touch bare skin."
+      }
+    }
+  }
+}

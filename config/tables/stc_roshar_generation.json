@@ -1,0 +1,81 @@
+{
+  "version": 1,
+  "source": "Stormlight RPG Handbook + World Guide",
+  "weather_patterns": {
+    "highstorm_timing": [
+      "Approaching (1d4 hours)",
+      "Imminent (1d4 x 10 minutes)",
+      "Striking now",
+      "Passing (1d4 hours)",
+      "Recently passed (calm, renewed stormlight)"
+    ],
+    "everstorm_timing": [
+      "No everstorm detected",
+      "Distant rumbling from the west",
+      "Everstorm approaching (reverse direction)",
+      "Everstorm striking",
+      "Double storm (highstorm + everstorm overlap)"
+    ],
+    "calm_weather": [
+      "Clear skies, gentle breeze",
+      "Overcast, pre-storm humidity",
+      "Light crem rain",
+      "Fog rolling through chasms",
+      "Bright sun, gemstones fully infused"
+    ]
+  },
+  "terrain_features": [
+    "Rockbud cluster (edible, glows faintly with stormlight)",
+    "Chasm opening (50ft deep, narrow enough to bridge)",
+    "Plateau edge (sheer 200ft drop to chasm floor)",
+    "Lavis polyp field (farmland, ankle-deep water channels)",
+    "Shalebark formation (natural wall, easily climbed)",
+    "Cremstone outcrop (dark, pitted stone, good cover)",
+    "Stormwater pool (fresh, drinkable after highstorm)",
+    "Ancient Dawncity ruins (crumbling symmetrical stone)",
+    "Soulcast road (smooth, artificial stone surface)",
+    "Skyeel nesting area (dangerous but valuable gemhearts nearby)",
+    "Whitespine den (bones and carcasses scattered around entrance)",
+    "Bridge approach (narrow stone spanning a chasm)",
+    "Lait (sheltered area between rock formations, calm during storms)",
+    "Gemheart deposit (requires mining, attracts chasmfiends)"
+  ],
+  "spren_sightings": [
+    {"spren": "Windspren", "effect": "Playful, may tug at loose items; no mechanical effect", "rarity": "common"},
+    {"spren": "Flamespren", "effect": "Dance around fire sources; fires burn slightly brighter", "rarity": "common"},
+    {"spren": "Rotspren", "effect": "Indicate infection or decay nearby; Investigation check DC 10", "rarity": "uncommon"},
+    {"spren": "Fearspren", "effect": "Manifest near frightened creatures; disadvantage on next Wisdom save", "rarity": "uncommon"},
+    {"spren": "Painspren", "effect": "Swarm around injured creatures; indicate hidden wounded NPCs", "rarity": "common"},
+    {"spren": "Gloryspren", "effect": "Manifest around inspiring moments; advantage on next Charisma check", "rarity": "rare"},
+    {"spren": "Creationspren", "effect": "Dance around creative acts; +1 to next crafting check", "rarity": "uncommon"},
+    {"spren": "Deathspren", "effect": "Visible only to those near death; warning of mortal danger", "rarity": "rare"},
+    {"spren": "Highspren", "effect": "Observe lawful acts closely; may report to Skybreakers", "rarity": "rare"},
+    {"spren": "Honorspren", "effect": "Rarely seen in Physical Realm; indicate a Windrunner bond forming", "rarity": "very_rare"}
+  ],
+  "random_encounters_by_terrain": {
+    "plateaus": [
+      "Parshendi scouts in warform observing from distance",
+      "Bridge crew crossing with supplies (potential allies)",
+      "Chasmfiend approaching from adjacent plateau",
+      "Highstorm approaching -- 30 minutes to find shelter",
+      "Abandoned warcamp with salvageable supplies",
+      "Skyeel flock overhead (1 in 6 chance of attack)"
+    ],
+    "chasms": [
+      "Chasmfiend lurking in shadows below",
+      "Santhid swimming in deep water pools",
+      "Ancient Shardblade embedded in rock (illusion or real?)",
+      "Flash flood from distant highstorm (Constitution save DC 15)",
+      "Cremling swarm covering the walls",
+      "Preserved Dawncity mural with historical clue"
+    ],
+    "settlements": [
+      "Ardent preaching about the Almighty's will",
+      "Lighteyes inspection of darkeyes workers",
+      "Stormwarden announcing highstorm predictions",
+      "Street fight between rival lighteyes retainers",
+      "Traveling merchant with Soulcast goods",
+      "Shin visitor attracting curious crowds"
+    ]
+  }
+}

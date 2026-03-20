@@ -1,0 +1,123 @@
+{
+  "seed": 7027,
+  "width": 50,
+  "height": 30,
+  "start_room_id": 0,
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 2,
+      "y": 2,
+      "width": 14,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [1, 2],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false
+    },
+    "1": {
+      "id": 1,
+      "x": 18,
+      "y": 2,
+      "width": 14,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [0, 3],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false
+    },
+    "2": {
+      "id": 2,
+      "x": 2,
+      "y": 14,
+      "width": 12,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [0],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false
+    },
+    "3": {
+      "id": 3,
+      "x": 34,
+      "y": 3,
+      "width": 12,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [1],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false
+    }
+  },
+  "metadata": {
+    "zone_id": "escalation_2",
+    "theme": "GOTHIC",
+    "topology": "dungeon",
+    "scene_title": "The Ritual Chamber"
+  },
+  "content_hints": {
+    "0": {
+      "description": "The temple nave again, but the ritual has begun. The cult has arrived. Seven figures in crimson robes stand at their positions around the thinning, blood channels flowing. The investigators have stumbled into the ceremony -- or the ceremony was waiting for them.",
+      "read_aloud": "Corvin's voice rises above a chant that makes your teeth ache. 'The old world is dying. We are the bridge to what comes next. Tonight we transcend flesh. Tonight we become eternal.' The six other cult members echo the words, but their voices shake. Not all of them are willing. Senator Vaast's hands tremble as he raises his chalice.",
+      "npcs": [
+        {
+          "name": "Lyssa Dane",
+          "role": "ally_in_peril",
+          "dialogue": "She's on the phone -- frantic, voice cracking. 'They know you're here. Corvin knew before you came in. The thinning told him. He moved the ritual up. It's happening now. Corvin said -- he said if anyone interferes, he'll complete his own transformation first and deal with you himself. He's not bluffing. I've seen what the blood magick does to him when he's angry.'",
+          "notes": "Lyssa is monitoring from outside but has been discovered. The cult's guards are searching for her. She may be captured before the climax, adding urgency."
+        }
+      ],
+      "enemies": [
+        {
+          "name": "Cult Guards",
+          "hp": 15,
+          "ac": 12,
+          "attack": 4,
+          "damage": "1d6",
+          "count": 3,
+          "notes": "The full complement of blood-enhanced guards, deployed to prevent interference with the ritual. Fighting in the nave risks disrupting the blood channels -- which could trigger a catastrophic bleed backlash.",
+          "special": ["Blood-Enhanced: advantage on first attack each round", "Fanatical: fight to the death"]
+        }
+      ],
+      "event_triggers": ["The ritual has begun. The investigators must stop it without triggering a bleed catastrophe. Some cult members may be turned -- not all are willing participants."]
+    },
+    "1": {
+      "description": "The east wing of the temple, behind the cultists' positions. A service corridor that provides access to the seven ritual stations from behind. If the stakes could be removed from the central case and swapped with inert replicas, the ritual would fail silently.",
+      "read_aloud": "The glass case containing the Seven Stakes of Ire sits on a plinth between the cultists and the thinning. The stakes pulse in time with the chant, glowing red-black. With the key from Corvin's study, you could open the case without alarm. But you'd have to cross the ritual space to reach it.",
+      "investigation_dc": 14,
+      "investigation_success": "Observing the ritual reveals a vulnerability: the chant requires all seven members to participate simultaneously. If even one breaks the circle, the ritual stalls. Senator Vaast keeps losing the words. Judge Breck's eyes dart toward the exits. Fractures in the cult's unity.",
+      "enemies": [
+        {
+          "name": "Blood Magick Manifestation",
+          "hp": 15,
+          "ac": 12,
+          "attack": 4,
+          "damage": "1d6",
+          "count": 1,
+          "notes": "The thinning's defense. As the ritual progresses, bleed energy coalesces into a guardian form that patrols the perimeter of the ritual space.",
+          "special": ["Incorporeal: physical attacks deal half damage", "Bleed Lash: 1 Bleed mark on hit", "Bound: cannot leave the ritual perimeter -- a ward as much as a weapon"]
+        }
+      ],
+      "loot": [
+        {"name": "Senator Vaast's Private Journal", "value": 0, "description": "Found on a bench behind his position. Vaast has been documenting his doubts: 'Corvin promises transcendence but I see only hunger in his eyes. Something changed in him. Something was taken and something worse put in its place.' Vaast could be turned with the right leverage."}
+      ]
+    },
+    "2": {
+      "description": "The south alcove. A small chapel space that predates the cult's modifications -- original church stonework with faded frescos depicting acts of compassion and sacrifice. The cult hasn't bothered to deface them. They just covered them with tapestries.",
+      "read_aloud": "Behind the tapestries, the frescos show a story: people gathered around a wound in the earth, not feeding it blood but sealing it with their own hands. An ancient precedent. Someone sealed this thinning once before, with compassion rather than exploitation. The technique is depicted in the fresco: the seven figures aren't taking from the wound. They're giving. Freely offered life force, not stolen, closes the rift.",
+      "investigation_dc": 16,
+      "investigation_success": "The fresco depicts the original sealing of this thinning -- seven volunteers giving freely, not seven slaves having life force stolen. The ritual the cult is performing is an inversion of the original seal. They're not transcending. They're tearing the seal open. The Unabridged ritual doesn't just transform the practitioners -- it destroys the containment entirely."
+    },
+    "3": {
+      "description": "The thinning's edge. The rift is growing as the ritual progresses. What was a wound is becoming a doorway. Shapes move behind it -- not the formless shadows of an idle thinning but distinct figures, purposeful, pressing against the membrane. They're waiting to come through.",
+      "read_aloud": "Through the thinning, you see faces. Not monsters -- people. Or what used to be people. Unabridged from other rituals, other thinnings, other ages. They crowd the membrane like passengers at a train window, watching, waiting. When the seal breaks, they'll pour through. Not seven. Hundreds.",
+      "perception_dc": 16,
+      "perception_success": "Among the faces pressing against the membrane, one stands apart -- directly behind where Corvin is chanting. It's wearing Corvin's face. The real Corvin was consumed months ago. What's standing at the altar is already Unabridged, leading the others into a trap.",
+      "event_triggers": ["Full danger. The ritual is an inversion of the original seal. Completion won't just transform the cult -- it will tear the thinning wide open. Hundreds of Unabridged entities are waiting to cross. Lyssa is in danger. The stakes must be seized."]
+    }
+  }
+}

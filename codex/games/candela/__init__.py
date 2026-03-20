@@ -6,7 +6,7 @@ Supernatural noir investigation using the Illuminated Worlds system.
 Uses three resource tracks (Body, Brain, Bleed) instead of FITD stress.
 
 Integrates with:
-  - codex/core/services/fitd_engine.py for shared d6-pool mechanics
+  - codex/core/engines/narrative_base.py for shared FITD mechanics
   - codex/forge/char_wizard.py via vault/ILLUMINATED_WORLDS/Candela_Obscura/creation_rules.json
   - codex/games/candela/investigations.py for clue/case management (WO-V2C)
 
@@ -14,9 +14,9 @@ Activated when a Candela Obscura campaign is loaded.
 """
 
 from dataclasses import dataclass, field
-from typing import Any, Dict, List, Optional
+from typing import Any, Callable, Dict, List, Optional
 
-from codex.core.services.narrative_loom import NarrativeLoomMixin
+from codex.core.engines.narrative_base import NarrativeEngineBase
 
 
 # =========================================================================
@@ -104,12 +104,16 @@ class CandelaCharacter:
 # ENGINE
 # =========================================================================
 
-class CandelaEngine(NarrativeLoomMixin):
+class CandelaEngine(NarrativeEngineBase):
     """Core engine for Candela Obscura campaigns.
 
     Uses the Illuminated Worlds system with Body/Brain/Bleed tracks
     instead of standard FITD stress. Shares the d6-pool action roll
     and FactionClock from fitd_engine.
+
+    Inherits from NarrativeEngineBase:
+        create_character, add_to_party, remove_from_party,
+        roll_action, push_stress, get_mood_context, handle_command.
 
     WO-V2C: Adds InvestigationManager (lazy-init) for case and clue tracking.
     """
@@ -118,17 +122,52 @@ class CandelaEngine(NarrativeLoomMixin):
     system_family = "ILLUMINATED_WORLDS"
     display_name = "Candela Obscura"
 
-    def __init__(self):
-        from codex.core.services.fitd_engine import FactionClock  # noqa: F401
-        self.character: Optional[CandelaCharacter] = None
-        self.party: List[CandelaCharacter] = []
+    def __init__(self) -> None:
+        """Initialize engine with default state and Candela-specific fields."""
+        super().__init__()
         self.circle_name: str = ""   # The investigative circle
-        self.faction_clocks: List[Any] = []
         self.assignments_completed: int = 0
-        self.setting_id: str = ""   # WO-V46.0: active sub-setting filter
-        self._init_loom()
         # WO-V2C: Investigation subsystem (lazy-initialised)
         self._investigation_mgr: Optional[Any] = None
+        # WO-P4: Assignment + Phenomena subsystems (lazy-initialised)
+        self._assignment_tracker: Optional[Any] = None
+        self._phenomena_tracker: Optional[Any] = None
+
+    # =====================================================================
+    # HOOKS (NarrativeEngineBase)
+    # =====================================================================
+
+    def _create_character(self, name: str, **kwargs) -> CandelaCharacter:
+        """Create a CandelaCharacter from name and kwargs."""
+        return CandelaCharacter.from_dict({"name": name, **kwargs})
+
+    def _use_stress_clocks(self) -> bool:
+        """Candela uses Body/Brain/Bleed tracks, not StressClocks."""
+        return False
+
+    def _get_command_registry(self) -> Dict[str, Callable]:
+        """Map command names to handlers."""
+        return {
+            "start_assignment":    self._cmd_start_assignment,
+            "advance_phase":       self._cmd_advance_phase,
+            "complete_assignment": self._cmd_complete_assignment,
+            "assignment_status":   self._cmd_assignment_status,
+            "bleed_escalation":    self._cmd_bleed_escalation,
+            "phenomena_status":    self._cmd_phenomena_status,
+            "phenomena_tick":      self._cmd_phenomena_tick,
+            "phenomena_reduce":    self._cmd_phenomena_reduce,
+            "fortune":             self._cmd_fortune,
+        }
+
+    def _format_status(self) -> str:
+        """Return Candela-specific status string."""
+        lead = self.party[0] if self.party else None
+        return (
+            f"Circle: {self.circle_name or 'Unnamed'} | "
+            f"Assignments: {self.assignments_completed} | "
+            f"Investigators: {len(self.party)} | "
+            f"Lead: {lead.name if lead else 'None'}"
+        )
 
     # ── Lazy Accessor ──────────────────────────────────────────────────
 
@@ -139,118 +178,25 @@ class CandelaEngine(NarrativeLoomMixin):
             self._investigation_mgr = InvestigationManager()
         return self._investigation_mgr
 
+    def _get_assignment_tracker(self) -> Any:
+        """Lazily initialise and return the AssignmentTracker."""
+        if self._assignment_tracker is None:
+            from codex.games.candela.assignments import AssignmentTracker
+            self._assignment_tracker = AssignmentTracker()
+        return self._assignment_tracker
+
+    def _get_phenomena_tracker(self) -> Any:
+        """Lazily initialise and return the PhenomenaTracker."""
+        if self._phenomena_tracker is None:
+            from codex.games.candela.investigations import PhenomenaTracker
+            self._phenomena_tracker = PhenomenaTracker()
+        return self._phenomena_tracker
+
     # ── Party Management ───────────────────────────────────────────────
-
-    def create_character(self, name: str, **kwargs) -> CandelaCharacter:
-        """Create a new investigator and make them the party lead."""
-        setting_id = kwargs.pop("setting_id", self.setting_id)
-        char = CandelaCharacter(name=name, **kwargs)
-        char.setting_id = setting_id
-        self.setting_id = setting_id
-        self.character = char
-        if not self.party:
-            self.party = [char]
-        else:
-            self.party.append(char)
-        self._add_shard(
-            f"Circle investigator added: {name} ({char.role or 'Unassigned'})",
-            "MASTER",
-        )
-        return char
-
-    def add_to_party(self, char: CandelaCharacter) -> None:
-        """Add an existing investigator to the active circle."""
-        self.party.append(char)
-
-    def remove_from_party(self, char: CandelaCharacter) -> None:
-        """Remove an investigator from the active circle."""
-        if char in self.party:
-            self.party.remove(char)
 
     def get_active_party(self) -> List[CandelaCharacter]:
         """Return only investigators who are not fully broken."""
         return [c for c in self.party if c.is_alive()]
-
-    # ── Action Roll ────────────────────────────────────────────────────
-
-    def roll_action(self, character: Optional[CandelaCharacter] = None,
-                    action: str = "survey", bonus_dice: int = 0, **kwargs) -> Any:
-        """Roll a d6-pool action using the character's action dots.
-
-        Args:
-            character: The acting investigator (defaults to lead).
-            action: Action attribute name (e.g. 'survey', 'strike').
-            bonus_dice: Extra dice from teamwork / assist.
-            **kwargs: Accepts 'position' (Position) and 'effect' (Effect).
-
-        Returns:
-            FITDResult with outcome, dice, and position/effect context.
-        """
-        from codex.core.services.fitd_engine import FITDActionRoll, Position, Effect
-        char = character or self.character
-        dots = getattr(char, action, 0) if char else 0
-        position = kwargs.get("position", Position.RISKY)
-        effect = kwargs.get("effect", Effect.STANDARD)
-        roll = FITDActionRoll(dice_count=dots + bonus_dice,
-                              position=position, effect=effect)
-        return roll.roll()
-
-    def push_stress(self, char_name: str, amount: int = 1) -> dict:
-        """Push stress with trauma shard emission (WO-V61.0).
-
-        Candela uses Body/Brain/Bleed tracks rather than a StressClock,
-        so this method returns an empty dict if no stress clock exists for
-        the named character. Provided for interface parity with other FITD
-        engines that share a stress-clock-based trauma path.
-
-        Args:
-            char_name: Name of the character whose stress clock to push.
-            amount: Stress points to add.
-
-        Returns:
-            StressClock.push() result dict, or empty dict if no clock found.
-        """
-        clock = getattr(self, "stress_clocks", {}).get(char_name)
-        if not clock:
-            return {}
-        result = clock.push(amount)
-        if result.get("trauma_triggered"):
-            self._add_shard(
-                f"{char_name} suffered trauma: {result['new_trauma']}. "
-                f"Total traumas: {result['total_traumas']}/4.",
-                "ANCHOR", source="session",
-            )
-        return result
-
-    def get_mood_context(self) -> dict:
-        """Return current mechanical state as narrative mood modifiers (WO-V61.0)."""
-        char = self.character
-        clock = getattr(self, 'stress_clocks', {}).get(char.name) if char else None
-        stress = clock.current_stress if clock else 0
-        max_stress = clock.max_stress if clock else 9
-        trauma_count = len(clock.traumas) if clock else 0
-        stress_pct = stress / max(1, max_stress)
-        tension = min(1.0, stress_pct + (trauma_count * 0.15))
-
-        words = []
-        if trauma_count >= 2:
-            words.extend(["haunted", "fractured", "unreliable"])
-        if stress_pct > 0.7:
-            words.extend(["fraying", "manic", "reckless"])
-
-        if stress_pct > 0.8 or trauma_count >= 3:
-            condition = "critical"
-        elif stress_pct > 0.5 or trauma_count >= 1:
-            condition = "battered"
-        else:
-            condition = "healthy"
-
-        return {
-            "tension": round(tension, 2),
-            "tone_words": words,
-            "party_condition": condition,
-            "system_specific": {"stress": stress, "trauma_count": trauma_count},
-        }
 
     # ── Status ─────────────────────────────────────────────────────────
 
@@ -276,17 +222,25 @@ class CandelaEngine(NarrativeLoomMixin):
 
     def save_state(self) -> Dict[str, Any]:
         """Serialize full engine state for persistence."""
-        state: Dict[str, Any] = {
-            "system_id": self.system_id,
-            "setting_id": self.setting_id,
-            "party": [c.to_dict() for c in self.party],
-            "faction_clocks": [c.to_dict() for c in self.faction_clocks],
+        state = super().save_state()
+        state.update({
             "circle_name": self.circle_name,
             "assignments_completed": self.assignments_completed,
-        }
+        })
         # WO-V2C: Persist investigation state if the manager was ever initialised
         if self._investigation_mgr is not None:
             state["investigation"] = self._investigation_mgr.to_dict()
+        # WO-P4: Persist assignment and phenomena state
+        state["assignment_tracker"] = (
+            self._assignment_tracker.to_dict()
+            if self._assignment_tracker is not None
+            else None
+        )
+        state["phenomena_tracker"] = (
+            self._phenomena_tracker.to_dict()
+            if self._phenomena_tracker is not None
+            else None
+        )
         return state
 
     def load_state(self, data: Dict[str, Any]) -> None:
@@ -304,6 +258,15 @@ class CandelaEngine(NarrativeLoomMixin):
         if inv_data:
             from codex.games.candela.investigations import InvestigationManager
             self._investigation_mgr = InvestigationManager.from_dict(inv_data)
+        # WO-P4: Restore assignment and phenomena trackers
+        at_data = data.get("assignment_tracker")
+        if at_data:
+            from codex.games.candela.assignments import AssignmentTracker
+            self._assignment_tracker = AssignmentTracker.from_dict(at_data)
+        pt_data = data.get("phenomena_tracker")
+        if pt_data:
+            from codex.games.candela.investigations import PhenomenaTracker
+            self._phenomena_tracker = PhenomenaTracker.from_dict(pt_data)
 
     # ── Setting-Filtered Accessors ─────────────────────────────────────
 
@@ -326,24 +289,131 @@ class CandelaEngine(NarrativeLoomMixin):
         return filter_by_setting(CIRCLE_ABILITIES, self.setting_id)
 
     # =====================================================================
-    # COMMAND DISPATCHER
+    # CANDELA-SPECIFIC COMMAND HANDLERS
     # =====================================================================
 
-    def handle_command(self, cmd: str, **kwargs) -> str:
-        """Dispatch a command string to the appropriate handler."""
-        if cmd == "trace_fact":
-            return self.trace_fact(kwargs.get("fact", ""))
-        handler = getattr(self, f"_cmd_{cmd}", None)
-        if handler:
-            return handler(**kwargs)
-        return f"Unknown command: {cmd}"
+    # ── WO-P4: Assignment Phase handlers ──────────────────────────────
 
-    # ── Existing handlers ──────────────────────────────────────────────
+    def _cmd_start_assignment(self, **kwargs) -> str:
+        """Start a new assignment with a name.
 
-    def _cmd_roll_action(self, **kwargs) -> str:
-        from codex.core.services.fitd_engine import format_roll_result
-        result = self.roll_action(**kwargs)
-        return format_roll_result(result)
+        Kwargs:
+            name (str): Assignment name. Required.
+        """
+        name = kwargs.get("name", "")
+        if not name:
+            return "Specify assignment name."
+        tracker = self._get_assignment_tracker()
+        tracker.assignment_name = name
+        tracker.current_phase = "hook"
+        tracker.completed = False
+        tracker.phase_notes = {"hook": [], "exploration": [], "climax": []}
+        self._add_shard(f"Assignment started: {name}", "MASTER")
+        return f"Assignment begun: {name}\nPhase: HOOK"
+
+    def _cmd_advance_phase(self, **kwargs) -> str:
+        """Advance to the next assignment phase."""
+        tracker = self._get_assignment_tracker()
+        result = tracker.advance_phase()
+        if not result["success"]:
+            return result["error"]
+        self._add_shard(
+            f"Assignment phase: {result['old_phase']} -> {result['new_phase']}",
+            "ANCHOR",
+        )
+        return (
+            f"Phase advanced: {result['old_phase'].upper()} -> "
+            f"{result['new_phase'].upper()}"
+        )
+
+    def _cmd_complete_assignment(self, **kwargs) -> str:
+        """Complete the current assignment."""
+        tracker = self._get_assignment_tracker()
+        result = tracker.complete()
+        if not result["success"]:
+            return result["error"]
+        self.assignments_completed += 1
+        self._add_shard(
+            f"Assignment completed: {tracker.assignment_name}", "ANCHOR"
+        )
+        return (
+            f"Assignment completed: {tracker.assignment_name}\n"
+            f"Total assignments: {self.assignments_completed}"
+        )
+
+    def _cmd_assignment_status(self, **kwargs) -> str:
+        """Show current assignment progress."""
+        tracker = self._get_assignment_tracker()
+        return tracker.get_summary()
+
+    # ── WO-P4: Bleed escalation ───────────────────────────────────────
+
+    def _cmd_bleed_escalation(self, **kwargs) -> str:
+        """Check for bleed escalation across the circle.
+
+        Compares total circle bleed against a threshold of 2 × party size.
+        """
+        total_bleed = sum(c.bleed for c in self.party)
+        threshold = len(self.party) * 2
+        if total_bleed >= threshold:
+            self._add_shard(
+                f"BLEED ESCALATION: total bleed {total_bleed} >= threshold {threshold}",
+                "ANCHOR",
+            )
+            return (
+                f"BLEED ESCALATION!\n"
+                f"Total circle bleed: {total_bleed} >= threshold ({threshold})\n"
+                f"The phenomena surges. All investigators take 1 brain mark."
+            )
+        return (
+            f"Bleed check: {total_bleed}/{threshold}\n"
+            f"The boundary holds — for now."
+        )
+
+    # ── WO-P4: Phenomena escalation handlers ─────────────────────────
+
+    def _cmd_phenomena_status(self, **kwargs) -> str:
+        """Show the current phenomena escalation status."""
+        tracker = self._get_phenomena_tracker()
+        return tracker.get_status()
+
+    def _cmd_phenomena_tick(self, **kwargs) -> str:
+        """Advance the phenomena escalation clock.
+
+        Kwargs:
+            amount (int): Ticks to add. Default 1.
+        """
+        amount = int(kwargs.get("amount", 1))
+        tracker = self._get_phenomena_tracker()
+        result = tracker.tick(amount)
+        if result["advanced"]:
+            self._add_shard(
+                f"Phenomena escalated: {result['old_stage']} -> {result['new_stage']}",
+                "ANCHOR",
+            )
+            return (
+                f"PHENOMENA ESCALATION: {result['old_stage'].upper()} -> "
+                f"{result['new_stage'].upper()}\n"
+                f"Ticks: {result['ticks']}/{result['threshold']}"
+            )
+        return (
+            f"Phenomena tick: {result['ticks']}/{result['threshold']} "
+            f"({result['new_stage']})"
+        )
+
+    def _cmd_phenomena_reduce(self, **kwargs) -> str:
+        """Reduce phenomena escalation (from containment).
+
+        Kwargs:
+            amount (int): Ticks to remove. Default 1.
+        """
+        amount = int(kwargs.get("amount", 1))
+        tracker = self._get_phenomena_tracker()
+        result = tracker.reduce(amount)
+        return (
+            f"Phenomena reduced: {result['old_ticks']} -> {result['new_ticks']} "
+            f"ticks ({result['stage']})"
+        )
 
     def _cmd_circle_status(self, **kwargs) -> str:
         lines = [f"Circle: {self.circle_name or 'Unnamed'}"]
@@ -653,31 +723,50 @@ COMPLICATION_TABLE: Dict[int, List[Dict[str, Any]]] = {
 
 CANDELA_COMMANDS = {
     # Existing (WO-V10.0)
-    "roll_action":    "Roll a d6-pool action check",
-    "circle_status":  "Show circle name and assignments",
-    "take_mark":      "Mark damage on Body/Brain/Bleed",
-    "party_status":   "Show all investigator resource tracks",
-    "assignment":     "Show current assignment/mission details",
+    "roll_action":         "Roll a d6-pool action check",
+    "circle_status":       "Show circle name and assignments",
+    "take_mark":           "Mark damage on Body/Brain/Bleed",
+    "party_status":        "Show all investigator resource tracks",
+    "assignment":          "Show current assignment/mission details",
     # WO-V2C: Investigation
-    "open_case":      "Open a new investigation case",
-    "investigate":    "Perform an investigation roll to find clues",
-    "gilded_move":    "Use a role ability (gilded move)",
-    "illuminate":     "Attempt to resolve the active case",
-    "case_status":    "Show active case details and clue count",
-    "clues":          "List all discovered clues",
-    "danger_check":   "Roll a danger escalation check",
-    "build_trust":    "Adjust NPC trust level after an interaction",
-    "complication":   "Roll a complication from the consequence table",
+    "open_case":           "Open a new investigation case",
+    "investigate":         "Perform an investigation roll to find clues",
+    "gilded_move":         "Use a role ability (gilded move)",
+    "illuminate":          "Attempt to resolve the active case",
+    "case_status":         "Show active case details and clue count",
+    "clues":               "List all discovered clues",
+    "danger_check":        "Roll a danger escalation check",
+    "build_trust":         "Adjust NPC trust level after an interaction",
+    "complication":        "Roll a complication from the consequence table",
+    # WO-P4: Assignment phase tracking
+    "start_assignment":    "Start a new assignment (name=<str>)",
+    "advance_phase":       "Advance to next assignment phase",
+    "complete_assignment":  "Complete the current assignment",
+    "assignment_status":   "Show assignment progress",
+    # WO-P4: Bleed and phenomena
+    "bleed_escalation":    "Check for bleed escalation across circle",
+    "phenomena_status":    "Show phenomena escalation stage",
+    "phenomena_tick":      "Advance phenomena escalation",
+    "phenomena_reduce":    "Reduce phenomena escalation ticks",
+    "fortune":             "Roll a Candela fortune die pool",
 }
 
 CANDELA_CATEGORIES = {
     "Circle":        ["circle_status", "party_status", "assignment"],
-    "Action":        ["roll_action", "take_mark"],
+    "Action":        ["roll_action", "take_mark", "fortune"],
     "Investigation": [
         "open_case", "investigate", "case_status", "clues",
         "illuminate", "danger_check",
     ],
     "Roleplay":      ["gilded_move", "build_trust", "complication"],
+    "Assignment":    [
+        "start_assignment", "advance_phase", "complete_assignment",
+        "assignment_status",
+    ],
+    "Phenomena":     [
+        "phenomena_status", "phenomena_tick", "phenomena_reduce",
+        "bleed_escalation",
+    ],
 }
 
 

@@ -676,7 +676,7 @@ class TestBoBAccessors:
         e = BoBEngine()
         e.setting_id = "eastern_kingdoms"
         pb = e.get_playbooks()
-        assert len(pb) == 4
+        assert len(pb) == 5  # Heavy, Medic, Officer, Scout, Sniper
 
     def test_get_heritages(self):
         from codex.games.bob import BoBEngine
@@ -704,7 +704,7 @@ class TestBoBAccessors:
         e = BoBEngine()
         # No setting_id — should return everything
         pb = e.get_playbooks()
-        assert len(pb) == 4
+        assert len(pb) == 5  # Heavy, Medic, Officer, Scout, Sniper
 
 
 class TestCBRPNKAccessors:

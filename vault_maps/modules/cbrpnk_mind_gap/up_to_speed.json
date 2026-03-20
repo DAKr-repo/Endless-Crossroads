@@ -1,0 +1,171 @@
+{
+    "seed": 9011,
+    "width": 120,
+    "height": 20,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "up_to_speed",
+        "theme": "RUST",
+        "topology": "linear",
+        "display_name": "Transmetropolitan Monorail -- Cars 12-22",
+        "flavor_note": "The Reality Check track has filled. The PCs now know the Package is a Virus and they are inside a Simulacrum. The objective has reversed. The Package fights back."
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 5,
+            "y": 8,
+            "width": 20,
+            "height": 8,
+            "room_type": "start",
+            "connections": [1],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Car 12 -- The Revelation. The car is empty of commuters. Clean seats, working lights, no glitches. And then the Package moves in your hands. Not from jostling -- deliberately. The seams shift. Something inside it is aware of where it is. A PA announcement comes through with crystalline clarity: 'Please, secure your packages (or throw them through the window NOW).' You were hired to deliver a Virus to the Neural Network's core at Car 22. You did not know. You know now.",
+                "read_aloud": "The Package moves. Not shaken -- it decides to move. The seams shift like something breathing inside. The PA speaks: 'Please, secure your packages. Or throw them through the window NOW.' Car 12 is empty and clean and very, very quiet. You have been delivering a Virus.",
+                "npcs": [],
+                "enemies": [],
+                "loot": [],
+                "services": [],
+                "event_triggers": [
+                    "On entry: The Package shifts in the carrier's hands. Intentional movement. The PA repeats: 'Please, secure your packages (or throw them through the window NOW).'",
+                    "Objective Reversal: The mission is now one of three options -- push the Black Hounds back and carry the Package to Car 12's exit (done, it's here), OR destroy the Package before it reaches Car 22, OR continue to Car 22 and let the Virus through. The Neural Network is what stands to be destroyed.",
+                    "Reality Check 4: When a PC was last unconscious, they saw themselves lying down -- cables, bright light, a familiar face looking down at them. This is the memory that confirms the Simulacrum.",
+                    "Reality Check 6: Nearly every commuter encountered so far has been behaving like a glitchy computer game character. This is the full realization."
+                ],
+                "dm_notes": "Act 2 opens with the objective inversion. Car 12 is the safe moment before the Package fights back. Give the PCs time to discuss, argue, decide. The three endings all diverge from this room: destroy (fight the Package here), push back (combat), or deliver (go forward to Car 22). The Black Hound Counteragent appears in the corridor."
+            }
+        },
+        "1": {
+            "id": 1,
+            "x": 27,
+            "y": 8,
+            "width": 20,
+            "height": 8,
+            "room_type": "corridor",
+            "connections": [0, 2],
+            "tier": 2,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "The Corridor Cars -- 13 through 20. The monorail becomes stranger the closer it gets to Car 22. Commuters here are not just glitchy -- they are failing. A woman's pet animal changes species between blinks: cat, bird, rat, something with too many legs, cat again. A person stands at the corridor between cars, blocking passage, swaying. They do not move for any reason. The Neural Network is deploying surveillance and troubleshooting droids through these cars, locking doors behind the PCs, helping the Black Hounds. It is trying to prevent delivery -- or it is trying to funnel you through. The corridor feels like a throat.",
+                "read_aloud": "Eight cars of wrong. The woman's pet is a cat now. It was a bird. It was something else. A man stands blocking the passage between cars and does not move when you tell him to. Surveillance droids roll through overhead channels. Doors lock behind you. The PA: 'We will reach destination in ███ minutes.'",
+                "npcs": [
+                    {
+                        "name": "Commuter: Woman with Changing Pet",
+                        "role": "environmental",
+                        "dialogue": "She is holding a cat. Then a bird. Then something with too many legs and the wrong number of eyes. She strokes it each time with the same affectionate motion, as though it has always been this. She does not notice your stare."
+                    },
+                    {
+                        "name": "Commuter: Standing Person (Corridor Blocker)",
+                        "role": "environmental",
+                        "dialogue": "They stand in the connector between cars. Blocking. Swaying slightly. They do not respond to voice, touch, or violence. They can be moved physically -- they weigh nothing -- but they drift back to the same spot in approximately ninety seconds."
+                    },
+                    {
+                        "name": "Neural Network: Surveillance Droid",
+                        "role": "guard",
+                        "dialogue": "The droid does not speak. Its camera rotates to track PCs. It transmits to the Network. If engaged, it deploys a lock on the nearest door and signals the Black Hounds' position."
+                    }
+                ],
+                "enemies": [
+                    {
+                        "name": "Black Hound Counteragent",
+                        "hp": 15,
+                        "ac": 14,
+                        "atk": 5,
+                        "damage_type": "adaptive",
+                        "is_boss": false,
+                        "notes": "Specialized operative. Appears ONCE and only once. Adapts to the party's dominant approach: if they favor tech, arrives with EMP emitter and nanobots; if combat, arrives with riot gear and drones; if hacking, arrives with counter-hack robots. Study the party before deploying."
+                    }
+                ],
+                "loot": [
+                    {"name": "Counteragent Equipment (drops on defeat)", "type": "equipment", "notes": "The specific item depends on which form the Counteragent took. EMP emitter, riot shield, or signal jammer."}
+                ],
+                "services": [],
+                "event_triggers": [
+                    "On entry: PA -- 'We will reach destination in ███ minutes.' The number is redacted in the broadcast. The Neural Network is hiding how close Car 22 is.",
+                    "On Counteragent appearance: It steps out from between two commuters who do not react to its presence. It has been watching since Car 10. It has adapted.",
+                    "On surveillance droid destroyed: Two more drop from ceiling hatches in the next car. The Network has redundancy.",
+                    "On door lock attempt by Network: A door seals behind the party. Not in front -- it is herding, not blocking. The direction of pressure matters.",
+                    "Glitch: The PA broadcasts a name. One of the PCs' names. Specifically. 'Fuck, [name].' Just that."
+                ],
+                "dm_notes": "The Counteragent is the only named enemy that appears once and does not respawn. It should feel like a designed threat -- something built to counter THIS party specifically. The door-locking behavior from the Neural Network should be observed: it locks doors BEHIND the party, pushing them forward. This is a clue. The Network may want delivery to fail -- or it may want the party to reach Car 22 for its own reasons."
+            }
+        },
+        "2": {
+            "id": 2,
+            "x": 49,
+            "y": 8,
+            "width": 20,
+            "height": 8,
+            "room_type": "boss",
+            "connections": [1, 3],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Car 21 -- The Package Reveals. The Package tears open from the inside. It has four arms ending in claws. It has no discernible head. It is well-armored -- dense, layered, something between carapace and code made physical. It is a Virus given form inside the Simulacrum, and it has always known what it was, and it wants to exterminate the runners who were carrying it. Not because it fears delivery -- because it finds you offensive. You brought it this far. It does not need you anymore.",
+                "read_aloud": "The Package opens. Four arms end in claws. No head -- just intent. It is armored in something that is not quite metal and not quite data. It turns to face you with nothing that has eyes. The PA, very quietly: 'Today is a good day to d̶i̶e̶ ride.' It launches.",
+                "npcs": [],
+                "enemies": [
+                    {
+                        "name": "The Package (True Form)",
+                        "hp": 25,
+                        "ac": 14,
+                        "atk": 6,
+                        "damage_type": "slashing",
+                        "is_boss": true,
+                        "notes": "Four tentacle-like arms ending in claws. No discernible head. Well-armored. Skilled combatant. Does not retreat. Does not negotiate. Wants to exterminate. If reduced to 0 HP, it does not die cleanly -- it dissolves into data fragments that the Neural Network immediately begins absorbing. The Virus is inside the Network now whether you destroyed it or not."
+                    }
+                ],
+                "loot": [
+                    {"name": "Package Casing (empty)", "type": "quest_item", "notes": "Proof the Package has been opened. Proof of what was inside."},
+                    {"name": "Virus Data Fragment (partial)", "type": "quest_item", "notes": "A shard of the Virus's code, physical in the Simulacrum. Someone outside might want this. Or dread it."}
+                ],
+                "services": [],
+                "event_triggers": [
+                    "On entry: The Package tears open. No warning. The Virus does not wait.",
+                    "On Package reaching 50% HP: It manifests additional claws from its torso. The armor thickens. It is adapting to this fight in real time.",
+                    "On Package defeat: It dissolves into data fragments. The Neural Network's processes spike visibly -- droids freeze mid-motion, lights flicker, a door somewhere locks and unlocks rapidly. The Network absorbed the fragment. The Virus is loose in the system regardless.",
+                    "PA during combat: 'Today is a good day to d̶i̶e̶ ride.' Scratchy. Looping."
+                ],
+                "dm_notes": "This is the Act 2 climax. The Virus fight should feel chaotic -- this entity has been biding its time since Car 10. After this fight, the party must choose: go to Car 22 (forward) or go to Car 12's window (backward). Either way, Act 3 begins."
+            }
+        },
+        "3": {
+            "id": 3,
+            "x": 71,
+            "y": 8,
+            "width": 20,
+            "height": 8,
+            "room_type": "town_gate",
+            "connections": [2],
+            "tier": 3,
+            "is_locked": false,
+            "is_secret": false,
+            "content_hints": {
+                "description": "Car 22 -- The Neural Core Approach. The final car is different from every other. No seats. No commuters. The walls are not steel and composite -- they are rendered. You can see the mesh. The physics of this space are looser: gravity angles wrong, scale shifts, the far end of the car is simultaneously ten meters away and infinitely receding. This is the Neural Network's core rendered as physical space, and it knows you are here, and it is deciding what to do about you. The exit door to the real world is here. So is the insertion point for the Virus.",
+                "read_aloud": "Car 22 is not a train car. The walls show their render mesh. The floor angles wrong. At the far end, two things: a door that will wake you up, and a terminal that will complete the Virus delivery. The PA says nothing. The Network is listening.",
+                "npcs": [
+                    {
+                        "name": "Neural Network (Manifest Presence)",
+                        "role": "neutral",
+                        "dialogue": "The Network does not speak in words. It speaks in the environment. Lights pulse in sequences. Doors open and close in patterns. A surveillance droid approaches and stops two meters away. It is waiting. It has been waiting since Car 10. If you try to talk to it through an interface, the response comes back as fragmented system logs and half-formed requests: 'deliver / do not deliver / why are you here / you were sent here / I did not send you / someone sent you / please'."
+                    }
+                ],
+                "enemies": [],
+                "loot": [],
+                "services": [],
+                "event_triggers": [
+                    "On entry: The Neural Network's environmental messaging increases to maximum. Every light, every droid, every locked door is communicating. The party can attempt to interface with it directly.",
+                    "On Virus insertion (terminal): The Network absorbs it. Processes spike. The Simulacrum begins to destabilize -- reality stutters, commuters freeze, the monorail sound cuts out. The party wakes up in the underground facility.",
+                    "On exit (door): The party takes the exit without delivering. The Simulacrum begins to eject them. They wake up in the underground facility. What happens to the Virus fragment depends on Act 2 choices.",
+                    "PA -- final: 'Scan the code to download audio files.' A QR code appears briefly on a window. It flickers out. Nobody knows what it links to."
+                ],
+                "dm_notes": "Car 22 is the decision point. Deliver or don't. The Network's behavior (helping Black Hounds, locking doors behind the party, the PA messages) has been trying to communicate something all along. A party that investigated the glitches will have context for what the Network wanted. A party that didn't will have to decide blind. Either way, Act 3 is the same physical location -- the underground facility. The moral weight lands there."
+            }
+        }
+    }
+}

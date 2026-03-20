@@ -1,0 +1,80 @@
+{
+  "seed": 8012,
+  "width": 30,
+  "height": 25,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "deep_shaft",
+    "theme": "GOTHIC",
+    "topology": "dungeon",
+    "mission_types": ["supply", "assault"]
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 10,
+      "y": 2,
+      "width": 8,
+      "height": 6,
+      "room_type": "start",
+      "connections": [1],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The shaft descends through raw rock, past the reach of human engineering. The timber supports end and the tunnel becomes a natural fissure, its walls slick with moisture and streaked with veins of that green-tinged ore. The air is warmer here, humid, carrying a smell like a root cellar in summer -- earth and slow decay.",
+        "read_aloud": "Green-tinged ore glows faintly in the walls. The glow pulses, slow as a sleeping heartbeat. Something massive shifts in the darkness below.",
+        "event_triggers": [
+          "Green-tinged ore glows faintly in the walls. Something massive shifts in the darkness."
+        ]
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 8,
+      "y": 10,
+      "width": 12,
+      "height": 8,
+      "room_type": "boss",
+      "connections": [0, 2],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "A natural cavern opens at the bottom of the shaft, vast enough that your light does not reach the ceiling. The floor is a jumble of broken stone and ore deposits, the green veins converging here like tributaries feeding a river. At the center of the cavern, the Horror stands guard -- a towering construct of bone and stone and corrupted flesh, assembled from the bodies of miners and the rock itself. It does not move until you step into the light of the ore veins. Then it turns, slowly, and the cavern shakes.",
+        "enemies": [
+          {"name": "Horror", "hp": 25, "max_hp": 25, "ac": 15, "attack": 7, "defense": 15, "count": 1},
+          {"name": "Spitter", "hp": 15, "max_hp": 15, "ac": 11, "attack": 5, "defense": 11, "count": 2}
+        ],
+        "perception_dc": 14,
+        "perception_success": "The Horror is partially fused with the cavern wall. Its left side is stone and ore, its right side is flesh and bone. Destroying the ore vein it is anchored to might weaken it -- but would also collapse part of the cavern.",
+        "event_triggers": [
+          "The Horror opens what might have been a mouth. The sound it makes is not a roar. It is the sound of stone grinding against stone, amplified a hundredfold.",
+          "The Spitters flank wide, using the stalactites for cover. Their acid eats into the ore veins, releasing a toxic green mist."
+        ]
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 12,
+      "y": 20,
+      "width": 6,
+      "height": 4,
+      "room_type": "treasure",
+      "connections": [1],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Beyond the Horror's position, the richest ore vein in the mine splits the cavern wall like a wound. The green crystal here is pure, uncontaminated -- worth more than everything else in the mine combined. Enough to arm the Legion for the rest of the retreat and then some. The question is whether you can mine it before the cavern comes down.",
+        "loot": [
+          {"name": "Pure Alchemical Ore Vein", "value": 6, "description": "The motherlode. Enough black-shot material to arm every Legionnaire for the march to Skydagger Keep. Supply +4."},
+          {"name": "Pre-Human Carving", "value": 1, "description": "A stone tablet covered in symbols that predate any known language. The Lorekeeper would want to see this."}
+        ],
+        "event_triggers": [
+          "The cavern groans. Without the Horror anchoring the wall, the structural integrity is failing. You have minutes, not hours."
+        ]
+      }
+    }
+  }
+}

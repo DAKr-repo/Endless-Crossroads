@@ -482,3 +482,345 @@ class NPCMemoryManager:
             log.info("Loaded NPC memory: %d banks", len(self._banks))
         except Exception as e:
             log.warning("Failed to load NPC memory: %s", e)
+
+
+# =========================================================================
+# DISPOSITION SYSTEM — WO-P7: NPC Disposition & Faction Response
+# =========================================================================
+
+@dataclass
+class DispositionEntry:
+    """A single disposition change record."""
+    delta: int
+    reason: str
+    source: str = ""  # "session", "faction_action", "player_action", etc.
+
+
+@dataclass
+class NPCDisposition:
+    """Tracks an NPC's disposition from -3 (hostile) to +3 (devoted).
+
+    Scale:
+      -3: Hostile       (actively working against)
+      -2: Antagonistic  (will oppose when convenient)
+      -1: Unfriendly    (distrustful)
+       0: Neutral
+      +1: Friendly      (inclined to help)
+      +2: Allied        (will go out of their way)
+      +3: Devoted       (will sacrifice for)
+    """
+
+    LABELS = {
+        -3: "Hostile", -2: "Antagonistic", -1: "Unfriendly",
+        0: "Neutral", 1: "Friendly", 2: "Allied", 3: "Devoted",
+    }
+
+    name: str
+    disposition: int = 0
+    history: List[DispositionEntry] = field(default_factory=list)
+    faction: str = ""
+    tags: List[str] = field(default_factory=list)
+
+    def adjust(self, delta: int, reason: str, source: str = "") -> dict:
+        """Adjust disposition, clamped to [-3, +3].
+
+        Args:
+            delta: Amount to adjust (positive or negative).
+            reason: Human-readable reason for the change.
+            source: Source category (player_action, faction_action, etc.).
+
+        Returns:
+            Dict with name, old, new, old_label, new_label, changed keys.
+        """
+        old = self.disposition
+        self.disposition = max(-3, min(3, self.disposition + delta))
+        self.history.append(DispositionEntry(delta=delta, reason=reason, source=source))
+        return {
+            "name": self.name,
+            "old": old,
+            "new": self.disposition,
+            "old_label": self.LABELS.get(old, "Unknown"),
+            "new_label": self.LABELS.get(self.disposition, "Unknown"),
+            "changed": old != self.disposition,
+        }
+
+    @property
+    def label(self) -> str:
+        """Human-readable label for current disposition."""
+        return self.LABELS.get(self.disposition, "Unknown")
+
+    def get_history_summary(self) -> str:
+        """Return a summary of the last 5 disposition changes."""
+        if not self.history:
+            return f"{self.name}: No interactions recorded."
+        lines = [f"{self.name} ({self.label}, {self.disposition:+d}):"]
+        for entry in self.history[-5:]:
+            lines.append(f"  {entry.delta:+d}: {entry.reason}")
+        return "\n".join(lines)
+
+    def to_dict(self) -> dict:
+        """Serialize to JSON-safe dict."""
+        return {
+            "name": self.name,
+            "disposition": self.disposition,
+            "history": [
+                {"delta": e.delta, "reason": e.reason, "source": e.source}
+                for e in self.history
+            ],
+            "faction": self.faction,
+            "tags": list(self.tags),
+        }
+
+    @classmethod
+    def from_dict(cls, data: dict) -> "NPCDisposition":
+        """Restore from a previously serialized dict.
+
+        Args:
+            data: Dict from a previous to_dict() call.
+
+        Returns:
+            Restored NPCDisposition instance.
+        """
+        npc = cls(
+            name=data.get("name", ""),
+            disposition=data.get("disposition", 0),
+            faction=data.get("faction", ""),
+            tags=list(data.get("tags", [])),
+        )
+        for h in data.get("history", []):
+            npc.history.append(DispositionEntry(
+                delta=h.get("delta", 0),
+                reason=h.get("reason", ""),
+                source=h.get("source", ""),
+            ))
+        return npc
+
+
+# -------------------------------------------------------------------------
+# FACTION RESPONSE TABLE
+# -------------------------------------------------------------------------
+
+# Human-readable descriptions per response type
+FACTION_RESPONSES: Dict[str, str] = {
+    "retaliate": "The faction strikes back directly.",
+    "ally": "The faction offers an alliance or cooperation.",
+    "withdraw": "The faction pulls back and consolidates.",
+    "escalate": "The faction escalates their operations.",
+    "negotiate": "The faction sends an envoy to negotiate terms.",
+    "ignore": "The faction doesn't consider you worth their attention.",
+    "sabotage": "The faction undermines your operations covertly.",
+}
+
+# Lookup: disposition_range -> event_type -> response_type
+RESPONSE_TABLE: Dict[str, Dict[str, str]] = {
+    "hostile": {
+        "score_against": "retaliate",
+        "score_near": "escalate",
+        "territory_taken": "retaliate",
+        "aid_given": "sabotage",
+        "ignored": "escalate",
+        "default": "retaliate",
+    },
+    "unfriendly": {
+        "score_against": "retaliate",
+        "score_near": "sabotage",
+        "territory_taken": "escalate",
+        "aid_given": "negotiate",
+        "ignored": "ignore",
+        "default": "sabotage",
+    },
+    "neutral": {
+        "score_against": "escalate",
+        "score_near": "ignore",
+        "territory_taken": "negotiate",
+        "aid_given": "ally",
+        "ignored": "ignore",
+        "default": "ignore",
+    },
+    "friendly": {
+        "score_against": "withdraw",
+        "score_near": "negotiate",
+        "territory_taken": "negotiate",
+        "aid_given": "ally",
+        "ignored": "withdraw",
+        "default": "negotiate",
+    },
+    "allied": {
+        "score_against": "negotiate",
+        "score_near": "ally",
+        "territory_taken": "negotiate",
+        "aid_given": "ally",
+        "ignored": "withdraw",
+        "default": "ally",
+    },
+}
+
+
+def _disposition_to_range(disposition: int) -> str:
+    """Map a numeric disposition value to a range key.
+
+    Args:
+        disposition: Integer in [-3, +3].
+
+    Returns:
+        One of: "hostile", "unfriendly", "neutral", "friendly", "allied".
+    """
+    if disposition <= -2:
+        return "hostile"
+    elif disposition == -1:
+        return "unfriendly"
+    elif disposition == 0:
+        return "neutral"
+    elif disposition == 1:
+        return "friendly"
+    else:
+        return "allied"
+
+
+def faction_response(disposition: int, event_type: str = "default") -> dict:
+    """Look up the faction response for a disposition level and event type.
+
+    Args:
+        disposition: NPC/faction disposition (-3 to +3).
+        event_type: One of score_against, score_near, territory_taken,
+                    aid_given, ignored, or "default".
+
+    Returns:
+        Dict with keys: response_type, description, disposition_range,
+        disposition, event_type.
+    """
+    disp_range = _disposition_to_range(disposition)
+    responses = RESPONSE_TABLE.get(disp_range, RESPONSE_TABLE["neutral"])
+    response_type = responses.get(event_type, responses.get("default", "ignore"))
+    description = FACTION_RESPONSES.get(response_type, "Unknown response.")
+    return {
+        "response_type": response_type,
+        "description": description,
+        "disposition_range": disp_range,
+        "disposition": disposition,
+        "event_type": event_type,
+    }
+
+
+# -------------------------------------------------------------------------
+# DISPOSITION MANAGER — engine-level tracker
+# -------------------------------------------------------------------------
+
+class DispositionManager:
+    """Manages NPCDisposition records for a single engine session.
+
+    Distinct from NPCMemoryManager (which handles cognitive/shard memory).
+    This tracks numeric disposition scores and faction response logic.
+    """
+
+    def __init__(self) -> None:
+        self.npcs: Dict[str, NPCDisposition] = {}
+
+    def get_or_create(
+        self,
+        name: str,
+        faction: str = "",
+        tags: Optional[List[str]] = None,
+    ) -> NPCDisposition:
+        """Get an existing NPC record or create a new one.
+
+        Args:
+            name: NPC identifier.
+            faction: Optional faction affiliation.
+            tags: Optional list of role tags (informant, fence, ally, etc.).
+
+        Returns:
+            The NPCDisposition record for this NPC.
+        """
+        if name not in self.npcs:
+            self.npcs[name] = NPCDisposition(
+                name=name,
+                faction=faction,
+                tags=list(tags or []),
+            )
+        return self.npcs[name]
+
+    def adjust_disposition(
+        self,
+        name: str,
+        delta: int,
+        reason: str,
+        source: str = "",
+    ) -> dict:
+        """Adjust an NPC's disposition by delta, creating a record if needed.
+
+        Args:
+            name: NPC identifier.
+            delta: Amount to adjust (positive or negative).
+            reason: Human-readable reason.
+            source: Source category string.
+
+        Returns:
+            Result dict from NPCDisposition.adjust().
+        """
+        npc = self.get_or_create(name)
+        return npc.adjust(delta, reason, source)
+
+    def get_status(self, name: str) -> str:
+        """Get an NPC's current disposition history summary.
+
+        Args:
+            name: NPC identifier.
+
+        Returns:
+            Summary string, or a "No record" message if unknown.
+        """
+        npc = self.npcs.get(name)
+        if not npc:
+            return f"No record of {name}."
+        return npc.get_history_summary()
+
+    def get_faction_response(self, name: str, event_type: str = "default") -> dict:
+        """Get faction response for an NPC based on their disposition.
+
+        Args:
+            name: NPC identifier.
+            event_type: Event that triggered the faction response lookup.
+
+        Returns:
+            faction_response() result dict; uses neutral (0) if NPC unknown.
+        """
+        npc = self.npcs.get(name)
+        if not npc:
+            return faction_response(0, event_type)
+        return faction_response(npc.disposition, event_type)
+
+    def list_npcs(self) -> str:
+        """List all tracked NPCs with their current disposition.
+
+        Returns:
+            Formatted multi-line string, or a "No NPCs tracked." message.
+        """
+        if not self.npcs:
+            return "No NPCs tracked."
+        lines = ["Tracked NPCs:"]
+        for name, npc in sorted(self.npcs.items()):
+            faction_str = f" [{npc.faction}]" if npc.faction else ""
+            lines.append(
+                f"  {npc.disposition:+d} {npc.label:12s} {name}{faction_str}"
+            )
+        return "\n".join(lines)
+
+    def to_dict(self) -> dict:
+        """Serialize to JSON-safe dict."""
+        return {"npcs": {k: v.to_dict() for k, v in self.npcs.items()}}
+
+    @classmethod
+    def from_dict(cls, data: dict) -> "DispositionManager":
+        """Restore from a previously serialized dict.
+
+        Args:
+            data: Dict from a previous to_dict() call.
+
+        Returns:
+            Restored DispositionManager instance.
+        """
+        mgr = cls()
+        for name, npc_data in data.get("npcs", {}).items():
+            mgr.npcs[name] = NPCDisposition.from_dict(npc_data)
+        return mgr
