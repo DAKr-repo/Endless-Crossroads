@@ -1,0 +1,96 @@
+{
+  "seed": 53950,
+  "width": 80,
+  "height": 80,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "hub",
+    "theme": "GOTHIC",
+    "topology": "settlement",
+    "display_name": "The Rooftop Lounge"
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 20,
+      "y": 20,
+      "width": 7,
+      "height": 10,
+      "room_type": "tavern",
+      "connections": [
+        1
+      ],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Gas lamps flicker against rain-slicked cobblestones, their phosphorescent glow casting jagged shadows that whisper with the low hum of distant footsteps. The scent of wet concrete and ozone lingers, mingling with the metallic tang of impending danger, as a Bluecoat whistle\u2019s mournful cry echoes across the rooftop, hinting at a concealed door behind the crumbling facade.",
+        "read_aloud": "The players are drawn into a deadly game of deception as they uncover a hidden vault containing ancient relics, with Balthus and Vex plotting to seize them, Mara on the run, Elara trapped in the fire escape, and Lysara guarding the safe house\u2014each scene revealing pieces of a sinister conspiracy that threatens to unravel the very fabric of",
+        "npcs": [
+          {
+            "name": "Balthus",
+            "role": "quest_giver",
+            "dialogue": "[Charming] The Rat in the Rooftops, our quester of wonders! Keep your eyes peeled and watch for the duo within the sheltered halls.",
+            "notes": ""
+          }
+        ],
+        "services": [
+          "drinks",
+          "job_briefing",
+          "buy_equipment"
+        ],
+        "event_triggers": [
+          "A low murmur echoes through the rooftop lounge as shadows shift in the dim light, signaling a hidden threat. The players must choose between pursuing a dangerous contact or evading a concealed danger."
+        ]
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 48,
+      "y": 20,
+      "width": 7,
+      "height": 7,
+      "room_type": "library",
+      "connections": [
+        0,
+        2
+      ],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "loot": [
+          {
+            "name": "Bluecoat Badge (fake)",
+            "value": 1,
+            "type": "common"
+          }
+        ]
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 48,
+      "y": 48,
+      "width": 7,
+      "height": 7,
+      "room_type": "town_gate",
+      "connections": [
+        1
+      ],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "npcs": [
+          {
+            "name": "Vex",
+            "role": "merchant",
+            "dialogue": "[Charming] That's quite the story indeed, young merchant. I've heard tales of him being a master of time and money, his expertise evident in all things he owns.\n\n[fellow NPCs]: [Rumor spreading about the coin individual as they gather around the roasting fire.]",
+            "notes": ""
+          }
+        ]
+      }
+    }
+  }
+}

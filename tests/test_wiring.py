@@ -307,3 +307,54 @@ def test_content_pool_traps_accessible():
     traps = pool.get_traps(tier=1, count=2)
     assert len(traps) == 2
     assert all(isinstance(t, dict) for t in traps)
+
+
+# -----------------------------------------------------------------------
+# Wiring: generate_module + enrich_module importable from main
+# -----------------------------------------------------------------------
+
+
+def test_generate_module_importable_from_scripts():
+    """scripts.generate_module is importable as a package."""
+    from scripts.generate_module import generate_module, list_templates
+    assert callable(generate_module)
+    templates = list_templates()
+    assert len(templates) >= 5
+
+
+def test_enrich_module_importable_from_scripts():
+    """scripts.enrich_module is importable as a package."""
+    from scripts.enrich_module import enrich_module
+    assert callable(enrich_module)
+
+
+def test_generate_module_all_systems():
+    """generate_module produces valid output for every system with content data."""
+    from scripts.generate_module import generate_module
+    import tempfile
+    import shutil
+
+    systems = ["bitd", "sav", "bob", "candela", "dnd5e", "stc", "burnwillow"]
+    for system_id in systems:
+        out_dir = tempfile.mkdtemp()
+        try:
+            result = generate_module(
+                template_id="heist",
+                system_id=system_id,
+                tier=1,
+                seed=777,
+                output_dir=out_dir,
+            )
+            manifest = pathlib.Path(result) / "module_manifest.json"
+            assert manifest.exists(), f"{system_id}: no manifest generated"
+            data = json.loads(manifest.read_text())
+            assert data["system_id"] == system_id
+        finally:
+            shutil.rmtree(out_dir, ignore_errors=True)
+
+
+def test_dm_tools_menu_has_generate_enrich():
+    """codex_agent_main.py has run_module_generator and run_module_enrichment."""
+    import codex_agent_main as cam
+    assert callable(getattr(cam, "run_module_generator", None))
+    assert callable(getattr(cam, "run_module_enrichment", None))

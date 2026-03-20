@@ -1,0 +1,139 @@
+{
+  "seed": 70299,
+  "width": 80,
+  "height": 80,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "approach",
+    "theme": "GOTHIC",
+    "topology": "dungeon",
+    "display_name": "The Fire Escape"
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 5,
+      "y": 13,
+      "width": 6,
+      "height": 9,
+      "room_type": "start",
+      "connections": [
+        1
+      ],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The crimson gas lamps cast",
+        "read_aloud": "The crimson gas lamps cast",
+        "loot": [
+          {
+            "name": "Fine Pistol",
+            "value": 3,
+            "type": "common"
+          }
+        ],
+        "event_triggers": [
+          "The security measures activate in the settlement, signaling a critical moment as the players face the choice of navigating the fire escape amidst threats from Gondolier Lookout and Skovlan Refugee Fighter. Balthus and Vex watch from"
+        ]
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 19,
+      "y": 9,
+      "width": 9,
+      "height": 6,
+      "room_type": "normal",
+      "connections": [
+        0,
+        2
+      ],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "npcs": [
+          {
+            "name": "Elara",
+            "role": "guard",
+            "dialogue": "[Shrewdly] The Fire Escape secures the upper deck, where A gathers rare treasures and ancient artifacts to protect their secrets from any disturbance.\n\nlookout | Rooftop | \"Three shadows on Crows Foot bridge. Not ours.\"",
+            "notes": ""
+          }
+        ],
+        "loot": [
+          {
+            "name": "Spirit Bottle (bound ghost)",
+            "value": 3,
+            "type": "common"
+          }
+        ]
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 33,
+      "y": 9,
+      "width": 10,
+      "height": 6,
+      "room_type": "treasure",
+      "connections": [
+        1,
+        3
+      ],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "enemies": [
+          {
+            "name": "Inspectors Agent",
+            "hp": 15,
+            "ac": 12,
+            "attack": 4,
+            "damage": "1d6"
+          },
+          {
+            "name": "Assassins Blade",
+            "hp": 15,
+            "ac": 12,
+            "attack": 4,
+            "damage": "1d6"
+          }
+        ]
+      }
+    },
+    "3": {
+      "id": 3,
+      "x": 47,
+      "y": 10,
+      "width": 7,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [
+        2
+      ],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "enemies": [
+          {
+            "name": "Assassins Blade",
+            "hp": 15,
+            "ac": 12,
+            "attack": 4,
+            "damage": "1d6"
+          },
+          {
+            "name": "Spirit Warden Initiate",
+            "hp": 15,
+            "ac": 12,
+            "attack": 4,
+            "damage": "1d6"
+          }
+        ]
+      }
+    }
+  }
+}

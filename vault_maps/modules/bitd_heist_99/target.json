@@ -1,0 +1,185 @@
+{
+  "seed": 58896,
+  "width": 80,
+  "height": 80,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "target",
+    "theme": "GOTHIC",
+    "topology": "dungeon",
+    "display_name": "The Strongroom"
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 5,
+      "y": 8,
+      "width": 10,
+      "height": 7,
+      "room_type": "start",
+      "connections": [
+        1
+      ],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Narrow streets choked with coal smoke and the stench of fish oil ripple beneath the creak of warped ceiling beams, their groans reverberating like a thousand unseen hands gnawing at the floor. The laundry lines crisscross overhead, their stiff fabric whispering secrets as shadows twist around rusted gears, hinting at a trap lurking beneath the quiet hum of the strongroom\u2019s hollowed-out walls.",
+        "read_aloud": "Narrow streets choked with coal smoke and the stench of fish oil ripple beneath the creak of warped ceiling beams, their groans reverberating like a thousand unseen hands gnawing at the floor. The lau",
+        "event_triggers": [
+          "The final obstacle looms in the Strongroom, where Balthus and Vex stand watch as Gondolier Lookout and Skov"
+        ]
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 19,
+      "y": 7,
+      "width": 6,
+      "height": 6,
+      "room_type": "treasure",
+      "connections": [
+        0,
+        2
+      ],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "loot": [
+          {
+            "name": "Ghost-slayer Pistol",
+            "value": 6,
+            "type": "rare"
+          },
+          {
+            "name": "Noble Seal (forged, master quality)",
+            "value": 6,
+            "type": "rare"
+          }
+        ],
+        "description": "Narrow streets choked with coal smoke and the stench of fish oil. Laundry lines crisscross overhead like a web."
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 33,
+      "y": 8,
+      "width": 9,
+      "height": 9,
+      "room_type": "corridor",
+      "connections": [
+        1,
+        3
+      ],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "enemies": [
+          {
+            "name": "Spirit Warden Captain",
+            "hp": 25,
+            "ac": 14,
+            "attack": 6,
+            "damage": "1d8+2"
+          },
+          {
+            "name": "Spirit Warden Captain",
+            "hp": 25,
+            "ac": 14,
+            "attack": 6,
+            "damage": "1d8+2"
+          }
+        ],
+        "description": "Grand facades of pale stone, stained dark by decades of electroplasmic smog. Students hurry past with leather satchels."
+      }
+    },
+    "3": {
+      "id": 3,
+      "x": 47,
+      "y": 7,
+      "width": 9,
+      "height": 6,
+      "room_type": "treasure",
+      "connections": [
+        2,
+        4
+      ],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "enemies": [
+          {
+            "name": "Whiskey Merchants Enforcer",
+            "hp": 25,
+            "ac": 14,
+            "attack": 6,
+            "damage": "1d8+2"
+          },
+          {
+            "name": "Spirit Warden Captain",
+            "hp": 25,
+            "ac": 14,
+            "attack": 6,
+            "damage": "1d8+2"
+          }
+        ],
+        "loot": [
+          {
+            "name": "Electroplasmic Bomb",
+            "value": 6,
+            "type": "rare"
+          },
+          {
+            "name": "Ghost-slayer Pistol",
+            "value": 6,
+            "type": "rare"
+          }
+        ],
+        "description": "Iron gates topped with electroplasmic coils guard estates where the city's rulers sleep soundly."
+      }
+    },
+    "4": {
+      "id": 4,
+      "x": 61,
+      "y": 8,
+      "width": 8,
+      "height": 10,
+      "room_type": "boss",
+      "connections": [
+        3
+      ],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "enemies": [
+          {
+            "name": "Bluecoat Inspector",
+            "hp": 25,
+            "ac": 14,
+            "attack": 6,
+            "damage": "1d8+2"
+          },
+          {
+            "name": "Bluecoat Inspector",
+            "hp": 25,
+            "ac": 14,
+            "attack": 6,
+            "damage": "1d8+2"
+          },
+          {
+            "name": "Bluecoat Inspector",
+            "hp": 37,
+            "ac": 14,
+            "attack": 6,
+            "damage": "1d8+2",
+            "is_boss": true
+          }
+        ]
+      }
+    }
+  }
+}

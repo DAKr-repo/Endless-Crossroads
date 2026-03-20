@@ -1,0 +1,80 @@
+{
+  "module_id": "bitd_heist_99",
+  "display_name": "Blades in the Dark: The Heist",
+  "system_id": "bitd",
+  "starting_location": "hub",
+  "recommended_levels": {
+    "min": 1,
+    "max": 3
+  },
+  "chapters": [
+    {
+      "chapter_id": "setup",
+      "display_name": "The Setup",
+      "order": 1,
+      "zones": [
+        {
+          "zone_id": "hub",
+          "topology": "settlement",
+          "theme": "GOTHIC",
+          "location_id": "",
+          "entry_trigger": "module_start",
+          "exit_trigger": "scene_complete",
+          "blueprint": "hub.json"
+        },
+        {
+          "zone_id": "recon",
+          "topology": "settlement",
+          "theme": "GOTHIC",
+          "location_id": "",
+          "entry_trigger": "module_start",
+          "exit_trigger": "scene_complete",
+          "blueprint": "recon.json"
+        }
+      ]
+    },
+    {
+      "chapter_id": "execution",
+      "display_name": "The Job",
+      "order": 2,
+      "zones": [
+        {
+          "zone_id": "approach",
+          "topology": "dungeon",
+          "theme": "GOTHIC",
+          "location_id": "",
+          "entry_trigger": "module_start",
+          "exit_trigger": "scene_complete",
+          "blueprint": "approach.json"
+        },
+        {
+          "zone_id": "target",
+          "topology": "dungeon",
+          "theme": "GOTHIC",
+          "location_id": "",
+          "entry_trigger": "module_start",
+          "exit_trigger": "scene_complete",
+          "blueprint": "target.json"
+        }
+      ]
+    },
+    {
+      "chapter_id": "aftermath",
+      "display_name": "The Aftermath",
+      "order": 3,
+      "zones": [
+        {
+          "zone_id": "debrief",
+          "topology": "settlement",
+          "theme": "GOTHIC",
+          "location_id": "",
+          "entry_trigger": "module_start",
+          "exit_trigger": "boss_defeated",
+          "blueprint": "debrief.json"
+        }
+      ]
+    }
+  ],
+  "freeform_zones": [],
+  "source_type": "generated"
+}

@@ -431,7 +431,7 @@ class TestModuleManifestSourceType:
         """All module manifests with source_pdf null should have source_type set."""
         import os
         _VALID_SOURCE_TYPES = {
-            "community_authored", "publisher_licensed", "homebrew_original",
+            "community_authored", "publisher_licensed", "homebrew_original", "generated",
         }
         modules_dir = PROJECT_ROOT / "vault_maps" / "modules"
         for module_dir in modules_dir.iterdir():

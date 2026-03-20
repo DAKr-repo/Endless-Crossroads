@@ -101,6 +101,40 @@ EVENT_ENRICHMENT_TEMPLATE = (
 )
 
 # ---------------------------------------------------------------------------
+# Room Description — Mimir fallback (few-shot, fast)
+# ---------------------------------------------------------------------------
+
+MIMIR_ROOM_SYSTEM = "Write a vivid 2-sentence room description. Include one sensory detail."
+
+MIMIR_ROOM_TEMPLATE = (
+    "EXAMPLES:\n"
+    "tavern | dungeon | \"A dark room.\"\n"
+    "-> The low ceiling presses down like a held breath, slick with condensation that reeks of copper and old stone. A single lantern swings from a rusted chain, its light catching the wet edge of something scratched into the far wall.\n\n"
+    "market | settlement | \"A busy square.\"\n"
+    "-> Vendors hawk their wares beneath canvas canopies stained by coal smoke, the air thick with the competing scents of fried dough and cured leather. A pickpocket works the crowd near the fountain — you catch the glint of a blade.\n\n"
+    "NOW WRITE:\n"
+    "{room_type} | {topology} | \"{current_description}\"\n"
+    "->"
+)
+
+# ---------------------------------------------------------------------------
+# Event Trigger — Mimir fallback (few-shot, fast)
+# ---------------------------------------------------------------------------
+
+MIMIR_EVENT_SYSTEM = "Rewrite event triggers into dramatic 1-sentence narration."
+
+MIMIR_EVENT_TEMPLATE = (
+    "EXAMPLES:\n"
+    "- A guard notices you.\n"
+    "-> The sentry's lantern swings your way — one heartbeat before the shout goes up.\n\n"
+    "- The ground shakes.\n"
+    "-> The flagstones buck underfoot and dust cascades from the ceiling; something immense is moving below.\n\n"
+    "NOW WRITE:\n"
+    "- {current_trigger}\n"
+    "->"
+)
+
+# ---------------------------------------------------------------------------
 # Quest Arc Weave
 # ---------------------------------------------------------------------------
 

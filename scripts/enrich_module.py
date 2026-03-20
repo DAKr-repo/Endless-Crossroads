@@ -30,8 +30,12 @@ from codex.core.enrichment_prompts import (
     MIMIR_NPC_VALIDATE_PATTERN,
     ROOM_ENRICHMENT_SYSTEM,
     ROOM_ENRICHMENT_TEMPLATE,
+    MIMIR_ROOM_SYSTEM,
+    MIMIR_ROOM_TEMPLATE,
     EVENT_ENRICHMENT_SYSTEM,
     EVENT_ENRICHMENT_TEMPLATE,
+    MIMIR_EVENT_SYSTEM,
+    MIMIR_EVENT_TEMPLATE,
     QUEST_ARC_SYSTEM,
     QUEST_ARC_TEMPLATE,
 )
@@ -161,54 +165,60 @@ async def _invoke_model(
     system_prompt: str,
     model: str = "codex",
     mode: str = "ACADEMY",
+    retries: int = 1,
 ) -> Optional[str]:
-    """Call a model via Architect with thermal check and cooldown.
+    """Call a model via Architect with thermal check, cooldown, and retry.
 
     Args:
         prompt: User prompt text.
         system_prompt: System prompt text.
         model: Ollama model name ("codex" or "mimir").
         mode: ThinkingMode name — "ACADEMY" for Codex, "REFLEX" for Mimir.
+        retries: Number of retry attempts on failure (default 1).
 
-    Returns enriched text, or None if call was skipped/failed.
+    Returns enriched text, or None if all attempts were skipped/failed.
     """
     global _last_llm_call
 
-    # Wait for CPU to cool if needed (up to THERMAL_MAX_WAIT seconds)
-    if not await _wait_for_thermal():
-        return None
+    for attempt in range(1 + retries):
+        # Wait for CPU to cool if needed (up to THERMAL_MAX_WAIT seconds)
+        if not await _wait_for_thermal():
+            return None
 
-    # Minimum cooldown between calls
-    elapsed = time.time() - _last_llm_call
-    if elapsed < LLM_COOLDOWN:
-        await asyncio.sleep(LLM_COOLDOWN - elapsed)
+        # Minimum cooldown between calls (extra cooldown on retry)
+        cooldown = LLM_COOLDOWN * (2 if attempt > 0 else 1)
+        elapsed = time.time() - _last_llm_call
+        if elapsed < cooldown:
+            await asyncio.sleep(cooldown - elapsed)
 
-    try:
-        from codex.core.architect import (
-            RoutingDecision, ThinkingMode, Complexity,
-        )
-        from codex.core.cortex import ThermalStatus
+        try:
+            from codex.core.architect import (
+                RoutingDecision, ThinkingMode, Complexity,
+            )
+            from codex.core.cortex import ThermalStatus
 
-        architect = await _get_architect()
-        thinking_mode = getattr(ThinkingMode, mode, ThinkingMode.ACADEMY)
-        decision = RoutingDecision(
-            mode=thinking_mode,
-            model=model,
-            complexity=Complexity.HIGH if model == "codex" else Complexity.LOW,
-            thermal_status=ThermalStatus.OPTIMAL,
-            clearance_granted=True,
-            reasoning="Module enrichment",
-        )
-        response = await architect.invoke_model(prompt, system_prompt, decision)
-        _last_llm_call = time.time()
+            architect = await _get_architect()
+            thinking_mode = getattr(ThinkingMode, mode, ThinkingMode.ACADEMY)
+            decision = RoutingDecision(
+                mode=thinking_mode,
+                model=model,
+                complexity=Complexity.HIGH if model == "codex" else Complexity.LOW,
+                thermal_status=ThermalStatus.OPTIMAL,
+                clearance_granted=True,
+                reasoning="Module enrichment",
+            )
+            response = await architect.invoke_model(prompt, system_prompt, decision)
+            _last_llm_call = time.time()
 
-        content = response.content.strip()
-        if content:
-            return content
-        return None
-    except Exception:
-        _last_llm_call = time.time()
-        return None
+            content = response.content.strip()
+            if content:
+                return content
+            # Empty response — retry if attempts remain
+        except Exception:
+            _last_llm_call = time.time()
+            # Retry if attempts remain
+
+    return None
 
 
 async def _invoke_codex(prompt: str, system_prompt: str) -> Optional[str]:
@@ -306,6 +316,22 @@ async def _enrich_room(
         if hints.get("read_aloud"):
             hints["read_aloud"] = result[:200]
         return True
+
+    # --- Mimir fallback: few-shot, fast ---
+    room_type = hints.get("room_type", "room")
+    mimir_prompt = MIMIR_ROOM_TEMPLATE.format(
+        room_type=room_type,
+        topology=topology,
+        current_description=current,
+    )
+    result = await _invoke_mimir(mimir_prompt, MIMIR_ROOM_SYSTEM)
+    if result:
+        if result.startswith("->"):
+            result = result[2:].strip()
+        hints["description"] = result
+        if hints.get("read_aloud"):
+            hints["read_aloud"] = result[:200]
+        return True
     return False
 
 
@@ -338,6 +364,23 @@ async def _enrich_events(
         if new_triggers:
             hints["event_triggers"] = new_triggers
             return True
+
+    # --- Mimir fallback: enrich triggers one at a time ---
+    enriched = []
+    any_changed = False
+    for trigger in triggers:
+        mimir_prompt = MIMIR_EVENT_TEMPLATE.format(current_trigger=trigger)
+        mimir_result = await _invoke_mimir(mimir_prompt, MIMIR_EVENT_SYSTEM)
+        if mimir_result:
+            if mimir_result.startswith("->"):
+                mimir_result = mimir_result[2:].strip()
+            enriched.append(mimir_result)
+            any_changed = True
+        else:
+            enriched.append(trigger)  # keep original on failure
+    if any_changed:
+        hints["event_triggers"] = enriched
+        return True
     return False
 
 
@@ -370,7 +413,18 @@ async def _weave_quest_arc(
         source_material=rag_context,
         scene_list="\n".join(scene_lines),
     )
-    return await _invoke_codex(prompt, QUEST_ARC_SYSTEM)
+    result = await _invoke_codex(prompt, QUEST_ARC_SYSTEM)
+    if result:
+        return result
+
+    # --- Mimir fallback: shorter prompt ---
+    mimir_prompt = (
+        f"Write a 2-sentence adventure hook for \"{manifest.get('display_name', '?')}\" "
+        f"({manifest.get('system_id', '?')}). "
+        f"Scenes: {', '.join(s.split(':')[0].lstrip('- ') for s in scene_lines[:4])}. "
+        f"What brought the crew here and what threat awaits?"
+    )
+    return await _invoke_mimir(mimir_prompt, QUEST_ARC_SYSTEM)
 
 
 # ---------------------------------------------------------------------------

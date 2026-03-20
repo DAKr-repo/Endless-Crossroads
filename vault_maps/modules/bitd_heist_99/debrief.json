@@ -1,0 +1,79 @@
+{
+  "seed": 54516,
+  "width": 80,
+  "height": 80,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "debrief",
+    "theme": "GOTHIC",
+    "topology": "settlement",
+    "display_name": "The Safe House"
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 20,
+      "y": 20,
+      "width": 6,
+      "height": 6,
+      "room_type": "tavern",
+      "connections": [
+        1
+      ],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Grand facades of pale stone, stained dark by decades of electroplasmic smog, creak under the weight of hurried footsteps. A distant engine hum blends with the clatter of metal, hinting at unseen movement, as students shuffle past, their leather satchels brimming",
+        "read_aloud": "Grand facades of pale stone, stained dark by decades of electroplasmic smog, creak under the weight of hurried footsteps. A distant engine hum blends with the clatter of metal, hinting at unseen movem",
+        "npcs": [
+          {
+            "name": "Lysara",
+            "role": "quest_giver",
+            "dialogue": "[Enthusiastically] Quest Giver, I say: You speak with a tone that seems to resonate with me as well; perhaps we can find common ground.\n\nTales and tricks of the trade | The Docks | \"I've seen many adventures on this fair sea,\" said the Pirate. He waved at his fleet, gazing over the horizon like a sailor's eyes in an endless blue expanse.\"",
+            "notes": ""
+          }
+        ],
+        "loot": [
+          {
+            "name": "Coin Purse",
+            "value": 1,
+            "type": "common"
+          }
+        ],
+        "services": [
+          "payment",
+          "healing",
+          "resupply"
+        ],
+        "event_triggers": [
+          "The fixer, a skilled artisan, stands ready with a sledgehammer, his eyes on the distant workshop where new tools are being assembled in an hour of constant labor."
+        ]
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 48,
+      "y": 20,
+      "width": 7,
+      "height": 8,
+      "room_type": "town_gate",
+      "connections": [
+        0
+      ],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "loot": [
+          {
+            "name": "Stolen Documents",
+            "value": 1,
+            "type": "common"
+          }
+        ],
+        "description": "The university bell tower looms through fog, its clock face glowing an unearthly blue."
+      }
+    }
+  }
+}

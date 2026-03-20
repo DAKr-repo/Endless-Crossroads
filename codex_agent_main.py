@@ -1774,13 +1774,15 @@ async def run_dm_tools_menu(core: CodexCore):
             tools_menu.add_row("[7]", "🌍 World Genesis       — Create a custom world")
             tools_menu.add_row("[8]", "⚒️  Character Forge     — Build a new hero (standalone)")
             tools_menu.add_row("[0]", "🔍 Scan Vault          — Extract tables from vault PDFs")
+            tools_menu.add_row("[G]", "🏗️  Module Generator    — Generate a playable adventure module")
+            tools_menu.add_row("[E]", "✨ Module Enrichment   — Enrich a module with AI descriptions")
             tools_menu.add_row("[9]", "↩️  Back to Main Menu  — Return")
 
             console.print()
             console.print(Align.center(tools_menu))
             console.print()
 
-            choice = await ainput("[gold1]Choose thy tool [0-9]:[/] ")
+            choice = await ainput("[gold1]Choose thy tool [0-9/G/E]:[/] ")
             choice = choice.lower().strip()
 
             if not choice:
@@ -1857,6 +1859,12 @@ async def run_dm_tools_menu(core: CodexCore):
                     console.print("[yellow]dm_tools module not available.[/yellow]")
                     await ainput("\n[dim]Press Enter to continue...[/dim]")
 
+            elif choice in ("g", "gen", "generate"):
+                await run_module_generator()
+
+            elif choice in ("e", "enrich"):
+                await run_module_enrichment()
+
             elif choice == "9":
                 # Back to main menu
                 return
@@ -1864,6 +1872,200 @@ async def run_dm_tools_menu(core: CodexCore):
         except KeyboardInterrupt:
             console.print("\n[yellow]Returning to main menu...[/yellow]")
             return
+
+
+# ── Module Generator ──────────────────────────────────────────────────────
+
+async def run_module_generator():
+    """Interactive module generator — wraps scripts/generate_module.py."""
+    console.clear()
+    console.print(Panel(
+        "[bold cyan]MODULE GENERATOR[/bold cyan]\n\n"
+        "[dim]Generate a complete playable adventure module from a template\n"
+        "and system-specific content pool. Type 'back' to return.[/dim]",
+        border_style="cyan", box=box.DOUBLE,
+    ))
+
+    # List templates
+    try:
+        from scripts.generate_module import list_templates, generate_module
+    except ImportError:
+        console.print("[red]generate_module.py not found in scripts/.[/red]")
+        await ainput("\n[dim]Press Enter to continue...[/dim]")
+        return
+
+    templates = list_templates()
+    if not templates:
+        console.print("[yellow]No templates found in config/templates/.[/yellow]")
+        await ainput("\n[dim]Press Enter to continue...[/dim]")
+        return
+
+    # Show templates
+    t_table = Table(box=box.SIMPLE, show_header=False, padding=(0, 2))
+    t_table.add_column("ID", style="bold cyan")
+    for t in templates:
+        t_table.add_row(t.replace("_", " ").title())
+    console.print(Panel(t_table, title="Available Templates", border_style="cyan"))
+
+    template_id = (await ainput("[cyan]Template ID (e.g. heist): [/cyan]")).strip().lower().replace(" ", "_")
+    if not template_id or template_id == "back":
+        return
+    if template_id not in templates:
+        console.print(f"[red]Unknown template '{template_id}'. Available: {', '.join(templates)}[/red]")
+        await ainput("\n[dim]Press Enter to continue...[/dim]")
+        return
+
+    # Show systems
+    _SYSTEMS = ["bitd", "sav", "bob", "candela", "cbrpnk", "dnd5e", "stc", "burnwillow", "crown"]
+    console.print(f"[dim]Systems: {', '.join(_SYSTEMS)}[/dim]")
+    system_id = (await ainput("[cyan]System ID (e.g. bitd): [/cyan]")).strip().lower()
+    if not system_id or system_id == "back":
+        return
+    if system_id not in _SYSTEMS:
+        console.print(f"[red]Unknown system '{system_id}'.[/red]")
+        await ainput("\n[dim]Press Enter to continue...[/dim]")
+        return
+
+    # Tier
+    tier_raw = (await ainput("[cyan]Tier (1-4, default 1): [/cyan]")).strip()
+    tier = int(tier_raw) if tier_raw.isdigit() and 1 <= int(tier_raw) <= 4 else 1
+
+    # Seed
+    seed_raw = (await ainput("[cyan]Seed (blank for random): [/cyan]")).strip()
+    seed = int(seed_raw) if seed_raw.isdigit() else None
+
+    # Generate
+    console.print()
+    with Progress(
+        SpinnerColumn(),
+        TextColumn("[progress.description]{task.description}"),
+        console=console,
+    ) as progress:
+        task = progress.add_task(f"Generating {system_id} {template_id} module...", total=None)
+        loop = asyncio.get_event_loop()
+        try:
+            output_dir = await loop.run_in_executor(
+                None,
+                lambda: generate_module(template_id, system_id, tier=tier, seed=seed),
+            )
+            progress.update(task, description="[green]Done!")
+        except Exception as e:
+            progress.update(task, description=f"[red]Failed: {e}")
+            await ainput("\n[dim]Press Enter to continue...[/dim]")
+            return
+
+    console.print(Panel(
+        f"[bold green]Module generated![/bold green]\n\n"
+        f"[dim]Output: {output_dir}[/dim]\n\n"
+        f"[dim]You can now play this module from the Chronicles menu,\n"
+        f"or enrich it with AI descriptions using the [bold]E[/bold] option.[/dim]",
+        border_style="green", box=box.DOUBLE,
+    ))
+    await ainput("\n[dim]Press Enter to continue...[/dim]")
+
+
+# ── Module Enrichment ─────────────────────────────────────────────────────
+
+async def run_module_enrichment():
+    """Interactive module enrichment — wraps scripts/enrich_module.py."""
+    console.clear()
+    console.print(Panel(
+        "[bold cyan]MODULE ENRICHMENT[/bold cyan]\n\n"
+        "[dim]Enrich a module with AI-generated NPC dialogue, room descriptions,\n"
+        "event narration, and quest arc weaving. Requires Ollama.\n"
+        "Type 'back' to return.[/dim]",
+        border_style="cyan", box=box.DOUBLE,
+    ))
+
+    try:
+        from scripts.enrich_module import enrich_module
+    except ImportError:
+        console.print("[red]enrich_module.py not found in scripts/.[/red]")
+        await ainput("\n[dim]Press Enter to continue...[/dim]")
+        return
+
+    # List modules
+    modules_dir = Path(__file__).resolve().parent / "vault_maps" / "modules"
+    if not modules_dir.is_dir():
+        console.print("[yellow]No vault_maps/modules/ directory found.[/yellow]")
+        await ainput("\n[dim]Press Enter to continue...[/dim]")
+        return
+
+    module_dirs = sorted([
+        d.name for d in modules_dir.iterdir()
+        if d.is_dir() and (d / "module_manifest.json").exists()
+    ])
+    if not module_dirs:
+        console.print("[yellow]No modules found. Generate one first.[/yellow]")
+        await ainput("\n[dim]Press Enter to continue...[/dim]")
+        return
+
+    # Paginated list
+    m_table = Table(box=box.SIMPLE, show_header=True, padding=(0, 1))
+    m_table.add_column("#", style="bold", width=4)
+    m_table.add_column("Module ID", style="cyan")
+    for i, m in enumerate(module_dirs, 1):
+        m_table.add_row(str(i), m)
+    console.print(Panel(m_table, title=f"Modules ({len(module_dirs)})", border_style="cyan"))
+
+    selection = (await ainput("[cyan]Module # or ID (e.g. 1 or bitd_heist_99): [/cyan]")).strip()
+    if not selection or selection.lower() == "back":
+        return
+
+    # Resolve selection
+    if selection.isdigit() and 1 <= int(selection) <= len(module_dirs):
+        module_id = module_dirs[int(selection) - 1]
+    elif selection in module_dirs:
+        module_id = selection
+    else:
+        console.print(f"[red]Module '{selection}' not found.[/red]")
+        await ainput("\n[dim]Press Enter to continue...[/dim]")
+        return
+
+    module_path = modules_dir / module_id
+
+    # RAG option
+    use_rag_raw = (await ainput("[cyan]Enable RAG (PDF context)? (y/N): [/cyan]")).strip().lower()
+    use_rag = use_rag_raw in ("y", "yes")
+
+    # Dry run first
+    console.print("\n[dim]Running dry-run to preview enrichment plan...[/dim]")
+    try:
+        stats = await enrich_module(str(module_path), use_rag=use_rag, dry_run=True)
+    except Exception as e:
+        console.print(f"[red]Dry-run failed: {e}[/red]")
+        await ainput("\n[dim]Press Enter to continue...[/dim]")
+        return
+
+    proceed = (await ainput("[cyan]Proceed with enrichment? (y/N): [/cyan]")).strip().lower()
+    if proceed not in ("y", "yes"):
+        console.print("[dim]Enrichment cancelled.[/dim]")
+        await ainput("\n[dim]Press Enter to continue...[/dim]")
+        return
+
+    # Run real enrichment
+    console.print()
+    console.print(Panel(
+        "[bold yellow]Enrichment in progress...[/bold yellow]\n\n"
+        "[dim]This may take several minutes on Pi 5.\n"
+        "Thermal gating and LLM cooldowns are automatic.[/dim]",
+        border_style="yellow",
+    ))
+
+    try:
+        stats = await enrich_module(str(module_path), use_rag=use_rag, dry_run=False)
+        console.print(Panel(
+            f"[bold green]Enrichment complete![/bold green]\n\n"
+            f"NPCs enriched: {stats.get('npcs_enriched', 0)}/{stats.get('npcs', 0)}\n"
+            f"Rooms enriched: {stats.get('rooms_enriched', 0)}/{stats.get('rooms', 0)}\n"
+            f"Events enriched: {stats.get('events_enriched', 0)}/{stats.get('events', 0)}\n"
+            f"Quest arc: {'yes' if stats.get('quest_arc_enriched') else 'no'}",
+            border_style="green", box=box.DOUBLE,
+        ))
+    except Exception as e:
+        console.print(f"[red]Enrichment failed: {e}[/red]")
+
+    await ainput("\n[dim]Press Enter to continue...[/dim]")
 
 
 async def run_dice_roller():

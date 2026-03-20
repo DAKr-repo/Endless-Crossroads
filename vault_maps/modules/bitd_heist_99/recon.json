@@ -1,0 +1,98 @@
+{
+  "seed": 65130,
+  "width": 80,
+  "height": 80,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "recon",
+    "theme": "GOTHIC",
+    "topology": "settlement",
+    "display_name": "The Street Corner"
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 20,
+      "y": 20,
+      "width": 9,
+      "height": 10,
+      "room_type": "town_square",
+      "connections": [
+        1
+      ],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The fog clings to the cobblestone streets, thickening with the scent",
+        "read_aloud": "The fog clings to the cobblestone streets, thickening with the scent",
+        "npcs": [
+          {
+            "name": "Mara",
+            "role": "informant",
+            "dialogue": "[Curious] A new arrival, perhaps not for the faintest. His name is Elara, known from the shadows as the Keeper of Secrets within our lands.",
+            "notes": ""
+          }
+        ],
+        "loot": [
+          {
+            "name": "Stolen Documents",
+            "value": 1,
+            "type": "common"
+          }
+        ]
+      }
+    },
+    "1": {
+      "id": 1,
+      "x": 48,
+      "y": 20,
+      "width": 10,
+      "height": 7,
+      "room_type": "temple",
+      "connections": [
+        0,
+        2
+      ],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "enemies": [
+          {
+            "name": "Gondolier Lookout",
+            "hp": 8,
+            "ac": 10,
+            "attack": 2,
+            "damage": "1d4"
+          }
+        ]
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 48,
+      "y": 48,
+      "width": 8,
+      "height": 9,
+      "room_type": "town_gate",
+      "connections": [
+        1
+      ],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "enemies": [
+          {
+            "name": "Skovlan Refugee Fighter",
+            "hp": 8,
+            "ac": 10,
+            "attack": 2,
+            "damage": "1d4"
+          }
+        ]
+      }
+    }
+  }
+}
