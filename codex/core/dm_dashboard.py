@@ -330,6 +330,13 @@ class DMDashboard:
         self.rest_mgr = RestManager()
         self.progression: Optional[ProgressionTracker] = None
 
+        # Quest tracker
+        from codex.core.mechanics.quest import QuestTracker
+        self.quests = QuestTracker()
+
+        # Rules quick-reference
+        self._rules_data = self._load_rules_reference()
+
         # Companion
         self.companion = None
 
@@ -341,6 +348,75 @@ class DMDashboard:
         self._event_log.append(msg)
         if len(self._event_log) > 20:
             self._event_log = self._event_log[-20:]
+
+    def _load_rules_reference(self) -> dict:
+        """Load rules reference from config/rules/."""
+        import json
+        from pathlib import Path
+        rules_dir = Path(__file__).resolve().parent.parent.parent / "config" / "rules"
+        data = {}
+        # Load universal rules
+        universal = rules_dir / "universal.json"
+        if universal.exists():
+            try:
+                data.update(json.loads(universal.read_text(encoding="utf-8")))
+            except (json.JSONDecodeError, OSError):
+                pass
+        # Load system-specific overlay
+        family = "fitd" if self.system_tag in (
+            "BITD", "SAV", "BOB", "CBRPNK", "CANDELA"
+        ) else self.system_tag.lower()
+        system_file = rules_dir / f"{family}.json"
+        if system_file.exists():
+            try:
+                data.update(json.loads(system_file.read_text(encoding="utf-8")))
+            except (json.JSONDecodeError, OSError):
+                pass
+        return data
+
+    def _format_rules_lookup(self, topic: str = "") -> str:
+        """Format rules reference for display."""
+        if not self._rules_data:
+            return "No rules reference data loaded."
+        topic = topic.strip().lower()
+        if not topic:
+            sections = list(self._rules_data.keys())
+            return "Rules topics: " + ", ".join(sections) + "\nUsage: rules <topic>"
+        # Find matching section
+        for key, value in self._rules_data.items():
+            if topic in key.lower():
+                if isinstance(value, dict):
+                    lines = [f"--- {key} ---"]
+                    for k, v in value.items():
+                        lines.append(f"  {k}: {v}")
+                    return "\n".join(lines)
+                return f"--- {key} ---\n{value}"
+        return f"No rules found for '{topic}'. Topics: {', '.join(self._rules_data.keys())}"
+
+    def _get_room_enemies(self, engine, room_id) -> list:
+        """Extract enemy data from current room for stat display."""
+        pop = getattr(engine, 'populated_rooms', {}).get(room_id)
+        if not pop:
+            return []
+        content = pop.content if hasattr(pop, 'content') else pop
+        if isinstance(content, dict):
+            return content.get("enemies", [])
+        return []
+
+    def _format_enemy_stat_line(self, enemy: dict) -> str:
+        """Compact 1-liner for enemy in combat panel."""
+        name = enemy.get("name", "Unknown")
+        hp = enemy.get("hp", "?")
+        max_hp = enemy.get("max_hp", hp)
+        defense = enemy.get("defense", enemy.get("ac", "?"))
+        damage = enemy.get("damage", enemy.get("attack", "?"))
+        special = enemy.get("special", "")
+        alive = enemy.get("alive", True)
+        marker = "" if alive else " [DEAD]"
+        line = f"{name} HP:{hp}/{max_hp} DEF:{defense} DMG:{damage}"
+        if special:
+            line += f" ({special})"
+        return line + marker
 
     # ─── Panel Builders ────────────────────────────────────────────────
 
@@ -403,8 +479,8 @@ class DMDashboard:
         return Panel(text, title="[bold]THE WORLD[/bold]", box=box.ROUNDED,
                      border_style="cyan", height=20)
 
-    def _build_table_panel(self, vitals: VitalsSchema) -> Panel:
-        """Center panel: party vitals, resources, conditions, initiative."""
+    def _build_table_panel(self, vitals: VitalsSchema, engine=None) -> Panel:
+        """Center panel: party vitals, resources, conditions, initiative, enemies."""
         text = Text()
 
         # Primary resource bar
@@ -475,6 +551,15 @@ class DMDashboard:
                         f"Rep: {extra.get('rep', 0)} | "
                         f"Coin: {extra.get('coin', 0)}\n", style="white")
 
+        # Enemies in combat
+        room_id = vitals.extra.get("room_id")
+        if engine and room_id is not None:
+            enemies = self._get_room_enemies(engine, room_id)
+            if enemies:
+                text.append("\nEnemies:\n", style="bold red")
+                for enemy in enemies:
+                    text.append(f"  {self._format_enemy_stat_line(enemy)}\n", style="red")
+
         return Panel(text, title="[bold]THE TABLE[/bold]", box=box.ROUNDED,
                      border_style="green", height=20)
 
@@ -517,6 +602,12 @@ class DMDashboard:
             if len(self._last_query) > 200:
                 truncated += "..."
             text.append(f"  {truncated}\n", style="dim white")
+
+        # Active quests (last 5)
+        quest_summary = self.quests.active_summary(5)
+        if quest_summary != "No active quests.":
+            text.append("\nQuests:\n", style="bold green")
+            text.append(f"{quest_summary}\n", style="green")
 
         return Panel(text, title="[bold]INTELLIGENCE[/bold]", box=box.ROUNDED,
                      border_style="yellow", height=20)
@@ -573,7 +664,7 @@ class DMDashboard:
         )
         layout["main"].split_row(
             Layout(self._build_world_panel(vitals, engine), name="world"),
-            Layout(self._build_table_panel(vitals), name="table"),
+            Layout(self._build_table_panel(vitals, engine), name="table"),
             Layout(self._build_intel_panel(), name="intel"),
             Layout(self._build_llm_stats_panel(), name="llm_stats"),
         )
@@ -690,10 +781,44 @@ class DMDashboard:
         elif cmd == "refresh":
             return "Vitals refreshed."
 
+        elif cmd == "rules":
+            return self._format_rules_lookup(args)
+
+        elif cmd == "quest":
+            return self._dispatch_quest(args)
+
         elif cmd == "help":
             return self._help_text()
 
         return f"Unknown command: {cmd}. Type 'help' for commands."
+
+    def _dispatch_quest(self, args: str) -> str:
+        """Handle quest subcommands: add, list, complete, abandon, remove."""
+        parts = args.strip().split(maxsplit=1)
+        sub = parts[0].lower() if parts else "list"
+        sub_args = parts[1].strip() if len(parts) > 1 else ""
+
+        if sub == "add":
+            if not sub_args:
+                return "Usage: quest add <title>"
+            return self.quests.add(sub_args)
+        elif sub in ("list", "all"):
+            return self.quests.list_quests(status=sub_args or "")
+        elif sub in ("complete", "done"):
+            if not sub_args:
+                return "Usage: quest complete <id>"
+            return self.quests.complete(sub_args)
+        elif sub == "abandon":
+            if not sub_args:
+                return "Usage: quest abandon <id>"
+            return self.quests.abandon(sub_args)
+        elif sub == "remove":
+            if not sub_args:
+                return "Usage: quest remove <id>"
+            return self.quests.remove(sub_args)
+        else:
+            # Treat as "add" if no recognized subcommand
+            return self.quests.add(args.strip())
 
     # ─── Mechanics Handlers ────────────────────────────────────────────
 
@@ -897,6 +1022,12 @@ class DMDashboard:
             "  xp <amount> [src]   - Award XP/mark\n"
             "  levelup <name>      - Level up character\n"
             "  companion [on|off]  - Toggle AI companion\n"
+            "  rules [topic]       - Rules quick-reference\n"
+            "  quest add <title>   - Track a quest/plot thread\n"
+            "  quest list [status] - List quests (active/completed/all)\n"
+            "  quest complete <id> - Mark quest complete\n"
+            "  quest abandon <id>  - Abandon quest\n"
+            "  quest remove <id>   - Delete quest\n"
             "  status              - Thermal/RAM vitals\n"
             "  refresh             - Re-read engine state\n"
             "  quit                - Exit dashboard\n"

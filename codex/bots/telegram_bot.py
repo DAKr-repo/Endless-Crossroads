@@ -285,6 +285,7 @@ class TelegramSession:
     conditions: object = None       # ConditionTracker (optional)
     initiative_order: list = field(default_factory=list)
     active_turn: str = ""
+    scene_state: object = None      # _FITDSceneState (optional)
 
     def start_game(self) -> str:
         """Initialize a new Crown & Crew session."""
@@ -1107,6 +1108,153 @@ async def cmd_candela(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(f"```\n{session.bridge.step('look')}\n```", parse_mode='Markdown')
 
 
+# ── FITD Scene Navigation Commands ────────────────────────────────────
+
+async def cmd_scene(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Handle /scene command — show current FITD scene."""
+    session = get_session(update.effective_chat.id)
+    if session.phase not in (Phase.BITD, Phase.SAV, Phase.BOB, Phase.CBRPNK, Phase.CANDELA):
+        await update.message.reply_text("Not in a FITD session.")
+        return
+    from codex.bots.fitd_dispatch import dispatch_fitd_command
+    result = dispatch_fitd_command(
+        "scene", "", getattr(session.bridge, '_engine', None),
+        session.bridge, session.scene_state)
+    await update.message.reply_text(
+        f"```\n{(result or 'No module loaded. Use /module to load one.')[:4000]}\n```",
+        parse_mode='Markdown')
+
+
+async def cmd_next_scene(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Handle /next command — advance to next FITD scene."""
+    session = get_session(update.effective_chat.id)
+    if session.phase not in (Phase.BITD, Phase.SAV, Phase.BOB, Phase.CBRPNK, Phase.CANDELA):
+        await update.message.reply_text("Not in a FITD session.")
+        return
+    from codex.bots.fitd_dispatch import dispatch_fitd_command
+    result = dispatch_fitd_command(
+        "next", "", getattr(session.bridge, '_engine', None),
+        session.bridge, session.scene_state)
+    await update.message.reply_text(
+        f"```\n{(result or 'No module loaded.')[:4000]}\n```",
+        parse_mode='Markdown')
+
+
+async def cmd_scenes(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Handle /scenes command — list all FITD scenes."""
+    session = get_session(update.effective_chat.id)
+    if session.phase not in (Phase.BITD, Phase.SAV, Phase.BOB, Phase.CBRPNK, Phase.CANDELA):
+        await update.message.reply_text("Not in a FITD session.")
+        return
+    from codex.bots.fitd_dispatch import dispatch_fitd_command
+    result = dispatch_fitd_command(
+        "scenes", "", getattr(session.bridge, '_engine', None),
+        session.bridge, session.scene_state)
+    await update.message.reply_text(
+        f"```\n{(result or 'No module loaded.')[:4000]}\n```",
+        parse_mode='Markdown')
+
+
+async def cmd_jobs(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Handle /jobs command — list accepted FITD jobs."""
+    session = get_session(update.effective_chat.id)
+    if session.phase not in (Phase.BITD, Phase.SAV, Phase.BOB, Phase.CBRPNK, Phase.CANDELA):
+        await update.message.reply_text("Not in a FITD session.")
+        return
+    from codex.bots.fitd_dispatch import dispatch_fitd_command
+    result = dispatch_fitd_command(
+        "jobs", "", getattr(session.bridge, '_engine', None),
+        session.bridge, session.scene_state)
+    await update.message.reply_text(
+        f"```\n{(result or 'No jobs yet.')[:4000]}\n```",
+        parse_mode='Markdown')
+
+
+async def cmd_resist(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Handle /resist command — FITD resistance roll."""
+    session = get_session(update.effective_chat.id)
+    if session.phase not in (Phase.BITD, Phase.SAV, Phase.BOB, Phase.CBRPNK, Phase.CANDELA):
+        await update.message.reply_text("Not in a FITD session.")
+        return
+    args = " ".join(context.args) if context.args else ""
+    from codex.bots.fitd_dispatch import dispatch_fitd_command
+    result = dispatch_fitd_command(
+        "resist", args, getattr(session.bridge, '_engine', None),
+        session.bridge, session.scene_state)
+    await update.message.reply_text(
+        f"```\n{(result or 'Resist failed.')[:4000]}\n```",
+        parse_mode='Markdown')
+
+
+async def cmd_fitd_roll(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Handle /fitd_roll command — FITD action roll."""
+    session = get_session(update.effective_chat.id)
+    if session.phase not in (Phase.BITD, Phase.SAV, Phase.BOB, Phase.CBRPNK, Phase.CANDELA):
+        await update.message.reply_text("Not in a FITD session.")
+        return
+    args = " ".join(context.args) if context.args else ""
+    from codex.bots.fitd_dispatch import dispatch_fitd_command
+    result = dispatch_fitd_command(
+        "roll", args, getattr(session.bridge, '_engine', None),
+        session.bridge, session.scene_state)
+    await update.message.reply_text(
+        f"```\n{(result or 'Usage: /fitd_roll <action>')[:4000]}\n```",
+        parse_mode='Markdown')
+
+
+async def cmd_module(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Handle /module command — load a playable module into FITD session."""
+    session = get_session(update.effective_chat.id)
+    if session.phase not in (Phase.BITD, Phase.SAV, Phase.BOB, Phase.CBRPNK, Phase.CANDELA):
+        await update.message.reply_text("Not in a FITD session. Start one with /bitd, /sav, etc.")
+        return
+    try:
+        from play_universal import _FITDSceneState
+        from codex.spatial.zone_manager import ZoneManager
+    except ImportError:
+        await update.message.reply_text("Scene system not available.")
+        return
+    from pathlib import Path
+    modules_dir = Path(__file__).resolve().parent.parent.parent / "vault_maps" / "modules"
+    if not modules_dir.exists():
+        await update.message.reply_text("No modules directory found.")
+        return
+    module_dirs = sorted([
+        d.name for d in modules_dir.iterdir()
+        if d.is_dir() and (d / "module_manifest.json").exists()
+    ])
+    if not module_dirs:
+        await update.message.reply_text("No modules available.")
+        return
+    args = " ".join(context.args) if context.args else ""
+    if not args:
+        listing = "\n".join(f"  {i+1}. {m}" for i, m in enumerate(module_dirs))
+        await update.message.reply_text(
+            f"```\nAvailable modules:\n{listing}\n\nUsage: /module <name>\n```",
+            parse_mode='Markdown')
+        return
+    target = args.strip().lower()
+    match = next((m for m in module_dirs if target in m.lower()), None)
+    if not match:
+        await update.message.reply_text(f"Module '{args}' not found.")
+        return
+    module_path = modules_dir / match
+    try:
+        zm = ZoneManager(module_path)
+        ss = _FITDSceneState(zm, module_path)
+        session.scene_state = ss
+        scene = ss.current_scene()
+        if scene:
+            text = ss.format_scene(scene)
+            await update.message.reply_text(
+                f"```\nModule loaded: {match}\n\n--- Scene 1/{ss.scene_count()} ---\n{text[:3800]}\n```",
+                parse_mode='Markdown')
+        else:
+            await update.message.reply_text(f"Module '{match}' loaded but no scenes found.")
+    except Exception as e:
+        await update.message.reply_text(f"Failed to load module: {e}")
+
+
 async def cmd_dm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Handle /dm command — DM Tools suite."""
     try:
@@ -1285,6 +1433,23 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     # Dungeon session (Burnwillow / DnD5e / Cosmere free-text input)
     if session.phase in (Phase.DUNGEON, Phase.DND5E, Phase.COSMERE, Phase.BITD, Phase.SAV, Phase.BOB, Phase.CBRPNK, Phase.CANDELA) and session.bridge:
+        # FITD command intercept — scene nav, roll, resist, etc.
+        if session.phase in (Phase.BITD, Phase.SAV, Phase.BOB, Phase.CBRPNK, Phase.CANDELA):
+            from codex.bots.fitd_dispatch import dispatch_fitd_command
+            _parts = text.split(None, 1)
+            _verb = _parts[0] if _parts else ""
+            _args = _parts[1] if len(_parts) > 1 else ""
+            fitd_result = dispatch_fitd_command(
+                verb=_verb, args=_args,
+                engine=getattr(session.bridge, '_engine', None),
+                bridge=session.bridge,
+                scene_state=session.scene_state,
+            )
+            if fitd_result is not None:
+                await update.message.reply_text(
+                    f"```\n{fitd_result[:4000]}\n```", parse_mode='Markdown')
+                return
+
         result = session.bridge.step(text)
         await update.message.reply_text(f"```\n{result}\n```", parse_mode='Markdown')
         if session.bridge.dead:
@@ -1652,6 +1817,13 @@ async def run_telegram_bot(core=None):
     app.add_handler(CommandHandler("bob", cmd_bob))
     app.add_handler(CommandHandler("cbrpnk", cmd_cbrpnk))
     app.add_handler(CommandHandler("candela", cmd_candela))
+    app.add_handler(CommandHandler("scene", cmd_scene))
+    app.add_handler(CommandHandler("next", cmd_next_scene))
+    app.add_handler(CommandHandler("scenes", cmd_scenes))
+    app.add_handler(CommandHandler("jobs", cmd_jobs))
+    app.add_handler(CommandHandler("resist", cmd_resist))
+    app.add_handler(CommandHandler("fitd_roll", cmd_fitd_roll))
+    app.add_handler(CommandHandler("module", cmd_module))
     app.add_handler(CommandHandler("crown", cmd_crown))
     app.add_handler(CommandHandler("ashburn", cmd_ashburn))
     app.add_handler(CommandHandler("quest", cmd_quest))
@@ -1842,6 +2014,13 @@ def main():
     app.add_handler(CommandHandler("bob", cmd_bob))
     app.add_handler(CommandHandler("cbrpnk", cmd_cbrpnk))
     app.add_handler(CommandHandler("candela", cmd_candela))
+    app.add_handler(CommandHandler("scene", cmd_scene))
+    app.add_handler(CommandHandler("next", cmd_next_scene))
+    app.add_handler(CommandHandler("scenes", cmd_scenes))
+    app.add_handler(CommandHandler("jobs", cmd_jobs))
+    app.add_handler(CommandHandler("resist", cmd_resist))
+    app.add_handler(CommandHandler("fitd_roll", cmd_fitd_roll))
+    app.add_handler(CommandHandler("module", cmd_module))
     app.add_handler(CommandHandler("chronology", cmd_chronology))
     app.add_handler(CommandHandler("crown", cmd_crown))
     app.add_handler(CommandHandler("ashburn", cmd_ashburn))

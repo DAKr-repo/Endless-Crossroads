@@ -1,0 +1,41 @@
+{
+  "dc_table": {
+    "5": "Trivial — almost anyone can do this",
+    "10": "Easy — a competent person succeeds most of the time",
+    "15": "Moderate — requires training or focus",
+    "20": "Hard — even skilled characters may fail",
+    "25": "Very Hard — exceptional ability required",
+    "30": "Nearly Impossible — legendary feat"
+  },
+  "conditions": {
+    "Poisoned": "Disadvantage on attack rolls and ability checks",
+    "Stunned": "Incapacitated, can't move, auto-fail STR/DEX saves, attacks have advantage",
+    "Blinded": "Auto-fail sight checks, attacks have disadvantage, attackers have advantage",
+    "Frightened": "Disadvantage on checks/attacks while source is in line of sight, can't willingly move closer",
+    "Grappled": "Speed becomes 0, ends if grappler incapacitated or forced apart",
+    "Prone": "Disadvantage on attacks, melee attacks against have advantage, ranged have disadvantage",
+    "Restrained": "Speed 0, attacks have disadvantage, DEX saves have disadvantage, attackers have advantage",
+    "Paralyzed": "Incapacitated, auto-fail STR/DEX saves, attacks have advantage, melee crits within 5ft",
+    "Invisible": "Impossible to see without magic/special sense, attacks have advantage, attackers have disadvantage",
+    "Charmed": "Can't attack charmer, charmer has advantage on social checks",
+    "Exhaustion": "Cumulative: 1=disadvantage on checks, 2=speed halved, 3=disadvantage on attacks/saves, 4=HP max halved, 5=speed 0, 6=death",
+    "Concentration": "Broken by: taking damage (DC 10 or half damage, whichever higher), incapacitated, or casting another concentration spell"
+  },
+  "action_economy": {
+    "Action": "Attack, Cast Spell, Dash, Disengage, Dodge, Help, Hide, Ready, Search, Use Object",
+    "Bonus Action": "Off-hand attack, some spells, class features (Cunning Action, etc.)",
+    "Reaction": "Opportunity attack, Shield spell, Counterspell, Readied action",
+    "Free": "Drop item, speak briefly, interact with one object",
+    "Movement": "Move up to speed, can split before/after actions"
+  },
+  "cover": {
+    "Half Cover": "+2 AC, +2 DEX saves (low wall, furniture, creature)",
+    "Three-Quarters Cover": "+5 AC, +5 DEX saves (portcullis, arrow slit)",
+    "Total Cover": "Can't be targeted directly"
+  },
+  "light": {
+    "Bright Light": "Normal vision",
+    "Dim Light": "Lightly obscured — disadvantage on Perception (sight)",
+    "Darkness": "Heavily obscured — effectively blinded"
+  }
+}

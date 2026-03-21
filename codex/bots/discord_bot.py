@@ -843,6 +843,7 @@ class DiscordSession:
     conditions: object = None       # ConditionTracker (optional)
     initiative_order: list = field(default_factory=list)
     active_turn: str = ""
+    scene_state: object = None      # _FITDSceneState (optional, for module scenes)
 
     def start_game(self) -> str:
         """Initialize a new Crown & Crew session (WO-V14.0: morning events)."""
@@ -1873,6 +1874,121 @@ Type `!travel` when ready.""")
             if frame:
                 await _scry_embed_update(session, ctx.channel, frame, result)
 
+        # ── FITD Scene Navigation Commands ────────────────────────────
+
+        @self.command(name="scene")
+        async def cmd_scene(ctx):
+            """Show the current FITD scene."""
+            session = get_session(ctx.channel.id)
+            if session.phase not in (Phase.BITD, Phase.SAV, Phase.BOB, Phase.CBRPNK, Phase.CANDELA):
+                await ctx.send("Not in a FITD session.")
+                return
+            from codex.bots.fitd_dispatch import dispatch_fitd_command
+            result = dispatch_fitd_command(
+                "scene", "", getattr(session.bridge, '_engine', None),
+                session.bridge, session.scene_state)
+            await ctx.send(f"```\n{(result or 'No module loaded. Use !module to load one.')[:1990]}\n```")
+
+        @self.command(name="next")
+        async def cmd_next(ctx):
+            """Advance to the next FITD scene."""
+            session = get_session(ctx.channel.id)
+            if session.phase not in (Phase.BITD, Phase.SAV, Phase.BOB, Phase.CBRPNK, Phase.CANDELA):
+                await ctx.send("Not in a FITD session.")
+                return
+            from codex.bots.fitd_dispatch import dispatch_fitd_command
+            result = dispatch_fitd_command(
+                "next", "", getattr(session.bridge, '_engine', None),
+                session.bridge, session.scene_state)
+            await ctx.send(f"```\n{(result or 'No module loaded.')[:1990]}\n```")
+
+        @self.command(name="scenes")
+        async def cmd_scenes(ctx):
+            """List all scenes in the current FITD module."""
+            session = get_session(ctx.channel.id)
+            if session.phase not in (Phase.BITD, Phase.SAV, Phase.BOB, Phase.CBRPNK, Phase.CANDELA):
+                await ctx.send("Not in a FITD session.")
+                return
+            from codex.bots.fitd_dispatch import dispatch_fitd_command
+            result = dispatch_fitd_command(
+                "scenes", "", getattr(session.bridge, '_engine', None),
+                session.bridge, session.scene_state)
+            await ctx.send(f"```\n{(result or 'No module loaded.')[:1990]}\n```")
+
+        @self.command(name="jobs")
+        async def cmd_jobs(ctx):
+            """List accepted FITD jobs."""
+            session = get_session(ctx.channel.id)
+            if session.phase not in (Phase.BITD, Phase.SAV, Phase.BOB, Phase.CBRPNK, Phase.CANDELA):
+                await ctx.send("Not in a FITD session.")
+                return
+            from codex.bots.fitd_dispatch import dispatch_fitd_command
+            result = dispatch_fitd_command(
+                "jobs", "", getattr(session.bridge, '_engine', None),
+                session.bridge, session.scene_state)
+            await ctx.send(f"```\n{(result or 'No jobs yet.')[:1990]}\n```")
+
+        @self.command(name="resist")
+        async def cmd_resist(ctx, *, args: str = ""):
+            """FITD resistance roll."""
+            session = get_session(ctx.channel.id)
+            if session.phase not in (Phase.BITD, Phase.SAV, Phase.BOB, Phase.CBRPNK, Phase.CANDELA):
+                await ctx.send("Not in a FITD session.")
+                return
+            from codex.bots.fitd_dispatch import dispatch_fitd_command
+            result = dispatch_fitd_command(
+                "resist", args, getattr(session.bridge, '_engine', None),
+                session.bridge, session.scene_state)
+            await ctx.send(f"```\n{(result or 'Resist failed.')[:1990]}\n```")
+
+        @self.command(name="module")
+        async def cmd_module(ctx, *, args: str = ""):
+            """Load a playable module into the active FITD session."""
+            session = get_session(ctx.channel.id)
+            if session.phase not in (Phase.BITD, Phase.SAV, Phase.BOB, Phase.CBRPNK, Phase.CANDELA):
+                await ctx.send("Not in a FITD session. Start one with `!bitd`, `!sav`, etc.")
+                return
+            try:
+                from play_universal import _FITDSceneState
+                from codex.spatial.zone_manager import ZoneManager
+            except ImportError:
+                await ctx.send("Scene system not available.")
+                return
+            modules_dir = Path(__file__).resolve().parent.parent.parent / "vault_maps" / "modules"
+            if not modules_dir.exists():
+                await ctx.send("No modules directory found.")
+                return
+            module_dirs = sorted([
+                d.name for d in modules_dir.iterdir()
+                if d.is_dir() and (d / "module_manifest.json").exists()
+            ])
+            if not module_dirs:
+                await ctx.send("No modules available.")
+                return
+            if not args:
+                listing = "\n".join(f"  {i+1}. {m}" for i, m in enumerate(module_dirs))
+                await ctx.send(f"```\nAvailable modules:\n{listing}\n\nUsage: !module <name>\n```")
+                return
+            # Find matching module
+            target = args.strip().lower()
+            match = next((m for m in module_dirs if target in m.lower()), None)
+            if not match:
+                await ctx.send(f"Module '{args}' not found.")
+                return
+            module_path = modules_dir / match
+            try:
+                zm = ZoneManager(module_path)
+                scene_state = _FITDSceneState(zm, module_path)
+                session.scene_state = scene_state
+                scene = scene_state.current_scene()
+                if scene:
+                    text = scene_state.format_scene(scene)
+                    await ctx.send(f"```\nModule loaded: {match}\n\n--- Scene 1/{scene_state.scene_count()} ---\n{text[:1800]}\n```")
+                else:
+                    await ctx.send(f"Module '{match}' loaded but no scenes found.")
+            except Exception as e:
+                await ctx.send(f"Failed to load module: {e}")
+
         @self.command(name="companion")
         async def cmd_companion(ctx):
             """Toggle or inspect AI companion."""
@@ -2566,6 +2682,20 @@ Type `!travel` when ready.""")
                 # Strip the "!" prefix and forward to bridge
                 raw = ctx.message.content.lstrip("!").strip().lower()
                 if raw:
+                    # FITD intercept
+                    if session.phase in (Phase.BITD, Phase.SAV, Phase.BOB, Phase.CBRPNK, Phase.CANDELA):
+                        from codex.bots.fitd_dispatch import dispatch_fitd_command
+                        _p = raw.split(None, 1)
+                        fitd_result = dispatch_fitd_command(
+                            verb=_p[0] if _p else "",
+                            args=_p[1] if len(_p) > 1 else "",
+                            engine=getattr(session.bridge, '_engine', None),
+                            bridge=session.bridge,
+                            scene_state=session.scene_state,
+                        )
+                        if fitd_result is not None:
+                            await ctx.send(f"```\n{fitd_result[:1990]}\n```")
+                            return
                     result = session.bridge.step(raw)
                     frame = getattr(session.bridge, 'last_frame', None)
                     await ctx.send(f"```\n{result}\n```")
@@ -2934,6 +3064,22 @@ Type `!travel` when ready.""")
                     "Session error: bridge lost. Use `!stop` to reset.")
                 session.end_session()
             else:
+                # FITD command intercept — scene nav, roll, resist, etc.
+                if session.phase in (Phase.BITD, Phase.SAV, Phase.BOB, Phase.CBRPNK, Phase.CANDELA):
+                    from codex.bots.fitd_dispatch import dispatch_fitd_command
+                    _parts = text.split(None, 1)
+                    _verb = _parts[0] if _parts else ""
+                    _args = _parts[1] if len(_parts) > 1 else ""
+                    fitd_result = dispatch_fitd_command(
+                        verb=_verb, args=_args,
+                        engine=getattr(session.bridge, '_engine', None),
+                        bridge=session.bridge,
+                        scene_state=session.scene_state,
+                    )
+                    if fitd_result is not None:
+                        await message.channel.send(f"```\n{fitd_result[:1990]}\n```")
+                        return
+
                 result = session.bridge.step(text)
                 frame = getattr(session.bridge, 'last_frame', None)
                 await _scry_embed_update(session, message.channel, frame, result)

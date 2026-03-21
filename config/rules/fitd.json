@@ -1,0 +1,40 @@
+{
+  "position_effect": {
+    "Controlled": "You act on your terms. Failure = reduced effect or complication, not harm.",
+    "Risky": "Standard engagement. Failure = complication + possible harm.",
+    "Desperate": "Serious danger. Failure = severe harm or worse position. Greater XP on success."
+  },
+  "effect_levels": {
+    "Zero": "No meaningful impact (obstacles too great)",
+    "Limited": "Reduced impact — partial progress, weak effect",
+    "Standard": "Normal impact — expected result for the action",
+    "Great": "Increased impact — extra progress, strong effect",
+    "Extreme": "Extraordinary — far beyond normal expectations"
+  },
+  "action_roll": {
+    "6,6": "Critical — increased effect",
+    "6": "Full Success — you do it without complication",
+    "4-5": "Partial Success — you do it, but with a consequence",
+    "1-3": "Failure — things go badly, GM determines consequence"
+  },
+  "stress_and_trauma": {
+    "Stress": "0-9 track. Pushing yourself, resisting, assisting costs stress.",
+    "Trauma": "At 9 stress: clear stress, gain 1 trauma. At 4 traumas: character retires.",
+    "Resist": "Roll 2d6. Stress cost = 6 minus highest die. Minimum 0."
+  },
+  "downtime_actions": {
+    "Acquire Asset": "Roll tier to get a temporary asset (tool, vehicle, weapon)",
+    "Long-Term Project": "Tick progress clock toward a goal (4/6/8 segments)",
+    "Recover": "Heal harm by one level (or more with a critical)",
+    "Reduce Heat": "Remove 1 heat per success (or more with a critical)",
+    "Train": "Advance a skill or earn XP toward advancement",
+    "Indulge Vice": "Relieve stress (roll lowest action). Overindulge at 6+."
+  },
+  "heat_and_wanted": {
+    "Heat 0": "Quiet — no attention from Bluecoats",
+    "Heat 1-3": "Some attention — patrol checks, questions",
+    "Heat 4-5": "Significant — active investigations, informants",
+    "Heat 6+": "Wanted level increases by 1, heat resets to 0",
+    "Wanted 4": "Extreme — city-wide manhunt, arrest on sight"
+  }
+}
