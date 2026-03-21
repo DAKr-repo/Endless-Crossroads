@@ -289,6 +289,7 @@ class TelegramSession:
     scene_state: object = None      # _FITDSceneState (optional)
     stacked_char: object = None     # StackedCharacter (for engine stacking)
     wizard_state: object = None     # HeadlessWizard (for multi-step creation)
+    dm_dashboard: object = None     # DMDashboard instance
 
     def start_game(self) -> str:
         """Initialize a new Crown & Crew session."""
@@ -1441,6 +1442,158 @@ async def cmd_create(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None
     await update.message.reply_text(f"```\n" + "\n".join(lines) + "\n```", parse_mode='Markdown')
 
 
+async def cmd_scribe(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Handle /scribe command — add public session log entry."""
+    text = " ".join(context.args) if context.args else ""
+    if not text:
+        await update.message.reply_text("Usage: `/scribe <log entry>`", parse_mode='Markdown')
+        return
+    try:
+        from codex.core.butler import CodexButler
+        butler = CodexButler()
+        result = butler.scribe(text)
+        await update.message.reply_text(f"```\n{result}\n```", parse_mode='Markdown')
+    except ImportError:
+        await update.message.reply_text("Butler Scribe not available.")
+
+
+async def cmd_secret(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Handle /secret command — add secret DM note."""
+    text = " ".join(context.args) if context.args else ""
+    if not text:
+        await update.message.reply_text("Usage: `/secret <note>`", parse_mode='Markdown')
+        return
+    try:
+        from codex.core.butler import CodexButler
+        butler = CodexButler()
+        result = butler.scribe(text, secret=True)
+        await update.message.reply_text(f"```\n{result}\n```", parse_mode='Markdown')
+    except ImportError:
+        await update.message.reply_text("Butler Scribe not available.")
+
+
+async def cmd_journal(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Handle /journal command — show recent session log entries."""
+    try:
+        from codex.core.butler import CodexButler
+        butler = CodexButler()
+        entries = butler.get_recent_logs(limit=10)
+        if entries:
+            text = "\n".join(entries)
+            await update.message.reply_text(f"```\n{text[:4000]}\n```", parse_mode='Markdown')
+        else:
+            await update.message.reply_text("No session log entries yet.")
+    except ImportError:
+        await update.message.reply_text("Butler Scribe not available.")
+
+
+async def cmd_universe(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Handle /universe command — show star chart / world registry."""
+    try:
+        from codex.core.services.universe_manager import UniverseManager
+    except ImportError:
+        await update.message.reply_text("Universe Manager not available.")
+        return
+    um = UniverseManager()
+    universes = um.list_universes()
+    if not universes:
+        await update.message.reply_text("No universes registered.")
+        return
+    lines = ["--- Star Chart ---"]
+    for u in universes:
+        name = getattr(u, 'name', str(u))
+        modules = getattr(u, 'modules', [])
+        lines.append(f"\n  {name}")
+        for mod in modules:
+            mod_name = getattr(mod, 'name', str(mod))
+            lines.append(f"    - {mod_name}")
+    await update.message.reply_text(f"```\n" + "\n".join(lines)[:4000] + "\n```", parse_mode='Markdown')
+
+
+async def cmd_tutorial(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Handle /tutorial command — browse tutorial modules."""
+    try:
+        from codex.core.services.tutorial import TutorialRegistry
+        import codex.core.services.tutorial_content  # noqa: F401 — populates registry
+    except ImportError:
+        await update.message.reply_text("Tutorial system not available.")
+        return
+    args = " ".join(context.args) if context.args else ""
+    modules = TutorialRegistry.list_modules()
+    if not modules:
+        await update.message.reply_text("No tutorial modules registered.")
+        return
+    if not args:
+        # List categories and modules
+        categories = {}
+        for mod in modules:
+            cat = getattr(mod, 'category', 'general')
+            categories.setdefault(cat, []).append(mod)
+        lines = ["--- Tutorial Modules ---"]
+        for cat, mods in sorted(categories.items()):
+            lines.append(f"\n  [{cat.upper()}]")
+            for mod in mods:
+                name = getattr(mod, 'name', str(mod))
+                desc = getattr(mod, 'description', '')
+                lines.append(f"    {name}" + (f" — {desc}" if desc else ""))
+        lines.append("\nUsage: /tutorial <module_name>")
+        await update.message.reply_text(
+            f"```\n" + "\n".join(lines)[:4000] + "\n```", parse_mode='Markdown')
+    else:
+        # Show specific module
+        target = args.lower()
+        found = next((m for m in modules
+                       if getattr(m, 'name', '').lower() == target
+                       or target in getattr(m, 'name', '').lower()), None)
+        if not found:
+            await update.message.reply_text(f"Tutorial '{args}' not found.")
+            return
+        pages = getattr(found, 'pages', [])
+        lines = [f"--- {found.name} ---"]
+        if hasattr(found, 'description'):
+            lines.append(found.description)
+        for i, page in enumerate(pages, 1):
+            title = getattr(page, 'title', f"Page {i}")
+            content = getattr(page, 'content', '')
+            lines.append(f"\n[{i}] {title}")
+            lines.append(content)
+        await update.message.reply_text(
+            f"```\n" + "\n".join(lines)[:4000] + "\n```", parse_mode='Markdown')
+
+
+async def cmd_dashboard(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Handle /dashboard command — show DM Dashboard or run sub-command."""
+    session = get_session(update.effective_chat.id)
+    if not session.bridge:
+        await update.message.reply_text("No active game session.")
+        return
+    try:
+        from codex.core.dm_dashboard import DMDashboard, get_vitals
+        from codex.bots.dashboard_embed import format_dashboard_text
+    except ImportError:
+        await update.message.reply_text("Dashboard not available.")
+        return
+    # Lazy-init dashboard
+    if session.dm_dashboard is None:
+        system_tag = session.game_type or "burnwillow"
+        session.dm_dashboard = DMDashboard(console=None, system_tag=system_tag)
+    engine = getattr(session.bridge, '_engine', None)
+    args = " ".join(context.args) if context.args else ""
+    if args:
+        result = session.dm_dashboard.dispatch_command(args, engine)
+        await update.message.reply_text(
+            f"```\n{result[:4000]}\n```", parse_mode='Markdown')
+    else:
+        try:
+            vitals = get_vitals(engine, session.game_type or "burnwillow")
+        except Exception:
+            await update.message.reply_text("Could not read engine vitals.")
+            return
+        text = format_dashboard_text(vitals, session.dm_dashboard, engine)
+        await update.message.reply_text(
+            f"```\n{text[:4000]}\n```", parse_mode='Markdown')
+
+
 async def cmd_transition(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Handle /transition command — stack into another FITD system."""
     session = get_session(update.effective_chat.id)
@@ -1519,6 +1672,45 @@ async def cmd_dm(update: Update, context: ContextTypes.DEFAULT_TYPE):
         result = scan_vault()
         await update.message.reply_text(f"*Vault Scanner*\n```\n{result[:4000]}\n```", parse_mode='Markdown')
 
+    elif sub in ("generate", "module"):
+        try:
+            from scripts.generate_module import list_templates, generate_module
+        except ImportError:
+            await update.message.reply_text("Module generator not available.")
+            return
+        gen_parts = arg.split()
+        if len(gen_parts) < 2:
+            templates = list_templates()
+            tpl_list = ", ".join(templates) if templates else "none found"
+            await update.message.reply_text(
+                f"Usage: `/dm generate <template> <system> [tier]`\nTemplates: {tpl_list}",
+                parse_mode='Markdown')
+            return
+        template_id, system_id = gen_parts[0], gen_parts[1]
+        tier = 1
+        if len(gen_parts) > 2:
+            try:
+                tier = max(1, min(4, int(gen_parts[2])))
+            except ValueError:
+                pass
+        import asyncio
+        loop = asyncio.get_event_loop()
+        output_dir = await loop.run_in_executor(
+            None, lambda: generate_module(template_id, system_id, tier=tier))
+        await update.message.reply_text(f"```\nModule generated: {output_dir}\n```", parse_mode='Markdown')
+
+    elif sub == "enrich":
+        try:
+            from scripts.enrich_module import enrich_module
+        except ImportError:
+            await update.message.reply_text("Module enrichment not available.")
+            return
+        if not arg:
+            await update.message.reply_text("Usage: `/dm enrich <module_directory>`", parse_mode='Markdown')
+            return
+        result = await enrich_module(arg)
+        await update.message.reply_text(f"```\n{str(result)[:4000]}\n```", parse_mode='Markdown')
+
     else:
         await update.message.reply_text(
             "*DM Tools*\n"
@@ -1527,7 +1719,9 @@ async def cmd_dm(update: Update, context: ContextTypes.DEFAULT_TYPE):
             "`/dm loot [easy/medium/hard]` — Generate loot\n"
             "`/dm trap [easy/medium/hard]` — Generate trap\n"
             "`/dm encounter [system] [tier]` — Generate encounter\n"
-            "`/dm scan` — Scan vault PDFs for tables",
+            "`/dm scan` — Scan vault PDFs for tables\n"
+            "`/dm generate <tpl> <sys> [tier]` — Generate module\n"
+            "`/dm enrich <dir>` — Enrich module with AI",
             parse_mode='Markdown',
         )
 
@@ -2045,6 +2239,13 @@ async def run_telegram_bot(core=None):
     app.add_handler(CommandHandler("quest", cmd_quest))
     app.add_handler(CommandHandler("create", cmd_create))
     app.add_handler(CommandHandler("transition", cmd_transition))
+    app.add_handler(CommandHandler("dashboard", cmd_dashboard))
+    app.add_handler(CommandHandler("scribe", cmd_scribe))
+    app.add_handler(CommandHandler("secret", cmd_secret))
+    app.add_handler(CommandHandler("journal", cmd_journal))
+    app.add_handler(CommandHandler("universe", cmd_universe))
+    app.add_handler(CommandHandler("starchart", cmd_universe))
+    app.add_handler(CommandHandler("tutorial", cmd_tutorial))
     app.add_handler(CommandHandler("dm", cmd_dm))
     app.add_handler(CommandHandler("roll", cmd_roll))
     app.add_handler(CommandHandler("chronology", cmd_chronology))
@@ -2245,6 +2446,13 @@ def main():
     app.add_handler(CommandHandler("quest", cmd_quest))
     app.add_handler(CommandHandler("create", cmd_create))
     app.add_handler(CommandHandler("transition", cmd_transition))
+    app.add_handler(CommandHandler("dashboard", cmd_dashboard))
+    app.add_handler(CommandHandler("scribe", cmd_scribe))
+    app.add_handler(CommandHandler("secret", cmd_secret))
+    app.add_handler(CommandHandler("journal", cmd_journal))
+    app.add_handler(CommandHandler("universe", cmd_universe))
+    app.add_handler(CommandHandler("starchart", cmd_universe))
+    app.add_handler(CommandHandler("tutorial", cmd_tutorial))
     app.add_handler(CommandHandler("dm", cmd_dm))
     app.add_handler(CommandHandler("roll", cmd_roll))
     app.add_handler(CommandHandler("voice", cmd_voice_tg))

@@ -848,6 +848,7 @@ class DiscordSession:
     scene_state: object = None      # _FITDSceneState (optional, for module scenes)
     stacked_char: object = None     # StackedCharacter (for engine stacking)
     wizard_state: object = None     # HeadlessWizard or pending-selection dict
+    dm_dashboard: object = None     # DMDashboard instance
 
     def start_game(self) -> str:
         """Initialize a new Crown & Crew session (WO-V14.0: morning events)."""
@@ -2036,6 +2037,151 @@ Type `!travel` when ready.""")
                     await ctx.send(f"Module '{match}' loaded but no scenes found.")
             except Exception as e:
                 await ctx.send(f"Failed to load module: {e}")
+
+        @self.command(name="dashboard")
+        async def cmd_dashboard(ctx, *, args: str = ""):
+            """Show DM Dashboard or run a dashboard command."""
+            session = get_session(ctx.channel.id)
+            if not session.bridge:
+                await ctx.send("No active game session.")
+                return
+            try:
+                from codex.core.dm_dashboard import DMDashboard, get_vitals
+                from codex.bots.dashboard_embed import format_dashboard_text
+            except ImportError:
+                await ctx.send("Dashboard not available.")
+                return
+            # Lazy-init dashboard
+            if session.dm_dashboard is None:
+                system_tag = session.game_type or "burnwillow"
+                session.dm_dashboard = DMDashboard(
+                    console=None, system_tag=system_tag)
+            engine = getattr(session.bridge, '_engine', None)
+            if args:
+                # Run a dashboard sub-command
+                result = session.dm_dashboard.dispatch_command(args, engine)
+                await ctx.send(f"```\n{result[:1990]}\n```")
+            else:
+                # Show full dashboard
+                try:
+                    vitals = get_vitals(engine, session.game_type or "burnwillow")
+                except Exception:
+                    await ctx.send("Could not read engine vitals.")
+                    return
+                text = format_dashboard_text(vitals, session.dm_dashboard, engine)
+                await ctx.send(f"```\n{text[:1990]}\n```")
+
+        @self.command(name="scribe")
+        async def cmd_scribe(ctx, *, text: str = ""):
+            """Add a public session log entry via Butler Scribe."""
+            if not text:
+                await ctx.send("Usage: `!scribe <log entry>`")
+                return
+            try:
+                from codex.core.butler import CodexButler
+                butler = CodexButler()
+                result = butler.scribe(text)
+                await ctx.send(f"```\n{result}\n```")
+            except ImportError:
+                await ctx.send("Butler Scribe not available.")
+
+        @self.command(name="secret")
+        async def cmd_secret(ctx, *, text: str = ""):
+            """Add a secret DM note via Butler Scribe."""
+            if not text:
+                await ctx.send("Usage: `!secret <note>`")
+                return
+            try:
+                from codex.core.butler import CodexButler
+                butler = CodexButler()
+                result = butler.scribe(text, secret=True)
+                await ctx.send(f"```\n{result}\n```")
+            except ImportError:
+                await ctx.send("Butler Scribe not available.")
+
+        @self.command(name="journal")
+        async def cmd_journal(ctx):
+            """Show recent session log entries."""
+            try:
+                from codex.core.butler import CodexButler
+                butler = CodexButler()
+                entries = butler.get_recent_logs(limit=10)
+                if entries:
+                    text = "\n".join(entries)
+                    await ctx.send(f"```\n{text[:1990]}\n```")
+                else:
+                    await ctx.send("No session log entries yet.")
+            except ImportError:
+                await ctx.send("Butler Scribe not available.")
+
+        @self.command(name="universe")
+        async def cmd_universe(ctx):
+            """Show star chart / world registry."""
+            try:
+                from codex.core.services.universe_manager import UniverseManager
+            except ImportError:
+                await ctx.send("Universe Manager not available.")
+                return
+            um = UniverseManager()
+            universes = um.list_universes()
+            if not universes:
+                await ctx.send("No universes registered.")
+                return
+            lines = ["--- Star Chart ---"]
+            for u in universes:
+                name = getattr(u, 'name', str(u))
+                modules = getattr(u, 'modules', [])
+                lines.append(f"\n  {name}")
+                for mod in modules:
+                    mod_name = getattr(mod, 'name', str(mod))
+                    lines.append(f"    - {mod_name}")
+            await ctx.send(f"```\n" + "\n".join(lines)[:1990] + "\n```")
+
+        @self.command(name="tutorial")
+        async def cmd_tutorial(ctx, *, args: str = ""):
+            """Browse tutorial modules."""
+            try:
+                from codex.core.services.tutorial import TutorialRegistry
+                import codex.core.services.tutorial_content  # noqa: F401
+            except ImportError:
+                await ctx.send("Tutorial system not available.")
+                return
+            modules = TutorialRegistry.list_modules()
+            if not modules:
+                await ctx.send("No tutorial modules registered.")
+                return
+            if not args:
+                categories = {}
+                for mod in modules:
+                    cat = getattr(mod, 'category', 'general')
+                    categories.setdefault(cat, []).append(mod)
+                lines = ["--- Tutorial Modules ---"]
+                for cat, mods in sorted(categories.items()):
+                    lines.append(f"\n  [{cat.upper()}]")
+                    for mod in mods:
+                        name = getattr(mod, 'name', str(mod))
+                        desc = getattr(mod, 'description', '')
+                        lines.append(f"    {name}" + (f" — {desc}" if desc else ""))
+                lines.append("\nUsage: !tutorial <module_name>")
+                await ctx.send(f"```\n" + "\n".join(lines)[:1990] + "\n```")
+            else:
+                target = args.lower()
+                found = next((m for m in modules
+                               if getattr(m, 'name', '').lower() == target
+                               or target in getattr(m, 'name', '').lower()), None)
+                if not found:
+                    await ctx.send(f"Tutorial '{args}' not found.")
+                    return
+                pages = getattr(found, 'pages', [])
+                lines = [f"--- {found.name} ---"]
+                if hasattr(found, 'description'):
+                    lines.append(found.description)
+                for i, page in enumerate(pages, 1):
+                    title = getattr(page, 'title', f"Page {i}")
+                    content = getattr(page, 'content', '')
+                    lines.append(f"\n[{i}] {title}")
+                    lines.append(content)
+                await ctx.send(f"```\n" + "\n".join(lines)[:1990] + "\n```")
 
         @self.command(name="transition")
         async def cmd_transition(ctx):
