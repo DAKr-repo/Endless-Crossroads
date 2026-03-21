@@ -334,6 +334,25 @@ class DMDashboard:
         from codex.core.mechanics.quest import QuestTracker
         self.quests = QuestTracker()
 
+        # NPC tracker
+        from codex.core.mechanics.npc_tracker import NPCTracker
+        self.npc_tracker = NPCTracker()
+
+        # Session timer
+        from codex.core.mechanics.session_timer import SessionTimer
+        self.timer = SessionTimer()
+        self.timer.start()
+
+        # Session log
+        from codex.core.mechanics.session_log import SessionLog
+        self.session_log = SessionLog()
+
+        # D&D 5e specific
+        from codex.core.mechanics.concentration import ConcentrationTracker
+        from codex.core.mechanics.death_saves import DeathSaveTracker
+        self.concentration = ConcentrationTracker()
+        self.death_saves = DeathSaveTracker()
+
         # Rules quick-reference
         self._rules_data = self._load_rules_reference()
 
@@ -551,6 +570,19 @@ class DMDashboard:
                         f"Rep: {extra.get('rep', 0)} | "
                         f"Coin: {extra.get('coin', 0)}\n", style="white")
 
+        # D&D 5e: Concentration tracking
+        if vitals.system_tag == "DND5E":
+            conc = self.concentration.get_concentrating()
+            if conc:
+                text.append("\nConcentration:\n", style="bold blue")
+                for caster, spell in conc.items():
+                    text.append(f"  {caster}: {spell}\n", style="blue")
+
+            # Death saves
+            dying_text = self.death_saves.list_dying()
+            if dying_text != "No characters making death saves.":
+                text.append(f"\n{dying_text}\n", style="bold red")
+
         # Enemies in combat
         room_id = vitals.extra.get("room_id")
         if engine and room_id is not None:
@@ -602,6 +634,15 @@ class DMDashboard:
             if len(self._last_query) > 200:
                 truncated += "..."
             text.append(f"  {truncated}\n", style="dim white")
+
+        # Session timer
+        if self.timer.running:
+            elapsed = self.timer.elapsed_str()
+            text.append(f"\nSession: {elapsed}", style="bold")
+            pacing = self.timer.pacing_check()
+            if pacing:
+                text.append(f" ({pacing})", style="yellow")
+            text.append("\n")
 
         # Active quests (last 5)
         quest_summary = self.quests.active_summary(5)
@@ -787,6 +828,24 @@ class DMDashboard:
         elif cmd == "quest":
             return self._dispatch_quest(args)
 
+        elif cmd == "npcs":
+            return self._dispatch_npc(args)
+
+        elif cmd == "timer":
+            return self._dispatch_timer(args)
+
+        elif cmd == "log":
+            return self._dispatch_log(args)
+
+        elif cmd == "concentrate":
+            return self._dispatch_concentration(args)
+
+        elif cmd == "death":
+            return self._dispatch_death_save(args)
+
+        elif cmd == "budget":
+            return self._dispatch_encounter_budget(args)
+
         elif cmd == "help":
             return self._help_text()
 
@@ -819,6 +878,139 @@ class DMDashboard:
         else:
             # Treat as "add" if no recognized subcommand
             return self.quests.add(args.strip())
+
+    def _dispatch_npc(self, args: str) -> str:
+        """Handle npc subcommands: log, list, attitude, info, remove."""
+        parts = args.strip().split(maxsplit=1)
+        sub = parts[0].lower() if parts else "list"
+        sub_args = parts[1].strip() if len(parts) > 1 else ""
+        if sub == "log":
+            # npc log Name note text
+            npc_parts = sub_args.split(maxsplit=1)
+            name = npc_parts[0] if npc_parts else ""
+            note = npc_parts[1] if len(npc_parts) > 1 else ""
+            if not name:
+                return "Usage: npc log <name> [note]"
+            return self.npc_tracker.log(name, note=note)
+        elif sub in ("list", "all"):
+            return self.npc_tracker.list_npcs(attitude=sub_args)
+        elif sub == "attitude":
+            att_parts = sub_args.split(maxsplit=1)
+            if len(att_parts) < 2:
+                return "Usage: npc attitude <name> <friendly|neutral|hostile>"
+            return self.npc_tracker.set_attitude(att_parts[0], att_parts[1])
+        elif sub == "info":
+            return self.npc_tracker.get_info(sub_args)
+        elif sub == "remove":
+            return self.npc_tracker.remove(sub_args)
+        else:
+            # Treat as info lookup
+            return self.npc_tracker.get_info(args.strip())
+
+    def _dispatch_timer(self, args: str) -> str:
+        """Handle timer subcommands: start, stop, pause, resume, check."""
+        sub = args.strip().lower() or "check"
+        if sub == "start":
+            return self.timer.start()
+        elif sub == "stop":
+            return self.timer.stop()
+        elif sub == "pause":
+            return self.timer.pause()
+        elif sub == "resume":
+            return self.timer.resume()
+        else:
+            elapsed = self.timer.elapsed_str()
+            pacing = self.timer.pacing_check()
+            return f"Session time: {elapsed}" + (f" — {pacing}" if pacing else "")
+
+    def _dispatch_log(self, args: str) -> str:
+        """Handle log subcommands: add, save, recap."""
+        parts = args.strip().split(maxsplit=1)
+        sub = parts[0].lower() if parts else "recap"
+        sub_args = parts[1].strip() if len(parts) > 1 else ""
+        if sub == "add":
+            if not sub_args:
+                return "Usage: log add <note text>"
+            return self.session_log.add_note(sub_args)
+        elif sub == "save":
+            return self.session_log.save()
+        elif sub == "recap":
+            return self.session_log.load_last_recap()
+        else:
+            # Treat as note addition
+            return self.session_log.add_note(args.strip())
+
+    def _dispatch_concentration(self, args: str) -> str:
+        """Handle concentrate subcommands: <caster> <spell>, drop, check, list."""
+        if self.system_tag != "DND5E":
+            return "Concentration tracking is D&D 5e only."
+        parts = args.strip().split(maxsplit=1)
+        sub = parts[0].lower() if parts else "list"
+        sub_args = parts[1].strip() if len(parts) > 1 else ""
+        if sub == "drop":
+            return self.concentration.drop(sub_args) if sub_args else "Usage: concentrate drop <caster>"
+        elif sub == "check":
+            # concentrate check <caster> <damage>
+            check_parts = sub_args.split()
+            if len(check_parts) < 2:
+                return "Usage: concentrate check <caster> <damage>"
+            result = self.concentration.damage_check(check_parts[0], int(check_parts[1]))
+            return result or f"{check_parts[0]} is not concentrating."
+        elif sub == "pass":
+            return self.concentration.pass_save(sub_args)
+        elif sub == "fail":
+            return self.concentration.fail_save(sub_args)
+        elif sub == "list":
+            return self.concentration.list_active()
+        else:
+            # concentrate <caster> <spell>
+            if sub_args:
+                return self.concentration.concentrate(sub, sub_args)
+            return "Usage: concentrate <caster> <spell>"
+
+    def _dispatch_death_save(self, args: str) -> str:
+        """Handle death subcommands: start, success, fail, nat20, stabilize, list."""
+        if self.system_tag != "DND5E":
+            return "Death saves are D&D 5e only."
+        parts = args.strip().split(maxsplit=1)
+        sub = parts[0].lower() if parts else "list"
+        name = parts[1].strip() if len(parts) > 1 else ""
+        if sub == "start":
+            return self.death_saves.start_dying(name) if name else "Usage: death start <name>"
+        elif sub == "success":
+            return self.death_saves.save_success(name) if name else "Usage: death success <name>"
+        elif sub == "fail":
+            return self.death_saves.save_failure(name) if name else "Usage: death fail <name>"
+        elif sub == "nat20":
+            return self.death_saves.nat20(name) if name else "Usage: death nat20 <name>"
+        elif sub == "crit":
+            return self.death_saves.crit_fail(name) if name else "Usage: death crit <name>"
+        elif sub == "stabilize":
+            return self.death_saves.stabilize(name) if name else "Usage: death stabilize <name>"
+        else:
+            return self.death_saves.list_dying()
+
+    def _dispatch_encounter_budget(self, args: str) -> str:
+        """Handle budget command: budget <party_levels> vs <monster_crs>."""
+        from codex.core.mechanics.encounter_budget import calculate_encounter
+        if self.system_tag == "DND5E":
+            # Parse: budget 5,5,4,4 vs 3,1,1
+            if "vs" not in args:
+                return "Usage: budget <levels> vs <CRs>\nExample: budget 5,5,4,4 vs 3,1,1"
+            left, right = args.split("vs", 1)
+            try:
+                levels = [int(x.strip()) for x in left.strip().split(",") if x.strip()]
+                crs = [x.strip() for x in right.strip().split(",") if x.strip()]
+            except ValueError:
+                return "Usage: budget <levels> vs <CRs>"
+            return calculate_encounter("DND5E", party_levels=levels, monster_crs=crs)
+        elif self.system_tag in ("BITD", "SAV", "BOB", "CBRPNK", "CANDELA"):
+            # Parse: budget <tier> <num_enemies>
+            budget_parts = args.strip().split()
+            tier = int(budget_parts[0]) if budget_parts else 1
+            num = int(budget_parts[1]) if len(budget_parts) > 1 else 1
+            return calculate_encounter(self.system_tag, tier=tier, num_enemies=num)
+        return calculate_encounter(self.system_tag)
 
     # ─── Mechanics Handlers ────────────────────────────────────────────
 
@@ -1028,6 +1220,21 @@ class DMDashboard:
             "  quest complete <id> - Mark quest complete\n"
             "  quest abandon <id>  - Abandon quest\n"
             "  quest remove <id>   - Delete quest\n"
+            "  npcs log <name> [note] - Track NPC interaction\n"
+            "  npcs list [attitude] - List tracked NPCs\n"
+            "  npcs attitude <name> <type> - Set NPC attitude\n"
+            "  npcs info <name>    - Show NPC details\n"
+            "  timer [start|stop|pause|resume] - Session timer\n"
+            "  log add <note>      - Add persistent session note\n"
+            "  log save            - Save session log to file\n"
+            "  log recap           - Show last session recap\n"
+            "  concentrate <who> <spell> - Track concentration (5e)\n"
+            "  concentrate drop <who>    - Drop concentration\n"
+            "  concentrate check <who> <dmg> - Conc. save check\n"
+            "  death start <name>  - Begin death saves (5e)\n"
+            "  death success/fail <name> - Record save result\n"
+            "  death nat20/stabilize <name> - Special outcomes\n"
+            "  budget <levels> vs <CRs>  - Encounter budget (5e)\n"
             "  status              - Thermal/RAM vitals\n"
             "  refresh             - Re-read engine state\n"
             "  quit                - Exit dashboard\n"
