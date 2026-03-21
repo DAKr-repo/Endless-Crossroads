@@ -248,6 +248,7 @@ class Phase(Enum):
     BOB = auto()               # Band of Blades session
     CBRPNK = auto()            # CBR+PNK session
     CANDELA = auto()           # Candela Obscura session
+    CREATING = auto()          # Character creation in progress
 
 
 def _scan_pending_prologues() -> list[dict]:
@@ -286,6 +287,8 @@ class TelegramSession:
     initiative_order: list = field(default_factory=list)
     active_turn: str = ""
     scene_state: object = None      # _FITDSceneState (optional)
+    stacked_char: object = None     # StackedCharacter (for engine stacking)
+    wizard_state: object = None     # HeadlessWizard (for multi-step creation)
 
     def start_game(self) -> str:
         """Initialize a new Crown & Crew session."""
@@ -1255,6 +1258,214 @@ async def cmd_module(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text(f"Failed to load module: {e}")
 
 
+def _format_wizard_prompt(prompt: dict) -> str:
+    """Format a HeadlessWizard step prompt as plain text."""
+    lines = [f"--- {prompt.get('label', 'Step')} ({prompt['step_index']+1}/{prompt['total_steps']}) ---"]
+    if prompt.get("prompt"):
+        lines.append(prompt["prompt"])
+    ptype = prompt["type"]
+    if ptype == "text_input":
+        lines.append("Type your answer:")
+    elif ptype in ("choice", "dependent_choice"):
+        for i, opt in enumerate(prompt.get("options", []), 1):
+            desc = f" - {opt['description']}" if opt.get("description") else ""
+            lines.append(f"  {i}. {opt['label']}{desc}")
+        lines.append("Type a number to choose:")
+    elif ptype == "stat_roll":
+        for name, val in zip(prompt.get("assign_to", []), prompt.get("rolled_values", [])):
+            lines.append(f"  {name}: {val}")
+        lines.append("(Auto-assigned)")
+    elif ptype == "stat_pool_allocate":
+        lines.append(f"Pool: {prompt.get('pool', [])}")
+        lines.append(f"Assign to: {', '.join(prompt.get('assign_to', []))}")
+        lines.append("Reply: stat_name=value (e.g. STR=14 DEX=12 CON=10)")
+    elif ptype == "point_allocate":
+        lines.append(f"Points: {prompt.get('points', 0)} (max {prompt.get('max_per_category', 2)} per)")
+        for cat in prompt.get("categories", []):
+            lines.append(f"  {cat}: {prompt.get('current', {}).get(cat, 0)}")
+        lines.append("Reply: category=dots (e.g. Hunt=2 Study=1)")
+    elif ptype == "ability_select":
+        lines.append(f"Choose {prompt.get('count', 1)} from:")
+        for ab in prompt.get("abilities", []):
+            lines.append(f"  - {ab}")
+        lines.append("Reply with comma-separated names:")
+    elif ptype == "auto_derive":
+        lines.append("(Auto-calculated)")
+    return "\n".join(lines)
+
+
+def _parse_wizard_answer(wizard: object, text: str) -> object:
+    """Parse text input into the right answer type for the current wizard step."""
+    from codex.forge.char_wizard_headless import HeadlessWizard
+    if not isinstance(wizard, HeadlessWizard):
+        return text
+    prompt = wizard.current_step_prompt()
+    if not prompt:
+        return text
+    ptype = prompt["type"]
+    if ptype == "text_input":
+        return text
+    elif ptype in ("choice", "dependent_choice"):
+        try:
+            return int(text)
+        except ValueError:
+            return text
+    elif ptype in ("stat_pool_allocate", "point_allocate"):
+        # Parse key=value pairs
+        result: dict = {}
+        for pair in text.replace(",", " ").split():
+            if "=" in pair:
+                k, v = pair.split("=", 1)
+                try:
+                    result[k.strip()] = int(v.strip())
+                except ValueError:
+                    pass
+        return result
+    elif ptype == "ability_select":
+        return [a.strip() for a in text.split(",")]
+    return text
+
+
+async def _handle_wizard_input(update: Update, session: "TelegramSession", text: str) -> None:
+    """Process wizard step answers from Telegram messages."""
+    ws = session.wizard_state
+
+    # System selection phase
+    if isinstance(ws, dict) and "pending_system_select" in ws:
+        systems = ws["pending_system_select"]
+        try:
+            idx = int(text) - 1
+            if 0 <= idx < len(systems):
+                from codex.forge.char_wizard_headless import HeadlessWizard
+                wizard = HeadlessWizard(systems[idx])
+                session.wizard_state = wizard
+                prompt = wizard.current_step_prompt()
+                if prompt:
+                    await update.message.reply_text(
+                        f"```\n{_format_wizard_prompt(prompt)}\n```", parse_mode='Markdown')
+                return
+        except (ValueError, IndexError):
+            pass
+        await update.message.reply_text("Invalid selection. Type a number.")
+        return
+
+    # Transition system selection
+    if isinstance(ws, dict) and "pending_transition" in ws:
+        targets = ws["pending_transition"]
+        try:
+            idx = int(text) - 1
+            if 0 <= idx < len(targets):
+                target_id = targets[idx]
+                from codex.forge.char_wizard_headless import HeadlessWizard
+                from codex.forge.char_wizard import CharacterBuilderEngine
+                engine = CharacterBuilderEngine()
+                schema = engine.get_system(target_id)
+                if not schema:
+                    await update.message.reply_text(f"No schema for {target_id}.")
+                    session.wizard_state = None
+                    return
+                wizard = HeadlessWizard(schema)
+                session.wizard_state = {"transition_wizard": wizard, "target_system": target_id, "from_system": ws["from_system"]}
+                prompt = wizard.current_step_prompt()
+                if prompt:
+                    await update.message.reply_text(
+                        f"```\nCreating character for {target_id}...\n\n{_format_wizard_prompt(prompt)}\n```",
+                        parse_mode='Markdown')
+                return
+        except (ValueError, IndexError):
+            pass
+        await update.message.reply_text("Invalid selection.")
+        return
+
+    # Transition wizard step processing
+    if isinstance(ws, dict) and "transition_wizard" in ws:
+        wizard = ws["transition_wizard"]
+        answer = _parse_wizard_answer(wizard, text)
+        result = wizard.submit_answer(answer)
+        if result["ok"]:
+            next_prompt = wizard.current_step_prompt()
+            if next_prompt is None or wizard.complete:
+                await update.message.reply_text(
+                    f"```\nCharacter created for {ws['target_system']}! Transition complete.\n```",
+                    parse_mode='Markdown')
+                session.wizard_state = None
+            else:
+                await update.message.reply_text(
+                    f"```\n{_format_wizard_prompt(next_prompt)}\n```", parse_mode='Markdown')
+        else:
+            await update.message.reply_text(f"Error: {result.get('error', 'Invalid input')}")
+        return
+
+    # Normal wizard (character creation)
+    from codex.forge.char_wizard_headless import HeadlessWizard
+    if not isinstance(ws, HeadlessWizard):
+        session.wizard_state = None
+        return
+    wizard = ws
+    answer = _parse_wizard_answer(wizard, text)
+    result = wizard.submit_answer(answer)
+    if result["ok"]:
+        next_prompt = wizard.current_step_prompt()
+        if next_prompt is None or wizard.complete:
+            sheet = wizard.sheet
+            await update.message.reply_text(
+                f"```\nCharacter '{sheet.name}' created for {sheet.system_id}!\nStats: {sheet.stats}\n```",
+                parse_mode='Markdown')
+            session.wizard_state = None
+        else:
+            await update.message.reply_text(
+                f"```\n{_format_wizard_prompt(next_prompt)}\n```", parse_mode='Markdown')
+    else:
+        await update.message.reply_text(f"Error: {result.get('error', 'Invalid input')}")
+
+
+async def cmd_create(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    """Handle /create command — schema-driven character creation."""
+    try:
+        from codex.forge.char_wizard_headless import HeadlessWizard  # noqa: F401
+        from codex.forge.char_wizard import CharacterBuilderEngine
+    except ImportError:
+        await update.message.reply_text("Character creation not available.")
+        return
+    engine = CharacterBuilderEngine()
+    systems = engine.list_systems()
+    if not systems:
+        await update.message.reply_text("No character creation schemas found.")
+        return
+    session = get_session(update.effective_chat.id)
+    lines = ["--- Character Creation ---", "Choose a game system:"]
+    for i, schema in enumerate(systems, 1):
+        lines.append(f"  {i}. {schema.display_name} ({schema.system_id})")
+    lines.append(f"\nType a number (1-{len(systems)}):")
+    session.wizard_state = {"pending_system_select": systems}
+    await update.message.reply_text(f"```\n" + "\n".join(lines) + "\n```", parse_mode='Markdown')
+
+
+async def cmd_transition(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    """Handle /transition command — stack into another FITD system."""
+    session = get_session(update.effective_chat.id)
+    if session.phase not in (Phase.BITD, Phase.SAV, Phase.BOB, Phase.CBRPNK, Phase.CANDELA):
+        await update.message.reply_text("Engine stacking only works in FITD sessions.")
+        return
+    try:
+        from codex.core.engine_stack import STACKABLE_FAMILIES
+    except ImportError:
+        await update.message.reply_text("Engine stacking not available.")
+        return
+    current = session.game_type
+    fitd_systems = STACKABLE_FAMILIES.get("fitd", set())
+    targets = sorted(s for s in fitd_systems if s != current)
+    if not targets:
+        await update.message.reply_text("No compatible systems.")
+        return
+    lines = ["--- Engine Transition ---", f"Current: {current}", "", "Stack into:"]
+    for i, sys_id in enumerate(targets, 1):
+        lines.append(f"  {i}. {sys_id}")
+    lines.append(f"\nType a number (1-{len(targets)}):")
+    session.wizard_state = {"pending_transition": targets, "from_system": current}
+    await update.message.reply_text(f"```\n" + "\n".join(lines) + "\n```", parse_mode='Markdown')
+
+
 async def cmd_dm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Handle /dm command — DM Tools suite."""
     try:
@@ -1430,6 +1641,11 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     text = update.message.text.lower().strip()
     session = get_session(update.effective_chat.id)
+
+    # Character creation / transition wizard intercept
+    if session.wizard_state is not None:
+        await _handle_wizard_input(update, session, text)
+        return
 
     # Dungeon session (Burnwillow / DnD5e / Cosmere free-text input)
     if session.phase in (Phase.DUNGEON, Phase.DND5E, Phase.COSMERE, Phase.BITD, Phase.SAV, Phase.BOB, Phase.CBRPNK, Phase.CANDELA) and session.bridge:
@@ -1827,6 +2043,8 @@ async def run_telegram_bot(core=None):
     app.add_handler(CommandHandler("crown", cmd_crown))
     app.add_handler(CommandHandler("ashburn", cmd_ashburn))
     app.add_handler(CommandHandler("quest", cmd_quest))
+    app.add_handler(CommandHandler("create", cmd_create))
+    app.add_handler(CommandHandler("transition", cmd_transition))
     app.add_handler(CommandHandler("dm", cmd_dm))
     app.add_handler(CommandHandler("roll", cmd_roll))
     app.add_handler(CommandHandler("chronology", cmd_chronology))
@@ -2025,6 +2243,8 @@ def main():
     app.add_handler(CommandHandler("crown", cmd_crown))
     app.add_handler(CommandHandler("ashburn", cmd_ashburn))
     app.add_handler(CommandHandler("quest", cmd_quest))
+    app.add_handler(CommandHandler("create", cmd_create))
+    app.add_handler(CommandHandler("transition", cmd_transition))
     app.add_handler(CommandHandler("dm", cmd_dm))
     app.add_handler(CommandHandler("roll", cmd_roll))
     app.add_handler(CommandHandler("voice", cmd_voice_tg))

@@ -235,6 +235,7 @@ HELP_TEXT = """```
 ║  !dm     :: DM Tools (dice/npc/loot)  ║
 ║  !monster :: Bestiary creature lookup  ║
 ║  !create :: Create a character         ║
+║  !transition :: Stack FITD engine      ║
 ║  !map    :: Show current map as PNG    ║
 ║                                        ║
 ║  GAMEPLAY:                             ║
@@ -286,6 +287,7 @@ class Phase(Enum):
     BOB = auto()            # Band of Blades session
     CBRPNK = auto()         # CBR+PNK session
     CANDELA = auto()        # Candela Obscura session
+    CREATING = auto()       # Character creation in progress
 
 
 # =============================================================================
@@ -844,6 +846,8 @@ class DiscordSession:
     initiative_order: list = field(default_factory=list)
     active_turn: str = ""
     scene_state: object = None      # _FITDSceneState (optional, for module scenes)
+    stacked_char: object = None     # StackedCharacter (for engine stacking)
+    wizard_state: object = None     # HeadlessWizard or pending-selection dict
 
     def start_game(self) -> str:
         """Initialize a new Crown & Crew session (WO-V14.0: morning events)."""
@@ -1469,6 +1473,50 @@ from codex.services.voice_bridge import VoiceBridge, parse_voice_cue, get_npc_sp
 
 
 # =============================================================================
+# WIZARD HELPERS
+# =============================================================================
+
+def _format_wizard_prompt(prompt: dict) -> str:
+    """Format a HeadlessWizard step prompt as plain text for bot display."""
+    lines = [f"--- {prompt.get('label', 'Step')} ({prompt['step_index']+1}/{prompt['total_steps']}) ---"]
+    if prompt.get("prompt"):
+        lines.append(prompt["prompt"])
+
+    ptype = prompt["type"]
+    if ptype == "text_input":
+        lines.append("Type your answer:")
+    elif ptype in ("choice", "dependent_choice"):
+        for i, opt in enumerate(prompt.get("options", []), 1):
+            desc = f" - {opt['description']}" if opt.get("description") else ""
+            lines.append(f"  {i}. {opt['label']}{desc}")
+        lines.append("Type a number to choose:")
+    elif ptype == "stat_roll":
+        rolls = prompt.get("rolled_values", [])
+        assigns = prompt.get("assign_to", [])
+        for name, val in zip(assigns, rolls):
+            lines.append(f"  {name}: {val}")
+        lines.append("(Auto-assigned)")
+    elif ptype == "stat_pool_allocate":
+        lines.append(f"Pool: {prompt.get('pool', [])}")
+        lines.append(f"Assign to: {', '.join(prompt.get('assign_to', []))}")
+        lines.append("Reply with: stat_name=value for each (e.g. STR=14 DEX=12 CON=10)")
+    elif ptype == "point_allocate":
+        lines.append(f"Points to distribute: {prompt.get('points', 0)} (max {prompt.get('max_per_category', 2)} per category)")
+        current = prompt.get("current", {})
+        for cat in prompt.get("categories", []):
+            lines.append(f"  {cat}: {current.get(cat, 0)}")
+        lines.append("Reply with: category=dots for each (e.g. Hunt=2 Study=1)")
+    elif ptype == "ability_select":
+        lines.append(f"Choose {prompt.get('count', 1)} from:")
+        for ab in prompt.get("abilities", []):
+            lines.append(f"  - {ab}")
+        lines.append("Reply with comma-separated names:")
+    elif ptype == "auto_derive":
+        lines.append("(Auto-calculated)")
+    return "\n".join(lines)
+
+
+# =============================================================================
 # DISCORD BOT — Command Priority System
 # =============================================================================
 
@@ -1988,6 +2036,34 @@ Type `!travel` when ready.""")
                     await ctx.send(f"Module '{match}' loaded but no scenes found.")
             except Exception as e:
                 await ctx.send(f"Failed to load module: {e}")
+
+        @self.command(name="transition")
+        async def cmd_transition(ctx):
+            """Transition to another FITD system (engine stacking)."""
+            session = get_session(ctx.channel.id)
+            if session.phase not in (Phase.BITD, Phase.SAV, Phase.BOB, Phase.CBRPNK, Phase.CANDELA):
+                await ctx.send("Engine stacking only works in FITD sessions.")
+                return
+            try:
+                from codex.core.engine_stack import STACKABLE_FAMILIES, can_stack
+            except ImportError:
+                await ctx.send("Engine stacking not available.")
+                return
+
+            current = session.game_type
+            fitd_systems = STACKABLE_FAMILIES.get("fitd", frozenset())
+            targets = sorted(s for s in fitd_systems if s != current)
+            if not targets:
+                await ctx.send("No compatible systems to transition to.")
+                return
+
+            lines = ["--- Engine Transition ---", f"Current system: {current}", "", "Stack into:"]
+            for i, sys_id in enumerate(targets, 1):
+                lines.append(f"  {i}. {sys_id}")
+            lines.append(f"\nType a number (1-{len(targets)}):")
+
+            session.wizard_state = {"pending_transition": targets, "from_system": current}
+            await ctx.send(f"```\n" + "\n".join(lines) + "\n```")
 
         @self.command(name="companion")
         async def cmd_companion(ctx):
@@ -2622,18 +2698,32 @@ Type `!travel` when ready.""")
 
         @self.command(name="create")
         async def cmd_create(ctx):
-            """Start character creation for Discord."""
-            view = CharacterCreationView(ctx.author.id, ctx.channel)
-            embed = discord.Embed(
-                title="Character Creation",
-                description="Let's build your character! Enter a name to begin.",
-                color=0x3498DB,
-            )
-            embed.add_field(
-                name="Step 1: Name",
-                value="Type your character's name in chat.",
-            )
-            await ctx.send(embed=embed, view=view)
+            """Start schema-driven character creation."""
+            try:
+                from codex.forge.char_wizard_headless import HeadlessWizard
+                from codex.forge.char_wizard import CharacterBuilderEngine
+            except ImportError:
+                await ctx.send("Character creation system not available.")
+                return
+
+            engine = CharacterBuilderEngine()
+            systems = engine.list_systems()
+            if not systems:
+                await ctx.send("No character creation schemas found.")
+                return
+
+            session = get_session(ctx.channel.id)
+            # If a wizard is already active, clear it and start fresh
+            session.wizard_state = None
+            session.phase = Phase.IDLE
+
+            lines = ["--- Character Creation ---", "Choose a game system:"]
+            for i, schema in enumerate(systems, 1):
+                lines.append(f"  {i}. {schema.display_name} ({schema.system_id})")
+            lines.append(f"\nType a number (1-{len(systems)}):")
+
+            session.wizard_state = {"pending_system_select": systems}
+            await ctx.send(f"```\n" + "\n".join(lines) + "\n```")
 
         @self.command(name="map")
         async def cmd_map(ctx):
@@ -3056,6 +3146,165 @@ Type `!travel` when ready.""")
         # ─────────────────────────────────────────────────────────────────────
         session = get_session(message.channel.id)
         text = message.content.lower().strip()
+        raw_text = message.content.strip()
+
+        # ─────────────────────────────────────────────────────────────────────
+        # Character creation wizard intercept
+        # ─────────────────────────────────────────────────────────────────────
+        if session.wizard_state is not None:
+            # System selection phase (pending_system_select dict)
+            if isinstance(session.wizard_state, dict) and "pending_system_select" in session.wizard_state:
+                systems = session.wizard_state["pending_system_select"]
+                try:
+                    idx = int(raw_text) - 1
+                    if 0 <= idx < len(systems):
+                        from codex.forge.char_wizard_headless import HeadlessWizard
+                        wizard = HeadlessWizard(systems[idx])
+                        session.wizard_state = wizard
+                        session.phase = Phase.CREATING
+                        prompt = wizard.current_step_prompt()
+                        if prompt:
+                            # Auto-advance through stat_roll / auto_derive (no user input needed)
+                            while prompt and prompt["type"] in ("stat_roll", "auto_derive"):
+                                await message.channel.send(
+                                    f"```\n{_format_wizard_prompt(prompt)}\n```")
+                                prompt = wizard.current_step_prompt()
+                            if prompt:
+                                await message.channel.send(
+                                    f"```\n{_format_wizard_prompt(prompt)}\n```")
+                            else:
+                                # Creation done immediately (degenerate schema)
+                                await message.channel.send(
+                                    f"```\nCharacter created for {systems[idx].system_id}!\n```")
+                                session.wizard_state = None
+                                session.phase = Phase.IDLE
+                        return
+                except (ValueError, IndexError):
+                    pass
+                await message.channel.send("Invalid selection. Type a number.")
+                return
+
+            # Engine transition selection phase (pending_transition dict)
+            if isinstance(session.wizard_state, dict) and "pending_transition" in session.wizard_state:
+                targets = session.wizard_state["pending_transition"]
+                from_system = session.wizard_state.get("from_system", "")
+                try:
+                    idx = int(raw_text) - 1
+                    if 0 <= idx < len(targets):
+                        target_id = targets[idx]
+                        try:
+                            from codex.core.engine_stack import StackedCharacter, can_stack
+                            if can_stack(from_system, target_id):
+                                if session.stacked_char is None:
+                                    session.stacked_char = StackedCharacter(system_id=from_system)
+                                session.stacked_char.push_layer(system_id=target_id)
+                                await message.channel.send(
+                                    f"```\nTransitioned from {from_system} to {target_id}.\n"
+                                    f"Stacked layers: {session.stacked_char.layer_count}\n```")
+                            else:
+                                await message.channel.send(
+                                    f"Cannot stack {from_system} with {target_id}.")
+                        except Exception as e:
+                            await message.channel.send(f"Transition error: {e}")
+                        session.wizard_state = None
+                        return
+                except (ValueError, IndexError):
+                    pass
+                await message.channel.send("Invalid selection. Type a number.")
+                return
+
+            # Active wizard step-answer processing
+            from codex.forge.char_wizard_headless import HeadlessWizard
+            if not isinstance(session.wizard_state, HeadlessWizard):
+                # Stale / unknown state — clear it
+                session.wizard_state = None
+                session.phase = Phase.IDLE
+                await message.channel.send("Wizard state lost. Use `!create` to start over.")
+                return
+
+            wizard = session.wizard_state
+            prompt = wizard.current_step_prompt()
+            if prompt is None or wizard.complete:
+                # Already done somehow
+                session.wizard_state = None
+                session.phase = Phase.IDLE
+                return
+
+            ptype = prompt["type"]
+
+            # Parse answer according to step type
+            if ptype in ("choice", "dependent_choice"):
+                try:
+                    answer = int(raw_text)
+                except ValueError:
+                    await message.channel.send("Type a number to choose.")
+                    return
+            elif ptype == "stat_pool_allocate":
+                # Parse "STR=14 DEX=12 CON=10" style
+                try:
+                    answer = {}
+                    for part in raw_text.split():
+                        k, v = part.split("=")
+                        answer[k.strip()] = int(v.strip())
+                except ValueError:
+                    await message.channel.send(
+                        "Format: stat_name=value for each stat (e.g. STR=14 DEX=12)")
+                    return
+            elif ptype == "point_allocate":
+                # Parse "Hunt=2 Study=1" style
+                try:
+                    answer = {}
+                    for part in raw_text.split():
+                        k, v = part.split("=")
+                        answer[k.strip()] = int(v.strip())
+                except ValueError:
+                    await message.channel.send(
+                        "Format: category=dots for each (e.g. Hunt=2 Study=1)")
+                    return
+            elif ptype == "ability_select":
+                # Parse comma-separated list
+                answer = [a.strip() for a in raw_text.split(",") if a.strip()]
+                if not answer:
+                    await message.channel.send("Reply with comma-separated ability names.")
+                    return
+            else:
+                # text_input (and stat_roll / auto_derive are handled by current_step_prompt)
+                answer = raw_text
+
+            result = wizard.submit_answer(answer)
+            if result["ok"]:
+                # Fetch next step (skip auto-steps, which self-advance)
+                next_prompt = wizard.current_step_prompt()
+                while next_prompt and next_prompt["type"] in ("stat_roll", "auto_derive"):
+                    await message.channel.send(
+                        f"```\n{_format_wizard_prompt(next_prompt)}\n```")
+                    next_prompt = wizard.current_step_prompt()
+
+                if next_prompt is None or wizard.complete:
+                    # Creation complete
+                    sheet = wizard.sheet
+                    import json as _json
+                    save_dir = _ROOT / "state" / "discord_characters"
+                    save_dir.mkdir(parents=True, exist_ok=True)
+                    save_path = save_dir / f"{message.author.id}.json"
+                    save_path.write_text(_json.dumps({
+                        "system": sheet.system_id,
+                        "name": sheet.name,
+                        "choices": sheet.choices,
+                        "stats": sheet.stats,
+                        "action_ratings": dict(sheet.action_ratings),
+                    }, indent=2, default=str))
+                    await message.channel.send(
+                        f"```\nCharacter '{sheet.name}' created for {sheet.system_id}!\n"
+                        f"Stats: {sheet.stats}\n```")
+                    session.wizard_state = None
+                    session.phase = Phase.IDLE
+                else:
+                    await message.channel.send(
+                        f"```\n{_format_wizard_prompt(next_prompt)}\n```")
+            else:
+                await message.channel.send(f"Error: {result.get('error', 'Invalid input')}")
+            return
 
         # Dungeon session (Burnwillow / DnD5e / Cosmere free-text input)
         if session.phase in (Phase.DUNGEON, Phase.DND5E, Phase.COSMERE, Phase.BITD, Phase.SAV, Phase.BOB, Phase.CBRPNK, Phase.CANDELA):
