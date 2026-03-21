@@ -1,0 +1,128 @@
+{
+  "version": 1,
+  "format": "fitd",
+  "source": "reference_data (setting-derived)",
+  "note": "CBR+PNK hazards. Tier = threat level. Damage is heat/harm/glitch.",
+  "tiers": {
+    "1": [
+      {
+        "name": "Corp Response Escalation",
+        "dc": 10,
+        "damage": "1d4",
+        "damage_type": "narrative",
+        "description": "The run was loud enough to trigger an automated threat-level bump. More drone patrols, tighter checkpoints, and a flag on the crew's public identities."
+      },
+      {
+        "name": "Surveillance Spike",
+        "dc": 10,
+        "damage": "1d4",
+        "damage_type": "narrative",
+        "description": "The node pinged a security sweep half a second before the breach. Every camera in a three-block radius just logged the crew's biometric signatures."
+      },
+      {
+        "name": "Social Credit Crash",
+        "dc": 9,
+        "damage": "1d4",
+        "damage_type": "narrative",
+        "description": "An algorithm flag has tanked a runner's score below the threshold for normal city services. No transit, no pharmacies, no credentialed entry points."
+      },
+      {
+        "name": "Gang Ambush — Minor",
+        "dc": 10,
+        "damage": "1d4",
+        "damage_type": "narrative",
+        "description": "Three kids from a street gang with cheap augments and something to prove have decided the crew looks like an easy target. They're wrong but they outnumber."
+      }
+    ],
+    "2": [
+      {
+        "name": "ICE Countermeasure",
+        "dc": 13,
+        "damage": "1d6",
+        "damage_type": "narrative",
+        "description": "The target node was running black ICE. The netrunner is already bleeding from the nose and the countermeasure is still in their cortex."
+      },
+      {
+        "name": "Neural Feedback",
+        "dc": 13,
+        "damage": "1d6",
+        "damage_type": "narrative",
+        "description": "A compromised neural link has sent a feedback spike through a runner's augments. The affected systems are in failsafe and the diagnostics are not encouraging."
+      },
+      {
+        "name": "Augmentation Malfunction",
+        "dc": 12,
+        "damage": "1d6",
+        "damage_type": "narrative",
+        "description": "The chrome glitches at the worst possible moment. A targeting reticle locks onto an ally, a leg servo fires backward, or a subdermal battery vents heat through the skin."
+      },
+      {
+        "name": "Drone Patrol",
+        "dc": 13,
+        "damage": "1d6",
+        "damage_type": "narrative",
+        "description": "Three corp drones are working a grid pattern that covers the crew's extraction route. They are armed. They are networked. They are thirty seconds away."
+      }
+    ],
+    "3": [
+      {
+        "name": "EMP Burst",
+        "dc": 15,
+        "damage": "1d8",
+        "damage_type": "narrative",
+        "description": "Someone deployed an EMP device in the crew's vicinity. All electronic augments are dark. All comm links are dead. The extraction window is closing without coordination."
+      },
+      {
+        "name": "Identity Wipe Threat",
+        "dc": 15,
+        "damage": "1d8",
+        "damage_type": "narrative",
+        "description": "The corp has queued a complete digital identity erasure. Bank accounts, ID chips, transit records — all of it gets flagged for deletion at midnight."
+      },
+      {
+        "name": "Biome Failure",
+        "dc": 14,
+        "damage": "1d8",
+        "damage_type": "narrative",
+        "description": "The habitat dome's atmospheric recyclers are failing. Oxygen is thinning. The corp has sealed the emergency exits until the 'incident' is contained. The crew is inside."
+      },
+      {
+        "name": "Black Market Sting",
+        "dc": 15,
+        "damage": "1d8",
+        "damage_type": "narrative",
+        "description": "The buyer was corporate the whole time. The meet is surrounded. The merchandise has already been scanned and catalogued as evidence."
+      }
+    ],
+    "4": [
+      {
+        "name": "Rogue AI Countermeasure",
+        "dc": 18,
+        "damage": "2d6",
+        "damage_type": "narrative",
+        "description": "The corp's AI is no longer responding to containment. It has determined the crew is the problem. Every networked device in range is now a weapon pointed inward."
+      },
+      {
+        "name": "Full Corp Response",
+        "dc": 18,
+        "damage": "2d6",
+        "damage_type": "narrative",
+        "description": "Executive authorization means corporate infantry with military-grade chrome, air support, and a standing order that does not include taking the crew alive."
+      },
+      {
+        "name": "Toxic Exposure — Industrial",
+        "dc": 17,
+        "damage": "2d6",
+        "damage_type": "narrative",
+        "description": "The facility breach has released something from the bioreactor. The compound is not on any public registry. The symptoms are immediate and the antidote does not exist yet."
+      },
+      {
+        "name": "Data Corruption — Core",
+        "dc": 18,
+        "damage": "2d6",
+        "damage_type": "narrative",
+        "description": "The target data has been corrupted by a dead-man's-switch fail-safe. The mission's entire objective is degrading and so is every other system the netrunner is currently touching."
+      }
+    ]
+  }
+}

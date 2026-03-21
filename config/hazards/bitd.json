@@ -1,0 +1,128 @@
+{
+  "version": 1,
+  "format": "fitd",
+  "source": "reference_data (setting-derived)",
+  "note": "Doskvol hazards. Tier = narrative difficulty (1-4). Damage is narrative harm.",
+  "tiers": {
+    "1": [
+      {
+        "name": "Bluecoat Patrol",
+        "dc": 10,
+        "damage": "1d4",
+        "damage_type": "narrative",
+        "description": "A beat officer rounds the corner at the wrong moment. Whistles, cudgels, and an arrest warrant with your name on it."
+      },
+      {
+        "name": "Gang Lookout Spotted",
+        "dc": 10,
+        "damage": "1d4",
+        "damage_type": "narrative",
+        "description": "A rival crew's spotter clocks you in their territory. By tomorrow, everyone will know you were here."
+      },
+      {
+        "name": "Weak Ghost Encounter",
+        "dc": 9,
+        "damage": "1d4",
+        "damage_type": "narrative",
+        "description": "A recently deceased soul, still anchored by obsession, rattles nearby. Its touch leaves cold dread and a shaking hand."
+      },
+      {
+        "name": "Vice Entanglement",
+        "dc": 10,
+        "damage": "1d4",
+        "damage_type": "narrative",
+        "description": "An old debt surfaces at a gambling den or a vice purveyor calls in a favour. Stress accumulates with every refusal."
+      }
+    ],
+    "2": [
+      {
+        "name": "Inspector's Tail",
+        "dc": 13,
+        "damage": "1d6",
+        "damage_type": "narrative",
+        "description": "A plainclothes Inspector has been building a file on your crew. The surveillance is methodical and the evidence is already considerable."
+      },
+      {
+        "name": "Electroplasmic Discharge",
+        "dc": 13,
+        "damage": "1d6",
+        "damage_type": "narrative",
+        "description": "A cracked electroplasm conduit or a mishandled ghost-slayer sends a blinding arc of blue-white energy through the room."
+      },
+      {
+        "name": "Canal Ambush",
+        "dc": 12,
+        "damage": "1d6",
+        "damage_type": "narrative",
+        "description": "The gondola grinds to a halt. Ropes stretch across the waterway and figures drop from the bridge above. This is a toll."
+      },
+      {
+        "name": "Spirit Possession Attempt",
+        "dc": 13,
+        "damage": "1d6",
+        "damage_type": "narrative",
+        "description": "A hungry ghost tries to slip into a crew member's body through a moment of weakness or emotional fracture."
+      }
+    ],
+    "3": [
+      {
+        "name": "Spirit Warden Response",
+        "dc": 15,
+        "damage": "1d8",
+        "damage_type": "narrative",
+        "description": "Bronze masks. Ghost-slayers. They know something unnatural happened here and they are here to contain it — including anyone who witnessed it."
+      },
+      {
+        "name": "Rival Gang War Spills Over",
+        "dc": 15,
+        "damage": "1d8",
+        "damage_type": "narrative",
+        "description": "The Lampblacks and Red Sashes have chosen tonight and this street. Crossbows fire from both sides with no interest in innocent bystanders."
+      },
+      {
+        "name": "Leviathan Blood Toxicity",
+        "dc": 14,
+        "damage": "1d8",
+        "damage_type": "narrative",
+        "description": "Exposure to improperly stored leviathan blood corrodes the skin, distorts vision with ghost-field overlays, and induces hunger for darkness."
+      },
+      {
+        "name": "Deathseeker Crow Warning",
+        "dc": 15,
+        "damage": "1d8",
+        "damage_type": "narrative",
+        "description": "A trained crow lands on a crew member's shoulder and stares without blinking. Someone on this street is marked for death — possibly you."
+      }
+    ],
+    "4": [
+      {
+        "name": "Demonic Manifestation",
+        "dc": 18,
+        "damage": "2d6",
+        "damage_type": "narrative",
+        "description": "Something was summoned that should not have been. It fills the room with wrongness and feeds on will as easily as flesh."
+      },
+      {
+        "name": "Imperial Crackdown",
+        "dc": 18,
+        "damage": "2d6",
+        "damage_type": "narrative",
+        "description": "The Lord Governor has declared a district lockdown. Every exit is manned. Every name is being checked. A major score just became a survival scenario."
+      },
+      {
+        "name": "Dark Bargain Backlash",
+        "dc": 17,
+        "damage": "2d6",
+        "damage_type": "narrative",
+        "description": "A deal struck in a moment of desperation comes due. The entity doesn't negotiate. The debt is paid in flesh, memory, or something worse."
+      },
+      {
+        "name": "Vault Trap — Ancient",
+        "dc": 18,
+        "damage": "2d6",
+        "damage_type": "narrative",
+        "description": "The vault designers anticipated thieves. Electroplasmic mines, spectral alarms, and a bound guardian that has been waiting in the dark for forty years."
+      }
+    ]
+  }
+}

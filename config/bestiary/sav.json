@@ -1,0 +1,260 @@
+{
+  "version": 1,
+  "format": "fitd",
+  "source": "reference_data (setting-derived)",
+  "note": "Procyon sector adversaries. Tier = threat level, quality = combat skill.",
+  "tiers": {
+    "1": [
+      {
+        "name": "Dyrinek Gang Member",
+        "faction": "Dyrinek",
+        "tier": 1,
+        "quality": 1,
+        "threat_level": 1,
+        "scale": "individual",
+        "description": "A scrappy criminal from one of Procyon's smaller syndicates. Cheap weapon, cheaper loyalty.",
+        "capabilities": [
+          "brawl",
+          "intimidate",
+          "fence_goods"
+        ],
+        "weakness": "better offer, rival gang pressure"
+      },
+      {
+        "name": "Cobalt Dockworker",
+        "faction": "Cobalt Syndicate",
+        "tier": 1,
+        "quality": 1,
+        "threat_level": 1,
+        "scale": "individual",
+        "description": "A union dockworker with strong arms and stronger opinions about who unloads what.",
+        "capabilities": [
+          "brawl",
+          "cargo_manifest_knowledge",
+          "union_backup"
+        ],
+        "weakness": "corp authority figures, getting paid"
+      },
+      {
+        "name": "Scavenger",
+        "faction": "independent",
+        "tier": 1,
+        "quality": 1,
+        "threat_level": 1,
+        "scale": "individual",
+        "description": "An unaffiliated operator scraping the margins. Usually not looking for a fight but will take one if it means surviving.",
+        "capabilities": [
+          "salvage",
+          "improvised_weapons",
+          "terrain_knowledge"
+        ],
+        "weakness": "outnumbered, organized opposition"
+      },
+      {
+        "name": "Echo Wave Rider",
+        "faction": "Echo Wave Riders",
+        "tier": 1,
+        "quality": 1,
+        "threat_level": 1,
+        "scale": "individual",
+        "description": "A low-ranking Way practitioner who has learned just enough to be dangerous to themselves and others.",
+        "capabilities": [
+          "basic_way_sense",
+          "eerie_intimidation"
+        ],
+        "weakness": "higher-tier Way users, cold logic"
+      }
+    ],
+    "2": [
+      {
+        "name": "Ashen Knives Enforcer",
+        "faction": "Ashen Knives",
+        "tier": 2,
+        "quality": 2,
+        "threat_level": 2,
+        "scale": "individual",
+        "description": "A professional criminal with augmented reflexes and a reputation for finishing jobs.",
+        "capabilities": [
+          "ambush",
+          "intimidate",
+          "criminal_network"
+        ],
+        "weakness": "counter-contract, exposure to faction leadership"
+      },
+      {
+        "name": "Borniko Hacker",
+        "faction": "Borniko's",
+        "tier": 2,
+        "quality": 2,
+        "threat_level": 2,
+        "scale": "individual",
+        "description": "A skilled data broker and systems intruder who fights with information rather than weapons.",
+        "capabilities": [
+          "system_breach",
+          "data_theft",
+          "counter_surveillance"
+        ],
+        "weakness": "physical confrontation, network isolation"
+      },
+      {
+        "name": "Insurgent Fighter",
+        "faction": "Wanderers (Insurgent)",
+        "tier": 2,
+        "quality": 2,
+        "threat_level": 2,
+        "scale": "individual",
+        "description": "A freedom fighter opposing Hegemony authority. Outgunned but experienced with guerrilla tactics.",
+        "capabilities": [
+          "guerrilla_tactics",
+          "improvised_explosives",
+          "safe_house_network"
+        ],
+        "weakness": "organized military response, informants"
+      },
+      {
+        "name": "Corp Sec Trooper",
+        "faction": "Church of Stellar Flame security",
+        "tier": 2,
+        "quality": 2,
+        "threat_level": 2,
+        "scale": "individual",
+        "description": "A professional security contractor with standard-issue armor and a policy manual thicker than a hull plate.",
+        "capabilities": [
+          "patrol",
+          "arrest",
+          "call_backup",
+          "restraint"
+        ],
+        "weakness": "jurisdictional confusion, political authorization"
+      }
+    ],
+    "3": [
+      {
+        "name": "51st Legion Soldier",
+        "faction": "51st Legion",
+        "tier": 3,
+        "quality": 3,
+        "threat_level": 3,
+        "scale": "individual",
+        "description": "Hegemonic military with full kit, combat experience, and a commander who is preparing a coup. Disciplined and dangerous.",
+        "capabilities": [
+          "squad_tactics",
+          "military_hardware",
+          "legal_authority_offplanet"
+        ],
+        "weakness": "political leverage, rival Legion factions"
+      },
+      {
+        "name": "Draxler's Raider Captain",
+        "faction": "Draxler's Raiders",
+        "tier": 3,
+        "quality": 3,
+        "threat_level": 3,
+        "scale": "individual",
+        "description": "A pirate captain who has survived long enough to get smart. Commands a loyal crew and a fast ship.",
+        "capabilities": [
+          "crew_command",
+          "boarding_action",
+          "void_navigation"
+        ],
+        "weakness": "superior firepower, betrayal from crew"
+      },
+      {
+        "name": "Maelstrom Pirate",
+        "faction": "Maelstrom",
+        "tier": 3,
+        "quality": 3,
+        "threat_level": 3,
+        "scale": "crew",
+        "description": "One of Maelstrom's full-crew operators. The entire faction treats violence as a first resort and they are very good at it.",
+        "capabilities": [
+          "crew_assault",
+          "intimidation_field",
+          "aggressive_boarding"
+        ],
+        "weakness": "superior positioning, counter-faction pressure"
+      },
+      {
+        "name": "Agony Cultist (Shadow Witch)",
+        "faction": "Church of the Forgotten Gods (Way)",
+        "tier": 3,
+        "quality": 3,
+        "threat_level": 3,
+        "scale": "individual",
+        "description": "A Way practitioner who has embraced the darker currents of the Void. The Agony's influence warps their perception and their attacks.",
+        "capabilities": [
+          "way_assault",
+          "fear_aura",
+          "pain_feedback"
+        ],
+        "weakness": "Way counter-practitioner, anchored mental state"
+      }
+    ],
+    "4": [
+      {
+        "name": "Scarlet Wolf Assassin",
+        "faction": "Scarlet Wolves",
+        "tier": 4,
+        "quality": 4,
+        "threat_level": 4,
+        "scale": "individual",
+        "description": "A Tier IV criminal operative who has never failed a contract. They've already studied the crew's patterns.",
+        "capabilities": [
+          "assassination",
+          "infiltration",
+          "counter_surveillance",
+          "disappear"
+        ],
+        "weakness": "counter-contract, political immunity lifted"
+      },
+      {
+        "name": "Lost Legion Commander",
+        "faction": "Lost Legion",
+        "tier": 4,
+        "quality": 4,
+        "threat_level": 4,
+        "scale": "crew",
+        "description": "A commander from the Legion that vanished into the Void. They returned changed. Their troops follow without question and without hesitation.",
+        "capabilities": [
+          "void_tactics",
+          "crew_command",
+          "boarding_action",
+          "psychological_pressure"
+        ],
+        "weakness": "what they brought back from the Void, the truth of what they are"
+      },
+      {
+        "name": "Sah'iir Merchant Prince",
+        "faction": "Sah'iir",
+        "tier": 4,
+        "quality": 4,
+        "threat_level": 4,
+        "scale": "individual",
+        "description": "A Sah'iir Way-user with blindfolded servants who speak for them. Their perception extends far beyond physical sight.",
+        "capabilities": [
+          "way_sight",
+          "command_network",
+          "economic_leverage",
+          "psychic_influence"
+        ],
+        "weakness": "blocking Way access, disrupting their servant network"
+      },
+      {
+        "name": "Suneater Researcher",
+        "faction": "Suneaters",
+        "tier": 4,
+        "quality": 4,
+        "threat_level": 4,
+        "scale": "individual",
+        "description": "An academic whose research has crossed every ethical boundary. The Precursor artifacts they've studied have studied them back.",
+        "capabilities": [
+          "ancient_tech_activation",
+          "ur_knowledge",
+          "research_network",
+          "mental_augmentation"
+        ],
+        "weakness": "loss of research materials, Way-users who can sense corruption"
+      }
+    ]
+  }
+}

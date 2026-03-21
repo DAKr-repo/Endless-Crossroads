@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "source": "reference_data",
+  "named_npcs": [
+    {
+      "name": "Toha Makima",
+      "role": "Leader",
+      "description": "Leader of Toha Heavy Industries. Controls industrial and transport operations.",
+      "source": "Toha Heavy Industries"
+    },
+    {
+      "name": "Poison_Kiss",
+      "role": "Leader",
+      "description": "Leader of TekNet Megacorp. Skilled hacker who commands TekNet's operations.",
+      "source": "TekNet Megacorp"
+    },
+    {
+      "name": "Hatlee Hosaka",
+      "role": "Family Patriarch / CEO",
+      "description": "Family Patriarch / CEO of MezoTuring Hosaka. Martian family head; controls digital money operations.",
+      "source": "MezoTuring Hosaka"
+    },
+    {
+      "name": "The Elder",
+      "role": "Dragon",
+      "description": "Dragon of The Elder. Iridescent scales; motivations unknown.",
+      "source": "The Elder"
+    },
+    {
+      "name": "Eli",
+      "role": "Insurgent Leader",
+      "description": "Insurgent Leader of Insurgents. Field commander; true name unknown.",
+      "source": "Insurgents"
+    },
+    {
+      "name": "Sarge Heinlein",
+      "role": "Corp Sec Commander",
+      "description": "Corp Sec Commander of Corporate Security (APX). Enforcer of APX corporate interests on Ganymede.",
+      "source": "Corporate Security (APX)"
+    },
+    {
+      "name": "Old Finn",
+      "role": "Hustler / Fixer",
+      "description": "Hustler / Fixer of Scavengers. Key contact for scavenged goods and local intelligence.",
+      "source": "Scavengers"
+    }
+  ]
+}

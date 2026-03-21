@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "source": "reference_data",
+  "corporation_types": [
+    "Autonomous Gang / Survivalists",
+    "Street Vendor Network",
+    "Political Consortium",
+    "Corporate Paramilitary",
+    "Underground Collective",
+    "Armed Resistance",
+    "Singular Entity / Faction",
+    "Megacorporation"
+  ],
+  "sector_types": [
+    "Unknown / Weird",
+    "Conglomerate",
+    "Weird / Meta-Human Supply",
+    "Security / Military",
+    "Salvage / Black Market",
+    "Digital Finance",
+    "Hacktivist / Skeptic",
+    "Servers / Orbital",
+    "Industrial / Transport",
+    "Anti-Corporate / Military",
+    "Meta-Talented Rights / Political"
+  ]
+}

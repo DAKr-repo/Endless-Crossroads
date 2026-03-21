@@ -1,0 +1,238 @@
+{
+  "version": 1,
+  "source": "reference_data",
+  "items": [
+    {
+      "name": "Sylblade",
+      "rarity": "legendary",
+      "type": "weapon",
+      "attunement": true,
+      "description": "A living Shardblade formed from Sylphrena, an Honorspren. Unlike dead Shardblades, Sylblade does not kill spren and hums with warm awareness. Kaladin Stormblessed's signature weapon.",
+      "source": "stc_equipment.SHARDBLADES"
+    },
+    {
+      "name": "Pattern Blade",
+      "rarity": "legendary",
+      "type": "weapon",
+      "attunement": true,
+      "description": "A Shardblade formed from Pattern, a Cryptic. Manifests as a blade covered in ever-shifting mathematical patterns. Shallan Davar's weapon.",
+      "source": "stc_equipment.SHARDBLADES"
+    },
+    {
+      "name": "Oathbringer",
+      "rarity": "legendary",
+      "type": "weapon",
+      "attunement": true,
+      "description": "A dead Shardblade of ancient make, formerly belonging to the Alethi royal line. Glows faintly with embedded glyphs. Now bonded to Dalinar Kholin.",
+      "source": "stc_equipment.SHARDBLADES"
+    },
+    {
+      "name": "Shardspear of the Peaks",
+      "rarity": "very rare",
+      "type": "weapon",
+      "attunement": true,
+      "description": "An ancient Shardblade shaped as a spear rather than a sword, favored by Stoneward Radiants for its reach. The blade is etched with mountain glyphs.",
+      "source": "stc_equipment.SHARDBLADES"
+    },
+    {
+      "name": "Midnight Essence Blade",
+      "rarity": "very rare",
+      "type": "weapon",
+      "attunement": true,
+      "description": "A corrupted Shardblade captured from an Unmade's servant. The blade is dark as night with faint violet Voidlight pulsing along its edges.",
+      "source": "stc_equipment.SHARDBLADES"
+    },
+    {
+      "name": "Full Shardplate",
+      "rarity": "legendary",
+      "type": "armor",
+      "attunement": true,
+      "description": "A complete set of Shardplate covering the wearer from head to foot. Enormously heavy by mundane standards but feels light to the wearer due to its stormlight-powered assistance. Grants supernatural strength.",
+      "source": "stc_equipment.SHARDPLATE"
+    },
+    {
+      "name": "Partial Shardplate",
+      "rarity": "very rare",
+      "type": "armor",
+      "attunement": true,
+      "description": "A mismatched or incomplete set of Shardplate, possibly pieced together from multiple sources or with some pieces lost over centuries. Still provides significant protection.",
+      "source": "stc_equipment.SHARDPLATE"
+    },
+    {
+      "name": "Damaged Shardplate",
+      "rarity": "rare",
+      "type": "armor",
+      "attunement": true,
+      "description": "A heavily cracked set of Shardplate that has seen too many battles without proper stormlight repair. Pieces are missing and the remaining segments are held together with mundane straps.",
+      "source": "stc_equipment.SHARDPLATE"
+    },
+    {
+      "name": "Painrial",
+      "rarity": "uncommon",
+      "type": "wondrous",
+      "attunement": false,
+      "description": "A fabrial attuned to a painspren. Detects intense pain in nearby creatures, useful for locating wounded allies or enemies.",
+      "source": "stc_equipment.FABRIALS"
+    },
+    {
+      "name": "Heatrial",
+      "rarity": "common",
+      "type": "wondrous",
+      "attunement": false,
+      "description": "A fabrial housing a flamespren. Produces sustained heat equivalent to a campfire for warmth or heating purposes.",
+      "source": "stc_equipment.FABRIALS"
+    },
+    {
+      "name": "Spanreed",
+      "rarity": "uncommon",
+      "type": "wondrous",
+      "attunement": false,
+      "description": "A paired writing device. What is written on one ruby-tipped reed appears simultaneously on its partner, regardless of distance.",
+      "source": "stc_equipment.FABRIALS"
+    },
+    {
+      "name": "Alerter",
+      "rarity": "uncommon",
+      "type": "wondrous",
+      "attunement": false,
+      "description": "A fabrial attuned to an anticipationspren. Triggers a warning sensation when anything crosses a designated threshold.",
+      "source": "stc_equipment.FABRIALS"
+    },
+    {
+      "name": "Reverser",
+      "rarity": "rare",
+      "type": "wondrous",
+      "attunement": false,
+      "description": "A fabrial of opposing forces. Repels or attracts objects depending on its configuration. Common in Alethi elevators and cranes.",
+      "source": "stc_equipment.FABRIALS"
+    },
+    {
+      "name": "Augmenter",
+      "rarity": "rare",
+      "type": "wondrous",
+      "attunement": false,
+      "description": "A fabrial that enhances the output of whatever it is paired with. Often used in industry to multiply the force of tools.",
+      "source": "stc_equipment.FABRIALS"
+    },
+    {
+      "name": "Diminisher",
+      "rarity": "rare",
+      "type": "wondrous",
+      "attunement": false,
+      "description": "The opposite of an Augmenter. Reduces the output or potency of whatever it is applied to. Can be used to nullify fires or slow creatures.",
+      "source": "stc_equipment.FABRIALS"
+    },
+    {
+      "name": "Regrowth Fabrial",
+      "rarity": "very rare",
+      "type": "wondrous",
+      "attunement": false,
+      "description": "A fabrial attuned to lifespren. Accelerates natural healing, particularly effective on wounds that have not gone septic.",
+      "source": "stc_equipment.FABRIALS"
+    },
+    {
+      "name": "Soulcaster",
+      "rarity": "legendary",
+      "type": "wondrous",
+      "attunement": false,
+      "description": "The most powerful and dangerous fabrials, capable of transforming matter. Attuned to three specific materials. Overuse corrupts the wielder.",
+      "source": "stc_equipment.FABRIALS"
+    },
+    {
+      "name": "Oathgate Key",
+      "rarity": "legendary",
+      "type": "wondrous",
+      "attunement": false,
+      "description": "A paired fabrial device that, when combined with an Inkspren's cooperation, can activate the ancient Oathgates connecting Rosharan cities.",
+      "source": "stc_equipment.FABRIALS"
+    },
+    {
+      "name": "Spear",
+      "rarity": "common",
+      "type": "weapon",
+      "attunement": false,
+      "description": "The favored weapon of the Alethi army. Available as Shortspear (Light, 1d8 keen) or Longspear (Heavy, 1d8 keen, Melee[+5] reach). Long reach suits the formations of Alethkar's warcamps.",
+      "source": "stc_equipment.WEAPON_PROPERTIES"
+    },
+    {
+      "name": "Sword",
+      "rarity": "common",
+      "type": "weapon",
+      "attunement": false,
+      "description": "A Sidesword: a standard one-handed sword of Rosharan make (1d6 keen, Quickdraw). Common among lighteyes of middle dahn. Can also be wielded in the offhand with expertise.",
+      "source": "stc_equipment.WEAPON_PROPERTIES"
+    },
+    {
+      "name": "Axe",
+      "rarity": "common",
+      "type": "weapon",
+      "attunement": false,
+      "description": "A sturdy chopping weapon (Heavy Weaponry, 1d6 keen, Thrown[20/60]). Favored by Horneater and Herdazian fighters.",
+      "source": "stc_equipment.WEAPON_PROPERTIES"
+    },
+    {
+      "name": "Bow",
+      "rarity": "common",
+      "type": "weapon",
+      "attunement": false,
+      "description": "A Shortbow (Light Weaponry, 1d6 keen, Ranged[80/320], Two-Handed). Suitable for use on the Shattered Plains plateaus.",
+      "source": "stc_equipment.WEAPON_PROPERTIES"
+    },
+    {
+      "name": "Staff",
+      "rarity": "common",
+      "type": "weapon",
+      "attunement": false,
+      "description": "A hardwood fighting staff (Light Weaponry, 1d6 impact, Discreet, Two-Handed). Favored by scholars-turned-fighters and Edgedancer Radiants.",
+      "source": "stc_equipment.WEAPON_PROPERTIES"
+    },
+    {
+      "name": "Dagger",
+      "rarity": "common",
+      "type": "weapon",
+      "attunement": false,
+      "description": "A Knife (Light Weaponry, 1d4 keen, Discreet). Easily concealed. With expertise: gains Offhand and Thrown[20/60] traits. Favored by Lightweavers and spies.",
+      "source": "stc_equipment.WEAPON_PROPERTIES"
+    },
+    {
+      "name": "Warhammer",
+      "rarity": "common",
+      "type": "weapon",
+      "attunement": false,
+      "description": "A Hammer (Heavy Weaponry, 1d10 impact, Two-Handed). Effective against Shardplate. The impact can crack plate even without a Shardblade.",
+      "source": "stc_equipment.WEAPON_PROPERTIES"
+    },
+    {
+      "name": "Longsword",
+      "rarity": "common",
+      "type": "weapon",
+      "attunement": false,
+      "description": "A Longsword (Heavy Weaponry, 1d8 keen, Quickdraw, Two-Handed). With expertise, loses the Two-Handed trait (wielded one-handed).",
+      "source": "stc_equipment.WEAPON_PROPERTIES"
+    },
+    {
+      "name": "Shortsword",
+      "rarity": "common",
+      "type": "weapon",
+      "attunement": false,
+      "description": "A short, fast blade mapped to the Sidesword entry (Light Weaponry, 1d6 keen, Quickdraw). Good sidearm for those who carry a spear.",
+      "source": "stc_equipment.WEAPON_PROPERTIES"
+    },
+    {
+      "name": "Mace",
+      "rarity": "common",
+      "type": "weapon",
+      "attunement": false,
+      "description": "A Mace (Light Weaponry, 1d6 impact, Momentum). Momentum grants advantage when attacking after moving 10+ feet in a straight line.",
+      "source": "stc_equipment.WEAPON_PROPERTIES"
+    },
+    {
+      "name": "Shield",
+      "rarity": "common",
+      "type": "weapon",
+      "attunement": false,
+      "description": "A Shield (Heavy Weaponry, 1d4 impact, Defensive). Defensive allows using the Brace action without nearby cover.",
+      "source": "stc_equipment.WEAPON_PROPERTIES"
+    }
+  ]
+}

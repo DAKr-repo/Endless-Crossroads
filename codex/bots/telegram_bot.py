@@ -243,6 +243,11 @@ class Phase(Enum):
     ASHBURN_LEGACY = auto()    # WO-V23.0 — Ashburn legacy choice
     QUEST_SELECT = auto()      # WO-V23.0 — Quest archetype selection
     OMNI = auto()              # WO-V25.0 — Omni-Forge sub-menu
+    BITD = auto()              # Blades in the Dark session
+    SAV = auto()               # Scum and Villainy session
+    BOB = auto()               # Band of Blades session
+    CBRPNK = auto()            # CBR+PNK session
+    CANDELA = auto()           # Candela Obscura session
 
 
 def _scan_pending_prologues() -> list[dict]:
@@ -1022,6 +1027,167 @@ async def cmd_cosmere(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(f"```\n{session.bridge.step('look')}\n```", parse_mode='Markdown')
 
 
+async def cmd_bitd(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Handle /bitd command — start a Blades in the Dark session."""
+    session = get_session(update.effective_chat.id)
+    if session.phase not in (Phase.IDLE, Phase.MENU):
+        session.end_game()
+    try:
+        from codex.games.bitd import BitDEngine
+    except ImportError:
+        await update.message.reply_text("BitD engine not available.")
+        return
+    session.bridge = UniversalGameBridge(BitDEngine)
+    session.game_type = "bitd"
+    session.phase = Phase.BITD
+    await update.message.reply_text(f"```\n{session.bridge.step('look')}\n```", parse_mode='Markdown')
+
+
+async def cmd_sav(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Handle /sav command — start a Scum and Villainy session."""
+    session = get_session(update.effective_chat.id)
+    if session.phase not in (Phase.IDLE, Phase.MENU):
+        session.end_game()
+    try:
+        from codex.games.sav import SaVEngine
+    except ImportError:
+        await update.message.reply_text("SaV engine not available.")
+        return
+    session.bridge = UniversalGameBridge(SaVEngine)
+    session.game_type = "sav"
+    session.phase = Phase.SAV
+    await update.message.reply_text(f"```\n{session.bridge.step('look')}\n```", parse_mode='Markdown')
+
+
+async def cmd_bob(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Handle /bob command — start a Band of Blades session."""
+    session = get_session(update.effective_chat.id)
+    if session.phase not in (Phase.IDLE, Phase.MENU):
+        session.end_game()
+    try:
+        from codex.games.bob import BoBEngine
+    except ImportError:
+        await update.message.reply_text("BoB engine not available.")
+        return
+    session.bridge = UniversalGameBridge(BoBEngine)
+    session.game_type = "bob"
+    session.phase = Phase.BOB
+    await update.message.reply_text(f"```\n{session.bridge.step('look')}\n```", parse_mode='Markdown')
+
+
+async def cmd_cbrpnk(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Handle /cbrpnk command — start a CBR+PNK session."""
+    session = get_session(update.effective_chat.id)
+    if session.phase not in (Phase.IDLE, Phase.MENU):
+        session.end_game()
+    try:
+        from codex.games.cbrpnk import CBRPNKEngine
+    except ImportError:
+        await update.message.reply_text("CBR+PNK engine not available.")
+        return
+    session.bridge = UniversalGameBridge(CBRPNKEngine)
+    session.game_type = "cbrpnk"
+    session.phase = Phase.CBRPNK
+    await update.message.reply_text(f"```\n{session.bridge.step('look')}\n```", parse_mode='Markdown')
+
+
+async def cmd_candela(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Handle /candela command — start a Candela Obscura session."""
+    session = get_session(update.effective_chat.id)
+    if session.phase not in (Phase.IDLE, Phase.MENU):
+        session.end_game()
+    try:
+        from codex.games.candela import CandelaEngine
+    except ImportError:
+        await update.message.reply_text("Candela Obscura engine not available.")
+        return
+    session.bridge = UniversalGameBridge(CandelaEngine)
+    session.game_type = "candela"
+    session.phase = Phase.CANDELA
+    await update.message.reply_text(f"```\n{session.bridge.step('look')}\n```", parse_mode='Markdown')
+
+
+async def cmd_dm(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Handle /dm command — DM Tools suite."""
+    try:
+        from codex.core.dm_tools import (
+            roll_dice, generate_npc, generate_trap,
+            calculate_loot, generate_encounter, scan_vault,
+        )
+    except ImportError:
+        await update.message.reply_text("DM Tools module not available.")
+        return
+
+    args = " ".join(context.args) if context.args else ""
+    parts = args.strip().split(None, 1)
+    sub = parts[0].lower() if parts else "help"
+    arg = parts[1].strip() if len(parts) > 1 else ""
+
+    if sub in ("dice", "roll"):
+        if not arg:
+            await update.message.reply_text("Usage: `/dm dice 2d6+3`", parse_mode='Markdown')
+            return
+        total, msg = roll_dice(arg)
+        await update.message.reply_text(f"*Dice Roll*\n`{msg}`", parse_mode='Markdown')
+
+    elif sub == "npc":
+        result = generate_npc(arg or "")
+        await update.message.reply_text(f"*NPC Generator*\n```\n{result[:4000]}\n```", parse_mode='Markdown')
+
+    elif sub == "loot":
+        difficulty = arg or "medium"
+        result = calculate_loot(difficulty)
+        await update.message.reply_text(f"*Loot Generator*\n```\n{result[:4000]}\n```", parse_mode='Markdown')
+
+    elif sub == "trap":
+        difficulty = arg or "medium"
+        result = generate_trap(difficulty)
+        await update.message.reply_text(f"*Trap Generator*\n```\n{result[:4000]}\n```", parse_mode='Markdown')
+
+    elif sub in ("encounter", "enc"):
+        enc_parts = arg.split()
+        system = enc_parts[0].upper() if enc_parts else "BURNWILLOW"
+        tier = 1
+        if len(enc_parts) > 1:
+            try:
+                tier = max(1, min(4, int(enc_parts[1])))
+            except ValueError:
+                pass
+        result = generate_encounter(system, tier)
+        await update.message.reply_text(f"*Encounter Generator*\n```\n{result[:4000]}\n```", parse_mode='Markdown')
+
+    elif sub == "scan":
+        result = scan_vault()
+        await update.message.reply_text(f"*Vault Scanner*\n```\n{result[:4000]}\n```", parse_mode='Markdown')
+
+    else:
+        await update.message.reply_text(
+            "*DM Tools*\n"
+            "`/dm dice 2d6+3` — Roll dice\n"
+            "`/dm npc [archetype]` — Generate NPC\n"
+            "`/dm loot [easy/medium/hard]` — Generate loot\n"
+            "`/dm trap [easy/medium/hard]` — Generate trap\n"
+            "`/dm encounter [system] [tier]` — Generate encounter\n"
+            "`/dm scan` — Scan vault PDFs for tables",
+            parse_mode='Markdown',
+        )
+
+
+async def cmd_roll(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Handle /roll command — quick dice roll."""
+    try:
+        from codex.core.dm_tools import roll_dice
+    except ImportError:
+        await update.message.reply_text("Dice module not available.")
+        return
+    args = " ".join(context.args) if context.args else ""
+    if not args:
+        await update.message.reply_text("Usage: `/roll 2d6+3`", parse_mode='Markdown')
+        return
+    total, msg = roll_dice(args)
+    await update.message.reply_text(f"*Dice Roll*\n`{msg}`", parse_mode='Markdown')
+
+
 async def cmd_chronology(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Handle /chronology command — show recent world history events."""
     worlds_dir = Path(__file__).resolve().parent.parent.parent / "worlds"
@@ -1118,7 +1284,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     session = get_session(update.effective_chat.id)
 
     # Dungeon session (Burnwillow / DnD5e / Cosmere free-text input)
-    if session.phase in (Phase.DUNGEON, Phase.DND5E, Phase.COSMERE) and session.bridge:
+    if session.phase in (Phase.DUNGEON, Phase.DND5E, Phase.COSMERE, Phase.BITD, Phase.SAV, Phase.BOB, Phase.CBRPNK, Phase.CANDELA) and session.bridge:
         result = session.bridge.step(text)
         await update.message.reply_text(f"```\n{result}\n```", parse_mode='Markdown')
         if session.bridge.dead:
@@ -1481,9 +1647,16 @@ async def run_telegram_bot(core=None):
     app.add_handler(CommandHandler("burnwillow", cmd_burnwillow))
     app.add_handler(CommandHandler("dnd5e", cmd_dnd5e))
     app.add_handler(CommandHandler("cosmere", cmd_cosmere))
+    app.add_handler(CommandHandler("bitd", cmd_bitd))
+    app.add_handler(CommandHandler("sav", cmd_sav))
+    app.add_handler(CommandHandler("bob", cmd_bob))
+    app.add_handler(CommandHandler("cbrpnk", cmd_cbrpnk))
+    app.add_handler(CommandHandler("candela", cmd_candela))
     app.add_handler(CommandHandler("crown", cmd_crown))
     app.add_handler(CommandHandler("ashburn", cmd_ashburn))
     app.add_handler(CommandHandler("quest", cmd_quest))
+    app.add_handler(CommandHandler("dm", cmd_dm))
+    app.add_handler(CommandHandler("roll", cmd_roll))
     app.add_handler(CommandHandler("chronology", cmd_chronology))
     app.add_handler(CommandHandler("rest", cmd_rest_tg))
     app.add_handler(CommandHandler("init", cmd_init_tg))
@@ -1664,10 +1837,17 @@ def main():
     app.add_handler(CommandHandler("burnwillow", cmd_burnwillow))
     app.add_handler(CommandHandler("dnd5e", cmd_dnd5e))
     app.add_handler(CommandHandler("cosmere", cmd_cosmere))
+    app.add_handler(CommandHandler("bitd", cmd_bitd))
+    app.add_handler(CommandHandler("sav", cmd_sav))
+    app.add_handler(CommandHandler("bob", cmd_bob))
+    app.add_handler(CommandHandler("cbrpnk", cmd_cbrpnk))
+    app.add_handler(CommandHandler("candela", cmd_candela))
     app.add_handler(CommandHandler("chronology", cmd_chronology))
     app.add_handler(CommandHandler("crown", cmd_crown))
     app.add_handler(CommandHandler("ashburn", cmd_ashburn))
     app.add_handler(CommandHandler("quest", cmd_quest))
+    app.add_handler(CommandHandler("dm", cmd_dm))
+    app.add_handler(CommandHandler("roll", cmd_roll))
     app.add_handler(CommandHandler("voice", cmd_voice_tg))
     app.add_handler(CommandHandler("sheet", cmd_sheet_tg))
     app.add_handler(CommandHandler("atlas", cmd_atlas_tg))

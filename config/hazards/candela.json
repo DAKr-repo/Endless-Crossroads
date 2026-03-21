@@ -1,0 +1,128 @@
+{
+  "version": 1,
+  "format": "fitd",
+  "source": "reference_data (setting-derived)",
+  "note": "Candela Obscura hazards. Tier = phenomena severity. Damage is mark accumulation.",
+  "tiers": {
+    "1": [
+      {
+        "name": "Bleed Manifestation",
+        "dc": 10,
+        "damage": "1d4",
+        "damage_type": "narrative",
+        "description": "Something from the other side has seeped into the local geography. Objects move slightly wrong. Reflections lag by a half-second. It notices you noticing."
+      },
+      {
+        "name": "Scar Accumulation",
+        "dc": 10,
+        "damage": "1d4",
+        "damage_type": "narrative",
+        "description": "The investigator's latest brush with phenomena has left a mark — literal or spiritual. The scar is manageable now. What it becomes is another question."
+      },
+      {
+        "name": "Spectral Intrusion",
+        "dc": 9,
+        "damage": "1d4",
+        "damage_type": "narrative",
+        "description": "A presence that shouldn't exist in this room has decided to make itself known. It is not communicating. It is testing."
+      },
+      {
+        "name": "Alchemical Contamination",
+        "dc": 10,
+        "damage": "1d4",
+        "damage_type": "narrative",
+        "description": "A shattered sample or a leaking case has spread the Crimson Weave's precursor compound across the scene. Anyone without gloves has already absorbed a trace dose."
+      }
+    ],
+    "2": [
+      {
+        "name": "Thought Plague Vector",
+        "dc": 13,
+        "damage": "1d6",
+        "damage_type": "narrative",
+        "description": "The investigator has had direct contact with a Thought Plague carrier. The ideas are already in their head. Which thoughts are theirs and which are the plague's?"
+      },
+      {
+        "name": "Crystalline Growth",
+        "dc": 13,
+        "damage": "1d6",
+        "damage_type": "narrative",
+        "description": "The Glass Garden phenomenon is accelerating. Surfaces crystallize in real time. An investigator's hand is already translucent at the fingertips."
+      },
+      {
+        "name": "Mark Escalation",
+        "dc": 12,
+        "damage": "1d6",
+        "damage_type": "narrative",
+        "description": "Multiple rapid phenomena exposures have pushed an investigator's marks toward the critical threshold. The next one may not be recoverable without a Stitch."
+      },
+      {
+        "name": "Shadow Entity",
+        "dc": 13,
+        "damage": "1d6",
+        "damage_type": "narrative",
+        "description": "Something dark and flat has detached from a wall and is following an investigator. It doesn't respond to light. It doesn't respond to anything physical."
+      }
+    ],
+    "3": [
+      {
+        "name": "Bone Singer Echo",
+        "dc": 15,
+        "damage": "1d8",
+        "damage_type": "narrative",
+        "description": "The Bone Singer has manifested inside the investigation site. Its song rearranges calcium structures in living tissue and it is currently performing."
+      },
+      {
+        "name": "Reality Tear",
+        "dc": 15,
+        "damage": "1d8",
+        "damage_type": "narrative",
+        "description": "A dimensional fold has opened in the room. It is small. It is growing. What is visible through it does not match any known geography."
+      },
+      {
+        "name": "Memory Erasure",
+        "dc": 14,
+        "damage": "1d8",
+        "damage_type": "narrative",
+        "description": "An investigator cannot remember the last two hours. Their notes are written in their handwriting. The events recorded in those notes did not happen."
+      },
+      {
+        "name": "Corrupted Artifact",
+        "dc": 15,
+        "damage": "1d8",
+        "damage_type": "narrative",
+        "description": "The artifact the circle retrieved has been leaking phenomena influence since before they touched it. Every member who handled it is already affected."
+      }
+    ],
+    "4": [
+      {
+        "name": "Pale Door Proximity",
+        "dc": 18,
+        "damage": "2d6",
+        "damage_type": "narrative",
+        "description": "The Pale Door has opened within the investigation site. What comes through or who goes through cannot be undone. The circle has seconds to act or accept the consequences."
+      },
+      {
+        "name": "Night Creature Manifestation",
+        "dc": 18,
+        "damage": "2d6",
+        "damage_type": "narrative",
+        "description": "A night creature of sufficient power to reshape local reality has fully manifested. It does not distinguish between investigators and obstacles."
+      },
+      {
+        "name": "Full Phenomena Surge",
+        "dc": 17,
+        "damage": "2d6",
+        "damage_type": "narrative",
+        "description": "Multiple phenomena have converged on this location simultaneously. The Illumination Track resets cannot keep pace. The circle must end this now or be ended."
+      },
+      {
+        "name": "Dimensional Fold Collapse",
+        "dc": 18,
+        "damage": "2d6",
+        "damage_type": "narrative",
+        "description": "The dimensional fold that the circle has been investigating is collapsing inward. Everything inside the fold — including anyone standing in it — will not survive the collapse."
+      }
+    ]
+  }
+}

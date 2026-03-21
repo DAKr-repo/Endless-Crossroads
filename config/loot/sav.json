@@ -1,0 +1,128 @@
+{
+  "version": 1,
+  "format": "fitd",
+  "source": "reference_data (setting-derived)",
+  "note": "Procyon sector salvage and contraband. quality 1-4 maps to value: 1/3/6/10 coin.",
+  "tiers": {
+    "1": [
+      {
+        "name": "Ship Rations (week supply)",
+        "rarity": "common",
+        "quality": 1,
+        "value_coin": 1,
+        "source": "reference_data"
+      },
+      {
+        "name": "Hull Patch Kit",
+        "rarity": "common",
+        "quality": 1,
+        "value_coin": 1,
+        "source": "reference_data"
+      },
+      {
+        "name": "Forged Docking Papers",
+        "rarity": "common",
+        "quality": 1,
+        "value_coin": 1,
+        "source": "reference_data"
+      },
+      {
+        "name": "Civilian Comm Unit",
+        "rarity": "common",
+        "quality": 1,
+        "value_coin": 1,
+        "source": "reference_data"
+      }
+    ],
+    "2": [
+      {
+        "name": "Restricted Sidearm (unregistered)",
+        "rarity": "uncommon",
+        "quality": 2,
+        "value_coin": 3,
+        "source": "reference_data"
+      },
+      {
+        "name": "Guild-Certified Spare Parts",
+        "rarity": "uncommon",
+        "quality": 2,
+        "value_coin": 3,
+        "source": "reference_data"
+      },
+      {
+        "name": "Encrypted Data Stick",
+        "rarity": "uncommon",
+        "quality": 2,
+        "value_coin": 3,
+        "source": "reference_data"
+      },
+      {
+        "name": "Xeno Artifact Fragment",
+        "rarity": "uncommon",
+        "quality": 2,
+        "value_coin": 3,
+        "source": "reference_data"
+      }
+    ],
+    "3": [
+      {
+        "name": "Military-Grade Ship Component",
+        "rarity": "rare",
+        "quality": 3,
+        "value_coin": 6,
+        "source": "reference_data"
+      },
+      {
+        "name": "Rare Way Crystal",
+        "rarity": "rare",
+        "quality": 3,
+        "value_coin": 6,
+        "source": "reference_data"
+      },
+      {
+        "name": "Counters Guild Credit Chip (major)",
+        "rarity": "rare",
+        "quality": 3,
+        "value_coin": 6,
+        "source": "reference_data"
+      },
+      {
+        "name": "Starsmiths Guild Certification (forged, master quality)",
+        "rarity": "rare",
+        "quality": 3,
+        "value_coin": 6,
+        "source": "reference_data"
+      }
+    ],
+    "4": [
+      {
+        "name": "Ur Artifact (functional)",
+        "rarity": "legendary",
+        "quality": 4,
+        "value_coin": 10,
+        "source": "reference_data"
+      },
+      {
+        "name": "Precursor AI Module",
+        "rarity": "legendary",
+        "quality": 4,
+        "value_coin": 10,
+        "source": "reference_data"
+      },
+      {
+        "name": "Jumpgate Override Codes",
+        "rarity": "legendary",
+        "quality": 4,
+        "value_coin": 10,
+        "source": "reference_data"
+      },
+      {
+        "name": "Living Ur Relic",
+        "rarity": "very_rare",
+        "quality": 4,
+        "value_coin": 10,
+        "source": "reference_data"
+      }
+    ]
+  }
+}

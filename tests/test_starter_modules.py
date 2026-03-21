@@ -216,6 +216,10 @@ def test_candela_npcs_from_config():
     known_names = {
         "Avery Choi", "Chaska Deloria", "Tang Yuna", "Oscar Enfield",
         "Luis Roe", "Emerson Walsh", "Alma Baquiran", "Oksana Blum",
+        "Caerwyn Stone", "Joseph Abdi", "Kiana Tumata", "Ember Rose",
+        "Dr. Michele Lappin", "Oksana Blum", "Richard Satanta",
+        "Elder Kenneth Krause", "Father Timothy Singh",
+        "Magistra Elara Voss", "Sister Ines Collard", "Sable",
     }
     assert any(n in known_names for n in names), f"No known Candela NPCs found in {names}"
 

@@ -1,0 +1,58 @@
+{
+  "version": 1,
+  "source": "reference_data",
+  "locations": [
+    {
+      "name": "Skydagger Keep",
+      "description": "The Legion's final defensive stronghold in the Eastern Kingdoms. A fortress carved into the mountain spine, bristling with ballistae and last-ditch wards against the undead tide.",
+      "topology": "dungeon",
+      "services": [
+        "rest",
+        "research"
+      ]
+    },
+    {
+      "name": "The Shattered Field",
+      "description": "A blasted killing ground east of the Tigeria River where the Cinder King's advance first broke the allied armies. Scorched earth, rusted armor, and unquiet dead as far as the eye can see.",
+      "topology": "wilderness",
+      "services": [
+        "rumor"
+      ]
+    },
+    {
+      "name": "Plainsworth",
+      "description": "A walled city on the march route now serving as a Legion resupply point. The citizens are terrified, the council is divided, and the market stalls still sell bread despite everything.",
+      "topology": "settlement",
+      "services": [
+        "rest",
+        "rumor",
+        "buy"
+      ]
+    },
+    {
+      "name": "The Orite Waystation",
+      "description": "A crafter-temple turned field hospital maintained by remnant Orite priests. Sanctified ground that slows corruption and provides the only reliable healing west of Dar.",
+      "topology": "settlement",
+      "services": [
+        "rest",
+        "healing",
+        "research"
+      ]
+    },
+    {
+      "name": "The Ashen Wastes",
+      "description": "A region poisoned by Blighter's toxic advance. Nothing grows here. The mists are thick, the water is black, and every corpse is a potential enemy. Scouts avoid it when possible.",
+      "topology": "wilderness",
+      "services": []
+    },
+    {
+      "name": "The Iron Road Junction",
+      "description": "A strategic crossroads the Legion must hold or concede the eastern supply line. Whoever controls this junction controls the flow of food, shot, and reinforcements.",
+      "topology": "settlement",
+      "services": [
+        "rest",
+        "buy"
+      ]
+    }
+  ]
+}

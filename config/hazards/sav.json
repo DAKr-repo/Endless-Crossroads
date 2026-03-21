@@ -1,0 +1,128 @@
+{
+  "version": 1,
+  "format": "fitd",
+  "source": "reference_data (setting-derived)",
+  "note": "Procyon sector hazards. Tier = threat level. Damage is narrative harm.",
+  "tiers": {
+    "1": [
+      {
+        "name": "Wanted Level Escalation",
+        "dc": 10,
+        "damage": "1d4",
+        "damage_type": "narrative",
+        "description": "The Hegemony's threat board ticks up a notch. More patrol routes cross your flight path. Docking fees triple without explanation."
+      },
+      {
+        "name": "Supply Shortage",
+        "dc": 10,
+        "damage": "1d4",
+        "damage_type": "narrative",
+        "description": "The next station is dry. Spare parts, fuel cells, and rations are rationed by Guild order. Someone will have to do without."
+      },
+      {
+        "name": "Xeno Wildlife Encounter",
+        "dc": 9,
+        "damage": "1d4",
+        "damage_type": "narrative",
+        "description": "The surface scan was wrong or incomplete. Something territorial and fast lives in this biome and it has already flanked the team."
+      },
+      {
+        "name": "Forged Papers Flagged",
+        "dc": 10,
+        "damage": "1d4",
+        "damage_type": "narrative",
+        "description": "The docking authority's new scanner catches something off about the credentials. A clerk with a comm link and a suspicious expression."
+      }
+    ],
+    "2": [
+      {
+        "name": "Hegemony Patrol Intercept",
+        "dc": 13,
+        "damage": "1d6",
+        "damage_type": "narrative",
+        "description": "A Hegemony patrol frigate drops out of hyperspace directly in your lane. Transponders check out or they don't. Boarding action pending."
+      },
+      {
+        "name": "Way Creature Sighting",
+        "dc": 13,
+        "damage": "1d6",
+        "damage_type": "narrative",
+        "description": "Something from between the stars has taken an interest in the crew. It doesn't move like normal matter and it doesn't respond to normal stimuli."
+      },
+      {
+        "name": "Jumpgate Malfunction",
+        "dc": 12,
+        "damage": "1d6",
+        "damage_type": "narrative",
+        "description": "The gate shudders on exit and spits the ship out off-course and off-schedule. Hull stress, navigation data scrambled, and an unknown system on the screens."
+      },
+      {
+        "name": "Bounty Hunter on Approach",
+        "dc": 13,
+        "damage": "1d6",
+        "damage_type": "narrative",
+        "description": "A fast ship has been matching your heading for three jumps. No transponder. No comm response. It's closing."
+      }
+    ],
+    "3": [
+      {
+        "name": "Ion Storm",
+        "dc": 15,
+        "damage": "1d8",
+        "damage_type": "narrative",
+        "description": "Sensors go dark. Comms go dark. The ion wall rolls over the ship and everything electronic becomes temporarily useless or permanently fried."
+      },
+      {
+        "name": "System Lockdown",
+        "dc": 15,
+        "damage": "1d8",
+        "damage_type": "narrative",
+        "description": "The station governor has sealed all docking bays and issued a sector-wide arrest warrant. No one goes in or out without authorization no one has."
+      },
+      {
+        "name": "Pirate Ambush",
+        "dc": 14,
+        "damage": "1d8",
+        "damage_type": "narrative",
+        "description": "Three ships drop out of the dust cloud. They've been waiting. The crew knew the route — which means someone talked."
+      },
+      {
+        "name": "Cult Ritual Interruption",
+        "dc": 15,
+        "damage": "1d8",
+        "damage_type": "narrative",
+        "description": "The site is already occupied. Something is mid-ritual, the air smells of burnt ozone and old blood, and stopping it is the only option."
+      }
+    ],
+    "4": [
+      {
+        "name": "Void Exposure",
+        "dc": 18,
+        "damage": "2d6",
+        "damage_type": "narrative",
+        "description": "The hull breach is small but the vacuum is absolute. Every second counts, suit or no suit, and the cold of space cares nothing for quick thinking."
+      },
+      {
+        "name": "Ancient Ur Defense System",
+        "dc": 18,
+        "damage": "2d6",
+        "damage_type": "narrative",
+        "description": "The Ur ruin has automated defenses that predate every known civilization. They activate without warning and they were not built for biological targets."
+      },
+      {
+        "name": "Antimatter Containment Breach",
+        "dc": 17,
+        "damage": "2d6",
+        "damage_type": "narrative",
+        "description": "The drive's containment field is failing. Every crew member has minutes to either fix it, vent it safely, or get very far away."
+      },
+      {
+        "name": "Lost Legion Boarding Action",
+        "dc": 18,
+        "damage": "2d6",
+        "damage_type": "narrative",
+        "description": "They come through the airlock in vacuum suits with no insignia and no comm traffic. The Lost Legion takes ships, not prisoners, and they've already cut the emergency beacon."
+      }
+    ]
+  }
+}

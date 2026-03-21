@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "source": "reference_data",
+  "circle_abilities": [
+    "Stamina Training",
+    "Nobody Left Behind",
+    "In This Together",
+    "Interdisciplinary",
+    "Resource Management",
+    "One Last Run"
+  ],
+  "trust_levels": [
+    "Suspicious",
+    "Cautious",
+    "Trusting",
+    "Bonded"
+  ],
+  "phenomena_types": [
+    "crimson_weave",
+    "hollow_choir",
+    "flickering_man",
+    "glass_garden",
+    "whispering_archive",
+    "moth_swarm",
+    "undying_fire",
+    "shattered_mirror",
+    "hunger_below",
+    "bone_singer",
+    "thought_plague",
+    "pale_door"
+  ]
+}

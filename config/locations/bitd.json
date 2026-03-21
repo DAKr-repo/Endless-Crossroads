@@ -1,0 +1,285 @@
+{
+  "version": 1,
+  "source": "reference_data",
+  "locations": [
+    {
+      "name": "Charhollow slaughterhouses",
+      "description": "Turf of The Billhooks. A tough gang of butchers and tanners, known for their brutal violence and their control of the meat trade.",
+      "topology": "settlement",
+      "services": [
+        "rest",
+        "rumor",
+        "buy"
+      ]
+    },
+    {
+      "name": "Crow's Foot district",
+      "description": "Turf of The Crows. An old gang with a reputation for honor and fair dealing. They run gambling and protection rackets.",
+      "topology": "settlement",
+      "services": [
+        "rest",
+        "rumor",
+        "buy"
+      ]
+    },
+    {
+      "name": "Widespread across several districts",
+      "description": "Turf of The Hive. The largest criminal organization in Doskvol. They deal in drugs, contraband, and every vice imaginable.",
+      "topology": "settlement",
+      "services": [
+        "rest",
+        "rumor",
+        "buy"
+      ]
+    },
+    {
+      "name": "Crow's Foot (contested)",
+      "description": "Turf of The Lampblacks. Former factory workers turned gang. They run protection and smuggling in Crow's Foot.",
+      "topology": "settlement",
+      "services": [
+        "rest",
+        "rumor",
+        "buy"
+      ]
+    },
+    {
+      "name": "Silkshore streets",
+      "description": "Turf of The Wraiths. A small gang of thieves and pickpockets operating in Silkshore.",
+      "topology": "settlement",
+      "services": [
+        "rest",
+        "rumor",
+        "buy"
+      ]
+    },
+    {
+      "name": "Six Towers",
+      "description": "Turf of The Gray Cloaks. Thieves and spies who traffic in secrets and blackmail material.",
+      "topology": "settlement",
+      "services": [
+        "rest",
+        "rumor",
+        "buy"
+      ]
+    },
+    {
+      "name": "The Docks",
+      "description": "Turf of Ulf Ironborn. A Skovlander refugee turned gang leader, fighting for his people.",
+      "topology": "settlement",
+      "services": [
+        "rest",
+        "rumor",
+        "buy"
+      ]
+    },
+    {
+      "name": "All districts",
+      "description": "Turf of The Bluecoats. The city watch of Doskvol. Corrupt and brutal, they serve the interests of the wealthy.",
+      "topology": "settlement",
+      "services": [
+        "rest",
+        "rumor"
+      ]
+    },
+    {
+      "name": "Whitecrown HQ",
+      "description": "Turf of The Inspectors. The investigative branch of the government, more competent and less corrupt than the Bluecoats.",
+      "topology": "settlement",
+      "services": [
+        "rest",
+        "research"
+      ]
+    },
+    {
+      "name": "Bellweather Crematorium",
+      "description": "Turf of The Spirit Wardens. The official keepers of the dead in Doskvol. They hunt rogue spirits and destroy undead.",
+      "topology": "dungeon",
+      "services": [
+        "research",
+        "healing"
+      ]
+    },
+    {
+      "name": "Government buildings, Whitecrown",
+      "description": "Turf of The Ministry of Preservation. The Imperial bureaucracy that oversees the lightning barriers and essential city infrastructure.",
+      "topology": "settlement",
+      "services": [
+        "rest",
+        "rumor"
+      ]
+    },
+    {
+      "name": "The Docks, open sea",
+      "description": "Turf of The Leviathan Hunters. Brave crews that venture into the Void Sea to hunt the massive demons that swim there. Their blood fuels the lightning barriers.",
+      "topology": "wilderness",
+      "services": [
+        "rest",
+        "rumor"
+      ]
+    },
+    {
+      "name": "Ironhook Island",
+      "description": "Turf of Ironhook Prison. The notorious prison of Doskvol, where criminals are sent to hard labor or worse.",
+      "topology": "dungeon",
+      "services": [
+        "rest",
+        "research"
+      ]
+    },
+    {
+      "name": "Charterhall, City Hall",
+      "description": "Turf of The City Council. The governing body of Doskvol. Composed of noble families and appointed officials.",
+      "topology": "settlement",
+      "services": [
+        "rest",
+        "research"
+      ]
+    },
+    {
+      "name": "Temples in every district",
+      "description": "Turf of The Church of Ecstasy. The official state religion, devoted to forgotten gods and the comfort of the living in a bleak world.",
+      "topology": "settlement",
+      "services": [
+        "research",
+        "healing"
+      ]
+    },
+    {
+      "name": "Hidden sanctums",
+      "description": "Turf of The Path of Echoes. A secret society of occultists who commune with spirits and seek hidden truths.",
+      "topology": "settlement",
+      "services": [
+        "research",
+        "healing"
+      ]
+    },
+    {
+      "name": "Six Towers estate",
+      "description": "Turf of The Dimmer Sisters. Three reclusive sisters who deal in spirits, ghosts, and dark artifacts from their estate in Six Towers.",
+      "topology": "settlement",
+      "services": [
+        "research",
+        "healing"
+      ]
+    },
+    {
+      "name": "Hidden shrines",
+      "description": "Turf of The Forgotten Gods. A loose cult devoted to the ancient gods that existed before the Cataclysm shattered the world.",
+      "topology": "settlement",
+      "services": [
+        "rest",
+        "rumor"
+      ]
+    },
+    {
+      "name": "The ghost field",
+      "description": "Turf of The Reconciled. A secret society of ghosts who have retained their sanity and work to protect the living from supernatural threats.",
+      "topology": "settlement",
+      "services": [
+        "rest",
+        "rumor"
+      ]
+    },
+    {
+      "name": "Canals and waterways",
+      "description": "Turf of The Gondoliers. The canal boat operators of Doskvol. They know every waterway and tunnel in the city.",
+      "topology": "wilderness",
+      "services": [
+        "research",
+        "healing"
+      ]
+    },
+    {
+      "name": "Print shops in Charterhall",
+      "description": "Turf of The Ink Rakes. Journalists and pamphleteers who trade in scandal, gossip, and truth when convenient.",
+      "topology": "settlement",
+      "services": [
+        "rest",
+        "rumor"
+      ]
+    },
+    {
+      "name": "Major thoroughfares",
+      "description": "Turf of The Cabbies. Carriage drivers who form an informal intelligence network across the city.",
+      "topology": "settlement",
+      "services": [
+        "rest",
+        "rumor"
+      ]
+    },
+    {
+      "name": "Noble estates",
+      "description": "Turf of The Servants. A secret network of household servants who share intelligence about their noble employers.",
+      "topology": "settlement",
+      "services": [
+        "rest",
+        "rumor"
+      ]
+    },
+    {
+      "name": "Scurlock Manor, Six Towers",
+      "description": "Turf of Lord Scurlock. An ancient vampire who poses as a reclusive noble. Controls vast wealth and dark secrets.",
+      "topology": "settlement",
+      "services": [
+        "rest",
+        "rumor"
+      ]
+    },
+    {
+      "name": "Unknown",
+      "description": "Turf of The Unseen. The most elite thieves' guild in Doskvol. Their existence is debated.",
+      "topology": "settlement",
+      "services": [
+        "rest",
+        "research"
+      ]
+    },
+    {
+      "name": "Private clubs in Whitecrown",
+      "description": "Turf of The Foundation. A secret society of elite aristocrats who manipulate city politics from the shadows.",
+      "topology": "settlement",
+      "services": [
+        "rest",
+        "rumor"
+      ]
+    },
+    {
+      "name": "Coalridge, Charhollow",
+      "description": "Turf of The Brigade. Firefighters who also run protection rackets. Pay them or watch it burn.",
+      "topology": "settlement",
+      "services": [
+        "rest",
+        "rumor",
+        "buy"
+      ]
+    },
+    {
+      "name": "Dunslough waterways",
+      "description": "Turf of The Fog Hounds. A scrappy crew of smugglers who know the fog-shrouded canals better than anyone.",
+      "topology": "settlement",
+      "services": [
+        "rest",
+        "rumor",
+        "buy"
+      ]
+    },
+    {
+      "name": "Barracks in Charhollow",
+      "description": "Turf of The Silver Nails. A mercenary company specializing in supernatural threats. They hunt ghosts for coin.",
+      "topology": "settlement",
+      "services": [
+        "rest",
+        "rumor"
+      ]
+    },
+    {
+      "name": "Private estates in Whitecrown",
+      "description": "Turf of The Circle of Flame. A secret society of wealthy elites who conduct forbidden arcane rituals.",
+      "topology": "settlement",
+      "services": [
+        "research",
+        "healing"
+      ]
+    }
+  ]
+}

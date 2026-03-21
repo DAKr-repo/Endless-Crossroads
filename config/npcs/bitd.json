@@ -1,0 +1,228 @@
+{
+  "version": 1,
+  "source": "reference_data",
+  "named_npcs": [
+    {
+      "name": "Tarvul",
+      "role": "leader",
+      "description": "leader of The Billhooks. A tough gang of butchers and tanners, known for their brutal violence and their control of the meat trade. They use meat hooks as signature weapons.",
+      "source": "The Billhooks"
+    },
+    {
+      "name": "Coran",
+      "role": "drug dealer",
+      "description": "drug dealer of The Billhooks. A tough gang of butchers and tanners, known for their brutal violence and their control of the meat trade. They use meat hooks as signature weapons.",
+      "source": "The Billhooks"
+    },
+    {
+      "name": "Roric",
+      "role": "deposed leader, murdered",
+      "description": "deposed leader, murdered of The Crows. An old gang with a reputation for honor and fair dealing. Internal power struggle after Roric's death.",
+      "source": "The Crows"
+    },
+    {
+      "name": "Lyssa",
+      "role": "new leader",
+      "description": "new leader of The Crows. An old gang with a reputation for honor and fair dealing. Internal power struggle after Roric's death.",
+      "source": "The Crows"
+    },
+    {
+      "name": "Djera Maha",
+      "role": "leader",
+      "description": "leader of The Hive. The largest criminal organization in Doskvol. Organized like a business with departments.",
+      "source": "The Hive"
+    },
+    {
+      "name": "Bell",
+      "role": "second in command",
+      "description": "second in command of The Hive. The largest criminal organization in Doskvol. Organized like a business with departments.",
+      "source": "The Hive"
+    },
+    {
+      "name": "Bazso Baz",
+      "role": "leader",
+      "description": "leader of The Lampblacks. Former factory workers turned gang. At war with the Red Sashes.",
+      "source": "The Lampblacks"
+    },
+    {
+      "name": "Mylera Klev",
+      "role": "leader",
+      "description": "leader of The Red Sashes. A group of noble-blooded sword-fighters who run vice and fencing operations. Expert duelists, train daily at their sword academy.",
+      "source": "The Red Sashes"
+    },
+    {
+      "name": "Raven",
+      "role": "leader",
+      "description": "leader of The Wraiths. A small gang of thieves and pickpockets operating in Silkshore. Specialize in jewel theft and confidence schemes.",
+      "source": "The Wraiths"
+    },
+    {
+      "name": "Kruger",
+      "role": "leader",
+      "description": "leader of The Gray Cloaks. Thieves and spies who traffic in secrets and blackmail material. Maintain extensive dossiers on powerful people.",
+      "source": "The Gray Cloaks"
+    },
+    {
+      "name": "Ulf Ironborn",
+      "role": "leader",
+      "description": "leader of Ulf Ironborn. A Skovlander refugee turned gang leader, fighting for his people. Loyal to displaced Skovlanders.",
+      "source": "Ulf Ironborn"
+    },
+    {
+      "name": "Commander Clelland",
+      "role": "notable figure",
+      "description": "notable figure of The Bluecoats. The city watch of Doskvol. Can be bribed but have limits.",
+      "source": "The Bluecoats"
+    },
+    {
+      "name": "Inspector Broya",
+      "role": "notable figure",
+      "description": "notable figure of The Bluecoats. The city watch of Doskvol. Can be bribed but have limits.",
+      "source": "The Bluecoats"
+    },
+    {
+      "name": "Chief Inspector Lochlan",
+      "role": "notable figure",
+      "description": "notable figure of The Inspectors. The investigative branch of the government, more competent and less corrupt than the Bluecoats. Actually investigate crimes seriously.",
+      "source": "The Inspectors"
+    },
+    {
+      "name": "Master Warden Vond",
+      "role": "notable figure",
+      "description": "notable figure of The Spirit Wardens. The official keepers of the dead in Doskvol. Wear distinctive bronze masks.",
+      "source": "The Spirit Wardens"
+    },
+    {
+      "name": "Lord Governor Strangford",
+      "role": "notable figure",
+      "description": "notable figure of The Ministry of Preservation. The Imperial bureaucracy that oversees the lightning barriers and essential city infrastructure. Nearly untouchable politically.",
+      "source": "The Ministry of Preservation"
+    },
+    {
+      "name": "Captain Laudius",
+      "role": "notable figure",
+      "description": "notable figure of The Leviathan Hunters. Brave crews that venture into the Void Sea to hunt the massive demons that swim there. Revered and feared in equal measure.",
+      "source": "The Leviathan Hunters"
+    },
+    {
+      "name": "Warden Hellyers",
+      "role": "notable figure",
+      "description": "notable figure of Ironhook Prison. The notorious prison of Doskvol, where criminals are sent to hard labor or worse. Even guards fear certain cell blocks.",
+      "source": "Ironhook Prison"
+    },
+    {
+      "name": "Lord Scurlock",
+      "role": "ancient vampire",
+      "description": "ancient vampire of The City Council. The governing body of Doskvol. Infested with vampires and worse.",
+      "source": "The City Council"
+    },
+    {
+      "name": "Lady Drake",
+      "role": "notable figure",
+      "description": "notable figure of The City Council. The governing body of Doskvol. Infested with vampires and worse.",
+      "source": "The City Council"
+    },
+    {
+      "name": "Elder Rowan",
+      "role": "notable figure",
+      "description": "notable figure of The Church of Ecstasy. The official state religion, devoted to forgotten gods and the comfort of the living in a bleak world. Actually provides genuine spiritual services.",
+      "source": "The Church of Ecstasy"
+    },
+    {
+      "name": "The Reconciled",
+      "role": "spirit collective",
+      "description": "spirit collective of The Path of Echoes. A secret society of occultists who commune with spirits and seek hidden truths. Spirits serve as members alongside the living.",
+      "source": "The Path of Echoes"
+    },
+    {
+      "name": "The three sisters",
+      "role": "unnamed",
+      "description": "unnamed of The Dimmer Sisters. Three reclusive sisters who deal in spirits, ghosts, and dark artifacts from their estate in Six Towers. No one has seen them clearly. Possibly not human.",
+      "source": "The Dimmer Sisters"
+    },
+    {
+      "name": "Various cult leaders",
+      "role": "notable figure",
+      "description": "notable figure of The Forgotten Gods. A loose cult devoted to the ancient gods that existed before the Cataclysm shattered the world. Genuinely powerful and genuinely mad.",
+      "source": "The Forgotten Gods"
+    },
+    {
+      "name": "Kotar",
+      "role": "ghost leader",
+      "description": "ghost leader of The Reconciled. A secret society of ghosts who have retained their sanity and work to protect the living from supernatural threats. Ghosts with purpose and organization.",
+      "source": "The Reconciled"
+    },
+    {
+      "name": "Steelbone Mike",
+      "role": "union boss",
+      "description": "union boss of The Dockers. The dockworkers' union. Control who loads and unloads every ship.",
+      "source": "The Dockers"
+    },
+    {
+      "name": "Eisele",
+      "role": "guild master",
+      "description": "guild master of The Gondoliers. The canal boat operators of Doskvol. Have arcane protections against the drowned.",
+      "source": "The Gondoliers"
+    },
+    {
+      "name": "Kobb",
+      "role": "editor",
+      "description": "editor of The Ink Rakes. Journalists and pamphleteers who trade in scandal, gossip, and truth when convenient. Information is their true currency.",
+      "source": "The Ink Rakes"
+    },
+    {
+      "name": "Old Nyelle",
+      "role": "dispatcher",
+      "description": "dispatcher of The Cabbies. Carriage drivers who form an informal intelligence network across the city. They overhear everything.",
+      "source": "The Cabbies"
+    },
+    {
+      "name": "Quellyn",
+      "role": "organizer",
+      "description": "organizer of The Servants. A secret network of household servants who share intelligence about their noble employers. Invisible to those they serve.",
+      "source": "The Servants"
+    },
+    {
+      "name": "Lord Scurlock himself",
+      "role": "notable figure",
+      "description": "notable figure of Lord Scurlock. An ancient vampire who poses as a reclusive noble. Has lived for centuries. Knows everything.",
+      "source": "Lord Scurlock"
+    },
+    {
+      "name": "The Master",
+      "role": "rumored leader",
+      "description": "rumored leader of The Unseen. The most elite thieves' guild in Doskvol. If you know about them, they know about you.",
+      "source": "The Unseen"
+    },
+    {
+      "name": "Lord Strangford",
+      "role": "patron",
+      "description": "patron of The Foundation. A secret society of elite aristocrats who manipulate city politics from the shadows. Members include the most powerful people in the city.",
+      "source": "The Foundation"
+    },
+    {
+      "name": "Fire Chief Vale",
+      "role": "notable figure",
+      "description": "notable figure of The Brigade. Firefighters who also run protection rackets. They start the fires they put out.",
+      "source": "The Brigade"
+    },
+    {
+      "name": "Captain Mira",
+      "role": "leader",
+      "description": "leader of The Fog Hounds. A scrappy crew of smugglers who know the fog-shrouded canals better than anyone. Specialize in moving people, not goods.",
+      "source": "The Fog Hounds"
+    },
+    {
+      "name": "Commander Phin",
+      "role": "notable figure",
+      "description": "notable figure of The Silver Nails. A mercenary company specializing in supernatural threats. Their weapons are always silver-tipped.",
+      "source": "The Silver Nails"
+    },
+    {
+      "name": "High Priest Volette",
+      "role": "notable figure",
+      "description": "notable figure of The Circle of Flame. A secret society of wealthy elites who conduct forbidden arcane rituals. Their rituals require living sacrifice.",
+      "source": "The Circle of Flame"
+    }
+  ]
+}

@@ -1,0 +1,128 @@
+{
+  "version": 1,
+  "format": "fitd",
+  "source": "reference_data (setting-derived)",
+  "note": "Band of Blades hazards. The Cinder King's forces advance. Tier = threat level.",
+  "tiers": {
+    "1": [
+      {
+        "name": "Undead Skirmishers",
+        "dc": 10,
+        "damage": "1d4",
+        "damage_type": "narrative",
+        "description": "A pack of Rotters shambles out of the treeline. They're slow, relentless, and dead — but there are more than expected and the flanks aren't covered."
+      },
+      {
+        "name": "Supply Raid",
+        "dc": 10,
+        "damage": "1d4",
+        "damage_type": "narrative",
+        "description": "The supply wagon didn't arrive. Tracks in the mud show what happened. Rations are short and the Quartermaster's face says it worse than words."
+      },
+      {
+        "name": "Broken Scout Infiltration",
+        "dc": 9,
+        "damage": "1d4",
+        "damage_type": "narrative",
+        "description": "Someone in the camp has been turned. Small things go missing. Routes are known before they should be. The infiltrator is still here."
+      },
+      {
+        "name": "Poison Mist Advance",
+        "dc": 10,
+        "damage": "1d4",
+        "damage_type": "narrative",
+        "description": "A yellow-green mist rolls in low over the ground ahead of the Cinder King's troops. Breathing it is survivable. Breathing it twice is less survivable."
+      }
+    ],
+    "2": [
+      {
+        "name": "Horror Assault",
+        "dc": 13,
+        "damage": "1d6",
+        "damage_type": "narrative",
+        "description": "The 8-foot amalgamation of stitched limbs tears through the barricade. It doesn't tire. It doesn't stop. The soldiers who saw it first won't fight well again."
+      },
+      {
+        "name": "Morale Collapse",
+        "dc": 13,
+        "damage": "1d6",
+        "damage_type": "narrative",
+        "description": "Three veterans broke and ran at Plainsworth. Now half the rookies are asking the same questions. The Legion needs a win, a speech, or a scapegoat."
+      },
+      {
+        "name": "Shadow Hex",
+        "dc": 12,
+        "damage": "1d6",
+        "damage_type": "narrative",
+        "description": "Breaker's influence spreads through shared nightmares. A soldier wakes screaming. Another refuses to sleep. The psychological rot is already inside the camp walls."
+      },
+      {
+        "name": "Corrupted Water",
+        "dc": 13,
+        "damage": "1d6",
+        "damage_type": "narrative",
+        "description": "The stream that runs through camp has been poisoned upstream. Soldiers who drank this morning are already pale and slow. Tonight they may not wake."
+      }
+    ],
+    "3": [
+      {
+        "name": "Cinderblood Corruption",
+        "dc": 15,
+        "damage": "1d8",
+        "damage_type": "narrative",
+        "description": "A soldier's wounds from the last engagement aren't healing. They're darkening. The field surgeon has seen this before and her face tells you everything."
+      },
+      {
+        "name": "Forced March Fatigue",
+        "dc": 15,
+        "damage": "1d8",
+        "damage_type": "narrative",
+        "description": "Three days without sleep, one day without food, and the Cinder King's advance won't wait. The Legion marches but every soldier is a liability."
+      },
+      {
+        "name": "Desertion Crisis",
+        "dc": 14,
+        "damage": "1d8",
+        "damage_type": "narrative",
+        "description": "Seven soldiers are gone at dawn. Their boots are still by the tent. Their weapons are missing. If the Chosen don't address this today, seven becomes seventeen by nightfall."
+      },
+      {
+        "name": "Plague Outbreak",
+        "dc": 15,
+        "damage": "1d8",
+        "damage_type": "narrative",
+        "description": "The sickness moves through the camp faster than rumour. Quarantine means splitting the Legion at the worst possible moment. Not quarantine means everyone."
+      }
+    ],
+    "4": [
+      {
+        "name": "The Broken Advances",
+        "dc": 18,
+        "damage": "2d6",
+        "damage_type": "narrative",
+        "description": "One of the Broken generals has committed to this position personally. The air pressure changes. The Chosen feel it before they see it. This is the crisis the entire campaign has been building toward."
+      },
+      {
+        "name": "Black Shot Shortage",
+        "dc": 18,
+        "damage": "2d6",
+        "damage_type": "narrative",
+        "description": "The ammunition that kills undead is gone. The Quartermaster counted twice. Every soldier knows what fighting the Cinder King's troops without it means."
+      },
+      {
+        "name": "Cursed Ground",
+        "dc": 17,
+        "damage": "2d6",
+        "damage_type": "narrative",
+        "description": "The Legion's chosen ground is wrong. Every fallen soldier here rises within hours. The advantage of position has become a nightmare of logistics and sleeplessness."
+      },
+      {
+        "name": "Hound Pack — Elite",
+        "dc": 18,
+        "damage": "2d6",
+        "damage_type": "narrative",
+        "description": "Breaker's hounds are not animals. They reason. They separate targets before they strike. They have already cut the squad into isolated individuals in the dark."
+      }
+    ]
+  }
+}

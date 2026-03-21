@@ -1,0 +1,87 @@
+{
+  "version": 1,
+  "source": "reference_data",
+  "locations": [
+    {
+      "name": "Conglomerate",
+      "description": "Territory/sector of Omni Global Solutions. A mega conglomerate with fingers in every major industry sector.",
+      "topology": "settlement",
+      "services": [
+        "rest",
+        "research"
+      ]
+    },
+    {
+      "name": "Industrial / Transport",
+      "description": "Territory/sector of Toha Heavy Industries. A dominant industrial and transport corporation controlling logistics and heavy manufacturing across the Mona Rise megalopolis.",
+      "topology": "settlement",
+      "services": [
+        "rest",
+        "rumor"
+      ]
+    },
+    {
+      "name": "Servers / Orbital",
+      "description": "Territory/sector of TekNet Megacorp. Manages server infrastructure and orbital data relay networks across the megalopolis.",
+      "topology": "wilderness",
+      "services": [
+        "rest",
+        "rumor"
+      ]
+    },
+    {
+      "name": "Digital Finance",
+      "description": "Territory/sector of MezoTuring Hosaka. A Martian family-run megacorp specializing in digital money, financial instruments, and encrypted transactions.",
+      "topology": "settlement",
+      "services": [
+        "rest",
+        "rumor"
+      ]
+    },
+    {
+      "name": "Weird / Meta-Human Supply",
+      "description": "Territory/sector of Baba Yaga's. A loose network of street vendors dealing in MeTa (meta-human) paraphernalia — weird augmentations, ritual materials, eldritch supplies, and Weird Stuff for the meta-talented community.",
+      "topology": "settlement",
+      "services": [
+        "research",
+        "healing"
+      ]
+    },
+    {
+      "name": "Meta-Talented Rights / Political",
+      "description": "Territory/sector of The Gathering. A political consortium of meta-talented individuals — Whisperers, Channelers, heritage-bearers — advocating for meta-human rights through legal and political channels.",
+      "topology": "settlement",
+      "services": [
+        "rest",
+        "rumor"
+      ]
+    },
+    {
+      "name": "Unknown / Weird",
+      "description": "Territory/sector of The Elder. A dragon of iridescent scales.",
+      "topology": "settlement",
+      "services": [
+        "rest",
+        "rumor"
+      ]
+    },
+    {
+      "name": "Hacktivist / Skeptic",
+      "description": "Territory/sector of The Shadow Method. A skeptical collective of hacktivists who distrust the 'Weird' — meta-talents, spirits, and eldritch powers — and work to expose what they believe is corporate exploitation or mass delusion.",
+      "topology": "settlement",
+      "services": [
+        "research",
+        "healing"
+      ]
+    },
+    {
+      "name": "Biosphere-5, Ganymede",
+      "description": "Territory/sector of Insurgents. A resistance cell operating against Corporate Security (APX) inside Biosphere-5 on Ganymede.",
+      "topology": "settlement",
+      "services": [
+        "rest",
+        "rumor"
+      ]
+    }
+  ]
+}

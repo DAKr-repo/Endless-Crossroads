@@ -1,0 +1,324 @@
+{
+  "version": 1,
+  "source": "reference_data",
+  "locations": [
+    {
+      "name": "All sectors",
+      "description": "Operating zone of Guild of Engineers. One of the Hegemonic High Guilds, responsible for resource acquisition, cybernetics, AI, tech advancement, and research.",
+      "topology": "settlement",
+      "services": [
+        "rest",
+        "research"
+      ]
+    },
+    {
+      "name": "Orbiting incredibly close to a star (The Way of Light battle cruiser)",
+      "description": "Operating zone of Church of Stellar Flame. One of the official Hegemonic Cults.",
+      "topology": "wilderness",
+      "services": [
+        "research",
+        "healing"
+      ]
+    },
+    {
+      "name": "Warren (currency exchange HQ), shadow repositories sector-wide",
+      "description": "Operating zone of Counters Guild. Officials who maintain the galactic currency network and build shadow repositories in any system the Guild has a presence in, storing mysterious items and securing auctions and commerce.",
+      "topology": "settlement",
+      "services": [
+        "rest",
+        "research"
+      ]
+    },
+    {
+      "name": "All sectors (intelligence network)",
+      "description": "Operating zone of Starless Veil. Hegemonic counterintelligence and spies.",
+      "topology": "settlement",
+      "services": [
+        "rest",
+        "research"
+      ]
+    },
+    {
+      "name": "The Scorpio (dreadnought HQ), naval yards throughout the sector",
+      "description": "Operating zone of 51st Legion. A faction of the Hegemonic military, preparing a coup.",
+      "topology": "settlement",
+      "services": [
+        "rest",
+        "research"
+      ]
+    },
+    {
+      "name": "Warren (Governor's residence)",
+      "description": "Operating zone of House Malklaith. A powerful Noble House of the Hegemony that ostensibly owns the sector.",
+      "topology": "settlement",
+      "services": [
+        "rest",
+        "research"
+      ]
+    },
+    {
+      "name": "Orbiting near the star in Brekk system",
+      "description": "Operating zone of Isotropa Max Secure. The most notorious prison system in the Procyon sector, housing the worst of the worst.",
+      "topology": "wilderness",
+      "services": [
+        "rest",
+        "research"
+      ]
+    },
+    {
+      "name": "All major stations (certification offices)",
+      "description": "Operating zone of Starsmiths Guild. Maintain the jumpgates and hyperspace lanes, and build ships.",
+      "topology": "settlement",
+      "services": [
+        "rest",
+        "research"
+      ]
+    },
+    {
+      "name": "Small island research station on Mem (HQ), dig site on Shimaya",
+      "description": "Operating zone of Cult of the Seekers. Wandering mystics studying artifacts and exploring, looking to open the Hantu gate.",
+      "topology": "wilderness",
+      "services": [
+        "research",
+        "healing"
+      ]
+    },
+    {
+      "name": "All major stations (broadcast infrastructure)",
+      "description": "Operating zone of Hegemonic News Network. Those who control the media control the mind.",
+      "topology": "settlement",
+      "services": [
+        "rest",
+        "rumor"
+      ]
+    },
+    {
+      "name": "Deep space, Aleph system borders",
+      "description": "Operating zone of Yaru (Makers Guild). Guild that force-grows clones for labor.",
+      "topology": "wilderness",
+      "services": [
+        "rest",
+        "research"
+      ]
+    },
+    {
+      "name": "No fixed turf; The Grail (a bar on Sonhandra) as message drop",
+      "description": "Operating zone of Concordiat Knights. Fourth and fifth children of Noble Houses who have taken an oath sanctioned by the Hegemon to seek the Light of the World.",
+      "topology": "settlement",
+      "services": [
+        "rest",
+        "rumor"
+      ]
+    },
+    {
+      "name": "Deep space, merchant routes throughout Procyon",
+      "description": "Operating zone of Sah'iir. Tall, ebon-skinned xenos who travel with blindfolded servants that speak for them.",
+      "topology": "wilderness",
+      "services": [
+        "rest",
+        "rumor"
+      ]
+    },
+    {
+      "name": "Unknown (research cells throughout sector)",
+      "description": "Operating zone of Suneaters. Ur-archaeologists and scientists obsessed with recreating jumpgate technology.",
+      "topology": "dungeon",
+      "services": [
+        "rest",
+        "rumor"
+      ]
+    },
+    {
+      "name": "Platform orbiting Planet Omega (HQ), secret chantries on Mem, Sonhandra, and Lithios",
+      "description": "Operating zone of The Agony. Human Cultists infecting themselves with Way creatures to access the universe in unsettling ways.",
+      "topology": "wilderness",
+      "services": [
+        "rest",
+        "rumor"
+      ]
+    },
+    {
+      "name": "Undocumented Ur ruin on Lithios, moon base on a Nightfall moon (HQ)",
+      "description": "Operating zone of Ashtari Cult. A Cult of Precursor worshipers claiming Ur descent.",
+      "topology": "settlement",
+      "services": [
+        "rest",
+        "rumor"
+      ]
+    },
+    {
+      "name": "All sectors (disguised as ordinary citizens)",
+      "description": "Operating zone of Vignerons. A small handful of immortality seekers using artifact tech implants and chemicals distilled from the living.",
+      "topology": "settlement",
+      "services": [
+        "rest",
+        "rumor"
+      ]
+    },
+    {
+      "name": "The Skeleton Key (ghost ship, location unknown)",
+      "description": "Operating zone of Ghosts. Scientists who, due to a mishap, live exo-suited in a half-phased state.",
+      "topology": "settlement",
+      "services": [
+        "rest",
+        "research"
+      ]
+    },
+    {
+      "name": "Wandering (no fixed base)",
+      "description": "Operating zone of Mendicants. Originally the Church of the Emerald Heart, their organization was politically destroyed.",
+      "topology": "settlement",
+      "services": [
+        "rest",
+        "research"
+      ]
+    },
+    {
+      "name": "Blackstarr (vast Nightspeaker ship), hidden conclave in Brekk",
+      "description": "Operating zone of Nightspeakers. Mystics with dark proclivities bent on finding a set of dangerous Precursor artifacts.",
+      "topology": "settlement",
+      "services": [
+        "research",
+        "healing"
+      ]
+    },
+    {
+      "name": "Numerous meditation rooms throughout Indri",
+      "description": "Operating zone of Acolytes of Brashkadesh. A collective that eschews individuality.",
+      "topology": "settlement",
+      "services": [
+        "rest",
+        "rumor"
+      ]
+    },
+    {
+      "name": "Secret bases on Baftoma and the Indri Wastelands (HQ)",
+      "description": "Operating zone of Conclave 01. Independent, sentient Urbots led by an ancient Urbot known as the Prime, seeking free will and independence for all Urbots.",
+      "topology": "wilderness",
+      "services": [
+        "rest",
+        "rumor"
+      ]
+    },
+    {
+      "name": "Outer system (mobile fleet)",
+      "description": "Operating zone of Lost Legion. Formerly the Hegemon's personal guard, they rebelled when the current Hegemon rose to power.",
+      "topology": "settlement",
+      "services": [
+        "rest",
+        "rumor"
+      ]
+    },
+    {
+      "name": "All sectors (no fixed base)",
+      "description": "Operating zone of Scarlet Wolves. Although they often hire themselves out as bounty hunters, the Scarlet Wolves are a renowned group of assassins.",
+      "topology": "settlement",
+      "services": [
+        "rest",
+        "rumor"
+      ]
+    },
+    {
+      "name": "All sectors (can access any terminal)",
+      "description": "Operating zone of Vorex. The most successful information broker to ever live.",
+      "topology": "settlement",
+      "services": [
+        "rest",
+        "research"
+      ]
+    },
+    {
+      "name": "Drug dens, gambling houses, hidden reinforced bunker on Warren (HQ)",
+      "description": "Operating zone of Ashen Knives. Once lean and battle ready, the Ashen Knives are a decadent Syndicate focused on drugs, gambling, and pleasures of the flesh.",
+      "topology": "settlement",
+      "services": [
+        "rest",
+        "rumor",
+        "buy"
+      ]
+    },
+    {
+      "name": "Former Counters Guild shadow repository (HQ), Warren",
+      "description": "Operating zone of Borniko Syndicate. A tightly knit group of thieves who steal high-end technological supplies.",
+      "topology": "settlement",
+      "services": [
+        "rest",
+        "research"
+      ]
+    },
+    {
+      "name": "Abandoned mining station in an Iota asteroid belt (HQ)",
+      "description": "Operating zone of Draxler's Raiders. Violent pirates who disable ships before boarding, ransoming crew and cargo alike.",
+      "topology": "wilderness",
+      "services": [
+        "rest",
+        "rumor"
+      ]
+    },
+    {
+      "name": "Nebula (difficult to navigate, exact location unknown)",
+      "description": "Operating zone of The Maelstrom. Rowdy space pirates living in a nebula that's difficult to navigate.",
+      "topology": "wilderness",
+      "services": [
+        "rest",
+        "research"
+      ]
+    },
+    {
+      "name": "Bright Wind gas cloud in Brekk system (racing grounds)",
+      "description": "Operating zone of Echo Wave Riders. Pilots.",
+      "topology": "settlement",
+      "services": [
+        "rest",
+        "research"
+      ]
+    },
+    {
+      "name": "All sectors (mobile dealing operations)",
+      "description": "Operating zone of Janus Syndicate. Weapons dealers that specialize in ship weapons, headed up by the ruthless Viktor Bax, who insists on the first deal with every client in person.",
+      "topology": "settlement",
+      "services": [
+        "rest",
+        "rumor"
+      ]
+    },
+    {
+      "name": "Holt system (drug den network)",
+      "description": "Operating zone of Turner Society. A Holt-based Syndicate running drug dens masquerading as society houses.",
+      "topology": "settlement",
+      "services": [
+        "rest",
+        "rumor"
+      ]
+    },
+    {
+      "name": "The Pit mining quarry on Aleph (HQ), major berth and docks on Warren",
+      "description": "Operating zone of Cobalt Syndicate. Once a labor union, the Cobalt Syndicate has turned to smuggling and extortion to carve out shipping lanes and have a real say.",
+      "topology": "settlement",
+      "services": [
+        "rest",
+        "rumor",
+        "buy"
+      ]
+    },
+    {
+      "name": "Lost Paradise club with attached warehouse on Warren (HQ)",
+      "description": "Operating zone of Dyrinek Gang. Mostly young, disenfranchised xenos who have turned to crime and found strength and solidarity with each other.",
+      "topology": "settlement",
+      "services": [
+        "rest",
+        "rumor"
+      ]
+    },
+    {
+      "name": "Brekk debris fields",
+      "description": "Operating zone of Wreckers. Scavengers and thieves with a few brilliant hackers, who incite factions to fight so that they may pick the battlefields clean later.",
+      "topology": "settlement",
+      "services": [
+        "rest",
+        "rumor",
+        "buy"
+      ]
+    }
+  ]
+}

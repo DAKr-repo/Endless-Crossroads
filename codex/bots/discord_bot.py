@@ -281,6 +281,11 @@ class Phase(Enum):
     ASHBURN_HEIR = auto()   # WO-V23.0 — Ashburn heir selection
     ASHBURN_LEGACY = auto() # WO-V23.0 — Ashburn legacy choice
     QUEST_SELECT = auto()   # WO-V23.0 — Quest archetype selection
+    BITD = auto()           # Blades in the Dark session
+    SAV = auto()            # Scum and Villainy session
+    BOB = auto()            # Band of Blades session
+    CBRPNK = auto()         # CBR+PNK session
+    CANDELA = auto()        # Candela Obscura session
 
 
 # =============================================================================
@@ -1763,6 +1768,178 @@ Type `!travel` when ready.""")
             if frame:
                 await _scry_embed_update(session, ctx.channel, frame, result)
 
+        @self.command(name="bitd")
+        async def cmd_bitd(ctx):
+            """Start a Blades in the Dark session."""
+            session = get_session(ctx.channel.id)
+            if session.phase not in (Phase.IDLE, Phase.MENU):
+                session.end_session()
+            try:
+                from codex.games.bitd import BitDEngine
+            except ImportError:
+                await ctx.send("BitD engine not available.")
+                return
+            session.bridge = UniversalGameBridge(BitDEngine)
+            session.game_type = "bitd"
+            session.phase = Phase.BITD
+            result = session.bridge.step('look')
+            frame = getattr(session.bridge, 'last_frame', None)
+            view = GameCommandView(session)
+            await ctx.send(f"```\n{result}\n```", view=view)
+            if frame:
+                await _scry_embed_update(session, ctx.channel, frame, result)
+
+        @self.command(name="sav")
+        async def cmd_sav(ctx):
+            """Start a Scum and Villainy session."""
+            session = get_session(ctx.channel.id)
+            if session.phase not in (Phase.IDLE, Phase.MENU):
+                session.end_session()
+            try:
+                from codex.games.sav import SaVEngine
+            except ImportError:
+                await ctx.send("SaV engine not available.")
+                return
+            session.bridge = UniversalGameBridge(SaVEngine)
+            session.game_type = "sav"
+            session.phase = Phase.SAV
+            result = session.bridge.step('look')
+            frame = getattr(session.bridge, 'last_frame', None)
+            view = GameCommandView(session)
+            await ctx.send(f"```\n{result}\n```", view=view)
+            if frame:
+                await _scry_embed_update(session, ctx.channel, frame, result)
+
+        @self.command(name="bob")
+        async def cmd_bob(ctx):
+            """Start a Band of Blades session."""
+            session = get_session(ctx.channel.id)
+            if session.phase not in (Phase.IDLE, Phase.MENU):
+                session.end_session()
+            try:
+                from codex.games.bob import BoBEngine
+            except ImportError:
+                await ctx.send("BoB engine not available.")
+                return
+            session.bridge = UniversalGameBridge(BoBEngine)
+            session.game_type = "bob"
+            session.phase = Phase.BOB
+            result = session.bridge.step('look')
+            frame = getattr(session.bridge, 'last_frame', None)
+            view = GameCommandView(session)
+            await ctx.send(f"```\n{result}\n```", view=view)
+            if frame:
+                await _scry_embed_update(session, ctx.channel, frame, result)
+
+        @self.command(name="cbrpnk")
+        async def cmd_cbrpnk(ctx):
+            """Start a CBR+PNK session."""
+            session = get_session(ctx.channel.id)
+            if session.phase not in (Phase.IDLE, Phase.MENU):
+                session.end_session()
+            try:
+                from codex.games.cbrpnk import CBRPNKEngine
+            except ImportError:
+                await ctx.send("CBR+PNK engine not available.")
+                return
+            session.bridge = UniversalGameBridge(CBRPNKEngine)
+            session.game_type = "cbrpnk"
+            session.phase = Phase.CBRPNK
+            result = session.bridge.step('look')
+            frame = getattr(session.bridge, 'last_frame', None)
+            view = GameCommandView(session)
+            await ctx.send(f"```\n{result}\n```", view=view)
+            if frame:
+                await _scry_embed_update(session, ctx.channel, frame, result)
+
+        @self.command(name="candela")
+        async def cmd_candela(ctx):
+            """Start a Candela Obscura session."""
+            session = get_session(ctx.channel.id)
+            if session.phase not in (Phase.IDLE, Phase.MENU):
+                session.end_session()
+            try:
+                from codex.games.candela import CandelaEngine
+            except ImportError:
+                await ctx.send("Candela Obscura engine not available.")
+                return
+            session.bridge = UniversalGameBridge(CandelaEngine)
+            session.game_type = "candela"
+            session.phase = Phase.CANDELA
+            result = session.bridge.step('look')
+            frame = getattr(session.bridge, 'last_frame', None)
+            view = GameCommandView(session)
+            await ctx.send(f"```\n{result}\n```", view=view)
+            if frame:
+                await _scry_embed_update(session, ctx.channel, frame, result)
+
+        @self.command(name="companion")
+        async def cmd_companion(ctx):
+            """Toggle or inspect AI companion."""
+            session = get_session(ctx.channel.id)
+            if not session.bridge:
+                await ctx.send("No active game session. Start a game first.")
+                return
+            try:
+                from codex.core.autopilot import GenericAutopilotAgent, PERSONALITY_POOL
+            except ImportError:
+                await ctx.send("Companion system not available.")
+                return
+            companion = getattr(session.bridge, '_companion_agent', None)
+            if companion:
+                p = companion.get_effective_personality()
+                embed = discord.Embed(
+                    title=f"Companion: {p.name}",
+                    description=(
+                        f"**Archetype:** {p.archetype}\n"
+                        f"**Aggression:** {p.aggression}  "
+                        f"**Curiosity:** {p.curiosity}  "
+                        f"**Caution:** {p.caution}\n"
+                        f"**Enabled:** {companion.enabled}"
+                    ),
+                    color=0x3498DB,
+                )
+                await ctx.send(embed=embed)
+            else:
+                import random
+                personality = random.choice(PERSONALITY_POOL)
+                system_tag = session.game_type or "burnwillow"
+                agent = GenericAutopilotAgent(personality, system_tag)
+                agent.enabled = True
+                session.bridge._companion_agent = agent
+                embed = discord.Embed(
+                    title=f"Companion Recruited: {personality.name}",
+                    description=(
+                        f"*{personality.archetype}*\n"
+                        f"{personality.tagline}"
+                    ),
+                    color=0x2ECC71,
+                )
+                await ctx.send(embed=embed)
+
+        @self.command(name="export")
+        async def cmd_export(ctx):
+            """Export current character to a JSON file."""
+            session = get_session(ctx.channel.id)
+            if not session.bridge:
+                await ctx.send("No active game session.")
+                return
+            engine = getattr(session.bridge, '_engine', None)
+            if not engine:
+                await ctx.send("No engine found in current session.")
+                return
+            state = engine.save_state() if hasattr(engine, 'save_state') else {}
+            if not state:
+                await ctx.send("No character data to export.")
+                return
+            import io
+            buf = io.StringIO(json.dumps(state, indent=2, default=str))
+            filename = f"{session.game_type or 'character'}_export.json"
+            await ctx.send(
+                "Character exported:",
+                file=discord.File(fp=buf, filename=filename),
+            )
+
         @self.command(name="crown")
         async def cmd_crown(ctx):
             """Start a fresh Crown & Crew campaign (WO-V23.0)."""
@@ -2179,8 +2356,114 @@ Type `!travel` when ready.""")
                     result = scan_vault()
                 embed = discord.Embed(
                     title="Vault Scanner",
-                    description=result,
+                    description=result[:4000],
                     color=0x9B59B6,
+                )
+                await ctx.send(embed=embed)
+
+            elif sub == "session":
+                if not arg:
+                    await ctx.send("Usage: `!dm session <paste session notes>`")
+                    return
+                try:
+                    from codex.core.dm_tools import summarize_context
+                except ImportError:
+                    await ctx.send("Session summarizer not available.")
+                    return
+                async with ctx.typing():
+                    result = summarize_context(arg)
+                embed = discord.Embed(
+                    title="Session Summary",
+                    description=result[:4000],
+                    color=0x1ABC9C,
+                )
+                await ctx.send(embed=embed)
+
+            elif sub == "genesis":
+                try:
+                    from codex.world.genesis import GenesisEngine
+                except ImportError:
+                    await ctx.send("World Genesis module not available.")
+                    return
+                async with ctx.typing():
+                    ge = GenesisEngine()
+                    world = ge.generate_world()
+                lines = []
+                if isinstance(world, dict):
+                    for k, v in world.items():
+                        lines.append(f"**{k}**: {v}")
+                else:
+                    lines.append(str(world))
+                embed = discord.Embed(
+                    title="World Genesis",
+                    description="\n".join(lines)[:4000],
+                    color=0x8E44AD,
+                )
+                await ctx.send(embed=embed)
+
+            elif sub == "forge":
+                embed = discord.Embed(
+                    title="Character Forge",
+                    description=(
+                        "Use `!create` to start interactive character creation.\n\n"
+                        "Supported systems: Burnwillow, D&D 5e, Cosmere, CBR+PNK"
+                    ),
+                    color=0xE67E22,
+                )
+                await ctx.send(embed=embed)
+
+            elif sub in ("generate", "module"):
+                try:
+                    from scripts.generate_module import list_templates, generate_module
+                except ImportError:
+                    await ctx.send("Module generator not available.")
+                    return
+                gen_parts = arg.split()
+                if len(gen_parts) < 2:
+                    templates = list_templates()
+                    tpl_list = ", ".join(templates) if templates else "none found"
+                    await ctx.send(
+                        f"Usage: `!dm generate <template> <system> [tier]`\n"
+                        f"Templates: {tpl_list}"
+                    )
+                    return
+                template_id = gen_parts[0]
+                system_id = gen_parts[1]
+                tier = 1
+                if len(gen_parts) > 2:
+                    try:
+                        tier = max(1, min(4, int(gen_parts[2])))
+                    except ValueError:
+                        pass
+                async with ctx.typing():
+                    import asyncio
+                    loop = asyncio.get_event_loop()
+                    output_dir = await loop.run_in_executor(
+                        None,
+                        lambda: generate_module(template_id, system_id, tier=tier),
+                    )
+                embed = discord.Embed(
+                    title="Module Generated",
+                    description=f"Output: `{output_dir}`",
+                    color=0x27AE60,
+                )
+                await ctx.send(embed=embed)
+
+            elif sub == "enrich":
+                try:
+                    from scripts.enrich_module import enrich_module
+                except ImportError:
+                    await ctx.send("Module enrichment not available.")
+                    return
+                if not arg:
+                    await ctx.send("Usage: `!dm enrich <module_directory>`")
+                    return
+                async with ctx.typing():
+                    result = await enrich_module(arg)
+                embed = discord.Embed(
+                    title="Module Enrichment",
+                    description=str(result)[:4000],
+                    color=0xF39C12,
                 )
                 await ctx.send(embed=embed)
 
@@ -2193,7 +2476,12 @@ Type `!travel` when ready.""")
                         "`!dm loot [easy/medium/hard]` — Generate loot\n"
                         "`!dm trap [easy/medium/hard]` — Generate trap\n"
                         "`!dm encounter [system] [tier]` — Generate encounter\n"
-                        "`!dm scan` — Scan vault PDFs for tables"
+                        "`!dm scan` — Scan vault PDFs for tables\n"
+                        "`!dm session <notes>` — Summarize session notes\n"
+                        "`!dm genesis` — Generate a random world\n"
+                        "`!dm forge` — Character creation info\n"
+                        "`!dm generate <tpl> <sys> [tier]` — Generate module\n"
+                        "`!dm enrich <dir>` — Enrich module with AI"
                     ),
                     color=0x95A5A6,
                 )
@@ -2272,7 +2560,7 @@ Type `!travel` when ready.""")
         if isinstance(error, commands.CommandNotFound):
             session = get_session(ctx.channel.id)
             if (
-                session.phase in (Phase.DUNGEON, Phase.DND5E, Phase.COSMERE)
+                session.phase in (Phase.DUNGEON, Phase.DND5E, Phase.COSMERE, Phase.BITD, Phase.SAV, Phase.BOB, Phase.CBRPNK, Phase.CANDELA)
                 and session.bridge
             ):
                 # Strip the "!" prefix and forward to bridge
@@ -2640,7 +2928,7 @@ Type `!travel` when ready.""")
         text = message.content.lower().strip()
 
         # Dungeon session (Burnwillow / DnD5e / Cosmere free-text input)
-        if session.phase in (Phase.DUNGEON, Phase.DND5E, Phase.COSMERE):
+        if session.phase in (Phase.DUNGEON, Phase.DND5E, Phase.COSMERE, Phase.BITD, Phase.SAV, Phase.BOB, Phase.CBRPNK, Phase.CANDELA):
             if not session.bridge:
                 await message.channel.send(
                     "Session error: bridge lost. Use `!stop` to reset.")

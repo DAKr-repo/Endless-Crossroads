@@ -1,0 +1,76 @@
+{
+  "version": 1,
+  "source": "reference_data (setting-derived)",
+  "room_furnishings": [
+    "Crem-encrusted stone table with faded glyph markings",
+    "Sphere lanterns mounted in wall sconces, dun and depleted",
+    "Shalebark growth spreading across the ceiling in mottled patterns",
+    "Overturned highstorm shelter frame, bent and rusted",
+    "Stone benches carved with symmetrical Vorin designs",
+    "Abandoned fabrial workbench with scattered gemstone fragments",
+    "Rolled tapestry depicting the Heralds in faded colors",
+    "Rockbud planters lining the walls, long since dormant",
+    "Soulcast chairs — unnervingly uniform in texture",
+    "A cracked gemheart display case, empty and dust-covered"
+  ],
+  "wall_decorations": [
+    "Glyphpair warnings carved deep into the stone",
+    "Ancient Dawncity symmetrical mural, partially intact",
+    "Parshendi rhythm-notation scratches in repeating patterns",
+    "Faded map of the Shattered Plains etched into the wall",
+    "Bas-relief depicting a Radiant in full Shardplate",
+    "Vorin prayer glyphs arranged in the Double Eye pattern",
+    "Crem deposits shaped by centuries of highstorm drainage",
+    "Scorch marks from Division surge practice",
+    "Scratched tally marks counting highstorms endured",
+    "Inlaid gemstone mosaic, most stones pried out long ago"
+  ],
+  "floor_details": [
+    "Cremling trails winding through dried crem deposits",
+    "Cracked stone revealing a chasm void below",
+    "Soulcast-smooth floor section contrasting with natural rock",
+    "Scattered dun spheres, their stormlight long spent",
+    "Fossilized greatshell prints pressed into ancient stone",
+    "Stormwater channels cut into the floor, still damp",
+    "Obsidian-like stone from an ancient Dustbringer's Division surge",
+    "Worn footpath grooves from centuries of patrol routes",
+    "Patches of moss growing where water pools during storms",
+    "Shattered Shardplate fragments embedded in the stone floor"
+  ],
+  "sounds": [
+    "Distant highstorm rumbling beyond thick walls",
+    "Spren chiming faintly at the edge of perception",
+    "Dripping stormwater echoing through empty chambers",
+    "Cremling chittering from within the walls",
+    "Wind whistling through a distant chasm opening",
+    "The low hum of a fabrial still drawing stormlight",
+    "Stone groaning as the structure settles",
+    "Rhythmic tapping — someone or something further in",
+    "The hollow resonance of an empty gemheart chamber",
+    "Faint singing that might be windspren or imagination"
+  ],
+  "smells": [
+    "Ozone from recent stormlight use",
+    "Damp crem and ancient moss",
+    "Burnt stone from Soulcasting residue",
+    "Salt air drifting up from the chasms below",
+    "Stale air sealed for decades behind stone doors",
+    "The sharp metallic scent of Shardplate maintenance oil",
+    "Decaying shalebark releasing earthy spores",
+    "The electric tang of an approaching highstorm",
+    "Voidlight corruption — a wrongness that registers as smell",
+    "Lavis grain stores, long since turned to dust"
+  ],
+  "lighting": [
+    "Infused spheres casting steady white stormlight",
+    "Voidlight pulsing with a violet-black anti-glow",
+    "Natural chasm-filtered sunlight in narrow beams",
+    "Bioluminescent moss clinging to damp stone walls",
+    "A single broam casting long shadows down the corridor",
+    "Complete darkness — the spheres here went dun long ago",
+    "Flickering stormlight from a damaged fabrial",
+    "Pale blue glow from a cluster of logicspren",
+    "Red-orange light from molten stone exposed by Division",
+    "The warm amber of an oil lamp — no stormlight needed"
+  ]
+}

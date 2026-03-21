@@ -95,6 +95,24 @@ class PoolLoot:
         }
 
 
+@dataclass
+class PoolMagicItem:
+    """A magic/special item with rarity information."""
+    name: str
+    rarity: str = "common"
+    item_type: str = "wondrous"
+    description: str = ""
+    attunement: bool = False
+
+    def to_scene_dict(self) -> dict:
+        return {
+            "name": self.name,
+            "rarity": self.rarity,
+            "type": self.item_type,
+            "description": self.description,
+        }
+
+
 # ---------------------------------------------------------------------------
 # System-level constants
 # ---------------------------------------------------------------------------
@@ -158,6 +176,7 @@ class ContentPool:
         self._config_npcs: List[dict] = self._load_npcs_from_config()
         self._traps: Dict[str, List[dict]] = self._load_traps()
         self._tables: Dict[str, Any] = self._load_tables()
+        self._magic_items: List[dict] = self._load_magic_items()
 
     # ------------------------------------------------------------------
     # Private loaders
@@ -351,6 +370,17 @@ class ContentPool:
         except Exception:
             pass
         return tables
+
+    def _load_magic_items(self) -> List[dict]:
+        """Load magic items from config/magic_items/{system_id}.json."""
+        try:
+            from codex.core.config_loader import load_config
+            data = load_config("magic_items", self.system_id)
+            if data and "items" in data:
+                return data["items"]
+        except Exception:
+            pass
+        return []
 
     def _load_encounters(self) -> List[Any]:
         """Load ENCOUNTER_TABLE from the system's engine module.
@@ -558,6 +588,36 @@ class ContentPool:
         if not pool:
             return []
         return [self._rng.choice(pool) for _ in range(count)]
+
+    def get_magic_items(
+        self, rarity: str = "", count: int = 1,
+    ) -> List[PoolMagicItem]:
+        """Return magic items, optionally filtered by rarity.
+
+        Args:
+            rarity: Filter by rarity (common/uncommon/rare/very_rare/legendary).
+            count:  Number of items to return.
+
+        Returns:
+            List of PoolMagicItem objects.
+        """
+        if not self._magic_items:
+            return []
+        pool = self._magic_items
+        if rarity:
+            filtered = [i for i in pool if i.get("rarity", "") == rarity]
+            pool = filtered if filtered else pool
+        selected = [self._rng.choice(pool) for _ in range(min(count, len(pool)))]
+        return [
+            PoolMagicItem(
+                name=item.get("name", "Unknown"),
+                rarity=item.get("rarity", "common"),
+                item_type=item.get("type", "wondrous"),
+                description=item.get("description", ""),
+                attunement=item.get("attunement", False),
+            )
+            for item in selected
+        ]
 
     def get_table(self, category: str) -> Optional[dict]:
         """Return a procedural generation table by category name.

@@ -1,0 +1,64 @@
+{
+  "version": 1,
+  "source": "reference_data (stc_heritages)",
+  "cultural_greetings": [
+    "Storms bless you (Alethi)",
+    "By the Passions! (Thaylen)",
+    "May your colors never fade (Iriali)",
+    "Kelek's breath! (common Vorin oath)",
+    "Journey before destination (Radiant greeting)",
+    "May Jezrien shelter you from the storm (traditional Vorin)",
+    "Greetings of the Peak (Unkalaki formal)",
+    "Walk in the light of the Almighty (Ardent blessing)",
+    "Honor to your house (Alethi lighteyes formal)",
+    "Clear skies to you (Shin greeting)"
+  ],
+  "heritage_foods": [
+    "Chouta — Alethi street food wrapped in flatbread",
+    "Shin rice — a rare and expensive delicacy on Roshar",
+    "Horneater stew — thick Unkalaki broth with firemoss spice",
+    "Soulcast grain — uniform, tasteless, but nutritious",
+    "Cremling legs — fried crunchy snack common in warcamps",
+    "Lavis grain flatbread — staple food across Roshar",
+    "Thaylen longbread — dense travel ration for merchant sailors",
+    "Azish curry — complex spiced dish reflecting bureaucratic precision",
+    "Herdazian chouta variant with extra spice and bravado",
+    "Tallew fruit — sweet and rare, grown only in Shinovar"
+  ],
+  "cultural_values": [
+    "Military honor and martial excellence (Alethi)",
+    "Scholarly pursuit and philosophical debate (Veden)",
+    "Trade acumen and mercantile tradition (Thaylen)",
+    "Bureaucratic excellence and meritocracy (Azish)",
+    "Family loyalty and bold humor (Herdazian)",
+    "Pacifism and agricultural stewardship (Shin)",
+    "Religious devotion and community service (Makabaki)",
+    "Spiritual journey and unity of all peoples (Iriali)",
+    "Hospitality and mountain tradition (Unkalaki)",
+    "Mysticism and connection to the lost (Natan)"
+  ],
+  "naming_patterns": [
+    "Given name + father's name (Alethi lighteyes: Adolin Kholin)",
+    "Symmetrical names considered holy (Vorin: Shallan, Kaladin near-symmetry)",
+    "Single name tradition (Shin: Szeth)",
+    "Long formal names with family lineage (Azish: full bureaucratic record)",
+    "Descriptive epithets added to names (Herdazian: The Lopen)",
+    "Peak-name indicating mountain of birth (Unkalaki: Rock's full name)",
+    "Trade-name used with outsiders, true name kept private (Thaylen merchants)",
+    "Rhythm-names reflecting attunement (Listener/Singer tradition)",
+    "Caste marker embedded in naming convention (Alethi darkeyes)",
+    "Color-name tradition reflecting the Long Trail (Iriali)"
+  ],
+  "cultural_superstitions": [
+    "Never point with your safehand — deeply offensive in Vorin culture",
+    "Symmetry in names approaches the divine and is considered blasphemous",
+    "Storms are the Almighty's wrath made manifest",
+    "The number ten is sacred — ten Heralds, ten orders, ten heartbeats",
+    "Predicting highstorms is the province of the Almighty alone (Vorin orthodox view)",
+    "The Shin believe walking on stone is sacrilege",
+    "Unkalaki believe spren are gods visiting the physical realm",
+    "Seeing the future is of Odium — an abomination",
+    "A drawn Shardblade must taste blood before being dismissed",
+    "The left hand is sacred and must be covered (Vorin women)"
+  ]
+}

@@ -1,0 +1,294 @@
+{
+  "version": 1,
+  "source": "reference_data",
+  "named_npcs": [
+    {
+      "name": "Alaana",
+      "role": "Noble, high priestess, mystic, driven, ex-heretic",
+      "description": "Noble, high priestess, mystic, driven, ex-heretic of Church of Stellar Flame. One of the official Hegemonic Cults. Each member is branded with the Kiss of Light. Faithful pray by bathing in as much light as they can bear.",
+      "source": "Church of Stellar Flame"
+    },
+    {
+      "name": "Battle Sister Diana",
+      "role": "battle-scarred, exo-suited, unstoppable",
+      "description": "battle-scarred, exo-suited, unstoppable of Church of Stellar Flame. One of the official Hegemonic Cults. Each member is branded with the Kiss of Light. Faithful pray by bathing in as much light as they can bear.",
+      "source": "Church of Stellar Flame"
+    },
+    {
+      "name": "Iraam the Kind",
+      "role": "inquisitor, plain, quiet, cruel",
+      "description": "inquisitor, plain, quiet, cruel of Church of Stellar Flame. One of the official Hegemonic Cults. Each member is branded with the Kiss of Light. Faithful pray by bathing in as much light as they can bear.",
+      "source": "Church of Stellar Flame"
+    },
+    {
+      "name": "Torx Verron",
+      "role": "chief executive, calculating, ruthless, expansionary",
+      "description": "chief executive, calculating, ruthless, expansionary of Counters Guild. Officials who maintain the galactic currency network and build shadow repositories in any system the Guild has a presence in, storing mysterious items and securing auctions and commerce. Members sign a contract for cycles of labor. Any breach can be punished harshly.",
+      "source": "Counters Guild"
+    },
+    {
+      "name": "Rintar Ix",
+      "role": "operations head, conniving, jealous, sly",
+      "description": "operations head, conniving, jealous, sly of Counters Guild. Officials who maintain the galactic currency network and build shadow repositories in any system the Guild has a presence in, storing mysterious items and securing auctions and commerce. Members sign a contract for cycles of labor. Any breach can be punished harshly.",
+      "source": "Counters Guild"
+    },
+    {
+      "name": "Broq Vsigh",
+      "role": "repository head, honorable, meticulous",
+      "description": "repository head, honorable, meticulous of Counters Guild. Officials who maintain the galactic currency network and build shadow repositories in any system the Guild has a presence in, storing mysterious items and securing auctions and commerce. Members sign a contract for cycles of labor. Any breach can be punished harshly.",
+      "source": "Counters Guild"
+    },
+    {
+      "name": "Tallon 'the Butcher'",
+      "role": "commander, disciplined, imposing, vicious",
+      "description": "commander, disciplined, imposing, vicious of 51st Legion. A faction of the Hegemonic military, preparing a coup. There are oddly few xenos among the Legion.",
+      "source": "51st Legion"
+    },
+    {
+      "name": "Liyara",
+      "role": "lieutenant, psychic, changed, eerie, loyal",
+      "description": "lieutenant, psychic, changed, eerie, loyal of 51st Legion. A faction of the Hegemonic military, preparing a coup. There are oddly few xenos among the Legion.",
+      "source": "51st Legion"
+    },
+    {
+      "name": "Wick",
+      "role": "spy, xeno, unreadable, mysterious, loyal",
+      "description": "spy, xeno, unreadable, mysterious, loyal of 51st Legion. A faction of the Hegemonic military, preparing a coup. There are oddly few xenos among the Legion.",
+      "source": "51st Legion"
+    },
+    {
+      "name": "Lasaya al'Nim-Amar",
+      "role": "Noble, mystic, brilliant, obsessed",
+      "description": "Noble, mystic, brilliant, obsessed of Cult of the Seekers. Wandering mystics studying artifacts and exploring, looking to open the Hantu gate. Many are young ex-Legionnaires personally drafted by the Hegemon's mother.",
+      "source": "Cult of the Seekers"
+    },
+    {
+      "name": "Yor Brah-Rahim",
+      "role": "explorer, hot-tempered, stressed",
+      "description": "explorer, hot-tempered, stressed of Cult of the Seekers. Wandering mystics studying artifacts and exploring, looking to open the Hantu gate. Many are young ex-Legionnaires personally drafted by the Hegemon's mother.",
+      "source": "Cult of the Seekers"
+    },
+    {
+      "name": "Qulocct",
+      "role": "Memish, researcher, sharp, obsequious",
+      "description": "Memish, researcher, sharp, obsequious of Cult of the Seekers. Wandering mystics studying artifacts and exploring, looking to open the Hantu gate. Many are young ex-Legionnaires personally drafted by the Hegemon's mother.",
+      "source": "Cult of the Seekers"
+    },
+    {
+      "name": "Nicols al'Nim-Amar",
+      "role": "leader, glib, hopeful",
+      "description": "leader, glib, hopeful of Concordiat Knights. Fourth and fifth children of Noble Houses who have taken an oath sanctioned by the Hegemon to seek the Light of the World. Each Knight is as distinct as they can be from each other.",
+      "source": "Concordiat Knights"
+    },
+    {
+      "name": "Vnipe al'Vorron",
+      "role": "priestess, renowned, bejeweled",
+      "description": "priestess, renowned, bejeweled of Concordiat Knights. Fourth and fifth children of Noble Houses who have taken an oath sanctioned by the Hegemon to seek the Light of the World. Each Knight is as distinct as they can be from each other.",
+      "source": "Concordiat Knights"
+    },
+    {
+      "name": "Junrai",
+      "role": "explorer, death wish, restless",
+      "description": "explorer, death wish, restless of Concordiat Knights. Fourth and fifth children of Noble Houses who have taken an oath sanctioned by the Hegemon to seek the Light of the World. Each Knight is as distinct as they can be from each other.",
+      "source": "Concordiat Knights"
+    },
+    {
+      "name": "Intal Brel",
+      "role": "religious, vigilant, honorable",
+      "description": "religious, vigilant, honorable of Concordiat Knights. Fourth and fifth children of Noble Houses who have taken an oath sanctioned by the Hegemon to seek the Light of the World. Each Knight is as distinct as they can be from each other.",
+      "source": "Concordiat Knights"
+    },
+    {
+      "name": "Lexal",
+      "role": "mystic, addicted, power-hungry, winged",
+      "description": "mystic, addicted, power-hungry, winged of The Agony. Human Cultists infecting themselves with Way creatures to access the universe in unsettling ways. Each member is changed in some highly visible way — extra limbs, semi-spectral forms, or many new mouths and eyes.",
+      "source": "The Agony"
+    },
+    {
+      "name": "Iritha",
+      "role": "mystic, many-limbed, glowing, powerful, potent",
+      "description": "mystic, many-limbed, glowing, powerful, potent of The Agony. Human Cultists infecting themselves with Way creatures to access the universe in unsettling ways. Each member is changed in some highly visible way — extra limbs, semi-spectral forms, or many new mouths and eyes.",
+      "source": "The Agony"
+    },
+    {
+      "name": "Noro",
+      "role": "mystic, calculating, enrapturing, elongated",
+      "description": "mystic, calculating, enrapturing, elongated of The Agony. Human Cultists infecting themselves with Way creatures to access the universe in unsettling ways. Each member is changed in some highly visible way — extra limbs, semi-spectral forms, or many new mouths and eyes.",
+      "source": "The Agony"
+    },
+    {
+      "name": "Urmak Theon",
+      "role": "compassionate, educated, well spoken",
+      "description": "compassionate, educated, well spoken of Ashtari Cult. A Cult of Precursor worshipers claiming Ur descent. Each cult member wears a small vial of Ashtari gas to commune with their 'Ur past.'",
+      "source": "Ashtari Cult"
+    },
+    {
+      "name": "Urmak Lesh",
+      "role": "artificer, ex-Guilder, researcher",
+      "description": "artificer, ex-Guilder, researcher of Ashtari Cult. A Cult of Precursor worshipers claiming Ur descent. Each cult member wears a small vial of Ashtari gas to commune with their 'Ur past.'",
+      "source": "Ashtari Cult"
+    },
+    {
+      "name": "Urley Fean",
+      "role": "Noble, cautious, hidden, influential",
+      "description": "Noble, cautious, hidden, influential of Ashtari Cult. A Cult of Precursor worshipers claiming Ur descent. Each cult member wears a small vial of Ashtari gas to commune with their 'Ur past.'",
+      "source": "Ashtari Cult"
+    },
+    {
+      "name": "Rokono Maex",
+      "role": "captain, scavenger, coarse, nonbeliever, stoic",
+      "description": "captain, scavenger, coarse, nonbeliever, stoic of Ashtari Cult. A Cult of Precursor worshipers claiming Ur descent. Each cult member wears a small vial of Ashtari gas to commune with their 'Ur past.'",
+      "source": "Ashtari Cult"
+    },
+    {
+      "name": "Ashkad",
+      "role": "charismatic, passionate, idealistic",
+      "description": "charismatic, passionate, idealistic of Acolytes of Brashkadesh. A collective that eschews individuality. All members wear the same garb and use the same name. Attuning to the Pillar of Truth lets them share memories.",
+      "source": "Acolytes of Brashkadesh"
+    },
+    {
+      "name": "Ashkad",
+      "role": "mystic, devout, artistic",
+      "description": "mystic, devout, artistic of Acolytes of Brashkadesh. A collective that eschews individuality. All members wear the same garb and use the same name. Attuning to the Pillar of Truth lets them share memories.",
+      "source": "Acolytes of Brashkadesh"
+    },
+    {
+      "name": "Ashkad",
+      "role": "technician, skilled, liar, wealthy",
+      "description": "technician, skilled, liar, wealthy of Acolytes of Brashkadesh. A collective that eschews individuality. All members wear the same garb and use the same name. Attuning to the Pillar of Truth lets them share memories.",
+      "source": "Acolytes of Brashkadesh"
+    },
+    {
+      "name": "The Prime",
+      "role": "ancient, powerful, mysterious, wise",
+      "description": "ancient, powerful, mysterious, wise of Conclave 01. Independent, sentient Urbots led by an ancient Urbot known as the Prime, seeking free will and independence for all Urbots. All members are currently Urbots of varied shapes and sizes. Urbot spies pose as everyday servants.",
+      "source": "Conclave 01"
+    },
+    {
+      "name": "Bar-Hazuk",
+      "role": "gardener, huge, kind",
+      "description": "gardener, huge, kind of Conclave 01. Independent, sentient Urbots led by an ancient Urbot known as the Prime, seeking free will and independence for all Urbots. All members are currently Urbots of varied shapes and sizes. Urbot spies pose as everyday servants.",
+      "source": "Conclave 01"
+    },
+    {
+      "name": "Delta-7",
+      "role": "architect, weapons platform, massive",
+      "description": "architect, weapons platform, massive of Conclave 01. Independent, sentient Urbots led by an ancient Urbot known as the Prime, seeking free will and independence for all Urbots. All members are currently Urbots of varied shapes and sizes. Urbot spies pose as everyday servants.",
+      "source": "Conclave 01"
+    },
+    {
+      "name": "Sp-d3r",
+      "role": "hacker, infiltrator, cloaked, tiny",
+      "description": "hacker, infiltrator, cloaked, tiny of Conclave 01. Independent, sentient Urbots led by an ancient Urbot known as the Prime, seeking free will and independence for all Urbots. All members are currently Urbots of varied shapes and sizes. Urbot spies pose as everyday servants.",
+      "source": "Conclave 01"
+    },
+    {
+      "name": "Pasha Qo'iin",
+      "role": "sly, corpulent, sartorial, decadent",
+      "description": "sly, corpulent, sartorial, decadent of Ashen Knives. Once lean and battle ready, the Ashen Knives are a decadent Syndicate focused on drugs, gambling, and pleasures of the flesh. To join, Knives must take a life. Promotion requires doing unsavory tasks. Regional leaders are titled 'Pashas.'",
+      "source": "Ashen Knives"
+    },
+    {
+      "name": "Knife Lirik",
+      "role": "xeno, assassin, gambler, deadly, graceful",
+      "description": "xeno, assassin, gambler, deadly, graceful of Ashen Knives. Once lean and battle ready, the Ashen Knives are a decadent Syndicate focused on drugs, gambling, and pleasures of the flesh. To join, Knives must take a life. Promotion requires doing unsavory tasks. Regional leaders are titled 'Pashas.'",
+      "source": "Ashen Knives"
+    },
+    {
+      "name": "Oya",
+      "role": "high ranking, greedy, well armed, natural leader",
+      "description": "high ranking, greedy, well armed, natural leader of Ashen Knives. Once lean and battle ready, the Ashen Knives are a decadent Syndicate focused on drugs, gambling, and pleasures of the flesh. To join, Knives must take a life. Promotion requires doing unsavory tasks. Regional leaders are titled 'Pashas.'",
+      "source": "Ashen Knives"
+    },
+    {
+      "name": "Ria 'Keycard'",
+      "role": "wizard-class hacker, ambitious, daring",
+      "description": "wizard-class hacker, ambitious, daring of Borniko Syndicate. A tightly knit group of thieves who steal high-end technological supplies. Joining involves pulling off a heist that impresses the leadership.",
+      "source": "Borniko Syndicate"
+    },
+    {
+      "name": "Nals E",
+      "role": "Urboticist, gearhead, muscled",
+      "description": "Urboticist, gearhead, muscled of Borniko Syndicate. A tightly knit group of thieves who steal high-end technological supplies. Joining involves pulling off a heist that impresses the leadership.",
+      "source": "Borniko Syndicate"
+    },
+    {
+      "name": "MaxiMillions",
+      "role": "arrogant, expert infiltrator, gorgeous",
+      "description": "arrogant, expert infiltrator, gorgeous of Borniko Syndicate. A tightly knit group of thieves who steal high-end technological supplies. Joining involves pulling off a heist that impresses the leadership.",
+      "source": "Borniko Syndicate"
+    },
+    {
+      "name": "Pip",
+      "role": "mystic, xeno, small, unsettling",
+      "description": "mystic, xeno, small, unsettling of Borniko Syndicate. A tightly knit group of thieves who steal high-end technological supplies. Joining involves pulling off a heist that impresses the leadership.",
+      "source": "Borniko Syndicate"
+    },
+    {
+      "name": "Draxler",
+      "role": "leader, killer, vengeful",
+      "description": "leader, killer, vengeful of Draxler's Raiders. Violent pirates who disable ships before boarding, ransoming crew and cargo alike. Almost all members are wanted for crimes. They've set their sights on eliminating Isotropa Max Secure.",
+      "source": "Draxler's Raiders"
+    },
+    {
+      "name": "Wudu 'Starhawk'",
+      "role": "captain, loyal, vicious, wary",
+      "description": "captain, loyal, vicious, wary of Draxler's Raiders. Violent pirates who disable ships before boarding, ransoming crew and cargo alike. Almost all members are wanted for crimes. They've set their sights on eliminating Isotropa Max Secure.",
+      "source": "Draxler's Raiders"
+    },
+    {
+      "name": "Samara 'She Wolf' Red",
+      "role": "captain, enforcer, cold, physical",
+      "description": "captain, enforcer, cold, physical of Draxler's Raiders. Violent pirates who disable ships before boarding, ransoming crew and cargo alike. Almost all members are wanted for crimes. They've set their sights on eliminating Isotropa Max Secure.",
+      "source": "Draxler's Raiders"
+    },
+    {
+      "name": "Viktor Bax",
+      "role": "ruthless, insists on meeting every client personally",
+      "description": "ruthless, insists on meeting every client personally of Janus Syndicate. Weapons dealers that specialize in ship weapons, headed up by the ruthless Viktor Bax, who insists on the first deal with every client in person. Viktor Bax meets every new client personally. No exceptions.",
+      "source": "Janus Syndicate"
+    },
+    {
+      "name": "Jax",
+      "role": "leader, cold, killer, arrogant",
+      "description": "leader, cold, killer, arrogant of Cobalt Syndicate. Once a labor union, the Cobalt Syndicate has turned to smuggling and extortion to carve out shipping lanes and have a real say. Every member wears a solid blue stripe. A blue stripe on docks and warehouses is a call to action.",
+      "source": "Cobalt Syndicate"
+    },
+    {
+      "name": "Keve",
+      "role": "captain, augmented, defiant, enterprising",
+      "description": "captain, augmented, defiant, enterprising of Cobalt Syndicate. Once a labor union, the Cobalt Syndicate has turned to smuggling and extortion to carve out shipping lanes and have a real say. Every member wears a solid blue stripe. A blue stripe on docks and warehouses is a call to action.",
+      "source": "Cobalt Syndicate"
+    },
+    {
+      "name": "Sephua",
+      "role": "Jax's sibling, thug, daring, envious, gambler",
+      "description": "Jax's sibling, thug, daring, envious, gambler of Cobalt Syndicate. Once a labor union, the Cobalt Syndicate has turned to smuggling and extortion to carve out shipping lanes and have a real say. Every member wears a solid blue stripe. A blue stripe on docks and warehouses is a call to action.",
+      "source": "Cobalt Syndicate"
+    },
+    {
+      "name": "Dyrinek",
+      "role": "xeno, revolutionary, proud",
+      "description": "xeno, revolutionary, proud of Dyrinek Gang. Mostly young, disenfranchised xenos who have turned to crime and found strength and solidarity with each other. When a new member joins, they all go on a drunken tear across the city.",
+      "source": "Dyrinek Gang"
+    },
+    {
+      "name": "Burn",
+      "role": "Memish mystic, xeno, fast, overconfident, untrained",
+      "description": "Memish mystic, xeno, fast, overconfident, untrained of Dyrinek Gang. Mostly young, disenfranchised xenos who have turned to crime and found strength and solidarity with each other. When a new member joins, they all go on a drunken tear across the city.",
+      "source": "Dyrinek Gang"
+    },
+    {
+      "name": "Radds",
+      "role": "human, hacker, smart",
+      "description": "human, hacker, smart of Dyrinek Gang. Mostly young, disenfranchised xenos who have turned to crime and found strength and solidarity with each other. When a new member joins, they all go on a drunken tear across the city.",
+      "source": "Dyrinek Gang"
+    },
+    {
+      "name": "Myrk",
+      "role": "xeno, gun enthusiast, hothead",
+      "description": "xeno, gun enthusiast, hothead of Dyrinek Gang. Mostly young, disenfranchised xenos who have turned to crime and found strength and solidarity with each other. When a new member joins, they all go on a drunken tear across the city.",
+      "source": "Dyrinek Gang"
+    }
+  ]
+}

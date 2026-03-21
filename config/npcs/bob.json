@@ -1,0 +1,132 @@
+{
+  "version": 1,
+  "source": "reference_data",
+  "named_npcs": [
+    {
+      "name": "Red Hook (infamous Horror)",
+      "role": "Infamous",
+      "description": "This Horror lost a 'hand,' replaced by a hook on a chain. Uses it to scale walls and drag soldiers while they scream to lure friends.",
+      "source": "Blighter"
+    },
+    {
+      "name": "The Doctor (infamous Crow)",
+      "role": "Infamous",
+      "description": "A Crow that regained former intellect. Wearing a bone-white mask with a bloody handprint, improvises modifications on Rotters and Horrors using parts carved from still-dying Legionnaires.",
+      "source": "Blighter"
+    },
+    {
+      "name": "Wailer (infamous Horror)",
+      "role": "Infamous",
+      "description": "Has nine heads embedded about its body, all crying in horrific dissonance. Half a dozen spikes to carry back bodies for 'repairs'.",
+      "source": "Blighter"
+    },
+    {
+      "name": "Viktoria Karhowl, the Macabre Scientist",
+      "role": "Lieutenant",
+      "description": "A corrupted engineer — not dead — who traded her humanity for a seat at the Cinder King's table. Blighter uses her clever designs for siege weapons and advanced clockworks.",
+      "source": "Blighter"
+    },
+    {
+      "name": "Black Rotting Gale, the Abomination",
+      "role": "Lieutenant (Horror)",
+      "description": "A Horror that exchanged raw size for tubes and tanks of alchemicals. As it walks, it vents a cloud toxic to all organic matter. Created to pursue the deforestation of Aldermark.",
+      "source": "Blighter"
+    },
+    {
+      "name": "Lugos, the Clockwork Assassin",
+      "role": "Lieutenant (Crow)",
+      "description": "A Crow with much of its body replaced with advanced clockworks, enhancing strength and vision. Armor makes it immune to Black Shot and most blades. It habitually winds itself.",
+      "source": "Blighter"
+    },
+    {
+      "name": "Chimera (infamous Transformed)",
+      "role": "Infamous",
+      "description": "An early Changing Curse experiment that somehow survived. A mix of several animal parts and the heads of a few most Transformed.",
+      "source": "Breaker"
+    },
+    {
+      "name": "Silver (infamous Devourer)",
+      "role": "Infamous",
+      "description": "Breaker's personal steed named for his color. 14-foot wingspan, potent strength. Known for riding storms and dropping soldiers on their friends from vast heights.",
+      "source": "Breaker"
+    },
+    {
+      "name": "Elia, the Passing Curse (infamous Hexed)",
+      "role": "Infamous",
+      "description": "A Hexed that carves her sigils on others and has learned to transfer her essence. Elia works alone; many Legion squads realized too late that one member was not who they seemed.",
+      "source": "Breaker"
+    },
+    {
+      "name": "Bhed, the Wolf (Transformed lieutenant)",
+      "role": "Lieutenant",
+      "description": "A nine-foot-tall, wolf-headed beast-man who shrugs off most wounds. A circle of five Shadow Witches ensures his mental bindings never slip, lest his rage turn on Breaker.",
+      "source": "Breaker"
+    },
+    {
+      "name": "The Hag (Shadow Witch lieutenant)",
+      "role": "Lieutenant",
+      "description": "Killed and devoured her coven, decorates herself with their skulls. A far more powerful force capable of sustaining multiple hexes at once. Looks for opportunities to devour more of Breaker's essence.",
+      "source": "Breaker"
+    },
+    {
+      "name": "Ogiyer, the Cinder Guard",
+      "role": "Lieutenant (Cinder King's oversight)",
+      "description": "Clad in red armor, this decayed body is hollow and filled with black flame. The Cinder King's oversight on Breaker — this potent armored monstrosity is rarely far from Breaker's side.",
+      "source": "Breaker"
+    },
+    {
+      "name": "Ache (infamous Heartless)",
+      "role": "Infamous",
+      "description": "Born with his heart on the right, Ache has two holes in his chest. One stays empty; he places the head of his most recent conquest in the other. This dessicated head tells him secrets only the dead know.",
+      "source": "Render"
+    },
+    {
+      "name": "Eater (infamous Hound)",
+      "role": "Infamous",
+      "description": "This pale-skinned Hound feasts on the last breath of the dying, stealing a touch of their essence. The voices of many dead echo through its baying and cause physical pain or hallucinations.",
+      "source": "Render"
+    },
+    {
+      "name": "Shatter (infamous Thorn)",
+      "role": "Infamous",
+      "description": "A Thorn forged by including blades of two dead Chosen. Its movements are precise and its metal sounds exude malice. Said to contain Chosen blood and to seek any remnant of more.",
+      "source": "Render"
+    },
+    {
+      "name": "Irag, the Flayed (Black Oak Knight lieutenant)",
+      "role": "Lieutenant",
+      "description": "A Knight renowned as a Weaponmaster. Irag has removed all his skin as a show of loyalty to Render. Arrows and bullets are lodged in his flesh but he feels no pain. Render feeds him pure cinderblood.",
+      "source": "Render"
+    },
+    {
+      "name": "Mihkin, the Dark General (Black Oak Knight lieutenant)",
+      "role": "Lieutenant",
+      "description": "Astride an armored steed, Mihkin bears a holy lance cut from his family tree, now blackened and twisted. On his shoulders are skulls of those who disagreed with his choice to keep the Knights loyal to Render.",
+      "source": "Render"
+    },
+    {
+      "name": "Zenya, the Sable Arrow (Black Oak Knight lieutenant)",
+      "role": "Lieutenant",
+      "description": "A raven-haired archer who is the primary scout for the Black Oak. Her quiver is filled with arrows Render gifted her — each causing corruption and disease that can burn a Legionnaire from inside.",
+      "source": "Render"
+    },
+    {
+      "name": "Commander Vesna",
+      "role": "Loyalist leader",
+      "description": "A former provincial garrison commander who kept her forces intact through the initial Cinder King invasion.",
+      "source": "Aldermani Loyalists"
+    },
+    {
+      "name": "Shaman Yira",
+      "role": "Senior shaman",
+      "description": "One of the most powerful surviving Panyar shamans, maintaining contact with the forest spirits who oppose the Cinder King's corruption.",
+      "source": "Panyar Shamans"
+    },
+    {
+      "name": "Chief Engineer Dorik",
+      "role": "Orite Engineering lead",
+      "description": "A no-nonsense engineer who evacuated the Orite technical archives before the Cinder King's forces arrived.",
+      "source": "Orite Engineers"
+    }
+  ]
+}
