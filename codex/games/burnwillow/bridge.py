@@ -142,6 +142,13 @@ class BurnwillowBridge:
         self.dead = False
         self.last_frame: StateFrame | None = None
         self._broadcast = broadcast_manager
+        # Universal Narrative Bridge
+        self._narrator = None
+        try:
+            from codex.core.services.narrative_bridge import NarrativeBridge
+            self._narrator = NarrativeBridge("burnwillow", seed=seed)
+        except Exception:
+            pass
 
         # WO-V37.0: Session chronicle log (mirrors play_burnwillow GameState.session_log)
         self._session_log: list[dict] = []
@@ -283,9 +290,45 @@ class BurnwillowBridge:
         if not room:
             return "ERROR: No dungeon loaded."
 
+        # Spawn NPC on first visit if room has none
+        if self._narrator and not room.get("npcs"):
+            _npc = self._narrator.spawn_npc_for_room(
+                room["id"], tier=room.get("tier", 1))
+            if _npc:
+                room.setdefault("npcs", []).append(_npc)
+                # Persist to engine
+                pop_room = self.engine.populated_rooms.get(
+                    self.engine.current_room_id)
+                if pop_room:
+                    pop_room.content.setdefault("npcs", []).append(_npc)
+
         lines = []
         lines.append(f"=== Room {room['id']} ({room['type'].upper()}) ===")
-        lines.append(room["description"])
+        _desc = room["description"]
+        if self._narrator:
+            # Try Mimir-enhanced narration first, fall back to static enrichment
+            _mimir_fn = None
+            try:
+                from codex.core.cortex import get_cortex
+                _ctx = get_cortex()
+                if _ctx.get_thermal_state().status != "RED":
+                    from codex.integrations.mimir import query_mimir
+                    _mimir_fn = query_mimir
+            except Exception:
+                pass
+            if _mimir_fn:
+                _enemies = [e.get("name", "") for e in room.get("enemies", []) if isinstance(e, dict)]
+                _loot = [l.get("name", "") for l in room.get("loot", []) if isinstance(l, dict)]
+                _doom = getattr(self.engine, 'doom_clock', None)
+                _doom_val = getattr(_doom, 'current', 0) if _doom else 0
+                _desc = self._narrator.enrich_room_mimir(
+                    _desc, room.get("tier", 1),
+                    enemies=_enemies, loot=_loot, doom=_doom_val,
+                    mimir_fn=_mimir_fn,
+                )
+            else:
+                _desc = self._narrator.enrich_room(_desc, room.get("tier", 1))
+        lines.append(_desc)
 
         # Enemies
         enemies = room.get("enemies", [])
@@ -297,6 +340,11 @@ class BurnwillowBridge:
                     name = e.get("name", "Unknown")
                     hp = e.get("hp", "?")
                     lines.append(f"  * {name} (HP: {hp})")
+                    if self._narrator:
+                        _eflav = self._narrator.describe_enemy(name)
+                        if _eflav:
+                            _etext = _eflav.lstrip(" \u2014")
+                            lines.append(f"    {_etext}")
                 else:
                     lines.append(f"  * {e}")
 
@@ -318,7 +366,13 @@ class BurnwillowBridge:
             lines.append("HAZARDS:")
             for h in hazards:
                 if isinstance(h, dict):
-                    lines.append(f"  ! {h.get('name', str(h))}")
+                    _hname = h.get('name', str(h))
+                    lines.append(f"  ! {_hname}")
+                    if self._narrator:
+                        _hflav = self._narrator.describe_hazard(_hname)
+                        if _hflav:
+                            _htext = _hflav.lstrip(" \u2014")
+                            lines.append(f"    {_htext}")
                 else:
                     lines.append(f"  ! {h}")
 
@@ -503,13 +557,22 @@ class BurnwillowBridge:
 
             enemy_hp -= damage
 
+            _wname = weapon.name if weapon else "fists"
             if result.get("crit"):
                 lines.append(f"CRITICAL HIT! You strike {enemy_name} for {damage} damage!")
             else:
                 lines.append(f"You hit {enemy_name} for {damage} damage! ({result['total']} vs DC {enemy_defense})")
+            if self._narrator:
+                _cnarr = self._narrator.narrate_hit(enemy_name, damage, _wname, crit=bool(result.get("crit")))
+                if _cnarr:
+                    lines.append(f"  {_cnarr}")
 
             if enemy_hp <= 0:
                 lines.append(f"{enemy_name} is slain!")
+                if self._narrator:
+                    _knarr = self._narrator.narrate_kill(enemy_name)
+                    if _knarr:
+                        lines.append(f"  {_knarr}")
                 enemies.pop(0)
                 # WO-V37.0: Log kill event
                 self._log_event("kill", target=enemy_name,
@@ -528,6 +591,10 @@ class BurnwillowBridge:
                 lines.append(f"FUMBLE! You swing wildly and miss {enemy_name}. ({result['total']} vs DC {enemy_defense})")
             else:
                 lines.append(f"You miss {enemy_name}. ({result['total']} vs DC {enemy_defense})")
+            if self._narrator:
+                _mnarr = self._narrator.narrate_miss(enemy_name, fumble=bool(result.get("fumble")))
+                if _mnarr:
+                    lines.append(f"  {_mnarr}")
 
         # Enemy retaliates (if alive)
         if enemy_hp > 0:
@@ -545,8 +612,16 @@ class BurnwillowBridge:
                     lines.append(f"{enemy_name} strikes! Your shield absorbs the blow! (-{intercept_dr} DR bonus) {effective_damage} damage taken.")
                 else:
                     lines.append(f"{enemy_name} strikes you for {effective_damage} damage!")
+                    if self._narrator:
+                        _ehnarr = self._narrator.narrate_enemy_hit(enemy_name, effective_damage)
+                        if _ehnarr:
+                            lines.append(f"  {_ehnarr}")
             else:
                 lines.append(f"{enemy_name} attacks but misses!")
+                if self._narrator:
+                    _emnarr = self._narrator.narrate_enemy_miss(enemy_name)
+                    if _emnarr:
+                        lines.append(f"  {_emnarr}")
 
         # Check death
         if not char.is_alive():
@@ -585,7 +660,8 @@ class BurnwillowBridge:
                     name = found.get("name", str(found))
                 else:
                     name = str(found)
-                lines.append(f"You found: {name}!")
+                _lflav = self._narrator.describe_loot(name) if self._narrator else ""
+                lines.append(f"You found: {name}!{_lflav}")
                 self.engine.register_loot_find(name)
                 found_loot = True
                 # Update engine state
@@ -1101,6 +1177,15 @@ class BurnwillowBridge:
                     if npc.get("npc_type") == "merchant":
                         trade_tier = npc.get("trade_tier", 1)
                         lines.append(f"[Trade tier: {trade_tier}]")
+                    # Offer quest if quest_giver and narrator available
+                    if self._narrator and npc.get("npc_type") in ("quest_giver", "quest_hook"):
+                        _quest = self._narrator.generate_quest_hook(
+                            tier=room.get("tier", 1), npc_name=name)
+                        if _quest:
+                            lines.append("")
+                            lines.append(f"[QUEST] {_quest['title']}")
+                            lines.append(f"  {_quest['description']}")
+                            lines.append(f"  Reward: {_quest['reward']}")
                     lines.append(self._status_line())
                     return "\n".join(lines)
 

@@ -392,7 +392,21 @@ class Architect:
         thermal_modifier = self.cortex.get_system_prompt_modifier()
         if decision.mode == ThinkingMode.REFLEX:
             base_persona_prompt = self.cortex.get_base_persona_prompt()
-            full_system_prompt = base_persona_prompt + thermal_modifier + system_prompt
+            # Layer GM profile and DM influence when active system is set
+            gm_profile = ""
+            dm_influence = ""
+            if self.cortex.active_system_id:
+                gm_profile = self.cortex.get_gm_profile_prompt(
+                    self.cortex.active_system_id
+                )
+            if self.cortex.active_dm_influence:
+                dm_influence = self.cortex.get_dm_influence_prompt(
+                    self.cortex.active_dm_influence
+                )
+            full_system_prompt = (
+                base_persona_prompt + gm_profile + dm_influence
+                + thermal_modifier + system_prompt
+            )
         else:
             full_system_prompt = thermal_modifier + system_prompt
 

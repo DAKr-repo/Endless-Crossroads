@@ -1120,10 +1120,71 @@ def _run_fitd_loop(con: Console, engine, system_id: str, butler=None,
 
     _render_status_panel(con, engine, system_id)
 
-    # WO-V52.0: Show first scene if module loaded
+    # WO-V52.0: Show opening narration — first session gets cold open, resume gets recap
     if scene_state:
         scene = scene_state.current_scene()
         if scene:
+            try:
+                from codex.core.services.opening_narration import (
+                    generate_opening_narration, generate_resume_narration,
+                    format_read_aloud_panel, is_first_session,
+                )
+                _thermal_ok = True
+                _gm_profile = ""
+                _dm_inf = None
+                try:
+                    from codex.core.cortex import get_cortex
+                    _c = get_cortex()
+                    _thermal_ok = _c.get_thermal_state().status != "RED"
+                    _gm_profile = _c.get_gm_profile_prompt(system_id)
+                    _dm_inf = _c.active_dm_influence
+                except Exception:
+                    pass
+
+                def _mimir_opening(prompt, **kw):
+                    from codex.integrations.mimir import query_mimir
+                    return query_mimir(prompt)
+
+                _mimir_fn = _mimir_opening if _thermal_ok else None
+
+                if is_first_session(engine):
+                    # First session — module cold open
+                    _narration = generate_opening_narration(
+                        system_id=system_id,
+                        scene_data=scene,
+                        gm_profile=_gm_profile,
+                        dm_influence=_dm_inf,
+                        mimir_fn=_mimir_fn,
+                        thermal_ok=_thermal_ok,
+                    )
+                else:
+                    # Resume — contextual recap
+                    _narration = generate_resume_narration(
+                        system_id=system_id,
+                        engine=engine,
+                        scene_data=scene,
+                        mimir_fn=_mimir_fn,
+                        thermal_ok=_thermal_ok,
+                    )
+
+                _panel_text = format_read_aloud_panel(_narration)
+                if _panel_text:
+                    con.print(Panel(
+                        _panel_text,
+                        title=f"[bold]{_narration.gm_title}[/bold]",
+                        border_style="yellow", box=box.HEAVY,
+                    ))
+                    _ra = getattr(scene, 'read_aloud', '') or ''
+                    if _ra:
+                        _fitd_narrate(_ra[:300])
+            except Exception:
+                # Fallback: display raw read_aloud if available
+                _ra = getattr(scene, 'read_aloud', '') or ''
+                if _ra:
+                    con.print(Panel(_ra, title="Read Aloud",
+                                    border_style="yellow", box=box.HEAVY))
+
+            # Scene details — description, NPCs, services
             room_id, room_node = scene_state.current_room_node()
             room_name = getattr(room_node, 'room_type', None)
             title_parts = []
@@ -1136,10 +1197,11 @@ def _run_fitd_loop(con: Console, engine, system_id: str, butler=None,
                 title=title, border_style="magenta", box=box.ROUNDED,
             ))
             scene_state.play_scene_audio()  # WO-V54.0: Audio trigger
-            # Narrate scene description
-            desc = getattr(scene, 'description', None) or (scene.get("description", "") if isinstance(scene, dict) else "")
-            if desc:
-                _fitd_narrate(desc[:300])
+            # Narrate scene description (if read_aloud wasn't already narrated)
+            if not _ra:
+                desc = getattr(scene, 'description', None) or (scene.get("description", "") if isinstance(scene, dict) else "")
+                if desc:
+                    _fitd_narrate(desc[:300])
 
     # ── Command handlers ──────────────────────────────────────────
     from codex.core.command_handlers import (
@@ -1475,6 +1537,33 @@ def _run_dungeon_loop(con: Console, engine, system_id: str, butler=None,
         f"[dim]Type 'help' for commands, 'quit' to exit.[/dim]",
         border_style="green", box=box.DOUBLE,
     ))
+
+    # Opening narration for spatial/dungeon systems with module content
+    if zone_manager and zone_manager.current_graph:
+        try:
+            _graph = zone_manager.current_graph
+            _room_0 = _graph.rooms.get(0)
+            if _room_0:
+                _hints = getattr(_room_0, 'content_hints', {}) or {}
+                _ra_text = _hints.get('read_aloud', '')
+                if _ra_text:
+                    from codex.core.services.opening_narration import (
+                        generate_opening_narration, format_read_aloud_panel,
+                    )
+                    from codex.spatial.scene_data import SceneData
+                    _sd = SceneData.from_content_hints(_hints)
+                    _narration = generate_opening_narration(
+                        system_id=system_id, scene_data=_sd,
+                    )
+                    _panel_text = format_read_aloud_panel(_narration)
+                    if _panel_text:
+                        con.print(Panel(
+                            _panel_text,
+                            title=f"[bold]{_narration.gm_title}[/bold]",
+                            border_style="yellow", box=box.HEAVY,
+                        ))
+        except Exception:
+            pass
 
     # WO-V54.0: Spatial rendering commands
     _SPATIAL_VERBS = {
@@ -2047,12 +2136,20 @@ def main(system_id: str, manifest: Optional[dict] = None, butler=None):
     _companion_agent = None
     if manifest and manifest.get("ai_companion") and manifest["ai_companion"].get("enabled"):
         try:
-            from codex.core.autopilot import GenericAutopilotAgent, PERSONALITY_POOL
-            from codex.games.burnwillow.autopilot import COMPANION_NAME_POOL, _roll_biography
-            _comp_archetype = manifest["ai_companion"].get("personality", "")
-            _comp_personality = next(
-                (p for p in PERSONALITY_POOL if p.archetype == _comp_archetype),
-                PERSONALITY_POOL[0] if PERSONALITY_POOL else None,
+            from codex.core.autopilot import GenericAutopilotAgent
+            from codex.games.burnwillow.autopilot import (
+                CompanionPersonality, COMPANION_NAME_POOL, _roll_biography,
+            )
+            _comp_data = manifest["ai_companion"]
+            _comp_archetype = _comp_data.get("personality", "")
+            # Reconstruct personality from manifest (preserves system-specific traits)
+            _comp_personality = CompanionPersonality(
+                archetype=_comp_archetype,
+                description=_comp_data.get("description", ""),
+                quirk=_comp_data.get("quirk", ""),
+                aggression=_comp_data.get("aggression", 0.5),
+                curiosity=_comp_data.get("curiosity", 0.5),
+                caution=_comp_data.get("caution", 0.5),
             )
             if _comp_personality:
                 # Set name + biography if not already present
@@ -2243,17 +2340,20 @@ def main(system_id: str, manifest: Optional[dict] = None, butler=None):
         campaign_id=_campaign_id,
     )
 
-    # Opening hook
-    _hook = generate_opening_hook(session_type=_session_type)
-    if _hook:
-        _session_frame.opening_hook = _hook
-        con.print(Panel(f"[italic]{_hook}[/italic]", border_style="dim"))
+    # Opening hook — only show generic hook if no module is loaded
+    # (module-loaded sessions get their narration from read_aloud in the game loop)
+    _has_module = zm is not None and not getattr(zm, 'module_complete', True)
+    if not _has_module:
+        _hook = generate_opening_hook(session_type=_session_type)
+        if _hook:
+            _session_frame.opening_hook = _hook
+            con.print(Panel(f"[italic]{_hook}[/italic]", border_style="dim"))
 
     # Campaign loading screen — progress bar + memory shard synthesis
     _mem_engine, _dungeon_result = _campaign_loading_sequence(
         con, engine, resolved_id, manifest, zm)
 
-    # Auto-open investigation case for Candela if no active case
+    # Auto-open investigation case and start assignment for Candela
     if resolved_id == "candela" and hasattr(engine, '_cmd_open_case'):
         _case_module = "Unknown Assignment"
         if manifest:
@@ -2266,6 +2366,60 @@ def main(system_id: str, manifest: Optional[dict] = None, butler=None):
             engine._cmd_open_case(case_name=_case_module, clues_needed=5)
         except Exception:
             pass
+        # Auto-start the assignment so the gameplay loop begins immediately
+        try:
+            engine._cmd_start_assignment(name=_case_module)
+        except Exception:
+            pass
+
+    # Activate GM profile on cortex for system-aware narration
+    try:
+        from codex.core.cortex import get_cortex
+        _cortex = get_cortex()
+        _cortex.active_system_id = resolved_id
+        if manifest:
+            _cortex.active_dm_influence = manifest.get("dm_influence")
+    except Exception:
+        pass
+
+    # Write dm_frame.json so the DM Dashboard service view can detect the system
+    try:
+        from codex.paths import STATE_DIR
+        _frame_path = STATE_DIR / "dm_frame.json"
+        STATE_DIR.mkdir(parents=True, exist_ok=True)
+        _frame_data = {"system_tag": resolved_id.upper(), "system_name": system_name}
+        if engine:
+            # Add basic party info for the dashboard
+            _party_info = []
+            for p in getattr(engine, 'party', []):
+                _party_info.append({
+                    "name": getattr(p, 'name', '?'),
+                    "hp": getattr(p, 'hp', 0),
+                    "max_hp": getattr(p, 'max_hp', 0),
+                    "alive": getattr(p, 'alive', True),
+                })
+            _frame_data["party"] = _party_info
+        import json as _json_frame
+        _frame_path.write_text(_json_frame.dumps(_frame_data, indent=2))
+    except Exception:
+        pass
+
+    # Display pre-synthesized character introductions from manifest
+    if manifest and manifest.get("character_introductions"):
+        try:
+            from codex.core.services.opening_narration import get_gm_title
+            _gm_t = get_gm_title(resolved_id)
+            con.print(Panel(
+                manifest["character_introductions"],
+                title=f"[bold]{_gm_t}[/bold] — Your Circle",
+                border_style="yellow",
+            ))
+        except Exception:
+            con.print(Panel(
+                manifest["character_introductions"],
+                title="Character Introductions",
+                border_style="yellow",
+            ))
 
     # Route to the appropriate game loop
     if resolved_id in DUNGEON_SYSTEMS:

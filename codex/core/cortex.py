@@ -21,6 +21,7 @@ import psutil
 
 # Persona JSON lives alongside the core services
 _PERSONA_FILE = Path(__file__).resolve().parent / "services" / "mimir_persona.json"
+_GM_PROFILES_FILE = Path(__file__).resolve().parent / "services" / "system_gm_profiles.json"
 
 
 class ThermalStatus(Enum):
@@ -83,6 +84,9 @@ class Cortex:
         self._recovery_start_time: Optional[float] = None
         self._last_critical_time: Optional[float] = None
         self._pain_signal_acknowledged = False
+        # Active session state for GM profile injection
+        self.active_system_id: Optional[str] = None
+        self.active_dm_influence: Optional[dict] = None
 
     def _read_cpu_temperature(self) -> float:
         """
@@ -369,6 +373,104 @@ class Cortex:
             "Your responses must always be accurate, brief, and non-redundant. "
             "Never misspell your name. Your name is Mimir."
         )
+
+    def get_gm_profile_prompt(self, system_id: str) -> str:
+        """Build a system-specific GM identity prompt from system_gm_profiles.json.
+
+        Layers the GM title, narrative identity, principles, and key mechanics
+        onto the base Mimir persona to create a grounded, system-aware narrator.
+
+        Args:
+            system_id: Engine system identifier (e.g. "candela", "bitd", "dnd5e").
+
+        Returns:
+            GM profile prompt string, or empty string if no profile found.
+        """
+        try:
+            if not _GM_PROFILES_FILE.exists():
+                return ""
+            profiles = json.loads(_GM_PROFILES_FILE.read_text())
+            profile = profiles.get(system_id, {})
+            if not profile:
+                return ""
+
+            gm_title = profile.get("gm_title", "Game Master")
+            identity = profile.get("narrative_identity", "")
+            principles = profile.get("gm_principles", [])
+            moves = profile.get("making_moves", [])
+            mechanics = profile.get("key_mechanics_to_narrate", [])
+            combat = profile.get("combat_guidance", "")
+
+            parts = [f"\n[GM IDENTITY: {gm_title}] {identity}"]
+
+            if principles:
+                parts.append("PRINCIPLES: " + " | ".join(principles[:5]))
+
+            if moves:
+                parts.append("MOVES: " + " | ".join(moves[:4]))
+
+            if mechanics:
+                parts.append("NARRATE: " + " | ".join(mechanics[:4]))
+
+            if combat:
+                parts.append(f"COMBAT: {combat}")
+
+            return " ".join(parts)
+        except Exception:
+            return ""
+
+    def get_dm_influence_prompt(self, dm_influence: Optional[dict] = None) -> str:
+        """Build a DM influence prompt from session dials.
+
+        Args:
+            dm_influence: Dict with tone (0-1), ruthlessness (0-1),
+                          narration_style, and custom_directives.
+
+        Returns:
+            DM influence prompt string, or empty string if no influence set.
+        """
+        if not dm_influence:
+            return ""
+
+        parts = []
+        tone = dm_influence.get("tone", 0.5)
+        ruth = dm_influence.get("ruthlessness", 0.5)
+        style = dm_influence.get("narration_style", "balanced")
+        directives = dm_influence.get("custom_directives", [])
+
+        # Map tone to descriptive guidance
+        if tone < 0.25:
+            parts.append("[TONE: Grimdark — emphasize despair, corruption, and moral decay.]")
+        elif tone < 0.45:
+            parts.append("[TONE: Grim — the world is dangerous and hope is scarce.]")
+        elif tone < 0.55:
+            parts.append("[TONE: Balanced — mix danger with moments of warmth and humor.]")
+        elif tone < 0.75:
+            parts.append("[TONE: Heroic — the protagonists can make a real difference.]")
+        else:
+            parts.append("[TONE: Whimsical — lighter, more adventurous, wonder over dread.]")
+
+        # Map ruthlessness
+        if ruth < 0.3:
+            parts.append("[CONSEQUENCES: Lenient — soften failures, give second chances.]")
+        elif ruth < 0.6:
+            parts.append("[CONSEQUENCES: Fair — consequences match the risk taken.]")
+        elif ruth < 0.8:
+            parts.append("[CONSEQUENCES: Harsh — failures hurt. Resources are scarce.]")
+        else:
+            parts.append("[CONSEQUENCES: Merciless — every mistake has lasting cost.]")
+
+        # Narration style
+        if style == "terse":
+            parts.append("[STYLE: Terse — short, punchy sentences. Minimal description.]")
+        elif style == "descriptive":
+            parts.append("[STYLE: Descriptive — rich sensory detail, atmospheric prose.]")
+
+        # Custom directives
+        if directives:
+            parts.append("[DM DIRECTIVES: " + "; ".join(directives) + "]")
+
+        return " ".join(parts)
 
 
 # Singleton instance for cross-module access

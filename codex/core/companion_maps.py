@@ -483,6 +483,67 @@ def get_companion_class(system_id: str, archetype: str) -> Optional[dict]:
     return system_map.get(archetype)
 
 
+# =========================================================================
+# SYSTEM-AWARE PERSONALITY POOLS — setting-appropriate companion archetypes
+# =========================================================================
+# Each system maps the 4 base archetypes to setting-flavored descriptions.
+# Used during campaign setup to present thematic companion choices.
+
+SYSTEM_PERSONALITY_POOL: Dict[str, List[Dict[str, Any]]] = {
+    "candela": [
+        {"archetype": "vanguard", "description": "A resolute investigator who confronts phenomena head-on, shielding the circle from harm.", "quirk": "Touches old scars when sensing the supernatural.", "aggression": 0.8, "curiosity": 0.4, "caution": 0.2},
+        {"archetype": "scholar", "description": "An occult researcher who catalogues every anomaly and piece of evidence with obsessive precision.", "quirk": "Sketches phenomena in a leather-bound journal between scenes.", "aggression": 0.2, "curiosity": 0.9, "caution": 0.6},
+        {"archetype": "scavenger", "description": "A streetwise informant who knows Newfaire's underbelly and procures what the circle needs.", "quirk": "Always carries three skeleton keys and a forged press badge.", "aggression": 0.4, "curiosity": 0.7, "caution": 0.5},
+        {"archetype": "healer", "description": "A compassionate field medic trained to treat both mundane wounds and bleed exposure.", "quirk": "Hums lullabies while stitching wounds shut.", "aggression": 0.2, "curiosity": 0.4, "caution": 0.8},
+    ],
+    "bitd": [
+        {"archetype": "vanguard", "description": "A scarred Cutter who handles the crew's rough work in the dark streets of Doskvol.", "quirk": "Cracks knuckles before every score.", "aggression": 0.9, "curiosity": 0.2, "caution": 0.1},
+        {"archetype": "scholar", "description": "A Whisper attuned to the ghost field, reading the spectral currents of the city.", "quirk": "Eyes glow faintly when channeling electroplasm.", "aggression": 0.2, "curiosity": 0.9, "caution": 0.5},
+        {"archetype": "scavenger", "description": "A Lurk who slips through shadows, cracking locks and lifting valuables unseen.", "quirk": "Collects trinkets from every score as trophies.", "aggression": 0.3, "curiosity": 0.7, "caution": 0.6},
+        {"archetype": "healer", "description": "A Leech who brews tinctures and patches up the crew after every bloody score.", "quirk": "Tastes their own remedies before administering them.", "aggression": 0.2, "curiosity": 0.5, "caution": 0.7},
+    ],
+    "sav": [
+        {"archetype": "vanguard", "description": "A Muscle who keeps the crew safe in the lawless Procyon sector through sheer force.", "quirk": "Polishes their blaster between jumps.", "aggression": 0.9, "curiosity": 0.2, "caution": 0.1},
+        {"archetype": "scholar", "description": "A Mystic who reads the Way's currents and navigates the crew through cosmic anomalies.", "quirk": "Meditates facing the nearest star.", "aggression": 0.2, "curiosity": 0.9, "caution": 0.5},
+        {"archetype": "scavenger", "description": "A Scoundrel who always finds profitable cargo and the best angles on every deal.", "quirk": "Keeps a tally of debts owed on their forearm.", "aggression": 0.4, "curiosity": 0.7, "caution": 0.4},
+        {"archetype": "healer", "description": "A Stitch who keeps the crew patched up and the ship running between sectors.", "quirk": "Hums engine harmonics while working on patients.", "aggression": 0.1, "curiosity": 0.4, "caution": 0.8},
+    ],
+    "bob": [
+        {"archetype": "vanguard", "description": "A battle-hardened Heavy who holds the line against the undead with brutal determination.", "quirk": "Counts kills with notches on their weapon haft.", "aggression": 0.9, "curiosity": 0.2, "caution": 0.1},
+        {"archetype": "scholar", "description": "An Officer who studies the enemy's tactics and keeps morale from crumbling.", "quirk": "Recites the Legion's oath before every engagement.", "aggression": 0.3, "curiosity": 0.7, "caution": 0.5},
+        {"archetype": "scavenger", "description": "A Scout who ranges ahead, scavenging supplies from the blighted countryside.", "quirk": "Marks safe paths with small cairns of stones.", "aggression": 0.4, "curiosity": 0.8, "caution": 0.4},
+        {"archetype": "healer", "description": "A Medic who tends the wounded on the long retreat, stretching supplies thin.", "quirk": "Whispers the names of those they couldn't save.", "aggression": 0.1, "curiosity": 0.3, "caution": 0.9},
+    ],
+    "cbrpnk": [
+        {"archetype": "vanguard", "description": "A chrome-jacked Punk who handles wetwork and keeps the crew alive in the sprawl.", "quirk": "Taps cybernetic fingers in complex rhythms.", "aggression": 0.9, "curiosity": 0.3, "caution": 0.1},
+        {"archetype": "scholar", "description": "A Hacker who jacks into the net, cracking ICE and extracting corporate secrets.", "quirk": "Mutters code syntax under their breath.", "aggression": 0.2, "curiosity": 0.9, "caution": 0.5},
+        {"archetype": "scavenger", "description": "A Ghost who moves through the city's cracks, finding gear and intel from the underground.", "quirk": "Never uses the same safe house twice.", "aggression": 0.4, "curiosity": 0.7, "caution": 0.5},
+        {"archetype": "healer", "description": "A Fixer who stabilises wounded runners and negotiates the crew out of tight spots.", "quirk": "Always carries a medkit and a burner phone.", "aggression": 0.2, "curiosity": 0.4, "caution": 0.8},
+    ],
+    "dnd5e": [
+        {"archetype": "vanguard", "description": "A seasoned Fighter who charges headfirst into danger, shield raised.", "quirk": "Hums battle hymns under their breath.", "aggression": 0.9, "curiosity": 0.3, "caution": 0.1},
+        {"archetype": "scholar", "description": "A curious Wizard who examines every ruin and arcane inscription.", "quirk": "Catalogues every monster encountered in a tiny journal.", "aggression": 0.2, "curiosity": 0.9, "caution": 0.6},
+        {"archetype": "scavenger", "description": "A wiry Rogue who loots first and asks questions never.", "quirk": "Always pocketing small objects 'for later'.", "aggression": 0.5, "curiosity": 0.7, "caution": 0.4},
+        {"archetype": "healer", "description": "A calm Cleric who prioritizes keeping allies alive.", "quirk": "Whispers apologies to enemies before killing them.", "aggression": 0.2, "curiosity": 0.4, "caution": 0.8},
+    ],
+    "stc": [
+        {"archetype": "vanguard", "description": "A Windrunner squire who soars into battle, binding gravity to protect allies.", "quirk": "Absently Lashes small objects to the ceiling.", "aggression": 0.8, "curiosity": 0.3, "caution": 0.2},
+        {"archetype": "scholar", "description": "A Truthwatcher acolyte who studies the Cosmere's arcane connections with quiet intensity.", "quirk": "Sketches glyph patterns in the margins of every page.", "aggression": 0.2, "curiosity": 0.9, "caution": 0.6},
+        {"archetype": "scavenger", "description": "A Lightweaver who slips past guards and procures what the party needs through illusion.", "quirk": "Unconsciously weaves light into tiny shapes when thinking.", "aggression": 0.4, "curiosity": 0.7, "caution": 0.4},
+        {"archetype": "healer", "description": "An Edgedancer who moves with impossible grace, healing allies with a touch of Stormlight.", "quirk": "Always remembers the forgotten and overlooked.", "aggression": 0.2, "curiosity": 0.4, "caution": 0.7},
+    ],
+}
+
+
+def get_personality_pool(system_id: str) -> list:
+    """Return the system-appropriate companion personality pool.
+
+    Falls back to burnwillow/generic pool if no system-specific pool exists.
+    Returns list of dicts with archetype, description, quirk, aggression, curiosity, caution.
+    """
+    return SYSTEM_PERSONALITY_POOL.get(system_id, SYSTEM_PERSONALITY_POOL.get("dnd5e", []))
+
+
 def narrate_decision(action: str, archetype: str, name: str,
                      target: str = "the enemy", evolution_drift: Optional[dict] = None,
                      bond_tier: Optional[str] = None) -> str:

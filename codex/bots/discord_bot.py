@@ -2053,7 +2053,7 @@ Type `!travel` when ready.""")
                 return
             # Lazy-init dashboard
             if session.dm_dashboard is None:
-                system_tag = session.game_type or "burnwillow"
+                system_tag = session.game_type or getattr(getattr(session, 'bridge', None), '_system_tag', '') or "unknown"
                 session.dm_dashboard = DMDashboard(
                     console=None, system_tag=system_tag)
             engine = getattr(session.bridge, '_engine', None)
@@ -2064,7 +2064,7 @@ Type `!travel` when ready.""")
             else:
                 # Show full dashboard
                 try:
-                    vitals = get_vitals(engine, session.game_type or "burnwillow")
+                    vitals = get_vitals(engine, session.game_type or getattr(getattr(session, 'bridge', None), '_system_tag', '') or "unknown")
                 except Exception:
                     await ctx.send("Could not read engine vitals.")
                     return
@@ -2241,7 +2241,7 @@ Type `!travel` when ready.""")
             else:
                 import random
                 personality = random.choice(PERSONALITY_POOL)
-                system_tag = session.game_type or "burnwillow"
+                system_tag = session.game_type or getattr(getattr(session, 'bridge', None), '_system_tag', '') or "unknown"
                 agent = GenericAutopilotAgent(personality, system_tag)
                 agent.enabled = True
                 session.bridge._companion_agent = agent

@@ -128,6 +128,14 @@ class UniversalGameBridge:
             self._reputation: "Optional[ReputationTracker]" = ReputationTracker()
         except ImportError:
             self._reputation = None
+        # Universal Narrative Bridge — config content → gameplay narration
+        self._narrator = None
+        try:
+            from codex.core.services.narrative_bridge import NarrativeBridge
+            _sys = getattr(self.engine, 'system_id', 'unknown')
+            self._narrator = NarrativeBridge(_sys)
+        except Exception:
+            pass
 
     def set_butler(self, butler):
         """WO-V50.0: Attach a CodexButler for audio narration."""
@@ -313,10 +321,20 @@ class UniversalGameBridge:
         pop = self.engine.populated_rooms.get(room_id)
         content = pop.content if pop else {}
 
+        # Spawn NPC on first visit if room has none
+        if self._narrator and pop and not content.get("npcs"):
+            _tier = getattr(room_node, 'tier', 1) if room_node else 1
+            _npc = self._narrator.spawn_npc_for_room(room_id, tier=_tier)
+            if _npc:
+                content.setdefault("npcs", []).append(_npc)
+
         room_type = room_node.room_type.name if hasattr(room_node, 'room_type') else "NORMAL"
         lines = [f"=== Room {room_id} ({room_type}) ==="]
 
         desc = content.get("description", "An unremarkable chamber.")
+        if self._narrator:
+            _tier = getattr(room_node, 'tier', 1) if room_node else 1
+            desc = self._narrator.enrich_room(desc, _tier)
         lines.append(desc)
 
         # Enemies
@@ -326,7 +344,13 @@ class UniversalGameBridge:
             lines.append(f"ENEMIES ({len(enemies)}):")
             for e in enemies:
                 if isinstance(e, dict):
-                    lines.append(f"  * {e.get('name', 'Unknown')} (HP: {e.get('hp', '?')}/{e.get('max_hp', '?')})")
+                    _ename = e.get('name', 'Unknown')
+                    lines.append(f"  * {_ename} (HP: {e.get('hp', '?')}/{e.get('max_hp', '?')})")
+                    if self._narrator:
+                        _eflav = self._narrator.describe_enemy(_ename)
+                        if _eflav:
+                            _etext = _eflav.lstrip(" \u2014")
+                            lines.append(f"    {_etext}")
                 else:
                     lines.append(f"  * {e}")
 
@@ -347,6 +371,11 @@ class UniversalGameBridge:
             for h in hazards:
                 name = h.get("name", str(h)) if isinstance(h, dict) else str(h)
                 lines.append(f"  ! {name}")
+                if self._narrator and isinstance(h, dict):
+                    _hflav = self._narrator.describe_hazard(name)
+                    if _hflav:
+                        _htext = _hflav.lstrip(" \u2014")
+                        lines.append(f"    {_htext}")
 
         # Furniture
         furniture = content.get("furniture", [])
@@ -486,6 +515,10 @@ class UniversalGameBridge:
                 lines.append(f"CRITICAL HIT! You strike {enemy_name} for {damage} damage!")
             else:
                 lines.append(f"You hit {enemy_name} for {damage} damage! ({result['total']} vs DC {enemy_defense})")
+            if self._narrator:
+                _cnarr = self._narrator.narrate_hit(enemy_name, damage, crit=bool(result.get("critical")))
+                if _cnarr:
+                    lines.append(f"  {_cnarr}")
 
             enemy_hp -= damage
             if isinstance(enemy, dict):
@@ -493,6 +526,10 @@ class UniversalGameBridge:
 
             if enemy_hp <= 0:
                 lines.append(f"{enemy_name} is slain!")
+                if self._narrator:
+                    _knarr = self._narrator.narrate_kill(enemy_name)
+                    if _knarr:
+                        lines.append(f"  {_knarr}")
                 enemies.pop(0)
                 pop.content["enemies"] = enemies
                 self._try_narrate(f"{enemy_name} is slain!")  # WO-V50.0
@@ -504,6 +541,10 @@ class UniversalGameBridge:
                 lines.append(f"FUMBLE! You swing wildly and miss {enemy_name}.")
             else:
                 lines.append(f"You miss {enemy_name}. ({result['total']} vs DC {enemy_defense})")
+            if self._narrator:
+                _mnarr = self._narrator.narrate_miss(enemy_name, fumble=bool(result.get("fumble")))
+                if _mnarr:
+                    lines.append(f"  {_mnarr}")
 
         # Enemy retaliation (if alive)
         if enemy_hp > 0:
@@ -514,12 +555,20 @@ class UniversalGameBridge:
                 dmg = random.randint(1, 6) + enemy_attack // 2
                 actual = char.take_damage(dmg)
                 lines.append(f"{enemy_name} strikes you for {actual} damage!")
+                if self._narrator:
+                    _ehnarr = self._narrator.narrate_enemy_hit(enemy_name, actual)
+                    if _ehnarr:
+                        lines.append(f"  {_ehnarr}")
                 if char.is_alive() and char.current_hp / max(1, getattr(char, 'max_hp', 1)) < 0.2:
                     self._log_event("near_death", name=getattr(char, 'name', 'Unknown'),
                                     hp=char.current_hp, max_hp=getattr(char, 'max_hp', 1),
                                     attacker=enemy_name)  # WO-V61.0
             else:
                 lines.append(f"{enemy_name} attacks but misses!")
+                if self._narrator:
+                    _emnarr = self._narrator.narrate_enemy_miss(enemy_name)
+                    if _emnarr:
+                        lines.append(f"  {_emnarr}")
 
         # Death check
         if not char.is_alive():
@@ -550,7 +599,8 @@ class UniversalGameBridge:
             if loot:
                 found = loot.pop(0)
                 name = found.get("name", str(found)) if isinstance(found, dict) else str(found)
-                lines.append(f"You found: {name}!")
+                _lflav = self._narrator.describe_loot(name) if self._narrator else ""
+                lines.append(f"You found: {name}!{_lflav}")
                 pop.content["loot"] = loot
             else:
                 lines.append("Search successful, but nothing of value remains.")
@@ -594,7 +644,8 @@ class UniversalGameBridge:
                     pass
 
         self._log_event("loot", item=name)  # WO-V61.0
-        return f"Picked up: {name}!\n\n{self._status_line()}"
+        _lflav = self._narrator.describe_loot(name) if self._narrator else ""
+        return f"Picked up: {name}!{_lflav}\n\n{self._status_line()}"
 
     def _handle_drop(self, arg: str = "") -> str:
         """Drop a named item from inventory."""

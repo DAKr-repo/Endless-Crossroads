@@ -260,6 +260,8 @@ def get_vitals(engine, system_tag: str) -> VitalsSchema:
         "BITD": vitals_from_bitd,
         "SAV": vitals_from_bitd,
         "BOB": vitals_from_bitd,
+        "CANDELA": vitals_from_bitd,
+        "CBRPNK": vitals_from_bitd,
         "DND5E": vitals_from_dnd5e,
         "STC": vitals_from_cosmere,
     }

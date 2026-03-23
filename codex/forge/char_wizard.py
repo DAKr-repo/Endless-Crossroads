@@ -1887,12 +1887,22 @@ class SystemBuilder:
                         if not remaining:
                             break
                         for j, ab in enumerate(remaining, 1):
-                            self.console.print(f"  [{FORGE_CYAN}]{j}[/] {ab}")
+                            if isinstance(ab, dict):
+                                self.console.print(
+                                    f"  [{FORGE_CYAN}]{j}[/] [bold]{ab.get('name', ab)}[/bold]"
+                                    f"\n    [dim]{ab.get('description', '')}[/dim]"
+                                )
+                            else:
+                                self.console.print(f"  [{FORGE_CYAN}]{j}[/] {ab}")
                         valid = [str(n) for n in range(1, len(remaining) + 1)]
                         pick = self._prompt("  Ability", valid, default="1")
                         picked = remaining.pop(int(pick) - 1)
-                        chosen.append(picked)
-                        self.console.print(f"  [dim]Selected: {picked}[/dim]")
+                        if isinstance(picked, dict):
+                            chosen.append(picked.get("name", picked))
+                            self.console.print(f"  [dim]Selected: {picked.get('name', picked)}[/dim]")
+                        else:
+                            chosen.append(picked)
+                            self.console.print(f"  [dim]Selected: {picked}[/dim]")
                     circle_data[step_id] = chosen
 
                 elif step_type == "point_allocate":

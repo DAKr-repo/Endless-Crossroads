@@ -157,6 +157,8 @@ class CandelaEngine(NarrativeEngineBase):
             "phenomena_tick":      self._cmd_phenomena_tick,
             "phenomena_reduce":    self._cmd_phenomena_reduce,
             "fortune":             self._cmd_fortune,
+            "scene":               self._cmd_scene,
+            "look":                self._cmd_scene,
         }
 
     def _format_status(self) -> str:
@@ -298,9 +300,17 @@ class CandelaEngine(NarrativeEngineBase):
         """Start a new assignment with a name.
 
         Kwargs:
-            name (str): Assignment name. Required.
+            name (str): Assignment name. Falls back to active case name.
         """
         name = kwargs.get("name", "")
+        if not name:
+            # Fall back to active investigation case name
+            try:
+                mgr = self._get_investigation_mgr()
+                if mgr.active_case:
+                    name = mgr.active_case.case_name
+            except Exception:
+                pass
         if not name:
             return "Specify assignment name."
         tracker = self._get_assignment_tracker()
@@ -345,6 +355,55 @@ class CandelaEngine(NarrativeEngineBase):
         """Show current assignment progress."""
         tracker = self._get_assignment_tracker()
         return tracker.get_summary()
+
+    # ── Scene / Look ─────────────────────────────────────────────────
+
+    def _cmd_scene(self, **kwargs) -> str:
+        """Show current scene context — assignment phase, case, and circle state."""
+        lines: List[str] = []
+
+        # Assignment info
+        tracker = self._get_assignment_tracker()
+        if tracker.assignment_name:
+            phase = (tracker.current_phase or "unknown").upper()
+            lines.append(f"Assignment: {tracker.assignment_name}")
+            lines.append(f"Phase: {phase}")
+            phase_hints = {
+                "HOOK": "The circle receives the assignment. Investigate the initial lead, gather information, and prepare.",
+                "EXPLORATION": "Follow the clues deeper. Interview witnesses, search locations, and uncover the truth.",
+                "CLIMAX": "Confront the phenomenon. The circle faces the source of the supernatural threat.",
+            }
+            hint = phase_hints.get(phase, "")
+            if hint:
+                lines.append(f"  {hint}")
+        else:
+            lines.append("No active assignment. Use 'start_assignment' to begin.")
+
+        lines.append("")
+
+        # Investigation case
+        try:
+            mgr = self._get_investigation_mgr()
+            if mgr.active_case:
+                c = mgr.active_case
+                lines.append(f"Case: {c.case_name}")
+                lines.append(f"Clues: {c.clues_found}/{c.clues_needed} | Danger: {c.danger_level}/5")
+                if c.clue_log:
+                    lines.append("Recent clues:")
+                    for clue in c.clue_log[-3:]:
+                        lines.append(f"  - {clue}")
+        except Exception:
+            pass
+
+        lines.append("")
+
+        # Circle state
+        lines.append(f"Circle: {self.circle_name or 'Unnamed'}")
+        for inv in self.party:
+            marks = f"Body:{inv.body}/{inv.body_max} Brain:{inv.brain}/{inv.brain_max} Bleed:{inv.bleed}/{inv.bleed_max}"
+            lines.append(f"  {inv.name} ({inv.role}) — {marks}")
+
+        return "\n".join(lines)
 
     # ── WO-P4: Bleed escalation ───────────────────────────────────────
 

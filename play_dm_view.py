@@ -134,6 +134,10 @@ def run_service_mode(console: Console, system_tag: str):
                     if mtime > last_mtime:
                         last_mtime = mtime
                         data = json.loads(DM_FRAME_FILE.read_text())
+                        # Update system_tag from frame if available
+                        if data.get("system_tag"):
+                            system_tag = data["system_tag"]
+                            dashboard._system_tag = system_tag
                         vitals = _vitals_from_frame(data, system_tag)
             except (json.JSONDecodeError, OSError):
                 pass
@@ -328,9 +332,10 @@ def main():
             "  python play_dm_view.py --standalone --party Kael,Bryn,Neve\n"
         ),
     )
-    parser.add_argument("--system", default="burnwillow",
-                        choices=["burnwillow", "crown", "bitd", "dnd5e", "stc"],
-                        help="Game system (default: burnwillow)")
+    parser.add_argument("--system", default="auto",
+                        choices=["auto", "burnwillow", "crown", "bitd", "dnd5e",
+                                 "stc", "candela", "sav", "bob", "cbrpnk", "ashburn"],
+                        help="Game system (default: auto-detect from dm_frame.json)")
     parser.add_argument("--standalone", action="store_true",
                         help="Run with internal engine (not watching state file)")
     parser.add_argument("--seed", type=int, default=None,
@@ -342,8 +347,19 @@ def main():
 
     args = parser.parse_args()
     console = Console()
-    system_tag = args.system.upper()
     party_names = args.party.split(",") if args.party else None
+
+    # Auto-detect system from dm_frame.json if available
+    system_tag = args.system.upper()
+    if system_tag == "AUTO":
+        try:
+            if DM_FRAME_FILE.exists():
+                _frame_data = json.loads(DM_FRAME_FILE.read_text())
+                system_tag = _frame_data.get("system_tag", "BURNWILLOW")
+            else:
+                system_tag = "BURNWILLOW"
+        except Exception:
+            system_tag = "BURNWILLOW"
 
     if args.standalone:
         run_standalone_mode(console, system_tag, args.seed, party_names, args.companion)

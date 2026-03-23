@@ -364,6 +364,13 @@ class FITDCommandHandler:
                     if ss.advance_zone():
                         scene = ss.current_scene()
                         if scene:
+                            # Show read_aloud narration before scene details
+                            _ra = getattr(scene, 'read_aloud', '') or ''
+                            if _ra:
+                                ctx.con.print(Panel(
+                                    _ra, title="Read Aloud",
+                                    border_style="yellow", box=box.HEAVY,
+                                ))
                             ctx.con.print(Panel(
                                 ss.format_scene(scene),
                                 title=f"{ss.zm.chapter_name} — Scene 1",
@@ -382,6 +389,13 @@ class FITDCommandHandler:
                             border_style="gold1", box=box.DOUBLE,
                         ))
         else:
+            # Show read_aloud narration before scene details
+            _ra = getattr(scene, 'read_aloud', '') or ''
+            if _ra:
+                ctx.con.print(Panel(
+                    _ra, title="Read Aloud",
+                    border_style="yellow", box=box.HEAVY,
+                ))
             title = f"Scene {ss.scene_idx + 1}/{ss.scene_count()}"
             ctx.con.print(Panel(
                 ss.format_scene(scene),

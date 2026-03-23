@@ -72,7 +72,7 @@ class GenericAutopilotAgent:
             "SAV": self._snapshot_bitd,
             "BOB": self._snapshot_bitd,
             "CBRPNK": self._snapshot_bitd,
-            "CANDELA": self._snapshot_bitd,
+            "CANDELA": self._snapshot_candela,
             "CROWN": self._snapshot_crown,
         }.get(self.system_tag, self._snapshot_generic)
         return builder(engine, phase)
@@ -142,6 +142,30 @@ class GenericAutopilotAgent:
             "exits": [],
             "has_interactive": False,
             "room_type": "",
+        }
+
+    def _snapshot_candela(self, engine, phase: str) -> dict:
+        """Map Candela state — Body/Brain/Bleed as health proxy.
+
+        Candela has no spatial rooms to search, so searched is always True
+        to prevent the companion from spamming 'search' actions.
+        """
+        char = engine.character
+        if char:
+            hp_pct = 1.0 - (char.body + char.brain + char.bleed) / max(
+                1, char.body_max + char.brain_max + char.bleed_max
+            )
+        else:
+            hp_pct = 1.0
+
+        return {
+            "hp_pct": hp_pct,
+            "enemies": [],
+            "loot": [],
+            "searched": True,   # No spatial rooms — prevent search spam
+            "exits": [],
+            "has_interactive": False,
+            "room_type": "investigation",
         }
 
     def _snapshot_crown(self, engine, phase: str) -> dict:

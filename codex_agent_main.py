@@ -3068,35 +3068,104 @@ async def run_campaign_setup_wizard(core: CodexCore):
     companion_choice = await ainput("[gold1]Add AI companion? [y/N]:[/] ")
     if companion_choice.strip().lower() in ("y", "yes"):
         try:
-            from codex.core.autopilot import GenericAutopilotAgent, PERSONALITY_POOL
+            from codex.core.companion_maps import get_personality_pool
             import random as _rng
+            # Get system-appropriate companion pool
+            _sys_id = selected_schema.system_id
+            _pool = get_personality_pool(_sys_id)
             # Let the player choose a companion archetype
             console.print("[bold]Choose a companion:[/bold]")
-            for ci, cp in enumerate(PERSONALITY_POOL, 1):
+            for ci, cp in enumerate(_pool, 1):
                 console.print(
-                    f"  [{ci}] [bold]{cp.archetype.title()}[/bold] — {cp.description}"
-                    f"\n      [dim]{cp.quirk}[/dim]"
+                    f"  [{ci}] [bold]{cp['archetype'].title()}[/bold] — {cp['description']}"
+                    f"\n      [dim]{cp['quirk']}[/dim]"
                 )
             _cp_choice = await ainput(
-                f"[gold1]Select companion [1-{len(PERSONALITY_POOL)}]:[/] "
+                f"[gold1]Select companion [1-{len(_pool)}]:[/] "
             )
             try:
                 _cp_idx = int(_cp_choice.strip()) - 1
-                personality = PERSONALITY_POOL[max(0, min(_cp_idx, len(PERSONALITY_POOL) - 1))]
+                _picked = _pool[max(0, min(_cp_idx, len(_pool) - 1))]
             except (ValueError, IndexError):
-                personality = _rng.choice(PERSONALITY_POOL)
+                _picked = _rng.choice(_pool)
             _ai_companion = {
-                "archetype": personality.archetype,
-                "personality": personality.archetype,
-                "description": personality.description,
+                "archetype": _picked["archetype"],
+                "personality": _picked["archetype"],
+                "description": _picked["description"],
+                "quirk": _picked.get("quirk", ""),
+                "aggression": _picked.get("aggression", 0.5),
+                "curiosity": _picked.get("curiosity", 0.5),
+                "caution": _picked.get("caution", 0.5),
                 "enabled": True,
             }
             console.print(
-                f"[green]Companion '{personality.archetype.title()}' will join your party![/green]\n"
-                f"[dim]{personality.description}[/dim]\n"
+                f"[green]Companion '{_picked['archetype'].title()}' will join your party![/green]\n"
+                f"[dim]{_picked['description']}[/dim]\n"
             )
         except Exception as e:
             console.print(f"[yellow]Companion unavailable: {e}[/yellow]\n")
+
+    # --- Step 5d: DM Influence (Session Dials) ---
+    _dm_influence = {"tone": 0.5, "ruthlessness": 0.5, "narration_style": "balanced", "custom_directives": []}
+    try:
+        # Load system defaults from GM profile
+        _gm_profiles_path = Path(__file__).parent / "codex" / "core" / "services" / "system_gm_profiles.json"
+        if _gm_profiles_path.exists():
+            import json as _json_dm
+            _gm_data = _json_dm.loads(_gm_profiles_path.read_text())
+            _sys_profile = _gm_data.get(selected_schema.system_id, {})
+            _dm_influence["tone"] = _sys_profile.get("default_tone_value", 0.5)
+            _dm_influence["ruthlessness"] = _sys_profile.get("default_ruthlessness", 0.5)
+            _gm_title = _sys_profile.get("gm_title", "Game Master")
+        else:
+            _gm_title = "Game Master"
+
+        console.print(Panel(
+            f"[bold gold1]SESSION DIALS[/bold gold1]\n"
+            f"[dim]Adjust how your {_gm_title} runs this campaign.\n"
+            f"Press Enter to accept defaults.[/dim]",
+            border_style=GOLD
+        ))
+
+        # Tone slider
+        _tone_label = {0: "Grimdark", 0.25: "Grim", 0.5: "Balanced", 0.75: "Heroic", 1.0: "Whimsical"}
+        _current_tone = _dm_influence["tone"]
+        _tone_desc = min(_tone_label.items(), key=lambda x: abs(x[0] - _current_tone))[1]
+        _tone_input = await ainput(
+            f"[gold1]Tone[/] [dim](0=Grimdark, 0.5=Balanced, 1=Whimsical)[/dim] [{_tone_desc} ({_current_tone})]: "
+        )
+        if _tone_input.strip():
+            try:
+                _dm_influence["tone"] = max(0.0, min(1.0, float(_tone_input.strip())))
+            except ValueError:
+                pass
+
+        # Ruthlessness slider
+        _ruth_input = await ainput(
+            f"[gold1]Ruthlessness[/] [dim](0=Lenient, 0.5=Fair, 1=Merciless)[/dim] [{_dm_influence['ruthlessness']}]: "
+        )
+        if _ruth_input.strip():
+            try:
+                _dm_influence["ruthlessness"] = max(0.0, min(1.0, float(_ruth_input.strip())))
+            except ValueError:
+                pass
+
+        # Narration style
+        _style_input = await ainput(
+            "[gold1]Narration style[/] [dim](terse/balanced/descriptive)[/dim] [balanced]: "
+        )
+        if _style_input.strip().lower() in ("terse", "balanced", "descriptive"):
+            _dm_influence["narration_style"] = _style_input.strip().lower()
+
+        # Custom directives
+        _dir_input = await ainput(
+            "[gold1]Custom directives[/] [dim](optional, e.g. 'lean into body horror')[/dim]: "
+        )
+        if _dir_input.strip():
+            _dm_influence["custom_directives"] = [d.strip() for d in _dir_input.split(",") if d.strip()]
+
+    except Exception:
+        pass
 
     # --- Step 6: Save Campaign ---
     default_campaign = f"{setting_name}_{module_name}".replace(" ", "_")
@@ -3125,6 +3194,7 @@ async def run_campaign_setup_wizard(core: CodexCore):
         "created": datetime.now().isoformat(),
         "group_data": _group_data or {},
         "ai_companion": _ai_companion,
+        "dm_influence": _dm_influence,
     }
 
     # Resolve module_manifest.json for spatial zone progression
@@ -3162,6 +3232,106 @@ async def run_campaign_setup_wizard(core: CodexCore):
         border_style=EMERALD,
         title="[bold]CAMPAIGN FORGED[/bold]"
     ))
+
+    # --- Step 6b: Synthesize Character Introductions ---
+    try:
+        from codex.core.services.opening_narration import get_gm_title
+        _gm_title = get_gm_title(selected_schema.system_id)
+        _sys_id = selected_schema.system_id
+
+        # Build character context for Mimir
+        _char_summaries = []
+        for c in characters:
+            _ch = c.get("choices", c)
+            _role = _ch.get("role", "")
+            if isinstance(_role, dict):
+                _role = _role.get("value", _role.get("label", ""))
+            _spec = _ch.get("specialty", "")
+            _style = _ch.get("style", "")
+            _catalyst = _ch.get("catalyst", "")
+            _pronouns = _ch.get("pronouns", "they/them")
+            _name = _ch.get("name", c.get("name", "Unknown"))
+            _summary = f"{_name} ({_role}"
+            if _spec:
+                _summary += f"/{_spec}"
+            _summary += f", {_pronouns})"
+            if _style:
+                _summary += f" — {_style[:80]}"
+            _char_summaries.append(_summary)
+
+        # Add AI companion if present
+        if _ai_companion and _ai_companion.get("enabled"):
+            _comp_arch = _ai_companion.get("archetype", "companion").title()
+            _comp_desc = _ai_companion.get("description", "")
+            _char_summaries.append(f"AI Companion ({_comp_arch}) — {_comp_desc[:60]}")
+
+        # Group context
+        _group_context = ""
+        if _group_data:
+            _circle = _group_data.get("circle_name", "")
+            _cq = _group_data.get("circle_question", "")
+            if _circle:
+                _group_context = f"Circle: {_circle}. "
+            if _cq:
+                _group_context += f"Shared history: {_cq}. "
+
+        # Synthesize introductions via Mimir
+        _intro_prompt = (
+            f"You are the {_gm_title}. Introduce these characters as they appear "
+            f"in the opening scene of a {selected_schema.display_name} session. "
+            f"{_group_context}"
+            f"Write 1-2 sentences per character placing them in the scene. "
+            f"Use their style and role to color the description. Stay in character.\n\n"
+            + "\n".join(_char_summaries)
+        )
+
+        console.print()
+        console.print("[dim]Synthesizing character introductions...[/dim]")
+
+        _intro_text = ""
+        try:
+            from codex.integrations.mimir import query_mimir
+            _intro_text = query_mimir(_intro_prompt)
+            # Validate — reject AI meta-commentary
+            if _intro_text and isinstance(_intro_text, str):
+                _reject = ["as an ai", "i cannot", "language model", "certainly!"]
+                if any(r in _intro_text.lower() for r in _reject):
+                    _intro_text = ""
+        except Exception:
+            pass
+
+        # Fallback: template-based introduction
+        if not _intro_text:
+            _intro_lines = []
+            for c in characters:
+                _ch = c.get("choices", c)
+                _name = _ch.get("name", c.get("name", "Unknown"))
+                _role = _ch.get("role", "")
+                if isinstance(_role, dict):
+                    _role = _role.get("value", "")
+                _spec = _ch.get("specialty", "")
+                _style = _ch.get("style", "")
+                _line = f"{_name}, {_role}"
+                if _spec:
+                    _line += f" ({_spec})"
+                if _style:
+                    _line += f" — {_style[:100]}"
+                _intro_lines.append(_line)
+            _intro_text = "\n".join(_intro_lines)
+
+        if _intro_text:
+            manifest["character_introductions"] = _intro_text
+            # Re-save manifest with introductions
+            with open(manifest_path, "w") as f:
+                json.dump(manifest, f, indent=2)
+            console.print(Panel(
+                _intro_text,
+                title=f"[bold]{_gm_title}[/bold] — Character Introductions",
+                border_style="yellow",
+            ))
+
+    except Exception:
+        pass
 
     # --- Step 7: Prologue Trigger (WO 080) ---
     console.print()

@@ -1575,7 +1575,7 @@ async def cmd_dashboard(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return
     # Lazy-init dashboard
     if session.dm_dashboard is None:
-        system_tag = session.game_type or "burnwillow"
+        system_tag = session.game_type or getattr(getattr(session, 'bridge', None), '_system_tag', '') or "unknown"
         session.dm_dashboard = DMDashboard(console=None, system_tag=system_tag)
     engine = getattr(session.bridge, '_engine', None)
     args = " ".join(context.args) if context.args else ""
