@@ -57,6 +57,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "The rest area is a row of bedrolls under a stretched canvas lean-to. The canvas is painted with camouflage patterns in forest colors -- Falk's idea. Weapons and packs are staged at the lean-to's edge, ready for immediate deployment. Nobody sleeps without their boots on here.",
+        "read_aloud": "A canvas lean-to painted in forest greens and browns. Bedrolls lie in a tight row, each with a weapon within arm's reach. Every soldier here sleeps with their boots on. The forest watches from ten paces away.",
         "services": ["rest"]
       }
     },
@@ -73,6 +74,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "The supply cache is buried in a shallow pit lined with oilcloth. Falk insists on burying supplies rather than storing them in the open -- 'What you can see, they can smell.' Rations, ammunition, rope, lantern oil, and a small kit of herbal remedies Falk mixed himself from forest plants.",
+        "read_aloud": "The Ranger kneels and pulls back a square of oilcloth, revealing a shallow pit of buried supplies. Rope, rations, lantern oil, and bundles of something that smells medicinal. He hands you a bottle of oil without being asked. You will need it in there.",
         "services": ["supply"],
         "npcs": [
           {

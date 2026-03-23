@@ -54,6 +54,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "The shop floor. Glass display cases hold antique cameras dating back decades -- daguerreotype rigs, tintypes, early plate cameras. Sara's workbench occupies the rear wall, a jeweler's lamp illuminating the guts of a half-disassembled Kodak. Framed photographs line the walls, all taken by Sara's grandfather: street scenes, portraits, landscapes. In every photograph, the shadows are slightly wrong -- too sharp, too dark, as if his cameras always captured something the eye could not see.",
+        "read_aloud": "Glass display cases hold antique cameras dating back decades -- daguerreotype rigs, tintypes, early plate cameras, each one lovingly maintained. Framed photographs line the walls, and something about them draws your eye. Street scenes, portraits, landscapes. In every one, the shadows are slightly wrong -- too sharp, too dark, as if the grandfather's cameras always captured something the eye alone could not see.",
         "npcs": [],
         "enemies": [],
         "services": [],

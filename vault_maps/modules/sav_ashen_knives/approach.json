@@ -42,6 +42,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "Secondary inspection lane. The Faraday has been flagged for a closer look. A customs shuttle locks on to your port airlock with a magnetic thunk that reverberates through the hull. Through the viewport, you can see the inspector's silhouette moving behind frosted glass.",
+        "read_aloud": "A dull magnetic thunk reverberates through the hull as the customs shuttle locks onto your port airlock. Through the viewport, you can see a figure moving behind frosted glass -- methodical, unhurried, in no rush at all. The inspection lane's guide lights cycle from green to amber. You've been flagged.",
         "npcs": [
           {
             "name": "Gate Inspector Korath",

@@ -45,6 +45,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "The ritual gallery. A long room whose walls are painted with concentric circles in silver and bone-white. The floor is a single slab of polished obsidian that reflects nothing. Spirit bottles line a low shelf -- most empty, but three pulse with trapped, swirling light.",
+        "read_aloud": "The walls are covered in painted circles -- silver and white, layered deep, spiraling inward like a target. The floor beneath your feet is black glass, and it reflects nothing. Not your face, not the light, nothing. Three bottles on the far shelf glow with a sickly, churning luminescence, as though something alive is trapped inside each one.",
         "enemies": [
           {
             "name": "Weakened Ghost",
@@ -76,6 +77,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "The blue door room. The door is lacquered in deep cobalt, its handle shaped like a coiled serpent. Inside: a writing desk, a spirit-circuit lamp that burns without fuel, and a strongbox of blackened iron bolted to the floor. This is where the Sisters keep the good stuff.",
+        "read_aloud": "The door is blue. Not painted blue -- the wood itself is the colour of deep water, as though stained by something that seeped into the grain over decades. The serpent-shaped handle is ice-cold under your fingers. Inside, a single lamp burns with no flame and no fuel, casting the room in steady, shadowless light. A strongbox of blackened iron squats in the corner, bolted to the floor with rivets as thick as your thumb.",
         "lock_dc": 14,
         "loot": [
           {"name": "Ritual components (rare)", "value": 8, "description": "Vials of void-salt, ghost-iron filings, and a coil of silver wire inscribed with binding formulae."},
@@ -99,6 +101,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "The binding circle. A large room at the house's center, its floor inlaid with silver wire forming an elaborate summoning diagram. The air is dense and ionized, like the moment before a lightning strike. Candles burn at five points around the circle, their flames perfectly still.",
+        "read_aloud": "The air changes the moment you step through the doorway -- heavy, electric, pressing against your skin like a coming storm. Silver wire is set into the floor in a pattern too complex to follow, spiraling inward toward the room's center. Five candles burn at the diagram's points. Their flames do not flicker. They do not move at all.",
         "enemies": [
           {
             "name": "Spirit Ward",

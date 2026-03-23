@@ -58,7 +58,8 @@
             "type": "rare"
           }
         ],
-        "description": "Narrow streets choked with coal smoke and the stench of fish oil. Laundry lines crisscross overhead like a web."
+        "description": "Narrow streets choked with coal smoke and the stench of fish oil. Laundry lines crisscross overhead like a web.",
+        "read_aloud": "The street narrows to a throat of soot-blackened brick. Coal smoke and the reek of fish oil hang so thick you can taste it. Overhead, laundry lines web the gap between buildings, and somewhere behind a shuttered window, a child is singing a nursery rhyme about the leviathan hunters. The tune is wrong. The words are worse."
       }
     },
     "2": {
@@ -92,7 +93,8 @@
             "damage": "1d8+2"
           }
         ],
-        "description": "Grand facades of pale stone, stained dark by decades of electroplasmic smog. Students hurry past with leather satchels."
+        "description": "Grand facades of pale stone, stained dark by decades of electroplasmic smog. Students hurry past with leather satchels.",
+        "read_aloud": "The buildings here were grand once -- pale stone facades now mottled grey-black by decades of electroplasmic exhaust. Students hurry past with satchels clutched to their chests, heads down, eyes averted. Nobody lingers in this part of the district after dark. The smog stings your eyes and coats the back of your throat with something metallic."
       }
     },
     "3": {
@@ -138,7 +140,8 @@
             "type": "rare"
           }
         ],
-        "description": "Iron gates topped with electroplasmic coils guard estates where the city's rulers sleep soundly."
+        "description": "Iron gates topped with electroplasmic coils guard estates where the city's rulers sleep soundly.",
+        "read_aloud": "Iron gates rise before you, their crossbars crowned with coils of humming electroplasmic wire that cast a pale violet glow across the flagstones. Beyond the gates, the estates of Brightstone loom in manicured silence. The air here is cleaner, colder, and smells faintly of ozone. You are not welcome in this part of the city, and every surface makes that perfectly clear."
       }
     },
     "4": {
@@ -155,6 +158,8 @@
       "is_locked": false,
       "is_secret": false,
       "content_hints": {
+        "description": "The strongroom itself -- a reinforced vault built into the building's cellar, its iron door hanging open from a previous breach. Inside, shelves line the walls holding lockboxes, deed folios, and a rack of spirit bottles. Three Bluecoat Inspectors have arrived ahead of the crew, led by a senior Inspector with a reputation for brutality. They're here for the same prize, and they aren't interested in sharing or negotiating.",
+        "read_aloud": "The vault door stands open, its iron face scarred with pry marks. Inside, the strongroom is smaller than you expected -- low ceiling, close walls, shelves crammed with lockboxes and sealed documents. The air is stale and tinged with electroplasm. Three figures in Bluecoat uniforms turn as you enter, their expressions shifting from surprise to something harder. The one in the center -- the tallest, with captain's brass on his collar -- draws his pistol without a word.",
         "enemies": [
           {
             "name": "Bluecoat Inspector",

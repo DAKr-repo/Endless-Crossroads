@@ -45,6 +45,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "Behind the waterfall, a natural cave extends deep into the cliff. The cave floor is dry -- the water flows over the entrance but does not penetrate. Legion supply crates are stacked along the walls, each stamped with Niss's unmistakable inventory marks. The cache is intact. But the cave is not empty. Halvard's missing scouts are here -- two of them, slumped against the supply crates, their throats torn out. A third stands in the shadows at the back of the cave, swaying. The third one is not dead.",
+        "read_aloud": "The cave behind the waterfall is dry and still. Legion supply crates line the walls, stamped and inventoried. Two bodies slump against the crates in Legion scout kit, throats ragged and dark. At the back of the cave, a third figure stands in the shadows, swaying gently, like a tree in no wind.",
         "enemies": [
           {"name": "Heartless", "hp": 15, "max_hp": 15, "ac": 13, "attack": 5, "defense": 13, "count": 1},
           {"name": "Rotter", "hp": 8, "max_hp": 8, "ac": 8, "attack": 3, "defense": 8, "count": 3}
@@ -70,6 +71,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "The deepest part of the cache. The most valuable supplies are here -- medical stores, alchemical reagents, preserved food sealed in wax, and a locked strongbox containing the Legion's emergency funds. A folded map on top of the strongbox shows the final day's march to Skydagger Keep, annotated with rest points, water sources, and defensive positions. Niss's handwriting. She planned this cache a year ago, when the retreat was still theoretical.",
+        "read_aloud": "The back of the cave opens into a dry alcove stacked floor to ceiling with sealed crates -- medical stores, wax-sealed rations, and a locked iron strongbox. A folded map rests on top, annotated in careful handwriting. Someone planned this cache long before the retreat began.",
         "loot": [
           {"name": "Full Supply Cache", "value": 6, "description": "Medical stores, rations, alchemical reagents, and emergency funds. Supply +4. Enough to march the Legion to Skydagger at full strength."},
           {"name": "March Plan to Skydagger", "value": 2, "description": "Detailed march plan with waypoints, water sources, and fallback positions. Intel +1."},

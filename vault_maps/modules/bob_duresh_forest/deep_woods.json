@@ -42,6 +42,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "A natural clearing where a massive oak has fallen, taking several smaller trees with it. The root ball stands twenty feet tall, a wall of earth and tangled roots. The fallen trunk creates a bridge over a shallow ravine. Hounds have been here -- the bark of the fallen oak is scored with claw marks, and the ground is churned to mud by running paws. They hunt in packs of three to five, circling, cutting off escape routes, driving prey toward the Rotters.",
+        "read_aloud": "A massive fallen oak fills the clearing, its root ball a wall of earth twenty feet high. The bark is scored with deep claw marks, and the mud around it is churned by countless running paws. The forest is quiet -- too quiet. Then, from the ravine below, a low growl.",
         "enemies": [
           {"name": "Hound", "hp": 8, "max_hp": 8, "ac": 10, "attack": 4, "defense": 10, "count": 3},
           {"name": "Rotter", "hp": 8, "max_hp": 8, "ac": 8, "attack": 3, "defense": 8, "count": 2}
@@ -66,6 +67,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "The forest thickens to near-impassability. Game trails provide the only passage through walls of thorny undergrowth and closely packed birch. The smell changes here -- the clean scent of leaf-mold replaced by something sour and metallic. Corruption seepage. The bark of the nearest trees is streaked with black veins. Ahead, through the thicket, an unnatural glow -- firelight? Alchemical light? Something worse?",
+        "read_aloud": "The forest thickens until only narrow game trails remain. The smell changes -- something sour and metallic replaces the scent of leaves. Black veins streak the bark of every tree. Ahead, through the tangle, an unnatural glow pulses between the trunks.",
         "event_triggers": [
           "The trees thin abruptly. Beyond the thicket, a clearing. The lair.",
           "Falk crouches and draws a diagram in the dirt. 'The clearing is maybe fifty paces across. The Horror is at the center. Rotters around it. At least one Spitter in the tree line. Your call, Commander.'"

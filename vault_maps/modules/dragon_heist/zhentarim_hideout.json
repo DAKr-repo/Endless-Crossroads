@@ -23,6 +23,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "A Dock Ward warehouse, its windows boarded from the inside. The heavy timber door hangs ajar -- the padlock has been smashed. Inside, moonlight filters through gaps in the planking, illuminating a floor of sawdust and old bloodstains. The Zhentarim serpent is scratched into the doorframe at eye level.",
+                "read_aloud": "The warehouse door hangs ajar, its padlock smashed and dangling. Inside, thin bars of moonlight cut through gaps in the boarded windows, falling across a floor of sawdust and dark, dried stains. The air is stale and tastes of iron. A serpent symbol is scratched into the doorframe at eye level, and beyond the threshold, the warehouse stretches into shadow.",
                 "perception_dc": 10,
                 "perception_success": "Fresh bootprints in the sawdust lead deeper into the building. At least six people passed through here recently."
             }
@@ -40,6 +41,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "A storage room stacked with crates of mundane trade goods -- bolts of cloth, sacks of flour, barrels of salt fish. A crude barricade of overturned tables blocks the far doorway. Two thugs crouch behind it, crossbows leveled at the entrance.",
+                "read_aloud": "Crates are stacked high on either side, creating a narrow corridor of bolted cloth and flour sacks that funnels you toward the far doorway. The air smells of salt fish and damp grain. Ahead, overturned tables have been shoved together into a crude barricade, and behind it you can see movement -- dark shapes shifting, the dull gleam of crossbow bolts catching what little light there is.",
                 "enemies": [
                     {"name": "Zhentarim Thug", "hp": 11, "ac": 11, "attack": 4, "damage": "1d6+2", "count": 2, "notes": "Leather armor, maces. Will surrender below 5 HP."}
                 ],
@@ -63,6 +65,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "A cramped office that smells of ink and candle wax. A writing desk is buried under ledgers and correspondence. A map of Waterdeep's sewer system is pinned to the wall, with several locations circled in red ink. A Zhentarim spy sits at the desk, hastily burning documents in a brass bowl.",
+                "read_aloud": "A cramped office barely large enough for the writing desk that dominates it. The air is thick with the smell of ink, candle wax, and something acrid -- burning paper. Ledgers and correspondence are heaped on the desk, and a map of tunnels and waterways is pinned to the wall, several locations circled in red ink. A brass bowl on the desk holds a small fire, its smoke curling toward the low ceiling as pages blacken and curl.",
                 "enemies": [
                     {"name": "Zhentarim Spy", "hp": 12, "ac": 12, "attack": 4, "damage": "1d6+2", "count": 1, "notes": "Shortsword, hand crossbow. Cunning Action (bonus action Dash, Disengage, or Hide). Will attempt to flee if outnumbered."}
                 ],
@@ -88,6 +91,7 @@
             "is_secret": true,
             "content_hints": {
                 "description": "A narrow passage hidden behind a false wall of crates. The wooden planks here are scuffed and scratched from repeated use. The passage slopes downward into a damp cellar beneath the warehouse -- the Zhentarim's actual base of operations.",
+                "read_aloud": "Beyond the false wall, a narrow passage descends into darkness. The planks underfoot are scuffed and scratched from heavy use, and the air grows colder and damper with every step. The walls press close, barely wide enough for two abreast, and the passage slopes steadily downward into a cellar the warehouse above was built to hide.",
                 "perception_dc": 15,
                 "perception_success": "One stack of crates is mounted on a wooden rail. It slides aside to reveal a passage descending into darkness."
             }
@@ -105,6 +109,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "A dank cellar room with iron manacles bolted to the walls. One set of manacles holds a bruised and terrified young man in fine but torn clothing -- Floon Blagmaar. He has been beaten but is alive. His eyes go wide when he sees the party.",
+                "read_aloud": "The cellar reeks of damp stone and fear. Iron manacles hang from the walls in a row, most of them empty, their chains swaying slightly. In the far corner, a young man in fine but torn clothing hangs from one set of shackles, his head bowed, his face bruised and swollen. At the sound of your footsteps, his head snaps up and his eyes go wide -- hope and terror fighting for control of his expression.",
                 "lock_dc": 10,
                 "npcs": [
                     {
@@ -132,6 +137,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The warehouse's main cellar -- a low-ceilinged room supported by timber pillars, lit by guttering torches in iron sconces. Crates of weapons and contraband line the walls. Krentz, a scarred veteran in studded leather, stands at the center flanked by two thugs. He draws a longsword when he sees the party. 'Wrong door, friends. This is the last mistake you'll ever make.'",
+                "read_aloud": "Torchlight gutters in iron sconces, throwing long shadows across a low-ceilinged cellar supported by timber pillars. Crates are stacked against every wall, their lids pried open to reveal the dull gleam of weapons. The air is close and smells of torch smoke and sweat. At the room's center, a scarred figure in studded leather stands flanked by two others, and you hear the slow, deliberate sound of a blade being drawn from its sheath.",
                 "enemies": [
                     {
                         "name": "Krentz",

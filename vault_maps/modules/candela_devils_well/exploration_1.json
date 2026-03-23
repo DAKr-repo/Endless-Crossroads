@@ -88,6 +88,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "A small side chamber formed from a fishing vessel's overturned hull. The test pilot is here -- alive, barely. Strapped into his flight seat, which has been torn from the gondola and wedged into the wreckage. He is conscious but cannot move. His lips are moving but no sound comes out. When you get close, you can hear him: the same phrase, over and over. 'It is not pulling me down. It is pulling me in.'",
+        "read_aloud": "A fishing vessel's overturned hull forms a cramped chamber, salt-stained and groaning with the tide. Inside, a flight seat has been wedged into the wreckage, and in it sits the test pilot -- alive, barely. His lips move without sound. You lean close. The same phrase, over and over, a whisper worn smooth by repetition: 'It is not pulling me down. It is pulling me in.'",
         "npcs": [],
         "enemies": [],
         "services": [],

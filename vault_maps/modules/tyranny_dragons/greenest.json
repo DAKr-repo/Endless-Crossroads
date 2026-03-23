@@ -23,6 +23,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The road crests a hill and Greenest burns below you. Columns of smoke rise from a dozen buildings, lit orange from beneath by spreading fires. Through the smoke, a blue dragon wheels over the town in lazy circles, its lightning breath arcing between rooftops like a cat toying with prey. Screaming civilians run through the streets, pursued by raiders in purple robes who carry curved swords and the certainty of zealots.",
+                "read_aloud": "You crest the hill and your breath catches. The town of Greenest sprawls below, engulfed in flame -- columns of black smoke rising from a dozen buildings, the orange glow of spreading fires painting the underside of the clouds. A dragon, scales the deep blue of a bruised sky, wheels lazily overhead, and bolts of lightning lance between rooftops with a crack that shakes the ground beneath your feet. Screams carry on the wind. Figures in dark robes chase terrified families through the streets below.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Kobold Raider (group of 8)", "cr": "1/8"},
@@ -47,6 +48,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The burning houses line what was once Greenest's main street. Thatch roofs blaze like torches, and the heat is intense enough to blister skin at twenty paces. Bodies lie in the street -- civilians caught mid-flight, cut down by cultist blades. Through the smoke, more raiders move in organized groups, systematically looting homes and loading wagons. This is not random violence. This is an operation.",
+                "read_aloud": "The heat hits you like a wall. Greenest's main street is an inferno -- thatch roofs blazing like great torches, timbers groaning and splitting, sparks swirling upward in columns of choking smoke. Bodies lie in the road where they fell, and the air reeks of burning wood and something worse. Through the haze, you can make out dark figures moving with purpose between the houses, loading crates onto wagons while a woman clutches a wounded child and screams for help.",
                 "npcs": [
                     {"name": "Linan Swift", "role": "civilian", "dialogue": "*Clutching a wounded child to her chest.* The keep -- Governor Nighthill opened the keep. But the path is blocked. There are raiders everywhere. My husband went to find another way and hasn't come back. Please -- help us get to the keep."}
                 ],
@@ -75,6 +77,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Greenest Keep squats on a low hill at the town's center, its walls of mortared stone the only thing standing between the refugees and annihilation. The courtyard is packed with terrified civilians, and the walls are manned by a skeleton crew of guards launching crossbow bolts at the raiders below. Governor Nighthill stands on the battlements with blood running from a cut on his forehead, shouting orders that no one seems to hear.",
+                "read_aloud": "The keep rises from a low hill at the town's center, its mortared stone walls the one solid thing in a world of fire and chaos. You push through the gates into a courtyard packed shoulder-to-shoulder with terrified civilians -- children crying, the wounded groaning on makeshift pallets. Guards in bloodstained tabards man the walls above, loosing crossbow bolts into the smoke. A man with a bleeding forehead stands on the battlements, bellowing orders into the din.",
                 "npcs": [
                     {"name": "Governor Tarbaw Nighthill", "role": "quest_giver", "dialogue": "Thank the gods -- capable fighters. The keep holds for now, but it won't last the night. That dragon -- it's toying with us. The real threat is the army in the fields. I need intelligence: who leads them, what they want, and how to make them leave. I'll pay whatever Greenest has left, which isn't much."},
                     {"name": "Castellan Escobert the Red", "role": "ally", "dialogue": "*The dwarf is shorter than his temper, which is saying something.* There's a sally port -- old tunnel from the keep to the stream. Hasn't been used in years but the masonry's sound. Might get a small group out unseen. You want to be heroes? Start there."}
@@ -102,6 +105,7 @@
             "is_secret": true,
             "content_hints": {
                 "description": "The sally port is a narrow tunnel of damp stone that exits through a rusted grate at the stream bed below the keep. Rats scatter as Escobert hands over the key, and the air tastes of old water and older masonry. The tunnel is low enough to force medium creatures to crouch, and the stream beyond is shallow but ice-cold, concealed from view by thick reeds.",
+                "read_aloud": "The tunnel is barely wide enough for one and low enough to force you into a crouch. Damp stone presses in from all sides, slick with condensation, and the air tastes of stale water and ancient mortar. Something small and furred scurries away from your light. Ahead, a rusted iron grate lets in a sliver of moonlight and the sound of running water -- a shallow stream bed hidden by tall reeds.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Swarm of Rats", "cr": "1/4"}
@@ -124,6 +128,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Temple of Chauntea is surrounded. Dozens of cultists and kobolds pound at the heavy oak doors while terrified voices pray within. The temple's stained-glass windows depict golden fields of grain, now backlit by firelight into something hellish. A battering ram -- a felled oak trunk -- thuds against the door with metronomic regularity. The hinges are buckling.",
+                "read_aloud": "The temple stands besieged. Dozens of figures hammer at its heavy oak doors while from inside you can hear the muffled sound of prayers and weeping. Stained-glass windows depicting golden fields of grain glow hellish red in the firelight. A felled oak trunk swings forward again and again as a battering ram, each impact shuddering through the stonework. The hinges are buckling. The door will not hold much longer.",
                 "npcs": [
                     {"name": "Eadyan Falconmoon", "role": "priest", "dialogue": "*Bracing the door from inside.* Chauntea preserve us -- there are thirty civilians in here. Women, children, the elderly. The door won't hold another ten minutes. If you've come to help, we need these raiders driven off or we need another way out. The crypt -- there's a tunnel in the crypt, but it collapsed years ago."}
                 ],
@@ -153,6 +158,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Lennithon the blue dragon lands in the field before the keep at dawn, and in her shadow stands a half-dragon champion in purple scale mail, seven feet of muscle and arrogance. He plants his greatsword point-first in the earth and issues a challenge in a voice that carries to the keep walls: single combat, his champion against theirs. Behind him, a line of bound prisoners kneels in the mud. The stakes are their lives.",
+                "read_aloud": "Dawn breaks gray and terrible. The dragon settles in the field before the keep with a ground-shaking impact, and in its shadow stands a towering figure in purple scale mail -- easily seven feet tall, with blue-tinged skin and a reptilian cast to his features. He drives a greatsword into the earth and his voice booms across the field like a war drum. Behind him, a line of bound prisoners kneels in the mud, ropes around their necks.",
                 "npcs": [
                     {"name": "Langdedrosa Cyanwrath", "role": "antagonist", "dialogue": "I am Langdedrosa Cyanwrath, champion of the Cult of the Dragon. I offer honorable combat -- one warrior against one warrior. Win, and the prisoners walk free. Lose... *His smile shows teeth filed to points.* ...and they join the hoard. Either way, I get a good fight. It has been too long since I've had a good fight."}
                 ],
@@ -180,6 +186,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The mill stands at the town's edge, its wheel frozen mid-turn in the stream. Raiders have gathered around it, but something is wrong -- they're not looting. They're waiting. The grain stores are intact, the door ajar, and a lantern burns inside. This is a trap, baited with the town's food supply and the knowledge that heroes always try to save the provisions.",
+                "read_aloud": "The mill stands at the town's edge, its great wheel frozen mid-turn in the dark water of the stream. Figures cluster around the building, but something feels wrong -- they are still, watchful, arranged with a deliberateness that prickles the hair on your neck. The grain stores appear untouched. The door hangs ajar. A single lantern burns in the window, its flame steady and inviting against the chaos of the burning town behind you.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Cultist (ambush team of 6)", "cr": "1/8"},

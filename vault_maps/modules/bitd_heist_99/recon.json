@@ -58,6 +58,8 @@
       "is_locked": false,
       "is_secret": false,
       "content_hints": {
+        "description": "A derelict canal chapel, its stained glass long since shattered and replaced with oilcloth. The pews have been removed -- the interior is bare stone and standing water. A gondolier lookout uses the bell tower as a vantage point, watching the canal traffic below for rivals and Bluecoat patrols. The bell rope has been cut.",
+        "read_aloud": "A chapel squats at the canal's edge, its windows dark behind panels of oilcloth that snap in the wind. The doors hang open on one hinge, revealing a gutted interior of bare stone and an inch of standing water that reflects nothing. Above, the bell tower rises into the fog, and something moves behind the narrow window slit at its top.",
         "enemies": [
           {
             "name": "Gondolier Lookout",
@@ -83,6 +85,8 @@
       "is_locked": false,
       "is_secret": false,
       "content_hints": {
+        "description": "The edge of the district where Crow's Foot bleeds into the Docks. A stone archway marks the boundary -- beyond it, the streets narrow and the lamplighters don't come. A Skovlan refugee stands beneath the arch, ostensibly begging, but the calluses on his knuckles and the way his eyes track movement tell a different story. He's muscle, posted here to warn of incoming trouble.",
+        "read_aloud": "A stone archway marks the boundary where the gas lamps end and the dark begins. Beyond it, the streets compress into a maze of close-set buildings and hanging laundry. A man sits beneath the arch with a begging bowl, but his eyes are too sharp and his hands too steady. The canal wind carries the smell of tar and brine through the passage, and somewhere past the arch, a dog barks once and falls silent.",
         "enemies": [
           {
             "name": "Skovlan Refugee Fighter",

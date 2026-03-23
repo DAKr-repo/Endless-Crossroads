@@ -59,6 +59,8 @@
       "is_locked": false,
       "is_secret": false,
       "content_hints": {
+        "description": "A back room behind the lounge, used as an office and stash. Crates of contraband are stacked against the walls under dusty tarps. A desk holds forged documents, a pot of cold coffee, and a convincing fake Bluecoat badge. The room has no windows -- the only light comes from a single oil lamp that gutters in the draft from the door.",
+        "read_aloud": "A cramped back room, airless and dim. Crates line the walls under tarps that haven't been disturbed in weeks. A desk sits in the corner, buried under papers and the cold dregs of someone's coffee. The oil lamp on the shelf gives just enough light to read by -- barely -- and the draft from the door makes it flicker like a dying heartbeat.",
         "loot": [
           {
             "name": "Bluecoat Badge (fake)",
@@ -82,6 +84,8 @@
       "is_locked": false,
       "is_secret": false,
       "content_hints": {
+        "description": "The rooftop exit -- a trapdoor that opens onto a narrow alley behind the building. A rope ladder descends to the cobblestones. Vex waits here, leaning against the alley wall with the practised ease of someone who has made a career of looking like they belong. He fences goods, moves coin, and asks no questions worth answering.",
+        "read_aloud": "A trapdoor opens onto cold air and the sound of dripping water. A rope ladder drops into a narrow alley below, hemmed in by soot-stained brick on both sides. The alley smells of rotting vegetables and lamp oil. A figure leans against the far wall, arms crossed, watching you descend with an expression that suggests he's already calculated what you're worth.",
         "npcs": [
           {
             "name": "Vex",

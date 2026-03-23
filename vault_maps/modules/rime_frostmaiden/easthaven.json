@@ -23,6 +23,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Easthaven sits on the south shore of Lac Dinneshere, a fishing town that has forgotten what the sun looks like. The wooden buildings lean against each other for warmth, their roofs sagging under snow that no one has the energy to clear. Fishing nets hang frozen on their racks, useless -- the lake has iced over solid, and the fish have gone deep.",
+                "read_aloud": "The town leans against the frozen shore of a vast lake, its wooden buildings huddled together under sagging roofs of snow. Fishing nets hang rigid on their racks, frozen solid and useless. The lake stretches north into darkness, its surface a sheet of grey-white ice unmarked by any boat. The whole place smells of old fish, damp wood, and the particular despair of people who have stopped expecting things to improve.",
                 "npcs": [
                     {"name": "Captain Arlaggath", "role": "quest_giver", "dialogue": "We lost another boat crew on the ice. Not to the cold -- to something under it. The fishermen say they saw shapes moving beneath the frozen surface, and then the ice cracked and the shapes pulled them through. I need someone to go out there. Someone who isn't afraid of dark water."}
                 ],
@@ -45,6 +46,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Wet Trout is a two-story inn whose sign features a fish that has been repainted so many times it resembles a lumpy blue blob. Inside, the common room is packed -- not with customers, but with refugees from the outer homesteads who can no longer survive alone. Children sleep on the floor wrapped in every blanket the inn owns, and the hearth fire burns whatever will ignite: chairs, bed frames, a sign that once read 'No Refunds.'",
+                "read_aloud": "The inn's sign is a shapeless blue blob that might once have been a fish. Inside, the common room is packed wall to wall -- not with revelers, but with families. Children sleep on the floor in nests of blankets, and hollow-eyed adults sit wherever there is space. The hearth fire crackles with broken chair legs and splintered bed frames. The air is thick with the smell of too many bodies, woodsmoke, and the faint sour tang of fear.",
                 "npcs": [
                     {"name": "Rinaldo", "role": "bard", "dialogue": "I came north to write songs about adventure. *Strums a lute with two broken strings.* Instead I write songs about frostbite, starvation, and the lottery. They're not popular, but they're honest. Buy me an ale and I'll sing you the one about the thing under the lake. Nobody laughs at that one."},
                     {"name": "Dzaan (disguised)", "role": "antagonist", "dialogue": "I am merely a scholar, researching the history of Icewind Dale. *His smile is too practiced, his robes too fine for a simple academic.* The Netherese ruins beneath the glacier are of particular interest. Purely academic, of course. Knowledge for its own sake."}
@@ -70,6 +72,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Town Hall doubles as a courtroom, and today it is serving that function. A crowd of Easthaven citizens fills the benches, their faces grim. At the front, a red-robed figure stands accused -- Dzaan, the wizard, charged with murder and the forbidden practice of necromancy. The evidence is damning: three corpses found in his rented room, drained of life force.",
+                "read_aloud": "The Town Hall is standing room only, every bench packed with grim-faced townsfolk in heavy furs. At the front of the room, a figure in red robes stands in chains, flanked by guards. The crowd's silence is the worst kind -- not bored, not indifferent, but the held-breath quiet of people about to watch something terrible happen. The air reeks of tallow smoke and wet wool.",
                 "npcs": [
                     {"name": "Captain Arlaggath", "role": "judge", "dialogue": "The evidence is clear. Dzaan of Thay stands convicted of murder by arcane means. The sentence is death by burning. Unless someone here wishes to speak in his defense? *Silence.* Then at dawn, we light the pyre."}
                 ],
@@ -94,6 +97,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The ferry docks are locked in ice, the boats frozen to their moorings at angles that suggest the freeze came suddenly. A wooden pier extends over what was once open water and is now a white plain stretching to the far shore. Ice fishermen huddle over holes they've chipped with axes, pulling up fish too small to feed a cat. The lake groans beneath them, a sound like a giant turning in uneasy sleep.",
+                "read_aloud": "The docks jut out over a frozen lake, their boats locked in ice at awkward angles, as if the water seized them mid-motion. A wooden pier extends over a flat white plain that stretches to the far shore. Hunched figures crouch over axe-hewn holes in the ice, lines dangling into the dark water below. The lake groans -- a deep, resonant sound that travels up through the pier boards and into your bones.",
                 "npcs": [
                     {"name": "Imdra Arlaggath (off-duty)", "role": "informant", "dialogue": "Something lives under this lake. I've seen the shapes -- too big to be fish, too deliberate to be currents. The old-timers say it's a plesiosaur. The priests say it's Auril's pet. I say it's hungry, and it's getting bolder."}
                 ],
@@ -118,6 +122,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The road south from Easthaven passes through stunted pine forest before climbing into the foothills. Here, partially buried in snowdrifts, lie the ruins Dzaan was excavating. Stone foundations of a structure predating Ten-Towns by centuries poke through the white, covered in runes that glow faintly blue in the perpetual twilight. Fresh dig marks and discarded tools suggest recent activity.",
+                "read_aloud": "Stunted pines give way to snow-choked foothills, and among the drifts, stone foundations break the surface like bones pushing through skin. The ruins are ancient -- far older than the town behind you. Runes carved into the exposed stone glow faintly blue in the twilight, pulsing with a slow rhythm like a sleeping heartbeat. Fresh dig marks scar the snow around the foundations, and discarded tools lie half-buried nearby, as if their owner left in a hurry.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Animated Armor (Dzaan's guardian)", "cr": "1"},
@@ -145,6 +150,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Caer-Dineval Road is a frozen track winding south through the foothills. The signpost at the crossroads has been gnawed by something with large teeth. One arrow points toward Caer-Dineval. Another, handwritten and nailed over the original, reads: 'SUNBLIGHT -- DO NOT APPROACH.' Someone has crossed this out and written beneath it: 'Too late.'",
+                "read_aloud": "A crossroads signpost stands at a lean, its wood gnawed by something with very large teeth. One arrow points south toward Caer-Dineval. A second sign has been nailed over the original in a rough hand: 'SUNBLIGHT -- DO NOT APPROACH.' Beneath those words, someone has scratched two more in smaller letters: 'Too late.' The road winds south into foothills that vanish into low, heavy cloud, and the wind carries the faint smell of sulfur.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [],

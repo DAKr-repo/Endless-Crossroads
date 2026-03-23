@@ -51,6 +51,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "The scout camp's rest area is a shallow cave in the ridge, enlarged with picks and draped with oilcloth to keep out the rain. Bedrolls, weapon caches, and a small cold-food store. No fire is permitted after dark -- the Crows watch for light.",
+        "read_aloud": "A shallow cave draped with oilcloth, smelling of damp wool and cold rations. Bedrolls are packed tight against the walls. No lantern burns here -- the scouts sleep in the dark, and they sleep light.",
         "services": ["rest"],
         "investigation_dc": 10,
         "investigation_success": "Carved into the cave wall, behind a bedroll: a map of the pass drawn by a previous scout team. It shows a narrow chimney in the cliff face -- a climbing route that bypasses the defile entirely. Someone has crossed it out and written 'COLLAPSED' next to it. But the rock around the chimney looks sound."
@@ -69,6 +70,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "The signal station. A pile of oil-soaked kindling ready to ignite, a horn for sounding the alarm, and a canvas pouch of signal flags. If the pass is breached, this is where the warning goes out. The flags are color-coded: red for undead, black for Broken, white for all-clear. No one has flown white in weeks.",
+        "read_aloud": "The signal post. A pile of oil-soaked kindling sits ready to burn, and a brass horn hangs from a peg driven into the rock. A canvas pouch of signal flags dangles beside it -- red, black, white. The white flag looks like it has not been touched in a long time.",
         "services": ["briefing"]
       }
     }

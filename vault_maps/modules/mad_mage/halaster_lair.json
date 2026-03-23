@@ -23,6 +23,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The gate does not open so much as permit. One moment you are on Level 22, and the next you are somewhere else entirely -- standing on a flagstone floor that stretches in every direction beyond the reach of torchlight. The ceiling is not stone. It is sky -- a night sky filled with stars in constellations you do not recognize, turning slowly above you like a planetarium built by a god with a very specific aesthetic. The air smells of ozone and old paper. A sign hangs in midair, written in Halaster's hand: 'WELCOME TO THE END. PLEASE WIPE YOUR FEET.'",
+                "read_aloud": "There is no transition. One step you are on stone, and the next you are somewhere else entirely -- a flagstone floor stretching in every direction beyond the reach of your light. You look up, and there is no ceiling. There is sky -- a night sky turning slowly overhead, filled with stars in constellations you have never seen, cold and vast and impossibly real. The air smells of ozone and old paper, crackling faintly against your skin. A sign hangs motionless in midair a few feet ahead, written in a spidery, confident hand: WELCOME TO THE END. PLEASE WIPE YOUR FEET.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [],
@@ -48,6 +49,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The corridor is not straight. It is geometrically impossible -- you walk forward and arrive behind where you started. The walls are lined with doors, each one a different color, each one slightly ajar, each one showing a different scene through the gap: a tropical beach, a burning city, a room identical to this one containing a version of you looking back. The floor is tessellated in patterns that shift when you are not looking directly at them. You have been walking for what feels like hours. Your watch says three minutes.",
+                "read_aloud": "The corridor bends in ways that corridors should not. You walk forward, but the wall you passed a moment ago is somehow ahead of you again. Doors line both sides -- red, blue, green, black, gold -- each one slightly ajar. Through the gaps you catch impossible glimpses: a sunlit beach, a city wreathed in fire, a corridor identical to this one where figures that look disturbingly like you peer back through the crack. The tiled floor shifts its pattern when you glance away, and your sense of time dissolves entirely. You have been walking for what feels like hours. Your hands say three minutes. Neither answer feels reliable.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Mimic (disguised as door)", "cr": "2"},
@@ -78,6 +80,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "A circular gallery of mirrors, each one taller than a man, each one showing a different reflection. One mirror shows you as you were ten years ago. Another shows you as you might be in ten years, and the version in that mirror looks tired and scared. A third shows nothing at all -- just empty room behind you, as if you do not exist. The frames are silver and black, engraved with sigils of divination and madness. At the gallery's center, a pedestal holds a single clear glass marble that contains a mote of light. The light blinks.",
+                "read_aloud": "Mirrors line the circular gallery wall, each one taller than a man, each framed in tarnished silver etched with spiraling sigils. Your reflection stares back from the nearest -- but it is wrong. Younger, or older, or wearing an expression you are not making. The next mirror shows only the empty room behind you, as if you are not standing here at all. A third reflects a version of you that looks exhausted and afraid, mouthing words you cannot hear. At the gallery's center, a glass marble rests on a stone pedestal, and inside it, a mote of pale light blinks slowly, like a tiny, patient eye.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Nothic", "cr": "2"},
@@ -110,6 +113,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "A library that contains every book Halaster ever read, wrote, stole, or dreamed. The shelves extend upward into the false sky above, and floating discs carry books between levels like a vertical mail system. Some books are chained. Some are caged. One section is walled off behind glass etched with warning runes, and the books inside it press their covers against the glass like prisoners against bars. A reading chair floats near the ceiling, surrounded by orbiting tomes -- Halaster's study spot, still warm.",
+                "read_aloud": "Bookshelves rise from the floor and keep going -- up and up, past any reasonable height, vanishing into the star-filled void above. Floating discs ferry books between the levels in a slow, silent vertical procession. The smell of old paper and leather binding is overwhelming, layered over something sharper -- ink that is still wet, pages that are still being written. Some shelves are chained shut. One entire section is sealed behind glass etched with glowing runes, and the books inside press their spines against the barrier as if trying to escape. High above, a reading chair drifts near the ceiling, surrounded by orbiting tomes. It is still warm.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Arcanaloth", "cr": "12"}
@@ -143,6 +147,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "A chamber dominated by a crystalline engine the size of a house, its facets humming with contained power. Arcane energy flows through diamond conduits in visible rivers of blue-white light, and the air crackles with so much raw magic that your hair stands on end and metal objects vibrate. This is the Spell Engine -- Halaster's masterwork, the device that maintains every ward, every trap, every teleportation circle, every twisted geometry in all twenty-three levels of Undermountain. It has been running for a thousand years. It was not designed to stop.",
+                "read_aloud": "A crystalline structure the size of a house dominates the chamber, its facets humming with a sound that bypasses your ears and resonates directly in your chest. Rivers of blue-white light flow through diamond conduits, branching and merging in patterns too complex to follow. The air is alive with raw magic -- your hair stands on end, metal buckles vibrate against your skin, and the taste of lightning coats your tongue. The engine pulses with a steady, ancient rhythm, and the light it casts throws prismatic rainbows across every surface. It has been running for a very, very long time, and every ward, every trap, every twisted corridor you have survived was sustained by this single, relentless heartbeat.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Helmed Horror", "cr": "4"},
@@ -177,6 +182,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "A maze of invisible walls, visible floors, and audible illusions. The path forward is clear -- you can see the exit. You cannot reach it. Invisible barriers redirect you into dead ends, loops, and pits that appear solid but are not. The maze is not static; it reconfigures every few minutes, its walls sliding on silent tracks. Halaster's voice provides commentary like a bored gameshow host: 'Cold. Colder. Ice cold. Oh, that one has spikes at the bottom. My condolences.'",
+                "read_aloud": "You can see the exit. It is right there, thirty feet ahead, plainly visible. You cannot reach it. Something invisible stops you mid-stride -- a wall of nothing, solid as stone, that redirects you sideways into a corridor you did not choose. The floor ahead looks solid but your thrown pebble falls through it with a distant clatter. The path behind you has changed since you last looked. A voice drifts from the walls, conversational and faintly amused, offering commentary you did not ask for. The maze shifts around you with a faint grinding sound, and the exit is somehow farther away than when you started.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [],
@@ -205,6 +211,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "A dais of black marble floats unsupported in a void of stars. There is no floor beyond the dais -- only space, infinite and cold, with galaxies wheeling in the distance. The throne is carved from a single meteorite, its surface still bearing the heat scars of atmospheric entry. The stars are not decorative. They are real. Halaster carved a window in reality and built his throne room around the view. The void does not look back. It does not need to.",
+                "read_aloud": "The floor ends. Beyond the edge, there is nothing -- only void, black and infinite, punctuated by stars and the slow wheel of distant galaxies. A dais of black marble floats unsupported in this emptiness, and upon it sits a throne carved from a single dark stone scarred with the heat-marks of atmospheric entry. The cold radiating from the void is not temperature but absence -- the absence of walls, of ceiling, of any reassurance that the world has edges. Faint light from impossible distances catches the throne's surface. The stars are real. The drop is real. The silence is total and absolute.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [
@@ -234,6 +241,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The sanctum of Halaster Blackcloak is not a room. It is a statement. The walls are living spellwork -- formulae that rewrite themselves in real time, adapting to threats, learning from attacks, evolving. The floor is a mosaic depicting the entire history of Undermountain from its dwarven origins to this exact moment, updating as you watch. And at the center, standing in a circle of his own design, is Halaster Blackcloak: a gaunt figure in star-scarred robes, his beard braided with spell components, his eyes -- one brown, one silver -- absolutely, terrifyingly lucid. He has been waiting for you. He has been waiting for exactly you. He designed every level, every trap, every monster, every treasure to lead precisely to this meeting. A thousand years of preparation for a single conversation.",
+                "read_aloud": "The walls are alive. Arcane formulae crawl across every surface in luminous script, rewriting themselves in real time -- adapting, evolving, responding to your presence. The floor beneath your feet is a mosaic of staggering detail, depicting a vast dungeon in miniature, and as you watch, tiny figures that look like you move through its corridors. At the chamber's center, within a circle of runes that burn white-hot, a gaunt figure stands in star-scarred robes, his long beard braided with what appears to be spell components. His eyes -- one brown, one silver -- find yours with a lucidity that is more frightening than any madness. He has been standing there, waiting, for what feels like it might have been a very long time. He smiles. He is not surprised to see you.",
                 "npcs": [
                     {
                         "name": "Halaster Blackcloak",

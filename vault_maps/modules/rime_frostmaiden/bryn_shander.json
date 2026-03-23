@@ -23,6 +23,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The south gate of Bryn Shander groans on frost-locked hinges as the guards haul it open just wide enough to admit you. The palisade walls are fifteen feet of frozen timber, crusted with ice an inch thick. Beyond, the town hunches under perpetual twilight -- lanterns burn in every window, but the light seems dimmer than it should be, as though the darkness itself has weight.",
+                "read_aloud": "Frozen hinges shriek as the guards haul the south gate open just wide enough to let you through. The palisade walls rise fifteen feet on either side -- solid timber sheathed in an inch of ice that glitters in the torchlight. Beyond the gate, Bryn Shander hunches beneath a sky that holds no sun. Lanterns burn in every window, but their light feels thin, as though the darkness pressing down from above has weight enough to smother it.",
                 "npcs": [
                     {"name": "Sheriff Markham Southwell", "role": "guard", "dialogue": "Another group of travelers. You picked a hell of a time to visit Bryn Shander. No sun for two months, food stores running low, and last night something took three sled dogs from the kennel without leaving tracks. Welcome to paradise."}
                 ],
@@ -45,6 +46,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The market square of Bryn Shander is a wind-scoured plaza of packed snow where merchants stamp their feet and blow into their gloves between transactions. The prices on the boards have been scratched out and rewritten so many times the wood is scarred. Everything costs double what it should. A frozen fountain in the center holds an ice sculpture that no one carved -- it appeared three nights ago, and it looks like a woman screaming.",
+                "read_aloud": "The market square is a wind-scoured expanse of packed snow where a handful of merchants stamp their feet and trade in hoarse, hurried voices. Price boards line the stalls, their numbers scratched out and rewritten so many times the wood beneath is scarred white. At the plaza's center, a frozen fountain holds a sculpture of ice that no one claims to have carved -- a woman with her mouth open, arms raised, caught in a scream that the cold has made permanent.",
                 "npcs": [
                     {"name": "Speaker Duvessa Shane", "role": "quest_giver", "dialogue": "I've been Speaker for two years, and in that time I've watched this town go from thriving to surviving. The lottery is... necessary. Someone must be sacrificed to Auril each month, or the blizzards worsen. I hate it. But I don't have a better answer. If you find one, I'll owe you more than I can repay."}
                 ],
@@ -67,6 +69,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Northlook Inn is the warmest building in Bryn Shander, and it smells like it -- woodsmoke, wet fur, spilled ale, and the mineral tang of people who haven't bathed since the last thaw that never came. The hearth is large enough to roast an ox, and the innkeeper keeps it burning day and night. Regulars hunch over their drinks in silence, because in Icewind Dale, complaining about the cold is redundant.",
+                "read_aloud": "A wall of heat hits you as the door swings open, carrying the smell of woodsmoke, wet fur, and spilled ale. The Northlook's common room is low-ceilinged and lamp-lit, dominated by a hearth large enough to roast an ox. Figures hunch over their drinks at every table, wrapped in furs even indoors, their faces lit amber by the fire. No one looks up. No one speaks above a murmur. The silence has the quality of people who have run out of things to say about the cold.",
                 "npcs": [
                     {"name": "Scramsax", "role": "barkeep", "dialogue": "Ale's warm, food's hot, rooms are cold but dry. That's the best offer in Ten-Towns and don't let anyone tell you different. *Slides a mug across the bar.* First one's on me. You look like you need it. Everyone does, lately."},
                     {"name": "Hlin Trollbane", "role": "quest_giver", "dialogue": "I'm retired. Bounty hunter, thirty years in the Dale. But something's hunting the speakers of Ten-Towns -- two dead in the last month, made to look like accidents. It isn't. Someone hire you? No? Then I'm hiring you. Name your price."}
@@ -92,6 +95,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Town Hall is a squat stone building whose chimney never stops smoking. Inside, maps of Ten-Towns cover every wall, bristling with pins marking incidents -- missing persons, creature sightings, food shortages. A war table occupies the center, as though the town is under siege. It is, in a sense. The enemy is winter, and winter is winning.",
+                "read_aloud": "The Town Hall is a squat building of grey stone, its chimney trailing a constant thread of smoke into the starlit sky. Inside, maps cover every wall -- Ten-Towns rendered in charcoal and ink, bristling with colored pins that mark something you would rather not think about. A heavy table dominates the center of the room, spread with reports and tallies. The air smells of tallow candles and anxiety.",
                 "npcs": [
                     {"name": "Speaker Duvessa Shane", "role": "quest_giver", "dialogue": "The other speakers won't cooperate. Easthaven hoards its fish, Targos guards its walls, Caer-Konig pretends nothing is wrong. We need someone who can travel between the towns without political baggage. Someone expendable. *Winces.* I'm sorry. I mean someone... flexible."}
                 ],
@@ -117,6 +121,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Blackiron Blades occupies a stone-walled shop attached to a forge that burns chardalyn dust for extra heat. The smith is a taciturn woman whose arms are crosshatched with old burns and whose work speaks louder than her words. Every blade on the rack has been tested -- she notches the ones that fail and melts them down. There are no notched blades on display.",
+                "read_aloud": "Heat rolls out of the open forge door in a wave that makes your frost-numbed skin prickle. The shop beyond is stone-walled and lamp-lit, hung with blades that gleam in the firelight. The ring of hammer on steel echoes from the back room, steady as a heartbeat. The air tastes of hot metal and charcoal, underlaid by something stranger -- a faintly sweet, almost cloying scent that clings to the dark-veined dust near the forge.",
                 "npcs": [
                     {"name": "Elza Blackiron", "role": "merchant", "dialogue": "*She doesn't look up from the anvil.* Steel's good. Chardalyn's better, but it'll cost you, and I won't guarantee what it does to your dreams. You want a weapon that works? Buy steel. You want a weapon that wins? *Finally meets your eyes.* That's a different conversation."}
                 ],
@@ -143,6 +148,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Temple of Tempus stands apart from the other buildings, its stone walls bearing the sword-and-shield emblem of the Lord of Battles. Inside, the warmth comes not from the modest hearth but from the barely contained fury of the priest, who preaches to empty pews about fighting back against Auril. The altar bears fresh blood -- animal, he insists, from the morning sacrifice. The congregation has dwindled to three.",
+                "read_aloud": "The temple stands apart from its neighbors, its stone walls carved with the sword-and-shield emblem of a war god. Inside, the pews are almost entirely empty. A single voice echoes through the nave, fervent and raw, preaching to a congregation of three about the virtue of fighting back. The altar at the front bears a dark stain that glistens in the candlelight, and the air carries the iron smell of a recent offering.",
                 "npcs": [
                     {"name": "Mishann", "role": "priest", "dialogue": "Tempus teaches us that every battle can be won if you have the courage to fight it. But how do you fight a goddess? I preach courage and my congregation shrinks. They'd rather huddle by their fires and sacrifice their neighbors to the cold. If Tempus tests me much further, I'll have no one left to preach to."}
                 ],
@@ -168,6 +174,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The northeast gate opens onto the Eastway -- a road that was once well-maintained and is now a suggestion beneath two feet of snow. Dog sled tracks lead toward Easthaven, six hours east. The wind picks up as you pass the palisade, and the lanterns of Bryn Shander shrink behind you with unsettling speed, swallowed by the darkness of the tundra.",
+                "read_aloud": "The northeast gate opens onto a road that is little more than a suggestion beneath two feet of undisturbed snow. Dog sled tracks score the white surface, heading east into a darkness that seems to go on forever. As you pass beyond the palisade, the wind rises, and when you glance back, the lanterns of Bryn Shander are already shrinking -- swallowed by the tundra's vast, indifferent dark.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [],

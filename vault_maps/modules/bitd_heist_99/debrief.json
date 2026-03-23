@@ -72,7 +72,8 @@
             "type": "common"
           }
         ],
-        "description": "The university bell tower looms through fog, its clock face glowing an unearthly blue."
+        "description": "The university bell tower looms through fog, its clock face glowing an unearthly blue.",
+        "read_aloud": "The bell tower rises through the fog like a finger pointing at nothing. Its clock face glows a faint, sickly blue -- electroplasmic, not gaslight. The hour it shows doesn't match any clock you've seen tonight. Something about this part of the city keeps its own time."
       }
     }
   }

@@ -23,6 +23,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The gates of Gracklstugh are hammered from a single sheet of iron thirty feet tall, flanked by basalt pillars carved with duergar faces frozen mid-scream. The heat hits you first -- furnace-blast warmth rolling out of the cavern beyond, carrying the tang of molten metal and coal smoke. Guards in gray plate inspect you with eyes that reflect no light.",
+                "read_aloud": "Iron gates thirty feet tall loom before you, hammered from a single sheet of dark metal and flanked by basalt pillars carved with screaming faces. The heat hits you before you step through -- a furnace blast carrying the tang of molten metal and coal smoke. Gray-armored figures stand at rigid attention on either side, their eyes flat and lightless, their expressions carved from the same stone as the pillars behind them. Beyond the gates, ruddy light flickers against a ceiling lost in haze.",
                 "npcs": [
                     {"name": "Gate Captain Gorglak", "role": "guard", "dialogue": "Surfacers. You will surrender all weapons of mithral or adamantine. You will not enter the Cairngorm Caverns. You will not speak to the Deepking. Violate these laws and you become property of the Keepers of the Flame. Move."}
                 ],
@@ -48,6 +49,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Blade Bazaar fills an entire cavern with the ring of commerce and the hiss of quenched steel. Stalls of black iron display weapons of brutal elegance -- duergar craftsmanship prizes function over beauty. Invisible merchants hawk wares from behind illusion-masked booths, and a half-dozen brawls seem perpetually on the verge of erupting.",
+                "read_aloud": "The cavern rings with the sound of commerce and quenched steel. Stalls of black iron line every wall and fill every alcove, displaying weapons of brutal, unornamented elegance. Some booths shimmer with illusion -- the merchants behind them invisible, their wares floating in midair. Voices haggle in a guttural tongue, and somewhere nearby, a shoving match escalates toward drawn blades. The heat is oppressive, the air thick with coal smoke and the sharp smell of hot metal.",
                 "npcs": [
                     {"name": "Werz Saltbaron", "role": "merchant", "dialogue": "You want the good stuff? Not this pig-iron they sell to outsiders. I have a connection in the surface world -- Blingdenstone goods, drow silk, even some... contraband from Menzoberranzan. But we talk price somewhere private, yes?"}
                 ],
@@ -74,6 +76,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Ghohlbrorn's Lair occupies a natural chimney in the cavern wall, its entrance marked by claw gouges in the basalt. The derro savant has turned this space into a laboratory of madness -- jars of pickled cave creatures line the shelves, and formulae written in blood cover the walls. The air shimmers with residual magic.",
+                "read_aloud": "Claw gouges scar the basalt around the entrance to this natural chimney in the cavern wall. Inside, shelves of jars crowd every surface -- pickled cave creatures suspended in cloudy fluid, their dead eyes staring out. The walls are covered in formulae written in something dark and flaking, and the air shimmers faintly, as though the space itself is feverish. A chemical smell burns the back of your throat, and you cannot shake the feeling that the jars are arranged in a pattern that means something terrible.",
                 "npcs": [
                     {"name": "Droki", "role": "informant", "dialogue": "*The derro twitches violently, his oversized boots flopping as he dances in place.* Can't stop, can't stop, the gray ones see if Droki stops! Messages to carry, yesyes, small packages, don't look inside, NEVER look inside! *He bolts for a crack in the wall.*"}
                 ],
@@ -101,6 +104,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Darklake Brewery squats at the cavern's edge where an underground river feeds into the lake. The ale is brewed from cave-moss and zurkhwood sap, served in iron tankards bolted to the tables by chains. The barkeep is a duergar woman who has not smiled since the Deepking's grandfather was young, and she communicates primarily in grunts of varying disapproval.",
+                "read_aloud": "The brewery squats where the underground river feeds into the lake, its walls sweating with condensation. Inside, iron tankards are chained to heavy stone tables, and the air is thick with the yeasty smell of cave-moss ale and zurkhwood sap. The patrons drink in near-total silence, hunched over their cups like gargoyles. Behind the bar, a broad-shouldered woman watches you with an expression that suggests your presence is a personal inconvenience she has decided to endure, for now.",
                 "npcs": [
                     {"name": "Ylsa Henstak", "role": "barkeep", "dialogue": "*Grunt.* Two copper. *Grunt.* No tabs. *Long, withering stare.* ...Fine. One copper. But you drink it here and you don't talk to me about your problems."}
                 ],
@@ -125,6 +129,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Cairngorm Caverns open beneath Gracklstugh like a second city made of crystal. Massive geodes of smoky quartz and amethyst line the walls, and stone giant elders move through the space with the slow deliberation of continents. Their voices are the sound of grinding tectonic plates, and the ground vibrates with each footstep.",
+                "read_aloud": "The cavern opens beneath you into a space that steals the breath from your lungs. Massive geodes of smoky quartz and amethyst line the walls, their crystals as tall as a person, catching and refracting the faint light into a thousand muted rainbows. Figures move through this crystal forest -- towering, deliberate shapes that make the ground tremble with every step. Their voices reach you as a deep grinding vibration you feel in your chest more than hear with your ears. This place is ancient beyond reckoning.",
                 "npcs": [
                     {"name": "Stonespeaker Hgraam", "role": "quest_giver", "dialogue": "The stone speaks of change. The stone speaks of fire that should not be, and madness seeping through cracks in the world. You are small, but the stone says you carry weight beyond your size. Come. I will show you what the crystals have shown me."},
                     {"name": "Dorhun", "role": "ally", "dialogue": "Stonespeaker Hgraam sees much in the stone, but he does not see the duergar sharpening their blades for us. The gray ones grow bold. They forget who carved these caverns first."}
@@ -150,6 +155,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The heat in Themberchaud's lair could forge iron. The red dragon -- grotesquely fat from decades of captive feeding -- sprawls across a hoard of coins and weapons. His belly drags the ground, and his eyes burn with an intelligence that his keepers desperately hope he lacks. The Keepers of the Flame maintain a careful fiction: the dragon is a tool. The dragon knows otherwise.",
+                "read_aloud": "The heat doubles, then doubles again. The air shimmers so violently the far wall is a smear of color. And in the center of this furnace, draped across a glittering mound of coins and weapons, something enormous breathes. The dragon is grotesquely, magnificently fat -- its belly scrapes the stone, its scales the deep red of cooling iron. One eye opens, slit-pupiled and burning with an intelligence that pins you where you stand. The hoard shifts and clinks beneath it as it draws a breath that sucks the air from the chamber.",
                 "npcs": [
                     {"name": "Themberchaud", "role": "quest_giver", "dialogue": "Ah. More morsels sent by the Keepers. Tell me, little ones -- do they still believe I don't know about the egg? That they're raising my replacement in the tunnels below? *A laugh like a furnace door opening.* Find that egg. Bring it to me. And perhaps I won't eat Gracklstugh."},
                     {"name": "Gartokkar Xundorn", "role": "keeper", "dialogue": "The Wyrmsmith is... temperamental today. We apologize for the heat. Please, do not discuss eggs, replacements, or the concept of freedom. It upsets him terribly."}
@@ -179,6 +185,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Great Forge of Gracklstugh is less a room than a cathedral of industry. Molten rivers of iron flow through channels carved in the floor, feeding a hundred anvils where duergar smiths pound out weapons in grim silence. The heat-shimmer makes the far wall ripple like a mirage, and the rhythmic hammering has the cadence of a war drum.",
+                "read_aloud": "The chamber is a cathedral of fire and iron. Channels carved into the stone floor carry rivers of molten metal to a hundred anvils, each one manned by a grim-faced smith working in perfect, silent rhythm. The hammering fills the space like a war drum, steady and relentless, and the heat-shimmer makes the far walls ripple and dance. Sparks cascade in orange waterfalls from every station. The air tastes of hot metal and scorched stone, and sweat beads on your skin the moment you cross the threshold.",
                 "npcs": [
                     {"name": "Errde Blackskull", "role": "quest_giver", "dialogue": "You've been noticed, surfacers. The Stone Guard has eyes everywhere, and what they see, I know. I could have you expelled -- or worse. But perhaps we can help each other. There are... disturbances in the Whorlstone Tunnels. Derro activity. I need expendable investigators."}
                 ],
@@ -204,6 +211,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "A crack in the forge's foundation widens into a passage that the duergar have tried -- and failed -- to seal three times. The mortar is always broken from the inside. Beyond, the Whorlstone Tunnels twist in geometries that defy the natural world, their walls etched with spiral patterns that seem to move when viewed peripherally.",
+                "read_aloud": "A crack splits the forge's foundation, widening into a passage that descends at a stomach-turning angle. Broken mortar and shattered bricks litter the threshold -- something keeps forcing this passage open from the other side. Beyond, the tunnel walls are etched with spiral patterns that seem to writhe and rotate when you glance at them from the corner of your eye. The air here is different -- cooler, damper, and carrying a faint sweetness that does not belong in stone.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Derro", "cr": "1/4"},

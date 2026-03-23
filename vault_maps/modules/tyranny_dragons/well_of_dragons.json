@@ -23,6 +23,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The caldera rim offers a view of the apocalypse in preparation. The Well of Dragons is a volcanic bowl five miles across, its slopes carpeted with the bones of dragons who came here to die across a hundred thousand years. Now the Cult has filled the bowl with an army: columns of cultists, flights of chromatic dragons circling overhead, and at the center, a temple that wasn't there a month ago -- raised by Red Wizard magic in a frenzy of construction that cost a hundred lives.",
+                "read_aloud": "You reach the caldera's rim and the world opens before you in a vision of coming apocalypse. A volcanic bowl stretches five miles across, its slopes white with the bones of dragons beyond counting. An army fills the basin -- columns of robed figures, siege engines, supply trains, and overhead, the unmistakable silhouettes of dragons wheeling in formation against a bruised sky. At the center, a temple of five-colored stone rises like a fist from the bone-carpeted earth, its towers still raw with fresh construction. This is the enemy's stronghold. This is where it ends.",
                 "npcs": [
                     {"name": "Commander of Allied Forces", "role": "quest_giver", "dialogue": "Your allies have gathered -- Harpers, Order of the Gauntlet, Emerald Enclave, Lords' Alliance, and even some metallic dragons who'd rather not see Tiamat walk the world. They'll engage the army. Your job is the temple. Stop the ritual. Kill Severin. And for the love of every god that isn't a five-headed dragon, do not let Tiamat through that portal."}
                 ],
@@ -47,6 +48,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The outer defenses are a nightmare of overlapping kill zones. Cultists man barricades built from dragon bones, their positions reinforced by dragonclaws and dragonfangs wielding enchanted weapons. Overhead, a young red dragon makes strafing runs against anything that moves in the open. The ground between the caldera rim and the temple is five hundred yards of churned earth, bone fragments, and the bodies of those who tried this approach before you.",
+                "read_aloud": "The ground ahead is a killing field. Barricades built from dragon bones form overlapping lines of defense, manned by figures wielding weapons that catch the light with an unnatural gleam. The earth between you and the temple is five hundred yards of churned mud, shattered bone, and the still forms of those who came before you. A shadow passes overhead with a rush of heated air, and you look up to see a red-scaled form banking for another strafing run, fire already gathering in its jaws.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Dragonfang", "cr": "5"},
@@ -74,6 +76,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Red Wizard camp is a cluster of crimson pavilions set apart from the Cult's forces, their occupants maintaining the magical infrastructure that makes the summoning possible. Thayan necromancers work in shifts, feeding power to the ritual through a web of ley line taps that glow with sickly green light. They serve the Cult out of self-interest, not devotion -- Rath Modar promised them a share of Tiamat's power.",
+                "read_aloud": "A cluster of crimson pavilions stands apart from the main encampment, their fabric darker than blood. Between them, lines of sickly green light pulse along the ground like veins carrying poison, converging toward the temple at the caldera's heart. Figures in red robes move between the tents in focused silence, their hands weaving patterns in the air that leave afterimages burning in your vision. The air here crackles with barely-contained power, and the hair on your arms stands on end.",
                 "npcs": [
                     {"name": "Rath Modar", "role": "antagonist", "dialogue": "The Red Wizards did not survive centuries of Thayan politics by backing losers. Tiamat will rise, and those who facilitated her return will be rewarded. Those who opposed it will be fuel. I strongly suggest you reconsider which category you prefer."}
                 ],
@@ -103,6 +106,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The cultist barracks fill a natural depression in the caldera, thousands of tents housing the foot soldiers of Tiamat's army. The cultists here are zealots, every one -- they've given up homes, families, and names for the promise of draconic ascension. Their eyes have the blank shine of the truly converted, and they fight with the fearlessness of those who believe death is merely a doorway to their god's embrace.",
+                "read_aloud": "Tents stretch across a natural depression in the caldera as far as you can see -- thousands of them, packed close, a city of dark canvas. The figures moving between them wear identical expressions of glazed, fervent purpose. Chanting drifts from a dozen different clusters, overlapping into a discordant hymn that seems to vibrate in the bones. The air smells of incense, sweat, and the sharp metallic tang of recently sharpened steel. Every face that turns your way holds the same blank, burning certainty.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Dragonsoul (elite cultist)", "cr": "7"},
@@ -129,6 +133,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Temple of Tiamat is a blasphemy in architecture -- five towers of different-colored stone (white, black, green, blue, red) arranged in a pentagon around a central dome of obsidian. The stone itself seems to sweat malice, and the air tastes of metal and brimstone. Inside, the central chamber is a pit descending into darkness where the barrier between the Material Plane and Avernus has been worn to a membrane. The chanting of a hundred cultists fills the space with a vibration that makes the blood sing.",
+                "read_aloud": "The temple rises before you, and every instinct screams to turn back. Five towers of different-colored stone -- white, black, green, blue, red -- stand in a pentagonal arrangement around a central dome of obsidian so dark it seems to drink the light. The stone itself glistens as though sweating, and the air tastes of hot metal and brimstone. Inside, the chanting of a hundred voices fills the chamber with a vibration you feel in your blood, in your teeth, in the marrow of your bones. A pit yawns at the center, descending into darkness, and from its depths, something pulses with a heat that has nothing to do with fire.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Wyrmspeaker (2)", "cr": "7"},
@@ -154,6 +159,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Summoning Chamber is the heart of the temple and the wound in reality. A portal the size of a barn door hangs in the air, its edges ragged with torn planar fabric, and through it you can see Avernus -- a sky of blood, a landscape of war, and approaching from the distance, a shape with five heads and wings that blot out the hellish sun. Severin, the Cult's supreme leader, stands before the portal in armor forged from all five types of chromatic dragon scale, the assembled Dragon Masks blazing with power on his brow.",
+                "read_aloud": "The chamber's heart is a wound in the world. A portal the size of a barn door hangs in the air, its edges ragged and flickering, torn planar fabric crackling with energy that makes your vision swim. Through it you can see a sky the color of blood, a landscape of ash and war, and approaching from the distance -- growing larger with terrible speed -- a shape of five heads and wings vast enough to blot out the hellish sun. A figure stands before the portal in armor that blazes with five different colors, arms raised, voice rising above the roar of colliding planes. The ground shakes. The air screams. There is very little time.",
                 "npcs": [
                     {"name": "Severin Silrajin", "role": "final_boss", "dialogue": "You're too late. The portal opens. The masks sing. And the Dragon Queen answers. A hundred thousand years of exile end today. Look -- LOOK -- and see your world's new master step through the gates of Hell. Every knee will bend. Every city will burn. And from the ashes, a new world will rise, with Tiamat eternal upon its throne."}
                 ],
@@ -183,6 +189,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The dragon pens occupy a series of reinforced caverns beneath the temple, their walls scored by claw marks and blackened by breath weapons. Chromatic dragons of various ages are penned here -- not willingly, but bound by Cult magic that even they cannot easily break. The treasure they guard is the Cult's reserve hoard: wealth earmarked for Tiamat's offering that did not make it into the ritual in time.",
+                "read_aloud": "You descend into reinforced caverns beneath the temple, their walls scored with deep claw marks and blackened by the discharge of elemental breath. The chambers are vast, divided by bars of enchanted metal that glow faintly with binding runes. Behind them, enormous scaled forms pace and snarl -- dragons, penned like livestock, their fury palpable in the heat and frost and acid-tinged air that rolls from their prisons. Beyond the pens, a hoard of treasure glitters in the dim light, crates and chests stacked high.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Young Blue Dragon (chained, hostile)", "cr": "9"},
@@ -211,6 +218,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The escape route is a natural lava tube that predates the temple, threading through the caldera wall to emerge on the mountainside. The Cult never found it -- or if they did, they never sealed it, an arrogance that may save your lives. The tunnel is tight, hot, and reeks of sulfur, but it leads to open air and the sight of the allied army cheering from the caldera rim as the temple collapses behind you.",
+                "read_aloud": "The passage is a natural lava tube, its walls smooth and glassy, its air thick with sulfurous heat. You press forward through the tight space, the stone warm beneath your hands, the sound of the collapsing temple rumbling at your backs. The tunnel threads through the caldera wall, climbing, turning, and then -- daylight. Clean air. The mountainside opens before you, and from the caldera rim above, the distant sound of cheering carries on the wind as the temple crumbles into the earth behind you.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [],

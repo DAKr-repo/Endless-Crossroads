@@ -42,6 +42,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "A stone bridge crosses a shallow creek. On the far side, a supply wagon lies on its side, one wheel shattered. Crates are scattered across the road, some broken open, their contents trampled into the mud. The wagon's draft horse lies dead in its traces, throat torn out. The driver is nowhere to be seen.",
+        "read_aloud": "A supply wagon lies overturned beyond the bridge, one wheel shattered, crates spilled across the mud. The draft horse is dead in its traces, throat torn open. Flies buzz in the still air. The driver's seat is empty, the reins cut clean.",
         "enemies": [
           {"name": "Rotter", "hp": 8, "max_hp": 8, "ac": 8, "attack": 3, "defense": 8, "count": 2},
           {"name": "Hound", "hp": 8, "max_hp": 8, "ac": 10, "attack": 4, "defense": 10, "count": 2}
@@ -66,6 +67,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "The supply depot is a stone barn reinforced with timber bracing. Inside, stacked crates bear the quartermaster's chalk marks -- organized by type and destination. The depot is intact but unguarded. Whoever was stationed here left in a hurry; a half-eaten meal sits on the watchman's table, the bread already going stale.",
+        "read_aloud": "A stone barn, timber-braced, its heavy door hanging ajar. Inside, crates are stacked in neat rows bearing chalk marks. The watchman's table holds a half-eaten meal, the bread going stale. No one is here. The depot door was barred from the inside.",
         "loot": [
           {"name": "Supply Depot Stores", "value": 4, "description": "A full depot's worth of rations, ammunition, and field medicine. Supply +3."},
           {"name": "Watchman's Journal", "value": 0, "description": "The last entry reads: 'Movement on the south road. Too many to count. Heading for the shrine.'"}

@@ -57,6 +57,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "The intersection of Briar and Ashmore. From here you can see Sacred Ascension Cemetery on the hill above -- and between the headstones, shapes are moving. Slowly. Jerkily. The sound of brass bells ringing reaches you from the graveyard, dozens of them, all at once. Safety coffins. The bells wired to the fingers of the recently buried, so they can ring for help if interred alive. They are all ringing now.",
+        "read_aloud": "From the intersection of Briar and Ashmore, you can see Sacred Ascension Cemetery on the hill above. Between the headstones, shapes are moving -- slowly, jerkily, silhouetted against the moon. Then the bells begin. Dozens of them, all at once, a discordant chorus rising from the graveyard. Safety coffin bells. Wired to the fingers of the recently buried. They are all ringing now.",
         "npcs": [],
         "enemies": [],
         "services": [],
@@ -82,6 +83,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "The cemetery gate. Wrought iron, standing open. A groundskeeper's lantern lies abandoned on the path, still burning. Boot prints in the mud lead in but not out. Beyond the gate, the gravel path winds uphill between headstones, and the shapes between the stones are more defined now -- figures in burial clothes, moving with the halting gait of bodies remembering how to walk.",
+        "read_aloud": "The wrought-iron gate stands open. A groundskeeper's lantern lies abandoned on the path, still burning, its flame guttering in the mist. Boot prints in the mud lead in but not out. Beyond the gate, the gravel path winds uphill between headstones, and the shapes moving between them are more defined now -- figures in burial clothes, shambling with the halting gait of bodies remembering how to walk.",
         "npcs": [
           {
             "name": "Chen Kai",

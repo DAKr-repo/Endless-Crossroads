@@ -23,6 +23,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Abyssal Gate is a wound in reality -- a vertical tear in the fabric of the Underdark where stone gives way to a membrane of darkness that pulses like a heartbeat. Stepping through it is like being swallowed. The other side is wrong in every way: the air tastes of copper and madness, gravity shifts subtly with each step, and the stone walls are veined with something organic that contracts when touched.",
+                "read_aloud": "The tear in the stone pulses like a wound -- a vertical slit of darkness that breathes. Stepping through feels like being swallowed. The other side is wrong. The air tastes of copper and something you cannot name. Gravity shifts subtly with each step, pulling you a fraction of a degree to the left, then the right. The walls are veined with something dark and organic that flinches when you brush against it. Your stomach lurches. Every instinct screams that you should not be here, that this place was not made for living things.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Barlgura", "cr": "5"},
@@ -48,6 +49,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Fetid Gallery stretches through a series of chambers whose walls are covered in bas-relief depicting scenes of madness and consumption. Each carving moves when not directly observed -- figures change position, mouths open wider, eyes track the viewer. The floor is an inch deep in brackish water that reflects a different ceiling than the one above, and things move beneath the surface.",
+                "read_aloud": "The gallery stretches through a series of chambers whose walls are carved with bas-relief scenes you do not want to examine closely. From the corner of your eye, the figures in the carvings move -- mouths opening wider, hands reaching further, eyes following you with terrible patience. The floor is covered in an inch of dark, brackish water that reflects a ceiling different from the one above you -- wrong architecture, wrong angles, wrong sky. Things move beneath the surface, just visible enough to deny you the comfort of imagining they are not there.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Chasme", "cr": "6"},
@@ -75,6 +77,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Throne of Madness sits at the convergence of two impossible corridors that should not intersect but do. The throne itself is carved from a single piece of obsidian -- or perhaps grown, as its surface bears the texture of coral. It is sized for something with two heads, and the armrests are worn smooth by claws. The air here vibrates with a frequency that makes teeth ache and thoughts fragment.",
+                "read_aloud": "Two corridors that should not intersect converge here, and at their meeting point sits a throne of black stone with the texture of coral. It is enormous -- built for something far larger than any humanoid, with a high back that forks into two crests, as though designed for a sitter with two heads. The armrests are worn smooth by claws. The air vibrates at a frequency that makes your teeth ache and your thoughts stutter and skip, like a stone across water. You taste copper. You taste fear. They are the same thing here.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Glabrezu", "cr": "9"},
@@ -100,6 +103,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Spawning Pool fills a cavern with a lake of viscous, dark liquid that bubbles and churns of its own volition. Things rise from its surface partially formed -- limbs, faces, wings -- only to dissolve back into the pool. The smell is indescribable: birth and death and something chemical that burns the nostrils. Demogorgon breeds his servants here, each one a reflection of his divided nature.",
+                "read_aloud": "The cavern is dominated by a lake of viscous, dark liquid that churns and bubbles without heat or wind. Things rise from its surface -- a hand, grasping at nothing; a face, mouth open in a silent scream; a wing, half-formed and glistening -- only to dissolve back into the murk. The smell defies description: the raw chemistry of creation and decay compressed into a single, nostril-burning reek. The liquid surges and recedes like breathing, and with each surge, the shapes that break the surface become more complete, more recognizable, more terrible.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Babau", "cr": "4"},
@@ -126,6 +130,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Trophy Hall is Demogorgon's gallery of conquered foes. Petrified bodies line the walls in poses of terror -- adventurers, demons, even a solar angel frozen mid-scream. Glass cases hold weapons taken from the defeated, each one still humming with power that its wielder could not save them. The Prince of Demons keeps his victories close.",
+                "read_aloud": "Stone figures line the walls in poses of frozen terror -- warriors, mages, creatures you cannot name, all turned to stone at the moment of their greatest fear. One figure wears armor of celestial make, its stone face locked in a scream that has lasted centuries. Glass cases between the statues hold weapons that still hum with power -- blades, staves, holy symbols -- trophies taken from the defeated, displayed with the cold pride of a collector. The silence here is absolute and deliberate. This is a gallery, and every exhibit is a warning.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Medusa (Demogorgon's curator)", "cr": "6"}
@@ -153,6 +158,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Demogorgon's Sanctum is a cavern that should not exist -- its dimensions shift, its walls breathe, and the ceiling is a window into the Gaping Maw, the demon lord's home layer of the Abyss. The Prince of Demons stands at its center, both heads arguing with each other in a language that predates mortal speech. His tentacles grip the stone floor, cracking it. He is eighteen feet of muscle, madness, and primordial rage, and both pairs of eyes turn to you with terrible, divided attention.",
+                "read_aloud": "The cavern should not exist. Its dimensions shift as you watch -- walls breathing, the ceiling opening into a sky that is not a sky but a window into somewhere else, somewhere of endless dark water and screaming wind. At the center stands a shape that fills the space not just physically but psychologically -- eighteen feet of muscle and tentacle, two serpentine heads atop a body built for destruction. The heads turn toward you, and the weight of that divided attention is like a hand pressing down on the top of your skull. The stone cracks beneath its grip. The air tastes of madness. This is the end of the road, one way or another.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Demogorgon, Prince of Demons", "cr": "26"},
@@ -180,6 +186,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Exit Rift tears open as Demogorgon falls -- a crack in the Abyss that leads back to the Underdark, specifically to the caverns beneath Gauntlgrym. Light -- real light, reflected from dwarven forge-fires -- spills through the rift like a promise. The Abyss screams behind you as you step through, and for one terrible moment both worlds overlap. Then the rift seals, and you stand in silence, and the stone beneath your feet is just stone.",
+                "read_aloud": "The rift tears open like a wound in reverse -- a crack in the darkness through which light spills, warm and golden, reflected from distant forge-fires. Real light. The Abyss screams behind you as you step through, and for one terrible, stretched moment, both worlds exist in the same space -- the stench of demons and the smell of hearth-smoke, the howl of the void and the ring of a hammer on an anvil. Then the rift seals with a sound like a breath released, and you stand in silence. The stone beneath your feet is just stone. It is over.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [],

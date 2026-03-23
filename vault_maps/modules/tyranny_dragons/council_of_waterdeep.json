@@ -23,6 +23,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Palace Gates of Waterdeep open onto a courtyard of white marble where the banners of five factions snap in the sea breeze. Guards in the livery of the Lords' Alliance check credentials with the precise courtesy of soldiers who know they're guarding the most important meeting in a century. Beyond the gates, the palace rises in tiers of elegant stonework, its windows blazing with candlelight despite the midday hour.",
+                "read_aloud": "The palace gates swing open onto a courtyard of white marble so polished it reflects the sky. Banners of five different colors and sigils snap in the salt-tinged sea breeze, and guards in immaculate livery flank the entrance, their courtesy precise and their eyes missing nothing. Beyond the courtyard, the palace rises in elegant tiers of pale stone, every window ablaze with candlelight even at midday, as though the business within cannot wait for something so trivial as the sun.",
                 "npcs": [
                     {"name": "Leosin Erlanthar", "role": "ally", "dialogue": "You've come a long way from that prison compound in the raiders' camp. The Council waits inside. A word of warning -- the factions agree on nothing except that they disagree. Your testimony may be the only thing that unites them. Choose your words with care. Wars have started over less."}
                 ],
@@ -45,6 +46,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Council Chamber is a circular hall beneath a dome painted with a map of Faerun. A round table dominates the center -- no head seat, by deliberate design, though the faction leaders have arranged themselves into obvious power blocs. The air is thick with tension, interrupted whispers, and the scratch of scribes' quills recording every word for posterity. This is where the fate of the Sword Coast will be decided by people who trust each other about as far as they can throw a tarrasque.",
+                "read_aloud": "The council chamber is a circular hall beneath a painted dome depicting all of Faerun in breathtaking detail. A great round table dominates the center -- no head seat, by deliberate design. The chamber is packed: faction leaders in their colors, aides whispering behind cupped hands, scribes bent over parchment with quills scratching furiously. Every eye turns to you as you enter. The silence that falls is heavy with expectation, and the tension in the room is thick enough to cut.",
                 "npcs": [
                     {"name": "Laeral Silverhand", "role": "council_leader", "dialogue": "Let us dispense with pleasantries. The Cult of the Dragon moves to summon Tiamat from Avernus. Our guests *she gestures to the party* have seen the enemy's strength firsthand. I suggest we listen before we argue. There will be ample time for arguing afterward. There always is."},
                     {"name": "Dagult Neverember", "role": "faction_leader", "dialogue": "I represent the Lords' Alliance, and I will be blunt: Waterdeep's coffers are not bottomless. Any military response must be proportional to the threat, and I have yet to be convinced that the threat justifies the expense Laeral is proposing. Convince me."},
@@ -71,6 +73,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The War Room adjoins the Council Chamber, its walls covered in maps bristling with pins, string, and annotations in six different hands. A sand table in the center models the Well of Dragons with miniature figures representing allied and enemy forces. The scale of the Cult's army is sobering -- the miniatures representing their forces outnumber the allied ones three to one. Winning this war requires allies the Council hasn't yet imagined.",
+                "read_aloud": "The war room is wallpapered in maps -- maps of the Sword Coast, maps of the Sunset Mountains, maps of the caldera itself, all bristling with pins and colored string in a web of strategy and counter-strategy. A sand table dominates the center, its surface sculpted into a miniature volcanic basin. Tiny figures represent armies: a handful of allied tokens clustered at one edge, and a sea of enemy markers filling the basin three to one. The disparity is sobering. Someone has written 'NOT ENOUGH' on a scrap of parchment pinned to the nearest map.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [
@@ -94,6 +97,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The palace library occupies three floors connected by a spiral stair of polished oak. The collection spans centuries of Waterdhavian scholarship, and the section on dragonlore has been pulled to the reading tables for urgent consultation. Sages hunch over ancient texts, cross-referencing prophecies about Tiamat's return with the Cult's timeline. The answer to stopping the ritual may already be written somewhere in these stacks.",
+                "read_aloud": "The library spans three floors connected by a spiral stair of polished oak, its shelves climbing toward a vaulted ceiling lost in shadow. The scent of old parchment and leather bindings fills the air. Reading tables are buried under stacks of ancient tomes, their pages open to passages on dragons and prophecy. Sages hunch over the texts with the focused urgency of people who know that the answer to an impossible question might be hiding somewhere in these stacks -- if only they can find it in time.",
                 "npcs": [
                     {"name": "Elia", "role": "sage", "dialogue": "The Draconomicon of Cordell mentions a counter-ritual -- a way to strengthen the barrier between planes during a summoning attempt. It requires five metallic dragon scales, freely given, and a spellcaster of considerable power. The theory is sound. Whether it works against a goddess... *she shrugs* ...that part is less certain."}
                 ],
@@ -120,6 +124,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The guest quarters assigned to the party are the finest rooms in the palace -- a recognition of their status that doubles as gentle confinement. The beds are feather-soft, the wine is excellent, and the guards outside the door are 'for your protection.' The view from the window encompasses Waterdeep's harbor, where warships are being provisioned for the campaign ahead. Sleep comes uneasily when you know what's coming.",
+                "read_aloud": "The guest quarters are finer than any inn you have ever stayed in -- feather beds, silk curtains, a sideboard laid with wine and cold meats. Guards stand outside the door, ostensibly for your protection. The window offers a sweeping view of Waterdeep's harbor, where warships are being loaded by torchlight, crews working through the night to provision for the campaign ahead. The beds are impossibly soft, the wine is excellent, and sleep, when it comes, is anything but restful.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [
@@ -143,6 +148,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The palace gardens overlook the Sea of Swords, their hedgerows and flower beds maintained even in wartime -- a deliberate statement that civilization endures. A gate in the garden wall opens onto the harbor road, where the army gathers. This is the departure point. Beyond this gate lies the road south to the Well of Dragons, and whatever waits at the end of it.",
+                "read_aloud": "The palace gardens are an island of beauty overlooking the gray expanse of the Sea of Swords. Hedgerows are trimmed with geometric precision, flower beds bloom in defiant color, and stone benches offer a view of the harbor road below, where the allied army gathers in long columns of steel and banners. A gate in the garden wall stands open to the road south. Beyond it lies the march, the mountains, and whatever awaits at the end of the world.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [],

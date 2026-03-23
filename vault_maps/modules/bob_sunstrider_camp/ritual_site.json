@@ -42,6 +42,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "The Horror is built from the grove itself -- wood and root and bone, woven together by the corruption into something that mimics life without possessing it. It stands twelve feet tall, its body a knot of twisted branches with a human skeleton at its core. The ritual circle it guards is carved into the dead tree's root system -- channels in the wood that direct the flow of stolen life force from the land into the corruption network. Destroying the circle will cut this node from Blighter's web. The Horror will not allow it.",
+        "read_aloud": "It stands twelve feet tall in the dead heartwood -- a knot of twisted branches and bone, shaped into something that should not move but does. The floor beneath it pulses with carved channels that glow a sick, feverish green. The thing turns toward you, and the dead wood groans.",
         "enemies": [
           {"name": "Horror", "hp": 25, "max_hp": 25, "ac": 15, "attack": 7, "defense": 15, "count": 1}
         ],

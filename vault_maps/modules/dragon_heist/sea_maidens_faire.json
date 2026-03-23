@@ -23,6 +23,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Waterdeep's harbor in autumn. The smell of brine and roasting chestnuts mingles with the calliope music drifting from three gaudy ships moored at the end of the longest pier. Banners of crimson and gold snap in the harbor wind, advertising the Sea Maidens Faire -- a traveling carnival of exotic beasts, acrobats, and wonders from the Sword Coast. Dockhands avoid the pier. The carnival folk keep to themselves after dark.",
+                "read_aloud": "The harbor pier stretches ahead, slick with salt spray, and at its end three gaudy ships ride at anchor beneath banners of crimson and gold. Calliope music drifts across the water, tinny and bright, and colored lanterns sway on lines strung between the masts. The smell of brine mixes with roasting chestnuts and something sweeter -- face paint, maybe, or stage smoke. Dockhands give the pier a wide berth, and as the last light fades, the carnival folk draw their gangplanks close.",
                 "npcs": [
                     {
                         "name": "Carnival Barker",
@@ -53,6 +54,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The main deck of the Eyecatcher, Jarlaxle's flagship. It is absurdly well-appointed for a carnival vessel -- the rails are polished mahogany, the brass fittings gleam, and the deck planks are oiled teak that do not creak underfoot. Caged animals line the port side: a displacer beast kitten chasing its own tentacles, a cockatrice in a gilded cage, a pseudodragon dozing on a velvet cushion. Everything is theatrical. Everything is a distraction.",
+                "read_aloud": "You step aboard the Eyecatcher and immediately notice it is no ordinary carnival ship. The rails are polished mahogany, the brass fittings gleam, and the teak deck planks are oiled so smooth they do not creak beneath your weight. Caged creatures line the port rail -- something dark and sleek chases its own tentacles in one cage, a reptilian thing clucks irritably in another, and a small winged lizard dozes on a velvet cushion. The whole vessel smells of exotic spice and fresh lacquer, and everything feels like a stage set -- beautiful, deliberate, and designed to keep your eyes on the wrong thing.",
                 "npcs": [
                     {
                         "name": "Zardoz Zord",
@@ -84,6 +86,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The captain's quarters are a study in contradictions. Calishite tapestries hang beside Menzoberranzan spider-silk curtains. A desk of carved darkwood holds charts of Waterdeep's sewers alongside legitimate shipping manifests. A mirror on the wall is flanked by two rapiers -- one jeweled and decorative, the other plain and razor-sharp. The bed has not been slept in. A hidden panel in the floor leads below.",
+                "read_aloud": "The captain's quarters are lavishly appointed -- tapestries of desert scenes hang beside curtains of shimmering black silk that seems to drink the lamplight. A darkwood desk holds charts and manifests, and a mirror on the far wall is flanked by two rapiers: one encrusted with jewels, the other plain steel with a killing edge. The bed is pristine, its covers undisturbed. The air smells of wine, ink, and a cologne that carries notes of something foreign and deep -- earth and spice from a place that has never seen the sun.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [
@@ -115,6 +118,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Below the main deck, hammocks swing from beams in tight rows. The crew here are lean, dark-eyed, and move with a dancer's grace that no human sailor possesses. Their belongings are sparse and identical -- each bunk has a sea chest containing a change of clothes, a hand crossbow wrapped in oilcloth, and a vial of something viscous and dark. In dim light, their skin has a faint purple undertone.",
+                "read_aloud": "Below deck, hammocks swing from the beams in tight rows, swaying with the ship's gentle motion. The crew quarters are cramped and dim, lit by a single shuttered lantern. The figures in the hammocks are lean and dark-eyed, and they move with a fluid grace that no ordinary sailor possesses. Their belongings are identical and sparse -- sea chests in neat rows, their lids closed, their contents hidden. The air smells of oilcloth, salt, and something faintly chemical. In the dim light, the nearest sleeping face has a complexion that is not quite right -- too dark, with an undertone of violet.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Drow Gunslinger", "hp": 65, "ac": 18, "attack": 6, "count": 2},
@@ -144,6 +148,7 @@
             "is_secret": true,
             "content_hints": {
                 "description": "A circular shaft descends through the ship's keel into something that should not exist beneath a wooden hull. Metal rungs are set into a riveted iron tube that transitions from timber to steel halfway down. At the bottom, a pressurized hatch opens into a chamber lit by continual flame lanterns behind thick glass. The air tastes of machine oil and magic. You are now inside the Scarlet Marpenoth -- a submersible vessel.",
+                "read_aloud": "A circular shaft drops through the ship's keel, and halfway down the timber walls give way to riveted steel. Metal rungs are cold beneath your hands. At the bottom, a pressurized hatch opens with a hiss of escaping air, and you step into a chamber lit by lanterns sealed behind thick glass. The walls are iron, curved, and slick with condensation. The air tastes of machine oil and something else -- something that vibrates faintly in your teeth. The floor hums. You are no longer aboard a ship. You are inside something else entirely.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [],
@@ -169,6 +174,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The submarine's hold is divided into sealed compartments, each containing cargo too sensitive for the ships above. Crates stamped with the Bregan D'aerthe sigil hold weapons, disguise kits, forged documents of identity, and enough blackmail material to unseat half the Masked Lords. One compartment is climate-controlled and contains a single item on a velvet stand: a map of the Vault of Dragons with three possible entrances marked in red ink.",
+                "read_aloud": "The submarine's hold is divided into sealed compartments, each door marked with a symbol you do not recognize. Inside, crates are stacked with military precision -- weapons in oilcloth, bundles of documents bound with black ribbon, kits of cosmetics and prosthetics. One compartment is warmer than the others, its air carefully controlled. Inside, on a velvet stand beneath a glass dome, sits a single rolled map. The parchment glows faintly in the controlled light, and three points on its surface are marked in red ink that glistens as though still wet.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [
@@ -199,6 +205,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The submarine's navigation chamber. Brass instruments line the curved walls -- depth gauges, pressure dials, a compass that points to something other than north. A periscope extends through the hull. Through its eyepiece, you can see the harbor floor: silt, anchor chains, and the barnacled foundations of Waterdeep's piers. A speaking tube connects to the war room below, and through it you can hear a voice -- smooth, amused, speaking Elvish to someone who answers in Undercommon.",
+                "read_aloud": "Brass instruments line the curved walls of the navigation chamber -- depth gauges, pressure dials, and a compass whose needle spins slowly, pointing to something other than north. A periscope extends through the hull, and through its eyepiece you can see the harbor floor: gray silt, anchor chains, and the barnacled pilings of the docks far above. A speaking tube protrudes from the bulkhead, and through it drifts a voice -- smooth, musical, speaking a language you almost recognize. Someone answers in something darker.",
                 "npcs": [
                     {
                         "name": "Fel'rekt Lafeen",
@@ -233,6 +240,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The war room of the Scarlet Marpenoth is a drow mercenary's private sanctum rendered in mahogany and brass. Maps of a dozen cities cover the walls, each bristling with colored pins. A table of black glass reflects the continual flame lanterns like a dark mirror. And there, leaning against the table with a glass of wine, is Jarlaxle Baenre -- no longer Zardoz Zord, no longer disguised. Ebon skin, white hair cropped short on one side, an eye patch that is almost certainly magical, and a grin that promises he has been expecting you.",
+                "read_aloud": "The war room is rendered in mahogany and brass, warm and close as a gentleman's study. Maps of a dozen cities cover the walls, bristling with colored pins. A table of black glass dominates the center, its surface reflecting the lantern light like a dark mirror. And there, leaning against the table with a glass of red wine, is a figure who has stopped pretending. Ebon skin, white hair cropped short on one side, an eye patch that catches the light strangely, and a grin -- wide, genuine, and absolutely certain that you were going to walk through that door. He raises his glass.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Jarlaxle Baenre (CR 15 drow swashbuckler)", "cr": "15"},
@@ -268,6 +276,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "An emergency hatch at the submarine's stern opens into a flooded escape tube. Iron rungs lead up through ten feet of harbor water to a concealed platform beneath the Eyecatcher's hull. From there, a rope ladder reaches the pier above. The autumn air hits like a slap after the submarine's recycled atmosphere. Behind you, the Scarlet Marpenoth's running lights dim and the vessel sinks silently into the harbor mud.",
+                "read_aloud": "An emergency hatch opens into a flooded escape tube, its iron rungs slick with algae. Cold harbor water swirls around your ankles, rising fast. You climb through ten feet of dark water, lungs burning, and break the surface beneath the Eyecatcher's barnacled hull. A rope ladder leads up to the pier, and when you haul yourself over the railing, the autumn air hits your face like a slap. Below, the submarine's lights dim one by one, and the vessel sinks silently into the harbor mud.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [],

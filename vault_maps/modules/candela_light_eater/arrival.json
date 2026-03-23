@@ -48,6 +48,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "Munro's Tap House. The only establishment in Overmount with enough sense to keep its gas lamps. A low-ceilinged room stinking of pipe smoke and spruce resin, where loggers crowd three-deep at the bar. Nigel Munro polishes the same glass he has been polishing for the last hour, his eyes tracking every stranger who walks in.",
+        "read_aloud": "Gas lamps -- not electric. That is the first thing you notice. The tap house clings to its amber glow like a man clutching a talisman. The low ceiling traps pipe smoke and spruce resin into a haze that stings the eyes. Loggers crowd three-deep at the bar, speaking in low voices. The barkeep polishes the same glass over and over, watching the door.",
         "npcs": [
           {
             "name": "Nigel Munro",
@@ -75,6 +76,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "The company houses. Rows of identical timber-frame cottages thrown up cheap by Hackley & Wilde for their logging crews. Inside the nearest one, a woman lies dead in bed, the Lichtenberg pattern burned into her palm where she gripped the bedside lamp chain. The electric wiring runs exposed along the ceiling joists.",
+        "read_aloud": "Rows of identical timber-frame cottages line the road, thrown up cheap, their electric wiring running exposed along the ceiling joists. Inside the nearest one, a woman lies in bed with the covers pulled to her chin. The crimson fractal pattern is burned into her palm where she gripped the bedside lamp chain. The bulb above her has imploded inward, as though something pulled the light into itself.",
         "npcs": [
           {
             "name": "Tang Yuna",

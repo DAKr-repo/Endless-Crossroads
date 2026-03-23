@@ -23,6 +23,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "A wooden door reinforced with iron bands stands in a narrow alley between two stone towers that lean toward each other like conspiring thieves. Arcane sigils flicker along the doorframe -- wards that have been recently reset. The stones here are old, older than the surrounding buildings, and the mortar between them is black with age.",
+                "read_aloud": "Two stone towers lean toward each other across a narrow alley, their upper stories almost touching. The stones are ancient, their mortar black with age, and the air between the towers feels heavier than it should. A wooden door reinforced with iron bands stands at the base, its frame lined with faintly flickering symbols that hurt your eyes if you stare too long. The alley is quiet -- unnaturally so, as if the city noise stops at its mouth.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [],
@@ -48,6 +49,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Workbenches cluttered with half-assembled clockwork line the walls. Gears, springs, and crystal lenses spill from open drawers. An animated broom sweeps the same patch of floor in an endless, maddening loop. The air smells of machine oil and ozone, and every few seconds a spark jumps between two copper rods mounted above the door.",
+                "read_aloud": "Workbenches line every wall, cluttered with half-assembled clockwork -- gears, springs, crystal lenses spilling from open drawers. The air smells of machine oil and ozone. In the corner, a broom sweeps the same patch of floor over and over in a slow, maddening loop. Every few seconds a bright spark leaps between two copper rods mounted above the doorway, crackling and fading with a sharp snap that makes you flinch.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Animated Armor", "cr": "1"},
@@ -78,6 +80,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Books are shelved not by title but by the color of their spines, creating a disorienting rainbow that spirals up two floors. A mechanical ladder slides along brass rails, clicking to a stop wherever you stand as if anticipating your reach. Several volumes are chained to their shelves. The ones that are not chained whisper when you turn your back.",
+                "read_aloud": "Books fill the shelves from floor to ceiling, arranged not by title but by the color of their spines -- a disorienting rainbow that spirals upward through two floors of open gallery. A mechanical ladder on brass rails slides along the shelves with a soft click, stopping near you as if it knows what you want to reach. Several volumes are chained to their shelves with iron links. The unchained ones rustle faintly when your back is turned, as though turning their own pages.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [
@@ -106,6 +109,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Living quarters stripped of personality. The bed is made with military precision, the wardrobe holds identical black robes, and the only decoration is a mirror that shows your reflection three seconds delayed. A cold meal sits untouched on a side table -- someone was here recently and left in no hurry, which is worse.",
+                "read_aloud": "The living quarters are stripped to bare function -- a bed made with military precision, a wardrobe standing open to reveal rows of identical black robes. A mirror on the wall catches your movement, but something is wrong with it; your reflection arrives a heartbeat too late, its expression not quite matching yours. A cold meal sits untouched on a side table, the chair pushed in neatly. Whoever lives here left recently, and they were not in a hurry.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Zhentarim Spy", "cr": "1"}
@@ -131,6 +135,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Glass vessels line every surface, each containing a different colored liquid that bubbles or glows or does both simultaneously. An alchemical apparatus of bewildering complexity dominates the center table, its copper tubing coiling like intestines. Charts on the wall map ley lines beneath Waterdeep, with the Vault of Dragons circled three times in red ink.",
+                "read_aloud": "Glass vessels crowd every surface, each containing a different colored liquid -- some bubbling, some glowing, some doing both at once. Copper tubing coils between the vessels in loops and spirals of bewildering complexity, dripping condensation that hisses when it hits the table. The air is sharp with chemical fumes that sting your eyes and taste of metal. Charts cover the far wall, their lines and symbols mapping something beneath the city in painstaking detail.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [
@@ -161,6 +166,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "A stone platform atop the north tower, open to the sky and ringed by gargoyle waterspouts. A permanent teleportation circle is etched into the flagstones, its runes glowing a faint violet. Wind whips across the rooftop, and the lights of Waterdeep spread out below like a field of earthbound stars. The circle hums when you step near it.",
+                "read_aloud": "Wind strikes you as you step onto the tower's open rooftop, whipping your cloak and stinging your eyes. Gargoyle waterspouts ring the parapet, their stone mouths frozen mid-snarl. A circle of runes is etched into the flagstones at your feet, each symbol glowing a faint, pulsing violet. The lights of Waterdeep spread out below in every direction -- a field of earthbound stars -- and the circle hums with a low vibration you feel in the soles of your boots.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [
@@ -188,6 +194,7 @@
             "is_secret": true,
             "content_hints": {
                 "description": "The basement is carved from raw stone, older than the towers above. Manacles hang from the walls beside rust-colored stains that no amount of scrubbing has removed. In the center, a ritual circle drawn in silver dust surrounds a crystal sphere that pulses with stolen memories. The air is thick with the smell of old blood and new magic.",
+                "read_aloud": "The basement is carved from raw stone far older than the towers above, its walls rough and sweating moisture. Manacles hang from iron bolts beside stains that have soaked so deep into the rock they will never come clean. In the center of the floor, a circle of silver dust surrounds a crystal sphere that pulses with a slow, cold light -- brighter, dimmer, brighter, like a heartbeat. The air is thick with something that tastes of iron and ozone, and your skin prickles as though the room itself is watching you.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Manshoon Simulacrum", "cr": "8"},

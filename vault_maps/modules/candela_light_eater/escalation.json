@@ -99,6 +99,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "The creek bed. Shallow water runs over smooth stones, barely ankle-deep. On the far bank, the Night Terrors pace and hiss, unwilling to cross. The chain of fused bodies resumes on the other side, leading toward a low rise where the trees thin and the sky opens up. A faint blue-white glow pulses beyond the ridge.",
+        "read_aloud": "The creek runs shallow over smooth stones, barely ankle-deep, but the things in the woods will not cross it. They pace the far bank, hissing and crackling, unwilling to touch the water. For a moment you are safe. Beyond the creek, the chain of remains resumes, leading toward a rise where the trees thin. A faint blue-white glow pulses beyond the ridge, rhythmic as a heartbeat.",
         "npcs": [],
         "enemies": [],
         "services": [],

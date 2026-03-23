@@ -51,6 +51,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "The engine bay. Hayley Griffen's domain. Tools hang from magnetic strips in precise rows. The Faraday's main drive hums behind its housing like a caged animal. Griffen has left a diagnostic running -- green lights cascade across a wall panel in rhythmic pulses.",
+        "read_aloud": "The engine bay thrums with a low, constant vibration that you feel in your teeth more than hear. Tools hang from magnetic strips in rows so precise they could be military inspection-ready. The main drive housing dominates the aft wall, and behind its plating something powerful hums like a caged animal waiting to run. Green diagnostic lights cascade across the nearest panel in steady, rhythmic pulses.",
         "npcs": [
           {
             "name": "Hayley Griffen",
@@ -75,6 +76,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "Crew quarters. Four bunks, three occupied by personal effects that define their owners -- Aleera's flight manual dog-eared to the chapter on evasive maneuvers, Rogan's meditation beads hung from a bunk strut, Ray's collection of forged credentials spread across his mattress like a hand of cards.",
+        "read_aloud": "Four bunks, stacked two high, in a space that was never meant for privacy. The air smells of recycled atmosphere and engine grease. Personal effects mark each occupied bunk -- a dog-eared flight manual, a string of meditation beads swaying with the ship's vibration, a spread of identity cards fanned across a mattress like someone sorting a very dangerous hand of cards.",
         "services": ["rest"]
       }
     }

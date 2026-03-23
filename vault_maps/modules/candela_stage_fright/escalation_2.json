@@ -87,6 +87,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "The auditorium doors. Double doors of carved mahogany, their surface clean of silk. Every other surface in the lobby is webbed. These doors are immaculate. Polished. The brass handles gleam. Beyond them, you can hear something: a low, rhythmic vibration, like a massive heartbeat. The smell of old velvet and something sweeter -- like formaldehyde mixed with honey.",
+        "read_aloud": "Every surface in the lobby is webbed -- except these doors. Double mahogany, carved with theatrical masks, their brass handles gleaming as though polished this morning. They are immaculate. They are an invitation. Beyond them, a low rhythmic vibration pulses like a massive heartbeat, and the air carries the smell of old velvet mixed with something sweeter and more terrible -- formaldehyde and honey.",
         "npcs": [],
         "enemies": [],
         "services": [],

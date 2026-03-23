@@ -23,6 +23,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Ramshackle docks of lashed-together zurkhwood jut into the Darklake's black water. Kuo-toa squat on every surface, their bulbous eyes tracking your arrival with unsettling synchronicity. The air reeks of fish oil and ozone, and the dock planks are slick with a mucus that never fully dries.",
+                "read_aloud": "Ramshackle docks of lashed-together fungal wood jut into black water that stretches beyond sight. Squat, fish-like creatures perch on every surface -- the pilings, the dock edges, the rooftops of crude shelters -- and every bulbous, unblinking eye turns to track your arrival in perfect, unsettling unison. The planks beneath your feet are slick with a mucus that never quite dries, and the air reeks of fish oil and ozone, sharp enough to make your eyes water.",
                 "npcs": [
                     {"name": "Ploopploopeen", "role": "quest_giver", "dialogue": "Surface-dwellers! You come at a time of great... upheaval. My daughter has fallen under the sway of a false god. Help me restore the true faith, and I will guide you safely across the Darklake."}
                 ],
@@ -45,6 +46,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The altar to the Sea Mother is a mound of coral and fish bones ten feet high, slathered in rancid offerings. Kuo-toa priests sway around it in a trance, their pincer-staffs clicking in arrhythmic patterns. The idol's lobster-headed form has been freshly redecorated with salvaged gemstones that weep condensation like tears.",
+                "read_aloud": "A mound of coral and fish bones rises ten feet high at the chamber's center, slathered in offerings that have gone black and rancid. Robed figures sway around it in a trance, their staffs tipped with crustacean pincers that click in patterns just irregular enough to set your teeth on edge. Atop the mound, a lobster-headed idol stares down with gemstone eyes that weep beads of condensation, as though the statue itself is crying. The stench of rotting offerings is overwhelming.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Kuo-toa Archpriest", "cr": "6"},
@@ -72,6 +74,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The archpriest's dwelling is a domed structure of mudded-together stone and shell. Inside, bioluminescent jellyfish float in glass jars, casting the room in pulsing blue light. Maps of the Darklake cover every wall, annotated in a script that looks like it was written by someone having a seizure.",
+                "read_aloud": "You duck through a low doorway into a domed chamber of mudded stone and shell. Bioluminescent jellyfish drift in glass jars mounted on every surface, casting the room in a pulsing, watery blue light that makes the walls seem to breathe. Hand-drawn maps cover every inch of available wall space, their annotations rendered in a jagged, frantic script. The room smells of brine and ink and the faintest trace of something electrical.",
                 "npcs": [
                     {"name": "Ploopploopeen", "role": "quest_giver", "dialogue": "My daughter Bloppblippodd -- she was always devout, but this new god she worships... it has no name that lips can shape. It is wrong. It makes the water taste of blood."}
                 ],
@@ -97,6 +100,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The market stalls are waist-deep pools of water where kuo-toa merchants display their wares on floating zurkhwood trays. Weapons made of sharpened coral, armor of hardened fish scales, and dubious 'potions' that smell like they came from the wrong end of a cave fish. Everything is priced in offerings to one god or another.",
+                "read_aloud": "The market is half-submerged -- waist-deep pools of dark water serve as stalls, with wares displayed on floating trays of pale fungal wood. Coral blades catch the bioluminescent light, fish-scale armor hangs from bone hooks, and dubious bottles of murky liquid bob alongside things you cannot identify and do not want to. The fish-folk merchants croak at you from the water, gesturing with webbed hands, and the whole place smells like a tide pool left too long in the heat.",
                 "npcs": [
                     {"name": "Glooglugogg", "role": "merchant", "dialogue": "*The kuo-toa holds up a coral dagger with genuine pride.* Best stabber in Sloobludop! Only three offerings to the Sea Mother! Or... *eyes shift nervously* ...two offerings to the Deep Father. But you didn't hear that from Glooglugogg."}
                 ],
@@ -123,6 +127,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "This newer shrine is built from wreckage -- a capsized boat forms the roof, and the altar is a slab of obsidian that seems to drink the light. The idol atop it is a shape that hurts to look at: two serpentine necks rising from a base of tentacles, carved with manic devotion. The kuo-toa here have scratched out their own eyes.",
+                "read_aloud": "A capsized boat forms the roof of this crude shrine, its hull cracked and barnacled. The altar beneath is a slab of obsidian so dark it seems to drink the light around it. Atop the slab sits an idol that hurts to look at directly -- two serpentine necks rising from a mass of tentacles, carved with a devotion that borders on frenzy. The worshippers that kneel around it rock and moan, and where their eyes should be there are only dark, crusted hollows. The air tastes of blood and salt water.",
                 "npcs": [
                     {"name": "Bloppblippodd", "role": "antagonist", "dialogue": "Father's god is a dead thing in a shell. The Deep Father MOVES. The Deep Father HUNGERS. He spoke to me from below the water, and his voice had two mouths. Come -- let me show you what real worship looks like."}
                 ],
@@ -151,6 +156,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The lakeshore crumbles into the Darklake in a slope of gravel and slime. Boats -- crude things of stretched hide over zurkhwood frames -- are beached here. But the water is wrong. It bulges upward in a dome, as though something impossibly vast is pushing up from below. Then two heads break the surface, each the size of a galleon, and the screaming begins.",
+                "read_aloud": "The shore crumbles into the Darklake in a slope of gravel and slime. Crude boats of stretched hide lie beached on the rocks. Then you see the water -- it is wrong, bulging upward in a dome as though the lake itself is holding its breath. The surface splits. Two shapes break through, each the size of a ship, rising on serpentine necks that shed waterfalls of black water. Behind you, the screaming begins -- raw, animal terror from a hundred throats at once. The ground shakes. The water boils. Something impossible has arrived.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Demogorgon (manifestation)", "cr": "26"}

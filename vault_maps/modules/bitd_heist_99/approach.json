@@ -53,6 +53,8 @@
       "is_locked": false,
       "is_secret": false,
       "content_hints": {
+        "description": "A rusted fire escape clings to the building's exterior, bolts groaning under the weight of decades. The landing is narrow -- two people abreast at most -- and littered with broken roof tiles and pigeon droppings. Elara keeps watch here with a spyglass and a loaded pistol, tracking movement on Crow's Foot bridge below. A spirit bottle glows faintly in an alcove behind a loose brick.",
+        "read_aloud": "The fire escape sways beneath your boots, rust flaking from every handhold. Wind funnels between the buildings, carrying the smell of canal water and coal smoke. A figure crouches on the landing above, silhouetted against the sickly glow of the electroplasmic streetlights. Below, the alley drops away into shadow.",
         "npcs": [
           {
             "name": "Elara",
@@ -85,6 +87,8 @@
       "is_locked": false,
       "is_secret": false,
       "content_hints": {
+        "description": "A flat stretch of rooftop between two chimney stacks, slick with rain and tar. The gap to the next building is eight feet -- jumpable, barely. Someone has laid a plank across it, but the wood is rotten and bowed in the middle. Two figures wait on the far side, positioned to cut off retreat: an Inspector's agent in a long coat and a hired blade with a Skovlan accent.",
+        "read_aloud": "The rooftop opens into a flat expanse of tar paper and broken chimney pots. Rain pools in the sagging center, black and reflective as a mirror. Across an eight-foot gap between buildings, a rotting plank serves as a bridge. Two figures stand on the far side, their breath steaming in the cold. One adjusts a coat collar. The other draws a blade without hurry.",
         "enemies": [
           {
             "name": "Inspectors Agent",
@@ -117,6 +121,8 @@
       "is_locked": false,
       "is_secret": false,
       "content_hints": {
+        "description": "The fire escape terminates at a locked service door on the building's third floor. The landing is a dead end -- the only way out is through the door or back the way you came. A Spirit Warden initiate in grey robes stands before the door, electroplasmic lantern in hand, accompanied by a sellsword who clearly wants to be anywhere else. The Warden's lantern pulses with contained ghost-light.",
+        "read_aloud": "The fire escape ends at a heavy service door, its hinges green with verdigris. The landing is barely wide enough for two, and there is nowhere left to climb. A cold light pulses from a lantern held by a robed figure blocking the door -- the ghost-light inside it writhes against the glass. Beside the robed figure, a second shape shifts from foot to foot, hand resting on a sheathed blade.",
         "enemies": [
           {
             "name": "Assassins Blade",

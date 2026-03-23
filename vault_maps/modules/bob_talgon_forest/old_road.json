@@ -42,6 +42,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "A crossroads where the old road intersects a game trail. A Panyar waymarker stands at the junction -- a carved stone pillar depicting a sun rising over mountains, Skydagger's silhouette unmistakable. The waymarker has been defaced: a Crow has been nailed to it with iron spikes, its wings spread wide, its eyes pecked out. But the Crow is not dead. It twitches. Its beak opens and closes, producing clicks that echo off the trees.",
+        "read_aloud": "A stone waymarker stands at the crossroads, carved with a sun over mountains. Something has been nailed to it -- a Crow, iron spikes through its wings, spread like a grotesque standard. Its beak opens and closes, clicking, clicking. The sound echoes through the trees.",
         "enemies": [
           {"name": "Crow", "hp": 15, "max_hp": 15, "ac": 12, "attack": 5, "defense": 12, "count": 2},
           {"name": "Hound", "hp": 8, "max_hp": 8, "ac": 10, "attack": 4, "defense": 10, "count": 2}
@@ -66,6 +67,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "The road descends into a shallow valley where a stream crosses the path. A stone footbridge spans the water, its handrails carved with Panyar knotwork. The stream runs clear -- a good sign; corruption turns water black. On the far bank, a cairn of fresh-stacked stones marks a Legion cache point. Someone has scratched coordinates into the topmost stone, pointing toward the supply cache concealed behind the waterfall upstream.",
+        "read_aloud": "A stone footbridge spans a clear-running stream, its handrails carved with old knotwork worn smooth by weather. The water is clean -- you can see the pebbled bottom. On the far bank, a cairn of freshly stacked stones marks something worth remembering.",
         "event_triggers": [
           "The stream runs clear. In the corrupted world, clean water is a small miracle.",
           "The cairn stones are freshly placed. Halvard's missing scouts passed this way. They made it at least this far."

@@ -23,6 +23,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The taproom of Trollskull Manor -- a once-grand tavern fallen into elegant disrepair. Dust sheets cover the furniture. A chandelier of antlers and wrought iron hangs askew from the vaulted ceiling. The bar is carved from a single slab of dark oak, its surface ringed by a thousand mugs. Sunlight slants through cracked stained-glass windows depicting a troll hunt. The whole place smells of wood polish and old dreams.",
+                "read_aloud": "Dust sheets drape the furniture like mourning veils, and sunlight slants through cracked stained-glass windows, throwing colored shards across the floor. A chandelier of antlers and wrought iron hangs askew overhead. The bar is a single slab of dark oak, its surface marked by a thousand ring-stains, and the air holds the ghost-scent of wood polish and old ale. The whole room has the stillness of a place waiting to be remembered.",
                 "npcs": [
                     {
                         "name": "Lif",
@@ -52,6 +53,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The kitchen -- a stone-floored room with a cold hearth large enough to stand in. Copper pots hang from ceiling hooks, tarnished green. A dumbwaiter connects to the cellar below. The pantry shelves are bare except for a jar of pickled eggs that may predate the Spellplague. Rat droppings dot the corners, though the rats themselves seem to have moved on.",
+                "read_aloud": "The kitchen hearth is cold and cavernous, large enough to stand in without stooping. Copper pots hang from ceiling hooks, their surfaces tarnished to a deep green. The pantry shelves are bare save for a single dust-caked jar of something unidentifiable, and the stone floor is gritty underfoot. A small dumbwaiter shaft opens in the wall, its rope frayed, descending into darkness below.",
                 "services": ["cook"],
                 "renovation_options": [
                     {"name": "Restock Kitchen", "cost": 50, "days": 1, "effect": "Basic cooking supplies. Can prepare simple meals."},
@@ -72,6 +74,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The cellar -- damp stone walls, a packed earth floor, and racks of empty wine bottles gathering dust. A locked iron gate in the far wall opens onto the Waterdeep sewer system. The air is cold and carries a mineral tang. Claw marks on the cellar door suggest something once tried very hard to get out -- or in.",
+                "read_aloud": "You descend creaking steps into a cellar of damp stone and packed earth. Empty wine racks line the walls, their bottles long gone, and the air is cold enough to make your breath mist. A rusted iron gate is set into the far wall, and beyond it you can hear the distant trickle of water -- the sewers. Deep claw marks score the inside of the cellar door above you, gouged into the wood by something desperate.",
                 "investigation_dc": 14,
                 "investigation_success": "Behind a false section of wine rack: a hidden compartment containing Lif's personal ledger and a pouch of 50 gold pieces -- his life savings, hidden before his murder.",
                 "loot": [
@@ -93,6 +96,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The guest rooms -- a row of four small chambers on the upper floor, each with a straw mattress, a washstand, and a window overlooking Trollskull Alley. The wallpaper peels in long strips, revealing older wallpaper beneath, and older wallpaper beneath that -- layers of decades like geological strata. One room still has a 'Do Not Disturb' sign hanging from its doorknob.",
+                "read_aloud": "A narrow hallway runs past four small guest rooms, each door standing ajar. Inside, straw mattresses sag on iron frames, and washstands hold empty pitchers. The wallpaper peels in long strips, revealing older paper beneath -- layer after layer, like the rings of an ancient tree. Through the windows, you can see the cobblestones of Trollskull Alley below. One door at the end still bears a 'Do Not Disturb' sign, swaying gently on its knob.",
                 "services": ["rest"],
                 "capacity": 4,
                 "renovation_options": [
@@ -113,6 +117,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The owner's suite -- the largest room on the upper floor, with a four-poster bed draped in moth-eaten velvet and a writing desk facing a bay window. Lif's personal effects remain undisturbed: a half-finished letter, a miniature portrait of a woman, and a pressed flower between the pages of a book of Waterdhavian poetry. The room feels cold even on warm days.",
+                "read_aloud": "The largest room on the upper floor holds a four-poster bed draped in moth-eaten velvet. A writing desk faces a bay window overlooking the alley, its surface still set with a half-finished letter and a dry inkwell. A miniature portrait of a woman leans against the candlestick, her painted smile faded but warm. The room is noticeably colder than the hallway, and the candle flame, when you light it, bends toward the desk as though drawn by an invisible hand.",
                 "lock_dc": 10,
                 "npcs": [
                     {
@@ -137,6 +142,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The alley entrance -- a side door opening onto Trollskull Alley, a narrow cobblestone lane in the North Ward. Neighboring businesses include a bookshop, a tiger-renting establishment, a private detective's office, and a shop that sells nothing but candles shaped like famous Waterdhavians. A calico cat sits on the stoop, watching passersby with unsettling intelligence.",
+                "read_aloud": "A side door opens onto Trollskull Alley, a narrow cobblestone lane lined with small shops and leaning tenements. The smell of sawdust, herbs, and hot iron drifts from neighboring doorways. A calico cat sits on the stoop, watching the street with an unblinking gaze that feels far too deliberate for a common house cat. Beyond the alley, the bustle of the North Ward murmurs on.",
                 "npcs": [
                     {
                         "name": "Fala Lefaliir",

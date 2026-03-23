@@ -23,6 +23,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "A rocky ridge overlooks a horseshoe-shaped plateau where the Cult of the Dragon has made camp. From this vantage, the scope of the operation becomes clear: hundreds of tents arranged in concentric rings around a large command pavilion, cook fires burning in organized clusters, and patrols moving on schedule. This is not a raiding party. This is an army, and it has been here for weeks.",
+                "read_aloud": "You belly-crawl to the ridge's edge and peer over. The plateau below is a horseshoe of flat ground, and it is covered in tents -- hundreds of them, arranged in concentric rings around a large central pavilion flying the banner of a five-headed dragon. Cook fires burn in neat rows, their smoke rising in pale columns. Patrols move along the perimeter with the regularity of a military operation. The sheer scale of it steals the breath from your lungs.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [
@@ -45,6 +46,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The outer camp is a sprawl of mercenary tents, campfires, and stinking latrine trenches. The non-cultist raiders -- hired swords, bandits, and kobold auxiliaries -- camp here in squalid conditions while the true believers occupy the inner ring. Arguments over loot shares are constant, and the mercenaries eye the cultists with the resentment of men who've been promised gold and received only sermons.",
+                "read_aloud": "You descend into a sprawl of stained canvas and smoking campfires. The stench of latrine trenches and unwashed bodies hangs thick in the air. Rough-looking sellswords sit in clusters, arguing over dice and drink, while small reptilian figures scuttle between the tents carrying bundles. The mood here is sour and watchful -- these are hired blades, not believers, and their resentment is palpable in every sidelong glance.",
                 "npcs": [
                     {"name": "Leosin Erlanthar (prisoner, disguised)", "role": "quest_giver", "dialogue": "*The half-elf monk is bruised and filthy, chained to a post among other prisoners.* I infiltrated the camp deliberately. I needed to understand their plans. The cult is gathering a hoard -- treasure from a dozen raids -- to offer to Tiamat herself. They believe they can summon her from Avernus. The worst part? They might be right."}
                 ],
@@ -70,6 +72,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The cult tents form an inner ring distinguished by purple canvas and the five-headed dragon banner. Braziers burn with incense that smells of brimstone, and the cultists here move with the glazed intensity of the devout. Prayer sessions occur every four hours, and the chanting is audible from across the camp -- a droning litany to Tiamat that sets teeth on edge.",
+                "read_aloud": "The inner ring is unmistakable -- purple canvas tents arrayed beneath banners depicting a five-headed dragon in gold thread. Bronze braziers trail smoke that reeks of brimstone and something cloyingly sweet. The figures here move differently than the sellswords outside: measured, purposeful, their eyes bright with fervor. From somewhere nearby, a low droning chant rises and falls, the words indistinguishable but the devotion behind them unmistakable.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Dragonclaw", "cr": "1"},
@@ -97,6 +100,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Rezmir's tent is the largest in camp, its interior divided by silk screens into chambers. The furnishings are stolen luxury -- a mahogany desk from some nobleman's study, silken carpets from Calimshan, and a camp bed with linens finer than most peasants see in a lifetime. A locked chest sits beneath the desk, and maps on the wall trace the Cult's treasure route from Greenest to Castle Naerytar to the north.",
+                "read_aloud": "This tent dwarfs every other in the camp, its interior partitioned by silk screens into separate chambers. The furnishings are extravagant and mismatched -- a polished mahogany desk that belongs in a lord's study, carpets woven in Calimshan patterns, a camp bed draped in silk. Maps cover one canvas wall, bristling with pins and notes in a sharp, precise hand. A heavy iron chest squats beneath the desk, its lock gleaming.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Guard Drake (Rezmir's personal guard)", "cr": "2"},
@@ -125,6 +129,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The prisoner compound is a roped-off section of dirt where captured villagers and adventurers are staked to posts with iron chains. A handful of kobolds guard them with the petty cruelty of creatures given authority over those bigger than themselves. The prisoners are sun-burned, dehydrated, and hollow-eyed -- they've been here for days with minimal food or water.",
+                "read_aloud": "A roped-off patch of bare dirt holds a wretched sight: men and women chained to wooden posts, their skin blistered by the sun, their lips cracked and bleeding. Small reptilian guards strut between them, jabbing with spears and cackling. The prisoners barely flinch anymore. Their eyes are hollow, their heads bowed. The smell of sweat and despair hangs over the compound like a pall.",
                 "npcs": [
                     {"name": "Leosin Erlanthar", "role": "quest_giver", "dialogue": "*If rescued.* Frulam Mondath commands this camp, but Rezmir -- a half-black-dragon -- commands her. The hoard goes north by wagon, then by portal, then by cloud giant castle. If we can disrupt the chain at any point, we set them back by months. Get me to Ontharr Frume in Elturel. The Harpers and the Order of the Gauntlet must know what's happening."}
                 ],
@@ -151,6 +156,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The rear guard post is a natural rock formation the Cult has fortified with wooden palisades and a watchtower. Frulam Mondath, the camp's operational commander, maintains her headquarters here. She is a woman of iron discipline and absolute faith -- her eyes burn with the certainty of someone who has seen a god and been found worthy. The guards here are the camp's elite: veteran dragonclaws and two berserkers who fight without armor or fear.",
+                "read_aloud": "A natural rock formation rises at the camp's rear, fortified with sharpened wooden palisades and a crude watchtower. The guards here carry themselves differently than the rabble in the outer camp -- disciplined, alert, with the scarred hands and steady eyes of veterans. A woman in ornate robes stands at the center of the fortification, surveying the camp with an expression of absolute, unwavering authority. Her gaze finds you, and it does not waver.",
                 "npcs": [
                     {"name": "Frulam Mondath", "role": "antagonist", "dialogue": "The Cult of the Dragon has endured for centuries because we understand what the complacent do not: the age of mortals is ending. Tiamat rises, and those who serve her will be rewarded beyond imagining. Those who oppose her... *She draws her halberd.* ...will not be remembered at all."}
                 ],

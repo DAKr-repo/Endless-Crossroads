@@ -45,6 +45,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "The inner courtyard of the fortification. What was once a village square has been converted into a staging ground. Rotters stand in motionless ranks, their dead eyes fixed forward, awaiting orders that come from somewhere deeper inside. A Spitter crouches on the rooftop of a collapsed inn, acid dripping from its distended jaw.",
+        "read_aloud": "A village square turned staging ground. The dead stand in ranks, motionless, eyes forward, waiting for orders. On the rooftop of a collapsed inn, something hunched and wet watches you through the acid haze dripping from its jaw. At the courtyard's far end, a figure in blackened plate turns its helm toward you. Slowly. Deliberately.",
         "enemies": [
           {"name": "Spitter", "hp": 15, "max_hp": 15, "ac": 11, "attack": 5, "defense": 11, "count": 1},
           {"name": "Black Oak Knight", "hp": 25, "max_hp": 25, "ac": 15, "attack": 7, "defense": 15, "count": 1}
@@ -69,6 +70,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "Behind a barricaded door, a cellar holds salvageable supplies -- Legion crates marked with the quartermaster's seal. Someone stacked them here before the position was overrun. Ration tins, bandages, a crate of black-shot ammunition. On the wall, scratched into the stone with a knife point: 'WE HELD FOR THREE DAYS. REMEMBER US.'",
+        "read_aloud": "Behind the barricaded door, a cellar. Legion crates, stacked with care by hands now gone. Ration tins, bandages, ammunition. On the far wall, scratched into stone with a knife point in letters you can feel under your fingers: WE HELD FOR THREE DAYS. REMEMBER US.",
         "loot": [
           {"name": "Legion Supply Cache", "value": 3, "description": "Enough rations and ammunition to resupply a squad. Supply +2."},
           {"name": "Black-Shot Ammunition", "value": 1, "description": "Alchemical rounds effective against undead. +1 effect on Skirmish actions vs. Broken."}

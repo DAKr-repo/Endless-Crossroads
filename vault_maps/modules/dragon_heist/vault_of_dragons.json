@@ -23,6 +23,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Stone of Golorr pulses in your hand as you descend through a crack in the bedrock beneath Waterdeep. The passage is dwarven-cut, precise as a surgeon's incision, and the air grows warm as you go deeper -- not the damp warmth of a cellar but the dry heat of a furnace. The walls bear the sigil of Clan Melairkyn, the dwarven house that carved Undermountain's first halls before the darkness took them.",
+                "read_aloud": "The passage descends through a crack in the bedrock, its walls cut with dwarven precision -- every angle exact, every surface smooth. The air grows warmer with each step, dry and furnace-hot, carrying a faint mineral smell like heated stone. Dwarven clan sigils are carved into the walls at regular intervals, their edges still sharp after centuries. The deeper you go, the heavier the silence becomes, as though the rock itself is holding its breath.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [],
@@ -46,6 +47,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The corridor stretches a hundred feet, its walls carved with scenes of dwarven triumph -- kings crowned, dragons slain, veins of mithral discovered. But the later carvings grow darker: armies breaking, halls burning, eyes opening in the deep places. The floor is trapped with pressure plates visible only by the slight difference in stone color, and the ceiling is perforated with holes that once spat poison or flame.",
+                "read_aloud": "The corridor stretches ahead, its walls carved with scenes of triumph -- crowned kings, slain beasts, veins of gleaming ore laid bare. But as you walk, the carvings change. The kings fall. The halls burn. Eyes open in the dark places beneath the mountains. The craftsmanship never wavers, even as the story turns to ruin. The floor ahead is smooth and featureless, and the ceiling above is perforated with small, dark holes that glint faintly in your torchlight.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [],
@@ -72,6 +74,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Three dwarf statues stand in alcoves, each holding a stone weapon -- axe, hammer, shield. Their eyes are gemstones that track your movement. A plaque in Dwarvish reads: 'The worthy pass. The unworthy feed the stone.' The floor before each statue is stained dark, and deep grooves in the flagstones suggest the statues can move from their pedestals.",
+                "read_aloud": "Three dwarf statues stand in alcoves along the far wall, each gripping a stone weapon -- axe, hammer, shield. Their gemstone eyes catch the light and seem to follow you as you move. A plaque between the alcoves bears an inscription in angular script. The floor before each statue is stained dark, and deep grooves are worn into the flagstones, radiating outward from the pedestals like the tracks of something very heavy that has moved more than once.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Animated Dwarf Statue", "cr": "4"},
@@ -102,6 +105,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The cavern opens into a cathedral-sized vault, its ceiling lost in shadow above. In the center, coiled atop a mountain of gold coins that cascades down like a frozen waterfall, an adult gold dragon sleeps. Each breath sends a ripple through the treasure -- coins sliding, gems clinking. The dragon's scales are burnished copper-gold, and even in sleep, an aura of ancient authority radiates from it like heat from a banked fire. One eye opens. It is the color of molten metal.",
+                "read_aloud": "The cavern opens into a space so vast the far walls dissolve into shadow. And there, in the center, rising from a mountain of gold coins that cascades down its flanks like a frozen waterfall -- a dragon. Its scales are burnished copper-gold, each one the size of a shield, and its breath stirs the treasure in slow ripples, coins sliding and clinking in the silence. The heat it radiates washes over you from fifty feet away, and the sheer weight of its presence presses against your chest like a physical force. One enormous eye opens. It is the color of molten metal, and it is looking directly at you.",
                 "npcs": [
                     {
                         "name": "Aurinax",
@@ -140,6 +144,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Behind Aurinax's resting place, the true vault stretches into the dark. Half a million gold dragons are stacked in iron-banded chests, each stamped with the seal of Dagult Neverember. The wealth of an entire city, embezzled by its own lord. Beside the chests, manifests and shipping records document every transaction -- enough evidence to shake the political foundations of the Sword Coast.",
+                "read_aloud": "Beyond the dragon's resting place, the vault stretches into darkness. Iron-banded chests are stacked in rows, their lids sealed with heavy locks, each stamped with the same official seal. You lift one lid and gold spills out -- coins by the hundred, by the thousand, catching the light in a cascade of reflected fire. The air is dry and still, heavy with the weight of wealth so vast it has its own gravity. Manifests and shipping records are bundled beside the chests, their pages dense with figures.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [
@@ -167,6 +172,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "A workshop untouched since the Melairkyn dwarves abandoned it centuries ago. Tools hang on pegs in perfect order, their edges still sharp under a film of dust. A half-finished mithral breastplate sits on an anvil, waiting for a smith who will never return. The forge is cold but the coals are still there, as if they could be lit with a single breath.",
+                "read_aloud": "A dwarven workshop, untouched by time. Tools hang on pegs in perfect order beneath a film of dust so fine it looks like frost. A half-finished breastplate of silvery metal sits on an anvil, its hammer marks still fresh, its maker's intent visible in every curve. The forge beside it is cold, its coals gray and undisturbed. The silence here is different from the rest of the vault -- not threatening, but mournful, as though the room is still waiting for someone to come back and finish the work.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [
@@ -193,6 +199,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "A corridor carved with geometric precision, every angle exact to the degree. But the walls are scarred with claw marks -- something large passed through here, and it was not gentle. The deepest gouges are recent, the exposed stone still pale. Whatever made them has been pacing this corridor for a long time.",
+                "read_aloud": "The corridor is carved with geometric precision, every angle exact, every surface smooth -- dwarven work at its finest. But the walls are scarred with deep claw marks that gouge through the carved stone, exposing pale rock beneath. The marks are layered, old over older, and the deepest are fresh enough that dust has not yet settled in the grooves. Whatever paces this corridor has been doing so for a very long time, and it has not grown any calmer.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [],
@@ -216,6 +223,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "A vertical shaft bored through solid rock, fitted with iron rungs hammered into the stone. Daylight -- thin, gray, and impossibly welcome -- filters down from a grate far above. The climb is long and the rungs are slick with condensation, but the air grows sweeter with every step. The grate opens into a cellar in the Castle Ward, behind a stack of wine barrels that has not been moved in years.",
+                "read_aloud": "A vertical shaft bores upward through solid rock, fitted with iron rungs hammered into the stone. Far above, a grate lets in a thin line of gray daylight that falls like a blessing after the darkness below. The air carries a hint of freshness -- rain, maybe, or just the absence of ancient stone. The climb is long, the rungs slick with condensation, but with every rung the weight of the vault falls away beneath you, and the world above draws closer.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [],

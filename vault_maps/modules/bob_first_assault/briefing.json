@@ -51,6 +51,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "The quartermaster's wagon. A converted supply cart where Ghost Owls draw their mission kit. Racks of blackened blades, bundles of crossbow bolts, and sealed jars of oil and bandages. The quartermaster is a one-armed veteran who moves with the efficiency of someone who has outfitted a thousand missions and expects most of the gear back.",
+        "read_aloud": "The quartermaster's wagon, racks of blackened blades and bundled bolts gleaming in the lamplight. A one-armed veteran hands you your kit without small talk. He counts every item twice and writes it down. He expects it all back.",
         "services": ["supply"],
         "loot": [
           {"name": "Alchemical fire flask (x2)", "value": 3, "description": "Clay flasks sealed with wax. The contents burn green and hot enough to melt iron. The Doctor would appreciate the irony."},
@@ -71,6 +72,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "The Ghost Owls' bivouac. Four bedrolls around a cook-fire that's been banked to embers. Phaera is sharpening her heavy blade with slow, meditative strokes. Aurora sits apart, cleaning her rifle's optics with a cloth that was once white. Red Striking Pyre stares into the coals. Harish -- the rookie -- is checking his kit for the third time.",
+        "read_aloud": "Four bedrolls around a cook-fire banked to embers. The squad is here -- one sharpening a blade, one cleaning a rifle, one staring into the coals, and one checking his kit for the third time. Nobody speaks. The fire pops once. Somewhere west, the horizon glows.",
         "services": ["rest"],
         "npcs": [
           {

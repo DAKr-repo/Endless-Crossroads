@@ -23,6 +23,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "A cobblestone square slick with fish scales and salt spray, ringed by leaning timber buildings whose upper stories overhang the street like gossiping neighbors. Gulls wheel overhead, fighting over scraps. A fountain in the center -- long dry, its basin now used as a message board -- is papered with broadsheets, wanted posters, and handbills advertising passage to Baldur's Gate. The smell of the sea is everywhere, mixed with tar, smoke, and frying fish.",
+                "read_aloud": "You step into a cobblestone square slick with fish scales and sea spray. Timber buildings lean overhead, their upper stories jutting so far forward they nearly touch, blocking out the sky. Gulls shriek and wheel above, fighting over scraps. In the center stands a dry fountain papered over with broadsheets and wanted posters, its basin cracked and stained. The salt wind carries the smell of tar, frying fish, and the open sea beyond the rooftops.",
                 "npcs": [
                     {
                         "name": "Dash",
@@ -53,6 +54,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The sign shows a dragon spitted on a lance like a roast pig. Inside, the ceiling is so low that anyone over five and a half feet stoops. Smoke from a peat fire mixes with pipe smoke to create a permanent haze at eye level. The ale is cheap, the food is salt cod and hard bread, and the clientele are the kind of people who keep their backs to the wall and their weapons where they can reach them.",
+                "read_aloud": "A painted sign of a dragon spitted on a lance creaks above the door. Inside, the ceiling hangs so low you duck on instinct. Smoke from a peat fire mingles with pipe haze, creating a permanent fog at eye level through which faces appear and vanish. The room is cramped, dim, and warm, and every patron sits with their back to the wall. The smell of salt cod and cheap ale hangs in the air like a second set of curtains.",
                 "npcs": [
                     {
                         "name": "Bonnie",
@@ -83,6 +85,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "A salt-stained warehouse marked only with a black serpent chalked above the door. Inside, crates are stacked in careful rows, each stamped with legitimate shipping marks that do not match their contents. The air smells of weapon oil and smuggled spices. A lookout on the catwalk above watches the entrance with a loaded crossbow.",
+                "read_aloud": "A black serpent symbol is chalked above the warehouse door, half-washed away by rain. Inside, crates stand in careful rows beneath a timber catwalk, their shipping labels crisp and official-looking. The air is thick with the smell of weapon oil and something sweeter -- cinnamon, maybe, or clove -- that has no business being in a Dock Ward warehouse. A shadow moves on the catwalk above, and you hear the quiet click of a crossbow bolt being seated.",
                 "npcs": [
                     {
                         "name": "Yagra Stonefist",
@@ -119,6 +122,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The City Watch post is a squat stone building that looks like it was designed to survive a siege and then forgotten about. A duty roster nailed to the wall is three days out of date. Inside, two guards play cards while a third sleeps with his helmet over his face. The desk sergeant's ledger is open to a page of incident reports, most involving drunk sailors and missing cargo.",
+                "read_aloud": "A squat stone building hunkers at the corner like a bulldog that has given up chasing anything. The Watch banner hangs limp above the door. Inside, the air is stale with the smell of old tea and boot leather. Two guards sit at a table playing cards, and a third sleeps in a chair with his helmet tipped over his face. A duty roster nailed to the wall is several days out of date, its ink smudged by rain that leaked through the ceiling.",
                 "npcs": [
                     {
                         "name": "Sergeant Cromley",
@@ -149,6 +153,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Wooden stalls and canvas awnings stretch along the wharf, selling the day's catch. Fishmongers shout prices over each other while cats prowl between the tables, waiting for scraps. The fish range from mundane cod and herring to things pulled from deep water that have too many eyes. One stall sells 'exotic specimens' in sealed jars that glow faintly in the shadows.",
+                "read_aloud": "Wooden stalls crowd the wharf edge beneath canvas awnings snapping in the harbor wind. Fishmongers shout prices over one another in a rising chorus, their tables heaped with silver-scaled cod, fat herring, and stranger things pulled from deep water -- things with too many eyes and not enough fins. Cats slink between the stalls, and the cobblestones underfoot are slick with scales and brine. One stall at the far end displays sealed jars that glow faintly in the shadow of its awning.",
                 "npcs": [
                     {
                         "name": "Old Maera",
@@ -181,6 +186,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The harbor gate is a massive timber-and-iron affair set into the city's sea wall. Beyond it, wooden piers reach into the gray harbor like outstretched fingers. Ships from a dozen nations rock at anchor -- Calishite dhows, Luskan raiders with their sails furled, a Lantanese steamship trailing a ribbon of smoke. The gate guards check cargo, not people. Anyone can walk in. Getting cargo out is another matter.",
+                "read_aloud": "A massive timber-and-iron gate stands open in the sea wall, framing a view of the gray harbor beyond. Wooden piers reach out into the water like outstretched fingers, and ships from a dozen nations rock at anchor -- brightly painted dhows, dark-hulled warships with furled sails, and a vessel trailing a thin ribbon of smoke from a brass chimney. Salt wind pours through the gate, carrying the cry of gulls and the creak of rigging.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [],

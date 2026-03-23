@@ -47,6 +47,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "The crime scene, minutes later. The rain is washing away the blood. Spider silk threads glisten on every surface -- lampposts, gutters, window ledges -- forming a web that radiates outward from the alley. The detective's body lies face-down in a puddle. When you turn it over, the face is simply gone -- not torn, not eaten, but removed. Smooth skin where features should be. A business card protrudes from his breast pocket.",
+        "read_aloud": "The rain is washing the blood into the gutters. Spider silk glistens on every surface -- lampposts, ledges, drain grates -- forming a web that radiates outward from the alley like the spokes of a wheel. The detective lies face-down in a puddle. When you turn the body over, the face is simply gone. Smooth skin from hairline to chin, featureless as an egg. A business card protrudes from his breast pocket.",
         "npcs": [],
         "enemies": [],
         "services": [],

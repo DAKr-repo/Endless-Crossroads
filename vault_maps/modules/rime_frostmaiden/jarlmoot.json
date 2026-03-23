@@ -23,6 +23,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Frost Giant Path ascends through a valley of shattered stone where ancient glaciers once ground the mountains to gravel. Footprints the size of wagon wheels are pressed into the frozen mud, fresh enough that ice has not yet filled them. The wind carries a sound like distant drums -- or perhaps the footsteps of something immense, just over the ridge.",
+                "read_aloud": "The valley floor is a graveyard of shattered stone, ground to gravel by glaciers long since retreated. The path climbs steeply between boulders the size of houses, and pressed into the frozen mud are footprints large enough to bathe in -- fresh, the ice only now beginning to crust their edges. The wind funnels through the valley with a rhythmic booming that sounds almost like footsteps, each one shaking loose a trickle of gravel from the slopes above.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Winter Wolf", "cr": "3"}
@@ -45,6 +46,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Stone Amphitheater is carved into the mountainside in concentric rings that descend toward a central platform. The seats are sized for giants -- each stone bench twenty feet long and five feet deep. Snow has filled the lower tiers, but the upper ones are clear, swept by winds that never rest. The acoustics are perfect. A whisper at the center carries to every seat, and the echoes linger for seconds, as though the mountain itself is listening.",
+                "read_aloud": "The mountainside opens into a vast amphitheater carved from living rock, its tiered seats descending in concentric rings toward a central platform far below. The scale is wrong -- each stone bench is twenty feet long and five feet deep, built for bodies far larger than yours. Snow fills the lower tiers, but the upper rows are swept clean by a wind that never rests. When your boot scuffs loose stone, the sound carries with unnatural clarity, echoing from seat to empty seat as though the mountain is repeating it back to you.",
                 "npcs": [
                     {"name": "Geluvicken (frost giant ghost)", "role": "quest_giver", "dialogue": "*The spectral giant materializes from the blowing snow, ten feet of translucent rage and ancient sorrow.* You trespass on the moot-ground. In life, I was jarl of these mountains. In death, I guard their secrets. Prove your worth or become another frozen corpse on the path below."}
                 ],
@@ -69,6 +71,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Seven runestones stand in a circle atop the peak, each one fifteen feet tall and carved with the name and deeds of a frost giant jarl. The runes glow faintly blue in the perpetual twilight, and the snow refuses to settle on them -- it slides off as though repelled. At the circle's center, the ground is bare stone worn smooth by centuries of giant feet performing the moot-dance.",
+                "read_aloud": "Seven standing stones crown the peak, each one fifteen feet tall, their surfaces carved with angular runes that glow a faint, steady blue against the twilight. Snow falls around them but refuses to land on them -- flakes slide off the carved surfaces as if repelled by an invisible warmth. The ground at the circle's center is bare stone, polished smooth by the passage of enormous feet over countless centuries. The wind dies here. The silence is deliberate.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [
@@ -91,6 +94,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Ancient Barrow burrows into the mountain beneath the amphitheater, its entrance sealed with a capstone bearing a ward that flares with cold light when approached. Inside, the walls are lined with the bones of frost giants arranged in geometric patterns -- not burial, but architecture, as though the dead were building something with their remains. At the center, an ice sarcophagus holds a giant in full war regalia, perfectly preserved.",
+                "read_aloud": "The barrow entrance is sealed with a massive capstone that flares with pale light as you approach, its surface etched with warning runes. Beyond it, the tunnel walls are lined with bones -- enormous bones, arranged not in the disorder of death but in precise geometric patterns, as though the dead were building something with their own remains. At the chamber's heart, a sarcophagus of solid ice holds a massive figure in ancient war regalia, perfectly preserved, frost glittering on closed eyelids.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Frost Giant Wight (Jarl Ygra)", "cr": "7"},
@@ -119,6 +123,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Spirit Altar is a flat-topped boulder at the mountain's edge, overlooking a vista of frozen tundra that stretches to the horizon. The altar's surface bears scorch marks from centuries of offerings burned here -- animal fat, mead, and blood, the traditional gifts to Thrym and the giant gods. The wind drops to nothing at this spot, creating an eerie pocket of silence amid the mountain's constant howl.",
+                "read_aloud": "A flat-topped boulder sits at the mountain's edge, overlooking a vista of frozen tundra that stretches to the curve of the world. The altar's surface is blackened with centuries of scorch marks, and the smell of old rendered fat clings to the stone despite the cold. The wind, which has been howling since you began the climb, falls utterly silent here. The quiet is so sudden and complete it feels like pressure against your eardrums.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [
@@ -141,6 +146,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The mountain pass descends steeply to the northeast, switchbacking through ice fields that crack and shift underfoot. Far below, the Reghed Glacier gleams like a river of frozen moonlight. The path is marked by cairns topped with giant skulls -- warnings or guideposts, depending on your perspective. The way to the Caves of Hunger lies through the glacier's eastern face.",
+                "read_aloud": "The path switchbacks down the mountain's northeast face through fields of ice that crack and shift beneath your weight. Far below, the Reghed Glacier gleams in the starlight like a river of frozen silver. Cairns mark the descent at intervals -- each one topped with an enormous skull, its empty eye sockets staring back the way you came. Whether they are warnings or waymarkers, you cannot tell. The glacier waits below, patient and vast.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [],

@@ -41,6 +41,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "The Sisters' rooftop. The tiles here are different -- darker, older, and faintly warm to the touch despite the night air. Iron weathervanes shaped like ravens perch at each corner, and you could swear one of them just turned to watch you.",
+        "read_aloud": "You land on the Sisters' roof and something is wrong immediately. The tiles are warm underfoot -- not from the sun, which hasn't shone in Duskwall since before you were born. Iron ravens perch at each corner of the roofline, their heads angled downward. One of them moves. You're almost sure one of them moves.",
         "perception_dc": 14,
         "perception_success": "The weathervanes are Spirit Anchors -- old ones, pre-Unity War. They channel spectral energy into the house's ward network. Destroying one would create a gap in the wards, but the Sisters would know immediately."
       }

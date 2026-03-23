@@ -42,6 +42,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "A narrow passage between two leaning tenements. Laundry lines crisscross overhead like trip wires. The fog is thicker here, pooling at knee height. A painted sign -- 'Tangletown Baths' -- hangs by a single nail, its hinges long rusted through.",
+        "read_aloud": "The passage narrows between two buildings that lean toward each other like drunks propping one another up. Laundry lines crisscross overhead, and the fog pools thick at knee height, swallowing your boots with every step. A painted sign reading 'Tangletown Baths' swings from a single rusted nail, creaking in a wind you can't feel.",
         "npcs": [
           {
             "name": "Bluecoat Watchman",

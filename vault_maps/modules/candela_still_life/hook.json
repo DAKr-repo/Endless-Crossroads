@@ -47,6 +47,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "The sitting room behind the studio. Oscar's personal space -- grief made domestic. Nora's teacup still sits on the side table, unwashed. Her reading glasses rest on an open novel, bookmark untouched. A wedding photograph hangs over the fireplace: Oscar and Nora, young and bright-eyed, a gilded camera visible on the table between them.",
+        "read_aloud": "The sitting room is grief made domestic. Nora's teacup sits on the side table, unwashed. Her reading glasses rest on an open novel, the bookmark untouched. Above the fireplace, a wedding photograph: two young faces, bright-eyed and certain of the future. On the chair where a body recently sat, an ink-black shadow has been burned into the upholstery -- impossibly dark, in the precise shape of a seated woman.",
         "npcs": [],
         "enemies": [],
         "services": [],

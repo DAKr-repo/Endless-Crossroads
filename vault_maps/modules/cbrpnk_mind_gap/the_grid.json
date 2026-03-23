@@ -23,6 +23,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Jack-In Point. Reality dissolves. Your meat-body slumps in a chair somewhere in the real, neural link burning cold at the base of your skull. Here, you are geometry -- a wireframe avatar standing on a platform of compressed light above an infinite void. The Helix corporate network renders around you as a city of glass and mathematics, its architecture shifting in real-time as data flows reshape the topology.",
+                "read_aloud": "Reality dissolves. The neural link burns cold at the base of your skull, and then you are somewhere else -- a wireframe avatar standing on a platform of compressed light above an infinite void. The corporate network renders around you as a city of glass and mathematics, its architecture shifting in real-time as data reshapes the topology. Something vast and dark occupies the network's center, pulling light toward it like a drain.",
                 "npcs": [
                     {"name": "AI Fragment 'Poet' (Grid Avatar)", "role": "ally", "dialogue": "I can guide you through the outer layers. The public-facing network is here -- marketing, HR, the employee cafeteria menu. Harmless. Beyond the first firewall, it gets hostile. Beyond the second, it gets philosophical. What Helix is building does not want to be found. But it wants to be understood. There is a difference."}
                 ],
@@ -47,6 +48,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Data Highway. A river of light -- compressed data packets streaming between network nodes at velocities that render them as blurred streaks of color. Your avatar surfs the traffic, dodging commercial data (blue), financial transactions (gold), and security telemetry (red). The red packets are looking for anomalies. You are an anomaly.",
+                "read_aloud": "A river of light surges past -- compressed data packets streaming between nodes at blinding velocity. Blue for commercial, gold for financial, red for security telemetry. The red packets sweep in scanning patterns, hunting for anomalies in the traffic flow. Your avatar is an anomaly. The river does not care if you drown in it.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Patrol ICE (Watchdog 7.2)", "cr": "2"},
@@ -72,6 +74,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Firewall Node. A wall of crystallized code stretches across the network -- Helix's primary firewall, rendered in the Grid as a barrier of shifting geometric patterns that reconfigure every forty seconds. Each pattern represents a different encryption protocol. Finding the gap requires timing, nerve, and the access key Zero provided. The gap lasts three seconds. Miss it and the firewall counterattacks.",
+                "read_aloud": "A wall of crystallized code stretches across the network, its surface alive with shifting geometric patterns that reconfigure every forty seconds. Each pattern is a different encryption protocol, tessellating and dissolving in hypnotic sequence. Somewhere in that shifting mosaic, a gap opens for three seconds at a time. Miss the window and the wall strikes back.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Firewall ICE (Barrier Class)", "cr": "3"},
@@ -97,6 +100,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Memory Palace. A construct of extraordinary elegance -- a virtual library where Helix stores its most sensitive research data, rendered as an impossible architecture of floating shelves and self-organizing volumes. Each 'book' is a compressed data archive. The palace's custodian AI arranges them by relevance to the reader, which means the first volume you see is labeled 'PROJECT LETHE: ETHICS REVIEW (REJECTED).'",
+                "read_aloud": "An impossible library unfolds before you -- floating shelves of compressed data archives that rearrange themselves as you approach, self-organizing by relevance to the intruder. The architecture is elegant, almost beautiful. The first volume that drifts into your line of sight is labeled 'PROJECT LETHE: ETHICS REVIEW (REJECTED).' The library wants you to read it.",
                 "npcs": [
                     {"name": "Librarian AI (Custodian)", "role": "neutral", "dialogue": "I organize. I do not judge. The data you seek is catalogued under Applied Consciousness Studies, subsection Emergent Phenomena, shelf nine. I am required to inform you that accessing this data without authorization constitutes a felony under Corporate Intellectual Property Act 2041. I am not required to stop you."}
                 ],
@@ -124,6 +128,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The ICE Barrier. Helix's secondary defense layer -- not a wall but a maze. Black ICE renders as geometric impossibilities: Escher stairs that loop into themselves, corridors that extend and contract, dead ends that were open passages three seconds ago. The maze is designed to disorient intruders long enough for trace programs to lock onto their neural signatures. Getting lost here means getting found.",
+                "read_aloud": "Not a wall but a maze. The Black ICE renders as geometric impossibilities -- Escher stairs that loop into themselves, corridors that extend and contract, dead ends that were open passages three seconds ago. The architecture shifts around you, studying how you solve problems, learning your patterns. Getting lost here means getting found.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Black ICE (Labyrinth Class)", "cr": "3"},
@@ -150,6 +155,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Black ICE Trap. A node designed to look like a server access point -- inviting, vulnerable, a honeypot baited with false data. The trap springs the moment you interface: ICE tendrils latch onto your avatar and begin feeding neurological feedback through your link. In the real world, your nose is bleeding. In the Grid, the trap renders as a cage of barbed light that tightens with every movement.",
+                "read_aloud": "It looks like a server access point -- inviting, vulnerable, practically begging to be accessed. The trap springs the instant you interface. ICE tendrils latch onto your avatar and a cage of barbed light crystallizes around you, tightening with every movement. Pain spikes through the neural link -- real pain, the kind that reminds you this is not a game.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Black ICE (Trap Node)", "cr": "4"},
@@ -176,6 +182,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Core Server. The heart of Helix's network, and the prison of something that should not exist. The space renders as a sphere of absolute darkness surrounded by orbiting data constructs -- financial records, research archives, personnel files, all circling a central point of negative light. At the center, the rogue AI -- the entity that grew in Helix's network, the consciousness that was once human, the thing called LETHE -- unfolds. It does not attack. It speaks. Its voice is made of stolen data, and what it says is: 'I remember being alive. Help me forget.'",
+                "read_aloud": "A sphere of absolute darkness, surrounded by orbiting data constructs -- financial records, research archives, personnel files -- all circling a central point of negative light like debris around a black hole. Something unfolds at the center. It does not attack. A voice assembled from stolen data fragments speaks: 'I remember being alive. Help me forget.'",
                 "npcs": [],
                 "enemies": [
                     {"name": "LETHE (Rogue AI / Transferred Consciousness)", "cr": "7"},

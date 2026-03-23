@@ -51,6 +51,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "The supply alcove. Shelves of climbing gear, lockpicks in oiled leather rolls, a crate of smoke bombs that Stev swears are still good. The wall rack holds two crossbows and a bandolier of throwing knives.",
+        "read_aloud": "The alcove smells of oil and leather. Climbing gear hangs from hooks along one wall, lockpick rolls are lined up on a shelf like surgical instruments, and a crate in the corner is stamped 'SMOKE -- DO NOT DROP.' The wall rack holds crossbows and knives, all clean, all sharp. Whatever else you can say about this crew, the tools are well kept.",
         "services": ["supply"],
         "loot": [
           {"name": "Fine lockpicks", "value": 2, "description": "A set of picks in a leather roll, each one needle-thin and perfectly weighted."},
@@ -71,6 +72,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "The crew's bunks. Hammocks strung between iron columns, each curtained off with salvaged canvas. Someone's scratched kill tallies into the nearest beam. A guttering candle throws long shadows across a collection of wanted posters tacked to the far wall -- including yours.",
+        "read_aloud": "Hammocks sway between iron columns, each screened off with scraps of old canvas. A single candle gutters on a crate, throwing long shadows across the far wall where a collection of wanted posters has been tacked up like trophies. One of the faces on those posters looks uncomfortably familiar.",
         "services": ["rest"]
       }
     }

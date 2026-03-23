@@ -23,6 +23,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Downtown -- the drowned city. Neon bleeds through perpetual rain, reflecting off streets slick with runoff and spilled synth-coolant. Megacorp logos project from tower faces a hundred stories up, their light never reaching the street-level vendors hawking bootleg firmware and organ-printer cartridges. Down here, everyone is selling something.",
+                "read_aloud": "Neon bleeds through perpetual rain, reflecting off streets slick with runoff and spilled synth-coolant. A hundred stories up, megacorp logos project their promises into the clouds. Down here, none of that light reaches. Vendors hawk bootleg firmware from tarp-covered stalls, and the air tastes of ozone and wet concrete.",
                 "npcs": [
                     {"name": "Street Corner AI (Advert Unit)", "role": "guide", "dialogue": "Welcome to NeoArc. Current threat level: AMBER. Recommended actions: stay indoors, update your firewall, avoid eye contact with anyone carrying exposed chrome. Have a productive day."}
                 ],
@@ -45,6 +46,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Corpo Zone begins where the rain stops -- climate-controlled airspace maintained by Helix Industries atmospheric drones. The architecture transitions from street-level concrete to chrome-and-glass towers connected by skywalks. Security cameras track every movement. Your biometrics were logged the moment you crossed the perimeter.",
+                "read_aloud": "The rain stops at an invisible line. Beyond it, the air is climate-controlled -- maintained by atmospheric drones that hover at the district's perimeter like chrome sentinels. The architecture shifts from crumbling concrete to glass-and-steel towers connected by skywalks. Every camera pivots to track you. Your biometrics were logged the moment you crossed.",
                 "npcs": [
                     {"name": "Corporate Security AI", "role": "guard", "dialogue": "Biometric scan complete. Citizen status: UNREGISTERED. You have fourteen minutes to present valid corporate credentials or vacate the zone. Timer begins now."}
                 ],
@@ -67,6 +69,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Helix Tower -- corporate headquarters, one hundred and forty stories of reinforced smart-glass and drone-patrolled airspace. The lobby alone has more security than most districts. Above floor sixty, the building enters the corporate intranet -- a closed network running proprietary ICE that has killed three netrunners this quarter. The target is on floor one-twelve.",
+                "read_aloud": "One hundred and forty stories of reinforced smart-glass pierce the cloud layer, the upper floors lost in mist. Drones orbit the building in silent patrol patterns. The lobby's glow spills onto rain-slicked pavement -- more security visible through those glass doors than most districts deploy in a year. Your neural interface pings with seventeen active scan attempts before you reach the entrance.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Corporate Security Drone", "cr": "2"}
@@ -89,6 +92,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Cyberspace -- the Grid. Not a place you walk to, but a place you fall into when the neural link takes hold. Here, data has geography. Firewalls are walls. ICE is ice -- cold, sharp, and lethal. The Grid renders as an infinite cityscape of light and mathematics, where the laws of physics are replaced by the laws of code.",
+                "read_aloud": "You do not walk to the Grid. You fall into it -- the neural link burns cold at the back of your skull, and then you are somewhere else. Data has geography here. Firewalls are walls. ICE is ice, cold and sharp and lethal. An infinite cityscape of light and mathematics stretches in every direction, its physics governed not by gravity but by code.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Patrol ICE", "cr": "2"}

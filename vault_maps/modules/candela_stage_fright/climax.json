@@ -94,6 +94,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "Backstage. The flies are thick with silk cocoons -- dozens of them, each containing a face. Preserved in silk, expressions frozen mid-scream, mid-laugh, mid-whisper. They are trophies. The faces are still alive in some terrible sense -- eyes track movement, lips mouth silent words. If the Recluse is killed, the faces may be recoverable. If the cocoons are destroyed, the victims in the audience will never be whole again.",
+        "read_aloud": "The flies are thick with silk cocoons, dozens of them, each one the size and shape of a human face. Through the translucent silk, expressions are frozen mid-scream, mid-laugh, mid-whisper. As you pass, the eyes in the nearest cocoon track your movement. Lips mouth silent words behind their gossamer prison. They are alive. They are aware. They are waiting to be recognized.",
         "npcs": [],
         "enemies": [],
         "services": [],

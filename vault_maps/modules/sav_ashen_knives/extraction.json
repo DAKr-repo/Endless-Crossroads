@@ -42,6 +42,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "Open space -- the departure lane outside Warren. Stars and the cold geometry of the system gate ahead. The corvette sits between you and freedom, its weapons arrays tracking your hull. Two escort fighters peel off from the corvette's flanks, angling to bracket you.",
+        "read_aloud": "Open void. The system gate hangs ahead, a ring of ancient alloy spinning against the stars. Between you and it sits a Hegemonic corvette, weapons arrays swiveling to track your hull. Two escort fighters break formation from its flanks, curving wide to box you in. The comm fills with static and then a voice, clipped and official, demanding you cut engines.",
         "enemies": [
           {
             "name": "Hegemonic Patrol Corvette",

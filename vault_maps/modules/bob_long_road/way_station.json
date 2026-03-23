@@ -57,6 +57,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "The station's bunkroom is narrow and windowless. Eight cots line the walls, three of them occupied by soldiers sleeping with their boots on and weapons at hand. A map of the pass is pinned to the far wall, annotated with Mirra's charcoal marks -- Xs for confirmed enemy sightings, circles for possible positions.",
+        "read_aloud": "A narrow, windowless room lined with cots. Three soldiers sleep with their weapons in hand. A charcoal map of the pass is pinned to the far wall, covered in Xs and circles. The air smells of boot leather and tallow candles burned down to nubs.",
         "services": ["rest"],
         "investigation_dc": 10,
         "investigation_success": "Mirra's map shows a route through the pass she has not mentioned in her briefing -- a goat trail along the ridge that bypasses the narrows entirely. She marked it with a question mark."
@@ -75,6 +76,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "The supply room is a converted cellar beneath the station. Iron-bound chests line the walls, each padlocked and labeled. Harven maintains an inventory that borders on obsessive -- every item logged, every disbursement countersigned. The air is cool and dry, smelling of stone and lamp oil.",
+        "read_aloud": "A cellar beneath the station, cool and dry, smelling of stone and lamp oil. Iron-bound chests line the walls, each padlocked and labelled in a precise hand. Three copies of every requisition form sit on the desk. The Legion runs on paper.",
         "services": ["supply"],
         "npcs": [
           {

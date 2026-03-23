@@ -23,6 +23,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The main hall of the Yawning Portal -- Waterdeep's most famous tavern. The cavernous room is dominated by a forty-foot-wide well shaft in the center, its stone rim worn smooth by the hands of countless adventurers who descended into Undermountain and never returned. Rope pulleys creak overhead. The air smells of ale, pipe smoke, and the faint sulfurous draft rising from the well.",
+                "read_aloud": "You push through the heavy oak doors into a cavernous hall thick with pipe smoke and the din of a hundred conversations. At its center yawns a well shaft forty feet across, its stone rim polished smooth by generations of gripping hands. Ropes and pulleys creak overhead, swaying gently in a warm updraft that carries the smell of sulfur and deep places. Somewhere across the room, a bard plucks a mournful chord, and a barmaid weaves between tables bearing tankards that slosh with every step.",
                 "npcs": [
                     {
                         "name": "Durnan",
@@ -57,6 +58,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The bar -- a massive slab of darkwood scarred by knife points and mug rings. Bottles line the shelves behind it in no discernible order. A chalkboard lists the day's fare: roast boar, fish pie, and something called 'Trollskull Stout' that glows faintly green.",
+                "read_aloud": "A bar stretches the length of the wall, its darkwood surface scarred by decades of knife points and mug rings. Behind it, bottles crowd the shelves in cheerful disorder, their labels faded and peeling. A chalkboard lists the day's fare in uneven chalk -- roast boar, fish pie, and something called 'Trollskull Stout' that glows a faint, unsettling green in its bottle.",
                 "npcs": [
                     {
                         "name": "Bonnie",
@@ -87,6 +89,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "A row of private dining alcoves partitioned by heavy curtains. The wood paneling is carved with scenes of famous Undermountain expeditions -- most of them ending badly. A brass plaque reads 'Reserved for the Harpers' over one alcove, though it appears empty.",
+                "read_aloud": "Heavy curtains partition a row of private dining alcoves along the far wall. The wood paneling between them is carved with scenes of armored figures descending into darkness -- most of the scenes end with the figures running the other way. A brass plaque above one curtained booth reads 'Reserved,' though the booth beyond appears empty. The air here is quieter, thick with the smell of old wood and spilled wine.",
                 "npcs": [
                     {
                         "name": "Yagra Stonefist",
@@ -112,6 +115,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The kitchen -- a sweltering room of copper pots, hanging herbs, and a fireplace large enough to roast an ox. The head cook, a stout halfling woman, orchestrates the chaos with a wooden spoon she wields like a marshal's baton. Steam and the smell of baking bread fill the air.",
+                "read_aloud": "A wave of heat rolls over you as you step into the kitchen. Copper pots hang from ceiling hooks in cluttered ranks, and bundles of dried herbs dangle above a fireplace large enough to stand in. Steam billows from a dozen bubbling vessels, carrying the smell of baking bread, roasting meat, and something sharp -- onions, maybe, or the temper of the stout halfling who rounds on you with a wooden spoon raised like a weapon.",
                 "npcs": [
                     {
                         "name": "Marta Moonshadow",
@@ -134,6 +138,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The well entrance -- a gaping shaft descending into absolute darkness. A wooden platform and rope-and-pulley system allows descent for those brave or foolish enough to enter Undermountain. One gold piece to go down. Coming back up is free, assuming you come back at all. Scratch marks on the stone rim suggest not everything that climbs out is human.",
+                "read_aloud": "You stand at the rim of the well and peer down into nothing. The shaft drops into absolute darkness, swallowing the light of the tavern's lanterns within a few feet. A wooden platform sways on thick ropes beside a hand-cranked pulley, creaking softly with every draft from below. The stone rim is gouged with deep scratch marks, and the air rising from the shaft is warm, wet, and carries a faint sound -- something between breathing and the drip of distant water.",
                 "npcs": [
                     {
                         "name": "Mattrim 'Threestrings' Mereg",

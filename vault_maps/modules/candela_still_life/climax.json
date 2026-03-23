@@ -109,6 +109,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "Inside the Vienno Mausoleum. A small stone chamber lined with niches for the family dead. Father Vienno's sarcophagus dominates the center -- the same priest Sara's grandfather accidentally awakened decades ago. His stone lid is cracked. Someone sealed him back in with iron bands and lead sheeting. The same containment approach as the camera box. The same desperate improvisation.",
+        "read_aloud": "A small stone chamber, cold and close, lined with niches for the family dead. At the center, a sarcophagus dominates the floor -- its stone lid cracked and resealed with iron bands and lead sheeting. The same containment approach as the camera's lead-lined box. The same desperate improvisation. The air hums with a vibration you feel in the roots of your teeth.",
         "npcs": [],
         "enemies": [],
         "services": [],

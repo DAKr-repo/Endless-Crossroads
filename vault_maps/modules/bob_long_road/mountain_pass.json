@@ -42,6 +42,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "A wide shelf in the rock where the pass opens briefly before narrowing again. A stone cairn marks the spot -- old, older than the road, stacked by hands that predated the Legion. The Crows are closer here, their wingbeats audible. Among the boulders, Rotters wait with the terrible patience of the dead, positioned where the cairn blocks the line of retreat.",
+        "read_aloud": "The pass widens onto a rock shelf marked by an ancient cairn. The wingbeats of the circling Crows are audible now -- close, patient. Among the boulders, shapes stand motionless, blocking the path behind you. They were waiting here. They have been waiting a long time.",
         "enemies": [
           {"name": "Crow", "hp": 15, "max_hp": 15, "ac": 12, "attack": 5, "defense": 12, "count": 2},
           {"name": "Rotter", "hp": 8, "max_hp": 8, "ac": 8, "attack": 3, "defense": 8, "count": 3}
@@ -66,6 +67,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "The pass descends toward the bridge crossing. Here the rock gives way to scree and loose shale that shifts underfoot. A narrow ledge overlooks the river gorge below -- the bridge is visible from here, a stone arch spanning the chasm. Something is on the bridge. Something is on both sides of the bridge.",
+        "read_aloud": "The path turns to loose shale that shifts and clatters with every step. From a narrow ledge, you can see the bridge below -- a stone arch over white water. Shapes crowd the far side, packed together, jostling. There are many of them. The bridge groans.",
         "event_triggers": [
           "From the ledge, you can see the bridge below. Shapes move on the far side -- many shapes, packed close together. They are waiting."
         ],

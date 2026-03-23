@@ -42,6 +42,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "The stairwell. The stairs descend in a tight spiral, the banister carved from a single piece of blackwood. Each step creaks in a different pitch, like a discordant scale being played underfoot. Cold air rises from below, carrying the smell of canal water and old stone.",
+        "read_aloud": "The stairwell spirals down into darkness. Each step groans under your weight in a different pitch -- a descending scale that echoes off the walls like a warning. Cold air rises from below, thick with the smell of canal water and centuries-old stone. The banister is smooth black wood, worn to a polish by hands long dead.",
         "perception_dc": 12,
         "perception_success": "Faint footsteps from two floors below -- measured, deliberate. Not running. Whoever it is knows you have to come down eventually."
       }

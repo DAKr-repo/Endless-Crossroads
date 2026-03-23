@@ -23,6 +23,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Shinovar lies beyond the Misted Mountains -- a land of grass and soil where the highstorms arrive as gentle rains, stripped of their fury by the mountain barrier. To Rosharan eyes, this place is alien: plants that do not retract, animals without carapace, and soil that yields to footsteps instead of scraping like stone.",
+                "read_aloud": "The mountain pass opens onto a landscape that defies everything you know. Green things grow from the ground and do not pull away when you reach toward them. The earth itself gives beneath your boots -- soft, dark, yielding. Rain falls gently here, without fury, without crem. The wrongness of it settles in your stomach like vertigo.",
                 "npcs": [
                     {"name": "Border Warden Nin-son-God", "role": "guard", "dialogue": "Beyond these mountains, the world obeys different laws. The Shin do not welcome outsiders. They tolerate them. There is a distinction."}
                 ],
@@ -45,6 +46,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Stone Shambles -- ruins that predate Shin civilization, built from a stone that resists crem buildup and weathers differently from anything found naturally on Roshar. The locals will not approach. They say the stones remember, and that remembering stones are never kind.",
+                "read_aloud": "The ruins stand clean where everything else on Roshar wears a skin of crem. Their stone is wrong -- too smooth, too dark, untouched by the millennia that have ground mountains to nubs. The air between the pillars hums at a frequency just below hearing, and the grass around the perimeter grows in a perfect circle, as though even the soil knows not to approach too closely.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Ancient Construct (Dormant)", "cr": "3"}
@@ -69,6 +71,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Reshi Isles float on the backs of greatshells so vast they have become geography -- living islands that drift with the ocean currents. Settlements cling to the creatures' shells, their inhabitants scaling the living terrain with practiced ease. The sea between the islands churns with lesser greatshells and predatory fish.",
+                "read_aloud": "The island breathes. You feel it -- a slow, tidal rise and fall beneath your feet as the tai-na adjusts its bulk in the current. Trees grow from cracks in its shell, their roots threaded into living chitin. The settlement above tilts gently as the creature turns, and the sea around you churns white where smaller greatshells surface to feed in its wake.",
                 "npcs": [
                     {"name": "Reshi Trader Talik", "role": "merchant", "dialogue": "You want passage to the summit? You climb. There is no other way. The tai-na does not stop for passengers."}
                 ],

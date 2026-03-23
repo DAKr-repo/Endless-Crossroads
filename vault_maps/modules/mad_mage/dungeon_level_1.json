@@ -23,6 +23,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The passage from the landing chamber opens into a vaulted hall whose ceiling has partially collapsed, leaving rubble in piles that create natural chokepoints. Torchlight from the landing behind you fades within thirty feet, replaced by phosphorescent fungus that casts everything in sickly green. Boot prints in the dust lead in every direction -- dozens of parties have passed through here. Most of the tracks only go one way.",
+                "read_aloud": "The passage opens into a vaulted hall where the ceiling has partially collapsed, leaving mounds of rubble that narrow the path ahead. Phosphorescent fungus clings to the walls in pale green patches, casting a sickly light that makes shadows pool in every crevice. The dust on the floor is churned with boot prints heading in every direction. Scratching sounds echo from within the walls -- something small, and hungry, and very much aware that you have arrived.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Giant Rat", "cr": "1/8"},
@@ -52,6 +53,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "A cavern strung with colored lanterns and cluttered with makeshift stalls. Goblins hawk stolen goods, questionable food, and information of dubious reliability. A goblin in a top hat three sizes too large presides over the market from an overturned barrel, adjudicating disputes with a wooden gavel. The air smells of roasting mystery meat and goblin perfume, which is just regular perfume applied in punishing quantities.",
+                "read_aloud": "Colored lanterns strung on fraying rope transform this cavern into a chaotic underground bazaar. Makeshift stalls of scrap wood and salvaged doors crowd the floor, and small green figures hawk their wares in shrill, overlapping voices. The air is thick with the smell of roasting meat of uncertain origin and perfume applied in quantities that could fell an owlbear. Atop an overturned barrel at the market's center, a figure in an enormous top hat bangs a wooden gavel and shrieks for order.",
                 "npcs": [
                     {
                         "name": "Yek the Tall",
@@ -85,6 +87,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "A den of stinking hides and splintered furniture. Bugbears sleep in piles like dogs, their snores shaking dust from the ceiling. The walls are decorated with trophies -- adventurer helmets, mostly, arranged by size. A cook fire in the center burns with green-tinged flame, and whatever is in the pot has been simmering long enough to dissolve bone.",
+                "read_aloud": "The stench hits you before you see the room -- rancid fur and something simmering that you do not want identified. Beyond the doorway, piles of stinking hides and broken furniture fill a low-ceilinged chamber. A cook fire burns in the center with a greenish tinge, and a blackened pot bubbles thickly over it. The walls are lined with helmets arranged by size like grim trophies, each one dented, some still bearing dark stains. Massive shapes lie heaped together in the shadows, and the sound of deep, rumbling snores shakes dust from the ceiling.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Bugbear", "cr": "1"},
@@ -115,6 +118,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Three stone tables arranged in a U, their surfaces stained with embalming fluid and old blood. The walls are lined with niches, each containing a wrapped corpse -- some ancient, some alarmingly fresh. A robed figure works by candlelight, carefully extracting teeth from a skull and dropping them into a leather pouch. The figure does not look up as you enter. 'Customers or merchandise?' it asks. 'I deal in both.'",
+                "read_aloud": "Three stone tables stand in a U-shape, their surfaces stained dark with fluids you would rather not identify. The walls are honeycombed with niches, each holding a wrapped bundle roughly the size and shape of a body -- some yellowed with age, others disturbingly fresh. Candles drip wax onto every surface, and a robed figure hunches over the nearest table, working with small, precise tools. The air reeks of preserving chemicals and old copper. The figure does not look up as you enter.",
                 "npcs": [
                     {
                         "name": "Midna Tauberth",
@@ -146,6 +150,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "A workshop sealed behind a door engraved with Halaster's sigil. Inside, half-completed magical experiments litter the benches -- a pair of boots that hover an inch off the ground, a mirror that shows yesterday instead of today, and a music box that plays a song no one has composed yet. Arcane formulae cover every surface, written in a hand that grows more erratic and illegible toward the edges, as if the writer's sanity was leaking out through the pen.",
+                "read_aloud": "Beyond the sigil-marked door, a cluttered workshop stretches into shadow. Workbenches sag under half-finished contraptions -- a pair of boots hovering an inch above the table, a tarnished mirror reflecting a room that is subtly wrong, a music box playing a melody you have never heard and cannot quite remember once it stops. Arcane formulae cover the walls, the ceiling, even the floor, scrawled in handwriting that starts precise and degenerates into frantic, looping scribbles at the edges. The air hums with residual magic, and small objects on the benches twitch at your approach.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Animated Armor", "cr": "1"},
@@ -178,6 +183,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "A fortified position built from salvaged dungeon furniture -- doors used as walls, tables as parapets, and chair legs sharpened into stakes. The Xanathar Guild has claimed this junction as a toll point, and they enforce it with crossbows and a willingness to use them. A painted sign reads: 'TOLL: 10 GP PER HEAD. HEADS ACCEPTED AS ALTERNATE PAYMENT.'",
+                "read_aloud": "The corridor ahead has been barricaded with salvaged dungeon furniture -- doors propped as walls, tables turned on their sides as parapets, chair legs sharpened into stakes jutting outward. Behind the barricade, crossbow bolts glint in the torchlight, aimed at you. A crudely painted sign hangs above the fortification: TOLL: 10 GP PER HEAD. HEADS ACCEPTED AS ALTERNATE PAYMENT. A voice calls out from behind the barricade, thick with menace and professional indifference.",
                 "npcs": [
                     {
                         "name": "Grum'shar",
@@ -215,6 +221,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "A natural cavern where rats have achieved civilization, or at least its crude beginnings. Crude tunnels honeycomb the walls, each barely wide enough for a child. The rats here are enormous -- the size of terriers -- and they watch with an intelligence that is deeply unsettling. A rat king sits atop a mound of refuse, its multiple tails knotted together, its multiple heads tracking different targets.",
+                "read_aloud": "The passage opens into a natural cavern where the walls are honeycombed with narrow tunnels, each barely wide enough for a child to crawl through. The floor is thick with refuse and gnawed bones, and the smell is staggering -- ammonia and rot and something musky that coats the back of your throat. Enormous rats the size of terriers perch on ledges and refuse piles, watching you with a glittering, unsettling intelligence. They do not flee. They study. Atop the largest mound of refuse, something larger sits -- a knotted mass of tails and too many heads, each one tracking a different member of your party.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Swarm of Rats", "cr": "1/4"},
@@ -247,6 +254,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "A wide staircase descends into a chamber dominated by a stone arch etched with Halaster's rune. The arch is the gate to Level 2 -- one-way until you find the key rune on the other side. Before the arch, a bugbear chieftain has established his throne: a wooden chair stolen from the Yawning Portal, still bearing Durnan's brand on its back. The chieftain wears a crown of rat skulls and speaks in a voice like grinding stone.",
+                "read_aloud": "A wide stone staircase descends into a vaulted chamber where a great arch of carved stone stands against the far wall, its surface etched with glowing runes that pulse like a slow heartbeat. Before the arch, a crude throne has been assembled -- a wooden tavern chair, battered and scarred but bearing the faded brand of a well-known establishment on the surface. A massive figure sits upon it, wearing a crown fashioned from small skulls, watching your descent with the patient malice of something that has been expecting you. The runes on the arch behind it pulse brighter as you draw near.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Bugbear Chief", "cr": "3"},

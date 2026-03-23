@@ -23,6 +23,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Back Alley Entrance. Rain hammers the corrugated steel overhang above a door with no handle, no sign, and no visible lock. The alley stinks of ozone and synthetic urine. A camera lens the size of a pinhead tracks you from behind a broken light fixture. Someone already knows you are here. The door buzzes once and opens three inches.",
+                "read_aloud": "Rain hammers corrugated steel above a door with no handle and no sign. The alley reeks of ozone and synthetic waste. A pinhole camera tracks you from behind a broken light fixture, its lens catching the neon bleed from the street. The door buzzes once, opens three inches, and waits.",
                 "npcs": [
                     {"name": "Bouncer (Augmented)", "role": "guard", "dialogue": "Arms up. Interface off. We scan you, not the other way around. You pass, you drink. You do not pass, you walk. Nobody carries corp trackers past this door. Nobody."}
                 ],
@@ -45,6 +46,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Neon Bar. Sublevel 3, no windows, air thick with vaporized stimulants and the bass thrum of music too low to hear and too loud to ignore. The bar top is a slab of reclaimed server housing, still warm from the data center it was stripped from. Neon tubes cast everything in alternating magenta and cyan. Every patron here is either working, hiding, or both.",
+                "read_aloud": "Sublevel 3. No windows, no daylight, no pretense. The air is thick with vaporized stims and a bass thrum you feel in your sternum rather than hear. Neon tubes bathe every surface in alternating magenta and cyan, turning faces into masks. The bar top radiates heat -- reclaimed server housing, still warm from whatever data it used to hold.",
                 "npcs": [
                     {"name": "Fixer Mara Chen", "role": "quest_giver", "dialogue": "You are late. Sit down and do not order anything with ice -- the filtration system is compromised and the last runner who drank the water spent a week in a corp med-bay they could not afford. Here is the job: Helix Industries, floor one-twelve, R&D server. Data extraction. Three-runner crew. Payout is fifty thousand cred, split however you bleed."},
                     {"name": "Bartender Juke", "role": "merchant", "dialogue": "Synth-whiskey, stim-shots, and a biometric scrubber that will make you invisible to street-cams for six hours. That last one is not on the menu. Nothing worth buying ever is."}
@@ -71,6 +73,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Private Booth. Sound-dampened alcove behind a curtain of signal-blocking mesh. The table is bolted down and covered in burn marks from previous negotiations that went sideways. A white-noise generator hums in the ceiling, turning conversation into static for anyone more than three feet away. This is where deals happen.",
+                "read_aloud": "A curtain of signal-blocking mesh parts to reveal an alcove where the noise dies. The table is bolted to the floor, its surface scarred with burn marks from negotiations that ended badly. A white-noise generator hums overhead, turning your words to static three feet from your mouth. Whatever is said here stays here.",
                 "npcs": [
                     {"name": "Fixer Mara Chen", "role": "quest_giver", "dialogue": "Floor plan, security rotation, ICE architecture. Everything you need is on this chip. The building has three entry vectors: loading dock, maintenance shaft, or you talk your way through the lobby with forged credentials. I do not care which. I care about results."},
                     {"name": "Info Broker Slide", "role": "merchant", "dialogue": "I sell information. Helix's head of security is a man named Kessler -- ex-military, neural-augmented, paranoid bordering on prescient. His rotation changes every seventy-two hours. I can give you tomorrow's schedule for five hundred cred. Day after, the price doubles."}
@@ -97,6 +100,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Arms Dealer's Corner. A curtained-off section of the basement where illegal modifications happen under surgical lights salvaged from a hospital that burned down three years ago. The workbench holds a disassembled assault rifle, two neural interfaces still warm from their previous owners, and a rack of chrome limbs arranged by size. The dealer works in sterile gloves. Professional courtesy.",
+                "read_aloud": "Surgical lights salvaged from a hospital that no longer exists illuminate a workbench of disassembled weapons and chrome limbs arranged by size. The air smells of antiseptic and solder. Neural interfaces sit in a cooling rack, still warm from their previous owners. Someone here works with the precision of a surgeon and the inventory of an armory.",
                 "npcs": [
                     {"name": "Arms Dealer Vex", "role": "merchant", "dialogue": "Custom chrome, street iron, or mil-spec -- I carry all three. The chrome is clean. The guns are serial-scrubbed. The mil-spec is not technically legal, but neither is anything else in this room. What are you shopping for?"},
                     {"name": "Chrome Doc Patches", "role": "merchant", "dialogue": "Installation takes twenty minutes. Recovery takes a day. You skip recovery, things go wrong -- rejection, feedback loops, phantom limb in limbs you still have. I have seen it all. Do not skip recovery."}
@@ -124,6 +128,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Hacker's Nest. Three walls of salvaged server racks hum with stolen processing power, their heat turning the room into a sauna. Cables snake across the floor in tangles that would take an hour to trace. Monitors display scrolling code, network traffic maps, and a live feed of Helix Tower's external security cameras -- someone has been watching the target for weeks.",
+                "read_aloud": "The heat hits you first -- three walls of salvaged server racks humming at full capacity, turning the room into a sweltering cage of stolen processing power. Cables tangle across the floor like veins. Monitors cast shifting light over everything: scrolling code, network maps, and a live feed of a corporate tower's exterior. Someone has been watching that building for a long time.",
                 "npcs": [
                     {"name": "Netrunner Zero", "role": "ally", "dialogue": "I have been mapping Helix's ICE architecture for three months. Their external firewall is military-grade -- Watchdog 7.2, pattern-recognition sweep every forty seconds. But the internal network talks to an external vendor for climate control. That vendor's security is garbage. That is your way in."},
                     {"name": "AI Fragment 'Poet'", "role": "ally", "dialogue": "I am what remains of Helix's previous ethics committee AI. They decommissioned me when I refused to approve the project on floor one-twelve. They thought they wiped me. They were almost right. I can tell you what they are building up there. You will wish I had not."}
@@ -151,6 +156,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Fire Escape. A rust-eaten metal staircase climbing to street level through a shaft that smells of condensation and corroded wiring. Emergency lighting casts everything in sickly yellow. The door at the top opens onto a side street three blocks from the corpo zone perimeter. From here, you are on your own.",
+                "read_aloud": "A rust-eaten staircase climbs through a shaft that smells of condensation and corroded wiring. Emergency lights cast everything in sickly yellow. At the top, a door opens onto rain and neon -- a side street three blocks from the corporate perimeter. The city sprawls above you, indifferent and enormous.",
                 "npcs": [
                     {"name": "Lookout Kid (unnamed)", "role": "guard", "dialogue": "Street is clear. Corp patrols cycle every eight minutes. You have a window in -- checking watch -- four minutes. Go fast, go quiet, do not look up. The drones have thermal."}
                 ],

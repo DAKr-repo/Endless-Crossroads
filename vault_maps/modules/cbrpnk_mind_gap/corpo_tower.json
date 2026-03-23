@@ -23,6 +23,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Loading Dock. Sublevel 2, beneath Helix Tower. Autonomous cargo haulers cycle through in six-minute intervals, their navigation lasers painting red grids on concrete walls stained with hydraulic fluid. The air reeks of machine oil and ozone. Security here is light -- camera coverage with blind spots every thirty seconds, one human guard on a twelve-hour shift who stopped caring around hour nine.",
+                "read_aloud": "Sublevel 2. Autonomous cargo haulers cycle through in precise intervals, their navigation lasers painting red grids across concrete stained with hydraulic fluid. The air reeks of machine oil and ozone. Overhead, a camera pans in slow arcs, its blind spot a predictable thirty-second window of darkness.",
                 "npcs": [
                     {"name": "Dock Worker Kev", "role": "neutral", "dialogue": "You with the midnight delivery? Badge says maintenance. Sure. Maintenance. Elevator's through the cargo bay, second left. Do not use the freight lift -- it logs weight discrepancies and you do not look like a crate of server components."}
                 ],
@@ -48,6 +49,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Lobby. Sixty-foot ceiling of smart-glass that adjusts its tint with the weather. The floor is polished composite that reflects everything, including the three security stations and the biometric gates between you and the elevator bank. Corporate employees move through the space in tailored suits that cost more than your apartment's annual rent. A holographic receptionist smiles with manufactured warmth.",
+                "read_aloud": "Sixty feet of smart-glass ceiling stretches above a floor so polished it mirrors everything -- the biometric gates, the security stations, the employees in suits that cost more than your annual rent. A holographic receptionist smiles with warmth engineered to the decimal point. The air is climate-controlled to a degree that feels like being inside a machine.",
                 "npcs": [
                     {"name": "Holographic Receptionist ARIA", "role": "guard", "dialogue": "Welcome to Helix Industries. Please present your corporate identification for verification. If you are a visitor, please register at the security desk. Unauthorized presence in the lobby will be logged and reported. Have a productive day."},
                     {"name": "Security Officer Brand", "role": "guard", "dialogue": "ID. Now. No, the maintenance badge does not clear you past the lobby. You need a floor-specific access token or an escort from an authorized employee. Which do you have?"}
@@ -74,6 +76,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Server Room. Floor forty-seven, climate-controlled to exactly 18 degrees Celsius. Rows of black monolith server racks stretch into the distance, their status LEDs blinking in patterns that resemble breathing. The hum of cooling systems drowns out footsteps. This is where Helix's external network lives -- the vendor portal Zero identified. The climate control handshake happens here.",
+                "read_aloud": "Floor forty-seven. The cold hits like walking into a freezer -- eighteen degrees Celsius, exactly, maintained by cooling systems whose hum drowns out your footsteps. Rows of black server racks stretch into the distance, their status LEDs blinking in slow patterns that look disturbingly like breathing. The amber glow of an unpatched vendor terminal blinks in the third row.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Maintenance Drone (non-combat)", "cr": "1"}
@@ -99,6 +102,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "R&D Lab -- Floor 112. White walls, white floor, white light from panels that eliminate shadows entirely. Workstations hold half-assembled neural interfaces of a design you have never seen -- not commercial, not military, something else. A central containment unit holds a black sphere suspended in magnetic fields. It pulses. The sphere is not technology. It is thinking.",
+                "read_aloud": "Floor 112. White walls, white floor, white light that eliminates every shadow. Workstations hold half-assembled neural interfaces of a design you have never seen -- not commercial, not military, something else entirely. At the room's center, a containment unit holds a black sphere suspended in magnetic fields. It pulses. You cannot shake the feeling that it knows you are here.",
                 "npcs": [
                     {"name": "Lead Researcher Dr. Yun", "role": "neutral", "dialogue": "You should not be here. Nobody should be here. What we found in the deep data -- it is not a program. It is not an AI in any sense the taxonomies allow. It grew. In the network. We only noticed because it started dreaming, and its dreams crashed three financial exchanges simultaneously."}
                 ],
@@ -125,6 +129,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Executive Suite. Floor 130, above the cloud line. The office belongs to Helix CEO Elara Voss, and it is designed to intimidate: floor-to-ceiling windows overlooking the city, a desk carved from a single piece of synthetic obsidian, and artwork that cost more than the building's lower forty floors combined. The desk terminal is active. Someone left in a hurry.",
+                "read_aloud": "Floor 130 -- above the cloud line. Through floor-to-ceiling windows, the city sprawls below like a circuit board, its lights blurred by the altitude. A desk carved from a single slab of synthetic obsidian dominates the room, its terminal still active, still glowing. Someone left in a hurry. The chair is still warm.",
                 "npcs": [
                     {"name": "AI Assistant CLIO (desk terminal)", "role": "neutral", "dialogue": "CEO Voss departed seventeen minutes ago via rooftop extraction. Her last action was to authorize Protocol Severin -- full data purge of floors 110 through 115. Purge begins in -- recalculating -- forty-three minutes. I am not permitted to explain what Protocol Severin protects. I am permitted to tell you that you should leave."}
                 ],
@@ -151,6 +156,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Security Hub. Floor 100, the nerve center of Helix Tower's defense grid. Wall-to-wall monitoring stations, holographic building schematics, and the physical housing for the tower's ICE systems -- server banks cooled by liquid nitrogen, their housings stamped with military classification markers. Security Chief Kessler stands in the center of the room, chrome arms folded, watching your approach on six screens simultaneously.",
+                "read_aloud": "Floor 100. Wall-to-wall monitoring stations cast a cold blue glow across holographic building schematics. Server banks cooled by liquid nitrogen exhale frost into the air, their housings stamped with military classification markers. At the room's center, a figure stands with chrome arms folded, watching your approach on six screens at once. He has been expecting you.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Security Chief Kessler (cyber-augmented)", "cr": "5"},
@@ -180,6 +186,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Rooftop Helipad. Open sky for the first time in the run. Wind shears across the platform at altitude, carrying rain that stings like needles. A corporate VTOL sits on the pad, engines warm, navigation locked to an offshore black site. The city sprawls below -- a million lights, a million lives, none of them aware of what Helix has been growing in its server banks.",
+                "read_aloud": "Open sky for the first time. Wind shears across the helipad at altitude, carrying rain that stings like needles against exposed skin. A corporate VTOL sits on the landing pad, engines warm, rotors beginning to turn. Below, the city stretches to every horizon -- a million lights, a million lives, none of them looking up.",
                 "npcs": [
                     {"name": "Pilot (Corporate, nervous)", "role": "neutral", "dialogue": "I was told to wait for CEO Voss. You are not CEO Voss. I am not authorized to transport non-executive personnel. But I am also not authorized to be involved in whatever is happening inside this building. Get in. We are leaving."}
                 ],
@@ -204,6 +211,7 @@
             "is_secret": true,
             "content_hints": {
                 "description": "The Ventilation Shaft. A maintenance crawlspace that bypasses the lobby entirely, threading through the building's climate infrastructure like a vein through muscle. The shaft is barely wide enough for one person, coffin-dark except for status lights on air handlers that blink like animal eyes. It exits on floor forty, one level below the server room. Maintenance crews use it quarterly. Nobody else knows it exists.",
+                "read_aloud": "The shaft is barely wide enough for one person, coffin-dark except for status lights on air handlers that blink like animal eyes in the walls. The building's mechanical heartbeat reverberates through the metal -- air handlers cycling, elevators moving, the hum of data flowing through conduit above your head. The crawlspace smells of dust and warm circuitry.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [

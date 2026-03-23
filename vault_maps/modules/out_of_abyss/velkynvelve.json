@@ -23,6 +23,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Iron bars crusted with decades of dried blood partition this hanging stalactite cell. The floor is damp silk -- actual webbing, layered so thick it has calcified. Through the bars you can see the chasm drop away into roaring blackness, and across the void, other stalactite-cages hold your fellow prisoners.",
+                "read_aloud": "Iron bars crusted with old blood partition the cell around you, and the floor gives slightly underfoot -- layers of calcified spider silk, damp and faintly sticky. Through the bars, the chasm drops away into roaring blackness. Across the void, other stalactite cages hang like terrible fruit, and the shapes inside them stir. Your wrists ache. Your gear is gone. The only light is a faint purple pulse in the stone itself, slow as a sleeping heartbeat.",
                 "npcs": [
                     {"name": "Prince Derendil", "role": "fellow_prisoner", "dialogue": "I am not this... beast. I am Prince Derendil of the elven kingdom of Nelrindenvane. A curse -- the witch Nezznar laid this quaggoth form upon me."},
                     {"name": "Stool", "role": "fellow_prisoner", "dialogue": "*The small myconid extends rapport spores. Images of a peaceful grove, of circles of mushroom-folk swaying in silent communion, flood your mind.*"},
@@ -52,6 +53,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The guard post occupies a natural shelf of stone bridging two stalactites. Drow warriors lounge on bedrolls of spider-silk, their hand crossbows within easy reach. A zurkhwood table holds the remnants of a meal -- rothe cheese and blind cave fish -- and a half-finished game of sava.",
+                "read_aloud": "A natural shelf of stone bridges two stalactites ahead, forming a platform open to the chasm on both sides. Bedrolls of dark silk are spread across the stone, and a zurkhwood table holds the picked-over remains of a meal and the scattered pieces of some board game. Crossbows hang from hooks within arm's reach of every sleeping position. The air smells of cave fish and weapon oil.",
                 "npcs": [
                     {"name": "Jorlan Duskryn", "role": "guard", "dialogue": "Ilvara burned half my face with acid for questioning her judgment. If you find a way out... I might not raise the alarm as quickly as I should."}
                 ],
@@ -81,6 +83,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "A larger pen carved from living rock, where quaggoth slaves and surplus prisoners are kept. The stench of unwashed fur and despair is overwhelming. Crude claw-marks on the walls count days in sets of eight -- the drow week. Some tallies reach into the hundreds.",
+                "read_aloud": "The stench hits you before you see the chamber -- unwashed fur, stale sweat, and the sour reek of despair pressed into close quarters. This pen is carved from living rock, larger than your cell but no less wretched. Crude claw-marks score the walls in groups of eight, tallying days. Some counts reach into the hundreds. Matted shapes huddle in the corners, and feral eyes catch what little light filters in.",
                 "npcs": [
                     {"name": "Ront", "role": "fellow_prisoner", "dialogue": "Ront not afraid. Ront kill drow if Ront had axe. You get Ront axe, Ront smash everything."},
                     {"name": "Eldeth Feldrun", "role": "fellow_prisoner", "dialogue": "I'm a daughter of Gauntlgrym. My people will come for me -- but I'd rather not wait. You have the look of someone who makes their own luck."}
@@ -107,6 +110,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Ilvara's quarters occupy the highest stalactite, connected by silk bridges that sway over the abyss. The chamber is draped in purple silk embroidered with spiders. A shrine to Lolth dominates one wall -- a black stone spider whose ruby eyes seem to follow movement. The priestess's tentacle rod hangs from a rack beside her armor.",
+                "read_aloud": "Silk bridges sway over the abyss as you cross toward the highest stalactite. Inside, purple silk drapes every surface, embroidered with spider motifs in silver thread that catches the faerzress light. A shrine dominates one wall -- a black stone spider the size of a hound, its ruby eyes gleaming with a light that seems to track your movement. The chamber smells of incense and something venomous, and the silk beneath your feet is warm, as though something alive presses up from below.",
                 "npcs": [
                     {"name": "Ilvara Mizzrym", "role": "antagonist", "dialogue": "You think darkness is your ally? You were merely born in it. I was chosen by it. Lolth whispers your fate to me, and it is... unpleasant."},
                     {"name": "Asha Vandree", "role": "lieutenant", "dialogue": "Mistress Ilvara's methods are... thorough. I would suggest cooperation. The alternative involves spiders, and not the small kind."}
@@ -137,6 +141,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The armory is carved into the back of a stalactite, its entrance sealed with a zurkhwood door reinforced with adamantine bands. Inside, racks of hand crossbows and shortswords line the walls, alongside confiscated prisoner equipment bundled in spider-silk cocoons labeled with drow script.",
+                "read_aloud": "A heavy zurkhwood door, banded with dark metal, seals the entrance to this chamber carved deep into the stalactite's core. Beyond it, racks of crossbows and blades line the curved walls in orderly rows. Pale cocoons of spider silk hang from hooks along the far wall, each one labeled in flowing drow script -- bundles roughly the size and shape of someone's belongings. The air is dry and smells of oiled steel.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Giant Spider (guard)", "cr": "1"}
@@ -165,6 +170,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The waterfall plunges from a crack in the cavern ceiling, crashing onto a ledge slick with spray and phosphorescent algae. The roar is deafening -- perfect cover for whispered escape plans. A narrow path descends along the cliff face, switchbacking into the darkness below.",
+                "read_aloud": "Water plunges from a crack high in the ceiling and crashes onto the ledge before you, throwing up a mist that coats everything in a slick film of phosphorescent green. The roar swallows all other sound -- you can barely hear your own breathing. A narrow path, barely a foot wide, switchbacks down the cliff face beside the falls, descending into a darkness so complete it seems solid.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [
@@ -187,6 +193,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The passage narrows to a crack barely wide enough for a human to squeeze through. Beyond it, the Underdark opens into a vastness your eyes cannot parse -- no walls, no ceiling, just the void and the distant sound of dripping water echoing from every direction. Freedom, such as it is.",
+                "read_aloud": "The passage squeezes tight -- stone pressing against your chest, your back, forcing you sideways through a crack that smells of damp earth and old air. Then it opens, and the world falls away in every direction. No walls. No ceiling. Just endless dark, and the sound of dripping water echoing from so far away it could be miles or it could be inches. The outpost is behind you. Ahead is the Underdark, vast and unknowable and free.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [],

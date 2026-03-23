@@ -23,6 +23,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Island of Solstice rises from the Sea of Moving Ice like a tooth of black basalt sheathed in frost a foot thick. No natural thing grows here. The beach is a curve of ice-covered gravel that crunches underfoot like crushed bone, and the sky above holds an aurora so intense it casts moving shadows. The air is not merely cold -- it is the absence of warmth made manifest, a negation of comfort so total it feels like malice.",
+                "read_aloud": "The island is a fang of black rock sheathed in frost, rising from grinding ice floes into a sky ablaze with aurora. Nothing grows here -- no lichen, no scrub, nothing. The beach crunches underfoot like crushed bone, and each breath sears your lungs with a cold so absolute it feels intentional, as though the air itself resents your warmth. The aurora overhead casts moving shadows across the rock in shades of green and violet, and in those shifting patterns you could almost swear you see a face.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Coldlight Walker", "cr": "5"},
@@ -46,6 +47,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Frost Shrine is an open-air structure of ice pillars supporting nothing -- a temple without a roof, open to the aurora above. At its center, a basin of black ice holds water that remains liquid despite the temperature, its surface reflecting not the sky but an endless, starless void. Kneeling before the basin are the frozen forms of Auril's most devoted worshippers, their faces locked in expressions of rapturous agony.",
+                "read_aloud": "Pillars of ice rise from the rock in a circle, supporting nothing -- a roofless temple open to the blazing aurora above. At the center, a basin of black ice holds water that should be frozen but is not, its dark surface perfectly still. Kneeling before the basin in a ring are frozen figures -- worshippers caught mid-prayer, their faces locked in expressions that are equal parts ecstasy and agony, as though the last thing they felt was too much of both to survive.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Frost Druid (Auril's Chosen)", "cr": "5"}
@@ -71,6 +73,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Test of Cruelty is a chamber of ice where the walls display scenes from the party's past -- moments of weakness, betrayal, and failure, rendered in exquisite frozen detail. Each scene is a memory extracted from a party member's mind and displayed for all to see. The room demands that each person choose another's worst memory and shatter it, destroying the memory forever. The price of passage is inflicting a small cruelty on a companion.",
+                "read_aloud": "The chamber walls are smooth ice, and as you enter, images bloom across their surfaces -- scenes rendered in frozen, crystalline detail. You recognize them. Your worst moments. Failures you have never spoken aloud, betrayals you thought no one saw, weakness you buried deep. They are all here, displayed for everyone to see, each one exquisite and merciless in its clarity. The room hums with a low vibration, and you understand, without being told, that it is waiting for you to do something unforgivable.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [],
@@ -91,6 +94,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Test of Endurance is a corridor of wind. That's all it is -- a straight passage a hundred feet long with a gale blowing through it at hurricane force, carrying shards of ice like razors. The wind never stops. The cold is beyond description. Every step forward requires an act of will that borders on the irrational, because every nerve in your body is screaming that continuing means death.",
+                "read_aloud": "The corridor ahead is straight and featureless -- a hundred feet of ice-walled passage, nothing more. Then the wind hits you. It comes from the far end like a living thing, a hurricane-force gale carrying shards of ice that cut exposed skin on contact. The cold behind it is beyond anything you have felt -- a cold that does not numb but burns, that makes every forward step an act of will against the screaming certainty that the next one will kill you.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [],
@@ -111,6 +115,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Test of Isolation separates the party. Each character finds themselves alone in a featureless white void -- no floor, no ceiling, no walls, no sound. The void is not empty; it is full of nothing, a positive absence that presses on the mind like deep water. Time passes differently here. Minutes feel like days. The test is simple: endure the solitude without losing yourself. The voice in the silence that offers companionship is not your friend.",
+                "read_aloud": "The world vanishes. One moment your companions are beside you; the next, there is nothing -- no floor, no ceiling, no walls, no sound. You stand in a featureless white void that stretches in every direction without end. The silence is not empty. It presses against your mind like deep water, and time stretches with it -- seconds feel like hours, and somewhere in the vast white nothing, a voice that sounds almost familiar begins to speak your name.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Psychic Echo (manifests as a trusted NPC)", "cr": "variable"}
@@ -133,6 +138,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Inner Sanctum is a dome of perfect ice through which the aurora blazes in curtains of green and violet. The floor is a frozen lake -- transparent, revealing the ocean hundreds of feet below, where vast shapes move in the abyssal dark. The sanctum is beautiful in the way a glacier calving is beautiful: terrible, indifferent, and entirely unconcerned with whether you survive the viewing.",
+                "read_aloud": "The dome above you is pure ice, and through it the aurora blazes in curtains of green and violet so vivid they stain your vision. The floor beneath your feet is transparent -- a frozen lake, and through it you can see the ocean hundreds of feet below, black and vast. Shapes move in that darkness, slow and enormous, their outlines suggested by bioluminescent flickers. The beauty of this place is the beauty of an avalanche -- immense, indifferent, and utterly unconcerned with your survival.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [
@@ -155,6 +161,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Auril's Throne is carved from a single iceberg, raised above a frozen lake on a column of compressed snow. The Frostmaiden sits upon it in her first form -- a giantess of living ice, her features beautiful and utterly devoid of warmth, her eyes twin stars of cold blue light. She does not speak. She does not need to. The temperature in this chamber is absolute zero in the way that the sun is warm: theoretically, categorically, and without regard for your survival.",
+                "read_aloud": "The throne rises from a frozen lake on a column of compressed snow, carved from a single iceberg into a seat fit for a god. The figure upon it is enormous -- a giantess of living ice, her features beautiful in the way a blade is beautiful, all edges and cold perfection. Her eyes are twin stars of blue-white light, and they find you the moment you enter. She does not speak. She does not move. The cold in this chamber is beyond measurement, beyond endurance -- it is the cold at the end of all things, patient and absolute.",
                 "npcs": [
                     {"name": "Auril the Frostmaiden", "role": "final_boss", "dialogue": "*She does not speak with words. The cold speaks for her. A vision slams into your mind: Icewind Dale as she wishes it -- frozen, silent, preserved, perfect. No suffering because no life. No death because nothing lives to die. Her paradise is a world of ice, and she will not be denied it.*"}
                 ],

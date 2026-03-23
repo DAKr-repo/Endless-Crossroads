@@ -56,6 +56,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "Crane's back room. A cot, a hotplate, a window overlooking the street below. Mick Aguilar lowers the revolver. He does not holster it. He leans against the wall, jaw working, eyes red. He is a man holding himself together with anger because the alternative is grief.",
+        "read_aloud": "A cot, a hotplate, a window smeared with rain. The back room of a dead man's office. Mick Aguilar lowers the revolver but does not holster it. He leans against the wall, jaw working, eyes red-rimmed. When he speaks, his voice is the voice of a man holding himself together with anger because the alternative is grief.",
         "npcs": [
           {
             "name": "Mick Aguilar",
@@ -85,6 +86,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "The stairwell down to the street. Through the landing window, you can see the OUP officers below, collar turned up against the rain. Beyond them, the wet rooftops of South Soffit stretch toward the river. Somewhere in that maze of slate and brick, the Eden Theater waits, dark and patient. Mick checks the cylinder of his revolver. Six rounds. He snaps it shut.",
+        "read_aloud": "Through the landing window, rain streaks the glass and the wet rooftops of South Soffit stretch toward the river in a maze of slate and brick. Somewhere in that maze, dark and patient, the Eden Theater waits. Behind you, the click of a revolver cylinder snapping shut. Six rounds. The night air seeping through the stairwell smells of wet stone and something sweeter -- something wrong.",
         "npcs": [],
         "enemies": [],
         "services": [],

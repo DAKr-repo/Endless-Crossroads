@@ -23,6 +23,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The main gate of Blingdenstone is a marvel of gnomish engineering -- three concentric doors of stone and iron that rotate on hidden mechanisms, each requiring a different combination of pressure plates. The svirfneblin who rebuilt this gate did so with siege in mind. Arrow slits line the approach tunnel, and the faint hum of an alarm ward vibrates in the stone underfoot.",
+                "read_aloud": "Three concentric doors of stone and iron bar the passage ahead, rotating on hidden mechanisms with the soft grind of precision engineering. Arrow slits line the tunnel walls on both sides, and beneath your feet, the stone hums with a faint vibration -- a ward of some kind, alive and watchful. This gate was built by people who learned the hard way what comes out of the dark. Every surface speaks of siege-craft, of a community that rebuilt itself around the singular principle that nothing uninvited gets through.",
                 "npcs": [
                     {"name": "Sergeant Battlehammer Pingtu", "role": "guard", "dialogue": "Halt! State your business in Blingdenstone. We've had enough trouble from the deep places without importing more. If you're traders, show your wares. If you're refugees... *heavy sigh* ...join the line."}
                 ],
@@ -45,6 +46,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Trader's Grotto is a natural geode chamber the svirfneblin have converted into a marketplace. Amethyst crystals jut from the walls, repurposed as display hooks and lantern mounts. The merchants here are quiet, efficient folk who weigh gems on scales precise enough to measure a fairy's sigh, and they quote prices in a dialect that makes Common sound like it has too many vowels.",
+                "read_aloud": "The passage opens into a natural geode -- amethyst crystals jut from every wall, repurposed as display hooks and lantern mounts that scatter purple light across the chamber. Small, gray-skinned merchants work their stalls with quiet efficiency, weighing gems on scales so precise you can hear the faintest clink of stone on metal. The air is cool and dry, carrying the clean mineral scent of deep stone, and the murmur of commerce is hushed, as though the merchants consider loud voices a form of bad taste.",
                 "npcs": [
                     {"name": "Kazook Pickshine", "role": "merchant", "dialogue": "Gems I buy, gems I sell, questions I answer -- for a price. You want to know about the Rockblight? That'll cost you a sapphire, minimum. The puddings down there ate my brother's shop. I take that personally."},
                     {"name": "Chipgrin Goldwhisker", "role": "merchant", "dialogue": "Goldwhisker clan has the finest provisions in Blingdenstone! Dried cave fish, mushroom flour, zurkhwood-smoked rothe -- all at very reasonable prices. We also buy curiosities. Anything strange from the deep tunnels, yes? We pay well for strange."}
@@ -72,6 +74,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The temple to Callarduran Smoothhands is carved from a single massive stalagmite, hollowed out and polished until the walls glow with inner fire. The altar is a flat-topped ruby the size of a dining table. Deep gnome priests move through the space in meditative silence, their bare feet making no sound on the mirror-smooth floor. The air tastes of clean stone and ancient devotion.",
+                "read_aloud": "The temple is carved from a single massive stalagmite, hollowed and polished until the walls glow with a warm inner fire. At the center, an altar of deep red crystal -- flat-topped and larger than a dining table -- catches the light and holds it, pulsing faintly. Small, robed figures move through the space in meditative silence, their bare feet soundless on the mirror-smooth floor. The air tastes of clean stone and carries a stillness so deep it feels sacred, as though even your breathing is an intrusion.",
                 "npcs": [
                     {"name": "Glyphic Shroomlight", "role": "priest", "dialogue": "Callarduran teaches us that the deep places are not to be feared, but understood. The stone protects those who respect it. But something has disturbed the stone's dreams -- a wrongness from the Rockblight that even our wards cannot fully contain. Will you help us seal it?"}
                 ],
@@ -97,6 +100,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Rockblight is Blingdenstone's open wound -- a section of the settlement that was never reclaimed after the drow invasion a century ago. Collapsed tunnels and shattered homes create a maze of rubble, and the stone here sweats a gray slime that smells of acid. Puddings ooze between the ruins, and the faint sound of dissolving stone provides a constant, nerve-shredding backdrop.",
+                "read_aloud": "The settlement ends abruptly at a wall of rubble and ruin. Beyond it, collapsed tunnels and shattered homes form a maze of broken stone, and the walls sweat a gray slime that stinks of acid. The sound is what gets you -- a faint, constant hissing, like stone being dissolved grain by grain, coming from everywhere and nowhere. Dark shapes ooze between the rubble, slow and glistening. The ground here is pitted and scarred, eaten away by things that have no business being alive.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Black Pudding", "cr": "4"},
@@ -125,6 +129,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Goldwhisker Warrens are a tight maze of gnome-sized tunnels connecting dozens of small chambers. The resident wererats have made this their domain, though they maintain a thin veneer of legitimacy as 'salvage merchants.' The tunnels are lined with stolen goods, trinkets, and the bones of things that wandered in uninvited. Small eyes watch from every crack.",
+                "read_aloud": "The tunnels shrink to gnome-size, forcing you to stoop and squeeze through passages barely three feet high. Stolen goods and salvaged trinkets line every shelf and ledge, stacked with the compulsive tidiness of dedicated hoarders. Small eyes glitter from cracks in the walls, watching, counting, assessing. The air smells of old cheese, rodent musk, and the particular staleness of a place where things are hidden and never retrieved. You are very aware of how difficult it would be to draw a weapon in these close quarters.",
                 "npcs": [
                     {"name": "Chipgrin Goldwhisker", "role": "faction_leader", "dialogue": "You've found our humble home! Please, sit. Have some cheese. *His smile has too many teeth.* The Goldwhiskers are simple folk who happen to know every secret tunnel in Blingdenstone. That knowledge has value. What do you have to trade for it?"}
                 ],
@@ -155,6 +160,7 @@
             "is_secret": true,
             "content_hints": {
                 "description": "Behind a wall that radiates warmth to the touch, a hidden chamber houses Entemoch's Boon -- an earth elemental shrine predating the gnomish settlement by millennia. The floor is a mosaic of precious stones set in living rock that rearranges itself slowly, and a plinth of pure emerald holds a crown of interlocking stone rings that rotate perpetually, generating a low harmonic that resonates in the bones.",
+                "read_aloud": "The wall is warm to the touch, and beyond it, the hidden chamber pulses with a presence older than the settlement above. The floor is a mosaic of precious stones set in living rock -- and as you watch, the stones shift, rearranging themselves in patterns too slow to follow. At the chamber's heart, a plinth of pure emerald holds a crown of interlocking stone rings that rotate perpetually, generating a low harmonic you feel in your bones rather than hear. The air hums with the patience of deep earth.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Earth Elemental (guardian)", "cr": "5"}

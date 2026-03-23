@@ -23,6 +23,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Trollskull Manor lists to the left like a drunk leaning on a lamppost. Three stories of cracked plaster and warped timber, its tap room still smells of pipe smoke and old ale despite standing vacant for a decade. The floorboards groan beneath your feet, and candles gutter without any draft.",
+                "read_aloud": "The manor lists to the left like a drunk leaning on a lamppost, three stories of cracked plaster and warped timber rising above a tap room thick with the ghost-smell of pipe smoke and old ale. Floorboards groan beneath your weight. Dust sheets drape the furniture like burial shrouds, and candles in their sconces gutter and flare without any draft you can feel. Somewhere upstairs, a door creaks open on its own.",
                 "npcs": [
                     {
                         "name": "Lif",
@@ -59,6 +60,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Sawdust carpets the floor of this narrow workshop, and the air tastes of fresh-cut pine and linseed oil. Half-finished chairs hang from ceiling hooks like wooden bats. A wood elf works a hand-plane with meditative precision, shavings curling away in pale ribbons.",
+                "read_aloud": "Sawdust carpets the floor of this narrow workshop, muffling your footsteps. The air is sweet with fresh-cut pine and linseed oil. Half-finished chairs hang from ceiling hooks overhead, turning slowly, and pale wood shavings curl across the workbench where a figure draws a hand-plane in long, meditative strokes. The sound is rhythmic and calming -- the quiet rasp of blade on grain.",
                 "npcs": [
                     {
                         "name": "Talisolvanar 'Tally' Fellbranch",
@@ -89,6 +91,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Heat rolls out the open door in visible waves, carrying the tang of hot iron and quenching oil. Inside, a fire genasi hammers a glowing blade while a water genasi tempers another in a stone trough. Steam hisses between them like a conversation neither needs to speak aloud.",
+                "read_aloud": "Heat rolls out the open door in visible waves, and the tang of hot iron hits you before you cross the threshold. Inside, sparks fountain from an anvil where a figure wreathed in faint flame hammers a glowing blade. Across the room, another figure plunges steel into a stone trough with a violent hiss of steam. The forge light paints everything in shades of orange and red, and the rhythmic ring of hammer on metal vibrates in your chest.",
                 "npcs": [
                     {
                         "name": "Avi",
@@ -128,6 +131,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Bundles of dried herbs hang from every rafter, filling the shop with a green, medicinal perfume that clings to your clothes long after you leave. A wood elf tends rows of potted plants on windowsill shelves, murmuring to each one as she waters them. A fat orange tabby sleeps in a patch of sunlight on the counter.",
+                "read_aloud": "Bundles of dried herbs hang from every rafter, so thick they form a rustling canopy overhead. The air is green and medicinal, sweet with lavender and sharp with something astringent that clears your sinuses. Potted plants crowd the windowsills, their leaves pressing against the glass, and a fat orange tabby is curled on the counter in a patch of sunlight, one ear twitching as you enter.",
                 "npcs": [
                     {
                         "name": "Fala Lefaliir",
@@ -160,6 +164,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "A brass placard reads TIGER'S EYE: PRIVATE INVESTIGATIONS in letters that have been polished so often they've worn thin. Inside, the office is immaculate -- not a single paper out of place, not a mote of dust on the mahogany desk. The proprietor watches you enter with eyes that miss nothing and give away less.",
+                "read_aloud": "A brass placard beside the door reads TIGER'S EYE: PRIVATE INVESTIGATIONS, its letters polished to a mirror sheen. Inside, the office is immaculate -- dark mahogany desk, leather chairs, a filing cabinet closed with a heavy lock. Not a single paper is out of place, not a mote of dust on any surface. The figure behind the desk watches you enter with a gaze that takes in everything and offers nothing back. The room smells of ink and expensive tobacco.",
                 "npcs": [
                     {
                         "name": "Vincent Trench",
@@ -192,6 +197,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The alley narrows here between leaning tenements, the cobblestones slick with something best not examined too closely. A gutter runs down the center carrying rainwater and the occasional rat. Beyond, the noise of the North Ward swells -- cart wheels, hawkers, the Watch patrol's bootfall.",
+                "read_aloud": "The alley narrows between leaning tenements until you could touch both walls with outstretched arms. The cobblestones are slick beneath your boots, and a gutter runs down the center carrying dark water and the occasional scurrying shape. Beyond the alley's mouth, the noise of the North Ward swells -- the rumble of cart wheels, the calls of hawkers, and the measured bootfall of a Watch patrol passing by.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [],

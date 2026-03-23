@@ -23,6 +23,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The ice cave entrance is a wound in the glacier's face, exhaling air so cold it crystallizes your breath into ice before it leaves your lips. The walls are translucent blue-white, and deep within them, you can see shapes -- bones, weapons, the frozen forms of creatures that wandered in centuries ago and never found their way out. The tunnel descends at a sharp angle, polished smooth by millennia of meltwater that has long since frozen.",
+                "read_aloud": "The glacier's face is split by a ragged opening that exhales air cold enough to freeze your breath into crystals before it leaves your lips. The walls inside are translucent blue-white, and as your torchlight penetrates them, you see shapes entombed in the ice -- bones, rusted blades, the frozen silhouette of something with too many legs. The tunnel descends steeply, its floor polished to a glassy smoothness by water that froze mid-flow a thousand years ago.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [
@@ -45,6 +46,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The frozen waterfall hangs suspended in time -- a curtain of ice forty feet tall, the water caught mid-cascade. Behind it, visible through the translucent ice, a passage continues deeper. The fall is beautiful and deeply wrong; water does not freeze this way naturally. Something stopped time here, or stopped the water, and whatever force accomplished that is still present, humming in the ice like a held breath.",
+                "read_aloud": "A waterfall hangs frozen before you -- forty feet of cascading water caught mid-fall, every ripple and spray preserved in ice so clear you can see the passage continuing behind it. The sight is beautiful and deeply wrong. Water does not freeze this way. Something held it still and then sealed it in crystal, and whatever force did so is still here -- you can feel it humming through the ice beneath your boots, a vibration like a held breath that has lasted centuries.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Ice Mephit", "cr": "1/2"},
@@ -71,6 +73,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Crystal Cavern refracts what little light enters it into a constellation of prismatic points. Every surface is faceted ice, and the reflections create the illusion of infinite space -- you see yourself repeated a thousand times in every direction, each reflection slightly delayed, as though watching your own past. The acoustics are treacherous; sounds bounce and multiply until a whisper becomes a chorus.",
+                "read_aloud": "Your torchlight shatters into a thousand points of color as you enter the cavern. Every surface is faceted ice, and your reflection stares back at you from every angle -- a thousand versions of yourself, each one slightly delayed, moving a half-second behind you like echoes made visible. The space feels infinite, walls and ceiling lost in prismatic confusion. When you exhale, the sound multiplies, bouncing between crystal surfaces until your single breath becomes a chorus of whispers.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Gelatinous Ice Cube (transparent, DC 17 to spot)", "cr": "4"}
@@ -96,6 +99,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The pool fills a cavern whose ceiling drips with stalactites of ice so clear they look like glass fangs. The water -- impossibly liquid in this frozen hell -- is black and still, reflecting nothing. Then the surface breaks, and something rises: a mass of translucent, shoggoth-like protoplasm that fills half the cavern, its body studded with frozen corpses it has absorbed over centuries. It makes a sound like tekeli-li, tekeli-li, and the temperature drops another twenty degrees.",
+                "read_aloud": "The cavern ceiling bristles with stalactites of ice so clear they look like glass fangs. Below them, a pool of impossibly liquid water fills the chamber's floor -- black, still, and reflecting nothing, not even your light. You watch the surface for a long moment. Then it moves. Something vast stirs in the dark water, and a shape begins to rise -- translucent, formless, studded with dark shapes frozen inside it like flies in amber. The temperature plummets. A sound fills the chamber, high and keening, repeating the same alien syllables over and over.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Tekeli-li (Elder Ooze)", "cr": "10"}
@@ -122,6 +126,7 @@
             "is_secret": true,
             "content_hints": {
                 "description": "The Vampire Tomb is sealed behind a wall of black ice that radiates malice like heat from a forge. Inside, a sarcophagus of obsidian rests on a dais of frozen blood. The chamber is decorated in a style that predates Icewind Dale's settlement -- Netherese carvings, depicting a pale figure with elongated canines receiving the adulation of robed supplicants. The lid of the sarcophagus is cracked. Something got out.",
+                "read_aloud": "Behind the black ice, a chamber waits. A sarcophagus of dark stone rests on a raised dais, and the floor around it is frozen in a deep, unsettling red. The walls are carved with images in a style older than anything you have seen -- robed figures bowing before a tall, pale shape with an elongated smile. The lid of the sarcophagus is cracked open. The chamber smells of old stone, ancient dust, and something faintly metallic that prickles at the back of your mind. You are not alone in here.",
                 "npcs": [
                     {"name": "Lucius Rime (Vampire Spawn, Netherese)", "role": "neutral", "dialogue": "*The pale figure stands in the corner, watching you with eyes like frozen rubies.* I have been here since Ythryn fell. Sealed in by the crash, preserved by the cold. I remember the city as it was -- alive, arrogant, beautiful. I can guide you there. The price is a flask of warm blood and a promise: when you find the Mythallar, you let me touch it. Just once."}
                 ],
@@ -150,6 +155,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Passage of Echoes is a tube bored through solid glacier ice by some force that left the walls glass-smooth. Every sound repeats here, building on itself until a footstep becomes a thunderclap and a whispered word becomes a shout. The passage descends at a gentle angle for what feels like miles, and through the translucent walls, the first shadows of Ythryn's towers become visible -- dark shapes frozen in the ice like flies in amber.",
+                "read_aloud": "The passage is a perfect tube bored through solid ice, its walls polished to a glass-smooth finish by a force you cannot name. Your first footstep echoes -- and then echoes again, and again, building on itself until the sound of a single boot on ice becomes a rolling thunder that chases itself down the corridor. Through the translucent walls, dark angular shapes are visible deep in the glacier -- towers, spires, the geometry of a city frozen in time, growing clearer with every step you descend.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [],
@@ -170,6 +176,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The passage terminates in a breach -- the glacier has cracked here, splitting open to reveal a pocket of still air and the first structures of Ythryn. A Netherese archway, still intact after centuries, frames the entrance to the buried city. The runes on its surface pulse with a faint blue light, and beyond it, streets of frozen stone extend into a darkness that somehow feels warmer than the ice behind you.",
+                "read_aloud": "The ice splits open ahead of you, and beyond the crack, still air replaces the glacier's crushing cold. An archway of pale stone frames the breach -- intact, impossibly, after centuries of burial. Runes carved into its surface pulse with a faint blue light, and beyond it, you can see streets. Actual streets, paved in frozen stone, extending into a darkness that feels somehow warmer than the ice at your back. The hum of ancient machinery vibrates through the soles of your boots.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [],

@@ -42,6 +42,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "A natural cavern opens at the bottom of the shaft, vast enough that your light does not reach the ceiling. The floor is a jumble of broken stone and ore deposits, the green veins converging here like tributaries feeding a river. At the center of the cavern, the Horror stands guard -- a towering construct of bone and stone and corrupted flesh, assembled from the bodies of miners and the rock itself. It does not move until you step into the light of the ore veins. Then it turns, slowly, and the cavern shakes.",
+        "read_aloud": "The shaft opens into a cavern so vast your light cannot find the ceiling. Green ore veins converge on the floor like rivers meeting the sea. At the center, something enormous stands motionless -- bone and stone and flesh fused together, towering in the green glow. You step into the light. It turns. The cavern shakes.",
         "enemies": [
           {"name": "Horror", "hp": 25, "max_hp": 25, "ac": 15, "attack": 7, "defense": 15, "count": 1},
           {"name": "Spitter", "hp": 15, "max_hp": 15, "ac": 11, "attack": 5, "defense": 11, "count": 2}
@@ -67,6 +68,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "Beyond the Horror's position, the richest ore vein in the mine splits the cavern wall like a wound. The green crystal here is pure, uncontaminated -- worth more than everything else in the mine combined. Enough to arm the Legion for the rest of the retreat and then some. The question is whether you can mine it before the cavern comes down.",
+        "read_aloud": "The richest vein splits the cavern wall like a wound, green crystal catching your light and throwing it back tenfold. Pure ore -- enough to change the war. The cavern groans around you. Without the Horror anchoring the wall, the stone is shifting. You have minutes.",
         "loot": [
           {"name": "Pure Alchemical Ore Vein", "value": 6, "description": "The motherlode. Enough black-shot material to arm every Legionnaire for the march to Skydagger Keep. Supply +4."},
           {"name": "Pre-Human Carving", "value": 1, "description": "A stone tablet covered in symbols that predate any known language. The Lorekeeper would want to see this."}

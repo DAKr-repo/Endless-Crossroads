@@ -47,6 +47,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "The wreckage. The airship's envelope has torn on a spar of twisted metal, spilling hydrogen into the mist. The gondola hangs at a thirty-degree angle, lodged in the ribcage of a much older vessel. Through the shattered forward glass, you can see the scope of the graveyard: ships from every era -- sailing vessels, steamers, early airships -- all crushed and woven together on a platform of dark stone that should not exist this high above the sea.",
+        "read_aloud": "The airship's envelope has torn on a spar of twisted metal, hydrogen hissing into the mist. The gondola hangs at a sickening angle, lodged in the ribcage of a much older vessel. Through the shattered glass, the scope of the graveyard reveals itself -- ships from every era, sailing vessels and steamers and early airships, all crushed and woven together on a platform of dark stone that should not exist.",
         "npcs": [],
         "enemies": [],
         "services": [],

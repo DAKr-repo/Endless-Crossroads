@@ -56,6 +56,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "Oscar's darkroom. The red safelight casts everything in arterial hue. Developing trays line the counter, chemicals in brown bottles. Photographs hang from clips on a wire -- dozens of post-mortem portraits, each one conventional, unremarkable. Then the last three. In these, the subjects' eyes are open. They stare. They are aware.",
+        "read_aloud": "The red safelight casts everything in arterial hue. Developing trays line the counter, their chemical smell sharp enough to sting. Photographs hang from clips on a wire -- dozens of post-mortem portraits, unremarkable, respectful, the dead posed as the living. Then the last three. In these, the subjects' eyes are open. They stare directly into the lens with an awareness that the dead should not possess.",
         "npcs": [],
         "enemies": [],
         "services": [],
@@ -82,6 +83,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "The Enfield yard. A small patch of brown grass behind the rowhouse, enclosed by an iron fence. A dead rabbit lies on the path, stiff and cold. Its shadow is burned into the flagstones in impossible detail -- each whisker, each claw. The body has the same faintly metallic sheen as the ink-black shadows left by the human subjects.",
+        "read_aloud": "A small yard of brown grass enclosed by an iron fence. A dead rabbit lies on the flagstone path, stiff and cold, but something is wrong with its shadow. The shadow is burned into the stone in impossible detail -- each whisker, each claw rendered in ink-black permanence. The rabbit's fur has a faint metallic sheen, and no flies have come to settle on it.",
         "npcs": [
           {
             "name": "Jacob Finsky",

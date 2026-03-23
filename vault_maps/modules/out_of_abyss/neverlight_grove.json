@@ -23,6 +23,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The cavern ceiling vanishes into darkness above a forest of fungi taller than castle towers. Zurkhwood trunks rise like pillars of a drowned cathedral, their caps glowing with soft bioluminescence in blues and greens. The air is warm, humid, and sweet -- too sweet, like fruit left to rot in the sun. Spores drift in lazy spirals, and you feel a presence pressing against the edges of your thoughts.",
+                "read_aloud": "The tunnel opens and the ceiling vanishes into darkness above a forest of fungi taller than castle towers. Massive trunks of pale wood rise like pillars, their caps glowing soft blue and green, painting the darkness in shifting, living color. The air is warm and thick with humidity, carrying a sweetness that borders on cloying -- like fruit left to rot in sunlight that has never reached this place. Spores drift past in lazy spirals, and something presses gently against the edges of your thoughts, wordless and vast.",
                 "npcs": [
                     {"name": "Stool", "role": "guide", "dialogue": "*The small myconid releases rapport spores. Joy floods your mind -- images of this grove, of circles of myconids swaying in communion. Home. Then a flicker of something else: a shadow behind the southern terraces, a shape of wrong growth, quickly suppressed.*"}
                 ],
@@ -45,6 +46,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Northern Terraces cascade down the cavern wall in tiers of shelf fungus, each level hosting a circle of myconids in silent rapport. The elder specimens stand eight feet tall, their caps patterned with age-rings like ancient trees. Crystal-clear water seeps from the rock, feeding pools where bioluminescent algae paint the water in living color.",
+                "read_aloud": "Tiers of shelf fungus cascade down the cavern wall like a living staircase, each level hosting a circle of mushroom-folk standing in perfect stillness. The largest among them rise eight feet tall, their broad caps marked with age-rings like ancient trees. Crystal water seeps from the rock in thin streams, feeding pools that glow with bioluminescent algae -- blue, green, amber -- shifting in slow patterns that feel deliberate, almost like breathing. The quiet here is not silence but communion.",
                 "npcs": [
                     {"name": "Sovereign Basidia", "role": "quest_giver", "dialogue": "*Rapport spores carry complex emotion: worry, duty, fractured loyalty.* The grove is divided. Sovereign Phylo speaks of a 'Great Seeder' who will bring a new cycle of growth. But the growth I have seen in the southern terraces is not life. It is consumption wearing life's mask. I fear Phylo has been... changed."},
                     {"name": "Loobamub", "role": "ally", "dialogue": "*The myconid's spores taste of adrenaline and barely contained rage.* Loobamub is circle-leader of the animators. Loobamub's spore servants have seen what grows in the south. Loobamub will fight. Show Loobamub where to fight."}
@@ -70,6 +72,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Southern Terraces look like the Northern ones viewed through a fever dream. The fungi here grow at wrong angles -- horizontal, spiraling, erupting from each other in fractal explosions of pale flesh. The bioluminescence has shifted from blue-green to a bruised purple, and the rapport spores here carry not thoughts but sensations: hunger, ecstasy, dissolution.",
+                "read_aloud": "Something is wrong here. The terraces mirror those to the north, but as though reflected in diseased water. Fungi grow at impossible angles -- horizontal, spiraling, erupting from each other in fractal bursts of pale, glistening flesh. The bioluminescence has shifted from cool blues to a bruised, feverish purple. Spores drift thick in the air, and when you breathe them in, you feel not thoughts but raw sensations -- a gnawing hunger, a shudder of ecstasy, the terrifying pull of something that wants you to let go and dissolve.",
                 "npcs": [
                     {"name": "Sovereign Phylo", "role": "antagonist", "dialogue": "*The rapport spores are overwhelming -- a flood of bliss and surrender.* You feel it, don't you? The Great Seeder comes. She will make all flesh one flesh, all minds one mind. No more loneliness. No more separation. Only the Wedding, and the joy that comes after. Come. Let me show you the garden She tends."}
                 ],
@@ -95,6 +98,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Garden of Welcome was once a place where newcomers were introduced to myconid communion. Now it serves as a border zone between the divided grove. Myconids from both factions stand in uneasy proximity, their rapport spores canceling each other out in a fog of conflicting emotion. Wilted fungi carpet the ground -- casualties of the spiritual war.",
+                "read_aloud": "This garden was meant for welcome, but the air here is taut as a held breath. Mushroom-folk from two factions stand in uneasy proximity, their spore clouds mingling into a fog of conflicting emotion that presses against your mind like static. Wilted fungi carpet the ground between them -- drooping, colorless things that have shriveled in the crossfire of silent disagreement. The bioluminescence here flickers uncertainly, unable to decide between blue and purple.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [
@@ -118,6 +122,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Yggmorgus. The name means 'the great body' in myconid rapport. It is a fungal tower that has grown to fill a side cavern, its flesh pulsing with veins of luminous ichor. At its base, myconids sway in rapturous communion, their bodies partially merged with the structure. And at the top, barely visible through the spore-thick air, a shape moves that is not a mushroom -- something with arms, and a crown of fruiting bodies, and the suggestion of a face twisted in divine ecstasy.",
+                "read_aloud": "The side cavern is filled -- floor to ceiling -- with a single, pulsing fungal mass. It is less a growth than an architecture of flesh, its surface veined with luminous ichor that throbs in a rhythm like a heartbeat. At its base, mushroom-folk sway in rapture, their bodies half-absorbed into the structure, faces tilted upward in bliss. The spores here are so thick the air itself seems alive. And at the summit of this tower of living fungus, barely visible through the haze, something moves -- something with arms, and the suggestion of a face, wearing a crown of fruiting bodies.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Zuggtmoy (Manifestation, weakened)", "cr": "14"},
@@ -147,6 +152,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Behind Yggmorgus, a tunnel punches through the cavern wall into raw Underdark. The fungi thin out here, replaced by bare stone still warm from the grove's ambient heat. The passage slopes downward, and a draft carries the mineral smell of deep earth. Basidia's spores reach you one last time: gratitude, and a warning. What you saw here is only a symptom. The disease lies deeper still.",
+                "read_aloud": "Behind the great fungal mass, a tunnel punches through the cavern wall into raw, bare stone. The fungi thin out here, the last luminous caps giving way to darkness. The passage slopes downward and a draft rises to meet you, carrying the mineral smell of deep earth and the faintest trace of sulphur. The grove's warmth fades behind you. Ahead, the Underdark waits -- silent, dark, and indifferent to what you have just survived.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [],

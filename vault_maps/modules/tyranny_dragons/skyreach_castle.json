@@ -23,6 +23,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The lower courtyard of Skyreach Castle floats among the clouds. The walls are carved from ice as strong as steel, and the ground -- if you can call it that -- is a platform of enchanted stone suspended two thousand feet above the Sword Coast. Wind howls through the crenellations with enough force to stagger a man, and looking over the edge reveals nothing but white void and the occasional dark patch of earth far, far below.",
+                "read_aloud": "Your stomach drops before your mind catches up. You are standing on stone that floats among the clouds. The walls around you are carved from ice that gleams like steel, and wind howls through the crenellations with enough force to stagger you where you stand. You make the mistake of looking over the edge -- there is nothing below but white void, wisps of cloud, and the distant, terrifyingly small patchwork of the Sword Coast two thousand feet beneath your boots.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Ogre (2, castle labor)", "cr": "2"}
@@ -47,6 +48,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The upper courtyard is the castle's social center -- such as it is. Stone benches ring a frozen fountain, and the Cult's officers take their meals here in the open air, seemingly immune to the altitude and the cold. The cloud giant's aesthetics clash with the Cult's decorations: elegant ice sculptures share space with crude dragon banners, and the delicate frost-filigree railings have been scarred by careless cultists.",
+                "read_aloud": "The upper courtyard opens to the sky, ringed by stone benches and centered on a fountain frozen in mid-cascade, its water turned to crystal. Crude dragon banners snap in the wind beside delicate ice sculptures of extraordinary craft, the two aesthetics clashing like an argument made visible. Figures in heavy cloaks sit on the benches taking their meals in the open air, apparently unbothered by the altitude and the biting cold. Frost-filigree railings line the edges, scarred in places by careless blades.",
                 "npcs": [
                     {"name": "Captain Othelstan", "role": "antagonist", "dialogue": "This castle is a marvel of giant engineering pressed into service by inferior minds. The Cult treats it like a cargo ship. Blagothkus tolerates us because we promised him alliance against the dragons. When that promise fails -- and it will -- I intend to be somewhere else. Perhaps we can help each other with that timing."}
                 ],
@@ -74,6 +76,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The ogre barracks is a cavern of ice stinking of unwashed bodies and rancid meat. The ogres sleep on piles of hides, their snoring loud enough to mask approaching footsteps. Personal effects are limited to clubs, bone dice, and crude carvings of things the ogres find amusing -- mostly other things being hit with clubs. A crude altar to Vaprak the Destroyer occupies one corner.",
+                "read_aloud": "The stench reaches you well before the doorway -- unwashed bodies and rancid meat, thick enough to taste. The chamber beyond is a cavern of ice littered with piles of animal hides that serve as bedding. Enormous forms sprawl across them, their snoring a bass rumble that vibrates the floor. Crude clubs lean against the walls beside piles of bone dice and carvings that depict violence in enthusiastic if artless detail. A rough stone altar squats in one corner, dark with old offerings.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Ogre (4, sleeping)", "cr": "2"}
@@ -99,6 +102,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The vampire tower rises from the castle's eastern wall, its interior perpetually dark despite the open sky above -- a magical darkness that serves its occupant well. The chambers within are furnished in a style centuries out of date: velvet drapes, candelabras, and a coffin of polished mahogany that sits on a dais like a throne room's centerpiece. The air smells of old roses and very old death.",
+                "read_aloud": "The tower's interior is dark -- not the honest darkness of an unlit room, but a heavy, clinging blackness that your torchlight struggles to penetrate. What it reveals is unsettling: velvet drapes in a style centuries out of fashion, tarnished silver candelabras thick with old wax, and furniture that belongs in a noble's manor, not a flying fortress. At the chamber's center, on a raised dais, sits a coffin of polished mahogany. The air carries the faded sweetness of dried roses, and beneath it, something older and far less pleasant.",
                 "npcs": [
                     {"name": "Sandesyl Morgia", "role": "antagonist", "dialogue": "*She emerges from shadow like a stain spreading across silk.* How delightful. Visitors. The Cult keeps me supplied with blood and I keep their precious hoard guarded during the night hours. It's a civilized arrangement. But you don't look like you're here to negotiate supply contracts. *Fangs extend.* Pity."}
                 ],
@@ -128,6 +132,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The dragon cave is carved into the cloud-stuff beneath the castle itself, a vast chamber of ice and compressed vapor that serves as den for Glazhael the Cloudchaser. The white dragon's hoard is spread across the cavern floor -- not the Cult's treasure (that is stored separately) but Glazhael's personal collection: frozen corpses arranged in artistic poses, ice sculptures of himself in various heroic stances, and a modest pile of platinum coins he counts every evening.",
+                "read_aloud": "A ramp descends into the cloud-stuff itself, and the temperature plummets. The cavern that opens before you is vast -- walls of compressed ice and vapor, the ceiling lost in frozen mist. The floor is scattered with a collection both beautiful and grotesque: ice sculptures of extraordinary detail, frozen forms arranged in lifelike poses, and a glittering mound of pale coins. The cold here is beyond natural, a living thing that sinks through armor and cloth alike, and something very large has been breathing in this space recently. The frost stirs with each exhalation.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Glazhael the Cloudchaser (Adult White Dragon)", "cr": "13"}
@@ -154,6 +159,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The steering tower rises at the castle's prow, its interior dominated by a mechanism of gears, levers, and crystals the size of a man's head. This is how the castle flies -- a navigation system powered by cloud giant magic and the bound essence of an air elemental. The elemental's form is visible in the largest crystal, a face pressed against glass, silently screaming. The controls are labeled in Giant.",
+                "read_aloud": "The tower at the castle's prow houses something extraordinary. Gears the size of wagon wheels interlock with levers of polished brass, and crystals the size of a man's head are set into the mechanism at precise intervals, each one thrumming with inner light. The largest crystal dominates the far wall, and within its faceted depths, a face presses against the surface -- mouth open in a silent, endless scream, features shifting like wind made visible. The controls beneath are inscribed with runes in a language far larger than yours.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [
@@ -177,6 +183,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Blagothkus's tower is built to giant scale -- every piece of furniture is four times human size, and the ceilings soar forty feet overhead. The cloud giant sits in a throne of compressed cloudstuff, his expression the weary resignation of someone who has made a deal they regret but cannot escape. His wife's memorial -- an ice sculpture of extraordinary beauty -- occupies a place of honor. He built this castle for her. Now it carries a tyrant's hoard.",
+                "read_aloud": "Everything here is built to a scale that makes you feel like a child in a grown-up's house. The furniture is four times normal size, the ceilings soar forty feet overhead, and the doorways could accommodate a siege tower. A figure sits in an enormous throne of compressed cloud -- pale and still, easily twenty feet tall, with a face carved by time and what looks unmistakably like grief. Nearby, an ice sculpture of breathtaking beauty depicts a giantess mid-laugh, every detail perfect, every surface polished to a mirror sheen. It is clearly the most treasured thing in the room.",
                 "npcs": [
                     {"name": "Blagothkus", "role": "neutral", "dialogue": "*The cloud giant's voice is thunder filtered through grief.* I allied with the Cult because they promised giant-kind a place in Tiamat's new order. But I have watched them, and I know a lie when I hear one. We are tools to them, nothing more. Kill the dragon below. Remove the Cult from my castle. And I will set this fortress down wherever you wish, and fly away, and forget that any of this ever happened."}
                 ],
@@ -205,6 +212,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Glazhael's lair extends deeper than the dragon cave, into chambers where the cloud-stuff thins and you can see the ground two thousand feet below through translucent floors. The white dragon's innermost sanctum is a gallery of ice -- walls, floor, ceiling, all ice, all reflecting and refracting until direction loses meaning. At the center, the Cult's treasure hoard is piled: chests upon chests of gold, weapons, artwork, and magical items looted from across the Sword Coast.",
+                "read_aloud": "The passage descends into chambers where the very floor becomes translucent, and through the clouded ice beneath your feet you can see the ground -- impossibly, terrifyingly far below. The innermost chamber is a gallery of ice: walls, floor, ceiling, all reflecting and refracting your torchlight into a blinding kaleidoscope until up and down lose meaning. And at the center of it all, a mountain of treasure -- chests heaped upon chests, gold coins spilling across the ice, weapons and artwork and glittering things beyond counting, the plunder of an entire coast.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Glazhael the Cloudchaser (if not yet defeated)", "cr": "13"}

@@ -23,6 +23,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "A mechanical conveyor belt, long since rusted to immobility, stretches from the stairway into a tunnel lit by fitful sparks. The belt's surface is scored with drag marks -- something heavy was transported here, many times. The air is hot and metallic, tasting of copper filings and burnt oil. Every few seconds, a deep thrum vibrates through the floor, rhythmic as a heartbeat. The forges of Trobriand still beat, even if their master does not.",
+                "read_aloud": "A rusted conveyor belt stretches from the foot of the stairs into a tunnel lit by fitful orange sparks that pop and die in the darkness. The belt's metal surface is gouged with deep drag marks, scored by the passage of something enormously heavy, many times over. The air hits you like a wall -- hot, metallic, tasting of copper filings and burnt oil. Every few seconds, a deep vibration pulses through the floor and up through your bones, rhythmic and steady as a heartbeat. Something down here is still working.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [],
@@ -48,6 +49,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "A cavern filled with the wreckage of mechanical beings. Iron arms, copper torsos, crystal eyes -- the detritus of a hundred failed constructs piled in heaps twenty feet high. Some of the components still twitch, fingers curling and uncurling in meaningless patterns. A half-assembled humanoid figure is bolted to a standing frame, its chest cavity open, its internal mechanisms exposed and labeled in Trobriand's meticulous handwriting. The label on its forehead reads 'ITERATION 847. FAILURE: CONSCIOUSNESS ABSENT.'",
+                "read_aloud": "The cavern is a graveyard of metal. Iron arms, copper torsos, and shattered crystal eyes are heaped in piles twenty feet high -- the remains of a hundred mechanical beings, dismantled or broken. Some of the components still move: fingers curling and uncurling in the wreckage, a jaw clicking open and shut with no head to guide it. Near the center, a humanoid figure stands bolted to an upright frame, its chest cavity splayed open to expose intricate gears and rune-etched conduits. A label is affixed to its forehead in precise, meticulous handwriting. The air smells of rust and ozone, and something in the nearest pile shifts at the sound of your footsteps.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Animated Armor", "cr": "1"},
@@ -82,6 +84,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "An assembly floor where mechanical arms hang from ceiling tracks, each one frozen in a different stage of construction. The arms are meant to work in sequence -- smelting, shaping, riveting, enchanting -- a production line for golems. Most of the arms are inert, but three still function, their movements jerky and purposeless, assembling fragments into shapes that collapse before completion. The floor is littered with half-formed iron limbs that reach toward nothing.",
+                "read_aloud": "Mechanical arms hang from tracks bolted to the ceiling, each one frozen mid-gesture in a different stage of assembly -- one grips a hammer, another holds tongs around a piece of shapeless iron, a third trails cooling enchantment runes from its fingertips. Most are still, but three jerk to life in stuttering, purposeless motions, assembling scraps into shapes that collapse the moment they are released. The floor is a carpet of half-formed iron limbs -- hands that grasp at nothing, legs bent at wrong angles, fingers splayed as if reaching for something they will never hold. The clank and whir of the active arms echoes through the chamber in an arrhythmic, maddening cadence.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Shield Guardian (damaged, half HP)", "cr": "7"}
@@ -112,6 +115,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Three forges burn in a row, their fires fed by a volcanic vent that channels heat from miles below. The flames are white-hot and tinged with violet -- arcane fuel mixed with natural fire. Anvils of adamantine stand before each forge, their surfaces unmarred by centuries of use. A water trough runs along one wall, but the water boils continuously, never cooling. The tools here are not ordinary hammers and tongs -- they are articulated, semi-autonomous, and they reach for metal with something that looks disturbingly like eagerness.",
+                "read_aloud": "Three forges roar in a line, their flames white-hot and edged with violet, fed by a volcanic vent that pushes shimmering heat from somewhere miles below. The temperature is staggering -- sweat beads instantly, and each breath sears the back of your throat. Anvils of dark, flawless metal stand before each forge, their surfaces mirror-smooth despite what must be centuries of use. Along one wall, a water trough boils continuously, steam rising in thick curtains. Tools hang on articulated arms near each forge -- hammers, tongs, chisels -- and as you watch, one of the tongs flexes its grip and turns toward you with a mechanical whir.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Fire Elemental", "cr": "5"}
@@ -144,6 +148,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "A circular chamber walled with crystal screens that display scrolling text, diagrams, and arcane formulae in real time. This is Trobriand's control room -- the brain of his operation. A central console of brass levers, crystal switches, and spinning gyroscopes governs the entire level's mechanical systems. Most of the screens show static, but three display live feeds: the forge, the assembly floor, and a chamber you have not yet reached.",
+                "read_aloud": "The chamber is circular, its walls lined with panels of crystal that glow with scrolling text, shifting diagrams, and arcane formulae that rewrite themselves as you watch. A central console dominates the room -- a bewildering array of brass levers, crystal switches, and spinning gyroscopes, all humming with barely contained energy. Most of the wall panels show nothing but flickering static, but three display clear images: a forge wreathed in violet flame, a floor of twitching mechanical arms, and a vast chamber containing something enormous and still. The air crackles faintly, and every lever on the console trembles as if eager to be pulled.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [
@@ -174,6 +179,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The final workshop. The ceiling is thirty feet high to accommodate the thing that stands in the center: an iron golem fifteen feet tall, its body a masterwork of mechanical engineering and arcane enchantment. Every joint is articulated, every plate engraved with binding runes, and its eyes -- two rubies the size of fists -- burn with a light that is not magical fire but something worse. Something aware. Iteration 848 was not a failure. Iteration 848 woke up. And Trobriand was the first thing it saw, and the last thing it let leave.",
+                "read_aloud": "The ceiling vaults thirty feet overhead to accommodate the thing standing at the chamber's center. It is iron, fifteen feet tall, every plate of its body engraved with intricate runes, every joint articulated with a precision that borders on artistry. Two rubies the size of fists are set into its face where eyes should be, and they burn with a deep, steady light that is not fire and not magic -- something behind those gems is aware, is watching, is thinking. The workshop around it is immaculate, tools arranged with obsessive care, as if the occupant has been tidying in its master's absence. The iron head swivels toward you with a sound like a vault door turning on ancient hinges.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Iron Golem (Iteration 848)", "cr": "16"},

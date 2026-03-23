@@ -89,6 +89,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "The stairwell to level seven. The spiral staircase here has been twisted by gravitational anomalies -- steps jut at impossible angles, some inverted, some missing entirely. The handrail floats six inches from its mounts. Descending requires climbing as much as walking. The singing echoes up the shaft, reverberating off the metal, and for a moment it resolves into words: 'Are you coming to see me? Please. Please come see me.'",
+        "read_aloud": "The spiral staircase has been twisted by forces that have nothing to do with engineering -- steps jut at impossible angles, some inverted, some missing entirely. The handrail floats six inches from its mounts. The singing echoes up the shaft, reverberating off the warped metal, and for one clear moment it resolves into words: 'Are you coming to see me? Please. Please come see me.'",
         "npcs": [],
         "enemies": [],
         "services": [],

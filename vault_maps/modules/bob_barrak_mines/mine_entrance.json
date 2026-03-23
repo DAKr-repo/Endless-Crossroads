@@ -57,6 +57,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "The camp forge has been converted from ore-smelting to weapon repair. The bellows wheeze, the anvil rings, and the smith -- a silent Zemyati woman with arms like bridge cables -- works with grim efficiency, straightening bent blades and patching split hauberks.",
+        "read_aloud": "The forge bellows wheeze and the anvil rings with a steady, purposeful rhythm. A smith works in silence, straightening blades and patching armor with the grim efficiency of someone who knows every piece will see use before the week is out.",
         "services": ["supply"],
         "investigation_dc": 10,
         "investigation_success": "Among the scrap metal waiting to be re-forged, a broken shield bears the crest of a Chosen -- not the current one. An older symbol, from a previous war. The mines have been contested before."
@@ -75,6 +76,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "The garrison quarters are carved into the rock face itself -- natural alcoves widened by pick and chisel. Each alcove holds a bedroll, a weapon rack, and a candle stub. The soldiers here rotate on four-hour watches; no one sleeps for long. The walls are scratched with tally marks counting days since the retreat began.",
+        "read_aloud": "Alcoves carved into the rock, each holding a bedroll and a weapon rack. Candle stubs burn low. The walls are scratched with tally marks -- someone is counting the days since the retreat began. There are many marks.",
         "services": ["rest"]
       }
     }

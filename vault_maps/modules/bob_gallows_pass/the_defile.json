@@ -42,6 +42,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "The gallows. Six wooden frames, ancient and grey, standing in a row at the narrowest point of the pass. Five bodies hang from frayed ropes, turning slowly in the wind that funnels through the defile. They wear Legion uniforms -- scouts, by their gear. As you approach, the bodies stop turning. One of them raises its head. Then another. Then all of them, jerking against their ropes with a sound like wet twigs snapping.",
+        "read_aloud": "Six grey gallows stand at the narrowest point of the pass. Bodies hang from five of them, turning slowly in the wind. They wear Legion uniforms. As you draw closer, the turning stops. One head lifts. Then another. Rope creaks. Something wet snaps.",
         "enemies": [
           {"name": "Rotter", "hp": 8, "max_hp": 8, "ac": 8, "attack": 3, "defense": 8, "count": 3},
           {"name": "Crow", "hp": 15, "max_hp": 15, "ac": 12, "attack": 5, "defense": 12, "count": 2}
@@ -67,6 +68,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "Beyond the gallows, the pass widens slightly before its final approach to the exit. Rubble from a recent rockfall partially blocks the path, creating natural chokepoints. Old execution niches are carved into the cliff walls -- shallow alcoves where the condemned were displayed. Several still contain bones. One contains something that gleams.",
+        "read_aloud": "Past the gallows, rubble chokes the path where the cliff face has given way. Shallow niches line the walls -- old execution alcoves, some still holding bones bleached white by wind and rain. In one of them, something catches the light.",
         "loot": [
           {"name": "Executioner's Medallion", "value": 2, "description": "A silver disc etched with the old judiciary seal. The Lorekeeper says these were once used to command the gallows' bound spirits. It hums faintly in the presence of the undead."}
         ],

@@ -88,6 +88,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "The archive alcove. Filing cabinets lining the walls, most rusted shut. One is open. Inside: personnel files, psychological evaluations, and a series of photographs documenting the Reliquary's containment. The photographs show a child -- a girl, no older than eight -- seated in a glass chamber, wires attached to her temples. Her eyes are open. They are entirely black.",
+        "read_aloud": "Filing cabinets line the walls, most rusted shut. One drawer hangs open, and inside you find photographs -- clinical, methodical, documenting something in a glass chamber. Your hands go still when you see the subject. A girl. No older than eight. Wires at her temples. Her eyes are open in every photograph, and they are entirely, impossibly black.",
         "npcs": [
           {
             "name": "Tarek Abbas",

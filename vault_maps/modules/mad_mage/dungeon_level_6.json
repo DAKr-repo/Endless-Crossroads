@@ -23,6 +23,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The stairs crumble beneath your feet as you descend, each step older and more weathered than the last, as if you are walking backward through geological time. By the bottom, the stonework has given way to raw, uncarved cavern. The air is ancient -- it tastes of mineral dust and something floral that has no business existing this far underground. Ahead, gray light filters from a source that should not exist.",
+                "read_aloud": "The stairs crumble beneath your feet as you descend, each step more weathered than the last, the stonework dissolving from carved blocks to raw, unworked cavern by the time you reach the bottom. The air down here tastes ancient -- mineral dust and, impossibly, something floral, sweet and faint as a half-remembered dream. Ahead, gray light filters from no visible source, ambient and directionless, as if the air itself remembers what daylight was and is doing its best impression.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [],
@@ -48,6 +49,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "A forest of stone trees fills a cavern half a mile wide. Each tree is petrified -- bark turned to quartz, leaves frozen mid-fall as agate and jasper, roots fused with the bedrock in veins of fossilized wood. Some trees still stand; others lie shattered, their rings exposed like calendar pages. The oldest ring you can count dates this forest to before the founding of Waterdeep. Before the founding of anything. Birds that are not birds perch in the stone branches -- they are stone too, caught mid-song, their beaks open in silence that has lasted millennia.",
+                "read_aloud": "A forest of stone trees fills a cavern so vast its far wall is lost in gray haze. Each tree is petrified -- bark turned to quartz, leaves frozen mid-fall as chips of agate and jasper that glitter in the sourceless light. Some still stand tall; others lie shattered, their exposed rings spiraling inward like the pages of an impossibly old calendar. Stone birds perch in the branches, beaks open in songs that were silenced millennia ago. The silence is absolute, broken only by the crunch of crystallized leaves beneath your boots and the faint, mineral scent of a world preserved in the moment of its passing.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Basilisk", "cr": "3"}
@@ -78,6 +80,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "A military camp carved into an alcove of the petrified forest. Tents of red dragon hide are arranged in precise rows around a central fire pit that burns without fuel. Githyanki warriors sharpen silver swords that hum with psionic energy, their movements too efficient to be casual -- they are preparing for war. Astral runes ward the camp's perimeter, and a portal shimmer hangs in the air behind the command tent, thin as paper, showing stars that do not belong to any sky on the Material Plane.",
+                "read_aloud": "Among the petrified trees, a military camp occupies a cleared alcove with surgical precision. Tents of dark red hide are arranged in exact rows around a fire pit where flames burn without any visible fuel. Figures in ornate armor sharpen long silver blades that hum faintly, the sound felt more in your teeth than your ears. The camp's perimeter is marked with runes that glow pale blue, and behind the largest tent, the air shimmers paper-thin -- through the distortion, you glimpse stars arranged in constellations that belong to no sky you have ever seen. Every head in the camp turns toward you at once.",
                 "npcs": [
                     {
                         "name": "Kress'tal",
@@ -115,6 +118,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "A coliseum of natural stone, its tiered seats carved from the cavern walls by hands or forces unknown. The arena floor is sand over stone, and the sand is black -- volcanic, imported from somewhere deep. Weapons are embedded in the ground at the arena's center, each one ancient, each one still sharp. The seats are empty, but the impression of an audience lingers -- a pressure in the air, a sense of being watched by thousands of invisible eyes.",
+                "read_aloud": "The cavern opens into a natural amphitheater -- tiered stone seats carved from the living rock, rising in concentric rings around a circular pit floored with black volcanic sand. Ancient weapons jut from the sand at the pit's center, their blades still gleaming despite ages of neglect. The seats are empty, but the air carries a weight, a pressure, as though a thousand unseen spectators lean forward in anticipation. Your footsteps on the stone echo back at you with a strange, amplified quality, as if the arena itself is listening.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Minotaur", "cr": "3"},
@@ -147,6 +151,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "A stone circle of seven menhirs, each twelve feet tall, each carved with a different rune. The runes pulse in sequence -- a slow, repeating pattern like a heartbeat. At the circle's center, the air is warm and tastes of copper. Objects left inside the circle overnight are changed: iron becomes silver, wood becomes stone, and water becomes a luminous blue fluid that functions as a Potion of Greater Healing. Halaster repurposed something far older than himself, and even he did not fully understand it.",
+                "read_aloud": "Seven standing stones rise from the cavern floor in a perfect circle, each one twelve feet tall, each carved with a single rune that pulses with pale light in a slow, repeating sequence -- like a heartbeat measured in geological time. The air inside the circle is noticeably warmer, carrying a faint copper taste that coats your tongue. Small objects near the stones seem to shimmer at the edges, as if reality is thinner here, as if the boundary between what something is and what it could become has worn dangerously thin.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [
@@ -176,6 +181,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The cavern narrows into a passage where shadows move independently of light. They cling to the walls like living things, recoiling from bright light but surging forward in darkness. The temperature drops sharply -- breath fogs, metal frosts, and exposed skin prickles with cold that feels intelligent, targeted, curious. Deep in the passage, two points of violet light hang in the dark, unblinking. They are not torches. They are eyes.",
+                "read_aloud": "The passage narrows, and the shadows here move wrong. They slide along the walls independently of your torchlight, recoiling when the flame swings close, surging forward the moment it passes. The temperature plummets -- your breath fogs thick and white, frost rimes the metal of your weapons, and the cold prickles across your exposed skin with an unsettling specificity, as if it is testing you, probing for weakness. Deep in the passage ahead, two points of violet light hang in the darkness, steady and unblinking. They are watching you. They have been watching you for some time.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Shadow", "cr": "1/2"},
@@ -208,6 +214,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "A cavern of impossible size, its ceiling lost in darkness that even darkvision cannot penetrate. The floor is covered in a thin layer of ash that muffles footsteps to silence. In the center, coiled around a pillar of obsidian, a dragon made of shadow and hunger opens its eyes. It is not entirely solid -- light passes through it in places, and where its body meets the ground, the ash swirls in patterns that suggest something vast sleeping just beneath the surface. Its breath is not fire but absence -- a cone of nothingness that unmakes light, sound, and hope.",
+                "read_aloud": "The cavern is vast beyond reason, its ceiling swallowed by a darkness so complete that even magical light cannot find it. A thin layer of pale ash blankets the floor, muffling your footsteps to absolute silence. At the chamber's center, a pillar of black glass rises from the ash, and coiled around it is a shape that your eyes struggle to hold -- immense, serpentine, made of shadow given terrible weight. Where it meets the ground, the ash swirls in slow patterns as if disturbed by breathing from somewhere far below. Two violet eyes open in that darkness, and the temperature drops to nothing. The ash begins to rise.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Young Shadow Dragon", "cr": "9"}

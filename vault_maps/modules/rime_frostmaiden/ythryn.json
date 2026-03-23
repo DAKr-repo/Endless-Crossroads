@@ -23,6 +23,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The city breach opens onto what was once a boulevard. The buildings of Ythryn are Netherese architecture at its most arrogant -- soaring spires of crystallized magic, walkways that hang unsupported between towers, fountains whose water froze mid-spray into sculptures of impossible delicacy. Everything is preserved in a bubble of stasis, dusted with rime but structurally intact. The city did not die. It was paused.",
+                "read_aloud": "You step through the breach and into a city that should not exist. Towers of crystallized stone soar into a ceiling of glacial ice, their spires still sharp after centuries. Walkways hang between buildings with no visible support, and frozen fountains catch the light of your torch in sprays of ice so delicate they look like blown glass. Rime dusts every surface, but nothing has crumbled. Nothing has decayed. The city is silent and perfect, as though it was simply stopped mid-breath and never exhaled.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Nothic (lurking in rubble)", "cr": "2"}
@@ -47,6 +48,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The frozen street stretches between tower complexes, its cobblestones etched with guidance runes that once directed magical conveyances. Frozen carts of goods sit where they stopped, their merchants' skeletons still clutching coin purses. A street performer's skeleton poses mid-juggle, three crystal balls suspended in the air by ancient magic that outlasted their owner. The silence here has texture -- it presses against the eardrums.",
+                "read_aloud": "The street stretches between soaring tower complexes, its cobblestones etched with runes that glow faintly underfoot. Frozen carts sit where they stopped centuries ago, their contents dusted with rime, skeletal hands still gripping coin purses and reins. Near a frozen fountain, a skeleton stands in a juggler's pose, three crystal balls hanging motionless in the air above its outstretched hands -- the magic that holds them outlasted the hands that threw them. The silence here is so complete it presses against your eardrums like deep water.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Will-o'-Wisp (3)", "cr": "2"},
@@ -73,6 +75,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Tower of Conjuration has cracked along its height like a broken finger, its upper floors exposed to the glacier's ice. The interior is a maze of lecture halls and practice chambers where summoning circles are still inscribed in the floors, some still faintly active. In one chamber, a conjured creature -- an elemental of some kind -- paces inside a binding circle that has held for centuries, its form flickering between states of matter.",
+                "read_aloud": "The tower is cracked along its length like a broken finger, its upper floors exposed to the raw ice of the glacier above. Inside, lecture halls and practice chambers branch off a central stair, their floors inscribed with circles of intricate geometry. Some of the circles still glow. In one chamber, something paces behind an invisible barrier -- a shape that flickers between stone, flame, and wind, its footsteps leaving scorch marks and frost in alternating prints. It has been pacing for a very long time.",
                 "npcs": [
                     {"name": "Everlast (bound Dao)", "role": "prisoner", "dialogue": "*The earth genie presses against the invisible walls of its binding.* Nine hundred years. Nine hundred years in this circle, summoned for a lesson that was never completed. Free me and I will grant you one wish within my power. Betray me and I will spend the next nine hundred years finding a way to make you regret it."}
                 ],
@@ -100,6 +103,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Tower of Divination is intact -- the only tower in Ythryn that suffered no structural damage in the crash. Its walls are lined with scrying mirrors that still function, each one showing a different location: a sun-baked desert, an underwater city, a star field. The central chamber holds an orrery of gemstone planets orbiting a crystal sun, and the device still turns, tracking celestial bodies visible only to it.",
+                "read_aloud": "This tower alone stands undamaged, its walls smooth and whole where every other structure bears cracks. Inside, mirrors line every surface -- and each one shows a different place. A sun-baked desert shimmers in one. An underwater city glows in another. A third holds nothing but stars, wheeling slowly in a void. At the chamber's center, an orrery of gemstone planets orbits a crystal sun, still turning after nine centuries, tracking heavens it can no longer see.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Spectator (ancient guardian)", "cr": "3"}
@@ -127,6 +131,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Tower of Necromancy is a charnel house that predates the crash. The Netherese practiced death magic openly, and this tower was their laboratory. Preservation vats line the walls, each containing a specimen in various states of undeath. Some are still active, pressing against the glass with skeletal hands. The smell should be overwhelming, but the cold has reduced it to a faint, sweet staleness.",
+                "read_aloud": "The tower's interior reeks of something sweet and stale -- faint, suppressed by the cold, but unmistakable. Glass vats line the walls from floor to ceiling, each one filled with murky fluid and a dark shape. Some of the shapes are still. Others are not. Skeletal fingers press against the inside of the nearest vat, scraping slowly across the glass in a rhythm that might be patience or might be madness. The labels on the vats are written in a language you do not recognize, but the illustrations need no translation.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Wight (Netherese necromancer)", "cr": "3"},
@@ -155,6 +160,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Ythryn Mythallar occupies the city's central tower, a sphere of crystallized magic thirty feet in diameter that floats in the center of a cylindrical chamber. It pulses with blue-white light, and the air around it tastes of ozone and possibility. This was the engine that held Ythryn aloft, and even fallen, it generates enough magical power to maintain the stasis that preserves the city. Iriolarthas, the city's archmage, stands before it -- or what remains of him. Nine centuries of undeath have reduced him to a demilich, a jeweled skull floating in the Mythallar's light.",
+                "read_aloud": "The central tower opens into a cylindrical chamber of staggering height, and at its heart, a sphere of crystallized light floats unsupported -- thirty feet across, pulsing with blue-white radiance that makes your shadow dance in every direction at once. The air tastes of ozone and something older, something that prickles against your skin like static before a lightning strike. Before the sphere, suspended in its light, a jeweled skull hangs motionless, its empty eye sockets burning with pinpricks of cold fire. It turns, slowly, to face you.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Iriolarthas (Demilich)", "cr": "18"},
@@ -183,6 +189,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Iriolarthas's Study is a circular chamber whose walls are floor-to-ceiling bookshelves holding texts in languages that predate Common by millennia. A desk of dark wood -- warm to the touch, impossibly, as though the archmage's life force still lingers in his furniture -- holds an open journal. The last entry, written in a shaking hand: 'The Spindle fails. We fall. I have prepared. The others have not. Let the ice take what it will. I will endure.'",
+                "read_aloud": "The study is circular, its walls lined floor to ceiling with bookshelves holding texts bound in materials you cannot identify -- leather that is too smooth, metal that is too light, covers that feel warm despite the cold. A desk of dark wood dominates the center, and when your hand brushes its surface, it is warm to the touch. An open journal lies on the desk, its final page filled with a shaking hand. You cannot read the language, but the last line is underscored three times, the ink blotted where the pen pressed too hard.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [
@@ -207,6 +214,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Spire of Iriolarthas once pierced the clouds. Now it lies on its side, half-buried in glacier ice, its peak pointing toward the surface like a compass needle. The interior is a spiral of laboratories and observation decks, and at the very tip, a crack in the ice admits a shaft of pale light from the world above. The first natural light you've seen since entering the glacier. It is cold, and thin, and the most beautiful thing imaginable.",
+                "read_aloud": "The spire lies on its side, half-swallowed by the glacier, its interior a disorienting spiral of laboratories and observation platforms now tilted at strange angles. You climb through rooms where the ceiling is a wall and the floor is a window looking into solid ice. At the very tip of the spire, a crack in the glacier admits a single shaft of pale light from the world above. After so long in the dark beneath the ice, the sight of it -- thin, cold, barely there -- is the most beautiful thing you have ever seen.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [],

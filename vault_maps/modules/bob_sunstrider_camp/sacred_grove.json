@@ -42,6 +42,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "The grove's central clearing. Once a place of communion where the Chosen spoke with the land's spirits, it is now a wound. The grass is dead in a perfect circle, the soil beneath exposed and grey, veined with the same black corruption that stains the trees. At the clearing's edge, two figures stand motionless -- Panyar warriors, their armor of woven bark still visible beneath the corruption that has consumed them. Heartless. Their eyes are open and weeping black tears.",
+        "read_aloud": "The clearing is a wound in the forest. Dead grass in a perfect circle, the soil grey and veined with black. Two figures stand at the edge, motionless in bark armor, their eyes open and weeping something dark. They do not blink. Deep in the grove, something pulses -- a bass hum you feel in your teeth.",
         "enemies": [
           {"name": "Heartless", "hp": 15, "max_hp": 15, "ac": 13, "attack": 5, "defense": 13, "count": 2}
         ],
@@ -66,6 +67,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "A narrow deer trail leads deeper into the grove, past trees so corrupted they have collapsed under their own weight. The canopy here blocks all light -- you move through absolute darkness broken only by the faint, sickly glow of corrupted sap in the bark. The air is thick, humid, and smells of decomposition. Ahead, through the trees, a pulsing light marks the ritual site.",
+        "read_aloud": "Darkness. The canopy seals out every trace of sky. The only light is a sickly glow from the bark of dying trees, and ahead, deeper still, a pulsing green radiance. The air is thick and humid and smells of rot. Branches catch at your sleeves like grasping fingers.",
         "event_triggers": [
           "The deeper you go, the more the forest feels alive -- alive and hostile. Branches catch at your clothes. Roots shift underfoot."
         ],

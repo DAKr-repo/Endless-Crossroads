@@ -23,6 +23,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Yawning Portal's well drops into the first levels of Undermountain, where goblins, bugbears, and Xanathar Guild agents squabble over territory in halls that Halaster carved as an afterthought. These upper levels are almost civilized -- almost.",
+                "read_aloud": "The well shaft opens into corridors of rough-hewn stone where torchlight barely reaches the ceiling. The air carries the stink of goblin cookfires and unwashed fur, and somewhere ahead, raised voices argue in broken Common over territory that none of them built. Claw marks gouge the walls at chest height, layered over older scratches, layered over older scratches still.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [],
@@ -46,6 +47,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Sargauth River cuts through these levels, its black water flowing from nowhere to nowhere. Drow outposts cling to the cavern walls, and the dwarven ruins of Clan Melairkyn give way to stranger architecture -- temples to forgotten gods, prisons for things that should not be named.",
+                "read_aloud": "You hear the river before you see it -- a deep, constant rush of black water that smells of iron and deep earth. The cavern walls bear the chisel-marks of dwarven masons, but the stonework changes as you descend, giving way to alien geometries and doorways carved in shapes that hurt to look at directly. Faint purple light pulses from somewhere ahead, and the air grows heavy with incense you cannot name.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [],
@@ -69,6 +71,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Lost Level. Time moves strangely here. Petrified forests grow in caverns that have never seen sunlight, and githyanki war parties hunt through ruins that predate the city above. The walls remember things that the surface has forgotten, and some of those memories have teeth.",
+                "read_aloud": "A gray, sourceless light suffuses the cavern ahead, illuminating a landscape that has no right to exist this far underground. Stone trees stand in silent rows, their quartz bark glinting dully, their agate leaves frozen in an ancient wind. The air tastes of mineral dust and carries the faintest scent of flowers -- petrified blossoms that remember what perfume was. Time feels heavier here, each step landing with a strange, leaden finality.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [],
@@ -92,6 +95,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Trobriand's Graveyard, where the Mad Mage's apprentice built an army of iron constructs and then lost control of them. The forges still burn. The golems still march. And Trobriand himself may still be here, his mind merged with his greatest creation, unable to tell where the wizard ends and the machine begins.",
+                "read_aloud": "A wall of heat strikes you as you descend, carrying the taste of molten copper and burnt oil. The rhythmic clang of hammers on anvils echoes from below -- not the irregular ring of a craftsman's work, but the metronomic precision of a machine that never tires. Sparks fountain upward from unseen forges, and through the haze of metallic smoke, massive silhouettes move with grinding, purposeful steps.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [],
@@ -115,6 +119,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The deepest level. Halaster's sanctum, where reality bends to the will of a thousand-year-old wizard who has had centuries to go mad and decades to get creative about it. Stars burn in underground skies. Doors open into rooms that should not exist. And at the center of it all, Halaster Blackcloak waits, playing a game whose rules only he understands.",
+                "read_aloud": "The stone gives way to nothing. You stand on a flagstone platform suspended in a void of stars -- real stars, turning in constellations you have never seen, cold and impossibly vast. The air crackles with so much raw arcane energy that your teeth ache and your shadow moves independently of your body. Somewhere ahead, past corridors that bend in directions geometry forbids, a presence waits. It has been waiting for a very long time. It is patient. It is amused.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [],

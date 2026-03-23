@@ -42,6 +42,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "A junction chamber where three tunnels meet. Mining equipment is piled against one wall -- a winch, coils of rope, a collapsed ore cart. The far tunnel descends at a steep angle toward the deep shaft. The timbers here are scored with deep gouges, as if something with claws dragged itself along the walls. The Rotters came from below, climbing with mindless persistence.",
+        "read_aloud": "Three tunnels meet at a junction choked with abandoned equipment. The support timbers are scored with deep claw marks -- something dragged itself up from below. The far tunnel descends steeply into darkness. From down there, a distant rumble, and dust sifts from the ceiling.",
         "enemies": [
           {"name": "Rotter", "hp": 8, "max_hp": 8, "ac": 8, "attack": 3, "defense": 8, "count": 4},
           {"name": "Heartless", "hp": 15, "max_hp": 15, "ac": 13, "attack": 5, "defense": 13, "count": 1}
@@ -66,6 +67,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "A sealed storage chamber behind a reinforced door. Inside, crates of refined ore and alchemical reagents are stacked to the ceiling. The mine's most valuable output was stored here before transport to the surface. A manifest pinned to the door lists the contents in precise Bartan notation -- enough raw material for hundreds of black-shot rounds.",
+        "read_aloud": "Behind the reinforced door, crates of green-veined ore are stacked to the ceiling. A manifest pinned to the doorframe lists the contents in precise notation. The air smells of metal and something faintly chemical. This is what the Legion came for.",
         "loot": [
           {"name": "Alchemical Ore Cache", "value": 4, "description": "Refined green-veined ore. Enough for the Alchemists to produce black-shot ammunition for the entire march. Supply +2."},
           {"name": "Mine Manifest", "value": 0, "description": "Detailed inventory and tunnel maps. Reveals the deep shaft's layout and the location of the richest ore vein."}

@@ -23,6 +23,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Iron gates wreathed in climbing roses open onto a gravel drive lined with sculpted hedges. The Cassalanter estate gleams white in the moonlight, its columns and porticos the very picture of old-money respectability. Somewhere inside, a string quartet plays something by a long-dead Waterdhavian composer. The roses, you notice, have no thorns -- someone has removed every single one.",
+                "read_aloud": "Iron gates wreathed in climbing roses open onto a gravel drive that crunches beneath your boots. Sculpted hedges line the path, and beyond them the estate gleams white in the moonlight -- all columns, porticos, and polished stone. The faint strains of a string quartet drift from within, elegant and unhurried. The climbing roses are immaculate, their blooms heavy with perfume, and not one of them bears a single thorn.",
                 "npcs": [
                     {
                         "name": "Willifort Crowelle",
@@ -53,6 +54,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Crystal chandeliers throw prismatic light across a dance floor large enough to hold a hundred guests. Masked nobles glide through a waltz, their laughter too bright, their smiles too fixed. The marble floor is inlaid with a geometric pattern that, seen from the balcony above, forms a nine-pointed star -- the symbol of Asmodeus, hidden in plain sight.",
+                "read_aloud": "Crystal chandeliers throw prismatic light across a dance floor vast enough to hold a hundred couples. Masked nobles glide through a waltz, their laughter ringing too brightly, their jeweled fingers glinting with every turn. The marble floor beneath their feet is inlaid with an intricate geometric pattern that seems merely decorative from down here. The air smells of perfume, candle wax, and champagne, and the string quartet plays on without pause.",
                 "npcs": [
                     {
                         "name": "Ammalia Cassalanter",
@@ -83,6 +85,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Thousands of bottles rest in stone cradles stretching into darkness. The air is cool, still, and tastes of tannin. A false wall at the back has been opened recently -- the dust pattern on the floor shows a clear arc where stone pivoted on stone. Beyond it, stairs descend into a warmth that has nothing to do with the season.",
+                "read_aloud": "The wine cellar stretches into shadow, its stone cradles holding thousands of bottles in orderly rows. The air is cool, still, and thick with the scent of old cork and tannin. Your footsteps echo against the vaulted ceiling. At the far end, the dust on the floor has been disturbed -- a wide arc swept clean where stone has recently pivoted against stone. Beyond that gap, warm air rises from a descending staircase, carrying a smell that does not belong in a wine cellar.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Cult Fanatic", "cr": "2"}
@@ -110,6 +113,7 @@
             "is_secret": true,
             "content_hints": {
                 "description": "Red-veined marble walls absorb the light from iron sconces shaped like clawed hands. A basalt altar dominates the chamber, its surface carved with infernal script that writhes if you stare too long. The air is warm and smells of sulfur and expensive perfume. Nine black candles burn with flames that cast no smoke, and the shadows they throw move independently of the light.",
+                "read_aloud": "The walls are red-veined marble that swallows the torchlight, and iron sconces shaped like clawed hands grip flames that burn without flickering. A basalt altar dominates the chamber, its surface carved with writhing script you cannot read -- though your eyes keep trying, pulled back to the symbols against your will. The air is warm, thick with sulfur and something sweeter beneath it, like expensive perfume. Nine black candles burn with smokeless flames, and the shadows they cast move in directions the light does not explain.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Cult Fanatic", "cr": "2"},
@@ -141,6 +145,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Iron-banded doors open onto a corridor of cells carved from bedrock. Most are empty, but manacles on the walls show recent use -- the rust has been scraped away by struggling wrists. One cell contains a straw mattress, a clay jug of water, and crude tally marks scratched into the stone. Forty-seven days counted.",
+                "read_aloud": "Iron-banded doors open onto a corridor of cells carved from bare rock. Most stand empty, their doors ajar, manacles hanging slack from the walls with the rust scraped bright where wrists have struggled against them. One cell at the far end is occupied -- you can see a straw mattress, a clay jug, and crude tally marks scratched into the stone wall beside the door. Row after row of them, counting days that no one else is counting.",
                 "npcs": [
                     {
                         "name": "Captured Zhentarim Agent",
@@ -171,6 +176,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Coin is stacked in neat towers behind a vault door that took three locks and a password to open. Gold dragons, silver shards, and trade bars fill iron-banded chests. A ledger on a lectern records every transaction in Victoro's precise hand -- legitimate business on the left page, soul-trade accounting on the right, both balanced to the copper.",
+                "read_aloud": "Beyond the vault door, gold glints in the lantern light. Coins are stacked in neat towers across iron-banded chests -- gold dragons, silver shards, and heavy trade bars arranged with obsessive precision. The wealth of a noble house laid bare. A ledger stands open on a lectern, its pages filled with meticulous handwriting in two columns, and the air is dry, still, and heavy with the smell of cold metal.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [
@@ -200,6 +206,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "A vast underground chamber, its ceiling lost in darkness above. A summoning circle twenty feet across has been drawn in blood mixed with crushed ruby, and the air inside it shimmers like a heat mirage. Victoro Cassalanter stands at the circle's edge in vestments of red and black, his arms raised, his voice carrying words that hurt to hear. The ground trembles with each syllable.",
+                "read_aloud": "The chamber opens vast and deep, its ceiling swallowed by darkness. A circle twenty feet across is drawn on the stone floor in something dark and glistening, and the air above it shimmers like a heat mirage. The ground trembles beneath your feet in a slow, rhythmic pulse, and the sound that fills this place is not quite chanting -- it is a voice speaking words that press against the inside of your skull like something trying to get out. The warmth in the air is wrong. It comes from below.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Victoro Cassalanter (9th-level spellcaster)", "cr": "7"},
@@ -234,6 +241,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "A rough-hewn tunnel barely wide enough for two abreast slopes upward through packed earth and stone. Roots push through the ceiling, and the walls are damp with condensation. After two hundred yards of stooped walking, a rusted grate opens onto a drainage canal in the Trades Ward, the estate hidden behind you as if it never existed.",
+                "read_aloud": "A rough-hewn tunnel slopes upward through packed earth and stone, barely wide enough for two abreast. Roots push through the ceiling like grasping fingers, and the walls are slick with condensation. The air grows cooler as you climb, the oppressive warmth of the chamber below fading with every step. Ahead, a thin gray line of light outlines a rusted grate, and beyond it you can hear the distant sound of cart wheels and running water.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [],

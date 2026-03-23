@@ -23,6 +23,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "A section of wall in a Trades Ward basement pivots inward at a touch, revealing a staircase cut from obsidian. Each step is engraved with a different arcane sigil -- not wards, but a curriculum. A wizard walking down these stairs would learn, step by step, the theory of soul transference. By the bottom step, you understand enough to be horrified.",
+                "read_aloud": "A section of the basement wall pivots inward at your touch, revealing a staircase cut from black stone that swallows the light. Each step is engraved with a symbol that glows faintly as you place your weight on it -- a slow, descending sequence that tugs at the edge of your understanding. The air grows colder with every step, and by the time you reach the bottom, something has settled in the back of your mind that was not there before. You wish it would leave.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [],
@@ -48,6 +49,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Scrolls in crystal tubes fill honeycombed walls from floor to ceiling. The tubes are labeled in a cipher that shifts when you look away, and the scrolls inside glow faintly -- each one a preserved memory, stolen from someone who no longer remembers what they lost. A reading lectern in the center holds a half-translated scroll, its text bleeding between Common and Infernal.",
+                "read_aloud": "Crystal tubes fill honeycombed walls from floor to ceiling, each containing a tightly rolled scroll that glows with faint, shifting light. The labels on the tubes change when you look away and look back -- you are certain of it. A reading lectern stands at the center of the room, holding a scroll whose text seems to blur between two languages as your eyes track across it. The air smells of old parchment and something chemical, like preservative, and the silence here is absolute.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Zhentarim Warlock", "cr": "3"}
@@ -78,6 +80,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Six glass cylinders stand in a row, each filled with pale green fluid and lit from below. Five contain humanoid bodies in various stages of growth -- the same face repeated, the same sharp cheekbones and widow's peak, the same thin-lipped mouth set in a permanent frown. The sixth cylinder is empty, its glass cracked, its fluid pooled on the floor. Something hatched.",
+                "read_aloud": "Six glass cylinders stand in a row, each filled with pale green fluid that casts a sickly light across the floor. Inside five of them, humanoid figures float motionless -- the same face repeated five times, the same sharp features, the same expression of frozen displeasure. They range from half-formed to nearly complete. The sixth cylinder is shattered, its glass cracked from within, its fluid pooled on the floor in a drying stain. Whatever was inside is no longer here.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Failed Clone (Flesh Golem)", "cr": "5"}
@@ -108,6 +111,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "A sand table fills the room, its surface sculpted into a detailed relief map of Waterdeep. Tiny figurines represent faction positions -- Zhentarim in black, Xanathar Guild in purple, Harpers in silver, and a single golden dragon figurine placed deep underground. Manshoon has been planning his takeover move by move, and judging by the positions, he is three moves from checkmate.",
+                "read_aloud": "A sand table fills the room, its surface sculpted into a detailed relief map of a great city -- you recognize the harbor, the castle, the tangled streets of the Dock Ward. Tiny figurines are positioned across it in clusters: black figures in the south, purple in the east, silver scattered throughout, and a single golden piece placed deep beneath the city's center. The figurines have been moved recently; you can see the drag marks in the sand. Someone is playing a very large game.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [
@@ -134,6 +138,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The sanctum is a perfect sphere carved from black marble, its walls etched with constellations that do not match any sky you have seen. Manshoon floats at the center in lotus position, surrounded by orbiting spellbooks that turn their own pages. He opens his eyes as you enter -- one eye is natural, the other a glass orb that glows with stored spell energy. He does not look surprised. He looks disappointed.",
+                "read_aloud": "The chamber is a perfect sphere carved from black marble, its walls etched with constellations you do not recognize. The curved floor meets curved walls meets curved ceiling in a seamless whole that makes your sense of gravity uncertain. At the center, a figure floats in still air, cross-legged, surrounded by orbiting books that turn their own pages in a slow, silent carousel. As you enter, the figure opens its eyes. One eye is dark and human. The other burns with cold light. The books stop turning.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Manshoon (Archmage variant)", "cr": "12"},
@@ -168,6 +173,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "A vault door warded with three overlapping Arcane Locks opens onto a small chamber where wealth is measured not in coin but in knowledge. Scrolls of ninth-level spells, a crystal ball clouded with futures, and a leather case containing six soul coins from Avernus. A single chest holds operational funds -- gold enough to buy a noble title twice over.",
+                "read_aloud": "Beyond the vault door, the chamber is small and cold. Scrolls rest in silver cases on marble shelves, their seals unbroken. A crystal ball sits on a pedestal of black iron, its interior clouded with shapes that shift when you are not looking directly at them. A leather case lies open beside it, its velvet lining holding six coins that are warm to the touch and seem to vibrate faintly in your palm. A single iron chest against the far wall gleams with the unmistakable yellow weight of gold.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [

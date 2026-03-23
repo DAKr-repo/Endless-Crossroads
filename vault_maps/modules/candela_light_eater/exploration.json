@@ -81,6 +81,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "The power line pole at the garden's edge. The wooden post vibrates with a low hum that you feel in your back teeth. The chain of fused bodies terminates here, the last corpse's hand wrapped around the base of the pole, fingers sunk into the wood like roots. Scorch marks radiate outward in a starburst pattern.",
+        "read_aloud": "The power line pole vibrates with a low hum you feel in your back teeth. At its base, the chain of fused remains terminates -- the last corpse's hand wrapped around the wood, fingers sunk into the grain like roots seeking water. Scorch marks radiate outward in a starburst pattern. The wires overhead sing with a frequency that is almost, but not quite, a voice.",
         "npcs": [
           {
             "name": "Lucia Rodriguez",

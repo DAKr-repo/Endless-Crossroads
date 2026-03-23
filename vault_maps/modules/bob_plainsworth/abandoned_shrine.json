@@ -42,6 +42,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "The shrine's main chamber is a vaulted stone hall open to the sky through a collapsed roof. Rain pools on the cracked floor tiles, each puddle reflecting a sky that looks darker than it should. The altar stone at the center has been split in two. Something black and viscous seeps from the crack, pooling at the base. The two acolytes Kevarin sent lie slumped against the far wall, motionless. They are not dead. They are not alive either.",
+        "read_aloud": "The shrine's roof has collapsed, leaving the vaulted hall open to a sky that looks darker than it should. Rain puddles on cracked tiles. The altar stone at the center has been split clean in two, and something black and thick seeps from the break, pooling on the floor. Two figures slump against the far wall, motionless, their robes stained dark.",
         "enemies": [
           {"name": "Heartless", "hp": 15, "max_hp": 15, "ac": 13, "attack": 5, "defense": 13, "count": 2}
         ],
@@ -65,6 +66,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "Beneath the altar, a narrow stair descends to the shrine's sanctum. The walls are carved with Panyar sun-prayers, but the carvings weep that same black fluid. At the center of the sanctum, a corrupted font pulses with stolen warmth -- life force drawn from the land itself, pooling here like water in a cistern. The corruption has a source, and this is it.",
+        "read_aloud": "Narrow stairs descend beneath the broken altar into a sanctum carved with sun-prayers. The carvings weep black fluid that runs in slow rivulets down the walls. At the center, a stone font pulses with a warmth you can feel from the doorway -- stolen warmth, wrong warmth, like fever heat from a dying body.",
         "event_triggers": [
           "Destroying the font will cleanse the shrine but release a shockwave of dark energy. The corruption will not go quietly.",
           "If Kevarin's relic fragment is used here, the cleansing is quieter -- painful light instead of explosive force."

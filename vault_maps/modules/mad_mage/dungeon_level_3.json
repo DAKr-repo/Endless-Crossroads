@@ -23,6 +23,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The stairway deposits you onto a stone landing slick with condensation. The air here is different -- heavier, wetter, carrying the mineral tang of deep groundwater and something else, something organic, like the breath of a river that has never seen the sun. The walls are carved with dwarven mason's marks from Clan Melairkyn, each one a signature of a craftsman dead for a thousand years.",
+                "read_aloud": "The stairway ends on a stone landing slick with condensation. The air is heavier here, thick with moisture that beads on your skin and the taste of deep minerals -- iron, limestone, and something organic beneath it all, like the breath of a subterranean river. Dwarven mason's marks are chiseled into the walls at precise intervals, each one a different hand, each one centuries old. From somewhere to the south, the sound of rushing water echoes through the stone.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [],
@@ -48,6 +49,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Sargauth River fills a cavern a hundred feet wide, its black water moving with a patient, irresistible current. The surface is glass-smooth and utterly opaque -- you cannot see an inch below it. A stone quay juts into the water, mooring three flat-bottomed boats. The boats are drow-made, carved from a single piece of zurkhwood and treated to resist the river's corrosive minerals. Someone has painted eyes on each prow.",
+                "read_aloud": "The cavern opens wide, and the Sargauth River fills it edge to edge -- a hundred feet of black water moving with a slow, irresistible current. The surface is glass-smooth and utterly opaque, swallowing your torchlight without reflection. A stone quay juts into the water, its edges worn round by centuries of lapping current, and three flat-bottomed boats are moored there, each carved from a single piece of pale fungal wood. Painted eyes stare from each prow, wide and unblinking. The river smells of cold iron and deep places that have never known the sun.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [
@@ -77,6 +79,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Webbing fills this cavern like cotton in a jewelry box, every surface coated in sticky strands that vibrate at the slightest touch. Wrapped bundles hang from the ceiling -- some are animals, some are humanoid, and one is still moving, its muffled screams barely audible through layers of silk. The webs are not random; they form a pattern, a spiral that draws the eye inward toward a dark hollow at the center.",
+                "read_aloud": "Thick webbing fills the cavern from floor to ceiling, coating every surface in sticky, pale strands that vibrate at the slightest disturbance. The air is close and sweet with decay. Wrapped bundles hang from the ceiling at odd intervals -- some small, some roughly the size of a person. One of them twitches. A muffled sound comes from within, barely audible through layers of silk. The webs are arranged in a deliberate spiral pattern, each strand drawing your eye inward toward a dark hollow at the cavern's center where the webbing is thickest.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Giant Spider", "cr": "1"},
@@ -109,6 +112,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Stalactites have been hollowed out and connected by rope bridges to form a drow settlement suspended above the river. Dim purple faerie fire illuminates doorways carved into the stone columns, and drow move between them with the silent grace of spiders on a web. The settlement is a forward outpost for House Auvryndar, and the guards watch the water and the passages with equal suspicion.",
+                "read_aloud": "Above you, a settlement hangs from the cavern ceiling. Stalactites have been hollowed into dwellings and connected by rope bridges that sway gently in the updraft from the river below. Dim purple light spills from carved doorways, casting the stone columns in violet shadow. Dark figures move between the structures with silent, fluid grace, crossing the bridges without a sound. You feel their eyes on you before you can make out their features -- watchful, calculating, and utterly unafraid.",
                 "npcs": [
                     {
                         "name": "T'rissa Auvryndar",
@@ -146,6 +150,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The crossing is a natural stone bridge spanning a forty-foot chasm through which the Sargauth thunders. The bridge is three feet wide, slick with spray, and has no railing. Halfway across, drow runes carved into the stone glow when stepped on -- each one a different color, each one a different effect. The drow use them as a security measure. Visitors use them as a gamble.",
+                "read_aloud": "A natural stone bridge arcs over a forty-foot chasm where the Sargauth River thunders below, its roar filling the cavern until your ribs vibrate. The bridge is barely three feet wide, slick with spray, and has no railing -- just a long drop into churning black water on either side. Halfway across, colored runes are carved into the stone, each one glowing a different hue: crimson, violet, gold, white. They pulse faintly as you approach, as though waiting to be stepped on. The spray stings your face and the stone is treacherously slick beneath your boots.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [],
@@ -172,6 +177,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "A dwarven temple to Dumathoin, Keeper of Secrets Under the Mountain. The altar is carved from a single boulder of black marble, its surface engraved with a face whose eyes are closed and whose lips are sealed. Offerings of raw gemstones fill niches in the walls, placed by Melairkyn dwarves who never returned to claim them. The temple has been undisturbed for centuries -- until now. The dust on the floor shows only your footprints.",
+                "read_aloud": "You step into a chamber of reverent stillness. An altar of black marble dominates the space, carved with the face of a figure whose eyes are closed and whose lips are sealed in eternal silence. Niches line the walls, each one holding a cluster of raw, uncut gemstones that catch your torchlight in flashes of deep color. Dust lies thick on every surface, undisturbed for what must be centuries -- your footprints are the first. The air is cool and dry and tastes of stone, and the silence here is not empty but full, as though the chamber itself is holding a secret between its teeth.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [
@@ -202,6 +208,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "A ritual chamber dominated by a spider-shaped altar carved from purple obsidian. Eight candles burn at the tips of its legs, their flames a sickly green that casts no shadows. A drow priestess kneels before it, her prayers carrying the clicking, skittering cadence of the spider tongue. Behind her, a Gate spell shimmers in the air -- a portal to the Demonweb Pits, half-open, leaking wisps of darkness that move against the light.",
+                "read_aloud": "The chamber ahead is lit by eight candles burning sickly green, each one perched at the tip of a leg belonging to a spider-shaped altar carved from dark, glassy stone. The flames cast no shadows -- the light simply stops at the edges of things, as if the darkness here is stronger than the fire. A figure kneels before the altar, murmuring in a language of clicks and hisses that makes your skin crawl. Behind the altar, the air itself is torn -- a shimmering wound in reality, leaking tendrils of darkness that drift upward against gravity, reaching toward the ceiling like grasping fingers.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Drow Priestess of Lolth", "cr": "8"},

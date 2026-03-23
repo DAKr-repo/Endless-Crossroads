@@ -47,6 +47,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "The cargo hold. Twelve sealed crates of Memish psychedelics, each one the size of a coffin and twice as heavy. The product inside is packed in thermal gel to defeat scan detection. Vesh's crew has already moved the crates onto mag-sleds for transfer. All you need to do is get them to the Faraday.",
+        "read_aloud": "Twelve sealed crates sit on mag-sleds, each one coffin-sized and humming faintly from the thermal gel packed inside. The hold reeks of that sweet chemical smell -- Memish product, even sealed, has a way of getting into everything. Vesh's people stand at the perimeter, weapons out, watching the corridor junctions. The message is clear: load fast.",
         "loot": [
           {"name": "Memish psychedelics (12 crates)", "value": 24, "description": "Sealed cargo. Do not open. The thermal gel keeps the contents scan-invisible for approximately six hours before it degrades."}
         ],
@@ -68,6 +69,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "The loading corridor. A narrow passage between container stacks leading back to your docking bay. Emergency lights paint everything in alternating bands of red and shadow. The mag-sleds hum along the deck plating, carrying your very illegal cargo toward the ship.",
+        "read_aloud": "The corridor between the container stacks is barely wide enough for the mag-sleds. Emergency lights strobe in alternating bands of red and black, turning every shadow into a potential threat. The sleds hum along the deck plating ahead of you, carrying enough contraband to earn you all a one-way trip to a Hegemonic labor colony. The docking bay is close. Not close enough.",
         "enemies": [
           {
             "name": "Hegemonic Agent",

@@ -57,6 +57,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "A long trench covered by tarps and scavenged timber. Soldiers sleep in shifts on straw pallets laid over duckboards. Weapons hang from pegs driven into the trench wall, within arm's reach of every bunk.",
+        "read_aloud": "A covered trench, tarps stretched over scavenged timber. Soldiers sleep on straw pallets in shifts, weapons hanging from pegs within arm's reach. The air smells of damp earth and the smoke that never quite clears. No one stirs as you pass -- the ones sleeping have earned it.",
         "npcs": [
           {
             "name": "Field Commander Alaria",
@@ -81,6 +82,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "Dresh's supply tent is an organized chaos of crates, barrels, and salvage. Everything is labelled in his cramped shorthand. A lantern hangs from the ridgepole, casting long shadows over stacked ammunition boxes and bundled bandages.",
+        "read_aloud": "Crates and barrels crowd the supply tent, every surface labelled in cramped shorthand. A lantern swings from the ridgepole, casting shadows that move across stacked ammunition boxes and bundled bandages. The quartermaster watches you from behind his desk like a man guarding the last well in a drought.",
         "npcs": [
           {
             "name": "Quartermaster Dresh",

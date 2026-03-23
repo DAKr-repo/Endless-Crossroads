@@ -23,6 +23,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The cave mouth gapes in the cliff face like the maw of something dead, ringed with stalactites that drip fetid water. The smell rolls out in waves: rotting meat, sulfur, and the sharp ammonia stink of reptile nesting. Claw marks gouge the stone at the entrance -- something large comes and goes regularly. Fresh kobold tracks lead inside, alongside the deeper impressions of booted humanoids.",
+                "read_aloud": "The cave mouth gapes in the cliff face, ringed with stalactites that drip dark water in a slow, irregular rhythm. The smell hits you before you reach the threshold -- rotting meat, sulfur, and a sharp ammonia tang that burns the back of your throat. Deep gouges score the stone at the entrance, as though something with very large claws passes through here regularly. Muddy tracks lead into the darkness beyond.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Kobold (group of 4, guard detail)", "cr": "1/8"}
@@ -45,6 +46,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The mushroom garden fills a damp side-chamber with clusters of phosphorescent fungi -- blues, greens, and an unnatural purple variety that the kobolds cultivate for food. The air is thick with spores, and the ceiling is alive with insects drawn to the bioluminescence. A crude kobold irrigation system of clay pipes feeds the garden from an underground stream.",
+                "read_aloud": "You step into a side-chamber and the darkness blooms with color. Clusters of luminous fungi cling to every surface -- blues and greens casting an eerie undersea glow, and a deeper, stranger purple that pulses faintly as if breathing. The air is thick and damp, heavy with spores that tickle the nose. Tiny insects swirl in clouds around the brightest growths, and the soft gurgle of water comes from somewhere beneath the floor.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Violet Fungus (2)", "cr": "1/4"}
@@ -70,6 +72,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The bat cavern's ceiling writhes with thousands of roosting bats packed so densely they form a living carpet of fur and membrane. The floor is inches deep in guano, and the stench is staggering. Any sudden light or noise sends the colony into a panicked flight that fills the cavern with a tornado of wings and teeth -- not dangerous individually, but blinding and disorienting en masse.",
+                "read_aloud": "The ceiling moves. It takes a heartbeat to understand what you are seeing -- thousands upon thousands of bats packed so tightly they form a living, shifting carpet of fur and leathery wings. The floor squelches underfoot, inches deep in droppings, and the stench is overwhelming. The faintest whisper of sound from the colony above sets individual bodies twitching in their sleep. Every instinct tells you to move quietly.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Swarm of Bats", "cr": "1/4"},
@@ -93,6 +96,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The stirge cave buzzes with a high-pitched whine that vibrates behind the eyes. The stirges roost in clusters on the ceiling, their proboscises twitching in sleep. The cave floor is scattered with the desiccated husks of rats, bats, and one unfortunate kobold who wandered in without a torch. The Cult uses this cave as a natural trap -- they know the safe path through, but intruders do not.",
+                "read_aloud": "A high-pitched buzzing fills this cave, so persistent it seems to vibrate behind your eyes. The ceiling is clustered with dark, insectile shapes -- each the size of a cat, needle-like proboscises twitching in restless sleep. The cave floor is littered with dry husks: rats, bats, and one small humanoid form, shriveled and drained to a papery shell. The buzzing intensifies as you draw closer.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Stirge (10)", "cr": "1/8"}
@@ -117,6 +121,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The drake nursery is a heated chamber where the Cult breeds guard drakes from dragon eggs stolen or harvested across the Sword Coast. Clay nesting pits line the walls, each containing leathery eggs in various stages of development. Adult guard drakes patrol between the nests, and kobold handlers scatter meat scraps to keep them placated. The heat comes from a volcanic vent in the floor that the Cult has harnessed with crude piping.",
+                "read_aloud": "A wall of heat strikes you as you enter. The chamber is sweltering, warmed from below by vents in the stone floor that hiss with escaping steam. Clay pits line the walls, each cradling clusters of leathery eggs -- some small as a fist, others large as a man's head, veined and faintly pulsing. Muscular reptilian forms pace between the nests, their scales gleaming in the ruddy light, while small handlers scurry to toss scraps of raw meat at their feet.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Guard Drake (adult, 3)", "cr": "2"},
@@ -144,6 +149,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Langdedrosa Cyanwrath stands in the center of the chamber like a statue come to life, his greatsword drawn and resting on one shoulder. The half-dragon has been waiting. He knew someone would come. His chamber is spartanly furnished -- a bedroll, a weapon rack, a shrine to Tiamat consisting of five candles in five colors. The walls bear tally marks counting his kills. There are hundreds.",
+                "read_aloud": "The chamber opens wide, and a figure stands at its center as though carved from the living rock -- a towering half-dragon with blue-scaled skin, a greatsword resting on one shoulder with the casual ease of long familiarity. The space around him is spartan: a bedroll, a rack of well-maintained weapons, five candles burning in five different colors before a small shrine. Tally marks cover the walls, scratched into stone in neat rows. There are hundreds of them. He turns to face you, and he is smiling.",
                 "npcs": [
                     {"name": "Langdedrosa Cyanwrath", "role": "antagonist", "dialogue": "You survived Greenest. Good. I hoped you would. *His tail sweeps the ground in a slow, predatory arc.* The last fight was... incomplete. I gave you honor. You gave me a wound that still aches when I breathe. Now we finish it. No audience. No prisoners. No mercy from me, and I expect none from you."}
                 ],
@@ -173,6 +179,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The treasure chamber is carved from living rock and sealed with a door of iron banded in chardalyn. Inside, the Cult's overflow hoard gleams in the torchlight: chests of gold and silver coin, bolts of silk, casks of spice, and a small fortune in gemstones. This is what didn't fit on the wagons heading north -- the dregs of a dozen raided towns, piled without ceremony.",
+                "read_aloud": "Beyond the heavy iron door, torchlight catches on metal and the chamber erupts in glittering reflections. Chests of coin stand open and overflowing -- gold and silver heaped without ceremony. Bolts of fine silk are stacked against one wall, casks of exotic spice against another, and loose gemstones wink from the crevices of the rough-hewn floor. The plunder of a dozen towns, gathered in one place, piled high and left to gleam in the dark.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Trap: Poison Needle (DC 15 to detect, DC 12 to disarm, 2d10 poison)", "cr": "0"}
@@ -200,6 +207,7 @@
             "is_secret": true,
             "content_hints": {
                 "description": "The secret shrine is hidden behind a concealed door at the back of Cyanwrath's chamber -- a small natural alcove converted into a holy place of terrible devotion. Five dragon skulls, each a different color, are mounted on the walls in a pentagonal arrangement. At the center, a black altar bears fresh blood and a ledger written in Draconic detailing the Cult's chapter houses across the Sword Coast.",
+                "read_aloud": "Behind the hidden door, a small natural alcove has been transformed into something sacred and terrible. Five dragon skulls are mounted on the walls in a precise arrangement -- one white as bone, one black as pitch, one the green of deep poison, one the blue of a storm-split sky, one red as cooling embers. Candles gutter before each skull. At the center, a black stone altar glistens with fresh blood, and a heavy ledger lies open upon it, its pages covered in angular script.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [

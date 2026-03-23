@@ -93,6 +93,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "The control alcove. A bank of instruments built into the sanctum wall, covered in bleed-fungus but still functional. This is the containment field's control interface -- Director Abbas designed it with a failsafe shutdown sequence. Tarek's access codes will work here. The shutdown is not instant -- it takes three minutes, during which the Reliquary's powers will fluctuate wildly. Someone must keep her calm. Someone must keep the vault from collapsing. Someone must stay at the controls.",
+        "read_aloud": "A bank of instruments protrudes from the sanctum wall, half-consumed by orange fungus but still flickering with power. Dials tremble behind cracked glass. A keypad glows faintly amber beneath a film of mycelia. The containment field hums from somewhere beneath the floor, its vibration felt in your teeth and your chest. This is the machine that keeps a child imprisoned. It is waiting for someone to turn it off.",
         "npcs": [],
         "enemies": [],
         "services": [],

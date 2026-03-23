@@ -23,6 +23,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The western warcamps cling to the plateau rim like barnacles on a ship's hull -- temporary structures that have become permanent through sheer stubbornness and the inability of anyone to agree on a better plan. Smoke from a thousand cook-fires smudges the sky.",
+                "read_aloud": "A sprawl of canvas and timber stretches along the plateau's western rim, dense as a city but built with the impermanence of a fever dream. Cook-fire smoke hangs in a grey pall that never quite lifts. Soldiers in mismatched uniforms move between the tents, and somewhere a horn blares -- short, sharp, final. Bridge crews begin to run.",
                 "npcs": [
                     {"name": "Camp Crier", "role": "guide", "dialogue": "Bridge assignments posted at dawn. If your number is called, you run. If your number is not called, you wait. Either way, you do not sleep well."}
                 ],
@@ -45,6 +46,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Plateau Battlefields stretch endlessly eastward -- mesa after mesa separated by chasms that could swallow a building whole. Stormlight-infused gemhearts grow in chrysalises on the contested plateaus, and two nations bleed for them daily.",
+                "read_aloud": "Mesa after mesa stretches before you, each one an island of flat stone surrounded by chasms that drop into blackness. The bridge slams down across the gap with a sound like a bone breaking. Arrows hiss overhead. On the far plateau, figures in carapace armor have already formed their battle line, and their war-chant rises -- a rhythm that vibrates in your teeth.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Parshendi Scout", "cr": "1"}
@@ -67,6 +69,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Deep Chasms -- where the plateaus give way to a network of fractures that descend beyond light and reason. Salvage crews report finding ruins down there, structures that predate the Shattered Plains themselves. The chasmfiends nest in the deepest reaches.",
+                "read_aloud": "The chasm narrows until you must turn sideways to pass. Your sphere-light catches shapes in the stone -- worked edges, carved lintels, the unmistakable geometry of construction buried beneath millennia of crem. Something massive shifts in the darkness below, and the walls vibrate with a low, grinding moan that is not wind and is not stone.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Chasmfiend Hatchling", "cr": "2"}

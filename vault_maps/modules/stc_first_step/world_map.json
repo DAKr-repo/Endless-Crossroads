@@ -23,6 +23,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Kholinar rises behind its Windblades -- immense stone formations that claw skyward like the fingers of a buried god. The city's bells ring in staggered cascades before each highstorm, their tones carrying across the Alethi countryside for miles.",
+                "read_aloud": "Stone towers rise against a bruised sky, dwarfed by the Windblades -- natural pillars of rock so tall their tips vanish into low cloud. Somewhere ahead, a bell begins to toll, and then another answers it, and another, until the whole city shivers with cascading bronze. The air smells of crem-dust and ozone. A storm is coming.",
                 "npcs": [
                     {"name": "Gate Sergeant Teleb", "role": "guard", "dialogue": "Papers, darkeyes. And don't look at the Windblades too long -- new arrivals always get dizzy."}
                 ],
@@ -45,6 +46,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Shattered Plains stretch to the horizon -- a vast expanse of stone plateaus separated by chasms of unfathomable depth. Permanent warcamps cling to the western edge, their fires visible at night like a constellation fallen to earth.",
+                "read_aloud": "The land ahead looks as though some god took a hammer to a continent. Flat-topped plateaus stretch to the horizon in every direction, each one severed from its neighbors by chasms so deep the bottom is lost to shadow. Drums pulse from somewhere far to the east -- a rhythm that carries across the open stone like a heartbeat.",
                 "npcs": [
                     {"name": "Scout Lirin", "role": "guide", "dialogue": "The plateaus shift after every highstorm. Maps older than a week are kindling."}
                 ],
@@ -69,6 +71,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Urithiru. The tower city of the Knights Radiant, thought lost for millennia, rises through the clouds above the peaks. Its tiers are carved from a single impossible mountain of stone, every surface inscribed with glyphs that once glowed with Stormlight.",
+                "read_aloud": "The clouds part and the tower is there -- impossibly vast, its tiers climbing beyond sight into thin, freezing air. Glyphs the size of doorways cover every surface, their edges still sharp after millennia though whatever light once filled them has long since guttered out. The silence here is immense, broken only by wind threading through corridors built for a civilization that no longer exists.",
                 "npcs": [
                     {"name": "Navani Kholin", "role": "quest_giver", "dialogue": "The tower has secrets we have barely begun to understand. Rooms that open to no key. Fabrials that hum at frequencies we cannot hear."}
                 ],
@@ -93,6 +96,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The chasms beneath the Shattered Plains are a world unto themselves -- a labyrinth of dripping stone and ancient bones. Moss glows faintly where water trickles, and the skeletons of fallen chasmfiends arch overhead like the ribs of cathedrals.",
+                "read_aloud": "You descend into a world stripped of sky. The chasm walls press close, slick with moisture, and the air turns cold and mineral-sharp. Faint bioluminescent moss traces the path of ancient water channels, casting everything in sickly green. Overhead, the bleached ribs of a dead chasmfiend span the gap like the vaulted ceiling of some drowned cathedral.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Cremling Swarm", "cr": "1"},
@@ -118,6 +122,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Stormlands -- open Alethi countryside where crem-crusted rockbuds dot the stone ground and lavis polyps cling to every sheltered surface. The sky darkens in the east, and the air tastes of ozone. A highstorm approaches.",
+                "read_aloud": "Open stone stretches in every direction, dotted with rockbuds that have pulled their vines tight against their shells. The lavis polyps along the lee side of every boulder have sealed themselves shut. The eastern sky is a wall of black cloud lit from within by violet lightning, and the wind carries the taste of metal. Every living thing on this plain knows what is coming.",
                 "npcs": [
                     {"name": "Farmer Hesina", "role": "merchant", "dialogue": "Best get inside, travelers. That wall of cloud means you have maybe an hour. I can sell you storm provisions, but not time."}
                 ],

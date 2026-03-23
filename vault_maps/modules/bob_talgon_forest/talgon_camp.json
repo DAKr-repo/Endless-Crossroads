@@ -57,6 +57,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "The rest area is a long tent with cots packed so close together that soldiers sleep in shifts to avoid overcrowding. A board on the tent pole lists the watch rotation in chalk. Someone has added, at the bottom, in different handwriting: 'ALMOST THERE.' Below that, another hand: 'That is what they said at Plainsworth.'",
+        "read_aloud": "Cots packed shoulder to shoulder inside a sagging tent. The air is thick with the smell of unwashed wool and exhaustion. A chalk board lists watch rotations. At the bottom, two lines of graffiti in different hands -- one hopeful, one bitter.",
         "services": ["rest"],
         "event_triggers": [
           "The soldier in the next cot is awake, staring at the canvas ceiling. 'Two more days,' she whispers to no one."
@@ -76,6 +77,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "Niss runs supply from a wagon bed, its wheels removed and the axles propped on stones. Every item is logged in her ledger, every disbursement authorized with her stamp. The shelves are thin -- ration boxes stacked three high where they used to be stacked ten. A locked chest beneath the wagon holds the camp's medical supplies, which Niss guards with the ferocity of a dragon over its hoard.",
+        "read_aloud": "A wheelless wagon propped on stones serves as the quartermaster's station. The shelves behind are nearly bare -- ration boxes stacked three high where the marks on the wood say ten once stood. A ledger lies open, every line filled in tight, precise script.",
         "services": ["supply", "rumor"],
         "npcs": [
           {

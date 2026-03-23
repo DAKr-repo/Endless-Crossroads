@@ -55,6 +55,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "The coroner's examination notes, pinned to a corkboard. Three victims, three faceless bodies, three clusters of spider silk. The silk analysis is circled in red: 'Not consistent with any known arachnid species. Tensile strength exceeds steel. Bleed-reactive under UV.' A map of South Soffit on the adjacent wall shows the three body locations forming a triangle. The Eden Theater sits at the triangle's center.",
+        "read_aloud": "The corkboard tells the story in pushpins and string. Three crime scene photographs. Three faceless bodies. Three clusters of spider silk, each one circled in red ink with the coroner's annotation: 'Not consistent with any known species.' A map of South Soffit hangs beside it, the three body locations forming a triangle. At the triangle's center sits a single building. The Eden Theater.",
         "npcs": [],
         "enemies": [],
         "services": [],
@@ -81,6 +82,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "The alley behind the tobacconist. A food cart is parked at the curb, its awning dripping rain. The vendor -- Rokas Novak -- serves pierogi and black coffee to late-shift workers and OUP officers alike. They see everything on this block and forget nothing.",
+        "read_aloud": "Rain drums on the food cart's canvas awning, pooling at the edges and dripping onto cobblestones slick with grease and fallen leaves. The vendor tends a sputtering burner, the smell of fried dough and black coffee cutting through the damp. From this corner, you can see the shuttered tobacconist, the OUP field office, and -- three blocks south -- the dark silhouette of the Eden Theater against the gaslit sky.",
         "npcs": [
           {
             "name": "Rokas Novak",

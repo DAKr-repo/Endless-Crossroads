@@ -57,6 +57,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "Elsu's prayer shelter is hung with dried herbs, feathers, and small bone carvings that spin in the breeze. The floor is packed earth covered with woven mats. A shallow bowl of water sits at the center, its surface reflecting light in a way that seems too bright for the dim interior. Elsu says the water is from the grove's spring -- the last clean water drawn before the corruption reached the source.",
+        "read_aloud": "Dried herbs and feather bundles hang from the shelter's frame, spinning slowly in a breeze you cannot feel. The air smells of sage and clean earth. At the center, a shallow bowl of water catches the light and holds it, glowing softly in the dim interior.",
         "services": ["heal", "bless"],
         "npcs": [
           {
@@ -81,6 +82,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "The supply area is an open-sided shelter piled with forage, preserved game, and bundles of medicinal plants. Tashen manages it with cheerful disorganization that somehow always produces what is needed. A separate chest, locked and set apart, contains the camp's alchemical supplies -- healing salves, anti-corruption tinctures, and a single vial of something that glows pale gold.",
+        "read_aloud": "An open-sided shelter piled with forage and bundles of dried plants, smelling of pine resin and dried game. The stores are modest but carefully tended. A single locked chest sits apart from the rest, and through its seams, a faint golden light bleeds.",
         "services": ["supply"],
         "investigation_dc": 12,
         "investigation_success": "The gold vial is labeled in Panyar script: 'Sunfire Distillate.' Elsu's notes indicate it was made from the last harvest of uncorrupted sap from the grove's heartwood. It is devastatingly effective against undead -- but there is only one dose."

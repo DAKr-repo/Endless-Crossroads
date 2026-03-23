@@ -23,6 +23,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "A storm drain grate lifts away to reveal stone steps descending into the Waterdeep sewers. The stench hits first -- a wall of rot and standing water and something else beneath it, something sharp and alien, like ozone before a lightning strike. Bioluminescent fungus clings to the walls in blue-green patches, providing just enough light to see the rats watching you from the shadows.",
+                "read_aloud": "The storm drain grate lifts away with a grinding screech, revealing stone steps that descend into darkness. The stench hits you like a physical thing -- rot, standing water, and something sharper beneath it all, electric and alien. Bioluminescent fungus clings to the walls in patches of sickly blue-green, casting just enough light to see the steps and the dozens of small, gleaming eyes watching you from the shadows below.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [],
@@ -48,6 +49,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The tunnel is half-flooded, murky water reaching mid-thigh. Things move beneath the surface -- quick, sinuous shapes that brush against your legs and vanish. The walls are scratched with territorial markings in Deep Speech, and at one point the passage narrows to single-file between two pillars of fused bone.",
+                "read_aloud": "Murky water fills the tunnel to mid-thigh, cold enough to steal your breath. Things move beneath the surface -- quick, sinuous shapes that brush against your legs and are gone before you can react. The walls are gouged with deep scratches in patterns that might be writing, and the tunnel narrows ahead, forcing you single-file between two pale columns that are not stone. They are bone -- fused together, stacked, rising from the waterline to the ceiling.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Gazer", "cr": "1/2"},
@@ -74,6 +76,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Crude barricades of overturned tables and salvaged doors block the passage. Behind them, bugbear guards play a dice game using knucklebones that are not from any animal you recognize. They wear mismatched armor stamped with a circle-and-dot symbol -- Xanathar's brand. One picks its teeth with a human femur.",
+                "read_aloud": "Crude barricades of overturned tables and salvaged doors block the passage ahead. Behind them, hulking figures crouch in the torchlight, rolling knucklebones across a flat stone with low, guttural laughter. Their mismatched armor is stamped with the same symbol -- a circle with a dot at its center. The air smells of unwashed fur, rancid meat, and the smoke of a guttering torch jammed into a skull mounted on the barricade.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Bugbear", "cr": "1"},
@@ -104,6 +107,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Iron cages hang from the ceiling by rusted chains, each containing a prisoner in varying states of despair. Some weep. Some stare. One laughs softly and will not stop. The floor beneath the cages is stained with old filth, and a bucket of gruel sits by the entrance with a ladle chained to it -- feeding time is apparently self-service.",
+                "read_aloud": "Iron cages hang from the ceiling by rusted chains, swaying gently, each holding a slumped figure. The sounds they make are the worst part -- quiet weeping, the dry rasp of labored breathing, and from one cage, a soft, broken laugh that does not stop. The floor beneath the cages is stained dark, and the air is foul with the smell of confinement. A bucket of gray gruel sits by the entrance, its ladle chained to the handle.",
                 "npcs": [
                     {
                         "name": "Floon Blagmaar",
@@ -138,6 +142,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Shelves of stolen goods line the walls -- paintings still in their frames, bolts of silk, casks of dwarven spirits, and a taxidermied owlbear wearing a jaunty hat. Xanathar keeps trophies of every significant theft, each tagged with a label in cramped handwriting noting the date, the victim, and a rating out of ten for difficulty. The owlbear rates a seven.",
+                "read_aloud": "Shelves line every wall, packed with stolen treasure displayed like a museum exhibit. Paintings still in gilt frames lean against bolts of shimmering silk. Casks of spirits are stacked beside jewelry boxes and a taxidermied owlbear wearing a jaunty feathered hat. Every item bears a small tag in cramped handwriting. The room smells of dust, lacquer, and the faint sweetness of aged spirits leaking from a cracked cask.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [
@@ -166,6 +171,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "A sand-floored pit twenty feet deep, ringed by tiered stone benches worn smooth by spectators. Bones are scattered across the arena floor -- some humanoid, some not, all gnawed clean. Rusty weapons are chained to posts at the pit's center. Dark stains in the sand tell the story of a hundred fights, and the drainage grate at the bottom is clogged with teeth.",
+                "read_aloud": "You stand at the lip of a sand-floored pit twenty feet deep, ringed by tiers of stone benches worn smooth by countless spectators. Bones litter the arena floor below -- ribs, skulls, things you cannot identify, all gnawed clean. Rusty weapons are chained to posts at the pit's center, their blades notched and dark. The sand is stained in overlapping circles of brown and black, and the air rising from the pit smells of old blood and iron.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Half-Ogre", "cr": "1"},
@@ -196,6 +202,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "A circular chamber filled entirely with water, lit from below by permanent Dancing Lights spells. Inside the crystal-clear tank, a single goldfish swims in lazy circles among miniature castles, sunken ships, and tiny ceramic divers. The tank is temperature-controlled, pH-balanced, and guarded by more magic than most noble vaults. This fish is the most protected creature in Waterdeep.",
+                "read_aloud": "You enter a circular chamber dominated by an enormous glass tank that fills the room from wall to wall. The water inside is crystal clear, lit from below in soft blue and gold, and at its center a single goldfish drifts in lazy circles among miniature castles, tiny sunken ships, and ceramic divers frozen in mid-swim. The water hums faintly with the vibration of protective magic. The room is immaculate, climate-controlled, and warmer than anywhere else in this lair.",
                 "npcs": [
                     {
                         "name": "Sylgar",
@@ -228,6 +235,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The cavern opens into a dome of natural stone, its ceiling crusted with stalactites that drip into shallow pools. In the center, floating three feet above a throne carved from a single stalagmite, Xanathar rotates slowly. Its central eye sweeps the room like a lighthouse beam, and its eyestalks writhe in constant, independent surveillance. The beholder's voice fills the chamber without echo, as if it speaks from inside your skull.",
+                "read_aloud": "The cavern opens into a vast dome of natural stone, its ceiling crusted with stalactites that drip into shallow pools scattered across the floor. The air is cold, still, and thick with a pressure you feel behind your eyes. At the center of the chamber, something floats above a throne carved from living rock -- a sphere of mottled flesh, massive and terrible, its great central eye sweeping the room in a slow, searching arc. Smaller stalks writhe from its crown, each tipped with a gleaming eye that moves independently. It has already seen you.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Xanathar (Beholder)", "cr": "13"},
@@ -264,6 +272,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "A waterway cuts through the rock, its current fast and cold. A flat-bottomed boat is moored to an iron ring, large enough for four. The tunnel ahead narrows to a slit of gray light -- the harbor. Salt air pushes back against the sewer stench, and the distant cry of gulls sounds like freedom.",
+                "read_aloud": "A waterway cuts through the rock, its current fast and dark. A flat-bottomed boat is moored to an iron ring in the stone, rocking in the current. The tunnel ahead narrows until a slit of gray light appears at its end -- the harbor, impossibly distant and impossibly welcome. Salt air pushes against the sewer stench, and you can hear the faint, muffled cry of gulls somewhere above the waterline.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [],

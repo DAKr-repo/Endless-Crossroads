@@ -27,6 +27,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Greenest nestles in the Greenfields south of the Trade Way, a prosperous farming town whose fields of wheat and barley have fed Baldur's Gate for generations. Tonight the fields burn. A blue dragon wheels above the town trailing lightning, and columns of cultists stream from the south carrying torches and the banner of a five-headed dragon.",
+                "read_aloud": "The Trade Way crests a gentle rise and the town of Greenest appears below -- or what is left of it. Fields of wheat and barley that once stretched golden to the horizon are trampled and burning. A dragon trails lightning across the sky above the rooftops, and columns of torchlight stream toward the town from the south, the banner of a five-headed dragon rippling at their head.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [],
@@ -51,6 +52,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Mere of Dead Men stretches along the coast north of Waterdeep, a fetid swamp of black water and twisted mangroves that has swallowed entire armies. Castle Naerytar rises from its center on a hillock of solid ground, a crumbling fortress the Cult has repurposed as a waystation for their hoard of stolen treasure.",
+                "read_aloud": "The road dissolves into mud, and then the mud dissolves into black water. The Mere of Dead Men stretches before you in every direction -- a vast, stinking expanse of dark pools, twisted mangrove roots, and reeds that whisper in a breeze you cannot feel. Sulfurous bubbles break the surface at intervals, and somewhere in the fog ahead, the vague outline of a castle tower rises from the mire like a tombstone.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [],
@@ -75,6 +77,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Waterdeep, City of Splendors, sprawls along the coast beneath Mount Waterdeep's watchful shadow. The Lords' Palace stands at the city's heart, and within it, the Council of Waterdeep convenes to address the dragon threat. Banners of a dozen factions fly from the council hall, and the tension between them is almost as dangerous as the dragons themselves.",
+                "read_aloud": "Waterdeep sprawls along the coast in a great crescent of towers, docks, and city walls, the shadow of Mount Waterdeep falling across its rooftops like a guardian's hand. The streets teem with life -- merchants, soldiers, diplomats, and refugees from a dozen towns the Cult has already touched. Banners of competing factions fly from the Lords' Palace at the city's heart, snapping in the sea wind. The City of Splendors endures, but the tension in the air is sharp enough to taste.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [],
@@ -99,6 +102,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Skyreach Castle floats among the clouds, visible only as a shadow against the moon when the cloud cover parts. The flying fortress of a cloud giant, pressed into service by the Cult of the Dragon, carries a hoard of treasure northward. Its trajectory takes it over the Sword Coast, a constant reminder that the enemy commands the sky.",
+                "read_aloud": "You see it only when the clouds part -- a dark shape against the moon, impossibly high, impossibly large, drifting northward with the slow inevitability of a storm front. A castle in the sky, trailing wisps of cloud like a ship trails wake. It is beautiful and terrible in equal measure, and it carries the enemy's hoard beyond your reach, a reminder that the Cult commands heights you have not yet learned to climb.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [],
@@ -123,6 +127,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Well of Dragons is a volcanic caldera in the Sunset Mountains, its slopes covered in the bones of dragons who came here to die across millennia. The Cult has occupied the caldera, filling it with an army of cultists, chromatic dragons, and Red Wizards of Thay. At the caldera's center, a temple to Tiamat rises from the dragon bone carpet, and within it, the ritual to summon the Dragon Queen from the Nine Hells nears completion.",
+                "read_aloud": "The Sunset Mountains part to reveal a volcanic caldera, and the sight beyond steals the words from your mouth. The basin is carpeted white with the bones of dragons -- an ossuary millennia in the making. An army fills the bowl: tents, siege engines, and the dark shapes of dragons circling above a temple of five-colored stone at the caldera's heart. Smoke and chanting rise from the basin in equal measure. This is the end of the road. Whatever happens next, it happens here.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [],

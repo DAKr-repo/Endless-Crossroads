@@ -44,6 +44,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "The courtyard, burning. The cages are open -- prisoners freed or fled. Green fire has jumped from the church to the adjacent buildings. The Doctor's Horror blocks the exit, its surgical-blade hands dripping with alchemical residue that burns wherever it falls. Behind it, the gate to Talstadt's east wall and your extraction route.",
+        "read_aloud": "The courtyard is ablaze. Green fire crawls across every surface, turning night to a sick, flickering day. The cages stand open and empty. Between you and the gate, the Doctor's masterwork blocks the way -- nine feet of stitched muscle and iron plating, surgical blades dripping fire. Behind it, the east wall. Behind it, escape.",
         "enemies": [
           {
             "name": "The Doctor's Horror",

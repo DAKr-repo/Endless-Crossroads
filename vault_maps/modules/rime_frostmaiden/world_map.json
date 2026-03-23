@@ -23,6 +23,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Ten-Towns clings to the shores of three frozen lakes like a scattering of hearth-fires defying an endless night. Auril's Everlasting Rime has stolen the sun -- the sky holds only stars and the pale knife-edge of a moon that never warms. Smoke rises from a hundred chimneys, and the wind carries the sound of dog sleds and desperate prayer.",
+                "read_aloud": "A scattering of dim lights clings to the shores of frozen lakes below you, each one a town fighting to stay alive against the endless dark. There is no sun here -- there hasn't been for weeks. The sky is a vault of cold stars, and the wind that hits your face carries the smell of chimney smoke, sled dogs, and something else: the bitter, metallic tang of a winter that refuses to end.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [],
@@ -43,6 +44,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Spine of the World rises like a wall of frozen teeth along the southern horizon. Somewhere in those peaks, duergar forges burn with stolen fire, and a chardalyn dragon takes shape in a cavern of ice and hate. The mountain passes are choked with snow, and the wind here cuts through fur and flesh alike.",
+                "read_aloud": "A wall of jagged peaks fills the southern sky, their summits lost in churning cloud. The mountains are so vast they swallow perspective -- what looks like a nearby ridge is a day's march away. Snow chokes every pass, and the wind screaming through the gaps carries a faint, acrid smell of smoke from somewhere deep in the stone. Something burns up there, hidden from the world.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [],
@@ -63,6 +65,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Sea of Moving Ice stretches north of Icewind Dale, a labyrinth of shifting bergs and black water that has swallowed ships since before the founding of Ten-Towns. Somewhere among the ice, Auril maintains her island fortress. The northern lights play across the frozen expanse in colors that seem to spell out words in a language older than the world.",
+                "read_aloud": "The land ends and the ice begins -- a shattered plain of white and black stretching to the horizon, where enormous bergs grind against one another with slow, grinding thunder. Dark water gleams in the cracks between floes, so cold it steams. Overhead, the aurora writhes in curtains of sickly green and violet, casting shifting light across the expanse. The shapes it makes almost look like letters.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [],
@@ -83,6 +86,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Reghed Glacier dominates the eastern expanse -- a river of ice miles wide and ancient beyond reckoning. Beneath its surface, visible through translucent layers of compressed snow, the ruins of Ythryn wait. The Netherese city fell here centuries ago, frozen mid-collapse, its towers and streets preserved in ice like insects in amber.",
+                "read_aloud": "The glacier sprawls before you like a frozen river miles wide, its surface carved into ridges and crevasses by wind older than memory. The ice is strangely translucent in places -- you can see dark shapes far below, angular and geometric, too regular to be stone. Towers, perhaps. Streets. An entire city entombed beneath your feet, preserved in the deep blue silence of ancient ice.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [],
@@ -103,6 +107,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Island of Solstice rises from the Sea of Moving Ice like a fang of black rock sheathed in frost. Auril's divine presence makes the air crystallize -- breathing here is like inhaling broken glass. The aurora overhead is not natural light but the Frostmaiden's gaze, and it watches everything that moves upon her domain.",
+                "read_aloud": "A spire of black rock rises from the grinding ice, sheathed in frost so thick the stone beneath is barely visible. The air here crystallizes as you breathe it -- each inhalation burns like swallowing ground glass. Above, the aurora blazes with unnatural intensity, its light focused on this island like an eye that never blinks. You have the absolute certainty that something knows you are here.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [],

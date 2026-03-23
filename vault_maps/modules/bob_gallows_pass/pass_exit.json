@@ -42,6 +42,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "The Black Oak Knights do not charge. They advance -- one step at a time, shields locked, in a formation that was drilled into their living bodies and persists in death. Their armor bears the oak-leaf crest of Aldermark's elite cavalry, blackened by corruption until the leaves look like writhing insects. Behind them, Spitters crouch in the shadows, venom pooling on the ground at their feet.",
+        "read_aloud": "Two figures in blackened plate step forward in lockstep, shields raised, the oak-leaf crests on their armor writhing like living things. Behind them, hunched shapes spit venom that hisses where it strikes the stone. The formation is perfect. The dead remember their drill.",
         "enemies": [
           {"name": "Black Oak Knight", "hp": 25, "max_hp": 25, "ac": 15, "attack": 7, "defense": 15, "count": 2},
           {"name": "Spitter", "hp": 15, "max_hp": 15, "ac": 11, "attack": 5, "defense": 11, "count": 2}
@@ -67,6 +68,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "Beyond the checkpoint, the pass opens onto a hillside overlooking forested lowlands. The road descends through switchbacks toward the tree line. The air is warmer here, free of the corruption's chill. For the first time in what feels like days, you can hear birdsong. The retreat continues -- but for this moment, there is sky above and solid ground below.",
+        "read_aloud": "Open sky. The pass spills onto a hillside of wind-bent grass, and for the first time in days the air does not taste of corruption. Birdsong reaches you from the tree line below -- a small, bewildering kindness. The road forks ahead, switchbacking down toward the forest.",
         "loot": [
           {"name": "Black Oak Knight's Blade", "value": 3, "description": "A cavalry saber of exceptional Orite craftsmanship, corrupted but still razor-sharp. The corruption can be purified by a Panyar blessing. +1 effect on Skirmish if cleansed."}
         ],

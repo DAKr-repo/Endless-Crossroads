@@ -40,6 +40,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "The fence's berth. A converted shipping container fitted out as an office, its walls lined with display cases of merchandise whose provenance you'd rather not know. The fence sits behind a desk made from a salvaged bulkhead, counting your payment with the unhurried precision of someone who has all the time in the sector.",
+        "read_aloud": "The shipping container has been converted into something almost respectable -- display cases along the walls, a desk cut from salvaged hull plate, and lighting that's just warm enough to make the merchandise look better than it is. Sable sits behind the desk, thumbing cred-sticks with the patient efficiency of someone who has done this a thousand times and plans to do it a thousand more.",
         "npcs": [
           {
             "name": "Sable",
@@ -67,6 +68,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "The Dead Circuit, Kessler's only bar. Bolted stools, a countertop that's more stain than surface, and a bartender droid whose voice modulator is stuck on 'sarcastic.' The kind of place where you go to not be found, and everyone there is doing the same thing.",
+        "read_aloud": "The Dead Circuit is the kind of bar where the stools are bolted to the floor and the lighting exists purely to prevent you from seeing the countertop clearly. A bartender droid rattles between the taps, its voice modulator stuck somewhere between contempt and resignation. Every patron here is minding their own business with aggressive determination.",
         "services": ["rest", "rumor"],
         "event_triggers": [
           "Citani's holo-image materializes uninvited at your table. 'Good work. The Knives have moved you up to +2. But the Hegemony logged your transponder at Warren gate. You've got heat. I'd recommend laying low -- or taking another job to build up goodwill elsewhere. I have options, if you're interested.'"

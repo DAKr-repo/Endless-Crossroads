@@ -23,6 +23,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Tier Breche -- the Academy -- perches on a stalagmite plateau overlooking the city. Three structures dominate: Arach-Tinilith (the spider-shaped temple), Sorcere (the tower of wizardry), and Melee-Magthere (the pyramid of warriors). Drow students move between them with the practiced paranoia of predators who know they are also prey. The view of Menzoberranzan below is staggering: a cavern miles across, studded with glowing compounds like a constellation fallen underground.",
+                "read_aloud": "The plateau overlooks a cavern so vast it has its own weather -- faint mists drift between stalactites miles overhead. Three structures dominate the heights: a temple shaped like a crouching spider, a tower of black stone veined with light, and a stepped pyramid whose edges gleam like blades. Dark-skinned figures move between them with the coiled alertness of predators who know they are also prey. Below, the city spreads across the cavern floor -- glowing compounds and silk-draped spires like a constellation dragged underground.",
                 "npcs": [
                     {"name": "Gromph Baenre (projection)", "role": "quest_giver", "dialogue": "You should not be here. No surface dweller should. And yet the very fabric of the Underdark unravels, and the Archmage of Menzoberranzan finds himself in need of... expendable assets who won't be missed. How refreshingly honest our arrangement can be."}
                 ],
@@ -45,6 +46,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Narbondellyn is the merchant quarter -- if merchants carried poisoned daggers and considered assassination a valid negotiation tactic. The buildings are grown from shaped stone and draped in phosphorescent silk. Every doorway has a glyph of warding, every window a crossbow slit. The streets are clean because the street-sweeping golems also dispose of bodies.",
+                "read_aloud": "The merchant quarter is beautiful in the way a venomous snake is beautiful. Buildings of shaped stone rise in elegant curves, draped in silk that glows with soft phosphorescence. Every doorway is framed by carved runes that tingle against your skin as you pass, and every window is narrow enough to serve as a crossbow slit. The streets are immaculate -- swept clean by small stone constructs that scuttle between the feet of shoppers with dark, purposeful efficiency. Nobody looks at anyone directly, but everyone is watching.",
                 "npcs": [
                     {"name": "Jarlaxle Baenre", "role": "informant", "dialogue": "Surfacers! In Menzoberranzan! Either you're impossibly brave or you've simply run out of places to hide. *Tips his wide-brimmed hat.* I am Jarlaxle. I run a mercenary company called Bregan D'aerthe. We're expensive, but I offer a friends-and-family discount to anyone the Matron Mothers want dead. That would be you, by the way."}
                 ],
@@ -70,6 +72,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Duthcloim is an open-air bazaar lit by faerzress-infused crystals that cast everything in shifting purple light. Merchants from across the Underdark hawk their wares: duergar weapons, svirfneblin gems, illithid-harvested components that should not exist in any just universe. Prices are negotiated through a complex system of hand signals, because in Menzoberranzan, speaking your true desires aloud is a vulnerability.",
+                "read_aloud": "The bazaar sprawls beneath crystals that cast everything in shifting purple light, turning faces alien and familiar by turns. Stalls display wares from across the Underdark -- dark metal blades, cut gemstones, jars of things that pulse and twitch. Merchants negotiate in rapid hand signals, their lips sealed, their eyes sharp. The air smells of exotic spices, weapon oil, and the ozone tang of active magic. You feel the weight of a dozen appraising stares the moment you step into the light, each one calculating your worth in coin, threat, or information.",
                 "npcs": [
                     {"name": "Xanathar's Agent (disguised)", "role": "merchant", "dialogue": "Ah, you have the look of people in need of things that aren't technically for sale. *The beholder-kin's disguise flickers for an instant.* My employer has interests in the surface world. Perhaps we can arrange a mutually beneficial exchange of services."}
                 ],
@@ -96,6 +99,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Arach-Tinilith. The temple of Lolth is shaped like a monstrous spider crouching atop a stalagmite, its legs forming the buttresses and its abdomen the central dome. Inside, the air is thick with incense that smells of venom, and the walls are covered in living webs that pulse with a heartbeat. Priestesses move through the chambers in silent procession, each one radiating an authority that makes the stone itself seem to flinch.",
+                "read_aloud": "The temple crouches atop its stalagmite like a spider the size of a fortress, its stone legs forming the buttresses, its abdomen the central dome. Inside, the air is choked with incense that burns your throat and smells of venom. The walls are covered in webs -- but these webs pulse, contracting and relaxing in a slow rhythm like breathing. Robed figures process through the chambers in silence, and the weight of their collective attention presses against you like a physical force. Every strand of web turns toward you as you enter. Something here knows you have arrived.",
                 "npcs": [
                     {"name": "Sos'Umptu Baenre", "role": "antagonist", "dialogue": "The Spider Queen sees all who enter her house. You are either offerings or offenders. I suggest you decide which before I decide for you. *The living webs on the walls contract around the exits.*"}
                 ],
@@ -126,6 +130,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "House Baenre is less a building than a fortress grown from the cavern floor over three thousand years of accumulated power. Its walls are living stone reinforced with adamantine, its towers capped with antimagic fields. The interior is a labyrinth designed to disorient invaders, with every corridor featuring trapped floors, illusory walls, and patrol golems. At its heart, the throne room holds the Ruling Council -- and Matron Mother Quenthel Baenre, whose spider-silk robes move of their own volition.",
+                "read_aloud": "The compound rises from the cavern floor like something grown rather than built -- walls of living stone veined with dark metal, towers whose tops shimmer with fields that make magic feel sluggish and wrong. The corridors inside are a labyrinth. The floor shifts subtly underfoot, the walls seem to rearrange when you are not looking, and the air carries the faint hum of sleeping wards. Every surface gleams with the accumulated power of millennia. At the compound's heart, a vast throne room opens before you, and the figure on the throne wears robes of spider silk that move of their own accord.",
                 "npcs": [
                     {"name": "Quenthel Baenre", "role": "antagonist", "dialogue": "You stand in the seat of power that has ruled Menzoberranzan for longer than your pathetic surface nations have existed. Whatever brought you here -- desperation, courage, or simple stupidity -- it ends now. Lolth demands tribute, and you will serve."}
                 ],
@@ -156,6 +161,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Sorcere, the tower of wizardry, rises in a spiral of black stone veined with pulsing faerzress. Inside, the library defies geometry -- bookshelves extend in directions that shouldn't exist, and scrolls float between reading stations on currents of controlled levitation. The knowledge here spans millennia of drow arcane research, including subjects the surface world has wisely left unexamined.",
+                "read_aloud": "The tower's interior defies the geometry you know. Bookshelves extend in directions that should not exist -- upward, sideways, curving back on themselves in impossible spirals. Scrolls drift between reading stations on invisible currents, and the light shifts from purple to silver as faerzress pulses through veins in the black stone walls. The air is dry and charged, tingling on your tongue like static. Knowledge fills this place -- millennia of it, bound in leather and stone and crystal -- and you can feel it pressing against the inside of your skull, wanting in.",
                 "npcs": [
                     {"name": "Vizeran DeVir", "role": "ally", "dialogue": "I am a dead man walking. House DeVir was destroyed, and I should have died with it. Instead I study, and I plan, and I wait for the moment when knowledge becomes vengeance. The demon lords threaten us all -- I have a ritual that can banish them. But I need components from places even I dare not go alone."}
                 ],
@@ -182,6 +188,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Eastmyr Gate is the least-watched exit from Menzoberranzan -- a narrow passage through a curtain of calcified spider silk that parts reluctantly, like stepping through a membrane. Beyond, the tunnel leads toward the upper Underdark and eventually to Gauntlgrym. Patrol frequency here has dropped since the demon lord incursions drew the city's attention inward.",
+                "read_aloud": "The passage narrows to a curtain of calcified spider silk that stretches across the tunnel mouth like a membrane. It parts reluctantly as you push through, clinging to your skin with a dry, papery whisper. Beyond, the tunnel stretches into honest darkness -- no faerzress, no glowing silk, just bare stone sloping upward. The oppressive weight of the city lifts from your shoulders one step at a time, replaced by the cold, indifferent silence of the open Underdark. Behind you, the silk curtain seals shut, and Menzoberranzan lets you go.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Drow Patrol (2 warriors)", "cr": "1/4"}

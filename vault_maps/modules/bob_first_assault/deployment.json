@@ -44,6 +44,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "The scree descent. A treacherous slope of loose stone that funnels down toward Talstadt's shattered east wall. Every footfall sends a trickle of pebbles clattering downward. Aurora has taken position on the ridge behind you, her rifle tracking the Crow on the church roof. If it turns this way, she'll buy you time.",
+        "read_aloud": "Loose stone shifts under every step, sending pebbles clattering into the dark below. The shattered east wall of Talstadt rises ahead, green mist pooling at its base. From the ridge behind you, a rifle barrel tracks something on the rooftops. Then a crack -- flat, sharp -- and a black shape jerks sideways on the rocks above.",
         "enemies": [
           {
             "name": "Crow Scout",

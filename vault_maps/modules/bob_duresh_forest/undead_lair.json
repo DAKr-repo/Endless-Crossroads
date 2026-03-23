@@ -42,6 +42,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "The clearing's center. The Horror stands on a mound of packed earth -- a burial mound, ancient, pre-dating the forest itself. The Horror has incorporated the mound into its body, roots and soil and bone fused together. Around it, Rotters kneel in concentric rings, motionless, their heads bowed as if in prayer. A Spitter perches in the branches of the one remaining tree, its acid eroding the bark in a slow, steady drip. The Horror's eyes -- if those hollow sockets can be called eyes -- track your movement the moment you breach the barricade.",
+        "read_aloud": "The Horror stands atop an ancient mound at the clearing's heart, fused with the earth itself -- root and soil and bone grown together into something towering. Around it, Rotters kneel in rings with their heads bowed, silent as the grave they should be in. Acid drips from the branches of the last standing tree. The thing on the mound turns its hollow gaze toward you.",
         "enemies": [
           {"name": "Horror", "hp": 25, "max_hp": 25, "ac": 15, "attack": 7, "defense": 15, "count": 1},
           {"name": "Rotter", "hp": 8, "max_hp": 8, "ac": 8, "attack": 3, "defense": 8, "count": 4},
@@ -68,6 +69,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "Behind the mound, a cache of salvage: weapons, armor, personal effects stripped from the dead and piled without order. Among the detritus, items of real value -- a Chosen's reliquary, a Bartan engineer's field kit, a satchel of dispatches that never reached their destination. The dispatches contain intelligence on undead movements that is weeks old but still useful -- patrol patterns, force concentrations, the name of the Broken commanding this sector.",
+        "read_aloud": "Behind the mound, a pile of salvage -- weapons, armor, personal effects stripped from the dead and heaped without care. Dog tags glint in the dim light. A leather satchel sits atop the pile, its Legion seal unbroken. Someone's letters home that never arrived.",
         "loot": [
           {"name": "Intelligence Dispatches", "value": 3, "description": "Detailed undead movement reports. Intel +2 for the next mission."},
           {"name": "Chosen's Reliquary", "value": 2, "description": "A small iron box containing a finger bone wrapped in silver thread. Elsu at Sunstrider Camp would recognize it."},

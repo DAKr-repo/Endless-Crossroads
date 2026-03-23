@@ -23,6 +23,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Great Gate of Gauntlgrym would humble the proudest surface kingdom. Twin doors of mithral-reinforced adamantine stand forty feet tall, carved with the history of Delzoun in runes so fine they blur into texture at a distance. Dwarven engineers have restored the mechanism -- the doors open on counterweights so perfectly balanced a child could move them. Beyond, the entrance hall stretches into dimness, its columns shaped like dwarven warriors frozen mid-stride.",
+                "read_aloud": "The gates stand forty feet tall, carved from dark metal reinforced with veins of silver, their surfaces covered in runes so fine they blur into living texture. They swing open at a touch -- counterweighted with an engineer's love. Beyond, the entrance hall stretches into warm dimness, its columns shaped like dwarven warriors frozen mid-stride, their stone faces proud and watchful. Torchlight flickers between them, and for the first time in what feels like an eternity, the air smells of hearth-fire, bread, and safety.",
                 "npcs": [
                     {"name": "Bruenor Battlehammer", "role": "quest_giver", "dialogue": "Ye've come a long way through dark places, and I'll not pretend the road ahead is brighter. But Gauntlgrym stands again, and by Moradin's hammer, it'll stand against whatever crawls up from the deep. Tell me what ye've seen down there. All of it. Leave nothing out."}
                 ],
@@ -45,6 +46,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Hall of Moradin occupies a natural cathedral cavern, its ceiling lost in shadow above columns of natural basalt carved with devotional scenes. The altar is an anvil of pure mithral that rings with a clear tone when struck, and the sound echoes for a full minute through chambers that amplify it into something that feels less like sound and more like conviction. Dwarven clerics maintain eternal vigil here, their chanting a low thunder.",
+                "read_aloud": "The hall opens around you like a cathedral carved by the earth itself -- basalt columns rise into shadow, their surfaces covered in devotional scenes worn smooth by centuries of reverent hands. At the center, a mithral anvil catches the light and holds it. A cleric strikes it once, and the tone that rings out echoes through every chamber, every tunnel, every bone in your body -- a sound that is less heard than believed. The low thunder of dwarven chanting fills the spaces between echoes. The air is warm and smells of forge-smoke and prayer.",
                 "npcs": [
                     {"name": "High Priest Cadderly Bonaduce", "role": "priest", "dialogue": "The forges of Gauntlgrym were lit by a primordial of fire -- Maegera the Dawn Titan, bound beneath us by Delzoun magic. The binding holds, but the demon lords' presence weakens all wards. If Maegera breaks free, this city becomes a volcano. We need the binding reinforced."}
                 ],
@@ -70,6 +72,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Great Forge of Gauntlgrym is the masterwork of Delzoun engineering -- a chamber where Maegera's geothermal heat is channeled through adamantine pipes into the greatest smithy ever constructed. The forge itself is a pit of white-hot stone surrounded by workstations where dwarven smiths create weapons of legendary quality. The heat is barely tolerable, and the air shimmers like a desert mirage.",
+                "read_aloud": "The heat hits you like a wall. Adamantine pipes descend from the ceiling, channeling geothermal fire into a forge pit that glows white-hot at its center. Dwarven smiths work the surrounding stations with calm expertise, their hammers ringing in counterpoint rhythms that fill the chamber with music. The air shimmers like a desert mirage, and sparks rise in spiraling columns before winking out against the vaulted ceiling. Even standing at the threshold, sweat runs freely down your face. This is the greatest smithy ever built, and you can feel its power thrumming through the floor.",
                 "npcs": [
                     {"name": "Mastersmith Helgara Steelborn", "role": "forge_master", "dialogue": "Aye, the Forge works again, but she's temperamental. Maegera's heat fluctuates -- some days the metal sings, some days it screams. If ye've brought materials from your travels, I can work them into something that'll make a demon lord think twice. But I'll need time, and I'll need ye to keep the deep tunnels clear."}
                 ],
@@ -95,6 +98,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Fiery Pit descends from Gauntlgrym's lower levels into the volcanic chambers where Maegera is bound. The temperature rises with each step, and the walls bleed magma in slow-moving rivulets that solidify into black glass before flowing again. The binding runes carved into the pit walls flicker between blazing white and guttering embers -- the ward is failing.",
+                "read_aloud": "The passage descends sharply, and with each step the temperature climbs. The walls seep magma in slow rivulets that cool to black glass and then glow red and flow again, an endless cycle of creation and destruction. Runes carved deep into the stone flicker between blazing white and guttering embers, bright then dim, bright then dim -- like a heartbeat losing its rhythm. The air scorches your lungs. Somewhere below, something immense breathes, and each exhalation sends a wave of heat rolling up the passage that makes your skin tighten and your eyes water.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Fire Elemental", "cr": "5"},
@@ -123,6 +127,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Iron Tabernacle was the treasury of Delzoun's kings, sealed when the city fell and not opened until Bruenor's reclamation. The door is a puzzle lock of interlocking gears that took the dwarves months to solve. Inside, wealth beyond mortal accounting: armor stands holding plate mail that predates human civilization, weapon racks of masterwork blades, and chests of gems sorted by color into bins of obsidian.",
+                "read_aloud": "The door is a masterwork of interlocking gears and counterweights, and beyond it lies a chamber that stops you in your tracks. Armor stands hold plate mail of such craftsmanship it seems to glow from within -- pieces forged before human civilization had a name. Weapon racks display blades that catch the light and refuse to give it back. Chests of obsidian hold gemstones sorted by color, each bin a small fortune. Dust covers everything in a fine, undisturbed layer. This vault was sealed for ages, and the air tastes of patience rewarded.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Shield Guardian (ancient, dwarven make)", "cr": "7"}
@@ -150,6 +155,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Maegera's Chamber is a sphere of volcanic glass surrounding a core of liquid fire. The Dawn Titan hangs in the center, bound by chains of adamantine inscribed with divine runes -- a being of pure elemental rage compressed into a vaguely humanoid shape the size of a hill giant. The chains glow white with strain. When it speaks, the words are not heard but felt as waves of scorching heat that carry meaning.",
+                "read_aloud": "The chamber is a sphere of volcanic glass, and at its center hangs a being of living fire. Chains of dark metal inscribed with blazing runes hold it suspended -- a shape vaguely humanoid, the size of a giant, compressed from what must be an ocean of elemental fury into this single, straining form. The chains glow white with the effort of containment. Heat rolls off the imprisoned titan in waves so intense they carry sensation -- not sound, but meaning, pressing against your thoughts. The glass walls reflect fire endlessly inward. You stand at the edge of something older than civilization, and it knows you are here.",
                 "npcs": [
                     {"name": "Maegera the Dawn Titan", "role": "bound_entity", "dialogue": "*A wave of heat carries images: boundless fire, freedom, an ocean of magma consuming the Underdark. Then a flicker of something else -- confusion, pain, the chains that have held for millennia tightening, loosening, tightening again.* The demon lords disturb my prison. Free me or strengthen my chains. Choose."}
                 ],

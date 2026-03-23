@@ -96,6 +96,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "The Doctor's lab. The church nave, desecrated beyond recognition. Pews ripped out, replaced by operating tables stained black with old blood. Glass vessels line the altar, connected by copper tubing to vats of bubbling green fluid. Half-completed experiments lie strapped to tables -- neither living nor dead, caught somewhere unspeakable in between.",
+        "read_aloud": "The church nave. Pews torn out, replaced by blood-blackened operating tables. Glass vessels line the altar, connected by copper tubing to vats of bubbling green fluid. The air reeks of chemicals and something worse -- the sweet, organic smell of bodies that are neither living nor dead. Green light pulses through the tubing like a heartbeat.",
         "enemies": [
           {
             "name": "Horror",
@@ -131,6 +132,7 @@
       "is_secret": true,
       "content_hints": {
         "description": "The Doctor's private study. Hidden behind a false wall in the vestry. A small, cold room lit by a single spirit lamp. A desk covered in correspondence -- letters to and from Blighter herself, sealed with black wax. The Doctor was taking orders. This lab was sanctioned at the highest level.",
+        "read_aloud": "A hidden room behind the vestry wall, small and cold, lit by a single spirit lamp that burns without flickering. A desk overflows with sealed letters, their wax stamps black as pitch. A map is pinned to the wall, marked with symbols you do not recognize. This was not a rogue operation. Someone gave the orders.",
         "lock_dc": 14,
         "loot": [
           {"name": "Blighter's correspondence", "value": 8, "description": "Sealed letters revealing the Doctor's supply chain, Blighter's strategic objectives, and the names of three other labs operating behind Legion lines. Intelligence gold."},

@@ -57,6 +57,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "A canvas pavilion serves as Kevarin's field temple. Prayer beads hang from the tent poles. A circle of river stones marks the sanctified ground where the wounded are laid for blessing. The air smells of sage and the sharp mineral tang of consecrated water.",
+        "read_aloud": "A canvas pavilion, cleaner than anything else in the camp. Prayer beads click softly from the tent poles. Inside, a circle of river stones marks consecrated ground, and the air smells of sage and something sharp and mineral -- blessed water, poured recently.",
         "npcs": [
           {
             "name": "Sunpriest Kevarin",
@@ -81,6 +82,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "The camp's supply point is a trestle table under a patched awning. Refugees barter what they carried from their villages -- tools, cloth, preserved food. A Bartan trader named Ossik has set up a scale and does brisk business converting valuables into rations at rates that would be criminal anywhere else.",
+        "read_aloud": "A trestle table under a patched awning serves as the camp's market. Refugees line up to trade heirlooms and tools for rations. A trader with a brass scale weighs everything twice, his smile never reaching his eyes. The exchange rates are written on a slate board. They are not kind.",
         "services": ["supply", "rumor"],
         "investigation_dc": 10,
         "investigation_success": "Ossik is selling information to both the Legion and an unknown third party. His ledger has entries in cipher that match no merchant's shorthand."

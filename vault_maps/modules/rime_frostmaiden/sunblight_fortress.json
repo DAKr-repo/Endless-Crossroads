@@ -23,6 +23,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The mountain approach to Sunblight is a narrow defile carved by some ancient river and never widened. The walls close to arm's width in places, forcing single file. Midway up, the first signs of duergar habitation appear: iron spikes driven into the rock at throat height for the unwary, and a smell of coal smoke drifting from somewhere above.",
+                "read_aloud": "The path narrows to a defile barely wide enough for one, its rock walls pressing close on either side. You move single file, boots crunching on frozen gravel, the sky reduced to a thin ribbon of stars overhead. Iron spikes jut from the stone at head height -- you catch the glint of metal just in time. The air grows warmer as you climb, and a smell drifts down from above: coal smoke, hot iron, and something acrid that stings the back of your throat.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Duergar Sentry (invisible)", "cr": "1"}
@@ -45,6 +46,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The outer gate is a slab of chardalyn-reinforced iron set into the mountainside. Purple-black veins run through the metal, and touching it sends a jolt of wrongness up the arm -- not pain, exactly, but the sensation of being observed by something that doesn't blink. Murder holes line the passage beyond, and the floor is studded with pressure plates.",
+                "read_aloud": "A gate of dark iron blocks the passage ahead, set flush into the mountainside. Purple-black veins thread through the metal like diseased capillaries, and the surface seems to drink the light from your torch. The air here hums with a low vibration you feel in your teeth more than your ears. Beyond the gate, a narrow corridor stretches into shadow, its ceiling pocked with dark openings and its floor uneven with raised metal plates.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Duergar Stone Guard", "cr": "2"},
@@ -72,6 +74,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The forge level burns with a heat that has nothing to do with comfort. Three blast furnaces roar against the far wall, fed by chardalyn-laced coal that burns with a sickly purple flame. Duergar smiths work in silence, hammering chardalyn into weapons and armor with mechanical precision. Their eyes are glazed -- not with fatigue, but with the blank devotion of the thoroughly indoctrinated.",
+                "read_aloud": "The heat hits you like a physical force -- furnace-hot, dry, and tainted with a chemical sweetness that coats the tongue. Three blast furnaces roar against the far wall, their flames burning an unnatural purple that casts bruise-colored shadows across the stone. Grey-skinned figures work the anvils in eerie silence, hammering dark crystalline metal into shape with a rhythm that never falters. The clang of hammer on chardalyn rings through the chamber like a war drum.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Duergar Hammerer (construct)", "cr": "2"},
@@ -100,6 +103,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The barracks is carved from the mountain's heart, its ceiling black with soot from wall-mounted torches that burn chardalyn oil. Stone bunks line the walls in rows so precise they could have been measured by a machine -- and given duergar temperament, they probably were. Personal effects are nonexistent. These soldiers own nothing but their duty.",
+                "read_aloud": "The chamber is carved from raw stone, its low ceiling blackened with soot. Stone bunks line both walls in rows of military precision, each one identical, each one bare. There are no personal effects, no carved names, no tokens from home -- just grey bedrolls folded to identical dimensions on identical slabs. The torches on the walls burn with a greasy, purple-tinged flame that makes the shadows twitch. The room smells of stone dust, oil, and the sour sweat of bodies that never see sunlight.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Duergar Warrior", "cr": "1"},
@@ -128,6 +132,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Xardorok's throne room is a cathedral of industry. The throne itself is welded from chardalyn and iron, its back reaching twenty feet high in a jagged crown of dark crystal. The duergar warlord sits upon it in armor that seems to absorb light, his face hidden behind a visor shaped like a screaming mouth. Behind him, through a massive viewport carved in the mountainside, you can see the chardalyn dragon -- a horror of dark crystal and hate, crouched in its launch bay, nearly complete.",
+                "read_aloud": "The chamber opens into a cathedral-sized vault, its walls carved with angular runes that pulse with dim purple light. At its center, a throne of welded iron and dark crystal rises twenty feet, its back a jagged crown of black shards. A figure in lightless armor sits upon it, motionless, watching you through a visor shaped like a screaming mouth. Beyond a massive viewport carved in the far wall, something enormous crouches in shadow -- a shape of dark crystal and terrible geometry, almost alive, almost ready.",
                 "npcs": [
                     {"name": "Xardorok Sunblight", "role": "antagonist", "dialogue": "You're too late, surface filth. My masterwork is complete. In three days it flies north, and every town, every village, every miserable huddle of warmth-seekers in Icewind Dale becomes ash and memory. Deep Duerra has shown me the path. The surface belongs to the duergar now."}
                 ],
@@ -158,6 +163,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The chardalyn dragon bay is a vertical shaft carved from the mountain's peak, its walls scored with claw marks from the construct's test movements. The dragon itself fills the space -- forty feet of chardalyn crystal shaped into a nightmarish echo of a real dragon, its eyes two burning points of purple light. It radiates cold malice. Even dormant, standing near it makes your teeth ache and your thoughts scatter.",
+                "read_aloud": "The shaft opens upward into the mountain's peak, its walls scored with gouges the size of sword blades. The thing that fills this space is not alive, but it feels alive -- forty feet of dark crystal shaped into a dragon's form, crouched on a launch platform of iron and stone. Two points of purple light smolder where its eyes should be. The air near it hums with a pressure that makes your teeth ache, and your thoughts slip sideways the longer you look at it, as if your mind is trying to slide off something it was never meant to see.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Chardalyn Dragon (construct, dormant)", "cr": "11"}
@@ -182,6 +188,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The prison block occupies the fortress's lowest level, where the temperature drops below freezing and the walls weep with condensation that freezes into curtains of ice. Iron cages hold captives -- surface folk taken from caravans, a handful of shield dwarves, and one particularly miserable-looking goblin who claims to be a prince.",
+                "read_aloud": "The stairway descends into bitter cold. The prison block is a row of iron cages set into the raw stone of the mountain's foundation, their bars furred with frost. Condensation weeps down the walls and freezes into translucent curtains of ice. Huddled shapes fill the cages -- ragged figures in threadbare clothing, shivering, watching you with eyes that have forgotten how to hope. One voice, higher and more indignant than the rest, rises from the smallest cage at the end of the row.",
                 "npcs": [
                     {"name": "Grandolpha Muzgardt", "role": "prisoner", "dialogue": "Xardorok imprisoned his own grandmother. That should tell you everything about his character. I opposed the surface invasion -- foolish, not because it's wrong, but because it's premature. Free me and I'll tell you about the passage to the Underdark. The one Xardorok used to bring his army north."},
                     {"name": "Goblin 'Prince' Snurk", "role": "prisoner", "dialogue": "Snurk is royalty! Snurk demands diplomatic treatment! Also food. Mostly food. Snurk hasn't eaten in three days and is willing to renegotiate the royalty claim in exchange for a turnip."}
@@ -207,6 +214,7 @@
             "is_secret": true,
             "content_hints": {
                 "description": "The Underdark passage is a natural fissure widened by duergar picks, descending at a steep angle into absolute darkness. The air that rises from below carries the mineral smell of deep earth and the faintest whisper of flowing water. This is how Xardorok's army arrived, and it remains unguarded -- the duergar never expected anyone to want to go down.",
+                "read_aloud": "A fissure splits the rock at the back of the lowest level, its edges rough where picks have widened it just enough to pass single file. The passage descends steeply into a darkness so complete your torchlight dies within thirty feet. Air rises from below -- warm compared to the fortress, carrying the mineral smell of deep stone and the distant whisper of moving water. The darkness down there is not empty. It breathes.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [],

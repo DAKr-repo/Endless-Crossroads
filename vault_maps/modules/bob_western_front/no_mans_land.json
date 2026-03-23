@@ -45,6 +45,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "A massive crater serves as a natural crossroads. At its center, a toppled siege engine lies on its side, wheels still turning in the wind. The crater rim offers a clear sightline in every direction -- which means anything out there can see you, too. Dark shapes shuffle along the far ridge.",
+        "read_aloud": "A massive crater with a toppled siege engine at its center, wheels still turning lazily in the wind. The rim gives you a clear view in every direction -- which means anything out there has a clear view of you. On the far ridge, dark shapes move against the orange glow of the burning city.",
         "enemies": [
           {"name": "Rotter", "hp": 8, "max_hp": 8, "ac": 8, "attack": 3, "defense": 8, "count": 1},
           {"name": "Hound", "hp": 8, "max_hp": 8, "ac": 10, "attack": 4, "defense": 10, "count": 2}
@@ -69,6 +70,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "The field narrows between two collapsed farmsteads. Stone walls provide cover but also funnel movement into a killing ground. A Legionnaire's body lies propped against the eastern wall, arms folded across his chest -- someone took the time to close his eyes. His ammunition pouch is empty.",
+        "read_aloud": "Collapsed farmsteads narrow the field into a funnel of broken stone walls. A Legionnaire sits propped against the eastern wall, arms folded, eyes closed -- someone gave him that dignity. His ammunition pouch is empty. Beyond the walls, something howls in the distance. Not a wolf.",
         "enemies": [
           {"name": "Rotter", "hp": 8, "max_hp": 8, "ac": 8, "attack": 3, "defense": 8, "count": 3},
           {"name": "Hound", "hp": 8, "max_hp": 8, "ac": 10, "attack": 4, "defense": 10, "count": 2}

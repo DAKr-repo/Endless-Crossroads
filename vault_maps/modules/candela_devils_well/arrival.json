@@ -53,6 +53,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "Captain Devir's vessel -- a shallow-draft survey ship built for coastal work, now pressed into service as transport to the wreck mass. The deck is bolted with measuring equipment and bleed-detection instruments that EONS provided. Devir himself stands at the wheel, chewing an unlit cigar, eyeing the mist with the resigned calm of a man who has seen worse and expects to again.",
+        "read_aloud": "The survey ship rides low in the water, its deck bristling with measuring equipment and instruments you do not recognize. Captain Devir stands at the wheel, chewing an unlit cigar, his eyes fixed on the mist bank ahead with the resigned calm of a man who has sailed these waters for thirty years and never once gone into the fog. Until today.",
         "npcs": [
           {
             "name": "Bradley Devir",
@@ -80,6 +81,7 @@
       "is_secret": false,
       "content_hints": {
         "description": "The approach. Devir's boat cuts through glass-smooth water that reflects the moon like a mirror. The mist closes behind you. Ahead, the wreck mass resolves from shadow into substance -- a floating island of interlocking hulls rising thirty feet above the waterline, barnacled and rusted, creaking with the tide. Bodies are visible in the wreckage. Some dating back years. None have decomposed.",
+        "read_aloud": "The mist closes behind you like a curtain drawn shut. Ahead, the wreck mass resolves from shadow into terrible substance -- a floating island of interlocking hulls rising thirty feet above the waterline, barnacled and rusted, creaking with the tide. The moon reflects off glass-smooth water beneath it. Something about the structure's shape suggests intention, as if the wreckage was not collected but arranged.",
         "npcs": [],
         "enemies": [],
         "services": [],

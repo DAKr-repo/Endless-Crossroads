@@ -23,6 +23,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The causeway crosses the Mere of Dead Men on a ribbon of packed earth barely wide enough for a wagon. Black water flanks both sides, thick with reeds and the sulfurous bubbles of swamp gas. The castle emerges from the mist ahead -- a crumbling curtain wall of gray stone draped in moss, its towers listing at angles that suggest the foundations are losing their argument with the swamp.",
+                "read_aloud": "The causeway is barely wide enough for a wagon, a ribbon of packed earth threading across the Mere of Dead Men. Black water presses close on both sides, choked with reeds and punctuated by the slow, sulfurous bubbling of swamp gas. Mist clings to everything. Ahead, a castle materializes from the fog -- gray stone walls draped in moss, towers leaning at unsettling angles as though the swamp beneath is slowly swallowing them whole.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Bullywug (patrol of 6)", "cr": "1/4"},
@@ -46,6 +47,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The castle courtyard is ankle-deep in standing water that never fully drains. Wagons of stolen treasure are parked in rows, their contents being catalogued by cultists with wax tablets and the joyless efficiency of tax collectors. Lizardfolk laborers carry crates toward the castle's interior, overseen by a tall elf in Cult robes whose expression suggests he considers physical labor a personal affront to his dignity.",
+                "read_aloud": "You pass through the gatehouse into a courtyard awash in ankle-deep water that reeks of rotting vegetation. Wagons laden with crates and chests stand in rows, and robed figures move between them with wax tablets, cataloguing their contents with mechanical precision. Broad-shouldered lizardfolk haul crates toward the castle interior under the watchful eye of a tall elf whose lip curls at the mud staining his fine boots.",
                 "npcs": [
                     {"name": "Dralmorrer Borngray", "role": "antagonist", "dialogue": "The swamp rots everything -- metal, morale, my patience. I trained at the Academy of Arms, you know. Neverwinter's finest. Now I catalog turnips stolen from peasants while Rezmir hoards all the genuine power for herself. But I am patient. I am elf. Time is my weapon."}
                 ],
@@ -74,6 +76,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The great hall has not been great in centuries. The ceiling sags with water damage, the tapestries are moldy rags, and the long table bears the scars of a hundred meals served without tablecloths. But the Cult has made it functional: maps of the Sword Coast cover one wall, supply tallies another, and a crude model of Castle Naerytar sits on the table, pins marking guard positions with the obsessive detail of the paranoid.",
+                "read_aloud": "Whatever grandeur this hall once possessed has long since surrendered to the swamp. The ceiling sags with water damage, tapestries hang in moldy ribbons, and the long oak table is scarred and stained beyond recognition. But someone has made it functional -- maps of the Sword Coast cover one entire wall, bristling with pins and colored thread, and a crude model of the castle itself sits on the table, its guard positions marked with obsessive precision.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [
@@ -97,6 +100,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The observatory occupies the tallest tower still standing, reached by a spiral stair missing every third step. At the top, a brass telescope of ancient make points at the sky through a hole in the collapsed roof. Star charts cover the walls, and a desk holds astronomical calculations in a hand that predates the Cult's occupation by centuries. The castle's original builder was tracking something in the heavens -- something that the Cult has found relevant.",
+                "read_aloud": "The spiral stair climbs the tallest tower still standing, every third step crumbled to nothing, forcing you to stretch and scramble. At the top, wind rushes through a collapsed section of roof, and a brass telescope of ancient and exquisite craft points skyward through the gap. Star charts paper the curved walls, covered in calculations penned in a hand that looks centuries old. The sky above is vast and cold, and the telescope seems to invite you to look.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [
@@ -121,6 +125,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The dungeon level descends into foundations older than the castle -- dressed stone gives way to rough-hewn rock, then to natural cavern. Water seeps through every joint, and the walls are furred with mold in colors nature never intended. Iron cell doors hang open on rusted hinges, their occupants long gone. The corridor ends at a heavy door of dark wood that bears no rust, no mold, no sign of age. It radiates faint transmutation magic.",
+                "read_aloud": "You descend below the castle into foundations far older than the structure above. Dressed stone gives way to rough-hewn rock, then to the uneven walls of natural cavern. Water seeps through every joint, and the walls are furred with mold in unnatural colors -- sickly yellows and deep, bruised purples. Rusted cell doors hang open on broken hinges, their interiors dark and empty. At the corridor's end stands a door of dark wood, pristine and untouched by the decay around it, as though age itself refuses to lay a hand on it.",
                 "npcs": [],
                 "enemies": [
                     {"name": "Rug of Smothering (trap before the door)", "cr": "2"}
@@ -145,6 +150,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Rezmir's chamber is a stark contrast to the castle's decay -- spotlessly clean, magically heated, and furnished with precision. The half-black-dragon's acid has etched abstract patterns into the stone floor, and the smell of chlorine burns the sinuses. A wardrobe of fine clothes, a weapon rack of masterwork blades, and a desk bearing the Black Dragon Mask itself occupy the room. The portal to Skyreach Castle glows behind a silk screen.",
+                "read_aloud": "The door opens onto a chamber that defies the ruin around it -- spotlessly clean, pleasantly warm, and furnished with exacting precision. Abstract patterns are etched into the stone floor, the grooves still faintly smoking with something acrid that burns your sinuses. A wardrobe of fine garments stands against one wall, a rack of gleaming blades against another. On a desk of dark wood, something shaped like a dragon's face rests on a velvet stand, and behind a silk screen at the room's far end, light pulses in colors that do not belong in nature.",
                 "npcs": [
                     {"name": "Rezmir", "role": "antagonist", "dialogue": "*The half-black dragon turns with a smile that reveals too many teeth.* You've been persistent. I respect persistence. It's the quality I most enjoy breaking. The hoard goes north. I go with it. You can try to stop me, but I should warn you -- I've been killing things since before your grandparents were born, and I am very, very good at it."}
                 ],
@@ -175,6 +181,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The portal room is a bare circle of stone inscribed with runes that pulse with silver-blue light. The air shimmers in the center, and through the distortion you can see a glimpse of somewhere else -- cold stone, frost on the walls, and the vast open sky of a place much higher than a swamp castle should be. The runes match Netherese notation. This portal is old, and it goes somewhere impossible.",
+                "read_aloud": "The chamber is a perfect circle of bare stone, its floor inscribed with runes that pulse with silver-blue light in a slow, rhythmic cadence. The air at the room's center shimmers and distorts like heat haze, and through the distortion you catch glimpses of somewhere else entirely -- frost-rimed stone, open sky, and a cold so profound you can feel it radiating through the shimmer. Wherever this leads, it is high, it is far, and it is not of this swamp.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [],

@@ -23,6 +23,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The outpost of Velkynvelve clings to the wall of an immense chasm like a spider's web strung between stalactites. Faint purple faerzress light pulses in the stone, and somewhere far below, water roars against rock that has never known sunlight.",
+                "read_aloud": "You wake to darkness and the taste of iron. Somewhere below you, impossibly far down, water thunders against stone. Faint purple light pulses through the rock walls in a slow, sickly rhythm, and the platform beneath you sways -- you are suspended over an abyss, caged in a web of stalactites and silk. The air is cold, damp, and utterly devoid of anything resembling hope.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [],
@@ -43,6 +44,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "The Darklake stretches into absolute blackness, its surface broken only by the phosphorescent trails of blind fish and the distant echo of kuo-toa chanting. The air tastes of brine and ancient sediment.",
+                "read_aloud": "The tunnel opens onto a shore of black gravel, and before you stretches a lake so vast its far side is swallowed by darkness. Phosphorescent trails streak beneath the water's surface -- blind things moving in patterns that might be migration, or might be warning. A distant, rhythmic chanting echoes across the water, sourceless and strange, and the air carries the taste of brine and something older than salt.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [],
@@ -63,6 +65,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Gracklstugh sprawls across a vast cavern, its forges painting the ceiling with ruddy light. The clang of duergar hammers never ceases, and the ground trembles with the breathing of something enormous beneath the Cairngorm Caverns.",
+                "read_aloud": "A wall of heat strikes you as the tunnel widens into a cavern the size of a city. Ruddy light paints the stalactite ceiling from a hundred forges below, and the relentless clang of hammers on iron fills the space like a war drum that never stops. The ground trembles beneath your feet in a rhythm too slow and too deep to be the forges alone. Something vast breathes down here.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [],
@@ -83,6 +86,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Bioluminescent fungi paint the grove in sickly greens and purples. The myconids stand in perfect circles, their rapport spores filling the air with wordless communion. But something festers in the southern terraces -- a wrongness that smells of overripe fruit and madness.",
+                "read_aloud": "The passage opens into a cavern lush with towering fungi that glow in shifting blues and greens, painting the darkness in living color. Mushroom-folk stand in silent circles among the zurkhwood trunks, perfectly still, and drifting spores tickle the edges of your thoughts with feelings not your own. The air is warm and sweet -- too sweet. Beneath the fragrance of growth, something reeks of overripe fruit and wet decay.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [],
@@ -103,6 +107,7 @@
             "is_secret": false,
             "content_hints": {
                 "description": "Menzoberranzan. The City of Spiders. A hundred thousand drow go about their business beneath a ceiling of stalactites dripping with faerzress. House Baenre's compound dominates the cavern floor, its spires of shaped stone reaching upward like grasping fingers.",
+                "read_aloud": "The cavern stretches miles in every direction, and a city fills it -- an impossible city of shaped stone spires and phosphorescent silk, glittering like a dark constellation dragged underground. Faerzress light drips from the stalactites in curtains of shifting purple, and the compounds below pulse with the cold industry of a civilization that has thrived for millennia without a single ray of sunlight. The largest compound's spires reach upward like grasping fingers, and the weight of a hundred thousand watching eyes presses against your skin.",
                 "npcs": [],
                 "enemies": [],
                 "loot": [],
