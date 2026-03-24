@@ -1312,8 +1312,93 @@ class CrownAndCrewEngine:
         return result
 
     # ─────────────────────────────────────────────────────────────────────
-    # GAME FLOW
+    # GAME FLOW — AUTO-WIRING (#102 Factions, #103 Events)
     # ─────────────────────────────────────────────────────────────────────
+
+    def _advance_factions(self) -> str:
+        """WO-V102: Auto-advance faction state at end of day.
+
+        The most influential faction takes an autonomous action.
+        Council vote outcomes shift the power balance.
+        Returns a narrative message or empty string.
+        """
+        try:
+            politics = self._get_politics_engine()
+        except Exception:
+            return ""
+
+        # Determine which faction acts based on dominance
+        dominant = politics.influence_tracker.get_dominant_faction()
+        if not dominant:
+            return ""
+
+        # Pick action based on faction's current state
+        actions = ["propaganda", "recruit", "negotiate"]
+        # If there's a rivalry, consider sabotage
+        alliances = politics.alliance_system
+        rivals = [
+            f for f in politics.influence_tracker.factions
+            if f != dominant and alliances.get_relationship(dominant, f) == "rivalry"
+        ]
+        if rivals:
+            actions.append("sabotage")
+
+        action = random.choice(actions)
+        target = random.choice(rivals) if rivals and action == "sabotage" else ""
+
+        result = politics.faction_action(dominant, action, target=target)
+        if result.get("success") and result.get("narrative"):
+            # Shift power balance based on last council vote
+            if self.vote_log:
+                last_vote = self.vote_log[-1].get("result", {})
+                winner = last_vote.get("winner", "")
+                if winner == "crown":
+                    politics.power_shift(-0.1, "Council favored the Crown")
+                elif winner == "crew":
+                    politics.power_shift(0.1, "Council favored the Crew")
+            return f"[Faction] {result['narrative']}"
+        return ""
+
+    def _auto_event(self) -> str:
+        """WO-V103: Auto-generate a political event for the day.
+
+        Uses EventGenerator to produce a sway-biased event and
+        records it as a narrative shard. Returns the event text
+        or empty string.
+        """
+        try:
+            event_gen = self._get_event_generator()
+        except Exception:
+            return ""
+
+        event = event_gen.generate_event(sway=self.sway, day=self.day)
+        if event and event.get("text"):
+            tag = event.get("tag", "")
+            if tag and tag in TAGS:
+                self.dna[tag] += 1
+            self._add_shard(
+                f"Day {self.day} event: {event['text'][:80]}",
+                "CHRONICLE",
+            )
+            return f"[Event] {event['text']}"
+        return ""
+
+    def get_enhanced_morning_event(self) -> dict:
+        """WO-V103: Get a morning event that combines static + generated layers.
+
+        Returns the static morning event dict with an optional
+        'political_event' key containing an EventGenerator event.
+        """
+        base_event = self.get_morning_event()
+        try:
+            event_gen = self._get_event_generator()
+            political = event_gen.generate_event(sway=self.sway, day=self.day)
+            if political and political.get("text"):
+                base_event = dict(base_event)  # Don't mutate the pool
+                base_event["political_event"] = political
+        except Exception:
+            pass
+        return base_event
 
     def check_drifter_tax(self) -> bool:
         """Check if the Drifter's Tax applies (Double Draw penalty).
@@ -1347,6 +1432,16 @@ class CrownAndCrewEngine:
 
         if self.is_breach_day():
             messages.append("👁️  THE BREACH: A Secret Witness saw what you did. No campfire tonight.")
+
+        # WO-V102: Auto-advance factions at end of day
+        faction_msg = self._advance_factions()
+        if faction_msg:
+            messages.append(faction_msg)
+
+        # WO-V103: Auto-generate a political event for the day
+        event_msg = self._auto_event()
+        if event_msg:
+            messages.append(event_msg)
 
         # WO-V10.0: CHRONICLE shard for day summary
         alignment = self.get_alignment_display()

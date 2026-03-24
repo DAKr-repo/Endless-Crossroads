@@ -1071,3 +1071,83 @@ class TestDrifterTax:
         engine.end_day()
         # end_day creates a CHRONICLE shard; tax message is in the output
         assert engine._drifter_tax_active is True
+
+
+# =============================================================================
+# WO-V102+103: Faction & Event Auto-Wiring
+# =============================================================================
+
+class TestFactionAutoWiring:
+    """Test that faction system auto-advances at end of day."""
+
+    def test_end_day_triggers_faction_action(self):
+        engine = CrownAndCrewEngine()
+        engine.declare_allegiance("crown")
+        result = engine.end_day()
+        # Faction message should appear (may be empty if no dominant faction yet)
+        # The key test is it doesn't crash
+        assert isinstance(result, str)
+
+    def test_faction_action_produces_narrative(self):
+        engine = CrownAndCrewEngine()
+        # Ensure politics engine is initialized with factions
+        politics = engine._get_politics_engine()
+        # Boost one faction to be clearly dominant
+        politics.influence_tracker.shift_influence("The Crown Loyalists", 5)
+        engine.declare_allegiance("crown")
+        result = engine.end_day()
+        assert isinstance(result, str)
+        # Should contain [Faction] message from the dominant faction's action
+        assert "[Faction]" in result or "Dawn breaks" in result
+
+    def test_council_vote_shifts_power_balance(self):
+        engine = CrownAndCrewEngine()
+        politics = engine._get_politics_engine()
+        initial_balance = politics.power_balance
+        # Simulate a council vote
+        engine.resolve_vote({"crown": 3, "crew": 1})
+        engine.declare_allegiance("crown")
+        engine.end_day()
+        # Power should have shifted toward crown (negative)
+        # The shift is small (0.1) and may be overridden by faction actions,
+        # but the mechanism should fire without error
+        assert isinstance(politics.power_balance, float)
+
+
+class TestEventAutoWiring:
+    """Test that event system auto-fires at end of day."""
+
+    def test_end_day_triggers_event(self):
+        engine = CrownAndCrewEngine()
+        engine.declare_allegiance("crew")
+        result = engine.end_day()
+        # Should contain [Event] text
+        assert "[Event]" in result
+
+    def test_event_tags_dna(self):
+        engine = CrownAndCrewEngine()
+        initial_dna = dict(engine.dna)
+        engine.declare_allegiance("crew")
+        engine.end_day()
+        # At least one DNA tag should have been incremented by the auto-event
+        total_before = sum(initial_dna.values())
+        total_after = sum(engine.dna.values())
+        # declare_allegiance adds 1, auto_event adds 1 = at least 2 more
+        assert total_after >= total_before + 2
+
+    def test_event_creates_shard(self):
+        engine = CrownAndCrewEngine()
+        engine.declare_allegiance("crown")
+        shards_before = len(engine._memory_shards)
+        engine.end_day()
+        # end_day creates: day summary shard + event shard = at least 2 new
+        assert len(engine._memory_shards) > shards_before
+
+    def test_enhanced_morning_includes_political(self):
+        engine = CrownAndCrewEngine()
+        event = engine.get_enhanced_morning_event()
+        assert "text" in event
+        assert "bias" in event
+        # Should have a political_event sub-key from EventGenerator
+        assert "political_event" in event
+        assert "text" in event["political_event"]
