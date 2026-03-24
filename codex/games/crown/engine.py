@@ -377,6 +377,7 @@ class CrownAndCrewEngine:
 
     # Internal state
     _pending_allegiance: str | None = field(default=None, repr=False)
+    _drifter_tax_active: bool = field(default=False, repr=False)  # WO-V100: Double Draw pending
 
     # MED-06: Short rest per-day counter
     _short_rests_today: int = field(default=0, repr=False)
@@ -1035,13 +1036,36 @@ class CrownAndCrewEngine:
         )
 
     def get_prompt(self, side: Literal["crown", "crew"] | None = None) -> str:
-        """Get a unique prompt for the declared side (from dynamic pool)."""
+        """Get a unique prompt for the declared side (from dynamic pool).
+
+        If the Drifter's Tax is active (sway was 0 at sunset), returns
+        a DOUBLE DRAW: both a Crown and a Crew prompt that must be
+        justified simultaneously. The tax is consumed after drawing.
+        """
         if side is None:
             side = self._pending_allegiance
         if side is None:
             return "ERROR: No allegiance declared. Call declare_allegiance() first."
 
         side = side.lower()
+
+        # WO-V100: Drifter's Tax — Double Draw
+        if self._drifter_tax_active:
+            crown_prompt = self._get_unique_prompt(self._prompts_crown, self._used_crown)
+            crew_prompt = self._get_unique_prompt(self._prompts_crew, self._used_crew)
+            neutral_term = self.terms.get("neutral", "DRIFTER")
+            self._drifter_tax_active = False  # Consumed
+            return (
+                f"═══ {neutral_term.upper()}'S TAX: DOUBLE DRAW ═══\n\n"
+                f"You walk the line between worlds. Justify BOTH:\n\n"
+                f"▸ {self.terms.get('crown', 'CROWN').upper()} PROMPT:\n"
+                f"{crown_prompt}\n\n"
+                f"▸ {self.terms.get('crew', 'CREW').upper()} PROMPT:\n"
+                f"{crew_prompt}\n\n"
+                f"Your answer must reconcile these opposing demands. "
+                f"Both factions are watching. Neither trusts a neutral."
+            )
+
         if side == "crown":
             return self._get_unique_prompt(self._prompts_crown, self._used_crown)
         elif side == "crew":
@@ -1292,8 +1316,13 @@ class CrownAndCrewEngine:
     # ─────────────────────────────────────────────────────────────────────
 
     def check_drifter_tax(self) -> bool:
-        """Check if the Drifter's Tax applies (Double Draw penalty)."""
-        return self.sway == 0 and self.day < 3
+        """Check if the Drifter's Tax applies (Double Draw penalty).
+
+        The Whirlpool: neutrality is unstable. At sway 0, the player
+        must justify BOTH a Crown and a Crew prompt simultaneously,
+        suffers a resource drain, and is targeted by both factions.
+        """
+        return self.sway == 0
 
     def is_breach_day(self) -> bool:
         """Check if today is the Breach day (scales with arc_length)."""
@@ -1307,7 +1336,14 @@ class CrownAndCrewEngine:
 
         if self.check_drifter_tax():
             neutral_term = self.terms.get("neutral", "DRIFTER")
-            messages.append(f"⚠️  {neutral_term.upper()}'S TAX: You walk the line. Double Draw tomorrow.")
+            self._drifter_tax_active = True
+            messages.append(
+                f"⚠️  {neutral_term.upper()}'S TAX: The Whirlpool pulls at you. "
+                f"Tomorrow you must justify BOTH Crown and Crew. "
+                f"Rations halved. Both factions watch you closely."
+            )
+        else:
+            self._drifter_tax_active = False
 
         if self.is_breach_day():
             messages.append("👁️  THE BREACH: A Secret Witness saw what you did. No campfire tonight.")
@@ -1340,6 +1376,8 @@ class CrownAndCrewEngine:
     def reset_day_state(self):
         """Clear volatile per-day state. Called at start of each day iteration."""
         self._pending_allegiance = None
+        # Note: _drifter_tax_active persists across reset — it's set at end_day
+        # and consumed when get_prompt() is called the following day.
 
     async def resolve_day_ai(self, vote_winner: str = "") -> str:
         """AI-enhanced day resolution narration. Falls back to end_day()."""
@@ -1537,6 +1575,7 @@ class CrownAndCrewEngine:
             "special_mechanics": self.special_mechanics,
             "_morning_events": self._morning_events,
             "_short_rests_today": self._short_rests_today,
+            "_drifter_tax_active": self._drifter_tax_active,
         }
         # Phase 4 — Persist subsystem state if they have been initialised
         if self._politics_engine is not None:
@@ -1578,6 +1617,7 @@ class CrownAndCrewEngine:
             "_used_campfire", "_used_morning", "_used_dilemmas",
             "_council_dilemmas", "quest_slug", "quest_name",
             "special_mechanics", "_morning_events", "_short_rests_today",
+            "_drifter_tax_active",
         ):
             if key in data:
                 setattr(engine, key, data[key])

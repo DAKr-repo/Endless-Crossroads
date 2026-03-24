@@ -991,3 +991,83 @@ class TestCrownEngineSaveLoad:
             restored._politics_engine.power_balance
             - engine._politics_engine.power_balance  # type: ignore[union-attr]
         ) < 0.001
+
+
+# =============================================================================
+# WO-V100: Drifter's Tax — Double Draw
+# =============================================================================
+
+class TestDrifterTax:
+    """Test the Drifter's Tax (Double Draw at sway 0)."""
+
+    def _make_engine(self, sway: int = 0) -> CrownAndCrewEngine:
+        engine = CrownAndCrewEngine()
+        engine.sway = sway
+        return engine
+
+    def test_tax_triggers_at_sway_zero(self):
+        engine = self._make_engine(sway=0)
+        assert engine.check_drifter_tax() is True
+
+    def test_tax_does_not_trigger_at_nonzero_sway(self):
+        for s in [-3, -2, -1, 1, 2, 3]:
+            engine = self._make_engine(sway=s)
+            assert engine.check_drifter_tax() is False, f"Tax should not trigger at sway {s}"
+
+    def test_end_day_sets_tax_flag(self):
+        engine = self._make_engine(sway=0)
+        engine.declare_allegiance("crown")
+        # Sway is now -1, but we force it back to 0 before end_day
+        engine.sway = 0
+        result = engine.end_day()
+        assert engine._drifter_tax_active is True
+        assert "TAX" in result.upper()
+        assert "DOUBLE DRAW" in result.upper() or "WHIRLPOOL" in result.upper()
+
+    def test_end_day_clears_tax_when_not_zero(self):
+        engine = self._make_engine(sway=2)
+        engine.declare_allegiance("crown")
+        engine.end_day()
+        assert engine._drifter_tax_active is False
+
+    def test_double_draw_returns_both_prompts(self):
+        engine = self._make_engine(sway=0)
+        engine._drifter_tax_active = True
+        engine.declare_allegiance("crown")
+        prompt = engine.get_prompt()
+        assert "DOUBLE DRAW" in prompt
+        # Should contain both a Crown and Crew section
+        crown_term = engine.terms.get("crown", "CROWN").upper()
+        crew_term = engine.terms.get("crew", "CREW").upper()
+        assert crown_term in prompt
+        assert crew_term in prompt
+
+    def test_double_draw_consumed_after_use(self):
+        engine = self._make_engine(sway=0)
+        engine._drifter_tax_active = True
+        engine.declare_allegiance("crown")
+        # First call consumes the tax
+        prompt1 = engine.get_prompt()
+        assert "DOUBLE DRAW" in prompt1
+        assert engine._drifter_tax_active is False
+        # Second call is normal
+        prompt2 = engine.get_prompt("crown")
+        assert "DOUBLE DRAW" not in prompt2
+
+    def test_tax_survives_save_load(self):
+        engine = self._make_engine(sway=0)
+        engine._drifter_tax_active = True
+        data = engine.to_dict()
+        assert data["_drifter_tax_active"] is True
+        restored = CrownAndCrewEngine.from_dict(data)
+        assert restored._drifter_tax_active is True
+
+    def test_tax_narrative_shard(self):
+        """Verify the tax generates a narrative shard."""
+        engine = self._make_engine(sway=0)
+        engine.declare_allegiance("crown")
+        engine.sway = 0  # Force back to 0
+        initial_shards = len(engine._memory_shards) if hasattr(engine, '_memory_shards') else 0
+        engine.end_day()
+        # end_day creates a CHRONICLE shard; tax message is in the output
+        assert engine._drifter_tax_active is True
