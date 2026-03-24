@@ -151,6 +151,32 @@ class SharedCommandHandler:
             ctx.con.print(f"[red]Dice error: {e}[/red]")
         return "continue"
 
+    def _genesis(self, ctx: LoopContext, parts: list) -> str:
+        """Roll a procedural world using the GenesisEngine and display it."""
+        try:
+            from codex.world.genesis import GenesisEngine
+        except ImportError:
+            ctx.con.print("[yellow]GenesisEngine not available.[/yellow]")
+            return "continue"
+
+        try:
+            ge = GenesisEngine()
+            if not ge.data:
+                ctx.con.print("[yellow]Genesis data not found. Cannot generate world.[/yellow]")
+                return "continue"
+            ctx.con.print("[dim]Rolling the world...[/dim]")
+            world = ge.roll_unified_world()
+            ge.display_world(world)
+            ctx.con.print(Panel(
+                world.get("primer", ""),
+                title="[bold]World Primer[/bold]",
+                border_style="grey50",
+                width=70,
+            ))
+        except Exception as e:
+            ctx.con.print(f"[red]Genesis error: {e}[/red]")
+        return "continue"
+
     def _dashboard(self, ctx: LoopContext, parts: list) -> str:
         """Open the DM Dashboard for real-time engine monitoring."""
         from codex.core.dm_dashboard import DMDashboard, get_vitals
@@ -203,6 +229,8 @@ class SharedCommandHandler:
         "dice": _dice,
         "dashboard": _dashboard,
         "dm": _dashboard,
+        "genesis": _genesis,
+        "world": _genesis,
     }
 
 

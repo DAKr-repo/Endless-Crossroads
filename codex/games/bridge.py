@@ -334,7 +334,9 @@ class UniversalGameBridge:
         desc = content.get("description", "An unremarkable chamber.")
         if self._narrator:
             _tier = getattr(room_node, 'tier', 1) if room_node else 1
-            desc = self._narrator.enrich_room(desc, _tier)
+            _doom_clock = getattr(self.engine, 'doom_clock', None)
+            _doom_val = getattr(_doom_clock, 'current', 0) if _doom_clock else 0
+            desc = self._narrator.enrich_room(desc, _tier, doom=_doom_val)
         lines.append(desc)
 
         # Enemies

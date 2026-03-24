@@ -5,6 +5,7 @@
     "1": [
       {
         "name": "Knucklehead Trout",
+        "description": "A massive, pale-scaled fish thrashes in the shallows, its bony head plate scarred from ramming prey against rocks beneath the ice.",
         "cr": "0",
         "base_hp": 1,
         "base_ac": 12,
@@ -13,6 +14,7 @@
       },
       {
         "name": "Kobold",
+        "description": "A scrawny, reptilian creature scurries from the shadows, its yellowed eyes darting nervously as it clutches a rusted dagger too large for its clawed hands.",
         "cr": "1/8",
         "base_hp": 5,
         "base_ac": 12,
@@ -21,6 +23,7 @@
       },
       {
         "name": "Mountain Goat",
+        "description": "A wild goat lowers its thick, curving horns and stamps the stone, breath steaming in the cold air. Its eyes hold the dull fury of a territorial beast.",
         "cr": "1/8",
         "base_hp": 13,
         "base_ac": 11,
@@ -29,6 +32,7 @@
       },
       {
         "name": "Twig Blight",
+        "description": "What you mistook for a dead shrub unfolds on root-like legs, its bark-covered limbs ending in needle-sharp claws. Tiny pinpricks of amber light smolder where eyes should be.",
         "cr": "1/8",
         "base_hp": 4,
         "base_ac": 13,
@@ -37,6 +41,7 @@
       },
       {
         "name": "Yeti Tyke",
+        "description": "A young yeti, barely four feet tall, peers from behind a snowbank with ice-blue eyes. Frost clings to its white fur, and its small claws flex with surprising menace.",
         "cr": "1/8",
         "base_hp": 9,
         "base_ac": 11,
@@ -45,6 +50,7 @@
       },
       {
         "name": "Derro",
+        "description": "A wild-eyed dwarf-like creature gibbers to itself, pale skin stretched taut over its skull. Its pupils are milky and too wide, and it grips a hooked spear in trembling hands.",
         "cr": "1/4",
         "base_hp": 13,
         "base_ac": 13,
@@ -53,6 +59,7 @@
       },
       {
         "name": "Dimetrodon",
+        "description": "A primordial lizard the size of a horse drags itself forward, its great sail-fin flushing red with aggression. Rows of serrated teeth glisten with saliva.",
         "cr": "1/4",
         "base_hp": 19,
         "base_ac": 12,
@@ -61,6 +68,7 @@
       },
       {
         "name": "Gnoll Witherling",
+        "description": "A skeletal gnoll lurches forward on broken legs, strips of dried sinew holding its bones together. The hyena skull grins with a hunger that outlasted death.",
         "cr": "1/4",
         "base_hp": 11,
         "base_ac": 12,
@@ -69,6 +77,7 @@
       },
       {
         "name": "Goblin",
+        "description": "A flat-nosed, green-skinned runt crouches in the filth, its jagged grin revealing blackened teeth. It smells of spoiled meat and wet dog.",
         "cr": "1/4",
         "base_hp": 7,
         "base_ac": 15,
@@ -77,6 +86,7 @@
       },
       {
         "name": "Icewind Kobold",
+        "description": "A fur-wrapped kobold chatters in the cold, its scales tinged frost-blue. It wields a jagged ice-shard spear and watches you with calculating, lizard-bright eyes.",
         "cr": "1/4",
         "base_hp": 7,
         "base_ac": 14,
@@ -85,6 +95,7 @@
       },
       {
         "name": "Ixitxachitl",
+        "description": "A dark, ray-shaped creature glides through the water, its pale underbelly splitting open to reveal a fanged maw ringed with barbed teeth. It moves with sinister intelligence.",
         "cr": "1/4",
         "base_hp": 18,
         "base_ac": 15,
@@ -93,6 +104,7 @@
       },
       {
         "name": "Kenku",
+        "description": "A hunched, raven-headed figure watches from the alley's edge, its black feathers matted and oily. When it speaks, it borrows the voices of others -- a dead man's laugh, a child's scream.",
         "cr": "1/4",
         "base_hp": 13,
         "base_ac": 13,
@@ -101,6 +113,7 @@
       },
       {
         "name": "Kobold Inventor",
+        "description": "This kobold drags a sack bulging with mismatched contraptions -- jars of centipedes, alchemist's fire, and a wasp nest on a stick. Its grin suggests it has no idea what half of them do.",
         "cr": "1/4",
         "base_hp": 13,
         "base_ac": 12,
@@ -109,6 +122,7 @@
       },
       {
         "name": "Male Steeder",
+        "description": "A dog-sized spider scuttles across the cavern ceiling, its pale chitin gleaming wetly. It drops to the floor with a soft, horrible thud, mandibles clicking.",
         "cr": "1/4",
         "base_hp": 13,
         "base_ac": 12,
@@ -117,6 +131,7 @@
       },
       {
         "name": "Needle Blight",
+        "description": "A twisted plant-creature bristles with thorn-like needles along every limb. It rattles as it moves, and the air around it carries the sour tang of corrupted sap.",
         "cr": "1/4",
         "base_hp": 11,
         "base_ac": 12,
@@ -125,6 +140,7 @@
       },
       {
         "name": "Skeleton",
+        "description": "Yellowed bones held together by dark necromantic energy clatter forward, empty eye sockets burning with faint pinpoints of crimson light. It raises a notched sword in fingers that should not grip.",
         "cr": "1/4",
         "base_hp": 13,
         "base_ac": 13,
@@ -133,6 +149,7 @@
       },
       {
         "name": "Star Spawn Grue",
+        "description": "A small, writhing mass of shadow and teeth skitters across the ground, its form flickering at the edges as though reality refuses to fully acknowledge it.",
         "cr": "1/4",
         "base_hp": 17,
         "base_ac": 17,
@@ -141,6 +158,7 @@
       },
       {
         "name": "Tortle",
+        "description": "A broad-shouldered tortoise-person stands upright, its shell scarred by old battles and sun-bleached at the edges. It regards you with calm, ancient eyes.",
         "cr": "1/4",
         "base_hp": 22,
         "base_ac": 17,
@@ -149,6 +167,7 @@
       },
       {
         "name": "Troglodyte",
+        "description": "The stench hits you before the creature appears -- a wave of putrid musk that waters the eyes. The grey-scaled reptilian emerges from the dark, hissing through a mouth full of jagged teeth.",
         "cr": "1/4",
         "base_hp": 13,
         "base_ac": 11,
@@ -157,6 +176,7 @@
       },
       {
         "name": "Vegepygmy",
+        "description": "A small humanoid shape made entirely of mold and fungal matter shuffles forward, its body releasing puffs of spores with each step. Tiny mushroom caps sprout from its shoulders like epaulets.",
         "cr": "1/4",
         "base_hp": 13,
         "base_ac": 13,
@@ -165,6 +185,7 @@
       },
       {
         "name": "Wretched Sorrowsworn",
+        "description": "A gaunt, emaciated figure crawls on all fours, its skin stretched so thin you can see the dark veins pulsing beneath. It whimpers with a need that can never be filled.",
         "cr": "1/4",
         "base_hp": 10,
         "base_ac": 15,
@@ -173,6 +194,7 @@
       },
       {
         "name": "Zombie",
+        "description": "A shambling corpse drags itself forward, jaw hanging loose, one arm twisted at an impossible angle. The smell of grave-dirt and rot precedes it like a herald.",
         "cr": "1/4",
         "base_hp": 22,
         "base_ac": 8,
@@ -181,6 +203,7 @@
       },
       {
         "name": "Ambush Drake",
+        "description": "A low-slung, muscular drake blends against the stone, its mottled scales shifting color like oil on water. It coils, utterly still, waiting for you to take one more step.",
         "cr": "1/2",
         "base_hp": 22,
         "base_ac": 13,
@@ -189,6 +212,7 @@
       },
       {
         "name": "Darkling",
+        "description": "A slight figure wrapped in dark rags moves with unnatural silence, its skin black as a starless night. Only its eyes catch the light -- pale, luminous, and sorrowful.",
         "cr": "1/2",
         "base_hp": 13,
         "base_ac": 14,
@@ -197,6 +221,7 @@
       },
       {
         "name": "Deep Gnome",
+        "description": "A wiry gnome with stone-grey skin and enormous dark eyes presses against the cavern wall, nearly invisible. Its fingers rest on a pick-axe worn smooth by decades of use.",
         "cr": "1/2",
         "base_hp": 16,
         "base_ac": 15,
@@ -205,6 +230,7 @@
       },
       {
         "name": "Firenewt Warrior",
+        "description": "A salamander-like humanoid strides forward on digitigrade legs, heat shimmering off its orange-red scales. Smoke curls from the edges of its shield where fire licks the metal.",
         "cr": "1/2",
         "base_hp": 27,
         "base_ac": 13,
@@ -213,6 +239,7 @@
       },
       {
         "name": "Gazer",
+        "description": "A tiny beholder-kin floats at eye level, its central eye blinking wetly above a mouth of needle-teeth. Four eyestalks twitch independently, each tracking a different target.",
         "cr": "1/2",
         "base_hp": 13,
         "base_ac": 13,
@@ -221,6 +248,7 @@
       },
       {
         "name": "Gnome Squidling",
+        "description": "What was once a gnome now sports writhing tentacles where its face should be, its skin gone grey and slick. It moves in jerky, puppet-like motions, as though something else wears its body.",
         "cr": "1/2",
         "base_hp": 26,
         "base_ac": 10,
@@ -229,6 +257,7 @@
       },
       {
         "name": "Vine Blight",
+        "description": "A shambling mass of tangled vines and rotting vegetation rises to its full height, thorned tendrils whipping the air. The sweet-sick smell of decay pours from its hollow core.",
         "cr": "1/2",
         "base_hp": 26,
         "base_ac": 12,
@@ -237,6 +266,7 @@
       },
       {
         "name": "Bugbear",
+        "description": "A hulking, fur-covered goblinoid looms in the doorway, easily seven feet tall. Its flat face splits into a grin as it hefts a spiked morningstar with one thick-knuckled hand.",
         "cr": 1,
         "base_hp": 27,
         "base_ac": 16,
@@ -245,6 +275,7 @@
       },
       {
         "name": "Crag Cat",
+        "description": "A massive feline crouches on the ledge above, its tawny fur rippling over corded muscle. Its eyes hold a predator's patience, and faint arcane sparks dance along its whiskers.",
         "cr": "1",
         "base_hp": 34,
         "base_ac": 13,
@@ -253,6 +284,7 @@
       },
       {
         "name": "Demos Magen",
+        "description": "A humanoid construct of pale, waxy flesh stands motionless until commanded, its blank eyes staring at nothing. Its movements are precise and mechanical, devoid of breath or hesitation.",
         "cr": "1",
         "base_hp": 51,
         "base_ac": 16,
@@ -261,6 +293,7 @@
       },
       {
         "name": "Dragonclaw",
+        "description": "A black-masked cultist drops into a fighting crouch, twin scimitars drawn in one fluid motion. The five-headed dragon sigil on their breastplate gleams with fanatical polish.",
         "cr": "1",
         "base_hp": 16,
         "base_ac": 14,
@@ -269,6 +302,7 @@
       },
       {
         "name": "Duergar Soulblade",
+        "description": "A grey-skinned dwarf materializes from thin air, a blade of shimmering psychic energy humming in its fist. Its sunken eyes burn with cold, practiced hatred.",
         "cr": "1",
         "base_hp": 18,
         "base_ac": 14,
@@ -277,6 +311,7 @@
       },
       {
         "name": "Female Steeder",
+        "description": "A spider the size of a warhorse descends on a line of silk, its bloated abdomen pulsing with venom. Each of its eight legs ends in a hooked claw that gouges stone as it lands.",
         "cr": "1",
         "base_hp": 30,
         "base_ac": 14,
@@ -285,6 +320,7 @@
       },
       {
         "name": "Ghoul",
+        "description": "A hunched, cadaverous figure crouches over something wet, its long tongue lapping at the dark. It turns toward you with a face that was human once, now stretched into a permanent rictus of hunger.",
         "cr": 1,
         "base_hp": 22,
         "base_ac": 12,
@@ -293,6 +329,7 @@
       },
       {
         "name": "Giant Spider",
+        "description": "Eight glossy black eyes reflect your torchlight from a web-choked alcove. The spider's body is as large as a horse, its fangs dripping with paralytic venom that sizzles on the stone.",
         "cr": 1,
         "base_hp": 26,
         "base_ac": 14,
@@ -301,6 +338,7 @@
       },
       {
         "name": "Hypnos Magen",
+        "description": "An eerily beautiful construct stands with arms outstretched, its glassy eyes swirling with hypnotic patterns. The air around it hums with an almost musical compulsion to obey.",
         "cr": "1",
         "base_hp": 34,
         "base_ac": 12,
@@ -309,6 +347,7 @@
       },
       {
         "name": "Ice Toad",
+        "description": "A bloated, frost-rimed toad the size of a large dog sits in a pool of its own cold, the stones beneath it glazed with ice. Its croak sends visible waves of freezing air.",
         "cr": "1",
         "base_hp": 32,
         "base_ac": 12,
@@ -317,6 +356,7 @@
       },
       {
         "name": "Vargouille",
+        "description": "A severed head floats through the darkness on leathery bat-wings, its face frozen in a scream of perpetual agony. The air grows foul with its poisonous shriek.",
         "cr": "1",
         "base_hp": 18,
         "base_ac": 12,
@@ -325,6 +365,7 @@
       },
       {
         "name": "Adult Kruthik",
+        "description": "An insectoid predator the size of a large dog bursts from the earth, chitin plates grinding as it unfolds blade-like limbs. Its mandibles click in staccato rhythm -- a hunting call.",
         "cr": "2",
         "base_hp": 39,
         "base_ac": 18,
@@ -333,6 +374,7 @@
       },
       {
         "name": "Aurochs",
+        "description": "A colossal wild ox lowers its massive horns, each as long as a man's arm. The ground trembles as it stamps, muscles bunching beneath a hide thick as boiled leather.",
         "cr": "2",
         "base_hp": 38,
         "base_ac": 11,
@@ -341,6 +383,7 @@
       },
       {
         "name": "Berbalang",
+        "description": "A gaunt, bat-winged humanoid perches on a tomb, its hollow eyes distant as though its mind wanders somewhere far away. Its claws twitch absently, tracing patterns in the dust.",
         "cr": "2",
         "base_hp": 49,
         "base_ac": 14,
@@ -349,6 +392,7 @@
       },
       {
         "name": "Chamberlain of Zuggtmoy",
+        "description": "A fungal humanoid bows with grotesque courtesy, its cap-shaped head releasing clouds of spore with each gesture. Mushrooms bloom and wither across its body in rapid succession.",
         "cr": "2",
         "base_hp": 45,
         "base_ac": 13,
@@ -357,6 +401,7 @@
       },
       {
         "name": "Darkling Elder",
+        "description": "Taller and more poised than its lesser kin, this darkling moves with the gravity of royalty in exile. Its skin drinks in the light, and a faint nimbus of stolen radiance halos its head.",
         "cr": "2",
         "base_hp": 27,
         "base_ac": 15,
@@ -365,6 +410,7 @@
       },
       {
         "name": "Dragonwing",
+        "description": "A Dragon Cult officer spreads arms sheathed in enchanted wing-membranes, gliding down from above. Elemental energy crackles along the blades strapped to both forearms.",
         "cr": "2",
         "base_hp": 33,
         "base_ac": 14,
@@ -373,6 +419,7 @@
       },
       {
         "name": "Duergar Hammerer",
+        "description": "A squat, iron-plated automaton trundles forward on grinding gears, its massive piston-driven hammer arm cocked and ready. A duergar rune of obedience glows dull red on its chest.",
         "cr": "2",
         "base_hp": 33,
         "base_ac": 17,
@@ -381,6 +428,7 @@
       },
       {
         "name": "Duergar Mind Master",
+        "description": "A grey dwarf with an unnervingly still face extends one hand, and the air between you seems to thicken. Its eyes are voids -- not empty, but full of something that watches from behind them.",
         "cr": "2",
         "base_hp": 39,
         "base_ac": 14,
@@ -389,6 +437,7 @@
       },
       {
         "name": "Duergar Stone Guard",
+        "description": "A duergar warrior in heavy stone-grey plate stands in disciplined formation, war pick and shield held with mechanical precision. It doubles in size before your eyes, armor groaning.",
         "cr": "2",
         "base_hp": 39,
         "base_ac": 18,
@@ -397,6 +446,7 @@
       },
       {
         "name": "Duergar Xarrorn",
+        "description": "A grey dwarf hefts a strange, bellows-driven weapon that drips liquid fire. The heat-shimmer around the device distorts the air, and the duergar's scarred hands show no fear of the flames.",
         "cr": "2",
         "base_hp": 26,
         "base_ac": 18,
@@ -405,6 +455,7 @@
       },
       {
         "name": "Ghast",
+        "description": "This ghoul-lord reeks of charnel rot strong enough to buckle the knees. Its elongated claws are caked with old blood, and a terrible cunning flickers behind its milky, corpse-pale eyes.",
         "cr": 2,
         "base_hp": 36,
         "base_ac": 13,
@@ -413,6 +464,7 @@
       },
       {
         "name": "Griffon Cavalry Rider",
+        "description": "A lance-bearing knight descends on the back of a griffon, the great beast's eagle-head shrieking as its lion-body banks hard. Wind from its wings scatters dust and loose stone.",
         "cr": "2",
         "base_hp": 58,
         "base_ac": 17,
@@ -421,6 +473,7 @@
       },
       {
         "name": "Guard Drake",
+        "description": "A wingless, muscular drake bred for war snaps its jaws, scales shifting through chromatic hues that betray its draconic parentage. A spiked collar marks it as someone's weapon.",
         "cr": "2",
         "base_hp": 52,
         "base_ac": 14,
@@ -429,6 +482,7 @@
       },
       {
         "name": "Hobgoblin Iron Shadow",
+        "description": "A hobgoblin monk emerges from shadow like smoke given form, its face hidden behind a featureless iron mask. It moves in absolute silence, hands weaving spell and strike as one.",
         "cr": "2",
         "base_hp": 32,
         "base_ac": 15,
@@ -437,6 +491,7 @@
       },
       {
         "name": "Nothic",
+        "description": "A hunched, one-eyed creature watches from the dark with a gaze that peels away secrets. Its single enormous eye weeps constantly, and its claws scrape the stone as it whispers things you never told anyone.",
         "cr": 2,
         "base_hp": 45,
         "base_ac": 15,
@@ -445,6 +500,7 @@
       },
       {
         "name": "Ogre",
+        "description": "A nine-foot brute of fat and muscle ducks through the doorway, its crude wooden club dragging grooves in the floor. The stink of unwashed hide and rancid meat fills the corridor.",
         "cr": 2,
         "base_hp": 59,
         "base_ac": 11,
@@ -453,6 +509,7 @@
       },
       {
         "name": "Ogre Bolt Launcher",
+        "description": "An ogre cranks a siege crossbow bolted to its own back-harness, the weapon's arms creaking under immense tension. It grins stupidly as the bolt slides into place with a heavy clunk.",
         "cr": "2",
         "base_hp": 59,
         "base_ac": 13,
@@ -461,6 +518,7 @@
       },
       {
         "name": "Ogre Howdah",
+        "description": "An ogre lumbers forward with a wooden platform strapped to its back, goblins or kobolds firing from the crude tower. The ogre seems barely aware of its passengers as it charges.",
         "cr": "2",
         "base_hp": 59,
         "base_ac": 15,
@@ -469,6 +527,7 @@
       },
       {
         "name": "Tortle Druid",
+        "description": "An elder tortle leans on a staff wound with living kelp, its shell overgrown with moss and tiny flowering plants. The air around it hums with the quiet authority of wild magic.",
         "cr": "2",
         "base_hp": 33,
         "base_ac": 17,
@@ -477,6 +536,7 @@
       },
       {
         "name": "Vampiric Ixitxachitl",
+        "description": "A larger, blood-gorged ray undulates through murky water, its pale belly pulsing with stolen life-force. Where it passes, smaller fish float belly-up, drained white.",
         "cr": "2",
         "base_hp": 44,
         "base_ac": 16,
@@ -485,6 +545,7 @@
       },
       {
         "name": "Will-o'-Wisp",
+        "description": "A pale, ghostly light bobs gently in the darkness ahead, beautiful and beckoning. It pulses with a rhythm like breathing, leading you deeper into the marsh with the patience of something that feeds on the dying.",
         "cr": 2,
         "base_hp": 22,
         "base_ac": 19,
@@ -495,6 +556,7 @@
     "2": [
       {
         "name": "Brain in a Jar",
+        "description": "A disembodied brain floats in a jar of bubbling green fluid, arcs of psychic energy crackling between its folds. The glass hums with a low, maddening frequency that presses against your thoughts.",
         "cr": "3",
         "base_hp": 55,
         "base_ac": 11,
@@ -503,6 +565,7 @@
       },
       {
         "name": "Bugbear Chief",
+        "description": "This bugbear towers over its lesser kin, a necklace of severed ears rattling against its barrel chest. Its eyes hold a brutal cunning that separates a war-chief from mere muscle.",
         "cr": 3,
         "base_hp": 65,
         "base_ac": 17,
@@ -511,6 +574,7 @@
       },
       {
         "name": "Cave Fisher",
+        "description": "A crab-like horror clings to the ceiling, nearly invisible against the stone. A thin, sticky filament descends silently toward you -- its fishing line, strong enough to haul a man off his feet.",
         "cr": "3",
         "base_hp": 58,
         "base_ac": 16,
@@ -519,6 +583,7 @@
       },
       {
         "name": "Deep Scion",
+        "description": "What appears to be a waterlogged sailor stands dripping on the dock, its smile slightly too wide. Beneath the illusion, its true form writhes with tentacles and barnacle-crusted flesh.",
         "cr": "3",
         "base_hp": 67,
         "base_ac": 11,
@@ -527,6 +592,7 @@
       },
       {
         "name": "Derro Savant",
+        "description": "A derro elder twitches and mutters, fingers crackling with wild sorcery that even it cannot fully control. Its madness has deepened into something that bends reality around it.",
         "cr": "3",
         "base_hp": 49,
         "base_ac": 13,
@@ -535,6 +601,7 @@
       },
       {
         "name": "Duergar Screamer",
+        "description": "A duergar war-construct of iron and stone emits a keening shriek that sets teeth on edge and cracks mortar. The sound bounces off dungeon walls, amplifying into a disorienting cacophony.",
         "cr": "3",
         "base_hp": 38,
         "base_ac": 15,
@@ -543,6 +610,7 @@
       },
       {
         "name": "Galvan Magen",
+        "description": "A construct of pale flesh crackles with barely contained lightning, blue-white arcs dancing between its fingertips. The smell of ozone precedes it, sharp enough to taste.",
         "cr": "3",
         "base_hp": 68,
         "base_ac": 14,
@@ -551,6 +619,7 @@
       },
       {
         "name": "Giff",
+        "description": "A broad-chested hippo-headed humanoid in a brass-buttoned military coat stamps to attention, its musket held at parade rest. Despite the absurd appearance, the professional menace in its bearing is unmistakable.",
         "cr": "3",
         "base_hp": 60,
         "base_ac": 16,
@@ -559,6 +628,7 @@
       },
       {
         "name": "Hook Horror Spore Servant",
+        "description": "A massive, fungus-covered insectoid lurches forward on hooked limbs, its body riddled with fruiting mushroom caps. Whatever mind it once had is gone -- only the mycelium's hunger remains.",
         "cr": "3",
         "base_hp": 75,
         "base_ac": 15,
@@ -567,6 +637,7 @@
       },
       {
         "name": "Lava Child",
+        "description": "A child-shaped figure of molten rock and obsidian skin toddles forward, leaving scorched footprints on the stone. Its eyes glow like forge-coals, and heat radiates from it in visible waves.",
         "cr": "3",
         "base_hp": 60,
         "base_ac": 11,
@@ -575,6 +646,7 @@
       },
       {
         "name": "Manticore",
+        "description": "A lion's body, a man's face twisted into a permanent snarl, and a tail bristling with iron spikes -- the manticore circles overhead, its too-human voice taunting you before the first volley of tail-spines.",
         "cr": 3,
         "base_hp": 68,
         "base_ac": 14,
@@ -583,6 +655,7 @@
       },
       {
         "name": "Martial Arts Adept",
+        "description": "A robed figure stands in a stance of perfect stillness, bare feet planted on stone as though rooted. When they move, it is faster than the eye can track -- a blur of fist and heel.",
         "cr": "3",
         "base_hp": 60,
         "base_ac": 16,
@@ -591,6 +664,7 @@
       },
       {
         "name": "Ogre Chain Brute",
+        "description": "An ogre swings a length of ship's anchor chain overhead like a flail, each link as thick as your wrist. Rust and old bloodstains pattern the iron in equal measure.",
         "cr": "3",
         "base_hp": 59,
         "base_ac": 11,
@@ -599,6 +673,7 @@
       },
       {
         "name": "Owlbear",
+        "description": "A massive creature with the body of a bear and the head of a great horned owl bursts from the undergrowth, hooked beak shrieking. Its feathered hackles rise as it charges with territorial fury.",
         "cr": 3,
         "base_hp": 59,
         "base_ac": 13,
@@ -607,6 +682,7 @@
       },
       {
         "name": "Shadow Mastiff Alpha",
+        "description": "A hound of living shadow solidifies from the darkness, larger than a dire wolf, its coat drinking in the torchlight. Its howl is not heard so much as felt -- a cold pressure behind the ribs.",
         "cr": "3",
         "base_hp": 44,
         "base_ac": 12,
@@ -615,6 +691,7 @@
       },
       {
         "name": "Snow Golem",
+        "description": "A hulking figure of packed ice and snow looms ahead, its body creaking with each lumbering step. Dark stones serve as eyes, but they track you with an intent no snowman should possess.",
         "cr": "3",
         "base_hp": 39,
         "base_ac": 12,
@@ -623,6 +700,7 @@
       },
       {
         "name": "Swashbuckler",
+        "description": "A grinning duelist salutes with a rapier that catches the light, their free hand tucked behind their back with theatrical flair. Every motion is calculated showmanship -- and lethal precision.",
         "cr": "3",
         "base_hp": 66,
         "base_ac": 17,
@@ -631,6 +709,7 @@
       },
       {
         "name": "Sword Wraith Warrior",
+        "description": "The ghost of a fallen soldier materializes in rusted armor, spectral blade raised in a guard position it held in life. Its hollow eyes burn with the shame of a death it considers dishonorable.",
         "cr": "3",
         "base_hp": 45,
         "base_ac": 16,
@@ -639,6 +718,7 @@
       },
       {
         "name": "Troglodyte Champion of Laogzed",
+        "description": "A massive troglodyte draped in fetid ceremonial hides raises a stone mace carved to resemble a devouring maw. Its stench is worse than its kin -- a holy reek consecrated to the god of hunger.",
         "cr": "3",
         "base_hp": 59,
         "base_ac": 14,
@@ -647,6 +727,7 @@
       },
       {
         "name": "Water Weird",
+        "description": "A serpentine shape rises from the pool, formed entirely of living water that coils and strikes like a translucent cobra. Its features ripple and reform with each movement, never quite solid.",
         "cr": 3,
         "base_hp": 58,
         "base_ac": 13,
@@ -655,6 +736,7 @@
       },
       {
         "name": "Wight",
+        "description": "An armored corpse stands in the doorway with terrible composure, its eyes blazing with cold blue light. This is no mindless undead -- it remembers who it was, and that memory has curdled into malice.",
         "cr": 3,
         "base_hp": 45,
         "base_ac": 14,
@@ -663,6 +745,7 @@
       },
       {
         "name": "Babau",
+        "description": "A lean, tar-skinned demon unfolds from a rift in the air, its single curved horn glistening with dark ichor. Acidic slime weeps from every pore, hissing where it drips on stone.",
         "cr": "4",
         "base_hp": 82,
         "base_ac": 16,
@@ -671,6 +754,7 @@
       },
       {
         "name": "Chardalyn Berserker",
+        "description": "A human warrior charges with wild, unfocused eyes, veins of black chardalyn crystal visible beneath their skin. The corrupted mineral has eaten away at their sanity, leaving only rage.",
         "cr": "4",
         "base_hp": 50,
         "base_ac": 11,
@@ -679,6 +763,7 @@
       },
       {
         "name": "Chuul Spore Servant",
+        "description": "A lobster-like horror shambles forward on too many legs, its carapace split open by fungal growths that pulse in rhythm. Spores pour from the cracks where its brain once was.",
         "cr": "4",
         "base_hp": 93,
         "base_ac": 16,
@@ -687,6 +772,7 @@
       },
       {
         "name": "Clockwork Iron Cobra",
+        "description": "A mechanical serpent of interlocking iron plates coils and rises, its glass eyes clicking as they focus. Its hinged jaw opens to reveal a needle dripping with alchemical venom.",
         "cr": "4",
         "base_hp": 91,
         "base_ac": 13,
@@ -695,6 +781,7 @@
       },
       {
         "name": "Clockwork Stone Defender",
+        "description": "A squat, shield-bearing construct of carved stone and brass gears pivots to face you, its movements eerily smooth for something so heavy. Runes of warding glow along its shield arm.",
         "cr": "4",
         "base_hp": 105,
         "base_ac": 16,
@@ -703,6 +790,7 @@
       },
       {
         "name": "Ghost",
+        "description": "The temperature plummets as a translucent figure materializes, its face a mask of grief and fury frozen at the moment of death. The walls weep condensation in its presence, and your breath turns to fog.",
         "cr": 4,
         "base_hp": 45,
         "base_ac": 11,
@@ -711,6 +799,7 @@
       },
       {
         "name": "Giant Walrus",
+        "description": "A colossal walrus hauls itself onto the ice shelf, tusks as long as greatswords scraping furrows in the frozen surface. Its bulk could crush a rowboat, and it regards you with surprising malice.",
         "cr": "4",
         "base_hp": 85,
         "base_ac": 9,
@@ -719,6 +808,7 @@
       },
       {
         "name": "Girallon",
+        "description": "A four-armed gorilla of terrifying size drops from the canopy, each massive fist capable of crushing a skull. White fur bristles along its spine as it beats all four hands against the earth.",
         "cr": "4",
         "base_hp": 59,
         "base_ac": 13,
@@ -727,6 +817,7 @@
       },
       {
         "name": "Hobgoblin Devastator",
+        "description": "A hobgoblin war-mage in lacquered red armor traces sigils in the air with practiced efficiency. There is no wild passion here -- only the cold application of arcane firepower in service of the legion.",
         "cr": "4",
         "base_hp": 45,
         "base_ac": 13,
@@ -735,6 +826,7 @@
       },
       {
         "name": "Lamia",
+        "description": "The upper body of a breathtakingly beautiful woman rises from the body of a great lion, her smile warm and inviting. Only her eyes betray the truth -- ancient, hungry, and utterly without mercy.",
         "cr": 4,
         "base_hp": 97,
         "base_ac": 13,
@@ -743,6 +835,7 @@
       },
       {
         "name": "Living Bigby's Hand",
+        "description": "A massive, disembodied hand of shimmering arcane force clenches and unclenches in midair, fingers the size of a man. The spell that created it has outlived its caster and grown a will of its own.",
         "cr": "4",
         "base_hp": 52,
         "base_ac": 20,
@@ -751,6 +844,7 @@
       },
       {
         "name": "Merregon",
+        "description": "A faceless devil soldier stands in lockstep with its kin, its smooth, scarred-over face bearing no eyes, nose, or mouth. It fights with the mechanical obedience of a thing that has forgotten what choice was.",
         "cr": "4",
         "base_hp": 45,
         "base_ac": 16,
@@ -759,6 +853,7 @@
       },
       {
         "name": "Ogre Battering Ram",
+        "description": "An ogre charges headfirst, a massive wooden ram strapped to its skull with iron bands. The wood is splintered from a dozen gates and walls already broken.",
         "cr": "4",
         "base_hp": 76,
         "base_ac": 11,
@@ -767,6 +862,7 @@
       },
       {
         "name": "Verbeeg Marauder",
+        "description": "A lean, cunning giant -- taller than an ogre but far more clever -- surveys you with calculating eyes. Its spear is carved from a single young tree, and trophies from a dozen raids dangle from its belt.",
         "cr": "4",
         "base_hp": 95,
         "base_ac": 14,
@@ -775,6 +871,7 @@
       },
       {
         "name": "Warlock of the Archfey",
+        "description": "An elvish figure wreathed in phantom moonlight speaks in a voice like wind through silver bells. Flowers bloom and wither in their footsteps, and their patron's capricious power dances at their fingertips.",
         "cr": "4",
         "base_hp": 67,
         "base_ac": 13,
@@ -783,6 +880,7 @@
       },
       {
         "name": "Yestabrod",
+        "description": "A towering fungal sovereign rises from a carpet of mycelium, its body a pillar of pale mushroom-flesh crowned with spore-laden gills. Smaller fungi orbit it like courtiers around a rotting throne.",
         "cr": "4",
         "base_hp": 75,
         "base_ac": 15,
@@ -791,6 +889,7 @@
       },
       {
         "name": "Banderhobb",
+        "description": "A hulking, toad-like shadow-creature squeezes through spaces far too small for its bulk, its skin slick and dark as wet tar. Its enormous mouth opens impossibly wide, large enough to swallow a halfling whole.",
         "cr": "5",
         "base_hp": 84,
         "base_ac": 15,
@@ -799,6 +898,7 @@
       },
       {
         "name": "Clockwork Oaken Bolter",
+        "description": "A wooden war-construct shaped like a squat, armored beetle trundles forward, multiple crossbow mechanisms clicking into firing position along its flanks. Gears whir inside its oak-plated hull.",
         "cr": "5",
         "base_hp": 117,
         "base_ac": 16,
@@ -807,6 +907,7 @@
       },
       {
         "name": "Coldlight Walker",
+        "description": "A frozen corpse walks with stiff, cracking steps, pale blue light pouring from its eyes and mouth. Ice crystals bloom across every surface it passes, and the cold it radiates is lethal -- not weather, but hunger.",
         "cr": "5",
         "base_hp": 82,
         "base_ac": 13,
@@ -815,6 +916,7 @@
       },
       {
         "name": "Dragonfang",
+        "description": "An elite Dragon Cult assassin materializes from the shadows, twin daggers coated in venom that smokes in the torchlight. The five-headed dragon tattoo across their face marks them as one who has looked into a dragon's eye and survived.",
         "cr": "5",
         "base_hp": 78,
         "base_ac": 15,
@@ -823,6 +925,7 @@
       },
       {
         "name": "Frost Druid",
+        "description": "A gaunt figure in ice-crusted furs speaks words that freeze the moisture from the air itself. Frost patterns race across the ground from their bare feet, and their breath does not fog -- they are colder than the wind.",
         "cr": "5",
         "base_hp": 75,
         "base_ac": 13,
@@ -831,6 +934,7 @@
       },
       {
         "name": "Gnome Ceremorph",
+        "description": "A mind flayer tadpole has completed its grim work on this gnome, leaving a small, hunched figure with a bulging cranium and writhing face-tentacles. Its gnomish cleverness has been twisted into something alien and predatory.",
         "cr": "5",
         "base_hp": 58,
         "base_ac": 15,
@@ -839,6 +943,7 @@
       },
       {
         "name": "Kraken Priest",
+        "description": "A robed figure stands knee-deep in seawater that should not be here, barnacles growing along their jawline. Their voice carries the pressure of the deep ocean, and the smell of brine and ancient things follows them.",
         "cr": "5",
         "base_hp": 75,
         "base_ac": 15,
@@ -847,6 +952,7 @@
       },
       {
         "name": "Kruthik Hive Lord",
+        "description": "The largest of the insectoid swarm towers above its brood, chitin plates scarred from a hundred tunnel-wars. It clicks its mandibles in a rapid pattern, and the lesser kruthiks respond in synchronized fury.",
         "cr": "5",
         "base_hp": 102,
         "base_ac": 20,
@@ -855,6 +961,7 @@
       },
       {
         "name": "Mindwitness",
+        "description": "A beholder's corpse floats before you, its central eye dark and dead -- but the mind flayer tadpole that consumed it has reshaped the body into something worse. Tentacles writhe from its eye-stalks, broadcasting alien thoughts.",
         "cr": "5",
         "base_hp": 75,
         "base_ac": 15,
@@ -863,6 +970,7 @@
       },
       {
         "name": "Otyugh",
+        "description": "A bloated, three-legged aberration squats in a mound of refuse, its tentacles sifting through offal with disturbing tenderness. A single stalk-mounted eye swivels toward you, and its tooth-ringed maw yawns open.",
         "cr": 5,
         "base_hp": 114,
         "base_ac": 14,
@@ -871,6 +979,7 @@
       },
       {
         "name": "Salamander",
+        "description": "A serpentine humanoid of living flame coils on a bed of cooling lava, its upper body vaguely human, its tail a whip of molten scales. The air around it shimmers, and wood ignites at its approach.",
         "cr": 5,
         "base_hp": 90,
         "base_ac": 15,
@@ -879,6 +988,7 @@
       },
       {
         "name": "Shambling Mound",
+        "description": "A hill of rotting vegetation lurches upright, vines and roots tangling into limbs that reach for you with blind hunger. Lightning crackles across its surface -- not harming it, but feeding it, making it swell.",
         "cr": 5,
         "base_hp": 136,
         "base_ac": 15,
@@ -887,6 +997,7 @@
       },
       {
         "name": "Swarm of Cranium Rats",
+        "description": "Hundreds of rats pour from the drain, each skull grotesquely swollen and faintly glowing with psionic light. Alone, they are vermin. Together, they are a mind -- and it is thinking about you.",
         "cr": "5",
         "base_hp": 76,
         "base_ac": 12,
@@ -895,6 +1006,7 @@
       },
       {
         "name": "Tanarukk",
+        "description": "A demonic orc hybrid snarls through a mouth of too many fangs, its skin cracked and glowing with infernal heat. Horns curl from a skull built for headlong violence, and every breath comes out as smoke.",
         "cr": "5",
         "base_hp": 95,
         "base_ac": 14,
@@ -903,6 +1015,7 @@
       },
       {
         "name": "Troll",
+        "description": "A lanky, green-skinned giant unfolds from a crouch, looming over you with arms that nearly drag the ground. A wound on its shoulder knits shut before your eyes, flesh bubbling and reforming with sickening speed.",
         "cr": 5,
         "base_hp": 84,
         "base_ac": 15,
@@ -911,6 +1024,7 @@
       },
       {
         "name": "Dragonsoul",
+        "description": "A high-ranking Dragon Cult sorcerer wreathed in draconic energy strides forward, scales emerging along their forearms as their patron's gift manifests. Their eyes burn with the color of their chosen wyrm.",
         "cr": "6",
         "base_hp": 110,
         "base_ac": 16,
@@ -919,6 +1033,7 @@
       },
       {
         "name": "Drider",
+        "description": "The torso of a dark elf rises from the body of a massive spider, the drow's face twisted in permanent anguish. Lolth's curse made flesh, it scuttles across the ceiling with eight chitinous legs while casting spells with elven hands.",
         "cr": 6,
         "base_hp": 123,
         "base_ac": 19,
@@ -927,6 +1042,7 @@
       },
       {
         "name": "Duergar Warlord",
+        "description": "A grey dwarf commander in masterwork plate barks orders in clipped Undercommon, doubling in size as rage takes hold. Battle-scars map a career of subterranean conquest across every inch of exposed skin.",
         "cr": "6",
         "base_hp": 75,
         "base_ac": 20,
@@ -935,6 +1051,7 @@
       },
       {
         "name": "Frost Giant Skeleton",
+        "description": "The skeleton of a frost giant rises from the ice, twenty feet of wind-scoured bone held together by necromantic frost. Its greataxe is solid ice, and the cold radiating from its frame numbs you from ten paces.",
         "cr": "6",
         "base_hp": 102,
         "base_ac": 14,
@@ -943,6 +1060,7 @@
       },
       {
         "name": "Medusa",
+        "description": "A figure in a hooded cloak turns to face you, and beneath the cowl you glimpse a face of terrible beauty -- and a crown of living serpents, each one hissing with its own malice. Do not meet her gaze.",
         "cr": 6,
         "base_hp": 127,
         "base_ac": 15,
@@ -951,6 +1069,7 @@
       },
       {
         "name": "Verbeeg Longstrider",
+        "description": "A rangy giant lopes with ground-eating strides, its javelin arm already cocked. Faster and more cunning than its marauder kin, it fights like a wolf -- circling, testing, then striking from the angle you least expect.",
         "cr": "6",
         "base_hp": 119,
         "base_ac": 14,
@@ -961,6 +1080,7 @@
     "3": [
       {
         "name": "Young White Dragon",
+        "description": "A dragon of gleaming white scales bursts from a snowdrift, frost cascading from its wings in glittering sheets. Its breath is a howling blizzard condensed into a single terrible exhalation.",
         "cr": 6,
         "base_hp": 133,
         "base_ac": 17,
@@ -969,6 +1089,7 @@
       },
       {
         "name": "Air Elemental Myrmidon",
+        "description": "A suit of ornate plate armor hangs suspended in a howling vortex of wind, its visor empty yet watchful. Lightning arcs between its gauntlets as it raises a flail that trails stormclouds.",
         "cr": "7",
         "base_hp": 117,
         "base_ac": 18,
@@ -977,6 +1098,7 @@
       },
       {
         "name": "Earth Elemental Myrmidon",
+        "description": "Stone and steel merge in a humanoid juggernaut, plates of living rock layered over enchanted armor. The ground cracks beneath its weight, and its maul strikes with the force of a landslide.",
         "cr": "7",
         "base_hp": 127,
         "base_ac": 18,
@@ -985,6 +1107,7 @@
       },
       {
         "name": "Goliath Werebear",
+        "description": "A massive goliath shifts form mid-stride, grey skin splitting to reveal brown fur and a bear's terrible bulk. Muscles ripple beneath the pelt as it rises to its full, towering height.",
         "cr": "7",
         "base_hp": 120,
         "base_ac": 14,
@@ -993,6 +1116,7 @@
       },
       {
         "name": "Ice Troll",
+        "description": "A troll of translucent blue-white flesh stalks through the blizzard, frost forming on everything it touches. Its regenerating wounds seal with ice instead of flesh, and its claws leave frozen blood-trails.",
         "cr": "7",
         "base_hp": 115,
         "base_ac": 16,
@@ -1001,6 +1125,7 @@
       },
       {
         "name": "Korred",
+        "description": "A small, wild-haired fey creature dances on stone that ripples like water beneath its feet. Boulders orbit its body, and the ground itself seems to lean toward it in deference.",
         "cr": "7",
         "base_hp": 93,
         "base_ac": 17,
@@ -1009,6 +1134,7 @@
       },
       {
         "name": "Lost Sorrowsworn",
+        "description": "A tall, emaciated figure stumbles through the mist with arms outstretched, its face a blank expanse of grey skin where features should be. It reaches for you with the desperate, clutching need of something that has forgotten what it is searching for.",
         "cr": "7",
         "base_hp": 78,
         "base_ac": 15,
@@ -1017,6 +1143,7 @@
       },
       {
         "name": "Mind Flayer",
+        "description": "A robed figure with a bulbous, octopoid head regards you with four milky eyes, tentacles writhing around a lamprey-like mouth. The pressure of its alien intellect pushes against your thoughts like fingers probing a lock.",
         "cr": 7,
         "base_hp": 71,
         "base_ac": 15,
@@ -1025,6 +1152,7 @@
       },
       {
         "name": "Shield Guardian",
+        "description": "A towering construct of stone and iron stands sentinel, its chest emblazoned with a glowing sigil binding it to its master's will. It moves with surprising grace for something nine feet tall, always positioning itself between you and its charge.",
         "cr": 7,
         "base_hp": 142,
         "base_ac": 17,
@@ -1033,6 +1161,7 @@
       },
       {
         "name": "Stone Giant",
+        "description": "A grey-skinned giant stands among the boulders like a living cliff-face, its rune-carved features impossible to read. When it hurls a stone the size of a cart, the throw has the lazy grace of an artist casting aside a failed sketch.",
         "cr": 7,
         "base_hp": 126,
         "base_ac": 17,
@@ -1041,6 +1170,7 @@
       },
       {
         "name": "Warlock of the Fiend",
+        "description": "A figure in charred robes channels hellfire between their palms, the whites of their eyes gone permanently black. Sulfurous smoke clings to their skin, and their shadow moves independently, always reaching toward you.",
         "cr": "7",
         "base_hp": 78,
         "base_ac": 13,
@@ -1049,6 +1179,7 @@
       },
       {
         "name": "Water Elemental Myrmidon",
+        "description": "A suit of coral-encrusted armor surges forward on a wave of pressurized water, trident leveled. The ocean itself seems to fill the armor, flowing between gaps in the plate with crushing force.",
         "cr": "7",
         "base_hp": 127,
         "base_ac": 18,
@@ -1057,6 +1188,7 @@
       },
       {
         "name": "Young Black Dragon",
+        "description": "A lean, angular dragon with scales like polished obsidian rises from the swamp, acid dripping from between its fangs. The vegetation beneath it wilts and blackens, and its yellow eyes hold a cruelty older than its years.",
         "cr": 7,
         "base_hp": 127,
         "base_ac": 18,
@@ -1065,6 +1197,7 @@
       },
       {
         "name": "Frost Giant",
+        "description": "A giant of ice-blue skin and frost-white hair strides through the snowstorm as though it were a summer breeze, greataxe slung across shoulders as wide as a doorway. Its laugh is the crack of glaciers calving into the sea.",
         "cr": 8,
         "base_hp": 138,
         "base_ac": 15,
@@ -1073,6 +1206,7 @@
       },
       {
         "name": "Hydra",
+        "description": "Five serpentine heads weave above a massive reptilian body, each maw snapping independently at the air. Cut one head away and two more tear free from the stump in a spray of blood and new-grown scales.",
         "cr": 8,
         "base_hp": 172,
         "base_ac": 15,
@@ -1081,6 +1215,7 @@
       },
       {
         "name": "Shoosuva",
+        "description": "A hulking, hyena-headed demon prowls on six legs, its scorpion-like tail arced over a body reeking of carrion. Gnoll warbands worship these beasts as gifts from Yeenoghu, and the demon knows it.",
         "cr": "8",
         "base_hp": 136,
         "base_ac": 14,
@@ -1089,6 +1224,7 @@
       },
       {
         "name": "Young Green Dragon",
+        "description": "A sinuous dragon of forest-green scales coils among the treetops, its poisonous breath misting between fangs curved like scimitars. It speaks before it strikes, and its words are more dangerous than its claws.",
         "cr": 8,
         "base_hp": 136,
         "base_ac": 18,
@@ -1097,6 +1233,7 @@
       },
       {
         "name": "Cloud Giant",
+        "description": "A giant descends from the mists, skin pale as marble, robes billowing in winds that touch nothing else. It regards you with the mild curiosity of a noble examining an insect -- not cruel, but utterly indifferent to your survival.",
         "cr": 9,
         "base_hp": 200,
         "base_ac": 14,
@@ -1105,6 +1242,7 @@
       },
       {
         "name": "Drow House Captain",
+        "description": "A drow officer in spider-silk armor surveys the battlefield with crimson eyes, their hand-crossbow already loaded with sleeping poison. Every gesture carries the weight of Lolth's favor -- and the paranoia it demands.",
         "cr": "9",
         "base_hp": 162,
         "base_ac": 16,
@@ -1113,6 +1251,7 @@
       },
       {
         "name": "Fire Giant",
+        "description": "A giant of coal-black skin and smoldering orange hair strides from the forge-heat, its iron armor still glowing from the furnace. The ground chars beneath its boots, and its greatsword radiates heat like an open kiln.",
         "cr": 9,
         "base_hp": 162,
         "base_ac": 18,
@@ -1121,6 +1260,7 @@
       },
       {
         "name": "Flind",
+        "description": "A gnoll warband leader towers above its pack, wielding a triple-headed flail blessed by Yeenoghu himself. Each strike carries a different curse, and the hyena-lord's maddened laughter echoes across the killing field.",
         "cr": "9",
         "base_hp": 127,
         "base_ac": 16,
@@ -1129,6 +1269,7 @@
       },
       {
         "name": "Frost Salamander",
+        "description": "A six-legged reptile of living ice and blue-white scales erupts from the glacier, frost billowing from its jaws. Where it walks, the ground freezes solid, and the cold it exhales can flash-freeze blood in the vein.",
         "cr": "9",
         "base_hp": 168,
         "base_ac": 17,
@@ -1137,6 +1278,7 @@
       },
       {
         "name": "Lonely Sorrowsworn",
+        "description": "A gaunt, grey-skinned figure stands utterly alone in the corridor, its face a mask of bottomless grief. It reaches for you not with malice but with desperate, crushing need -- and its embrace is lethal.",
         "cr": "9",
         "base_hp": 112,
         "base_ac": 16,
@@ -1145,6 +1287,7 @@
       },
       {
         "name": "Shadar-Kai Gloom Weaver",
+        "description": "A shadow elf cloaked in living darkness traces sigils that hurt to look at, each gesture pulling light from the room. Their face is beautiful in the way a knife is beautiful -- cold, precise, and designed for one purpose.",
         "cr": "9",
         "base_hp": 104,
         "base_ac": 14,
@@ -1153,6 +1296,7 @@
       },
       {
         "name": "Treant",
+        "description": "What you took for an ancient oak unfolds with a groan of timber and a rain of leaves, bark-covered arms as thick as pillars rising from the forest floor. It has watched this grove for centuries, and it has decided you do not belong.",
         "cr": 9,
         "base_hp": 138,
         "base_ac": 16,
@@ -1161,6 +1305,7 @@
       },
       {
         "name": "War Priest",
+        "description": "A heavily armored cleric strides forward with divine radiance burning along the edges of their warhammer. Holy scripture is tattooed across their exposed skin, and their battle-hymn makes the air itself hum with consecrated fury.",
         "cr": "9",
         "base_hp": 117,
         "base_ac": 18,
@@ -1169,6 +1314,7 @@
       },
       {
         "name": "Young Blue Dragon",
+        "description": "A dragon of deep indigo scales erupts from the sand dune, lightning arcing between its horn and the earth. Thunder rolls in its wake, and the ozone-sharp smell of a desert storm precedes its devastating breath.",
         "cr": 9,
         "base_hp": 152,
         "base_ac": 18,
@@ -1177,6 +1323,7 @@
       },
       {
         "name": "Death Kiss",
+        "description": "A beholder-kin drifts forward, but where eyestalks should be, blood-draining tentacles writhe and lash. Its central eye is a lamprey-mouth ringed with teeth, and the tentacles end in barbed suckers that pulse with stolen vitality.",
         "cr": "10",
         "base_hp": 142,
         "base_ac": 15,
@@ -1185,6 +1332,7 @@
       },
       {
         "name": "Froghemoth",
+        "description": "A nightmare from the primordial swamp heaves itself onto the shore -- a frog the size of a house with four tentacles, three eyes on stalks, and a maw that could swallow a horse whole. The ground shakes with each step.",
         "cr": "10",
         "base_hp": 161,
         "base_ac": 14,
@@ -1193,6 +1341,7 @@
       },
       {
         "name": "Githyanki Gish",
+        "description": "A githyanki warrior-mage phases into existence, silver sword blazing with psychic fire in one hand, arcane energy coiling around the other. Their angular features twist with the arrogance of a race that raids the Astral Sea for sport.",
         "cr": "10",
         "base_hp": 130,
         "base_ac": 17,
@@ -1201,6 +1350,7 @@
       },
       {
         "name": "Githzerai Enlightened",
+        "description": "A githzerai monk floats cross-legged in the air, body still as carved stone, mind moving at the speed of thought. Reality bends around them like heat-shimmer, and their calm is more terrifying than any war-cry.",
         "cr": "10",
         "base_hp": 112,
         "base_ac": 18,
@@ -1209,6 +1359,7 @@
       },
       {
         "name": "Tomb Tapper",
+        "description": "A massive, eyeless insectoid burrows through solid stone, its hammer-like forelimbs striking the earth in rhythmic pulses that it uses to echolocate. The tunnels it leaves behind are perfectly smooth, as though the rock simply ceased to exist.",
         "cr": "10",
         "base_hp": 207,
         "base_ac": 17,
@@ -1217,6 +1368,7 @@
       },
       {
         "name": "Young Red Dragon",
+        "description": "A crimson dragon lands in a blast of furnace-heat and brimstone, its scales still growing into the full magnificence of its terrible lineage. Even young, its eyes hold the arrogance of a creature that knows it will one day rule.",
         "cr": 10,
         "base_hp": 178,
         "base_ac": 18,
@@ -1225,6 +1377,7 @@
       },
       {
         "name": "Balhannoth",
+        "description": "The walls of the dungeon shift and rearrange, revealing a chamber that was not there before -- bait, shaped from your own desires. The balhannoth clings to the ceiling above it, invisible, patient, its tentacles poised to drag you into a lair that does not truly exist.",
         "cr": "11",
         "base_hp": 114,
         "base_ac": 17,
@@ -1233,6 +1386,7 @@
       },
       {
         "name": "Chardalyn Dragon",
+        "description": "A dragon-shaped construct of black chardalyn crystal takes wing, radiating waves of psychic corruption that wilt plants and shatter morale. It is not alive, but the malevolence animating it is far worse than any natural predator.",
         "cr": "11",
         "base_hp": 147,
         "base_ac": 17,
@@ -1241,6 +1395,7 @@
       },
       {
         "name": "Cloud Giant Smiling One",
+        "description": "A cloud giant trickster grins with a mouth that stretches too wide, its form flickering between stately nobility and something far more unsettling. Illusions dance around it like courtiers, and nothing in its presence is quite what it seems.",
         "cr": "11",
         "base_hp": 250,
         "base_ac": 15,
@@ -1249,6 +1404,7 @@
       },
       {
         "name": "Hungry Sorrowsworn",
+        "description": "A towering horror of distended jaws and elongated limbs drags itself forward, its midsection a gaping void that can never be filled. It consumes everything it touches, and still it starves, still it reaches for more.",
         "cr": "11",
         "base_hp": 225,
         "base_ac": 17,
@@ -1257,6 +1413,7 @@
       },
       {
         "name": "Morkoth",
+        "description": "A wizened, tentacled creature hovers at the center of a maze of its own devising, surrounded by stolen treasures from a hundred worlds. Its enormous eyes hold the greed of millennia, and the labyrinth rearranges to keep you close.",
         "cr": "11",
         "base_hp": 165,
         "base_ac": 17,
@@ -1265,6 +1422,7 @@
       },
       {
         "name": "Naergoth Bladelord",
+        "description": "A death knight of the Cult of the Dragon stands in full plate of blackened dragonscale, five swords floating in orbit around its skeletal frame. Centuries of undeath have only sharpened its tactical mind.",
         "cr": "11",
         "base_hp": 135,
         "base_ac": 18,
@@ -1273,6 +1431,7 @@
       },
       {
         "name": "Remorhaz",
+        "description": "The ice splits open and a centipede the size of a longship surges forth, its segmented body glowing red-hot between plates of chitin. Steam billows from its back, and the snow around it melts into boiling pools.",
         "cr": 11,
         "base_hp": 195,
         "base_ac": 17,
@@ -1281,6 +1440,7 @@
       },
       {
         "name": "Roc",
+        "description": "A shadow falls across the landscape as a bird of impossible size blots out the sun, its wingspan wider than a castle wall. It descends with the silence of a hunting owl, talons large enough to pluck an elephant from the ground.",
         "cr": 11,
         "base_hp": 248,
         "base_ac": 15,
@@ -1289,6 +1449,7 @@
       },
       {
         "name": "Githyanki Kith'rak",
+        "description": "A githyanki war-captain in ornate silver armor commands the battlefield with psychic imperatives that bypass language. Their silver greatsword hums with the stolen power of the Astral Plane, and lesser githyanki snap to obedience in their presence.",
         "cr": "12",
         "base_hp": 180,
         "base_ac": 18,
@@ -1297,6 +1458,7 @@
       },
       {
         "name": "Devourer",
+        "description": "A gaunt, skeletal horror stands twelve feet tall, its ribcage splayed open to reveal a prison of bone where trapped souls writhe and scream. It reaches for you with claws that do not merely kill -- they consume the soul itself.",
         "cr": "13",
         "base_hp": 189,
         "base_ac": 16,
@@ -1307,6 +1469,7 @@
     "4": [
       {
         "name": "Adult White Dragon",
+        "description": "A full-grown white dragon descends on wings that trail blizzards, its scales the color of ancient glacial ice. The oldest and most feral of the chromatic wyrms, it fights with the savage cunning of an apex predator that has ruled the frozen wastes for centuries.",
         "cr": 13,
         "base_hp": 200,
         "base_ac": 18,
@@ -1315,6 +1478,7 @@
       },
       {
         "name": "Storm Giant",
+        "description": "A giant wreathed in lightning stands at the ocean's edge, the storm obeying its every gesture. Thunder speaks when it speaks, waves bow when it walks, and its eyes hold the terrible clarity of a being that judges the fate of lesser creatures.",
         "cr": 13,
         "base_hp": 230,
         "base_ac": 16,
@@ -1323,6 +1487,7 @@
       },
       {
         "name": "Vampire",
+        "description": "A figure of aristocratic bearing emerges from the darkness, pale skin flawless, eyes burning crimson. Centuries of undeath have refined every gesture into predatory elegance. It extends one hand in greeting, and the shadows themselves lean toward it.",
         "cr": 13,
         "base_hp": 144,
         "base_ac": 16,
@@ -1331,6 +1496,7 @@
       },
       {
         "name": "Adult Black Dragon",
+        "description": "An ancient horror of acid-scarred obsidian scales erupts from the swamp, dissolving vegetation in clouds of acrid vapor. Its eyes are pools of hateful intelligence, and the bones of a hundred victims line the depths of its fetid lair.",
         "cr": 14,
         "base_hp": 195,
         "base_ac": 19,
@@ -1339,6 +1505,7 @@
       },
       {
         "name": "Purple Worm",
+        "description": "The earth splits open and something impossible surfaces -- a worm two hundred feet long, its maw a ringed abyss of grinding plates that swallows stone, earth, and anything foolish enough to stand before it. The tunnel it leaves behind could swallow a village.",
         "cr": 15,
         "base_hp": 247,
         "base_ac": 18,
@@ -1347,6 +1514,7 @@
       },
       {
         "name": "Adult Blue Dragon",
+        "description": "A dragon of deep sapphire scales rises from the desert sands, lightning cascading between its great curved horn and the churning stormclouds it has called. It is a vain and territorial tyrant, and the desert for miles around is its uncontested domain.",
         "cr": 16,
         "base_hp": 225,
         "base_ac": 19,
@@ -1355,6 +1523,7 @@
       },
       {
         "name": "Githzerai Anarch",
+        "description": "A githzerai master of such psychic power that reality reshapes around their will alone. Stone flows like water, gravity reverses, and the laws of physics become suggestions as they float forward in serene, devastating calm.",
         "cr": "16",
         "base_hp": 144,
         "base_ac": 20,
@@ -1363,6 +1532,7 @@
       },
       {
         "name": "Iron Golem",
+        "description": "A colossus of riveted iron plates grinds forward, each footfall cracking stone. Poisonous gas vents from seams in its torso, and its fists strike with the weight of industrial hammers. It knows no pain, no fear, and no mercy -- only its creator's last command.",
         "cr": 16,
         "base_hp": 210,
         "base_ac": 20,
@@ -1371,6 +1541,7 @@
       },
       {
         "name": "Storm Giant Quintessent",
+        "description": "A storm giant that has transcended flesh, becoming a living tempest of wind and lightning barely contained in a humanoid silhouette. Where it treads, the earth scorches and splits, and its voice is indistinguishable from thunder.",
         "cr": "16",
         "base_hp": 230,
         "base_ac": 12,
@@ -1379,6 +1550,7 @@
       },
       {
         "name": "Adult Red Dragon",
+        "description": "The mountain itself seems to exhale as the greatest of chromatic wyrms emerges, scales the color of cooling magma, wings blotting the sky. The air ignites in its wake, and its gaze carries the weight of an intelligence older than empires, consumed by avarice.",
         "cr": 17,
         "base_hp": 256,
         "base_ac": 19,
@@ -1387,6 +1559,7 @@
       },
       {
         "name": "Death Knight",
+        "description": "A fallen paladin encased in blackened plate strides from the tomb, hellfire guttering in the eye-slits of its great helm. It was once sworn to protect the innocent -- now its oath is ash, and the infernal power that sustains it burns with the memory of every betrayal.",
         "cr": 17,
         "base_hp": 180,
         "base_ac": 20,
@@ -1395,6 +1568,7 @@
       },
       {
         "name": "Nagpa",
+        "description": "A vulture-headed sorcerer in rotting robes shuffles forward, its curse-withered body belying the terrifying arcane might coiled within. It was once a great wizard, punished by the Raven Queen herself, and its hatred has had centuries to ferment.",
         "cr": "17",
         "base_hp": 203,
         "base_ac": 19,
@@ -1403,6 +1577,7 @@
       },
       {
         "name": "Pit Fiend",
+        "description": "The air tears open and a devil of terrible majesty unfolds -- fifteen feet of scaled muscle, bat-wings, and burning eyes. A general of the Nine Hells, wreathed in flame and wielding a mace forged from damned souls. Its presence alone can break the will of lesser beings.",
         "cr": 20,
         "base_hp": 300,
         "base_ac": 19,
@@ -1411,6 +1586,7 @@
       },
       {
         "name": "Lich",
+        "description": "A robed skeleton of impossible age sits upon a throne of spell-scarred bone, phylactery pulsing with stolen life somewhere beyond reach. Its eye-sockets burn with intellect that transcended mortality centuries ago. Death was merely an inconvenience it solved.",
         "cr": 21,
         "base_hp": 135,
         "base_ac": 17,
@@ -1419,6 +1595,7 @@
       },
       {
         "name": "Baphomet",
+        "description": "The Horned King himself towers before you, a titan of matted fur and labyrinthine rage, his great glaive Heartcleaver dripping with the blood of heroes. The Demon Prince of Beasts fills the corridor with the stench of the Abyss and the promise of a maze from which no one escapes.",
         "cr": "23",
         "base_hp": 333,
         "base_ac": 22,
@@ -1427,6 +1604,7 @@
       },
       {
         "name": "Fraz-Urb'luu",
+        "description": "The Prince of Deception manifests in a form that shifts between regal beauty and gargoyle-horror between blinks. Nothing you see can be trusted -- the walls, the floor, your own companions may be his illusions. His true form is a bloated, winged grotesque that laughs with your mother's voice.",
         "cr": "23",
         "base_hp": 350,
         "base_ac": 18,
@@ -1435,6 +1613,7 @@
       },
       {
         "name": "Juiblex",
+        "description": "The Faceless Lord oozes into existence -- a mountain of sentient slime, translucent and foul, churning with half-dissolved screaming faces of the creatures it has absorbed. It has no form because it needs none. It is hunger given mass.",
         "cr": "23",
         "base_hp": 350,
         "base_ac": 18,
@@ -1443,6 +1622,7 @@
       },
       {
         "name": "Zuggtmoy",
+        "description": "The Demon Queen of Fungi blooms into the material plane, a towering column of mushroom-flesh crowned with fruiting bodies that release clouds of mind-enslaving spores. Everything she touches sprouts fungal growth, and her presence promises not death but transformation into something that serves the rot.",
         "cr": "23",
         "base_hp": 304,
         "base_ac": 18,
@@ -1451,6 +1631,7 @@
       },
       {
         "name": "Graz'zt",
+        "description": "The Dark Prince steps from shadow as though from behind a curtain, six-fingered hands spread in a gesture of welcome. His beauty is devastating and deliberate -- onyx skin, feline eyes, a smile that has toppled kingdoms. Every word is a seduction, every offer a chain.",
         "cr": "24",
         "base_hp": 378,
         "base_ac": 20,
@@ -1459,6 +1640,7 @@
       },
       {
         "name": "Yeenoghu",
+        "description": "The Beast of Butchery lopes forward on legs like pillars, triple-headed flail dragging a furrow in the earth behind him. The Demon Prince of Gnolls is twelve feet of famine and slaughter given form, and the air fills with the shrieking laughter of a million hyenas.",
         "cr": "24",
         "base_hp": 348,
         "base_ac": 22,
@@ -1467,6 +1649,7 @@
       },
       {
         "name": "Demogorgon",
+        "description": "The Prince of Demons rises from the Abyss on two pillar-legs, twin mandrill heads screaming in discordant unison. Tentacle-arms lash the air, each head wielding a different apocalyptic power. Madness radiates from his very presence -- to look upon the two-headed lord is to feel your sanity begin to unspool.",
         "cr": "26",
         "base_hp": 496,
         "base_ac": 22,
@@ -1475,6 +1658,7 @@
       },
       {
         "name": "Orcus",
+        "description": "The Demon Prince of Undeath stands bloated and terrible, bat-wings spread wide, the Wand of Orcus trailing necrotic darkness. Every corpse within miles stirs at his approach. He is the lord of all that refuses to stay dead, and his gaze promises an eternity of service beyond the grave.",
         "cr": "26",
         "base_hp": 405,
         "base_ac": 17,
@@ -1483,6 +1667,7 @@
       },
       {
         "name": "Tiamat",
+        "description": "Five heads rise from the infernal dark -- white, black, green, blue, and red -- each a cataclysm unto itself. The Dragon Queen, the Chromatic Goddess, the five-headed ruin of worlds, fills the sky with her impossible bulk. Reality buckles in her presence. This is not a battle. This is a reckoning.",
         "cr": "30",
         "base_hp": 615,
         "base_ac": 25,

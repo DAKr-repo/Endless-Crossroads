@@ -2739,6 +2739,9 @@ async def run_campaign_setup_wizard(core: CodexCore):
     module_name = None
     module_file = None
     _selected_module_id = None  # module_id from vault_maps/modules/ selection
+    _is_homebrew = False   # True when user picks Homebrew in step 3
+    _is_freeform = False   # True when user picks Freeform in step 4
+    _genesis_world: dict = {}  # Populated by genesis prompt after step 4
     step = 1
 
     while step <= 4:
@@ -2894,6 +2897,7 @@ async def run_campaign_setup_wizard(core: CodexCore):
                     step = 2
                     continue
                 setting_name = custom.strip() if custom.strip() else "Homebrew"
+                _is_homebrew = True
 
             console.print(f"[green]Setting: {setting_name}[/green]\n")
             step = 4
@@ -2980,9 +2984,35 @@ async def run_campaign_setup_wizard(core: CodexCore):
                     step = 3
                     continue
                 module_name = custom.strip() if custom.strip() else "Freeform"
+                _is_freeform = True
 
             console.print(f"[green]Module: {module_name}[/green]\n")
             step = 5  # Break out of the step loop
+
+    # --- Step 4b: Procedural World Generation (Homebrew / Freeform only) ---
+    if _is_homebrew or _is_freeform:
+        console.print()
+        _gen_choice = await ainput("[gold1]Generate a procedural world? [Y/n]:[/] ")
+        if _gen_choice.strip().lower() not in ("n", "no"):
+            try:
+                from codex.world.genesis import GenesisEngine
+                _ge = GenesisEngine()
+                if not _ge.data:
+                    console.print("[yellow]Genesis data unavailable — skipping world generation.[/yellow]")
+                else:
+                    console.print("[dim]Rolling the world...[/dim]")
+                    _genesis_world = _ge.roll_unified_world()
+                    _ge.display_world(_genesis_world)
+                    # Show world primer in a panel
+                    console.print(Panel(
+                        _genesis_world.get("primer", ""),
+                        title="[bold]World Primer[/bold]",
+                        border_style="grey50",
+                        width=70,
+                    ))
+                    console.print(f"[green]World '{_genesis_world['name']}' generated![/green]\n")
+            except Exception as _ge_err:
+                console.print(f"[yellow]World generation skipped: {_ge_err}[/yellow]")
 
     # --- Step 5: Character Creation Loop ---
     assert selected_schema is not None
@@ -3196,6 +3226,15 @@ async def run_campaign_setup_wizard(core: CodexCore):
         "ai_companion": _ai_companion,
         "dm_influence": _dm_influence,
     }
+
+    # Embed procedural world data when genesis was run
+    if _genesis_world:
+        manifest["world_primer"] = _genesis_world.get("primer", "")
+        manifest["world_name"] = _genesis_world.get("name", "")
+        manifest["world_genre"] = _genesis_world.get("genre", "")
+        manifest["world_tone"] = _genesis_world.get("tone", "")
+        manifest["world_grapes"] = _genesis_world.get("grapes", {})
+        manifest["world_faction"] = _genesis_world.get("faction", {})
 
     # Resolve module_manifest.json for spatial zone progression
     if module_name:

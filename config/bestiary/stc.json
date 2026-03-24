@@ -6,6 +6,7 @@
     "1": [
       {
         "name": "Cremling Swarm",
+        "description": "A skittering carpet of chitin and segmented legs pours across the stone, hundreds of thumb-sized cremlings moving as one writhing mass. Their carapaces click like hail on slate, and where they pass they leave a faint sheen of moisture that smells of wet rock and decay.",
         "role": "minion",
         "base_hp": 8,
         "hp_range": [6, 10],
@@ -20,6 +21,7 @@
       },
       {
         "name": "Chasmfiend Hatchling",
+        "description": "No larger than a cart horse, the hatchling already bears the terrible silhouette of its kind -- armored legs like sharpened pillars, mandibles glistening with ichor, and tiny gemheart-light pulsing dull red beneath translucent plates. It moves with the jerky aggression of something that has never known a predator.",
         "role": "rival",
         "base_hp": 14,
         "hp_range": [10, 18],
@@ -34,6 +36,7 @@
       },
       {
         "name": "Parshendi Scout",
+        "description": "A lithe figure crouches against the windswept rock, skin marbled in patterns of red and black. Its eyes track your movement with unsettling intelligence, and you catch the faintest hum -- a rhythm you cannot name -- resonating from its chest.",
         "role": "minion",
         "base_hp": 11,
         "hp_range": [8, 14],
@@ -48,6 +51,7 @@
       },
       {
         "name": "Skyeel",
+        "description": "It drifts overhead on long, translucent fins that ripple like banners in the wind, its body a sinuous ribbon of pale violet flesh. Lightning flickers along its underbelly in nervous arcs, and its eyeless head turns toward you with the slow deliberation of something that hunts by Stormlight alone.",
         "role": "minion",
         "base_hp": 6,
         "hp_range": [4, 8],
@@ -62,6 +66,7 @@
       },
       {
         "name": "Axehound Pack",
+        "description": "They lope across the plateaus in a ragged line, six or seven strong, their crab-like carapaces clattering as powerful hind legs propel them over crevasses. Axehounds hunt by scent and vibration, and when the alpha freezes, the rest go silent -- a stillness worse than their barking.",
         "role": "minion",
         "base_hp": 10,
         "hp_range": [7, 13],
@@ -76,6 +81,7 @@
       },
       {
         "name": "Whitespine Juvenile",
+        "description": "A hulking mass of bone-white carapace rises from behind the rocks, its namesake ridge of spines flaring along its back like a crown of shattered swords. Red eyes regard you from beneath an armored brow, and the ground trembles with each deliberate step forward.",
         "role": "rival",
         "base_hp": 16,
         "hp_range": [12, 20],
@@ -90,6 +96,7 @@
       },
       {
         "name": "Chasmfiend Larva",
+        "description": "Pale and glistening, the larva drags itself along the chasm floor on undeveloped legs, its carapace still soft and faintly translucent. A dim ember of light glows where its gemheart is forming -- vulnerable, but already hungry.",
         "role": "minion",
         "base_hp": 9,
         "hp_range": [6, 12],
@@ -104,6 +111,7 @@
       },
       {
         "name": "Voidspren-touched Cremling Swarm",
+        "description": "These cremlings move wrong. Their carapaces have darkened to the color of a bruise, and they scuttle in deliberate geometric patterns no natural swarm would form. Faint motes of violet light trail behind them like sparks from a fire, and the air tastes of ozone where they gather.",
         "role": "minion",
         "base_hp": 10,
         "hp_range": [7, 13],
@@ -120,6 +128,7 @@
     "2": [
       {
         "name": "Parshendi Warrior",
+        "description": "Warform. The transformation is unmistakable -- thick plates of carapace armor grow from the singer's own skin, ridged and segmented like the shell of a greatshell. The warrior hums to a Rhythm you cannot hear, and its eyes burn with a focus that is anything but mindless.",
         "role": "rival",
         "base_hp": 22,
         "hp_range": [18, 26],
@@ -134,6 +143,7 @@
       },
       {
         "name": "Thunderclast Shard",
+        "description": "A fragment of living stone tears itself free from the plateau, compacting into a vaguely humanoid shape the size of a building. Crem and rubble cascade from joints that grind like millstones, and where it steps, the rock cracks in radiating spiderweb fractures.",
         "role": "rival",
         "base_hp": 28,
         "hp_range": [22, 34],
@@ -148,6 +158,7 @@
       },
       {
         "name": "Midnight Essence",
+        "description": "It seeps from the shadows like smoke given hunger -- a figure of pure darkness that only approximates a human shape. Its surface ripples with half-formed features: a mouth here, fingers there, dissolving and reforming in the space between heartbeats. The air around it goes cold and tastes of nothing at all.",
         "role": "minion",
         "base_hp": 16,
         "hp_range": [12, 20],
@@ -162,6 +173,7 @@
       },
       {
         "name": "Fused Scout",
+        "description": "It descends from the sky without sound, a tall singer with skin that shifts between marbled patterns and a deep, arterial red. Ancient eyes regard you from a face that has died and returned a thousand times. Voidlight bleeds from its skin in slow, languid wisps.",
         "role": "rival",
         "base_hp": 20,
         "hp_range": [16, 24],
@@ -176,6 +188,7 @@
       },
       {
         "name": "Chasmfiend (Young)",
+        "description": "It fills the chasm. Dozens of armored legs brace against the walls as the creature hauls itself toward you, mandibles spread wide enough to engulf a horse. Its gemheart pulses with a deep, rhythmic glow visible through cracks in the chest plates, and the stench of old kills clings to its carapace.",
         "role": "rival",
         "base_hp": 30,
         "hp_range": [24, 36],
@@ -190,6 +203,7 @@
       },
       {
         "name": "Thunderclast Fragment",
+        "description": "Smaller than its kin but no less terrible, this shard of animated stone has shaped itself into something like a crouching beast -- all shoulders and fists and grinding jaw. Dust falls from it in a constant rain, and each impact of its limbs sends a subsonic shudder through the bedrock.",
         "role": "rival",
         "base_hp": 26,
         "hp_range": [20, 32],
@@ -204,6 +218,7 @@
       },
       {
         "name": "Fused Scout (Shanay-im)",
+        "description": "This one commands the wind. It hovers above the plateau with arms outstretched, robes whipping in a gale that obeys its will alone. The Shanay-im's face is serene and deeply lined, the countenance of a being that remembers the very first Desolation.",
         "role": "rival",
         "base_hp": 22,
         "hp_range": [18, 26],
@@ -218,6 +233,7 @@
       },
       {
         "name": "Listener Warform Patrol",
+        "description": "Four singers in warform move in disciplined formation, their carapace armor grown thick over chest and shoulders. They hum in unison to the Rhythm of War, a low thrum you feel in your teeth. These are not Odium's servants -- they fight for their own people, and that makes them no less dangerous.",
         "role": "rival",
         "base_hp": 24,
         "hp_range": [20, 28],
@@ -232,6 +248,7 @@
       },
       {
         "name": "Skybreaker Squire",
+        "description": "Clad in dark leather and steel, the squire drops from Lashing-powered flight with practiced precision. A glyph of the Skybreakers is branded into the back of one hand. There is no hatred in those eyes -- only the cold arithmetic of law, and the certainty that you have been found guilty.",
         "role": "rival",
         "base_hp": 20,
         "hp_range": [16, 24],
@@ -248,6 +265,7 @@
     "3": [
       {
         "name": "Fused Soldier",
+        "description": "Centuries of rebirth have stripped this one of everything but purpose. It wears the body of a singer like borrowed clothing, and Voidlight crackles along the blade fused to its forearm. It speaks a word in an ancient tongue -- not to you, but to itself, reciting a name it refuses to forget.",
         "role": "rival",
         "base_hp": 35,
         "hp_range": [28, 42],
@@ -262,6 +280,7 @@
       },
       {
         "name": "Chasmfiend",
+        "description": "The plateau shudders as the chasmfiend pulls itself over the rim, a mountain of interlocking carapace segments wider than a barracks hall. Its gemheart blazes through the chest plates like a furnace. The creature's shadow alone is enough to blot out the sun, and the wind of its movement carries the copper-tang of Stormlight.",
         "role": "boss",
         "base_hp": 45,
         "hp_range": [38, 52],
@@ -276,6 +295,7 @@
       },
       {
         "name": "Unmade Fragment",
+        "description": "Reality blisters where it passes. A shard of something that should not exist presses against the Physical Realm -- you perceive it as a knot of wrong geometry, a place where light bends inward and sound arrives late. Those who stare too long hear whispers offering truths they never wanted.",
         "role": "rival",
         "base_hp": 30,
         "hp_range": [24, 36],
@@ -290,6 +310,7 @@
       },
       {
         "name": "Regal Stormform",
+        "description": "Lightning nests in the singer's carapace like a living thing, crackling between the ridges of its stormform armor in arcs of red-violet. The air reeks of ozone and the Rhythm it hums pulls stormspren from the sky, tiny pinpricks of light spiraling down to orbit its shoulders.",
         "role": "rival",
         "base_hp": 32,
         "hp_range": [26, 38],
@@ -304,6 +325,7 @@
       },
       {
         "name": "Chasmfiend (Mature)",
+        "description": "This one has fed on gemhearts for decades. Its carapace is scarred and barnacled with crem deposits, and entire sections have been cracked and regrown thicker. It moves with the terrible patience of an apex predator that has never once been driven from a kill.",
         "role": "boss",
         "base_hp": 50,
         "hp_range": [42, 58],
@@ -318,6 +340,7 @@
       },
       {
         "name": "Thunderclast",
+        "description": "The hillside stands up. What you took for natural stone reshapes itself into a colossus of animate rock, each leg a pillar of fused granite, each fist a boulder trailing dust and shattered crem. When it roars, the sound is not a voice but the groan of tectonic plates grinding against one another.",
         "role": "boss",
         "base_hp": 55,
         "hp_range": [46, 64],
@@ -332,6 +355,7 @@
       },
       {
         "name": "Fused Commander (Makay-im)",
+        "description": "The Makay-im phases through solid stone as though it were water, emerging with arms folded and an expression of bored contempt. Voidlight drips from its hands in viscous ribbons. It has commanded armies since before human memory, and every movement carries the weight of millennia of unbroken war.",
         "role": "boss",
         "base_hp": 40,
         "hp_range": [34, 46],
@@ -346,6 +370,7 @@
       },
       {
         "name": "Unmade Influence (Re-Shephir)",
+        "description": "The Midnight Mother does not arrive -- she was already here, pressed flat against the walls like a living stain. Now she peels away, her surface birthing a tide of midnight essences that mimic the shapes of everyone present. She watches through a thousand borrowed faces, learning, copying, hungry to understand what she can never be.",
         "role": "boss",
         "base_hp": 42,
         "hp_range": [36, 48],
@@ -360,6 +385,7 @@
       },
       {
         "name": "Voidbringer Stormform Company",
+        "description": "A dozen stormforms advance in lockstep, their carapace armor crackling with shared lightning that leaps from one to the next in a web of red-violet energy. They sing the Rhythm of Command in perfect unison, and where their voices converge the very air splits with miniature thunderclaps.",
         "role": "rival",
         "base_hp": 36,
         "hp_range": [30, 42],
@@ -376,6 +402,7 @@
     "4": [
       {
         "name": "Thunderclast",
+        "description": "A true thunderclast, ancient beyond reckoning, risen from stone that remembers the Desolations. It towers over the battlefield like a siege tower made flesh -- if flesh were granite and hatred. Each stride leaves craters, and the shockwave of its fists flattens structures a hundred yards distant.",
         "role": "boss",
         "base_hp": 65,
         "hp_range": [55, 75],
@@ -390,6 +417,7 @@
       },
       {
         "name": "Unmade",
+        "description": "One of the nine. It does not occupy space so much as replace it -- a wound in the Spiritual Realm given terrible will. Perception itself warps in its presence: colors invert, sounds arrive before their causes, and the boundary between thought and reality grows dangerously thin.",
         "role": "boss",
         "base_hp": 80,
         "hp_range": [70, 90],
@@ -404,6 +432,7 @@
       },
       {
         "name": "Fused Magnate",
+        "description": "This one has ruled. Its bearing is that of a king who watched civilizations crumble and felt nothing but the slow burn of Odium's mandate. Voidlight pours from it in sheets, bending gravity, and when it speaks, every singer within earshot involuntarily attunes to the Rhythm of Command.",
         "role": "boss",
         "base_hp": 55,
         "hp_range": [45, 65],
@@ -418,6 +447,7 @@
       },
       {
         "name": "Voidbringer Herald",
+        "description": "It descends wreathed in a pillar of Voidlight so dense the air screams around it. This is no mere Fused but something elevated -- a living conduit of Odium's will, its eyes twin furnaces of gold-red fury. Where its feet touch ground, the stone darkens and hairline cracks spread in fractal patterns.",
         "role": "boss",
         "base_hp": 70,
         "hp_range": [60, 80],
@@ -432,6 +462,7 @@
       },
       {
         "name": "Ancient Chasmfiend",
+        "description": "The Shattered Plains themselves seem smaller with this creature upon them. Its carapace is a landscape -- cratered, overgrown with lichen and crem, scarred by decades of highstorm bombardment. The gemheart within blazes like a trapped sun, visible through gaps in armor plates each thicker than castle walls.",
         "role": "boss",
         "base_hp": 75,
         "hp_range": [65, 85],
@@ -446,6 +477,7 @@
       },
       {
         "name": "Thunderclast Elder",
+        "description": "This thunderclast has not slept since the last Desolation. Its body is fused strata of a dozen different stone types, layered by ages of geological pressure into something harder than any natural formation. It moves with a grinding inevitability that makes walls and fortifications feel like suggestions.",
         "role": "boss",
         "base_hp": 85,
         "hp_range": [75, 95],
@@ -460,6 +492,7 @@
       },
       {
         "name": "Unmade Avatar (Ba-Ado-Mishram)",
+        "description": "She was the general of the enemy's forces, and her presence warps the Connection of every living thing nearby. Stormlight dims. Bonds fray. Spren flicker and scream. Her form shifts between a regal singer silhouette and a geometric impossibility of golden light and black smoke, and the ground beneath her hums with the Rhythm of a song that predates the Oathpact.",
         "role": "boss",
         "base_hp": 90,
         "hp_range": [80, 100],
@@ -474,6 +507,7 @@
       },
       {
         "name": "Fused Ancient (Nex-im)",
+        "description": "The Nex-im has died and been reborn so many times that sanity is a distant memory, replaced by something colder and more efficient. It wields gravitation like a sculptor wields clay, pulling enemies skyward or crushing them into the stone. Its eyes are empty of everything except the directive that will not let it rest.",
         "role": "boss",
         "base_hp": 60,
         "hp_range": [50, 70],
@@ -488,6 +522,7 @@
       },
       {
         "name": "Odium's Champion",
+        "description": "The Champion stands at the center of a storm that bows to no highstorm. Nine shadows orbit it like dark moons. Its armor is not worn but grown -- a fusion of carapace, Shardplate, and something older, something that pulses with the golden light of a god's invested fury. When it raises its weapon, every spren for miles goes silent.",
         "role": "boss",
         "base_hp": 100,
         "hp_range": [90, 110],

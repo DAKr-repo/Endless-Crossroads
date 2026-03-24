@@ -369,6 +369,116 @@ class TestMimirRoomNarration:
         assert "passage" in result
 
 
+class TestDoomAtmosphere:
+    """Test doom clock layering in static room narration."""
+
+    def test_low_doom_no_doom_lead(self):
+        """doom=0 should produce same output as no doom parameter."""
+        from codex.core.services.narrative_bridge import NarrativeBridge
+        nb1 = NarrativeBridge("burnwillow", seed=99)
+        nb2 = NarrativeBridge("burnwillow", seed=99)
+        desc = "A narrow stone corridor."
+        result_default = nb1.enrich_room(desc, tier=1)
+        result_zero = nb2.enrich_room(desc, tier=1, doom=0)
+        assert result_default == result_zero
+
+    def test_doom_4_no_doom_lead(self):
+        """doom=4 is still in the low tier — no doom phrase should appear."""
+        from codex.core.services.narrative_bridge import NarrativeBridge, _DOOM_LEADS
+        nb = NarrativeBridge("burnwillow", seed=99)
+        result = nb.enrich_room("A dusty alcove.", tier=1, doom=4)
+        all_doom_phrases = _DOOM_LEADS["medium"] + _DOOM_LEADS["high"]
+        for phrase in all_doom_phrases:
+            assert phrase not in result
+
+    def test_doom_5_prepends_medium_lead(self):
+        """doom=5 should prepend a medium-tier doom phrase."""
+        from codex.core.services.narrative_bridge import NarrativeBridge, _DOOM_LEADS
+        nb = NarrativeBridge("burnwillow", seed=42)
+        desc = "A stone chamber with a heavy door."
+        result = nb.enrich_room(desc, tier=1, doom=5)
+        # Result must be longer than the base (something was prepended)
+        assert len(result) > len(desc)
+        # The description text must still be present
+        assert "stone chamber" in result
+        # Must start with one of the medium doom leads
+        medium_leads = _DOOM_LEADS["medium"]
+        assert any(result.startswith(phrase) for phrase in medium_leads)
+
+    def test_doom_10_prepends_medium_lead(self):
+        """doom=10 is still in the medium tier."""
+        from codex.core.services.narrative_bridge import NarrativeBridge, _DOOM_LEADS
+        nb = NarrativeBridge("dnd5e", seed=7)
+        desc = "A vaulted hall lined with crumbling pillars."
+        result = nb.enrich_room(desc, tier=2, doom=10)
+        medium_leads = _DOOM_LEADS["medium"]
+        high_leads = _DOOM_LEADS["high"]
+        assert any(result.startswith(phrase) for phrase in medium_leads)
+        # Must NOT start with a high-tier lead
+        assert not any(result.startswith(phrase) for phrase in high_leads)
+
+    def test_doom_11_prepends_high_lead(self):
+        """doom=11 should prepend a high-tier doom phrase."""
+        from codex.core.services.narrative_bridge import NarrativeBridge, _DOOM_LEADS
+        nb = NarrativeBridge("burnwillow", seed=13)
+        desc = "A wide chamber, floor slick with old blood."
+        result = nb.enrich_room(desc, tier=3, doom=11)
+        high_leads = _DOOM_LEADS["high"]
+        assert any(result.startswith(phrase) for phrase in high_leads)
+        assert "chamber" in result
+
+    def test_doom_20_prepends_high_lead(self):
+        """doom=20 (above threshold) uses high tier."""
+        from codex.core.services.narrative_bridge import NarrativeBridge, _DOOM_LEADS
+        nb = NarrativeBridge("burnwillow", seed=5)
+        desc = "The final vault."
+        result = nb.enrich_room(desc, tier=4, doom=20)
+        high_leads = _DOOM_LEADS["high"]
+        assert any(result.startswith(phrase) for phrase in high_leads)
+
+    def test_description_always_preserved(self):
+        """Original description text must always appear in output."""
+        from codex.core.services.narrative_bridge import NarrativeBridge
+        nb = NarrativeBridge("burnwillow", seed=1)
+        desc = "A room with a peculiar smell."
+        for doom_val in (0, 4, 5, 10, 11, 20):
+            nb2 = NarrativeBridge("burnwillow", seed=1)
+            result = nb2.enrich_room(desc, tier=1, doom=doom_val)
+            assert "peculiar smell" in result, f"desc lost at doom={doom_val}"
+
+    def test_medium_doom_non_burnwillow(self):
+        """doom lead applies to non-Burnwillow systems too."""
+        from codex.core.services.narrative_bridge import NarrativeBridge, _DOOM_LEADS
+        nb = NarrativeBridge("bitd", seed=3)
+        desc = "A dark alley behind the docks."
+        result = nb.enrich_room(desc, tier=1, doom=7)
+        medium_leads = _DOOM_LEADS["medium"]
+        assert any(result.startswith(phrase) for phrase in medium_leads)
+
+    def test_mimir_fallback_forwards_doom(self):
+        """enrich_room_mimir() with no mimir_fn falls back through to doom layer."""
+        from codex.core.services.narrative_bridge import NarrativeBridge, _DOOM_LEADS
+        nb = NarrativeBridge("burnwillow", seed=8)
+        desc = "A flooded antechamber."
+        result = nb.enrich_room_mimir(desc, tier=1, doom=12, mimir_fn=None)
+        high_leads = _DOOM_LEADS["high"]
+        assert any(result.startswith(phrase) for phrase in high_leads)
+
+    def test_mimir_timeout_fallback_forwards_doom(self):
+        """enrich_room_mimir() Mimir failure fallback also applies doom."""
+        from codex.core.services.narrative_bridge import NarrativeBridge, _DOOM_LEADS
+
+        def mock_fail(prompt):
+            raise TimeoutError("Ollama timeout")
+
+        nb = NarrativeBridge("burnwillow", seed=8)
+        desc = "A crumbling archway."
+        result = nb.enrich_room_mimir(desc, tier=2, doom=15, mimir_fn=mock_fail)
+        high_leads = _DOOM_LEADS["high"]
+        assert any(result.startswith(phrase) for phrase in high_leads)
+        assert "archway" in result
+
+
 class TestMultiSystem:
     """Test bridge works across multiple systems."""
 

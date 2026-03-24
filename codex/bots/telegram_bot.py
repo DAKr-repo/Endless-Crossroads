@@ -1711,6 +1711,46 @@ async def cmd_dm(update: Update, context: ContextTypes.DEFAULT_TYPE):
         result = await enrich_module(arg)
         await update.message.reply_text(f"```\n{str(result)[:4000]}\n```", parse_mode='Markdown')
 
+    elif sub == "genesis":
+        try:
+            from codex.world.genesis import GenesisEngine
+        except ImportError:
+            await update.message.reply_text("World Genesis module not available.")
+            return
+        import asyncio as _asyncio
+        loop = _asyncio.get_event_loop()
+        try:
+            ge = GenesisEngine()
+            if not ge.data:
+                await update.message.reply_text("Genesis data not found. Cannot generate world.")
+                return
+            world = await loop.run_in_executor(None, ge.roll_unified_world)
+        except Exception as _ge_err:
+            await update.message.reply_text(f"World generation failed: {_ge_err}")
+            return
+        grapes = world.get("grapes", {})
+        faction = world.get("faction", {})
+        lines = [
+            f"*{world.get('name', 'Unknown World')}*",
+            f"Genre: {world.get('genre', '?')}  |  Tone: {world.get('tone', '?')}",
+            "",
+            "*G.R.A.P.E.S.*",
+        ]
+        for key in ("geography", "religion", "achievements", "politics", "economics", "social"):
+            val = grapes.get(key, "?")
+            if isinstance(val, list):
+                val = ", ".join(str(v.get("name", v) if isinstance(v, dict) else v) for v in val[:2])
+            lines.append(f"  {key.title()}: {val}")
+        lines += [
+            "",
+            f"*{faction.get('crown_title', 'The Crown')}* — {faction.get('crown_desc', '')}",
+            f"*{faction.get('crew_title', 'The Crew')}* — {faction.get('crew_desc', '')}",
+            "",
+            "*Primer:*",
+            world.get("primer", "")[:800],
+        ]
+        await update.message.reply_text("\n".join(lines)[:4000], parse_mode='Markdown')
+
     else:
         await update.message.reply_text(
             "*DM Tools*\n"
@@ -1721,7 +1761,8 @@ async def cmd_dm(update: Update, context: ContextTypes.DEFAULT_TYPE):
             "`/dm encounter [system] [tier]` — Generate encounter\n"
             "`/dm scan` — Scan vault PDFs for tables\n"
             "`/dm generate <tpl> <sys> [tier]` — Generate module\n"
-            "`/dm enrich <dir>` — Enrich module with AI",
+            "`/dm enrich <dir>` — Enrich module with AI\n"
+            "`/dm genesis` — Generate a procedural world",
             parse_mode='Markdown',
         )
 
@@ -1826,6 +1867,50 @@ async def cmd_quest(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text("\n".join(lines), parse_mode='HTML')
     except ImportError:
         await update.message.reply_text("Quest archetypes module not available.")
+
+
+async def cmd_genesis_tg(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Handle /genesis command — roll a procedural world using the GenesisEngine."""
+    try:
+        from codex.world.genesis import GenesisEngine
+    except ImportError:
+        await update.message.reply_text("World Genesis module not available.")
+        return
+
+    import asyncio as _asyncio
+    loop = _asyncio.get_event_loop()
+    try:
+        ge = GenesisEngine()
+        if not ge.data:
+            await update.message.reply_text("Genesis data not found. Cannot generate world.")
+            return
+        world = await loop.run_in_executor(None, ge.roll_unified_world)
+    except Exception as err:
+        await update.message.reply_text(f"World generation failed: {err}")
+        return
+
+    grapes = world.get("grapes", {})
+    faction = world.get("faction", {})
+    lines = [
+        f"*{world.get('name', 'Unknown World')}*",
+        f"Genre: {world.get('genre', '?')}  |  Tone: {world.get('tone', '?')}",
+        "",
+        "*G.R.A.P.E.S.*",
+    ]
+    for key in ("geography", "religion", "achievements", "politics", "economics", "social"):
+        val = grapes.get(key, "?")
+        if isinstance(val, list):
+            val = ", ".join(str(v.get("name", v) if isinstance(v, dict) else v) for v in val[:2])
+        lines.append(f"  {key.title()}: {val}")
+    lines += [
+        "",
+        f"*{faction.get('crown_title', 'The Crown')}* — {faction.get('crown_desc', '')}",
+        f"*{faction.get('crew_title', 'The Crew')}* — {faction.get('crew_desc', '')}",
+        "",
+        "*Primer:*",
+        world.get("primer", "")[:800],
+    ]
+    await update.message.reply_text("\n".join(lines)[:4000], parse_mode='Markdown')
 
 
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -2249,6 +2334,8 @@ async def run_telegram_bot(core=None):
     app.add_handler(CommandHandler("dm", cmd_dm))
     app.add_handler(CommandHandler("roll", cmd_roll))
     app.add_handler(CommandHandler("chronology", cmd_chronology))
+    app.add_handler(CommandHandler("genesis", cmd_genesis_tg))
+    app.add_handler(CommandHandler("world", cmd_genesis_tg))
     app.add_handler(CommandHandler("rest", cmd_rest_tg))
     app.add_handler(CommandHandler("init", cmd_init_tg))
     app.add_handler(CommandHandler("recap", cmd_recap_tg))

@@ -72,6 +72,31 @@ def _load_config_index(config_type: str, system_id: str) -> Dict[str, str]:
 # COMBAT NARRATION TEMPLATES — static prose pools (no LLM needed)
 # =========================================================================
 
+# =========================================================================
+# DOOM ATMOSPHERE LEADS — prepended when doom clock is elevated
+# Low (0-4): no modification
+# Medium (5-10): tension, unease
+# High (11+): dread, hostility
+# =========================================================================
+
+_DOOM_LEADS: Dict[str, List[str]] = {
+    "medium": [
+        "An uneasy stillness fills the air.",
+        "The shadows seem deeper here, and they move when you don't look directly at them.",
+        "Something has changed in this place — a pressure behind the eyes, a wrongness you can't name.",
+        "The silence is thick, as if the dungeon itself is holding its breath.",
+        "Your instincts scream a warning you cannot quite explain.",
+    ],
+    "high": [
+        "The walls pulse with malice. Every surface feels hostile.",
+        "Dread saturates this place like water through stone.",
+        "The air itself seems to recoil from you. Whatever watches from the dark has grown bold.",
+        "Something vast and hungry stirs in the depths below. You can feel it from here.",
+        "The darkness presses close, eager. This place wants you dead.",
+    ],
+}
+
+
 _COMBAT_HIT: List[str] = [
     "Your {weapon} connects — {enemy} staggers from the blow.",
     "A solid strike. {enemy} recoils, bloodied.",
@@ -160,15 +185,19 @@ class NarrativeBridge:
 
     # ── Public API ───────────────────────────────────────────────────
 
-    def enrich_room(self, description: str, tier: int = 1) -> str:
+    def enrich_room(self, description: str, tier: int = 1, doom: int = 0) -> str:
         """Prepend atmospheric sensory lead to a room description.
 
         For Burnwillow: delegates to atmosphere.thermal_narrative_modifier().
         For other systems: picks a sensory sentence from narrative palettes.
+        When doom >= 5, a doom atmosphere lead is prepended after any
+        sensory enrichment (medium tier: doom 5-10; high tier: doom 11+).
 
         Args:
             description: Base room description text.
             tier: Dungeon tier (1-4). Determines tone.
+            doom: Current doom clock value. 0-4 = no effect; 5-10 = tension
+                  phrases prepended; 11+ = dread/urgency phrases prepended.
 
         Returns:
             Enriched description. Falls back to original on any error.
@@ -176,38 +205,48 @@ class NarrativeBridge:
         if not description:
             return description
 
+        # Base sensory enrichment (existing logic, unchanged)
+        enriched = description
+
         # Burnwillow: use the full atmosphere.py modifier
         if self.system_id == "burnwillow":
             try:
                 from codex.games.burnwillow.atmosphere import thermal_narrative_modifier
-                return thermal_narrative_modifier(description, tier, self._rng)
+                enriched = thermal_narrative_modifier(description, tier, self._rng)
+            except Exception:
+                pass
+        else:
+            # Other systems: pick a sensory lead from narrative palettes
+            try:
+                from codex.core.services.narrative_frame import NARRATIVE_PALETTES
+                prefix = _PALETTE_MAP.get(self.system_id, "burnwillow")
+                clamped = max(1, min(4, tier))
+                palette = NARRATIVE_PALETTES.get(f"{prefix}_t{clamped}", {})
+                if palette:
+                    sounds = palette.get("sounds", [])
+                    smells = palette.get("smells", [])
+                    pool: List[str] = []
+                    if sounds:
+                        s = self._rng.choice(sounds)
+                        pool.append(f"You hear {s}.")
+                    if smells:
+                        s = self._rng.choice(smells)
+                        pool.append(f"The air smells of {s}.")
+                    if pool:
+                        lead = self._rng.choice(pool)
+                        enriched = f"{lead} {description}"
             except Exception:
                 pass
 
-        # Other systems: pick a sensory lead from narrative palettes
-        try:
-            from codex.core.services.narrative_frame import NARRATIVE_PALETTES
-            prefix = _PALETTE_MAP.get(self.system_id, "burnwillow")
-            clamped = max(1, min(4, tier))
-            palette = NARRATIVE_PALETTES.get(f"{prefix}_t{clamped}", {})
-            if palette:
-                # Build a short sensory sentence from palette components
-                sounds = palette.get("sounds", [])
-                smells = palette.get("smells", [])
-                pool: List[str] = []
-                if sounds:
-                    s = self._rng.choice(sounds)
-                    pool.append(f"You hear {s}.")
-                if smells:
-                    s = self._rng.choice(smells)
-                    pool.append(f"The air smells of {s}.")
-                if pool:
-                    lead = self._rng.choice(pool)
-                    return f"{lead} {description}"
-        except Exception:
-            pass
+        # Doom atmosphere layer: prepend a dread lead when doom is elevated
+        if doom >= 11:
+            doom_lead = self._rng.choice(_DOOM_LEADS["high"])
+            enriched = f"{doom_lead} {enriched}"
+        elif doom >= 5:
+            doom_lead = self._rng.choice(_DOOM_LEADS["medium"])
+            enriched = f"{doom_lead} {enriched}"
 
-        return description
+        return enriched
 
     def describe_enemy(self, enemy_name: str) -> str:
         """Return flavor text for an enemy on first encounter.
@@ -449,7 +488,7 @@ class NarrativeBridge:
             Enriched description string.
         """
         if not mimir_fn or not description:
-            return self.enrich_room(description, tier)
+            return self.enrich_room(description, tier, doom=doom)
 
         # Check cache
         cache_key = hash(description)
@@ -491,4 +530,4 @@ class NarrativeBridge:
             pass
 
         # Fallback to static enrichment
-        return self.enrich_room(description, tier)
+        return self.enrich_room(description, tier, doom=doom)

@@ -327,7 +327,9 @@ class BurnwillowBridge:
                     mimir_fn=_mimir_fn,
                 )
             else:
-                _desc = self._narrator.enrich_room(_desc, room.get("tier", 1))
+                _doom = getattr(self.engine, 'doom_clock', None)
+                _doom_val = getattr(_doom, 'current', 0) if _doom else 0
+                _desc = self._narrator.enrich_room(_desc, room.get("tier", 1), doom=_doom_val)
         lines.append(_desc)
 
         # Enemies
