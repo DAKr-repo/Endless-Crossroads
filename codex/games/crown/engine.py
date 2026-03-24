@@ -151,6 +151,69 @@ PROMPT_SECRET_WITNESS: str = (
 )
 
 # =============================================================================
+# DAY 3 MIRROR BREAK — Sin Generation (WO-V99)
+# =============================================================================
+# The player's dominant DNA tag determines what sin they witness the
+# Crew Leader committing. The player must choose: hide or expose.
+
+MIRROR_SINS: dict[str, dict[str, str]] = {
+    "BLOOD": {
+        "sin": "Unnecessary Brutality",
+        "witness": (
+            "You couldn't sleep. You followed the sounds past the firelight.\n\n"
+            "The {leader} stands over a kneeling figure — a prisoner, hands bound, "
+            "no weapon, no threat. The first blow was enough. The second was punishment. "
+            "The third was something else entirely. The prisoner stopped moving two blows ago.\n\n"
+            "The {leader} hasn't seen you yet."
+        ),
+    },
+    "GUILE": {
+        "sin": "A Secret Deal",
+        "witness": (
+            "You couldn't sleep. You followed the whispers past the firelight.\n\n"
+            "The {leader} is meeting someone — a Crown agent, if the cloak is any "
+            "indication. Coin changes hands. A sealed letter. The {leader}'s smile "
+            "is not the smile of someone being extorted. It is the smile of someone "
+            "closing a deal.\n\n"
+            "Neither of them has seen you yet."
+        ),
+    },
+    "HEARTH": {
+        "sin": "Hoarding and Neglect",
+        "witness": (
+            "You couldn't sleep. The hunger drove you past the firelight.\n\n"
+            "The {leader} has a cache — hidden beneath a false bottom in their "
+            "pack. Dried meat. Medicine. Clean bandages. Enough for three days, "
+            "while the weakest members of the crew go hungry and the wounded "
+            "wrap their cuts in rags.\n\n"
+            "The {leader} hasn't seen you yet."
+        ),
+    },
+    "SILENCE": {
+        "sin": "Erasing History",
+        "witness": (
+            "You couldn't sleep. The smell of burning paper drew you past the firelight.\n\n"
+            "The {leader} feeds documents into a small fire — letters, manifests, "
+            "names. You catch fragments: dates, routes, a list of people who helped "
+            "the crew. Evidence of the journey, being erased one page at a time. "
+            "When this is done, there will be no record that any of you were here.\n\n"
+            "The {leader} hasn't seen you yet."
+        ),
+    },
+    "DEFIANCE": {
+        "sin": "A False Flag",
+        "witness": (
+            "You couldn't sleep. The sound of a forged seal press drew you past the firelight.\n\n"
+            "The {leader} is fabricating Crown orders — forged documents that will "
+            "redirect patrols into a civilian settlement. The settlers will be "
+            "interrogated, their homes searched, their livestock seized. The Crew "
+            "buys a day. The village pays the price.\n\n"
+            "The {leader} hasn't seen you yet."
+        ),
+    },
+}
+
+# =============================================================================
 # SWAY TIER DEFINITIONS
 # =============================================================================
 
@@ -639,6 +702,8 @@ class CrownAndCrewEngine:
     _midday_encounters: list[dict] = field(default_factory=list, repr=False)  # WO-V109: Midday encounter pool
     _used_midday: list[int] = field(default_factory=list, repr=False)  # WO-V109: Used midday indices
     _safe_passage_used: bool = field(default=False, repr=False)  # WO-V109: Safe Passage bypass (sway -1)
+    _mirror_choice: str = field(default="", repr=False)  # WO-V99: "hide" or "expose"
+    _mirror_sin: str = field(default="", repr=False)  # WO-V99: What sin was witnessed
 
     # MED-06: Short rest per-day counter
     _short_rests_today: int = field(default=0, repr=False)
@@ -1593,8 +1658,109 @@ class CrownAndCrewEngine:
         return self._get_unique_prompt(self._prompts_campfire, self._used_campfire)
 
     def get_secret_witness(self) -> str:
-        """Get the Day 3 Secret Witness event prompt."""
+        """Get the Day 3 Secret Witness event prompt.
+
+        Legacy method — returns the static witness prompt.
+        Prefer get_mirror_break() for the full sin mechanic.
+        """
         return self._secret_witness
+
+    def get_mirror_break(self) -> dict:
+        """WO-V99: Generate the Day 3 Mirror Break scene.
+
+        The player's dominant DNA tag determines what sin they witness
+        the Crew Leader committing. Returns a dict with:
+        - sin: the sin type name
+        - witness: the narrative text (with Leader name substituted)
+        - choices: hide vs expose options with tag/sway effects
+
+        Only meaningful on breach day — call is_breach_day() first.
+        """
+        dominant = self.get_dominant_tag()
+        sin_data = MIRROR_SINS.get(dominant, MIRROR_SINS["SILENCE"])
+
+        leader_name = self.leader
+        if isinstance(leader_name, dict):
+            leader_name = leader_name.get("name", "The Leader")
+
+        witness_text = sin_data["witness"].format(leader=leader_name)
+
+        return {
+            "sin": sin_data["sin"],
+            "dominant_tag": dominant,
+            "witness": witness_text,
+            "choices": [
+                {
+                    "text": f"Stay silent. Hide what you saw. The {self.terms.get('crew', 'Crew')} must not fracture.",
+                    "action": "hide",
+                    "tag": "SILENCE",
+                    "sway_effect": 1,
+                    "narrative": (
+                        f"You slip back to your bedroll. The secret coils inside you like a stone "
+                        f"in your gut. {leader_name} meets your eyes in the morning. "
+                        f"You wonder if they know."
+                    ),
+                },
+                {
+                    "text": f"Expose the sin. The {self.terms.get('crown', 'Crown')} and the {self.terms.get('crew', 'Crew')} both deserve the truth.",
+                    "action": "expose",
+                    "tag": "DEFIANCE",
+                    "sway_effect": -1,
+                    "narrative": (
+                        f"You step into the firelight. {leader_name} turns. The camp goes silent.\n\n"
+                        f"'I saw what you did,' you say. The words land like stones in still water. "
+                        f"Nothing will be the same after this."
+                    ),
+                },
+            ],
+        }
+
+    def resolve_mirror_choice(self, choice_index: int) -> str:
+        """WO-V99: Resolve the Mirror Break hide/expose choice.
+
+        Args:
+            choice_index: 0 = hide (SILENCE, +1 crew), 1 = expose (DEFIANCE, -1 crown)
+
+        Returns:
+            Narrative result with tag and sway feedback.
+        """
+        mirror = self.get_mirror_break()
+        choices = mirror["choices"]
+        if choice_index < 0 or choice_index >= len(choices):
+            choice_index = 0
+
+        choice = choices[choice_index]
+        tag = choice["tag"]
+        sway_effect = choice["sway_effect"]
+        action = choice["action"]
+
+        # Apply tag
+        self.dna[tag] += 1
+
+        # Apply sway
+        self.sway += sway_effect
+        self.sway = max(-3, min(3, self.sway))
+
+        # Track complicity
+        self._mirror_choice = action
+        self._mirror_sin = mirror["sin"]
+
+        # ANCHOR shard — this is a defining moment
+        self._add_shard(
+            f"Day {self.day} THE MIRROR: Witnessed {mirror['sin']}. "
+            f"Chose to {action}. [{tag}] Sway {sway_effect:+d}",
+            "ANCHOR",
+        )
+
+        tier = self.get_tier()
+        narrative = choice["narrative"]
+        direction = "toward the Crown" if sway_effect < 0 else "toward the Crew"
+
+        return (
+            f"{narrative}\n\n"
+            f"[{tag}] — {mirror['sin']}: {'Hidden' if action == 'hide' else 'Exposed'}.\n"
+            f"Sway shifts {direction}. Now: {self.sway:+d} ({tier['name']})."
+        )
 
     def get_morning_event(self) -> dict:
         """Get a sway-relevant morning road event (WO-V14.0, V107.0).
@@ -2424,6 +2590,8 @@ class CrownAndCrewEngine:
             "_active_consequences": self._active_consequences,
             "_used_midday": self._used_midday,
             "_safe_passage_used": self._safe_passage_used,
+            "_mirror_choice": self._mirror_choice,
+            "_mirror_sin": self._mirror_sin,
         }
         # Phase 4 — Persist subsystem state if they have been initialised
         if self._politics_engine is not None:
@@ -2467,6 +2635,7 @@ class CrownAndCrewEngine:
             "special_mechanics", "_morning_events", "_short_rests_today",
             "_drifter_tax_active", "_royal_decree_used", "_leaders_confidence_used",
             "_active_consequences", "_used_midday", "_safe_passage_used",
+            "_mirror_choice", "_mirror_sin",
         ):
             if key in data:
                 setattr(engine, key, data[key])

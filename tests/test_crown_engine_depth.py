@@ -1601,6 +1601,129 @@ class TestMiddayEncounters:
 
 
 # =============================================================================
+# WO-V99: Day 3 Mirror Break — Sin Mechanics
+# =============================================================================
+
+class TestMirrorBreak:
+    """Test the Day 3 Mirror Break sin generation and hide/expose choice."""
+
+    def test_mirror_returns_sin_based_on_dominant_tag(self):
+        engine = CrownAndCrewEngine()
+        engine.dna["BLOOD"] = 5  # Make BLOOD dominant
+        mirror = engine.get_mirror_break()
+        assert mirror["sin"] == "Unnecessary Brutality"
+        assert mirror["dominant_tag"] == "BLOOD"
+
+    def test_mirror_guile_sin(self):
+        engine = CrownAndCrewEngine()
+        engine.dna["GUILE"] = 5
+        mirror = engine.get_mirror_break()
+        assert mirror["sin"] == "A Secret Deal"
+
+    def test_mirror_hearth_sin(self):
+        engine = CrownAndCrewEngine()
+        engine.dna["HEARTH"] = 5
+        mirror = engine.get_mirror_break()
+        assert mirror["sin"] == "Hoarding and Neglect"
+
+    def test_mirror_silence_sin(self):
+        engine = CrownAndCrewEngine()
+        engine.dna["SILENCE"] = 5
+        mirror = engine.get_mirror_break()
+        assert mirror["sin"] == "Erasing History"
+
+    def test_mirror_defiance_sin(self):
+        engine = CrownAndCrewEngine()
+        engine.dna["DEFIANCE"] = 5
+        mirror = engine.get_mirror_break()
+        assert mirror["sin"] == "A False Flag"
+
+    def test_mirror_has_two_choices(self):
+        engine = CrownAndCrewEngine()
+        engine.dna["BLOOD"] = 3
+        mirror = engine.get_mirror_break()
+        assert len(mirror["choices"]) == 2
+        actions = {c["action"] for c in mirror["choices"]}
+        assert actions == {"hide", "expose"}
+
+    def test_hide_choice_gives_silence_tag(self):
+        engine = CrownAndCrewEngine()
+        engine.dna["BLOOD"] = 3
+        mirror = engine.get_mirror_break()
+        hide = [c for c in mirror["choices"] if c["action"] == "hide"][0]
+        assert hide["tag"] == "SILENCE"
+        assert hide["sway_effect"] == 1  # Toward crew (complicity)
+
+    def test_expose_choice_gives_defiance_tag(self):
+        engine = CrownAndCrewEngine()
+        engine.dna["BLOOD"] = 3
+        mirror = engine.get_mirror_break()
+        expose = [c for c in mirror["choices"] if c["action"] == "expose"][0]
+        assert expose["tag"] == "DEFIANCE"
+        assert expose["sway_effect"] == -1  # Toward crown (truth)
+
+    def test_witness_text_includes_leader_name(self):
+        engine = CrownAndCrewEngine()
+        engine.dna["GUILE"] = 3
+        mirror = engine.get_mirror_break()
+        assert engine.leader in mirror["witness"]
+
+    def test_resolve_mirror_hide(self):
+        engine = CrownAndCrewEngine()
+        engine.dna["BLOOD"] = 3
+        initial_silence = engine.dna["SILENCE"]
+        initial_sway = engine.sway
+        result = engine.resolve_mirror_choice(0)  # 0 = hide
+        assert engine.dna["SILENCE"] == initial_silence + 1
+        assert engine.sway == initial_sway + 1
+        assert engine._mirror_choice == "hide"
+        assert "Hidden" in result
+
+    def test_resolve_mirror_expose(self):
+        engine = CrownAndCrewEngine()
+        engine.dna["BLOOD"] = 3
+        initial_defiance = engine.dna["DEFIANCE"]
+        initial_sway = engine.sway
+        result = engine.resolve_mirror_choice(1)  # 1 = expose
+        assert engine.dna["DEFIANCE"] == initial_defiance + 1
+        assert engine.sway == initial_sway - 1
+        assert engine._mirror_choice == "expose"
+        assert "Exposed" in result
+
+    def test_resolve_mirror_creates_anchor_shard(self):
+        engine = CrownAndCrewEngine()
+        engine.dna["HEARTH"] = 3
+        shards_before = len(engine._memory_shards)
+        engine.resolve_mirror_choice(0)
+        anchor_shards = [s for s in engine._memory_shards[shards_before:]
+                         if hasattr(s, 'shard_type') and s.shard_type.value == "ANCHOR"]
+        assert len(anchor_shards) >= 1
+        assert "MIRROR" in anchor_shards[-1].content
+
+    def test_mirror_tracks_sin_name(self):
+        engine = CrownAndCrewEngine()
+        engine.dna["DEFIANCE"] = 3
+        engine.resolve_mirror_choice(1)
+        assert engine._mirror_sin == "A False Flag"
+
+    def test_mirror_survives_save_load(self):
+        engine = CrownAndCrewEngine()
+        engine._mirror_choice = "hide"
+        engine._mirror_sin = "Unnecessary Brutality"
+        data = engine.to_dict()
+        restored = CrownAndCrewEngine.from_dict(data)
+        assert restored._mirror_choice == "hide"
+        assert restored._mirror_sin == "Unnecessary Brutality"
+
+    def test_default_sin_when_no_dominant(self):
+        """When all tags are 0, falls back to SILENCE sin."""
+        engine = CrownAndCrewEngine()
+        # All DNA at 0 — get_dominant_tag returns SILENCE
+        mirror = engine.get_mirror_break()
+        assert mirror["sin"] == "Erasing History"  # SILENCE maps to this
+
+
+# =============================================================================
 # WO-V108: The Echo — Player-Driven DNA Tag Assignment
 # =============================================================================
 

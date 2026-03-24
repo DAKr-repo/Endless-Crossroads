@@ -433,11 +433,41 @@ def main():
         else:
             print(f"NIGHT FALLS. {engine.get_status()}")
 
-        # Breach Day Special
+        # Breach Day Special — THE MIRROR (WO-V99)
         if engine.is_breach_day():
-            witness = engine.get_secret_witness()
-            display_card("legacy", witness, "[bold red]THE BREACH — Secret Witness[/bold red]")
-            print("[You must decide how to react to what you saw...]")
+            mirror = engine.get_mirror_break()
+
+            if RICH_AVAILABLE:
+                console.print(Panel(
+                    f"[bold red]THE MIRROR — {mirror['sin'].upper()}[/bold red]\n\n"
+                    f"[italic]{mirror['witness']}[/italic]",
+                    title=f"[bold red]Day {engine.day} — The Breach[/bold red]",
+                    border_style="red",
+                    width=60,
+                ))
+            else:
+                print(f"\n=== THE MIRROR — {mirror['sin'].upper()} ===")
+                print(f"\n{mirror['witness']}")
+
+            print()
+            for i, ch in enumerate(mirror["choices"]):
+                tag_color = {"SILENCE": "dim", "DEFIANCE": "magenta"}.get(ch["tag"], "white")
+                if RICH_AVAILABLE:
+                    console.print(f"  [{tag_color}][{i + 1}] {ch['text']}[/{tag_color}]")
+                else:
+                    print(f"  [{i + 1}] {ch['text']}")
+
+            mirror_input = ""
+            while mirror_input not in ['1', '2']:
+                mirror_input = input("\n> What do you do? (1/2): ").strip()
+
+            mirror_result = engine.resolve_mirror_choice(int(mirror_input) - 1)
+            if RICH_AVAILABLE:
+                console.print(f"\n[bold]{mirror_result}[/bold]")
+            else:
+                print(f"\n{mirror_result}")
+
+            input("\n[Press Enter to continue...]")
 
         # --- SCENE PHASE (optional, from campaign.json) ---
         scene = engine.get_scene_for_today()
