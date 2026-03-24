@@ -326,8 +326,8 @@ def main():
             print(f"\n--- Dawn — Day {engine.day}/{engine.arc_length} ---")
             print(f"  {morning['text']}")
 
-        # Present morning choices
-        choices = morning.get("choices", [])
+        # Present morning choices (WO-V104: sway-gated bonus options)
+        choices = engine.get_gated_morning_choices(morning)
         if choices:
             print()
             for i, ch in enumerate(choices):

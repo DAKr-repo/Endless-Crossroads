@@ -154,14 +154,56 @@ PROMPT_SECRET_WITNESS: str = (
 # SWAY TIER DEFINITIONS
 # =============================================================================
 
-SWAY_TIERS: dict[int, dict[str, str]] = {
-    -3: {"name": "Crown Agent", "power": "Royal Decree", "desc": "Your word is law."},
-    -2: {"name": "Crown Sympathizer", "power": "Legal Cover", "desc": "The law looks away."},
-    -1: {"name": "Crown Leaning", "power": "None", "desc": "The Crown remembers."},
-    0:  {"name": "Drifter", "power": "The Whirlpool", "desc": "No allies. No mercy."},
-    1:  {"name": "Crew Leaning", "power": "None", "desc": "The Crew watches."},
-    2:  {"name": "Crew Trusted", "power": "Safe Harbor", "desc": "They have your back."},
-    3:  {"name": "Crew Loyal", "power": "Vessel Mastery", "desc": "You are the head."},
+SWAY_TIERS: dict[int, dict] = {
+    -3: {
+        "name": "Crown Agent",
+        "power": "Royal Decree",
+        "desc": "Your word carries the Crown's authority.",
+        "effect": "Once per march: force a council dilemma to resolve Crown. Crew hostility rises.",
+        "grants": "royal_decree",
+    },
+    -2: {
+        "name": "Crown Sympathizer",
+        "power": "Imperial Intelligence",
+        "desc": "The Crown shares what it knows.",
+        "effect": "Morning events reveal extra detail. Crown-only choice options unlock.",
+        "grants": "imperial_intelligence",
+    },
+    -1: {
+        "name": "Crown Leaning",
+        "power": "Safe Passage",
+        "desc": "The Crown's patrols wave you through.",
+        "effect": "Can bypass one midday encounter. Campfire prompts are colder.",
+        "grants": "safe_passage",
+    },
+    0: {
+        "name": "Drifter",
+        "power": "The Whirlpool",
+        "desc": "No allies. No mercy. But you can talk to anyone.",
+        "effect": "Double Draw penalty. Unique broker dialogue with both sides.",
+        "grants": "whirlpool",
+    },
+    1: {
+        "name": "Crew Leaning",
+        "power": "Trusted Ear",
+        "desc": "The Crew shares gossip.",
+        "effect": "Morning events reveal NPC motives. Crown patrols more frequent.",
+        "grants": "trusted_ear",
+    },
+    2: {
+        "name": "Crew Trusted",
+        "power": "The Inner Circle",
+        "desc": "They trust you with secrets.",
+        "effect": "Council dilemmas reveal a hidden third option from the Leader.",
+        "grants": "inner_circle",
+    },
+    3: {
+        "name": "Crew Loyal",
+        "power": "The Leader's Confidence",
+        "desc": "The Leader trusts you above all others.",
+        "effect": "Once per march: the Leader reveals their secret agenda and betrayal trigger.",
+        "grants": "leaders_confidence",
+    },
 }
 
 # =============================================================================
@@ -469,6 +511,8 @@ class CrownAndCrewEngine:
     _drifter_tax_active: bool = field(default=False, repr=False)  # WO-V100: Double Draw pending
     _pending_echo: bool = field(default=False, repr=False)  # WO-V108: Awaiting Echo response
     _pending_shift: int = field(default=0, repr=False)  # WO-V108: Sway shift to record in history
+    _royal_decree_used: bool = field(default=False, repr=False)  # WO-V104: Once-per-march power
+    _leaders_confidence_used: bool = field(default=False, repr=False)  # WO-V104: Once-per-march power
 
     # MED-06: Short rest per-day counter
     _short_rests_today: int = field(default=0, repr=False)
@@ -807,6 +851,135 @@ class CrownAndCrewEngine:
         if not any(self.dna.values()):
             return "SILENCE"
         return max(self.dna, key=lambda k: self.dna[k])
+
+    # ─────────────────────────────────────────────────────────────────────
+    # SWAY POWER SYSTEM (WO-V104)
+    # ─────────────────────────────────────────────────────────────────────
+
+    def has_power(self, power_id: str) -> bool:
+        """Check if the player's current sway grants a specific power."""
+        tier = self.get_tier()
+        return tier.get("grants") == power_id
+
+    def get_active_power(self) -> dict:
+        """Return the player's current active power from their sway tier."""
+        return self.get_tier()
+
+    def get_available_powers(self) -> list[str]:
+        """Return all power IDs the current sway level qualifies for.
+
+        Crown powers stack downward: sway -3 also has -2 and -1 powers.
+        Crew powers stack upward: sway +3 also has +2 and +1 powers.
+        """
+        powers = []
+        for sway_val, tier in SWAY_TIERS.items():
+            if sway_val < 0 and self.sway <= sway_val:
+                powers.append(tier["grants"])
+            elif sway_val > 0 and self.sway >= sway_val:
+                powers.append(tier["grants"])
+            elif sway_val == 0 and self.sway == 0:
+                powers.append(tier["grants"])
+        return powers
+
+    def activate_royal_decree(self) -> str:
+        """WO-V104: Crown Agent (-3) — Force council to Crown outcome. Once per march."""
+        if not self.has_power("royal_decree"):
+            return "You lack the authority. Royal Decree requires Crown Agent status (sway -3)."
+        if getattr(self, '_royal_decree_used', False):
+            return "Royal Decree has already been invoked this march."
+        self._royal_decree_used = True
+        self._add_shard("Invoked Royal Decree — forced council outcome to Crown", "ANCHOR")
+        crown_term = self.terms.get("crown", "The Crown").upper()
+        return (
+            f"ROYAL DECREE INVOKED.\n"
+            f"The {crown_term}'s will overrides all dissent. "
+            f"The council bows — but the Crew will remember this."
+        )
+
+    def activate_leaders_confidence(self) -> str:
+        """WO-V104: Crew Loyal (+3) — Leader reveals secret agenda. Once per march."""
+        if not self.has_power("leaders_confidence"):
+            return "The Leader doesn't trust you enough. Requires Crew Loyal status (sway +3)."
+        if getattr(self, '_leaders_confidence_used', False):
+            return "The Leader has already shared their secret this march."
+        self._leaders_confidence_used = True
+
+        leader = getattr(self, 'leader', None)
+        if isinstance(leader, dict):
+            agenda = leader.get("secret_agenda", "a hidden purpose they won't share with anyone else")
+            betrayal = leader.get("betrayal_trigger", "something that could turn them against everything")
+            name = leader.get("name", "The Leader")
+        else:
+            agenda = "a hidden purpose they won't share with anyone else"
+            betrayal = "something that could turn them against everything"
+            name = self.terms.get("crew", "The Leader")
+
+        self._add_shard(f"The Leader revealed their secret agenda: {agenda[:60]}", "ANCHOR")
+        return (
+            f"THE LEADER'S CONFIDENCE\n"
+            f"{name} draws you aside. In a low voice:\n\n"
+            f'"My real purpose? {agenda}"\n\n'
+            f"You sense a vulnerability — {betrayal}."
+        )
+
+    def get_gated_morning_choices(self, event: dict) -> list[dict]:
+        """WO-V104: Return morning choices with sway-gated bonus options.
+
+        At sway <= -2: adds a Crown-only choice (Imperial Intelligence).
+        At sway >= +2: adds a Crew insider choice (Inner Circle).
+        At sway == 0: adds a unique broker choice (Whirlpool).
+        """
+        choices = list(event.get("choices", []))
+
+        if self.sway <= -2:
+            choices.append({
+                "text": "[Crown Intel] Your contacts share a detail others missed.",
+                "tag": "GUILE", "sway_effect": -1, "gated": "imperial_intelligence",
+            })
+
+        if self.sway >= 2:
+            choices.append({
+                "text": "[Crew Insider] The Leader's people slip you a warning.",
+                "tag": "HEARTH", "sway_effect": 1, "gated": "inner_circle",
+            })
+
+        if self.sway == 0:
+            choices.append({
+                "text": "[Broker] Play both sides — you're the only one who can.",
+                "tag": "GUILE", "sway_effect": 0, "gated": "whirlpool",
+            })
+
+        return choices
+
+    def get_gated_council_choices(self, dilemma: dict) -> list[dict]:
+        """WO-V104: Return council choices with sway-gated bonus options.
+
+        At sway >= +2: the Crew Leader whispers a hidden third option.
+        At sway == -3: Royal Decree option available (if not yet used).
+        """
+        crown_text = dilemma.get("crown", "Side with the Crown.")
+        crew_text = dilemma.get("crew", "Side with the Crew.")
+        choices = [
+            {"text": crown_text, "side": "crown"},
+            {"text": crew_text, "side": "crew"},
+        ]
+
+        if self.sway >= 2:
+            leader_name = "The Leader"
+            if isinstance(getattr(self, 'leader', None), dict):
+                leader_name = self.leader.get("name", "The Leader")
+            choices.append({
+                "text": f"[Inner Circle] {leader_name} whispers a third path...",
+                "side": "crew", "tag_bonus": "GUILE", "gated": "inner_circle",
+            })
+
+        if self.sway == -3 and not getattr(self, '_royal_decree_used', False):
+            choices.append({
+                "text": "[Royal Decree] Invoke the Crown's absolute authority.",
+                "side": "crown", "force_outcome": True, "gated": "royal_decree",
+            })
+
+        return choices
 
     def get_affinity_display(self) -> str:
         """Render Sway as a visual progress bar (WO 088-V2).
@@ -1926,6 +2099,8 @@ class CrownAndCrewEngine:
             "_morning_events": self._morning_events,
             "_short_rests_today": self._short_rests_today,
             "_drifter_tax_active": self._drifter_tax_active,
+            "_royal_decree_used": self._royal_decree_used,
+            "_leaders_confidence_used": self._leaders_confidence_used,
         }
         # Phase 4 — Persist subsystem state if they have been initialised
         if self._politics_engine is not None:
@@ -1967,7 +2142,7 @@ class CrownAndCrewEngine:
             "_used_campfire", "_used_morning", "_used_dilemmas",
             "_council_dilemmas", "quest_slug", "quest_name",
             "special_mechanics", "_morning_events", "_short_rests_today",
-            "_drifter_tax_active",
+            "_drifter_tax_active", "_royal_decree_used", "_leaders_confidence_used",
         ):
             if key in data:
                 setattr(engine, key, data[key])

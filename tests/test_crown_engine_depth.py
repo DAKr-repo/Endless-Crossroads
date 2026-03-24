@@ -1246,6 +1246,149 @@ class TestMorningChoices:
 
 
 # =============================================================================
+# WO-V104: Sway Power Enforcement
+# =============================================================================
+
+class TestSwayPowers:
+    """Test sway-gated powers and choice gating."""
+
+    def test_has_power_at_correct_sway(self):
+        engine = CrownAndCrewEngine()
+        engine.sway = -3
+        assert engine.has_power("royal_decree")
+        engine.sway = -2
+        assert engine.has_power("imperial_intelligence")
+        engine.sway = 0
+        assert engine.has_power("whirlpool")
+        engine.sway = 2
+        assert engine.has_power("inner_circle")
+        engine.sway = 3
+        assert engine.has_power("leaders_confidence")
+
+    def test_has_power_false_at_wrong_sway(self):
+        engine = CrownAndCrewEngine()
+        engine.sway = 1
+        assert not engine.has_power("royal_decree")
+        assert not engine.has_power("inner_circle")
+        assert not engine.has_power("whirlpool")
+
+    def test_available_powers_stack_crown(self):
+        engine = CrownAndCrewEngine()
+        engine.sway = -3
+        powers = engine.get_available_powers()
+        assert "royal_decree" in powers
+        assert "imperial_intelligence" in powers
+        assert "safe_passage" in powers
+
+    def test_available_powers_stack_crew(self):
+        engine = CrownAndCrewEngine()
+        engine.sway = 3
+        powers = engine.get_available_powers()
+        assert "leaders_confidence" in powers
+        assert "inner_circle" in powers
+        assert "trusted_ear" in powers
+
+    def test_royal_decree_at_sway_minus_3(self):
+        engine = CrownAndCrewEngine()
+        engine.sway = -3
+        result = engine.activate_royal_decree()
+        assert "DECREE" in result.upper()
+        assert engine._royal_decree_used is True
+
+    def test_royal_decree_once_per_march(self):
+        engine = CrownAndCrewEngine()
+        engine.sway = -3
+        engine.activate_royal_decree()
+        result = engine.activate_royal_decree()
+        assert "already" in result.lower()
+
+    def test_royal_decree_rejected_at_wrong_sway(self):
+        engine = CrownAndCrewEngine()
+        engine.sway = 0
+        result = engine.activate_royal_decree()
+        assert "lack" in result.lower()
+
+    def test_leaders_confidence_at_sway_3(self):
+        engine = CrownAndCrewEngine()
+        engine.sway = 3
+        engine.leader = {"name": "Captain Vane", "secret_agenda": "Find the lost treasure", "betrayal_trigger": "If the gold runs out"}
+        result = engine.activate_leaders_confidence()
+        assert "CONFIDENCE" in result.upper()
+        assert "lost treasure" in result
+        assert "gold runs out" in result
+        assert engine._leaders_confidence_used is True
+
+    def test_leaders_confidence_once_per_march(self):
+        engine = CrownAndCrewEngine()
+        engine.sway = 3
+        engine.activate_leaders_confidence()
+        result = engine.activate_leaders_confidence()
+        assert "already" in result.lower()
+
+    def test_gated_morning_crown_intel_at_minus_2(self):
+        engine = CrownAndCrewEngine()
+        engine.sway = -2
+        event = engine.get_morning_event()
+        choices = engine.get_gated_morning_choices(event)
+        gated = [c for c in choices if c.get("gated") == "imperial_intelligence"]
+        assert len(gated) == 1
+        assert "Crown Intel" in gated[0]["text"]
+
+    def test_gated_morning_no_bonus_at_neutral(self):
+        engine = CrownAndCrewEngine()
+        engine.sway = 1  # Not enough for any bonus except trusted_ear (passive)
+        event = engine.get_morning_event()
+        choices = engine.get_gated_morning_choices(event)
+        gated = [c for c in choices if c.get("gated")]
+        assert len(gated) == 0  # No gated choices at sway 1
+
+    def test_gated_morning_broker_at_zero(self):
+        engine = CrownAndCrewEngine()
+        engine.sway = 0
+        event = engine.get_morning_event()
+        choices = engine.get_gated_morning_choices(event)
+        gated = [c for c in choices if c.get("gated") == "whirlpool"]
+        assert len(gated) == 1
+        assert "Broker" in gated[0]["text"]
+
+    def test_gated_council_inner_circle_at_plus_2(self):
+        engine = CrownAndCrewEngine()
+        engine.sway = 2
+        dilemma = {"prompt": "Test", "crown": "Crown choice", "crew": "Crew choice"}
+        choices = engine.get_gated_council_choices(dilemma)
+        assert len(choices) == 3  # crown + crew + inner circle
+        gated = [c for c in choices if c.get("gated") == "inner_circle"]
+        assert len(gated) == 1
+
+    def test_gated_council_decree_at_minus_3(self):
+        engine = CrownAndCrewEngine()
+        engine.sway = -3
+        dilemma = {"prompt": "Test", "crown": "Crown choice", "crew": "Crew choice"}
+        choices = engine.get_gated_council_choices(dilemma)
+        gated = [c for c in choices if c.get("gated") == "royal_decree"]
+        assert len(gated) == 1
+        assert gated[0].get("force_outcome") is True
+
+    def test_gated_council_no_decree_after_use(self):
+        engine = CrownAndCrewEngine()
+        engine.sway = -3
+        engine._royal_decree_used = True
+        dilemma = {"prompt": "Test", "crown": "Crown choice", "crew": "Crew choice"}
+        choices = engine.get_gated_council_choices(dilemma)
+        gated = [c for c in choices if c.get("gated") == "royal_decree"]
+        assert len(gated) == 0  # Used up
+
+    def test_powers_survive_save_load(self):
+        engine = CrownAndCrewEngine()
+        engine._royal_decree_used = True
+        engine._leaders_confidence_used = True
+        data = engine.to_dict()
+        restored = CrownAndCrewEngine.from_dict(data)
+        assert restored._royal_decree_used is True
+        assert restored._leaders_confidence_used is True
+
+
+# =============================================================================
 # WO-V108: The Echo — Player-Driven DNA Tag Assignment
 # =============================================================================
 
