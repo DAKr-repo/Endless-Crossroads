@@ -378,6 +378,96 @@ MORNING_EVENTS: list[dict] = [
 
 
 # =============================================================================
+# MIDDAY ENCOUNTERS — The March (WO-V109)
+# =============================================================================
+# Each encounter presents a physical/social test during the day's travel.
+# Choices carry tag + sway effects. Safe Passage (sway -1) can bypass these.
+# Trusted Ear (sway +1) adds NPC motive reveals.
+
+MIDDAY_ENCOUNTERS: list[dict] = [
+    {
+        "text": "The trail narrows to a knife-edge ridge. Wind tears at your clothing. Below, the drop is absolute. Someone has to go first.",
+        "choices": [
+            {"text": "Go first yourself. Lead from the front.", "tag": "BLOOD", "sway_effect": 1},
+            {"text": "Send the strongest. This isn't about bravery — it's about weight distribution.", "tag": "GUILE", "sway_effect": 0},
+            {"text": "Rope everyone together. If one falls, everyone catches them — or everyone dies.", "tag": "HEARTH", "sway_effect": 0},
+        ],
+    },
+    {
+        "text": "A checkpoint blocks the road. Two guards, bored and cold. They haven't seen your description yet — but they will soon.",
+        "choices": [
+            {"text": "Bluff your way through. Papers can be faked with confidence.", "tag": "GUILE", "sway_effect": -1},
+            {"text": "Go around. Add two hours, lose no blood.", "tag": "SILENCE", "sway_effect": 0},
+            {"text": "Ambush them. They chose their post.", "tag": "BLOOD", "sway_effect": 1},
+        ],
+    },
+    {
+        "text": "A river crossing — waist-deep, fast-moving, ice-cold. The bridge is intact but patrolled. The ford is hidden but dangerous.",
+        "choices": [
+            {"text": "Take the bridge. Speed over stealth.", "tag": "BLOOD", "sway_effect": -1},
+            {"text": "Ford the river. Cold won't kill you. Patrols will.", "tag": "DEFIANCE", "sway_effect": 1},
+            {"text": "Wait for nightfall. Cross under darkness.", "tag": "SILENCE", "sway_effect": 0},
+        ],
+    },
+    {
+        "text": "A fellow traveler — wounded, limping, carrying too much. They're slowing down. The column can't afford to slow down with them.",
+        "choices": [
+            {"text": "Help carry their pack. We don't leave people behind.", "tag": "HEARTH", "sway_effect": 1},
+            {"text": "Trade: your help for their information. Everyone pays their way.", "tag": "GUILE", "sway_effect": 0},
+            {"text": "Walk past. You can't save everyone and survive.", "tag": "SILENCE", "sway_effect": -1},
+        ],
+    },
+    {
+        "text": "An abandoned camp — still warm coals, scattered rations, a sword driven into the earth. Someone left in a hurry. Or was taken.",
+        "choices": [
+            {"text": "Search the camp. Intelligence is worth the risk.", "tag": "GUILE", "sway_effect": 0},
+            {"text": "Take what's useful and move on. The dead don't need supplies.", "tag": "BLOOD", "sway_effect": 0},
+            {"text": "Follow the tracks. Someone might need help — or might lead you to danger.", "tag": "DEFIANCE", "sway_effect": 1},
+        ],
+    },
+    {
+        "text": "A Crown supply wagon sits overturned in a ditch, its guard detail scattered. Crates of rations, medicine, and ammunition spill across the road.",
+        "choices": [
+            {"text": "Take everything. This is war, and war has spoils.", "tag": "BLOOD", "sway_effect": 1},
+            {"text": "Take only the medicine. Leave the rest for whoever else passes.", "tag": "HEARTH", "sway_effect": 0},
+            {"text": "Mark the location and report it. Someone owes you a favor now.", "tag": "GUILE", "sway_effect": -1},
+        ],
+    },
+    {
+        "text": "The path enters dense forest. Branches close overhead like a cage. Your scouts report movement ahead — could be wildlife. Could be an ambush.",
+        "choices": [
+            {"text": "Push through. If it's an ambush, meet it head-on.", "tag": "BLOOD", "sway_effect": 0},
+            {"text": "Send a decoy ahead. If something springs, it springs on a shadow.", "tag": "GUILE", "sway_effect": 0},
+            {"text": "Go around. Add an hour, keep everyone alive.", "tag": "HEARTH", "sway_effect": 1},
+        ],
+    },
+    {
+        "text": "A local farmer blocks the trail with a loaded cart. 'Road tax,' she says flatly. 'Crown or Crew, everyone pays to cross my land.' She isn't afraid of you.",
+        "choices": [
+            {"text": "Pay the tax. Respect earns passage.", "tag": "HEARTH", "sway_effect": 0},
+            {"text": "Negotiate. You have information worth more than coin.", "tag": "GUILE", "sway_effect": 0},
+            {"text": "Move the cart yourself. She can complain to whoever she likes.", "tag": "DEFIANCE", "sway_effect": 1},
+        ],
+    },
+    {
+        "text": "Smoke on the horizon — a settlement burning. Not your fight. Not your people. But the screams carry across the valley.",
+        "choices": [
+            {"text": "Intervene. You didn't come this far to look away.", "tag": "DEFIANCE", "sway_effect": 1},
+            {"text": "Skirt the edge. Help survivors you find on the road, not in the fire.", "tag": "HEARTH", "sway_effect": 0},
+            {"text": "Use the distraction. While they burn, you move unseen.", "tag": "SILENCE", "sway_effect": -1},
+        ],
+    },
+    {
+        "text": "A narrow canyon offers a shortcut — two hours off the march. But the walls are too close. One rockslide, one ambush, one bad step and there's no way out.",
+        "choices": [
+            {"text": "Take the canyon. Fortune favors the bold — and the desperate.", "tag": "BLOOD", "sway_effect": 1},
+            {"text": "Scout it first. Send two ahead, wait for their signal.", "tag": "GUILE", "sway_effect": 0},
+            {"text": "Take the long way. Two extra hours beats a mass grave.", "tag": "SILENCE", "sway_effect": -1},
+        ],
+    },
+]
+
+# =============================================================================
 # COUNCIL DILEMMAS — Consolidated (was duplicated across 3 files)
 # =============================================================================
 
@@ -546,6 +636,9 @@ class CrownAndCrewEngine:
     _royal_decree_used: bool = field(default=False, repr=False)  # WO-V104: Once-per-march power
     _leaders_confidence_used: bool = field(default=False, repr=False)  # WO-V104: Once-per-march power
     _active_consequences: list[dict] = field(default_factory=list, repr=False)  # WO-V110: Tracked council outcomes
+    _midday_encounters: list[dict] = field(default_factory=list, repr=False)  # WO-V109: Midday encounter pool
+    _used_midday: list[int] = field(default_factory=list, repr=False)  # WO-V109: Used midday indices
+    _safe_passage_used: bool = field(default=False, repr=False)  # WO-V109: Safe Passage bypass (sway -1)
 
     # MED-06: Short rest per-day counter
     _short_rests_today: int = field(default=0, repr=False)
@@ -667,6 +760,13 @@ class CrownAndCrewEngine:
                 self._morning_events = list(ws["morning_events"])
             else:
                 self._morning_events = list(MORNING_EVENTS)
+
+        # WO-V109: Midday encounters — from world_state or default pool
+        if not self._midday_encounters:
+            if ws and isinstance(ws, dict) and ws.get("midday_encounters"):
+                self._midday_encounters = list(ws["midday_encounters"])
+            else:
+                self._midday_encounters = list(MIDDAY_ENCOUNTERS)
 
         # WO-V69.0: Initialize DayClock aligned to Crown's day counter
         if _DAY_CLOCK_AVAILABLE:
@@ -1622,6 +1722,114 @@ class CrownAndCrewEngine:
         return "\n".join(parts)
 
     # ─────────────────────────────────────────────────────────────────────
+    # MIDDAY ENCOUNTERS — The March (WO-V109)
+    # ─────────────────────────────────────────────────────────────────────
+
+    def get_midday_encounter(self) -> dict | None:
+        """WO-V109: Get a midday encounter for the day's march.
+
+        Returns an encounter dict with text + choices, or None if
+        Safe Passage is used to bypass. Avoids repeats.
+        """
+        pool = self._midday_encounters
+        if not pool:
+            return None
+
+        available = [i for i in range(len(pool)) if i not in self._used_midday]
+        if not available:
+            self._used_midday.clear()
+            available = list(range(len(pool)))
+
+        idx = random.choice(available)
+        self._used_midday.append(idx)
+
+        encounter = pool[idx]
+        # Ensure choices exist
+        if "choices" not in encounter or not encounter["choices"]:
+            encounter = dict(encounter)
+            encounter["choices"] = [
+                {"text": "Press through with caution.", "tag": "SILENCE", "sway_effect": 0},
+                {"text": "Push hard and fast.", "tag": "BLOOD", "sway_effect": 0},
+                {"text": "Find another way around.", "tag": "GUILE", "sway_effect": 0},
+            ]
+        return encounter
+
+    def can_bypass_midday(self) -> bool:
+        """WO-V109: Check if Safe Passage (sway -1) can bypass the midday encounter."""
+        if self._safe_passage_used:
+            return False
+        return "safe_passage" in self.get_available_powers()
+
+    def use_safe_passage(self) -> str:
+        """WO-V109: Bypass the midday encounter via Safe Passage power."""
+        if not self.can_bypass_midday():
+            if self._safe_passage_used:
+                return "Safe Passage has already been used this march."
+            return "You lack Safe Passage. Requires Crown Leaning status (sway -1 or lower)."
+        self._safe_passage_used = True
+        crown_term = self.terms.get("crown", "The Crown")
+        self._add_shard(
+            f"Day {self.day}: Used Safe Passage — bypassed midday encounter",
+            "CHRONICLE",
+        )
+        return (
+            f"A {crown_term} patrol recognizes something in your bearing. "
+            f"A nod. A turned back. You pass through unchallenged.\n"
+            f"[Safe Passage consumed — the Crew notices your privilege.]"
+        )
+
+    def get_gated_midday_choices(self, encounter: dict) -> list[dict]:
+        """WO-V109: Return midday choices with sway-gated modifications.
+
+        Trusted Ear (sway +1): adds NPC motive reveal to the encounter.
+        """
+        choices = list(encounter.get("choices", []))
+
+        # Trusted Ear (sway >= 1): bonus insight choice
+        if self.sway >= 1:
+            choices.append({
+                "text": "[Trusted Ear] The Crew's scouts whisper what they know about this place.",
+                "tag": "GUILE", "sway_effect": 0, "gated": "trusted_ear",
+            })
+
+        return choices
+
+    def resolve_midday_choice(self, choice_index: int, encounter: dict) -> str:
+        """WO-V109: Resolve a midday encounter choice.
+
+        Same pattern as resolve_morning_choice — applies tag + sway.
+        """
+        choices = encounter.get("choices", [])
+        if not choices:
+            return "The march continues without incident."
+        if choice_index < 0 or choice_index >= len(choices):
+            choice_index = 0
+
+        choice = choices[choice_index]
+        tag = choice.get("tag", "SILENCE").upper()
+        sway_effect = choice.get("sway_effect", 0)
+
+        self.sway += sway_effect
+        self.sway = max(-3, min(3, self.sway))
+
+        if tag in TAGS:
+            self.dna[tag] += 1
+
+        self._add_shard(
+            f"Day {self.day} midday: {choice['text'][:60]} [{tag}] sway {sway_effect:+d}",
+            "CHRONICLE",
+        )
+
+        tier = self.get_tier()
+        parts = [f"[{tag}] {choice['text']}"]
+        if sway_effect != 0:
+            direction = "toward the Crown" if sway_effect < 0 else "toward the Crew"
+            parts.append(f"Sway shifts {direction}. Now: {self.sway:+d} ({tier['name']}).")
+        else:
+            parts.append(f"Sway holds at {self.sway:+d} ({tier['name']}).")
+        return "\n".join(parts)
+
+    # ─────────────────────────────────────────────────────────────────────
     # COUNCIL DILEMMAS (v4.0 — consolidated)
     # ─────────────────────────────────────────────────────────────────────
 
@@ -2214,6 +2422,8 @@ class CrownAndCrewEngine:
             "_royal_decree_used": self._royal_decree_used,
             "_leaders_confidence_used": self._leaders_confidence_used,
             "_active_consequences": self._active_consequences,
+            "_used_midday": self._used_midday,
+            "_safe_passage_used": self._safe_passage_used,
         }
         # Phase 4 — Persist subsystem state if they have been initialised
         if self._politics_engine is not None:
@@ -2256,7 +2466,7 @@ class CrownAndCrewEngine:
             "_council_dilemmas", "quest_slug", "quest_name",
             "special_mechanics", "_morning_events", "_short_rests_today",
             "_drifter_tax_active", "_royal_decree_used", "_leaders_confidence_used",
-            "_active_consequences",
+            "_active_consequences", "_used_midday", "_safe_passage_used",
         ):
             if key in data:
                 setattr(engine, key, data[key])

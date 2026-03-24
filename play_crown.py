@@ -362,7 +362,68 @@ def main():
         # --- THE WORLD ---
         world_prompt = engine.get_world_prompt()
         display_card("world", world_prompt, f"[dim]Day {engine.day} — The Hostile Grounds[/dim]")
-        print("[The party travels through the day...]")
+
+        # --- MIDDAY ENCOUNTER (WO-V109) ---
+        midday = engine.get_midday_encounter()
+        if midday:
+            # Check for Safe Passage bypass
+            if engine.can_bypass_midday():
+                print()
+                if RICH_AVAILABLE:
+                    console.print(f"[dim italic]{midday['text'][:100]}...[/dim italic]")
+                    console.print(f"\n[cyan][0] Use Safe Passage — bypass this encounter[/cyan]")
+                else:
+                    print(f"  {midday['text'][:100]}...")
+                    print(f"\n  [0] Use Safe Passage — bypass this encounter")
+
+            print()
+            if RICH_AVAILABLE:
+                console.print(Panel(
+                    midday["text"],
+                    title=f"[bold]Midday — The March[/bold]",
+                    border_style="dim yellow",
+                    width=60,
+                ))
+            else:
+                print(f"\n--- Midday — The March ---")
+                print(f"  {midday['text']}")
+
+            midday_choices = engine.get_gated_midday_choices(midday)
+            for i, ch in enumerate(midday_choices):
+                tag_color = {"BLOOD": "red", "GUILE": "yellow", "HEARTH": "green",
+                             "SILENCE": "dim", "DEFIANCE": "magenta"}.get(ch.get("tag", ""), "white")
+                if RICH_AVAILABLE:
+                    console.print(f"  [{tag_color}][{i + 1}] {ch['text']}[/{tag_color}]")
+                else:
+                    print(f"  [{i + 1}] {ch['text']}")
+
+            # Safe Passage option
+            valid_range = range(1, len(midday_choices) + 1)
+            allow_zero = engine.can_bypass_midday()
+
+            midday_input = ""
+            while True:
+                midday_input = input(f"\n> Your choice ({('0/' if allow_zero else '')}1-{len(midday_choices)}): ").strip()
+                if not midday_input:
+                    midday_input = "1"
+                if midday_input == "0" and allow_zero:
+                    break
+                if midday_input.isdigit() and int(midday_input) in valid_range:
+                    break
+
+            if midday_input == "0":
+                bypass_result = engine.use_safe_passage()
+                if RICH_AVAILABLE:
+                    console.print(f"\n[bold cyan]{bypass_result}[/bold cyan]")
+                else:
+                    print(f"\n--> {bypass_result}")
+            else:
+                midday_result = engine.resolve_midday_choice(int(midday_input) - 1, {"choices": midday_choices})
+                if RICH_AVAILABLE:
+                    console.print(f"\n[bold]{midday_result}[/bold]")
+                else:
+                    print(f"\n--> {midday_result}")
+
         time.sleep(1)
 
         # --- NIGHT: THE CAMPFIRE ---

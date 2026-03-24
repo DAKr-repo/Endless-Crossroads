@@ -1491,6 +1491,116 @@ class TestCouncilConsequences:
 
 
 # =============================================================================
+# WO-V109: Midday Encounters
+# =============================================================================
+
+class TestMiddayEncounters:
+    """Test the midday encounter system."""
+
+    def test_get_midday_encounter_returns_dict(self):
+        engine = CrownAndCrewEngine()
+        encounter = engine.get_midday_encounter()
+        assert encounter is not None
+        assert "text" in encounter
+        assert "choices" in encounter
+        assert len(encounter["choices"]) >= 2
+
+    def test_midday_choices_have_required_fields(self):
+        engine = CrownAndCrewEngine()
+        encounter = engine.get_midday_encounter()
+        for ch in encounter["choices"]:
+            assert "text" in ch
+            assert "tag" in ch
+            assert "sway_effect" in ch
+
+    def test_resolve_midday_shifts_sway(self):
+        engine = CrownAndCrewEngine()
+        encounter = engine.get_midday_encounter()
+        initial_sway = engine.sway
+        # Find a non-zero sway choice
+        for i, ch in enumerate(encounter["choices"]):
+            if ch["sway_effect"] != 0:
+                engine.resolve_midday_choice(i, encounter)
+                assert engine.sway != initial_sway
+                return
+        # All zero — still valid
+        engine.resolve_midday_choice(0, encounter)
+
+    def test_resolve_midday_assigns_dna(self):
+        engine = CrownAndCrewEngine()
+        encounter = engine.get_midday_encounter()
+        initial_dna = sum(engine.dna.values())
+        engine.resolve_midday_choice(0, encounter)
+        assert sum(engine.dna.values()) == initial_dna + 1
+
+    def test_resolve_midday_creates_shard(self):
+        engine = CrownAndCrewEngine()
+        encounter = engine.get_midday_encounter()
+        shards_before = len(engine._memory_shards)
+        engine.resolve_midday_choice(0, encounter)
+        assert len(engine._memory_shards) > shards_before
+
+    def test_midday_avoids_repeats(self):
+        engine = CrownAndCrewEngine()
+        seen = set()
+        for _ in range(10):
+            enc = engine.get_midday_encounter()
+            seen.add(enc["text"][:30])
+        # Should have variety (at least 5 unique out of 10 draws)
+        assert len(seen) >= 5
+
+    def test_safe_passage_available_at_sway_minus_1(self):
+        engine = CrownAndCrewEngine()
+        engine.sway = -1
+        assert engine.can_bypass_midday() is True
+
+    def test_safe_passage_not_available_at_sway_0(self):
+        engine = CrownAndCrewEngine()
+        engine.sway = 0
+        assert engine.can_bypass_midday() is False
+
+    def test_safe_passage_once_per_march(self):
+        engine = CrownAndCrewEngine()
+        engine.sway = -1
+        result = engine.use_safe_passage()
+        assert "Safe Passage" in result or "unchallenged" in result
+        assert engine._safe_passage_used is True
+        assert engine.can_bypass_midday() is False
+
+    def test_safe_passage_rejected_without_power(self):
+        engine = CrownAndCrewEngine()
+        engine.sway = 2  # Crew side, no safe passage
+        result = engine.use_safe_passage()
+        assert "lack" in result.lower()
+
+    def test_gated_midday_trusted_ear_at_sway_1(self):
+        engine = CrownAndCrewEngine()
+        engine.sway = 1
+        encounter = engine.get_midday_encounter()
+        choices = engine.get_gated_midday_choices(encounter)
+        gated = [c for c in choices if c.get("gated") == "trusted_ear"]
+        assert len(gated) == 1
+        assert "Trusted Ear" in gated[0]["text"]
+
+    def test_gated_midday_no_bonus_at_sway_minus_1(self):
+        engine = CrownAndCrewEngine()
+        engine.sway = -1
+        encounter = engine.get_midday_encounter()
+        choices = engine.get_gated_midday_choices(encounter)
+        gated = [c for c in choices if c.get("gated")]
+        assert len(gated) == 0
+
+    def test_midday_survives_save_load(self):
+        engine = CrownAndCrewEngine()
+        engine._safe_passage_used = True
+        engine._used_midday = [0, 1, 2]
+        data = engine.to_dict()
+        restored = CrownAndCrewEngine.from_dict(data)
+        assert restored._safe_passage_used is True
+        assert restored._used_midday == [0, 1, 2]
+
+
+# =============================================================================
 # WO-V108: The Echo — Player-Driven DNA Tag Assignment
 # =============================================================================
 
