@@ -18,6 +18,7 @@ Tests:
 import random
 import pytest
 
+from codex.games.crown.engine import TAGS
 from codex.forge.reference_data.crown_leaders import LEADERS, PATRONS, LEADER_EVENTS
 from codex.forge.reference_data.crown_factions import (
     FACTIONS, FACTION_RELATIONSHIPS, FACTION_NAMES,
@@ -1151,6 +1152,97 @@ class TestEventAutoWiring:
         # Should have a political_event sub-key from EventGenerator
         assert "political_event" in event
         assert "text" in event["political_event"]
+
+
+# =============================================================================
+# WO-V107: Interactive Morning Events
+# =============================================================================
+
+class TestMorningChoices:
+    """Test interactive morning event choices."""
+
+    def test_morning_event_has_choices(self):
+        engine = CrownAndCrewEngine()
+        event = engine.get_morning_event()
+        assert "choices" in event
+        assert len(event["choices"]) >= 2
+
+    def test_each_choice_has_required_fields(self):
+        engine = CrownAndCrewEngine()
+        event = engine.get_morning_event()
+        for choice in event["choices"]:
+            assert "text" in choice
+            assert "tag" in choice
+            assert "sway_effect" in choice
+            assert choice["tag"] in TAGS
+
+    def test_resolve_morning_shifts_sway(self):
+        engine = CrownAndCrewEngine()
+        event = engine.get_morning_event()
+        initial_sway = engine.sway
+        # Find a choice with non-zero sway effect
+        for i, ch in enumerate(event["choices"]):
+            if ch["sway_effect"] != 0:
+                engine.resolve_morning_choice(i, event)
+                assert engine.sway != initial_sway
+                return
+        # If all choices are 0 effect, that's also valid
+        engine.resolve_morning_choice(0, event)
+        assert isinstance(engine.sway, int)
+
+    def test_resolve_morning_assigns_tag(self):
+        engine = CrownAndCrewEngine()
+        event = engine.get_morning_event()
+        initial_dna = sum(engine.dna.values())
+        engine.resolve_morning_choice(0, event)
+        assert sum(engine.dna.values()) == initial_dna + 1
+
+    def test_resolve_morning_creates_shard(self):
+        engine = CrownAndCrewEngine()
+        event = engine.get_morning_event()
+        shards_before = len(engine._memory_shards)
+        engine.resolve_morning_choice(0, event)
+        assert len(engine._memory_shards) > shards_before
+
+    def test_resolve_morning_returns_narrative(self):
+        engine = CrownAndCrewEngine()
+        event = engine.get_morning_event()
+        result = engine.resolve_morning_choice(0, event)
+        assert isinstance(result, str)
+        assert len(result) > 10
+        # Should mention the tag
+        chosen_tag = event["choices"][0]["tag"]
+        assert chosen_tag in result
+
+    def test_resolve_morning_clamps_sway(self):
+        engine = CrownAndCrewEngine()
+        engine.sway = 3  # At max
+        event = engine.get_morning_event()
+        # Find a +1 choice
+        for i, ch in enumerate(event["choices"]):
+            if ch["sway_effect"] > 0:
+                engine.resolve_morning_choice(i, event)
+                assert engine.sway <= 3
+                return
+
+    def test_legacy_events_get_auto_choices(self):
+        """Events without choices (from old modules) get auto-generated ones."""
+        engine = CrownAndCrewEngine()
+        # Simulate a legacy event with no choices
+        legacy_event = {"text": "Something happens.", "bias": "crew", "tag": "BLOOD"}
+        choices = engine._generate_morning_choices(legacy_event)
+        assert len(choices) == 3
+        sway_effects = {ch["sway_effect"] for ch in choices}
+        assert -1 in sway_effects  # Crown option
+        assert 1 in sway_effects   # Crew option
+        assert 0 in sway_effects   # Neutral option
+
+    def test_out_of_range_choice_defaults_to_zero(self):
+        engine = CrownAndCrewEngine()
+        event = engine.get_morning_event()
+        # Should not crash — defaults to choice 0
+        result = engine.resolve_morning_choice(99, event)
+        assert isinstance(result, str)
 
 
 # =============================================================================

@@ -236,49 +236,101 @@ ECHO_FRAME: dict[str, str] = {
 
 
 # =============================================================================
-# MORNING EVENTS — Sway-Relevant Road Encounters (WO-V14.0)
+# MORNING EVENTS — Interactive Road Encounters (WO-V14.0, V107.0)
 # =============================================================================
+# Each event now has a `choices` array. Each choice: text, tag, sway_effect.
+# Events without choices fall back to auto-generated generic options.
 
 MORNING_EVENTS: list[dict] = [
     {
         "text": "A Crown patrol passes within bowshot. Their captain scans your camp but moves on. You catch his eye — and he nods, once.",
         "bias": "crown", "tag": "GUILE",
+        "choices": [
+            {"text": "Nod back. A silent understanding between soldiers.", "tag": "GUILE", "sway_effect": -1},
+            {"text": "Look away. Don't give him a face to remember.", "tag": "SILENCE", "sway_effect": 0},
+            {"text": "Spit in the dirt where he can see. Let him know what you think of his mercy.", "tag": "DEFIANCE", "sway_effect": 1},
+        ],
     },
     {
         "text": "You find a dead messenger on the road. His satchel holds sealed orders — troop movements, supply routes. The Crew could use this.",
         "bias": "crew", "tag": "DEFIANCE",
+        "choices": [
+            {"text": "Take the orders to the Crew. Intelligence wins wars.", "tag": "DEFIANCE", "sway_effect": 1},
+            {"text": "Bury the satchel with the body. Some things aren't yours to use.", "tag": "HEARTH", "sway_effect": 0},
+            {"text": "Read the orders, memorize them, burn the originals. Keep the advantage for yourself.", "tag": "GUILE", "sway_effect": 0},
+        ],
     },
     {
         "text": "Smoke rises from a farmstead ahead. Crown soldiers are burning grain stores to deny them to rebels. A family watches from the road.",
         "bias": "neutral", "tag": "HEARTH",
+        "choices": [
+            {"text": "Intervene. Drive the soldiers off and help the family salvage what they can.", "tag": "BLOOD", "sway_effect": 1},
+            {"text": "Offer the family a place in your column. You can't save the grain but you can save them.", "tag": "HEARTH", "sway_effect": 0},
+            {"text": "Keep moving. You can't fight every injustice and survive.", "tag": "SILENCE", "sway_effect": -1},
+        ],
     },
     {
         "text": "A deserter stumbles out of the treeline, Crown tabard torn. He begs to join you. His hands are steady and his eyes are clear.",
         "bias": "crew", "tag": "BLOOD",
+        "choices": [
+            {"text": "Take him in. Everyone deserves a second chance.", "tag": "HEARTH", "sway_effect": 1},
+            {"text": "Interrogate him first. Steady hands and clear eyes could mean he's a plant.", "tag": "GUILE", "sway_effect": 0},
+            {"text": "Turn him away. Every new mouth is a risk you can't afford.", "tag": "BLOOD", "sway_effect": -1},
+        ],
     },
     {
         "text": "A Crown magistrate has posted your description at the crossroads. The likeness is poor — for now. Someone is asking questions.",
         "bias": "crown", "tag": "SILENCE",
+        "choices": [
+            {"text": "Tear the notice down and destroy it. Erase the evidence.", "tag": "DEFIANCE", "sway_effect": 1},
+            {"text": "Leave it. Tearing it down proves you were here.", "tag": "SILENCE", "sway_effect": 0},
+            {"text": "Alter the sketch — make it look like someone else. Redirect the hunt.", "tag": "GUILE", "sway_effect": -1},
+        ],
     },
     {
         "text": "You wake to find fresh bread and dried meat left at the edge of camp. No footprints. No note. Someone knows you're here and wants you fed.",
         "bias": "neutral", "tag": "HEARTH",
+        "choices": [
+            {"text": "Accept the gift gratefully. Share it equally.", "tag": "HEARTH", "sway_effect": 0},
+            {"text": "Check for poison. Generosity from strangers is rarely free.", "tag": "GUILE", "sway_effect": -1},
+            {"text": "Follow the trail. Find out who's watching and why.", "tag": "BLOOD", "sway_effect": 1},
+        ],
     },
     {
         "text": "A merchant caravan flies Crown colors but the drivers wink at your crew. 'Flags are cheap,' one mutters. 'Loyalty isn't.'",
         "bias": "crew", "tag": "GUILE",
+        "choices": [
+            {"text": "Trade with them. Supplies matter more than politics.", "tag": "GUILE", "sway_effect": 0},
+            {"text": "Ask what they really carry under those Crown tarps.", "tag": "DEFIANCE", "sway_effect": 1},
+            {"text": "Report them to the nearest Crown checkpoint. Play both sides.", "tag": "GUILE", "sway_effect": -1},
+        ],
     },
     {
         "text": "You pass a gibbet at the crossroads. The body wears a Crew sash. A warning, or a message: the Crown's justice reaches everywhere.",
         "bias": "crown", "tag": "SILENCE",
+        "choices": [
+            {"text": "Cut the body down and bury it properly. Even the dead deserve dignity.", "tag": "HEARTH", "sway_effect": 1},
+            {"text": "Study the body for information. How long? What method? Who ordered this?", "tag": "GUILE", "sway_effect": 0},
+            {"text": "Walk past without looking. You can't afford to care.", "tag": "SILENCE", "sway_effect": -1},
+        ],
     },
     {
         "text": "A half-drowned rider catches up to your party. She carries a letter from the Leader — new orders, or old debts calling due.",
         "bias": "crew", "tag": "DEFIANCE",
+        "choices": [
+            {"text": "Read the letter aloud to the group. No more secrets.", "tag": "DEFIANCE", "sway_effect": 1},
+            {"text": "Read it privately first. Knowledge is leverage.", "tag": "GUILE", "sway_effect": 0},
+            {"text": "Burn it unread. You follow your own orders now.", "tag": "BLOOD", "sway_effect": 0},
+        ],
     },
     {
         "text": "The road forks. One path is smooth and patrolled — Crown territory. The other is overgrown and unmarked. Both lead to the border.",
         "bias": "neutral", "tag": "BLOOD",
+        "choices": [
+            {"text": "Take the Crown road. Speed matters more than secrecy.", "tag": "BLOOD", "sway_effect": -1},
+            {"text": "Take the wild path. Harder ground, but no eyes on you.", "tag": "SILENCE", "sway_effect": 1},
+            {"text": "Split the group. One draws attention, the other slips through.", "tag": "GUILE", "sway_effect": 0},
+        ],
     },
 ]
 
@@ -1239,12 +1291,20 @@ class CrownAndCrewEngine:
         return self._secret_witness
 
     def get_morning_event(self) -> dict:
-        """Get a sway-relevant morning road event (WO-V14.0).
+        """Get a sway-relevant morning road event (WO-V14.0, V107.0).
 
         Day 1 returns neutral events to set the scene.
         Days 2+ return biased events to sway the allegiance choice.
         Avoids repeats using the same pattern as _get_unique_prompt.
         Uses self._morning_events (quest-injectable, WO-V25.0).
+
+        WO-V107: Events now include a ``choices`` array. If the source
+        event lacks choices (legacy module data), generic choices are
+        auto-generated from the event's bias and tag.
+
+        Returns:
+            dict with keys: text, bias, tag, choices (list of dicts
+            with text, tag, sway_effect).
         """
         pool = self._morning_events
         if self.day == 1:
@@ -1263,7 +1323,83 @@ class CrownAndCrewEngine:
 
         idx = random.choice(available)
         self._used_morning.append(idx)
-        return pool[idx]
+        event = pool[idx]
+
+        # WO-V107: Ensure choices exist — auto-generate for legacy events
+        if "choices" not in event or not event["choices"]:
+            event = dict(event)  # Don't mutate the pool
+            event["choices"] = self._generate_morning_choices(event)
+
+        return event
+
+    @staticmethod
+    def _generate_morning_choices(event: dict) -> list[dict]:
+        """WO-V107: Auto-generate choices for a morning event without them.
+
+        Produces 3 generic choices based on the event's bias:
+        - One aligned with Crown (sway -1)
+        - One aligned with Crew (sway +1)
+        - One neutral/pragmatic (sway 0)
+        """
+        bias = event.get("bias", "neutral")
+        tag = event.get("tag", "SILENCE")
+
+        # Crown-aligned choice
+        crown_tags = ["GUILE", "SILENCE"]
+        crown_tag = tag if tag in crown_tags else "SILENCE"
+
+        # Crew-aligned choice
+        crew_tags = ["DEFIANCE", "HEARTH", "BLOOD"]
+        crew_tag = tag if tag in crew_tags else "DEFIANCE"
+
+        return [
+            {"text": "Act in the Crown's interest — order and caution.", "tag": crown_tag, "sway_effect": -1},
+            {"text": "Act in the Crew's interest — freedom and solidarity.", "tag": crew_tag, "sway_effect": 1},
+            {"text": "Act for yourself — pragmatism above allegiance.", "tag": "GUILE", "sway_effect": 0},
+        ]
+
+    def resolve_morning_choice(self, choice_index: int, event: dict) -> str:
+        """WO-V107: Resolve a morning event choice.
+
+        Args:
+            choice_index: Zero-based index into event['choices'].
+            event: The morning event dict returned by get_morning_event().
+
+        Returns:
+            Narrative result string with tag and sway feedback.
+        """
+        choices = event.get("choices", [])
+        if not choices:
+            return "No choices available."
+        if choice_index < 0 or choice_index >= len(choices):
+            choice_index = 0
+
+        choice = choices[choice_index]
+        tag = choice.get("tag", "SILENCE").upper()
+        sway_effect = choice.get("sway_effect", 0)
+
+        # Apply sway shift
+        self.sway += sway_effect
+        self.sway = max(-3, min(3, self.sway))
+
+        # Apply DNA tag
+        if tag in TAGS:
+            self.dna[tag] += 1
+
+        # Record shard
+        self._add_shard(
+            f"Day {self.day} morning: {choice['text'][:60]} [{tag}] sway {sway_effect:+d}",
+            "CHRONICLE",
+        )
+
+        tier = self.get_tier()
+        parts = [f"[{tag}] {choice['text']}"]
+        if sway_effect != 0:
+            direction = "toward the Crown" if sway_effect < 0 else "toward the Crew"
+            parts.append(f"Sway shifts {direction}. Now: {self.sway:+d} ({tier['name']}).")
+        else:
+            parts.append(f"Sway holds at {self.sway:+d} ({tier['name']}).")
+        return "\n".join(parts)
 
     # ─────────────────────────────────────────────────────────────────────
     # COUNCIL DILEMMAS (v4.0 — consolidated)

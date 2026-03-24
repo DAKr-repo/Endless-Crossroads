@@ -311,7 +311,7 @@ def main():
     while engine.day <= engine.arc_length:
         clear_screen()
 
-        # --- MORNING EVENT ---
+        # --- MORNING EVENT (WO-V107: Interactive) ---
         morning = engine.get_morning_event()
         if RICH_AVAILABLE:
             console.print(
@@ -325,6 +325,37 @@ def main():
         else:
             print(f"\n--- Dawn — Day {engine.day}/{engine.arc_length} ---")
             print(f"  {morning['text']}")
+
+        # Present morning choices
+        choices = morning.get("choices", [])
+        if choices:
+            print()
+            for i, ch in enumerate(choices):
+                tag_color = {"BLOOD": "red", "GUILE": "yellow", "HEARTH": "green",
+                             "SILENCE": "dim", "DEFIANCE": "magenta"}.get(ch.get("tag", ""), "white")
+                sway_indicator = ""
+                se = ch.get("sway_effect", 0)
+                if se < 0:
+                    sway_indicator = f" [{crown_term}]"
+                elif se > 0:
+                    sway_indicator = f" [{crew_term}]"
+
+                if RICH_AVAILABLE:
+                    console.print(f"  [{tag_color}][{i + 1}] {ch['text']}[/{tag_color}]{sway_indicator}")
+                else:
+                    print(f"  [{i + 1}] {ch['text']}{sway_indicator}")
+
+            morning_choice = ""
+            while not morning_choice.isdigit() or not (1 <= int(morning_choice) <= len(choices)):
+                morning_choice = input(f"\n> Your choice (1-{len(choices)}): ").strip()
+                if not morning_choice:
+                    morning_choice = "1"
+
+            morning_result = engine.resolve_morning_choice(int(morning_choice) - 1, morning)
+            if RICH_AVAILABLE:
+                console.print(f"\n[bold]{morning_result}[/bold]")
+            else:
+                print(f"\n--> {morning_result}")
 
         time.sleep(1)
 
