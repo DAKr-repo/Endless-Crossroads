@@ -1724,6 +1724,126 @@ class TestMirrorBreak:
 
 
 # =============================================================================
+# WO-V133: Multiplayer Player Slots
+# =============================================================================
+
+class TestPlayerSlots:
+    """Test multiplayer player slot system."""
+
+    def test_solo_player_created_by_default(self):
+        engine = CrownAndCrewEngine()
+        assert "_solo" in engine.players
+        assert len(engine.players) == 1
+
+    def test_solo_syncs_to_legacy_fields(self):
+        engine = CrownAndCrewEngine()
+        engine.players["_solo"].sway = 2
+        engine.players["_solo"].dna["BLOOD"] = 3
+        engine._sync_solo_to_legacy()
+        assert engine.sway == 2
+        assert engine.dna["BLOOD"] == 3
+
+    def test_add_player(self):
+        engine = CrownAndCrewEngine()
+        ps = engine.add_player("Alice")
+        assert "Alice" in engine.players
+        assert ps.name == "Alice"
+        assert ps.sway == 0
+        assert sum(ps.dna.values()) == 0
+
+    def test_add_multiple_players(self):
+        engine = CrownAndCrewEngine()
+        engine.add_player("Alice")
+        engine.add_player("Bob")
+        engine.add_player("Carol")
+        assert engine.is_multiplayer()
+        assert len(engine.get_all_players()) == 3
+
+    def test_is_multiplayer_false_for_solo(self):
+        engine = CrownAndCrewEngine()
+        assert not engine.is_multiplayer()
+
+    def test_get_player_creates_on_demand(self):
+        engine = CrownAndCrewEngine()
+        ps = engine._get_player("NewPlayer")
+        assert "NewPlayer" in engine.players
+        assert ps.name == "NewPlayer"
+
+    def test_player_state_independence(self):
+        engine = CrownAndCrewEngine()
+        alice = engine.add_player("Alice")
+        bob = engine.add_player("Bob")
+        alice.sway = 3
+        alice.dna["BLOOD"] = 5
+        bob.sway = -2
+        bob.dna["GUILE"] = 3
+        assert alice.sway != bob.sway
+        assert alice.dna["BLOOD"] != bob.dna["BLOOD"]
+
+    def test_player_dominant_tag(self):
+        engine = CrownAndCrewEngine()
+        ps = engine.add_player("Alice")
+        ps.dna["DEFIANCE"] = 5
+        ps.dna["HEARTH"] = 2
+        assert ps.get_dominant_tag() == "DEFIANCE"
+
+    def test_player_alignment(self):
+        engine = CrownAndCrewEngine()
+        ps = engine.add_player("Alice")
+        ps.sway = 3
+        assert ps.get_alignment() == "CREW"
+        ps.sway = -2
+        assert ps.get_alignment() == "CROWN"
+        ps.sway = 0
+        assert ps.get_alignment() == "DRIFTER"
+
+    def test_player_vote_power(self):
+        engine = CrownAndCrewEngine()
+        ps = engine.add_player("Alice")
+        ps.sway = 3
+        assert ps.get_vote_power() == 8
+        ps.sway = 0
+        assert ps.get_vote_power() == 1
+
+    def test_players_survive_save_load(self):
+        engine = CrownAndCrewEngine()
+        alice = engine.add_player("Alice")
+        alice.sway = 2
+        alice.dna["HEARTH"] = 4
+        alice._mirror_choice = "expose"
+        bob = engine.add_player("Bob")
+        bob.sway = -1
+        bob.dna["GUILE"] = 3
+
+        data = engine.to_dict()
+        restored = CrownAndCrewEngine.from_dict(data)
+        assert "Alice" in restored.players
+        assert "Bob" in restored.players
+        assert restored.players["Alice"].sway == 2
+        assert restored.players["Alice"].dna["HEARTH"] == 4
+        assert restored.players["Alice"]._mirror_choice == "expose"
+        assert restored.players["Bob"].sway == -1
+
+    def test_backward_compat_solo_declare(self):
+        """Existing single-player declare_allegiance still works."""
+        engine = CrownAndCrewEngine()
+        result = engine.declare_allegiance("crown", tag="GUILE")
+        assert engine.dna["GUILE"] == 1
+        # Solo player should also have it
+        assert engine.players["_solo"].dna["GUILE"] == 1
+
+    def test_get_all_players_excludes_solo_in_multiplayer(self):
+        engine = CrownAndCrewEngine()
+        engine.add_player("Alice")
+        engine.add_player("Bob")
+        players = engine.get_all_players()
+        names = {p.name for p in players}
+        assert "_solo" not in names
+        assert "Alice" in names
+        assert "Bob" in names
+
+
+# =============================================================================
 # WO-V108: The Echo — Player-Driven DNA Tag Assignment
 # =============================================================================
 

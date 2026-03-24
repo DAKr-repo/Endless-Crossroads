@@ -624,6 +624,96 @@ VOTE_POWER: dict[int, int] = {
 
 
 # =============================================================================
+# PLAYER STATE (WO-V133 — Multiplayer)
+# =============================================================================
+
+_SOLO = "_solo"  # Sentinel name for single-player mode
+
+
+@dataclass
+class CrownPlayerState:
+    """Per-player state in a Crown & Crew session.
+
+    Each player tracks their own sway, DNA, history, mirror choice, and
+    power usage independently. Shared state (day, patron, leader, prompts,
+    factions, consequences) lives on the engine.
+    """
+    name: str = ""
+    sway: int = 0
+    dna: dict[str, int] = field(default_factory=lambda: {tag: 0 for tag in TAGS})
+    history: list[dict] = field(default_factory=list)
+
+    # Echo state
+    _pending_allegiance: str | None = field(default=None, repr=False)
+    _pending_echo: bool = field(default=False, repr=False)
+    _pending_shift: int = field(default=0, repr=False)
+
+    # Mirror Break
+    _mirror_choice: str = field(default="", repr=False)
+    _mirror_sin: str = field(default="", repr=False)
+
+    # Power usage (once-per-march)
+    _royal_decree_used: bool = field(default=False, repr=False)
+    _leaders_confidence_used: bool = field(default=False, repr=False)
+    _safe_passage_used: bool = field(default=False, repr=False)
+
+    # Voting record
+    dissent_count: int = field(default=0, repr=False)
+    majority_count: int = field(default=0, repr=False)
+
+    # Character Loom (WO-V124)
+    _loom: object | None = field(default=None, repr=False)
+
+    def get_dominant_tag(self) -> str:
+        """Return the tag with the highest count."""
+        if not any(self.dna.values()):
+            return "SILENCE"
+        return max(self.dna, key=lambda k: self.dna[k])
+
+    def get_alignment(self) -> str:
+        """Determine alignment from sway."""
+        if self.sway > 0:
+            return "CREW"
+        elif self.sway < 0:
+            return "CROWN"
+        return "DRIFTER"
+
+    def get_vote_power(self) -> int:
+        """Get vote weight from sway magnitude."""
+        return VOTE_POWER.get(abs(self.sway), 1)
+
+    def to_dict(self) -> dict:
+        return {
+            "name": self.name,
+            "sway": self.sway,
+            "dna": dict(self.dna),
+            "history": list(self.history),
+            "_pending_allegiance": self._pending_allegiance,
+            "_pending_echo": self._pending_echo,
+            "_pending_shift": self._pending_shift,
+            "_mirror_choice": self._mirror_choice,
+            "_mirror_sin": self._mirror_sin,
+            "_royal_decree_used": self._royal_decree_used,
+            "_leaders_confidence_used": self._leaders_confidence_used,
+            "_safe_passage_used": self._safe_passage_used,
+            "dissent_count": self.dissent_count,
+            "majority_count": self.majority_count,
+        }
+
+    @classmethod
+    def from_dict(cls, data: dict) -> "CrownPlayerState":
+        ps = cls(name=data.get("name", ""))
+        for key in ("sway", "dna", "history", "_pending_allegiance",
+                     "_pending_echo", "_pending_shift", "_mirror_choice",
+                     "_mirror_sin", "_royal_decree_used",
+                     "_leaders_confidence_used", "_safe_passage_used",
+                     "dissent_count", "majority_count"):
+            if key in data:
+                setattr(ps, key, data[key])
+        return ps
+
+
+# =============================================================================
 # ENGINE CLASS
 # =============================================================================
 
@@ -639,15 +729,22 @@ class CrownAndCrewEngine:
     Supports dynamic world injection via world_state dict from WorldEngine.
     Supports Political Gravity (weighted council voting via resolve_vote).
     Supports variable-length arcs via arc_length and rest-based progression.
+
+    WO-V133: Multiplayer support via player slots. Per-player state (sway, DNA,
+    history, powers) tracked in ``players`` dict. Single-player mode uses the
+    ``_solo`` sentinel. All per-player methods accept ``player_name`` param.
     """
     day: int = 1
-    sway: int = 0
+    sway: int = 0       # Legacy single-player sway (synced from _solo player)
     patron: str = ""
     leader: str = ""
-    history: list[dict] = field(default_factory=list)
+    history: list[dict] = field(default_factory=list)  # Legacy (synced from _solo)
 
-    # Narrative DNA tracking
+    # Narrative DNA tracking (legacy — synced from _solo player)
     dna: dict[str, int] = field(default_factory=lambda: {tag: 0 for tag in TAGS})
+
+    # WO-V133: Multiplayer player slots
+    players: dict[str, CrownPlayerState] = field(default_factory=dict, repr=False)
 
     # Arc length + rest progression (v4.0)
     arc_length: int = 5
@@ -838,6 +935,92 @@ class CrownAndCrewEngine:
             self._day_clock = DayClock(phase=TimeOfDay.MORNING, day=self.day)
         else:
             self._day_clock = None
+
+        # WO-V133: Initialize solo player if no players provided
+        if not self.players:
+            # Share references so engine.dna IS player.dna — zero-copy sync
+            ps = CrownPlayerState(name=_SOLO)
+            ps.sway = self.sway
+            ps.dna = self.dna  # Shared reference
+            ps.history = self.history  # Shared reference
+            ps._pending_allegiance = self._pending_allegiance
+            ps._pending_echo = self._pending_echo
+            ps._pending_shift = self._pending_shift
+            ps._mirror_choice = self._mirror_choice
+            ps._mirror_sin = self._mirror_sin
+            ps._royal_decree_used = self._royal_decree_used
+            ps._leaders_confidence_used = self._leaders_confidence_used
+            ps._safe_passage_used = self._safe_passage_used
+            self.players[_SOLO] = ps
+
+    # ─────────────────────────────────────────────────────────────────────
+    # PLAYER ACCESS (WO-V133)
+    # ─────────────────────────────────────────────────────────────────────
+
+    def _get_player(self, player_name: str = _SOLO) -> CrownPlayerState:
+        """Get or create a player state by name.
+
+        In solo mode (default), returns the _solo player.
+        In multiplayer, returns the named player or creates a new one.
+        """
+        if player_name not in self.players:
+            self.players[player_name] = CrownPlayerState(name=player_name)
+        return self.players[player_name]
+
+    def add_player(self, name: str) -> CrownPlayerState:
+        """Register a new player for multiplayer sessions."""
+        if name in self.players:
+            return self.players[name]
+        ps = CrownPlayerState(name=name)
+        self.players[name] = ps
+        return ps
+
+    def get_all_players(self) -> list[CrownPlayerState]:
+        """Return all player states (excluding _solo in multiplayer)."""
+        if len(self.players) == 1 and _SOLO in self.players:
+            return [self.players[_SOLO]]
+        return [ps for name, ps in self.players.items() if name != _SOLO]
+
+    def is_multiplayer(self) -> bool:
+        """True if more than one real player is registered."""
+        real = [n for n in self.players if n != _SOLO]
+        return len(real) > 1
+
+    def _sync_solo_to_legacy(self) -> None:
+        """Sync the _solo player's state back to legacy engine fields.
+
+        dna and history are shared references (mutations auto-sync).
+        Scalar fields (sway, booleans) need explicit sync.
+        """
+        if _SOLO in self.players:
+            ps = self.players[_SOLO]
+            self.sway = ps.sway
+            # dna and history are shared references — no copy needed
+            self._pending_allegiance = ps._pending_allegiance
+            self._pending_echo = ps._pending_echo
+            self._pending_shift = ps._pending_shift
+            self._mirror_choice = ps._mirror_choice
+            self._mirror_sin = ps._mirror_sin
+            self._royal_decree_used = ps._royal_decree_used
+            self._leaders_confidence_used = ps._leaders_confidence_used
+            self._safe_passage_used = ps._safe_passage_used
+
+    def _sync_legacy_to_solo(self) -> None:
+        """Sync legacy scalar fields back to the _solo player.
+
+        Called after methods that modify engine.sway directly.
+        """
+        if _SOLO in self.players:
+            ps = self.players[_SOLO]
+            ps.sway = self.sway
+            ps._pending_allegiance = self._pending_allegiance
+            ps._pending_echo = self._pending_echo
+            ps._pending_shift = self._pending_shift
+            ps._mirror_choice = self._mirror_choice
+            ps._mirror_sin = self._mirror_sin
+            ps._royal_decree_used = self._royal_decree_used
+            ps._leaders_confidence_used = self._leaders_confidence_used
+            ps._safe_passage_used = self._safe_passage_used
 
     # ─────────────────────────────────────────────────────────────────────
     # MEMORY SHARD HELPERS (WO-V10.0)
@@ -2592,6 +2775,7 @@ class CrownAndCrewEngine:
             "_safe_passage_used": self._safe_passage_used,
             "_mirror_choice": self._mirror_choice,
             "_mirror_sin": self._mirror_sin,
+            "players": {name: ps.to_dict() for name, ps in self.players.items()},
         }
         # Phase 4 — Persist subsystem state if they have been initialised
         if self._politics_engine is not None:
@@ -2639,6 +2823,13 @@ class CrownAndCrewEngine:
         ):
             if key in data:
                 setattr(engine, key, data[key])
+
+        # WO-V133: Restore player slots
+        if "players" in data and isinstance(data["players"], dict):
+            engine.players = {
+                name: CrownPlayerState.from_dict(ps_data)
+                for name, ps_data in data["players"].items()
+            }
 
         # Phase 4 — Restore subsystem state if present
         if "_politics_engine" in data:
