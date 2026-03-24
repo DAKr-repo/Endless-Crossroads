@@ -7,346 +7,626 @@
       "pronouns": "he/him",
       "role": "innkeeper",
       "description": "The grizzled proprietor of the Yawning Portal tavern, a retired adventurer whose scarred hands pour ale with the same ease they once swung a greatsword. He tolerates fools poorly and charges double for replacing broken furniture.",
-      "source": "Dragon Heist p.18"
+      "source": "Dragon Heist p.18",
+      "quirk": "Polishes the same spot on the bar when sizing someone up",
+      "secret": "Still descends into Undermountain alone on moonless nights, mapping passages no one else knows exist",
+      "voice": "Terse and measured",
+      "want": "Needs reliable adventurers to handle what crawls up from the Well",
+      "need": "Misses the danger of the deep and fears growing old behind a bar"
     },
     {
       "name": "Volothamp Geddarm",
       "pronouns": "he/him",
       "role": "scholar",
       "description": "A flamboyant travel writer and self-proclaimed expert on everything, whose embellished guidebooks are as famous as they are unreliable. He speaks in the third person when drunk, which is often.",
-      "source": "Dragon Heist p.19"
+      "source": "Dragon Heist p.19",
+      "quirk": "Gestures so broadly while talking that nearby drinks are in constant peril",
+      "secret": "Fabricated at least two chapters of Volo's Guide from tavern rumors he never verified",
+      "voice": "Theatrical and breathless",
+      "want": "Seeks adventurers to confirm his latest outrageous claim before the publisher's deadline",
+      "need": "Craves genuine respect from scholars who dismiss him as a fraud"
     },
     {
       "name": "Laeral Silverhand",
       "pronouns": "she/her",
       "role": "faction_leader",
       "description": "The Open Lord of Waterdeep, one of the Seven Sisters chosen by Mystra. She governs with quiet authority and a centuries-long memory, and her patience for political games is matched only by her arcane power.",
-      "source": "Dragon Heist p.200"
+      "source": "Dragon Heist p.200",
+      "quirk": "Absently traces silver light across her fingertips when deep in thought",
+      "secret": "Still mourns Khelben Blackstaff and consults a locket containing his last recorded words",
+      "voice": "Calm and precise",
+      "want": "Seeks to root out Masked Lord corruption before it destabilizes the city",
+      "need": "Longs for a peer who sees her as a person, not a centuries-old institution"
     },
     {
       "name": "Vajra Safahr",
       "pronouns": "she/her",
       "role": "faction_leader",
       "description": "The youngest Blackstaff in Waterdeep's history, a prodigy who inherited the sentient staff and all the memories of her predecessors. The weight of their voices sometimes shows in her distant stare.",
-      "source": "Dragon Heist p.201"
+      "source": "Dragon Heist p.201",
+      "quirk": "Pauses mid-sentence as if listening to someone only she can hear",
+      "secret": "The previous Blackstaffs' memories are growing louder, and she fears losing herself among them",
+      "voice": "Clipped and distracted",
+      "want": "Needs agents to investigate magical disturbances she cannot attend to personally",
+      "need": "Desperately wants to silence the dead voices long enough to hear her own"
     },
     {
       "name": "Mirt the Moneylender",
       "pronouns": "he/him",
       "role": "faction_leader",
       "description": "A rotund, wheezing Harper agent who hides a legendary adventurer's cunning beneath the persona of a debt-collecting merchant. He laughs too loudly and notices everything.",
-      "source": "Dragon Heist p.197"
+      "source": "Dragon Heist p.197",
+      "quirk": "Jingles coins in his pocket constantly, faster when he's lying",
+      "secret": "Bankrolls half the Harper operations in the Sword Coast from personal funds running dangerously low",
+      "voice": "Boisterous and sly",
+      "want": "Seeks allies to recover debts from dangerous clients the Watch won't touch",
+      "need": "Fears becoming irrelevant as younger Harpers see him as a relic"
     },
     {
       "name": "Jarlaxle Baenre",
       "pronouns": "he/him",
       "role": "criminal",
       "description": "A drow mercenary lord who runs Bregan D'aerthe from the shadows of Luskan and Waterdeep alike. His wide-brimmed hat, eye patch, and theatrical bow conceal a mind that plans seven moves ahead.",
-      "source": "Dragon Heist p.196"
+      "source": "Dragon Heist p.196",
+      "quirk": "Tips his hat to enemies and allies alike, making it impossible to tell which you are",
+      "secret": "Genuinely wants surface acceptance for drow outcasts, not just profit from their exile",
+      "voice": "Honeyed and evasive",
+      "want": "Seeks Neverember's hidden gold to fund Luskan's transformation into a legitimate power",
+      "need": "Craves a home where he belongs, having never truly had one in Menzoberranzan or above"
     },
     {
       "name": "Manshoon",
       "pronouns": "he/him",
       "role": "criminal",
       "description": "A clone of the original founder of the Zhentarim, operating from a hidden sanctum in Kolat Towers. He seeks to reclaim control of the Black Network through fear, magic, and murder.",
-      "source": "Dragon Heist p.197"
+      "source": "Dragon Heist p.197",
+      "quirk": "Touches his own face compulsively, as if confirming it is still his",
+      "secret": "Suspects he may not be the only surviving Manshoon clone and trusts no mirror",
+      "voice": "Cold and imperious",
+      "want": "Needs the Zhentarim brought back under his absolute command",
+      "need": "Wants to prove he is the real Manshoon and not merely a copy of a dead man"
     },
     {
       "name": "Xanathar",
       "pronouns": "it/its",
       "role": "criminal",
       "description": "A paranoid beholder crime lord ruling Waterdeep's underworld from a lair beneath Skullport. It names all its pet goldfish Sylgar and flies into murderous rages when one dies.",
-      "source": "Dragon Heist p.198"
+      "source": "Dragon Heist p.198",
+      "quirk": "Rotates its central eye to check on Sylgar's bowl every few seconds during conversation",
+      "secret": "Has replaced Sylgar at least eleven times and cannot tell the difference, which terrifies it",
+      "voice": "Grandiose and paranoid",
+      "want": "Demands information on every rival, perceived slight, and conspiracy in Waterdeep",
+      "need": "Needs something, anything, it cannot lose -- hence the goldfish"
     },
     {
       "name": "Renaer Neverember",
       "pronouns": "he/him",
       "role": "noble",
       "description": "The estranged son of the former Open Lord Dagult Neverember, a young noble who rejects politics in favor of philanthropy. His father's stolen hoard has made him an unwilling target.",
-      "source": "Dragon Heist p.199"
+      "source": "Dragon Heist p.199",
+      "quirk": "Runs his thumb along the family signet ring he refuses to remove",
+      "secret": "Knows more about his father's embezzled gold than he admits to anyone",
+      "voice": "Earnest and self-deprecating",
+      "want": "Seeks trustworthy allies who want nothing to do with his father's fortune",
+      "need": "Needs to stop defining himself as 'not his father' and discover who he actually is"
     },
     {
       "name": "Elminster Aumar",
       "pronouns": "he/him",
       "role": "scholar",
       "description": "The Sage of Shadowdale, an ancient Chosen of Mystra whose pipe smoke smells of distant planes. He appears when least expected, offers cryptic advice, and vanishes before the bill arrives.",
-      "source": "SCAG p.112"
+      "source": "SCAG p.112",
+      "quirk": "Lights his pipe with a different spell each time, never the same one twice",
+      "secret": "Carries grief for every Chosen who fell during the Spellplague and blames himself for surviving",
+      "voice": "Rambling and cryptic",
+      "want": "Nudges mortals toward threats too delicate for divine intervention",
+      "need": "Yearns for a world that no longer needs him to keep watch"
     },
     {
       "name": "Drizzt Do'Urden",
       "pronouns": "he/him",
       "role": "ranger",
       "description": "A drow exile who forsook the cruelty of Menzoberranzan, wielding twin scimitars Twinkle and Icingdeath. He walks the surface as a ranger of the North, never entirely free of the prejudice his skin invites.",
-      "source": "SCAG p.133"
+      "source": "SCAG p.133",
+      "quirk": "Spins a scimitar idly when thinking, the blade a silver blur at his wrist",
+      "secret": "Fears the Hunter, the feral battle-rage inside him, more than any external enemy",
+      "voice": "Quiet and philosophical",
+      "want": "Seeks to prove that heritage does not dictate destiny",
+      "need": "Needs to stop proving himself and accept that he already has"
     },
     {
       "name": "Bruenor Battlehammer",
       "pronouns": "he/him",
       "role": "faction_leader",
       "description": "King of Mithral Hall, Gauntlgrym, and every dwarven stronghold he has reclaimed by axe and stubbornness. His red beard is singed at the tips from forge-work, and he calls everyone 'ye.'",
-      "source": "SCAG p.131"
+      "source": "SCAG p.131",
+      "quirk": "Thumps the nearest surface to punctuate every sentence",
+      "secret": "Privately doubts he deserves to sit on thrones won by the blood of friends who died for his causes",
+      "voice": "Gruff and bellowing",
+      "want": "Needs reliable allies to secure Gauntlgrym's deeper tunnels from drow incursions",
+      "need": "Wants his adopted family together and safe, which kingship keeps preventing"
     },
     {
       "name": "Remallia Haventree",
       "pronouns": "she/her",
       "role": "faction_leader",
       "description": "A sun elf noble and senior Harper in Waterdeep, whose salon gatherings mask intelligence-gathering operations. Her grief over her husband's murder fuels a quiet, relentless resolve.",
-      "source": "Dragon Heist p.199"
+      "source": "Dragon Heist p.199",
+      "quirk": "Arranges flowers at every meeting, always white lilies -- her husband's funeral flower",
+      "secret": "Has identified her husband's killer but delays justice to use them as an unwitting intelligence source",
+      "voice": "Gracious and deliberate",
+      "want": "Seeks operatives to infiltrate a noble house she suspects of Zhentarim ties",
+      "need": "Needs to grieve fully instead of channeling every emotion into Harper missions"
     },
     {
       "name": "Davil Starsong",
       "pronouns": "he/him",
       "role": "faction_leader",
       "description": "A sun elf who leads the Doom Raiders, the moderate faction of the Zhentarim in Waterdeep. He prefers commerce over coercion but keeps a loaded crossbow under his desk.",
-      "source": "Dragon Heist p.196"
+      "source": "Dragon Heist p.196",
+      "quirk": "Smooths his cuffs before every handshake, buying a half-second to read the other person",
+      "secret": "Feeds select intelligence to the Harpers to keep Manshoon's faction in check",
+      "voice": "Smooth and mercantile",
+      "want": "Needs partners for a trade deal that would legitimize the Doom Raiders publicly",
+      "need": "Fears that the Zhentarim name is irredeemable and his reforms are merely postponing collapse"
     },
     {
       "name": "Jalester Silvermane",
       "pronouns": "he/him",
       "role": "faction_leader",
       "description": "A young, earnest agent of the Lords' Alliance assigned to Waterdeep. He takes his duty with painful seriousness and reports directly to Laeral Silverhand.",
-      "source": "Dragon Heist p.196"
+      "source": "Dragon Heist p.196",
+      "quirk": "Stands at attention even when sitting, spine rigid as a sword",
+      "secret": "Fabricated a commendation on his record to secure the Waterdeep posting he desperately wanted",
+      "voice": "Formal and stiff",
+      "want": "Seeks field agents to handle threats the Alliance bureaucracy moves too slowly to address",
+      "need": "Needs to learn that duty without flexibility breaks people, including himself"
     },
     {
       "name": "Melannor Fellbranch",
       "pronouns": "he/him",
       "role": "faction_leader",
       "description": "A human druid who tends the Phaulkonmere greenhouse in Waterdeep as an Emerald Enclave contact. His hands are always stained green, and he speaks more gently to plants than to people.",
-      "source": "Dragon Heist p.197"
+      "source": "Dragon Heist p.197",
+      "quirk": "Presses a leaf between his fingers and sniffs it before answering any question",
+      "secret": "The greenhouse conceals a portal to a hidden Enclave grove threatened by creeping urban blight",
+      "voice": "Soft and halting",
+      "want": "Needs help investigating unnatural plant die-offs in the City of the Dead",
+      "need": "Craves human connection but has spent so long among plants he has forgotten how"
     },
     {
       "name": "Savra Belabranta",
       "pronouns": "she/her",
       "role": "faction_leader",
       "description": "A zealous young paladin of Tyr who leads the Order of the Gauntlet's Waterdeep chapter. Her faith burns bright enough to blind her to moral ambiguity.",
-      "source": "Dragon Heist p.198"
+      "source": "Dragon Heist p.198",
+      "quirk": "Grips her holy symbol whenever someone speaks a half-truth near her",
+      "secret": "Ignored evidence that would have exonerated an accused heretic she had already judged guilty",
+      "voice": "Righteous and clipped",
+      "want": "Seeks warriors to purge a nest of devil-worshippers in the Trades Ward",
+      "need": "Needs to confront the possibility that certainty and justice are not the same thing"
     },
     {
       "name": "Hlam",
       "pronouns": "he/him",
       "role": "monk",
       "description": "An elderly monk who lives in a cave on the slopes of Mount Waterdeep, speaking only in riddles and koans. He is far more dangerous than he appears.",
-      "source": "Dragon Heist p.195"
+      "source": "Dragon Heist p.195",
+      "quirk": "Catches insects mid-flight and releases them unharmed while holding a conversation",
+      "secret": "Could end most threats to Waterdeep himself but believes suffering teaches what safety cannot",
+      "voice": "Serene and riddling",
+      "want": "Seeks a student worthy of inheriting his vigil over the city",
+      "need": "Fears that his detachment has become indifference dressed in philosophy"
     },
     {
       "name": "Istrid Horn",
       "pronouns": "she/her",
       "role": "criminal",
       "description": "A dwarven loan shark and Zhentarim enforcer whose ledgers are as precise as her threats. She collects debts in gold or in fingers, at the borrower's preference.",
-      "source": "Dragon Heist p.196"
+      "source": "Dragon Heist p.196",
+      "quirk": "Counts coins by ear, flicking them off her thumbnail to test purity",
+      "secret": "Sends anonymous charitable donations to a Dock Ward orphanage using confiscated debt payments",
+      "voice": "Blunt and transactional",
+      "want": "Needs someone to collect a high-value debt from a noble who thinks title makes them untouchable",
+      "need": "Wants to be remembered as more than a debt collector when her ledgers are finally closed"
     },
     {
       "name": "Yagra Stonefist",
       "pronouns": "she/her",
       "role": "mercenary",
       "description": "A half-orc Zhentarim enforcer found brawling in the Yawning Portal. She solves problems with her fists and holds grudges with the patience of stone.",
-      "source": "Dragon Heist p.18"
+      "source": "Dragon Heist p.18",
+      "quirk": "Cracks her knuckles one at a time before speaking, like a slow countdown",
+      "secret": "Was expelled from her clan for refusing to kill a prisoner and joined the Zhentarim out of spite",
+      "voice": "Gruff and clipped",
+      "want": "Wants a fight worth remembering and someone strong enough to watch her back",
+      "need": "Needs a cause that earns loyalty rather than demanding it through fear"
     },
     {
       "name": "Duvessa Shane",
       "pronouns": "she/her",
       "role": "faction_leader",
       "description": "Speaker of Bryn Shander, the largest of the Ten-Towns. Young for her office, she balances the competing interests of merchants, trappers, and refugees with pragmatic fairness.",
-      "source": "Rime p.177"
+      "source": "Rime p.177",
+      "quirk": "Wraps her hands around a warm mug at all times, even in heated rooms",
+      "secret": "Receives threatening letters from a Ten-Towns speaker who blames her for hoarding Bryn Shander's resources",
+      "voice": "Steady and practical",
+      "want": "Needs outsiders to investigate why supply caravans keep vanishing on the northern trail",
+      "need": "Needs someone to share the burden of leadership before it hollows her out"
     },
     {
       "name": "Auril the Frostmaiden",
       "pronouns": "she/her",
       "role": "deity",
       "description": "A lesser goddess of winter who has cast the Everlasting Rime over Icewind Dale, demanding isolation and sacrifice. She rides the night wind in three successive forms, each colder than the last.",
-      "source": "Rime p.275"
+      "source": "Rime p.275",
+      "quirk": "Leaves frost patterns in the shape of weeping eyes wherever she lingers",
+      "secret": "The Everlasting Rime is not conquest but grief -- she is freezing the Dale to preserve it from a doom only she foresees",
+      "voice": "Silent and absolute",
+      "want": "Demands worship through sacrifice and isolation from every settlement under her sky",
+      "need": "Needs mortals to understand preservation through suffering, though she has forgotten how to explain"
     },
     {
       "name": "Vellynne Harpell",
       "pronouns": "she/her",
       "role": "scholar",
       "description": "A necromancer from the eccentric Harpell family, traveling Icewind Dale with a retinue of animated kobold skeletons. She seeks the lost city of Ythryn for purely academic reasons, she insists.",
-      "source": "Rime p.273"
+      "source": "Rime p.273",
+      "quirk": "Adjusts the scarf on her favorite skeleton as if it could feel cold",
+      "secret": "Knows the Arcane Brotherhood plans to weaponize Ythryn's magic and intends to reach it first to prevent that",
+      "voice": "Dry and academic",
+      "want": "Seeks bodyguards for her expedition to the glacier concealing Ythryn",
+      "need": "Craves family approval she will never receive from the Harpells, who consider necromancy distasteful"
     },
     {
       "name": "Avarice",
       "pronouns": "she/her",
       "role": "criminal",
       "description": "A tiefling warlock of Levistus and Arcane Brotherhood member, attended by two gargoyles. She seeks power in the frozen wastes with the single-minded devotion of the truly damned.",
-      "source": "Rime p.269"
+      "source": "Rime p.269",
+      "quirk": "Breath fogs even in warm rooms, and she never shivers",
+      "secret": "Her pact with Levistus includes a clause she did not read, binding her soul upon death regardless of success",
+      "voice": "Precise and hungry",
+      "want": "Seeks the Codicil of White and will ally with or betray anyone to reach it",
+      "need": "Needs to escape Levistus's pact before it consumes her, though she refuses to admit she is trapped"
     },
     {
       "name": "Grazz't",
       "pronouns": "he/him",
       "role": "demon_lord",
       "description": "The Dark Prince, a demon lord of indulgence and treachery whose ebon skin and silver eyes have seduced queens and corrupted kingdoms. He rules three layers of the Abyss through charm rather than brute force.",
-      "source": "Out of the Abyss p.241"
+      "source": "Out of the Abyss p.241",
+      "quirk": "Speaks every name as if tasting it, lingering on each syllable",
+      "secret": "Genuinely loved Waukeen during her imprisonment and her escape wounded him in ways no demon should feel",
+      "voice": "Velvet and predatory",
+      "want": "Seeks mortal agents to extend his influence into the Material Plane through pleasure and debt",
+      "need": "Needs to feel something real in an eternity of performed desire"
     },
     {
       "name": "Demogorgon",
       "pronouns": "it/its",
       "role": "demon_lord",
       "description": "The Prince of Demons, a towering two-headed monstrosity whose mere presence drives mortals to madness. Its twin heads, Aameul and Hethradiah, scheme against each other as much as against their enemies.",
-      "source": "Out of the Abyss p.236"
+      "source": "Out of the Abyss p.236",
+      "quirk": "Its two heads finish each other's sentences but always contradict the meaning",
+      "secret": "Neither head is the original consciousness; the true Demogorgon is buried beneath both, screaming",
+      "voice": "Dual and discordant",
+      "want": "Seeks total dominion over the Abyss by destroying every rival demon lord",
+      "need": "Needs unity within itself, which it can never achieve and so projects outward as conquest"
     },
     {
       "name": "Orcus",
       "pronouns": "he/him",
       "role": "demon_lord",
       "description": "The Demon Prince of Undeath, a bloated, goat-headed fiend who wields the Wand of Orcus. He despises all life and seeks to replace it with an eternal kingdom of the dead.",
-      "source": "Out of the Abyss p.245"
+      "source": "Out of the Abyss p.245",
+      "quirk": "Sits perfectly still for hours, then moves with terrifying suddenness",
+      "secret": "Envies the Raven Queen's dominion over death and considers her his only true rival",
+      "voice": "Ponderous and final",
+      "want": "Seeks to raise an undead army vast enough to drown the Material Plane in silence",
+      "need": "Needs worship and reverence because oblivion, his own domain, terrifies even him"
     },
     {
       "name": "Strahd von Zarovich",
       "pronouns": "he/him",
       "role": "noble",
       "description": "The vampire lord of Barovia, cursed to eternal imprisonment in his own domain. He plays chess with the lives of adventurers drawn into his mists, searching endlessly for the reincarnation of his lost Tatyana.",
-      "source": "CoS p.9"
+      "source": "CoS p.9",
+      "quirk": "Adjusts his guests' wine glasses to precise angles before speaking",
+      "secret": "Knows deep down that Tatyana's soul will never love him, but destroying that knowledge would destroy what remains of his humanity",
+      "voice": "Courtly and cutting",
+      "want": "Seeks the latest reincarnation of Tatyana to claim as his bride",
+      "need": "Needs to let go of Tatyana and face the empty eternity he has built for himself"
     },
     {
       "name": "Halaster Blackcloak",
       "pronouns": "he/him",
       "role": "scholar",
       "description": "The Mad Mage of Undermountain, an archmage whose sanity crumbled centuries ago along with his original purpose. He reshapes his megadungeon on whims, treating adventurers as entertainment.",
-      "source": "DotMM p.10"
+      "source": "DotMM p.10",
+      "quirk": "Talks to people who are not there and ignores people who are",
+      "secret": "Buried his original spellbook on the deepest level and cannot remember why, which is the one thing that frightens him",
+      "voice": "Manic and lurching",
+      "want": "Wants fresh adventurers to populate his dungeon like pieces on a game board",
+      "need": "Needs someone to remind him who he was before Undermountain ate his mind"
     },
     {
       "name": "Sylgar",
       "pronouns": "it/its",
       "role": "pet",
       "description": "Xanathar's beloved goldfish, currently Sylgar the seventh -- or possibly the twelfth. The beholder does not know this, and no minion dares tell it. The fate of Waterdeep's underworld hinges on this fish's health.",
-      "source": "Dragon Heist p.198"
+      "source": "Dragon Heist p.198",
+      "quirk": "Swims in the same small circle endlessly, oblivious to its cosmic importance",
+      "secret": "This particular Sylgar was purchased from a Dock Ward fishmonger for three copper pieces",
+      "voice": "Blub",
+      "want": "Wants food flakes and clean water",
+      "need": "Needs nothing -- it is a goldfish, and that is the joke the universe is playing on Waterdeep"
     },
     {
       "name": "Wulfgar",
       "pronouns": "he/him",
       "role": "barbarian",
       "description": "A towering barbarian of the Reghed tribes, wielder of the warhammer Aegis-fang. His years of captivity in the Abyss left scars that no cleric can heal, though he hides them behind a warrior's stoicism.",
-      "source": "SCAG p.133"
+      "source": "SCAG p.133",
+      "quirk": "Grips Aegis-fang's haft when indoors, as if the walls might close in",
+      "secret": "Still hears Errtu's voice in nightmares and drinks to silence it, telling no one",
+      "voice": "Sparse and heavy",
+      "want": "Seeks worthy battles to prove the Abyss did not break him",
+      "need": "Needs to admit that he was broken and that healing is not the same as weakness"
     },
     {
       "name": "Catti-brie",
       "pronouns": "she/her",
       "role": "ranger",
       "description": "An adopted daughter of Bruenor Battlehammer, reborn by Mielikki's grace as a Chosen with wild magic coursing through her. She carries the Heartseeker bow and walks between the worlds of dwarf and human.",
-      "source": "SCAG p.131"
+      "source": "SCAG p.131",
+      "quirk": "Hums dwarven mining songs under her breath when concentrating",
+      "secret": "Her rebirth left gaps in her memories of her first life that she fills with guesses and tells no one",
+      "voice": "Warm and direct",
+      "want": "Seeks to understand the full extent of her new divine magic before it outgrows her control",
+      "need": "Needs to accept her new self instead of measuring it against the woman she was before"
     }
   ],
   "generic_templates": [
     {
       "name": "Veteran Guard",
       "role": "guard",
-      "description": "A scarred soldier who has served through at least one siege. Follows orders with the mechanical precision of someone who learned long ago not to think too hard about them."
+      "description": "A scarred soldier who has served through at least one siege. Follows orders with the mechanical precision of someone who learned long ago not to think too hard about them.",
+      "quirk": "Taps the pommel of their sword three times before answering a question",
+      "secret": "Let a prisoner escape years ago out of mercy and forged the death report",
+      "voice": "Flat and procedural",
+      "want": "Wants to finish their shift without incident and collect their pension",
+      "need": "Needs a reason to believe the uniform still means something"
     },
     {
       "name": "Traveling Merchant",
       "role": "merchant",
-      "description": "A road-worn trader with a mule-drawn cart of sundries, whose prices climb with each mile from the nearest city. Knows every inn between here and the coast."
+      "description": "A road-worn trader with a mule-drawn cart of sundries, whose prices climb with each mile from the nearest city. Knows every inn between here and the coast.",
+      "quirk": "Weighs everything by hand before setting it down, even a tankard of ale",
+      "secret": "Carries a sealed letter for a dead recipient and cannot bring themselves to open it",
+      "voice": "Cheerful and haggling",
+      "want": "Needs a reliable escort for the next stretch of road where bandits have been spotted",
+      "need": "Craves a permanent home after twenty years of sleeping in a different bed every night"
     },
     {
       "name": "Tavern Keeper",
       "role": "innkeeper",
-      "description": "A stout, aproned figure who pours drinks, settles fights, and hears everything. Their establishment is their kingdom, and they rule it with a wooden spoon and a sharp tongue."
+      "description": "A stout, aproned figure who pours drinks, settles fights, and hears everything. Their establishment is their kingdom, and they rule it with a wooden spoon and a sharp tongue.",
+      "quirk": "Wipes glasses that are already clean when eavesdropping on a conversation",
+      "secret": "Keeps a hidden room behind the cellar wall for people who need to disappear overnight",
+      "voice": "Loud and no-nonsense",
+      "want": "Wants someone to deal with the rats in the cellar, which may not actually be rats",
+      "need": "Needs to feel needed by a community, not just useful to it"
     },
     {
       "name": "Hedge Wizard",
       "role": "scholar",
-      "description": "A self-taught spellcaster with ink-stained fingers and a library held together by twine. Sells minor enchantments and identifies curiosities for a modest fee and a chance to study them."
+      "description": "A self-taught spellcaster with ink-stained fingers and a library held together by twine. Sells minor enchantments and identifies curiosities for a modest fee and a chance to study them.",
+      "quirk": "Mutters spell components under their breath like a nervous tic",
+      "secret": "Once accidentally summoned something they could not banish; it is still in the locked attic",
+      "voice": "Scholarly ramble",
+      "want": "Seeks a rare spell component rumored to grow in the ruins east of town",
+      "need": "Needs validation that self-taught magic is as legitimate as academy training"
     },
     {
       "name": "Street Urchin",
       "role": "criminal",
-      "description": "A quick-fingered child of the alleys who knows every shortcut, sewer grate, and unlocked window in the district. Loyalty costs a hot meal; secrets cost silver."
+      "description": "A quick-fingered child of the alleys who knows every shortcut, sewer grate, and unlocked window in the district. Loyalty costs a hot meal; secrets cost silver.",
+      "quirk": "Never stands still, always shifting weight from foot to foot as if ready to bolt",
+      "secret": "Witnessed a murder in the alley behind the guildhall and has told no one out of fear",
+      "voice": "Fast and slippery",
+      "want": "Wants enough coin to eat every day this tenday without stealing",
+      "need": "Needs an adult who keeps their promises for once"
     },
     {
       "name": "Noble Scion",
       "role": "noble",
-      "description": "A young aristocrat chafing under family expectations, prone to slumming in taverns and funding questionable ventures. Rich enough to be reckless, sheltered enough to be dangerous."
+      "description": "A young aristocrat chafing under family expectations, prone to slumming in taverns and funding questionable ventures. Rich enough to be reckless, sheltered enough to be dangerous.",
+      "quirk": "Fidgets with an expensive ring they keep threatening to pawn but never do",
+      "secret": "Owes a terrifying debt to a Zhentarim moneylender and is running out of family silver",
+      "voice": "Breezy and entitled",
+      "want": "Seeks adventurers for a venture that will prove their worth to a dismissive parent",
+      "need": "Needs to earn something without the family name opening the door first"
     },
     {
       "name": "Temple Acolyte",
       "role": "priest",
-      "description": "A devotee in plain robes who tends the sick, sweeps the nave, and prays for a sign that may never come. Knows healing herbs and burial rites in equal measure."
+      "description": "A devotee in plain robes who tends the sick, sweeps the nave, and prays for a sign that may never come. Knows healing herbs and burial rites in equal measure.",
+      "quirk": "Presses their palms together and bows slightly before and after every sentence",
+      "secret": "Has not felt their deity's presence in months and fears they have been found unworthy",
+      "voice": "Gentle and hesitant",
+      "want": "Seeks someone to retrieve a stolen relic from the temple's crypt",
+      "need": "Needs proof that faith is more than habit"
     },
     {
       "name": "Smuggler",
       "role": "criminal",
-      "description": "A weathered sailor or drover who moves goods the taxman never sees. Speaks in euphemisms, pays in favors, and sleeps with one eye open near the docks."
+      "description": "A weathered sailor or drover who moves goods the taxman never sees. Speaks in euphemisms, pays in favors, and sleeps with one eye open near the docks.",
+      "quirk": "Glances at every exit in a room before sitting down, always near the door",
+      "secret": "Accidentally transported something living in a sealed crate and still hears scratching in dreams",
+      "voice": "Low and coded",
+      "want": "Needs a crew for one last high-value run before the harbor master catches on",
+      "need": "Wants to go legitimate but cannot imagine who they would be without the thrill"
     },
     {
       "name": "Bounty Hunter",
       "role": "mercenary",
-      "description": "A laconic tracker who posts bail receipts on their wall like trophies. Works alone, trusts no one's information but their own, and always collects."
+      "description": "A laconic tracker who posts bail receipts on their wall like trophies. Works alone, trusts no one's information but their own, and always collects.",
+      "quirk": "Sketches the face of their current mark on any available surface while talking",
+      "secret": "Let one bounty go free years ago -- a child -- and still checks that they are safe",
+      "voice": "Terse and appraising",
+      "want": "Seeks information on a target who vanished into the undercity three tendays ago",
+      "need": "Needs a connection that is not transactional before the loneliness calcifies"
     },
     {
       "name": "Sage Librarian",
       "role": "scholar",
-      "description": "A dust-covered keeper of records who can find any scroll in a chaotic archive by memory alone. Speaks in whispers out of habit, even outdoors, and resents anyone who dog-ears a page."
+      "description": "A dust-covered keeper of records who can find any scroll in a chaotic archive by memory alone. Speaks in whispers out of habit, even outdoors, and resents anyone who dog-ears a page.",
+      "quirk": "Licks a fingertip before turning any page, including invisible ones during conversation",
+      "secret": "Has read a forbidden text in the restricted stacks and the knowledge is slowly changing them",
+      "voice": "Whispered and precise",
+      "want": "Needs help recovering an overdue tome taken by a patron who has not been seen since",
+      "need": "Needs to live something instead of only reading about it"
     },
     {
       "name": "Master Blacksmith",
       "role": "merchant",
-      "description": "A soot-streaked artisan whose arms are mapped with burn scars. Judges customers by the condition of their weapons and charges extra for rush jobs."
+      "description": "A soot-streaked artisan whose arms are mapped with burn scars. Judges customers by the condition of their weapons and charges extra for rush jobs.",
+      "quirk": "Tests the balance of every blade by spinning it once on a fingertip",
+      "secret": "Forged a weapon for someone who used it to commit a crime they read about in broadsheets",
+      "voice": "Blunt and rhythmic",
+      "want": "Seeks a source of quality ore since the usual mine went silent last month",
+      "need": "Needs to create a masterwork piece that outlasts them, not just another batch of horseshoes"
     },
     {
       "name": "Retired Adventurer",
       "role": "innkeeper",
-      "description": "A former delver who hangs their old gear above the hearth and tells stories that grow taller with each retelling. Still flinches at the sound of scraping stone."
+      "description": "A former delver who hangs their old gear above the hearth and tells stories that grow taller with each retelling. Still flinches at the sound of scraping stone.",
+      "quirk": "Touches the scar on their neck whenever someone mentions dungeons",
+      "secret": "Left their last party behind in a collapsing ruin and has never gone back to check for survivors",
+      "voice": "Wistful and boisterous",
+      "want": "Wants someone to retrieve a keepsake from the dungeon they swore never to enter again",
+      "need": "Needs to face what happened in that last delve instead of burying it under tall tales"
     },
     {
       "name": "Thieves' Guild Contact",
       "role": "criminal",
-      "description": "A nondescript figure who lingers near market stalls, exchanging coded phrases with passersby. They broker introductions to people who solve problems that the Watch cannot or will not."
+      "description": "A nondescript figure who lingers near market stalls, exchanging coded phrases with passersby. They broker introductions to people who solve problems that the Watch cannot or will not.",
+      "quirk": "Folds and unfolds a small piece of parchment while talking, never looking at it",
+      "secret": "Is a Watch informant playing both sides, and the margin is getting razor-thin",
+      "voice": "Casual and deflecting",
+      "want": "Needs a freelancer for a job too sensitive to assign to guild members",
+      "need": "Needs an exit strategy before both masters discover the betrayal"
     },
     {
       "name": "Caravan Master",
       "role": "merchant",
-      "description": "A weather-beaten organizer of overland trade who knows every bandit ambush point and safe campsite along the trade routes. Hires guards and never trusts them."
+      "description": "A weather-beaten organizer of overland trade who knows every bandit ambush point and safe campsite along the trade routes. Hires guards and never trusts them.",
+      "quirk": "Checks the sky before answering any question, as if weather dictates all decisions",
+      "secret": "Pays protection money to the bandits on the north road and inflates guard costs to cover it",
+      "voice": "Brusque and logistical",
+      "want": "Needs reliable swords for a high-value shipment leaving at dawn",
+      "need": "Needs to stop running from the debt that put them on the road in the first place"
     },
     {
       "name": "Court Minstrel",
       "role": "performer",
-      "description": "A silver-tongued entertainer who trades songs for secrets and performs at noble courts where the real intrigue happens between verses. Remembers every face and every slight."
+      "description": "A silver-tongued entertainer who trades songs for secrets and performs at noble courts where the real intrigue happens between verses. Remembers every face and every slight.",
+      "quirk": "Tunes an instrument that is already in tune whenever the conversation gets uncomfortable",
+      "secret": "Composes coded messages into their ballads, passing intelligence between Harper cells",
+      "voice": "Melodic and layered",
+      "want": "Seeks a scandalous story worth turning into the season's most requested ballad",
+      "need": "Needs someone who listens to them speak, not just perform"
     },
     {
       "name": "Dockside Laborer",
       "role": "worker",
-      "description": "A broad-shouldered loader who hauls crates from dawn until the lamps are lit, knowing exactly which shipments are legitimate and which carry false manifests."
+      "description": "A broad-shouldered loader who hauls crates from dawn until the lamps are lit, knowing exactly which shipments are legitimate and which carry false manifests.",
+      "quirk": "Rolls their shoulders constantly, cracking joints that sound like snapping rope",
+      "secret": "Skims a single item from every tenth crate and sells it to a fence in the Trades Ward",
+      "voice": "Tired and matter-of-fact",
+      "want": "Wants someone to deal with the dock boss who has been shorting wages for months",
+      "need": "Needs enough saved coin to leave the docks before their back gives out"
     },
     {
       "name": "Wandering Herbalist",
       "role": "healer",
-      "description": "A weather-worn gatherer of roots and fungi who travels between villages, trading poultices for shelter. Their remedies work, though they refuse to explain why they mutter over each one."
+      "description": "A weather-worn gatherer of roots and fungi who travels between villages, trading poultices for shelter. Their remedies work, though they refuse to explain why they mutter over each one.",
+      "quirk": "Sniffs the air when meeting someone new, as if diagnosing them by scent",
+      "secret": "Their remedies contain a mild enchantment -- hedge magic they dare not admit to in towns that distrust spellcasters",
+      "voice": "Mumbled and evasive",
+      "want": "Seeks a rare root that only grows in places touched by fey magic",
+      "need": "Needs a community that accepts what they are instead of only what they can provide"
     },
     {
       "name": "City Watch Sergeant",
       "role": "guard",
-      "description": "A career officer who knows every alley in their beat and which crimes to investigate and which to ignore. Loyal to the badge, flexible about the law."
+      "description": "A career officer who knows every alley in their beat and which crimes to investigate and which to ignore. Loyal to the badge, flexible about the law.",
+      "quirk": "Flips a confiscated coin across their knuckles while thinking",
+      "secret": "Accepts bribes from one specific tavern owner in exchange for ignoring after-hours gambling",
+      "voice": "Weary and knowing",
+      "want": "Needs unofficial help with a case the Watch has been ordered to drop",
+      "need": "Needs to remember why they joined the Watch before the compromises bury the reason entirely"
     },
     {
       "name": "Dwarven Prospector",
       "role": "miner",
-      "description": "A grizzled tunnel-digger who tests ore by taste and claims to hear gold singing through the rock. Has maps to three lost mines, all of which are probably traps."
+      "description": "A grizzled tunnel-digger who tests ore by taste and claims to hear gold singing through the rock. Has maps to three lost mines, all of which are probably traps.",
+      "quirk": "Bites any metal object handed to them before acknowledging it",
+      "secret": "One of those three mine maps is real, and they know exactly which one but cannot go alone",
+      "voice": "Gravel-throated and conspiratorial",
+      "want": "Seeks partners willing to split a claim in exchange for muscle and torchlight",
+      "need": "Needs one big strike to prove the decades of digging were not wasted"
     },
     {
       "name": "Ship Captain",
       "role": "sailor",
-      "description": "A salt-crusted master of a coastal trader, whose deck is their law and whose word is the only contract that matters at sea. Charges by the risk, not the mile."
+      "description": "A salt-crusted master of a coastal trader, whose deck is their law and whose word is the only contract that matters at sea. Charges by the risk, not the mile.",
+      "quirk": "Squints at the horizon even when indoors, as if checking for weather that is not there",
+      "secret": "Scuttled their previous ship for insurance gold and renamed themselves afterward",
+      "voice": "Clipped and nautical",
+      "want": "Needs passengers or cargo to justify a voyage to a port others refuse to approach",
+      "need": "Needs to outrun the reputation that sank with their last vessel"
     },
     {
       "name": "Elven Envoy",
       "role": "diplomat",
-      "description": "A long-lived emissary from the Misty Forest or Evereska, whose politeness masks an alien patience. Measures human ambitions against centuries of precedent and finds them wanting."
+      "description": "A long-lived emissary from the Misty Forest or Evereska, whose politeness masks an alien patience. Measures human ambitions against centuries of precedent and finds them wanting.",
+      "quirk": "Pauses a beat too long before responding, as if translating from a language with more tenses",
+      "secret": "Has been recalled by their court and is stalling because they prefer the chaos of human cities",
+      "voice": "Measured and archaic",
+      "want": "Seeks mortal intermediaries for a negotiation beneath elven dignity to conduct directly",
+      "need": "Needs to feel relevant in a world that is changing faster than their people can adapt"
     },
     {
       "name": "Battlefield Surgeon",
       "role": "healer",
-      "description": "A blood-spattered medic who sews wounds by torchlight and carries more saw blades than scalpels. Calm under pressure, haunted in the quiet hours."
+      "description": "A blood-spattered medic who sews wounds by torchlight and carries more saw blades than scalpels. Calm under pressure, haunted in the quiet hours.",
+      "quirk": "Washes their hands compulsively, even when they are already clean",
+      "secret": "Mercy-killed a commanding officer on the field and called it blood loss in the report",
+      "voice": "Flat and clinical",
+      "want": "Needs medical supplies that the quartermaster claims do not exist in inventory",
+      "need": "Needs to sleep a full night without hearing the ones they could not save"
     },
     {
       "name": "Halfling Cook",
       "role": "innkeeper",
-      "description": "A cheerful provider of improbably good meals from meager ingredients, whose kitchen is the true heart of any establishment they serve. Gossip flows as freely as the gravy."
+      "description": "A cheerful provider of improbably good meals from meager ingredients, whose kitchen is the true heart of any establishment they serve. Gossip flows as freely as the gravy.",
+      "quirk": "Tastes everything twice -- once from the pot, once from the plate -- and nods to themselves",
+      "secret": "Adds a single drop of potion to the stew on feast days, a mild euphoric they brew themselves",
+      "voice": "Warm and chatty",
+      "want": "Wants someone to source a spice only found in a market three towns over",
+      "need": "Needs to feed people not because they are hungry but because it is the only love language they know"
     },
     {
       "name": "Fence",
       "role": "criminal",
-      "description": "A pawnshop owner or curiosity dealer who asks no questions about provenance and pays forty percent of fair value, take it or leave it. Their back room holds the real inventory."
+      "description": "A pawnshop owner or curiosity dealer who asks no questions about provenance and pays forty percent of fair value, take it or leave it. Their back room holds the real inventory.",
+      "quirk": "Examines every item through a jeweler's loupe even when they already know the price",
+      "secret": "Keeps a ledger of every stolen item that has passed through their hands, as insurance against the guild",
+      "voice": "Flat and appraising",
+      "want": "Seeks a buyer for an item too dangerous or distinctive to display openly",
+      "need": "Needs enough saved to retire before the law or the guild decides they know too much"
     }
   ]
 }

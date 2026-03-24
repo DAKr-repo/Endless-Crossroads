@@ -120,6 +120,7 @@ class UniversalGameBridge:
         self._butler = None  # WO-V50.0: Audio narration bridge
         self.show_dm_notes: bool = False  # WO-V54.0: Hide DM notes by default
         self._talking_to: Optional[str] = None  # WO-V54.0: NPC conversation state
+        self._npc_trust: dict = {}  # WO-V81.0: NPC name -> conversation count
         self._session_log: list = []  # WO-V61.0: Session event chronicle
         self._visited_rooms: set = set()  # WO-V79.0: Track first-visit for loom shards
         self._momentum_handler = None  # WO-V62.0: Threshold handler
@@ -401,7 +402,7 @@ class UniversalGameBridge:
                 name = f.get("name", str(f)) if isinstance(f, dict) else str(f)
                 lines.append(f"  # {name}")
 
-        # NPCs (WO-V52.0)
+        # NPCs (WO-V52.0, V81.0: show quirk on look)
         npcs = content.get("npcs", [])
         if npcs:
             lines.append("")
@@ -411,7 +412,11 @@ class UniversalGameBridge:
                     name = npc.get("name", "Unknown")
                     role = npc.get("role", "")
                     role_str = f" ({role})" if role else ""
-                    lines.append(f"  @ {name}{role_str}")
+                    quirk = npc.get("quirk", "")
+                    if quirk:
+                        lines.append(f"  @ {name}{role_str} — {quirk}")
+                    else:
+                        lines.append(f"  @ {name}{role_str}")
                 else:
                     lines.append(f"  @ {npc}")
 
@@ -1019,11 +1024,27 @@ class UniversalGameBridge:
                     role = npc.get("role", "")
                     if role:
                         lines.append(f"Role: {role}")
+                    # WO-V81.0: Voice style tag
+                    voice = npc.get("voice", "")
+                    if voice:
+                        lines.append(f"Voice: {voice}")
                     dialogue = npc.get("dialogue", "")
                     if dialogue:
                         lines.append(f'"{dialogue}"')
                     else:
                         lines.append(f"{name} has nothing to say.")
+                    # WO-V81.0: Track trust and reveal depth
+                    _trust_key = name.lower()
+                    self._npc_trust[_trust_key] = self._npc_trust.get(_trust_key, 0) + 1
+                    _trust_level = self._npc_trust[_trust_key]
+                    # Show want on 2nd+ conversation (quest hook)
+                    want = npc.get("want", "")
+                    if want and _trust_level >= 2:
+                        lines.append(f'[{name} seems to want something: {want}]')
+                    # Reveal secret on 3rd+ conversation (trust earned)
+                    secret = npc.get("secret", "")
+                    if secret and _trust_level >= 3:
+                        lines.append(f'[{name} confides: {secret}]')
                     notes = npc.get("notes", "")
                     if notes and self.show_dm_notes:
                         lines.append(f"[{notes}]")

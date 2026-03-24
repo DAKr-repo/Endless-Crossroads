@@ -240,6 +240,10 @@ class NarrativeBridge:
                 pass
 
         # Doom atmosphere layer: prepend a dread lead when doom is elevated
+        try:
+            doom = int(doom)
+        except (TypeError, ValueError):
+            doom = 0
         if doom >= 11:
             doom_lead = self._rng.choice(_DOOM_LEADS["high"])
             enriched = f"{doom_lead} {enriched}"

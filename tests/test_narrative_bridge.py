@@ -578,6 +578,148 @@ class TestCombatMimir:
         assert result == ""  # Unknown type returns empty
 
 
+class TestPoolNPCSevenPillars:
+    """Test PoolNPC seven-pillars fields."""
+
+    def test_pool_npc_has_new_fields(self):
+        from codex.forge.content_pool import PoolNPC
+        npc = PoolNPC(
+            name="Durnan", role="innkeeper", dialogue="Hello.",
+            quirk="Taps the bar impatiently", secret="Has a hidden vault",
+            voice="Gruff and clipped", want="Find a lost relic",
+            need="Respect from younger adventurers",
+        )
+        assert npc.quirk == "Taps the bar impatiently"
+        assert npc.secret == "Has a hidden vault"
+        assert npc.voice == "Gruff and clipped"
+        assert npc.want == "Find a lost relic"
+        assert npc.need == "Respect from younger adventurers"
+
+    def test_to_scene_dict_includes_pillars(self):
+        from codex.forge.content_pool import PoolNPC
+        npc = PoolNPC(
+            name="Test", role="merchant", dialogue="Hi.",
+            quirk="Fidgets", secret="Spy", voice="Soft",
+            want="Gold", need="Freedom",
+        )
+        d = npc.to_scene_dict()
+        assert d["quirk"] == "Fidgets"
+        assert d["secret"] == "Spy"
+        assert d["voice"] == "Soft"
+        assert d["want"] == "Gold"
+        assert d["need"] == "Freedom"
+
+    def test_to_scene_dict_omits_empty_pillars(self):
+        from codex.forge.content_pool import PoolNPC
+        npc = PoolNPC(name="Basic", role="npc", dialogue="...")
+        d = npc.to_scene_dict()
+        assert "quirk" not in d
+        assert "secret" not in d
+        assert "voice" not in d
+        assert "want" not in d
+        assert "need" not in d
+
+    def test_backward_compat_no_pillars(self):
+        from codex.forge.content_pool import PoolNPC
+        npc = PoolNPC(name="Old", role="guard", dialogue="Halt!")
+        d = npc.to_scene_dict()
+        assert d == {"name": "Old", "role": "guard", "dialogue": "Halt!", "notes": ""}
+
+
+class TestNPCTrustAndDepth:
+    """Test NPC trust progression in bridge talk handler."""
+
+    def _make_bridge_with_npc(self):
+        """Create a minimal bridge with an NPC that has seven-pillars data."""
+        from codex.games.bridge import UniversalGameBridge
+
+        class MockRoom:
+            room_type = type('RT', (), {'name': 'tavern'})()
+            tier = 1
+
+        class MockEngine:
+            system_id = 'dnd5e'
+            current_room_id = 0
+            character = None
+            def get_cardinal_exits(self): return []
+            def get_current_room(self): return MockRoom()
+            def move_to_room(self, rid): pass
+            def roll_check(self, dc=10): return {'total': 15, 'success': True}
+
+        eng = MockEngine()
+        eng.populated_rooms = {0: type('PR', (), {'content': {
+            "description": "A tavern.",
+            "npcs": [{
+                "name": "Durnan",
+                "role": "innkeeper",
+                "dialogue": "What'll it be?",
+                "quirk": "Polishes a glass that's already clean",
+                "voice": "Gruff and clipped",
+                "want": "Someone to clear rats from the cellar",
+                "secret": "Keeps a portal key hidden behind the bar",
+            }],
+        }})()}
+        bridge = UniversalGameBridge.create_lightweight(eng)
+        return bridge
+
+    def test_first_talk_shows_dialogue_no_want(self):
+        bridge = self._make_bridge_with_npc()
+        result = bridge._handle_talk("durnan")
+        assert "What'll it be?" in result
+        assert "wants something" not in result.lower()
+        assert "confides" not in result.lower()
+
+    def test_first_talk_shows_voice(self):
+        bridge = self._make_bridge_with_npc()
+        result = bridge._handle_talk("durnan")
+        assert "Gruff and clipped" in result
+
+    def test_second_talk_reveals_want(self):
+        bridge = self._make_bridge_with_npc()
+        bridge._handle_talk("durnan")  # 1st
+        result = bridge._handle_talk("durnan")  # 2nd
+        assert "clear rats" in result.lower() or "wants something" in result.lower()
+
+    def test_third_talk_reveals_secret(self):
+        bridge = self._make_bridge_with_npc()
+        bridge._handle_talk("durnan")  # 1st
+        bridge._handle_talk("durnan")  # 2nd
+        result = bridge._handle_talk("durnan")  # 3rd
+        assert "portal key" in result.lower() or "confides" in result.lower()
+
+    def test_look_shows_quirk(self):
+        bridge = self._make_bridge_with_npc()
+        bridge.engine.dungeon_graph = None  # Prevent minimap render
+        result = bridge._handle_look()
+        assert "Polishes a glass" in result
+
+    def test_npc_without_pillars_works(self):
+        """NPCs without seven-pillars fields still work normally."""
+        from codex.games.bridge import UniversalGameBridge
+
+        class MockEngine:
+            system_id = 'dnd5e'
+            current_room_id = 0
+            character = None
+            def get_cardinal_exits(self): return []
+            def get_current_room(self):
+                return type('R', (), {'room_type': type('RT', (), {'name': 'room'})(), 'tier': 1})()
+            def move_to_room(self, rid): pass
+            def roll_check(self, dc=10): return {'total': 15, 'success': True}
+
+        eng = MockEngine()
+        eng.populated_rooms = {0: type('PR', (), {'content': {
+            "description": "A room.",
+            "npcs": [{"name": "Guard", "role": "guard", "dialogue": "Move along."}],
+        }})()}
+        bridge = UniversalGameBridge.create_lightweight(eng)
+        result = bridge._handle_talk("guard")
+        assert "Move along." in result
+        # No crash, no pillars shown
+        assert "confides" not in result
+        assert "wants something" not in result
+
+
 class TestMultiSystem:
     """Test bridge works across multiple systems."""
 

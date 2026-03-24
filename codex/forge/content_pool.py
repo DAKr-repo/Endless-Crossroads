@@ -41,15 +41,32 @@ class PoolNPC:
     role: str = ""
     dialogue: str = ""
     notes: str = ""
+    quirk: str = ""      # WO-V81.0: Visible trait on look
+    secret: str = ""     # WO-V81.0: Revealed on trust buildup
+    voice: str = ""      # WO-V81.0: Speech style tag
+    want: str = ""       # WO-V81.0: What they seek (quest hook)
+    need: str = ""       # WO-V81.0: What they truly need (deeper motivation)
 
     def to_scene_dict(self) -> dict:
         """Convert to content_hints NPC format expected by SceneData."""
-        return {
+        d: dict = {
             "name": self.name,
             "role": self.role,
             "dialogue": self.dialogue,
             "notes": self.notes,
         }
+        # WO-V81.0: Include seven-pillars fields if present
+        if self.quirk:
+            d["quirk"] = self.quirk
+        if self.secret:
+            d["secret"] = self.secret
+        if self.voice:
+            d["voice"] = self.voice
+        if self.want:
+            d["want"] = self.want
+        if self.need:
+            d["need"] = self.need
+        return d
 
 
 @dataclass
@@ -451,6 +468,11 @@ class ContentPool:
                     role=n.get("role", role or "npc"),
                     dialogue=n.get("dialogue", n.get("description", "")),
                     notes=n.get("notes", ""),
+                    quirk=n.get("quirk", ""),
+                    secret=n.get("secret", ""),
+                    voice=n.get("voice", ""),
+                    want=n.get("want", ""),
+                    need=n.get("need", ""),
                 )
                 for n in selected
             ]
