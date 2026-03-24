@@ -542,6 +542,18 @@ class BurnwillowBridge:
 
         lines = []
 
+        # WO-V80.0: Acquire Mimir function for combat narration (thermal-gated)
+        _combat_mimir_fn = None
+        if self._narrator:
+            try:
+                from codex.core.cortex import get_cortex
+                _ctx = get_cortex()
+                if _ctx.get_thermal_state().status != "RED":
+                    from codex.integrations.mimir import query_mimir
+                    _combat_mimir_fn = query_mimir
+            except Exception:
+                pass
+
         # Player attacks
         might_mod = char.get_stat_mod(StatType.MIGHT)
         dice_count = char.gear.get_total_dice_bonus(StatType.MIGHT)
@@ -566,14 +578,17 @@ class BurnwillowBridge:
             else:
                 lines.append(f"You hit {enemy_name} for {damage} damage! ({result['total']} vs DC {enemy_defense})")
             if self._narrator:
-                _cnarr = self._narrator.narrate_hit(enemy_name, damage, _wname, crit=bool(result.get("crit")))
+                _etype = "crit" if result.get("crit") else "hit"
+                _cnarr = self._narrator.narrate_combat_mimir(
+                    _etype, enemy_name, damage, _wname, mimir_fn=_combat_mimir_fn)
                 if _cnarr:
                     lines.append(f"  {_cnarr}")
 
             if enemy_hp <= 0:
                 lines.append(f"{enemy_name} is slain!")
                 if self._narrator:
-                    _knarr = self._narrator.narrate_kill(enemy_name)
+                    _knarr = self._narrator.narrate_combat_mimir(
+                        "kill", enemy_name, mimir_fn=_combat_mimir_fn)
                     if _knarr:
                         lines.append(f"  {_knarr}")
                 enemies.pop(0)
@@ -596,7 +611,9 @@ class BurnwillowBridge:
             else:
                 lines.append(f"You miss {enemy_name}. ({result['total']} vs DC {enemy_defense})")
             if self._narrator:
-                _mnarr = self._narrator.narrate_miss(enemy_name, fumble=bool(result.get("fumble")))
+                _miss_type = "fumble" if result.get("fumble") else "miss"
+                _mnarr = self._narrator.narrate_combat_mimir(
+                    _miss_type, enemy_name, mimir_fn=_combat_mimir_fn)
                 if _mnarr:
                     lines.append(f"  {_mnarr}")
 
@@ -617,13 +634,15 @@ class BurnwillowBridge:
                 else:
                     lines.append(f"{enemy_name} strikes you for {effective_damage} damage!")
                     if self._narrator:
-                        _ehnarr = self._narrator.narrate_enemy_hit(enemy_name, effective_damage)
+                        _ehnarr = self._narrator.narrate_combat_mimir(
+                            "enemy_hit", enemy_name, effective_damage, mimir_fn=_combat_mimir_fn)
                         if _ehnarr:
                             lines.append(f"  {_ehnarr}")
             else:
                 lines.append(f"{enemy_name} attacks but misses!")
                 if self._narrator:
-                    _emnarr = self._narrator.narrate_enemy_miss(enemy_name)
+                    _emnarr = self._narrator.narrate_combat_mimir(
+                        "enemy_miss", enemy_name, mimir_fn=_combat_mimir_fn)
                     if _emnarr:
                         lines.append(f"  {_emnarr}")
 

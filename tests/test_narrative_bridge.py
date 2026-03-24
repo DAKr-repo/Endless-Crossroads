@@ -479,6 +479,105 @@ class TestDoomAtmosphere:
         assert "archway" in result
 
 
+class TestCombatMimir:
+    """Test Mimir-enhanced combat narration."""
+
+    def test_no_mimir_falls_back_to_static(self):
+        from codex.core.services.narrative_bridge import NarrativeBridge
+        nb = NarrativeBridge("dnd5e", seed=42)
+        result = nb.narrate_combat_mimir("hit", "Goblin", 5, mimir_fn=None)
+        assert isinstance(result, str)
+        assert len(result) > 0  # Static fallback produces text
+
+    def test_mimir_fn_called_on_hit(self):
+        from codex.core.services.narrative_bridge import NarrativeBridge
+        nb = NarrativeBridge("dnd5e", seed=42)
+        called = []
+        def mock_mimir(prompt):
+            called.append(prompt)
+            return "Your blade bites deep into goblin flesh."
+        result = nb.narrate_combat_mimir("hit", "Goblin", 5, mimir_fn=mock_mimir)
+        assert len(called) == 1
+        assert "Goblin" in called[0]
+        assert "bites deep" in result
+
+    def test_mimir_fn_called_on_kill(self):
+        from codex.core.services.narrative_bridge import NarrativeBridge
+        nb = NarrativeBridge("dnd5e", seed=42)
+        def mock_mimir(prompt):
+            return "The ogre crumples to the stone floor with a final groan."
+        result = nb.narrate_combat_mimir("kill", "Ogre", mimir_fn=mock_mimir)
+        assert "crumples" in result
+
+    def test_mimir_failure_falls_back(self):
+        from codex.core.services.narrative_bridge import NarrativeBridge
+        nb = NarrativeBridge("dnd5e", seed=42)
+        def broken_mimir(prompt):
+            raise TimeoutError("LLM timeout")
+        result = nb.narrate_combat_mimir("hit", "Dragon", 10, mimir_fn=broken_mimir)
+        assert isinstance(result, str)
+        assert len(result) > 0  # Falls back to static
+
+    def test_mimir_empty_response_falls_back(self):
+        from codex.core.services.narrative_bridge import NarrativeBridge
+        nb = NarrativeBridge("dnd5e", seed=42)
+        def empty_mimir(prompt):
+            return ""
+        result = nb.narrate_combat_mimir("miss", "Skeleton", mimir_fn=empty_mimir)
+        assert isinstance(result, str)
+        assert len(result) > 0  # Falls back to static
+
+    def test_mimir_rejects_ai_commentary(self):
+        from codex.core.services.narrative_bridge import NarrativeBridge
+        nb = NarrativeBridge("dnd5e", seed=42)
+        def ai_mimir(prompt):
+            return "As an AI language model, I'll write a combat description."
+        result = nb.narrate_combat_mimir("hit", "Troll", 8, mimir_fn=ai_mimir)
+        assert "as an ai" not in result.lower()  # Rejected, fell back to static
+
+    def test_caching(self):
+        from codex.core.services.narrative_bridge import NarrativeBridge
+        nb = NarrativeBridge("dnd5e", seed=42)
+        call_count = [0]
+        def counting_mimir(prompt):
+            call_count[0] += 1
+            return "Steel meets scales in a shower of sparks."
+        # First call hits LLM
+        r1 = nb.narrate_combat_mimir("hit", "Dragon", 10, mimir_fn=counting_mimir)
+        assert call_count[0] == 1
+        # Second call uses cache
+        r2 = nb.narrate_combat_mimir("hit", "Dragon", 15, mimir_fn=counting_mimir)
+        assert call_count[0] == 1  # Not called again
+        assert r1 == r2
+
+    def test_different_events_not_cached_together(self):
+        from codex.core.services.narrative_bridge import NarrativeBridge
+        nb = NarrativeBridge("dnd5e", seed=42)
+        def multi_mimir(prompt):
+            if "strikes" in prompt:
+                return "A solid blow lands on the goblin."
+            elif "falls dead" in prompt:
+                return "The goblin crumples into a heap."
+            return "Combat ensues with great vigor."
+        r_hit = nb.narrate_combat_mimir("hit", "Goblin", 5, mimir_fn=multi_mimir)
+        r_kill = nb.narrate_combat_mimir("kill", "Goblin", mimir_fn=multi_mimir)
+        assert r_hit != r_kill
+
+    def test_static_fallback_all_event_types(self):
+        from codex.core.services.narrative_bridge import NarrativeBridge
+        nb = NarrativeBridge("dnd5e", seed=42)
+        for etype in ["hit", "crit", "miss", "fumble", "kill", "enemy_hit", "enemy_miss"]:
+            result = nb.narrate_combat_mimir(etype, "Orc", 5, mimir_fn=None)
+            assert isinstance(result, str)
+            assert len(result) > 0, f"Static fallback empty for {etype}"
+
+    def test_unknown_event_type(self):
+        from codex.core.services.narrative_bridge import NarrativeBridge
+        nb = NarrativeBridge("dnd5e", seed=42)
+        result = nb.narrate_combat_mimir("unknown_event", "Ghost", 3, mimir_fn=None)
+        assert result == ""  # Unknown type returns empty
+
+
 class TestMultiSystem:
     """Test bridge works across multiple systems."""
 

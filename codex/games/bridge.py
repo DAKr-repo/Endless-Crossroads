@@ -530,6 +530,18 @@ class UniversalGameBridge:
 
         lines = []
 
+        # WO-V80.0: Acquire Mimir function for combat narration (thermal-gated)
+        _combat_mimir_fn = None
+        if self._narrator:
+            try:
+                from codex.core.cortex import get_cortex
+                _ctx = get_cortex()
+                if _ctx.get_thermal_state().status != "RED":
+                    from codex.integrations.mimir import query_mimir
+                    _combat_mimir_fn = query_mimir
+            except Exception:
+                pass
+
         # Player attack roll
         result = self.engine.roll_check(dc=enemy_defense)
         if result.get("success") or result.get("critical"):
@@ -542,7 +554,9 @@ class UniversalGameBridge:
             else:
                 lines.append(f"You hit {enemy_name} for {damage} damage! ({result['total']} vs DC {enemy_defense})")
             if self._narrator:
-                _cnarr = self._narrator.narrate_hit(enemy_name, damage, crit=bool(result.get("critical")))
+                _etype = "crit" if result.get("critical") else "hit"
+                _cnarr = self._narrator.narrate_combat_mimir(
+                    _etype, enemy_name, damage, mimir_fn=_combat_mimir_fn)
                 if _cnarr:
                     lines.append(f"  {_cnarr}")
 
@@ -553,7 +567,8 @@ class UniversalGameBridge:
             if enemy_hp <= 0:
                 lines.append(f"{enemy_name} is slain!")
                 if self._narrator:
-                    _knarr = self._narrator.narrate_kill(enemy_name)
+                    _knarr = self._narrator.narrate_combat_mimir(
+                        "kill", enemy_name, mimir_fn=_combat_mimir_fn)
                     if _knarr:
                         lines.append(f"  {_knarr}")
                 enemies.pop(0)
@@ -564,12 +579,14 @@ class UniversalGameBridge:
             else:
                 lines.append(f"{enemy_name} has {enemy_hp} HP remaining.")
         else:
+            _miss_type = "fumble" if result.get("fumble") else "miss"
             if result.get("fumble"):
                 lines.append(f"FUMBLE! You swing wildly and miss {enemy_name}.")
             else:
                 lines.append(f"You miss {enemy_name}. ({result['total']} vs DC {enemy_defense})")
             if self._narrator:
-                _mnarr = self._narrator.narrate_miss(enemy_name, fumble=bool(result.get("fumble")))
+                _mnarr = self._narrator.narrate_combat_mimir(
+                    _miss_type, enemy_name, mimir_fn=_combat_mimir_fn)
                 if _mnarr:
                     lines.append(f"  {_mnarr}")
 
@@ -583,7 +600,8 @@ class UniversalGameBridge:
                 actual = char.take_damage(dmg)
                 lines.append(f"{enemy_name} strikes you for {actual} damage!")
                 if self._narrator:
-                    _ehnarr = self._narrator.narrate_enemy_hit(enemy_name, actual)
+                    _ehnarr = self._narrator.narrate_combat_mimir(
+                        "enemy_hit", enemy_name, actual, mimir_fn=_combat_mimir_fn)
                     if _ehnarr:
                         lines.append(f"  {_ehnarr}")
                 if char.is_alive() and char.current_hp / max(1, getattr(char, 'max_hp', 1)) < 0.2:
@@ -597,7 +615,8 @@ class UniversalGameBridge:
             else:
                 lines.append(f"{enemy_name} attacks but misses!")
                 if self._narrator:
-                    _emnarr = self._narrator.narrate_enemy_miss(enemy_name)
+                    _emnarr = self._narrator.narrate_combat_mimir(
+                        "enemy_miss", enemy_name, mimir_fn=_combat_mimir_fn)
                     if _emnarr:
                         lines.append(f"  {_emnarr}")
 

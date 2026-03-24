@@ -165,6 +165,7 @@ class NarrativeBridge:
         self._loot_idx: Optional[Dict[str, str]] = None
         self._hazard_idx: Optional[Dict[str, str]] = None
         self._room_desc_cache: Dict[int, str] = {}  # hash(desc) -> enriched text
+        self._combat_mimir_cache: Dict[tuple, str] = {}  # (event_type, enemy) -> prose
 
     # ── Lazy Index Builders ──────────────────────────────────────────
 
@@ -353,6 +354,95 @@ class NarrativeBridge:
             return ""
         template = self._rng.choice(_COMBAT_ENEMY_MISS)
         return template.format(enemy=enemy_name)
+
+    # ── Combat Narration via Mimir ──────────────────────────────────
+
+    def narrate_combat_mimir(
+        self,
+        event_type: str,
+        enemy_name: str,
+        damage: int = 0,
+        weapon: str = "",
+        mimir_fn: Optional[Callable] = None,
+    ) -> str:
+        """Generate LLM-enhanced combat narration with static fallback.
+
+        Args:
+            event_type: One of "hit", "crit", "miss", "fumble", "kill",
+                        "enemy_hit", "enemy_miss".
+            enemy_name: Name of the enemy involved.
+            damage: Damage dealt (for hit/crit/enemy_hit).
+            weapon: Weapon used (optional).
+            mimir_fn: Callable(prompt) -> str for LLM generation.
+
+        Returns:
+            A prose sentence describing the combat event.
+        """
+        # Fallback to static templates if no LLM
+        if not mimir_fn:
+            return self._static_combat_fallback(event_type, enemy_name, damage, weapon)
+
+        # Cache by (event_type, enemy_name) to avoid repeated LLM calls
+        cache_key = (event_type, enemy_name.lower())
+        if cache_key in self._combat_mimir_cache:
+            return self._combat_mimir_cache[cache_key]
+
+        # Build compact prompt
+        _weapon_str = f" with {weapon}" if weapon else ""
+        _prompts = {
+            "hit": f"One sentence: a fighter strikes {enemy_name}{_weapon_str} for {damage} damage. Gritty fantasy tone.",
+            "crit": f"One sentence: a devastating critical hit on {enemy_name}{_weapon_str} for {damage} damage. Visceral and dramatic.",
+            "miss": f"One sentence: a fighter swings at {enemy_name}{_weapon_str} and misses. Brief, tense.",
+            "fumble": f"One sentence: a fighter fumbles their attack on {enemy_name}. Embarrassing or dangerous.",
+            "kill": f"One sentence: {enemy_name} falls dead. Dramatic, final.",
+            "enemy_hit": f"One sentence: {enemy_name} strikes the adventurer for {damage} damage. Painful, visceral.",
+            "enemy_miss": f"One sentence: {enemy_name} attacks the adventurer and misses. Close call.",
+        }
+        prompt = _prompts.get(event_type)
+        if not prompt:
+            return self._static_combat_fallback(event_type, enemy_name, damage, weapon)
+
+        try:
+            result = mimir_fn(prompt)
+            if result and isinstance(result, str) and len(result.strip()) > 15:
+                text = result.strip()
+                # Reject AI meta-commentary
+                reject = ["as an ai", "i cannot", "language model", "certainly!", "here's"]
+                if not any(r in text.lower() for r in reject):
+                    # Cap at one sentence (~150 chars)
+                    if len(text) > 150:
+                        last_period = text[:150].rfind(".")
+                        if last_period > 30:
+                            text = text[:last_period + 1]
+                        else:
+                            text = text[:150] + "..."
+                    self._combat_mimir_cache[cache_key] = text
+                    return text
+        except Exception:
+            pass
+
+        return self._static_combat_fallback(event_type, enemy_name, damage, weapon)
+
+    def _static_combat_fallback(
+        self, event_type: str, enemy_name: str,
+        damage: int = 0, weapon: str = "",
+    ) -> str:
+        """Route to the correct static template method."""
+        if event_type == "hit":
+            return self.narrate_hit(enemy_name, damage, weapon=weapon, crit=False)
+        elif event_type == "crit":
+            return self.narrate_hit(enemy_name, damage, weapon=weapon, crit=True)
+        elif event_type == "miss":
+            return self.narrate_miss(enemy_name, fumble=False)
+        elif event_type == "fumble":
+            return self.narrate_miss(enemy_name, fumble=True)
+        elif event_type == "kill":
+            return self.narrate_kill(enemy_name)
+        elif event_type == "enemy_hit":
+            return self.narrate_enemy_hit(enemy_name, damage)
+        elif event_type == "enemy_miss":
+            return self.narrate_enemy_miss(enemy_name)
+        return ""
 
     # ── NPC Spawning ─────────────────────────────────────────────────
 
