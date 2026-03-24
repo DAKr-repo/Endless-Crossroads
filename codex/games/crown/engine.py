@@ -386,41 +386,73 @@ COUNCIL_DILEMMAS: list[dict] = [
         "prompt": "A wounded Crown courier is found at the edge of camp. He carries sealed orders — troop positions, supply caches, names of informants. The Crew could use this intelligence. But the courier begs for mercy.",
         "crown": "Return the courier and his documents to the nearest Crown outpost.",
         "crew": "Take the intelligence and leave the courier to the road.",
+        "consequences": {
+            "crown": {"narrative": "The courier limps away. Tomorrow, the Crown will know you showed mercy.", "morning_bias": "crown", "tag": "HEARTH", "sway_modifier": -1},
+            "crew": {"narrative": "The intelligence is good — patrol routes, supply lines. The Crew moves faster tomorrow.", "morning_bias": "crew", "tag": "DEFIANCE", "sway_modifier": 1},
+        },
     },
     {
         "prompt": "A village elder offers sanctuary for the night — warm beds, hot food, safe walls. But she asks a price: hand over the youngest crewmate as a ward. 'Insurance,' she calls it. 'Against what you might do to my people.'",
         "crown": "Accept the deal. One life for one night of safety.",
         "crew": "Refuse and camp in the cold. The Crew stays whole.",
+        "consequences": {
+            "crown": {"narrative": "You sleep warm. But the young crewmate's face haunts the morning.", "morning_bias": "crown", "tag": "SILENCE", "sway_modifier": -1},
+            "crew": {"narrative": "Cold camp, colder ground. But no one was traded. Loyalty deepens.", "morning_bias": "crew", "tag": "HEARTH", "sway_modifier": 1},
+        },
     },
     {
         "prompt": "A Crown defector approaches under a white flag. He offers maps of every checkpoint between here and the border. His price: safe passage for his family, currently held in a Crew-controlled town.",
         "crown": "Take the maps and honor the deal — the Crown's intelligence network is worth the cost.",
         "crew": "Refuse. The Crew's grip on that town is leverage we can't afford to lose.",
+        "consequences": {
+            "crown": {"narrative": "The maps are genuine. Tomorrow's route avoids two patrols.", "morning_bias": "neutral", "tag": "GUILE", "sway_modifier": -1},
+            "crew": {"narrative": "The town stays under Crew control. The defector disappears into the night.", "morning_bias": "crew", "tag": "BLOOD", "sway_modifier": 1},
+        },
     },
     {
         "prompt": "The Crew's healer has been dosing the Leader with poppy milk — 'to manage the pain,' she says. But the Leader's judgment has been slipping. Confronting her means losing the only one who can treat wounds.",
         "crown": "Report the healer's actions and demand she stop. Order must be maintained.",
         "crew": "Say nothing. The healer keeps us alive. The Leader's pain is real.",
+        "consequences": {
+            "crown": {"narrative": "The healer stops. The Leader's clarity returns — along with the screaming pain.", "morning_bias": "crown", "tag": "DEFIANCE", "sway_modifier": -1},
+            "crew": {"narrative": "The dosing continues. The Leader drifts further. But no one bleeds out tonight.", "morning_bias": "crew", "tag": "SILENCE", "sway_modifier": 0},
+        },
     },
     {
         "prompt": "A bridge spans the gorge — the only crossing for fifty miles. Crown engineers have rigged it with blasting powder. A single torch would buy days of pursuit-free travel. But a merchant caravan is crossing now.",
         "crown": "Wait for the caravan to cross, then sabotage the bridge.",
         "crew": "Light the fuse now. Every hour counts. The merchants knew the risks.",
+        "consequences": {
+            "crown": {"narrative": "The caravan crosses safely. The delay costs a day, but no innocent blood was spilled.", "morning_bias": "crown", "tag": "HEARTH", "sway_modifier": -1},
+            "crew": {"narrative": "The bridge goes up in fire and screaming. No one follows — but you carry the sound.", "morning_bias": "crew", "tag": "BLOOD", "sway_modifier": 1},
+        },
     },
     {
         "prompt": "Two crewmates have been caught stealing from the communal supplies. The rations they took would have fed the weakest members for two days. The Leader wants them flogged. The Patron's code demands exile.",
         "crown": "Exile them. The law is clear, even out here.",
         "crew": "Flog them and move on. We need every hand we have.",
+        "consequences": {
+            "crown": {"narrative": "Two fewer mouths. Two fewer hands. The law was served, but the march is harder now.", "morning_bias": "crown", "tag": "SILENCE", "sway_modifier": -1},
+            "crew": {"narrative": "The flogging is public and brief. No one steals again. But the thieves' eyes are dead.", "morning_bias": "crew", "tag": "BLOOD", "sway_modifier": 1},
+        },
     },
     {
         "prompt": "A dying Crown soldier whispers the location of a hidden weapons cache — enough to arm the whole Crew. But it's in a chapel, and taking it means desecrating ground the locals hold sacred.",
         "crown": "Leave the weapons. Some lines shouldn't be crossed.",
         "crew": "Take everything. The dead don't need swords. The living do.",
+        "consequences": {
+            "crown": {"narrative": "The chapel stands. Tomorrow, the locals leave food at the road's edge.", "morning_bias": "neutral", "tag": "HEARTH", "sway_modifier": -1},
+            "crew": {"narrative": "The Crew is armed. The locals bolt their doors as you pass.", "morning_bias": "crew", "tag": "DEFIANCE", "sway_modifier": 1},
+        },
     },
     {
         "prompt": "The Patron has sent a raven with an offer: full amnesty for everyone except the Leader. Surrender one person, and the rest walk free. The Leader doesn't know about the message yet.",
         "crown": "Accept the offer. One life for many.",
         "crew": "Burn the message. We all make it, or none of us do.",
+        "consequences": {
+            "crown": {"narrative": "The deal is struck in whispers. The Leader suspects nothing — yet.", "morning_bias": "crown", "tag": "GUILE", "sway_modifier": -1},
+            "crew": {"narrative": "The ashes of the message drift away. Tomorrow, the Patron sends hunters.", "morning_bias": "crew", "tag": "HEARTH", "sway_modifier": 1},
+        },
     },
 ]
 
@@ -513,6 +545,7 @@ class CrownAndCrewEngine:
     _pending_shift: int = field(default=0, repr=False)  # WO-V108: Sway shift to record in history
     _royal_decree_used: bool = field(default=False, repr=False)  # WO-V104: Once-per-march power
     _leaders_confidence_used: bool = field(default=False, repr=False)  # WO-V104: Once-per-march power
+    _active_consequences: list[dict] = field(default_factory=list, repr=False)  # WO-V110: Tracked council outcomes
 
     # MED-06: Short rest per-day counter
     _short_rests_today: int = field(default=0, repr=False)
@@ -1480,6 +1513,9 @@ class CrownAndCrewEngine:
             with text, tag, sway_effect).
         """
         pool = self._morning_events
+        # WO-V110: Check if last night's council consequence biases today's morning
+        consequence_bias = self.get_consequence_morning_bias()
+
         if self.day == 1:
             # Day 1: only neutral events
             neutral = [i for i, e in enumerate(pool) if e["bias"] == "neutral"]
@@ -1487,6 +1523,17 @@ class CrownAndCrewEngine:
             if not available:
                 self._used_morning = [x for x in self._used_morning if x not in neutral]
                 available = neutral
+        elif consequence_bias and consequence_bias != "neutral":
+            # Days 2+: prefer events matching last night's consequence bias
+            biased = [i for i, e in enumerate(pool)
+                      if e["bias"] == consequence_bias and i not in self._used_morning]
+            if biased:
+                available = biased
+            else:
+                available = [i for i in range(len(pool)) if i not in self._used_morning]
+                if not available:
+                    self._used_morning.clear()
+                    available = list(range(len(pool)))
         else:
             # Days 2+: any event not yet used
             available = [i for i in range(len(pool)) if i not in self._used_morning]
@@ -1650,7 +1697,7 @@ class CrownAndCrewEngine:
         """
         return VOTE_POWER.get(abs(self.sway), 1)
 
-    def resolve_vote(self, votes: dict[str, int]) -> dict:
+    def resolve_vote(self, votes: dict[str, int], dilemma: dict | None = None) -> dict:
         """
         Resolve a council vote using Political Gravity.
 
@@ -1731,6 +1778,11 @@ class CrownAndCrewEngine:
             "flavor": flavor,
         }
 
+        # WO-V110: Apply consequences from current dilemma
+        consequence = self._apply_vote_consequence(winner, dilemma)
+        if consequence:
+            result["consequence"] = consequence
+
         self.vote_log.append({
             "day": self.day,
             "votes": dict(votes),
@@ -1738,6 +1790,66 @@ class CrownAndCrewEngine:
         })
 
         return result
+
+    def _apply_vote_consequence(self, winner: str, dilemma: dict | None) -> dict | None:
+        """WO-V110: Apply tracked consequences from a council vote.
+
+        Consequences affect:
+        - narrative: flavor text shown immediately
+        - morning_bias: next morning event is biased toward this side
+        - tag: DNA tag awarded for the group decision
+        - sway_modifier: additional sway shift from the collective choice
+
+        Returns the consequence dict or None if no consequences defined.
+        """
+        if not dilemma:
+            return None
+        consequences = dilemma.get("consequences", {})
+        if not consequences:
+            return None
+
+        consequence = consequences.get(winner, {})
+        if not consequence:
+            return None
+
+        # Apply DNA tag
+        tag = consequence.get("tag", "")
+        if tag and tag in TAGS:
+            self.dna[tag] += 1
+
+        # Apply sway modifier
+        sway_mod = consequence.get("sway_modifier", 0)
+        if sway_mod:
+            self.sway += sway_mod
+            self.sway = max(-3, min(3, self.sway))
+
+        # Track the consequence for next-day effects
+        self._active_consequences.append({
+            "day": self.day,
+            "winner": winner,
+            "narrative": consequence.get("narrative", ""),
+            "morning_bias": consequence.get("morning_bias", "neutral"),
+            "tag": tag,
+        })
+
+        # Shard
+        self._add_shard(
+            f"Day {self.day} council consequence: {consequence.get('narrative', '')[:60]}",
+            "CHRONICLE",
+        )
+
+        return consequence
+
+    def get_pending_consequences(self) -> list[dict]:
+        """WO-V110: Return consequences from previous day that affect the current morning."""
+        return [c for c in self._active_consequences if c.get("day") == self.day - 1]
+
+    def get_consequence_morning_bias(self) -> str | None:
+        """WO-V110: Get morning event bias from last night's council consequence."""
+        pending = self.get_pending_consequences()
+        if pending:
+            return pending[-1].get("morning_bias")
+        return None
 
     # ─────────────────────────────────────────────────────────────────────
     # GAME FLOW — AUTO-WIRING (#102 Factions, #103 Events)
@@ -2101,6 +2213,7 @@ class CrownAndCrewEngine:
             "_drifter_tax_active": self._drifter_tax_active,
             "_royal_decree_used": self._royal_decree_used,
             "_leaders_confidence_used": self._leaders_confidence_used,
+            "_active_consequences": self._active_consequences,
         }
         # Phase 4 — Persist subsystem state if they have been initialised
         if self._politics_engine is not None:
@@ -2143,6 +2256,7 @@ class CrownAndCrewEngine:
             "_council_dilemmas", "quest_slug", "quest_name",
             "special_mechanics", "_morning_events", "_short_rests_today",
             "_drifter_tax_active", "_royal_decree_used", "_leaders_confidence_used",
+            "_active_consequences",
         ):
             if key in data:
                 setattr(engine, key, data[key])

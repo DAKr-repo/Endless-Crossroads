@@ -1389,6 +1389,108 @@ class TestSwayPowers:
 
 
 # =============================================================================
+# WO-V110: Council Dilemma Consequences
+# =============================================================================
+
+class TestCouncilConsequences:
+    """Test tracked consequences from council votes."""
+
+    def test_resolve_vote_returns_consequence(self):
+        engine = CrownAndCrewEngine()
+        dilemma = engine.get_council_dilemma()
+        result = engine.resolve_vote({"crown": 1}, dilemma=dilemma)
+        # Should have consequence if dilemma has one
+        if dilemma.get("consequences"):
+            assert "consequence" in result
+            assert "narrative" in result["consequence"]
+
+    def test_consequence_applies_dna_tag(self):
+        engine = CrownAndCrewEngine()
+        initial_dna = sum(engine.dna.values())
+        dilemma = engine.get_council_dilemma()
+        engine.resolve_vote({"crown": 1}, dilemma=dilemma)
+        if dilemma.get("consequences"):
+            assert sum(engine.dna.values()) > initial_dna
+
+    def test_consequence_applies_sway_modifier(self):
+        engine = CrownAndCrewEngine()
+        initial_sway = engine.sway
+        # Use a known dilemma with sway_modifier
+        dilemma = {
+            "prompt": "Test", "crown": "Crown", "crew": "Crew",
+            "consequences": {
+                "crown": {"narrative": "Test", "morning_bias": "crown", "tag": "GUILE", "sway_modifier": -1},
+                "crew": {"narrative": "Test", "morning_bias": "crew", "tag": "DEFIANCE", "sway_modifier": 1},
+            },
+        }
+        engine.resolve_vote({"crown": 1}, dilemma=dilemma)
+        assert engine.sway == initial_sway - 1
+
+    def test_consequence_tracked_in_active_list(self):
+        engine = CrownAndCrewEngine()
+        dilemma = {
+            "prompt": "Test", "crown": "Crown", "crew": "Crew",
+            "consequences": {
+                "crew": {"narrative": "The crew rallies.", "morning_bias": "crew", "tag": "HEARTH", "sway_modifier": 0},
+            },
+        }
+        engine.resolve_vote({"crew": 1}, dilemma=dilemma)
+        assert len(engine._active_consequences) == 1
+        assert engine._active_consequences[0]["narrative"] == "The crew rallies."
+
+    def test_consequence_creates_shard(self):
+        engine = CrownAndCrewEngine()
+        dilemma = {
+            "prompt": "Test", "crown": "Crown", "crew": "Crew",
+            "consequences": {
+                "crown": {"narrative": "Order holds.", "morning_bias": "crown", "tag": "SILENCE", "sway_modifier": 0},
+            },
+        }
+        shards_before = len(engine._memory_shards)
+        engine.resolve_vote({"crown": 1}, dilemma=dilemma)
+        assert len(engine._memory_shards) > shards_before
+
+    def test_consequence_morning_bias_affects_next_day(self):
+        engine = CrownAndCrewEngine()
+        # Day 1: vote with crew consequence that biases morning to "crew"
+        dilemma = {
+            "prompt": "Test", "crown": "Crown", "crew": "Crew",
+            "consequences": {
+                "crew": {"narrative": "Test", "morning_bias": "crew", "tag": "HEARTH", "sway_modifier": 0},
+            },
+        }
+        engine.resolve_vote({"crew": 1}, dilemma=dilemma)
+        engine.declare_allegiance("crew", tag="HEARTH")
+        engine.end_day()
+        # Day 2: morning bias should be "crew" from consequence
+        bias = engine.get_consequence_morning_bias()
+        assert bias == "crew"
+
+    def test_no_consequence_without_dilemma(self):
+        engine = CrownAndCrewEngine()
+        result = engine.resolve_vote({"crown": 1})  # No dilemma passed
+        assert "consequence" not in result
+
+    def test_backward_compat_dilemma_without_consequences(self):
+        engine = CrownAndCrewEngine()
+        # Legacy dilemma with no consequences field
+        dilemma = {"prompt": "Old", "crown": "A", "crew": "B"}
+        result = engine.resolve_vote({"crown": 1}, dilemma=dilemma)
+        assert "consequence" not in result
+        assert len(engine._active_consequences) == 0
+
+    def test_consequences_survive_save_load(self):
+        engine = CrownAndCrewEngine()
+        engine._active_consequences = [
+            {"day": 1, "winner": "crown", "narrative": "Order prevails.", "morning_bias": "crown", "tag": "GUILE"},
+        ]
+        data = engine.to_dict()
+        restored = CrownAndCrewEngine.from_dict(data)
+        assert len(restored._active_consequences) == 1
+        assert restored._active_consequences[0]["narrative"] == "Order prevails."
+
+
+# =============================================================================
 # WO-V108: The Echo — Player-Driven DNA Tag Assignment
 # =============================================================================
 

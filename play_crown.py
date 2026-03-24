@@ -504,13 +504,22 @@ def main():
         while vote not in ['1', '2']:
             vote = input("\n> Your Vote (1/2): ").strip()
 
-        vote_side = "crown" if vote == '2' else "crew"
-        result = engine.resolve_vote({vote_side: 1})
+        vote_side = "crown" if vote == '1' else "crew"
+        result = engine.resolve_vote({vote_side: 1}, dilemma=dilemma)
 
         if RICH_AVAILABLE:
             console.print(f"\n[bold]{result['flavor']}[/bold]")
         else:
             print(f"\n--> {result['flavor']}")
+
+        # WO-V110: Display council consequence
+        consequence = result.get("consequence")
+        if consequence and consequence.get("narrative"):
+            time.sleep(1)
+            if RICH_AVAILABLE:
+                console.print(f"\n[dim italic]{consequence['narrative']}[/dim italic]")
+            else:
+                print(f"\n  {consequence['narrative']}")
 
         # --- Rest Choice ---
         rest_msg = rest_choice(engine)
