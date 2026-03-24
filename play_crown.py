@@ -393,7 +393,7 @@ def main():
             choice = input("\n> Your Choice (C/R): ").lower().strip()
 
         side = "crown" if choice == 'c' else "crew"
-        result_text = engine.declare_allegiance(side)
+        result_text = engine.declare_allegiance(side)  # No tag — Echo step follows
 
         if RICH_AVAILABLE:
             console.print(f"\n[bold]{result_text}[/bold]")
@@ -404,6 +404,40 @@ def main():
         prompt = engine.get_prompt()
         card_context = "crown" if side == "crown" else "crew"
         display_card(card_context, prompt, f"[dim]The Dilemma[/dim]")
+
+        # --- THE ECHO: How did you respond? (WO-V108) ---
+        echo_frame = engine.get_echo_frame()
+        echo_responses = engine.get_echo_responses()
+
+        print()
+        if RICH_AVAILABLE:
+            console.print(f"[bold italic]{echo_frame}[/bold italic]")
+        else:
+            print(f"  {echo_frame}")
+        print()
+        for i, resp in enumerate(echo_responses):
+            tag_color = {"BLOOD": "red", "GUILE": "yellow", "HEARTH": "green",
+                         "SILENCE": "dim", "DEFIANCE": "magenta"}.get(resp["tag"], "white")
+            if RICH_AVAILABLE:
+                console.print(f"  [{tag_color}][{i + 1}] {resp['label']}[/{tag_color}] — {resp['desc']}")
+            else:
+                print(f"  [{i + 1}] {resp['label']} — {resp['desc']}")
+
+        echo_choice = ""
+        while not echo_choice.isdigit() or not (1 <= int(echo_choice) <= len(echo_responses)):
+            echo_choice = input("\n> How did you respond? (1-5): ").strip()
+            if not echo_choice:
+                echo_choice = "1"
+
+        chosen = echo_responses[int(echo_choice) - 1]
+        echo_result = engine.resolve_echo(chosen["tag"])
+
+        if RICH_AVAILABLE:
+            console.print(f"\n[bold]{echo_result}[/bold]")
+        else:
+            print(f"\n--> {echo_result}")
+
+        time.sleep(1)
 
         # --- Campfire (not on Breach day) ---
         if not engine.is_breach_day():

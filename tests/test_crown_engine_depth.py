@@ -1127,12 +1127,12 @@ class TestEventAutoWiring:
     def test_event_tags_dna(self):
         engine = CrownAndCrewEngine()
         initial_dna = dict(engine.dna)
-        engine.declare_allegiance("crew")
+        engine.declare_allegiance("crew", tag="HEARTH")  # Explicit tag for backward compat
         engine.end_day()
         # At least one DNA tag should have been incremented by the auto-event
         total_before = sum(initial_dna.values())
         total_after = sum(engine.dna.values())
-        # declare_allegiance adds 1, auto_event adds 1 = at least 2 more
+        # declare_allegiance adds 1 (HEARTH), auto_event adds 1 = at least 2 more
         assert total_after >= total_before + 2
 
     def test_event_creates_shard(self):
@@ -1151,3 +1151,131 @@ class TestEventAutoWiring:
         # Should have a political_event sub-key from EventGenerator
         assert "political_event" in event
         assert "text" in event["political_event"]
+
+
+# =============================================================================
+# WO-V108: The Echo — Player-Driven DNA Tag Assignment
+# =============================================================================
+
+class TestEcho:
+    """Test the Echo response system for allegiance prompts."""
+
+    def test_declare_without_tag_defers_echo(self):
+        engine = CrownAndCrewEngine()
+        result = engine.declare_allegiance("crown")
+        assert engine._pending_echo is True
+        assert "how did you carry" in result.lower() or "awaiting echo" in result.lower() or "choice" in result.lower()
+        # DNA should NOT be incremented yet
+        assert sum(engine.dna.values()) == 0
+
+    def test_declare_with_tag_skips_echo(self):
+        engine = CrownAndCrewEngine()
+        result = engine.declare_allegiance("crew", tag="HEARTH")
+        assert engine._pending_echo is False
+        assert engine.dna["HEARTH"] == 1
+        assert "HEARTH" in result
+
+    def test_get_echo_responses_returns_five(self):
+        engine = CrownAndCrewEngine()
+        engine.declare_allegiance("crown")
+        responses = engine.get_echo_responses()
+        assert len(responses) == 5
+        tags = {r["tag"] for r in responses}
+        assert tags == {"BLOOD", "GUILE", "HEARTH", "SILENCE", "DEFIANCE"}
+        for r in responses:
+            assert "label" in r
+            assert "desc" in r
+            assert len(r["label"]) > 0
+            assert len(r["desc"]) > 0
+
+    def test_get_echo_frame_crown(self):
+        engine = CrownAndCrewEngine()
+        engine.declare_allegiance("crown")
+        frame = engine.get_echo_frame()
+        assert "order" in frame.lower()
+
+    def test_get_echo_frame_crew(self):
+        engine = CrownAndCrewEngine()
+        engine.declare_allegiance("crew")
+        frame = engine.get_echo_frame()
+        assert "freedom" in frame.lower()
+
+    def test_resolve_echo_assigns_tag(self):
+        engine = CrownAndCrewEngine()
+        engine.declare_allegiance("crew")
+        assert sum(engine.dna.values()) == 0
+        result = engine.resolve_echo("DEFIANCE")
+        assert engine.dna["DEFIANCE"] == 1
+        assert engine._pending_echo is False
+        assert "DEFIANCE" in result
+
+    def test_resolve_echo_records_history(self):
+        engine = CrownAndCrewEngine()
+        engine.declare_allegiance("crown")
+        engine.resolve_echo("SILENCE")
+        assert len(engine.history) == 1
+        assert engine.history[0]["choice"] == "crown"
+        assert engine.history[0]["tag"] == "SILENCE"
+
+    def test_resolve_echo_creates_anchor_shard(self):
+        engine = CrownAndCrewEngine()
+        engine.declare_allegiance("crew")
+        shards_before = len(engine._memory_shards)
+        engine.resolve_echo("BLOOD")
+        # declare_allegiance creates CHRONICLE, resolve_echo creates ANCHOR
+        assert len(engine._memory_shards) > shards_before
+        last_shard = engine._memory_shards[-1]
+        assert "BLOOD" in last_shard.content
+        assert "Echo" in last_shard.content
+
+    def test_resolve_echo_invalid_tag_raises(self):
+        engine = CrownAndCrewEngine()
+        engine.declare_allegiance("crown")
+        with pytest.raises(ValueError):
+            engine.resolve_echo("INVALID_TAG")
+
+    def test_full_echo_flow(self):
+        """Test the complete declare → get_prompt → echo → resolve flow."""
+        engine = CrownAndCrewEngine()
+        # Step 1: Declare (no tag)
+        decl = engine.declare_allegiance("crew")
+        assert engine._pending_echo is True
+        assert engine.sway == 1
+
+        # Step 2: Get prompt
+        prompt = engine.get_prompt()
+        assert isinstance(prompt, str)
+        assert len(prompt) > 10
+
+        # Step 3: Get echo responses
+        responses = engine.get_echo_responses()
+        assert len(responses) == 5
+
+        # Step 4: Resolve echo
+        result = engine.resolve_echo("HEARTH")
+        assert engine.dna["HEARTH"] == 1
+        assert engine._pending_echo is False
+        assert len(engine.history) == 1
+
+    def test_backward_compat_with_tag(self):
+        """Old callers passing tag directly still work."""
+        engine = CrownAndCrewEngine()
+        result = engine.declare_allegiance("crown", tag="GUILE")
+        assert engine.dna["GUILE"] == 1
+        assert len(engine.history) == 1
+        assert engine.history[0]["tag"] == "GUILE"
+        assert engine._pending_echo is False
+
+    def test_echo_with_drifter_tax_double_draw(self):
+        """Echo works correctly after a Double Draw."""
+        engine = CrownAndCrewEngine()
+        engine._drifter_tax_active = True
+        engine.declare_allegiance("crown")
+        # Double Draw prompt
+        prompt = engine.get_prompt()
+        assert "DOUBLE DRAW" in prompt
+        # Echo still works
+        responses = engine.get_echo_responses()
+        assert len(responses) == 5
+        result = engine.resolve_echo("SILENCE")
+        assert engine.dna["SILENCE"] == 1

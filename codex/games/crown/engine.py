@@ -191,10 +191,47 @@ LEGACY_TITLES: dict[tuple[str, str], dict[str, str]] = {
     ("DRIFTER", "DEFIANCE"): {"title": "The Survivor", "desc": "You outlasted them all."},
 }
 
-# Auto-tag mappings for allegiance choices
+# Auto-tag mappings for allegiance choices (fallback when Echo is skipped)
 AUTO_TAGS: dict[str, list[str]] = {
     "crew": ["HEARTH", "DEFIANCE", "BLOOD"],
     "crown": ["GUILE", "SILENCE", "BLOOD"]
+}
+
+# =============================================================================
+# THE ECHO — Response archetypes (WO-V108)
+# =============================================================================
+# Each response archetype works for ANY prompt. The player picks how their
+# character reacts, which determines the DNA tag. These are universal —
+# modules can override with prompt-specific responses.
+
+ECHO_RESPONSES: dict[str, dict[str, str]] = {
+    "BLOOD": {
+        "label": "With force",
+        "desc": "You solved this with violence, threat, or raw intimidation.",
+    },
+    "GUILE": {
+        "label": "With cunning",
+        "desc": "You lied, bargained, misdirected, or played both sides.",
+    },
+    "HEARTH": {
+        "label": "With compassion",
+        "desc": "You prioritized someone's safety, comfort, or dignity over advantage.",
+    },
+    "SILENCE": {
+        "label": "With silence",
+        "desc": "You kept the secret, bore the burden alone, or looked the other way.",
+    },
+    "DEFIANCE": {
+        "label": "With defiance",
+        "desc": "You challenged the order, broke the rule, or exposed the lie.",
+    },
+}
+
+# Context-sensitive Echo prompts — keyed by allegiance side.
+# Displayed after the prompt reveal to frame the player's response.
+ECHO_FRAME: dict[str, str] = {
+    "crown": "The weight of order presses down. How did you carry it?",
+    "crew": "The fire of freedom burns bright. How did you feed it?",
 }
 
 
@@ -378,6 +415,8 @@ class CrownAndCrewEngine:
     # Internal state
     _pending_allegiance: str | None = field(default=None, repr=False)
     _drifter_tax_active: bool = field(default=False, repr=False)  # WO-V100: Double Draw pending
+    _pending_echo: bool = field(default=False, repr=False)  # WO-V108: Awaiting Echo response
+    _pending_shift: int = field(default=0, repr=False)  # WO-V108: Sway shift to record in history
 
     # MED-06: Short rest per-day counter
     _short_rests_today: int = field(default=0, repr=False)
@@ -989,7 +1028,15 @@ class CrownAndCrewEngine:
     def declare_allegiance(self, side: Literal["crown", "crew"], tag: str | None = None) -> str:
         """
         Declare allegiance BEFORE seeing the prompt (Blind Allegiance).
-        Uses dynamic terminology from world_state.
+
+        Phase 1 of the two-step allegiance flow:
+          1. declare_allegiance() — shifts sway, records side
+          2. resolve_echo() — player picks HOW they responded → assigns DNA tag
+
+        If *tag* is provided, the Echo step is skipped and the tag is
+        assigned immediately (backward compat / bot shortcut).
+        If *tag* is None, sway shifts but no DNA tag is assigned yet —
+        call get_echo_responses() + resolve_echo() to complete the flow.
         """
         side = side.lower()
         side_term = self.terms.get(side, side.upper())
@@ -1003,15 +1050,88 @@ class CrownAndCrewEngine:
         else:
             raise ValueError(f"Invalid side: {side}. Must be 'crown' or 'crew'.")
 
-        if tag is None:
-            tag = random.choice(AUTO_TAGS[side])
-        else:
+        self.sway = max(-3, min(3, self.sway))
+        self._pending_allegiance = side
+
+        if tag is not None:
+            # Immediate tag assignment (backward compat / bot shortcut)
             tag = tag.upper()
             if tag not in TAGS:
                 raise ValueError(f"Invalid tag: {tag}. Must be one of {TAGS}.")
+            self.dna[tag] += 1
+            self._pending_echo = False
+            self.history.append({
+                "day": self.day,
+                "choice": side,
+                "tag": tag,
+                "sway_shift": shift,
+                "sway_after": self.sway
+            })
+            self._add_shard(
+                f"Day {self.day}: Declared allegiance to {side_term} [{tag}]. Sway: {self.sway:+d}",
+                "ANCHOR",
+            )
+            tier = self.get_tier()
+            return (
+                f"Allegiance declared: {side_term.upper()} [{tag}]. "
+                f"Sway shifts to {self.sway:+d} ({tier['name']})."
+            )
+        else:
+            # Deferred tag — Echo step required
+            self._pending_echo = True
+            self._pending_shift = shift
+            self._add_shard(
+                f"Day {self.day}: Declared allegiance to {side_term}. Sway: {self.sway:+d}. Awaiting Echo.",
+                "CHRONICLE",
+            )
+            tier = self.get_tier()
+            return (
+                f"Allegiance declared: {side_term.upper()}. "
+                f"Sway shifts to {self.sway:+d} ({tier['name']}). "
+                f"Now — how did you carry that choice?"
+            )
+
+    def get_echo_responses(self) -> list[dict]:
+        """WO-V108: Return the 5 Echo response options for the current allegiance.
+
+        Each response maps to a DNA tag. The player picks one to complete
+        the allegiance flow. Returns a list of dicts with keys:
+        tag, label, desc.
+        """
+        responses = []
+        for tag_name in TAGS:
+            echo = ECHO_RESPONSES.get(tag_name, {})
+            responses.append({
+                "tag": tag_name,
+                "label": echo.get("label", tag_name),
+                "desc": echo.get("desc", ""),
+            })
+        return responses
+
+    def get_echo_frame(self) -> str:
+        """WO-V108: Return the Echo framing text for the current allegiance."""
+        side = self._pending_allegiance or "crew"
+        return ECHO_FRAME.get(side, "How did you respond?")
+
+    def resolve_echo(self, tag: str) -> str:
+        """WO-V108: Complete the allegiance flow by assigning the player-chosen DNA tag.
+
+        Args:
+            tag: The DNA tag chosen by the player (BLOOD, GUILE, HEARTH, SILENCE, DEFIANCE).
+
+        Returns:
+            Narrative confirmation string.
+        """
+        tag = tag.upper()
+        if tag not in TAGS:
+            raise ValueError(f"Invalid tag: {tag}. Must be one of {TAGS}.")
+
+        side = self._pending_allegiance or "crew"
+        side_term = self.terms.get(side, side.upper())
+        shift = getattr(self, '_pending_shift', 0)
 
         self.dna[tag] += 1
-        self.sway = max(-3, min(3, self.sway))
+        self._pending_echo = False
 
         self.history.append({
             "day": self.day,
@@ -1021,18 +1141,17 @@ class CrownAndCrewEngine:
             "sway_after": self.sway
         })
 
-        self._pending_allegiance = side
+        echo_label = ECHO_RESPONSES.get(tag, {}).get("label", tag)
+        echo_desc = ECHO_RESPONSES.get(tag, {}).get("desc", "")
 
-        # WO-V10.0: ANCHOR shard for allegiance declaration
         self._add_shard(
-            f"Day {self.day}: Declared allegiance to {side_term} [{tag}]. Sway: {self.sway:+d}",
+            f"Day {self.day}: Echo — responded to {side_term} with [{tag}] ({echo_label}). Sway: {self.sway:+d}",
             "ANCHOR",
         )
 
-        tier = self.get_tier()
         return (
-            f"Allegiance declared: {side_term.upper()} [{tag}]. "
-            f"Sway shifts to {self.sway:+d} ({tier['name']})."
+            f"[{tag}] {echo_label}. {echo_desc}\n"
+            f"Your DNA shifts. {tag} marks this memory."
         )
 
     def get_prompt(self, side: Literal["crown", "crew"] | None = None) -> str:
