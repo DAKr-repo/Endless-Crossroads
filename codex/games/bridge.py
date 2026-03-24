@@ -82,6 +82,7 @@ class UniversalGameBridge:
         "narrative": {
             "trace": "Trace a fact through narrative shards",
             "reputation": "Show faction standing",
+            "recap": "Session recap with narrative thread",
         },
     }
 
@@ -120,6 +121,7 @@ class UniversalGameBridge:
         self.show_dm_notes: bool = False  # WO-V54.0: Hide DM notes by default
         self._talking_to: Optional[str] = None  # WO-V54.0: NPC conversation state
         self._session_log: list = []  # WO-V61.0: Session event chronicle
+        self._visited_rooms: set = set()  # WO-V79.0: Track first-visit for loom shards
         self._momentum_handler = None  # WO-V62.0: Threshold handler
         self._pending_momentum_msgs: list = []  # WO-V62.0: Pending messages
         # WO-V68.0: Faction reputation tracker
@@ -136,6 +138,14 @@ class UniversalGameBridge:
             self._narrator = NarrativeBridge(_sys)
         except Exception:
             pass
+
+    def _loom_shard(self, content: str, shard_type: str = "CHRONICLE"):
+        """WO-V79.0: Create a narrative loom shard if the engine supports it."""
+        if hasattr(self.engine, '_add_shard'):
+            try:
+                self.engine._add_shard(content, shard_type)
+            except Exception:
+                pass
 
     def set_butler(self, butler):
         """WO-V50.0: Attach a CodexButler for audio narration."""
@@ -247,6 +257,9 @@ class UniversalGameBridge:
             "trace": self._handle_trace,
             "reputation": self._handle_reputation,
             "rep": self._handle_reputation,
+            "recap": self._handle_recap,
+            "summarize": self._handle_recap,
+            "summary": self._handle_recap,
         }
 
         # WO-V54.0: Service alias routing — route service names to _handle_services
@@ -463,6 +476,17 @@ class UniversalGameBridge:
         self.engine.move_to_room(target["id"])
         self._log_event("room_entered", room_id=target["id"])  # WO-V61.0
 
+        # WO-V79.0: Loom shard on first visit to a room
+        _rid = target["id"]
+        if _rid not in self._visited_rooms:
+            self._visited_rooms.add(_rid)
+            _rnode = self.engine.get_current_room()
+            _rtype = ""
+            if _rnode:
+                _rtype = _rnode.room_type.name if hasattr(_rnode, 'room_type') else "room"
+                _rtype = _rtype.replace("_", " ")
+            self._loom_shard(f"Explored {_rtype} (room {_rid})")
+
         # WO-V50.0 / V51.0: Narrate room entry — prefer read_aloud if present
         room_node = self.engine.get_current_room()
         if room_node:
@@ -536,6 +560,7 @@ class UniversalGameBridge:
                 pop.content["enemies"] = enemies
                 self._try_narrate(f"{enemy_name} is slain!")  # WO-V50.0
                 self._log_event("kill", target=enemy_name)  # WO-V61.0
+                self._loom_shard(f"Slew {enemy_name} in room {room_id}")  # WO-V79.0
             else:
                 lines.append(f"{enemy_name} has {enemy_hp} HP remaining.")
         else:
@@ -565,6 +590,10 @@ class UniversalGameBridge:
                     self._log_event("near_death", name=getattr(char, 'name', 'Unknown'),
                                     hp=char.current_hp, max_hp=getattr(char, 'max_hp', 1),
                                     attacker=enemy_name)  # WO-V61.0
+                    _cname = getattr(char, 'name', 'The adventurer')
+                    self._loom_shard(
+                        f"{_cname} nearly fell to {enemy_name} ({char.current_hp} HP remaining)",
+                        "ANCHOR")  # WO-V79.0
             else:
                 lines.append(f"{enemy_name} attacks but misses!")
                 if self._narrator:
@@ -576,6 +605,9 @@ class UniversalGameBridge:
         if not char.is_alive():
             self.dead = True
             self._log_event("party_death", name=getattr(char, 'name', 'Unknown'))  # WO-V61.0
+            self._loom_shard(
+                f"{getattr(char, 'name', 'The adventurer')} fell in room {room_id}",
+                "ANCHOR")  # WO-V79.0
             self._try_narrate("You have fallen.")  # WO-V50.0
             lines.append("")
             lines.append("=== YOU HAVE FALLEN ===")
@@ -604,6 +636,7 @@ class UniversalGameBridge:
                 _lflav = self._narrator.describe_loot(name) if self._narrator else ""
                 lines.append(f"You found: {name}!{_lflav}")
                 pop.content["loot"] = loot
+                self._loom_shard(f"Discovered {name}")  # WO-V79.0
             else:
                 lines.append("Search successful, but nothing of value remains.")
         else:
@@ -646,6 +679,7 @@ class UniversalGameBridge:
                     pass
 
         self._log_event("loot", item=name)  # WO-V61.0
+        self._loom_shard(f"Found {name}")  # WO-V79.0
         _lflav = self._narrator.describe_loot(name) if self._narrator else ""
         return f"Picked up: {name}!{_lflav}\n\n{self._status_line()}"
 
@@ -976,6 +1010,8 @@ class UniversalGameBridge:
                         lines.append(f"[{notes}]")
                     # WO-V54.0: Enter conversation mode
                     self._talking_to = name
+                    # WO-V79.0: Loom shard for NPC encounter
+                    self._loom_shard(f"Spoke with {name} ({role})" if role else f"Spoke with {name}")
                     lines.append("")
                     lines.append("[dim]You are now talking to "
                                  f"{name}. Type freely to chat, 'bye' to end.[/dim]")
@@ -1005,6 +1041,7 @@ class UniversalGameBridge:
             # Clear DC so it can't be repeated
             pop.content["investigation_dc"] = 0
             self._try_narrate(success_text[:200])
+            self._loom_shard(f"Investigation: {success_text[:80]}")  # WO-V79.0
         else:
             lines.append(f"Your investigation reveals nothing. ({result['total']} vs DC {dc})")
 
@@ -1302,6 +1339,50 @@ class UniversalGameBridge:
         lines.append("")
         lines.append(self._status_line())
         return "\n".join(lines)
+
+    def _build_engine_snapshot(self) -> dict:
+        """WO-V79.0: Build an engine state snapshot for session recap."""
+        char = self.engine.character
+        party = []
+        if char:
+            party.append({
+                "name": getattr(char, 'name', 'Adventurer'),
+                "hp": getattr(char, 'current_hp', 0),
+                "max_hp": getattr(char, 'max_hp', 1),
+            })
+        doom = 0
+        _dc = getattr(self.engine, 'doom_clock', None)
+        if _dc:
+            doom = getattr(_dc, 'current', 0)
+        return {
+            "party": party,
+            "doom": doom,
+            "turns": len(self._session_log),
+            "chapter": 1,
+            "completed_quests": [],
+        }
+
+    def _handle_recap(self) -> str:
+        """WO-V79.0: Show session recap with narrative loom shards."""
+        try:
+            from codex.core.services.narrative_loom import summarize_session
+        except ImportError:
+            return "Narrative Loom not available.\n" + self._status_line()
+
+        snapshot = self._build_engine_snapshot()
+        recap = summarize_session(self._session_log, snapshot)
+
+        # Append loom shards summary if available
+        shards = getattr(self.engine, '_memory_shards', [])
+        if shards:
+            recap += "\n\n--- Narrative Thread ---"
+            for s in shards[-10:]:  # Show last 10 shards
+                _type = s.shard_type.value if hasattr(s.shard_type, 'value') else str(s.shard_type)
+                recap += f"\n  [{_type}] {s.content}"
+            if len(shards) > 10:
+                recap += f"\n  ... and {len(shards) - 10} earlier entries"
+
+        return recap
 
     def _handle_reputation(self) -> str:
         """WO-V68.0: Show all tracked faction standings."""

@@ -482,6 +482,7 @@ class BurnwillowBridge:
 
         # WO-V37.0: Log room entered
         self._log_event("room_entered", room_id=target_id)
+        self._loom_shard(f"Explored room {target_id}")  # WO-V79.0
 
         # Successful move — check for ambush
         room = result.get("room", {})
@@ -580,6 +581,7 @@ class BurnwillowBridge:
                 self._log_event("kill", target=enemy_name,
                                 tier=enemy.get("tier", 1) if isinstance(enemy, dict) else 1,
                                 room_id=self.engine.current_room_id)
+                self._loom_shard(f"Slew {enemy_name} in room {self.engine.current_room_id}")  # WO-V79.0
                 # Update the engine's populated room content
                 pop_room = self.engine.populated_rooms.get(self.engine.current_room_id)
                 if pop_room:
@@ -701,6 +703,7 @@ class BurnwillowBridge:
         self._log_event("loot", item_name=item.name,
                         tier=item.tier.value if item.tier else 1,
                         room_id=self.engine.current_room_id)
+        self._loom_shard(f"Found {item.name}")  # WO-V79.0
         return f"Picked up: {item.name}\n\n" + self._status_line()
 
     def _cmd_drop(self, arg: str) -> str:
@@ -1109,6 +1112,14 @@ class BurnwillowBridge:
         """Append a structured event to the bridge session log."""
         self._session_log.append({"type": event_type, **kwargs})
 
+    def _loom_shard(self, content: str, shard_type: str = "CHRONICLE"):
+        """WO-V79.0: Create a narrative loom shard if the engine supports it."""
+        if hasattr(self.engine, '_add_shard'):
+            try:
+                self.engine._add_shard(content, shard_type)
+            except Exception:
+                pass
+
     def _build_engine_snapshot(self) -> dict:
         """Build engine state snapshot for recap."""
         party = []
@@ -1252,9 +1263,21 @@ class BurnwillowBridge:
         )
 
     def _cmd_recap(self) -> str:
-        """Show session recap."""
+        """Show session recap with narrative thread."""
         from codex.core.services.narrative_loom import summarize_session
-        return summarize_session(self._session_log, self._build_engine_snapshot())
+        recap = summarize_session(self._session_log, self._build_engine_snapshot())
+
+        # WO-V79.0: Append loom shards if available
+        shards = getattr(self.engine, '_memory_shards', [])
+        if shards:
+            recap += "\n\n--- Narrative Thread ---"
+            for s in shards[-10:]:
+                _type = s.shard_type.value if hasattr(s.shard_type, 'value') else str(s.shard_type)
+                recap += f"\n  [{_type}] {s.content}"
+            if len(shards) > 10:
+                recap += f"\n  ... and {len(shards) - 10} earlier entries"
+
+        return recap
 
 
 # =============================================================================
