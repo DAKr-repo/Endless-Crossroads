@@ -2000,6 +2000,81 @@ class TestDebtsAndSecrets:
 
 
 # =============================================================================
+# WO-V124+127+128: Character Loom Integration
+# =============================================================================
+
+class TestLoomIntegration:
+    """Test Character Loom wiring into Crown engine."""
+
+    def test_set_character_creates_loom(self):
+        engine = CrownAndCrewEngine()
+        engine.set_character({"name": "Kael", "background": "Soldier"})
+        loom = engine.get_loom()
+        assert loom is not None
+        assert loom.name == "Kael"
+
+    def test_character_data_in_init(self):
+        engine = CrownAndCrewEngine(character_data={"name": "Sera", "ideal": "Freedom"})
+        loom = engine.get_loom()
+        assert loom.name == "Sera"
+        assert loom.ideal == "Freedom"
+
+    def test_resolve_prompt_with_loom(self):
+        engine = CrownAndCrewEngine(character_data={"name": "Kael", "background": "Soldier"})
+        result = engine.resolve_prompt("Welcome, {loom.name}. You were a {loom.background}.")
+        assert result == "Welcome, Kael. You were a Soldier."
+
+    def test_resolve_prompt_without_loom(self):
+        engine = CrownAndCrewEngine()
+        result = engine.resolve_prompt("Static text with no variables.")
+        assert result == "Static text with no variables."
+
+    def test_echo_frame_with_ideal(self):
+        engine = CrownAndCrewEngine(character_data={"ideal": "Justice"})
+        engine.declare_allegiance("crown")
+        frame = engine.get_echo_frame()
+        assert "Justice" in frame
+
+    def test_echo_frame_without_character(self):
+        engine = CrownAndCrewEngine()
+        engine.declare_allegiance("crew")
+        frame = engine.get_echo_frame()
+        # Should still work, just generic
+        assert "freedom" in frame.lower()
+
+    def test_mirror_with_flaw(self):
+        engine = CrownAndCrewEngine(character_data={"flaw": "I trust too easily"})
+        engine.dna["GUILE"] = 5
+        engine.players["_solo"].dna["GUILE"] = 5
+        mirror = engine.get_mirror_break()
+        assert "trust too easily" in mirror["witness"]
+
+    def test_mirror_without_character(self):
+        engine = CrownAndCrewEngine()
+        engine.dna["BLOOD"] = 3
+        engine.players["_solo"].dna["BLOOD"] = 3
+        mirror = engine.get_mirror_break()
+        # Should work without flaw — just no flaw note
+        assert "Brutality" in mirror["sin"]
+        assert "staring back" not in mirror["witness"]
+
+    def test_multiplayer_separate_looms(self):
+        engine = CrownAndCrewEngine()
+        engine.add_player("Alice")
+        engine.add_player("Bob")
+        engine.set_character({"name": "Alice", "ideal": "Duty"}, player_name="Alice")
+        engine.set_character({"name": "Bob", "ideal": "Freedom"}, player_name="Bob")
+        assert engine.get_loom("Alice").ideal == "Duty"
+        assert engine.get_loom("Bob").ideal == "Freedom"
+
+    def test_empty_loom_returns_defaults(self):
+        engine = CrownAndCrewEngine()
+        loom = engine.get_loom()
+        assert loom.name == "Traveler"  # Default
+        assert loom.ideal == "survival"  # Default
+
+
+# =============================================================================
 # WO-V108: The Echo — Player-Driven DNA Tag Assignment
 # =============================================================================
 

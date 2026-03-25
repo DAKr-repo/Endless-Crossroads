@@ -746,6 +746,9 @@ class CrownAndCrewEngine:
     # WO-V133: Multiplayer player slots
     players: dict[str, CrownPlayerState] = field(default_factory=dict, repr=False)
 
+    # WO-V124: Character data for Loom personalization
+    character_data: dict | None = field(default=None, repr=False)
+
     # Arc length + rest progression (v4.0)
     arc_length: int = 5
     rest_type: str = "long"
@@ -953,6 +956,16 @@ class CrownAndCrewEngine:
             ps._safe_passage_used = self._safe_passage_used
             self.players[_SOLO] = ps
 
+        # WO-V124: Attach Character Loom if character data provided
+        if self.character_data:
+            try:
+                from codex.core.services.character_loom import CharacterLoom
+                loom = CharacterLoom.from_dict(self.character_data)
+                if _SOLO in self.players:
+                    self.players[_SOLO]._loom = loom
+            except Exception:
+                pass
+
     # ─────────────────────────────────────────────────────────────────────
     # PLAYER ACCESS (WO-V133)
     # ─────────────────────────────────────────────────────────────────────
@@ -1021,6 +1034,37 @@ class CrownAndCrewEngine:
             ps._royal_decree_used = self._royal_decree_used
             ps._leaders_confidence_used = self._leaders_confidence_used
             ps._safe_passage_used = self._safe_passage_used
+
+    def get_loom(self, player_name: str = _SOLO) -> Any:
+        """WO-V124: Get the Character Loom for a player, or an empty one."""
+        ps = self._get_player(player_name)
+        if ps._loom is not None:
+            return ps._loom
+        try:
+            from codex.core.services.character_loom import CharacterLoom
+            return CharacterLoom.empty()
+        except ImportError:
+            return None
+
+    def set_character(self, char_data: dict, player_name: str = _SOLO) -> None:
+        """WO-V124: Set character data for a player, creating a Loom."""
+        try:
+            from codex.core.services.character_loom import CharacterLoom
+            loom = CharacterLoom.from_dict(char_data)
+            ps = self._get_player(player_name)
+            ps._loom = loom
+        except Exception:
+            pass
+
+    def resolve_prompt(self, text: str, player_name: str = _SOLO) -> str:
+        """WO-V124: Resolve {loom.*} variables in a prompt for a player.
+
+        If no Loom is available, returns the text unchanged.
+        """
+        loom = self.get_loom(player_name)
+        if loom and hasattr(loom, 'resolve'):
+            return loom.resolve(text)
+        return text
 
     # ─────────────────────────────────────────────────────────────────────
     # MEMORY SHARD HELPERS (WO-V10.0)
@@ -1714,10 +1758,20 @@ class CrownAndCrewEngine:
             })
         return responses
 
-    def get_echo_frame(self) -> str:
-        """WO-V108: Return the Echo framing text for the current allegiance."""
+    def get_echo_frame(self, player_name: str = _SOLO) -> str:
+        """WO-V108+V128: Return the Echo framing text for the current allegiance.
+
+        If a Character Loom is available, personalizes with the player's ideal.
+        """
         side = self._pending_allegiance or "crew"
-        return ECHO_FRAME.get(side, "How did you respond?")
+        base = ECHO_FRAME.get(side, "How did you respond?")
+        # WO-V128: Personalize with ideal if available
+        loom = self.get_loom(player_name)
+        if loom and hasattr(loom, 'ideal'):
+            ideal = loom.ideal
+            if ideal and ideal != "survival":  # Not the default
+                base = f"Your ideal of {ideal} demands you answer. {base}"
+        return base
 
     def resolve_echo(self, tag: str) -> str:
         """WO-V108: Complete the allegiance flow by assigning the player-chosen DNA tag.
@@ -1848,18 +1902,18 @@ class CrownAndCrewEngine:
         """
         return self._secret_witness
 
-    def get_mirror_break(self) -> dict:
-        """WO-V99: Generate the Day 3 Mirror Break scene.
+    def get_mirror_break(self, player_name: str = _SOLO) -> dict:
+        """WO-V99+V127: Generate the Day 3 Mirror Break scene.
 
         The player's dominant DNA tag determines what sin they witness
-        the Crew Leader committing. Returns a dict with:
-        - sin: the sin type name
-        - witness: the narrative text (with Leader name substituted)
-        - choices: hide vs expose options with tag/sway effects
+        the Crew Leader committing. If a Character Loom is available,
+        the witness text is personalized with the player's flaw.
 
+        Returns dict with: sin, witness, choices, dominant_tag.
         Only meaningful on breach day — call is_breach_day() first.
         """
-        dominant = self.get_dominant_tag()
+        ps = self._get_player(player_name)
+        dominant = ps.get_dominant_tag()
         sin_data = MIRROR_SINS.get(dominant, MIRROR_SINS["SILENCE"])
 
         leader_name = self.leader
@@ -1868,10 +1922,18 @@ class CrownAndCrewEngine:
 
         witness_text = sin_data["witness"].format(leader=leader_name)
 
+        # WO-V127: Personalize with character flaw if available
+        loom = self.get_loom(player_name)
+        flaw_note = ""
+        if loom and hasattr(loom, 'flaw'):
+            flaw = loom.flaw
+            if flaw and flaw != "a weakness they won't name":
+                flaw_note = f"\nYou know why this cuts deep. {flaw.rstrip('.')}. And here it is, staring back at you."
+
         return {
             "sin": sin_data["sin"],
             "dominant_tag": dominant,
-            "witness": witness_text,
+            "witness": witness_text + flaw_note,
             "choices": [
                 {
                     "text": f"Stay silent. Hide what you saw. The {self.terms.get('crew', 'Crew')} must not fracture.",
