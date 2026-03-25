@@ -757,6 +757,14 @@ class CrownAndCrewEngine:
     sway: int = 0       # Legacy single-player sway (synced from _solo player)
     patron: str = ""
     leader: str = ""
+
+    # WO-V101: Variant play modes
+    # "classic" = 1 patron vs 1 leader (default)
+    # "two_crowns" = 2 patrons (civil war / succession crisis)
+    # "two_crews" = 2 leaders (gang war / schism)
+    play_mode: str = "classic"
+    patron_2: str = ""  # Second patron for "two_crowns" mode
+    leader_2: str = ""  # Second leader for "two_crews" mode
     history: list[dict] = field(default_factory=list)  # Legacy (synced from _solo)
 
     # Narrative DNA tracking (legacy — synced from _solo player)
@@ -915,6 +923,17 @@ class CrownAndCrewEngine:
         if not self.leader:
             self.leader = random.choice(leader_pool)
 
+        # WO-V101: Variant mode initialization
+        if ws and isinstance(ws, dict):
+            self.play_mode = ws.get("play_mode", self.play_mode)
+        if self.play_mode == "two_crowns" and not self.patron_2:
+            # Pick a second patron different from the first
+            remaining = [p for p in patron_pool if p != self.patron]
+            self.patron_2 = random.choice(remaining) if remaining else self.patron
+        elif self.play_mode == "two_crews" and not self.leader_2:
+            remaining = [l for l in leader_pool if l != self.leader]
+            self.leader_2 = random.choice(remaining) if remaining else self.leader
+
         # Accept arc_length + rest_config from world_state (WO-V23.0)
         if ws and isinstance(ws, dict):
             if "arc_length" in ws:
@@ -1053,6 +1072,52 @@ class CrownAndCrewEngine:
             ps._royal_decree_used = self._royal_decree_used
             ps._leaders_confidence_used = self._leaders_confidence_used
             ps._safe_passage_used = self._safe_passage_used
+
+    # ─────────────────────────────────────────────────────────────────────
+    # PLAY MODE VARIANTS (WO-V101)
+    # ─────────────────────────────────────────────────────────────────────
+
+    def get_allegiance_options(self) -> dict:
+        """WO-V101: Return the two allegiance sides with labels.
+
+        Classic: Crown vs Crew
+        Two Crowns: Patron 1 vs Patron 2 (civil war)
+        Two Crews: Leader 1 vs Leader 2 (gang war)
+        """
+        if self.play_mode == "two_crowns":
+            return {
+                "crown": {"label": self.patron, "desc": "Authority, tradition, the old order"},
+                "crew": {"label": self.patron_2, "desc": "Reform, ambition, the new guard"},
+            }
+        elif self.play_mode == "two_crews":
+            return {
+                "crown": {"label": self.leader, "desc": "Experience, caution, the old ways"},
+                "crew": {"label": self.leader_2, "desc": "Vision, risk, the new path"},
+            }
+        else:
+            crown_term = self.terms.get("crown", "The Crown")
+            crew_term = self.terms.get("crew", "The Crew")
+            return {
+                "crown": {"label": crown_term, "desc": "Order, Law, Safety"},
+                "crew": {"label": crew_term, "desc": "Freedom, Bonds, Chaos"},
+            }
+
+    def get_mode_description(self) -> str:
+        """WO-V101: Return a description of the current play mode conflict."""
+        if self.play_mode == "two_crowns":
+            return (
+                f"Two powers claim the throne. {self.patron} holds the old authority. "
+                f"{self.patron_2} demands change. You stand between them."
+            )
+        elif self.play_mode == "two_crews":
+            return (
+                f"The crew is split. {self.leader} leads by experience. "
+                f"{self.leader_2} leads by vision. Both want your loyalty."
+            )
+        else:
+            crown_term = self.terms.get("crown", "The Crown")
+            crew_term = self.terms.get("crew", "The Crew")
+            return f"{crown_term} demands order. {crew_term} offers freedom. Choose."
 
     def get_loom(self, player_name: str = _SOLO) -> Any:
         """WO-V124: Get the Character Loom for a player, or an empty one."""
@@ -3836,6 +3901,9 @@ class CrownAndCrewEngine:
             "sway": self.sway,
             "patron": self.patron,
             "leader": self.leader,
+            "play_mode": self.play_mode,
+            "patron_2": self.patron_2,
+            "leader_2": self.leader_2,
             "history": self.history,
             "dna": self.dna,
             "vote_log": self.vote_log,
@@ -3901,6 +3969,7 @@ class CrownAndCrewEngine:
             "day", "sway", "patron", "leader", "history", "dna",
             "vote_log", "arc_length", "rest_type", "rest_config",
             "terms", "entities", "threat", "region", "goal",
+            "play_mode", "patron_2", "leader_2",
         )
         init_args = {k: data[k] for k in init_keys if k in data}
         engine = cls(world_state=kwargs.get("world_state"), **init_args)

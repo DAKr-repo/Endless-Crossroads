@@ -2677,6 +2677,84 @@ class TestMultiplayerFinale:
 
 
 # =============================================================================
+# WO-V101: Variant Play Modes
+# =============================================================================
+
+class TestPlayModes:
+    """Test Between Two Crowns / Between Two Crews modes."""
+
+    def test_classic_mode_default(self):
+        engine = CrownAndCrewEngine()
+        assert engine.play_mode == "classic"
+        opts = engine.get_allegiance_options()
+        assert "crown" in opts
+        assert "crew" in opts
+
+    def test_two_crowns_mode(self):
+        engine = CrownAndCrewEngine(play_mode="two_crowns")
+        assert engine.play_mode == "two_crowns"
+        assert engine.patron != ""
+        assert engine.patron_2 != ""
+        assert engine.patron != engine.patron_2
+
+    def test_two_crowns_allegiance_options(self):
+        engine = CrownAndCrewEngine(play_mode="two_crowns")
+        opts = engine.get_allegiance_options()
+        assert opts["crown"]["label"] == engine.patron
+        assert opts["crew"]["label"] == engine.patron_2
+
+    def test_two_crews_mode(self):
+        engine = CrownAndCrewEngine(play_mode="two_crews")
+        assert engine.play_mode == "two_crews"
+        assert engine.leader != ""
+        assert engine.leader_2 != ""
+        assert engine.leader != engine.leader_2
+
+    def test_two_crews_allegiance_options(self):
+        engine = CrownAndCrewEngine(play_mode="two_crews")
+        opts = engine.get_allegiance_options()
+        assert opts["crown"]["label"] == engine.leader
+        assert opts["crew"]["label"] == engine.leader_2
+
+    def test_mode_description_classic(self):
+        engine = CrownAndCrewEngine()
+        desc = engine.get_mode_description()
+        assert "order" in desc.lower() or "freedom" in desc.lower()
+
+    def test_mode_description_two_crowns(self):
+        engine = CrownAndCrewEngine(play_mode="two_crowns")
+        desc = engine.get_mode_description()
+        assert engine.patron in desc
+        assert engine.patron_2 in desc
+
+    def test_mode_description_two_crews(self):
+        engine = CrownAndCrewEngine(play_mode="two_crews")
+        desc = engine.get_mode_description()
+        assert engine.leader in desc
+        assert engine.leader_2 in desc
+
+    def test_declare_allegiance_works_in_variant(self):
+        """Core mechanics work in variant modes."""
+        engine = CrownAndCrewEngine(play_mode="two_crowns")
+        result = engine.declare_allegiance("crown", tag="GUILE")
+        assert engine.sway == -1
+        assert engine.dna["GUILE"] == 1
+
+    def test_mode_survives_save_load(self):
+        engine = CrownAndCrewEngine(play_mode="two_crews")
+        p2 = engine.leader_2
+        data = engine.to_dict()
+        restored = CrownAndCrewEngine.from_dict(data)
+        assert restored.play_mode == "two_crews"
+        assert restored.leader_2 == p2
+
+    def test_world_state_sets_mode(self):
+        ws = {"play_mode": "two_crowns", "terms": {"crown": "A", "crew": "B"}}
+        engine = CrownAndCrewEngine(world_state=ws)
+        assert engine.play_mode == "two_crowns"
+
+
+# =============================================================================
 # WO-V108: The Echo — Player-Driven DNA Tag Assignment
 # =============================================================================
 
