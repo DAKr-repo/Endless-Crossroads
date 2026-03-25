@@ -2917,6 +2917,7 @@ class CrownAndCrewEngine:
             "choices_made": len(ps.history),
             "history": ps.history,
             "module": self.quest_slug or "",
+            "campaign_hooks": self.generate_campaign_hooks(player_name),
         }
 
     def generate_legacy_report(self, player_name: str = _SOLO) -> str:
@@ -3310,6 +3311,90 @@ class CrownAndCrewEngine:
                 ),
                 "campaign_hook": "You begin the campaign carrying the weight of five days of compromise. Both sides remember your face.",
             }
+
+    def generate_campaign_hooks(self, player_name: str = _SOLO) -> list[str]:
+        """WO-V121: Generate 3-5 campaign hooks from the legacy data.
+
+        Hooks are concrete narrative seeds a GM can use to connect the
+        C&C march to the campaign proper. Sources:
+        - Patron/Leader relationship stance
+        - Mirror choice (secret or exposure)
+        - Power activations (debts incurred)
+        - Council consequences (what the group decided)
+        - Ending state
+
+        Returns list of hook strings, each 1-2 sentences.
+        """
+        ps = self._get_player(player_name)
+        hooks: list[str] = []
+        loom = self.get_loom(player_name)
+        name = loom.name if loom and hasattr(loom, 'name') and loom.name != "Traveler" else "You"
+
+        patron = self.patron
+        leader = self.leader
+        crown_term = self.terms.get("crown", "The Crown")
+        crew_term = self.terms.get("crew", "The Crew")
+
+        # Patron relationship hook
+        if ps.sway <= -2:
+            hooks.append(
+                f"{patron} considers {name} an asset. "
+                f"The first favor will come sooner than expected — and it will not be optional."
+            )
+        elif ps.sway >= 2:
+            hooks.append(
+                f"{patron} has marked {name} as an enemy of {crown_term}. "
+                f"Their intelligence network will be looking."
+            )
+
+        # Leader relationship hook
+        if ps._mirror_choice == "hide" and ps.sway >= 1:
+            hooks.append(
+                f"{leader} trusts {name} with a dangerous secret. "
+                f"Sooner or later, they will ask {name} to protect it — or act on it."
+            )
+        elif ps._mirror_choice == "expose":
+            hooks.append(
+                f"{name} told the truth about {leader}. "
+                f"The fracture this caused will echo into the campaign."
+            )
+
+        # Power activation hooks
+        if ps._royal_decree_used:
+            hooks.append(
+                f"{name} invoked Royal Decree during the march. "
+                f"{crew_term} remembers — and debts paid in authority are repaid in resentment."
+            )
+        if ps._leaders_confidence_used:
+            hooks.append(
+                f"{leader} shared their secret agenda with {name}. "
+                f"This knowledge is leverage, but leverage cuts both ways."
+            )
+
+        # Council consequence hooks
+        for c in self._active_consequences:
+            narrative = c.get("narrative", "")
+            if narrative:
+                hooks.append(f"The council decided: {narrative} The repercussions will surface.")
+                break  # One council hook is enough
+
+        # Ending-specific hook
+        ending = self.determine_ending(player_name)
+        hooks.append(ending["campaign_hook"])
+
+        # DNA-based character reputation hook
+        dominant = ps.get_dominant_tag()
+        _DNA_HOOKS = {
+            "BLOOD": f"{name} earned a reputation for solving problems with force. Some doors open to violence. Others lock forever.",
+            "GUILE": f"{name} played every side of the march. The question: does anyone still believe a word they say?",
+            "HEARTH": f"{name} carried others when they could not walk. That loyalty will be tested — people remember who saved them.",
+            "SILENCE": f"{name} kept secrets that others would kill to know. Silence is power — until someone breaks it.",
+            "DEFIANCE": f"{name} challenged authority at every turn. Revolutionaries attract followers. They also attract hunters.",
+        }
+        if dominant in _DNA_HOOKS:
+            hooks.append(_DNA_HOOKS[dominant])
+
+        return hooks[:6]  # Cap at 6 hooks max
 
     # ─────────────────────────────────────────────────────────────────────
     # SCENE PROGRESSION (optional — backward compatible)

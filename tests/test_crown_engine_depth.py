@@ -2304,6 +2304,77 @@ class TestTheCrossing:
         assert "Kael" in ending["narrative"]
 
 
+class TestCampaignHooks:
+    """WO-V121: Test campaign hook generation."""
+
+    def test_hooks_returns_list(self):
+        engine = CrownAndCrewEngine()
+        hooks = engine.generate_campaign_hooks()
+        assert isinstance(hooks, list)
+        assert len(hooks) >= 1
+
+    def test_hooks_include_ending(self):
+        engine = CrownAndCrewEngine()
+        hooks = engine.generate_campaign_hooks()
+        # At least one hook should be from the ending
+        assert any("campaign" in h.lower() or "begin" in h.lower() for h in hooks)
+
+    def test_hooks_include_patron_at_extreme_sway(self):
+        engine = CrownAndCrewEngine()
+        engine.players["_solo"].sway = -3
+        hooks = engine.generate_campaign_hooks()
+        assert any(engine.patron in h for h in hooks)
+
+    def test_hooks_include_mirror_hide(self):
+        engine = CrownAndCrewEngine()
+        engine.players["_solo"]._mirror_choice = "hide"
+        engine.players["_solo"].sway = 2
+        hooks = engine.generate_campaign_hooks()
+        assert any("secret" in h.lower() or "trust" in h.lower() for h in hooks)
+
+    def test_hooks_include_mirror_expose(self):
+        engine = CrownAndCrewEngine()
+        engine.players["_solo"]._mirror_choice = "expose"
+        hooks = engine.generate_campaign_hooks()
+        assert any("truth" in h.lower() or "fracture" in h.lower() for h in hooks)
+
+    def test_hooks_include_decree_debt(self):
+        engine = CrownAndCrewEngine()
+        engine.players["_solo"]._royal_decree_used = True
+        hooks = engine.generate_campaign_hooks()
+        assert any("Decree" in h or "authority" in h for h in hooks)
+
+    def test_hooks_include_dna_reputation(self):
+        engine = CrownAndCrewEngine()
+        engine.players["_solo"].dna["DEFIANCE"] = 10
+        hooks = engine.generate_campaign_hooks()
+        assert any("challenged" in h.lower() or "revolutionary" in h.lower() for h in hooks)
+
+    def test_hooks_capped_at_six(self):
+        engine = CrownAndCrewEngine()
+        engine.players["_solo"].sway = -3
+        engine.players["_solo"]._mirror_choice = "expose"
+        engine.players["_solo"]._royal_decree_used = True
+        engine.players["_solo"]._leaders_confidence_used = True
+        engine._active_consequences = [{"narrative": "Test consequence"}]
+        hooks = engine.generate_campaign_hooks()
+        assert len(hooks) <= 6
+
+    def test_hooks_in_legacy_json(self):
+        engine = CrownAndCrewEngine()
+        engine.declare_allegiance("crew", tag="DEFIANCE")
+        legacy = engine.generate_legacy_json()
+        assert "campaign_hooks" in legacy
+        assert isinstance(legacy["campaign_hooks"], list)
+        assert len(legacy["campaign_hooks"]) >= 1
+
+    def test_hooks_use_character_name(self):
+        engine = CrownAndCrewEngine(character_data={"name": "Sera"})
+        engine.players["_solo"].sway = 3
+        hooks = engine.generate_campaign_hooks()
+        assert any("Sera" in h for h in hooks)
+
+
 # =============================================================================
 # WO-V108: The Echo — Player-Driven DNA Tag Assignment
 # =============================================================================
