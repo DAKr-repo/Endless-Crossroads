@@ -2074,6 +2074,64 @@ class TestLoomIntegration:
         assert loom.ideal == "survival"  # Default
 
 
+class TestDNASeed:
+    """WO-V125: Test personality → DNA seed mapping."""
+
+    def test_brave_personality_seeds_blood(self):
+        engine = CrownAndCrewEngine()
+        engine.set_character({"personality_traits": ["Brave and reckless"]})
+        assert engine.players["_solo"].dna["BLOOD"] >= 1
+
+    def test_cunning_personality_seeds_guile(self):
+        engine = CrownAndCrewEngine()
+        engine.set_character({"personality_traits": ["Cunning and deceptive"]})
+        assert engine.players["_solo"].dna["GUILE"] >= 1
+
+    def test_kind_personality_seeds_hearth(self):
+        engine = CrownAndCrewEngine()
+        engine.set_character({"personality_traits": ["Kind to strangers, protective of friends"]})
+        assert engine.players["_solo"].dna["HEARTH"] >= 1
+
+    def test_quiet_personality_seeds_silence(self):
+        engine = CrownAndCrewEngine()
+        engine.set_character({"personality_traits": ["Quiet and observant"]})
+        assert engine.players["_solo"].dna["SILENCE"] >= 1
+
+    def test_rebel_personality_seeds_defiance(self):
+        engine = CrownAndCrewEngine()
+        engine.set_character({"personality_traits": ["I challenge authority at every turn"]})
+        assert engine.players["_solo"].dna["DEFIANCE"] >= 1
+
+    def test_alignment_seeds_tag(self):
+        engine = CrownAndCrewEngine()
+        engine.set_character({"alignment": "Chaotic Good"})
+        assert engine.players["_solo"].dna["DEFIANCE"] >= 1
+
+    def test_no_character_no_seed(self):
+        engine = CrownAndCrewEngine()
+        assert sum(engine.players["_solo"].dna.values()) == 0
+
+    def test_seed_is_nudge_not_cage(self):
+        """Seeds add at most 1 per unique tag match — not overwhelming."""
+        engine = CrownAndCrewEngine()
+        engine.set_character({
+            "personality_traits": ["Brave fighter, fierce warrior, aggressive in battle"],
+            "alignment": "Chaotic Evil",
+        })
+        # BLOOD gets at most 1 from keywords (brave/fighter/fierce all map to BLOOD
+        # but only one +1 per unique tag)
+        assert engine.players["_solo"].dna["BLOOD"] == 1
+
+    def test_multiple_tags_seeded(self):
+        engine = CrownAndCrewEngine()
+        engine.set_character({
+            "personality_traits": ["Brave but kind, with a rebellious streak"],
+        })
+        total = sum(engine.players["_solo"].dna.values())
+        # Should seed BLOOD (brave) + HEARTH (kind) + DEFIANCE (rebel) = 3
+        assert total >= 3
+
+
 # =============================================================================
 # WO-V108: The Echo — Player-Driven DNA Tag Assignment
 # =============================================================================

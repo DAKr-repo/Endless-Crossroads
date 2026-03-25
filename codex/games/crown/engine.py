@@ -1047,14 +1047,84 @@ class CrownAndCrewEngine:
             return None
 
     def set_character(self, char_data: dict, player_name: str = _SOLO) -> None:
-        """WO-V124: Set character data for a player, creating a Loom."""
+        """WO-V124: Set character data for a player, creating a Loom.
+
+        WO-V125: Also seeds DNA from personality traits and alignment.
+        """
         try:
             from codex.core.services.character_loom import CharacterLoom
             loom = CharacterLoom.from_dict(char_data)
             ps = self._get_player(player_name)
             ps._loom = loom
+            # WO-V125: Seed DNA from personality
+            self._seed_dna_from_character(char_data, player_name)
         except Exception:
             pass
+
+    def _seed_dna_from_character(self, char_data: dict, player_name: str = _SOLO) -> None:
+        """WO-V125: Nudge initial DNA weights from character personality.
+
+        Scans personality_traits, alignment, and background for keywords
+        that map to DNA tags. Each match adds +1 to the tag. This is a
+        nudge, not a cage — the march still shapes who you become.
+        """
+        ps = self._get_player(player_name)
+
+        # Keyword → tag mappings (lowercase)
+        _KEYWORD_MAP: dict[str, str] = {
+            # BLOOD
+            "brave": "BLOOD", "aggressive": "BLOOD", "fierce": "BLOOD",
+            "violent": "BLOOD", "warrior": "BLOOD", "fighter": "BLOOD",
+            "intimidat": "BLOOD", "ruthless": "BLOOD", "soldier": "BLOOD",
+            # GUILE
+            "cunning": "GUILE", "deceit": "GUILE", "clever": "GUILE",
+            "lie": "GUILE", "manipulat": "GUILE", "charm": "GUILE",
+            "persuasi": "GUILE", "spy": "GUILE", "criminal": "GUILE",
+            # HEARTH
+            "kind": "HEARTH", "protect": "HEARTH", "compassion": "HEARTH",
+            "help": "HEARTH", "heal": "HEARTH", "loyal": "HEARTH",
+            "friend": "HEARTH", "family": "HEARTH", "care": "HEARTH",
+            # SILENCE
+            "quiet": "SILENCE", "secret": "SILENCE", "observ": "SILENCE",
+            "patient": "SILENCE", "stoic": "SILENCE", "endur": "SILENCE",
+            "burden": "SILENCE", "alone": "SILENCE", "hermit": "SILENCE",
+            # DEFIANCE
+            "rebel": "DEFIANCE", "defy": "DEFIANCE", "challenge": "DEFIANCE",
+            "freedom": "DEFIANCE", "justice": "DEFIANCE", "truth": "DEFIANCE",
+            "resist": "DEFIANCE", "independent": "DEFIANCE", "outlaw": "DEFIANCE",
+        }
+
+        # Alignment → tag mapping
+        _ALIGNMENT_MAP: dict[str, str] = {
+            "lawful good": "HEARTH", "neutral good": "HEARTH",
+            "chaotic good": "DEFIANCE", "lawful neutral": "SILENCE",
+            "true neutral": "SILENCE", "chaotic neutral": "DEFIANCE",
+            "lawful evil": "GUILE", "neutral evil": "GUILE",
+            "chaotic evil": "BLOOD",
+        }
+
+        # Scan all text fields
+        text_sources = []
+        for key in ("personality", "personality_traits", "ideals", "bonds",
+                     "flaws", "background", "background_story", "catalyst"):
+            val = char_data.get(key, "")
+            if isinstance(val, list):
+                text_sources.extend(str(v) for v in val)
+            elif val:
+                text_sources.append(str(val))
+
+        combined = " ".join(text_sources).lower()
+        seeded_tags: set[str] = set()
+
+        for keyword, tag in _KEYWORD_MAP.items():
+            if keyword in combined and tag not in seeded_tags:
+                ps.dna[tag] += 1
+                seeded_tags.add(tag)
+
+        # Alignment seed (at most 1 tag from alignment)
+        alignment = char_data.get("alignment", "").lower().strip()
+        if alignment in _ALIGNMENT_MAP and _ALIGNMENT_MAP[alignment] not in seeded_tags:
+            ps.dna[_ALIGNMENT_MAP[alignment]] += 1
 
     def resolve_prompt(self, text: str, player_name: str = _SOLO) -> str:
         """WO-V124: Resolve {loom.*} variables in a prompt for a player.
