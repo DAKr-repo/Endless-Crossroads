@@ -2533,6 +2533,237 @@ class CrownAndCrewEngine:
         """WO-V110: Return consequences from previous day that affect the current morning."""
         return [c for c in self._active_consequences if c.get("day") == self.day - 1]
 
+    # ─────────────────────────────────────────────────────────────────────
+    # MULTIPLAYER GROUP VOTING (WO-V134 + V135)
+    # ─────────────────────────────────────────────────────────────────────
+
+    def resolve_group_choice(
+        self,
+        player_votes: dict[str, int],
+        choices: list[dict],
+    ) -> dict:
+        """WO-V134: Resolve a group vote on morning/midday choices.
+
+        Each player votes for a choice index. Individual effects (DNA tag,
+        sway shift) are applied to each voter. The group outcome is
+        determined by majority vote count; ties broken by total sway weight.
+
+        Args:
+            player_votes: {player_name: choice_index} for each voter.
+            choices: The choice list from the event/encounter.
+
+        Returns:
+            dict with: winning_index, winning_choice, per_player results,
+            dissent list (who voted against majority).
+        """
+        if not player_votes or not choices:
+            return {"winning_index": 0, "winning_choice": choices[0] if choices else {},
+                    "players": {}, "dissent": []}
+
+        # Count votes per choice index
+        vote_counts: dict[int, int] = {}
+        vote_weights: dict[int, int] = {}
+        for pname, choice_idx in player_votes.items():
+            idx = max(0, min(choice_idx, len(choices) - 1))
+            vote_counts[idx] = vote_counts.get(idx, 0) + 1
+            ps = self._get_player(pname)
+            vote_weights[idx] = vote_weights.get(idx, 0) + ps.get_vote_power()
+
+        # Determine winner: majority first, then weight tiebreaker
+        max_votes = max(vote_counts.values())
+        tied = [idx for idx, count in vote_counts.items() if count == max_votes]
+
+        if len(tied) == 1:
+            winning_idx = tied[0]
+        else:
+            # Tiebreaker: highest total sway weight
+            winning_idx = max(tied, key=lambda i: vote_weights.get(i, 0))
+
+        winning_choice = choices[winning_idx] if winning_idx < len(choices) else choices[0]
+
+        # Apply individual effects + track dissent
+        per_player: dict[str, dict] = {}
+        dissent_list: list[str] = []
+
+        for pname, choice_idx in player_votes.items():
+            idx = max(0, min(choice_idx, len(choices) - 1))
+            chosen = choices[idx] if idx < len(choices) else choices[0]
+            ps = self._get_player(pname)
+
+            # Individual DNA tag
+            tag = chosen.get("tag", "SILENCE").upper()
+            if tag in TAGS:
+                ps.dna[tag] += 1
+
+            # Individual sway shift
+            sway_effect = chosen.get("sway_effect", 0)
+            ps.sway += sway_effect
+            ps.sway = max(-3, min(3, ps.sway))
+
+            # Dissent tracking (#135)
+            voted_with_majority = (idx == winning_idx)
+            if voted_with_majority:
+                ps.majority_count += 1
+            else:
+                ps.dissent_count += 1
+                dissent_list.append(pname)
+
+            per_player[pname] = {
+                "choice_idx": idx,
+                "choice_text": chosen.get("text", ""),
+                "tag": tag,
+                "sway_effect": sway_effect,
+                "voted_with_majority": voted_with_majority,
+            }
+
+        # Shard
+        winner_text = winning_choice.get("text", "")[:50]
+        self._add_shard(
+            f"Day {self.day} group vote: '{winner_text}' won. "
+            f"Dissent: {', '.join(dissent_list) if dissent_list else 'none'}",
+            "CHRONICLE",
+        )
+
+        # Sync solo if applicable
+        self._sync_solo_to_legacy()
+
+        return {
+            "winning_index": winning_idx,
+            "winning_choice": winning_choice,
+            "players": per_player,
+            "dissent": dissent_list,
+            "vote_counts": dict(vote_counts),
+            "vote_weights": dict(vote_weights),
+        }
+
+    def resolve_group_council(
+        self,
+        player_votes: dict[str, str],
+        dilemma: dict | None = None,
+    ) -> dict:
+        """WO-V134: Resolve a multiplayer council vote.
+
+        Each player votes "crown" or "crew". Majority wins; ties broken
+        by total sway weight. Individual sway/DNA effects from the
+        winning side's consequence. Dissent tracked per player.
+
+        Args:
+            player_votes: {player_name: "crown"|"crew"} for each voter.
+            dilemma: The council dilemma dict (with consequences).
+
+        Returns:
+            dict with: winner, flavor, consequence, per_player, dissent.
+        """
+        if not player_votes:
+            return self.resolve_vote({"crown": 0, "crew": 0}, dilemma=dilemma)
+
+        # Count votes and weights per side
+        crown_count = 0
+        crew_count = 0
+        crown_weight = 0
+        crew_weight = 0
+
+        for pname, side in player_votes.items():
+            ps = self._get_player(pname)
+            weight = ps.get_vote_power()
+            if side == "crown":
+                crown_count += 1
+                crown_weight += weight
+            else:
+                crew_count += 1
+                crew_weight += weight
+
+        # Determine winner
+        if crown_count > crew_count:
+            winner = "crown"
+        elif crew_count > crown_count:
+            winner = "crew"
+        elif crown_weight > crew_weight:
+            winner = "crown"
+        elif crew_weight > crown_weight:
+            winner = "crew"
+        else:
+            # True deadlock — consequence bias or random
+            bias = self.get_consequence_morning_bias()
+            if bias == "crown":
+                winner = "crown"
+            elif bias == "crew":
+                winner = "crew"
+            else:
+                winner = random.choice(["crown", "crew"])
+
+        # Flavor
+        winner_term = self.terms.get(winner, winner.upper())
+        margin = abs(crown_count - crew_count)
+        if margin >= 3:
+            flavor = f"{winner_term} dominates. No voice dared oppose."
+        elif margin >= 2:
+            flavor = f"{winner_term} prevails with authority."
+        elif margin >= 1:
+            flavor = f"{winner_term} wins, but dissent lingers."
+        else:
+            flavor = f"{winner_term} wins by weight of conviction. The council is divided."
+
+        # Apply consequence
+        consequence = self._apply_vote_consequence(winner, dilemma)
+
+        # Track dissent per player
+        dissent_list: list[str] = []
+        per_player: dict[str, dict] = {}
+        for pname, side in player_votes.items():
+            ps = self._get_player(pname)
+            voted_with_majority = (side == winner)
+            if voted_with_majority:
+                ps.majority_count += 1
+            else:
+                ps.dissent_count += 1
+                dissent_list.append(pname)
+            per_player[pname] = {
+                "side": side,
+                "voted_with_majority": voted_with_majority,
+                "weight": ps.get_vote_power(),
+            }
+
+        result = {
+            "winner": winner,
+            "crown_count": crown_count,
+            "crew_count": crew_count,
+            "crown_weight": crown_weight,
+            "crew_weight": crew_weight,
+            "flavor": flavor,
+            "per_player": per_player,
+            "dissent": dissent_list,
+        }
+        if consequence:
+            result["consequence"] = consequence
+
+        self.vote_log.append({
+            "day": self.day,
+            "votes": dict(player_votes),
+            "result": result,
+        })
+
+        return result
+
+    def get_dissent_summary(self, player_name: str = _SOLO) -> str:
+        """WO-V135: Return a narrative summary of a player's voting pattern."""
+        ps = self._get_player(player_name)
+        total = ps.majority_count + ps.dissent_count
+        if total == 0:
+            return "No votes recorded."
+
+        ratio = ps.majority_count / total
+        name = ps.name if ps.name != _SOLO else "You"
+
+        if ratio >= 0.8:
+            return f"{name} stood with the group {ps.majority_count}/{total} times. A reliable voice."
+        elif ratio >= 0.5:
+            return f"{name} stood with the group {ps.majority_count}/{total} times. Sometimes aligned, sometimes apart."
+        elif ratio >= 0.2:
+            return f"{name} dissented {ps.dissent_count}/{total} times. A contrarian streak runs deep."
+        else:
+            return f"{name} voted against the group {ps.dissent_count}/{total} times. A lone voice in the wilderness."
+
     def get_consequence_morning_bias(self) -> str | None:
         """WO-V110: Get morning event bias from last night's council consequence."""
         pending = self.get_pending_consequences()
@@ -2888,6 +3119,7 @@ class CrownAndCrewEngine:
         dissent = {
             "dissent_count": ps.dissent_count,
             "majority_count": ps.majority_count,
+            "summary": self.get_dissent_summary(player_name),
         }
 
         return {

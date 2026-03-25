@@ -2376,6 +2376,182 @@ class TestCampaignHooks:
 
 
 # =============================================================================
+# WO-V134+135: Multiplayer Group Voting + Dissent Tracking
+# =============================================================================
+
+class TestGroupVoting:
+    """Test multiplayer group choice resolution."""
+
+    def _make_engine(self):
+        engine = CrownAndCrewEngine()
+        engine.add_player("Alice")
+        engine.add_player("Bob")
+        engine.add_player("Carol")
+        return engine
+
+    def test_majority_wins(self):
+        engine = self._make_engine()
+        choices = [
+            {"text": "Go left", "tag": "BLOOD", "sway_effect": 1},
+            {"text": "Go right", "tag": "GUILE", "sway_effect": -1},
+        ]
+        result = engine.resolve_group_choice(
+            {"Alice": 0, "Bob": 0, "Carol": 1}, choices
+        )
+        assert result["winning_index"] == 0
+
+    def test_tie_broken_by_weight(self):
+        engine = self._make_engine()
+        engine.players["Alice"].sway = 3  # Weight 8
+        engine.players["Bob"].sway = 1    # Weight 2
+        choices = [
+            {"text": "Option A", "tag": "BLOOD", "sway_effect": 0},
+            {"text": "Option B", "tag": "GUILE", "sway_effect": 0},
+        ]
+        # Alice (weight 8) picks 0, Bob (weight 2) picks 1 — Carol absent
+        result = engine.resolve_group_choice(
+            {"Alice": 0, "Bob": 1}, choices
+        )
+        # Tie 1-1 in votes, Alice's weight wins
+        assert result["winning_index"] == 0
+
+    def test_individual_dna_applied(self):
+        engine = self._make_engine()
+        choices = [
+            {"text": "Fight", "tag": "BLOOD", "sway_effect": 0},
+            {"text": "Hide", "tag": "SILENCE", "sway_effect": 0},
+        ]
+        engine.resolve_group_choice(
+            {"Alice": 0, "Bob": 1, "Carol": 0}, choices
+        )
+        assert engine.players["Alice"].dna["BLOOD"] >= 1
+        assert engine.players["Bob"].dna["SILENCE"] >= 1
+        assert engine.players["Carol"].dna["BLOOD"] >= 1
+
+    def test_individual_sway_applied(self):
+        engine = self._make_engine()
+        choices = [
+            {"text": "Crown path", "tag": "GUILE", "sway_effect": -1},
+            {"text": "Crew path", "tag": "DEFIANCE", "sway_effect": 1},
+        ]
+        engine.resolve_group_choice(
+            {"Alice": 0, "Bob": 1, "Carol": 0}, choices
+        )
+        assert engine.players["Alice"].sway == -1
+        assert engine.players["Bob"].sway == 1
+
+    def test_dissent_tracked(self):
+        engine = self._make_engine()
+        choices = [
+            {"text": "A", "tag": "BLOOD", "sway_effect": 0},
+            {"text": "B", "tag": "GUILE", "sway_effect": 0},
+        ]
+        result = engine.resolve_group_choice(
+            {"Alice": 0, "Bob": 0, "Carol": 1}, choices
+        )
+        assert "Carol" in result["dissent"]
+        assert engine.players["Carol"].dissent_count == 1
+        assert engine.players["Alice"].majority_count == 1
+
+
+class TestGroupCouncil:
+    """Test multiplayer council vote resolution."""
+
+    def _make_engine(self):
+        engine = CrownAndCrewEngine()
+        engine.add_player("Alice")
+        engine.add_player("Bob")
+        engine.add_player("Carol")
+        return engine
+
+    def test_majority_crown_wins(self):
+        engine = self._make_engine()
+        result = engine.resolve_group_council(
+            {"Alice": "crown", "Bob": "crown", "Carol": "crew"}
+        )
+        assert result["winner"] == "crown"
+
+    def test_majority_crew_wins(self):
+        engine = self._make_engine()
+        result = engine.resolve_group_council(
+            {"Alice": "crew", "Bob": "crew", "Carol": "crown"}
+        )
+        assert result["winner"] == "crew"
+
+    def test_tie_broken_by_weight(self):
+        engine = self._make_engine()
+        engine.players["Alice"].sway = 3  # Weight 8, votes crown
+        engine.players["Bob"].sway = 1    # Weight 2, votes crew
+        result = engine.resolve_group_council(
+            {"Alice": "crown", "Bob": "crew"}
+        )
+        # 1-1 tie in count, Alice's weight (8 > 2) wins
+        assert result["winner"] == "crown"
+
+    def test_council_dissent_tracked(self):
+        engine = self._make_engine()
+        result = engine.resolve_group_council(
+            {"Alice": "crown", "Bob": "crown", "Carol": "crew"}
+        )
+        assert "Carol" in result["dissent"]
+        assert engine.players["Carol"].dissent_count == 1
+
+    def test_council_consequence_applied(self):
+        engine = self._make_engine()
+        dilemma = {
+            "prompt": "Test", "crown": "A", "crew": "B",
+            "consequences": {
+                "crown": {"narrative": "Order holds.", "tag": "SILENCE", "sway_modifier": 0, "morning_bias": "crown"},
+            },
+        }
+        result = engine.resolve_group_council(
+            {"Alice": "crown", "Bob": "crown", "Carol": "crew"},
+            dilemma=dilemma,
+        )
+        assert result.get("consequence") is not None
+
+    def test_council_in_vote_log(self):
+        engine = self._make_engine()
+        engine.resolve_group_council(
+            {"Alice": "crown", "Bob": "crew", "Carol": "crew"}
+        )
+        assert len(engine.vote_log) == 1
+
+
+class TestDissentSummary:
+    """Test dissent narrative summary."""
+
+    def test_reliable_voter(self):
+        engine = CrownAndCrewEngine()
+        ps = engine.players["_solo"]
+        ps.majority_count = 4
+        ps.dissent_count = 1
+        summary = engine.get_dissent_summary()
+        assert "reliable" in summary.lower()
+
+    def test_contrarian(self):
+        engine = CrownAndCrewEngine()
+        ps = engine.players["_solo"]
+        ps.majority_count = 1
+        ps.dissent_count = 4
+        summary = engine.get_dissent_summary()
+        assert "contrarian" in summary.lower() or "lone" in summary.lower()
+
+    def test_no_votes(self):
+        engine = CrownAndCrewEngine()
+        summary = engine.get_dissent_summary()
+        assert "no votes" in summary.lower()
+
+    def test_dissent_in_legacy_json(self):
+        engine = CrownAndCrewEngine()
+        engine.players["_solo"].majority_count = 3
+        engine.players["_solo"].dissent_count = 2
+        legacy = engine.generate_legacy_json()
+        assert "summary" in legacy["dissent"]
+        assert "3/5" in legacy["dissent"]["summary"]
+
+
+# =============================================================================
 # WO-V108: The Echo — Player-Driven DNA Tag Assignment
 # =============================================================================
 
