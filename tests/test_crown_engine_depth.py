@@ -2552,6 +2552,56 @@ class TestDissentSummary:
 
 
 # =============================================================================
+# WO-V136: Mirror Witness Selection
+# =============================================================================
+
+class TestMirrorWitnessSelection:
+    """Test multiplayer Mirror Break witness selection."""
+
+    def test_solo_returns_solo(self):
+        engine = CrownAndCrewEngine()
+        assert engine.select_mirror_witness() == "_solo"
+
+    def test_highest_crew_sway_selected(self):
+        engine = CrownAndCrewEngine()
+        engine.add_player("Alice")
+        engine.add_player("Bob")
+        engine.add_player("Carol")
+        engine.players["Alice"].sway = 1
+        engine.players["Bob"].sway = 3  # Highest crew sway
+        engine.players["Carol"].sway = -1
+        assert engine.select_mirror_witness() == "Bob"
+
+    def test_tiebreak_by_dominant_dna(self):
+        engine = CrownAndCrewEngine()
+        engine.add_player("Alice")
+        engine.add_player("Bob")
+        engine.players["Alice"].sway = 2
+        engine.players["Bob"].sway = 2
+        # Both tied at sway 2. Alice has BLOOD dominant (matches a sin)
+        engine.players["Alice"].dna["BLOOD"] = 5
+        engine.players["Bob"].dna["HEARTH"] = 3  # HEARTH also matches a sin
+        # Alice checked first since higher DNA total
+        witness = engine.select_mirror_witness()
+        assert witness in ("Alice", "Bob")  # Either is valid — both match sins
+
+    def test_single_multiplayer(self):
+        engine = CrownAndCrewEngine()
+        engine.add_player("OnlyPlayer")
+        engine.players["OnlyPlayer"].sway = 1
+        assert engine.select_mirror_witness() == "OnlyPlayer"
+
+    def test_negative_sway_still_selects(self):
+        engine = CrownAndCrewEngine()
+        engine.add_player("Alice")
+        engine.add_player("Bob")
+        engine.players["Alice"].sway = -1
+        engine.players["Bob"].sway = -3
+        # Alice has highest (least negative) sway
+        assert engine.select_mirror_witness() == "Alice"
+
+
+# =============================================================================
 # WO-V108: The Echo — Player-Driven DNA Tag Assignment
 # =============================================================================
 

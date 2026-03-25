@@ -2745,6 +2745,42 @@ class CrownAndCrewEngine:
 
         return result
 
+    def select_mirror_witness(self) -> str:
+        """WO-V136: Select which player witnesses the Mirror Break.
+
+        Selection criteria:
+        1. Primary: highest Crew sway (most trusting of Leader = most betrayed)
+        2. Tiebreaker: player whose dominant DNA tag matches the sin they'd witness
+
+        In solo mode, returns the solo player.
+
+        Returns:
+            Player name of the selected witness.
+        """
+        players = self.get_all_players()
+        if not players:
+            return _SOLO
+        if len(players) == 1:
+            return players[0].name
+
+        # Sort by Crew sway (highest first)
+        candidates = sorted(players, key=lambda p: p.sway, reverse=True)
+        max_sway = candidates[0].sway
+
+        # Filter to those tied at max sway
+        tied = [p for p in candidates if p.sway == max_sway]
+        if len(tied) == 1:
+            return tied[0].name
+
+        # Tiebreaker: whose dominant DNA matches the sin they'd see
+        for p in tied:
+            dominant = p.get_dominant_tag()
+            if dominant in MIRROR_SINS:
+                return p.name
+
+        # Still tied — first in list
+        return tied[0].name
+
     def get_dissent_summary(self, player_name: str = _SOLO) -> str:
         """WO-V135: Return a narrative summary of a player's voting pattern."""
         ps = self._get_player(player_name)
