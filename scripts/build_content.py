@@ -48,11 +48,12 @@ except ImportError:
     def discover_systems(vault_root: Path) -> dict:
         """Fallback discover_systems — handles flat and group vault layouts.
 
-        Flat:  vault/<system>/SOURCE/*.pdf
+        Flat:  vault/<system>/SOURCE/*.pdf + vault/<system>/MODULES/*.pdf
         Group: vault/<group>/<system>/SOURCE/*.pdf  (e.g. FITD/bitd)
 
-        Vault directory names that differ from canonical Codex system IDs are
-        normalised via the local mapping before being added to the result.
+        WO-V157: Now scans both SOURCE/ and MODULES/ (and MODULE/).
+        Module PDFs contain bestiary entries, NPCs, locations, and
+        read_aloud text needed by the extraction pipeline.
         """
         _DIR_TO_ID = {"Candela_Obscura": "candela", "CBR_PNK": "cbrpnk"}
         systems = {}
@@ -60,10 +61,12 @@ except ImportError:
             return systems
 
         def _collect(system_dir: Path) -> None:
-            src = system_dir / "SOURCE"
-            if not src.is_dir():
-                return
-            pdfs = sorted(src.rglob("*.pdf")) + sorted(src.rglob("*.PDF"))
+            """Collect ALL PDFs from a system directory tree.
+
+            WO-V157: Scans all subdirectories — SOURCE/, MODULES/, MODULE/,
+            SETTINGS/, SUPPLEMENTS/, and any other subfolders.
+            """
+            pdfs = sorted(system_dir.rglob("*.pdf")) + sorted(system_dir.rglob("*.PDF"))
             unique = list(dict.fromkeys(pdfs))
             if unique:
                 system_id = _DIR_TO_ID.get(system_dir.name, system_dir.name)
@@ -72,13 +75,14 @@ except ImportError:
         for d in sorted(vault_root.iterdir()):
             if not d.is_dir():
                 continue
-            if (d / "SOURCE").is_dir():
+            has_pdfs = any(d.rglob("*.pdf")) or any(d.rglob("*.PDF"))
+            if has_pdfs:
                 _collect(d)
             else:
-                # Group directory — check children
                 for child in sorted(d.iterdir()):
-                    if child.is_dir() and (child / "SOURCE").is_dir():
-                        _collect(child)
+                    if child.is_dir():
+                        if any(child.rglob("*.pdf")) or any(child.rglob("*.PDF")):
+                            _collect(child)
         return systems
 
     def extract_pdf_text(pdf_path: Path) -> list:

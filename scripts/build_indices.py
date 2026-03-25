@@ -369,18 +369,15 @@ def discover_systems(vault_root: Path) -> dict[str, list[Path]]:
         return systems
 
     def _collect(system_dir: Path) -> None:
-        """Collect PDFs from system_dir/SOURCE/ into systems dict."""
-        source_dir = system_dir / "SOURCE"
-        if not source_dir.is_dir():
-            return
-        raw_pdfs = sorted(source_dir.rglob("*.pdf"))
-        raw_pdfs += sorted(source_dir.rglob("*.PDF"))
-        seen: set[Path] = set()
-        unique_pdfs: list[Path] = []
-        for p in raw_pdfs:
-            if p not in seen:
-                seen.add(p)
-                unique_pdfs.append(p)
+        """Collect ALL PDFs from a system directory, scanning all subdirectories.
+
+        WO-V156: Scans the entire system directory tree for PDFs — SOURCE/,
+        MODULES/, MODULE/, SETTINGS/, SUPPLEMENTS/, and any other subfolders.
+        The vault folder structure is for human organization; the indexer
+        should find every PDF regardless of which subfolder it's in.
+        """
+        raw_pdfs = sorted(system_dir.rglob("*.pdf")) + sorted(system_dir.rglob("*.PDF"))
+        unique_pdfs = list(dict.fromkeys(raw_pdfs))
         if unique_pdfs:
             system_id = VAULT_DIR_TO_SYSTEM_ID.get(system_dir.name, system_dir.name)
             systems[system_id] = unique_pdfs
@@ -388,15 +385,24 @@ def discover_systems(vault_root: Path) -> dict[str, list[Path]]:
     for top_dir in sorted(vault_root.iterdir()):
         if not top_dir.is_dir():
             continue
-        source_dir = top_dir / "SOURCE"
-        if source_dir.is_dir():
-            # Flat layout — this is a direct system directory
+        # A system directory has its own SOURCE/, MODULES/, etc.
+        # A group directory (like FITD/) contains child system directories.
+        is_system = any(
+            (top_dir / name).is_dir()
+            for name in ("SOURCE", "MODULES", "MODULE", "SETTINGS", "SUPPLEMENTS")
+        )
+        if is_system:
             _collect(top_dir)
         else:
-            # Possible group directory — recurse one level into children
+            # Group directory — recurse into children
             for child_dir in sorted(top_dir.iterdir()):
-                if child_dir.is_dir() and (child_dir / "SOURCE").is_dir():
-                    _collect(child_dir)
+                if child_dir.is_dir():
+                    child_is_system = any(
+                        (child_dir / name).is_dir()
+                        for name in ("SOURCE", "MODULES", "MODULE", "SETTINGS", "SUPPLEMENTS")
+                    ) or any(child_dir.rglob("*.pdf")) or any(child_dir.rglob("*.PDF"))
+                    if child_is_system:
+                        _collect(child_dir)
 
     return systems
 
