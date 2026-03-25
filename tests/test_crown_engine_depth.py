@@ -1844,6 +1844,162 @@ class TestPlayerSlots:
 
 
 # =============================================================================
+# WO-V119+120: Structured Legacy Report + Debts & Secrets
+# =============================================================================
+
+class TestLegacyJSON:
+    """Test structured Legacy Report generation."""
+
+    def test_legacy_json_has_required_fields(self):
+        engine = CrownAndCrewEngine()
+        engine.declare_allegiance("crown", tag="GUILE")
+        legacy = engine.generate_legacy_json()
+        assert legacy["version"] == 2
+        assert "title" in legacy
+        assert "title_desc" in legacy
+        assert "alignment" in legacy
+        assert "sway" in legacy
+        assert "tier" in legacy
+        assert "dominant_tag" in legacy
+        assert "dna" in legacy
+        assert "patron" in legacy
+        assert "leader" in legacy
+        assert "patron_relationship" in legacy
+        assert "leader_relationship" in legacy
+        assert "mirror" in legacy
+        assert "powers_used" in legacy
+        assert "debts_and_secrets" in legacy
+        assert "council_record" in legacy
+        assert "arc_length" in legacy
+        assert "days_survived" in legacy
+        assert "choices_made" in legacy
+
+    def test_legacy_json_reflects_sway(self):
+        engine = CrownAndCrewEngine()
+        engine.sway = -3
+        engine.players["_solo"].sway = -3
+        legacy = engine.generate_legacy_json()
+        assert legacy["sway"] == -3
+        assert legacy["alignment"] == "CROWN"
+        assert legacy["patron_relationship"] == "allied"
+
+    def test_legacy_json_reflects_crew_sway(self):
+        engine = CrownAndCrewEngine()
+        engine.sway = 3
+        engine.players["_solo"].sway = 3
+        legacy = engine.generate_legacy_json()
+        assert legacy["alignment"] == "CREW"
+        assert legacy["patron_relationship"] == "hostile"
+        assert legacy["leader_relationship"] == "trusted"
+
+    def test_legacy_json_mirror_data(self):
+        engine = CrownAndCrewEngine()
+        engine._mirror_choice = "expose"
+        engine._mirror_sin = "A Secret Deal"
+        # Sync to solo player
+        engine.players["_solo"]._mirror_choice = "expose"
+        engine.players["_solo"]._mirror_sin = "A Secret Deal"
+        legacy = engine.generate_legacy_json()
+        assert legacy["mirror"]["choice"] == "expose"
+        assert legacy["mirror"]["sin"] == "A Secret Deal"
+
+    def test_legacy_json_powers_used(self):
+        engine = CrownAndCrewEngine()
+        engine._royal_decree_used = True
+        engine.players["_solo"]._royal_decree_used = True
+        engine._safe_passage_used = True
+        engine.players["_solo"]._safe_passage_used = True
+        legacy = engine.generate_legacy_json()
+        assert "royal_decree" in legacy["powers_used"]
+        assert "safe_passage" in legacy["powers_used"]
+
+    def test_legacy_json_council_record(self):
+        engine = CrownAndCrewEngine()
+        dilemma = engine.get_council_dilemma()
+        engine.resolve_vote({"crown": 1}, dilemma=dilemma)
+        legacy = engine.generate_legacy_json()
+        assert len(legacy["council_record"]) == 1
+        assert legacy["council_record"][0]["winner"] in ("crown", "crew")
+
+    def test_legacy_text_renders_from_json(self):
+        engine = CrownAndCrewEngine()
+        engine.declare_allegiance("crew", tag="DEFIANCE")
+        report = engine.generate_legacy_report()
+        assert "CHARACTER RECEIPT" in report
+        assert "NARRATIVE DNA" in report
+        assert "JOURNEY SUMMARY" in report
+
+    def test_leader_relationship_with_mirror(self):
+        engine = CrownAndCrewEngine()
+        engine.sway = 3
+        engine.players["_solo"].sway = 3
+        engine.players["_solo"]._mirror_choice = "expose"
+        legacy = engine.generate_legacy_json()
+        assert legacy["leader_relationship"] == "hurt_respect"
+
+
+class TestDebtsAndSecrets:
+    """Test the debts & secrets ledger."""
+
+    def test_empty_ledger(self):
+        engine = CrownAndCrewEngine()
+        debts = engine.generate_debts_and_secrets()
+        assert isinstance(debts, list)
+        assert len(debts) == 0  # No choices made yet
+
+    def test_mirror_hide_creates_secret(self):
+        engine = CrownAndCrewEngine()
+        engine.players["_solo"]._mirror_choice = "hide"
+        engine.players["_solo"]._mirror_sin = "Unnecessary Brutality"
+        debts = engine.generate_debts_and_secrets()
+        secrets = [d for d in debts if d["type"] == "secret"]
+        assert len(secrets) >= 1
+        assert "Brutality" in secrets[0]["text"]
+
+    def test_mirror_expose_creates_debt(self):
+        engine = CrownAndCrewEngine()
+        engine.players["_solo"]._mirror_choice = "expose"
+        engine.players["_solo"]._mirror_sin = "A False Flag"
+        debts = engine.generate_debts_and_secrets()
+        debt_items = [d for d in debts if d["type"] == "debt"]
+        assert len(debt_items) >= 1
+        assert "False Flag" in debt_items[0]["text"]
+
+    def test_royal_decree_creates_debt(self):
+        engine = CrownAndCrewEngine()
+        engine.players["_solo"]._royal_decree_used = True
+        debts = engine.generate_debts_and_secrets()
+        debt_items = [d for d in debts if d["type"] == "debt"]
+        assert any("Royal Decree" in d["text"] for d in debt_items)
+
+    def test_council_consequences_in_ledger(self):
+        engine = CrownAndCrewEngine()
+        engine._active_consequences = [
+            {"day": 1, "winner": "crew", "narrative": "The bridge burns."},
+        ]
+        debts = engine.generate_debts_and_secrets()
+        consequences = [d for d in debts if d["type"] == "consequence"]
+        assert len(consequences) >= 1
+        assert "bridge burns" in consequences[0]["text"]
+
+    def test_debts_in_legacy_json(self):
+        engine = CrownAndCrewEngine()
+        engine.players["_solo"]._mirror_choice = "hide"
+        engine.players["_solo"]._mirror_sin = "Hoarding and Neglect"
+        engine.players["_solo"]._royal_decree_used = True
+        legacy = engine.generate_legacy_json()
+        assert len(legacy["debts_and_secrets"]) >= 2
+
+    def test_legacy_report_shows_debts(self):
+        engine = CrownAndCrewEngine()
+        engine.players["_solo"]._mirror_choice = "expose"
+        engine.players["_solo"]._mirror_sin = "Erasing History"
+        report = engine.generate_legacy_report()
+        assert "DEBTS & SECRETS" in report
+        assert "Erasing History" in report
+
+
+# =============================================================================
 # WO-V108: The Echo — Player-Driven DNA Tag Assignment
 # =============================================================================
 

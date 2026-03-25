@@ -2622,13 +2622,79 @@ class CrownAndCrewEngine:
 
         return "\n".join(lines)
 
-    def generate_legacy_report(self) -> str:
-        """Generate the Campaign Bridge Character Receipt."""
-        alignment = self.get_alignment()
-        dominant_tag = self.get_dominant_tag()
-        tier = self.get_tier()
+    def generate_debts_and_secrets(self, player_name: str = _SOLO) -> list[dict]:
+        """WO-V120: Generate the debts & secrets ledger from the march.
 
-        # Use dynamic legacy titles, fall back to global
+        Scans: Mirror choice, power activations, council consequences,
+        and significant history entries to produce campaign hooks.
+
+        Returns:
+            List of dicts with keys: type ("secret"/"debt"/"consequence"), text.
+        """
+        ps = self._get_player(player_name)
+        ledger: list[dict] = []
+
+        # Mirror Break
+        if ps._mirror_choice == "hide":
+            sin = ps._mirror_sin or "a transgression"
+            ledger.append({
+                "type": "secret",
+                "text": f"You hid the Leader's {sin}. This secret binds you.",
+            })
+        elif ps._mirror_choice == "expose":
+            sin = ps._mirror_sin or "a transgression"
+            ledger.append({
+                "type": "debt",
+                "text": f"You exposed the Leader's {sin}. The Crew is fractured.",
+            })
+
+        # Power activations
+        if ps._royal_decree_used:
+            ledger.append({
+                "type": "debt",
+                "text": f"You invoked Royal Decree. The {self.terms.get('crew', 'Crew')} remembers the betrayal.",
+            })
+        if ps._leaders_confidence_used:
+            ledger.append({
+                "type": "secret",
+                "text": f"The Leader confided their secret agenda to you. Knowledge is leverage.",
+            })
+        if ps._safe_passage_used:
+            crown_term = self.terms.get("crown", "Crown")
+            ledger.append({
+                "type": "debt",
+                "text": f"You used Safe Passage — a {crown_term} patrol let you through. They remember your face.",
+            })
+
+        # Council consequences
+        for consequence in self._active_consequences:
+            narrative = consequence.get("narrative", "")
+            if narrative:
+                ledger.append({
+                    "type": "consequence",
+                    "text": f"The council decided: {narrative}",
+                })
+
+        return ledger
+
+    def generate_legacy_json(self, player_name: str = _SOLO) -> dict:
+        """WO-V119: Generate structured Legacy Report as JSON.
+
+        This is the machine-readable receipt consumed by the Campaign Adapter.
+        The text report is generated FROM this data.
+
+        Args:
+            player_name: Player to generate for (default: solo player).
+
+        Returns:
+            Structured dict with all legacy data.
+        """
+        ps = self._get_player(player_name)
+        alignment = ps.get_alignment()
+        dominant_tag = ps.get_dominant_tag()
+        tier = SWAY_TIERS.get(ps.sway, SWAY_TIERS[0])
+
+        # Title lookup
         titles = self._legacy_titles if self._legacy_titles else LEGACY_TITLES
         legacy_key = (alignment, dominant_tag)
         legacy_data = titles.get(
@@ -2636,12 +2702,104 @@ class CrownAndCrewEngine:
             {"title": "The Unknown", "desc": "Your path defies classification."}
         )
 
+        # Patron relationship based on sway
+        if ps.sway <= -2:
+            patron_rel = "allied"
+        elif ps.sway == -1:
+            patron_rel = "cautious_respect"
+        elif ps.sway == 0:
+            patron_rel = "disappointed"
+        elif ps.sway <= 2:
+            patron_rel = "suspicious"
+        else:
+            patron_rel = "hostile"
+
+        # Leader relationship based on sway + mirror
+        if ps.sway >= 2 and ps._mirror_choice != "expose":
+            leader_rel = "trusted"
+        elif ps.sway >= 2 and ps._mirror_choice == "expose":
+            leader_rel = "hurt_respect"
+        elif ps.sway >= 1:
+            leader_rel = "wary_gratitude"
+        elif ps.sway == 0:
+            leader_rel = "dismissive"
+        elif ps._mirror_choice == "hide":
+            leader_rel = "betrayed"
+        else:
+            leader_rel = "cold_fury"
+
+        # Powers used
+        powers_used = []
+        if ps._royal_decree_used:
+            powers_used.append("royal_decree")
+        if ps._leaders_confidence_used:
+            powers_used.append("leaders_confidence")
+        if ps._safe_passage_used:
+            powers_used.append("safe_passage")
+
+        # Council record
+        council_record = []
+        for entry in self.vote_log:
+            record = {"day": entry.get("day", 0)}
+            result = entry.get("result", {})
+            record["winner"] = result.get("winner", "")
+            record["flavor"] = result.get("flavor", "")
+            consequence = result.get("consequence", {})
+            if consequence:
+                record["consequence"] = consequence.get("narrative", "")
+            council_record.append(record)
+
+        # Debts & secrets
+        debts = self.generate_debts_and_secrets(player_name)
+
+        # Dissent
+        dissent = {
+            "dissent_count": ps.dissent_count,
+            "majority_count": ps.majority_count,
+        }
+
+        return {
+            "version": 2,
+            "title": legacy_data["title"],
+            "title_desc": legacy_data["desc"],
+            "alignment": alignment,
+            "sway": ps.sway,
+            "tier": tier["name"],
+            "tier_power": tier["power"],
+            "dominant_tag": dominant_tag,
+            "dna": dict(ps.dna),
+            "patron": self.patron,
+            "patron_relationship": patron_rel,
+            "leader": self.leader,
+            "leader_relationship": leader_rel,
+            "mirror": {
+                "sin": ps._mirror_sin,
+                "choice": ps._mirror_choice,
+            },
+            "powers_used": powers_used,
+            "debts_and_secrets": debts,
+            "council_record": council_record,
+            "dissent": dissent,
+            "arc_length": self.arc_length,
+            "days_survived": min(self.day, self.arc_length),
+            "choices_made": len(ps.history),
+            "history": ps.history,
+            "module": self.quest_slug or "",
+        }
+
+    def generate_legacy_report(self, player_name: str = _SOLO) -> str:
+        """Generate the Campaign Bridge Character Receipt.
+
+        WO-V119: Now renders FROM generate_legacy_json() for consistency.
+        """
+        legacy = self.generate_legacy_json(player_name)
+
         # Build DNA breakdown
         dna_lines = []
         for tag in TAGS:
-            value = self.dna[tag]
-            bar = "█" * value + "░" * (5 - value)
-            marker = " ◄" if tag == dominant_tag else ""
+            value = legacy["dna"].get(tag, 0)
+            bar = "█" * min(value, 10) + "░" * max(0, 5 - value)
+            marker = " ◄" if tag == legacy["dominant_tag"] else ""
             dna_lines.append(f"    {tag:10} [{bar}] {value}{marker}")
 
         alignment_display = self.get_alignment_display()
@@ -2649,15 +2807,15 @@ class CrownAndCrewEngine:
         lines = [
             "",
             "╔" + "═" * 58 + "╗",
-            "║" + "📜 CAMPAIGN BRIDGE: CHARACTER RECEIPT".center(58) + "║",
+            "║" + " CAMPAIGN BRIDGE: CHARACTER RECEIPT".center(58) + "║",
             "╠" + "═" * 58 + "╣",
-            "║" + f"  Archetype: {legacy_data['title']}".ljust(58) + "║",
-            "║" + f"  \"{legacy_data['desc']}\"".ljust(58) + "║",
+            "║" + f"  Archetype: {legacy['title']}".ljust(58) + "║",
+            "║" + f"  \"{legacy['title_desc']}\"".ljust(58) + "║",
             "╠" + "═" * 58 + "╣",
             "║" + f"  Final Alignment: {alignment_display}".ljust(58) + "║",
-            "║" + f"  Final Status: {tier['name']}".ljust(58) + "║",
-            "║" + f"  Final Power: {tier['power']}".ljust(58) + "║",
-            "║" + f"  Dominant Trait: {dominant_tag}".ljust(58) + "║",
+            "║" + f"  Final Status: {legacy['tier']}".ljust(58) + "║",
+            "║" + f"  Final Power: {legacy['tier_power']}".ljust(58) + "║",
+            "║" + f"  Dominant Trait: {legacy['dominant_tag']}".ljust(58) + "║",
             "╠" + "═" * 58 + "╣",
             "║" + "  NARRATIVE DNA:".ljust(58) + "║",
         ]
@@ -2668,10 +2826,45 @@ class CrownAndCrewEngine:
         lines.extend([
             "╠" + "═" * 58 + "╣",
             "║" + "  JOURNEY SUMMARY:".ljust(58) + "║",
-            "║" + f"    Patron: {self.patron}".ljust(58) + "║",
-            "║" + f"    Leader: {self.leader}".ljust(58) + "║",
-            "║" + f"    Days Survived: {min(self.day, self.arc_length)}".ljust(58) + "║",
-            "║" + f"    Choices Made: {len(self.history)}".ljust(58) + "║",
+            "║" + f"    Patron: {legacy['patron']}".ljust(58) + "║",
+            "║" + f"    Leader: {legacy['leader']}".ljust(58) + "║",
+            "║" + f"    Days Survived: {legacy['days_survived']}".ljust(58) + "║",
+            "║" + f"    Choices Made: {legacy['choices_made']}".ljust(58) + "║",
+        ])
+
+        # Relationships
+        lines.extend([
+            "╠" + "═" * 58 + "╣",
+            "║" + "  RELATIONSHIPS:".ljust(58) + "║",
+            "║" + f"    Patron: {legacy['patron_relationship'].replace('_', ' ').title()}".ljust(58) + "║",
+            "║" + f"    Leader: {legacy['leader_relationship'].replace('_', ' ').title()}".ljust(58) + "║",
+        ])
+
+        # Mirror
+        if legacy["mirror"]["choice"]:
+            mirror_text = f"    The Mirror: {legacy['mirror']['sin']} — {'Hidden' if legacy['mirror']['choice'] == 'hide' else 'Exposed'}"
+            lines.extend([
+                "╠" + "═" * 58 + "╣",
+                "║" + mirror_text.ljust(58) + "║",
+            ])
+
+        # Debts & Secrets
+        debts = legacy.get("debts_and_secrets", [])
+        if debts:
+            lines.extend([
+                "╠" + "═" * 58 + "╣",
+                "║" + "  DEBTS & SECRETS:".ljust(58) + "║",
+            ])
+            for d in debts:
+                prefix = {"secret": "  [S]", "debt": "  [D]", "consequence": "  [C]"}.get(d["type"], "  [-]")
+                text = f"  {prefix} {d['text']}"
+                # Wrap long lines
+                while len(text) > 56:
+                    lines.append("║" + text[:56].ljust(58) + "║")
+                    text = "      " + text[56:]
+                lines.append("║" + text.ljust(58) + "║")
+
+        lines.extend([
             "╚" + "═" * 58 + "╝",
             ""
         ])
