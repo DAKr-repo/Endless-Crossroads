@@ -81,67 +81,67 @@ TAGS: list[str] = ["BLOOD", "GUILE", "HEARTH", "SILENCE", "DEFIANCE"]
 # =============================================================================
 
 # The Temptation of Safety (Original 5 + Expansion 5 = 10)
-PROMPTS_CROWN: list[str] = [
+PROMPTS_CROWN: list[dict] = [
     # --- Original Set ---
-    "A bounty hunter hails the camp. He offers a clean slate to anyone who points out the Leader. His hand rests on his blade.",
-    "You find a dead courier in the mud. His satchel holds blank pardons, signed and sealed. One name would set you free.",
-    "The Patron's voice echoes in your skull: 'Bring me the Mystic's journal, and your sister walks free.' The book is in your hands.",
-    "A checkpoint guards the river crossing. The sergeant remembers your face—but not your crimes. One lie could buy safe passage.",
-    "The Spymaster's raven lands on your shoulder at dawn. The message: 'Light a fire at midnight. We will do the rest.'",
+    {"text": "A bounty hunter hails the camp. He offers a clean slate to anyone who points out the Leader. His hand rests on his blade.", "category": "relational"},
+    {"text": "You find a dead courier in the mud. His satchel holds blank pardons, signed and sealed. One name would set you free.", "category": "whisper"},
+    {"text": "The Patron's voice echoes in your skull: 'Bring me the Mystic's journal, and your sister walks free.' The book is in your hands.", "category": "relational"},
+    {"text": "A checkpoint guards the river crossing. The sergeant remembers your face\u2014but not your crimes. One lie could buy safe passage.", "category": "whisper"},
+    {"text": "The Spymaster's raven lands on your shoulder at dawn. The message: 'Light a fire at midnight. We will do the rest.'", "category": "whisper"},
     # --- Variety Pack (Guilt & Future Promises) ---
-    "A letter arrives from your mother. She's sick. The Patron offers medicine—enough for a year—in exchange for one name.",
-    "The Patron's agent unfolds a deed. Forty acres. A farmhouse. A life. All you have to do is tell them where the Crew sleeps tonight.",
-    "You pass a village you burned with the Crew last winter. A child recognizes your face. The Patron's men are watching. Do you wave?",
-    "The Spymaster offers new documents: a new name, a new history, a new life. 'Walk away,' he says. 'No one has to die.'",
-    "You dream of the guard you killed at the checkpoint. He had a locket with two faces inside. The Patron knows his widow."
+    {"text": "A letter arrives from your mother. She's sick. The Patron offers medicine\u2014enough for a year\u2014in exchange for one name.", "category": "relational"},
+    {"text": "The Patron's agent unfolds a deed. Forty acres. A farmhouse. A life. All you have to do is tell them where the Crew sleeps tonight.", "category": "whisper"},
+    {"text": "You pass a village you burned with the Crew last winter. A child recognizes your face. The Patron's men are watching. Do you wave?", "category": "history"},
+    {"text": "The Spymaster offers new documents: a new name, a new history, a new life. 'Walk away,' he says. 'No one has to die.'", "category": "whisper"},
+    {"text": "You dream of the guard you killed at the checkpoint. He had a locket with two faces inside. The Patron knows his widow.", "category": "history"},
 ]
 
 # The Burden of Loyalty (Original 5 + Expansion 5 = 10)
-PROMPTS_CREW: list[str] = [
+PROMPTS_CREW: list[dict] = [
     # --- Original Set ---
-    "The youngest crewmate shivers through the fever. Your last dose of willow bark could save her—or keep you walking tomorrow.",
-    "The Leader hands you a rusted blade. 'Bury this in the thornfield. Tell no one what it did.' The blood is still wet.",
-    "A crewmate collapses in the gorge. Carrying them means missing the rendezvous. Leaving them means the crows eat well tonight.",
-    "The Captain asks you to lie to the others about the food. 'They'll panic if they know.' There's enough for three. You are five.",
-    "The Defector whispers: 'I know what you did before you joined us.' He wants your silence in exchange for his. Do you shake hands?",
+    {"text": "The youngest crewmate shivers through the fever. Your last dose of willow bark could save her\u2014or keep you walking tomorrow.", "category": "relational"},
+    {"text": "The Leader hands you a rusted blade. 'Bury this in the thornfield. Tell no one what it did.' The blood is still wet.", "category": "whisper"},
+    {"text": "A crewmate collapses in the gorge. Carrying them means missing the rendezvous. Leaving them means the crows eat well tonight.", "category": "relational"},
+    {"text": "The Captain asks you to lie to the others about the food. 'They'll panic if they know.' There's enough for three. You are five.", "category": "whisper"},
+    {"text": "The Defector whispers: 'I know what you did before you joined us.' He wants your silence in exchange for his. Do you shake hands?", "category": "whisper"},
     # --- Variety Pack (Internal Conflict & Morale) ---
-    "The Leader wants to cross the frozen lake. You've seen ice like this before—it killed your brother. Do you challenge the order?",
-    "Two crewmates are circling each other with knives drawn—one stole the other's rations. The Leader is asleep. Do you intervene?",
-    "The Crew captures a Crown scout. He's young. Terrified. The Leader hands you the knife. 'No witnesses.' Do you obey?",
-    "The oldest crewmate can't keep pace. He knows it too. He asks you for the mercy of a lie: 'Tell them I fell behind on purpose.'",
-    "You find extra food hidden in the Leader's pack—enough for three days. The others are starving. Do you confront, steal, or stay silent?"
+    {"text": "The Leader wants to cross the frozen lake. You've seen ice like this before\u2014it killed your brother. Do you challenge the order?", "category": "history"},
+    {"text": "Two crewmates are circling each other with knives drawn\u2014one stole the other's rations. The Leader is asleep. Do you intervene?", "category": "relational"},
+    {"text": "The Crew captures a Crown scout. He's young. Terrified. The Leader hands you the knife. 'No witnesses.' Do you obey?", "category": "philosophy"},
+    {"text": "The oldest crewmate can't keep pace. He knows it too. He asks you for the mercy of a lie: 'Tell them I fell behind on purpose.'", "category": "relational"},
+    {"text": "You find extra food hidden in the Leader's pack\u2014enough for three days. The others are starving. Do you confront, steal, or stay silent?", "category": "philosophy"},
 ]
 
 # The Hostile Wilds (Original 5 + Expansion 5 = 10)
-PROMPTS_WORLD: list[str] = [
+PROMPTS_WORLD: list[dict] = [
     # --- Original Set (Swamp/Forest/River) ---
-    "The Blackmire stretches ahead—three miles of sucking mud and rotting reeds. Something large moved beneath the surface at dawn.",
-    "Freezing rain turns the cliffside path to glass. One slip means the river takes you. The rope is frayed. Who goes first?",
-    "The forest burns behind you. Smoke fills the valley. The only shelter is a collapsed mine that smells of old death.",
-    "You wake to silence. The birds have stopped singing. The treeline watches. Something followed you from the last village.",
-    "The river has swollen overnight. Your supplies are on the far bank. The current carries bodies from upstream.",
+    {"text": "The Blackmire stretches ahead\u2014three miles of sucking mud and rotting reeds. Something large moved beneath the surface at dawn.", "category": "whisper"},
+    {"text": "Freezing rain turns the cliffside path to glass. One slip means the river takes you. The rope is frayed. Who goes first?", "category": "philosophy"},
+    {"text": "The forest burns behind you. Smoke fills the valley. The only shelter is a collapsed mine that smells of old death.", "category": "history"},
+    {"text": "You wake to silence. The birds have stopped singing. The treeline watches. Something followed you from the last village.", "category": "whisper"},
+    {"text": "The river has swollen overnight. Your supplies are on the far bank. The current carries bodies from upstream.", "category": "history"},
     # --- Variety Pack (New Biomes) ---
-    "The Mountain Pass narrows to a blade's width. Wind screams through the gap. Below: a thousand feet of nothing. Above: a rockslide waiting.",
-    "The Ruined City rises from the fog—towers broken, streets silent. They say plague killed everyone in a single night. Something moves in the bell tower.",
-    "The Salt Flats stretch to every horizon. No shade. No water. The sun splits your lips. A skeleton points west.",
-    "The Dead Forest surrounds you—every tree white and bare, killed by something in the soil. The silence is absolute. Nothing lives here.",
-    "The Flooded Valley was farmland last month. Now brown water hides everything—fences, roads, the dead. You wade chest-deep, feeling for solid ground."
+    {"text": "The Mountain Pass narrows to a blade's width. Wind screams through the gap. Below: a thousand feet of nothing. Above: a rockslide waiting.", "category": "whisper"},
+    {"text": "The Ruined City rises from the fog\u2014towers broken, streets silent. They say plague killed everyone in a single night. Something moves in the bell tower.", "category": "history"},
+    {"text": "The Salt Flats stretch to every horizon. No shade. No water. The sun splits your lips. A skeleton points west.", "category": "whisper"},
+    {"text": "The Dead Forest surrounds you\u2014every tree white and bare, killed by something in the soil. The silence is absolute. Nothing lives here.", "category": "whisper"},
+    {"text": "The Flooded Valley was farmland last month. Now brown water hides everything\u2014fences, roads, the dead. You wade chest-deep, feeling for solid ground.", "category": "history"},
 ]
 
 # The Echo (Original 5 + Expansion 5 = 10)
-PROMPTS_CAMPFIRE: list[str] = [
+PROMPTS_CAMPFIRE: list[dict] = [
     # --- Original Set ---
-    "The fire dies low. Someone hums a hymn from the old country. Who taught you that song? Are they still alive?",
-    "You catch a crewmate staring at the flames, lips moving without sound. What prayer do you think they're saying?",
-    "The Leader shows a scar he's never explained. Tonight, he seems ready to talk. What question have you been afraid to ask?",
-    "A shooting star crosses the smoke. In your village, that meant a soul was leaving. Whose face comes to mind?",
-    "The Mystic deals cards no one asked for. Yours shows The Drowned King. 'Tell us about the water,' she says. 'Tell us why you fear it.'",
+    {"text": "The fire dies low. Someone hums a hymn from the old country. Who taught you that song? Are they still alive?", "category": "history"},
+    {"text": "You catch a crewmate staring at the flames, lips moving without sound. What prayer do you think they're saying?", "category": "whisper"},
+    {"text": "The Leader shows a scar he's never explained. Tonight, he seems ready to talk. What question have you been afraid to ask?", "category": "history"},
+    {"text": "A shooting star crosses the smoke. In your village, that meant a soul was leaving. Whose face comes to mind?", "category": "history"},
+    {"text": "The Mystic deals cards no one asked for. Yours shows The Drowned King. 'Tell us about the water,' she says. 'Tell us why you fear it.'", "category": "whisper"},
     # --- Variety Pack (Hopes & Fears) ---
-    "The fire crackles low. Someone asks: 'When this is over—if we make it—what's the first thing you'll eat?' What do you answer?",
-    "You realize you can't remember your father's voice anymore. Just his face, fading. Who else are you forgetting out here?",
-    "A crewmate asks where you'll go if you survive. Not what you'll do—where. What place have you been dreaming of?",
-    "You catch your reflection in a blade. The face looking back is harder than you remember. When did you start looking like them?",
-    "Someone shares the last of their tobacco. The smoke tastes like your grandfather's study. What memory does it unlock?"
+    {"text": "The fire crackles low. Someone asks: 'When this is over\u2014if we make it\u2014what's the first thing you'll eat?' What do you answer?", "category": "relational"},
+    {"text": "You realize you can't remember your father's voice anymore. Just his face, fading. Who else are you forgetting out here?", "category": "history"},
+    {"text": "A crewmate asks where you'll go if you survive. Not what you'll do\u2014where. What place have you been dreaming of?", "category": "whisper"},
+    {"text": "You catch your reflection in a blade. The face looking back is harder than you remember. When did you start looking like them?", "category": "philosophy"},
+    {"text": "Someone shares the last of their tobacco. The smoke tastes like your grandfather's study. What memory does it unlock?", "category": "history"},
 ]
 
 # Day 3 Special Event — The Breach
@@ -792,10 +792,11 @@ class CrownAndCrewEngine:
     terms: dict[str, str] = field(default_factory=dict, repr=False)
 
     # Dynamic prompt pools (populated in __post_init__)
-    _prompts_crown: list[str] = field(default_factory=list, repr=False)
-    _prompts_crew: list[str] = field(default_factory=list, repr=False)
-    _prompts_world: list[str] = field(default_factory=list, repr=False)
-    _prompts_campfire: list[str] = field(default_factory=list, repr=False)
+    # Entries may be plain strings (legacy) or dicts with "text"+"category" keys.
+    _prompts_crown: list = field(default_factory=list, repr=False)
+    _prompts_crew: list = field(default_factory=list, repr=False)
+    _prompts_world: list = field(default_factory=list, repr=False)
+    _prompts_campfire: list = field(default_factory=list, repr=False)
     _secret_witness: str = field(default="", repr=False)
     _legacy_titles: dict = field(default_factory=dict, repr=False)
 
@@ -834,6 +835,9 @@ class CrownAndCrewEngine:
 
     # MED-06: Short rest per-day counter
     _short_rests_today: int = field(default=0, repr=False)
+
+    # Last drawn prompt entry (str or dict) for category retrieval
+    _last_drawn_prompt: object = field(default=None, repr=False)
 
     # Council vote log (for Political Gravity tracking)
     vote_log: list[dict] = field(default_factory=list, repr=False)
@@ -1332,9 +1336,16 @@ class CrownAndCrewEngine:
         except RuntimeError:
             return fallback
 
-    def _get_unique_prompt(self, pool: list[str], used: list[int]) -> str:
-        """Get a prompt that hasn't been used yet. Resets if all used."""
+    def _get_unique_prompt(self, pool: list, used: list[int]) -> str:
+        """Get a prompt that hasn't been used yet. Resets if all used.
+
+        Handles both old format (plain strings) and new format (dicts with
+        "text" and "category" keys). Always returns the text string.
+        Stores the last drawn entry (str or dict) in ``_last_drawn_prompt``
+        for category retrieval.
+        """
         if not pool:
+            self._last_drawn_prompt = "The road stretches ahead in silence."
             return "The road stretches ahead in silence."
         available = [i for i in range(len(pool)) if i not in used]
         if not available:
@@ -1342,7 +1353,23 @@ class CrownAndCrewEngine:
             available = list(range(len(pool)))
         idx = random.choice(available)
         used.append(idx)
-        return pool[idx]
+        entry = pool[idx]
+        self._last_drawn_prompt = entry
+        if isinstance(entry, dict):
+            return entry.get("text", "")
+        return entry
+
+    def get_prompt_category(self) -> str:
+        """Return the category of the last drawn prompt.
+
+        Returns one of: "history", "relational", "philosophy", "whisper",
+        or "unknown" if the prompt was a plain string or no prompt has been
+        drawn yet.
+        """
+        entry = getattr(self, '_last_drawn_prompt', None)
+        if isinstance(entry, dict):
+            return entry.get("category", "unknown")
+        return "unknown"
 
     # ─────────────────────────────────────────────────────────────────────
     # STATUS & TIER
