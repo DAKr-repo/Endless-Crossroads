@@ -58,8 +58,8 @@ EMBED_DIM = 768          # nomic-embed-text output dimension
 EMBED_TIMEOUT = 30       # seconds per request
 EMBED_RETRY_LIMIT = 3    # retries on transient errors
 
-DEFAULT_CHUNK_SIZE = 500  # characters
-DEFAULT_OVERLAP = 50      # characters
+DEFAULT_CHUNK_SIZE = 800  # characters (increased from 500 for better context)
+DEFAULT_OVERLAP = 100     # characters (increased from 50 to reduce boundary splits)
 
 console = Console()
 
@@ -94,12 +94,32 @@ def extract_pdf_text(pdf_path: Path) -> list[str]:
 # Chunking
 # ---------------------------------------------------------------------------
 
+def _clean_page_text(text: str) -> str:
+    """Remove common noise from PDF-extracted text.
+
+    Strips DRM watermarks, repeated headers/footers, and page numbers.
+    """
+    import re
+    # Common DRM watermark pattern
+    text = re.sub(r'Property of \w+\..*?Order #\d+', '', text)
+    # Standalone page numbers (just a number on a line)
+    text = re.sub(r'^\d{1,3}\s*$', '', text, flags=re.MULTILINE)
+    # Repeated copyright lines
+    text = re.sub(r'©\s*\d{4}.*?(?:Wizards|Hasbro|Elderbrain).*?$', '', text, flags=re.MULTILINE | re.IGNORECASE)
+    # Collapse excessive whitespace
+    text = re.sub(r'\n{3,}', '\n\n', text)
+    return text.strip()
+
+
 def chunk_text(
     text: str,
     chunk_size: int = DEFAULT_CHUNK_SIZE,
     overlap: int = DEFAULT_OVERLAP,
 ) -> Generator[str, None, None]:
-    """Yield overlapping fixed-size character chunks from text.
+    """Yield overlapping chunks from text, preferring paragraph boundaries.
+
+    Tries to break at paragraph boundaries (double newlines) within the
+    chunk_size window. Falls back to sentence boundaries, then hard splits.
 
     Args:
         text: Raw text to split.
@@ -111,34 +131,68 @@ def chunk_text(
     """
     if not text:
         return
+
     step = max(1, chunk_size - overlap)
     start = 0
-    while start < len(text):
-        end = start + chunk_size
+    text_len = len(text)
+
+    while start < text_len:
+        end = min(start + chunk_size, text_len)
+
+        # If we're not at the end, try to break at a natural boundary
+        if end < text_len:
+            # Try paragraph break first (double newline)
+            para_break = text.rfind('\n\n', start + step // 2, end)
+            if para_break > start:
+                end = para_break
+
+            # Try sentence break (period + space/newline)
+            elif text[end - 1] not in '.!?\n':
+                sent_break = max(
+                    text.rfind('. ', start + step // 2, end),
+                    text.rfind('.\n', start + step // 2, end),
+                )
+                if sent_break > start:
+                    end = sent_break + 1  # Include the period
+
         chunk = text[start:end].strip()
-        if chunk:
+        if chunk and len(chunk) > 20:  # Skip tiny fragments
             yield chunk
-        start += step
+
+        # Advance by step, but don't go past where we actually ended
+        start = max(start + step, end - overlap)
 
 
 def chunks_from_pages(
     pages: list[str],
     chunk_size: int = DEFAULT_CHUNK_SIZE,
     overlap: int = DEFAULT_OVERLAP,
+    source_name: str = "",
 ) -> list[str]:
     """Convert a list of page strings into a flat list of text chunks.
+
+    Cleans noise (watermarks, page numbers) before chunking.
+    Optionally prefixes chunks with source name for provenance.
 
     Args:
         pages: Page-level text extracted from a PDF.
         chunk_size: Characters per chunk.
         overlap: Overlap between consecutive chunks.
+        source_name: Optional PDF filename to prefix chunks with.
 
     Returns:
         Ordered list of text chunks across all pages.
     """
     all_chunks: list[str] = []
-    for page_text in pages:
-        all_chunks.extend(chunk_text(page_text, chunk_size, overlap))
+    prefix = f"[{source_name}] " if source_name else ""
+
+    for page_idx, page_text in enumerate(pages):
+        cleaned = _clean_page_text(page_text)
+        if not cleaned:
+            continue
+        for chunk in chunk_text(cleaned, chunk_size, overlap):
+            all_chunks.append(f"{prefix}{chunk}" if prefix else chunk)
+
     return all_chunks
 
 
@@ -249,7 +303,8 @@ def build_index_for_system(
         )
         try:
             pages = extract_pdf_text(pdf_path)
-            chunks = chunks_from_pages(pages, chunk_size, overlap)
+            source = pdf_path.stem  # Filename without extension
+            chunks = chunks_from_pages(pages, chunk_size, overlap, source_name=source)
             all_chunks.extend(chunks)
         except Exception as exc:
             console.print(
