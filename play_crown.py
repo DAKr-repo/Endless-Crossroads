@@ -618,20 +618,127 @@ def main():
 
         offer_vault()
 
-    # --- END GAME ---
+    # === THE FINALE ===
     clear_screen()
-    report = engine.generate_legacy_report()
 
+    # --- ACT 1: Patron's Reckoning (WO-V116) ---
+    patron_scene = engine.generate_patron_reckoning()
+    if RICH_AVAILABLE:
+        console.print(Panel(
+            f"[italic]{patron_scene['narrative']}[/italic]",
+            title=f"[bold cyan]Act I — {patron_scene['patron_name']}[/bold cyan]",
+            border_style="cyan",
+            width=60,
+        ))
+    else:
+        print(f"\n=== Act I — {patron_scene['patron_name']} ===")
+        print(f"\n{patron_scene['narrative']}")
+
+    print()
+    for i, ch in enumerate(patron_scene["choices"]):
+        if RICH_AVAILABLE:
+            console.print(f"  [cyan][{i + 1}] {ch['text']}[/cyan]")
+        else:
+            print(f"  [{i + 1}] {ch['text']}")
+
+    patron_input = ""
+    while patron_input not in ['1', '2', '3']:
+        patron_input = input("\n> Your response (1-3): ").strip()
+    patron_response = patron_scene["choices"][int(patron_input) - 1]["response"]
+    patron_result = engine.resolve_patron_response(patron_response)
+
+    if RICH_AVAILABLE:
+        console.print(f"\n[bold]{patron_result}[/bold]")
+    else:
+        print(f"\n{patron_result}")
+
+    input("\n[Press Enter to continue...]")
+    clear_screen()
+
+    # --- ACT 2: Leader's Reckoning (WO-V117) ---
+    leader_scene = engine.generate_leader_reckoning()
+    if RICH_AVAILABLE:
+        console.print(Panel(
+            f"[italic]{leader_scene['narrative']}[/italic]",
+            title=f"[bold magenta]Act II — {leader_scene['leader_name']}[/bold magenta]",
+            border_style="magenta",
+            width=60,
+        ))
+    else:
+        print(f"\n=== Act II — {leader_scene['leader_name']} ===")
+        print(f"\n{leader_scene['narrative']}")
+
+    print()
+    for i, ch in enumerate(leader_scene["choices"]):
+        if RICH_AVAILABLE:
+            console.print(f"  [magenta][{i + 1}] {ch['text']}[/magenta]")
+        else:
+            print(f"  [{i + 1}] {ch['text']}")
+
+    leader_input = ""
+    while leader_input not in ['1', '2', '3']:
+        leader_input = input("\n> Your response (1-3): ").strip()
+    leader_response = leader_scene["choices"][int(leader_input) - 1]["response"]
+    leader_result = engine.resolve_leader_response(leader_response)
+
+    if RICH_AVAILABLE:
+        console.print(f"\n[bold]{leader_result}[/bold]")
+    else:
+        print(f"\n{leader_result}")
+
+    input("\n[Press Enter to continue...]")
+    clear_screen()
+
+    # --- ACT 3: The Crossing (WO-V118) ---
+    ending = engine.determine_ending()
+    if RICH_AVAILABLE:
+        console.print(Panel(
+            f"[bold]{ending['title'].upper()}[/bold]\n\n"
+            f"[italic]{ending['narrative']}[/italic]\n\n"
+            f"[dim]{ending['campaign_hook']}[/dim]",
+            title=f"[bold gold1]Act III — The Crossing[/bold gold1]",
+            border_style="gold1",
+            box=box.DOUBLE,
+            width=60,
+        ))
+    else:
+        print(f"\n{'=' * 60}")
+        print(f"  {ending['title'].upper()}")
+        print(f"{'=' * 60}")
+        print(f"\n{ending['narrative']}")
+        print(f"\n{ending['campaign_hook']}")
+
+    input("\n[Press Enter for Legacy Report...]")
+    clear_screen()
+
+    # --- LEGACY REPORT ---
+    report = engine.generate_legacy_report()
     display_card("legacy", report, "[bold gold1]Legacy Report[/bold gold1]")
 
-    # Save the receipt
+    # Save structured JSON + text
+    import json as _json
     from pathlib import Path
     saves_dir = Path(__file__).resolve().parent / "saves"
     saves_dir.mkdir(parents=True, exist_ok=True)
-    filename = saves_dir / f"character_receipt_{int(time.time())}.txt"
-    with open(filename, "w") as f:
+
+    # JSON receipt (machine-readable)
+    legacy_json = engine.generate_legacy_json()
+    legacy_json["patron_final_response"] = patron_response
+    legacy_json["leader_final_response"] = leader_response
+    legacy_json["ending"] = ending["ending_id"]
+    legacy_json["ending_narrative"] = ending["narrative"]
+    legacy_json["campaign_hook"] = ending["campaign_hook"]
+
+    json_filename = saves_dir / f"legacy_{int(time.time())}.json"
+    with open(json_filename, "w") as f:
+        _json.dump(legacy_json, f, indent=2)
+    print(f"\nLegacy JSON saved to {json_filename}")
+
+    # Text receipt (human-readable)
+    txt_filename = saves_dir / f"legacy_{int(time.time())}.txt"
+    with open(txt_filename, "w") as f:
         f.write(report)
-    print(f"\nCharacter saved to {filename}")
+    print(f"Legacy text saved to {txt_filename}")
 
 
 if __name__ == "__main__":

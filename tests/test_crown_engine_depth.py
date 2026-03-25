@@ -2133,6 +2133,178 @@ class TestDNASeed:
 
 
 # =============================================================================
+# WO-V116+117+118: The Finale — 3 Acts
+# =============================================================================
+
+class TestPatronReckoning:
+    """Test Act 1 — Patron confrontation."""
+
+    def test_patron_pleased_at_crown_sway(self):
+        engine = CrownAndCrewEngine()
+        engine.sway = -3
+        engine.players["_solo"].sway = -3
+        scene = engine.generate_patron_reckoning()
+        assert scene["stance"] == "pleased"
+        assert engine.patron in scene["narrative"]
+
+    def test_patron_hostile_at_crew_sway(self):
+        engine = CrownAndCrewEngine()
+        engine.sway = 3
+        engine.players["_solo"].sway = 3
+        scene = engine.generate_patron_reckoning()
+        assert scene["stance"] == "hostile"
+
+    def test_patron_disappointed_at_zero(self):
+        engine = CrownAndCrewEngine()
+        scene = engine.generate_patron_reckoning()
+        assert scene["stance"] == "disappointed"
+
+    def test_patron_has_three_responses(self):
+        engine = CrownAndCrewEngine()
+        scene = engine.generate_patron_reckoning()
+        assert len(scene["choices"]) == 3
+        responses = {c["response"] for c in scene["choices"]}
+        assert responses == {"accept", "reject", "silence"}
+
+    def test_patron_references_bond_when_suspicious(self):
+        engine = CrownAndCrewEngine(character_data={"bond": "my sister in the capital"})
+        engine.sway = 1
+        engine.players["_solo"].sway = 1
+        scene = engine.generate_patron_reckoning()
+        assert scene["stance"] == "suspicious"
+        assert "sister" in scene["narrative"]
+
+    def test_resolve_patron_accept(self):
+        engine = CrownAndCrewEngine()
+        result = engine.resolve_patron_response("accept")
+        assert "hand" in result.lower() or "grip" in result.lower()
+
+    def test_resolve_patron_reject(self):
+        engine = CrownAndCrewEngine()
+        result = engine.resolve_patron_response("reject")
+        assert "back" in result.lower() or "fade" in result.lower()
+
+
+class TestLeaderReckoning:
+    """Test Act 2 — Leader confrontation."""
+
+    def test_leader_deep_trust(self):
+        engine = CrownAndCrewEngine()
+        engine.sway = 3
+        engine.players["_solo"].sway = 3
+        engine.players["_solo"]._mirror_choice = "hide"
+        scene = engine.generate_leader_reckoning()
+        assert scene["stance"] == "deep_trust"
+
+    def test_leader_hurt_respect_expose(self):
+        engine = CrownAndCrewEngine()
+        engine.sway = 2
+        engine.players["_solo"].sway = 2
+        engine.players["_solo"]._mirror_choice = "expose"
+        scene = engine.generate_leader_reckoning()
+        assert scene["stance"] == "hurt_respect"
+
+    def test_leader_dismissive_at_zero(self):
+        engine = CrownAndCrewEngine()
+        scene = engine.generate_leader_reckoning()
+        assert scene["stance"] == "dismissive"
+
+    def test_leader_cold_fury(self):
+        engine = CrownAndCrewEngine()
+        engine.sway = -2
+        engine.players["_solo"].sway = -2
+        engine.players["_solo"]._mirror_choice = "expose"
+        scene = engine.generate_leader_reckoning()
+        assert scene["stance"] == "cold_fury"
+
+    def test_leader_betrayed_references_ideal(self):
+        engine = CrownAndCrewEngine(character_data={"ideal": "Liberty"})
+        engine.sway = -1
+        engine.players["_solo"].sway = -1
+        engine.players["_solo"]._mirror_choice = "hide"
+        scene = engine.generate_leader_reckoning()
+        assert scene["stance"] == "betrayed"
+        assert "Liberty" in scene["narrative"]
+
+    def test_leader_has_three_responses(self):
+        engine = CrownAndCrewEngine()
+        scene = engine.generate_leader_reckoning()
+        assert len(scene["choices"]) == 3
+
+
+class TestTheCrossing:
+    """Test Act 3 — ending determination."""
+
+    def test_free_crossing(self):
+        engine = CrownAndCrewEngine()
+        engine.players["_solo"].sway = 3
+        ending = engine.determine_ending()
+        assert ending["ending_id"] == "free_crossing"
+
+    def test_crown_pardon(self):
+        engine = CrownAndCrewEngine()
+        engine.players["_solo"].sway = -3
+        ending = engine.determine_ending()
+        assert ending["ending_id"] == "crown_pardon"
+
+    def test_drifters_road(self):
+        engine = CrownAndCrewEngine()
+        engine.players["_solo"].sway = 0
+        ending = engine.determine_ending()
+        assert ending["ending_id"] == "drifters_road"
+
+    def test_martyrs_march(self):
+        engine = CrownAndCrewEngine()
+        engine.players["_solo"].sway = 2
+        engine.players["_solo"]._mirror_choice = "expose"
+        ending = engine.determine_ending()
+        assert ending["ending_id"] == "martyrs_march"
+
+    def test_captured(self):
+        engine = CrownAndCrewEngine()
+        engine.players["_solo"].sway = 0
+        engine.players["_solo"]._royal_decree_used = True
+        ending = engine.determine_ending()
+        assert ending["ending_id"] == "captured"
+
+    def test_abandoned(self):
+        engine = CrownAndCrewEngine()
+        engine.players["_solo"].sway = 1
+        engine.players["_solo"]._mirror_choice = "hide"
+        ending = engine.determine_ending()
+        assert ending["ending_id"] == "abandoned"
+
+    def test_every_ending_has_campaign_hook(self):
+        """All 6 endings produce a campaign hook."""
+        for ending_id in ("free_crossing", "crown_pardon", "drifters_road",
+                          "martyrs_march", "captured", "abandoned"):
+            engine = CrownAndCrewEngine()
+            ps = engine.players["_solo"]
+            if ending_id == "free_crossing":
+                ps.sway = 3
+            elif ending_id == "crown_pardon":
+                ps.sway = -3
+            elif ending_id == "drifters_road":
+                ps.sway = 0
+            elif ending_id == "martyrs_march":
+                ps.sway = 2; ps._mirror_choice = "expose"
+            elif ending_id == "captured":
+                ps.sway = 0; ps._royal_decree_used = True
+            elif ending_id == "abandoned":
+                ps.sway = 1; ps._mirror_choice = "hide"
+            ending = engine.determine_ending()
+            assert ending["ending_id"] == ending_id, f"Expected {ending_id}, got {ending['ending_id']}"
+            assert len(ending["campaign_hook"]) > 20, f"No hook for {ending_id}"
+            assert len(ending["narrative"]) > 50, f"No narrative for {ending_id}"
+
+    def test_ending_uses_character_name(self):
+        engine = CrownAndCrewEngine(character_data={"name": "Kael"})
+        engine.players["_solo"].sway = 3
+        ending = engine.determine_ending()
+        assert "Kael" in ending["narrative"]
+
+
+# =============================================================================
 # WO-V108: The Echo — Player-Driven DNA Tag Assignment
 # =============================================================================
 

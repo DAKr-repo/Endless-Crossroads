@@ -3005,6 +3005,313 @@ class CrownAndCrewEngine:
 
 
     # ─────────────────────────────────────────────────────────────────────
+    # THE FINALE — 3 Acts (WO-V116, V117, V118)
+    # ─────────────────────────────────────────────────────────────────────
+
+    def generate_patron_reckoning(self, player_name: str = _SOLO) -> dict:
+        """WO-V116: Act 1 — The Patron confronts the player.
+
+        Patron stance depends on Crown alignment. Player gets a final
+        response: accept, reject, or silence. No sway shift — this is
+        a character statement.
+
+        Returns dict with: stance, narrative, choices, patron_name.
+        """
+        ps = self._get_player(player_name)
+        sway = ps.sway
+        patron = self.patron
+        crown_term = self.terms.get("crown", "The Crown")
+        loom = self.get_loom(player_name)
+
+        # 5 stances based on sway
+        if sway <= -2:
+            stance = "pleased"
+            narrative = (
+                f"{patron} finds you before dawn. There is no warmth in the smile — "
+                f"but there is satisfaction. 'You served {crown_term} well,' they say. "
+                f"'Loyalty will be rewarded. But understand — loyalty is a leash that "
+                f"runs both ways.'"
+            )
+        elif sway == -1:
+            stance = "cautious_respect"
+            narrative = (
+                f"{patron} intercepts you on the trail. The greeting is measured. "
+                f"'You leaned our way when it mattered. I noted every instance. "
+                f"I also noted the times you didn't.' A pause. 'You'll hear from us.'"
+            )
+        elif sway == 0:
+            stance = "disappointed"
+            narrative = (
+                f"{patron} blocks your path. The expression is unreadable. "
+                f"'You chose no one. That makes you either wise or useless. "
+                f"I spent five days watching you, and I still can't tell which.' "
+                f"They step aside without offering a hand."
+            )
+        elif sway <= 2:
+            stance = "suspicious"
+            narrative = (
+                f"{patron} appears from the fog, flanked by two escorts. "
+                f"'I know where your heart lies,' they say softly. "
+            )
+            # WO-V126: Reference bond if available
+            bond = loom.bond if loom and hasattr(loom, 'bond') else ""
+            if bond and bond != "someone they left behind":
+                narrative += f"'I also know about {bond}. Consider that, before you commit to anything.'"
+            else:
+                narrative += "'Consider what you're walking toward. And what you're leaving behind.'"
+        else:
+            stance = "hostile"
+            narrative = (
+                f"{patron} stands at the border marker, arms folded. "
+                f"'You've made your choice. Every choice has a price.' "
+                f"The voice drops. 'When we meet again — and we will — "
+                f"remember that I offered you a way out. You refused it.'"
+            )
+
+        # Personalize with name
+        if loom and hasattr(loom, 'name') and loom.name != "Traveler":
+            narrative = narrative.replace("You ", f"{loom.name}, you ", 1)
+
+        return {
+            "patron_name": patron,
+            "stance": stance,
+            "narrative": narrative,
+            "choices": [
+                {"text": f"Accept. '{crown_term} has my respect.'", "response": "accept"},
+                {"text": f"Reject. 'I owe {crown_term} nothing.'", "response": "reject"},
+                {"text": "Say nothing. Let the silence speak.", "response": "silence"},
+            ],
+        }
+
+    def resolve_patron_response(self, response: str, player_name: str = _SOLO) -> str:
+        """WO-V116: Record the player's response to the Patron."""
+        ps = self._get_player(player_name)
+        response = response.lower()
+        if response not in ("accept", "reject", "silence"):
+            response = "silence"
+
+        self._add_shard(
+            f"Finale: Responded to Patron with '{response}'",
+            "ANCHOR",
+        )
+
+        patron = self.patron
+        if response == "accept":
+            return f"You take {patron}'s hand. The grip is firm, and final."
+        elif response == "reject":
+            return f"You turn your back on {patron}. The footsteps behind you stop. Then they fade."
+        else:
+            return f"{patron} waits. You offer nothing. After a long moment, they nod — and walk away."
+
+    def generate_leader_reckoning(self, player_name: str = _SOLO) -> dict:
+        """WO-V117: Act 2 — The Leader confronts the player.
+
+        Leader stance depends on Crew alignment AND Mirror choice.
+        6 stances from the combination.
+
+        Returns dict with: stance, narrative, choices, leader_name.
+        """
+        ps = self._get_player(player_name)
+        sway = ps.sway
+        mirror = ps._mirror_choice
+        leader = self.leader
+        crew_term = self.terms.get("crew", "The Crew")
+        loom = self.get_loom(player_name)
+
+        # 6 stances
+        if sway >= 2 and mirror != "expose":
+            stance = "deep_trust"
+            narrative = (
+                f"{leader} sits beside you at the last fire. For once, they don't speak first. "
+                f"The silence between you is comfortable — earned. 'You saw what I did,' they say "
+                f"finally. 'And you stayed. That means more than any oath.'"
+            )
+        elif sway >= 2 and mirror == "expose":
+            stance = "hurt_respect"
+            narrative = (
+                f"{leader} finds you packing your gear. 'You told the truth,' they say. "
+                f"The voice is flat. Controlled. 'I hate you for it. But I respect you for it. "
+                f"That's more than I can say for most.'"
+            )
+        elif sway >= 1:
+            stance = "wary_gratitude"
+            narrative = (
+                f"{leader} tosses you a waterskin. The gesture is casual. The eyes are not. "
+                f"'You walked with us. That means something.' A pause. 'But I know you're "
+                f"not all the way in. And that's a door that won't stay open forever.'"
+            )
+        elif sway == 0:
+            stance = "dismissive"
+            narrative = (
+                f"{leader} barely glances up as you approach. 'You never chose,' they say, "
+                f"poking the embers. 'That's a choice too. The road ahead won't wait for "
+                f"people who can't decide.' They don't offer you a seat at the fire."
+            )
+        elif mirror == "hide":
+            stance = "betrayed"
+            narrative = (
+                f"{leader} grabs your arm in the dark. The grip is iron. "
+                f"'You walked with us. You ate our food. You shared our fire.' "
+                f"The voice drops to a whisper. 'And you served them the whole time.' "
+            )
+            # Reference ideal if available
+            if loom and hasattr(loom, 'ideal'):
+                ideal = loom.ideal
+                if ideal and ideal != "survival":
+                    narrative += f"'You talk about {ideal}. But when it mattered, you chose yourself.'"
+                else:
+                    narrative += "'I trusted you. That was my mistake.'"
+            else:
+                narrative += "'I trusted you. That was my mistake.'"
+        else:
+            stance = "cold_fury"
+            narrative = (
+                f"{leader} stands between you and the road. 'You saw my sin. You told their people. "
+                f"And now you stand on their side of the line.' The words are ice. "
+                f"'We are done. If I see you again, it will not be as a friend.'"
+            )
+
+        return {
+            "leader_name": leader,
+            "stance": stance,
+            "narrative": narrative,
+            "choices": [
+                {"text": f"Loyalty. '{crew_term} is my family now.'", "response": "loyalty"},
+                {"text": f"Farewell. 'I'll remember this march.'", "response": "farewell"},
+                {"text": "Say nothing. Some things don't need words.", "response": "silence"},
+            ],
+        }
+
+    def resolve_leader_response(self, response: str, player_name: str = _SOLO) -> str:
+        """WO-V117: Record the player's response to the Leader."""
+        response = response.lower()
+        if response not in ("loyalty", "farewell", "silence"):
+            response = "silence"
+
+        self._add_shard(
+            f"Finale: Responded to Leader with '{response}'",
+            "ANCHOR",
+        )
+
+        leader = self.leader
+        if response == "loyalty":
+            return f"You clasp {leader}'s arm. The grip says everything. For the first time on this march, you belong."
+        elif response == "farewell":
+            return f"You extend a hand. {leader} takes it — briefly. 'Survive,' they say. Nothing more."
+        else:
+            return f"The fire crackles. {leader} watches you. You watch the road. The silence is its own language."
+
+    def determine_ending(self, player_name: str = _SOLO) -> dict:
+        """WO-V118: Determine the player's ending state from cumulative choices.
+
+        6 endings — never player death. Every ending is a campaign opening hook.
+
+        Returns dict with: ending_id, title, narrative, campaign_hook.
+        """
+        ps = self._get_player(player_name)
+        sway = ps.sway
+        mirror = ps._mirror_choice
+        crew_term = self.terms.get("crew", "The Crew")
+        crown_term = self.terms.get("crown", "The Crown")
+        loom = self.get_loom(player_name)
+        name = loom.name if loom and hasattr(loom, 'name') and loom.name != "Traveler" else "you"
+
+        # Pre-compute name variants to avoid f-string backslash issues
+        _you = name == "you"
+        _poss = "your" if _you else f"{name}'s"
+        _subj = "You" if _you else name
+        _cross = "You cross" if _you else f"{name} crosses"
+        _walk = "You walk" if _you else f"{name} walks"
+        _step = "You step" if _you else f"{name} steps"
+        _wake = "You wake" if _you else f"{name} wakes"
+        _yours = "yours" if _you else "theirs"
+
+        if sway >= 2 and mirror != "expose":
+            return {
+                "ending_id": "free_crossing",
+                "title": "The Free Crossing",
+                "narrative": (
+                    f"The border is a line in the dirt. {_subj} cross{'es' if not _you else ''} it "
+                    f"with {crew_term} at {_poss} back. No fanfare. No ceremony. "
+                    f"Just one step, and the march is over. The road ahead is open. "
+                    f"For the first time in five days, no one is watching."
+                ),
+                "campaign_hook": f"You begin the campaign with {crew_term}'s trust, the Leader's respect, and a shared history forged in fire.",
+            }
+        elif sway <= -2:
+            return {
+                "ending_id": "crown_pardon",
+                "title": "The Crown's Pardon",
+                "narrative": (
+                    f"The {crown_term}'s seal is pressed into warm wax. The pardon is real — "
+                    f"{_poss} name, written in a clerk's careful hand. "
+                    f"The gate opens. {_walk} through it as a free citizen. "
+                    f"The price was the march. The price was always the march."
+                ),
+                "campaign_hook": f"You begin the campaign in {crown_term}'s service — pardoned, but not free. They will call in the debt.",
+            }
+        elif mirror == "expose" and sway >= 1:
+            return {
+                "ending_id": "martyrs_march",
+                "title": "The Martyr's March",
+                "narrative": (
+                    f"{crew_term} splits in the night. Some follow {name}, "
+                    f"some follow the Leader. The truth {name} told cracked "
+                    f"the group like a stone through ice. "
+                    f"{_cross} the border at the head of a "
+                    f"fractured band, carrying the weight of what was caused."
+                ),
+                "campaign_hook": f"You begin the campaign leading a splinter faction of {crew_term}. The Leader is out there. The schism you caused will follow you.",
+            }
+        elif abs(sway) <= 1 and ps._royal_decree_used:
+            return {
+                "ending_id": "captured",
+                "title": "Captured",
+                "narrative": (
+                    f"{crown_term} patrols close in at the border. {crew_term} does not intervene — "
+                    f"{name} used their authority against the group, and the group remembers. "
+                    f"Iron manacles. A cold wagon. The march ends, but not with freedom."
+                ),
+                "campaign_hook": "Your campaign opens in chains. Imprisonment, trial, or a deal — the Crown has leverage, and they intend to use it.",
+            }
+        elif sway == 0 and not ps._royal_decree_used and mirror != "hide":
+            return {
+                "ending_id": "drifters_road",
+                "title": "The Drifter's Road",
+                "narrative": (
+                    f"Neither side claims {name}. "
+                    f"{crown_term} has no use for neutrals. {crew_term} has no trust for fence-sitters. "
+                    f"{_cross} the border alone — "
+                    f"no escort, no pardon, no friends. Just the road, and whatever comes next."
+                ),
+                "campaign_hook": "You begin the campaign with no faction ties but no debts either. True independence — and true isolation.",
+            }
+        elif abs(sway) <= 1 and mirror == "hide":
+            return {
+                "ending_id": "abandoned",
+                "title": "Abandoned",
+                "narrative": (
+                    f"{_wake} to cold ashes. "
+                    f"{crew_term} left in the night — no note, no tracks. "
+                    f"{crown_term} has moved on to other pursuits. The border is right there, "
+                    f"a hundred yards of open ground. {_cross} it alone."
+                ),
+                "campaign_hook": "You begin the campaign isolated. Both factions abandoned you. Rebuilding trust — with anyone — is your first challenge.",
+            }
+        else:
+            return {
+                "ending_id": "uncertain_crossing",
+                "title": "The Uncertain Crossing",
+                "narrative": (
+                    f"The border is ahead. Behind, the march. {_subj} "
+                    f"{_step.split()[-1]} across — not free, not captured, not forgiven. "
+                    f"Somewhere between all the choices, a path was carved. "
+                    f"It is not clean. But it is {_yours}."
+                ),
+                "campaign_hook": "You begin the campaign carrying the weight of five days of compromise. Both sides remember your face.",
+            }
+
+    # ─────────────────────────────────────────────────────────────────────
     # SCENE PROGRESSION (optional — backward compatible)
     # ─────────────────────────────────────────────────────────────────────
 
