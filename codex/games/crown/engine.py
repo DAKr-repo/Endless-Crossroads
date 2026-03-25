@@ -3664,6 +3664,82 @@ class CrownAndCrewEngine:
 
         return hooks[:6]  # Cap at 6 hooks max
 
+    def generate_multiplayer_finale(self) -> dict:
+        """WO-V138: Generate the full multiplayer finale for all players.
+
+        Each player gets their own Patron reckoning, Leader reckoning,
+        ending, and legacy. Confrontations reference other players' choices
+        for inter-party tension.
+
+        Returns dict with per-player finale data + group summary.
+        """
+        players = self.get_all_players()
+        if not players:
+            players = [self._get_player(_SOLO)]
+
+        finales: dict[str, dict] = {}
+        witness = self.select_mirror_witness()
+
+        for ps in players:
+            pname = ps.name
+            patron = self.generate_patron_reckoning(pname)
+            leader = self.generate_leader_reckoning(pname)
+            ending = self.determine_ending(pname)
+            legacy = self.generate_legacy_json(pname)
+            hooks = self.generate_campaign_hooks(pname)
+            dissent = self.get_dissent_summary(pname)
+
+            finales[pname] = {
+                "patron_reckoning": patron,
+                "leader_reckoning": leader,
+                "ending": ending,
+                "legacy": legacy,
+                "hooks": hooks,
+                "dissent_summary": dissent,
+                "was_witness": (pname == witness),
+            }
+
+        # Inter-player tension notes
+        tensions: list[str] = []
+        player_list = list(finales.keys())
+        for i, pname in enumerate(player_list):
+            ps = self._get_player(pname)
+            for other_name in player_list:
+                if other_name == pname:
+                    continue
+                other = self._get_player(other_name)
+
+                # Opposing endings
+                p_ending = finales[pname]["ending"]["ending_id"]
+                o_ending = finales[other_name]["ending"]["ending_id"]
+                if p_ending == "crown_pardon" and o_ending == "free_crossing":
+                    tensions.append(
+                        f"{pname} walks through the Crown's gate while {other_name} "
+                        f"crosses with the Crew. They will meet again — on opposite sides."
+                    )
+
+                # Mirror witness vs hider
+                if pname == witness and ps._mirror_choice == "expose":
+                    if other._mirror_choice == "" and other.sway >= 1:
+                        tensions.append(
+                            f"{pname} exposed the Leader's sin. {other_name} didn't know — "
+                            f"and when they find out, trust may crack."
+                        )
+
+                # Dissent patterns
+                if ps.dissent_count > ps.majority_count and other.majority_count > other.dissent_count:
+                    tensions.append(
+                        f"{pname} voted against the group more often than not. "
+                        f"{other_name} always stood with the majority. "
+                        f"That friction will carry forward."
+                    )
+
+        return {
+            "players": finales,
+            "witness": witness,
+            "tensions": tensions[:5],  # Cap at 5
+        }
+
     # ─────────────────────────────────────────────────────────────────────
     # SCENE PROGRESSION (optional — backward compatible)
     # ─────────────────────────────────────────────────────────────────────

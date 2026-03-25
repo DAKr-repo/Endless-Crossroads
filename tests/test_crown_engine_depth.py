@@ -2602,6 +2602,81 @@ class TestMirrorWitnessSelection:
 
 
 # =============================================================================
+# WO-V138: Multiplayer Finale
+# =============================================================================
+
+class TestMultiplayerFinale:
+    """Test per-player finale generation with inter-player tension."""
+
+    def _make_engine(self):
+        engine = CrownAndCrewEngine()
+        alice = engine.add_player("Alice")
+        alice.sway = 3
+        alice._mirror_choice = "hide"
+        alice.dna["HEARTH"] = 5
+        bob = engine.add_player("Bob")
+        bob.sway = -2
+        bob.dna["GUILE"] = 4
+        return engine
+
+    def test_returns_all_players(self):
+        engine = self._make_engine()
+        result = engine.generate_multiplayer_finale()
+        assert "Alice" in result["players"]
+        assert "Bob" in result["players"]
+
+    def test_each_player_has_full_finale(self):
+        engine = self._make_engine()
+        result = engine.generate_multiplayer_finale()
+        for pname in ("Alice", "Bob"):
+            pdata = result["players"][pname]
+            assert "patron_reckoning" in pdata
+            assert "leader_reckoning" in pdata
+            assert "ending" in pdata
+            assert "legacy" in pdata
+            assert "hooks" in pdata
+            assert "dissent_summary" in pdata
+            assert "was_witness" in pdata
+
+    def test_different_endings_per_player(self):
+        engine = self._make_engine()
+        result = engine.generate_multiplayer_finale()
+        alice_end = result["players"]["Alice"]["ending"]["ending_id"]
+        bob_end = result["players"]["Bob"]["ending"]["ending_id"]
+        assert alice_end != bob_end
+
+    def test_witness_flagged(self):
+        engine = self._make_engine()
+        result = engine.generate_multiplayer_finale()
+        # Alice has sway 3, should be witness
+        assert result["witness"] == "Alice"
+        assert result["players"]["Alice"]["was_witness"] is True
+        assert result["players"]["Bob"]["was_witness"] is False
+
+    def test_tensions_generated(self):
+        engine = self._make_engine()
+        # Alice: crew loyal, Bob: crown sympathizer — opposing endings
+        result = engine.generate_multiplayer_finale()
+        # Should generate at least one tension about opposing paths
+        assert isinstance(result["tensions"], list)
+
+    def test_solo_finale_works(self):
+        engine = CrownAndCrewEngine()
+        result = engine.generate_multiplayer_finale()
+        assert "_solo" in result["players"]
+        assert result["players"]["_solo"]["ending"]["ending_id"] is not None
+
+    def test_tensions_capped(self):
+        engine = self._make_engine()
+        engine.add_player("Carol")
+        engine.add_player("Dave")
+        engine.players["Carol"].sway = 0
+        engine.players["Dave"].sway = -3
+        result = engine.generate_multiplayer_finale()
+        assert len(result["tensions"]) <= 5
+
+
+# =============================================================================
 # WO-V108: The Echo — Player-Driven DNA Tag Assignment
 # =============================================================================
 
