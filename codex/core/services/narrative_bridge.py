@@ -166,6 +166,25 @@ class NarrativeBridge:
         self._hazard_idx: Optional[Dict[str, str]] = None
         self._room_desc_cache: Dict[int, str] = {}  # hash(desc) -> enriched text
         self._combat_mimir_cache: Dict[tuple, str] = {}  # (event_type, enemy) -> prose
+        self._character_loom: Optional[Any] = None  # WO-V129: Character Loom
+
+    def set_character_loom(self, loom: Any) -> None:
+        """WO-V129: Attach a Character Loom for personalized narration."""
+        self._character_loom = loom
+
+    def _loom_context(self) -> str:
+        """WO-V132: Get compact character context for LLM prompt injection."""
+        if self._character_loom and hasattr(self._character_loom, 'get_context_block'):
+            return self._character_loom.get_context_block()
+        return ""
+
+    def _loom_name(self) -> str:
+        """WO-V130: Get character name for combat narration."""
+        if self._character_loom and hasattr(self._character_loom, 'name'):
+            name = self._character_loom.name
+            if name and name != "Traveler":
+                return name
+        return ""
 
     # ── Lazy Index Builders ──────────────────────────────────────────
 
@@ -391,16 +410,19 @@ class NarrativeBridge:
         if cache_key in self._combat_mimir_cache:
             return self._combat_mimir_cache[cache_key]
 
-        # Build compact prompt
+        # Build compact prompt — use character name if available (#130)
         _weapon_str = f" with {weapon}" if weapon else ""
+        _char_name = self._loom_name()
+        _attacker = _char_name or "a fighter"
+        _defender = _char_name or "the adventurer"
         _prompts = {
-            "hit": f"One sentence: a fighter strikes {enemy_name}{_weapon_str} for {damage} damage. Gritty fantasy tone.",
-            "crit": f"One sentence: a devastating critical hit on {enemy_name}{_weapon_str} for {damage} damage. Visceral and dramatic.",
-            "miss": f"One sentence: a fighter swings at {enemy_name}{_weapon_str} and misses. Brief, tense.",
-            "fumble": f"One sentence: a fighter fumbles their attack on {enemy_name}. Embarrassing or dangerous.",
-            "kill": f"One sentence: {enemy_name} falls dead. Dramatic, final.",
-            "enemy_hit": f"One sentence: {enemy_name} strikes the adventurer for {damage} damage. Painful, visceral.",
-            "enemy_miss": f"One sentence: {enemy_name} attacks the adventurer and misses. Close call.",
+            "hit": f"One sentence: {_attacker} strikes {enemy_name}{_weapon_str} for {damage} damage. Gritty fantasy tone.",
+            "crit": f"One sentence: a devastating critical hit by {_attacker} on {enemy_name}{_weapon_str} for {damage} damage. Visceral and dramatic.",
+            "miss": f"One sentence: {_attacker} swings at {enemy_name}{_weapon_str} and misses. Brief, tense.",
+            "fumble": f"One sentence: {_attacker} fumbles their attack on {enemy_name}. Embarrassing or dangerous.",
+            "kill": f"One sentence: {enemy_name} falls dead before {_attacker}. Dramatic, final.",
+            "enemy_hit": f"One sentence: {enemy_name} strikes {_defender} for {damage} damage. Painful, visceral.",
+            "enemy_miss": f"One sentence: {enemy_name} attacks {_defender} and misses. Close call.",
         }
         prompt = _prompts.get(event_type)
         if not prompt:
@@ -600,6 +622,10 @@ class NarrativeBridge:
             parts.append(f"Visible items: {', '.join(loot[:3])}")
         if doom > 10:
             parts.append("The doom clock is high — the dungeon feels hostile.")
+        # WO-V132: Inject character context for personalized Mimir narration
+        _char_ctx = self._loom_context()
+        if _char_ctx:
+            parts.append(f"Character: {_char_ctx}")
         parts.append(f"Base room: {description[:200]}")
 
         prompt = " ".join(parts)

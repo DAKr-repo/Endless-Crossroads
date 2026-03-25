@@ -139,6 +139,18 @@ class UniversalGameBridge:
             self._narrator = NarrativeBridge(_sys)
         except Exception:
             pass
+        # WO-V129: Character Loom for personalized narration
+        self._character_loom = None
+        try:
+            from codex.core.services.character_loom import CharacterLoom
+            char = getattr(self.engine, 'character', None)
+            if char:
+                self._character_loom = CharacterLoom.from_sheet(char)
+                # Share with narrator for personalized descriptions
+                if self._narrator and self._character_loom:
+                    self._narrator.set_character_loom(self._character_loom)
+        except Exception:
+            pass
 
     def _loom_shard(self, content: str, shard_type: str = "CHRONICLE"):
         """WO-V79.0: Create a narrative loom shard if the engine supports it."""
@@ -151,6 +163,23 @@ class UniversalGameBridge:
     def set_butler(self, butler):
         """WO-V50.0: Attach a CodexButler for audio narration."""
         self._butler = butler
+
+    def set_character_loom(self, char_data):
+        """WO-V129: Attach a Character Loom from character data or sheet."""
+        try:
+            from codex.core.services.character_loom import CharacterLoom
+            if hasattr(char_data, 'name'):  # CharacterSheet-like
+                self._character_loom = CharacterLoom.from_sheet(char_data)
+            elif isinstance(char_data, dict):
+                self._character_loom = CharacterLoom.from_dict(char_data)
+        except Exception:
+            pass
+
+    def _loom_resolve(self, text: str) -> str:
+        """WO-V129: Resolve {loom.*} variables in any text if Loom is available."""
+        if self._character_loom and hasattr(self._character_loom, 'resolve'):
+            return self._character_loom.resolve(text)
+        return text
 
     def _try_narrate(self, text):
         """WO-V50.0: Best-effort narration via butler (fire-and-forget)."""
@@ -1029,10 +1058,29 @@ class UniversalGameBridge:
                     if voice:
                         lines.append(f"Voice: {voice}")
                     dialogue = npc.get("dialogue", "")
+                    # WO-V131: Personalize dialogue with character background
+                    if dialogue and self._character_loom:
+                        dialogue = self._character_loom.resolve(dialogue)
                     if dialogue:
                         lines.append(f'"{dialogue}"')
                     else:
                         lines.append(f"{name} has nothing to say.")
+                    # WO-V131: NPC recognizes character background
+                    if self._character_loom and hasattr(self._character_loom, 'background'):
+                        _bg = self._character_loom.background
+                        _char_name = self._character_loom.name
+                        if _bg and _bg != "unknown origins" and _trust_level == 1:
+                            _role_bg_match = {
+                                "guard": ["soldier", "fighter", "knight"],
+                                "merchant": ["guild artisan", "merchant", "noble"],
+                                "criminal": ["criminal", "charlatan", "urchin"],
+                                "innkeeper": ["folk hero", "entertainer"],
+                                "priest": ["acolyte", "hermit"],
+                                "scholar": ["sage", "cloistered scholar"],
+                            }
+                            _matches = _role_bg_match.get(role.lower(), [])
+                            if any(m in _bg.lower() for m in _matches):
+                                lines.append(f'[{name} recognizes a fellow {_bg}.]')
                     # WO-V81.0: Track trust and reveal depth
                     _trust_key = name.lower()
                     self._npc_trust[_trust_key] = self._npc_trust.get(_trust_key, 0) + 1
