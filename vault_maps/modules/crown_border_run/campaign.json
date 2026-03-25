@@ -24,82 +24,230 @@
         "Iron Maddy (ex-officer)"
     ],
     "prompts_crown": [
-        "Colonel Graves sends a rider under white flag. His terms are simple: return the stolen supply manifest and you walk free. Everyone else stays in chains. The manifest is in your coat.",
-        "A border patrol sergeant recognizes your face from the old regiment. He lowers his crossbow. 'I can lose you in the report,' he says, 'but only you. The rest I have to log.'",
-        "The Garrison has posted a bounty: thirty crowns a head for deserters. A farmer's son found the notice. He's fifteen, hungry, and watching your camp from the treeline with a counting look in his eyes.",
-        "Marshal Wick's voice carries across the valley at dusk. He reads the names of your company from a list. 'Come home,' he says. 'Your families miss you. This doesn't have to end in the gorge.'",
-        "You find an imperial dispatch pouch in the mud: reinforcements are being diverted south. If you pass this intelligence to the nearest outpost, the Garrison owes you a debt worth more than freedom.",
-        "A Crown courier catches up at the river ford, breathless and bleeding. 'Kael murdered my partner,' she gasps. 'In cold blood. Before the desertion. I have proof.' She presses a bloodstained ledger into your hands.",
-        "Magistrate Hale offers sealed pardons -- real ones, with the Imperial watermark. One for each member who turns informant. Kael would never know who talked. The pardons are warm in your pocket.",
-        "An old watchtower still flies the imperial standard. Inside, a skeleton crew of three guards. They haven't heard about the desertion. They offer hot food and a dry floor. 'Stay as long as you like,' the corporal says. 'We get lonely out here.'",
-        "The empire built these roads. The empire cleared these forests. The empire dug the wells you drink from. Without the Garrison, this frontier is three bad harvests from collapse. You know this because you built it.",
-        "Supply Master Quinn's last cache is two miles east -- rations for twenty, medicine, clean blankets. He left the lock combination in your boot before you deserted. A parting gift, or a leash?",
-        "A propaganda broadsheet blows against your leg: 'THE DESERTER BETRAYS HIS BROTHERS. The soldier who runs condemns the soldier who stays.' There's a woodcut portrait. It doesn't look like you. Yet.",
-        "Border Marshal Wick is not cruel. He's not even angry. His letter says: 'I understand why you ran. I would have too, twenty years ago. But the border must hold. Come back. I'll see you treated fair.'",
-        "You stumble on a mass grave from last winter's campaign -- imperial soldiers, buried with honors, each stone carved by hand. Someone tended this place. Someone remembers these names. Who will tend yours?",
-        "A Crown engineer has rigged the only bridge across the Tarn River with blasting powder. He offers to disarm it -- if you tell him which pass Kael plans to use. One truth buys safe crossing for everyone.",
-        "The imperial supply lines kept this frontier alive for forty years. Without them, the mountain villages starve before spring. Three settlements depend on the garrison you just gutted by deserting. Their children did nothing wrong.",
-        "A retired colonel lives alone at the border station. He deserted once, decades ago. They caught him. He served his time. 'The punishment was fair,' he says, pouring you tea. 'The guilt was worse.'",
-        "Quinn left a second cache -- this one containing your personal effects from the barracks. Letters from your mother. A portrait of someone you left behind. A service medal you earned honestly. The empire remembers you, too.",
-        "A wounded imperial scout drags herself into your camp at dawn. She's delirious, calling for her sergeant. She'll die without Doc Hallow's skill. But treating her means leaving evidence of your location.",
-        "The Garrison isn't hunting you out of malice. Three hundred soldiers depend on the supply route you're blocking by crossing through restricted territory. If you don't move faster, people who never wronged you will go hungry.",
-        "Magistrate Hale pins a notice to a tree along your route: 'Desertion in wartime carries the penalty of death. Voluntary return before the border crossing reduces the sentence to five years of labor. This offer expires at dawn.'"
+        {"text": "Colonel Graves sends a rider under white flag. His terms are simple: return the stolen supply manifest and you walk free. Everyone else stays in chains. The manifest is in your coat.", "category": "relational"},
+        {"text": "A border patrol sergeant recognizes your face from the old regiment. He lowers his crossbow. 'I can lose you in the report,' he says, 'but only you. The rest I have to log.'", "category": "relational"},
+        {"text": "The Garrison has posted a bounty: thirty crowns a head for deserters. A farmer's son found the notice. He's fifteen, hungry, and watching your camp from the treeline with a counting look in his eyes.", "category": "whisper"},
+        {"text": "Marshal Wick's voice carries across the valley at dusk. He reads the names of your company from a list. 'Come home,' he says. 'Your families miss you. This doesn't have to end in the gorge.'", "category": "relational"},
+        {"text": "You find an imperial dispatch pouch in the mud: reinforcements are being diverted south. If you pass this intelligence to the nearest outpost, the Garrison owes you a debt worth more than freedom.", "category": "philosophy"},
+        {"text": "A Crown courier catches up at the river ford, breathless and bleeding. 'Kael murdered my partner,' she gasps. 'In cold blood. Before the desertion. I have proof.' She presses a bloodstained ledger into your hands.", "category": "history"},
+        {"text": "Magistrate Hale offers sealed pardons -- real ones, with the Imperial watermark. One for each member who turns informant. Kael would never know who talked. The pardons are warm in your pocket.", "category": "whisper"},
+        {"text": "An old watchtower still flies the imperial standard. Inside, a skeleton crew of three guards. They haven't heard about the desertion. They offer hot food and a dry floor. 'Stay as long as you like,' the corporal says. 'We get lonely out here.'", "category": "relational"},
+        {"text": "The empire built these roads. The empire cleared these forests. The empire dug the wells you drink from. Without the Garrison, this frontier is three bad harvests from collapse. You know this because you built it.", "category": "philosophy"},
+        {"text": "Supply Master Quinn's last cache is two miles east -- rations for twenty, medicine, clean blankets. He left the lock combination in your boot before you deserted. A parting gift, or a leash?", "category": "whisper"},
+        {"text": "A propaganda broadsheet blows against your leg: 'THE DESERTER BETRAYS HIS BROTHERS. The soldier who runs condemns the soldier who stays.' There's a woodcut portrait. It doesn't look like you. Yet.", "category": "philosophy"},
+        {"text": "Border Marshal Wick is not cruel. He's not even angry. His letter says: 'I understand why you ran. I would have too, twenty years ago. But the border must hold. Come back. I'll see you treated fair.'", "category": "relational"},
+        {"text": "You stumble on a mass grave from last winter's campaign -- imperial soldiers, buried with honors, each stone carved by hand. Someone tended this place. Someone remembers these names. Who will tend yours?", "category": "history"},
+        {"text": "A Crown engineer has rigged the only bridge across the Tarn River with blasting powder. He offers to disarm it -- if you tell him which pass Kael plans to use. One truth buys safe crossing for everyone.", "category": "whisper"},
+        {"text": "The imperial supply lines kept this frontier alive for forty years. Without them, the mountain villages starve before spring. Three settlements depend on the garrison you just gutted by deserting. Their children did nothing wrong.", "category": "philosophy"},
+        {"text": "A retired colonel lives alone at the border station. He deserted once, decades ago. They caught him. He served his time. 'The punishment was fair,' he says, pouring you tea. 'The guilt was worse.'", "category": "history"},
+        {"text": "Quinn left a second cache -- this one containing your personal effects from the barracks. Letters from your mother. A portrait of someone you left behind. A service medal you earned honestly. The empire remembers you, too.", "category": "history"},
+        {"text": "A wounded imperial scout drags herself into your camp at dawn. She's delirious, calling for her sergeant. She'll die without Doc Hallow's skill. But treating her means leaving evidence of your location.", "category": "philosophy"},
+        {"text": "The Garrison isn't hunting you out of malice. Three hundred soldiers depend on the supply route you're blocking by crossing through restricted territory. If you don't move faster, people who never wronged you will go hungry.", "category": "philosophy"},
+        {"text": "Magistrate Hale pins a notice to a tree along your route: 'Desertion in wartime carries the penalty of death. Voluntary return before the border crossing reduces the sentence to five years of labor. This offer expires at dawn.'", "category": "philosophy"}
     ],
     "prompts_crew": [
-        "Mira stops the column at a fork in the trail. The safe path adds two days. The fast path crosses a minefield the engineers never cleared. She looks at you. 'Your call. I just read the ground.'",
-        "Kael hands you his service knife -- the one with his daughter's name carved in the handle. 'If I don't make it across,' he says, 'bury this somewhere she'd like. Somewhere with grass.' He's not being dramatic. He's being practical.",
-        "The youngest deserter -- barely seventeen -- asks why you left. Not the official reasons. The real ones. He's looking for permission to stop feeling guilty. What do you tell him?",
-        "Doc Hallow is running low on laudanum. Two soldiers need it badly -- one for a shattered leg, one for the shaking that won't stop. There's enough for one dose. Doc looks at you because she can't choose.",
-        "Iron Maddy served twenty-two years as an officer. She knows every protocol, every code, every weakness in the Garrison's pursuit doctrine. But she also knows every face chasing you. 'They're not evil,' she says. 'They're doing their jobs. Like we used to.'",
-        "A crewmate collapses on the mountain pass. Exhaustion. Fever. Carrying him means the column falls behind schedule. Leaving him means the Garrison finds a living witness who knows your route. He begs you not to leave him.",
-        "Kael tells you the truth over cold rations: he killed a man before the desertion. Not in battle. A quartermaster who was skimming medicine meant for the field hospital. 'He'd have let fifty men die for profit,' Kael says. 'I gave him what the court wouldn't.'",
-        "Two deserters are arguing in low voices. One wants to split off -- head east to the fishing villages instead of crossing the border. 'Fewer patrols,' she says. 'Fewer mountains.' The other says splitting the group is a death sentence for both halves.",
-        "You find a dead crow tied to a branch at eye level. Mira reads the sign: a warning from a previous group that tried this route. 'They made it this far,' she says. She doesn't say what happened next.",
-        "Iron Maddy confesses at the campfire: she didn't desert for freedom. She deserted because the Garrison ordered her to burn a village that was harboring rebels. She burned it. She can't burn another one. 'I followed orders my whole life,' she says. 'That's the problem.'",
-        "The company finds a shepherd's cottage, abandoned but stocked with dried meat and clean water. Enough for three days. A child's toy sits on the windowsill, covered in dust. Someone left in a hurry. Taking their stores means they can't come back.",
-        "Kael draws the company into a circle. 'I won't lie to you,' he says. 'Two of the routes I planned are compromised. Someone talked. I don't know who. I don't want to know. But from here, we move in pairs. Trust the person beside you. No one else.'",
-        "You catch Mira staring at the mountains beyond the border. She's been there before -- years ago, before the empire, before the uniform. 'It's not what you think,' she says quietly. 'Freedom is colder than you imagine. And hungrier.'",
-        "Doc Hallow treats a local farmer's infected hand as payment for directions through the marshland. The farmer's wife watches from the doorway with hard eyes. 'Soldiers always take,' she says. 'Even the ones running away.'",
-        "A letter surfaces among the company's shared belongings -- written by a soldier who died last week. It's addressed to Colonel Graves. It describes everything: the route, the timetable, the border crossing. He was an informant. He was also your friend.",
-        "The company votes on whether to accept a smuggler's offer: safe passage through the mountains in exchange for carrying a sealed crate. No questions asked. Kael votes no. Maddy votes yes. They're both staring at you.",
-        "A crewmate pulls you aside. 'I'm not a deserter,' she whispers. 'I'm a Crown agent. They sent me to bring you back alive -- all of you. But I've been walking with you for three days, and I don't want to do it anymore. Help me disappear.'",
-        "The border is one day's march away. Iron Maddy sits apart from the fire, cleaning her sword. She's the only one who hasn't talked about what she'll do when she crosses. You realize it's because she isn't planning to cross.",
-        "Doc Hallow's hands shake as she stitches a wound by firelight. She hasn't slept in two days. 'I joined the Garrison to heal people,' she says. 'Funny thing -- I've healed more people since I left it than in four years of service.'",
-        "Kael gathers the company for a final count. Three are missing. They left in the night -- no note, no tracks. The border is close enough to taste. Some people can't wait. Some people can't face it."
+        {"text": "Mira stops the column at a fork in the trail. The safe path adds two days. The fast path crosses a minefield the engineers never cleared. She looks at you. 'Your call. I just read the ground.'", "category": "philosophy"},
+        {"text": "Kael hands you his service knife -- the one with his daughter's name carved in the handle. 'If I don't make it across,' he says, 'bury this somewhere she'd like. Somewhere with grass.' He's not being dramatic. He's being practical.", "category": "relational"},
+        {"text": "The youngest deserter -- barely seventeen -- asks why you left. Not the official reasons. The real ones. He's looking for permission to stop feeling guilty. What do you tell him?", "category": "whisper"},
+        {"text": "Doc Hallow is running low on laudanum. Two soldiers need it badly -- one for a shattered leg, one for the shaking that won't stop. There's enough for one dose. Doc looks at you because she can't choose.", "category": "philosophy"},
+        {"text": "Iron Maddy served twenty-two years as an officer. She knows every protocol, every code, every weakness in the Garrison's pursuit doctrine. But she also knows every face chasing you. 'They're not evil,' she says. 'They're doing their jobs. Like we used to.'", "category": "relational"},
+        {"text": "A crewmate collapses on the mountain pass. Exhaustion. Fever. Carrying him means the column falls behind schedule. Leaving him means the Garrison finds a living witness who knows your route. He begs you not to leave him.", "category": "philosophy"},
+        {"text": "Kael tells you the truth over cold rations: he killed a man before the desertion. Not in battle. A quartermaster who was skimming medicine meant for the field hospital. 'He'd have let fifty men die for profit,' Kael says. 'I gave him what the court wouldn't.'", "category": "history"},
+        {"text": "Two deserters are arguing in low voices. One wants to split off -- head east to the fishing villages instead of crossing the border. 'Fewer patrols,' she says. 'Fewer mountains.' The other says splitting the group is a death sentence for both halves.", "category": "philosophy"},
+        {"text": "You find a dead crow tied to a branch at eye level. Mira reads the sign: a warning from a previous group that tried this route. 'They made it this far,' she says. She doesn't say what happened next.", "category": "whisper"},
+        {"text": "Iron Maddy confesses at the campfire: she didn't desert for freedom. She deserted because the Garrison ordered her to burn a village that was harboring rebels. She burned it. She can't burn another one. 'I followed orders my whole life,' she says. 'That's the problem.'", "category": "history"},
+        {"text": "The company finds a shepherd's cottage, abandoned but stocked with dried meat and clean water. Enough for three days. A child's toy sits on the windowsill, covered in dust. Someone left in a hurry. Taking their stores means they can't come back.", "category": "philosophy"},
+        {"text": "Kael draws the company into a circle. 'I won't lie to you,' he says. 'Two of the routes I planned are compromised. Someone talked. I don't know who. I don't want to know. But from here, we move in pairs. Trust the person beside you. No one else.'", "category": "whisper"},
+        {"text": "You catch Mira staring at the mountains beyond the border. She's been there before -- years ago, before the empire, before the uniform. 'It's not what you think,' she says quietly. 'Freedom is colder than you imagine. And hungrier.'", "category": "whisper"},
+        {"text": "Doc Hallow treats a local farmer's infected hand as payment for directions through the marshland. The farmer's wife watches from the doorway with hard eyes. 'Soldiers always take,' she says. 'Even the ones running away.'", "category": "relational"},
+        {"text": "A letter surfaces among the company's shared belongings -- written by a soldier who died last week. It's addressed to Colonel Graves. It describes everything: the route, the timetable, the border crossing. He was an informant. He was also your friend.", "category": "whisper"},
+        {"text": "The company votes on whether to accept a smuggler's offer: safe passage through the mountains in exchange for carrying a sealed crate. No questions asked. Kael votes no. Maddy votes yes. They're both staring at you.", "category": "philosophy"},
+        {"text": "A crewmate pulls you aside. 'I'm not a deserter,' she whispers. 'I'm a Crown agent. They sent me to bring you back alive -- all of you. But I've been walking with you for three days, and I don't want to do it anymore. Help me disappear.'", "category": "whisper"},
+        {"text": "The border is one day's march away. Iron Maddy sits apart from the fire, cleaning her sword. She's the only one who hasn't talked about what she'll do when she crosses. You realize it's because she isn't planning to cross.", "category": "whisper"},
+        {"text": "Doc Hallow's hands shake as she stitches a wound by firelight. She hasn't slept in two days. 'I joined the Garrison to heal people,' she says. 'Funny thing -- I've healed more people since I left it than in four years of service.'", "category": "history"},
+        {"text": "Kael gathers the company for a final count. Three are missing. They left in the night -- no note, no tracks. The border is close enough to taste. Some people can't wait. Some people can't face it.", "category": "whisper"}
     ],
     "prompts_world": [
-        "The border stretches ahead like a scar across the earth -- a strip of burned ground a hundred yards wide where neither side allows anything to grow. Watchtowers stand every half-mile, their signal fires cold for now. A wind from the north carries the smell of pine and something chemical.",
-        "The mountain pass narrows to a throat of loose scree and ice-slick stone. Above, the imperial eagles circle -- real ones, not standards -- riding thermals that funnel through the gap like breath through clenched teeth.",
-        "Refugee columns clog the valley road. Families with handcarts and haunted eyes, moving in the same direction you are. No one speaks. The only sound is wheels on gravel and the distant crack of a Garrison signal cannon.",
-        "A burnt village sits in the hollow below -- roofless stone walls, a blackened church steeple still pointing at a sky that offered no help. The well is poisoned. Someone wrote 'REMEMBER' in charcoal on the remaining wall.",
-        "The river runs fast and brown with spring melt. The ford Mira marked on her map is gone -- buried under three feet of rushing water. The nearest bridge is two miles upstream, in full view of the imperial highway.",
-        "Fog settles in the lowlands like wool packed into a box. You can see your hand. You cannot see your feet. Somewhere ahead, boot leather creaks on wet stone. It might be your scouts. It might not.",
-        "The treeline ends abruptly at a clear-cut zone -- imperial engineers stripped a quarter-mile of forest to deny cover to anyone approaching the border. Stumps stand like tombstones in the moonlight. The open ground between you and the woods on the far side feels infinite.",
-        "An abandoned checkpoint guards the mountain road. The gate hangs open. Papers litter the guardhouse floor -- requisition forms, leave requests, a half-finished letter home. The garrison pulled out, but not in good order.",
-        "Snow falls on the high pass -- the first flakes of an early storm. Within an hour the trail disappears under white. Mira finds the path by the feel of packed earth under her boots. Everyone else follows her footprints exactly.",
-        "The borderland farms are empty. Not abandoned -- the doors are locked, the livestock penned, shutters barred from inside. Someone warned them you were coming. You can feel eyes behind every closed window.",
-        "A signal tower burns on the ridge to the east. Garrison protocol: three burns means 'fugitives sighted.' You count the fires. One. Two. The third hasn't lit yet. Someone in that tower is hesitating.",
-        "The salt flats at the basin floor crack under your boots like dry bone. Heat shimmers blur the horizon. The border post is out there somewhere -- a dark smudge that might be a building or might be a mirage that wants to be one.",
-        "A stone bridge spans the gorge -- imperial engineering, three centuries old, each block fitted without mortar. The Garrison standard is carved into the keystone. Below, the river has carved the rock into shapes that look like screaming faces if you stare too long.",
-        "The border forest is old growth -- trunks wide enough to hide a horse, canopy so dense the ground never dries. Your boots sink into centuries of leaf rot. The trees don't care whose territory you're crossing. The empire's maps mean nothing here.",
-        "Night falls and the Garrison lights its watch-fires along the ridge. From this distance they look like stars -- a second sky, lower and angrier, stretched across the border like a warning stitched in flame."
+        {"text": "The border stretches ahead like a scar across the earth -- a strip of burned ground a hundred yards wide where neither side allows anything to grow. Watchtowers stand every half-mile, their signal fires cold for now. A wind from the north carries the smell of pine and something chemical.", "category": "history"},
+        {"text": "The mountain pass narrows to a throat of loose scree and ice-slick stone. Above, the imperial eagles circle -- real ones, not standards -- riding thermals that funnel through the gap like breath through clenched teeth.", "category": "whisper"},
+        {"text": "Refugee columns clog the valley road. Families with handcarts and haunted eyes, moving in the same direction you are. No one speaks. The only sound is wheels on gravel and the distant crack of a Garrison signal cannon.", "category": "relational"},
+        {"text": "A burnt village sits in the hollow below -- roofless stone walls, a blackened church steeple still pointing at a sky that offered no help. The well is poisoned. Someone wrote 'REMEMBER' in charcoal on the remaining wall.", "category": "history"},
+        {"text": "The river runs fast and brown with spring melt. The ford Mira marked on her map is gone -- buried under three feet of rushing water. The nearest bridge is two miles upstream, in full view of the imperial highway.", "category": "philosophy"},
+        {"text": "Fog settles in the lowlands like wool packed into a box. You can see your hand. You cannot see your feet. Somewhere ahead, boot leather creaks on wet stone. It might be your scouts. It might not.", "category": "whisper"},
+        {"text": "The treeline ends abruptly at a clear-cut zone -- imperial engineers stripped a quarter-mile of forest to deny cover to anyone approaching the border. Stumps stand like tombstones in the moonlight. The open ground between you and the woods on the far side feels infinite.", "category": "history"},
+        {"text": "An abandoned checkpoint guards the mountain road. The gate hangs open. Papers litter the guardhouse floor -- requisition forms, leave requests, a half-finished letter home. The garrison pulled out, but not in good order.", "category": "history"},
+        {"text": "Snow falls on the high pass -- the first flakes of an early storm. Within an hour the trail disappears under white. Mira finds the path by the feel of packed earth under her boots. Everyone else follows her footprints exactly.", "category": "whisper"},
+        {"text": "The borderland farms are empty. Not abandoned -- the doors are locked, the livestock penned, shutters barred from inside. Someone warned them you were coming. You can feel eyes behind every closed window.", "category": "whisper"},
+        {"text": "A signal tower burns on the ridge to the east. Garrison protocol: three burns means 'fugitives sighted.' You count the fires. One. Two. The third hasn't lit yet. Someone in that tower is hesitating.", "category": "whisper"},
+        {"text": "The salt flats at the basin floor crack under your boots like dry bone. Heat shimmers blur the horizon. The border post is out there somewhere -- a dark smudge that might be a building or might be a mirage that wants to be one.", "category": "whisper"},
+        {"text": "A stone bridge spans the gorge -- imperial engineering, three centuries old, each block fitted without mortar. The Garrison standard is carved into the keystone. Below, the river has carved the rock into shapes that look like screaming faces if you stare too long.", "category": "history"},
+        {"text": "The border forest is old growth -- trunks wide enough to hide a horse, canopy so dense the ground never dries. Your boots sink into centuries of leaf rot. The trees don't care whose territory you're crossing. The empire's maps mean nothing here.", "category": "philosophy"},
+        {"text": "Night falls and the Garrison lights its watch-fires along the ridge. From this distance they look like stars -- a second sky, lower and angrier, stretched across the border like a warning stitched in flame.", "category": "whisper"}
     ],
     "prompts_campfire": [
-        "Kael pours the last of the coffee into tin cups. There isn't enough. He waters it until there is. No one complains. In the silence that follows, someone asks: 'What was the moment you knew you had to leave?'",
-        "Iron Maddy produces a battered deck of cards. She deals a hand of Liar's Run -- the Garrison's game, the one every soldier knows. For a few minutes, no one is a deserter. They're just soldiers playing cards by a fire.",
-        "A letter from home passes between hands. It's not addressed to anyone in the company -- they found it in the dead courier's satchel. But the words are the same words all their letters say: 'Come back. Please come back.'",
-        "Doc Hallow hums a field hospital song. She stops halfway through, embarrassed. 'Force of habit,' she says. The youngest deserter asks her to finish it. She does. No one looks at anyone else while she sings.",
-        "Mira draws a map in the dirt with a stick -- not the route, but her hometown. 'Here's the bakery,' she says. 'Here's the well. Here's where I kissed a boy who didn't deserve it.' She scuffs it out with her boot before anyone can memorize the streets.",
-        "The fire is low and the stars are bright. Someone asks what freedom actually looks like. Not the idea of it. The daily reality. Where do you sleep? What do you eat? Who do you trust when the empire isn't deciding for you?",
-        "Kael tells the story of the worst commanding officer he ever served under -- a man who got twelve soldiers killed crossing a river he'd never scouted. 'He got a medal,' Kael says. 'The river got the bodies.' He doesn't tell you the officer's name. You already know it.",
-        "Iron Maddy reads from a pocket-sized book of military philosophy. She stops at a passage about the soldier's oath. 'I believed every word of this,' she says. 'I still do. That's the part I can't forgive.'",
-        "Someone produces a flask of something sharp and chemical that isn't quite brandy. It goes around the fire once. Each person takes a sip and names one thing they left behind that they'll never get back. The flask comes to you last.",
-        "The campfire pops and a shower of sparks rises into the dark. Doc Hallow watches them climb. 'My father was a soldier,' she says. 'His father too. I'm the first one in four generations to run.' She pauses. 'I'm the first one in four generations to choose.'",
-        "Mira lays out tomorrow's route with pebbles and twigs. It looks impossible. She knows it looks impossible. 'The empire taught me to read terrain,' she says. 'They didn't teach me it could be used against them. I figured that out myself.'",
-        "The company sleeps in shifts. On the last watch, you sit alone with the dying fire and listen to the others breathe. Twelve people trusted you enough to close their eyes. That's worth more than any commission the Garrison could offer.",
-        "A crewmate pulls out a harmonica -- dented, missing a reed. He plays a march from the old campaign, the one they all learned in training. One by one, the others join in, humming. It sounds like a funeral and a birthday at the same time.",
-        "Kael sits apart from the fire, sharpening his knife. He does this every night. You realize it's not about the blade -- it's the only routine he kept from his twenty years of service. The repetition is what's holding him together.",
-        "The stars are the same stars you saw from the barracks. The same stars the Garrison sentries are watching right now. The sky doesn't know you've deserted. The constellations don't care which side of the border you sleep on."
+        {"text": "Kael pours the last of the coffee into tin cups. There isn't enough. He waters it until there is. No one complains. In the silence that follows, someone asks: 'What was the moment you knew you had to leave?'", "category": "history"},
+        {"text": "Iron Maddy produces a battered deck of cards. She deals a hand of Liar's Run -- the Garrison's game, the one every soldier knows. For a few minutes, no one is a deserter. They're just soldiers playing cards by a fire.", "category": "history"},
+        {"text": "A letter from home passes between hands. It's not addressed to anyone in the company -- they found it in the dead courier's satchel. But the words are the same words all their letters say: 'Come back. Please come back.'", "category": "relational"},
+        {"text": "Doc Hallow hums a field hospital song. She stops halfway through, embarrassed. 'Force of habit,' she says. The youngest deserter asks her to finish it. She does. No one looks at anyone else while she sings.", "category": "history"},
+        {"text": "Mira draws a map in the dirt with a stick -- not the route, but her hometown. 'Here's the bakery,' she says. 'Here's the well. Here's where I kissed a boy who didn't deserve it.' She scuffs it out with her boot before anyone can memorize the streets.", "category": "history"},
+        {"text": "The fire is low and the stars are bright. Someone asks what freedom actually looks like. Not the idea of it. The daily reality. Where do you sleep? What do you eat? Who do you trust when the empire isn't deciding for you?", "category": "philosophy"},
+        {"text": "Kael tells the story of the worst commanding officer he ever served under -- a man who got twelve soldiers killed crossing a river he'd never scouted. 'He got a medal,' Kael says. 'The river got the bodies.' He doesn't tell you the officer's name. You already know it.", "category": "history"},
+        {"text": "Iron Maddy reads from a pocket-sized book of military philosophy. She stops at a passage about the soldier's oath. 'I believed every word of this,' she says. 'I still do. That's the part I can't forgive.'", "category": "philosophy"},
+        {"text": "Someone produces a flask of something sharp and chemical that isn't quite brandy. It goes around the fire once. Each person takes a sip and names one thing they left behind that they'll never get back. The flask comes to you last.", "category": "history"},
+        {"text": "The campfire pops and a shower of sparks rises into the dark. Doc Hallow watches them climb. 'My father was a soldier,' she says. 'His father too. I'm the first one in four generations to run.' She pauses. 'I'm the first one in four generations to choose.'", "category": "history"},
+        {"text": "Mira lays out tomorrow's route with pebbles and twigs. It looks impossible. She knows it looks impossible. 'The empire taught me to read terrain,' she says. 'They didn't teach me it could be used against them. I figured that out myself.'", "category": "philosophy"},
+        {"text": "The company sleeps in shifts. On the last watch, you sit alone with the dying fire and listen to the others breathe. Twelve people trusted you enough to close their eyes. That's worth more than any commission the Garrison could offer.", "category": "relational"},
+        {"text": "A crewmate pulls out a harmonica -- dented, missing a reed. He plays a march from the old campaign, the one they all learned in training. One by one, the others join in, humming. It sounds like a funeral and a birthday at the same time.", "category": "history"},
+        {"text": "Kael sits apart from the fire, sharpening his knife. He does this every night. You realize it's not about the blade -- it's the only routine he kept from his twenty years of service. The repetition is what's holding him together.", "category": "whisper"},
+        {"text": "The stars are the same stars you saw from the barracks. The same stars the Garrison sentries are watching right now. The sky doesn't know you've deserted. The constellations don't care which side of the border you sleep on.", "category": "philosophy"}
+    ],
+    "scene_chapters": [
+        {
+            "chapter_id": "the_wilds",
+            "chapter_name": "The Wilds",
+            "days": "1-2",
+            "focus": "survival",
+            "scenes": [
+                {
+                    "scene_id": "river_crossing",
+                    "day": 1,
+                    "location": "The Keld River Ford",
+                    "description": "The column halts where the trail drops into a wash of brown water and uprooted saplings. The Keld has swallowed its banks -- spring melt turned a knee-deep ford into a chest-deep current that drags at anything stupid enough to stand in it. Mira kneels at the edge, reading the debris line. Upstream, the old stone bridge is visible through a gap in the alders, but so is the imperial highway that runs beside it. Downstream, a tangle of fallen timber has created a natural dam -- crossable, if it holds.",
+                    "choices": [
+                        {
+                            "text": "Ford the river here. Rope line, paired crossings, accept the risk of the current.",
+                            "sway_effect": "crew+1",
+                            "tag": "BLOOD",
+                            "narrative": "The company wades in by pairs, arms linked, boots filling with glacial water. The rope bows under the current like a drawn bow. Two soldiers lose their footing and are hauled back gasping, but everyone makes the far bank. The column is soaked, shivering, and across. Kael nods once. That's his version of applause."
+                        },
+                        {
+                            "text": "Take the stone bridge upstream. Faster, drier, but exposed to the imperial highway.",
+                            "sway_effect": "crown+1",
+                            "tag": "GUILE",
+                            "narrative": "The company crosses in single file, boots echoing on three centuries of imperial masonry. The highway is empty -- for now. Iron Maddy keeps her eyes on the northern treeline the entire time, one hand on her sword. You're across in minutes, dry and fast, but the bridge keeper's logbook sits open in the guardhouse. Someone will read it."
+                        },
+                        {
+                            "text": "Use the fallen timber downstream. Slower, hidden, but the dam could break.",
+                            "sway_effect": "crew+1",
+                            "tag": "SILENCE",
+                            "narrative": "The tangle of logs groans and shifts under the company's weight. Mira tests each step before waving the next pair forward. Halfway across, a trunk rolls and a soldier drops to her waist in freezing water before hands drag her up. It takes an hour. No one on the highway sees a thing. The timber holds -- barely -- and the column melts into the far treeline like smoke."
+                        }
+                    ]
+                },
+                {
+                    "scene_id": "abandoned_watchtower",
+                    "day": 2,
+                    "location": "Harrow's Post -- an imperial watchtower on the ridge",
+                    "description": "The tower rises from the ridgeline like a broken finger -- forty feet of imperial stonework with a collapsed upper floor and a door hanging from one hinge. Garrison standard still nailed above the lintel, faded to grey. Inside: a cold hearth, a rack of signal flares, and bedrolls that smell like they were slept in last week. Boot prints in the dust, fresh enough to hold their shape. Someone has been here recently, and the ashes in the hearth are three days old at most. Doc Hallow eyes the intact roof with naked longing. Rain is coming.",
+                    "choices": [
+                        {
+                            "text": "Shelter here for the night. Post double watches, block the door, rest the company.",
+                            "sway_effect": "crew+1",
+                            "tag": "HEARTH",
+                            "narrative": "The company fills the tower like water in a cup -- twelve bodies packed into a space built for four. But the roof holds, the walls cut the wind, and for the first time in two days people sleep without shivering. Doc Hallow tends blisters by the light of a salvaged candle. The watches pass without incident. In the morning, the company moves out rested and dry. Kael leaves the door the way he found it."
+                        },
+                        {
+                            "text": "Search the tower quickly and move on. Those boot prints mean the Garrison knows this place.",
+                            "sway_effect": "crown+1",
+                            "tag": "SILENCE",
+                            "narrative": "Mira sweeps the ground floor in three minutes flat. She finds the signal flares, a half-empty water skin, and a duty roster pinned to the wall -- names, dates, patrol schedules. Iron Maddy memorizes it in a single reading. The company pushes on into the rain, wet and tired but carrying intelligence worth more than a dry night. Behind you, the tower watches with its empty windows."
+                        },
+                        {
+                            "text": "Set a false trail leading to the tower, then bivouac in the ravine below. Let the Garrison chase ghosts.",
+                            "sway_effect": "crew+1",
+                            "tag": "GUILE",
+                            "narrative": "Kael and Mira spend an hour laying a trail a blind tracker could follow -- boot prints, broken branches, a dropped button from a Garrison coat. The company slips into the ravine below the ridge and camps cold under an overhang. No fire. No light. Above, the tower sits baited and waiting. If a Garrison patrol finds it, they'll search the building for hours. The company sleeps in mud, but sleeps safe."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "chapter_id": "the_borderlands",
+            "chapter_name": "The Borderlands",
+            "days": "3-5",
+            "focus": "political",
+            "scenes": [
+                {
+                    "scene_id": "garrison_deserter",
+                    "day": 3,
+                    "location": "A pine thicket on the western trail",
+                    "description": "He comes out of the trees with his hands up and his uniform half-stripped -- a Garrison corporal from the Tenth Forward, not your unit. His boots are split, his lip is swollen, and he hasn't eaten in two days. Says his name is Renner. Says his company was ordered to hold Mirror Break pass and he watched his lieutenant execute a private for questioning the order. Says he walked into the forest and kept walking. He knows the Garrison patrol rotations for the next three days. He also knows your faces, your numbers, and your heading.",
+                    "choices": [
+                        {
+                            "text": "Take him in. A deserter is a deserter. Feed him, arm him, and put him to work.",
+                            "sway_effect": "crew+2",
+                            "tag": "HEARTH",
+                            "narrative": "Kael looks at Renner the way a dog looks at a second dog in its yard -- territorial, uncertain, not yet hostile. But Doc Hallow hands the man a biscuit and a canteen, and the company makes room. Renner shares the patrol rotations without being asked. By nightfall he's carrying a pack for the soldier with the shattered leg. Iron Maddy watches him like a hawk. 'Trust is earned in miles,' she says. 'Not words.'"
+                        },
+                        {
+                            "text": "Blindfold him and leave him with food and water. He can't follow what he can't see.",
+                            "sway_effect": "crown+1",
+                            "tag": "SILENCE",
+                            "narrative": "Renner doesn't fight the blindfold. He sits against a pine trunk while Doc Hallow checks his feet and leaves a day's rations in his lap. 'I understand,' he says. 'I'd do the same.' Mira leads the column on a false bearing for two miles before cutting back to the true path. It costs an hour. It buys silence. Behind you, a blindfolded man sits in a pine thicket and listens to your footsteps fade."
+                        },
+                        {
+                            "text": "Interrogate him first. Mirror Break is Garrison territory -- how did he get this far alone?",
+                            "sway_effect": "crown+1",
+                            "tag": "GUILE",
+                            "narrative": "Iron Maddy asks the questions. She knows Mirror Break, knows the Tenth Forward, knows the names Renner drops. His story holds -- mostly. One detail snags: he says he crossed the Ashburn Fork on Tuesday, but the Fork was flooded Tuesday. Renner's eyes flicker. 'I meant Monday,' he says. Maddy lets the silence stretch. 'He's telling the truth about the patrols,' she tells you later. 'He's lying about something else. Your call whether it matters.'"
+                        }
+                    ]
+                },
+                {
+                    "scene_id": "the_village",
+                    "day": 4,
+                    "location": "Thornfeld -- a border village of forty souls",
+                    "description": "Thornfeld sits in a hollow between two ridges, invisible until you're standing in its single street. Stone houses with turf roofs, a smithy cold for lack of coal, a well with a hand-crank that squeals like a wounded animal. The village elder -- a woman called Brenn, sixtyish, hands like knotted rope -- meets you at the edge of town with a lantern and a long look. She counts your weapons before she counts your faces. 'I know what you are,' she says. 'The Garrison came through yesterday asking about a company of runners. I told them nothing. That costs me. Everything costs me.'",
+                    "choices": [
+                        {
+                            "text": "Accept her shelter. Ask what she needs in return and honor the bargain.",
+                            "sway_effect": "crew+1",
+                            "tag": "HEARTH",
+                            "narrative": "Brenn's price is labor. The village needs a collapsed wall rebuilt before the next rain floods the root cellar. The company works through the afternoon -- soldiers turned stonemasons, stacking fieldstone with blistered hands. By dusk the wall stands and the company sleeps in the smithy, packed tight but warm. Brenn brings soup. She doesn't smile, but she refills the bowls without being asked. In the morning, she points to a goat trail that bypasses the Garrison checkpoint. 'Don't come back,' she says. 'And don't get caught.'"
+                        },
+                        {
+                            "text": "Decline. A village that knows your face is a village the Garrison will squeeze. Keep moving.",
+                            "sway_effect": "crown+1",
+                            "tag": "SILENCE",
+                            "narrative": "Brenn watches you leave with an expression you can't read -- relief, maybe, or contempt for people who won't accept help they haven't earned. The company pushes on into the dark, following Mira's compass bearing through terrain that fights every step. No shelter, no hot food, no rest. But Thornfeld stays clean. When the Garrison returns, Brenn can look them in the eye and say she saw nothing. That's worth a cold night."
+                        },
+                        {
+                            "text": "Warn her. The Garrison will come back harder. Offer to help her people evacuate toward the border.",
+                            "sway_effect": "crew+1",
+                            "tag": "DEFIANCE",
+                            "narrative": "Brenn listens. She doesn't argue. She's lived on the Garrison's border long enough to know what 'asking questions' turns into when the answers don't come. Three families agree to leave -- the young ones, the ones with children. The column swells by nine souls, four of them under ten. Kael's jaw tightens but he says nothing. Doc Hallow carries someone's daughter on her shoulders. The company is slower now, louder, and harder to hide. But no one suggests leaving them behind."
+                        }
+                    ]
+                },
+                {
+                    "scene_id": "the_border",
+                    "day": 5,
+                    "location": "The Greymarch Ridge -- the border is visible below",
+                    "description": "You see it from the ridge: the border. A strip of burned earth a hundred yards wide, watchtowers on both sides, and beyond it the dark blur of foreign pines where the empire's maps go blank. Close enough to taste. Between you and it, two obstacles. To the west, a Garrison checkpoint squats on the only graded road -- four soldiers, a gate, and a signal mirror that can bring reinforcements in twenty minutes. To the east, a mountain pass called the Warden's Teeth -- no Garrison presence, but the scree is loose, the altitude punishes, and a wrong step means a two-hundred-foot fall into a gorge the locals won't name.",
+                    "choices": [
+                        {
+                            "text": "The checkpoint. Bluff through, fight through, or talk through -- but take the road.",
+                            "sway_effect": "crown+2",
+                            "tag": "DEFIANCE",
+                            "narrative": "Iron Maddy walks point. She still carries herself like an officer -- the posture, the stride, the voice that expects to be obeyed. She presents forged transit papers at the gate while the company holds its breath in the treeline. The corporal squints at the watermark. His hand drifts toward the signal mirror. Maddy says something low and sharp that you can't hear. The corporal's hand stops. The gate opens. The company crosses in pairs, twelve heartbeats apart, boots on imperial gravel for the last time. The burned ground smells like creosote and endings."
+                        },
+                        {
+                            "text": "The Warden's Teeth. No soldiers, no papers, no mercy from the mountain -- but no one decides your fate except gravity.",
+                            "sway_effect": "crew+2",
+                            "tag": "BLOOD",
+                            "narrative": "Mira leads. She always leads. The scree slides under every step like the mountain is trying to shrug you off. The wind at the pass cuts through wool and leather and skin. A soldier slips, grabs a rock shelf, hangs for three seconds that last a year before hands haul him back. The column strings out across the ridge like beads on a fraying thread. And then -- the downslope. Foreign trees. Foreign soil. The air tastes different on this side, or maybe that's just what freedom tastes like when you've earned it with your hands and knees."
+                        },
+                        {
+                            "text": "Split the company. The wounded and civilians take the road with Maddy's bluff. The able-bodied take the Teeth. Meet on the far side.",
+                            "sway_effect": "crew+1",
+                            "tag": "GUILE",
+                            "narrative": "Kael hates it. Maddy hates it more. But it's the plan that fits what you have. The road group moves first -- Maddy, Doc Hallow, the wounded, the Thornfeld families. Maddy's officer voice carries them through the checkpoint like a key through a lock. The mountain group follows Mira into the Teeth an hour later, climbing fast and quiet, unburdened by stretchers. You meet at the treeline on the far side as the sun drops behind the ridge. Twelve deserters and nine civilians, standing in a country that doesn't know their names. Kael counts heads. Everyone is here. He counts again, because he doesn't believe it."
+                        }
+                    ]
+                }
+            ]
+        }
     ],
     "morning_events": [
         {
