@@ -613,8 +613,14 @@ def main():
                 print(f"\n  {consequence['narrative']}")
 
         # --- Rest Choice ---
-        rest_msg = rest_choice(engine)
-        print(f"\n  {rest_msg}")
+        # WO-V111: Rest deprecated — C&C is a narrative overlay.
+        # Day advancement happens via end_day() in the council resolution.
+        # The overlaid game system handles rest mechanics.
+        end_msg = engine.end_day()
+        if RICH_AVAILABLE:
+            console.print(f"\n[dim]{end_msg}[/dim]")
+        else:
+            print(f"\n{end_msg}")
 
         offer_vault()
 

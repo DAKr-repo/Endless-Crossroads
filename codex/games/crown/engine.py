@@ -607,6 +607,25 @@ COUNCIL_DILEMMAS: list[dict] = [
             "crew": {"narrative": "The ashes of the message drift away. Tomorrow, the Patron sends hunters.", "morning_bias": "crew", "tag": "HEARTH", "sway_modifier": 1},
         },
     },
+    # WO-V126: Bond-referencing dilemmas (use {loom.*} variables)
+    {
+        "prompt": "A refugee caravan approaches from the south. Among them — someone who knows {loom.bond_person}. They carry news from home, but the caravan is being tracked by Crown scouts. Sheltering them means the scouts find your camp.",
+        "crown": "Turn the caravan away. You cannot risk everyone for one connection to your past.",
+        "crew": "Shelter them. {loom.bond_person} would never forgive you for turning away someone in need.",
+        "consequences": {
+            "crown": {"narrative": "The caravan moves on. The scouts lose your trail. But the news from home dies with the distance.", "morning_bias": "crown", "tag": "SILENCE", "sway_modifier": -1},
+            "crew": {"narrative": "The caravan sleeps safe. You learn news of {loom.bond_person}. The scouts will find the cold ashes by morning.", "morning_bias": "crew", "tag": "HEARTH", "sway_modifier": 1},
+        },
+    },
+    {
+        "prompt": "{loom.name}, the Patron's agent pulls you aside. 'I know about {loom.bond_person},' they whisper. 'Help me, and I guarantee their safety. Refuse, and I make no such promise.' They want the Leader's travel route for tomorrow.",
+        "crown": "Give them the route. {loom.bond_person} matters more than the Crew's secrecy.",
+        "crew": "Refuse. The Crew trusted you with that route. You won't sell it — not even for this.",
+        "consequences": {
+            "crown": {"narrative": "The route changes hands. Tomorrow, the Leader will wonder how the patrols knew. {loom.bond_person} is safe — for now.", "morning_bias": "crown", "tag": "GUILE", "sway_modifier": -1},
+            "crew": {"narrative": "You tell the agent nothing. The threat hangs in the air. {loom.bond_person} is in your thoughts all night.", "morning_bias": "crew", "tag": "DEFIANCE", "sway_modifier": 1},
+        },
+    },
 ]
 
 
@@ -2314,11 +2333,14 @@ class CrownAndCrewEngine:
     # COUNCIL DILEMMAS (v4.0 — consolidated)
     # ─────────────────────────────────────────────────────────────────────
 
-    def get_council_dilemma(self) -> dict:
+    def get_council_dilemma(self, player_name: str = _SOLO) -> dict:
         """Get a council dilemma that hasn't been used yet. Resets if exhausted.
 
+        WO-V126: Dilemma prompt text is resolved through the Character Loom,
+        so {loom.bond}, {loom.name}, etc. are substituted if present.
+
         Returns:
-            dict with keys: prompt, crown, crew
+            dict with keys: prompt, crown, crew (and optionally consequences)
         """
         pool = self._council_dilemmas
         if not pool:
@@ -2333,24 +2355,33 @@ class CrownAndCrewEngine:
             available = list(range(len(pool)))
         idx = random.choice(available)
         self._used_dilemmas.append(idx)
-        return pool[idx]
+        dilemma = dict(pool[idx])  # Copy to avoid mutating pool
+
+        # WO-V126: Resolve {loom.*} variables in prompt text
+        dilemma["prompt"] = self.resolve_prompt(dilemma.get("prompt", ""), player_name)
+        dilemma["crown"] = self.resolve_prompt(dilemma.get("crown", ""), player_name)
+        dilemma["crew"] = self.resolve_prompt(dilemma.get("crew", ""), player_name)
+
+        return dilemma
 
     # ─────────────────────────────────────────────────────────────────────
-    # REST MECHANICS (v4.0)
+    # REST MECHANICS (DEPRECATED — WO-V111)
     # ─────────────────────────────────────────────────────────────────────
+    # C&C is a narrative overlay — the overlaid game system (D&D, BitD,
+    # etc.) handles rest mechanics. These methods are kept for backward
+    # compat but should not be called in new integrations.
 
     def trigger_long_rest(self) -> str:
-        """Full phase cycle: morning -> night -> campfire -> council -> sleep.
-        Advances day."""
+        """DEPRECATED: Advances day. Use end_day() directly instead."""
         self.rest_type = "long"
         return self.end_day()
 
     def trigger_short_rest(self) -> str:
-        """Minor event only. Does NOT advance day. Optional sway micro-shift.
-        Limited to max_short_rests_per_day (default 1) per day (MED-06)."""
+        """DEPRECATED: C&C should not own rest mechanics.
+        The overlaid game system handles rest. Kept for backward compat."""
         max_short = self.rest_config.get("max_short_rests_per_day", 1)
         if self._short_rests_today >= max_short:
-            return "You've already taken a short rest today. Choose long rest or press on."
+            return "You've already taken a short rest today."
         self._short_rests_today += 1
         self.rest_type = "short"
         event = self.get_morning_event()
@@ -2362,7 +2393,7 @@ class CrownAndCrewEngine:
         return f"Short rest: {event['text']}"
 
     def skip_rest(self) -> str:
-        """Skip rest entirely. Sway decays toward 0."""
+        """DEPRECATED: C&C should not own rest mechanics."""
         decay = self.rest_config.get("sway_decay_on_skip", 1)
         if self.sway > 0:
             self.sway = max(0, self.sway - decay)

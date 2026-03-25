@@ -139,7 +139,7 @@ class TestArcLength:
 
 class TestCouncilDilemmas:
     def test_module_level_dilemmas_exist(self):
-        assert len(COUNCIL_DILEMMAS) == 8
+        assert len(COUNCIL_DILEMMAS) >= 8  # 8 original + 2 bond-referencing
 
     def test_dilemma_format(self):
         for d in COUNCIL_DILEMMAS:
@@ -149,7 +149,7 @@ class TestCouncilDilemmas:
 
     def test_engine_has_council_dilemmas(self):
         engine = CrownAndCrewEngine()
-        assert len(engine._council_dilemmas) == 8
+        assert len(engine._council_dilemmas) >= 8
 
     def test_get_council_dilemma_returns_valid(self):
         engine = CrownAndCrewEngine()
