@@ -94,14 +94,18 @@ _RECOVERY_DEFAULTS = {
     "engine": "custom",
     "dice_system": "custom",
     "system_family": "",
-    "races": [],
-    "deep_classes": {},
-    "feats": [],
+    # WO-V158: Removed "races", "deep_classes", "feats" from defaults.
+    # Not every system has these concepts. FITD has playbooks, not classes.
+    # Candela has roles, not races. Only apply system-specific defaults
+    # when the source material defines them.
     "archetype_categories": {},
     "core_stats": {},
     "resources": [],
     "mechanics": {},
 }
+
+# System families where races/classes/feats are valid concepts
+_RACE_CLASS_FAMILIES = {"dnd5e", "stc", "burnwillow"}
 
 
 def _validate_system_data(system_id: str, system_data: dict) -> dict:
@@ -124,15 +128,23 @@ def _validate_system_data(system_id: str, system_data: dict) -> dict:
             _logger.info(msg)
             print(f"    {msg}")
 
-    # Also check inside mechanics dict
+    # Also check inside mechanics dict — only flag missing items for
+    # concepts that exist in the system's family (WO-V158)
     mechanics = patched.get("mechanics", {})
     if isinstance(mechanics, dict):
-        for mkey in ("stats", "resources", "classes", "subclasses", "races"):
+        family = patched.get("system_family", system_id).lower()
+        for mkey in ("stats", "resources"):
             if mkey in mechanics and not mechanics[mkey]:
-                msg = f"[RECOVERY] Using default template for mechanics.{mkey} in {system_id} (empty)."
+                msg = f"[RECOVERY] Empty mechanics.{mkey} in {system_id} (noted)."
                 _logger.info(msg)
                 print(f"    {msg}")
-                # Leave empty list in place -- it's valid, just noted
+        # Only check race/class concepts for systems that have them
+        if family in _RACE_CLASS_FAMILIES or system_id in _RACE_CLASS_FAMILIES:
+            for mkey in ("classes", "subclasses", "races"):
+                if mkey in mechanics and not mechanics[mkey]:
+                    msg = f"[RECOVERY] Empty mechanics.{mkey} in {system_id} (noted)."
+                    _logger.info(msg)
+                    print(f"    {msg}")
 
     return patched
 
