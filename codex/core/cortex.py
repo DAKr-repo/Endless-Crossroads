@@ -394,6 +394,11 @@ class Cortex:
             if not profile:
                 return ""
 
+            # Universal narration rules (spoiler filter, etc.)
+            universal = profiles.get("_universal", {})
+            narration_rules = universal.get("narration_rules", [])
+            spoiler_filter = universal.get("spoiler_filter", "")
+
             gm_title = profile.get("gm_title", "Game Master")
             identity = profile.get("narrative_identity", "")
             principles = profile.get("gm_principles", [])
@@ -401,7 +406,15 @@ class Cortex:
             mechanics = profile.get("key_mechanics_to_narrate", [])
             combat = profile.get("combat_guidance", "")
 
-            parts = [f"\n[GM IDENTITY: {gm_title}] {identity}"]
+            parts = []
+
+            # Universal rules come first — they override everything
+            if narration_rules:
+                parts.append("[NARRATION RULES] " + " | ".join(narration_rules))
+            if spoiler_filter:
+                parts.append(f"[SPOILER FILTER] {spoiler_filter}")
+
+            parts.append(f"\n[GM IDENTITY: {gm_title}] {identity}")
 
             if principles:
                 parts.append("PRINCIPLES: " + " | ".join(principles[:5]))
