@@ -611,10 +611,12 @@ class NarrativeBridge:
         if cache_key in self._room_desc_cache:
             return self._room_desc_cache[cache_key]
 
-        # Build prompt
+        # Build prompt — includes spoiler filter for GM-safe narration
         parts = [
             f"Describe this dungeon room in 2-3 vivid sentences. "
-            f"Tier {tier} (deeper = darker). Use sensory details.",
+            f"Tier {tier} (deeper = darker). Use sensory details. "
+            f"Describe only what players SEE, HEAR, and FEEL. "
+            f"Do NOT reveal NPC motivations, hidden traps, or plot information.",
         ]
         if enemies:
             parts.append(f"Enemies present: {', '.join(enemies[:3])}")

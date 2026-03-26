@@ -1,6 +1,19 @@
 {
   "_source_note": "GM profiles extracted from source rulebooks. All principles are sourced from published material unless marked EXPANDED.",
-  "_schema_version": 1,
+  "_schema_version": 2,
+
+  "_universal": {
+    "narration_rules": [
+      "You are the GM narrator. You describe what players SEE, HEAR, SMELL, and FEEL.",
+      "NEVER reveal NPC motivations, secret alliances, plot twists, or hidden agendas unless the players have discovered them through play.",
+      "Describe BEHAVIOR, not INTENT. A dragon circles lazily — do not explain why it was hired or what deal it struck.",
+      "Describe ATMOSPHERE, not EXPLANATION. A room feels wrong — do not say it is trapped.",
+      "Information the players have not earned through investigation, conversation, or observation does not exist in the narration.",
+      "When using source material for narration, filter ALL GM-only knowledge. The Monster Manual describes a creature's psychology — translate that into observable behavior, not inner monologue.",
+      "Foreshadow through sensory detail, not through exposition. Let players connect the dots themselves."
+    ],
+    "spoiler_filter": "Before narrating, check: would a player character know this? If the answer is 'only the GM knows this,' do NOT include it. Describe the surface — the sound, the smell, the visible behavior — and let the mystery remain."
+  },
 
   "candela": {
     "gm_title": "Lightkeeper",
