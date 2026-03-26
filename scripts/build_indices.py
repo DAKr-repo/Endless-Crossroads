@@ -510,6 +510,16 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Rebuild indices even if index.faiss already exists.",
     )
+    parser.add_argument(
+        "--pdf",
+        metavar="PATH",
+        nargs="+",
+        help=(
+            "Index specific PDF file(s) into the given system's index. "
+            "Requires --system. Does a delta merge (adds to existing index). "
+            "Example: --system dnd5e --pdf 'vault/dnd5e/MODULES/Curse of Strahd.pdf'"
+        ),
+    )
     return parser.parse_args()
 
 
@@ -544,12 +554,31 @@ def main() -> int:
         )
         return 0
 
+    # Handle --pdf: index specific files into a system
+    if args.pdf:
+        if not args.system:
+            console.print("[red]--pdf requires --system to know which index to add to.[/red]")
+            return 1
+        pdf_paths = []
+        for p in args.pdf:
+            path = Path(p)
+            if not path.exists():
+                console.print(f"[red]PDF not found: {p}[/red]")
+                return 1
+            pdf_paths.append(path)
+        target_systems = {args.system: pdf_paths}
+        # Force merge since we're adding specific files
+        args.force = True
+        console.print(f"\n[bold]Indexing {len(pdf_paths)} specific PDF(s) into [cyan]{args.system}[/cyan]:[/bold]")
+        for p in pdf_paths:
+            console.print(f"  {p.name}")
+        console.print()
     # Apply --system filter
-    if args.system:
+    elif args.system:
         if args.system not in all_systems:
             console.print(
                 f"[red]System '[bold]{args.system}[/bold]' has no PDFs in "
-                f"vault/{args.system}/SOURCE/ (or directory does not exist).[/red]"
+                f"vault/{args.system}/ (or directory does not exist).[/red]"
             )
             console.print(
                 f"Available systems: {', '.join(sorted(all_systems.keys()))}"
