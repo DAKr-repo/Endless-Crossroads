@@ -53,6 +53,22 @@ DEFAULT_PRIORITY = 2
 # Files inside these dirs are excluded from vault scanning and indexing.
 SKIP_DIRS = {"AUDIO", "audio", "IMAGES", "images", "MAPS", "maps"}
 
+# WO-V156: Noise patterns to strip from extracted PDF text
+_NOISE_PATTERNS = [
+    re.compile(r'Property of \w+\..*?Order #\d+'),           # DRM watermark
+    re.compile(r'^\d{1,3}\s*$', re.MULTILINE),               # Standalone page numbers
+    re.compile(r'©\s*\d{4}.*?(?:Wizards|Hasbro|Elderbrain).*?$',
+               re.MULTILINE | re.IGNORECASE),                  # Copyright lines
+]
+
+
+def _clean_text(text: str) -> str:
+    """Strip common noise from PDF-extracted text (DRM, page numbers, copyright)."""
+    for pattern in _NOISE_PATTERNS:
+        text = pattern.sub('', text)
+    text = re.sub(r'\n{3,}', '\n\n', text)
+    return text.strip()
+
 
 def _is_in_skip_dir(filepath: str) -> bool:
     """Return True if filepath is inside a non-indexable directory."""
@@ -438,6 +454,9 @@ def load_documents(vault_info: Dict, manifest: Optional[VaultManifest] = None) -
                         text_content += text + "\n"
                 page_count = len(reader.pages)
 
+            # WO-V156: Clean noise (DRM watermarks, page numbers, copyright)
+            text_content = _clean_text(text_content)
+
             metadata = {
                 "source": os.path.basename(doc_file),
                 "vault": vault_info["name"],
@@ -506,8 +525,11 @@ def build_index(vault_name: str, documents: List[DocChunk]):
     all_chunks: List[DocChunk] = []
     for doc in documents:
         texts = _split_text(doc.page_content)
+        # WO-V156: Prefix each chunk with source PDF name for provenance
+        source_name = doc.metadata.get("source", "").replace(".pdf", "").replace(".PDF", "")
         for text in texts:
-            all_chunks.append(DocChunk(page_content=text, metadata=dict(doc.metadata)))
+            tagged_text = f"[{source_name}] {text}" if source_name else text
+            all_chunks.append(DocChunk(page_content=tagged_text, metadata=dict(doc.metadata)))
     print(f"Created {len(all_chunks)} shards.")
 
     # Enhance metadata
