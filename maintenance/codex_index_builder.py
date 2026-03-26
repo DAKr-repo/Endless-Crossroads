@@ -564,6 +564,7 @@ def build_index(vault_name: str, documents: List[DocChunk]):
 
     # Batch embed and build
     batch_size = 50
+    checkpoint_interval = 10  # Save every 10 batches (500 shards)
     total_chunks = len(all_chunks)
     total_batches = (total_chunks + batch_size - 1) // batch_size
     failed_batches = 0
@@ -572,6 +573,43 @@ def build_index(vault_name: str, documents: List[DocChunk]):
     new_docstore = dict(existing_docstore)
     new_id_map = dict(existing_id_map)
     current_id = next_id
+
+    # Ensure save directory exists for checkpoints
+    if not os.path.exists(save_path):
+        os.makedirs(save_path)
+
+    # Initialize or reuse the running FAISS index for incremental saves
+    dim = 768  # nomic-embed-text dimension
+    if existing_index is not None:
+        running_index = existing_index
+    else:
+        running_index = faiss.IndexFlatL2(dim)
+
+    def _save_checkpoint(reason: str = "checkpoint"):
+        """Flush pending vectors to index and save to disk."""
+        nonlocal new_vectors
+        if not new_vectors:
+            return
+        batch_vectors = np.vstack(new_vectors)
+        running_index.add(batch_vectors)
+        new_vectors = []  # Clear pending
+
+        try:
+            faiss.write_index(running_index, faiss_file)
+            docstore_data = {
+                "version": "2.0",
+                "docstore": new_docstore,
+                "id_map": {str(k): v for k, v in new_id_map.items()},
+            }
+            docstore_path = os.path.join(save_path, "docstore.json")
+            with open(docstore_path, "w") as f:
+                json.dump(docstore_data, f)
+            print(f"    {Colors.GREEN}[CHECKPOINT] Saved {reason}: "
+                  f"{running_index.ntotal} vectors on disk.{Colors.ENDC}")
+            _logger.info(f"[CHECKPOINT] {reason}: {running_index.ntotal} vectors saved.")
+        except Exception as e:
+            print(f"    {Colors.WARNING}[CHECKPOINT] Save failed: {e}{Colors.ENDC}")
+            _logger.error(f"[CHECKPOINT] Save failed: {e}")
 
     for batch_num, i in enumerate(range(0, total_chunks, batch_size), 1):
         batch = all_chunks[i:i + batch_size]
@@ -604,39 +642,36 @@ def build_index(vault_name: str, documents: List[DocChunk]):
             print(f"    {Colors.FAIL}{err_msg}{Colors.ENDC}")
             _logger.error(err_msg)
             if failed_batches >= 3:
+                # Save what we have before aborting
+                _save_checkpoint(f"emergency save before abort ({failed_batches} failures)")
                 print(f"\n{Colors.FAIL}Too many batch failures ({failed_batches}). "
                       f"Aborting vectorization.{Colors.ENDC}")
                 print(f"{Colors.WARNING}Ensure 'ollama serve' is running and "
                       f"you have pulled '{EMBEDDING_MODEL}'{Colors.ENDC}")
                 return
 
+        # Periodic checkpoint — save progress every N batches
+        if batch_num % checkpoint_interval == 0:
+            _save_checkpoint(f"batch {batch_num}/{total_batches}")
+
     if failed_batches:
         print(f"    {Colors.WARNING}{failed_batches} batch(es) failed during "
               f"vectorization.{Colors.ENDC}")
 
-    if not new_vectors:
+    # Final save — flush any remaining vectors
+    if new_vectors:
+        batch_vectors = np.vstack(new_vectors)
+        running_index.add(batch_vectors)
+        new_vectors = []
+
+    if running_index.ntotal == 0:
         print(f"    {Colors.WARNING}No vectors produced.{Colors.ENDC}")
         return
 
-    # Build final FAISS index
-    all_vectors = np.vstack(new_vectors)
-
-    if existing_index is not None:
-        existing_index.add(all_vectors)
-        final_index = existing_index
-        print(f"    > Merged {all_vectors.shape[0]} new vectors into existing index "
-              f"(total: {final_index.ntotal}).")
-    else:
-        dim = all_vectors.shape[1]
-        final_index = faiss.IndexFlatL2(dim)
-        final_index.add(all_vectors)
-
-    # Save
-    if not os.path.exists(save_path):
-        os.makedirs(save_path)
+    print(f"    > Final index: {running_index.ntotal} vectors.")
 
     try:
-        faiss.write_index(final_index, faiss_file)
+        faiss.write_index(running_index, faiss_file)
 
         # Write docstore.json (replaces .pkl)
         docstore_data = {
@@ -650,7 +685,7 @@ def build_index(vault_name: str, documents: List[DocChunk]):
 
         print(f"    {Colors.GREEN}Indexing Complete.{Colors.ENDC}")
         print(f"    Saved index & docstore to: {save_path} "
-              f"({final_index.ntotal} vectors)")
+              f"({running_index.ntotal} vectors)")
     except Exception as e:
         print(f"    {Colors.FAIL}Failed to save index: {e}{Colors.ENDC}")
 
