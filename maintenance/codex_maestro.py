@@ -225,6 +225,12 @@ def _auto_registry_build(silent: bool = False) -> int:
     return build_all(delta_only=True, silent=silent)
 
 
+def _auto_index_build(silent: bool = False) -> int:
+    """Smart-rebuild: audit indices and re-index only files with gaps."""
+    from maintenance.codex_index_builder import auto_build
+    return auto_build(mode="smart")
+
+
 SCRIPTS = [
     {
         "name": "System Scaffold",
@@ -236,6 +242,7 @@ SCRIPTS = [
         "name": "Index Builder",
         "file": "codex_index_builder.py",
         "description": "Vectorizes vault PDFs into FAISS indices (delta-sync). Requires Ollama.",
+        "auto_fn": _auto_index_build,
     },
     {
         "name": "Registry Autofill",
