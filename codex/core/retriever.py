@@ -76,7 +76,13 @@ class CodexRetriever:
                     continue
                 doc_id = id_map.get(int(idx))
                 if doc_id and doc_id in docstore:
-                    results.append(docstore[doc_id])
+                    entry = docstore[doc_id]
+                    # v3.0: entry is a dict with "text" + "meta"
+                    # v2.0: entry is a plain string
+                    if isinstance(entry, dict):
+                        results.append(entry.get("text", ""))
+                    else:
+                        results.append(entry)
             return results
         except Exception:
             return []

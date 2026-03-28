@@ -17,7 +17,7 @@ import hashlib
 import logging
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import List, Dict, Optional
+from typing import List, Dict, Optional, Tuple
 
 # Ensure project root is on sys.path (needed when run as subprocess)
 _PROJECT_ROOT = str(Path(__file__).resolve().parent.parent)
@@ -88,10 +88,25 @@ _logger = setup_logging("INDEX_BUILDER")
 # =========================================================================
 
 @dataclass
+class PageSpan:
+    """Tracks which PDF pages a chunk spans."""
+    start_page: int = 0
+    end_page: int = 0
+
+
+@dataclass
+class AnnotatedChunk:
+    """A text chunk with page provenance."""
+    text: str
+    page_span: PageSpan = field(default_factory=PageSpan)
+
+
+@dataclass
 class DocChunk:
     """A text chunk with metadata."""
     page_content: str
     metadata: Dict = field(default_factory=dict)
+    page_texts: List[Tuple[int, str]] = field(default_factory=list)
 
 
 # =========================================================================
@@ -228,17 +243,30 @@ def audit_index_health(manifest: 'VaultManifest') -> Dict[str, List[str]]:
         if not all_files:
             continue
 
-        # Load existing docstore to check for source tags
+        # Load existing docstore to check for source tags and v3.0 metadata
         docstore_path = os.path.join(DB_DIR, vault_name, "docstore.json")
         tagged_sources = set()
+        has_page_data = False
         if os.path.exists(docstore_path):
             try:
                 data = json.loads(Path(docstore_path).read_text())
+                ds_version = data.get("version", "2.0")
                 docstore = data.get("docstore", {})
-                for text in docstore.values():
-                    if text.startswith("[") and "]" in text[:80]:
-                        source = text[1:text.index("]")]
-                        tagged_sources.add(source)
+                for entry in docstore.values():
+                    # v3.0: entry is {"text": ..., "meta": {...}}
+                    if isinstance(entry, dict):
+                        text = entry.get("text", "")
+                        meta = entry.get("meta", {})
+                        if meta.get("source"):
+                            tagged_sources.add(meta["source"])
+                        if meta.get("page_start", 0) > 0:
+                            has_page_data = True
+                    else:
+                        # v2.0: entry is a plain string with [Source] prefix
+                        text = entry
+                        if text.startswith("[") and "]" in text[:80]:
+                            source = text[1:text.index("]")]
+                            tagged_sources.add(source)
             except Exception:
                 pass
 
@@ -358,6 +386,90 @@ def _split_text(text: str, chunk_size: int = CHUNK_SIZE,
             chunks.append(chunk.strip())
 
     return chunks
+
+
+# Page boundary marker (null byte — never appears in PDF text)
+_PAGE_MARKER = "\x00PAGE:{}\x00"
+_PAGE_MARKER_RE = re.compile(r'\x00PAGE:(\d+)\x00')
+
+
+def _split_text_paged(
+    page_texts: List[Tuple[int, str]],
+    chunk_size: int = CHUNK_SIZE,
+    chunk_overlap: int = CHUNK_OVERLAP,
+) -> List[AnnotatedChunk]:
+    """Split page-annotated text into chunks that track page provenance.
+
+    Inserts invisible page markers, splits with the recursive splitter,
+    then scans each chunk for markers to determine its PageSpan.
+    """
+    if not page_texts:
+        return []
+
+    # Build marked text: insert page markers at each page boundary
+    marked_parts = []
+    for page_num, text in page_texts:
+        marked_parts.append(_PAGE_MARKER.format(page_num))
+        marked_parts.append(text)
+    marked_text = "".join(marked_parts)
+
+    # Split using existing recursive splitter
+    raw_chunks = _split_text(marked_text, chunk_size, chunk_overlap)
+
+    # For each chunk, find page markers to determine span, then strip them
+    annotated: List[AnnotatedChunk] = []
+    for chunk in raw_chunks:
+        markers = _PAGE_MARKER_RE.findall(chunk)
+        clean_text = _PAGE_MARKER_RE.sub('', chunk).strip()
+        if not clean_text:
+            continue
+
+        if markers:
+            pages = [int(m) for m in markers]
+            span = PageSpan(start_page=min(pages), end_page=max(pages))
+        else:
+            # No marker in this chunk — it's entirely within a single page.
+            # Find the nearest preceding marker from the full text.
+            span = PageSpan(start_page=0, end_page=0)
+
+        annotated.append(AnnotatedChunk(text=clean_text, page_span=span))
+
+    # Fix chunks with no markers: propagate from previous chunk
+    for i, ac in enumerate(annotated):
+        if ac.page_span.start_page == 0 and i > 0:
+            prev = annotated[i - 1].page_span
+            ac.page_span = PageSpan(start_page=prev.end_page, end_page=prev.end_page)
+
+    return annotated
+
+
+def _extract_toc(reader: PdfReader) -> List[Dict]:
+    """Extract table of contents from PDF outline/bookmarks.
+
+    Returns list of {"title": str, "page": int, "level": int}.
+    Returns empty list if PDF has no outline.
+    """
+    toc: List[Dict] = []
+
+    def _walk_outline(items, level: int = 1):
+        for item in items:
+            if isinstance(item, list):
+                _walk_outline(item, level + 1)
+            else:
+                try:
+                    title = item.get('/Title', str(item))
+                    page_num = reader.get_destination_page_number(item) + 1  # 1-based
+                    toc.append({"title": title, "page": page_num, "level": level})
+                except Exception:
+                    pass
+
+    try:
+        if reader.outline:
+            _walk_outline(reader.outline)
+    except Exception:
+        pass
+
+    return toc
 
 
 # =========================================================================
@@ -526,6 +638,8 @@ def load_documents(vault_info: Dict, manifest: Optional[VaultManifest] = None) -
                 continue
 
             text_content = ""
+            page_texts: List[Tuple[int, str]] = []
+            toc: List[Dict] = []
             is_txt = doc_file.lower().endswith(".txt")
 
             if is_txt:
@@ -533,17 +647,20 @@ def load_documents(vault_info: Dict, manifest: Optional[VaultManifest] = None) -
                 with open(doc_file, "r", errors="replace") as f:
                     text_content = f.read()
                 page_count = len(text_content) // 3000 or 1  # Approximate
+                page_texts = [(1, _clean_text(text_content))]
             else:
-                # PDF file — extract via pypdf
+                # PDF file — extract via pypdf with per-page tracking
                 reader = PdfReader(doc_file)
-                for page in reader.pages:
+                for page_num, page in enumerate(reader.pages, start=1):
                     text = page.extract_text()
                     if text:
-                        text_content += text + "\n"
+                        cleaned = _clean_text(text)
+                        if cleaned:
+                            page_texts.append((page_num, cleaned))
+                            text_content += cleaned + "\n"
                 page_count = len(reader.pages)
-
-            # WO-V156: Clean noise (DRM watermarks, page numbers, copyright)
-            text_content = _clean_text(text_content)
+                # Extract TOC from PDF bookmarks
+                toc = _extract_toc(reader)
 
             metadata = {
                 "source": os.path.basename(doc_file),
@@ -552,7 +669,11 @@ def load_documents(vault_info: Dict, manifest: Optional[VaultManifest] = None) -
                 "system_id": system_id,
                 "system_family": system_family,
                 "priority": priority,
+                "page_count": page_count,
             }
+
+            if toc:
+                metadata["toc"] = toc
 
             chapter = _detect_chapter(text_content)
             if chapter:
@@ -561,9 +682,14 @@ def load_documents(vault_info: Dict, manifest: Optional[VaultManifest] = None) -
             subdoc_tags = _detect_subdoc_tags(text_content)
             metadata.update(subdoc_tags)
 
-            documents.append(DocChunk(page_content=text_content, metadata=metadata))
+            documents.append(DocChunk(
+                page_content=text_content,
+                metadata=metadata,
+                page_texts=page_texts,
+            ))
+            toc_note = f", {len(toc)} TOC entries" if toc else ""
             fmt = "TXT" if is_txt else "PDF"
-            print(f"{Colors.GREEN}OK ({page_count} {'chars' if is_txt else 'pages'}, P{priority}, {fmt}){Colors.ENDC}")
+            print(f"{Colors.GREEN}OK ({page_count} {'chars' if is_txt else 'pages'}, P{priority}, {fmt}{toc_note}){Colors.ENDC}")
 
             if manifest:
                 manifest.update(manifest_key, current_hash)
@@ -608,16 +734,33 @@ def build_index(vault_name: str, documents: List[DocChunk]):
     if not documents:
         return
 
-    # Split documents into chunks
+    # Split documents into page-aware chunks
     print(f"    > Sharding {len(documents)} source docs...", end=" ", flush=True)
     all_chunks: List[DocChunk] = []
+    # Collect TOC per source file for the toc_index
+    toc_index: Dict[str, List[Dict]] = {}
     for doc in documents:
-        texts = _split_text(doc.page_content)
-        # WO-V156: Prefix each chunk with source PDF name for provenance
         source_name = doc.metadata.get("source", "").replace(".pdf", "").replace(".PDF", "")
-        for text in texts:
-            tagged_text = f"[{source_name}] {text}" if source_name else text
-            all_chunks.append(DocChunk(page_content=tagged_text, metadata=dict(doc.metadata)))
+
+        # Store TOC for this source
+        if doc.metadata.get("toc"):
+            toc_index[doc.metadata["source"]] = doc.metadata["toc"]
+
+        # Use page-aware splitter if page_texts available, else fallback
+        if doc.page_texts:
+            annotated = _split_text_paged(doc.page_texts)
+            for ac in annotated:
+                tagged_text = f"[{source_name}] {ac.text}" if source_name else ac.text
+                meta = dict(doc.metadata)
+                meta["page_start"] = ac.page_span.start_page
+                meta["page_end"] = ac.page_span.end_page
+                all_chunks.append(DocChunk(page_content=tagged_text, metadata=meta))
+        else:
+            # Fallback for docs with no page_texts (shouldn't happen, but safe)
+            texts = _split_text(doc.page_content)
+            for text in texts:
+                tagged_text = f"[{source_name}] {text}" if source_name else text
+                all_chunks.append(DocChunk(page_content=tagged_text, metadata=dict(doc.metadata)))
     print(f"Created {len(all_chunks)} shards.")
 
     # Enhance metadata
@@ -685,9 +828,10 @@ def build_index(vault_name: str, documents: List[DocChunk]):
         try:
             faiss.write_index(running_index, faiss_file)
             docstore_data = {
-                "version": "2.0",
+                "version": "3.0",
                 "docstore": new_docstore,
                 "id_map": {str(k): v for k, v in new_id_map.items()},
+                "toc_index": toc_index,
             }
             docstore_path = os.path.join(save_path, "docstore.json")
             with open(docstore_path, "w") as f:
@@ -718,7 +862,19 @@ def build_index(vault_name: str, documents: List[DocChunk]):
 
             for j, chunk in enumerate(batch):
                 doc_id = f"doc_{current_id}"
-                new_docstore[doc_id] = chunk.page_content
+                # Docstore v3.0: structured entry with metadata
+                new_docstore[doc_id] = {
+                    "text": chunk.page_content,
+                    "meta": {
+                        "source": chunk.metadata.get("source", "").replace(".pdf", "").replace(".PDF", ""),
+                        "source_file": chunk.metadata.get("source", ""),
+                        "page_start": chunk.metadata.get("page_start", 0),
+                        "page_end": chunk.metadata.get("page_end", 0),
+                        "system_id": chunk.metadata.get("system_id", ""),
+                        "priority": chunk.metadata.get("priority", 2),
+                        "chapter": chunk.metadata.get("chapter"),
+                    },
+                }
                 new_id_map[current_id] = doc_id
                 current_id += 1
 
@@ -761,11 +917,12 @@ def build_index(vault_name: str, documents: List[DocChunk]):
     try:
         faiss.write_index(running_index, faiss_file)
 
-        # Write docstore.json (replaces .pkl)
+        # Write docstore.json v3.0 with structured metadata
         docstore_data = {
-            "version": "2.0",
+            "version": "3.0",
             "docstore": new_docstore,
             "id_map": {str(k): v for k, v in new_id_map.items()},
+            "toc_index": toc_index,
         }
         docstore_path = os.path.join(save_path, "docstore.json")
         with open(docstore_path, "w") as f:
@@ -779,7 +936,61 @@ def build_index(vault_name: str, documents: List[DocChunk]):
 
 
 # =========================================================================
-# MAIN
+# AUTO-RUN (called by Maestro — no interactive menu)
+# =========================================================================
+
+def auto_build(mode: str = "smart") -> int:
+    """Non-interactive index build for Maestro integration.
+
+    Args:
+        mode: "smart" (audit & fix gaps), "all" (delta sync all),
+              "force" (full rebuild ignoring manifest).
+
+    Returns:
+        Number of systems processed.
+    """
+    vault_list = get_vaults()
+    if not vault_list:
+        print(f"{Colors.WARNING}No vaults found.{Colors.ENDC}")
+        return 0
+
+    manifest = VaultManifest()
+
+    if mode == "smart":
+        print(f"\n{Colors.BLUE}Running index health audit...{Colors.ENDC}")
+        gaps = audit_index_health(manifest)
+        if not gaps:
+            print(f"{Colors.GREEN}All indices healthy — nothing to rebuild.{Colors.ENDC}")
+            return 0
+        manifest.save()
+        selected = [v for v in vault_list if v["system_id"] in gaps]
+        total_files = sum(len(f) for f in gaps.values())
+        print(f"{Colors.BLUE}Smart rebuild: {total_files} file(s) across "
+              f"{len(selected)} system(s).{Colors.ENDC}")
+        active_manifest = manifest
+    elif mode == "force":
+        selected = vault_list
+        active_manifest = None
+    else:  # "all"
+        selected = vault_list
+        active_manifest = manifest
+
+    try:
+        for vault_info in selected:
+            print(f"\n{Colors.BLUE}>>> BUILDING INDEX FOR: {vault_info['name'].upper()} "
+                  f"(family={vault_info['system_family']}){Colors.ENDC}")
+            docs = load_documents(vault_info, manifest=active_manifest)
+            build_index(vault_info["name"], docs)
+    except KeyboardInterrupt:
+        print(f"\n{Colors.WARNING}Interrupted by user.{Colors.ENDC}")
+    finally:
+        manifest.save()
+
+    return len(selected)
+
+
+# =========================================================================
+# MAIN (interactive — standalone use)
 # =========================================================================
 
 def main():
