@@ -195,6 +195,94 @@ def check_vault_changes() -> dict:
     return result
 
 
+# =========================================================================
+# INDEX HEALTH AUDIT — detect gaps, missing tags, incomplete coverage
+# =========================================================================
+
+def audit_index_health(manifest: 'VaultManifest') -> Dict[str, List[str]]:
+    """Scan all indices for gaps and return files that need re-indexing.
+
+    Checks:
+    1. Files in manifest but with zero tagged shards in docstore
+       (indexed by old builder without source tagging)
+    2. Vault files not in manifest at all (never indexed)
+    3. Files whose hash changed since last index
+
+    Returns dict mapping system_id -> list of vault-relative file paths
+    that need re-indexing. Also removes stale manifest entries so delta
+    sync will pick them up.
+    """
+    needs_reindex: Dict[str, List[str]] = {}
+    vaults = get_vaults()
+
+    for vault_info in vaults:
+        vault_path = vault_info["path"]
+        vault_name = vault_info["name"].lower()
+        system_id = vault_info["system_id"]
+
+        # Find all indexable files in this vault
+        pdf_files = glob.glob(os.path.join(vault_path, "**", "*.pdf"), recursive=True)
+        txt_files = glob.glob(os.path.join(vault_path, "**", "*.txt"), recursive=True)
+        all_files = [f for f in pdf_files + txt_files if not _is_in_skip_dir(f)]
+
+        if not all_files:
+            continue
+
+        # Load existing docstore to check for source tags
+        docstore_path = os.path.join(DB_DIR, vault_name, "docstore.json")
+        tagged_sources = set()
+        if os.path.exists(docstore_path):
+            try:
+                data = json.loads(Path(docstore_path).read_text())
+                docstore = data.get("docstore", {})
+                for text in docstore.values():
+                    if text.startswith("[") and "]" in text[:80]:
+                        source = text[1:text.index("]")]
+                        tagged_sources.add(source)
+            except Exception:
+                pass
+
+        files_to_reindex = []
+        for doc_file in all_files:
+            manifest_key = os.path.relpath(doc_file, VAULT_DIR)
+            filename_stem = Path(doc_file).stem  # e.g. "Dragon Heist"
+
+            # Check 1: file hash changed
+            try:
+                current_hash = _compute_file_hash(doc_file)
+            except OSError:
+                continue
+
+            if manifest.is_changed(manifest_key, current_hash):
+                files_to_reindex.append(manifest_key)
+                continue
+
+            # Check 2: file is in manifest but has no tagged shards
+            stored = manifest.all_tracked.get(manifest_key)
+            if stored is not None and filename_stem not in tagged_sources:
+                files_to_reindex.append(manifest_key)
+                continue
+
+        if files_to_reindex:
+            needs_reindex[system_id] = files_to_reindex
+
+            # Remove stale manifest entries so delta sync picks them up
+            for f in files_to_reindex:
+                manifest.remove(f)
+
+            print(f"  {Colors.WARNING}[AUDIT] {vault_info['name']}: "
+                  f"{len(files_to_reindex)} file(s) need re-indexing:{Colors.ENDC}")
+            for f in files_to_reindex:
+                reason = "no source tags" if manifest.all_tracked.get(f) else "new/changed"
+                print(f"    - {Path(f).name} ({reason})")
+
+    if not needs_reindex:
+        print(f"  {Colors.GREEN}[AUDIT] All indices healthy — "
+              f"no gaps detected.{Colors.ENDC}")
+
+    return needs_reindex
+
+
 # Colors for Terminal
 class Colors:
     HEADER = '\033[95m'
@@ -712,17 +800,34 @@ def main():
         family_tag = f" [{v['system_family']}]" if v["system_family"] != v["system_id"] else ""
         print(f" [{i+1}] {v['name'].upper()}{family_tag}")
     print(f" [A] Build All")
+    print(f" [S] Smart Rebuild (audit & fix gaps)")
     print(f" [F] Full Rebuild (ignore manifest)")
 
     choice = input(f"\n{Colors.BLUE}Select System > {Colors.ENDC}").strip().upper()
 
     full_rebuild = False
+    smart_rebuild = False
     selected: List[Dict] = []
 
     if choice == 'F':
         selected = vault_list
         full_rebuild = True
         print(f"{Colors.WARNING}Full rebuild mode — ignoring manifest.{Colors.ENDC}")
+    elif choice == 'S':
+        print(f"\n{Colors.BLUE}Running index health audit...{Colors.ENDC}\n")
+        gaps = audit_index_health(manifest)
+        if not gaps:
+            print(f"\n{Colors.GREEN}Nothing to rebuild — all indices are healthy.{Colors.ENDC}")
+            return
+        # Save manifest with stale entries removed (audit already called manifest.remove)
+        manifest.save()
+        smart_rebuild = True
+        # Select only vaults that have gaps
+        gap_systems = set(gaps.keys())
+        selected = [v for v in vault_list if v["system_id"] in gap_systems]
+        total_files = sum(len(f) for f in gaps.values())
+        print(f"\n{Colors.BLUE}Smart rebuild: {total_files} file(s) across "
+              f"{len(selected)} system(s) queued for re-indexing.{Colors.ENDC}")
     elif choice == 'A':
         selected = vault_list
     elif choice.isdigit():
