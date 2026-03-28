@@ -28,6 +28,7 @@ log = logging.getLogger(__name__)
 class RAGResult:
     """Typed return from RAG search — symbolic handle for context injection."""
     chunks: List[str] = field(default_factory=list)
+    chunk_results: List = field(default_factory=list)  # List[ChunkResult] from retriever
     system_id: str = ""
     query: str = ""
     search_time_ms: float = 0.0
@@ -43,6 +44,18 @@ class RAGResult:
         if not self.chunks:
             return ""
         return "\n".join(f"[{i+1}] {c}" for i, c in enumerate(self.chunks))
+
+    @property
+    def citations(self) -> List[str]:
+        """Human-readable source citations from chunk_results."""
+        seen = set()
+        cites = []
+        for cr in self.chunk_results:
+            c = cr.citation if hasattr(cr, 'citation') else ""
+            if c and c not in seen:
+                seen.add(c)
+                cites.append(c)
+        return cites
 
     @property
     def token_estimate(self) -> int:
@@ -188,6 +201,62 @@ class RAGService:
                 result.chunks = chunks
         except Exception as e:
             log.warning("RAGService: search error: %s", e)
+            result.search_time_ms = (time.time() - start) * 1000
+
+        return result
+
+    def search_rich(
+        self,
+        query: str,
+        system_id: str,
+        k: int = 5,
+        token_budget: int = 0,
+        source: Optional[str] = None,
+        chapter: Optional[str] = None,
+    ) -> RAGResult:
+        """Search with full provenance metadata (v3.0 docstores).
+
+        Returns RAGResult with both chunks (text) and chunk_results (metadata).
+        Supports optional source and chapter filters.
+        """
+        result = RAGResult(system_id=system_id, query=query)
+
+        if not self._ensure_retriever():
+            return result
+        if not self._check_thermal():
+            return result
+
+        resolved_id = self.SYSTEM_ALIASES.get(system_id, system_id)
+        start = time.time()
+        try:
+            if source or chapter:
+                chunk_results = self._retriever.search_filtered(
+                    query, resolved_id, k=k, source=source, chapter=chapter,
+                )
+            else:
+                chunk_results = self._retriever.search_rich(query, resolved_id, k=k)
+
+            result.search_time_ms = (time.time() - start) * 1000
+            result.chunk_results = chunk_results
+            result.chunks = [cr.text for cr in chunk_results]
+
+            if token_budget > 0:
+                trimmed_cr = []
+                trimmed_chunks = []
+                budget_remaining = token_budget
+                for cr in chunk_results:
+                    if len(cr.text) <= budget_remaining:
+                        trimmed_cr.append(cr)
+                        trimmed_chunks.append(cr.text)
+                        budget_remaining -= len(cr.text)
+                    elif budget_remaining > 50:
+                        trimmed_chunks.append(cr.text[:budget_remaining])
+                        trimmed_cr.append(cr)
+                        break
+                result.chunk_results = trimmed_cr
+                result.chunks = trimmed_chunks
+        except Exception as e:
+            log.warning("RAGService: search_rich error: %s", e)
             result.search_time_ms = (time.time() - start) * 1000
 
         return result
