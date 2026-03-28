@@ -530,13 +530,23 @@ class BootWizard:
         vault_changed = 0
         vault_tracked = 0
         vault_files = []
+        index_gaps = 0
+        index_gap_files = []
         try:
-            from maintenance.codex_index_builder import check_vault_changes
+            from maintenance.codex_index_builder import check_vault_changes, audit_index_health, VaultManifest, MANIFEST_FILE
             changes = check_vault_changes()
             vault_new = len(changes.get("new", []))
             vault_changed = len(changes.get("changed", []))
             vault_tracked = changes.get("total_tracked", 0)
             vault_files = changes.get("new", []) + changes.get("changed", [])
+
+            # Also check for index health gaps (missing tags, incomplete coverage)
+            manifest = VaultManifest(path=MANIFEST_FILE)
+            gaps = audit_index_health(manifest)
+            for system_files in gaps.values():
+                index_gaps += len(system_files)
+                index_gap_files.extend(system_files)
+            # Don't save manifest here — let the Maestro do it during rebuild
         except Exception:
             pass
 
@@ -548,9 +558,10 @@ class BootWizard:
 
         # Build display
         has_vault_changes = vault_new > 0 or vault_changed > 0
+        has_index_gaps = index_gaps > 0
         has_content = module_count > 0 or config_count > 0
 
-        if not has_vault_changes and not has_content:
+        if not has_vault_changes and not has_index_gaps and not has_content:
             console.print(Panel(
                 f"[{EMERALD}]Library up to date[/] — "
                 f"{vault_tracked} tomes catalogued.",
@@ -594,7 +605,17 @@ class BootWizard:
             if len(vault_files) > 8:
                 lines.append(f"  [dim]... and {len(vault_files) - 8} more[/dim]")
 
-        border = GOLD if has_vault_changes else EMERALD
+        # Index health gaps (missing tags, incomplete coverage)
+        if has_index_gaps:
+            lines.append(f"[{GOLD}]Index gaps:[/] [bold]{index_gaps}[/bold] tome{'s' if index_gaps != 1 else ''} missing source tags or incomplete")
+            display_gaps = index_gap_files[:8]
+            for f in display_gaps:
+                from pathlib import Path as _P
+                lines.append(f"  [dim]•[/dim] {_P(f).name} (needs re-index)")
+            if len(index_gap_files) > 8:
+                lines.append(f"  [dim]... and {len(index_gap_files) - 8} more[/dim]")
+
+        border = GOLD if (has_vault_changes or has_index_gaps) else EMERALD
         console.print(Panel(
             "\n".join(lines),
             title="[bold]Library Scanner[/bold]",
@@ -602,8 +623,11 @@ class BootWizard:
             box=box.ROUNDED,
         ))
 
-        if has_vault_changes:
-            if Confirm.ask(f"[{GOLD}]Run the Maestro to index them?[/]", default=True):
+        if has_vault_changes or has_index_gaps:
+            prompt_msg = f"[{GOLD}]Run the Maestro to index them?[/]"
+            if has_index_gaps and not has_vault_changes:
+                prompt_msg = f"[{GOLD}]Run Smart Rebuild to fix index gaps?[/]"
+            if Confirm.ask(prompt_msg, default=True):
                 try:
                     from maintenance.codex_maestro import _run_all
                     console.print(f"\n[{GOLD}]Launching Maestro...[/]")
