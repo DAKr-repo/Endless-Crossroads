@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "source": "Burnwillow (original homebrew — setting bible v4.0)",
+  "ingredients": {
+    "Willow Bark": {"zones": [1, 2, 3, 4, 5], "drop_weight": 3},
+    "Ember Dust": {"zones": [1, 2], "drop_weight": 2},
+    "Rot Spores": {"zones": [2, 3, 4], "drop_weight": 2},
+    "Moonstone Dust": {"zones": [2, 3], "drop_weight": 1},
+    "Beetle Ichor": {"zones": [1, 2], "drop_weight": 2},
+    "Spider Silk": {"zones": [3, 4, 5], "drop_weight": 1},
+    "Beast Fang": {"zones": [1, 2, 3], "drop_weight": 2},
+    "Deepwater": {"zones": [3, 4], "drop_weight": 1},
+    "Sap": {"zones": [1, 2, 3, 4, 5], "drop_weight": 3},
+    "Royal Jelly": {"zones": [], "faction": "hive", "drop_weight": 0},
+    "Moth-Scale Powder": {"zones": [], "faction": "canopy_court", "drop_weight": 0},
+    "Elder Sap": {"zones": [], "faction": "heartwood_elders", "drop_weight": 0}
+  },
+  "recipes": {
+    "potions": [
+      {"name": "Salicylic Tonic", "ingredients": ["Willow Bark", "Deepwater", "Sap"], "effect": "Heal 2d6, cure Poisoned", "type": "potion"},
+      {"name": "Ember Draught", "ingredients": ["Ember Dust", "Sap", "Beast Fang"], "effect": "+2 Might score for 3 rounds", "type": "potion"},
+      {"name": "Sporesight Elixir", "ingredients": ["Rot Spores", "Moonstone Dust", "Sap"], "effect": "Reveal hidden rooms and traps for current floor", "type": "potion"},
+      {"name": "Hive-Mind Drop", "ingredients": ["Royal Jelly", "Moonstone Dust", "Sap"], "effect": "Sense all enemies for 5 rounds", "type": "potion"},
+      {"name": "Ironbark Extract", "ingredients": ["Willow Bark", "Beetle Ichor", "Moonstone Dust"], "effect": "+2 DR for 3 rounds", "type": "potion"},
+      {"name": "Beastblood Brew", "ingredients": ["Beast Fang", "Rot Spores", "Sap"], "effect": "Summon a temporary wolf minion (3 rounds)", "type": "potion"}
+    ],
+    "bombs": [
+      {"name": "Ember Bomb", "ingredients": ["Ember Dust", "Sap", "Willow Bark"], "effect": "2d6 fire, 10ft radius, Burning 1 round", "type": "bomb"},
+      {"name": "Spore Grenade", "ingredients": ["Rot Spores", "Beetle Ichor", "Sap"], "effect": "1d6 poison + Blinded 2 rounds", "type": "bomb"},
+      {"name": "Flashpowder", "ingredients": ["Moonstone Dust", "Ember Dust", "Spider Silk"], "effect": "No damage, Blind ALL enemies 1 round", "type": "bomb"},
+      {"name": "Rot Bomb", "ingredients": ["Rot Spores", "Rot Spores", "Deepwater"], "effect": "3d6 necrotic (heals Blighted targets — risky!)", "type": "bomb"},
+      {"name": "Frostbite Flask", "ingredients": ["Deepwater", "Moonstone Dust", "Sap"], "effect": "2d6 cold + Frozen 2 rounds", "type": "bomb"},
+      {"name": "Glue Bomb", "ingredients": ["Sap", "Spider Silk", "Beetle Ichor"], "effect": "No damage, Entangled 3 rounds", "type": "bomb"}
+    ],
+    "oils": [
+      {"name": "Blazing Oil", "ingredients": ["Ember Dust", "Beast Fang", "Sap"], "effect": "+1d4 fire per hit, lasts 1 combat", "type": "oil"},
+      {"name": "Frostbite Wax", "ingredients": ["Deepwater", "Willow Bark", "Spider Silk"], "effect": "+1d4 cold, 10% slow per hit, lasts 1 combat", "type": "oil"},
+      {"name": "Venom Coat", "ingredients": ["Rot Spores", "Beetle Ichor", "Sap"], "effect": "+1d4 poison per hit, stacks to 3, lasts 1 combat", "type": "oil"},
+      {"name": "Silverbright", "ingredients": ["Moonstone Dust", "Ember Dust", "Sap"], "effect": "+1d6 vs undead/Hollowed, lasts 1 combat", "type": "oil"},
+      {"name": "Void Tar", "ingredients": ["Rot Spores", "Deepwater", "Beetle Ichor"], "effect": "+1d4 necrotic + lifesteal, lasts 1 combat", "type": "oil"}
+    ],
+    "elixirs": [
+      {"name": "Elixir of the Beaver", "ingredients": ["Willow Bark", "Beetle Ichor", "Elder Sap"], "effect": "Barricades cost half materials for entire floor", "type": "elixir"},
+      {"name": "Moth's Grace", "ingredients": ["Moth-Scale Powder", "Spider Silk", "Sap"], "effect": "+1 to all Wits checks for entire floor", "type": "elixir"},
+      {"name": "Hag's Bargain", "ingredients": ["Rot Spores", "Sap", "Sap"], "effect": "Next 3 trait activations auto-succeed. Costs 1d6 HP to brew.", "type": "elixir"},
+      {"name": "Root-Singer", "ingredients": ["Elder Sap", "Moonstone Dust", "Deepwater"], "effect": "Hear Root-Song — secret rooms glow on minimap for entire floor", "type": "elixir"}
+    ]
+  }
+}

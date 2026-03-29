@@ -800,6 +800,120 @@ class FactionReputation:
 
 
 # =============================================================================
+# ALCHEMY SYSTEM
+# =============================================================================
+
+def _load_recipes() -> dict:
+    """Load alchemy recipes from config file."""
+    import json
+    from pathlib import Path
+    recipe_path = Path(__file__).resolve().parent.parent.parent.parent / "config" / "alchemy" / "burnwillow_recipes.json"
+    if recipe_path.exists():
+        with open(recipe_path) as f:
+            return json.load(f)
+    return {"ingredients": {}, "recipes": {}}
+
+_ALCHEMY_DATA = None
+
+def get_alchemy_data() -> dict:
+    """Lazy-load alchemy recipe data."""
+    global _ALCHEMY_DATA
+    if _ALCHEMY_DATA is None:
+        _ALCHEMY_DATA = _load_recipes()
+    return _ALCHEMY_DATA
+
+
+def get_zone_ingredients(zone: int) -> list:
+    """Get list of ingredients that can drop in a given zone."""
+    data = get_alchemy_data()
+    available = []
+    for name, info in data.get("ingredients", {}).items():
+        if zone in info.get("zones", []):
+            for _ in range(info.get("drop_weight", 1)):
+                available.append(name)
+    return available
+
+
+def roll_ingredient_drop(zone: int, rng=None) -> Optional[str]:
+    """30% chance to drop a random zone-appropriate ingredient.
+
+    Returns ingredient name or None.
+    """
+    if rng is None:
+        rng = random
+    if rng.random() > 0.30:
+        return None
+    available = get_zone_ingredients(zone)
+    if not available:
+        return None
+    return rng.choice(available)
+
+
+def get_all_recipes() -> list:
+    """Get flat list of all recipe dicts."""
+    data = get_alchemy_data()
+    recipes = []
+    for category in data.get("recipes", {}).values():
+        recipes.extend(category)
+    return recipes
+
+
+def craft_recipe(recipe_name: str, character) -> dict:
+    """Attempt to craft a recipe.
+
+    Args:
+        recipe_name: Name of the recipe to craft.
+        character: Character with ingredients inventory.
+
+    Returns:
+        {"success": bool, "message": str, "item": dict or None}
+    """
+    all_recipes = get_all_recipes()
+    recipe = None
+    for r in all_recipes:
+        if r["name"].lower() == recipe_name.lower():
+            recipe = r
+            break
+
+    if not recipe:
+        return {"success": False, "message": f"Unknown recipe: {recipe_name}", "item": None}
+
+    if recipe["name"] not in character.known_recipes:
+        return {"success": False, "message": f"You haven't discovered the recipe for {recipe['name']}.", "item": None}
+
+    # Check ingredients
+    needed = {}
+    for ing in recipe["ingredients"]:
+        needed[ing] = needed.get(ing, 0) + 1
+
+    for ing, count in needed.items():
+        if character.ingredients.get(ing, 0) < count:
+            have = character.ingredients.get(ing, 0)
+            return {"success": False, "message": f"Missing {ing}: need {count}, have {have}.", "item": None}
+
+    # Consume ingredients
+    for ing, count in needed.items():
+        character.ingredients[ing] -= count
+        if character.ingredients[ing] <= 0:
+            del character.ingredients[ing]
+
+    # Produce item
+    result_item = {
+        "name": recipe["name"],
+        "type": recipe["type"],
+        "effect": recipe["effect"],
+    }
+
+    # Bombs go into bomb slots (max 3)
+    if recipe["type"] == "bomb":
+        if len(character.bombs) >= 3:
+            return {"success": False, "message": "Bomb slots full (max 3). Use or drop a bomb first.", "item": None}
+        character.bombs.append(result_item)
+
+    return {"success": True, "message": f"Crafted {recipe['name']}!", "item": result_item}
+
+
+# =============================================================================
 # CHARACTER SYSTEM
 # =============================================================================
 
@@ -831,6 +945,9 @@ class Character:
     keys: int = 0    # Consumable lock openers
     scrap: int = 0   # Crafting resource for forge upgrades
     memory_seeds: List[dict] = field(default_factory=list)  # Each: {name, tier, deciphered}
+    ingredients: Dict[str, int] = field(default_factory=dict)  # Alchemy ingredients: name → count
+    known_recipes: List[str] = field(default_factory=list)  # Discovered recipe names
+    bombs: List[dict] = field(default_factory=list)  # Carried bombs (max 3)
 
     # Active conditions — maps condition name to remaining rounds (0 = indefinite until cured)
     conditions: Dict[str, int] = field(default_factory=dict)
@@ -1011,6 +1128,9 @@ class Character:
             "keys": self.keys,
             "scrap": self.scrap,
             "memory_seeds": list(self.memory_seeds),
+            "ingredients": dict(self.ingredients),
+            "known_recipes": list(self.known_recipes),
+            "bombs": list(self.bombs),
             "conditions": dict(self.conditions),
         }
 
@@ -1027,6 +1147,9 @@ class Character:
         )
         char.gear = GearGrid.from_dict(data.get("gear", {}))
         char.conditions = data.get("conditions", {})
+        char.ingredients = data.get("ingredients", {})
+        char.known_recipes = data.get("known_recipes", [])
+        char.bombs = data.get("bombs", [])
 
         # Support both legacy list and new dict inventory formats
         raw_inv = data.get("inventory", {})
@@ -1202,6 +1325,10 @@ class BurnwillowEngine:
 
         # Vault Breach Alert — acoustic echo counter
         self.vault_echo_remaining: int = 0  # Rooms of boosted spawns after vault opening
+
+        # Choir Resonance Exposure — builds in Zone 4+
+        self.resonance_exposure: int = 0
+        self.resonance_threshold: int = 5  # Rooms in Zone 4+ before Resonance-Touched
 
         # TPK Detection
         self.campaign_over: bool = False

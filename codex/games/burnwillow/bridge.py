@@ -58,6 +58,9 @@ COMMANDS = {
     "talk":      ["npc"],
     "recap":     [],
     "reputation": ["rep", "factions"],
+    "ingredients": ["ing"],
+    "craft":     ["brew", "make"],
+    "recipes":   [],
     "help":      ["h", "?"],
     "tutorial":  ["tut"],
 }
@@ -120,6 +123,9 @@ class BurnwillowBridge:
             "stats": "Show character stats",
             "save": "Save current game",
             "reputation": "Show faction standings (aliases: rep, factions)",
+            "ingredients": "Show gathered alchemy ingredients",
+            "craft": "Craft a recipe: craft <recipe name>",
+            "recipes": "Show known alchemy recipes",
             "recap": "Session recap (kills, loot, rooms)",
             "help": "List all commands",
             "tutorial": "Open interactive tutorial",
@@ -144,6 +150,9 @@ class BurnwillowBridge:
             self.engine.create_character(player_name)
 
         self.dead = False
+        self._last_trait_used: str = ""  # For trait combo detection
+        self._snared_enemies: set = set()  # Enemies with defense reduced by SNARE
+        self._blinded_enemies: set = set()  # Enemies blinded by FLASH
         self.last_frame: StateFrame | None = None
         self._broadcast = broadcast_manager
         # Universal Narrative Bridge
@@ -254,6 +263,9 @@ class BurnwillowBridge:
             "talk":      lambda: self._cmd_talk(arg),
             "recap":     lambda: self._cmd_recap(),
             "reputation": lambda: self._cmd_reputation(),
+            "ingredients": lambda: self._cmd_ingredients(),
+            "craft":     lambda: self._cmd_craft(arg),
+            "recipes":   lambda: self._cmd_recipes(),
             "help":      lambda: self._cmd_help(),
             "tutorial":  lambda: self._cmd_tutorial(),
         }
@@ -459,6 +471,28 @@ class BurnwillowBridge:
                 if healed > 0:
                     lines.append("Mending aura restores 1 HP.")
                 break
+
+        # Ingredient drops (30% chance per room)
+        from codex.games.burnwillow.engine import roll_ingredient_drop
+        zone = getattr(self.engine, '_zone', 1)
+        ingredient = roll_ingredient_drop(zone)
+        if ingredient:
+            char.ingredients[ingredient] = char.ingredients.get(ingredient, 0) + 1
+            lines.append(f"You find {ingredient}. ({char.ingredients[ingredient]} total)")
+
+        # Choir Resonance Exposure — builds in Zone 4+
+        zone = getattr(self.engine, '_zone', 1)
+        if zone >= 4:
+            self.engine.resonance_exposure += 1
+            if (self.engine.resonance_exposure >= self.engine.resonance_threshold
+                    and not char.has_condition(Condition.RESONANCE_TOUCHED)):
+                char.add_condition(Condition.RESONANCE_TOUCHED)
+                lines.append("The Choir's song seeps into your gear. Your equipment hums sympathetically.")
+                lines.append(f"  You are now Resonance-Touched.")
+            elif self.engine.resonance_exposure >= 3 and not char.has_condition(Condition.RESONANCE_TOUCHED):
+                lines.append("The diminished intervals press against your skull. The wood vibrates wrong.")
+        elif zone <= 3 and self.engine.resonance_exposure > 0:
+            self.engine.resonance_exposure = 0  # Reset on return to safer zones
 
         # Active conditions summary
         active = char.get_active_conditions()
@@ -1087,6 +1121,23 @@ class BurnwillowBridge:
             if result.get("scout_dc_reduction"):
                 self._scout_dc_reduction = result["scout_dc_reduction"]
                 lines.append(f"  -> Scout DC reduced by {result['scout_dc_reduction']} for next search.")
+
+            # SNARE/FLASH: track for combo detection
+            if result.get("defense_reduction"):
+                self._snared_enemies.add("room_enemies")
+                self._last_trait_used = "SNARE"
+                lines.append("  -> Combo ready: CLEAVE will deal bonus damage to snared targets!")
+            if result.get("blind_rounds"):
+                self._blinded_enemies.add("room_enemies")
+                self._last_trait_used = "FLASH"
+                lines.append("  -> Combo ready: BACKSTAB will deal double damage to blinded targets!")
+
+            # CLEAVE combo: bonus damage if enemies are snared
+            if result.get("cleave_targets") and self._snared_enemies:
+                bonus = random.randint(1, 6)
+                lines.append(f"  -> SNARE+CLEAVE COMBO! +{bonus} bonus damage to snared targets!")
+                self._snared_enemies.clear()
+
         else:
             if result.get("creates"):
                 lines.append("  -> Failed to create effect.")
@@ -1258,6 +1309,60 @@ class BurnwillowBridge:
         lines.append("  Canopy Court <-> Dam-Wrights")
         lines.append("  The Hive <-> The Mycelium")
         lines.append("")
+        lines.append(self._status_line())
+        return "\n".join(lines)
+
+    def _cmd_ingredients(self) -> str:
+        """Show gathered alchemy ingredients."""
+        char = self.engine.character
+        lines = ["=== INGREDIENTS ===", ""]
+        if not char.ingredients:
+            lines.append("  No ingredients gathered yet.")
+            lines.append("  (Search rooms and defeat enemies to find ingredients.)")
+        else:
+            for name, count in sorted(char.ingredients.items()):
+                lines.append(f"  {name}: {count}")
+        if char.bombs:
+            lines.append(f"\nBombs ({len(char.bombs)}/3):")
+            for b in char.bombs:
+                lines.append(f"  {b['name']}: {b['effect']}")
+        lines.append("")
+        lines.append(self._status_line())
+        return "\n".join(lines)
+
+    def _cmd_craft(self, arg: str = "") -> str:
+        """Craft an alchemy recipe."""
+        if not arg.strip():
+            return "Craft what? Usage: craft <recipe name>\n" + self._status_line()
+        from codex.games.burnwillow.engine import craft_recipe
+        char = self.engine.character
+        result = craft_recipe(arg.strip(), char)
+        lines = [result["message"]]
+        if result["success"] and result["item"]:
+            item = result["item"]
+            lines.append(f"  Type: {item['type']}")
+            lines.append(f"  Effect: {item['effect']}")
+        lines.append("")
+        lines.append(self._status_line())
+        return "\n".join(lines)
+
+    def _cmd_recipes(self) -> str:
+        """Show known alchemy recipes."""
+        char = self.engine.character
+        from codex.games.burnwillow.engine import get_all_recipes
+        all_recipes = get_all_recipes()
+        lines = ["=== KNOWN RECIPES ===", ""]
+        if not char.known_recipes:
+            lines.append("  No recipes discovered yet.")
+            lines.append("  (Find recipes in secret rooms, faction vendors, or Memory Seeds.)")
+        else:
+            for r in all_recipes:
+                if r["name"] in char.known_recipes:
+                    ings = " + ".join(r["ingredients"])
+                    lines.append(f"  {r['name']} [{r['type']}]")
+                    lines.append(f"    Ingredients: {ings}")
+                    lines.append(f"    Effect: {r['effect']}")
+                    lines.append("")
         lines.append(self._status_line())
         return "\n".join(lines)
 

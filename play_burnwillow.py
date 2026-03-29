@@ -5503,39 +5503,51 @@ def action_inspect_item(state: GameState, inv_index: int) -> List[str]:
         valid = ", ".join(str(k) for k in sorted(char.inventory.keys()))
         return [f"No item at index {inv_index}. Valid: [{valid}]"]
 
-    # Build detailed text for sidebar
-    _SYNERGY_HINTS = {
-        "[Lockpick]": "Enables lock-picking",
-        "[Intercept]": "Shield allies in combat",
-        "[Summon]": "Call minion in combat",
-        "[Guard]": "Guard adjacent allies",
-        "[Heal]": "Restore HP",
-        "[Reflect]": "Reflect ranged attacks",
-    }
+    # Build detailed text for sidebar — real data from item fields
+    from codex.games.burnwillow.engine import GEAR_SETS, AFFIX_PREFIXES, AFFIX_SUFFIXES
+
     lines = []
-    lines.append(f"{item.name}")
+    # Display name with affixes
+    display_name = item.get_display_name() if hasattr(item, 'get_display_name') else item.name
+    lines.append(f"{display_name}")
     lines.append(f"Slot: {item.slot.value}  |  Tier: {item.tier.value}")
-    lines.append(f"Dice: {item.tier.value}d6")
+    lines.append(f"Dice: +1d6  |  Score Bonus: +{item.tier.value} to {(item.get_pool_stat().value if item.get_pool_stat() else 'none')}")
     if item.damage_reduction:
         lines.append(f"DR: {item.damage_reduction}")
     if item.stat_bonuses:
         bonus_strs = [f"{stat.value} {val:+d}" for stat, val in item.stat_bonuses.items()]
-        lines.append(f"Bonuses: {', '.join(bonus_strs)}")
+        lines.append(f"Stat Bonuses: {', '.join(bonus_strs)}")
     if item.special_traits:
         lines.append(f"Traits: {', '.join(item.special_traits)}")
-        for trait in item.special_traits:
-            hint = _SYNERGY_HINTS.get(trait)
-            if hint:
-                lines.append(f"  -> {hint}")
+    # Affix details
+    if item.prefix:
+        pfx_data = AFFIX_PREFIXES.get(item.prefix, {})
+        pfx_desc = ", ".join(f"{k}: {v}" for k, v in pfx_data.items())
+        lines.append(f"Prefix: {item.prefix} ({pfx_desc})")
+    if item.suffix:
+        sfx_data = AFFIX_SUFFIXES.get(item.suffix, {})
+        sfx_desc = ", ".join(f"{k}: {v}" for k, v in sfx_data.items())
+        lines.append(f"Suffix: {item.suffix} ({sfx_desc})")
+    # Gear Set membership
+    if item.set_id:
+        set_def = GEAR_SETS.get(item.set_id, {})
+        set_name = set_def.get("name", item.set_id)
+        # Count how many pieces of this set are equipped
+        equipped_count = sum(
+            1 for eq in char.gear.slots.values()
+            if eq and eq.set_id == item.set_id
+        )
+        lines.append(f"Set: {set_name} ({equipped_count}/4 equipped)")
+        for threshold, bonus in set_def.get("bonuses", {}).items():
+            marker = ">>>" if equipped_count >= threshold else "   "
+            lines.append(f"  {marker} {threshold}pc: {bonus.get('description', '?')}")
     if item.two_handed:
         lines.append("Two-Handed")
-    if hasattr(item, 'weight') and item.weight:
-        lines.append(f"Weight: {item.weight}")
     if item.description:
         lines.append(f"\n{item.description}")
 
     state.push_sidebar("\n".join(lines))
-    return [f"Inspecting {item.name}."]
+    return [f"Inspecting {display_name}."]
 
 
 def action_equip(state: GameState, inv_index: int, target_slot: Optional[GearSlot] = None) -> List[str]:
