@@ -777,14 +777,14 @@ class LibrarianTUI:
                 )
                 return cached
 
-        # WO-V33.0: RAG enrichment — fetch FAISS chunks for context
+        # WO-V33.0 + V139: RAG enrichment with citations
         rag_context = ""
         try:
             from codex.core.services.rag_service import get_rag_service
             rag = get_rag_service()
             system_id = self._resolve_system_id(namespace)
             if system_id:
-                result = rag.search(question, system_id, k=3, token_budget=800)
+                result = rag.search_rich(question, system_id, k=3, token_budget=800)
                 if result:
                     rag_context = rag.format_context(result, header="SOURCE MATERIAL:")
         except Exception:

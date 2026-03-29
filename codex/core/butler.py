@@ -780,7 +780,7 @@ class CodexButler:
         try:
             from codex.core.services.rag_service import get_rag_service
             rag = get_rag_service()
-            result = rag.search(query, system_id, k=3, token_budget=600)
+            result = rag.search_rich(query, system_id, k=3, token_budget=600)
             if result:
                 return rag.format_context(result, header="REFERENCE:")
         except Exception:

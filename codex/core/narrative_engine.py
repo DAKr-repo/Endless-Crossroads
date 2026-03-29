@@ -733,14 +733,17 @@ class NarrativeEngine:
                     "Example: [Solemn] The road has been long."
                 )
 
-                # WO-V33.0: RAG lore injection
+                # WO-V33.0 + V139: RAG lore injection with citations
                 try:
                     from codex.core.services.rag_service import get_rag_service
                     rag = get_rag_service()
                     lore_query = f"{npc.role} {npc.name}"
-                    lore_result = rag.search(lore_query, self.system_id, k=2, token_budget=200)
+                    lore_result = rag.search_rich(lore_query, self.system_id, k=2, token_budget=200)
                     if lore_result:
-                        prompt += f"\n\nLORE: {' '.join(c[:100] for c in lore_result.chunks)}"
+                        lore_text = ' '.join(c[:100] for c in lore_result.chunks)
+                        prompt += f"\n\nLORE: {lore_text}"
+                        if lore_result.citations:
+                            prompt += f"\n(Ref: {'; '.join(lore_result.citations)})"
                 except Exception:
                     pass
 
@@ -889,14 +892,17 @@ class NarrativeEngine:
             "Example: [Gravelly] Welcome to my forge."
         )
 
-        # WO-V33.0: RAG lore injection
+        # WO-V33.0 + V139: RAG lore injection with citations
         try:
             from codex.core.services.rag_service import get_rag_service
             rag = get_rag_service()
             lore_query = f"{npc.role} {npc.name}"
-            lore_result = rag.search(lore_query, self.system_id, k=2, token_budget=200)
+            lore_result = rag.search_rich(lore_query, self.system_id, k=2, token_budget=200)
             if lore_result:
-                prompt += f"\n\nLORE: {' '.join(c[:100] for c in lore_result.chunks)}"
+                lore_text = ' '.join(c[:100] for c in lore_result.chunks)
+                prompt += f"\n\nLORE: {lore_text}"
+                if lore_result.citations:
+                    prompt += f"\n(Ref: {'; '.join(lore_result.citations)})"
         except Exception:
             pass
 

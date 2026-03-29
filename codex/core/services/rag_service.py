@@ -366,17 +366,22 @@ class RAGService:
         self,
         result: RAGResult,
         header: str = "REFERENCE MATERIAL:",
+        include_citations: bool = True,
     ) -> str:
         """Format a RAGResult for injection into an LLM prompt.
 
-        Prefers .summary over raw chunks.
+        Prefers .summary over raw chunks. Appends source citations
+        when available (v3.0 indices with page provenance).
         """
         if not result:
             return ""
         body = result.context_str
         if not body:
             return ""
-        return f"{header}\n{body}"
+        formatted = f"{header}\n{body}"
+        if include_citations and result.citations:
+            formatted += f"\n\nSources: {'; '.join(result.citations)}"
+        return formatted
 
     # ------------------------------------------------------------------
     # Cache management
