@@ -1661,6 +1661,26 @@ class BurnwillowBridge:
                     lines.append("")
                     lines.append("You are now talking to "
                                  f"{name}. Type freely to chat, 'bye' to end.")
+                    # Faction services — gated by reputation
+                    npc_faction = npc.get("faction", "")
+                    if npc_faction and npc_faction in self.engine.faction_rep.reputation:
+                        from codex.games.burnwillow.engine import FACTION_SERVICES
+                        faction_def = FACTION_SERVICES.get(npc_faction)
+                        if faction_def:
+                            rep_tier = self.engine.faction_rep.get_tier(npc_faction)
+                            tier_name = self.engine.faction_rep.get_tier_name(npc_faction)
+                            lines.append(f"\n[{faction_def['name']} — {tier_name} ({rep_tier:+d})]")
+                            has_services = False
+                            for req_tier in sorted(faction_def["services"].keys()):
+                                for svc in faction_def["services"][req_tier]:
+                                    if rep_tier >= req_tier:
+                                        lines.append(f"  [*] {svc['name']}: {svc['desc']}")
+                                        has_services = True
+                                    else:
+                                        tier_needed = self.engine.faction_rep.TIER_NAMES.get(req_tier, "?")
+                                        lines.append(f"  [X] {svc['name']} (requires {tier_needed})")
+                            if not has_services:
+                                lines.append(f"  (Improve reputation to unlock services.)")
                     # Offer trade if merchant
                     if npc.get("npc_type") == "merchant":
                         trade_tier = npc.get("trade_tier", 1)

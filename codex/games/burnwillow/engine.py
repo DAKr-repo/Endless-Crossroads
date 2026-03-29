@@ -799,6 +799,107 @@ class FactionReputation:
         return fr
 
 
+# Faction services — what each faction offers and at what reputation tier
+FACTION_SERVICES: Dict[str, dict] = {
+    "hive": {
+        "name": "The Hive",
+        "services": {
+            1: [  # Friendly
+                {"id": "trade_wax", "name": "Wax-Sealed Armor Trade", "desc": "Buy wax-reinforced gear (Blight-resistant)."},
+                {"id": "heal_honey", "name": "Honey Healing", "desc": "Heal with Aether-infused honey (2d6+2 HP)."},
+            ],
+            2: [  # Allied
+                {"id": "propolis", "name": "Propolis Repair", "desc": "Restore 1 DR to damaged armor in the field."},
+                {"id": "buy_royal_jelly", "name": "Buy Royal Jelly", "desc": "Purchase Royal Jelly ingredient."},
+            ],
+            3: [  # Exalted
+                {"id": "hive_sense", "name": "Royal Jelly Dose", "desc": "Hive-sense: see through walls 3 rooms, sense all enemies."},
+            ],
+        },
+    },
+    "mycelium": {
+        "name": "The Mycelium",
+        "services": {
+            1: [
+                {"id": "trade_spores", "name": "Spore Trade", "desc": "Buy Rot Spores and Mycelium ingredients."},
+                {"id": "decompose", "name": "Decomposition", "desc": "Break any item into raw materials (better yield, 3-room delay)."},
+            ],
+            2: [
+                {"id": "fast_travel", "name": "Network Travel", "desc": "Fast-travel between discovered Mycelium nodes."},
+                {"id": "spore_infuse", "name": "Spore Infusion", "desc": "Add 'living' quality to gear (regen charges/HP)."},
+            ],
+            3: [
+                {"id": "network_graft", "name": "Network Grafting", "desc": "Bond item to network — survives death. 1 item per node."},
+            ],
+        },
+    },
+    "dam_wrights": {
+        "name": "The Dam-Wrights",
+        "services": {
+            1: [
+                {"id": "reinforce", "name": "Gear Reinforcement", "desc": "Add +1 DR to any armor piece (max 2 per item)."},
+                {"id": "trade_materials", "name": "Material Trade", "desc": "Buy Ironbark scraps and construction materials."},
+            ],
+            2: [
+                {"id": "root_roads", "name": "Root-Road Shortcuts", "desc": "Unlock shortcut passages between zones."},
+                {"id": "siege", "name": "Siege Equipment", "desc": "Portable barricades for room defense."},
+            ],
+            3: [
+                {"id": "lodgecraft", "name": "Lodgecraft", "desc": "Build room fortifications — barricades, chokepoints, rest shelters (halve Doom gain)."},
+            ],
+        },
+    },
+    "canopy_court": {
+        "name": "The Canopy Court",
+        "services": {
+            1: [
+                {"id": "enchant", "name": "Silk Enchanting", "desc": "Add an Aether affix to any non-weapon item."},
+                {"id": "trade_moth", "name": "Moth-Scale Trade", "desc": "Buy Moth-Scale Powder ingredient."},
+            ],
+            2: [
+                {"id": "wind_ride", "name": "Wind-Riding", "desc": "Access Crown zone without climbing."},
+                {"id": "thread_bind", "name": "Thread Binding", "desc": "Link two items to count as same gear set."},
+            ],
+            3: [
+                {"id": "mothwing", "name": "Mothwing Cloak", "desc": "Once per floor: invisible for one room transition."},
+            ],
+        },
+    },
+    "hag_circle": {
+        "name": "The Hag Circle",
+        "services": {
+            1: [
+                {"id": "curse_brew", "name": "Curse Brewing", "desc": "Apply debuff affix to weapon (Weakened/Frightened/Blighted on enemies)."},
+                {"id": "rot_process", "name": "Rot Processing", "desc": "Convert Blight materials into usable components."},
+            ],
+            2: [
+                {"id": "fortune", "name": "Fortune-Telling", "desc": "Reveal boss abilities and weaknesses. Cost: a memory (lose map data)."},
+                {"id": "buy_elder_sap", "name": "Hag's Ingredients", "desc": "Buy rare ingredients the Hags have processed."},
+            ],
+            3: [
+                {"id": "blight_tolerance", "name": "Blight Tolerance", "desc": "Passive Rot DR. Blighted rooms reveal secrets."},
+            ],
+        },
+    },
+    "heartwood_elders": {
+        "name": "The Heartwood Elders",
+        "services": {
+            1: [
+                {"id": "architecture", "name": "Living Architecture", "desc": "Reshape rooms — open passages, grow bridges, seal Rot breaches."},
+                {"id": "amber_communion", "name": "Amber Communion", "desc": "Access Arborist memories stored in walls."},
+            ],
+            2: [
+                {"id": "graft", "name": "Heartwood Grafting", "desc": "Permanently fuse gear to character — can't unequip, +1 tier."},
+                {"id": "buy_elder_sap", "name": "Elder Sap", "desc": "Receive Elder Sap ingredient."},
+            ],
+            3: [
+                {"id": "root_sense", "name": "Root-Sense", "desc": "Feel the tree's pain. Doom events give advance warning with direction."},
+            ],
+        },
+    },
+}
+
+
 # =============================================================================
 # ALCHEMY SYSTEM
 # =============================================================================
