@@ -1,12 +1,36 @@
 {
     "system_id": "STC",
-    "display_name": "stc",
+    "display_name": "Stormlight / Cosmere RPG",
     "engine": "custom",
     "system_family": "STC",
-    "archetype_categories": {},
-    "core_stats": [],
-    "resources": [],
-    "dice_system": "custom",
+    "dice_system": "d20 + modifier (Cosmere RPG)",
+    "archetype_categories": {
+        "orders": [
+            "Bondsmith",
+            "Dustbringer",
+            "Edgedancer",
+            "Elsecaller",
+            "Lightweaver",
+            "Skybreaker",
+            "Stoneward",
+            "Truthwatcher",
+            "Willshaper",
+            "Windrunner"
+        ]
+    },
+    "core_stats": [
+        "Awareness",
+        "Intellect",
+        "Presence",
+        "Speed",
+        "Strength",
+        "Will"
+    ],
+    "resources": [
+        "Focus",
+        "Investiture",
+        "Stormlight"
+    ],
     "mechanics": {
         "stats": [
             "Awareness",
@@ -34,21 +58,23 @@
             "Windrunner"
         ],
         "subclasses": [
-            "Cosmere Item",
+            "Draenei",
+            "Dwarves",
+            "Elfs",
+            "Gnomes",
+            "Halflings",
             "Living Shard",
             "Radiant",
-            "Specialization 1",
-            "Specialization 2",
-            "Squire",
-            "Stormlight Item"
+            "Squire"
         ],
         "races": [
-            "Dwarf",
-            "Elven",
+            "Dwarven",
+            "Elvish",
             "Gnome",
+            "Halfling",
             "Human",
             "Orc",
-            "Troll"
+            "Singer"
         ]
     }
 }

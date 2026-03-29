@@ -12,6 +12,14 @@
             "type": "race",
             "name": "Alien"
         },
+        "dwarves": {
+            "type": "race",
+            "name": "Dwarves"
+        },
+        "gnomes": {
+            "type": "race",
+            "name": "Gnomes"
+        },
         "goblin": {
             "type": "race",
             "name": "Goblin"
@@ -19,6 +27,14 @@
         "human": {
             "type": "race",
             "name": "Human"
+        },
+        "orcs": {
+            "type": "race",
+            "name": "Orcs"
+        },
+        "trolls": {
+            "type": "race",
+            "name": "Trolls"
         },
         "vampire": {
             "type": "race",
@@ -95,21 +111,25 @@
                 "Stitch"
             ],
             "subclasses": [
+                "Dreadful",
+                "Savage",
                 "Scum",
                 "Scumbag",
+                "Vile",
                 "Villain",
                 "Villainy"
             ],
             "races": [
                 "Alien",
+                "Dwarves",
+                "Gnomes",
                 "Goblin",
                 "Human",
+                "Orcs",
+                "Trolls",
                 "Vampire",
                 "Villain"
             ]
-        },
-        "races": [],
-        "deep_classes": {},
-        "feats": []
+        }
     }
 }

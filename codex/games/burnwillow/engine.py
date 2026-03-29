@@ -58,11 +58,16 @@ class GearTier(Enum):
 
 # Difficulty Classes (from SRD)
 class DC(Enum):
-    """Standard Difficulty Classes for checks."""
-    ROUTINE = 8   # Breaking crates, climbing rope
-    HARD = 12     # Picking locks, jumping chasms
-    HEROIC = 16   # Bending iron bars, deciphering runes
-    LEGENDARY = 20  # Resisting dragon fear, swimming up waterfalls
+    """Standard Difficulty Classes for checks.
+
+    Each step of 3.5 equals one die's average value.
+    Gear provides both dice (+Xd6) and flat modifiers (+tier per item).
+    """
+    ROUTINE = 5       # Easy for any equipped character
+    STANDARD = 11     # 50/50 for Basic (Tier I-II) gear
+    HARD = 15         # Requires Advanced (Tier III) gear
+    ELITE = 22        # Specialized high-tier characters only
+    LEGENDARY = 30    # 5d6 cap + heavy modifier stacking required
 
 
 # =============================================================================
@@ -110,18 +115,22 @@ class CheckResult:
                 f"{self.rolls} + {self.modifier} = {self.total} vs DC {self.dc}")
 
 
-def roll_check(dice_count: int, modifier: int, dc: int) -> CheckResult:
+def roll_check(dice_count: int, modifier: int, dc: int, assist: bool = False) -> CheckResult:
     """
     Roll the core Burnwillow check: [Dice Pool]d6 + Modifier vs DC.
 
     Args:
-        dice_count: Number of d6 to roll (1-5, capped at 5)
+        dice_count: Number of d6 to roll (before cap)
         modifier: Stat modifier to add
         dc: Difficulty Class to beat
+        assist: If True, an ally grants +1d6 (added before the 5d6 cap)
 
     Returns:
         CheckResult with success status and details
     """
+    # Add assistance die before capping
+    if assist:
+        dice_count += 1
     # Cap at 5d6 (SRD rule)
     dice_count = max(1, min(5, dice_count))
 
@@ -139,14 +148,15 @@ def roll_check(dice_count: int, modifier: int, dc: int) -> CheckResult:
     )
 
 
-def roll_dice_pool(dice_count: int, modifier: int, dc: int) -> dict:
+def roll_dice_pool(dice_count: int, modifier: int, dc: int, assist: bool = False) -> dict:
     """
     Roll a Burnwillow dice pool check (dict-based interface).
 
     Args:
-        dice_count: Number of d6s to roll (will be capped at 5)
+        dice_count: Number of d6s to roll (before cap)
         modifier: Stat modifier to add
         dc: Difficulty Class to beat
+        assist: If True, an ally grants +1d6 (added before the 5d6 cap)
 
     Returns:
         {
@@ -159,6 +169,9 @@ def roll_dice_pool(dice_count: int, modifier: int, dc: int) -> dict:
             'fumble': bool            # All dice show 1 (optional fumble)
         }
     """
+    # Add assistance die before capping
+    if assist:
+        dice_count += 1
     # ENFORCE MAX 5d6 (hard cap per GDD)
     dice_count = min(dice_count, 5)
 
@@ -180,6 +193,23 @@ def roll_dice_pool(dice_count: int, modifier: int, dc: int) -> dict:
         'crit': crit,
         'fumble': fumble
     }
+
+
+def passive_check(modifier: int, dc: int) -> bool:
+    """Check if a character's modifier alone guarantees success.
+
+    If Total Modifier + 1 >= DC, the character auto-succeeds without
+    rolling. Represents tasks where failure is mathematically impossible
+    given current equipment.
+
+    Args:
+        modifier: Total stat modifier (base + gear tier bonuses + item bonuses)
+        dc: Difficulty Class to beat
+
+    Returns:
+        True if the character auto-passes (no roll needed)
+    """
+    return (modifier + 1) >= dc
 
 
 def roll_ambush(wits_modifier: int, enemy_passive_dc: int) -> dict:
@@ -245,10 +275,29 @@ class GearItem:
     two_handed: bool = False  # If True, blocks both R.Hand and L.Hand
     weight: float = 1.0  # Default weight in abstract units
     primary_stat: Optional[StatType] = None  # Overrides SLOT_STAT_MAP for dice pool
+    set_id: Optional[str] = None  # Gear Set membership (e.g., "moonstone_circle")
+    prefix: Optional[str] = None  # Randomized affix prefix (e.g., "Blazing")
+    suffix: Optional[str] = None  # Randomized affix suffix (e.g., "of the Canopy")
+
+    def get_display_name(self) -> str:
+        """Get the full display name with affixes. E.g., 'Blazing Ironbark Longsword of the Canopy'."""
+        parts = []
+        if self.prefix:
+            parts.append(self.prefix)
+        parts.append(self.name)
+        if self.suffix:
+            parts.append(self.suffix)
+        return " ".join(parts)
 
     def get_dice_bonus(self) -> int:
-        """Get the dice pool bonus from this item's tier."""
-        return self.tier.value
+        """Get the dice pool bonus from this item.
+
+        Every equipped item contributes exactly +1d6 to its stat pool,
+        regardless of tier. Tier affects stat score bonus and trait
+        scaling, not dice count. To get more dice, equip more items.
+        To get better results, equip higher tier items.
+        """
+        return 1 if self.tier.value > 0 else 0
 
     def get_pool_stat(self) -> Optional[StatType]:
         """Which stat pool does this item contribute dice to?
@@ -274,6 +323,12 @@ class GearItem:
             d["two_handed"] = True
         if self.primary_stat is not None:
             d["primary_stat"] = self.primary_stat.value
+        if self.set_id is not None:
+            d["set_id"] = self.set_id
+        if self.prefix is not None:
+            d["prefix"] = self.prefix
+        if self.suffix is not None:
+            d["suffix"] = self.suffix
         return d
 
     @classmethod
@@ -291,6 +346,9 @@ class GearItem:
             description=data.get("description", ""),
             two_handed=data.get("two_handed", False),
             primary_stat=StatType(ps) if ps else None,
+            set_id=data.get("set_id"),
+            prefix=data.get("prefix"),
+            suffix=data.get("suffix"),
         )
 
 
@@ -383,17 +441,67 @@ class GearGrid:
                 breakdown[slot.value] = item.get_dice_bonus()
         return breakdown
 
-    def get_stat_bonus(self, stat_type: StatType) -> int:
-        """Get total flat stat bonus from equipped gear."""
+    def get_stat_score_bonus(self, stat_type: StatType) -> int:
+        """Get total bonus to stat SCORE (not modifier) from equipped gear.
+
+        Each item contributes its tier value to its pool stat SCORE
+        (Tier I = +1, Tier II = +2, etc.), plus any explicit stat_bonuses
+        defined on the item. The D&D modifier formula is applied afterward
+        on the combined score, so every 2 points here equals +1 modifier.
+        """
         total = 0
         for item in self.slots.values():
-            if item and stat_type in item.stat_bonuses:
-                total += item.stat_bonuses[stat_type]
+            if item:
+                # Tier-based modifier: every item gives +tier to its pool stat
+                if item.get_pool_stat() == stat_type:
+                    total += item.tier.value
+                # Explicit stat bonuses (hand-crafted on specific items)
+                if stat_type in item.stat_bonuses:
+                    total += item.stat_bonuses[stat_type]
+        # Set bonus stat bonuses (e.g., Arborist's Legacy 2pc = +1 Aether score)
+        set_bonuses = self.get_active_set_bonuses()
+        for bonus in set_bonuses.values():
+            sb = bonus.get("aether_score_bonus", 0)
+            if sb and stat_type == StatType.AETHER:
+                total += sb
         return total
 
+    def get_active_set_bonuses(self) -> Dict[str, dict]:
+        """Detect equipped set pieces and return active set bonuses."""
+        set_counts: Dict[str, int] = {}
+        for item in self.slots.values():
+            if item and item.set_id:
+                set_counts[item.set_id] = set_counts.get(item.set_id, 0) + 1
+
+        active: Dict[str, dict] = {}
+        for set_id, count in set_counts.items():
+            set_def = GEAR_SETS.get(set_id)
+            if not set_def:
+                continue
+            for threshold, bonus in set_def.get("bonuses", {}).items():
+                if count >= threshold:
+                    active[f"{set_id}_{threshold}pc"] = bonus
+        return active
+
+    def get_set_progress(self) -> Dict[str, tuple]:
+        """Get set piece counts for display. Returns {set_id: (count, set_name)}."""
+        set_counts: Dict[str, int] = {}
+        for item in self.slots.values():
+            if item and item.set_id:
+                set_counts[item.set_id] = set_counts.get(item.set_id, 0) + 1
+        return {
+            sid: (count, GEAR_SETS.get(sid, {}).get("name", sid))
+            for sid, count in set_counts.items()
+        }
+
     def get_total_dr(self) -> int:
-        """Get total Damage Reduction from armor."""
-        return sum(item.damage_reduction for item in self.slots.values() if item)
+        """Get total Damage Reduction from armor + set bonuses."""
+        base_dr = sum(item.damage_reduction for item in self.slots.values() if item)
+        # Set bonus DR (e.g., Warden's Watch 2pc = +1 DR)
+        set_bonuses = self.get_active_set_bonuses()
+        for bonus in set_bonuses.values():
+            base_dr += bonus.get("dr_bonus", 0)
+        return base_dr
 
     def has_trait(self, trait: str) -> bool:
         """Check if any equipped gear has a special trait."""
@@ -436,6 +544,262 @@ class GearGrid:
 
 
 # =============================================================================
+# HERITAGE — THE FOUR PEOPLES
+# =============================================================================
+
+HERITAGE_BONUSES: Dict[str, StatType] = {
+    "Autumn-Born": StatType.GRIT,     # Burnwillow — transition, endurance
+    "Spring-Born": StatType.AETHER,   # Verdhollow — growth, Aether channeling
+    "Summer-Born": StatType.MIGHT,    # Solheart — force, intensity
+    "Winter-Born": StatType.WITS,     # Ashenmere — perception, stillness
+}
+
+HERITAGE_BONUS_VALUE = 2  # +2 to stat score at creation
+
+
+def apply_heritage_bonus(stats: Dict[str, int], heritage: str) -> Dict[str, int]:
+    """Apply the +2 heritage stat bonus to a stat dict.
+
+    Args:
+        stats: Dict with keys 'might', 'wits', 'grit', 'aether'
+        heritage: One of the Four Peoples names
+
+    Returns:
+        Updated stats dict with heritage bonus applied.
+    """
+    bonus_stat = HERITAGE_BONUSES.get(heritage)
+    if bonus_stat:
+        key = bonus_stat.value.lower()
+        stats = dict(stats)
+        stats[key] = stats.get(key, 10) + HERITAGE_BONUS_VALUE
+    return stats
+
+
+# =============================================================================
+# GEAR SETS
+# =============================================================================
+
+GEAR_SETS: Dict[str, dict] = {
+    "arborist_legacy": {
+        "name": "Arborist's Legacy",
+        "bonuses": {
+            2: {"description": "+1 Aether score bonus", "aether_score_bonus": 1},
+            3: {"description": "Sanctify costs no action", "trait_free": "SANCTIFY"},
+            4: {"description": "Aether abilities auto-crit on Blighted", "crit_vs_blighted": True},
+        }
+    },
+    "wardens_watch": {
+        "name": "Warden's Watch",
+        "bonuses": {
+            2: {"description": "+1 DR", "dr_bonus": 1},
+            3: {"description": "Intercept protects 2 allies", "intercept_targets": 2},
+            4: {"description": "On block: allies get +1d6 next attack", "on_block_ally_bonus": True},
+        }
+    },
+    "rot_hunter_trophy": {
+        "name": "Rot Hunter's Trophy",
+        "bonuses": {
+            2: {"description": "Resist Blight passive", "resist_blight": True},
+            3: {"description": "+2 damage vs Blighted", "bonus_vs_blighted": 2},
+            4: {"description": "Kills on Blighted heal 1d6", "heal_on_blighted_kill": True},
+        }
+    },
+    "moonstone_circle": {
+        "name": "Moonstone Circle",
+        "bonuses": {
+            2: {"description": "Mending heals +1d6", "heal_bonus_die": 1},
+            3: {"description": "Renewal duration +2 rounds", "renewal_duration_bonus": 2},
+            4: {"description": "Party Regen 1 HP/round in combat", "party_regen": 1},
+        }
+    },
+    "shadowweave": {
+        "name": "Shadowweave",
+        "bonuses": {
+            2: {"description": "+2 Scout bonus", "scout_bonus": 2},
+            3: {"description": "Backstab double on surprise", "backstab_double_surprise": True},
+            4: {"description": "First attack each combat crits", "first_attack_crit": True},
+        }
+    },
+}
+
+
+# =============================================================================
+# RANDOMIZED AFFIXES
+# =============================================================================
+
+AFFIX_PREFIXES: Dict[str, dict] = {
+    "Blazing": {"on_hit_fire": "1d4"},
+    "Frozen": {"slow_chance": 0.1},
+    "Vampiric": {"heal_on_kill": 1},
+    "Keen": {"crit_range": [5, 6]},
+    "Volatile": {"bonus_damage": 2, "self_damage_on_fumble": 1},
+    "Rooted": {"dr_if_stationary": 1},
+}
+
+AFFIX_SUFFIXES: Dict[str, dict] = {
+    "of the Canopy": {"aether_pool_bonus": 1},
+    "of Haste": {"extra_movement": 1},
+    "of Thorns": {"reflect_damage": 1},
+    "of Mending": {"regen_per_room": 1},
+    "of the Willow": {"blight_resistance": True},
+}
+
+
+def roll_affixes(tier: int, zone_depth: int = 1) -> tuple:
+    """Roll random affixes for a loot drop.
+
+    Higher tier and deeper zones = higher chance of affixes.
+
+    Returns:
+        (prefix, suffix) tuple — either or both may be None.
+    """
+    import random as _rng
+
+    # Base chance scales with tier: T1=10%, T2=20%, T3=35%, T4=50%
+    base_chance = {1: 0.10, 2: 0.20, 3: 0.35, 4: 0.50}.get(tier, 0.10)
+    # Zone depth adds +5% per zone
+    chance = min(0.80, base_chance + zone_depth * 0.05)
+
+    prefix = None
+    suffix = None
+
+    if _rng.random() < chance:
+        prefix = _rng.choice(list(AFFIX_PREFIXES.keys()))
+
+    # Second affix is harder: half the chance
+    if _rng.random() < chance * 0.4:
+        suffix = _rng.choice(list(AFFIX_SUFFIXES.keys()))
+
+    return (prefix, suffix)
+
+
+# =============================================================================
+# CONDITIONS & STATUS EFFECTS
+# =============================================================================
+
+class Condition(Enum):
+    """Status effects that can be inflicted on characters."""
+    SAP_DRAINED = "Sap-Drained"           # Trait DCs +1, Aether disadvantage
+    SPORE_SICK = "Spore-Sick"             # Hallucinations (GM describes false threats)
+    RESONANCE_TOUCHED = "Resonance-Touched"  # Gear hums, enemy spawn +1, Choir prioritizes
+    BLIGHTED = "Blighted"                 # 1 HP lost per room, can't heal until cured
+    SHAKEN = "Shaken"                     # -1d6 all rolls 3 rounds, can't Command/Rally
+    ENTANGLED = "Entangled"               # Can't move, DC 15 Might to break
+    BURNING = "Burning"                   # 1d4 fire/round 2 rounds
+    FROZEN = "Frozen"                     # No actions 1 round, then -1d6 Grit 2 rounds
+    WEAKENED = "Weakened"                 # Might disadvantage, melee damage halved
+    BLINDED = "Blinded"                   # Attacks hit random target, -2 Wits 2 rounds
+    POISONED = "Poisoned"                 # -1 all rolls, 1d4 damage/round 3 rounds
+    GALL_MARKED = "Gall-Marked"           # Healing halved, rest attracts Gall Larvae
+
+
+# Default durations (0 = indefinite, cured by rest/potion/healer)
+CONDITION_DURATIONS: Dict[Condition, int] = {
+    Condition.SAP_DRAINED: 0,       # Until leave the area or cured
+    Condition.SPORE_SICK: 0,        # Until cured
+    Condition.RESONANCE_TOUCHED: 0, # Until leave deep zones
+    Condition.BLIGHTED: 0,          # Until cured (Salicylic Tonic, Father Oaken, Hag Circle)
+    Condition.SHAKEN: 3,            # 3 rounds
+    Condition.ENTANGLED: 0,         # Until DC 15 Might break or cured
+    Condition.BURNING: 2,           # 2 rounds
+    Condition.FROZEN: 1,            # 1 round (then Weakened-like aftereffect)
+    Condition.WEAKENED: 0,          # Until rest
+    Condition.BLINDED: 2,           # 2 rounds
+    Condition.POISONED: 3,          # 3 rounds
+    Condition.GALL_MARKED: 0,       # Until cured (Hag Circle or Mycelium)
+}
+
+
+# =============================================================================
+# FACTION REPUTATION
+# =============================================================================
+
+class FactionReputation:
+    """Tracks reputation with all six Burnwillow factions.
+
+    Reputation ranges from -2 (Hostile) to +3 (Exalted).
+    Opposing faction pairs: raising one lowers the other.
+    """
+
+    FACTIONS = ("hive", "mycelium", "dam_wrights", "canopy_court", "hag_circle", "heartwood_elders")
+
+    TIER_NAMES = {
+        -2: "Hostile", -1: "Wary", 0: "Neutral",
+        1: "Friendly", 2: "Allied", 3: "Exalted",
+    }
+
+    OPPOSING = [
+        ("hag_circle", "heartwood_elders"),
+        ("canopy_court", "dam_wrights"),
+        ("hive", "mycelium"),
+    ]
+
+    def __init__(self):
+        self.reputation: Dict[str, int] = {f: 0 for f in self.FACTIONS}
+
+    def change_rep(self, faction: str, amount: int) -> list:
+        """Change reputation. Opposing faction drops if positive. Returns messages."""
+        if faction not in self.reputation:
+            return [f"Unknown faction: {faction}"]
+        messages = []
+        old_tier = self.get_tier_name(faction)
+        self.reputation[faction] = max(-2, min(3, self.reputation[faction] + amount))
+        new_tier = self.get_tier_name(faction)
+        display = faction.replace("_", " ").title()
+        if old_tier != new_tier:
+            messages.append(f"{display}: {old_tier} -> {new_tier}")
+        else:
+            messages.append(f"{display}: reputation {'increased' if amount > 0 else 'decreased'} ({self.reputation[faction]:+d})")
+        if amount > 0:
+            for pair in self.OPPOSING:
+                if faction in pair:
+                    other = pair[1] if pair[0] == faction else pair[0]
+                    old_other = self.get_tier_name(other)
+                    self.reputation[other] = max(-2, min(3, self.reputation[other] - 1))
+                    new_other = self.get_tier_name(other)
+                    if old_other != new_other:
+                        other_display = other.replace("_", " ").title()
+                        messages.append(f"  {other_display}: {old_other} -> {new_other} (opposing)")
+        return messages
+
+    def get_tier(self, faction: str) -> int:
+        return self.reputation.get(faction, 0)
+
+    def get_tier_name(self, faction: str) -> str:
+        return self.TIER_NAMES.get(self.get_tier(faction), "Neutral")
+
+    def can_access_services(self, faction: str) -> bool:
+        return self.get_tier(faction) >= 1
+
+    def can_access_gear(self, faction: str) -> bool:
+        return self.get_tier(faction) >= 2
+
+    def has_capstone(self, faction: str) -> bool:
+        return self.get_tier(faction) >= 3
+
+    def get_summary(self) -> list:
+        lines = []
+        for faction in self.FACTIONS:
+            tier = self.get_tier(faction)
+            name = self.get_tier_name(faction)
+            bar = "+" * max(0, tier + 2) + "." * max(0, 5 - (tier + 2))
+            display = faction.replace("_", " ").title()
+            lines.append(f"  [{bar}] {display}: {name} ({tier:+d})")
+        return lines
+
+    def to_dict(self) -> dict:
+        return dict(self.reputation)
+
+    @classmethod
+    def from_dict(cls, data: dict) -> "FactionReputation":
+        fr = cls()
+        for k, v in data.items():
+            if k in fr.reputation:
+                fr.reputation[k] = max(-2, min(3, v))
+        return fr
+
+
+# =============================================================================
 # CHARACTER SYSTEM
 # =============================================================================
 
@@ -449,6 +813,9 @@ class Character:
     wits: int
     grit: int
     aether: int
+
+    # Heritage — one of the Four Peoples (stat bonus applied at creation)
+    heritage: str = "Autumn-Born"  # Autumn-Born, Spring-Born, Summer-Born, Winter-Born
 
     # Derived Stats
     max_hp: int = field(init=False)
@@ -465,6 +832,9 @@ class Character:
     scrap: int = 0   # Crafting resource for forge upgrades
     memory_seeds: List[dict] = field(default_factory=list)  # Each: {name, tier, deciphered}
 
+    # Active conditions — maps condition name to remaining rounds (0 = indefinite until cured)
+    conditions: Dict[str, int] = field(default_factory=dict)
+
     def __post_init__(self):
         """Calculate derived stats."""
         self.max_hp = 10 + calculate_stat_mod(self.grit)
@@ -479,11 +849,67 @@ class Character:
 
     # Stat Accessors
     def get_stat_mod(self, stat_type: StatType) -> int:
-        """Get total modifier for a stat (base + gear bonuses)."""
+        """Get total modifier for a stat.
+
+        Gear tier bonuses add to the stat SCORE, not the modifier.
+        The D&D formula (score - 10) // 2 then runs on the combined score.
+        Every 2 points of gear bonus = +1 modifier.
+        """
         base_score = getattr(self, stat_type.value.lower())
-        base_mod = calculate_stat_mod(base_score)
-        gear_bonus = self.gear.get_stat_bonus(stat_type)
-        return base_mod + gear_bonus
+        gear_score_bonus = self.gear.get_stat_score_bonus(stat_type)
+        total_score = base_score + gear_score_bonus
+        return calculate_stat_mod(total_score)
+
+    def get_effective_score(self, stat_type: StatType) -> int:
+        """Get total stat score including gear bonuses (for display)."""
+        base_score = getattr(self, stat_type.value.lower())
+        return base_score + self.gear.get_stat_score_bonus(stat_type)
+
+    # Condition Management
+    def add_condition(self, condition: Condition, duration: Optional[int] = None) -> str:
+        """Inflict a condition. Returns a message describing what happened.
+
+        Args:
+            condition: The Condition enum value to inflict.
+            duration: Rounds remaining. None = use default from CONDITION_DURATIONS.
+        """
+        if duration is None:
+            duration = CONDITION_DURATIONS.get(condition, 0)
+        self.conditions[condition.value] = duration
+        return f"{self.name} is now {condition.value}!"
+
+    def remove_condition(self, condition: Condition) -> str:
+        """Remove a condition. Returns a message."""
+        if condition.value in self.conditions:
+            del self.conditions[condition.value]
+            return f"{self.name} is no longer {condition.value}."
+        return ""
+
+    def has_condition(self, condition: Condition) -> bool:
+        """Check if character has a specific condition."""
+        return condition.value in self.conditions
+
+    def tick_conditions(self) -> List[str]:
+        """Advance all timed conditions by 1 round. Returns messages for expired conditions."""
+        expired = []
+        to_remove = []
+        for cond_name, remaining in self.conditions.items():
+            if remaining > 0:
+                self.conditions[cond_name] = remaining - 1
+                if remaining - 1 <= 0:
+                    to_remove.append(cond_name)
+                    expired.append(f"{self.name}: {cond_name} wears off.")
+        for cond_name in to_remove:
+            del self.conditions[cond_name]
+        return expired
+
+    def clear_all_conditions(self) -> None:
+        """Remove all conditions (e.g., on long rest)."""
+        self.conditions.clear()
+
+    def get_active_conditions(self) -> List[str]:
+        """Get list of active condition names."""
+        return list(self.conditions.keys())
 
     def get_defense(self) -> int:
         """Get total Defense (AC).
@@ -574,6 +1000,7 @@ class Character:
         """Save character to JSON-compatible dict."""
         return {
             "name": self.name,
+            "heritage": self.heritage,
             "might": self.might,
             "wits": self.wits,
             "grit": self.grit,
@@ -584,6 +1011,7 @@ class Character:
             "keys": self.keys,
             "scrap": self.scrap,
             "memory_seeds": list(self.memory_seeds),
+            "conditions": dict(self.conditions),
         }
 
     @classmethod
@@ -594,9 +1022,11 @@ class Character:
             might=data["might"],
             wits=data["wits"],
             grit=data["grit"],
-            aether=data["aether"]
+            aether=data["aether"],
+            heritage=data.get("heritage", "Autumn-Born"),
         )
         char.gear = GearGrid.from_dict(data.get("gear", {}))
+        char.conditions = data.get("conditions", {})
 
         # Support both legacy list and new dict inventory formats
         raw_inv = data.get("inventory", {})
@@ -732,7 +1162,7 @@ class BurnwillowEngine:
         char = engine.create_character("Kael")
         engine.generate_dungeon(depth=3, seed=42)
         room = engine.get_current_room()
-        result = char.make_check(StatType.MIGHT, DC.HARD.value)
+        result = char.make_check(StatType.MIGHT, DC.STANDARD.value)
         print(result)
     """
 
@@ -745,6 +1175,7 @@ class BurnwillowEngine:
         self.character: Optional[Character] = None
         self.party: List[Character] = []
         self.doom_clock = DoomClock()
+        self.faction_rep = FactionReputation()
 
         # Set up default doom thresholds (customizable)
         self.doom_clock.thresholds = {
@@ -768,6 +1199,12 @@ class BurnwillowEngine:
         self.current_room_id: Optional[int] = None
         self.player_pos: Optional[Tuple[int, int]] = None  # Grid (x, y) position
         self.visited_rooms: set = set()  # Track exploration
+
+        # Vault Breach Alert — acoustic echo counter
+        self.vault_echo_remaining: int = 0  # Rooms of boosted spawns after vault opening
+
+        # TPK Detection
+        self.campaign_over: bool = False
 
         # Delta tracker for narrative storytelling (WO-V48.0)
         try:
@@ -927,7 +1364,7 @@ class BurnwillowEngine:
         Args:
             character: Character to roll for (default: lead).
             stat: One of might/wits/grit/aether.
-            dc: Difficulty class (default: DC.ROUTINE = 8).
+            dc: Difficulty class (default: DC.ROUTINE = 5).
 
         Returns:
             Dict with roll details.
@@ -993,6 +1430,8 @@ class BurnwillowEngine:
             "found_items": list(self._found_item_names),
             # WO-V48.0: Delta tracker persistence
             "delta_tracker": self.delta_tracker.to_dict() if self.delta_tracker else None,
+            # Faction reputation
+            "faction_rep": self.faction_rep.to_dict(),
         }
 
     def load_game(self, data: dict):
@@ -1049,6 +1488,10 @@ class BurnwillowEngine:
                 self.delta_tracker = DeltaTracker.from_dict(data["delta_tracker"])
             except ImportError:
                 pass
+
+        # Faction reputation
+        if data.get("faction_rep"):
+            self.faction_rep = FactionReputation.from_dict(data["faction_rep"])
 
     def loot_item(self, room_id: Optional[int] = None) -> Optional[GearItem]:
         """Pop the first loot item from a room (no roll required).
@@ -1122,6 +1565,49 @@ class BurnwillowEngine:
     def advance_doom(self, turns: int = 1) -> List[str]:
         """Advance the doom clock and get triggered events."""
         return self.doom_clock.advance(turns)
+
+    # ─────────────────────────────────────────────────────────────────────
+    # VAULT BREACH ALERT
+    # ─────────────────────────────────────────────────────────────────────
+
+    def trigger_vault_breach(self) -> str:
+        """Called when an Amber Vault is opened. Starts the acoustic echo.
+
+        For the next 3 rooms, enemy spawn chance is 100% and enemy count
+        is +1. Stacks with existing echoes from other vault openings.
+        """
+        self.vault_echo_remaining += 3
+        return ("The vault seal shatters. A resonance pulse ripples outward "
+                "through the wood. The Rot stirs nearby.")
+
+    def tick_vault_echo(self) -> bool:
+        """Called on room entry. Returns True if vault echo is active (boosted spawns)."""
+        if self.vault_echo_remaining > 0:
+            self.vault_echo_remaining -= 1
+            return True
+        return False
+
+    def get_vault_echo_spawn_boost(self) -> int:
+        """Extra enemies per room during vault echo. Returns 0 if no echo active."""
+        return 1 if self.vault_echo_remaining > 0 else 0
+
+    # ─────────────────────────────────────────────────────────────────────
+    # TOTAL PARTY KILL DETECTION
+    # ─────────────────────────────────────────────────────────────────────
+
+    def check_tpk(self) -> bool:
+        """Check if all party members are dead. If so, mark campaign as over.
+
+        Returns True if TPK detected (campaign_over set to True).
+        Total Party Kill = full reset: no Memory Seeds, no Emberhome
+        upgrades, no meta_state persistence.
+        """
+        if not self.party:
+            return False
+        all_dead = all(c.current_hp <= 0 for c in self.party)
+        if all_dead:
+            self.campaign_over = True
+        return all_dead
 
     # ─────────────────────────────────────────────────────────────────────
     # LOOT PITY TIMER (WO-V17.0)
@@ -1827,10 +2313,10 @@ class BurnwillowTraitResolver:
         }
 
     def _resolve_sanctify(self, character, context: dict) -> dict:
-        check = character.make_check(StatType.AETHER, DC.HEROIC.value)
+        check = character.make_check(StatType.AETHER, DC.HARD.value)
         return {
             "success": check.success,
-            "message": f"SANCTIFY: Aether {check.total} vs DC {DC.HEROIC.value}",
+            "message": f"SANCTIFY: Aether {check.total} vs DC {DC.HARD.value}",
             "aoe_damage": random.randint(1, 6) if check.success else 0,
         }
 
@@ -1864,42 +2350,42 @@ class BurnwillowTraitResolver:
         }
 
     def _resolve_command(self, character, context: dict) -> dict:
-        """Command: Wits DC 12 check. Grant free attack."""
+        """Command: Wits DC 11 check. Grant free attack."""
         item = context.get("item")
         tier = item.tier.value if item else 1
         bonus_dmg = max(0, tier - 1)  # T1:0, T2:+1, T3:+2, T4:+3
-        check = character.make_check(StatType.WITS, 12)
+        check = character.make_check(StatType.WITS, DC.STANDARD.value)
         return {
             "success": check.success,
-            "message": f"COMMAND: Wits {check.total} vs DC 12 — {'SUCCESS' if check.success else 'FAIL'}",
+            "message": f"COMMAND: Wits {check.total} vs DC {DC.STANDARD.value} — {'SUCCESS' if check.success else 'FAIL'}",
             "bonus_damage": bonus_dmg if check.success else 0,
             "free_attack": check.success,
             "action": "command",
         }
 
     def _resolve_bolster(self, character, context: dict) -> dict:
-        """Bolster: Aether DC 10 check. Bonus dice on next roll."""
+        """Bolster: Aether DC 11 check. Bonus dice on next roll."""
         item = context.get("item")
         tier = item.tier.value if item else 1
         bonus_dice = min(3, tier)  # T1:+1d6, T2:+2d6, T3:+3d6, T4:+3d6
-        check = character.make_check(StatType.AETHER, 10)
+        check = character.make_check(StatType.AETHER, DC.STANDARD.value)
         return {
             "success": check.success,
-            "message": f"BOLSTER: Aether {check.total} vs DC 10 — {'SUCCESS' if check.success else 'FAIL'}",
+            "message": f"BOLSTER: Aether {check.total} vs DC {DC.STANDARD.value} — {'SUCCESS' if check.success else 'FAIL'}",
             "bonus_dice": bonus_dice if check.success else 0,
             "action": "bolster",
         }
 
     def _resolve_triage(self, character, context: dict) -> dict:
-        """Triage: Wits DC 12 check. Heal based on tier."""
+        """Triage: Wits DC 11 check. Heal based on tier."""
         item = context.get("item")
         tier = item.tier.value if item else 1
         heal_dice = min(4, tier)  # T1:1d6, T2:2d6, T3:3d6, T4:4d6
         heal_amount = sum(random.randint(1, 6) for _ in range(heal_dice))
-        check = character.make_check(StatType.WITS, 12)
+        check = character.make_check(StatType.WITS, DC.STANDARD.value)
         return {
             "success": check.success,
-            "message": f"TRIAGE: Wits {check.total} vs DC 12 — {'SUCCESS' if check.success else 'FAIL'}",
+            "message": f"TRIAGE: Wits {check.total} vs DC {DC.STANDARD.value} — {'SUCCESS' if check.success else 'FAIL'}",
             "heal_amount": heal_amount,
             "free_heal": check.success,  # Success = no charge consumed
             "action": "triage",
@@ -1921,15 +2407,15 @@ class BurnwillowTraitResolver:
 
     # WO-V36.0: Expanded AoE Trait Resolvers
     def _resolve_shockwave(self, character, context: dict) -> dict:
-        """Shockwave: Might DC 12. Damage + Stun 1 round, 1-3 targets."""
+        """Shockwave: Might DC 11. Damage + Stun 1 round, 1-3 targets."""
         item = context.get("item")
         tier = item.tier.value if item else 1
         targets = min(3, tier)
-        check = character.make_check(StatType.MIGHT, 12)
+        check = character.make_check(StatType.MIGHT, DC.STANDARD.value)
         dmg = sum(random.randint(1, 6) for _ in range(tier)) if check.success else 0
         return {
             "success": check.success,
-            "message": f"SHOCKWAVE: Might {check.total} vs DC 12 — {'SUCCESS' if check.success else 'FAIL'}",
+            "message": f"SHOCKWAVE: Might {check.total} vs DC {DC.STANDARD.value} — {'SUCCESS' if check.success else 'FAIL'}",
             "damage": dmg,
             "targets": targets if check.success else 0,
             "stun_rounds": 1 if check.success else 0,
@@ -1937,14 +2423,14 @@ class BurnwillowTraitResolver:
         }
 
     def _resolve_whirlwind(self, character, context: dict) -> dict:
-        """Whirlwind: Might DC 14. 75% damage to ALL enemies in room."""
+        """Whirlwind: Might DC 15. 75% damage to ALL enemies in room."""
         item = context.get("item")
         tier = item.tier.value if item else 1
-        check = character.make_check(StatType.MIGHT, 14)
+        check = character.make_check(StatType.MIGHT, DC.HARD.value)
         dmg = sum(random.randint(1, 6) for _ in range(tier)) if check.success else 0
         return {
             "success": check.success,
-            "message": f"WHIRLWIND: Might {check.total} vs DC 14 — {'SUCCESS' if check.success else 'FAIL'}",
+            "message": f"WHIRLWIND: Might {check.total} vs DC {DC.HARD.value} — {'SUCCESS' if check.success else 'FAIL'}",
             "damage": dmg,
             "damage_pct": 0.75 if check.success else 0,
             "hits_all": check.success,
@@ -1952,14 +2438,14 @@ class BurnwillowTraitResolver:
         }
 
     def _resolve_flash(self, character, context: dict) -> dict:
-        """Flash: Wits DC 12. Blind 1-2 enemies for 2 rounds."""
+        """Flash: Wits DC 11. Blind 1-2 enemies for 2 rounds."""
         item = context.get("item")
         tier = item.tier.value if item else 1
         targets = min(2, tier)
-        check = character.make_check(StatType.WITS, 12)
+        check = character.make_check(StatType.WITS, DC.STANDARD.value)
         return {
             "success": check.success,
-            "message": f"FLASH: Wits {check.total} vs DC 12 — {'SUCCESS' if check.success else 'FAIL'}",
+            "message": f"FLASH: Wits {check.total} vs DC {DC.STANDARD.value} — {'SUCCESS' if check.success else 'FAIL'}",
             "targets": targets if check.success else 0,
             "blind_rounds": 2 if check.success else 0,
             "accuracy_penalty": -2 if check.success else 0,
@@ -1967,40 +2453,40 @@ class BurnwillowTraitResolver:
         }
 
     def _resolve_snare(self, character, context: dict) -> dict:
-        """Snare: Wits DC 12. Reduce defense of 1-3 enemies by tier."""
+        """Snare: Wits DC 11. Reduce defense of 1-3 enemies by tier."""
         item = context.get("item")
         tier = item.tier.value if item else 1
         targets = min(3, tier)
-        check = character.make_check(StatType.WITS, 12)
+        check = character.make_check(StatType.WITS, DC.STANDARD.value)
         return {
             "success": check.success,
-            "message": f"SNARE: Wits {check.total} vs DC 12 — {'SUCCESS' if check.success else 'FAIL'}",
+            "message": f"SNARE: Wits {check.total} vs DC {DC.STANDARD.value} — {'SUCCESS' if check.success else 'FAIL'}",
             "targets": targets if check.success else 0,
             "defense_reduction": tier if check.success else 0,
             "action": "snare",
         }
 
     def _resolve_rally(self, character, context: dict) -> dict:
-        """Rally: Wits DC 10. Grant +1 bonus die to ALL allies' next attack."""
-        check = character.make_check(StatType.WITS, 10)
+        """Rally: Wits DC 11. Grant +1 bonus die to ALL allies' next attack."""
+        check = character.make_check(StatType.WITS, DC.STANDARD.value)
         return {
             "success": check.success,
-            "message": f"RALLY: Wits {check.total} vs DC 10 — {'SUCCESS' if check.success else 'FAIL'}",
+            "message": f"RALLY: Wits {check.total} vs DC {DC.STANDARD.value} — {'SUCCESS' if check.success else 'FAIL'}",
             "bonus_dice": 1 if check.success else 0,
             "hits_all_allies": check.success,
             "action": "rally",
         }
 
     def _resolve_inferno(self, character, context: dict) -> dict:
-        """Inferno: Aether DC 14. Fire damage + Burning 2 rounds to 1-3 targets."""
+        """Inferno: Aether DC 15. Fire damage + Burning 2 rounds to 1-3 targets."""
         item = context.get("item")
         tier = item.tier.value if item else 1
         targets = min(3, tier)
-        check = character.make_check(StatType.AETHER, 14)
+        check = character.make_check(StatType.AETHER, DC.HARD.value)
         dmg = sum(random.randint(1, 6) for _ in range(tier)) if check.success else 0
         return {
             "success": check.success,
-            "message": f"INFERNO: Aether {check.total} vs DC 14 — {'SUCCESS' if check.success else 'FAIL'}",
+            "message": f"INFERNO: Aether {check.total} vs DC {DC.HARD.value} — {'SUCCESS' if check.success else 'FAIL'}",
             "damage": dmg,
             "targets": targets if check.success else 0,
             "burning_rounds": 2 if check.success else 0,
@@ -2008,30 +2494,30 @@ class BurnwillowTraitResolver:
         }
 
     def _resolve_tempest(self, character, context: dict) -> dict:
-        """Tempest: Aether DC 12. Lightning damage to 1-3 targets."""
+        """Tempest: Aether DC 11. Lightning damage to 1-3 targets."""
         item = context.get("item")
         tier = item.tier.value if item else 1
         targets = min(3, tier)
-        check = character.make_check(StatType.AETHER, 12)
+        check = character.make_check(StatType.AETHER, DC.STANDARD.value)
         dmg = sum(random.randint(1, 6) for _ in range(tier)) if check.success else 0
         return {
             "success": check.success,
-            "message": f"TEMPEST: Aether {check.total} vs DC 12 — {'SUCCESS' if check.success else 'FAIL'}",
+            "message": f"TEMPEST: Aether {check.total} vs DC {DC.STANDARD.value} — {'SUCCESS' if check.success else 'FAIL'}",
             "damage": dmg,
             "targets": targets if check.success else 0,
             "action": "tempest",
         }
 
     def _resolve_voidgrip(self, character, context: dict) -> dict:
-        """Voidgrip: Aether DC 14. Necrotic damage + Blighted 2 rounds to 1-2 targets."""
+        """Voidgrip: Aether DC 15. Necrotic damage + Blighted 2 rounds to 1-2 targets."""
         item = context.get("item")
         tier = item.tier.value if item else 1
         targets = min(2, tier)
-        check = character.make_check(StatType.AETHER, 14)
+        check = character.make_check(StatType.AETHER, DC.HARD.value)
         dmg = sum(random.randint(1, 6) for _ in range(tier)) if check.success else 0
         return {
             "success": check.success,
-            "message": f"VOIDGRIP: Aether {check.total} vs DC 14 — {'SUCCESS' if check.success else 'FAIL'}",
+            "message": f"VOIDGRIP: Aether {check.total} vs DC {DC.HARD.value} — {'SUCCESS' if check.success else 'FAIL'}",
             "damage": dmg,
             "targets": targets if check.success else 0,
             "blighted_rounds": 2 if check.success else 0,
@@ -2039,25 +2525,25 @@ class BurnwillowTraitResolver:
         }
 
     def _resolve_mending(self, character, context: dict) -> dict:
-        """Mending: Wits DC 10. Heal 1d6*tier HP to ALL party members."""
+        """Mending: Wits DC 11. Heal 1d6*tier HP to ALL party members."""
         item = context.get("item")
         tier = item.tier.value if item else 1
-        check = character.make_check(StatType.WITS, 10)
+        check = character.make_check(StatType.WITS, DC.STANDARD.value)
         heal = sum(random.randint(1, 6) for _ in range(tier)) if check.success else 0
         return {
             "success": check.success,
-            "message": f"MENDING: Wits {check.total} vs DC 10 — {'SUCCESS' if check.success else 'FAIL'}",
+            "message": f"MENDING: Wits {check.total} vs DC {DC.STANDARD.value} — {'SUCCESS' if check.success else 'FAIL'}",
             "heal_amount": heal,
             "hits_all_allies": check.success,
             "action": "mending",
         }
 
     def _resolve_renewal(self, character, context: dict) -> dict:
-        """Renewal: Aether DC 12. HoT: 1d4 HP/round for 3 rounds to all allies."""
-        check = character.make_check(StatType.AETHER, 12)
+        """Renewal: Aether DC 11. HoT: 1d4 HP/round for 3 rounds to all allies."""
+        check = character.make_check(StatType.AETHER, DC.STANDARD.value)
         return {
             "success": check.success,
-            "message": f"RENEWAL: Aether {check.total} vs DC 12 — {'SUCCESS' if check.success else 'FAIL'}",
+            "message": f"RENEWAL: Aether {check.total} vs DC {DC.STANDARD.value} — {'SUCCESS' if check.success else 'FAIL'}",
             "hot_rounds": 3 if check.success else 0,
             "hot_dice": "1d4" if check.success else "",
             "hits_all_allies": check.success,
@@ -2065,17 +2551,133 @@ class BurnwillowTraitResolver:
         }
 
     def _resolve_aegis(self, character, context: dict) -> dict:
-        """Aegis: Grit DC 10. Grant +tier DR to ALL allies for 2 rounds."""
+        """Aegis: Grit DC 11. Grant +tier DR to ALL allies for 2 rounds."""
         item = context.get("item")
         tier = item.tier.value if item else 1
-        check = character.make_check(StatType.GRIT, 10)
+        check = character.make_check(StatType.GRIT, DC.STANDARD.value)
         return {
             "success": check.success,
-            "message": f"AEGIS: Grit {check.total} vs DC 10 — {'SUCCESS' if check.success else 'FAIL'}",
+            "message": f"AEGIS: Grit {check.total} vs DC {DC.STANDARD.value} — {'SUCCESS' if check.success else 'FAIL'}",
             "dr_bonus": tier if check.success else 0,
             "duration_rounds": 2 if check.success else 0,
             "hits_all_allies": check.success,
             "action": "aegis",
+        }
+
+    # WO-V4a: Resolved bracket traits
+    def _resolve_lockpick(self, character, context: dict) -> dict:
+        """Lockpick: Wits DC 11 to pick a lock. Tier scales bonus."""
+        item = context.get("item")
+        tier = item.tier.value if item else 1
+        bonus = tier  # Higher tier picks = easier locks
+        check = character.make_check(StatType.WITS, max(1, DC.STANDARD.value - bonus))
+        return {
+            "success": check.success,
+            "message": f"LOCKPICK: Wits {check.total} vs DC {max(1, DC.STANDARD.value - bonus)} — {'SUCCESS' if check.success else 'FAIL'}",
+            "action": "lockpick",
+        }
+
+    def _resolve_guard(self, character, context: dict) -> dict:
+        """Guard: Protect an adjacent ally. +tier DR to them until your next turn."""
+        item = context.get("item")
+        tier = item.tier.value if item else 1
+        dr_bonus = tier
+        return {
+            "success": True,
+            "message": f"GUARD: Protecting an ally. +{dr_bonus} DR to them until your next turn.",
+            "dr_bonus": dr_bonus,
+            "action": "guard",
+        }
+
+    def _resolve_reflect(self, character, context: dict) -> dict:
+        """Reflect: Return ranged attacks. Tier scales damage returned."""
+        item = context.get("item")
+        tier = item.tier.value if item else 1
+        reflect_dmg = tier
+        return {
+            "success": True,
+            "message": f"REFLECT: Ranged attacks bounce back for {reflect_dmg} damage.",
+            "reflect_damage": reflect_dmg,
+            "action": "reflect",
+        }
+
+    def _resolve_ranged(self, character, context: dict) -> dict:
+        """Ranged: Attack from distance. Uses Wits instead of Might."""
+        item = context.get("item")
+        tier = item.tier.value if item else 1
+        check = character.make_check(StatType.WITS, context.get("enemy_defense", DC.STANDARD.value))
+        damage = tier + 1 if check.success else 0
+        return {
+            "success": check.success,
+            "message": f"RANGED: Wits {check.total} vs DC {context.get('enemy_defense', DC.STANDARD.value)} — {'HIT' if check.success else 'MISS'}",
+            "damage": damage,
+            "uses_wits": True,
+            "action": "ranged",
+        }
+
+    def _resolve_light(self, character, context: dict) -> dict:
+        """Light: Illuminate surroundings. Reveals hidden objects and enemies."""
+        return {
+            "success": True,
+            "message": "LIGHT: The area is illuminated. Hidden objects and secret exits are revealed.",
+            "reveals_secrets": True,
+            "action": "light",
+        }
+
+    def _resolve_summon(self, character, context: dict) -> dict:
+        """Summon: Call a spirit minion. Scales with Aether."""
+        aether_mod = character.get_stat_mod(StatType.AETHER)
+        return {
+            "success": True,
+            "message": f"SUMMON: A spirit materializes! (HP: {3 + max(0, aether_mod)}, Duration: 3 rounds)",
+            "summon": True,
+            "minion_hp": 3 + max(0, aether_mod),
+            "minion_might": 8 + max(0, aether_mod),
+            "duration": 3,
+            "action": "summon",
+        }
+
+    def _resolve_spellslot(self, character, context: dict) -> dict:
+        """Spellslot: Cast from a spell focus. Aether check, tier scales damage."""
+        item = context.get("item")
+        tier = item.tier.value if item else 1
+        check = character.make_check(StatType.AETHER, context.get("enemy_defense", DC.STANDARD.value))
+        damage = sum(random.randint(1, 6) for _ in range(tier)) if check.success else 0
+        return {
+            "success": check.success,
+            "message": f"SPELLSLOT: Aether {check.total} vs DC {context.get('enemy_defense', DC.STANDARD.value)} — {'HIT for {damage}' if check.success else 'FIZZLE'}",
+            "damage": damage,
+            "uses_aether": True,
+            "action": "spellslot",
+        }
+
+    def _resolve_backstab(self, character, context: dict) -> dict:
+        """Backstab: Double damage if attacking from surprise or against unaware enemy."""
+        item = context.get("item")
+        tier = item.tier.value if item else 1
+        is_surprise = context.get("ambush_round", False) or context.get("enemy_blinded", False)
+        multiplier = 2 if is_surprise else 1
+        damage = (tier + 1) * multiplier
+        return {
+            "success": True,
+            "message": f"BACKSTAB: {'CRITICAL STRIKE! Double damage!' if is_surprise else 'No opening for a backstab. Normal damage.'} ({damage} damage)",
+            "damage": damage,
+            "was_backstab": is_surprise,
+            "action": "backstab",
+        }
+
+    def _resolve_heal(self, character, context: dict) -> dict:
+        """Heal: Restore HP from a consumable. Tier scales healing."""
+        item = context.get("item")
+        tier = item.tier.value if item else 1
+        heal_dice = max(1, tier)
+        heal_amount = sum(random.randint(1, 6) for _ in range(heal_dice))
+        actual = character.heal(heal_amount)
+        return {
+            "success": True,
+            "message": f"HEAL: Restored {actual} HP. ({heal_dice}d6 rolled)",
+            "heal_amount": actual,
+            "action": "heal",
         }
 
     _TRAIT_MAP = {
@@ -2103,6 +2705,16 @@ class BurnwillowTraitResolver:
         "MENDING": _resolve_mending,
         "RENEWAL": _resolve_renewal,
         "AEGIS": _resolve_aegis,
+        # WO-V4a: Bracket traits resolved
+        "LOCKPICK": _resolve_lockpick,
+        "GUARD": _resolve_guard,
+        "REFLECT": _resolve_reflect,
+        "RANGED": _resolve_ranged,
+        "LIGHT": _resolve_light,
+        "SUMMON": _resolve_summon,
+        "SPELLSLOT": _resolve_spellslot,
+        "BACKSTAB": _resolve_backstab,
+        "HEAL": _resolve_heal,
     }
 
 
@@ -2408,23 +3020,23 @@ def run_demo():
     # Test skill checks
     print("\n[SKILL CHECKS]")
 
-    # Attack a goblin (DC 12)
-    print("\n1. Attack a Goblin (Might vs DC 12)")
-    result = hero.make_check(StatType.MIGHT, DC.HARD.value)
+    # Attack a goblin (DC 11 — STANDARD)
+    print("\n1. Attack a Goblin (Might vs DC 11)")
+    result = hero.make_check(StatType.MIGHT, DC.STANDARD.value)
     print(result)
 
-    # Pick a lock (DC 12)
-    print("\n2. Pick a Lock (Wits vs DC 12)")
-    result = hero.make_check(StatType.WITS, DC.HARD.value)
+    # Pick a lock (DC 11 — STANDARD)
+    print("\n2. Pick a Lock (Wits vs DC 11)")
+    result = hero.make_check(StatType.WITS, DC.STANDARD.value)
     print(result)
 
-    # Resist poison (DC 16)
-    print("\n3. Resist Poison (Grit vs DC 16)")
-    result = hero.make_check(StatType.GRIT, DC.HEROIC.value)
+    # Resist poison (DC 15 — HARD)
+    print("\n3. Resist Poison (Grit vs DC 15)")
+    result = hero.make_check(StatType.GRIT, DC.HARD.value)
     print(result)
 
-    # Cast a spell (DC 8)
-    print("\n4. Cast Magic Missile (Aether vs DC 8)")
+    # Cast a spell (DC 5 — ROUTINE)
+    print("\n4. Cast Magic Missile (Aether vs DC 5)")
     result = hero.make_check(StatType.AETHER, DC.ROUTINE.value)
     print(result)
 

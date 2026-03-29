@@ -83,11 +83,11 @@ The Rot-Beetle (Minion)
     • DC: 8 | HP: 4 | Dmg: 2
     • Special: Skitter. -1d6 to Ranged Attacks against them.
 The Hollowed Scavenger (Standard)
-    • DC: 12 | HP: 10 | Dmg: 1d6 + 2
+    • DC: 11 | HP: 10 | Dmg: 1d6 + 2
     • Special: Muscle Memory. Uses the abilities of the gear they are holding (e.g., Shields, Wands).
 The Hollowed Bear (Boss - Zone 1)
-    • DC: 14 | HP: 25 | Dmg: 1d6 + 4
-    • Special: Terrifying Roar. Players must roll Grit vs DC 12 or be Shaken (-1d6 to rolls).
+    • DC: 15 | HP: 25 | Dmg: 1d6 + 4
+    • Special: Terrifying Roar. Players must roll Grit vs DC 11 or be Shaken (-1d6 to rolls).
     • Special: Thrash. Attacks all adjacent targets.
 
 6. MODULE 0: "THE ROOTS OF EMBERHOME"

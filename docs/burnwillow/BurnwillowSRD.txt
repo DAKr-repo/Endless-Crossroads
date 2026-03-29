@@ -17,11 +17,13 @@ The Cap: A player may never roll more than 5d6 for a single action.
 The Base: Characters always start with 1d6 (The "Naked" die). Gear adds additional dice.
 
 Difficulty Classes (DC)
+Each step of 3.5 equals one die's average value.
 Difficulty DC Examples
-Routine 8 Breaking a wooden crate, climbing a rope.
-Hard 12 Picking a lock, jumping a chasm, attacking a soldier.
-Heroic 16 Bending iron bars, deciphering ancient runes.
-Legendary 20 Resisting dragon fear, swimming up a waterfall.
+Routine 5 Breaking a wooden crate, climbing a knotted rope.
+Standard 11 Picking a lock, jumping a chasm, attacking a soldier.
+Hard 15 Bending iron bars, deciphering ancient runes.
+Elite 22 Resisting dragon fear, outrunning a collapsing tunnel.
+Legendary 30+ Swimming up a waterfall, breaking an Arborist seal.
 2. Character Creation
 Characters are defined by four Core Stats. Roll 4d6 and drop the lowest for each. Assign as desired.
 
@@ -116,7 +118,7 @@ Implements (Wands/Staves): Infinite use. Scale with Aether. Lower damage than me
 
 Scrolls: Consumable. High power.
 
-Volatile: When used, roll Aether vs. DC 10. Failure = Scroll burns and spell fizzles (or backfires).
+Volatile: When used, roll Aether vs. DC 11 (Standard). Failure = Scroll burns and spell fizzles (or backfires).
 
 Death & The Cycle
 Hardcore: When HP reaches 0, the character is dead.

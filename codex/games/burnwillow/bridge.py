@@ -20,8 +20,8 @@ from pathlib import Path
 
 from codex.games.burnwillow.engine import (
     BurnwillowEngine, BurnwillowTraitResolver,
-    Character, StatType, GearSlot,
-    roll_dice_pool
+    Character, StatType, GearSlot, DC, Condition,
+    roll_dice_pool, passive_check
 )
 from codex.spatial.map_engine import RoomType
 from codex.core.state_frame import StateFrame, build_state_frame
@@ -45,6 +45,7 @@ COMMANDS = {
     "command":   ["cmd", "order"],
     "bolster":   ["buff", "empower"],
     "triage":    ["medic", "firstaid"],
+    "assist":    ["help_ally", "aid"],
     "search":    ["s"],
     "loot":      [],
     "drop":      [],
@@ -56,6 +57,7 @@ COMMANDS = {
     "save":      [],
     "talk":      ["npc"],
     "recap":     [],
+    "reputation": ["rep", "factions"],
     "help":      ["h", "?"],
     "tutorial":  ["tut"],
 }
@@ -102,6 +104,7 @@ class BurnwillowBridge:
             "command": "Order an ally to act (requires banner/horn with [Command])",
             "bolster": "Empower an ally's next roll (requires totem with [Bolster])",
             "triage": "Heal with Wits check (requires med-kit with [Triage])",
+            "assist": "Help an ally's next check (+1d6 to their pool, max 5d6)",
             "rest": "Rest: 'rest short' (50% HP, +1 Doom) or 'rest long' (full, +3 Doom)",
         },
         "interaction": {
@@ -116,6 +119,7 @@ class BurnwillowBridge:
             "inventory": "Show your gear and items",
             "stats": "Show character stats",
             "save": "Save current game",
+            "reputation": "Show faction standings (aliases: rep, factions)",
             "recap": "Session recap (kills, loot, rooms)",
             "help": "List all commands",
             "tutorial": "Open interactive tutorial",
@@ -237,6 +241,7 @@ class BurnwillowBridge:
             "command":   lambda: self._cmd_command(arg),
             "bolster":   lambda: self._cmd_bolster(arg),
             "triage":    lambda: self._cmd_triage(arg),
+            "assist":    lambda: self._cmd_assist(arg),
             "search":    lambda: self._cmd_search(),
             "loot":      lambda: self._cmd_loot(),
             "drop":      lambda: self._cmd_drop(arg),
@@ -248,6 +253,7 @@ class BurnwillowBridge:
             "save":      lambda: self._cmd_save(),
             "talk":      lambda: self._cmd_talk(arg),
             "recap":     lambda: self._cmd_recap(),
+            "reputation": lambda: self._cmd_reputation(),
             "help":      lambda: self._cmd_help(),
             "tutorial":  lambda: self._cmd_tutorial(),
         }
@@ -423,6 +429,44 @@ class BurnwillowBridge:
 
         return "\n".join(lines)
 
+    def _on_room_entered(self) -> list[str]:
+        """Shared room-entry effects. Called by _cmd_move and grid_move exit."""
+        lines = []
+        char = self.engine.character
+
+        # Vault Breach Alert: boosted spawns during echo
+        vault_echo_active = self.engine.tick_vault_echo()
+        if vault_echo_active:
+            lines.append("The acoustic echo draws enemies toward you! (+1 enemy)")
+
+        # Blighted condition: 1 HP per room (Willow suffix resists)
+        if char.has_condition(Condition.BLIGHTED):
+            willow_resist = False
+            for _item in char.gear.slots.values():
+                if _item and _item.suffix == "of the Willow":
+                    willow_resist = True
+                    break
+            if willow_resist:
+                lines.append("Willow's protection absorbs the Blight.")
+            else:
+                char.current_hp = max(0, char.current_hp - 1)
+                lines.append(f"The Blight eats at you. (-1 HP, now {char.current_hp}/{char.max_hp})")
+
+        # Affix: Mending — heal 1 HP on room entry
+        for _item in char.gear.slots.values():
+            if _item and _item.suffix == "of Mending":
+                healed = char.heal(1)
+                if healed > 0:
+                    lines.append("Mending aura restores 1 HP.")
+                break
+
+        # Active conditions summary
+        active = char.get_active_conditions()
+        if active:
+            lines.append(f"Conditions: {', '.join(active)}")
+
+        return lines
+
     def _cmd_grid_move(self, direction: str) -> str:
         """Move one tile in the given direction on the spatial grid.
 
@@ -437,7 +481,11 @@ class BurnwillowBridge:
                 if exit_info and not exit_info.get("is_locked"):
                     move_result = self.engine.move_to_room(exit_info["id"])
                     if move_result["success"]:
-                        return self._cmd_look()
+                        entry_effects = self._on_room_entered()
+                        look = self._cmd_look()
+                        if entry_effects:
+                            return "\n".join(entry_effects) + "\n" + look
+                        return look
                     return move_result["message"] + "\n" + self._status_line()
                 elif exit_info and exit_info.get("is_locked"):
                     return f"The way {direction.upper()} is locked.\n" + self._status_line()
@@ -447,7 +495,11 @@ class BurnwillowBridge:
         if result.get("door_exit") is not None:
             move_result = self.engine.move_to_room(result["door_exit"])
             if move_result["success"]:
-                return self._cmd_look()
+                entry_effects = self._on_room_entered()
+                look = self._cmd_look()
+                if entry_effects:
+                    return "\n".join(entry_effects) + "\n" + look
+                return look
             return move_result["message"] + "\n" + self._status_line()
 
         return result["message"] + "\n" + self._status_line()
@@ -484,15 +536,27 @@ class BurnwillowBridge:
         self._log_event("room_entered", room_id=target_id)
         self._loom_shard(f"Explored room {target_id}")  # WO-V79.0
 
-        # Successful move — check for ambush
+        # Successful move — process on-room-entry effects
         room = result.get("room", {})
         enemies = room.get("enemies", [])
         lines = [result["message"]]
+        char = self.engine.character
 
+        # Shared room-entry effects (vault echo, Blight tick, conditions)
+        lines.extend(self._on_room_entered())
+
+        # Check for Blight death
+        if char.current_hp <= 0:
+            lines.append(f"{char.name} succumbs to the Blight...")
+            if self.engine.check_tpk():
+                lines.append("")
+                lines.append("THE BURNWILLOW FALLS.")
+            return "\n".join(lines)
+
+        # Ambush check
         if enemies:
-            char = self.engine.character
             wits_mod = char.get_stat_mod(StatType.WITS)
-            ambush = roll_dice_pool(1, wits_mod, 12)
+            ambush = roll_dice_pool(1, wits_mod, DC.STANDARD.value)
             if ambush["success"]:
                 lines.append("You catch them off guard! (Ambush round)")
             else:
@@ -557,7 +621,18 @@ class BurnwillowBridge:
         # Player attacks
         might_mod = char.get_stat_mod(StatType.MIGHT)
         dice_count = char.gear.get_total_dice_bonus(StatType.MIGHT)
-        result = roll_dice_pool(dice_count, might_mod, enemy_defense)
+
+        # Check for assist from ally
+        _assisted = getattr(self, '_assist_pending', False)
+        if _assisted:
+            self._assist_pending = False
+
+        # Passive threshold: auto-hit weak enemies
+        if passive_check(might_mod, enemy_defense):
+            result = {"success": True, "total": might_mod + 1, "rolls": [], "modifier": might_mod, "dc": enemy_defense, "crit": False, "fumble": False}
+            lines.append(f"Your gear outclasses {enemy_name}. (Auto-hit)")
+        else:
+            result = roll_dice_pool(dice_count, might_mod, enemy_defense, assist=_assisted)
 
         if result["success"]:
             # Deal damage based on weapon tier
@@ -572,13 +647,26 @@ class BurnwillowBridge:
 
             enemy_hp -= damage
 
+            # Affix: Blazing — +1d4 fire damage on hit
+            if weapon and weapon.prefix == "Blazing":
+                fire_dmg = random.randint(1, 4)
+                enemy_hp -= fire_dmg
+                lines.append(f"  Blazing! +{fire_dmg} fire damage.")
+
             _wname = weapon.name if weapon else "fists"
-            if result.get("crit"):
+            # Affix: Keen — crit range expanded to 5-6
+            is_crit = result.get("crit")
+            if weapon and weapon.prefix == "Keen" and not is_crit:
+                rolls = result.get("rolls", [])
+                if rolls and all(r >= 5 for r in rolls):
+                    is_crit = True
+
+            if is_crit:
                 lines.append(f"CRITICAL HIT! You strike {enemy_name} for {damage} damage!")
             else:
                 lines.append(f"You hit {enemy_name} for {damage} damage! ({result['total']} vs DC {enemy_defense})")
             if self._narrator:
-                _etype = "crit" if result.get("crit") else "hit"
+                _etype = "crit" if is_crit else "hit"
                 _cnarr = self._narrator.narrate_combat_mimir(
                     _etype, enemy_name, damage, _wname, mimir_fn=_combat_mimir_fn)
                 if _cnarr:
@@ -592,6 +680,11 @@ class BurnwillowBridge:
                     if _knarr:
                         lines.append(f"  {_knarr}")
                 enemies.pop(0)
+                # Affix: Vampiric — heal 1 HP on kill
+                if weapon and weapon.prefix == "Vampiric":
+                    healed = char.heal(1)
+                    if healed > 0:
+                        lines.append(f"  Vampiric drain! (+{healed} HP)")
                 # WO-V37.0: Log kill event
                 self._log_event("kill", target=enemy_name,
                                 tier=enemy.get("tier", 1) if isinstance(enemy, dict) else 1,
@@ -608,6 +701,11 @@ class BurnwillowBridge:
         else:
             if result.get("fumble"):
                 lines.append(f"FUMBLE! You swing wildly and miss {enemy_name}. ({result['total']} vs DC {enemy_defense})")
+                # Affix: Volatile — self-damage on fumble
+                weapon = char.gear.slots.get(GearSlot.R_HAND)
+                if weapon and weapon.prefix == "Volatile":
+                    char.current_hp = max(0, char.current_hp - 1)
+                    lines.append(f"  Volatile backlash! (-1 HP)")
             else:
                 lines.append(f"You miss {enemy_name}. ({result['total']} vs DC {enemy_defense})")
             if self._narrator:
@@ -633,11 +731,49 @@ class BurnwillowBridge:
                     lines.append(f"{enemy_name} strikes! Your shield absorbs the blow! (-{intercept_dr} DR bonus) {effective_damage} damage taken.")
                 else:
                     lines.append(f"{enemy_name} strikes you for {effective_damage} damage!")
+                    # Affix: Thorns — reflect 1 damage on hit
+                    for _slot_item in char.gear.slots.values():
+                        if _slot_item and _slot_item.suffix == "of Thorns":
+                            enemy_hp -= 1
+                            lines.append(f"  Thorns reflect 1 damage back!")
+                            break
                     if self._narrator:
                         _ehnarr = self._narrator.narrate_combat_mimir(
                             "enemy_hit", enemy_name, effective_damage, mimir_fn=_combat_mimir_fn)
                         if _ehnarr:
                             lines.append(f"  {_ehnarr}")
+
+                # Enemy special: condition infliction on hit
+                enemy_special = enemy.get("special", "") if isinstance(enemy, dict) else ""
+                _CONDITION_KEYWORDS = {
+                    "Sap-Drained": Condition.SAP_DRAINED,
+                    "Spore-Sick": Condition.SPORE_SICK,
+                    "Resonance-Touched": Condition.RESONANCE_TOUCHED,
+                    "Blighted": Condition.BLIGHTED,
+                    "Gall-Marked": Condition.GALL_MARKED,
+                    "Shaken": Condition.SHAKEN,
+                    "Entangled": Condition.ENTANGLED,
+                    "Poisoned": Condition.POISONED,
+                    "Weakened": Condition.WEAKENED,
+                }
+                for keyword, cond in _CONDITION_KEYWORDS.items():
+                    if keyword in enemy_special and not char.has_condition(cond):
+                        # Check for a DC save if mentioned (e.g., "DC 11 Grit")
+                        import re
+                        dc_match = re.search(r'DC\s*(\d+)\s*(Might|Wits|Grit|Aether)', enemy_special)
+                        if dc_match:
+                            save_dc = int(dc_match.group(1))
+                            save_stat = StatType(dc_match.group(2).upper())
+                            save_mod = char.get_stat_mod(save_stat)
+                            save_roll = roll_dice_pool(char.gear.get_total_dice_bonus(save_stat), save_mod, save_dc)
+                            if not save_roll["success"]:
+                                msg = char.add_condition(cond)
+                                lines.append(f"  {msg} (failed {save_stat.value} save vs DC {save_dc})")
+                        else:
+                            msg = char.add_condition(cond)
+                            lines.append(f"  {msg}")
+                        break  # Only one condition per hit
+
             else:
                 lines.append(f"{enemy_name} attacks but misses!")
                 if self._narrator:
@@ -650,10 +786,36 @@ class BurnwillowBridge:
         if not char.is_alive():
             self.dead = True
             lines.append("")
-            lines.append("=== YOU HAVE FALLEN ===")
-            lines.append(f"Doom Clock: {self.engine.doom_clock.current}")
-            lines.append("The dungeon claims another soul.")
+            if self.engine.check_tpk():
+                lines.append("=== THE BURNWILLOW FALLS ===")
+                lines.append("")
+                lines.append("Every light has gone out. No one returns to Emberhome.")
+                lines.append("No Memory Seeds carry forward. No names for the Chapel wall.")
+                lines.append("The fire-leaves darken. The Root-Song ends.")
+                lines.append("")
+                lines.append("Campaign over. Full reset.")
+            else:
+                lines.append("=== YOU HAVE FALLEN ===")
+                lines.append(f"Doom Clock: {self.engine.doom_clock.current}")
+                lines.append("The dungeon claims another soul.")
             return "\n".join(lines)
+
+        # End of combat round — tick conditions
+        expired = char.tick_conditions()
+        for msg in expired:
+            lines.append(msg)
+
+        # Burning damage
+        if char.has_condition(Condition.BURNING):
+            burn_dmg = random.randint(1, 4)
+            char.current_hp = max(0, char.current_hp - burn_dmg)
+            lines.append(f"Burning! (-{burn_dmg} HP)")
+
+        # Poisoned damage
+        if char.has_condition(Condition.POISONED):
+            poison_dmg = random.randint(1, 4)
+            char.current_hp = max(0, char.current_hp - poison_dmg)
+            lines.append(f"Poison courses through you. (-{poison_dmg} HP)")
 
         lines.append("")
         lines.append(self._status_line())
@@ -668,11 +830,20 @@ class BurnwillowBridge:
         char = self.engine.character
         wits_mod = char.get_stat_mod(StatType.WITS)
         dice_count = char.gear.get_total_dice_bonus(StatType.WITS)
-        result = roll_dice_pool(dice_count, wits_mod, 12)
+
+        # Passive threshold: auto-succeed if gear makes failure impossible
+        if passive_check(wits_mod, 11):
+            result = {"success": True, "total": wits_mod + 1, "rolls": [], "modifier": wits_mod, "dc": 11, "crit": False, "fumble": False}
+            auto_pass = True
+        else:
+            result = roll_dice_pool(dice_count, wits_mod, 11)
+            auto_pass = False
 
         doom_events = self.engine.advance_doom(1)
 
         lines = []
+        if auto_pass:
+            lines.append("Your trained eye finds it instantly. (Auto-success)")
 
         found_loot = False
         if result["success"]:
@@ -1049,6 +1220,23 @@ class BurnwillowBridge:
         lines.append(self._status_line())
         return "\n".join(lines)
 
+    def _cmd_assist(self, arg: str = "") -> str:
+        """Help an ally's next check. Grants +1d6 to their pool (max 5d6).
+
+        Uses your action for the round. The bonus applies to the next
+        attack or check made by another party member.
+        """
+        party = self.engine.party if hasattr(self.engine, 'party') else []
+        if len(party) < 2:
+            return "No allies to assist. You need at least 2 party members.\n" + self._status_line()
+
+        self._assist_pending = True
+        char = self.engine.character
+        return (
+            f"{char.name} readies to assist! (+1d6 to the next ally's check)\n"
+            + self._status_line()
+        )
+
     def _cmd_save(self) -> str:
         """Save current game state to disk."""
         try:
@@ -1059,6 +1247,19 @@ class BurnwillowBridge:
             return f"Game saved.\n{self._status_line()}"
         except Exception as e:
             return f"Save failed: {e}"
+
+    def _cmd_reputation(self) -> str:
+        """Show faction reputation standings."""
+        lines = ["=== FACTION REPUTATION ===", ""]
+        lines.extend(self.engine.faction_rep.get_summary())
+        lines.append("")
+        lines.append("Opposing factions:")
+        lines.append("  Hag Circle <-> Heartwood Elders")
+        lines.append("  Canopy Court <-> Dam-Wrights")
+        lines.append("  The Hive <-> The Mycelium")
+        lines.append("")
+        lines.append(self._status_line())
+        return "\n".join(lines)
 
     def _cmd_help(self) -> str:
         """List available commands."""

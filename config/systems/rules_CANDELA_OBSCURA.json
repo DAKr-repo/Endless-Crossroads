@@ -30,16 +30,25 @@
             "Scars"
         ],
         "classes": [
+            "Cave",
             "Character Class 1",
             "Character Class 2",
+            "Dungeon",
+            "Forest",
+            "Island",
+            "Mountain",
             "Playbook 1",
             "Playbook 2"
         ],
         "subclasses": [
+            "Ancient",
+            "Elemental",
+            "Mystic",
             "Specialization 1",
             "Specialization 2",
             "Specialization1",
-            "Specialization2"
+            "Specialization2",
+            "Spectral"
         ],
         "actions": [
             "Conduct",
@@ -54,9 +63,13 @@
         ],
         "races": [
             "Dwarf",
+            "Dwarven",
             "Elf",
+            "Elvish",
             "Gnome",
-            "Human"
+            "Halfling",
+            "Human",
+            "Orc"
         ]
     }
 }

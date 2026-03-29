@@ -85,6 +85,11 @@
                 "Playbook Y"
             ],
             "subclasses": [
+                "Diplomacy",
+                "Economy",
+                "Finance",
+                "Law",
+                "Military",
                 "SpecializationC",
                 "SubclassA",
                 "SubclassB"
@@ -107,9 +112,6 @@
                 "Human",
                 "Orc"
             ]
-        },
-        "races": [],
-        "deep_classes": {},
-        "feats": []
+        }
     }
 }

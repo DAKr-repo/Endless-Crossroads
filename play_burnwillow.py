@@ -1970,11 +1970,33 @@ def init_game(state: GameState, names: List[str], seed: Optional[int] = None,
     else:
         # Quick Start path: random stats + inline loadout picker
         state.engine.create_party(names)
+
+        # Heritage selection — The Four Peoples
+        from codex.games.burnwillow.engine import HERITAGE_BONUSES, apply_heritage_bonus
+        party = state.engine.party
+        for char in party:
+            state.console.print(f"\n[bold]{char.name} — Choose your heritage:[/]")
+            state.console.print("  [yellow]1[/] Autumn-Born (Burnwillow) — +2 Grit, sense transitions")
+            state.console.print("  [yellow]2[/] Spring-Born (Verdhollow) — +2 Aether, growth affinity")
+            state.console.print("  [yellow]3[/] Summer-Born (Solheart)  — +2 Might, intensity")
+            state.console.print("  [yellow]4[/] Winter-Born (Ashenmere) — +2 Wits, perception")
+            h_choice = Prompt.ask("  Heritage", choices=["1", "2", "3", "4"], default="1", console=state.console)
+            heritage_map = {"1": "Autumn-Born", "2": "Spring-Born", "3": "Summer-Born", "4": "Winter-Born"}
+            heritage = heritage_map[h_choice]
+            char.heritage = heritage
+            bonus_stat = HERITAGE_BONUSES[heritage]
+            # Apply +2 to the stat score
+            current = getattr(char, bonus_stat.value.lower())
+            setattr(char, bonus_stat.value.lower(), current + 2)
+            # Recalculate derived stats
+            char.__post_init__()
+            char.current_hp = char.max_hp  # Reset HP after recalc
+            state.console.print(f"  {char.name} is {heritage}. (+2 {bonus_stat.value})")
+
         starter = create_starter_gear()
         # starter: [0] Rusted Shortsword, [1] Padded Jerkin, [2] Old Oak Wand,
         #          [3] Burglar's Gloves, [4] Pot Lid Shield
 
-        party = state.engine.party
         party_size = len(party)
 
         if party_size == 1:

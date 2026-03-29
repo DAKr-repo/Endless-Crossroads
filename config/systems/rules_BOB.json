@@ -47,13 +47,19 @@
             "Band of Blades",
             "BandLeader",
             "BandMember",
+            "Cleric",
+            "Hunter",
+            "Ranger",
             "Specialization 1",
             "Specialization 2"
         ],
         "races": [
             "Dwarf",
+            "Dwarves",
             "Elf",
+            "Elves",
             "Gnome",
+            "Gnomes",
             "Human",
             "Orc"
         ]

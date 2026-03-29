@@ -1,43 +1,77 @@
 {
     "system_id": "BURNWILLOW",
-    "display_name": "burnwillow",
+    "display_name": "Burnwillow",
     "engine": "custom",
     "system_family": "BURNWILLOW",
-    "archetype_categories": {},
-    "core_stats": [],
-    "resources": [],
-    "dice_system": "custom",
+    "dice_system": "5d6 pool + stat modifier vs DC",
+    "archetype_categories": {
+        "stat_pools": [
+            "Might",
+            "Wits",
+            "Grit",
+            "Aether"
+        ],
+        "gear_tiers": [
+            "Tier 0 (Naked)",
+            "Tier I (Scrap/Wood)",
+            "Tier II (Ironbark)",
+            "Tier III (Heartwood)",
+            "Tier IV (Ambercore)"
+        ]
+    },
+    "core_stats": [
+        "Might",
+        "Wits",
+        "Grit",
+        "Aether"
+    ],
+    "resources": [
+        "HP",
+        "Doom Clock",
+        "Amber",
+        "Gear Grid (10 slots)"
+    ],
+    "peoples": {
+        "Autumn-Born": {"grove": "Burnwillow", "affinity": "Transition", "stat_bonus": "Grit +2"},
+        "Spring-Born": {"grove": "Verdhollow", "affinity": "Growth", "stat_bonus": "Aether +2"},
+        "Summer-Born": {"grove": "Solheart", "affinity": "Intensity", "stat_bonus": "Might +2"},
+        "Winter-Born": {"grove": "Ashenmere", "affinity": "Stillness", "stat_bonus": "Wits +2"}
+    },
     "mechanics": {
         "stats": [
-            "Flow",
-            "Focus",
-            "Vigor"
+            "Might",
+            "Wits",
+            "Grit",
+            "Aether"
         ],
         "resources": [
-            "Energy",
-            "Health",
-            "Will"
+            "HP",
+            "Doom Clock",
+            "Amber"
         ],
-        "classes": [
-            "Character Class 1",
-            "Character Class 2",
-            "Playbook 1",
-            "Playbook 2",
-            "Playbook A",
-            "Playbook B"
+        "stat_generation": "4d6 drop lowest per stat. Gear adds to stat SCORE (not modifier). D&D formula: (score - 10) // 2.",
+        "dice_pool": "Base 1d6 + gear tier dice per stat pool, capped at 5d6. Roll pool + stat modifier vs DC.",
+        "dc_tiers": {
+            "Routine": 5,
+            "Standard": 11,
+            "Hard": 15,
+            "Elite": 22,
+            "Legendary": 30
+        },
+        "gear_slots": [
+            "R.Hand",
+            "L.Hand",
+            "Head",
+            "Arms",
+            "Chest",
+            "Legs",
+            "Shoulders",
+            "Neck",
+            "R.Ring",
+            "L.Ring"
         ],
-        "subclasses": [
-            "Specialization 1",
-            "Specialization 2",
-            "SpecializationC",
-            "SubclassA",
-            "SubclassB"
-        ],
-        "races": [
-            "Dwarf",
-            "Elf",
-            "Gnome",
-            "Human"
-        ]
+        "progression": "Gear-based (no leveling). Power scales with equipment tier and build synergy.",
+        "passive_threshold": "If Total Modifier + 1 >= DC, auto-succeed without rolling.",
+        "assistance": "Ally grants +1d6 to roll (subject to 5d6 cap). One helper per check."
     }
 }

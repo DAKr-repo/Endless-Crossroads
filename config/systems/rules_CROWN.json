@@ -1,33 +1,68 @@
 {
     "system_id": "CROWN",
-    "display_name": "crown",
+    "display_name": "Crown & Crew",
     "engine": "custom",
     "system_family": "CROWN",
-    "archetype_categories": {},
-    "core_stats": [],
-    "resources": [],
-    "dice_system": "custom",
+    "dice_system": "narrative / custom",
+    "archetype_categories": {
+        "pillars": [
+            "Diplomacy",
+            "Economy",
+            "Military",
+            "Law and Order",
+            "Religion",
+            "Quests"
+        ]
+    },
+    "core_stats": [
+        "Sway",
+        "Influence",
+        "Loyalty"
+    ],
+    "resources": [
+        "Treasury",
+        "Sway Points",
+        "Faction Standing"
+    ],
     "mechanics": {
+        "stats": [
+            "Sway",
+            "Influence",
+            "Loyalty"
+        ],
+        "resources": [
+            "Treasury",
+            "Sway Points",
+            "Faction Standing"
+        ],
+        "structure": "3-act narrative campaign with Mirror, Tax, Echo, Morning, Midday, and Council phases",
+        "multiplayer": "Per-player sway tracking, group voting, dissent mechanics",
+        "finale": "Patron/Leader Reckoning, The Crossing, JSON Legacy",
         "races": [
-            "Dwarf",
-            "Elf",
+            "Dwarven",
+            "Elvish",
             "Gnome",
-            "Human",
+            "Halfling",
             "Orc"
         ],
         "classes": [
-            "Character Class 1",
-            "Character Class 2",
-            "Playbook A",
-            "Playbook B"
+            "Diplomacy",
+            "Economy",
+            "Law and Order",
+            "Military",
+            "Politics",
+            "Religion"
         ],
         "subclasses": [
-            "Specialization X",
-            "SpecializationC",
-            "Subclass A",
-            "Subclass B",
-            "SubclassA",
-            "SubclassB"
+            "Diplomacy",
+            "Engineering",
+            "Finance",
+            "History",
+            "Law",
+            "Medicine",
+            "Nautical",
+            "Philosophy",
+            "Religion"
         ]
     }
 }

@@ -12,13 +12,25 @@
             "type": "race",
             "name": "Dwarf"
         },
+        "dwarves": {
+            "type": "race",
+            "name": "Dwarves"
+        },
         "elf": {
             "type": "race",
             "name": "Elf"
         },
+        "elves": {
+            "type": "race",
+            "name": "Elves"
+        },
         "gnome": {
             "type": "race",
             "name": "Gnome"
+        },
+        "gnomes": {
+            "type": "race",
+            "name": "Gnomes"
         },
         "human": {
             "type": "race",
@@ -94,19 +106,22 @@
                 "Band of Blades",
                 "BandLeader",
                 "BandMember",
+                "Cleric",
+                "Hunter",
+                "Ranger",
                 "Specialization 1",
                 "Specialization 2"
             ],
             "races": [
                 "Dwarf",
+                "Dwarves",
                 "Elf",
+                "Elves",
                 "Gnome",
+                "Gnomes",
                 "Human",
                 "Orc"
             ]
-        },
-        "races": [],
-        "deep_classes": {},
-        "feats": []
+        }
     }
 }

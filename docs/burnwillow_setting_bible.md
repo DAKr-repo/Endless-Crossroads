@@ -12,9 +12,15 @@ The Burnwillow universe is a single living cosmos contained within four world-tr
 
 ---
 
-## The Four Groves
+## The Six Groves
 
-The Groves are four world-trees of planetary scale, each embodying a season and a philosophical state. These are not metaphors — the seasons are real, structural properties of each tree's biology and the civilizations it supports. The canopy of each Grove is its entire sky. The Deep Shade beyond the reach of each canopy's fire-light is a frozen, pitch-black expanse where no life can survive.
+The cosmos contains six Groves. Four are the **Seasonal Groves** — world-trees of planetary scale, each embodying a season. Below them all lies the **Undergrove** — the shared root network where decomposition and memory converge. Within them all, accessible not by direction but by depth through the wood itself, lies the **Heartwood** — the First Tree from which all others grew.
+
+The Seasonal Groves are where people live. The Undergrove is where everything ends up. The Heartwood is where everything began. The Root-Roads connect them — surface to surface, surface to deep, and if you go far enough inward, surface to origin.
+
+### The Seasonal Groves
+
+The four seasonal Groves are world-trees of planetary scale, each embodying a season and a philosophical state. These are not metaphors — the seasons are real, structural properties of each tree's biology and the civilizations it supports. The canopy of each Grove is its entire sky. The Deep Shade beyond the reach of each canopy's fire-light is a frozen, pitch-black expanse where no life can survive.
 
 ### Burnwillow — Autumn (Active Game Zone)
 - The dying hearth. Fire-leaves in perpetual crimson, orange, and gold — the only source of warmth and light in existence.
@@ -52,10 +58,69 @@ The Groves are four world-trees of planetary scale, each embodying a season and 
 - Built and maintained by the Arborists. The First Druids walked these roads freely to tend the seasonal cycle.
 - Sealed since the Golden Age collapse — forgotten, overgrown, warded.
 - Each passage carries the character of the season it leads to: a road to Verdhollow drips with sap and sprouts vines; a road to Ashenmere grows cold and silent with frost.
-- Navigating Root-Roads requires a Dowsing Rod or successful Wits check (DC 16 Heroic).
+- Navigating Root-Roads requires a Dowsing Rod or successful Wits check (DC 22 Elite).
 - The Blight travels Root-Roads. Opening a sealed passage is never without consequence.
 - Where the Rot has spread, Root-Roads become Hollow highways — infested and impassable.
 - **Campaign hook:** The Root-Roads are the multiverse spine. Each Grove is its own full campaign setting, connected by these deep passages.
+
+### The Heartwood — The First Tree (Within)
+
+The Heartwood is not a place you travel to by going up, down, or across. It is a place you travel to by going **inward** — deeper into the wood itself, past growth rings that represent centuries of the tree's life, until you reach the very first ring. The center. The seed from which all four Groves grew.
+
+All four Seasonal Groves are branches of one original tree. The Heartwood is its trunk — not physically beneath or above the Groves, but **inside** them. Every wall in every dungeon zone is made of wood that, if you bore deep enough through its grain, eventually becomes Heartwood. The oldest wood. The First Growth.
+
+**What It Is:**
+- The Arborists' most sacred space. The place where the Root-Song was first sung.
+- Architecture that is not carved but grown — sap channels become hallways, knots become chambers, resin pockets become vaults. You are not exploring a building made of wood. You are exploring the wood itself.
+- Each concentric ring you pass through is older. The outermost rings are recognizable — Arborist construction, familiar materials. The inner rings are alien — wood so dense it rings like metal, amber embedded in the walls like fossils in stone, light that comes from the grain itself.
+- The enemies are not Rot creatures. They are preserved things — Arborist constructs still executing ancient commands, amber-locked memories that manifest as hostile echoes, and the tree's own immune responses treating you as an infection.
+
+**How to Find It:**
+Heartwood entrances are hidden. They are not marked, not mapped, and not obvious. They exist as:
+- Overgrown passages in long-abandoned sections of any dungeon zone — a wall that gives way, a crack that goes deeper than it should, a root that's the wrong color.
+- Hidden chambers behind Amber Vaults. Not every vault contains treasure. Some contain a passage that goes inward instead of a room. The golem doesn't attack — it steps aside. It was keeping things in, not keeping people out. The player cracks the seal expecting a Tier IV weapon and instead finds a tunnel of ancient growth rings descending into wood that's darker, denser, warm to the touch.
+- Nooks in the branches and Crown zone, nestled out of sight, where the bark has grown over something older.
+
+**How to Discover Them:**
+- Rumors from NPCs. Old Cap (Mycelium) was alive when some passages were still open. Twitch's communication crystal may be receiving a signal from the Heartwood. Father Oaken's Chapel pews are carved from Heartwood — a fragment that could serve as a compass. Lost Seekers whose gear was found wedged into cracks that go too deep.
+- Faction reputation at Allied or Exalted. The Heartwood Elders know where entrances are — they ARE the tree. The Mycelium network extends into the Heartwood and can guide you to a seam.
+- A DC 25+ Wits check in the right room — the gated check mechanic. You literally cannot perceive the entrance without the gear to look properly.
+- Arborist relics: Dowsing Rods at maximum range, Memory Seeds containing the memory of an entrance being used, or tools that let you phase through solid wood the way Forge Wraiths do.
+- Pure luck at legendary gear levels — a search roll in the right room that nobody expected to find anything in.
+
+**The Vault Connection:**
+The Arborists sealed the Heartwood when they sealed the Root-Roads. They used the same technology — Amber Vaults. The treasure vaults players have been cracking open all game are the same construction as the Heartwood seals. Same amber locks, same golem protocols, same Aether-keyed mechanisms. The player has been learning how to open Heartwood doors without knowing it. The loot vaults are either dual-purpose or decoys — the real function of the vault system was to seal the Heartwood. The treasure was bait to keep the technology remembered.
+
+**The Moment:** Early game — player finds a vault, cracks it, gets a Tier III item. "Vaults have good loot." Mid game — pattern established. Late game — player finds a vault in a strange location (too deep, too hidden, the amber is a different color, the golem behaves strangely). They crack it. No loot. Just a passage. And the golem bows. That is where the Heartwood campaign begins.
+
+- **Theme:** Memory and origin. The answers to every question the setting has raised. Why the Arborists vanished. Why the Rot started. What the Root-Song actually is. The place where the truth lives, sealed behind centuries of overgrowth and deliberate forgetting.
+
+### The Undergrove — Where the Roots Remember (Below)
+
+The Undergrove is the shared root network beneath all four Seasonal Groves. It is the place where the Root-Roads go when they go deep enough — below the individual root systems, into a tangle of ancient roots from all four trees, interwoven so densely that you cannot tell which root belongs to which Grove.
+
+**What It Is:**
+- The compost layer of the universe. Where dead things decompose and become the nutrients that feed new growth above.
+- Not a single tree — a network. A vast, lightless tangle of roots, mycorrhizal networks, and geological deposits of composted matter going back to the First Growth.
+- Time works differently. The Undergrove remembers everything that was ever composted. Walking through it means passing through layers of geological memory — dead civilizations, extinct species, failed Groves (yes, there were others, before the Four).
+- When a character dies and becomes a Hollow, the Hollow eventually migrates downward. The Undergrove is where the Hollows end up — an entire stratum of the mindless dead, still moving, still wearing their gear, filed away in the roots like nutrients waiting to be recycled.
+
+**The Rot's Home:**
+The Rot is a decomposition process. Decomposition belongs in the root layer. The Rot is not invading the Groves from some external source — it is leaking upward from where it has always been. The Undergrove is where the Rot is native, where it is supposed to be, where it serves its function: breaking down the dead to feed the living. The crisis is not that the Rot exists. The crisis is that something broke the boundary between the Undergrove and the surface — and the Rot is now doing its job in places that are still alive.
+
+Ashknot's discovery that the Rot follows Root-Road infrastructure makes sense: the Root-Roads pass through the Undergrove. The Rot didn't invade. Someone opened a door.
+
+**How to Find It:**
+- The deepest vaults in Zone 4 (Rot-Heart). The ones that are hardest to reach and hardest to crack. These don't open inward (Heartwood) — they open downward (Undergrove). The amber on these seals is discolored — grey, cracked, visibly stressed. The golems guarding them are damaged, corroded, some broken entirely. The Rot has been pressing against these doors from the other side for centuries.
+- Opening one is a choice: you get access to the Undergrove, but you also open a door that was holding the Rot back. This is the consequence the setting has been warning about since the beginning.
+- Root-Roads that descend instead of crossing horizontally — passages that slope downward until the walls stop being bark and start being raw root-mass, tangled and wet and very old.
+
+**Connection to Factions:**
+- The Hag Circle understands the Undergrove intuitively — decomposition is their domain. They may be the only faction that doesn't fear it.
+- The Mycelium network extends here. The corrupted nodes that have been causing problems on the surface are rooted in the Undergrove — the infection runs deeper than anyone thought.
+- The Heartwood Elders remember a time before the boundary broke. They know what the Undergrove is supposed to be, and they grieve what it has become.
+
+- **Theme:** Death and recycling. The necessary process that everyone fears. The place where the Rot is not a villain but a custodian that has lost its boundaries. Grief, inevitability, and the question of whether the cycle can be restored or whether the damage is permanent.
 
 ---
 
@@ -145,16 +210,217 @@ The Rot is not a creature, disease, or army. It is a process — entropy given b
 
 ---
 
-## Arborist Technology — The Lost Art
+## The Arborists — The First Druids
 
-The Arborists were the original civilization of the Groves. They did not forge metal — they sang wood into shapes harder than steel and wove Aether into silk. This was not technology. It was communion. The Arborist spoke to the tree and the tree answered. To find an Arborist relic is to hear an echo of the old songs.
+The Arborists were the original civilization of the Groves. They were not builders, not smiths, not mages in any conventional sense. They were **Resonance Engineers** — biological musicians who shaped the living world through sound and Aether vibration. They did not forge metal. They sang wood into shapes harder than steel and wove Aether into silk. This was not technology. It was communion. The Arborist spoke to the tree and the tree answered. To find an Arborist relic is to hear an echo of the old songs.
 
-### The Arborists
-- Ancient order of tree-shapers and biomancers who tended all four Groves during the Golden Age.
+### Culture: The Symphony of the Sap
 - Organized as a guild-monastic order: part scientists, part priests of the tree.
+- Their magic was entirely auditory and vibrational. They did not cast spells — they sang "Notes of Growth" or "Frequencies of Hardening."
+- To make Ironbark, an Arborist would sit with a sapling for a year, singing a specific low-frequency hum that signaled the wood to deposit Aether-dense fibers.
+- Their cities were not built — they were "Conducted." They planted a seed and sang the city into existence over decades. A house in the Heartwood was not a structure made of wood — it was a living extension of the tree's own circulatory system.
+- Memory Seeds were their "recordings" — not written knowledge but first-person acoustic impressions pressed into specialized amber. When a Seeker finds a Memory Seed, they experience an echo of an Arborist's skill.
+- Communication Crystals (like Twitch's) were **Resonance Nodes** — part of a network that vibrated the tree's internal sap-channels to carry voice across Groves. Twitch's crystal still hums because the network still exists. Something in the Heartwood is still transmitting.
 - Created the Amber Vault network, Wood-Golem Constructs, Ironbark technology, and the Root-Road infrastructure.
-- Disappeared during the Golden Age collapse — the precise cause is unknown. Leading theories: internal schism, early Blight contact, or deliberate withdrawal into the Root-Roads.
 - Their relics are the most mechanically powerful items in the game (Tier IV+).
+
+### The Schism: Silencers and Choir
+
+During the Golden Age, the Arborists observed Ashenmere beginning to go still. Winter was deepening. The natural seasonal cycle — the heartbeat of the cosmos — appeared to be slowing. The Arborists panicked. Not from malice, but from love. They could not accept that part of the cycle involved dying.
+
+The order split:
+
+**The Silencers** believed the cycle should not be forced. If Winter was deepening, the correct response was patience — tend the other Groves, wait for the rhythm to restore itself. Silence was strength. Observation was wisdom. The tree knew what it was doing.
+
+**The Choir** believed the answer was a better song. They proposed singing a resonance that would bypass Winter entirely — Autumn directly to Spring, skipping death, skipping the Undergrove's decomposition phase. Not stopping the seasons, but editing them. Cutting out the part that hurt.
+
+The Choir won the argument. They sang.
+
+### The Collapse
+
+The Choir's song worked — partially. They successfully disrupted the Autumn-to-Winter transition. But the Undergrove's decomposition cycle did not stop. It had nowhere to send its output. Dead material kept arriving. Nutrients kept being processed. But with no Winter to receive the recycled material and no Spring to consume it, pressure built in the Undergrove until the boundary between the root layer and the living wood shattered.
+
+The Rot is not a disease. It is not an invasion. It is the Undergrove's decomposition process operating in the wrong place. The Rot has always existed — it is natural, necessary, and essential. The crisis is that something broke the boundary, and now decomposition is happening on living wood.
+
+Ashenmere did not freeze because of the Rot. Ashenmere froze because **the Choir tested their song there first.** They wanted to "pause" Winter before eliminating it. Instead they stopped it permanently. Ashenmere is their prototype. Their first failure. The Hollows in Ashenmere stand motionless because the Choir's original test-song is still playing there, frozen in a feedback loop.
+
+### The Great Silencing
+
+When the Undergrove boundary broke, the Silencers realized the catastrophe was acoustic. The Root-Song — the fundamental vibration of the tree — was now guiding the Rot upward. Every resonant surface amplified it. Every Root-Road carried it. The Arborists themselves, saturated with Aether and resonance from a lifetime of singing, were the loudest beacons of all.
+
+The Silencers made a choice:
+- They stopped singing. Entirely. Forever.
+- They sealed the Heartwood — their most sacred space — using Amber Vaults as acoustic dampeners.
+- They sealed the Root-Roads to cut the transmission paths.
+- They withdrew into the Heartwood and went into amber stasis, because their very presence on the surface attracted the Rot through resonance.
+
+The knowledge was not lost through negligence. It was suppressed through grief.
+- **Generation 1:** The survivors who knew the songs but were forbidden from singing them. They raised their children in silence.
+- **Generation 2:** The children who heard only whispered fragments. They remembered music existed but not how it worked.
+- **Generation 3:** The scavengers — Old Cap's generation, roughly 400 years ago. They found the tools but had forgotten the music required to make them work. Emberhome was founded by these people.
+
+### The Choir Did Not Stop
+
+The Choir refused the Silencers' solution. They believed the answer was not silence but a perfected song — one that could control the Rot instead of hiding from it. While the Silencers withdrew into the Heartwood, the Choir went deeper — into the Undergrove itself, to sing the Rot into submission.
+
+They failed. Or worse — they partially succeeded. They did not control the Rot. **The Rot learned their music.**
+
+The Choir became the first intentional Hollows. Not mindless husks — conducting husks. They still sing, but the song is wrong. It is the Root-Song played in a key that makes living wood rot instead of grow. They are the reason the Rot has pattern and direction. The Rot as a process is natural. But the Rot as an organized invasion — spreading through Root-Roads, following infrastructure, targeting specific zones — requires someone giving it direction. The Choir is driving it.
+
+Not consciously. Not with malice, exactly. The Choir believes the four Groves are already dead — just not decomposed yet. They think they are finishing the cycle the Silencers interrupted. They think they are helping.
+
+### The Choir's Structure
+
+- **The Conductor** — the leader. The Arborist who first proposed singing to the Rot. Now a Hollow of immense power in the deepest Undergrove, the Root-Song pouring from them in a continuous stream of directed decay. The final boss of the entire game.
+- **Section Leaders** — lesser Choir members scattered through the Undergrove and the deepest root systems of each Grove. Each controls the Rot in a specific zone. Kill one and the Rot in that area loses direction — becomes mindless, which is less dangerous.
+- **The Chorus** — Hollowed creatures and people the Choir's song has recruited over centuries. Not random Hollows. Organized ones. They move in formations. They sing. They build structures out of fungal matter that mimic Arborist architecture — wrong and beautiful.
+
+### Inside the Heartwood (Present Day)
+
+When the player breaches the Heartwood, they find:
+- **Outer rings:** Recognizable Arborist construction, ancient but intact. Some chambers overrun — the Choir's song has been worming inward for centuries.
+- **Pockets of descendants:** Small communities of Arborist descendants living in the Silent Culture (see below). Breathtaking hand-gardened chambers. Murals covering every wall.
+- **Amber-sealed Silencers:** The originals, in stasis. Some can be awakened. Most cannot — the amber has fused with them. Some have been cracked by Rot incursion and the things inside are Hollowed, trapped in amber shells, singing silently.
+- **The inner rings:** Dense, alien wood. The First Ring — the seed of the original tree. The Choir wants to reach it. The Silencers sealed themselves around it as a living shield. The Heartwood is a siege in slow motion.
+
+### The Silent Culture — Heartwood Descendants
+
+The descendants of the Silencers have lived inside the Heartwood for 400 years. They number perhaps a few hundred. They have built a civilization defined entirely by the absence of the thing their ancestors were best at.
+
+#### The Painted Songs
+
+The first generation of Silencers faced an impossible problem: how do you preserve an acoustic tradition when sound itself is lethal? They could not sing, hum, or tap rhythms. Any resonant vibration attracted the Rot. But the songs contained everything — how to shape wood, heal sap, grow Ironbark, read Root-Song, communicate with the Groves. Losing the songs meant losing everything.
+
+So they painted them.
+
+Not notation. Not sheet music. The Arborists' songs were not sequences of notes — they were relationships between vibrations, resonance patterns, harmonic structures that existed in multiple dimensions simultaneously. You cannot write that on a staff. But you can paint it.
+
+The **Painted Songs** are murals that encode acoustic information in visual form:
+- **Color** represents frequency — deep amber for the lowest resonance, pale gold for mid-tones, white for the highest harmonics.
+- **Brushstroke direction** represents phase — the angle at which waves interact.
+- **Layering** represents overtone structure — pigments applied wet-on-wet so they bleed into each other the way harmonics bleed into a fundamental tone.
+- **Thickness** represents amplitude.
+- **Composition** represents temporal structure — read left to right, the mural plays the song in your mind without ever vibrating the air.
+
+Every Heartwood child learns to read the murals before they learn to walk. They stand before the great gallery walls and trace the colors with their fingers, and in their heads — only in their heads, never aloud — they hear the songs their ancestors sang to shape the world. They know exactly what the Root-Song sounds like. They know how to sing Ironbark into existence, how to grow a chamber, how to open a sealed Root-Road.
+
+They have never made a sound.
+
+New murals are painted constantly. They are the culture's newspaper, philosophy, and debate forum. When two descendants disagree, they paint competing murals on adjacent walls and let the community judge which composition is more harmonically sound. In a culture built around acoustic truth encoded in color, beauty and correctness are the same thing.
+
+#### The Gardens
+
+Where the Arborists shaped wood through song, the descendants shape it through patient physical manipulation. They graft, prune, bend branches over years, and coax roots into new paths by laying nutrient trails with their fingers. It takes a Silent gardener ten years to grow what an Arborist could sing into existence in an afternoon.
+
+They do not mind. They have had 400 years.
+
+The Heartwood's inhabited sections are breathtaking because of this. Every surface has been touched. Every branch has been guided. Living wood curves in impossible arcs because someone spent a decade convincing it to bend. Flowers grow in patterns that, seen from above, form the shapes of the Painted Songs — gardens that are also musical scores, legible to anyone who knows how to read them.
+
+The gardens are also survival. In the Heartwood, with no external food source, the descendants cultivate fungal gardens (a quiet alliance with Mycelium patches that extend this deep), root-vegetable plots in sap-rich soil, and fruit-bearing branches they have spent generations training to grow inward. The gardening is survival. The beauty is a choice they refuse to give up.
+
+#### Communication
+
+The descendants have four modes of communication, each with different weight:
+
+**Touch-signs** — a tactile sign language pressed into palms, wrists, and forearms. Fast, practical, daily coordination. 400 years of evolution has made it as nuanced as any spoken language. Arguments happen in rapid-fire palm-presses. Jokes have specific ticklish sequences. Poetry exists — rhythmic patterns pressed into skin that create aesthetic pleasure without sound.
+
+**The Whisper** — the most sacred form of voice. A whisper does not resonate. It is turbulent airflow — breath shaped by the mouth without engaging the vocal cords. No cord vibration means no harmonic content. No harmonics means no resonance signature. A whisper is the one form of human vocalization that the tree cannot hear. The Choir cannot detect it.
+
+The descendants discovered this through tragedy. Someone spoke. The Rot came. Someone else, hiding, barely breathing, whispered a warning to their child. The Rot passed them by. Over generations they mapped the boundary: voiced sound (vocal cords vibrating) creates resonance. Unvoiced sound (pure breath) does not.
+
+A whisper is never wasted on trivia. To whisper to someone is to trust them with the most dangerous thing you have — your breath, shaped almost into song, held at the very edge of what is safe. Children learn this from birth: your voice is not gone. It is the last ember. Guard it. Use it only when nothing else will do.
+
+The **Whisper-Key** makes acoustic sense now. It does not work mechanically — it works acoustically. The Key converts a whisper into the specific resonance frequency needed to open a vault seal, but only a whisper. It amplifies breath without adding harmonics. The Arborists designed the vault system to be openable only by the safest form of sound. The first Silencers understood this. By the third generation, the reason was forgotten but the practice survived: "You whisper to the amber."
+
+**Memory Seed notes** — for permanence and distance. Short experiential impressions pressed into tiny amber seeds. A feeling, an image, a warning. These are their letters, books, and legal documents. Reading one is not reading — it is briefly becoming the person who wrote it.
+
+**The Painted Songs** — for the knowledge that must outlast everything.
+
+The hierarchy maps to emotional weight:
+- Touch-sign: "Pass the water."
+- Whisper: "I love you." / "Someone is dying." / "I need to tell you something that matters."
+- Memory Seed: "This must outlast us both."
+- Painted Song: "This must outlast the tree."
+
+#### What They Fear
+
+Sound. Any sound. Not metaphorically — the way someone with severe burns fears fire. They have lost people to carelessness. A child who hummed. A dreaming elder who moaned in their sleep. A wall struck too hard during gardening that rang like a bell. Each time, within hours, the Rot pressed inward toward the source.
+
+The descendants have developed supernatural sensitivity to vibration. They feel footsteps through the wood from rooms away. They detect the Rot's approach by the way the grain buzzes under their fingertips. When a surface-dweller arrives — clomping, breathing loudly, talking — the descendants' reaction is not hostility. It is animal terror. They grab the newcomer, press a hand over their mouth, and drag them to a deep chamber before attempting to communicate.
+
+When they hear a surface-dweller speak in full voice, they hear waste. Profligacy. Someone throwing sound around like it costs nothing. Underneath the terror is grief. The surface people have voices and use them for nothing. The descendants would give anything to sing once, just once, and they never will.
+
+**First contact:** The player is grabbed, silenced, dragged to a deep chamber. Touch-signs, frantic gestures. Then the eldest descendant leans close. The player feels breath on their ear. A whisper: *"You are so loud."* The first words spoken to a surface-dweller in 400 years.
+
+#### Descendant Factions
+
+**The Roots** — the majority. Conservative. They want to be left alone. The silence has worked for 400 years. They do not want rescue. They want the door closed again.
+
+**The Seedlings** — the young. Curious. They have read the Painted Songs and burn to hear them for real. They want to go to the surface, find the Root-Song remnants, learn whether it is possible to sing safely. Most likely to help the player. Most likely to do something reckless.
+
+**The Grafters** — pragmatists. The Heartwood is slowly losing ground to the Choir's inward pressure. The silent defense is failing. They want surface allies — not to sing, but to fight. They will trade Arborist knowledge (Painted Song readings, Memory Seeds, gardening techniques) for military support against Rot incursions.
+
+### The Choir's Sound
+
+The Root-Song, as heard on the surface, is a subsonic hum felt in the soles of the feet and the base of the skull. Warm. Rhythmic. Like a heartbeat but slower. It strengthens near Emberhome and fades with depth.
+
+The Choir's corruption is that same song with the intervals wrong. Where the Root-Song resolves — tension releasing into consonance the way a held breath releases into a sigh — the Choir's version refuses to resolve. It hangs on diminished intervals. It reaches for the note that should bring relief and lands a half-step flat, every time. The effect is physical: teeth ache, skin crawls, the throat tightens.
+
+**Progression by depth:**
+- **Zone 2:** Occasional dissonant undertone. Easy to dismiss. The Root-Song stutters for a beat, then corrects.
+- **Zone 3:** The two songs compete. The Root-Song is thinner; the Choir bleeds through in sustained passages — a wrong note holding for seconds before the healthy song reasserts. NPCs may comment: "Did you hear that? No. Never mind."
+- **Zone 4 (Rot-Heart):** The Root-Song is absent. The Choir's song is the only music. Constant, low, intimate — as if someone is singing softly into your ear from inside the walls. Diminished intervals create perpetual unease, waiting for a resolution that never comes.
+- **The Undergrove:** The Choir's song is overpowering. Beautiful the way a fever dream is beautiful — complex, layered, undeniably musical, and completely insane. Prolonged exposure causes sympathetic resonance in the player's gear. The Rot begins to treat them as part of the score.
+
+### The Endgame Choice
+
+The player must choose:
+
+1. **Silence the Choir.** Kill the Conductor, destroy the Section Leaders. The Rot becomes mindless — still present, still dangerous, but no longer directed. The tree doesn't heal, but it stops getting worse. The Silencers' solution, extended forever.
+
+2. **Complete the Song.** The Choir was right about one thing — the cycle needs to complete. Winter cannot be skipped. Help the Choir's song reach completion, but fix it — add the notes the original Arborists left out. Let the Undergrove finish its work in a controlled way. The tree partially dies and partially regrows. Ashenmere thaws. Burnwillow loses its fire-leaves. The world changes permanently.
+
+3. **Wake the Sleepers.** Revive the amber-sealed Arborists. They know the original song. Maybe they can sing something new — not the broken cycle, not silence, but an actual solution. The hardest path, the most uncertain, and the one that requires the most faction support.
+
+### Timescale
+- ~500 years ago: The Collapse. The Choir sings. The Undergrove boundary breaks. The Silencers seal the Heartwood and go silent.
+- ~480 years ago: Generation 1 dies. The last people who knew the songs but didn't sing them.
+- ~440 years ago: Generation 2 dies. The last who heard fragments as children.
+- ~400 years ago: Generation 3. Old Cap's generation. Emberhome founded. The songs are mythology now.
+- Present day: 400 years of decline. The Rot has been slowly advancing, directed by the Choir from the Undergrove.
+
+### Root-Attunement — A Universal Capacity
+
+Every person in the Groves has Root-Attunement. It is not a bloodline, not a chosen lineage, not a gift that some are born with and others lack. It is a universal capacity — like the ability to build muscle, learn language, or perceive color. Everyone has it. In most people, it lies dormant. In some, it has been awakened by environment, exposure, and practice.
+
+Root-Attunement is the capacity to perceive and interact with Aether vibrations. It develops through prolonged proximity to Aether sources, through working with living wood, through years spent inside the tree's resonant structures. The Arborists had powerful attunement because they spent lifetimes immersed in Aether, singing to the tree daily for decades. Their children developed it faster because they grew up saturated in their parents' work. A farmer who works Aether-rich soil for thirty years might awaken it without ever knowing what happened.
+
+The Aether score at character creation represents how awake your attunement is — shaped by where you grew up, what you've been exposed to, and whether anyone ever taught you to listen. It is not fixed at birth. It can grow through experience.
+
+**The Spectrum of Awakening:**
+
+- **Dormant (most people, Aether below 12):** Attunement has never been activated. Can learn Arborist techniques as mechanical skills, but the wood does not respond specially. Can use Arborist tools at Tier I benefit only — the tool resonates, not the person. With enough exposure, anyone at this level could awaken further.
+- **Stirring (uncommon, Aether 12-13):** Activated by years of proximity to Aether sources — working the forge, farming Aether-rich soil, living near vein taps. Occasional moments: wood that "just cooperates," gut feelings about which root to follow. They don't know why they're good at what they do. Weld is almost certainly Stirring — decades at the Ember-Forge did this. Scout Lira's instincts may be attunement she developed through years in the dungeon.
+- **Resonant (rare, Aether 14-16):** Fully awake. They hear the Root-Song without being told it exists. Children raised near concentrated Aether who hum melodies nobody taught them. Adults who feel the tree breathing through their palms. In Emberhome, Father Oaken tends to them — the Chapel's Aether flame burns brighter in their presence. They could learn to sing if anyone could teach them. Nobody can.
+- **True Arborists (the old order, Aether 17+):** Attunement fully developed AND trained over decades AND physically transformed by prolonged Aether saturation. Denser bones, Aether in the blood, extended lifespan, perception beyond human range. This was not a birthright — it was the result of lifelong devotion. An apprentice took 20 years to show the first changes. A master who had been singing for a century was barely human anymore. Not inhuman. Rooted. They became what they practiced.
+- **Heartwood Descendants (present day):** 400 years of passive Aether immersion, even without singing, has driven the transformation. Bark-like patches on the oldest members' skin. Lifespans reaching 150+. Vibration sensitivity acute enough to feel footsteps rooms away. They are proof that attunement responds to environment — they never trained, never sang, and the tree has been changing them simply because they live inside it.
+
+**The Teaching Tradition:**
+
+The Arborists taught anyone willing to learn. Farmers learned simplified "growth songs." Builders learned "hardening hymns." Healers learned "sap calls." The songs worked better the more attuned the singer — a dormant farmer might see no result, while a Stirring farmer singing the same song would coax a noticeably better harvest. A Resonant could make wood bend with a hum. The Aether responds to the connection between the singer's attunement and the vibration, not the sound alone.
+
+Emberhome's farming traditions survived the Great Silencing in degraded form. Farmers still follow Arborist patterns, still prune at the "right" times, still sing to their plants. For most, it is habit without effect. But for the Stirring among them — and they don't know they are Stirring — it works. The wood responds, just a little. They chalk it up to good soil.
+
+**What this means:**
+- Root-Attunement is not destiny. It is opportunity. Anyone can develop it with enough exposure and effort.
+- A character's attunement can deepen during play — proximity to the Heartwood, contact with Arborist relics, learning from the descendants, or time in Aether-rich zones.
+- Weld's quirk ("talks to items while working — claims they answer back") is real attunement, awakened by decades at the forge.
+- Father Oaken's Aether flame responds to Resonant visitors. He doesn't know why.
+- The Seedlings (Heartwood descendants) want to find Resonants on the surface who might hear the Painted Songs aloud.
+- The "Wake the Sleepers" endgame path requires a Resonant — someone whose attunement can interact with the amber seals.
+- Attunement predates any heritage distinctions. It is as old as the tree. Everyone carries it. Not everyone has been given the chance to awaken it.
+
+### Technology (now contextualized as acoustic engineering)
 
 ### Arborist Relic Properties
 - Items carry the `[Resonant]` trait: they hum audibly near active Root-Song.
@@ -169,7 +435,7 @@ The Arborists were the original civilization of the Groves. They did not forge m
 - **Dowsing Rod:** Tool item. Hums when within 2 rooms of a Secret or hidden Amber Vault. Does not consume a Doom advance.
 - **Amber Vein Taps:** Fixed installations in dungeon walls. Provide 1 Aether charge per use. Single-use per run.
 - **Sun-Bow:** Tier IV ranged weapon (Crown-tier access required). Selects its own wielder.
-- **Whisper-Key:** Unlocks any Amber Vault when held to the shell. Consumed on use.
+- **Whisper-Key:** Acoustic amplifier that converts a whisper into the specific resonance frequency needed to open an Amber Vault seal. Only works with unvoiced breath — no vocal cord vibration. The safest way to open a vault because it uses the only safe form of sound. Consumed on use.
 
 ---
 
@@ -188,10 +454,10 @@ Amber Vaults are the Arborists' legacy infrastructure — sealed emergency cache
 - Cannot be opened by brute force. The shell is genuinely indestructible to any Tier I-II tool.
 - **Access Methods:**
   - Whisper-Key (Tier III item, found in earlier Vaults or as rare dungeon loot)
-  - Aether Resonance (DC 20 Legendary Aether check)
+  - Aether Resonance (DC 22 Elite Aether check)
   - Specific dungeon puzzle solutions
 - The canonical "Teased Vault" from Module 0: the Sun-Bow behind unbreakable amber. Players see it. They cannot have it. They come back.
-- Vaults do not appear on any dungeon map. Must be located via Dowsing Rod or successful Wits check (DC 12 Hard).
+- Vaults do not appear on any dungeon map. Must be located via Dowsing Rod or successful Wits check (DC 15 Hard).
 
 ### Vault Loot Profile
 - Guaranteed Tier III+ loot (at least one build-defining item per Vault).
@@ -202,6 +468,27 @@ Amber Vaults are the Arborists' legacy infrastructure — sealed emergency cache
 - Non-Blighted intruders: Golems observe. They do not initiate combat.
 - First item taken freely. Second item triggers guardian protocol unless disabled (Aether check DC 14: communicate intent to the golem).
 - Blighted intruders: Immediate hostile response.
+
+### Vault Breach Alert (Acoustic Consequence)
+
+Amber Vaults are acoustic dampeners. Their sealed interiors absorb resonance — that is their primary function. The loot inside is secondary. When a vault is opened, the dampener breaks. The area that was silent is now broadcasting a resonance signature for the first time in centuries.
+
+The Rot responds locally. Not the tree, not the Doom Clock — the creatures nearby, drawn to the noise.
+
+**Mechanic:** For the next **3 rooms** the player enters after opening a vault (the "echo radius"):
+- Enemy spawn chance increases to 100% (every room has enemies)
+- Enemy count per room increases by +1
+- The vault room itself always spawns an immediate wave upon opening
+
+After 3 rooms, the echo dissipates and spawns return to normal.
+
+**Tactical implications:**
+- Opening a vault deep in a zone is riskier than near the exit — you must survive 3 rooms of heavy spawns to get clear
+- Players can plan: clear surrounding rooms first, then crack the vault and fight through the echo
+- Multiple vaults in the same zone stack — crack two back-to-back and you face 6 rooms of heavy spawns
+- The Doom Clock is unaffected. The tree does not care. The Rot cares — because for a few rooms, the area is broadcasting resonance that was not there before.
+
+This is the cost/benefit of the vault system. The loot is excellent. The noise is dangerous. Every vault is a decision.
 
 ---
 
@@ -236,6 +523,75 @@ Carrying a Memory Seed imposes severe tactical costs — designed to force escor
 | Speed Cap | Carrier cannot use the Dash action. Movement limited to standard 30ft. |
 | Doom Acceleration | Doom Clock advances at 2x rate while Seed is in inventory |
 | Tactical Result | Carrier must be protected. Every combat becomes a bodyguard scenario. |
+
+---
+
+## The Four Peoples — Shaped by Season
+
+The original inhabitants of the First Tree were one people. When the First Tree branched into four Groves, populations became isolated in different seasonal environments. Over millennia — long before the Golden Age, long before the Arborists organized — the tree shaped them. Not through magic. Through biology. The same way altitude shapes mountain peoples and latitude shapes skin color. Except the shaping agent is concentrated Aether in four distinct vibrational frequencies.
+
+Each Grove's Aether resonates at a different frequency. Each frequency pushes biological adaptation in a different direction. Root-Attunement — present in everyone — awakens and expresses differently depending on which Grove's frequency shaped your ancestors over millennia.
+
+### Autumn-Born (Burnwillow)
+
+Shaped by decay-frequency Aether. The cycle of harvest, loss, and preservation.
+
+**Physical traits:** Warm-toned skin (amber, copper, brown). Hair that shifts color with age — dark in youth, ember-red in middle age, ash-white in old age, like fire-leaves through their seasons. Average build. Resilient against temperature extremes.
+
+**Aether expression:** Root-Attunement tuned to **transition and transformation**. The Stirring sense when things are about to change — a wall about to collapse, a creature about to attack, the Rot pushing into a new area. Resonants feel the Doom Clock viscerally. They are the people of the threshold.
+
+**Stat bonus:** +2 Grit. The Autumn people endure. An Autumn-Born Resonant doesn't hear the Root-Song as melody — they feel it as a steady pulse, a refusal to stop.
+
+### Spring-Born (Verdhollow)
+
+Shaped by growth-frequency Aether. The unrelenting push of new life.
+
+**Physical traits:** Green-tinged undertones to skin and hair. Tall and rangy — fast growth, lean builds. Fingernails grow faster than normal. Minor cuts heal visibly within hours. Some have faintly bioluminescent eyes from generations navigating dim understory.
+
+**Aether expression:** Root-Attunement tuned to **growth and acceleration**. The Stirring have green thumbs that actually work — plants respond. Resonants feel sap pressure, sense where new growth will burst, instinctively know which branches are sound.
+
+**Stat bonus:** +2 Aether. The Spring people channel. Most naturally gifted at raw Aether manipulation. If any modern person can learn the Arborist songs, it's a Spring-Born Resonant. The Arborists likely drew disproportionately from this population.
+
+### Summer-Born (Solheart)
+
+Shaped by intensity-frequency Aether. Peak energy, forge heat, the burning crown.
+
+**Physical traits:** Dark skin, resistant to heat and light. Compact, muscular builds — drought and fire selected for efficiency. Eyes tolerant of extreme brightness (Solheart's fire-leaves burn white). Calloused hands and feet from birth.
+
+**Aether expression:** Root-Attunement tuned to **force and intensity**. The Stirring hit harder than their frame suggests through unconscious Aether channeling. Resonants feel energy building, know when something is about to break, sense systems at peak capacity.
+
+**Stat bonus:** +2 Might. The Summer people burn. An Solheart-Born Resonant feels the Root-Song as heat, as pressure, as the urge to act NOW.
+
+### Winter-Born (Ashenmere)
+
+Shaped by stillness-frequency Aether. The frozen pause. The preservation of what endures.
+
+**Physical traits:** Pale, almost translucent skin. White or silver hair from birth. Slight builds — low caloric availability selected for efficiency. Extremely slow metabolism. Eat less, sleep less, age slower. Natural lifespan 120+ without Heartwood immersion. Cold does not bother them.
+
+**Aether expression:** Root-Attunement tuned to **perception and stillness**. The Stirring notice things others miss — details, patterns, the thing that doesn't belong. Resonants perceive the Root-Song even where it is weakest, calibrated to signal over noise. They hear silence between notes. They sense absence. The only people who might detect what's WRONG with the Choir's song — they intuitively know what stillness should sound like.
+
+**Stat bonus:** +2 Wits. The Winter people observe. An Ashenmere-Born Resonant hears the spaces between notes. The rests. The architecture of silence.
+
+### After the Collapse — Emberhome's Population
+
+When the Root-Roads closed, populations were stranded. Emberhome is primarily Autumn-Born, but refugees from other Groves have arrived over 400 years:
+
+- **Spring-Born (Verdhollow refugees):** Arrived first. Verdhollow's uncontrolled growth pushed through the seals before other Root-Roads fully closed. Significant minority in Emberhome. Brought agricultural knowledge and healing traditions.
+- **Summer-Born (Solheart refugees):** Rare. The journey is brutal and their Grove is scorched. Valued for physical capabilities and forge-work. Weld's "Arborist-trained smith" master may have been Summer-Born.
+- **Winter-Born (Ashenmere refugees):** Almost nonexistent. The Grove went still — nobody leaves a place that isn't moving. Rumors of a few: pale, quiet people who arrived decades ago and said almost nothing about where they came from. If true, they know something about what Ashenmere's stillness really is.
+
+### At the Table
+
+Race gives one thing: a +2 bonus to one stat score at character creation. No complex racial abilities. One stat bump, flavored by Grove of origin.
+
+| People | Grove | Aether Affinity | Stat Bonus |
+|--------|-------|----------------|-----------|
+| Autumn-Born | Burnwillow | Transition | +2 Grit |
+| Spring-Born | Verdhollow | Growth | +2 Aether |
+| Summer-Born | Solheart | Intensity | +2 Might |
+| Winter-Born | Ashenmere | Stillness | +2 Wits |
+
+Most Emberhome characters are Autumn-Born. Others are available with a sentence of backstory explaining how their family ended up here. Root-Attunement functions identically in all four peoples — Aether score determines awakening level regardless of heritage. But the expression of attunement is colored by ancestry — the frequency your ancestors were shaped by influences how you perceive the Root-Song.
 
 ---
 
@@ -419,6 +775,174 @@ The Burnwillow is divided into vertical zones from the roots upward. Because the
 
 ---
 
+## Conditions & Debuffs
+
+Status effects that enemies, hazards, environments, and the Leech Cascade can inflict. Conditions persist until cured (by rest, potion, or healer), unless duration is specified. A character can have multiple conditions simultaneously.
+
+| Condition | Effect | Common Sources |
+|-----------|--------|---------------|
+| **Sap-Drained** | Trait abilities cost +1 DC to activate. Aether checks at disadvantage (roll twice, take lower). | Sap Leech colonies, Leech Cascade rooms |
+| **Spore-Sick** | Hallucinations — GM describes one false threat per room. Player cannot distinguish real from false until they interact. | Fungal Mite death burst, Spore Clouds, Gall ruptures |
+| **Resonance-Touched** | Gear hums audibly. Enemy spawn chance +1 in rooms you enter. Choir-directed enemies prioritize you. | Prolonged Zone 4 / Undergrove exposure, Choir Section Leader proximity |
+| **Blighted** | 1 HP lost per room traversed. Cannot be healed until Blight is cured. Cure: Salicylic Tonic, Father Oaken, Hag Circle Rot Processing. | Rot contact, Blight Corruption hazard, Choir Chorus attacks |
+| **Shaken** | -1d6 to all rolls for 3 rounds. Cannot use [Command] or [Rally] traits. | Boss roars (Hollowed Bear), fear effects, first Choir encounter |
+| **Entangled** | Cannot move. Lose Move action. DC 15 Might to break free (action). | Heartwood Serpent constrict, Glue Bombs, Vine Strangler, Borer tunnel collapse |
+| **Burning** | 1d4 fire damage per round for 2 rounds. Ended early by water, Deepwater, or a round spent smothering. | Ember hazards, Inferno trait, Solheart Root-Road proximity |
+| **Frozen** | Cannot take actions for 1 round. After thawing, -1d6 to Grit checks for 2 rounds. | Frostbite Flask, Ashenmere Root-Road proximity, Crown altitude |
+| **Weakened** | Might checks at disadvantage. Melee damage halved. Lasts until rest. | Sap Leeches (prolonged exposure), Voidgrip trait, Soul Drain hazard |
+| **Blinded** | Cannot target specific enemies (attacks hit random target). -2 to Wits checks. 2 rounds or until cured. | Flash trait, Flashpowder bomb, Spore Grenade |
+| **Poisoned** | -1 to all rolls. 1d4 damage per round for 3 rounds. Cure: Salicylic Tonic or antidote. | Venom Coat, poison hazards, Beetle Ichor exposure |
+| **Gall-Marked** | The tree's immune response targets you as a foreign body. Healing effects on you are halved. Rooms you rest in attract Gall Larvae. Lasts until cured by Hag Circle or Mycelium. | Contact with ruptured Gall tissue, failed Gall surgery |
+
+---
+
+## Threat Ecology — The Things That Were Always Here
+
+The Choir is the endgame antagonist, but the Burnwillow was never safe. These threats existed before the Collapse. The Arborists managed them. Nobody manages them now.
+
+### The Leech Cascade — An Ecosystem Death Spiral
+
+Sap Leeches are massive colonial organisms — pale, translucent, dog-sized — that cluster on sap-rich surfaces in groups of dozens. They do not attack unless disturbed. They drain.
+
+The cascade is a chain reaction:
+
+1. **Leeches colonize healthy sap veins.** They target the richest wood — near Aether channels, where the Root-Song is strongest. They don't seek weakness. They seek the best.
+2. **The drained area weakens.** Root-Song thins. Aether drops. The wood is diminished — not dead, not rotted, just tired.
+3. **The Rot probes the weakened area.** The Rot is drawn to weakness the way scavengers are drawn to limping prey. Healthy wood repels it. Drained wood does not.
+4. **The tree floods the area with healing sap.** Immune response — rapid growth, sealed wounds, thickened bark. It works. The Rot is pushed back.
+5. **Gall parasites hijack the immune response.** The healing flood is the richest sap the Gall has ever tasted. It redirects the growth into Gall chambers — tumor-like structures that trap the healing energy. The wound doesn't close.
+6. **Leeches expand.** The Gall chambers leak sap. The area now produces more accessible sap than before. More Leeches arrive.
+7. **The spiral accelerates.** More drain → more weakness → more Rot → more immune response → more Gall → more sap → more Leeches. Left unchecked, an entire zone is consumed in months.
+8. **The Choir notices.** A Section Leader encountering a cascade can amplify it (direct more Rot) or simply let it run. The natural process does the Choir's work for free.
+
+**The Hive farms Leeches.** Honeydew from Sap Leeches is the base ingredient in Hive honey potions. The Hive has farmed small colonies since before the Collapse. The Arborists kept them pruned. Nobody prunes now. The Hive's "managed" colonies are contributing to the cascade — slowly, but contributing. Some have gone feral. The Hive is too biologically dependent to admit this.
+
+**Cascade Room Table (Zone 2+, 1 in 6 rooms):**
+
+| Stage | Condition Inflicted | Enemies | Environmental |
+|-------|-------------------|---------|--------------|
+| 1: Leech Colony | Sap-Drained while in room | 1d3 passive Sap Leeches | Aether vein visibly pulsing, Leeches attached to walls |
+| 2: Leech + Gall | Sap-Drained + Gall-Marked risk if Gall ruptured | 1d3 Leeches + 1 Gall Larva | Tumor-like growths on walls, sap weeping from cracks |
+| 3: Full Cascade | Sap-Drained + Spore-Sick from Gall spores | 1d3 Leeches + 1 Gall Larva + 1d3 Rot creatures | Rot tendrils on floor, Gall tumors everywhere, air thick with spores |
+| 4: Collapse | Sap-Drained + hazard check (DC 15 Grit or Entangled in collapsing structure) | As Stage 3 + Borer nest | Floor giving way, walls crumbling, full infestation |
+
+Clearing all threats restores the room. Partial clearing (killing Leeches but leaving Galls) means the cascade rebuilds within 1d6 rooms of absence.
+
+**Player quest tension:** The Hive asks you to protect a Leech farm. The Dam-Wrights ask you to destroy the same colony. Both are right. The Hag Circle offers a third option: synthetic honeydew from dead Leeches + Gall tissue — but you need to let the cascade run long enough to harvest the Galls first.
+
+### The Gall — Parasites Who Build Cages
+
+Gall organisms hijack the tree's healing response to build nursery chambers. They are not Rot. They are parasites that exploit the tree's immune system — the healthiest wood is the most infected because that's where the strongest healing response occurs.
+
+**Physical description:** Tumor-like bulges in walls and ceilings, 1-3 feet across, surface smooth and faintly pulsing. Warm to the touch. They look like the wood is pregnant. Cutting one open releases a Gall Larva — a pale, segmented grub the size of a cat, aggressive and fast — plus a flood of nutrient-rich sap (Aether ingredient).
+
+**Behavior:** Galls don't move. They don't attack. They grow. A room with Gall growths is a room where the tree's immune system is being consumed from the inside. The healing that should be fighting the Rot is instead building Gall chambers.
+
+**Gall-Marked condition:** Players who make skin contact with ruptured Gall tissue risk the tree's immune system treating THEM as a foreign body — healing effects halved, rest attracts Gall Larvae. The Hag Circle and Mycelium can cure this (they understand decomposition and immune systems respectively).
+
+**Heartwood connection:** The Heartwood descendants use Gall growths as a controlled food source. The sap around a Gall is extremely nutrient-rich. They have spent centuries learning to maintain small, managed Galls without letting them cascade — one of their few successful adaptations of the Arborists' ecosystem management skills.
+
+### Bark Borers — The Tunnelers
+
+Beetle-like creatures that bore networks of tunnels through the bark and outer wood. The tunnels themselves are the threat — they weaken structural integrity, cause collapses, and create pathways for the Rot to spread faster than it could through solid wood.
+
+**Physical description:** Armored, iridescent beetles the length of a forearm. They work in colonies of 10-30, carving galleries in geometric patterns. The galleries are eerily beautiful — spiraling tunnels with smooth walls polished by generations of passage. The sound of active Borers is a constant, quiet chewing that you feel more than hear.
+
+**Behavior:** Borers are not aggressive toward people. They don't bite. They flee if cornered. But their tunnels are devastating — every gallery is a structural weakness and a Rot highway. A Borer-infested room has:
+- Hazard check (DC 15 Grit) on entry — floor may collapse into a gallery below
+- Walls that crumble if struck (accidentally smashing through into adjacent rooms or galleries)
+- Rot spreading faster (the tunnels bypass the tree's sealed bark layer)
+
+**Faction connection:** The Dam-Wrights are the natural enemy of Borers. Structural maintenance is their identity. A Dam-Wright quest line involves systematically clearing Borer galleries in a critical zone before the main dam repair can proceed. The Borers keep coming back because nobody is managing the population — the Arborists used specific resonance frequencies to repel them, and that knowledge was lost in the Great Silencing.
+
+**Borer Galleries as dungeon features:** Cleared Borer tunnels can serve as shortcuts — narrow, fragile passages that connect rooms in ways the main dungeon layout doesn't. Using one is a gamble: faster, but the tunnel might collapse behind you (Doom +1) or you might run into an active colony.
+
+### Crown Predators — Apex Wildlife
+
+The Crown (Zone 5) is the healthiest part of the Burnwillow — the canopy where fire-leaves burn brightest, Sun-Fruits grow, and the Root-Song is clean. The Rot hasn't reached here. The reason is not the tree's defenses. It's the things that live here.
+
+Crown Predators are not corrupted, not evil, not aligned with any faction. They are apex wildlife in their natural habitat. Storm Raptors with 20-foot wingspans that hunt by thermal updraft. Canopy Stalkers — ambush predators that mimic the pattern of fire-leaves until prey passes beneath. Emberstorm Phoenixes that roost in the highest branches and immolate anything that threatens their nests.
+
+**Why they matter:** The Crown Predators are inadvertent guardians. They eat anything that climbs — including Rot creatures. The Rot doesn't reach the Crown because anything Blighted that enters gets killed and eaten before it can spread. The predators don't know they're performing this function. They're just hungry.
+
+**The Canopy Court** coexists with Crown Predators the way herders coexist with wolves — carefully, respectfully, with ritual offerings and well-mapped flight paths. A player entering the Crown without Court guidance is prey. With Court guidance (Allied+ reputation), the predators are a manageable hazard rather than a guaranteed death.
+
+**Conditions inflicted:** Crown Predators don't inflict disease or corruption. They inflict Entangled (Canopy Stalker web), Shaken (Storm Raptor dive-screech), and Burning (Phoenix immolation). Clean, honest violence. The Crown is dangerous but uncorrupted — a reminder of what the rest of the tree used to be.
+
+### The Hollow Tide — Choir Recruitment
+
+The Choir does not individually convert each Hollow. It broadcasts. The Choir's song is a standing wave in the Undergrove — a permanent resonance that any Hollow within range eventually synchronizes with. This is not mind control. It is **entrainment** — the same phenomenon that makes pendulum clocks on the same wall synchronize their swings.
+
+**The recruitment process:**
+1. A character dies. They become a Hollow — mindless, wandering.
+2. The Hollow migrates downward over time. All Hollows drift toward the Undergrove — gravity, instinct, the faint pull of the Choir's song.
+3. In the Undergrove, the Hollow is immersed in the standing wave. Over days or weeks, its movements synchronize. It starts walking in rhythm. Then humming — a single note, barely audible.
+4. Eventually it joins the Chorus. Formation movement. Building. Singing. Not aware. Not suffering. Resonating.
+
+**The horror for the player:** Chorus members in the Undergrove wear the gear of fallen Seekers from Emberhome. Gear the player might recognize. If permadeath is tracked across campaigns, the player may encounter their own previous character — Hollowed, singing, building fungal architecture with hands that once held the player's sword.
+
+**Resonance-Touched condition:** The Choir's broadcast affects living creatures in deep zones. Prolonged time in Zone 4 or the Undergrove causes sympathetic resonance — gear starts humming, the Rot begins treating you as part of the score. The condition makes you a beacon: enemy spawn increases in rooms you enter, and Choir-directed enemies prioritize you as a target.
+
+---
+
+## Criminal Elements — The Rot Within Emberhome
+
+Not all threats come from the dungeon. Emberhome is a settlement of 200 desperate survivors clinging to the last warm light in a dying world. Desperation breeds crime. Scarcity breeds exploitation. Not everyone who lives behind the walls is good.
+
+### The Scrappers — Emberhome's Black Market
+
+A loose network of scavengers, thieves, and profiteers who operate outside Warden Voss's authority. They are not a formal organization — more a shared culture of "take what you can, sell what you can't use, don't get caught."
+
+**What they do:**
+- **Salvage poaching:** Entering cleared dungeon rooms before the official Seeker teams can catalogue the loot. They take the best items and sell them through back channels at Market Row, bypassing the communal resource distribution that Elder Kaelen tries to maintain.
+- **Amber laundering:** Buying amber from desperate refugees at below-value and reselling it to travelers at inflated prices. Amber is sacred currency — trading it for profit violates deep cultural taboos, but hunger overrides taboo.
+- **Gear theft:** Stealing equipment from Seekers who die in the dungeon. The official policy is that a dead Seeker's gear returns to the communal stockpile. The Scrappers get there first.
+- **Information brokering:** Selling dungeon intelligence — room layouts, enemy positions, vault locations — to the highest bidder. This information should be communal. It isn't.
+
+**Named NPC: Grimjaw** (already exists in the NPC roster) — Functions as the de facto leader, though he would deny it. Operates out of Market Row. Birsa watches him (her Seven Pillars note: "distrusts him, watches his dealings"). Warden Voss knows Grimjaw exists but lacks the manpower to shut him down while also running Seeker operations.
+
+**Why they're not villains:** The Scrappers are symptoms of scarcity. Elder Kaelen's communal distribution system sounds fair but doesn't account for the fact that some people need specific items RIGHT NOW and can't wait for the committee to allocate them. The Scrappers fill a market gap. They also take risks — they go into the dungeon without official support, without backup, without the Warden's intel. Many of them die. The ones who survive have earned their take by a different accounting than Kaelen's.
+
+**Why they're dangerous:** They undermine trust. If Seekers stop believing that the communal system will provide for them, they start hoarding. If refugees learn that amber is being laundered, they lose faith in the settlement. The Scrappers don't threaten Emberhome with violence — they threaten it with cynicism.
+
+### The Hollowborn — A Cult of the Inevitable
+
+A small, secret faction of Emberhome residents who believe the Rot will win. Not "might win" — will. They have looked at the math: the Rot advances, Emberhome's population shrinks, the dungeon gets more dangerous every season. The tree is dying. Fighting it just prolongs suffering.
+
+**What they believe:**
+- The Rot is not evil. It is the natural end of the cycle. (They are not entirely wrong — the Hag Circle holds a similar view.)
+- Resisting the Rot is hubris. The Arborists resisted and caused the Collapse.
+- The kindest thing is to accelerate the process — let the tree die quickly rather than slowly. A fast death is mercy.
+- When the tree falls, something will grow from the compost. The Undergrove will do its work. A new tree will rise. The Hollowborn want to be the seeds of what comes next.
+
+**What they do:**
+- Sabotage Seeker expeditions. Not violently — a misplaced map, a weakened rope, a supply cache that's been quietly emptied. Deaths that look like bad luck.
+- Spread Blight intentionally. Small amounts. A spore sample released near the water supply. A Blighted item left in the communal stockpile. Not enough to cause a plague — just enough to weaken Emberhome's resistance incrementally.
+- Recruit from the hopeless. Refugees who have lost everything. Seekers who have watched too many friends become Hollows. Father Oaken's Chapel is full of people one bad day away from joining.
+
+**Named NPC: The Quiet** — No one knows their real name. They communicate through anonymous Memory Seed messages left in public places. The Seeds contain visions of the tree dying — beautiful, peaceful, like autumn leaves falling. They are persuasive in a way that sermons and arguments are not, because they bypass language and speak directly to exhaustion. Birsa's secret (she can smell early-stage Blight) may lead to discovering a Hollowborn agent, if the player follows her quest line.
+
+**Why they're terrifying:** They might be right. The player spends the entire game fighting the Rot, and the Hollowborn's argument is: "And? What have you accomplished? The tree is still dying. You've just made it hurt longer." The player's answer to this question IS the endgame choice.
+
+**Connection to the Choir:** The Hollowborn do not know the Choir exists. They think the Rot is natural and mindless. If they discovered the Choir — that the Rot is being DIRECTED by corrupted Arborists with an agenda — it would shatter their theology. The Rot isn't natural inevitability. It's someone's choice. This revelation could convert them into allies or drive them to even more desperate action.
+
+### The Ash Runners — Dungeon Bandits
+
+Not everyone in the dungeon is there to fight the Rot. The Ash Runners are a gang of former Seekers who went rogue — they live in the dungeon, in the upper zones, raiding other Seeker parties for their gear and loot. They know the dungeon better than anyone because they never leave it.
+
+**What they are:**
+- 5-8 people who decided that the dungeon is safer than Emberhome's politics and scarcity. They have carved out a territory in Zone 1, fortified a cluster of rooms, and sustain themselves on dungeon scavenging.
+- They are skilled — these are experienced Seekers, not amateurs. They know how to fight, how to hide, and how to ambush.
+- They do not kill unless forced. They take your best item and let you go. They have a code: "The dungeon kills enough people. We don't need to add to the count."
+
+**Named NPC: Sable** — Leader of the Ash Runners. Former Seeker squad captain. Left Emberhome after a dispute with Warden Voss about resource allocation — Voss sent her squad into Zone 3 without adequate supplies, and two of her people died. She considers Voss a bureaucrat who trades lives for reports. She is not wrong, and she is not right.
+
+**Why they matter:** The Ash Runners are a mirror. They made the same choice every Seeker faces — go into the dungeon — but drew a different conclusion. They are what happens when the social contract breaks down. They can be enemies (they rob you), allies (they know Zone 1 better than anyone and will trade intel for supplies), or a recruitment pool (convince Sable to return and she brings experienced fighters).
+
+**The wrinkle:** Sable has found a Heartwood entrance. She doesn't know what it is. She thinks it's a vault that she can't open. If the player helps her, she'll show them where it is. If the player antagonizes her, she'll sell the location to someone else.
+
+---
+
 ## The Lock-and-Key Economy
 
 Resource management is a primary tension layer, separate from combat.
@@ -466,14 +990,460 @@ Resource management is a primary tension layer, separate from combat.
 
 ---
 
+### Total Party Kill — The Burnwillow Falls
+
+If every character in the party dies during the same run, the campaign is over. Not "start new characters" over — OVER. No new characters. No saved Memory Seeds. No Emberhome upgrades. No meta_state carries forward. Full reset. Start from scratch.
+
+Individual death has consequences: lose that character, their gear becomes salvage, their name goes on the Chapel wall. Total party death has total consequences. The roguelike loop (die, learn, improve, return stronger) only works if someone survives to carry the knowledge forward. If nobody survives, nobody carries anything.
+
+At the table, the GM should mark TPK clearly: the death screen is not a memorial. It is silence. "THE BURNWILLOW FALLS." No statistics. No legacy summary. The fire-leaves go dark.
+
+This is Design Pillar #4 ("Death means something") taken to its conclusion. If total death had no consequence beyond rolling new stats, death would not mean anything. It would just be an inconvenience. The threat of losing everything — town upgrades, recipes, faction reputation, the graveyard of remembered heroes — is what makes every decision in the dungeon feel like it matters.
+
+---
+
+## The Six Factions of the Burnwillow
+
+Every faction in the Burnwillow is grounded in a real ecological relationship that willow trees have with other organisms. The tree is alive — it has an immune system, a circulatory system, a communication network, and symbiotes that depend on it as much as it depends on them. The Rot has disrupted all of these relationships. The factions are what remains.
+
+Players interact with factions through a reputation system (see Faction Reputation below). Factions provide services, exclusive gear, crafting stations, and quest lines. Not all factions can be maxed — some are fundamentally opposed. Choices matter.
+
+### The Hive — "We Remember What You Forget"
+
+**Ecological Basis:** Bees and wasps are among the earliest pollinators of willow trees. Without them, no new growth. Willows provide the first spring nectar; the insects provide the reproductive future. True mutualism.
+
+**Culture & Society:** The Hive operates as a collective intelligence. Individual members have names, personal memories, and distinct personalities — but they share a deeper communal memory through royal jelly infused with Aether. When a Hive member dies, the collective remembers everything they knew. This is not telepathy. It is more like a library that updates itself when a librarian passes. The Hive does not mourn individuals. They mourn gaps in knowledge.
+
+**Headquarters:** The Apiary — a massive honeycombed structure grown into the mid-trunk of the Burnwillow, between Zones 1 and 2. Wax walls glow amber from stored Aether. The air vibrates with subsonic humming. Outsiders find it disorienting; Hive members find it home.
+
+**Services:**
+- **Wax-Sealed Armor:** Unique crafting material. Wax-reinforced gear has natural resistance to moisture and Rot infiltration.
+- **Honey Potions:** Healing and buff hybrids — the honey is infused with Aether-rich pollen. Heals HP and provides a temporary stat boost simultaneously.
+- **Propolis Sealant:** Field gear repair. Can restore 1 point of DR to damaged armor without returning to a forge.
+
+**Dark Side:** The Hive's commitment to collective memory means they value information above individuals. They will trade a member's life for a rare piece of knowledge without hesitation. They have been known to withhold critical intelligence from outsiders — not out of malice, but because sharing it might devalue the information's strategic worth. The Queen's declining health has also created a succession crisis: without her, the collective memory fragments. Some drones are already showing signs of individuality, and they are terrified of it.
+
+**Named NPCs:**
+- **The Queen Mother** — Function: living archive and decision nexus. Quirk: speaks in plural first person ("We have seen this before"). Secret: she is dying and knows the Hive will fragment when she does. Want: preserve the collective. Need: allow individuals to emerge. Voice: serene, ancient, every sentence weighted with centuries of accumulated memory.
+- **Drone-Captain Vex** — Function: field commander, contact point for outsiders. Quirk: twitchy, constantly adjusting antennae, speaks rapidly. Secret: has begun having individual dreams — the first sign of the Queen's weakening. Want: serve the Hive. Need: discover who they are alone. Voice: clipped military cadence, refers to self as "we" but occasionally slips into "I."
+- **Stinger** — Function: exile, information broker in Emberhome. Quirk: flinches at loud sounds, hoards small objects. Secret: was expelled from the Hive for refusing to share a memory — a personal one, of someone they loved. Want: rejoin the Hive. Need: accept that some memories belong to individuals. Voice: quiet, guarded, speaks in short sentences, avoids eye contact.
+
+**Quest Hooks:**
+- The Queen is dying. The Hive needs a rare Aether-rich pollen from Zone 3 to stabilize her — or they need someone to help them accept fragmentation.
+- The Rot is targeting the Apiary's breeding chambers. If the larvae die, there is no next generation.
+- Stinger knows something about the Arborists that the Hive collective does not want shared. The player must decide who to side with.
+
+**Exalted Reward:** Royal Jelly — consumable that grants temporary hive-sense (see through walls for 3 rooms, sense all enemies on the floor).
+
+---
+
+### The Mycelium — "The Roots Beneath the Roots"
+
+**Ecological Basis:** Mycorrhizal fungi form underground networks that connect tree roots, exchanging nutrients and chemical signals. This is the real-world "wood wide web." Willows depend on these networks to share resources with neighboring trees and to receive early warning of threats. The relationship is ancient and essential.
+
+**Culture & Society:** The Mycelium experiences time differently. A "quick" response takes hours. A decision takes days. They speak in spore-bursts that you feel more than hear — a tingling on the skin, an impression in the mind, a sudden certainty about something you didn't know a moment ago. Some members have been alive since the Arborists walked the Groves. They are patient beyond human comprehension and find the urgency of surface-dwellers both baffling and endearing.
+
+**Headquarters:** The Undernet — a vast network of fungal corridors that mirrors the Root-Roads but operates on a smaller scale. Nodes appear as clusters of bioluminescent mushrooms in the deepest parts of each Zone. The largest node is in Zone 2, where the network hub connects to all four Grove root systems — though the connections to Ashenmere have gone dark.
+
+**Services:**
+- **Spore Grenades:** Crafting ingredients that can be refined into alchemical bombs. Raw Mycelium spores are potent but unstable.
+- **Network Fast-Travel:** At Friendly reputation, players can travel between discovered Mycelium nodes, bypassing rooms (and Doom Clock ticks). Each node must be found and activated first.
+- **Decomposition Crafting:** The Mycelium can break down any item into its raw material components at a better yield ratio than the Blacksmith — but it takes time. Leave the item, come back in 3 rooms.
+
+**Dark Side:** Some Mycelium patches have been corrupted by the Rot. The network that carries nutrients and warnings also carries infection. The Mycelium knows this and has been quietly quarantining corrupted nodes — but the quarantine is failing. Worse: some corrupted nodes are still transmitting, sending false information through the network. The question is whether the Mycelium is an ally or a vector for the Blight, and the answer may be "both."
+
+**Named NPCs:**
+- **The Spreading** — Function: collective entity, the network itself given voice. Quirk: speaks through whatever mushroom is nearest — the mushroom's cap ripples as it "talks." Secret: has been aware of the Rot's true origin since the Collapse but considers the information too dangerous to share. Want: maintain the network. Need: accept that silence is also a form of rot. Voice: slow, resonant, arrives as impressions rather than words.
+- **Sporecaller Maeth** — Function: translator, liaison to surface-dwellers. Quirk: half-human, half-fungus — one arm is entirely mycelial thread, and she feeds it by pressing her hand against tree bark. Secret: she chose this merger voluntarily to save her daughter, whose consciousness now lives somewhere in the network. Want: find her daughter's echo. Need: accept that her daughter has become something new. Voice: human warmth filtered through alien patience. Speaks both languages.
+- **Old Cap** — Function: cantankerous elder, a single enormous toadstool that has been growing in the same spot in Zone 2 for four hundred years. Quirk: complains about everything — the foot traffic, the vibrations, the younger mushrooms. Secret: was present when the Arborists sealed the Root-Roads. Knows exactly why. Will only tell someone who brings him something he has never tasted. Want: to be left alone. Need: to pass on what he knows before the Rot reaches him. Voice: grumpy, elderly, surprisingly profane.
+
+**Quest Hooks:**
+- The Mycelium's quarantine is failing. Three corrupted nodes in Zone 2 are broadcasting false signals — luring creatures into ambushes. Someone needs to physically purge them. The Mycelium cannot act against its own tissue.
+- Old Cap will reveal the truth about the Root-Roads in exchange for a flavor he has never experienced — something from the Crown, where he has never been.
+- Sporecaller Maeth believes her daughter's consciousness can be recovered if a specific node in Zone 3 is reactivated. The Spreading disagrees. The player mediates.
+
+**Exalted Reward:** Mycelium Map — reveals hidden rooms and secret passages on each floor (the network knows every hollow).
+
+---
+
+### The Dam-Wrights — "Build It Right, Build It Once"
+
+**Ecological Basis:** Beavers eat willow bark and use willow branches for construction. Their dams create wetland habitat where willows thrive. The relationship is genuinely mutualistic — beavers prune the tree, the tree feeds the beavers, and the dams control water flow that benefits the entire ecosystem. In the Burnwillow, the Dam-Wrights are the engineers who maintain the root system's hydraulics.
+
+**Culture & Society:** Practical, industrious, no-nonsense. The Dam-Wrights think in terms of structural integrity, load-bearing capacity, and water pressure. Every problem is an engineering problem. If the Rot is spreading, that is a containment failure. If Emberhome is sinking, that is a foundation issue. They have been maintaining the Root-Roads' physical infrastructure for centuries and take immense pride in their work. They do not understand why other factions waste time on philosophy when there are supports to shore up.
+
+**Headquarters:** The Lodgework — a massive reinforced structure at the base of Zone 1, where the root system meets the water table. Built from harvested deadwood, Ironbark beams, and compacted earth. It controls the primary sap-flow dam that regulates moisture throughout the lower Zones. The sound of running water is constant. Everything is damp but structurally immaculate.
+
+**Services:**
+- **Gear Reinforcement:** Add +1 DR to any armor piece. Maximum 2 reinforcements per item. Uses Ironbark scraps and Dam-Wright expertise.
+- **Root-Road Maintenance:** At Allied reputation, the Dam-Wrights open shortcut passages between Zones that they have been maintaining in secret. These are faster routes that bypass some rooms.
+- **Siege Equipment:** Portable barricades for room defense. Place a barricade at a doorway to create a chokepoint, halving the number of enemies that can attack simultaneously.
+
+**Dark Side:** The Dam-Wrights are so focused on infrastructure that they sometimes ignore the living things that infrastructure is meant to protect. They have been known to divert water flow away from Emberhome during critical moments because "the dam schedule requires it." Their pragmatism can shade into callousness. The Old Dam is the only one who remembers why they build — the young ones just build.
+
+**Named NPCs:**
+- **Foreman Gnaw** — Function: master builder, leader of the Dam-Wrights. Quirk: missing two fingers on the left hand (construction accident, refuses to discuss it), constantly chewing on wood. Secret: knows the main dam has a hairline fracture that he cannot repair alone. Has been reinforcing it with temporary patches for months. Want: fix the dam properly. Need: ask for help — something he has never done. Voice: gruff, direct, every word is a load-bearing wall.
+- **Kitspool** — Function: young apprentice engineer. Quirk: draws blueprints on every flat surface, talks too fast when excited about a design. Secret: has been designing something the Dam-Wrights have never built before — a device that could reverse sap-flow and push the Rot back. It is wildly impractical and might work. Want: build something extraordinary. Need: learn that maintenance is as noble as creation. Voice: breathless enthusiasm, sentences that trip over each other.
+- **The Old Dam** — Function: retired elder. Quirk: blind, navigates by feeling vibrations through the floor — can sense structural stress, footsteps, and approaching creatures through touch. Secret: was the one who built the original Lodgework. Remembers the tree before the Rot. Cries when no one is listening. Want: to rest. Need: to teach Kitspool before it is too late. Voice: measured, warm, pauses between sentences to feel what is happening around them.
+
+**Quest Hooks:**
+- The main dam is fracturing. If it fails, the lower Zones flood — Emberhome included. Foreman Gnaw needs materials from Zone 3 to make a permanent repair, but he will not admit the problem publicly.
+- Kitspool's sap-reversal device needs a component from an Arborist Vault. The Dam-Wrights do not approve of "fantasy engineering." The player must decide whether to support the experiment.
+- The Old Dam senses something wrong in the deep roots — a vibration pattern they have never felt before. Something is building pressure below Zone 4.
+
+**Exalted Reward:** Lodgecraft — craft temporary room fortifications (barricade doors, create chokepoints, build rest shelters that halve Doom gain).
+
+---
+
+### The Canopy Court — "Beauty Is Not Kindness"
+
+**Ecological Basis:** Moth specialists — puss moths, sallow kittens, lunar hornet moths — are organisms whose entire life cycles depend on willow trees. The canopy is their domain. Willow warblers and other birds nest in the drooping branches, eating pest insects. Spiders web the canopy, providing pest control. These are the creatures of the upper reaches, where the tree meets the sky.
+
+**Culture & Society:** Beautiful, alien, and cruel in the way nature is cruel. The Canopy Court operates on principles of poetic justice and precise reciprocity. Their bargains are always fair but never kind. They see ground-dwellers as root-grubbers — necessary, perhaps, but aesthetically unfortunate. Their art is woven from Aether-infused silk, their music is the wind through fire-leaves, and their justice is delivered through riddles that the guilty always fail. They are more Midsummer Night's Dream than Tinkerbell.
+
+**Headquarters:** The Crownhall — a palace of living branches at the apex of Zone 5, where the fire-leaves burn brightest. The structure is grown, not built — each room is a canopy pocket shaped by centuries of careful pruning. Wind currents serve as corridors. Moth-scale dust glitters in the air like permanent fireflies. It is the most beautiful place in the Burnwillow and the most dangerous for outsiders.
+
+**Services:**
+- **Silk-Weaving:** Enchant gear with Aether-based affixes. The Silkmother can thread Aether into cloth, metal, or wood — adding magical properties to existing equipment. This is the primary source of Aether affixes.
+- **Wind-Riding:** At Allied reputation, the Court grants access to the Crown tier without the lethal climb. Wind currents carry passengers in silk cradles. Fast, safe, terrifying.
+- **Moth-Scale Powder:** Alchemy ingredient used in illusion and stealth effects. The powder disrupts perception — targets see what they expect to see, not what is actually there.
+
+**Dark Side:** The Court has its own politics. The Moth Prince's faction wants to maintain relations with the lower Groves. The Silkmother's faction wants to seal the Crown entirely and let the lower zones rot — the Crown has enough Aether and Sun-Fruits to sustain itself indefinitely. A third faction, led by Thorn's former allies, wants to weaponize the Rot against the other factions to consolidate power. The beauty of the Court conceals a viper's nest of competing agendas.
+
+**Named NPCs:**
+- **The Moth Prince** — Function: diplomat, liaison to surface-dwellers. Quirk: iridescent wings that shift color with mood (violet when amused, crimson when angry), speaks exclusively in riddles when first meeting someone. Secret: is not actually royalty — adopted the title to gain diplomatic standing. Real name unknown. Want: peace between Court factions. Need: stop performing and be honest, just once. Voice: musical, precise, every sentence has a double meaning.
+- **Silkmother Vray** — Function: master enchanter, keeper of Aether-weaving traditions. Quirk: charges in memories, not amber — to commission work, you must share a genuine personal memory, which she weaves into the enchantment. Secret: has woven so many others' memories into silk that she has difficulty distinguishing her own life from theirs. Want: to create the perfect enchantment. Need: to remember who she was before the weaving. Voice: dreamy, layered, sometimes answers questions you have not asked yet.
+- **Thorn** — Function: fallen Court member, exile in Emberhome. Quirk: clipped wings (punishment for treason), bitter, drinks too much. Secret: was exiled for trying to warn the lower Groves about the Court's isolationist faction. The "treason" was compassion. Want: return to the Court vindicated. Need: accept that Emberhome has become home. Voice: sharp, sardonic, quick to deflect sincerity with humor. Invaluable as a guide to Crown politics.
+
+**Quest Hooks:**
+- The isolationist faction is planning to sever the Crown from the lower Zones permanently. Thorn knows the details but needs proof — which is in the Crownhall.
+- Silkmother Vray has lost herself. She needs someone to bring her an enchantment she wove years ago — one that contains her own original memory. It is in the hands of the Hag Circle, who accepted it as payment.
+- The Moth Prince is mediating between factions, but his neutrality is a performance. The player discovers which side he actually supports and must decide what to do with that information.
+
+**Exalted Reward:** Mothwing Cloak — once per floor, become invisible for one room transition (skip all encounters, including Doom Clock advancement).
+
+---
+
+### The Hag Circle — "Everything Rots. We Just Make It Useful."
+
+**Ecological Basis:** Bracket fungi and decomposing organisms break down dead wood and recycle nutrients back into the living root system. Without decomposition, dead matter accumulates and chokes new growth. The tree needs death to make room for life. The Hag Circle is that process given sentience.
+
+**Culture & Society:** Three sisters. They trade in secrets, debts, and body parts. They are not evil — they are the composting process personified. They find beauty in decay and think the other factions are sentimental fools for trying to "save" the tree. The tree has always been dying. That is what trees do. The Hags are the part of the cycle that everyone needs but no one wants to acknowledge. They are patient, practical, and genuinely helpful — but their help always has a price, and the price is always fair but never comfortable.
+
+**Headquarters:** The Mulching Ground — a clearing in Zone 2 where dead wood decomposes into rich, dark soil. The air smells of earth and mushrooms. Three crooked huts sit in a triangle around a central cauldron that never stops boiling. The ground is soft underfoot — layers of decomposed matter going back centuries. It is, paradoxically, the most fertile place in the Burnwillow.
+
+**Services:**
+- **Curse-Brewing:** Apply negative affixes to weapons that trigger on enemies — Weakened, Frightened, Blighted. A weapon coated in Hag's curse makes the enemy's life worse with every hit.
+- **Rot Processing:** Only the Hags can safely handle Blight materials. Bring them corrupted drops, Rot samples, Blighted enemy parts — they convert them into usable crafting components that no other faction will touch.
+- **Fortune-Telling:** Reveal a boss's abilities and weaknesses before the fight. The cost: a memory. Not an amber-stored one — a real one, from your life. You lose a random piece of discovered map. The information is always accurate.
+
+**Dark Side:** Their prices. Always fair, never cheap. A memory. A finger. A promise. They do not deal in amber — amber is too clean. They trade in consequences. And they do not negotiate. The price is the price. They also believe, with quiet certainty, that the Rot will eventually win — and they are preparing for that eventuality by ensuring that whatever comes after the tree's death will have fertile ground to grow from. Whether this makes them pragmatists or traitors depends on who you ask.
+
+**Named NPCs:**
+- **Brindlemaw** — Function: eldest sister, poison-master, oracle. Quirk: blind, tastes the air with a long black tongue, always knows what you ate for your last meal. Secret: has been slowly immunizing Emberhome's water supply against the Rot — without telling anyone. Want: to prepare the world for what comes after. Need: to believe that "after" might not be necessary. Voice: ancient, dry, speaks in absolute certainties. Never raises her voice. Does not need to.
+- **Kettleblack** — Function: middle sister, alchemist, cook. Quirk: jovial, round, cooks things that should not be food into things that are — Rot-mushroom stew, beetle-shell crackers, sap-wine. Her food is unexpectedly delicious. Secret: genuinely likes people. Invites travelers to dinner. The dinner is always free. The favor she asks afterward is not. Want: company. Need: to stop trading friendship for leverage. Voice: warm, grandmotherly, laughs easily. The laugh is real. The warmth has a price.
+- **Needlewise** — Function: youngest sister, collector, tooth-fairy. Quirk: sharp, thin, collects teeth — has jars of them, organized by species, age, and magical resonance. Actually fond of people in a way she is bad at expressing (gifts teeth she considers "interesting"). Secret: is the only one of the three who believes the tree can be saved. Hides this from her sisters because it feels like heresy. Want: to prove her sisters wrong. Need: allies who share her hope. Voice: clipped, precise, uncomfortable with emotion, expresses affection through unsettling gifts.
+
+**Quest Hooks:**
+- Brindlemaw's water treatment is running out of ingredients. She needs a specific fungal strain from the Mycelium's corrupted nodes — but the Mycelium considers those nodes quarantined. The player navigates between factions.
+- Kettleblack's latest recipe requires an ingredient from the Canopy Court — moth-scale powder. The Court considers this a sacred substance. The player must negotiate, steal, or find an alternative.
+- Needlewise secretly approaches the player: she believes she has found evidence that the Rot has an origin point — and that it can be reached. She needs someone to go where the Hags cannot.
+
+**Exalted Reward:** Blight Tolerance — passive resistance to Rot damage, and Blighted rooms reveal their secrets to you (trapped chests glow, hidden doors become visible).
+
+---
+
+### The Heartwood Elders — "We Were Here Before You Named Us"
+
+**Ecological Basis:** Ancient trees develop sentient-seeming behaviors — roots redirect around obstacles, branches grow toward light sources that no longer exist, heartwood stores chemical memories of past seasons. The oldest parts of a willow tree are its heartwood — dead wood at the center that provides structural support. In the Burnwillow, the heartwood is not dead. It is the oldest living thing in existence. It has just been thinking very, very slowly.
+
+**Culture & Society:** The Heartwood Elders are the tree. Or rather, they are the oldest branches and root-masses that have accumulated enough Aether over millennia to achieve something like consciousness. They do not move. They have grown into the walls, the floors, the ceilings. You have been walking through them this entire time. They communicate by growing — a new branch pointing at a hidden passage, a root shifting to block a dangerous path, a knot forming in the shape of a face that watches you pass. Most adventurers never realize they are being guided.
+
+**Headquarters:** Everywhere and nowhere. The Heartwood Elders are distributed throughout the tree's structure. There is no building, no meeting hall. There is the tree. If pressed, the densest concentration of Elder consciousness is in the deep heartwood between Zones 3 and 4, where the oldest growth rings are. The player may discover this by following root patterns that repeat in a way that feels intentional.
+
+**Services:**
+- **Living Architecture:** At the Elders' direction, the tree reshapes rooms. Open sealed passages, grow bridges across chasms, seal Rot breaches with new growth (temporarily). This is not construction — it is the tree responding to a request.
+- **Heartwood Grafting:** Permanently fuse a gear item to your character. The item cannot be unequipped, but it gains +1 tier. The item literally grows into you. This is irreversible and intimate.
+- **Amber Communion:** Access Arborist memories stored in the walls. The heartwood remembers everything that happened near it. Touch a wall in a specific pattern and receive a vision of what the Arborists did in that room centuries ago.
+
+**Dark Side:** The Elders think at geological speed. By the time they decide to act, the crisis may have passed — or consumed everything. Their patience is indistinguishable from indifference. They also have a proprietary attitude toward the tree's resources: they consider the amber, the Aether, and the sap to be the tree's blood — and harvesting it is a form of violence they tolerate but do not approve of. An Elder that decides a particular resource extraction is "too much" will simply grow over the access point. There is no negotiation with geology.
+
+**Named NPCs:**
+- **Ashknot** — Function: the one Elder who thinks at human speed. Quirk: burned by the Rot three decades ago. The damage accelerated their consciousness to a pace that terrifies them — they experience time the way humans do now, and they find it unbearable. Everything moves too fast. Secret: has been secretly mapping the Rot's spread pattern and believes it is not random — it is following the old Arborist infrastructure, as if something is using the Root-Roads as highways. Want: to slow down. Need: to use their speed to warn the other Elders before the Rot reaches the deep heartwood. Voice: panicked, rapid for an Elder (which means a sentence every few minutes), speaks with the weight of someone who knows exactly how long "soon" really is.
+
+**Quest Hooks:**
+- One Elder in Zone 3 is dying. If it falls, the structural support for that entire Zone collapses — every room reshuffles, every shortcut closes, every Mycelium node in the area goes dark. The player has a narrow window to find a way to stabilize it.
+- Ashknot has discovered that the Rot is following the Root-Roads. This implies the Rot entered from another Grove — or was deliberately introduced. This information needs to reach the other factions, but Ashknot cannot leave the tree.
+- An Elder in Zone 4 has been dreaming the Rot's dreams. Its branches grow in spiral patterns that match Blight structures. It is going mad, slowly, and its madness is reshaping the rooms around it into something hostile.
+
+**Exalted Reward:** Root-Sense — feel the tree's pain. Doom events give advance warning ("the tree shudders — something is coming from the east"). Direction and approximate threat level of incoming danger.
+
+---
+
+## Faction Reputation System
+
+Reputation with each faction is tracked on a five-tier scale. Reputation actions include: quest completion, gifts/trade, combat choices (killing faction members causes reputation loss), and dialogue decisions. Reputation persists across runs in meta_state.
+
+| Tier | Name | Mechanical Gate |
+|------|------|-----------------|
+| -2 | Hostile | Faction members attack on sight. Services locked. |
+| -1 | Wary | Faction tolerates your presence. No services. |
+| 0 | Neutral | Basic trade available. No special services. |
+| 1 | Friendly | Standard services unlock. Quest lines open. |
+| 2 | Allied | Exclusive gear and crafting stations unlock. |
+| 3 | Exalted | Faction capstone reward unlocks (unique gear or ability). |
+
+### Opposing Factions
+
+Not all factions coexist peacefully. Raising reputation with one faction in an opposing pair lowers it with the other. Players cannot reach Exalted with both sides of an opposing pair.
+
+| Pair | Tension |
+|------|---------|
+| **Hag Circle vs Heartwood Elders** | Decomposition vs preservation. The Hags believe the tree must die to be reborn. The Elders believe it can be sustained indefinitely. |
+| **Canopy Court vs Dam-Wrights** | Isolation vs infrastructure. The Court wants to seal the Crown and survive alone. The Dam-Wrights want to build connections and save everyone. |
+| **The Hive vs The Mycelium** | Surface information vs underground information. Both factions control communication networks and compete for intelligence supremacy. |
+
+---
+
+## Example Builds
+
+There are no classes in Burnwillow. Every ability comes from gear. The following are common gear combinations that emerge naturally during play — descriptions of what happens, not rules to follow.
+
+- **The Frontline:** Stack Might-pool gear — weapons with [Cleave] or [Shockwave], heavy shoulders, Might rings. High damage, multiple targets per turn. Pairs well with Warden's Watch set.
+- **The Warden:** DR-heavy armor in Chest/Legs/Head, shield with [Intercept] in L.Hand. Absorb hits while the party deals damage. Rot Hunter's Trophy set turns you into a Blight-killer.
+- **The Channeler:** Staff/wand in R.Hand, robes in Chest, Aether-feeding wildcard slots. [Inferno], [Tempest], [Voidgrip] for AoE devastation. Arborist's Legacy set amplifies Aether abilities.
+- **The Ghost:** Ranged weapon, Burglar's Gloves with [Lockpick], Cloak of Shadows. Win initiative, scout, pick locks, backstab. Shadowweave set rewards precision.
+- **The Mender:** [Triage] satchel, [Mending] gear, [Renewal] chalice. Low damage, but the party never dies. Moonstone Circle set amplifies healing.
+- **The Pack Leader:** [Summon] item for minions, [Command] for bonus attacks, [Intercept] to protect the minion. Two attackers are better than one.
+
+---
+
+## Core Dice Mechanics (Canonical v3.0)
+
+### The Dice Pool
+
+Characters roll a pool of d6s, capped at 5d6. The base pool is 1d6 (naked). Each equipped gear piece adds its tier value in dice to the stat pool it feeds (Tier I = +1d6, Tier IV = +4d6). The total roll is: sum of dice + total modifier vs DC.
+
+### Stat Modifiers
+
+Base modifier is derived from ability scores using the D&D formula: `(score - 10) / 2, rounded down`. Scores are generated via 4d6 drop the lowest (range 3-18, typical modifier -1 to +4 at creation).
+
+### Gear Stat Bonuses
+
+Every equipped item provides a flat +1 to the stat SCORE per tier, in addition to adding dice. A Tier I sword adds +1d6 and +1 to the Might score. A Tier III staff adds +3d6 and +3 to the Aether score. Since the modifier formula is `(score - 10) // 2`, every 2 points of gear bonus equals +1 modifier. This means gear provides **two forms of scaling**: dice (consistency and ceiling) and score bonuses (which translate into modifier increases that push totals past what dice alone can reach). With 10 equipment slots, a fully geared legendary character can accumulate +10 or more to a stat score from gear alone.
+
+### Difficulty Classes
+
+Each DC step of 3.5 equals exactly one die's average value.
+
+| DC | Name | What It Means |
+|----|------|---------------|
+| 5 | Routine | Easy for any equipped character. |
+| 11 | Standard | 50/50 for Basic (Tier I-II) gear. |
+| 15 | Hard | Requires Advanced (Tier III) gear to be consistent. |
+| 22 | Elite | Only specialized, high-tier characters. |
+| 30+ | Legendary | 5d6 cap + heavy modifier stacking required. |
+
+### Passive Threshold
+
+If your Total Modifier + 1 >= DC, you succeed automatically without rolling. A fully geared character trivializes tasks they have outgrown. This is intentional — progression should feel like progression.
+
+### Gated Checks
+
+Some DCs are 25 or higher. These are content gates — impossible without the right gear. Players should see them early, recognize they cannot pass yet, and return when equipped. This is Metroidvania gating applied to dice.
+
+### Assistance
+
+An ally can grant +1d6 to another character's roll (subject to 5d6 cap). The helper must be adjacent and not engaged in their own action. One helper per check.
+
+### Scaling Reference
+
+**With +0 base modifier (score 10):**
+
+| Gear Level | Pool | Score Bonus | New Score | New Mod | Avg Roll |
+|-----------|------|------------|-----------|---------|---------|
+| Naked | 1d6 | +0 | 10 | +0 | 3.5 |
+| Basic | 2d6 | +1 | 11 | +0 | 7.0 |
+| Advanced | 3d6 | +2 | 12 | +1 | 11.5 |
+| Master | 4d6 | +3 | 13 | +1 | 15.0 |
+| Legendary | 5d6 | +10 | 20 | +5 | 22.5 |
+
+**With +4 base modifier (score 18):**
+
+| Gear Level | Pool | Score Bonus | New Score | New Mod | Avg Roll |
+|-----------|------|------------|-----------|---------|---------|
+| Naked | 1d6 | +0 | 18 | +4 | 7.5 |
+| Basic | 2d6 | +1 | 19 | +4 | 11.0 |
+| Advanced | 3d6 | +2 | 20 | +5 | 15.5 |
+| Master | 4d6 | +3 | 21 | +5 | 19.0 |
+| Legendary | 5d6 | +10 | 28 | +9 | 26.5 |
+
+---
+
+## Gear Sets & Affixes
+
+### Gear Sets
+
+Gear Sets are collections of thematically linked items that provide escalating bonuses when multiple pieces are equipped simultaneously. Sets are identified by a `set_id` on each item and detected by the GearGrid at equip time.
+
+| Set Name | Theme | Pieces | 2pc Bonus | 3pc Bonus | 4pc Bonus |
+|----------|-------|--------|-----------|-----------|-----------|
+| **Arborist's Legacy** | Ancient tree-shaper tech | Staff, Vestments, Charm, Relic | +1 Aether modifier | Sanctify costs no action | Aether abilities auto-crit on Blighted targets |
+| **Warden's Watch** | Old military guardians | Horn, Shield, Greaves, Helm | +1 DR | Intercept protects 2 allies | On block: all allies get +1d6 next attack |
+| **Rot Hunter's Trophy** | Blight-stalker trophies | Fang Blade, Heartstone, Mantle, Gauntlets | Resist Blight passive | +2 damage vs Blighted enemies | Kills on Blighted enemies heal 1d6 |
+| **Moonstone Circle** | Healer/support tools | Pendant, Chalice, Satchel, Talisman | Mending heals +1d6 | Renewal duration +2 rounds | Party gains Regen 1 HP/round in combat |
+| **Shadowweave** | Stealth/precision gear | Cloak, Gloves, Boots, Mask | +2 Scout bonus | Backstab does double on surprise round | First attack each combat is always a crit |
+
+### Randomized Affixes
+
+Items can roll 0-2 affixes when they drop. Affixes add a prefix and/or suffix to the item name ("Blazing Ironbark Longsword of the Canopy") and provide mechanical bonuses. Higher-tier items and deeper zones have higher affix chances and access to rarer affixes.
+
+**Prefixes** (modify the attack or effect):
+
+| Prefix | Effect |
+|--------|--------|
+| Blazing | On-hit: +1d4 fire damage |
+| Frozen | On-hit: 10% chance to slow (enemy loses next turn) |
+| Vampiric | Heal 1 HP per kill with this weapon |
+| Keen | Crit range expanded: 6 becomes 5-6 |
+| Volatile | +2 damage, but 1 self-damage on fumble |
+| Rooted | +1 DR while stationary (did not move this turn) |
+
+**Suffixes** (modify the item itself):
+
+| Suffix | Effect |
+|--------|--------|
+| ...of the Canopy | +1d6 to Aether pool checks |
+| ...of Haste | +1 movement (extra room transition per turn) |
+| ...of Thorns | Attacker takes 1 damage when they hit you |
+| ...of Mending | Passive 1 HP regen per room explored |
+| ...of the Willow | Blight resistance: halve Rot damage |
+
+**Emergent Combos:** Certain prefix-suffix pairs create synergies that are discovered, not listed. Blazing + ...of Thorns = fire reflect (attacker takes fire damage). Vampiric + Keen = more crits, more healing. The system rewards experimentation.
+
+### Post-Cap Overflow
+
+When a player's dice pool is already at the 5d6 cap for a stat, additional gear still matters — for its traits, set bonuses, affixes, and DR. The cap is not a ceiling — it is the point where gear choices start mattering more than gear quantity. Below 5d6, you are building raw power. At 5d6, you are building identity through the combination of abilities your gear provides.
+
+---
+
+## Alchemy & Crafting
+
+### Foundation: Salicylic Acid
+
+Willow trees produce salicylic acid — the active ingredient in aspirin. This is the tree's immune response: anti-inflammatory, pain-reducing, and bactericidal. In the Burnwillow, salicylic acid is the foundation of all alchemy. The Salicylic Tonic (willow bark + clean water) is the most basic healing potion, and the principle extends upward: the tree's chemistry is the player's pharmacy.
+
+### Ingredients
+
+Ingredients drop from rooms, enemies, and faction vendors. Each Zone has characteristic ingredients tied to its biome. Players carry ingredients in a dedicated inventory.
+
+| Ingredient | Source | Zone |
+|------------|--------|------|
+| Willow Bark | Harvesting from walls | All |
+| Ember Dust | Fire-leaf residue | 1-2 |
+| Rot Spores | Blight patches, enemies | 2-4 |
+| Moonstone Dust | Mineral veins | 2-3 |
+| Beetle Ichor | Insect enemies | 1-2 |
+| Spider Silk | Canopy creatures | 3-5 |
+| Beast Fang | Animal enemies | 1-3 |
+| Deepwater | Sap pools, Root-Road seepage | 3-4 |
+| Sap (raw) | Aether vein taps | All |
+| Royal Jelly | Hive faction (trade only) | — |
+| Moth-Scale Powder | Canopy Court (trade only) | — |
+| Elder Sap | Heartwood Elders (gift at Allied) | — |
+
+### Crafting Stations
+
+Four stations, each faction-gated:
+
+**The Blacksmith (Weld / Foreman Gnaw)** — Available from start, expanded at Dam-Wright reputation.
+- Reforging: Change an item's equipment slot.
+- Tempering: Add +1 DR to armor (max 2 per item).
+- Affix Forging: Rare reagent + amber guarantees one specific affix on a crafted item.
+- Salvage: Break gear into raw materials. Higher tier = more yield.
+
+**The Silkweaver (Silkmother Vray / Canopy Court)** — Unlocks at Canopy Court Friendly.
+- Enchanting: Add an Aether-based affix to any non-weapon item.
+- Thread Binding: Link two items to count as the same set (fudge a set bonus with mismatched pieces).
+- Mothsilk Garments: Unique light armor line — 0 DR but massive Aether pool bonuses and unique trait slots.
+
+**The Hag's Cauldron (Needlewise / Hag Circle)** — Unlocks at Hag Circle Friendly.
+- Curse Weapons: Apply debuff affixes that trigger on enemies (Weakened, Frightened, Blighted).
+- Rot Processing: Convert Blight materials into usable crafting components. Only the Hags can do this safely.
+- Bone Reading: Reveal a boss's abilities and weaknesses. Cost: a memory (lose a random piece of discovered map).
+
+**The Mycelium Forge (The Spreading)** — Unlocks at Mycelium Friendly.
+- Decomposition: Break any item into pure base materials at better ratio than Blacksmith salvage. Takes 3 rooms.
+- Spore Infusion: Add a "living" quality to gear — weapon recovers 1 charge per floor, armor regenerates 1 temp HP per combat.
+- Network Grafting: Permanently bond an item to the Mycelium network. Item cannot be lost on death — reclaim it next run. One item per network node. This is the roguelike meta-progression hook.
+
+### Consumable Types
+
+**Potions** — Instant, single-use. Healing, buffs, utility.
+
+| Potion | Recipe | Effect |
+|--------|--------|--------|
+| Salicylic Tonic | Willow Bark + Deepwater + Sap | Heal 2d6, cure Poison |
+| Ember Draught | Ember Dust + Sap + Beast Fang | +2 Might for 3 rounds |
+| Sporesight Elixir | Rot Spores + Moonstone Dust + Sap | Reveal hidden rooms/traps for current floor |
+| Hive-Mind Drop | Royal Jelly + Moonstone Dust + Sap | Sense all enemies for 5 rounds |
+| Ironbark Extract | Willow Bark + Beetle Ichor + Moonstone Dust | +2 DR for 3 rounds |
+| Beastblood Brew | Beast Fang + Rot Spores + Sap | Summon a temporary wolf minion (3 rounds) |
+
+**Bombs** — Thrown, AoE. Crafted at alchemy station. 3 bomb carry slots.
+
+| Bomb | Recipe | Effect |
+|------|--------|--------|
+| Ember Bomb | Ember Dust + Sap + Willow Bark | 2d6 fire, 10ft radius, Burning 1 round |
+| Spore Grenade | Rot Spores + Beetle Ichor + Sap | 1d6 poison + Blind 2 rounds |
+| Flashpowder | Moonstone Dust + Ember Dust + Spider Silk | No damage, Blind ALL enemies 1 round |
+| Rot Bomb | Rot Spores + Rot Spores + Deepwater | 3d6 necrotic (heals Blighted targets — risky!) |
+| Frostbite Flask | Deepwater + Moonstone Dust + Sap | 2d6 cold + Slow 2 rounds |
+| Glue Bomb | Sap + Spider Silk + Beetle Ichor | No damage, Snare 3 rounds |
+
+**Oils & Coatings** — Applied to weapons. Last 1 combat. One active at a time.
+
+| Coating | Recipe | Effect |
+|---------|--------|--------|
+| Blazing Oil | Ember Dust + Beast Fang + Sap | +1d4 fire per hit |
+| Frostbite Wax | Deepwater + Willow Bark + Spider Silk | +1d4 cold, 10% slow |
+| Venom Coat | Rot Spores + Beetle Ichor + Sap | +1d4 poison, stacks to 3 |
+| Silverbright | Moonstone Dust + Ember Dust + Sap | +1d6 vs undead/Hollowed |
+| Void Tar | Rot Spores + Deepwater + Beetle Ichor | +1d4 necrotic, lifesteal |
+
+**Elixirs** — Long-duration buffs. One active at a time. Last entire floor.
+
+| Elixir | Recipe | Effect |
+|--------|--------|--------|
+| Elixir of the Beaver | Willow Bark + Beetle Ichor + Elder Sap | Barricades cost half materials |
+| Moth's Grace | Moth-Scale Powder + Spider Silk + Sap | +1 to all Wits checks |
+| Hag's Bargain | Rot Spores + your own blood (1d6 self-damage) + Sap | Next 3 trait activations auto-succeed |
+| Root-Singer | Elder Sap + Moonstone Dust + Deepwater | Hear Root-Song — secret rooms glow on minimap |
+
+---
+
 ## Open Questions / Iteration Targets
 
-- Religion and spiritual practices (the Root-Song as worship? The First Druids as saints and ancestors?)
-- Faction structures per Grove (Seekers/Kindlers in Burnwillow — what organizations exist in Verdhollow, Solheart, Ashenmere?)
-- The First Druids — who were they, what happened, why were the Root-Roads sealed?
-- Creature bestiary per Grove (Hollows for Burnwillow — what are the apex threats in Verdhollow/Solheart/Ashenmere?)
-- How Root-Roads are discovered in gameplay (Zone 4 discovery? Quest chain? Dowsing Rod at maximum range?)
-- Dead Groves — are there fifth, sixth trees that have already fallen entirely?
+### Resolved (v3.0)
+- ~~Religion and spiritual practices~~ → The Root-Song is both spiritual framework and literal acoustic magic. The Heartwood Elders embody ancestral reverence. The Hag Circle provides death-rites. Father Oaken's Chapel is organized worship. The factions represent lived spirituality.
+- ~~Faction structures per Grove~~ → Six factions defined for Burnwillow. Other Groves' factions remain open.
+- ~~Creature bestiary per Grove~~ → Faction-aligned creatures provide ecological depth. Apex threats per Grove remain open.
+
+### Resolved (v4.0 — The Arborist Expansion)
+- ~~The First Druids — who, what, why sealed?~~ → Resonance Engineers who shaped wood through acoustic Aether vibration. Schism between Silencers (patience) and Choir (better song). Choir tried to skip Winter, broke Undergrove boundary. Silencers sealed Heartwood and went silent. Choir descended into Undergrove and became the directing intelligence behind the Rot.
+- ~~How Root-Roads discovered in gameplay~~ → DC 22 Elite Wits check, Dowsing Rod, faction reputation at Allied+, or discovered behind Amber Vaults. Heartwood entrances hidden in overgrown nooks, abandoned dungeon sections, and vault chambers.
+- ~~Dead Groves~~ → The Undergrove contains geological memory of failed Groves that existed before the Four. The Heartwood is the sixth Grove — the First Tree. Cosmology is now six Groves, not four.
+- ~~The Arborist singing tradition~~ → The Root-Song is literal acoustic engineering. The Arborists sang wood into shape. The tradition was deliberately suppressed (The Great Silencing). Heartwood descendants still know the songs but are terrified to sing them. Players may learn fragments through Memory Seeds, Arborist relics, or the Heartwood descendants.
+- ~~Twitch's communication crystal~~ → A Resonance Node — part of the Arborist acoustic network. Still receiving faint transmissions from the Heartwood. The Arborists in amber stasis are not entirely silent.
+- ~~The Rot's origin~~ → The Rot is the Undergrove's natural decomposition process, leaked upward when the Choir's song broke the boundary. The Choir (corrupted Arborists in the Undergrove) now directs it through the Root-Road network. Ashenmere was their first test — frozen by their prototype song.
+
+### Open
 - Heirloom mechanics — how are items designated as heirlooms before death? What is the handoff ritual?
-- The Arborist singing tradition — can players learn fragments of it? Is it a purchasable skill or a discovered ability?
-- Twitch's communication crystal — what does it connect to? A surviving Arborist? Ashenmere? The Root-Roads themselves?
+- Inter-faction politics in other Groves — do equivalents of the Six Factions exist in Verdhollow, Solheart, Ashenmere?
+- Faction presence in dungeon Zones — which factions control which territory? How does faction reputation affect dungeon encounters?
+- Alchemy ingredient ecology — do ingredients respawn? Are they seasonal? Can they be cultivated in Emberhome?
+- The Heartwood descendants — what is their culture like after 400 years of silence? What do they want from the surface? Do they welcome outsiders or fear them?
+- The Conductor — what were they like before? Can they be reasoned with? Is there a person left inside the Hollow?
+- Ashenmere — can it be thawed? What happens to the frozen Hollows if the Choir's test-song is disrupted?
+- The failed Groves in the Undergrove — how many were there? What killed them? Are they a warning or a resource?
+- Amber Vault acoustic dampening — does opening vaults mechanically increase Rot aggression in that zone? How does this interact with the Doom Clock?

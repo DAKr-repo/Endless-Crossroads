@@ -169,6 +169,7 @@
       "name": "Grimjaw",
       "pronouns": "he/him",
       "function": "merchant",
+      "faction": "scrappers",
       "location": "Market Row",
       "quirk": "Smiles with only the left side of his face. The right side doesn't move -- old nerve damage he won't discuss.",
       "secret": "Buys salvage from Hollow-infested zones by paying desperate scavengers below value. Some of those scavengers didn't come back. He doesn't lose sleep over it.",
@@ -306,6 +307,350 @@
       "need": "To share his findings before the immunity kills him -- the controlled exposure is slowly consuming his organs.",
       "voice": "Dreamy, distracted. Frequently addresses mushrooms mid-sentence. 'You see, the spores -- no, Mildred, I'm talking -- the spores have a pattern, if you...'",
       "description": "A man-shaped growth of moss and mushroom, barely recognizable as human. His eyes are clear and sharp, but shelf-fungi grow from his shoulders and his skin has a greenish cast."
+    },
+    {
+      "name": "The Queen Mother",
+      "pronouns": "she/her",
+      "function": "faction_leader",
+      "faction": "hive",
+      "location": "The Apiary",
+      "quirk": "Speaks in plural first person. 'We have seen this before.'",
+      "secret": "She is dying and knows the Hive will fragment when she does. The collective memory will shatter into individual pieces.",
+      "history": "Has led the Hive for centuries, accumulating the memories of every member who has ever died. She is the living archive of everything the Hive has witnessed since before the Collapse.",
+      "relationships": {
+        "Drone-Captain Vex": "trusted_field_agent",
+        "Stinger": "exiled_former_member",
+        "Elder Kaelen": "diplomatic_contact",
+        "The Spreading": "rival_intelligence_network"
+      },
+      "want": "Preserve the collective memory at all costs.",
+      "need": "Allow individuals to emerge. The Hive must learn to survive as people, not just as a network.",
+      "voice": "Serene, ancient, every sentence weighted with centuries of accumulated memory.",
+      "description": "Enormous and immobile, her body merged with the wax walls of the Apiary's central chamber. Her compound eyes reflect amber light. When she speaks, the walls hum in sympathy."
+    },
+    {
+      "name": "Drone-Captain Vex",
+      "pronouns": "they/them",
+      "function": "field_commander",
+      "faction": "hive",
+      "location": "The Apiary",
+      "quirk": "Twitchy, constantly adjusting antennae, speaks rapidly. Refers to self as 'we' but occasionally slips into 'I.'",
+      "secret": "Has begun having individual dreams -- the first sign of the Queen's weakening. Terrified of what it means.",
+      "history": "Born into the Hive collective, trained as a field operative. Has led more scouting missions into Rot territory than any other Hive member. The cracks in their collective identity started six months ago.",
+      "relationships": {
+        "The Queen Mother": "devoted_servant",
+        "Stinger": "complicated -- understands why Stinger left, fears the same fate",
+        "Warden Voss": "professional_contact_for_threat_intel"
+      },
+      "want": "Serve the Hive perfectly.",
+      "need": "Discover who they are alone.",
+      "voice": "Clipped military cadence. Rapid. Switches between 'we' and 'I' without noticing.",
+      "description": "Lean and angular, with iridescent chitin-like patches on their forearms and neck. Their eyes dart constantly, processing information from multiple angles simultaneously."
+    },
+    {
+      "name": "Stinger",
+      "pronouns": "they/them",
+      "function": "exile",
+      "faction": "hive",
+      "location": "Emberhome",
+      "quirk": "Flinches at loud sounds, hoards small objects. Keeps them in careful arrangements that make sense only to them.",
+      "secret": "Was expelled from the Hive for refusing to share a memory -- a personal one, of someone they loved. The Hive considers personal memories a resource, not a right.",
+      "history": "Former Hive scout who fell in love with someone outside the collective. When the Hive demanded the memory be shared, Stinger refused. Exile was immediate. They know something about the Arborists that the Hive collective does not want shared.",
+      "relationships": {
+        "The Queen Mother": "former_collective -- now estranged",
+        "Birsa": "cautious_acquaintance -- trades information at Market Row",
+        "Twitch": "fellow_outsider -- they understand each other's loneliness"
+      },
+      "want": "Rejoin the Hive.",
+      "need": "Accept that some memories belong to individuals.",
+      "voice": "Quiet, guarded. Short sentences. Avoids eye contact.",
+      "description": "Small and tense, wrapped in layers of scavenged cloth. Faint chitin ridges visible at the temples. Their hands are always moving, sorting, arranging."
+    },
+    {
+      "name": "The Spreading",
+      "pronouns": "it/its",
+      "function": "faction_collective",
+      "faction": "mycelium",
+      "location": "The Undernet",
+      "quirk": "Speaks through whatever mushroom is nearest -- the cap ripples as it 'talks.' Can hold multiple conversations simultaneously through different fungi.",
+      "secret": "Has been aware of the Rot's true origin since the Collapse but considers the information too dangerous to share. Silence, it believes, is also a form of protection.",
+      "history": "The Mycelium network itself, given voice. It has existed since before the Arborists, connecting the root systems of all four Groves. It remembers everything the roots have ever carried.",
+      "relationships": {
+        "Sporecaller Maeth": "chosen_translator",
+        "Old Cap": "oldest_node -- cantankerous but irreplaceable",
+        "The Queen Mother": "rival_network -- respects but does not trust",
+        "The Heartwood Elders": "ancient_alliance -- shared root systems"
+      },
+      "want": "Maintain the network. Keep everything connected.",
+      "need": "Accept that silence is also a form of rot. Some truths must be shared before they decay.",
+      "voice": "Slow, resonant. Arrives as impressions rather than words -- a tingling on the skin, a sudden certainty about something you didn't know a moment ago.",
+      "description": "Not a single entity. A presence that manifests through the nearest fungal growth -- a mushroom cap that ripples, a patch of bioluminescent moss that brightens, a feeling of being watched by something vast and patient."
+    },
+    {
+      "name": "Sporecaller Maeth",
+      "pronouns": "she/her",
+      "function": "translator",
+      "faction": "mycelium",
+      "location": "The Undernet",
+      "quirk": "Half-human, half-fungus -- one arm is entirely mycelial thread. She feeds it by pressing her hand against tree bark.",
+      "secret": "She chose this merger voluntarily to save her daughter, whose consciousness now lives somewhere in the network. She has been searching for that echo for eleven years.",
+      "history": "A surface-dweller who came to the Mycelium begging for help when her daughter was dying of Blight. The Spreading offered a choice: merge with the network, and the daughter's consciousness would be preserved. Maeth accepted without hesitation.",
+      "relationships": {
+        "The Spreading": "symbiotic -- she is its voice to the surface",
+        "Old Cap": "fond -- he reminds her of her father",
+        "Father Oaken": "former_friend -- he doesn't recognize what she's become"
+      },
+      "want": "Find her daughter's echo in the network.",
+      "need": "Accept that her daughter has become something new, not something lost.",
+      "voice": "Human warmth filtered through alien patience. She speaks both languages -- surface words and spore impressions.",
+      "description": "A woman of middle years whose left arm is a lattice of white mycelial thread, pulsing faintly with bioluminescence. Her right side is still human. Her eyes are kind but distant, as if listening to a conversation no one else can hear."
+    },
+    {
+      "name": "Old Cap",
+      "pronouns": "he/him",
+      "function": "elder",
+      "faction": "mycelium",
+      "location": "Zone 2",
+      "quirk": "Complains about everything -- the foot traffic, the vibrations, the younger mushrooms. Has been growing in the same spot for four hundred years.",
+      "secret": "Was present when the Arborists sealed the Root-Roads. Knows exactly why. Will only tell someone who brings him something he has never tasted.",
+      "history": "A single enormous toadstool, the oldest individual node in the Mycelium network. He remembers the Collapse firsthand. He has watched Emberhome grow from a refugee camp to a settlement. He has opinions about everything and shares them whether asked or not.",
+      "relationships": {
+        "The Spreading": "oldest_node -- technically part of it, practically independent",
+        "Sporecaller Maeth": "grudging_affection",
+        "Elder Kaelen": "has_watched_him_age -- finds human brevity tragic"
+      },
+      "want": "To be left alone.",
+      "need": "To pass on what he knows before the Rot reaches him.",
+      "voice": "Grumpy, elderly, surprisingly profane. Speaks slowly but with devastating precision when he wants to make a point.",
+      "description": "A toadstool the size of a small table, growing from a crack in the Zone 2 floor. His cap is scarred and weathered, marked by centuries of growth rings. Pale bioluminescent patches serve as 'eyes' that track movement with unsettling attention."
+    },
+    {
+      "name": "Foreman Gnaw",
+      "pronouns": "he/him",
+      "function": "faction_leader",
+      "faction": "dam_wrights",
+      "location": "The Lodgework",
+      "quirk": "Missing two fingers on the left hand (construction accident, refuses to discuss it). Constantly chewing on wood.",
+      "secret": "Knows the main dam has a hairline fracture that he cannot repair alone. Has been reinforcing it with temporary patches for months.",
+      "history": "Has led the Dam-Wrights for thirty years. Built half the current Lodgework with his own hands. Lost the fingers to a collapsing beam he refused to let go of because three apprentices were underneath it.",
+      "relationships": {
+        "Kitspool": "apprentice -- proud of her but worried about her ambitions",
+        "The Old Dam": "mentor -- the only person whose opinion he values",
+        "Warden Voss": "professional_respect -- both pragmatists"
+      },
+      "want": "Fix the dam properly.",
+      "need": "Ask for help. Something he has never done.",
+      "voice": "Gruff, direct. Every word is a load-bearing wall. Does not waste syllables.",
+      "description": "Broad and heavy-set, with fur-brown skin and calloused hands (eight fingers). His jaw works constantly on a piece of wood. His eyes assess structural integrity in everything they look at, including people."
+    },
+    {
+      "name": "Kitspool",
+      "pronouns": "she/her",
+      "function": "apprentice",
+      "faction": "dam_wrights",
+      "location": "The Lodgework",
+      "quirk": "Draws blueprints on every flat surface. Talks too fast when excited about a design.",
+      "secret": "Has been designing a sap-reversal device that could push the Rot back. It is wildly impractical and might work. She needs an Arborist Vault component to complete it.",
+      "history": "The youngest Dam-Wright in a generation. Joined because she wanted to build, not maintain. The tension between her vision and the Dam-Wrights' conservative engineering culture is constant.",
+      "relationships": {
+        "Foreman Gnaw": "mentor -- frustrates and inspires in equal measure",
+        "The Old Dam": "hero -- wants to build something as lasting as the original Lodgework",
+        "Twitch": "trading_partner -- she needs salvage components he hoards"
+      },
+      "want": "Build something extraordinary.",
+      "need": "Learn that maintenance is as noble as creation.",
+      "voice": "Breathless enthusiasm. Sentences trip over each other. Hands move constantly, sketching invisible plans in the air.",
+      "description": "Young, wiry, with sawdust perpetually in her short dark hair. Her hands are stained with charcoal from constant sketching. She vibrates with restless energy."
+    },
+    {
+      "name": "The Old Dam",
+      "pronouns": "they/them",
+      "function": "retired_elder",
+      "faction": "dam_wrights",
+      "location": "The Lodgework",
+      "quirk": "Blind. Navigates by feeling vibrations through the floor -- can sense structural stress, footsteps, and approaching creatures through touch.",
+      "secret": "Built the original Lodgework. Remembers the tree before the Rot. Cries when no one is listening.",
+      "history": "The oldest Dam-Wright, now retired. They laid the first beam of the Lodgework over a century ago. Their blindness came from a Rot-spore exposure forty years back, but their sensitivity to vibration has only grown since.",
+      "relationships": {
+        "Foreman Gnaw": "student -- raised him, trusts him, worries about his stubbornness",
+        "Kitspool": "hope -- sees the builder they once were",
+        "Ashknot": "kindred -- both feel the tree's pain through different senses"
+      },
+      "want": "To rest.",
+      "need": "To teach Kitspool before it is too late.",
+      "voice": "Measured, warm. Pauses between sentences to feel what is happening around them.",
+      "description": "Ancient, stooped, with clouded eyes and hands that never stop touching surfaces. Their fingers read the wood the way others read faces. When they place a palm flat against a wall, they can tell you what is happening three rooms away."
+    },
+    {
+      "name": "The Moth Prince",
+      "pronouns": "he/him",
+      "function": "diplomat",
+      "faction": "canopy_court",
+      "location": "The Crownhall",
+      "quirk": "Iridescent wings that shift color with mood (violet when amused, crimson when angry). Speaks exclusively in riddles when first meeting someone.",
+      "secret": "Is not actually royalty -- adopted the title to gain diplomatic standing. Real name unknown even to the Court.",
+      "history": "Appeared in the Canopy Court a decade ago, claimed diplomatic authority, and proved so effective at inter-faction negotiation that nobody challenged the claim. He mediates between Court factions while hiding his own allegiance.",
+      "relationships": {
+        "Silkmother Vray": "colleague -- respects her craft, unsettled by her memory-loss",
+        "Thorn": "complicated -- Thorn's exile was partly his doing, and he knows it",
+        "Elder Kaelen": "diplomatic_counterpart"
+      },
+      "want": "Peace between Court factions.",
+      "need": "Stop performing and be honest, just once.",
+      "voice": "Musical, precise. Every sentence has a double meaning. Riddles give way to directness only when trust is earned.",
+      "description": "Tall and impossibly elegant, with iridescent moth-wings folded behind his shoulders. His features are sharp, his eyes are dark and constantly calculating. Moth-scale dust trails from his movements like glitter."
+    },
+    {
+      "name": "Silkmother Vray",
+      "pronouns": "she/her",
+      "function": "enchanter",
+      "faction": "canopy_court",
+      "location": "The Crownhall",
+      "quirk": "Charges in memories, not amber. To commission work, you must share a genuine personal memory, which she weaves into the enchantment.",
+      "secret": "Has woven so many others' memories into silk that she has difficulty distinguishing her own life from theirs. She is losing herself.",
+      "history": "The greatest living enchanter, keeper of the Aether-weaving traditions that predate even the Arborists' formalization. She has been weaving memories into silk for so long that the boundary between her self and her work has eroded.",
+      "relationships": {
+        "The Moth Prince": "colleague -- he protects her politically",
+        "Thorn": "former_friend -- Thorn tried to warn her about the memory-loss before his exile",
+        "Needlewise": "has_one_of_her_original_memories -- the Hag accepted it as payment years ago"
+      },
+      "want": "Create the perfect enchantment.",
+      "need": "Remember who she was before the weaving.",
+      "voice": "Dreamy, layered. Sometimes answers questions you have not asked yet. Pauses mid-sentence as if hearing a memory play.",
+      "description": "Ethereal, draped in shimmering silk that moves without wind. Her eyes are opalescent and unfocused, as if looking at something behind reality. Her fingers trail silvery threads that appear and vanish."
+    },
+    {
+      "name": "Thorn",
+      "pronouns": "he/him",
+      "function": "exile",
+      "faction": "canopy_court",
+      "location": "Emberhome",
+      "quirk": "Clipped wings (punishment for treason). Bitter, drinks too much. Quick to deflect sincerity with humor.",
+      "secret": "Was exiled for trying to warn the lower Groves about the Court's isolationist faction. The 'treason' was compassion.",
+      "history": "Former Court member of high standing. When the isolationist faction proposed sealing the Crown permanently, Thorn attempted to leak the plan to Emberhome. He was caught, his wings were clipped, and he was cast out. He is the only person in Emberhome who understands Crown politics from the inside.",
+      "relationships": {
+        "The Moth Prince": "resentful -- suspects the Prince helped engineer his exile",
+        "Silkmother Vray": "worried -- tried to warn her before exile, she didn't listen",
+        "Grimjaw": "drinking_companion",
+        "Warden Voss": "asset -- Voss values his Crown intelligence"
+      },
+      "want": "Return to the Court vindicated.",
+      "need": "Accept that Emberhome has become home.",
+      "voice": "Sharp, sardonic. Quick to deflect sincerity with humor. Underneath the bitterness is someone who cared enough to lose everything for it.",
+      "description": "Lean and angular with the faded iridescence of clipped moth-wings on his back -- scarred stubs where full wings once were. His clothes are Emberhome-rough over a frame built for Court elegance. He looks like a fallen prince because he is one."
+    },
+    {
+      "name": "Brindlemaw",
+      "pronouns": "she/her",
+      "function": "elder",
+      "faction": "hag_circle",
+      "location": "The Mulching Ground",
+      "quirk": "Blind. Tastes the air with a long black tongue. Always knows what you ate for your last meal.",
+      "secret": "Has been slowly immunizing Emberhome's water supply against the Rot -- without telling anyone. The treatment is working but running out of ingredients.",
+      "history": "The eldest of the three sisters. Ancient beyond reliable counting. She has watched civilizations compost and new ones grow from the remains. She considers herself a custodian of a process everyone needs but no one wants to acknowledge.",
+      "relationships": {
+        "Kettleblack": "sister -- the heart of the Circle",
+        "Needlewise": "sister -- the hope she pretends not to share",
+        "Father Oaken": "opposite_philosophy -- he heals against death, she works with it"
+      },
+      "want": "Prepare the world for what comes after.",
+      "need": "Believe that 'after' might not be necessary.",
+      "voice": "Ancient, dry. Speaks in absolute certainties. Never raises her voice. Does not need to.",
+      "description": "A hunched figure draped in bark-cloth, her eye sockets empty and dark. A long black tongue flickers constantly, tasting the air. Her skin has the texture of old mushroom leather. She moves with absolute certainty despite seeing nothing."
+    },
+    {
+      "name": "Kettleblack",
+      "pronouns": "she/her",
+      "function": "alchemist",
+      "faction": "hag_circle",
+      "location": "The Mulching Ground",
+      "quirk": "Jovial, round, cooks things that should not be food into things that are -- Rot-mushroom stew, beetle-shell crackers, sap-wine. Her food is unexpectedly delicious.",
+      "secret": "Genuinely likes people. Invites travelers to dinner. The dinner is always free. The favor she asks afterward is not.",
+      "history": "The middle sister. Where Brindlemaw is ancient certainty and Needlewise is sharp hope, Kettleblack is warmth -- real warmth, not performed. She has fed more refugees than the Chapel, though nobody counts because she does not keep records. She keeps debts.",
+      "relationships": {
+        "Brindlemaw": "sister -- defers to her wisdom",
+        "Needlewise": "sister -- protects her softness",
+        "Twitch": "regular_customer -- he brings her ingredients she cannot find, she feeds him"
+      },
+      "want": "Company. Someone to cook for.",
+      "need": "Stop trading friendship for leverage.",
+      "voice": "Warm, grandmotherly. Laughs easily. The laugh is real. The warmth has a price.",
+      "description": "Round and comfortable, wrapped in stained aprons over dark cloth. Her cauldron follows her like a pet. She smells of spices that don't exist in any recipe book. Her smile is genuine and her eyes are calculating."
+    },
+    {
+      "name": "Needlewise",
+      "pronouns": "she/her",
+      "function": "collector",
+      "faction": "hag_circle",
+      "location": "The Mulching Ground",
+      "quirk": "Sharp, thin. Collects teeth -- has jars of them, organized by species, age, and magical resonance. Gifts teeth she considers 'interesting' as a sign of affection.",
+      "secret": "Is the only one of the three who believes the tree can be saved. Hides this from her sisters because it feels like heresy against their philosophy of accepting the cycle.",
+      "history": "The youngest sister, though 'young' is relative. She has the sharpest mind of the three and the most dangerous hope. She has been quietly gathering evidence that the Rot has an origin point -- and that it can be reached.",
+      "relationships": {
+        "Brindlemaw": "sister -- respects but disagrees",
+        "Kettleblack": "sister -- grateful for her protection",
+        "Silkmother Vray": "possesses_one_of_Vray's_original_memories -- accepted as payment years ago"
+      },
+      "want": "Prove her sisters wrong. The tree can survive.",
+      "need": "Allies who share her hope.",
+      "voice": "Clipped, precise. Uncomfortable with emotion. Expresses affection through unsettling gifts.",
+      "description": "Thin and angular, all sharp edges and darting movements. Her fingers are long and stained dark. Glass jars of teeth hang from her belt, clicking softly as she moves. Her eyes are the most alive thing about her."
+    },
+    {
+      "name": "Ashknot",
+      "pronouns": "it/its",
+      "function": "elder",
+      "faction": "heartwood_elders",
+      "location": "Zone 3-4",
+      "quirk": "Burned by the Rot three decades ago. Now thinks at human speed, which terrifies it -- everything moves too fast.",
+      "secret": "Has been mapping the Rot's spread pattern and believes it is not random. It follows the old Arborist infrastructure, as if something is using the Root-Roads as highways.",
+      "history": "One of the Heartwood Elders -- ancient sentient branches grown into the walls of the tree. The Rot burned it thirty years ago, and the damage accelerated its consciousness to human pace. It is the only Elder who can communicate on a timescale that surface-dwellers understand, and it finds the experience unbearable.",
+      "relationships": {
+        "The Old Dam": "kindred -- both feel the tree's pain",
+        "The Spreading": "allied -- shares information through root contact",
+        "Elder Kaelen": "concerned -- wants to warn Emberhome but cannot leave the tree"
+      },
+      "want": "To slow down. To return to geological patience.",
+      "need": "To use its speed to warn the other Elders before the Rot reaches the deep heartwood.",
+      "voice": "Panicked by Elder standards (a sentence every few minutes). Speaks with the weight of someone who knows exactly how long 'soon' really is.",
+      "description": "Not a person -- a section of wall in Zone 3 where the bark has formed a face-like knot. The 'face' shifts slowly, its grain rearranging over minutes to form expressions. When it speaks, the wood around it vibrates. Scorch marks from the Rot mar its surface."
+    },
+    {
+      "name": "Sable",
+      "pronouns": "she/her",
+      "function": "bandit_leader",
+      "faction": "ash_runners",
+      "location": "Zone 1",
+      "quirk": "Keeps a tally of every piece of gear she's taken from other Seekers. Returns items to families of the dead when she can. The living don't get that courtesy.",
+      "secret": "Has found a Heartwood entrance in Zone 1. She doesn't know what it is -- she thinks it's an Amber Vault she can't open.",
+      "history": "Former Seeker squad captain. Left Emberhome after Warden Voss sent her squad into Zone 3 without adequate supplies. Two of her people died. She considers Voss a bureaucrat who trades lives for reports. She took the survivors and went rogue.",
+      "relationships": {
+        "Warden Voss": "enemy -- personal betrayal",
+        "Captain Ashara": "former_colleague -- Ashara stayed, Sable didn't forgive her",
+        "Grimjaw": "trading_partner -- he fences her loot"
+      },
+      "want": "To never answer to someone who doesn't understand the dungeon again.",
+      "need": "To stop running from the settlement and start fighting for it.",
+      "voice": "Direct, military-flat. No wasted words. Gives orders out of habit even in conversation.",
+      "description": "Lean and scarred, with cropped hair and the economical movements of someone who lives in hostile territory. Her gear is mismatched Seeker-issue, repaired and re-repaired. Her eyes assess threat before everything else."
+    },
+    {
+      "name": "The Quiet",
+      "pronouns": "unknown",
+      "function": "cult_leader",
+      "faction": "hollowborn",
+      "location": "unknown",
+      "quirk": "Communicates exclusively through anonymous Memory Seed messages left in public places. The Seeds contain visions of the tree dying -- beautiful, peaceful, like autumn leaves falling.",
+      "secret": "Their identity is unknown. They may be an existing NPC operating under a second persona. The Memory Seeds bypass language and speak directly to exhaustion -- they are persuasive in a way sermons and arguments cannot be.",
+      "history": "Nobody knows when The Quiet began operating. The Memory Seed messages started appearing in Emberhome about two years ago. They have recruited from the hopeless -- refugees, bereaved Seekers, people who have watched too many friends become Hollows.",
+      "relationships": {
+        "Father Oaken": "target -- the Chapel's congregation is The Quiet's recruitment pool",
+        "Birsa": "threat -- her Hollow-detection sense might identify a Hollowborn agent"
+      },
+      "want": "Accelerate the tree's death to end the suffering sooner.",
+      "need": "To discover that the Rot is directed by the Choir, not natural. This truth would shatter their theology.",
+      "voice": "Unknown. The Memory Seeds carry feeling, not voice -- a profound weariness, a gentle certainty that resistance is prolonging pain.",
+      "description": "Nobody has seen The Quiet. They are a presence, not a person -- felt through the Seeds they leave behind. Each Seed carries the same emotional signature: peace in letting go."
     }
   ],
   "generic_templates": [

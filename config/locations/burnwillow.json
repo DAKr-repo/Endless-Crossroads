@@ -211,6 +211,68 @@
       "encounter_tier": 4,
       "room_type_hint": "organic_nest",
       "sensory_signature": "Warm flesh and growth. The wet sound of assembly. No Root-Song. No silence. Something else."
+    },
+    {
+      "name": "The Apiary",
+      "district": "The Hive",
+      "topology": "settlement",
+      "zone": 1,
+      "description": "A massive honeycombed structure grown into the mid-trunk of the Burnwillow, between Zones 1 and 2. Wax walls glow amber from stored Aether. The air vibrates with subsonic humming that outsiders find disorienting and Hive members find home. Individual cells serve as workshops, nurseries, and memory archives where royal jelly preserves the knowledge of every member who has ever died.",
+      "services": ["trade", "craft", "heal"],
+      "npcs": ["The Queen Mother", "Drone-Captain Vex"],
+      "sensory_signature": "Subsonic humming felt in the teeth and chest. Amber glow through wax walls. Warm, heavy air sweet with Aether-rich pollen."
+    },
+    {
+      "name": "The Undernet Hub Node",
+      "district": "The Mycelium",
+      "topology": "dungeon",
+      "zone": 2,
+      "description": "The largest node in the Mycelium's fungal network -- a vast cluster of bioluminescent mushrooms in Zone 2 where the network hub connects to all four Grove root systems, though the connections to Ashenmere have gone dark. Spore-bursts carry communication that you feel more than hear -- a tingling on the skin, an impression in the mind, a sudden certainty about something you did not know a moment ago. Old Cap has been growing in the same spot here for four hundred years.",
+      "services": ["fast_travel", "decompose", "trade"],
+      "npcs": ["The Spreading", "Sporecaller Maeth", "Old Cap"],
+      "sensory_signature": "Bioluminescent purple-blue glow. Spore-tinged air that tingles on exposed skin. The deep patience of something that thinks in centuries."
+    },
+    {
+      "name": "The Lodgework",
+      "district": "The Dam-Wrights",
+      "topology": "settlement",
+      "zone": 1,
+      "description": "A massive reinforced structure at the base of Zone 1, where the root system meets the water table. Built from harvested deadwood, Ironbark beams, and compacted earth, it controls the primary sap-flow dam that regulates moisture throughout the lower Zones. Everything is damp but structurally immaculate -- every joint tight, every beam load-tested, every surface maintained by hands that consider shoddy work a personal insult.",
+      "services": ["craft", "repair", "trade"],
+      "npcs": ["Foreman Gnaw", "Kitspool", "The Old Dam"],
+      "sensory_signature": "Constant running water. Damp wood and compacted earth. The creak of load-bearing timber under honest stress."
+    },
+    {
+      "name": "The Crownhall",
+      "district": "The Canopy Court",
+      "topology": "settlement",
+      "zone": 5,
+      "description": "A palace of living branches at the apex of Zone 5, where the fire-leaves burn brightest. Each room is a canopy pocket shaped by centuries of careful pruning. Wind currents serve as corridors, carrying moth-scale dust that glitters in the air like permanent fireflies. It is the most beautiful place in the Burnwillow and the most dangerous for outsiders -- the Court operates on principles of poetic justice and precise reciprocity, and their bargains are always fair but never kind.",
+      "services": ["enchant", "trade", "wind_ride"],
+      "npcs": ["The Moth Prince", "Silkmother Vray"],
+      "sensory_signature": "Wind threading through living corridors. Fire-leaf light in shifting gold and crimson. Moth-scale glitter drifting like luminous snow."
+    },
+    {
+      "name": "The Mulching Ground",
+      "district": "The Hag Circle",
+      "topology": "settlement",
+      "zone": 2,
+      "description": "A clearing in Zone 2 where dead wood decomposes into rich, dark soil. Three crooked huts sit in a triangle around a central cauldron that never stops boiling. The ground is soft underfoot -- layers of decomposed matter going back centuries. Paradoxically, it is the most fertile place in the Burnwillow. The sisters trade in secrets, debts, and body parts, and their prices are always fair but never comfortable.",
+      "services": ["curse_brew", "rot_process", "fortune"],
+      "npcs": ["Brindlemaw", "Kettleblack", "Needlewise"],
+      "sensory_signature": "Rich earth and mushroom musk. Soft ground yielding underfoot. Warmth rising from the cauldron and the composting soil beneath."
+    },
+    {
+      "name": "Ash Runner Camp",
+      "district": "Ash Runners",
+      "topology": "dungeon",
+      "zone": 1,
+      "description": "A fortified cluster of rooms in Zone 1's upper reaches, claimed by a gang of former Seekers who went rogue. They know the dungeon better than anyone because they never leave it -- five to eight experienced fighters who decided the dungeon is safer than Emberhome's politics and scarcity. The camp is well-hidden, well-defended, and surprisingly organized. They do not kill unless forced. They take your best item and let you go.",
+      "encounter_tier": 1,
+      "room_type_hint": "fortified_camp",
+      "services": ["trade", "intel"],
+      "npcs": ["Sable"],
+      "sensory_signature": "Campfire smoke and oiled steel. The silence of people who have learned to listen before they breathe. Watchful eyes in the dark."
     }
   ]
 }

@@ -92,6 +92,8 @@ LOOT_TABLES: Dict[int, List[Tuple[str, str, int, List[str], str]]] = {
         # WO-V17.0: Support/Control items
         ("Warhorn", "L.Hand", 1, ["[Command]"], "Battered brass horn. Shout orders to rally allies. +1d6 Might pool."),
         ("Healer's Satchel", "Arms", 1, ["[Triage]"], "Bandages and salves. Wits-based healing. 3 charges."),
+        # Aether-variant items (fixed slot overrides)
+        ("Sap-Woven Gloves", "Arms", 1, [], "Woven from living Aether-threads. Channels residual sap energy through the fingertips. +1d6 Aether pool."),
     ],
     2: [
         # Tier II: Ironbark/Cured Hide (+2d6)
@@ -126,6 +128,9 @@ LOOT_TABLES: Dict[int, List[Tuple[str, str, int, List[str], str]]] = {
         ("Embertongue Wand", "R.Hand", 2, ["[Inferno]"], "Wand tipped with an ember shard. Spews gouts of flame. +2d6 Aether attack."),
         ("Stormcaller Rod", "R.Hand", 2, ["[Tempest]"], "Rod of magnetized Ironbark. Calls down lightning arcs. +2d6 Aether attack."),
         ("Herbalist's Satchel", "Arms", 2, ["[Mending]"], "Poultices and binding herbs for group healing. +2d6 Wits pool."),
+        # Aether-variant items (fixed slot overrides)
+        ("Aether-Traced Greaves", "Legs", 2, [], "Ironbark leg guards with Aether channels etched into the grain. Warmth pulses through them with each step. +2d6 Aether pool."),
+        ("Sap-Singer's Helm", "Head", 2, [], "A bark helm lined with sap-soaked moss. Amplifies the wearer's sensitivity to Root-Song vibrations. +2d6 Aether pool."),
     ],
     3: [
         # Tier III: Petrified Heartwood/Moonstone (+3d6)
@@ -159,6 +164,9 @@ LOOT_TABLES: Dict[int, List[Tuple[str, str, int, List[str], str]]] = {
         ("Inferno Staff", "R.Hand", 3, ["[Inferno]"], "Staff crowned with a caged flame elemental. Rains fire on groups. +3d6 Aether attack."),
         ("Voidstone Focus", "R.Hand", 3, ["[Voidgrip]"], "Crystallized void shard. Drains life from enemies. +3d6 Aether attack."),
         ("Renewal Chalice", "Neck", 3, ["[Renewal]"], "Moonstone cup that radiates healing energy over time. +3d6 Aether pool."),
+        # Aether-variant items (fixed slot overrides)
+        ("Resonance Greaves", "Legs", 3, [], "Heartwood leg guards that hum when the Root-Song passes through them. The wearer's stride falls into rhythm with the tree. +3d6 Aether pool."),
+        ("Whisper Crown", "Head", 3, [], "A circlet of petrified Heartwood that amplifies whispered intentions into Aether pulses. The air around it shimmers faintly. +3d6 Aether pool."),
     ],
     4: [
         # Tier IV: Ambercore/Sunresin (+4d6)
@@ -192,6 +200,9 @@ LOOT_TABLES: Dict[int, List[Tuple[str, str, int, List[str], str]]] = {
         ("Eternity Bloom", "Neck", 4, ["[Renewal]"], "Living flower of Sunresin. Radiates perpetual healing aura. +4d6 Aether pool."),
         ("Flashfire Crown", "Head", 4, ["[Flash]"], "Crown of trapped lightning. Blinds all enemies in a searing flash. +4d6 Wits pool."),
         ("Warden's Bastion", "L.Hand", 4, ["[Aegis]"], "Tower shield of the last warden. Extends DR to the entire party. DR 5."),
+        # Aether-variant items (fixed slot overrides)
+        ("Root-Song Greaves", "Legs", 4, [], "Ambercore leg armor that resonates with the fundamental vibration of the tree. Each step sends ripples through the Aether. +4d6 Aether pool."),
+        ("Crown of Resonance", "Head", 4, [], "An Arborist circlet of pure Ambercore. The Root-Song is deafening when worn. Aether flows like a river through the wearer's skull. +4d6 Aether pool."),
     ]
 }
 
@@ -240,6 +251,47 @@ LOOT_PRIMARY_STATS: Dict[str, str] = {
     "Renewal Chalice":        "AETHER",   # Neck — Renewal HoT
     "Eternity Bloom":         "AETHER",   # Neck — Renewal legendary
     "Lifebinder's Mantle":    "WITS",     # Shoulders — Mending legendary
+    # Aether items in fixed slots (override SLOT_STAT_MAP)
+    "Sap-Woven Gloves":       "AETHER",   # Arms — Tier I
+    "Aether-Traced Greaves":  "AETHER",   # Legs — Tier II
+    "Sap-Singer's Helm":      "AETHER",   # Head — Tier II
+    "Resonance Greaves":      "AETHER",   # Legs — Tier III
+    "Whisper Crown":          "AETHER",   # Head — Tier III
+    "Root-Song Greaves":      "AETHER",   # Legs — Tier IV
+    "Crown of Resonance":     "AETHER",   # Head — Tier IV
+}
+
+
+# =============================================================================
+# GEAR SET IDS — Maps item names to set membership
+# =============================================================================
+
+LOOT_SET_IDS: Dict[str, str] = {
+    # Arborist's Legacy
+    "Moonstone Staff": "arborist_legacy",
+    "Aetherial Vestments": "arborist_legacy",
+    "Root-Song Charm": "arborist_legacy",
+    "Arborist Relic": "arborist_legacy",
+    # Warden's Watch
+    "Commander's Horn": "wardens_watch",
+    "Heartwood Tower Shield": "wardens_watch",
+    "Heartwood Greaves": "wardens_watch",
+    "Moonstone Helm": "wardens_watch",
+    # Rot Hunter's Trophy (Ambercore prefix from rot_hunter_loot)
+    "Ambercore Rotclaw Fang": "rot_hunter_trophy",
+    "Ambercore Hunter's Heartstone": "rot_hunter_trophy",
+    "Ambercore Blighthide Mantle": "rot_hunter_trophy",
+    "Ambercore Rot-Tendril Gauntlets": "rot_hunter_trophy",
+    # Moonstone Circle
+    "Moonstone Pendant": "moonstone_circle",
+    "Renewal Chalice": "moonstone_circle",
+    "Herbalist's Satchel": "moonstone_circle",
+    "Heartwood Talisman": "moonstone_circle",
+    # Shadowweave
+    "Cloak of Shadows": "shadowweave",
+    "Burglar's Gloves": "shadowweave",
+    "Boots of Haste": "shadowweave",
+    "Spore Mask": "shadowweave",
 }
 
 
@@ -253,32 +305,32 @@ LOOT_PRIMARY_STATS: Dict[str, str] = {
 
 HAZARD_TABLES: Dict[int, List[Tuple[str, str, int, str, str]]] = {
     1: [
-        ("Rusty Spike Trap", "Wits", 10, "Take 1d6 piercing damage and contract tetanus (DC 10 Grit or -1 Might for 1 day).", "Hidden floor spikes, crusted with rust."),
-        ("Poison Gas Vent", "Grit", 10, "Take 1d6 poison damage and cough uncontrollably (disadvantage on Wits checks for 1 hour).", "Green gas hisses from wall cracks."),
-        ("Collapsing Floor", "Wits", 10, "Fall 10ft into pit (1d6 damage). Climb DC 10 Might to escape.", "The floorboards creak ominously."),
-        ("Oil Slick", "Wits", 10, "Slip and fall prone. Lose turn. If ignited, take 2d6 fire damage.", "Black oil coats the floor."),
-        ("Spore Cloud", "Grit", 10, "Inhale spores. Hallucinate for 1 hour (GM describes false threats).", "Mushrooms burst, releasing pale dust."),
+        ("Rusty Spike Trap", "Wits", 11, "Take 1d6 piercing damage and contract tetanus (DC 11 Grit or -1 Might for 1 day).", "Hidden floor spikes, crusted with rust."),
+        ("Poison Gas Vent", "Grit", 11, "Take 1d6 poison damage and cough uncontrollably (disadvantage on Wits checks for 1 hour).", "Green gas hisses from wall cracks."),
+        ("Collapsing Floor", "Wits", 11, "Fall 10ft into pit (1d6 damage). Climb DC 11 Might to escape.", "The floorboards creak ominously."),
+        ("Oil Slick", "Wits", 11, "Slip and fall prone. Lose turn. If ignited, take 2d6 fire damage.", "Black oil coats the floor."),
+        ("Spore Cloud", "Grit", 11, "Inhale spores. Hallucinate for 1 hour (GM describes false threats).", "Mushrooms burst, releasing pale dust."),
     ],
     2: [
-        ("Blade Pendulum", "Wits", 12, "Take 2d6 slashing damage. If reduced to 0 HP, decapitated (instant death).", "A massive blade swings across the corridor."),
-        ("Electrified Floor", "Grit", 12, "Take 2d6 lightning damage. Drop held metal items (DC 12 Might to hold on).", "Sparks arc across metal plating."),
-        ("Acid Pool", "Wits", 12, "Step in acid, take 2d6 acid damage. Boots destroyed (lose Legs slot item).", "Bubbling green liquid fills a depression."),
-        ("Arcane Ward", "Aether", 12, "Drain 1 Aether. Cannot cast spells until rested.", "Glowing runes repel magic."),
-        ("Pit Trap with Spikes", "Wits", 12, "Fall 20ft (2d6 damage), then impaled (additional 1d6, bleeding 1 HP/turn).", "Concealed trapdoor. Deadly spikes below."),
+        ("Blade Pendulum", "Wits", 15, "Take 2d6 slashing damage. If reduced to 0 HP, decapitated (instant death).", "A massive blade swings across the corridor."),
+        ("Electrified Floor", "Grit", 15, "Take 2d6 lightning damage. Drop held metal items (DC 15 Might to hold on).", "Sparks arc across metal plating."),
+        ("Acid Pool", "Wits", 15, "Step in acid, take 2d6 acid damage. Boots destroyed (lose Legs slot item).", "Bubbling green liquid fills a depression."),
+        ("Arcane Ward", "Aether", 15, "Drain 1 Aether. Cannot cast spells until rested.", "Glowing runes repel magic."),
+        ("Pit Trap with Spikes", "Wits", 15, "Fall 20ft (2d6 damage), then impaled (additional 1d6, bleeding 1 HP/turn).", "Concealed trapdoor. Deadly spikes below."),
     ],
     3: [
-        ("Crushing Walls", "Might", 14, "Take 3d6 damage and restrained. DC 14 Might check each turn to escape or take 1d6 ongoing.", "Stone walls grind together."),
-        ("Fireball Rune", "Wits", 14, "Triggered explosion. 3d6 fire damage to all in 15ft radius. Dex save for half.", "Ancient glyph glows red-hot."),
-        ("Petrifying Gaze Statue", "Aether", 14, "Meet the statue's eyes. DC 14 or turn to stone for 1 hour (paralyzed).", "A stone sentinel's eyes glow green."),
-        ("Cursed Altar", "Grit", 14, "Touch altar. Cursed: max HP reduced by half until curse lifted (requires Tier III scroll).", "A dark shrine radiates malice."),
-        ("Void Rift", "Aether", 14, "Reality tears. Pulled toward rift (DC 14 Might or sucked in). Reappear in random room, lose 1 gear item.", "Space warps and bends unnaturally."),
+        ("Crushing Walls", "Might", 15, "Take 3d6 damage and restrained. DC 15 Might check each turn to escape or take 1d6 ongoing.", "Stone walls grind together."),
+        ("Fireball Rune", "Wits", 15, "Triggered explosion. 3d6 fire damage to all in 15ft radius. Dex save for half.", "Ancient glyph glows red-hot."),
+        ("Petrifying Gaze Statue", "Aether", 15, "Meet the statue's eyes. DC 15 or turn to stone for 1 hour (paralyzed).", "A stone sentinel's eyes glow green."),
+        ("Cursed Altar", "Grit", 15, "Touch altar. Cursed: max HP reduced by half until curse lifted (requires Tier III scroll).", "A dark shrine radiates malice."),
+        ("Void Rift", "Aether", 22, "Reality tears. Pulled toward rift (DC 22 Might or sucked in). Reappear in random room, lose 1 gear item.", "Space warps and bends unnaturally."),
     ],
     4: [
-        ("Disintegration Beam", "Wits", 16, "Laser turret fires. 4d6 force damage. On crit fail, one equipped item destroyed.", "A crystal emitter tracks movement."),
-        ("Gravity Reversal", "Might", 16, "Slam into ceiling (4d6 damage). Fall back down (4d6 damage). Total 8d6 unless DC 16 Might to grab ledge.", "Gravity inverts violently."),
-        ("Soul Drain Sigil", "Aether", 16, "Sigil activates. Lose 2 Aether and all spell slots. Cannot cast until long rest.", "A circle of runes pulses with void energy."),
-        ("Time Loop", "Aether", 18, "Trapped in 10-second loop. Repeat last turn until DC 18 Aether check succeeds.", "Time stutters. You've been here before."),
-        ("Blight Corruption", "Grit", 16, "Exposed to raw Blight. Max HP reduced by 1d6 permanently. Roll Grit DC 16 each day or lose 1 more.", "The Burnwillow's roots pierce the air."),
+        ("Disintegration Beam", "Wits", 22, "Laser turret fires. 4d6 force damage. On crit fail, one equipped item destroyed.", "A crystal emitter tracks movement."),
+        ("Gravity Reversal", "Might", 22, "Slam into ceiling (4d6 damage). Fall back down (4d6 damage). Total 8d6 unless DC 22 Might to grab ledge.", "Gravity inverts violently."),
+        ("Soul Drain Sigil", "Aether", 22, "Sigil activates. Lose 2 Aether and all spell slots. Cannot cast until long rest.", "A circle of runes pulses with void energy."),
+        ("Time Loop", "Aether", 22, "Trapped in 10-second loop. Repeat last turn until DC 22 Aether check succeeds.", "Time stutters. You've been here before."),
+        ("Blight Corruption", "Grit", 22, "Exposed to raw Blight. Max HP reduced by 1d6 permanently. Roll Grit DC 22 each day or lose 1 more.", "The Burnwillow's roots pierce the air."),
     ]
 }
 
@@ -571,6 +623,20 @@ def get_random_loot(tier: int, rng: random.Random) -> dict:
     ps = LOOT_PRIMARY_STATS.get(name)
     if ps:
         result["primary_stat"] = ps
+
+    # Gear Set membership
+    sid = LOOT_SET_IDS.get(name)
+    if sid:
+        result["set_id"] = sid
+
+    # Randomized Affixes
+    from codex.games.burnwillow.engine import roll_affixes
+    prefix, suffix = roll_affixes(item_tier, zone_depth=tier)
+    if prefix:
+        result["prefix"] = prefix
+    if suffix:
+        result["suffix"] = suffix
+
     return result
 
 

@@ -120,9 +120,6 @@
                 "Human",
                 "Orc"
             ]
-        },
-        "races": [],
-        "deep_classes": {},
-        "feats": []
+        }
     }
 }

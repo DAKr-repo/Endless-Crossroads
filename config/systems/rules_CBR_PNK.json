@@ -42,6 +42,11 @@
             "Playbook Y"
         ],
         "subclasses": [
+            "Diplomacy",
+            "Economy",
+            "Finance",
+            "Law",
+            "Military",
             "SpecializationC",
             "SubclassA",
             "SubclassB"

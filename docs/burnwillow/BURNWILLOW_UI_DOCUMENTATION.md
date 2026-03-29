@@ -79,7 +79,7 @@ for slot, item in equipped.items():
 
 **Purpose**: Display dice roll results with visual unicode dice faces.
 
-**Format**: `[⚅][⚂][⚀] + 2 = 12 vs DC 10 ✓`
+**Format**: `[⚅][⚂][⚀] + 2 = 12 vs DC 11 ✓`
 
 **Features**:
 - Unicode dice faces: ⚀⚁⚂⚃⚄⚅

@@ -123,6 +123,36 @@
         "archetype": "beast",
         "special": "Warmth Drain: on hit, target's torch radius reduced by half for 1 round",
         "description": "Giant moths with wingspans wider than outstretched arms, their scales a deep charcoal that drinks in torchlight. The air grows cold in their wake."
+      },
+      {
+        "name": "Sap Leech",
+        "base_hp": 6,
+        "base_ac": 9,
+        "base_atk": 1,
+        "base_dmg": "1d4",
+        "archetype": "beast",
+        "special": "Life Drain: heals 1 HP per hit. Passive unless attacked. Inflicts Sap-Drained condition on room while colony is alive.",
+        "description": "Pale, translucent parasites the size of a terrier, clustered on walls in glistening colonies. Amber-tinted fluid pulses visibly through their distended bodies. They do not move toward you -- they wait for you to brush against them."
+      },
+      {
+        "name": "Gall Larva",
+        "base_hp": 5,
+        "base_ac": 11,
+        "base_atk": 3,
+        "base_dmg": "1d6",
+        "archetype": "beast",
+        "special": "Burst: emerges from ruptured Gall growth. Contact with tissue risks Gall-Marked condition.",
+        "description": "A pale, segmented grub the size of a cat, slick with amniotic fluid from the Gall growth that birthed it. It writhes blindly toward warmth, mandibles clicking with infant hunger."
+      },
+      {
+        "name": "Bark Borer",
+        "base_hp": 4,
+        "base_ac": 12,
+        "base_atk": 1,
+        "base_dmg": "1d4",
+        "archetype": "beast",
+        "special": "Flee: runs from combat. Tunnel: creates structural weakness in room (hazard check DC 15 on next entry).",
+        "description": "A forearm-length beetle with an iridescent carapace that shifts between copper and viridian. It gnaws through ironbark like wet paper, leaving bore-holes wide enough to weaken load-bearing walls. Harmless alone -- catastrophic in numbers."
       }
     ],
     "2": [
@@ -225,6 +255,36 @@
         "archetype": "scavenger",
         "special": "Doom Pulse: on hit, DoomClock advances by 1. Chant: +1 to all nearby enemy attack rolls",
         "description": "A hooded figure whose face is a mask of dried amber, cracked and weeping dark sap. It chants in a language that predates Emberhome, and the walls tremble in answer."
+      },
+      {
+        "name": "Sap Leech Swarm",
+        "base_hp": 15,
+        "base_ac": 9,
+        "base_atk": 2,
+        "base_dmg": "1d6+1",
+        "archetype": "beast",
+        "special": "Swarm: half damage from single-target attacks. Drain: inflicts Sap-Drained + Weakened while swarm is alive.",
+        "description": "Dozens of translucent leeches moving as one glistening mass across walls and ceiling, their collective weight bowing the bark beneath them. The air tastes of iron and tree-blood. Your torchlight passes through them like stained glass."
+      },
+      {
+        "name": "Mature Gall",
+        "base_hp": 12,
+        "base_ac": 10,
+        "base_atk": 2,
+        "base_dmg": "1d6",
+        "archetype": "beast",
+        "special": "Immobile. Redirects healing in room toward itself. On death: spawns 1d3 Gall Larvae + Spore-Sick cloud (DC 11 Grit).",
+        "description": "A swollen tumour of bark and fungal tissue fused to the wall, pulsing with a slow, wet rhythm. Veins of stolen sap feed into it from the surrounding wood. Something shifts inside when you get close."
+      },
+      {
+        "name": "Borer Colony",
+        "base_hp": 10,
+        "base_ac": 13,
+        "base_atk": 2,
+        "base_dmg": "1d4+1",
+        "archetype": "construct",
+        "special": "Tunnelers: room has collapse hazard (DC 15 Grit). Cannot be ambushed (always aware via vibration).",
+        "description": "A honeycomb of bore-holes in the walls, each occupied by an iridescent beetle working in perfect concert. The floor vibrates with their gnawing. Sawdust falls from the ceiling in a fine, continuous rain. The structural groaning is not your imagination."
       }
     ],
     "3": [
@@ -307,6 +367,26 @@
         "archetype": "scavenger",
         "special": "DR 2. Rot Strike: on hit, DC 14 Grit or take 1d4 necrotic at start of each turn for 3 rounds. Parry: +2 AC as reaction",
         "description": "A fallen Warden in corroded plate, green light leaking from the visor slits. It fights with terrible precision -- each strike aimed at joints and tendons, every parry economical. It remembers how to kill. That is all it remembers."
+      },
+      {
+        "name": "Chorus Walker",
+        "base_hp": 14,
+        "base_ac": 13,
+        "base_atk": 3,
+        "base_dmg": "2d6",
+        "archetype": "aetherial",
+        "special": "Singing: inflicts Resonance-Touched on characters in room 2+ rounds. Moves in formation with other Chorus.",
+        "description": "A Hollowed figure moving in perfect rhythm, mouth open in a continuous song that sets your teeth on edge. Its gear is ancient -- Arborist-era."
+      },
+      {
+        "name": "Amber Echo",
+        "base_hp": 10,
+        "base_ac": 15,
+        "base_atk": 4,
+        "base_dmg": "2d6",
+        "archetype": "aetherial",
+        "special": "Phase: 25% chance to negate attack. Memory Fragment: on death, drops a partial Memory Seed (ingredient).",
+        "description": "A translucent figure frozen mid-gesture, its outline flickering like heat haze. An Arborist memory given hostile form by the Heartwood's immune response."
       }
     ],
     "4": [
@@ -369,7 +449,39 @@
         "archetype": "scavenger",
         "special": "DR 3. Doom Sovereign: DoomClock advances by 2 each round he is active. Extinguish: fire-based attacks deal half damage to him. Crown of Command: all Hollows within the zone obey his tactical direction. On defeat: DoomClock resets to 0",
         "description": "The first person the Rot ever took. He wears a crown of dead amber and rules the Hollows not through fungal compulsion but through something worse -- memory. He remembers being alive. He remembers warmth. He wants it extinguished so that nothing else has to lose it."
+      },
+      {
+        "name": "Section Leader",
+        "base_hp": 25,
+        "base_ac": 16,
+        "base_atk": 4,
+        "base_dmg": "3d6",
+        "archetype": "aetherial",
+        "special": "Conductor: all Rot creatures in zone gain +1 damage while alive. Song of Decay: DC 15 Aether or Blighted on hit.",
+        "description": "A towering Hollowed Arborist, its mouth perpetually open, the Choir's song pouring from it in visible waves of distortion. The Rot moves at its direction."
+      },
+      {
+        "name": "Choir Sentinel",
+        "base_hp": 20,
+        "base_ac": 17,
+        "base_atk": 3,
+        "base_dmg": "2d6+2",
+        "archetype": "construct",
+        "special": "DR 2. Amber-fused: immune to Blighted. Guardian: blocks passage to inner Heartwood rings.",
+        "description": "An Arborist construct sealed in cracked amber, still functioning after centuries. Its movements are precise but wrong -- it guards doors that no longer lead where they should."
       }
     ]
-  }
+  },
+  "bosses": [
+    {
+      "name": "The Conductor",
+      "base_hp": 80,
+      "base_ac": 18,
+      "base_atk": 5,
+      "base_dmg": "4d6",
+      "archetype": "aetherial",
+      "special": "The Unresolved Song: all characters take 1d4 psychic per round. Command Choir: summons 1d3 Chorus Walkers per round. Phase 2 (below 40 HP): Song of Ending -- DC 22 Aether or Resonance-Touched + Shaken.",
+      "description": "The Arborist who sang first. Who refused to stop. The Root-Song pours from them in a river of directed decay -- beautiful, complex, and completely insane. They do not see you as an enemy. They see you as a note that hasn't resolved yet."
+    }
+  ]
 }

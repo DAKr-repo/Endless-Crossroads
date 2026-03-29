@@ -44,15 +44,22 @@
             "Stitch"
         ],
         "subclasses": [
+            "Dreadful",
+            "Savage",
             "Scum",
             "Scumbag",
+            "Vile",
             "Villain",
             "Villainy"
         ],
         "races": [
             "Alien",
+            "Dwarves",
+            "Gnomes",
             "Goblin",
             "Human",
+            "Orcs",
+            "Trolls",
             "Vampire",
             "Villain"
         ]

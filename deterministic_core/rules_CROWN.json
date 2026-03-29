@@ -1,68 +1,142 @@
 {
     "meta": {
         "system_id": "CROWN",
-        "display_name": "crown",
+        "display_name": "Crown & Crew",
         "engine": "custom",
-        "dice_system": "custom",
+        "dice_system": "narrative / custom",
         "system_family": "CROWN",
         "version": "C.O.D.E.X. 2.0"
     },
     "lookup": {
-        "dwarf": {
+        "dwarven": {
             "type": "race",
-            "name": "Dwarf"
+            "name": "Dwarven"
         },
-        "elf": {
+        "elvish": {
             "type": "race",
-            "name": "Elf"
+            "name": "Elvish"
         },
         "gnome": {
             "type": "race",
             "name": "Gnome"
         },
-        "human": {
+        "halfling": {
             "type": "race",
-            "name": "Human"
+            "name": "Halfling"
         },
         "orc": {
             "type": "race",
             "name": "Orc"
+        },
+        "diplomacy": {
+            "type": "archetype",
+            "name": "Diplomacy",
+            "category": "pillars"
+        },
+        "economy": {
+            "type": "archetype",
+            "name": "Economy",
+            "category": "pillars"
+        },
+        "military": {
+            "type": "archetype",
+            "name": "Military",
+            "category": "pillars"
+        },
+        "law and order": {
+            "type": "archetype",
+            "name": "Law and Order",
+            "category": "pillars"
+        },
+        "religion": {
+            "type": "archetype",
+            "name": "Religion",
+            "category": "pillars"
+        },
+        "quests": {
+            "type": "archetype",
+            "name": "Quests",
+            "category": "pillars"
+        },
+        "treasury": {
+            "type": "resource",
+            "name": "Treasury"
+        },
+        "sway points": {
+            "type": "resource",
+            "name": "Sway Points"
+        },
+        "faction standing": {
+            "type": "resource",
+            "name": "Faction Standing"
         }
     },
     "structure": {
         "system_id": "CROWN",
-        "display_name": "crown",
+        "display_name": "Crown & Crew",
         "engine": "custom",
         "system_family": "CROWN",
-        "archetype_categories": {},
-        "core_stats": {},
-        "resources": [],
-        "dice_system": "custom",
+        "dice_system": "narrative / custom",
+        "archetype_categories": {
+            "pillars": [
+                "Diplomacy",
+                "Economy",
+                "Military",
+                "Law and Order",
+                "Religion",
+                "Quests"
+            ]
+        },
+        "core_stats": [
+            "Sway",
+            "Influence",
+            "Loyalty"
+        ],
+        "resources": [
+            "Treasury",
+            "Sway Points",
+            "Faction Standing"
+        ],
         "mechanics": {
+            "stats": [
+                "Sway",
+                "Influence",
+                "Loyalty"
+            ],
+            "resources": [
+                "Treasury",
+                "Sway Points",
+                "Faction Standing"
+            ],
+            "structure": "3-act narrative campaign with Mirror, Tax, Echo, Morning, Midday, and Council phases",
+            "multiplayer": "Per-player sway tracking, group voting, dissent mechanics",
+            "finale": "Patron/Leader Reckoning, The Crossing, JSON Legacy",
             "races": [
-                "Dwarf",
-                "Elf",
+                "Dwarven",
+                "Elvish",
                 "Gnome",
-                "Human",
+                "Halfling",
                 "Orc"
             ],
             "classes": [
-                "Character Class 1",
-                "Character Class 2",
-                "Playbook A",
-                "Playbook B"
+                "Diplomacy",
+                "Economy",
+                "Law and Order",
+                "Military",
+                "Politics",
+                "Religion"
             ],
             "subclasses": [
-                "Specialization X",
-                "SpecializationC",
-                "Subclass A",
-                "Subclass B",
-                "SubclassA",
-                "SubclassB"
+                "Diplomacy",
+                "Engineering",
+                "Finance",
+                "History",
+                "Law",
+                "Medicine",
+                "Nautical",
+                "Philosophy",
+                "Religion"
             ]
-        },
-        "races": [],
-        "deep_classes": {},
-        "feats": []
+        }
     }
 }
