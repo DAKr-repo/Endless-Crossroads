@@ -681,6 +681,22 @@ class BurnwillowBridge:
 
             enemy_hp -= damage
 
+            # Active Oil — weapon coating bonus damage
+            if char.active_oil:
+                oil = char.active_oil
+                oil_effect = oil.get("effect", "")
+                import re as _re
+                oil_dmg_match = _re.search(r'\+(\d+)d(\d+)', oil_effect)
+                if oil_dmg_match:
+                    od = int(oil_dmg_match.group(1))
+                    os = int(oil_dmg_match.group(2))
+                    oil_dmg = sum(random.randint(1, os) for _ in range(od))
+                    enemy_hp -= oil_dmg
+                    lines.append(f"  {oil['name']}! +{oil_dmg} damage.")
+                if "lifesteal" in oil_effect.lower():
+                    char.heal(1)
+                    lines.append(f"  Void lifesteal! (+1 HP)")
+
             # Affix: Blazing — +1d4 fire damage on hit
             if weapon and weapon.prefix == "Blazing":
                 fire_dmg = random.randint(1, 4)
@@ -1029,13 +1045,131 @@ class BurnwillowBridge:
         lines.append(self._status_line())
         return "\n".join(lines)
 
+    def _try_use_consumable(self, char, arg: str) -> str:
+        """Try to use a consumable (potion/bomb/oil/elixir). Returns result string or empty."""
+        # Search all consumable lists
+        for consumable_list, list_name in [
+            (char.potions, "potions"),
+            (char.bombs, "bombs"),
+            (char.oils, "oils"),
+            (char.elixirs, "elixirs"),
+        ]:
+            for i, item in enumerate(consumable_list):
+                if arg in item["name"].lower():
+                    # Found a match — consume it
+                    consumed = consumable_list.pop(i)
+                    return self._apply_consumable(char, consumed)
+        return ""  # No consumable matched
+
+    def _apply_consumable(self, char, item: dict) -> str:
+        """Apply a consumable's effect and return the result message."""
+        lines = [f"Used {item['name']}!"]
+        name = item["name"]
+        item_type = item["type"]
+        effect = item["effect"]
+
+        if item_type == "potion":
+            # Parse and apply potion effects
+            if "Heal" in effect or "heal" in effect:
+                import re
+                heal_match = re.search(r'(\d+)d(\d+)', effect)
+                if heal_match:
+                    dice = int(heal_match.group(1))
+                    sides = int(heal_match.group(2))
+                    heal_amount = sum(random.randint(1, sides) for _ in range(dice))
+                    actual = char.heal(heal_amount)
+                    lines.append(f"  Healed {actual} HP.")
+                if "cure Poisoned" in effect:
+                    char.remove_condition(Condition.POISONED)
+                    lines.append("  Poison cured.")
+            if "+2 Might" in effect:
+                # Temporary stat buff — store as condition-like effect
+                char.might += 2
+                lines.append(f"  Might increased by 2 for 3 rounds. (Score: {char.might})")
+            if "+2 DR" in effect:
+                lines.append(f"  +2 DR for 3 rounds.")
+            if "Reveal hidden" in effect:
+                lines.append(f"  Hidden rooms and traps revealed for this floor.")
+            if "Sense all enemies" in effect:
+                lines.append(f"  All enemies on this floor are now visible.")
+            if "Summon" in effect:
+                lines.append(f"  A wolf spirit materializes!")
+
+        elif item_type == "bomb":
+            # Apply AoE damage to all enemies in room
+            room = self.engine.get_current_room()
+            enemies = room.get("enemies", []) if room else []
+            import re
+            dmg_match = re.search(r'(\d+)d(\d+)', effect)
+            total_dmg = 0
+            if dmg_match:
+                dice = int(dmg_match.group(1))
+                sides = int(dmg_match.group(2))
+                total_dmg = sum(random.randint(1, sides) for _ in range(dice))
+
+            if enemies:
+                killed = []
+                for enemy in enemies:
+                    if isinstance(enemy, dict):
+                        enemy["hp"] = enemy.get("hp", 5) - total_dmg
+                        if enemy["hp"] <= 0:
+                            killed.append(enemy.get("name", "Enemy"))
+                lines.append(f"  BOOM! {total_dmg} damage to all enemies!")
+                if "Burning" in effect:
+                    lines.append(f"  Enemies are Burning!")
+                if "Blind" in effect or "blind" in effect:
+                    lines.append(f"  Enemies are Blinded!")
+                if "Entangled" in effect:
+                    lines.append(f"  Enemies are Entangled!")
+                if "Frozen" in effect:
+                    lines.append(f"  Enemies are Frozen!")
+                if killed:
+                    # Clean up dead enemies
+                    pop_room = self.engine.populated_rooms.get(self.engine.current_room_id)
+                    if pop_room:
+                        pop_room.content["enemies"] = [
+                            e for e in pop_room.content.get("enemies", [])
+                            if not (isinstance(e, dict) and e.get("hp", 1) <= 0)
+                        ]
+                    lines.append(f"  Slain: {', '.join(killed)}")
+            else:
+                lines.append(f"  The bomb explodes... but there's nothing to hit.")
+
+        elif item_type == "oil":
+            # Apply weapon coating
+            char.active_oil = item
+            lines.append(f"  Weapon coated. Effect: {effect}")
+            lines.append(f"  (Lasts 1 combat encounter.)")
+
+        elif item_type == "elixir":
+            # Apply floor-duration buff (replaces active elixir)
+            if char.active_elixir:
+                lines.append(f"  (Replacing active elixir: {char.active_elixir['name']})")
+            char.active_elixir = item
+            lines.append(f"  Effect: {effect}")
+            lines.append(f"  (Lasts entire floor. One elixir at a time.)")
+            # Hag's Bargain self-damage
+            if "Costs 1d6 HP" in effect or "costs 1d6" in effect.lower():
+                self_dmg = random.randint(1, 6)
+                char.current_hp = max(1, char.current_hp - self_dmg)
+                lines.append(f"  The bargain demands blood. (-{self_dmg} HP)")
+
+        lines.append("")
+        lines.append(self._status_line())
+        return "\n".join(lines)
+
     def _cmd_use(self, arg: str) -> str:
-        """Activate a special trait on an equipped or carried item."""
+        """Activate a special trait on an equipped item, or use a consumable."""
         arg = arg.strip().lower()
         if not arg:
             return "Use what? Usage: use <item name>\n" + self._status_line()
 
         char = self.engine.character
+
+        # Check consumables first (potions, bombs, oils, elixirs)
+        consumable_result = self._try_use_consumable(char, arg)
+        if consumable_result:
+            return consumable_result
 
         # Search equipped gear for matching item
         target_item = None
@@ -1322,10 +1456,26 @@ class BurnwillowBridge:
         else:
             for name, count in sorted(char.ingredients.items()):
                 lines.append(f"  {name}: {count}")
+        if char.potions:
+            lines.append(f"\nPotions ({len(char.potions)}):")
+            for p in char.potions:
+                lines.append(f"  {p['name']}: {p['effect']}")
         if char.bombs:
             lines.append(f"\nBombs ({len(char.bombs)}/3):")
             for b in char.bombs:
                 lines.append(f"  {b['name']}: {b['effect']}")
+        if char.oils:
+            lines.append(f"\nOils ({len(char.oils)}):")
+            for o in char.oils:
+                lines.append(f"  {o['name']}: {o['effect']}")
+        if char.elixirs:
+            lines.append(f"\nElixirs ({len(char.elixirs)}):")
+            for e in char.elixirs:
+                lines.append(f"  {e['name']}: {e['effect']}")
+        if char.active_oil:
+            lines.append(f"\nActive Coating: {char.active_oil['name']}")
+        if char.active_elixir:
+            lines.append(f"Active Elixir: {char.active_elixir['name']}")
         lines.append("")
         lines.append(self._status_line())
         return "\n".join(lines)

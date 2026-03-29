@@ -904,11 +904,17 @@ def craft_recipe(recipe_name: str, character) -> dict:
         "effect": recipe["effect"],
     }
 
-    # Bombs go into bomb slots (max 3)
+    # Route to correct consumable slot
     if recipe["type"] == "bomb":
         if len(character.bombs) >= 3:
             return {"success": False, "message": "Bomb slots full (max 3). Use or drop a bomb first.", "item": None}
         character.bombs.append(result_item)
+    elif recipe["type"] == "potion":
+        character.potions.append(result_item)
+    elif recipe["type"] == "oil":
+        character.oils.append(result_item)
+    elif recipe["type"] == "elixir":
+        character.elixirs.append(result_item)
 
     return {"success": True, "message": f"Crafted {recipe['name']}!", "item": result_item}
 
@@ -948,6 +954,11 @@ class Character:
     ingredients: Dict[str, int] = field(default_factory=dict)  # Alchemy ingredients: name → count
     known_recipes: List[str] = field(default_factory=list)  # Discovered recipe names
     bombs: List[dict] = field(default_factory=list)  # Carried bombs (max 3)
+    potions: List[dict] = field(default_factory=list)  # Carried potions
+    oils: List[dict] = field(default_factory=list)  # Carried weapon coatings
+    elixirs: List[dict] = field(default_factory=list)  # Carried floor-duration buffs
+    active_oil: Optional[dict] = None  # Currently applied weapon coating
+    active_elixir: Optional[dict] = None  # Currently active elixir buff
 
     # Active conditions — maps condition name to remaining rounds (0 = indefinite until cured)
     conditions: Dict[str, int] = field(default_factory=dict)
@@ -1131,6 +1142,11 @@ class Character:
             "ingredients": dict(self.ingredients),
             "known_recipes": list(self.known_recipes),
             "bombs": list(self.bombs),
+            "potions": list(self.potions),
+            "oils": list(self.oils),
+            "elixirs": list(self.elixirs),
+            "active_oil": self.active_oil,
+            "active_elixir": self.active_elixir,
             "conditions": dict(self.conditions),
         }
 
@@ -1150,6 +1166,11 @@ class Character:
         char.ingredients = data.get("ingredients", {})
         char.known_recipes = data.get("known_recipes", [])
         char.bombs = data.get("bombs", [])
+        char.potions = data.get("potions", [])
+        char.oils = data.get("oils", [])
+        char.elixirs = data.get("elixirs", [])
+        char.active_oil = data.get("active_oil")
+        char.active_elixir = data.get("active_elixir")
 
         # Support both legacy list and new dict inventory formats
         raw_inv = data.get("inventory", {})
