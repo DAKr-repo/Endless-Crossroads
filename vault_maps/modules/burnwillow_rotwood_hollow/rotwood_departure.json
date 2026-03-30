@@ -22,30 +22,35 @@
             "tier": 3,
             "is_locked": false,
             "is_secret": false,
-            "content_hints": {
-                "description": "The Warden's Hall is crowded for once. Voss stands at the zone map with a new addition -- a charcoal sketch of the Rotwood region, hand-drawn by Scout Lira, whose left arm hangs in a sling stained amber from a hastily applied Rot-Salve. The charcoal lines of the forest tremble slightly, as though Lira drew them while shaking. Three amber pins mark the map: two for the missing scouts, one for the source of corruption Lira discovered before she ran.",
-                "read_aloud": "Voss's jaw is set. That is never a good sign. Beside her, a young woman in a scout's cloak -- torn, ash-streaked, one arm in a sling that weeps amber -- points at a charcoal map with fingers that will not stop trembling. 'I found them. Or I found where they were. The Rotwood has grown a structure -- a hollow in the ancient oak at the forest's heart. The trees are bending toward it. They are feeding it. Marek and Senna were investigating the hollow when the Blight Stalkers came. I ran. They did not.' She looks at Voss. 'I should not have run.' Voss's expression does not change. 'You survived. That is your job. Their job is rescue.' She looks at you. 'Volunteers?'",
-                "npcs": [
-                    {
-                        "name": "Warden Voss",
-                        "role": "quest_giver",
-                        "dialogue": "Two scouts missing in the Rotwood. Scout Lira made it back with a map and a Blight infection that Father Oaken caught in time. The forest is active -- Blight Stalkers in the canopy, Fungal Brutes on the ground, and something large at the center that Lira describes as a 'cathedral of corruption.' I need those scouts back alive if possible. If not, I need to know what killed them. And I need the source in that hollow destroyed before it sends tendrils toward Emberhome.",
-                        "notes": "Voss is grim even by her standards. The Rotwood's expansion toward Emberhome is the real concern -- the scouts are important but the strategic threat is existential."
-                    },
-                    {
-                        "name": "Scout Lira",
-                        "role": "ally",
-                        "dialogue": "The path through the Ashwood is marked with my blazes -- follow the three-slash marks on the bark. Where the blazes stop, the Blight starts. You will know because the trees go black and the air turns to ash. The Stalkers hunt in packs of three. They drop from the canopy. You will not hear them until they are on you. Marek was our best fighter and they pinned him in two seconds. Do not be proud. Be fast.",
-                        "notes": "Lira is terrified but competent. Her blazes mark the safe path through Chapter 2. She will not accompany the party -- her Blight infection, though caught early, has left her too weak to travel. She provides tactical intelligence and marks the party's map."
-                    }
-                ],
-                "loot": [],
-                "services": ["quest"],
-                "event_triggers": [
-                    "On quest acceptance: Voss issues Tier II supplies from the military reserve: 2 Rot-Salve Pouches and 1 Greater Rot-Salve. 'This is not generosity. This is investment. Come back with my scouts and the supply cost is forgiven. Come back without them and you owe me double.'",
-                    "On departure: Lira catches your arm at the door. 'The trees in the deep Rotwood move. Not the Burnwillow's thrashing -- deliberate movement. Something is directing them. If you reach the hollow, look up before you look down. The danger is above.'"
-                ]
-            }
+            "name": "The Warden's Briefing",
+            "description": "The Warden's Hall is crowded for once. Voss stands at the zone map with a new addition -- a charcoal sketch of the Rotwood region, hand-drawn by Scout Lira, whose left arm hangs in a sling stained amber from a hastily applied Rot-Salve. The charcoal lines of the forest tremble slightly, as though Lira drew them while shaking. Three amber pins mark the map: two for the missing scouts, one for the source of corruption Lira discovered before she ran.",
+            "read_aloud": "Voss's jaw is set. That is never a good sign. Beside her, a young woman in a scout's cloak -- torn, ash-streaked, one arm in a sling that weeps amber -- points at a charcoal map with fingers that will not stop trembling. 'I found them. Or I found where they were. The Rotwood has grown a structure -- a hollow in the ancient oak at the forest's heart. The trees are bending toward it. They are feeding it. Marek and Senna were investigating the hollow when the Blight Stalkers came. I ran. They did not.' She looks at Voss. 'I should not have run.' Voss's expression does not change. 'You survived. That is your job. Their job is rescue.' She looks at you. 'Volunteers?'",
+            "sensory_signature": "Oiled steel and chalk dust. The tension of people planning around a map. Lira's trembling charcoal lines.",
+            "enemies": [],
+            "loot": [
+                {"name": "Rot-Salve Pouch", "tier": 2, "type": "consumable", "description": "Cures early-stage Blight infection on contact. Two pouches issued from military reserve."},
+                {"name": "Greater Rot-Salve", "tier": 2, "type": "consumable", "description": "Cures Blight at any stage. One dose from Emberhome's emergency supply."}
+            ],
+            "hazards": [],
+            "npcs": [
+                {
+                    "name": "Warden Voss",
+                    "role": "quest_giver",
+                    "dialogue": "Two scouts missing in the Rotwood. Scout Lira made it back with a map and a Blight infection that Father Oaken caught in time. The forest is active -- Blight Stalkers in the canopy, Fungal Brutes on the ground, and something large at the center that Lira describes as a 'cathedral of corruption.' I need those scouts back alive if possible. If not, I need to know what killed them. And I need the source in that hollow destroyed before it sends tendrils toward Emberhome.",
+                    "notes": "Voss is grim even by her standards. The Rotwood's expansion toward Emberhome is the real concern -- the scouts are important but the strategic threat is existential."
+                },
+                {
+                    "name": "Scout Lira",
+                    "role": "ally",
+                    "dialogue": "The path through the Ashwood is marked with my blazes -- follow the three-slash marks on the bark. Where the blazes stop, the Blight starts. You will know because the trees go black and the air turns to ash. The Stalkers hunt in packs of three. They drop from the canopy. You will not hear them until they are on you. Marek was our best fighter and they pinned him in two seconds. Do not be proud. Be fast.",
+                    "notes": "Lira is terrified but competent. Her blazes mark the safe path through the Ashwood Path floor. She will not accompany the party -- her Blight infection, though caught early, has left her too weak to travel."
+                }
+            ],
+            "services": ["quest"],
+            "event_triggers": [
+                "On quest acceptance: Voss issues Tier II supplies from the military reserve: 2 Rot-Salve Pouches and 1 Greater Rot-Salve. 'This is not generosity. This is investment. Come back with my scouts and the supply cost is forgiven. Come back without them and you owe me double.'",
+                "On departure: Lira catches your arm at the door. 'The trees in the deep Rotwood move. Not the Burnwillow's thrashing -- deliberate movement. Something is directing them. If you reach the hollow, look up before you look down. The danger is above.'"
+            ]
         },
         "1": {
             "id": 1,
@@ -58,16 +63,17 @@
             "tier": 3,
             "is_locked": false,
             "is_secret": false,
-            "content_hints": {
-                "description": "The Emberhome Gate at departure looks different than at arrival. The wardens stand aside without inspection -- outbound traffic requires no Blight check. Their faces carry the flat sympathy of people who have watched many Seekers walk through this gate and counted the ones who walked back. The approach road stretches into the half-dark of the Burnwillow's lower canopy, where the fire-leaves thin and the ambient light drops from amber to grey.",
-                "read_aloud": "The gate wardens step aside. No inspection for those going out. Hask raises his amber lantern in what might be a salute or might be a reflex. 'Root-Song guide you. If it still reaches that far.' Beyond the gate, the road descends into the lower canopy where the fire-leaves grow sparse and the light turns the color of old ash. The Rotwood is three hours' march southeast. You can smell it already -- mushroom and decay, carried on a wind that should not be blowing inward.",
-                "npcs": [],
-                "loot": [],
-                "services": [],
-                "event_triggers": [
-                    "On departure: The DoomClock begins. The march to the Rotwood is the point of no return for this module."
-                ]
-            }
+            "name": "Emberhome Gate -- Outbound",
+            "description": "The Emberhome Gate at departure looks different than at arrival. The wardens stand aside without inspection -- outbound traffic requires no Blight check. Their faces carry the flat sympathy of people who have watched many Seekers walk through this gate and counted the ones who walked back. The approach road stretches into the half-dark of the Burnwillow's lower canopy, where the fire-leaves thin and the ambient light drops from amber to grey.",
+            "read_aloud": "The gate wardens step aside. No inspection for those going out. Hask raises his amber lantern in what might be a salute or might be a reflex. 'Root-Song guide you. If it still reaches that far.' Beyond the gate, the road descends into the lower canopy where the fire-leaves grow sparse and the light turns the color of old ash. The Rotwood is three hours' march southeast. You can smell it already -- mushroom and decay, carried on a wind that should not be blowing inward.",
+            "sensory_signature": "Amber lantern light fading behind. The smell of mushroom and decay on an inward wind. Silence ahead.",
+            "enemies": [],
+            "loot": [],
+            "hazards": [],
+            "npcs": [],
+            "event_triggers": [
+                "On departure: The DoomClock begins. The march to the Rotwood is the point of no return for this module."
+            ]
         }
     }
 }

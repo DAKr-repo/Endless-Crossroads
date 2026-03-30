@@ -22,35 +22,35 @@
             "tier": 2,
             "is_locked": false,
             "is_secret": false,
-            "content_hints": {
-                "description": "The entry tunnel opens from the elevator shaft into a worked corridor wide enough for two mine carts abreast. Iron rails run along the floor, their surfaces polished bright by recent traffic -- not carts, but the dragging bellies of Ironvein Spiders. Dim lanterns hang from hooks at ten-foot intervals, most dead, a few still guttering on dregs of oil. Metallic web strands cross the corridor at knee and neck height, thin as wire and sharp enough to cut.",
-                "read_aloud": "Rails gleam in the half-dark. Something has been using them as highways -- the iron is polished mirror-bright by passage. Webs cross the corridor at killing height, metallic strands that catch your lantern light and throw it back in silver threads. Two shapes detach from the ceiling ahead. They move wrong -- too many legs, too deliberate, and when they shift, their carapaces ring like struck iron.",
-                "npcs": [],
-                "enemies": [
-                    {
-                        "name": "Ironvein Spider",
-                        "hp": 16,
-                        "ac": 12,
-                        "attack": 4,
-                        "damage": "1d6+2",
-                        "notes": "Tier II construct/beast. Web: target loses Move action (DC 10 Grit to resist). Metallic carapace: DR 1. Drops Ironvein Silk (crafting material) on kill."
-                    },
-                    {
-                        "name": "Ironvein Spider",
-                        "hp": 16,
-                        "ac": 12,
-                        "attack": 4,
-                        "damage": "1d6+2",
-                        "notes": "Tier II construct/beast. Web: target loses Move action (DC 10 Grit to resist). Metallic carapace: DR 1."
-                    }
-                ],
-                "loot": [],
-                "services": [],
-                "perception_dc": 14,
-                "event_triggers": [
-                    "On perception success (DC 14): The webs are not random. They form a grid pattern -- tripwires connected to the ceiling where the spiders nest. Cutting a strand alerts every spider within two rooms. Stepping over them (DC 10 Wits) avoids triggering the alarm."
-                ]
-            }
+            "name": "The Web-Strung Corridor",
+            "description": "The entry tunnel opens from the elevator shaft into a worked corridor wide enough for two mine carts abreast. Iron rails run along the floor, their surfaces polished bright by recent traffic -- not carts, but the dragging bellies of Ironvein Spiders. Dim lanterns hang from hooks at ten-foot intervals, most dead, a few still guttering on dregs of oil. Metallic web strands cross the corridor at knee and neck height, thin as wire and sharp enough to cut.",
+            "read_aloud": "Rails gleam in the half-dark. Something has been using them as highways -- the iron is polished mirror-bright by passage. Webs cross the corridor at killing height, metallic strands that catch your lantern light and throw it back in silver threads. Two shapes detach from the ceiling ahead. They move wrong -- too many legs, too deliberate, and when they shift, their carapaces ring like struck iron.",
+            "sensory_signature": "Dripping water on iron. The click of mechanical legs. Metallic web catching lamplight.",
+            "enemies": [
+                {
+                    "name": "Clockwork Spider",
+                    "count": 2,
+                    "tier": 2,
+                    "hp": 8,
+                    "ac": 14,
+                    "attack": 4,
+                    "damage": "1d6+1",
+                    "archetype": "construct",
+                    "special": "Web: target loses Move action, DC 10 Grit to resist. DR 1",
+                    "notes": "Arborist maintenance drones gone feral. Metallic carapace. Drops Ironvein Silk (crafting material) on kill."
+                }
+            ],
+            "loot": [
+                {"name": "Ironvein Silk Strand", "tier": 2, "type": "crafting", "description": "Metallic silk harvested from the web grid. Weld can weave this into armor for the [Ensnare] trait."}
+            ],
+            "hazards": [
+                {"name": "Tripwire Web Grid", "dc": 14, "damage": "0", "damage_type": "none", "description": "The webs form a sensor grid connected to ceiling nests. Cutting a strand alerts every spider within two rooms. Stepping over them (DC 10 Wits) avoids triggering the alarm."}
+            ],
+            "npcs": [],
+            "perception_dc": 14,
+            "event_triggers": [
+                "On perception success (DC 14): The webs are not random. They form a grid pattern -- tripwires connected to the ceiling where the spiders nest. Cutting a strand alerts every spider within two rooms. Stepping over them (DC 10 Wits) avoids triggering the alarm."
+            ]
         },
         "1": {
             "id": 1,
@@ -63,29 +63,34 @@
             "tier": 2,
             "is_locked": false,
             "is_secret": false,
-            "content_hints": {
-                "description": "The ore processing chamber is a cathedral of industry gone still. A massive wooden wheel -- the ore crusher -- dominates the center, its gears jammed with web and rust. Mine carts line the walls, some still loaded with raw iron ore flecked with amber. A Char Hulk stands motionless beside the wheel, its body a fusion of burned wood and smelted iron, heat shimmering from cracks in its shell. It was an Arborist construct once -- a smelting automaton. The Rot has not touched it. The Rot cannot touch iron this hot. But something has woken it, and it no longer remembers who it serves.",
-                "read_aloud": "The crusher wheel fills the chamber like a petrified heart. Something stands beside it -- humanoid in shape but wrong in proportion, seven feet tall, its body a patchwork of charred wood and molten iron that still glows dull orange along the cracks. Heat pours from it in waves. The floor around its feet is scorched black. It does not breathe. It does not blink. When you enter, its head rotates toward you with the grinding sound of a millstone turning.",
-                "npcs": [],
-                "enemies": [
-                    {
-                        "name": "Char Hulk",
-                        "hp": 25,
-                        "ac": 14,
-                        "attack": 5,
-                        "damage": "2d6+2",
-                        "notes": "Tier II construct. DR 2. Heat Aura: melee attackers take 2 fire damage per hit. Immune to Rot/Blight effects. Slow: always acts last in initiative. Vulnerable to water/cold (halves DR for 1 round). Former Arborist smelting automaton, corrupted by isolation, not by Blight."
-                    }
-                ],
-                "loot": [
-                    {"name": "Ironvein Gauntlets", "value": 15, "type": "uncommon", "notes": "Tier II. Arms slot. +2d6 WITS pool. [Heat Resistant]: immune to fire damage from environmental hazards. Forged from the same iron the Hulk is made of."}
-                ],
-                "services": [],
-                "event_triggers": [
-                    "On Char Hulk defeated: The construct collapses in a shower of embers. The heat lingers for minutes. In its chest cavity -- where an Arborist's resonance crystal should sit -- there is only a hollow socket. Someone removed the guiding crystal long ago. This thing was running on instinct.",
-                    "On investigation DC 14: The mine carts contain high-grade iron ore. Enough raw material for multiple Tier II items if brought back to Weld."
-                ]
-            }
+            "name": "The Ore Crusher Chamber",
+            "description": "The ore processing chamber is a cathedral of industry gone still. A massive wooden wheel -- the ore crusher -- dominates the center, its gears jammed with web and rust. Mine carts line the walls, some still loaded with raw iron ore flecked with amber. A Char Hulk stands motionless beside the wheel, its body a fusion of burned wood and smelted iron, heat shimmering from cracks in its shell. It was an Arborist construct once -- a smelting automaton. The Rot has not touched it. The Rot cannot touch iron this hot. But something has woken it, and it no longer remembers who it serves.",
+            "read_aloud": "The crusher wheel fills the chamber like a petrified heart. Something stands beside it -- humanoid in shape but wrong in proportion, seven feet tall, its body a patchwork of charred wood and molten iron that still glows dull orange along the cracks. Heat pours from it in waves. The floor around its feet is scorched black. It does not breathe. It does not blink. When you enter, its head rotates toward you with the grinding sound of a millstone turning.",
+            "sensory_signature": "Radiant heat. The smell of hot iron and charred wood. The groan of seized gears.",
+            "enemies": [
+                {
+                    "name": "Char Hulk",
+                    "count": 1,
+                    "tier": 2,
+                    "hp": 25,
+                    "ac": 11,
+                    "attack": 4,
+                    "damage": "2d6",
+                    "archetype": "scavenger",
+                    "special": "Slow: always acts last. Smash: attacks hit all adjacent targets. Heat Aura: melee attackers take 2 fire damage per hit. Immune to Rot/Blight effects. Vulnerable to water/cold (halves DR for 1 round).",
+                    "notes": "Former Arborist smelting automaton, corrupted by isolation, not by Blight."
+                }
+            ],
+            "loot": [
+                {"name": "Ironvein Gauntlets", "tier": 2, "type": "uncommon", "description": "Arms slot. +2d6 WITS pool. [Heat Resistant]: immune to fire damage from environmental hazards. Forged from the same iron the Hulk is made of."},
+                {"name": "Raw Iron Ore (bulk)", "tier": 2, "type": "crafting", "description": "High-grade iron ore from the mine carts. Enough raw material for multiple Tier II items if brought back to Weld. Requires DC 14 investigation to assess."}
+            ],
+            "hazards": [],
+            "npcs": [],
+            "event_triggers": [
+                "On Char Hulk defeated: The construct collapses in a shower of embers. The heat lingers for minutes. In its chest cavity -- where an Arborist's resonance crystal should sit -- there is only a hollow socket. Someone removed the guiding crystal long ago. This thing was running on instinct.",
+                "On investigation DC 14: The mine carts contain high-grade iron ore. Enough raw material for multiple Tier II items if brought back to Weld."
+            ]
         },
         "2": {
             "id": 2,
@@ -98,17 +103,20 @@
             "tier": 2,
             "is_locked": false,
             "is_secret": false,
-            "content_hints": {
-                "description": "A collapsed section of tunnel has been reduced to a crawlspace barely wide enough for one person at a time. The walls are fractured root-bark, still seeping sap that smells of pine and something sulfurous underneath. Gas pockets -- pockets of trapped volcanic air from deep beneath the root-system -- collect in the low points. The air shimmers near the floor.",
-                "read_aloud": "The tunnel narrows to a crawl. Fractured root-bark presses close, still bleeding amber sap that runs warm across your hands. The air near the floor shimmers -- heat distortion, or something worse. You can smell it: pine resin layered over a sharp, sulfurous bite that makes your eyes water. One spark and this tunnel becomes an oven.",
-                "npcs": [],
-                "loot": [],
-                "services": [],
-                "event_triggers": [
-                    "Hazard: Mine Gas Pocket. Moving through requires DC 12 Grit save. Failure: 2d6 fire damage as the gas ignites from lantern heat. Success: pass through safely but lantern must be extinguished (darkness until relit). Open flame in this room triggers automatic detonation: 2d6 fire to all present, DoomClock +1.",
-                    "On extinguished lantern: The crawlspace is pitch black. Navigation by touch requires DC 10 Wits or the party becomes disoriented (emerge into a random adjacent room)."
-                ]
-            }
+            "name": "The Gas Crawl",
+            "description": "A collapsed section of tunnel has been reduced to a crawlspace barely wide enough for one person at a time. The walls are fractured root-bark, still seeping sap that smells of pine and something sulfurous underneath. Gas pockets -- pockets of trapped volcanic air from deep beneath the root-system -- collect in the low points. The air shimmers near the floor.",
+            "read_aloud": "The tunnel narrows to a crawl. Fractured root-bark presses close, still bleeding amber sap that runs warm across your hands. The air near the floor shimmers -- heat distortion, or something worse. You can smell it: pine resin layered over a sharp, sulfurous bite that makes your eyes water. One spark and this tunnel becomes an oven.",
+            "sensory_signature": "Sulfurous air. Warm sap on fractured bark. The shimmer of trapped gas near the floor.",
+            "enemies": [],
+            "loot": [],
+            "hazards": [
+                {"name": "Mine Gas Pocket", "dc": 12, "damage": "2d6", "damage_type": "fire", "description": "Invisible, odorless gas pooled in a low depression. Moving through requires DC 12 Grit save. Failure: 2d6 fire damage as the gas ignites from lantern heat. Success: pass through safely but lantern must be extinguished. Open flame triggers automatic detonation: 2d6 fire to all present, DoomClock +1.", "condition": "Extinguishes all open flames in the room"}
+            ],
+            "npcs": [],
+            "event_triggers": [
+                "Hazard: Mine Gas Pocket. Moving through requires DC 12 Grit save. Failure: 2d6 fire damage as the gas ignites from lantern heat. Success: pass through safely but lantern must be extinguished (darkness until relit). Open flame in this room triggers automatic detonation: 2d6 fire to all present, DoomClock +1.",
+                "On extinguished lantern: The crawlspace is pitch black. Navigation by touch requires DC 10 Wits or the party becomes disoriented (emerge into a random adjacent room)."
+            ]
         },
         "3": {
             "id": 3,
@@ -121,26 +129,28 @@
             "tier": 2,
             "is_locked": false,
             "is_secret": false,
-            "content_hints": {
-                "description": "The miners' quarters are a long gallery lined with bunks carved into the root-wall -- sixty beds for a crew that will never return. Personal effects litter the floor: a child's drawing pinned to a bunk frame, a half-written letter, a pair of boots set neatly beside a bed whose owner intended to come back. The air smells of dust and old sweat. A faint blue glow emanates from the far end where a figure sits on a bunk, transparent and flickering, staring at hands it no longer has.",
-                "read_aloud": "Sixty bunks. Sixty lives interrupted. Someone left a letter mid-sentence -- the ink has dried in the pen. A child's drawing on a bunk frame shows a stick figure holding a pickaxe, captioned 'DA' in crayon. At the far end, a blue light flickers. A figure sits on the edge of a bunk, translucent, its miner's uniform torn and stained with something dark. It turns toward you. Its mouth moves but you hear nothing. Then, faintly, like wind through a crack: 'She is down there. She is always down there. We should never have dug so deep.'",
-                "npcs": [
-                    {
-                        "name": "Ghost of Miner Tev",
-                        "role": "lore",
-                        "dialogue": "We hit the deep vein six months ago. Iron like nothing we had seen -- veins that sang when you struck them, resonant, almost musical. Grod said it was the Root-Song trapped in metal. We thought we were rich. Then the spiders came. Not from outside -- from inside the walls. The iron birthed them. The tree's own defenses, Grod said, trying to seal the wound we made. But they did not stop at sealing. They kept coming. And then the Queen woke. She is down there still. In the crystal cavern. Waiting.",
-                        "notes": "Tev is a residual spirit -- an echo bound to the place of death, not a conscious entity. He repeats the same information each time but responds to direct questions about the mine layout. Will vanish if touched or if the Root-Song is invoked. Aether 12+ characters can sense his emotions: guilt, exhaustion, and a desperate protectiveness toward Grod, who he calls 'the old fool who stayed.'"
-                    }
-                ],
-                "loot": [
-                    {"name": "Forged Longsword", "value": 12, "type": "uncommon", "notes": "Tier II. R.Hand. +2d6 MIGHT pool. Found under Tev's bunk -- his personal weapon, never drawn in time."}
-                ],
-                "services": ["rest"],
-                "event_triggers": [
-                    "On rest: The ghost watches. If the party sleeps, Tev walks the bunks like a watchman, pausing at each occupied bed. Characters with Aether 12+ dream of the mine in its working days: the sound of picks striking singing iron, laughter, the smell of camp stew. They wake with +1 to their next check (the Root-Song's gift through Tev's memory).",
-                    "On leaving: Tev calls after you. 'Tell Grod I am sorry about the dog. It followed me down. It should not have followed me down.'"
-                ]
-            }
+            "name": "The Barracks of the Lost",
+            "description": "The miners' quarters are a long gallery lined with bunks carved into the root-wall -- sixty beds for a crew that will never return. Personal effects litter the floor: a child's drawing pinned to a bunk frame, a half-written letter, a pair of boots set neatly beside a bed whose owner intended to come back. The air smells of dust and old sweat. A faint blue glow emanates from the far end where a figure sits on a bunk, transparent and flickering, staring at hands it no longer has.",
+            "read_aloud": "Sixty bunks. Sixty lives interrupted. Someone left a letter mid-sentence -- the ink has dried in the pen. A child's drawing on a bunk frame shows a stick figure holding a pickaxe, captioned 'DA' in crayon. At the far end, a blue light flickers. A figure sits on the edge of a bunk, translucent, its miner's uniform torn and stained with something dark. It turns toward you. Its mouth moves but you hear nothing. Then, faintly, like wind through a crack: 'She is down there. She is always down there. We should never have dug so deep.'",
+            "sensory_signature": "Dust and old sweat. The rustle of abandoned paper. A faint blue glow from the dead.",
+            "enemies": [],
+            "loot": [
+                {"name": "Forged Longsword", "tier": 2, "type": "uncommon", "description": "R.Hand. +2d6 MIGHT pool. Found under Tev's bunk -- his personal weapon, never drawn in time."}
+            ],
+            "hazards": [],
+            "npcs": [
+                {
+                    "name": "Ghost of Miner Tev",
+                    "role": "lore",
+                    "dialogue": "We hit the deep vein six months ago. Iron like nothing we had seen -- veins that sang when you struck them, resonant, almost musical. Grod said it was the Root-Song trapped in metal. We thought we were rich. Then the spiders came. Not from outside -- from inside the walls. The iron birthed them. The tree's own defenses, Grod said, trying to seal the wound we made. But they did not stop at sealing. They kept coming. And then the Queen woke. She is down there still. In the crystal cavern. Waiting.",
+                    "notes": "Tev is a residual spirit -- an echo bound to the place of death, not a conscious entity. He repeats the same information each time but responds to direct questions about the mine layout. Will vanish if touched or if the Root-Song is invoked. Aether 12+ characters can sense his emotions: guilt, exhaustion, and a desperate protectiveness toward Grod, who he calls 'the old fool who stayed.'"
+                }
+            ],
+            "services": ["rest"],
+            "event_triggers": [
+                "On rest: The ghost watches. If the party sleeps, Tev walks the bunks like a watchman, pausing at each occupied bed. Characters with Aether 12+ dream of the mine in its working days: the sound of picks striking singing iron, laughter, the smell of camp stew. They wake with +1 to their next check (the Root-Song's gift through Tev's memory).",
+                "On leaving: Tev calls after you. 'Tell Grod I am sorry about the dog. It followed me down. It should not have followed me down.'"
+            ]
         },
         "4": {
             "id": 4,
@@ -153,17 +163,20 @@
             "tier": 2,
             "is_locked": false,
             "is_secret": false,
-            "content_hints": {
-                "description": "The deep shaft access is a vertical drop -- no elevator here, just iron rungs hammered into the root-wall descending into a darkness that swallows your lantern light after twenty feet. The rungs are slick with condensation and something organic, and the metallic web-strands grow thicker as you look down, forming a tunnel of silver thread around the ladder.",
-                "read_aloud": "The ladder descends into the throat of the earth. Iron rungs, slick and cold, disappear into darkness that your light cannot reach. Metallic web coats the walls in sheets, thickening as it descends, until the shaft below looks less like a mine and more like the interior of a cocoon. Something large moves at the bottom. You hear it: the click of chitin on iron, echoing up the shaft like distant applause.",
-                "npcs": [],
-                "loot": [],
-                "services": [],
-                "event_triggers": [
-                    "DoomClock +1 on descent. The transition between mine levels is a point of commitment -- the ladder is one-way until the spider webs are cleared from below.",
-                    "On descent: The web strands vibrate as you climb down. Something knows you are coming. The element of surprise was never an option."
-                ]
-            }
+            "name": "The Deep Descent",
+            "description": "The deep shaft access is a vertical drop -- no elevator here, just iron rungs hammered into the root-wall descending into a darkness that swallows your lantern light after twenty feet. The rungs are slick with condensation and something organic, and the metallic web-strands grow thicker as you look down, forming a tunnel of silver thread around the ladder.",
+            "read_aloud": "The ladder descends into the throat of the earth. Iron rungs, slick and cold, disappear into darkness that your light cannot reach. Metallic web coats the walls in sheets, thickening as it descends, until the shaft below looks less like a mine and more like the interior of a cocoon. Something large moves at the bottom. You hear it: the click of chitin on iron, echoing up the shaft like distant applause.",
+            "sensory_signature": "Slick iron rungs. Thickening web. The click of chitin from below.",
+            "enemies": [],
+            "loot": [],
+            "hazards": [
+                {"name": "Slick Ladder Descent", "dc": 12, "damage": "2d6", "damage_type": "bludgeoning", "description": "Iron rungs slick with condensation and organic residue. DC 12 Grit to descend safely. Failure: character slips, falls 20 feet into web below. 2d6 damage and entangled (DC 12 Might to free)."}
+            ],
+            "npcs": [],
+            "event_triggers": [
+                "DoomClock +1 on descent. The transition between mine levels is a point of commitment -- the ladder is one-way until the spider webs are cleared from below.",
+                "On descent: The web strands vibrate as you climb down. Something knows you are coming. The element of surprise was never an option."
+            ]
         }
     }
 }

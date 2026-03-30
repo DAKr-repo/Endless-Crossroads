@@ -8,7 +8,7 @@
         "theme": "RUST",
         "topology": "dungeon",
         "display_name": "The Rot Hunter",
-        "flavor_note": "The summit of the Rot Spire. An open platform above the Burnwillow's canopy, exposed to the sky for the first time in the campaign. The Rot Hunter -- the Blight's apex predator, the corrupted antibody, the fever made flesh -- waits here. This is the final boss encounter. A multi-phase fight that determines the fate of the Burnwillow. DoomClock hits 20 at fight start. All threshold effects are active. There are no more second chances."
+        "flavor_note": "The summit of the Rot Spire. An open platform above the Burnwillow's canopy, exposed to the sky for the first time in the campaign. The Rot Hunter -- the Blight's apex predator, the corrupted antibody, the fever made flesh -- waits here. This is the final boss encounter. A multi-phase fight that determines the fate of the Burnwillow."
     },
     "rooms": {
         "0": {
@@ -22,18 +22,21 @@
             "tier": 4,
             "is_locked": false,
             "is_secret": false,
-            "content_hints": {
-                "description": "The summit platform is open to the sky. The Burnwillow's canopy spreads below you in every direction -- a sea of fire-leaves in amber and crimson, the only color in a world drained grey by the Blight. The wind at this height is fierce and hot, carrying embers and ash in equal measure. The platform itself is the Spire's crown -- a circular arena of fungal stone fifty feet across, ringed by the Spire's broken walls that serve as a parapet against the drop. In the center, the Rot Hunter waits. It is not what you expected. It is worse. And better. And sadder.",
-                "read_aloud": "The wind howls around you as you step onto the pinnacle of corruption. Below, the Burnwillow's canopy burns -- fire-leaves in amber and gold and crimson, an ocean of dying color that stretches to every horizon. Above, the sky. You have never seen it without the canopy between you and it. It is vast and dark and indifferent. The platform is an arena. In its center, the Rot Hunter. It is enormous -- the size of a Hollowed Bear but wrong, twisted, its body a fusion of every creature the Blight has consumed, wearing them like layers: bark and fur and chitin and bone, all of it grey, all of it moving, all of it in pain. It turns toward you. Sixteen eyes, borrowed from sixteen different species, all focus on the same point. You. When it roars, the sound is not aggression. It is grief. The corrupted antibody, attacking the body it was built to protect. It does not want to fight you. It has to. The fever demands it.",
-                "npcs": [],
-                "loot": [],
-                "services": [],
-                "event_triggers": [
-                    "On entry: DoomClock hits 20. All threshold effects activate simultaneously. 'The torches flicker. The hunt begins. Patrols shift. Healing fails. The dungeon seals.' The Spire's exits are sealed. There is no escape. This ends here.",
-                    "On entry with Crown of Vigilance: The Rot Hunter pauses. Its sixteen eyes narrow. The Crown carries the Root-Song, and the Hunter -- the tree's own antibody -- recognizes it. For one breath, the Hunter is not hostile. It is confused. Then the Blight reasserts control and the confusion becomes fury. But you saw it. Beneath the corruption, something remembers what it was supposed to be.",
-                    "Storm breaks on the summit. Lightning illuminates the arena every 3 rounds. On lightning rounds, all combatants are briefly stunned (lose 1 action) as the flash overwhelms Blight-adapted vision."
-                ]
-            }
+            "name": "The Summit Platform",
+            "description": "The summit platform is open to the sky. The Burnwillow's canopy spreads below you in every direction -- a sea of fire-leaves in amber and crimson, the only color in a world drained grey by the Blight. The wind at this height is fierce and hot, carrying embers and ash in equal measure. The platform itself is the Spire's crown -- a circular arena of fungal stone fifty feet across, ringed by the Spire's broken walls that serve as a parapet against the drop. In the center, the Rot Hunter waits. It is not what you expected. It is worse. And better. And sadder.",
+            "read_aloud": "The wind howls around you as you step onto the pinnacle of corruption. Below, the Burnwillow's canopy burns -- fire-leaves in amber and gold and crimson, an ocean of dying color that stretches to every horizon. Above, the sky. You have never seen it without the canopy between you and it. It is vast and dark and indifferent. The platform is an arena. In its center, the Rot Hunter. It is enormous -- the size of a Hollowed Bear but wrong, twisted, its body a fusion of every creature the Blight has consumed, wearing them like layers: bark and fur and chitin and bone, all of it grey, all of it moving, all of it in pain. It turns toward you. Sixteen eyes, borrowed from sixteen different species, all focus on the same point. You. When it roars, the sound is not aggression. It is grief.",
+            "sensory_signature": "Fierce hot wind. The fire-leaf ocean below. Sixteen borrowed eyes. Grief made audible.",
+            "enemies": [],
+            "loot": [],
+            "hazards": [
+                {"name": "Lightning Storm", "dc": 0, "damage": "0", "damage_type": "none", "description": "Storm breaks on the summit. Lightning illuminates the arena every 3 rounds. On lightning rounds, all combatants are briefly stunned (lose 1 action) as the flash overwhelms Blight-adapted vision."}
+            ],
+            "npcs": [],
+            "event_triggers": [
+                "On entry: DoomClock hits 20. All threshold effects activate simultaneously. 'The torches flicker. The hunt begins. Patrols shift. Healing fails. The dungeon seals.' The Spire's exits are sealed. There is no escape. This ends here.",
+                "On entry with Crown of Vigilance: The Rot Hunter pauses. Its sixteen eyes narrow. The Crown carries the Root-Song, and the Hunter -- the tree's own antibody -- recognizes it. For one breath, the Hunter is not hostile. It is confused. Then the Blight reasserts control and the confusion becomes fury. But you saw it. Beneath the corruption, something remembers what it was supposed to be.",
+                "Storm breaks on the summit. Lightning illuminates the arena every 3 rounds. On lightning rounds, all combatants are briefly stunned (lose 1 action) as the flash overwhelms Blight-adapted vision."
+            ]
         },
         "1": {
             "id": 1,
@@ -46,33 +49,38 @@
             "tier": 4,
             "is_locked": false,
             "is_secret": false,
-            "content_hints": {
-                "description": "The arena. The platform's center, fifty feet of open space ringed by crumbling Spire wall. The wind tears at everything. The Rot Hunter occupies the center, its body a nightmare of Blight engineering -- too many limbs, too many eyes, too many mouths, all of them screaming without sound. It fights in two phases. In the first, it is ground-bound, massive, relentless. In the second, it takes flight on wings of fungal membrane and grey flame, raining corruption from above while its body regenerates.",
-                "read_aloud": "The Rot Hunter charges. There is no preamble, no roar, no posturing. It simply moves -- faster than something that size has any right to move -- and the platform shakes with each footfall. Its body shifts as it runs, sprouting new limbs, shedding old ones, the Blight inside it assembling and reassembling in real-time, searching for the optimal configuration to kill you. It finds it. It always finds it. The question is whether you can survive the time it takes.",
-                "npcs": [],
-                "enemies": [
-                    {
-                        "name": "The Rot Hunter",
-                        "hp": 80,
-                        "ac": 18,
-                        "attack": 10,
-                        "damage": "3d8+5",
-                        "is_boss": true,
-                        "notes": "Tier IV final boss. Two phases. PHASE 1 (HP 80-0, ground): DR 3. Multi-Attack: 2 attacks per round. Blight Surge: 20ft cone, DC 16 Grit or 4d6 necrotic + Blight infection. Adaptive: each time it takes damage from the same damage type, gains +1 DR against that type (max +3). Rotate damage types to prevent stacking. Root-Song Weakness: if Primarch is dead (conduit severed), the Hunter does not regenerate. If Primarch was not killed, Hunter regenerates 5 HP/round. PHASE 2 (triggers at 0 HP, flight): HP refills to 50. Gains flight. Attacks from above with Blight Bombing Run (all characters, DC 16 Grit or 3d6 necrotic). Cannot be hit by melee unless grounded (DC 16 Might to throw/grapple it down, or ranged attacks only). DR drops to 1 in flight (the wings are vulnerable). On phase 2 trigger: 'The Hunter screams. Wings of grey membrane and fungal cord unfold from its back -- not grown, but torn from its own body. It takes flight. The corruption falls from it like rain.'"
-                    }
-                ],
-                "loot": [
-                    {"name": "Aegis of the Last Flame", "value": 60, "type": "epic", "notes": "Tier IV. Chest slot. DR 3. +1 Defense. +4d6 GRIT pool. [Resonant]: the Root-Song pulses through this armor. [Last Flame]: once per run, can reduce DoomClock to 0 (the armor absorbs the accumulated pressure). [Arborist-Made]: the Rot Hunter's core, cleansed by death, reshaped by the tree's gratitude. It is warm. It will always be warm."},
-                    {"name": "Elixir of Renewal", "value": 50, "type": "epic", "notes": "Consumable. Fully restores HP, cures all conditions including Blight infection, and grants immunity to Blight for 24 hours. A crystallized Sun-Fruit lodged in the Hunter's chest -- the tree's medicine, trapped inside the fever, finally released."},
-                    {"name": "Heart of the Burnwillow", "value": 100, "type": "legendary", "notes": "Tier IV artifact. Neck slot. A fist-sized amber Heart, the oldest and most powerful amber in existence. Contains the living memory of the Burnwillow's Golden Age -- the sound of the Root-Song at full strength, the warmth of four Groves in harmony. Once per campaign: can be planted in the ground to permanently restore the Root-Song to a corrupted region. The tree's heart, returned."}
-                ],
-                "services": [],
-                "event_triggers": [
-                    "Phase 1 to Phase 2 transition: The Hunter collapses. For one breath, silence. Then it screams -- not a roar but a sound of tearing, of something breaking free of something else. Wings erupt from its back. It takes flight. Its body is smaller now, shed of its heaviest armor, but faster. The corruption falls from it in sheets as it rises. Below the corruption, for one flash, the body beneath is golden. The original form. The tree's true antibody, buried under centuries of fever. Then the grey covers it again and it dives.",
-                    "On Phase 2 Hunter grounded: The Hunter crashes into the platform, cratering the fungal stone. It is vulnerable for 1 full round while it recovers. All attacks hit automatically during this window. The Hunter's sixteen eyes close to four. Then two. Then one. It is shedding its corruption, layer by layer, whether it wants to or not. You are killing the disease, not the cure.",
-                    "On Rot Hunter defeated: The body falls. The grey peels away like bark from a living tree, curling and drying and crumbling to ash in the wind. Beneath the corruption -- golden wood. Arborist-grade. The original antibody, cleansed by death. It is the size of a human, curled in a fetal position, and it is beautiful. The wind carries the grey ash away. The storm breaks. And through the clouds, for the first time in living memory, sunlight touches the Burnwillow's Crown."
-                ]
-            }
+            "name": "The Arena of the Last Fire",
+            "description": "The arena. The platform's center, fifty feet of open space ringed by crumbling Spire wall. The wind tears at everything. The Rot Hunter occupies the center, its body a nightmare of Blight engineering -- too many limbs, too many eyes, too many mouths, all of them screaming without sound. It fights in two phases. In the first, it is ground-bound, massive, relentless. In the second, it takes flight on wings of fungal membrane and grey flame, raining corruption from above while its body regenerates.",
+            "read_aloud": "The Rot Hunter charges. There is no preamble, no roar, no posturing. It simply moves -- faster than something that size has any right to move -- and the platform shakes with each footfall. Its body shifts as it runs, sprouting new limbs, shedding old ones, the Blight inside it assembling and reassembling in real-time, searching for the optimal configuration to kill you. It finds it. It always finds it. The question is whether you can survive the time it takes.",
+            "sensory_signature": "Platform-shaking footfalls. The shifting of Blight-flesh in real-time. Wind and ember and the sound of grief.",
+            "enemies": [
+                {
+                    "name": "The Rot Hunter",
+                    "count": 1,
+                    "tier": 4,
+                    "hp": 80,
+                    "ac": 18,
+                    "attack": 10,
+                    "damage": "3d8+5",
+                    "is_boss": true,
+                    "archetype": "beast",
+                    "special": "DR 3. BFS Pursuit: always moves toward party's last known position. Cannot be defeated with Tier I-II weapons. PHASE 1 (HP 80-0, ground): Multi-Attack: 2 attacks per round. Blight Surge: 20ft cone, DC 16 Grit or 4d6 necrotic + Blight infection. Adaptive: each time it takes damage from the same type, gains +1 DR against that type (max +3). Root-Song Weakness: if Primarch is dead, the Hunter does not regenerate. If Primarch was not killed, Hunter regenerates 5 HP/round. PHASE 2 (triggers at 0 HP, flight): HP refills to 50. Gains flight. Blight Bombing Run (all characters, DC 16 Grit or 3d6 necrotic). Cannot be hit by melee unless grounded (DC 16 Might to grapple down). DR drops to 1 in flight. Drops artifact-quality item on defeat."
+                }
+            ],
+            "loot": [
+                {"name": "Aegis of the Last Flame", "tier": 4, "type": "epic", "description": "Chest slot. DR 3. +1 Defense. +4d6 GRIT pool. [Resonant]: the Root-Song pulses through this armor. [Last Flame]: once per run, can reduce DoomClock to 0. [Arborist-Made]: the Rot Hunter's core, cleansed by death, reshaped by the tree's gratitude. It is warm. It will always be warm."},
+                {"name": "Elixir of Renewal", "tier": 4, "type": "epic", "description": "Consumable. Fully restores HP, cures all conditions including Blight infection, and grants immunity to Blight for 24 hours. A crystallized Sun-Fruit lodged in the Hunter's chest -- the tree's medicine, trapped inside the fever, finally released."},
+                {"name": "Heart of the Burnwillow", "tier": 4, "type": "legendary", "description": "Neck slot. A fist-sized amber Heart, the oldest amber in existence. Contains the living memory of the Burnwillow's Golden Age. Once per campaign: can be planted in the ground to permanently restore the Root-Song to a corrupted region. The tree's heart, returned."}
+            ],
+            "hazards": [
+                {"name": "The Hollow King's Curse", "dc": 18, "damage": "4d8", "damage_type": "necrotic", "description": "An invisible field of entropic will that radiates from the Rot Hunter. On failure, character cannot benefit from healing for 3 rounds.", "condition": "On failure, character cannot benefit from healing for 3 rounds"}
+            ],
+            "npcs": [],
+            "event_triggers": [
+                "Phase 1 to Phase 2 transition: The Hunter collapses. For one breath, silence. Then it screams -- not a roar but a sound of tearing, of something breaking free of something else. Wings erupt from its back. It takes flight. Below the corruption, for one flash, the body beneath is golden. The original form. The tree's true antibody. Then the grey covers it again and it dives.",
+                "On Phase 2 Hunter grounded: The Hunter crashes into the platform, cratering the fungal stone. It is vulnerable for 1 full round. All attacks hit automatically during this window. The Hunter's sixteen eyes close to four. Then two. Then one. It is shedding its corruption, layer by layer, whether it wants to or not. You are killing the disease, not the cure.",
+                "On Rot Hunter defeated: The body falls. The grey peels away like bark from a living tree, curling and drying and crumbling to ash in the wind. Beneath the corruption -- golden wood. Arborist-grade. The original antibody, cleansed by death. It is the size of a human, curled in a fetal position, and it is beautiful. The wind carries the grey ash away. The storm breaks. And through the clouds, for the first time in living memory, sunlight touches the Burnwillow's Crown."
+            ]
         },
         "2": {
             "id": 2,
@@ -85,19 +93,20 @@
             "tier": 4,
             "is_locked": false,
             "is_secret": false,
-            "content_hints": {
-                "description": "Dawn breaks. The Spire crumbles beneath you -- not violently, not with the crash of collapsing architecture, but gently, like a scab falling from healed skin. The fungal tissue dries and powders in the wind. The support structure sighs and settles. The platform descends as the Spire shrinks, carrying you down through the canopy, through the fire-leaves that brush your face with warmth, back toward the ground. The Burnwillow's Root-Song returns -- not the faint, faltering pulse of recent months but a full chord, rich and resonant, felt in the bones and the blood and the soul. The tree is singing. The fever has broken.",
-                "read_aloud": "As the Rot Hunter falls, a crack of golden light splits the dark sky. The ember plague begins to recede. The Spire crumbles around you, but the collapse is gentle -- the tree is catching you, lowering you through its canopy on platforms of living root that grow beneath your feet as fast as the Spire dissolves. Fire-leaves brush your face. They are warm. They have always been warm. Through the canopy, you see the Charred Wastes -- and they are no longer charred. Green is spreading from the Burnwillow's trunk outward, pushing through the ash, the first new growth in decades. The Root-Song fills the world. Not the faint vibration you have been straining to hear since the first dungeon. The full Song. The one the Arborists heard. The one that means: thank you. You are lowered to the ground outside Emberhome's gate. The wardens stare. Hask drops his amber lantern. It does not shatter. The amber has never glowed brighter. The DoomClock resets to zero. It will never count again.",
-                "npcs": [],
-                "loot": [],
-                "services": [],
-                "event_triggers": [
-                    "DoomClock resets to 0. Permanently. The threat is ended.",
-                    "On return to Emberhome: Every NPC is at the gate. Voss stands at the front. Her survival ledger is in her hand. She tears it in half. 'Survival rate: one hundred percent. Final entry.' She is smiling. You have never seen Voss smile. It transforms her entire face.",
-                    "Epilogue triggers based on module completion: If all 5 modules completed in order, a final scene plays: Elder Kaelen stands at the Hearth. The Sun-Shard blazes brighter than it has in ninety years. 'The Root-Song has reached the Root-Roads,' he says, running his thumb along the old burn scar. 'Verdhollow is answering. Solheart is answering. Even Ashenmere -- ' His voice breaks. 'Even Ashenmere is stirring.' The Four Groves. Waking. The tree is alive. The world is alive. And you -- you, who started in a cellar killing Rot Sprites -- you are the reason.",
-                    "Campaign complete. Save file marked as 'Finished -- The Burnwillow Endures.' Memory Seeds unlocked in this campaign persist. The world is saved. New campaigns begin with the Rot-Song at full strength and the Root-Roads reopening."
-                ]
-            }
+            "name": "Dawn",
+            "description": "Dawn breaks. The Spire crumbles beneath you -- not violently, not with the crash of collapsing architecture, but gently, like a scab falling from healed skin. The fungal tissue dries and powders in the wind. The support structure sighs and settles. The platform descends as the Spire shrinks, carrying you down through the canopy, through the fire-leaves that brush your face with warmth, back toward the ground. The Burnwillow's Root-Song returns -- not the faint, faltering pulse of recent months but a full chord, rich and resonant, felt in the bones and the blood and the soul. The tree is singing. The fever has broken.",
+            "read_aloud": "As the Rot Hunter falls, a crack of golden light splits the dark sky. The ember plague begins to recede. The Spire crumbles around you, but the collapse is gentle -- the tree is catching you, lowering you through its canopy on platforms of living root that grow beneath your feet as fast as the Spire dissolves. Fire-leaves brush your face. They are warm. They have always been warm. Through the canopy, you see the Charred Wastes -- and they are no longer charred. Green is spreading from the Burnwillow's trunk outward, pushing through the ash, the first new growth in decades. The Root-Song fills the world. Not the faint vibration you have been straining to hear since the first dungeon. The full Song. The one the Arborists heard. The one that means: thank you.",
+            "sensory_signature": "Golden light through broken clouds. Fire-leaves warm against skin. The Root-Song at full strength. The smell of new growth.",
+            "enemies": [],
+            "loot": [],
+            "hazards": [],
+            "npcs": [],
+            "event_triggers": [
+                "DoomClock resets to 0. Permanently. The threat is ended.",
+                "On return to Emberhome: Every NPC is at the gate. Voss stands at the front. Her survival ledger is in her hand. She tears it in half. 'Survival rate: one hundred percent. Final entry.' She is smiling. You have never seen Voss smile. It transforms her entire face.",
+                "Epilogue triggers based on module completion: If all modules completed in order, a final scene plays: Elder Kaelen stands at the Hearth. The Sun-Shard blazes brighter than it has in ninety years. 'The Root-Song has reached the Root-Roads,' he says, running his thumb along the old burn scar. 'Verdhollow is answering. Solheart is answering. Even Ashenmere -- ' His voice breaks. 'Even Ashenmere is stirring.' The Four Groves. Waking. The tree is alive. The world is alive.",
+                "Campaign complete. Save file marked as 'Finished -- The Burnwillow Endures.' Memory Seeds unlocked in this campaign persist. The world is saved."
+            ]
         }
     }
 }

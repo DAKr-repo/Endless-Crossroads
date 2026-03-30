@@ -22,17 +22,20 @@
             "tier": 3,
             "is_locked": false,
             "is_secret": false,
-            "content_hints": {
-                "description": "The hollow entrance is a mouth. There is no other word for it. The ancient oak -- the largest tree in the Rotwood -- has split open at its base, revealing an interior that should not exist. The space inside is larger than the tree should allow, its walls lined with grey fungal tissue that pulses with slow bioluminescence. The air that flows outward is warm, wet, and smells of compost and iron. Root-tendrils hang from the ceiling like inverted stalactites, each one tipped with a cluster of sensory nodules that track movement. The tree knows you are here.",
-                "read_aloud": "The trees bend inward, forming a cathedral of corruption. Every trunk within a hundred paces leans toward the ancient oak at the center, their branches interlocked like fingers clasped in prayer to something terrible. The oak itself is split open -- a vertical wound in the bark that glows grey-green from within. The interior breathes. You can see it: the walls contracting and expanding, slowly, rhythmically, as though you are about to step into the lung of something vast and patient. Root-tendrils above the entrance curl toward you. They do not grab. They taste the air where you stand.",
-                "npcs": [],
-                "loot": [],
-                "services": [],
-                "event_triggers": [
-                    "On entry: The root-tendrils at the entrance contract behind you, partially sealing the exit. Not closed -- not yet -- but the gap narrows. The hollow knows you are inside. Getting out will be harder than getting in.",
-                    "On perception DC 14: The bioluminescence is not random. It pulses in patterns -- arterial patterns, like a heartbeat made visible. The hollow is alive. Not sentient in the way people are, but alive in the way a colony organism is alive. It is one thing with many parts, and all those parts know you are here."
-                ]
-            }
+            "name": "The Hollow Mouth",
+            "description": "The hollow entrance is a mouth. There is no other word for it. The ancient oak -- the largest tree in the Rotwood -- has split open at its base, revealing an interior that should not exist. The space inside is larger than the tree should allow, its walls lined with grey fungal tissue that pulses with slow bioluminescence. The air that flows outward is warm, wet, and smells of compost and iron. Root-tendrils hang from the ceiling like inverted stalactites, each one tipped with a cluster of sensory nodules that track movement. The tree knows you are here.",
+            "read_aloud": "The trees bend inward, forming a cathedral of corruption. Every trunk within a hundred paces leans toward the ancient oak at the center, their branches interlocked like fingers clasped in prayer to something terrible. The oak itself is split open -- a vertical wound in the bark that glows grey-green from within. The interior breathes. You can see it: the walls contracting and expanding, slowly, rhythmically, as though you are about to step into the lung of something vast and patient. Root-tendrils above the entrance curl toward you. They do not grab. They taste the air where you stand.",
+            "sensory_signature": "Warm wet exhalation. Compost and iron. The slow pulse of bioluminescent walls.",
+            "enemies": [],
+            "loot": [],
+            "hazards": [
+                {"name": "Sealing Entrance", "dc": 0, "damage": "0", "damage_type": "none", "description": "The root-tendrils at the entrance contract behind the party, partially sealing the exit. Getting out later will be harder than getting in -- the gap narrows with each room explored deeper."}
+            ],
+            "npcs": [],
+            "event_triggers": [
+                "On entry: The root-tendrils at the entrance contract behind you, partially sealing the exit. Not closed -- not yet -- but the gap narrows. The hollow knows you are inside. Getting out will be harder than getting in.",
+                "On perception DC 14: The bioluminescence is not random. It pulses in patterns -- arterial patterns, like a heartbeat made visible. The hollow is alive. Not sentient in the way people are, but alive in the way a colony organism is alive. It is one thing with many parts, and all those parts know you are here."
+            ]
         },
         "1": {
             "id": 1,
@@ -45,35 +48,32 @@
             "tier": 3,
             "is_locked": false,
             "is_secret": false,
-            "content_hints": {
-                "description": "The root tunnels wind through the interior of the ancient oak in organic spirals, their walls smooth with fungal growth that squelches underfoot and emits a faint warmth. Two Rotwood Guardians block the passage ahead -- animate root-constructs, seven feet tall, their bodies woven from living wood and fungal sinew. They were trees once, drawn into the hollow's mass and reshaped. They carry no weapons. Their arms end in points.",
-                "read_aloud": "The tunnel curves. The walls are warm and wet, the floor alive beneath your boots -- you can feel the mycelial network shifting under the surface, registering each footstep. Two shapes step from alcoves in the wall. They grew there. Root and fungus woven into humanoid frames, their bark-faces blank, their arm-ends sharpened to spear-points. They do not speak. They do not need to. The tunnel behind them is where they do not want you to go.",
-                "npcs": [],
-                "enemies": [
-                    {
-                        "name": "Rotwood Guardian",
-                        "hp": 20,
-                        "ac": 14,
-                        "attack": 6,
-                        "damage": "1d6+4",
-                        "notes": "Tier III construct. DR 1 (living bark). Root Anchor: cannot be pushed, pulled, or knocked prone. Regenerate 1 HP/round while in contact with the hollow's walls. Severing from walls (luring to center of room) stops regeneration. Vulnerable to fire."
-                    },
-                    {
-                        "name": "Rotwood Guardian",
-                        "hp": 20,
-                        "ac": 14,
-                        "attack": 6,
-                        "damage": "1d6+4",
-                        "notes": "Tier III construct. DR 1. Root Anchor. Regenerate 1 HP/round on walls. Vulnerable to fire."
-                    }
-                ],
-                "loot": [],
-                "services": [],
-                "event_triggers": [
-                    "On combat: The walls of the tunnel contract slightly during the fight, reducing the available space. Characters must fight in a 10-foot wide corridor. Ranged attacks are at -1d6 due to the close quarters.",
-                    "On Guardians defeated: The tunnel relaxes. The contraction eases. The hollow is testing your strength. You passed."
-                ]
-            }
+            "name": "The Guardian Passage",
+            "description": "The root tunnels wind through the interior of the ancient oak in organic spirals, their walls smooth with fungal growth that squelches underfoot and emits a faint warmth. Two Rotwood Guardians block the passage ahead -- animate root-constructs, seven feet tall, their bodies woven from living wood and fungal sinew. They were trees once, drawn into the hollow's mass and reshaped. They carry no weapons. Their arms end in points.",
+            "read_aloud": "The tunnel curves. The walls are warm and wet, the floor alive beneath your boots -- you can feel the mycelial network shifting under the surface, registering each footstep. Two shapes step from alcoves in the wall. They grew there. Root and fungus woven into humanoid frames, their bark-faces blank, their arm-ends sharpened to spear-points. They do not speak. They do not need to. The tunnel behind them is where they do not want you to go.",
+            "sensory_signature": "Squelching underfoot. Faint warmth from fungal walls. The creak of living wood in motion.",
+            "enemies": [
+                {
+                    "name": "Rotwood Guardian",
+                    "count": 2,
+                    "tier": 2,
+                    "hp": 22,
+                    "ac": 12,
+                    "attack": 4,
+                    "damage": "1d10+1",
+                    "archetype": "beast",
+                    "special": "Root Slam: DC 12 Grit or knocked prone. Vulnerable to fire. Root Anchor: cannot be pushed, pulled, or knocked prone. Regenerate 1 HP/round while in contact with the hollow's walls. Severing from walls (luring to center of room) stops regeneration."
+                }
+            ],
+            "loot": [],
+            "hazards": [
+                {"name": "Contracting Tunnel", "dc": 0, "damage": "0", "damage_type": "none", "description": "The walls contract slightly during combat, reducing available space to a 10-foot wide corridor. Ranged attacks are at -1d6 due to close quarters."}
+            ],
+            "npcs": [],
+            "event_triggers": [
+                "On combat: The walls of the tunnel contract slightly during the fight, reducing the available space. Characters must fight in a 10-foot wide corridor. Ranged attacks are at -1d6 due to the close quarters.",
+                "On Guardians defeated: The tunnel relaxes. The contraction eases. The hollow is testing your strength. You passed."
+            ]
         },
         "2": {
             "id": 2,
@@ -86,60 +86,50 @@
             "tier": 3,
             "is_locked": false,
             "is_secret": false,
-            "content_hints": {
-                "description": "A chamber of web and root. Fungal silk -- finer than spider web, stronger than catgut -- forms a cocoon structure at the room's center. Inside the largest cocoon, visible through the translucent membrane, a human figure hangs suspended. Scout Senna. Alive -- you can see her chest rising and falling -- but wrapped so thoroughly in the silk that only her face is visible. A Blight Matriarch stands guard: a hunched, six-legged fungal horror with a crown of spore-bearing caps that drift grey particulate into the air. Three Rot Sprites orbit her like satellites.",
-                "read_aloud": "She is alive. You can see her through the membrane -- Scout Senna, wrapped in fungal silk like an insect in amber, her breath fogging the translucent cocoon from inside. Her eyes are closed. The grey has not reached her face. Not yet. The thing that guards her is worse than anything the forest has thrown at you -- a Blight Matriarch, hunched and massive, her body a colony organism of mushroom flesh and root-fiber, six legs braced against the floor, a crown of spore-caps drifting grey poison into the air you need to breathe. Three Rot Sprites circle her, orbiting like moons around something with its own gravity.",
-                "npcs": [
-                    {
-                        "name": "Scout Senna",
-                        "role": "ally",
-                        "dialogue": "[After rescue] The Matriarch was preserving me. Not killing -- preserving. I think the hollow wanted to study a living human. The cocoon kept the Blight from reaching me while the Matriarch... observed. I could feel it watching through the silk. It does not think like we do. It thinks like a garden thinks -- in patterns of growth and resource allocation. The heart-tree at the center is the brain. Kill the brain and the hollow collapses. But there is something else down there. Something the hollow was built to protect. I saw it before they wrapped me. An Amber Vault. Sealed. Glowing through the corruption like a coal in ash.",
-                        "notes": "Rescue target 2 of 2. Senna is a cartographer-scout with intelligence training. She mapped the hollow's interior from inside the cocoon using memory alone. If rescued, she provides precise directions to Room 4 (the boss room) and reveals the presence of an Amber Vault behind the Corruption Core. The vault cannot be opened during this mission but its existence is a hook for future delves."
-                    }
-                ],
-                "enemies": [
-                    {
-                        "name": "Blight Matriarch",
-                        "hp": 24,
-                        "ac": 14,
-                        "attack": 6,
-                        "damage": "2d6+2",
-                        "notes": "Tier III aetherial. Spore Crown: all characters within melee range must DC 13 Grit each round or take 1d6 spore damage. Cocoon Spawn: can wrap a grappled target in fungal silk (DC 14 Might to break free). Commands Rot Sprites within the room."
-                    },
-                    {
-                        "name": "Rot Sprite",
-                        "hp": 4,
-                        "ac": 8,
-                        "attack": 1,
-                        "damage": "1d6",
-                        "notes": "Tier I beast. Spore Burst on death."
-                    },
-                    {
-                        "name": "Rot Sprite",
-                        "hp": 4,
-                        "ac": 8,
-                        "attack": 1,
-                        "damage": "1d6",
-                        "notes": "Tier I beast. Spore Burst on death."
-                    },
-                    {
-                        "name": "Rot Sprite",
-                        "hp": 4,
-                        "ac": 8,
-                        "attack": 1,
-                        "damage": "1d6",
-                        "notes": "Tier I beast. Spore Burst on death."
-                    }
-                ],
-                "loot": [
-                    {"name": "Embersteel Blade", "value": 22, "type": "rare", "notes": "Tier III. R.Hand. +3d6 MIGHT pool. [Blight Bane]: deals double damage to Rot-type creatures. Forged from singing iron and hardened amber -- Senna's personal weapon, confiscated by the Matriarch and half-consumed by fungal growth. Still sharp."}
-                ],
-                "services": [],
-                "event_triggers": [
-                    "On Matriarch defeated: The cocoon membrane weakens. Senna can be freed with a DC 10 Might check (cutting the silk). She is disoriented but functional. Her first words: 'The heart-tree. You have to reach the heart-tree. The hollow will rebuild the Matriarch in hours if the brain still lives.'",
-                    "On cocoon damaged before Matriarch killed: The Matriarch enters a frenzy -- +2 to all attacks, ignores damage below 3. She will protect the cocoon with her body. This is not rage. It is programming."
-                ]
-            }
+            "name": "The Cocoon Chamber",
+            "description": "A chamber of web and root. Fungal silk -- finer than spider web, stronger than catgut -- forms a cocoon structure at the room's center. Inside the largest cocoon, visible through the translucent membrane, a human figure hangs suspended. Scout Senna. Alive -- you can see her chest rising and falling -- but wrapped so thoroughly in the silk that only her face is visible. A Blight Matriarch stands guard: a hunched, six-legged fungal horror with a crown of spore-bearing caps that drift grey particulate into the air. Three Fungal Mites orbit her like satellites.",
+            "read_aloud": "She is alive. You can see her through the membrane -- Scout Senna, wrapped in fungal silk like an insect in amber, her breath fogging the translucent cocoon from inside. Her eyes are closed. The grey has not reached her face. Not yet. The thing that guards her is worse than anything the forest has thrown at you -- a Blight Matriarch, hunched and massive, her body a colony organism of mushroom flesh and root-fiber, six legs braced against the floor, a crown of spore-caps drifting grey poison into the air you need to breathe. Three Rot Sprites circle her, orbiting like moons around something with its own gravity.",
+            "sensory_signature": "Spore-thick air. The slow breath of the cocooned scout. The wet shifting of the Matriarch's mass.",
+            "enemies": [
+                {
+                    "name": "Blight Matriarch",
+                    "count": 1,
+                    "tier": 3,
+                    "hp": 30,
+                    "ac": 15,
+                    "attack": 7,
+                    "damage": "2d8+2",
+                    "archetype": "beast",
+                    "special": "Spawn: summons 1d3 Fungal Mites per round. Spore Shield: first attack each round is absorbed. Spore Crown: all characters within melee range must DC 13 Grit each round or take 1d6 spore damage. Cocoon Spawn: can wrap a grappled target in fungal silk (DC 14 Might to break free)."
+                },
+                {
+                    "name": "Fungal Mite",
+                    "count": 3,
+                    "tier": 1,
+                    "hp": 3,
+                    "ac": 10,
+                    "attack": 1,
+                    "damage": "1d4",
+                    "archetype": "beast",
+                    "special": "Spore Burst: on death, DC 8 Grit or -1 to rolls for 1 round"
+                }
+            ],
+            "loot": [
+                {"name": "Embersteel Blade", "tier": 3, "type": "rare", "description": "R.Hand. +3d6 MIGHT pool. [Blight Bane]: deals double damage to Rot-type creatures. Forged from singing iron and hardened amber -- Senna's personal weapon, confiscated by the Matriarch and half-consumed by fungal growth. Still sharp."}
+            ],
+            "hazards": [],
+            "npcs": [
+                {
+                    "name": "Scout Senna",
+                    "role": "ally",
+                    "dialogue": "[After rescue] The Matriarch was preserving me. Not killing -- preserving. I think the hollow wanted to study a living human. The cocoon kept the Blight from reaching me while the Matriarch... observed. I could feel it watching through the silk. It does not think like we do. It thinks like a garden thinks -- in patterns of growth and resource allocation. The heart-tree at the center is the brain. Kill the brain and the hollow collapses. But there is something else down there. Something the hollow was built to protect. I saw it before they wrapped me. An Amber Vault. Sealed. Glowing through the corruption like a coal in ash.",
+                    "notes": "Rescue target 2 of 2. Senna is a cartographer-scout with intelligence training. She mapped the hollow's interior from inside the cocoon using memory alone. If rescued, she provides precise directions to Room 4 (the boss room) and reveals the presence of an Amber Vault behind the Corruption Core."
+                }
+            ],
+            "event_triggers": [
+                "On Matriarch defeated: The cocoon membrane weakens. Senna can be freed with a DC 10 Might check (cutting the silk). She is disoriented but functional. Her first words: 'The heart-tree. You have to reach the heart-tree. The hollow will rebuild the Matriarch in hours if the brain still lives.'",
+                "On cocoon damaged before Matriarch killed: The Matriarch enters a frenzy -- +2 to all attacks, ignores damage below 3. She will protect the cocoon with her body. This is not rage. It is programming."
+            ]
         },
         "3": {
             "id": 3,
@@ -152,19 +142,22 @@
             "tier": 3,
             "is_locked": false,
             "is_secret": false,
-            "content_hints": {
-                "description": "The heart-tree's inner chamber. The ancient oak's original heartwood has been consumed and replaced by a pulsing column of Blight-tissue that runs from floor to ceiling -- the hollow's nervous system made visible. Grey veins radiate from the column in every direction, threading through walls, floor, and ceiling. The pulse is audible here: a wet, rhythmic contraction that sounds like a heart beating in a chest full of water. The temperature is ten degrees higher than the tunnels. Everything here is alive and coordinating.",
-                "read_aloud": "The heart of the hollow. A column of grey flesh runs floor to ceiling, thick as a barrel, pulsing with slow wet contractions. Veins spread from it in every direction -- through the walls, the floor, the ceiling -- a circulatory system for a creature the size of a building. The air is hot and humid, thick with spores that glow faintly green. The column pulses. The walls pulse. The floor pulses. You are standing inside something that is breathing. Something that, for the first time, is aware that it should be afraid of you.",
-                "npcs": [],
-                "loot": [],
-                "services": [],
-                "investigation_dc": 17,
-                "event_triggers": [
-                    "DoomClock +3 on room entry. The hollow redirects all its resources to defense. Every remaining Guardian and Stalker in the region begins converging on this location.",
-                    "On investigation success (DC 17): The column has a structural weakness -- a seam where the original heartwood resisted consumption. The seam runs vertically from floor level to six feet up. A sustained attack on the seam (3 successful hits of 5+ damage each) will split the column. Fire damage to the seam counts as two hits.",
-                    "On column destroyed: The hollow dies. Not dramatically -- there is no explosion, no scream. The pulse stops. The grey tissue begins to dry and curl. The veins in the walls go slack. The temperature drops. In the silence that follows, you hear something you have not heard since entering the Rotwood: the Root-Song. Faint, tentative, like a voice testing whether it is safe to speak again."
-                ]
-            }
+            "name": "The Heart-Tree Core",
+            "description": "The heart-tree's inner chamber. The ancient oak's original heartwood has been consumed and replaced by a pulsing column of Blight-tissue that runs from floor to ceiling -- the hollow's nervous system made visible. Grey veins radiate from the column in every direction, threading through walls, floor, and ceiling. The pulse is audible here: a wet, rhythmic contraction that sounds like a heart beating in a chest full of water. The temperature is ten degrees higher than the tunnels. Everything here is alive and coordinating.",
+            "read_aloud": "The heart of the hollow. A column of grey flesh runs floor to ceiling, thick as a barrel, pulsing with slow wet contractions. Veins spread from it in every direction -- through the walls, the floor, the ceiling -- a circulatory system for a creature the size of a building. The air is hot and humid, thick with spores that glow faintly green. The column pulses. The walls pulse. The floor pulses. You are standing inside something that is breathing. Something that, for the first time, is aware that it should be afraid of you.",
+            "sensory_signature": "Wet rhythmic pulsing. Hot humid spore-thick air. The coordination of a colony organism.",
+            "enemies": [],
+            "loot": [],
+            "hazards": [
+                {"name": "Doom Fissure", "dc": 16, "damage": "3d6", "damage_type": "necrotic", "description": "The column radiates concentrated Blight energy. Standing within 10 feet for more than 1 round requires DC 16 Grit or 3d6 necrotic damage.", "condition": "DoomClock advances by 2"}
+            ],
+            "npcs": [],
+            "investigation_dc": 17,
+            "event_triggers": [
+                "DoomClock +3 on room entry. The hollow redirects all its resources to defense. Every remaining Guardian and Stalker in the region begins converging on this location.",
+                "On investigation success (DC 17): The column has a structural weakness -- a seam where the original heartwood resisted consumption. The seam runs vertically from floor level to six feet up. A sustained attack on the seam (3 successful hits of 5+ damage each) will split the column. Fire damage to the seam counts as two hits.",
+                "On column destroyed: The hollow dies. Not dramatically -- there is no explosion, no scream. The pulse stops. The grey tissue begins to dry and curl. The veins in the walls go slack. The temperature drops. In the silence that follows, you hear something you have not heard since entering the Rotwood: the Root-Song. Faint, tentative, like a voice testing whether it is safe to speak again."
+            ]
         },
         "4": {
             "id": 4,
@@ -177,32 +170,35 @@
             "tier": 3,
             "is_locked": false,
             "is_secret": false,
-            "content_hints": {
-                "description": "The corruption core. Beneath the heart-tree, in a root-chamber carved by the Blight itself, the hollow's ultimate defender waits. The Rotwood Colossus is not a creature -- it is an architecture. Twenty feet of twisted wood and fungal muscle, its body assembled from a dozen consumed trees fused into a single bipedal form. Its face is a knot of root-fiber with no features. Its arms end in root-clusters the size of coffin lids. It does not patrol. It stands in the center of the chamber like a statue awaiting activation, and when you enter, the activation is immediate. Behind it, half-buried in the root-wall, the amber glow of a sealed Amber Vault pulses through the corruption -- visible, unreachable, a promise for another day.",
-                "read_aloud": "The ground splits as a massive form of twisted wood and rot rises before you. It was waiting below the surface, coiled in the root-mass like a fist waiting to close. Twenty feet of corrupted tree-flesh, its body a fusion of a dozen trunks woven together by fungal sinew, its arms root-clubs thick as pillars. It has no face. It does not need one. When it moves, the chamber shakes. When it roars, the sound is not a voice but the groan of a forest being torn apart from the inside. Behind it, through the corruption -- amber. A sealed Vault, glowing gold through the grey. The tree hid something here. The Blight built a fortress around it. And this thing is the gate.",
-                "npcs": [],
-                "enemies": [
-                    {
-                        "name": "Rotwood Colossus",
-                        "hp": 45,
-                        "ac": 13,
-                        "attack": 6,
-                        "damage": "2d10+4",
-                        "is_boss": true,
-                        "notes": "Tier III boss. DR 2 (layered bark armor). Tremor: on hit, all characters within 10ft must DC 13 Grit or be knocked prone (lose next action standing up). Root Surge: once per 3 rounds, tendrils erupt from the floor targeting all characters (DC 14 Grit or restrained for 1 round). Vulnerable to fire (halves DR). Regenerate 3 HP/round while the heart-tree column in Room 3 is intact. Destroying the column first removes regeneration."
-                    }
-                ],
-                "loot": [
-                    {"name": "Warden's Plate", "value": 30, "type": "rare", "notes": "Tier III. Chest slot. DR 2. +1 Defense. +3d6 GRIT pool. Heavy. Forged from the Colossus's own bark-armor, still warm to the touch."},
-                    {"name": "Emberheart Lantern", "value": 25, "type": "rare", "notes": "Tier III. L.Hand or tool slot. Produces fire-light equivalent to the Hearth in Emberhome -- Rot recoils from its radius. Once per run: can reduce DoomClock by 1 (the lantern dims permanently after use). Contains a shard of amber from the nearby Vault, dislodged during the fight."}
-                ],
-                "services": [],
-                "event_triggers": [
-                    "On Colossus defeated: The chamber collapses inward. The corruption peels away from the walls like dead skin. The Amber Vault behind the Colossus is revealed fully -- sealed, intact, glowing gold. It cannot be opened with current tools (requires Tier III access: Whisper-Key or DC 20 Aether check). Its presence is catalogued for future runs.",
-                    "On DoomClock at 17+: The Colossus gains +2 to all attacks. The Blight is desperate. The hollow is dying and it knows it.",
-                    "On investigation DC 15 (post-combat): The Amber Vault's shell bears Arborist glyphs. Aether 14+ characters can read fragments: 'Sealed against the season's turn. Open only when the Song returns to this place.' The Root-Song is returning. Slowly. It may take seasons before this Vault can be opened naturally."
-                ]
-            }
+            "name": "The Corruption Core",
+            "description": "The corruption core. Beneath the heart-tree, in a root-chamber carved by the Blight itself, the hollow's ultimate defender waits. The Rotwood Colossus is not a creature -- it is an architecture. Twenty feet of twisted wood and fungal muscle, its body assembled from a dozen consumed trees fused into a single bipedal form. Its face is a knot of root-fiber with no features. Its arms end in root-clusters the size of coffin lids. It does not patrol. It stands in the center of the chamber like a statue awaiting activation, and when you enter, the activation is immediate. Behind it, half-buried in the root-wall, the amber glow of a sealed Amber Vault pulses through the corruption -- visible, unreachable, a promise for another day.",
+            "read_aloud": "The ground splits as a massive form of twisted wood and rot rises before you. It was waiting below the surface, coiled in the root-mass like a fist waiting to close. Twenty feet of corrupted tree-flesh, its body a fusion of a dozen trunks woven together by fungal sinew, its arms root-clubs thick as pillars. It has no face. It does not need one. When it moves, the chamber shakes. When it roars, the sound is not a voice but the groan of a forest being torn apart from the inside. Behind it, through the corruption -- amber. A sealed Vault, glowing gold through the grey. The tree hid something here. The Blight built a fortress around it. And this thing is the gate.",
+            "sensory_signature": "The groan of a dozen trees moving as one. Trembling ground. Amber light behind the grey.",
+            "enemies": [
+                {
+                    "name": "Rotwood Colossus",
+                    "count": 1,
+                    "tier": 3,
+                    "hp": 45,
+                    "ac": 13,
+                    "attack": 6,
+                    "damage": "2d10+4",
+                    "is_boss": true,
+                    "archetype": "beast",
+                    "special": "DR 2 (layered bark armor). Tremor: on hit, all characters within 10ft must DC 13 Grit or be knocked prone (lose next action standing up). Root Surge: once per 3 rounds, tendrils erupt from the floor targeting all characters (DC 14 Grit or restrained for 1 round). Vulnerable to fire (halves DR). Regenerate 3 HP/round while the heart-tree column in Room 3 is intact. Destroying the column first removes regeneration."
+                }
+            ],
+            "loot": [
+                {"name": "Warden's Plate", "tier": 3, "type": "rare", "description": "Chest slot. DR 2. +1 Defense. +3d6 GRIT pool. Heavy. Forged from the Colossus's own bark-armor, still warm to the touch."},
+                {"name": "Emberheart Lantern", "tier": 3, "type": "rare", "description": "L.Hand or tool slot. Produces fire-light equivalent to the Hearth in Emberhome -- Rot recoils from its radius. Once per run: can reduce DoomClock by 1 (the lantern dims permanently after use). Contains a shard of amber from the nearby Vault, dislodged during the fight."}
+            ],
+            "hazards": [],
+            "npcs": [],
+            "event_triggers": [
+                "On Colossus defeated: The chamber collapses inward. The corruption peels away from the walls like dead skin. The Amber Vault behind the Colossus is revealed fully -- sealed, intact, glowing gold. It cannot be opened with current tools (requires Tier III access: Whisper-Key or DC 20 Aether check). Its presence is catalogued for future runs.",
+                "On DoomClock at 17+: The Colossus gains +2 to all attacks. The Blight is desperate. The hollow is dying and it knows it.",
+                "On investigation DC 15 (post-combat): The Amber Vault's shell bears Arborist glyphs. Aether 14+ characters can read fragments: 'Sealed against the season's turn. Open only when the Song returns to this place.' The Root-Song is returning. Slowly. It may take seasons before this Vault can be opened naturally."
+            ]
         },
         "5": {
             "id": 5,
@@ -215,19 +211,20 @@
             "tier": 3,
             "is_locked": false,
             "is_secret": false,
-            "content_hints": {
-                "description": "The cleansed path. With the Colossus destroyed and the heart-tree column dead, the hollow's grip on the surrounding forest releases. Trees straighten. The unnatural canopy of interlocked branches unlaces itself with a sound like cracking knuckles, and daylight -- amber, warm, the fire-leaf light of the Burnwillow's canopy -- streams through for the first time in what might be years. The path back to Emberhome is clear. The rescued scouts walk ahead, Marek supporting Senna, both of them looking over their shoulders as the dead hollow settles and sighs behind you.",
-                "read_aloud": "Light. Real light -- amber and warm, the Burnwillow's fire-leaf canopy visible through gaps in the corruption that are widening by the minute. The trees around the hollow are straightening, their branches unclasping, their bark flushing from grey back to brown. The forest is healing. It will take seasons, but the process has started. The Root-Song is audible again, faint but steady, carrying an emotion that needs no translation. Relief. Marek and Senna walk ahead. Senna has her map. Marek has his life. Behind you, the hollow exhales one last time and falls still.",
-                "npcs": [],
-                "loot": [],
-                "services": [],
-                "event_triggers": [
-                    "DoomClock -3 on exit. The Burnwillow rewards the cleansing of its territory.",
-                    "On return to Emberhome with both scouts alive: Voss's expression does something it has never done in the party's presence. It softens. 'Both of them. You brought back both of them.' She checks herself. 'Good. The survival rate just improved.' She turns away before anyone can see her eyes.",
-                    "On return with one scout: Voss nods once. 'One is better than none. The one you lost -- their name goes on the chapel wall. Father Oaken will want details.' The weight of incomplete success.",
-                    "On return with no scouts: Voss says nothing. She adds two names to the chapel list herself."
-                ]
-            }
+            "name": "The Cleansed Path",
+            "description": "The cleansed path. With the Colossus destroyed and the heart-tree column dead, the hollow's grip on the surrounding forest releases. Trees straighten. The unnatural canopy of interlocked branches unlaces itself with a sound like cracking knuckles, and daylight -- amber, warm, the fire-leaf light of the Burnwillow's canopy -- streams through for the first time in what might be years. The path back to Emberhome is clear. The rescued scouts walk ahead, Marek supporting Senna, both of them looking over their shoulders as the dead hollow settles and sighs behind you.",
+            "read_aloud": "Light. Real light -- amber and warm, the Burnwillow's fire-leaf canopy visible through gaps in the corruption that are widening by the minute. The trees around the hollow are straightening, their branches unclasping, their bark flushing from grey back to brown. The forest is healing. It will take seasons, but the process has started. The Root-Song is audible again, faint but steady, carrying an emotion that needs no translation. Relief. Marek and Senna walk ahead. Senna has her map. Marek has his life. Behind you, the hollow exhales one last time and falls still.",
+            "sensory_signature": "Amber daylight through healing canopy. The faint return of the Root-Song. Relief.",
+            "enemies": [],
+            "loot": [],
+            "hazards": [],
+            "npcs": [],
+            "event_triggers": [
+                "DoomClock -3 on exit. The Burnwillow rewards the cleansing of its territory.",
+                "On return to Emberhome with both scouts alive: Voss's expression does something it has never done in the party's presence. It softens. 'Both of them. You brought back both of them.' She checks herself. 'Good. The survival rate just improved.' She turns away before anyone can see her eyes.",
+                "On return with one scout: Voss nods once. 'One is better than none. The one you lost -- their name goes on the chapel wall. Father Oaken will want details.' The weight of incomplete success.",
+                "On return with no scouts: Voss says nothing. She adds two names to the chapel list herself."
+            ]
         }
     }
 }

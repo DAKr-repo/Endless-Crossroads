@@ -8,7 +8,7 @@
         "theme": "RUST",
         "topology": "settlement",
         "display_name": "Emberhome Briefing",
-        "flavor_note": "Warden Voss assigns the party's first mission: clear the corruption festering beneath the old storehouse. A tutorial sequence that teaches movement, shopping, investigation, and descent."
+        "flavor_note": "Warden Voss assigns the party's first mission: clear the corruption festering beneath the old storehouse. A tutorial sequence that teaches movement, shopping, loadout selection, and descent."
     },
     "rooms": {
         "0": {
@@ -22,23 +22,34 @@
             "tier": 1,
             "is_locked": false,
             "is_secret": false,
-            "content_hints": {
-                "description": "The Warden's Hall. Voss stands before the zone map, a fresh amber pin stuck into the surface levels -- the old storehouse district. The pin glows faintly, which means the Rot is active and recent. Two bark-strips hang from the bounty board, both marked with the same assignment in Voss's sharp handwriting.",
-                "read_aloud": "Voss does not look up from the map. 'Something stirs below the old storehouse. The Kindlers reported sounds three nights running -- scratching, wet movement, the smell of mushroom rot pushing up through the floorboards. I sent a scout. She came back grey-faced and would not speak about what she saw. The cellar needs clearing before it spreads to the market level. You are the closest thing I have to expendable.' She pins a bark-strip to your chest. 'Bring this back when it is done. Or do not come back at all.'",
-                "npcs": [
-                    {
-                        "name": "Warden Voss",
-                        "role": "quest_giver",
-                        "dialogue": "The cellar is small. Five chambers at most, carved into the root when the storehouse was built. Tier I threats -- Rot Sprites, maybe a Blighted Rat pack. Nothing that should kill you unless you are careless. The concern is the source. Something is feeding the corruption down there. Find it. End it. The DoomClock starts the moment you descend.",
-                        "notes": "This is a tutorial mission. Voss provides explicit mechanical advice: buy supplies at Market Row, check your gear at the Forge, and descend prepared. She will not send unprepared Seekers."
-                    }
-                ],
-                "loot": [],
-                "services": ["quest"],
-                "event_triggers": [
-                    "On quest acceptance: Voss marks the party's names on her survival ledger. 'Current Seeker survival rate for first descents: sixty-two percent. Improve my statistics.'"
-                ]
-            }
+            "name": "The Warden's Hall",
+            "description": "A low-ceilinged chamber carved from a single petrified root-knot, the walls still bearing the grain-pattern of living wood long since turned to stone. A map of the Burnwillow's surface levels dominates the far wall -- bark-strips pinned with amber-headed nails, each pin marking an active Rot incursion. Most of the pins cluster in the deep zones. One pin glows fresh and alone in the upper levels: the old storehouse district. Voss stands before the map with her back to you. A survival ledger lies open on the table beside her, its columns filled with names. Many are crossed out.",
+            "read_aloud": "The Warden does not turn around. Her voice carries the flat authority of someone who has sent too many people into the dark and counted too few coming back. 'Something is feeding beneath the old storehouse. Scratching. Wet movement. The Kindlers reported it three nights running, and the scout I sent came back grey-faced and silent. The cellar needs clearing before it reaches the market level.' She pins a bark-strip to your chest without looking at your face. 'Current survival rate for first descents: sixty-two percent. Improve my statistics.'",
+            "npcs": [
+                {
+                    "name": "Warden Voss",
+                    "role": "quest_giver",
+                    "function": "Tutorial quest giver and tactical advisor",
+                    "quirk": "Never makes eye contact during briefings. Looks at the map, the ledger, the wall -- anywhere but at the faces of people she may have to cross off the list.",
+                    "secret": "Her first squad -- the one whose training marks still scar the cellar walls -- all died on what should have been a routine descent. She carved the marks herself afterward, from memory, so something of them would remain in the place that took them.",
+                    "history": "Voss was a Seeker before she was a Warden. She earned the rank by being the only survivor of a six-person delve into Zone 2. She does not speak about what happened below the Stone-Grip. The burn scar on her left forearm is from an Ember Geyser she did not dodge in time.",
+                    "relationships": ["Elder Kaelen (superior -- respects but does not trust his judgment on Root-Road policy)", "Birsa (supplier -- Voss buys rot-salve in bulk and never haggles)", "Weld (forge-master -- Voss requisitions gear for new Seekers through him)"],
+                    "want_vs_need": "Says she wants a clean mission report and zero casualties. Needs someone to succeed where her first squad failed -- proof that sending people down is not just feeding the dark.",
+                    "voice": "Clipped sentences. No pleasantries. Speaks in percentages and operational terms. 'Survive' is a command, not a hope.",
+                    "dialogue": {
+                        "briefing": "The cellar is small. Five chambers at most, carved into the root when the storehouse was built. Tier I threats -- Rot-Beetles, maybe a fungal colony. Nothing that should kill you unless you are careless. The concern is the source. Something is feeding the corruption down there. Find it. End it. The Doom Clock starts the moment you descend.",
+                        "advice": "Buy rot-salve. Check your gear. The cellar is not deep, but five rooms is enough to die in if you walk in unprepared. The Forge has starter loadouts -- Sellsword, Occultist, Sentinel. Pick one. Stick with it. You can experiment when you have earned the right to make mistakes.",
+                        "farewell": "I have written your names in the ledger. Come back and I will not have to cross them out."
+                    },
+                    "notes": "Tutorial NPC. Voss provides explicit mechanical guidance: select a loadout at the Armory, buy supplies from Birsa's stall outside, and descend prepared. She will not authorize unprepared Seekers."
+                }
+            ],
+            "loot": [],
+            "services": ["quest"],
+            "event_triggers": [
+                "On quest acceptance: Voss marks the party's names in the survival ledger. The ink is the same amber-dark shade as old blood. 'Sixty-two percent. That is the number. Be on the right side of it.'",
+                "Tutorial hint: This is the mission briefing. Voss outlines the objective (clear the cellar), the threat level (Tier I), and the stakes (the Rot spreading upward). The Doom Clock begins on descent, not here."
+            ]
         },
         "1": {
             "id": 1,
@@ -51,25 +62,83 @@
             "tier": 1,
             "is_locked": false,
             "is_secret": false,
-            "content_hints": {
-                "description": "Market Row, compressed into its morning bustle. Birsa has laid out a selection of first-descent essentials on a bark-cloth blanket: tallow candles, a rot-salve pouch, a bundle of iron nails that could serve as lockpicks in a pinch. She watches the party with the calculating gaze of someone who has outfitted many Seekers, most of whom did not return to pay their tabs.",
-                "read_aloud": "Birsa adjusts a candle on her blanket without looking at you. 'First descent? I can tell. You walk like people who still expect to come back. Here -- rot-salve, candles, and something sharp. The salve is worth more than the blade, but you will not believe that until something grey touches your skin.'",
-                "npcs": [
-                    {
-                        "name": "Birsa",
-                        "role": "merchant",
-                        "dialogue": "The cellar? Small job. Everybody starts with the cellar. The ones who come back learn two things: buy the salve, and never assume a room is empty just because nothing moves. The Rot does not always move. Sometimes it waits.",
-                        "notes": "Tutorial merchant interaction. Birsa offers starter supplies at fair prices. Rot-Salve Pouch is the critical purchase -- it cures early Blight contact."
-                    }
-                ],
-                "loot": [
-                    {"name": "Rot-Salve Pouch", "value": 3, "type": "consumable", "notes": "Cures early Blight infection within 1 hour of contact."},
-                    {"name": "Tallow Candle (3-pack)", "value": 1, "type": "consumable", "notes": "4 hours of light each."},
-                    {"name": "Iron Nail Bundle", "value": 2, "type": "tool", "notes": "Improvised lockpicks. -1d6 penalty to Wits lockpick checks but functional."}
-                ],
-                "services": ["shop"],
-                "event_triggers": []
-            }
+            "name": "The Armory",
+            "description": "A side-chamber off the Warden's Hall, its walls lined with weapon racks and armor stands carved from a single continuous root. The wood has been sanded smooth by generations of hands reaching for blades. Three loadout stations occupy the room -- each a bark-cloth bundle laid open on a stone bench, the contents arranged with the care of someone who knows that a missing buckle can kill as surely as a blade. A faded mural on the ceiling depicts the first Seekers descending into the dark, their faces blurred by centuries of torch-smoke. Birsa has set up a small stall near the door, her rot-salve and candles laid out on oiled cloth.",
+            "read_aloud": "Three bundles sit open on the benches, each containing a complete loadout -- weapon, armor, and tools, arranged with military precision. The labels are written in Voss's hand: SELLSWORD. OCCULTIST. SENTINEL. Birsa watches from her stall by the door, a rot-salve pouch already in her hand. 'First descent? I can tell. You walk like people who still expect to come back. Pick your kit. Buy the salve. The salve is worth more than the blade, but you will not believe that until something grey touches your skin.'",
+            "npcs": [
+                {
+                    "name": "Birsa",
+                    "role": "merchant",
+                    "function": "Tutorial merchant -- teaches buying and inventory",
+                    "quirk": "Never quotes the same price twice. If you hesitate, the number changes -- sometimes up, sometimes down. She claims it depends on how the amber feels that morning.",
+                    "secret": "Birsa can smell early-stage Blight infection on a person before symptoms appear. She has said nothing about this to anyone. She watches the Seekers who come back and counts the ones who smell wrong.",
+                    "dialogue": {
+                        "greeting": "The cellar? Small job. Everybody starts with the cellar. The ones who come back learn two things: buy the salve, and never assume a room is empty just because nothing moves. The Rot does not always move. Sometimes it waits.",
+                        "on_purchase": "Good. You are already smarter than the last group. They bought torches instead of salve. I heard the screaming from up here.",
+                        "on_haggle": "The price is what the amber tells me it is. You want to argue with the amber, take it up with the tree."
+                    },
+                    "notes": "Tutorial merchant interaction. Birsa offers starter supplies at fair prices. Rot-Salve Pouch is the critical purchase."
+                }
+            ],
+            "loot": [
+                {
+                    "name": "Sellsword Loadout",
+                    "type": "loadout",
+                    "description": "A notched iron blade with a leather-wrapped grip, a vest of boiled hide stitched with bark plates, and a belt pouch containing a whetstone and binding cloth.",
+                    "contents": [
+                        {"name": "Iron Shortsword", "slot": "R.Hand", "tier": 1, "bonus": "+1d6 Might pool", "notes": "Reliable. Balanced for close quarters."},
+                        {"name": "Hide Vest", "slot": "Chest", "tier": 1, "bonus": "+1 Defense", "notes": "Boiled leather reinforced with bark strips."},
+                        {"name": "Whetstone", "slot": "Pack", "tier": 1, "bonus": "Restore 1 weapon durability during rest", "notes": "A flat river-stone worn smooth by use."}
+                    ],
+                    "notes": "Melee-focused loadout. High Might, close-range combat. Best against single tough enemies."
+                },
+                {
+                    "name": "Occultist Loadout",
+                    "type": "loadout",
+                    "description": "A gnarled root-staff capped with a dim amber shard, a patchwork robe woven with Aether-conductive thread, and a leather satchel containing a vial of raw Aether and a charcoal stick for marking wards.",
+                    "contents": [
+                        {"name": "Amber-Capped Staff", "slot": "R.Hand", "tier": 1, "bonus": "+1d6 Aether pool", "notes": "Ranged. The amber pulses faintly when Rot is near."},
+                        {"name": "Woven Robe", "slot": "Chest", "tier": 1, "bonus": "+1 Aether resistance", "notes": "Threadbare but Aether-conductive."},
+                        {"name": "Ward Chalk", "slot": "Pack", "tier": 1, "bonus": "Mark a doorway to delay enemies by 1 round", "notes": "Crumbles after a single use."}
+                    ],
+                    "notes": "Ranged Aether-focused loadout. Best for picking off enemies from distance and bypassing spore bursts."
+                },
+                {
+                    "name": "Sentinel Loadout",
+                    "type": "loadout",
+                    "description": "A battered iron buckler bearing the faded crest of Voss's first squad, a short spear with a fire-hardened tip, and a brace of iron spikes for holding doorways.",
+                    "contents": [
+                        {"name": "Iron Buckler", "slot": "L.Hand", "tier": 1, "bonus": "+1 Defense, Guard action available", "notes": "Dented. The crest is unreadable."},
+                        {"name": "Short Spear", "slot": "R.Hand", "tier": 1, "bonus": "+1d6 Grit pool", "notes": "Reach weapon -- can strike from behind the buckler."},
+                        {"name": "Iron Spikes (3)", "slot": "Pack", "tier": 1, "bonus": "Jam a door shut or create difficult terrain", "notes": "Hammered into root-wood, they hold fast."}
+                    ],
+                    "notes": "Defensive loadout. Guard action protects allies. Best for holding chokepoints and surviving boss fights."
+                },
+                {
+                    "name": "Rot-Salve Pouch",
+                    "value": 3,
+                    "type": "consumable",
+                    "notes": "Cures early Blight infection within 1 hour of contact. Birsa's most important stock."
+                },
+                {
+                    "name": "Tallow Candle (3-pack)",
+                    "value": 1,
+                    "type": "consumable",
+                    "notes": "4 hours of light each. The cellar is dark."
+                },
+                {
+                    "name": "Iron Nail Bundle",
+                    "value": 2,
+                    "type": "tool",
+                    "notes": "Improvised lockpicks. -1d6 penalty to Wits lockpick checks, but functional."
+                }
+            ],
+            "services": ["shop", "loadout_selection"],
+            "event_triggers": [
+                "On loadout selection: The player picks one of three bundles. The unchosen loadouts remain -- other party members may take them, or they stay for future Seekers. Voss has equipped hundreds of first-timers this way.",
+                "Tutorial hint: Loadout selection teaches the gear-identity system. In Burnwillow, you ARE what you wear -- your class is defined by equipment, not a character sheet checkbox. Changing gear changes your role.",
+                "Tutorial hint: Birsa's shop teaches the buy/sell interface. Rot-Salve is the critical purchase -- it will save a life in the cellar. Candles provide light (required for search checks in dark rooms). Nails serve as improvised lockpicks."
+            ]
         },
         "2": {
             "id": 2,
@@ -82,18 +151,21 @@
             "tier": 1,
             "is_locked": false,
             "is_secret": false,
-            "content_hints": {
-                "description": "The old storehouse leans against the settlement wall like a drunk against a lamppost. Its planks are swollen with moisture and the ironbark frame has split along old stress fractures. A trapdoor in the floor -- heavy, iron-banded, and recently pried open -- leads to the cellar below. The edges of the trapdoor are furred with grey fungal growth. The smell rising from below is wet earth, mushroom, and something sweeter underneath that makes your stomach turn.",
-                "read_aloud": "The trapdoor is open. Someone forced it recently -- the pry-bar marks are fresh, the rust scraped bright. Grey fuzz clings to the edges like mold on bread, but thicker, and it pulses faintly when you bring a light close. The air from below is cold and smells of turned earth and something living that should not be. Stairs descend into the dark.",
-                "npcs": [],
-                "loot": [],
-                "services": [],
-                "investigation_dc": 10,
-                "event_triggers": [
-                    "On investigation success (DC 10): The grey fuzz recoils from flame. Blight-sign: the corruption is recent, within days. The growth pattern radiates outward from the cellar, not inward. Whatever is down there is pushing up, not something that fell in.",
-                    "On descent: The DoomClock begins. The trapdoor can be left open (escape route) or closed (prevents Rot from spreading upward but cuts off quick retreat)."
-                ]
-            }
+            "name": "The Gate",
+            "description": "The old storehouse leans against the settlement wall like a drunk against a lamppost. Its planks are swollen with moisture and the ironbark frame has split along stress fractures older than Emberhome itself. A trapdoor in the floor -- heavy, iron-banded, recently pried open -- leads to the cellar below. The edges are furred with grey fungal growth that pulses when light touches it. The air rising from below smells of turned earth, mushroom rot, and something sweeter underneath that makes the stomach clench. The silence from the cellar is not empty. It is the silence of something that knows you are here and has stopped moving to listen.",
+            "read_aloud": "The trapdoor is open. Someone forced it recently -- pry-bar marks fresh, rust scraped bright. Grey fuzz clings to the iron bands like mold on bread, but thicker, and it recoils when you bring the candle close. The air from below is cold and smells of turned earth and something alive that should not be. Stairs descend into a darkness that feels deeper than five rooms should allow. No sound rises from below. That is the worst part. There should be sound.",
+            "npcs": [],
+            "enemies": [],
+            "loot": [],
+            "hazards": [],
+            "services": [],
+            "investigation_dc": 10,
+            "event_triggers": [
+                "On investigation success (DC 10): The grey fuzz recoils from flame -- Blight-sign, recent, within days. The growth pattern radiates outward from the cellar, not inward. Whatever is down there is pushing up, not something that fell in. Rot-Beetle tracks score the trapdoor's underside -- dozens of thin scratches all pointing up.",
+                "On descent: The Doom Clock begins. The trapdoor can be left open (escape route but Rot may spread upward) or closed (contains the corruption but cuts off quick retreat). This is the first meaningful tactical decision.",
+                "Tutorial hint: The Gate is a threshold moment. The world above is safe. The world below is not. The choice to leave the trapdoor open or closed teaches consequence -- both options have trade-offs, and neither is wrong.",
+                "Atmosphere: The Root-Song is faint here -- a barely-felt vibration in the soles of your feet, like standing on a bridge over a river you cannot see. Below the trapdoor, even that faint pulse fades. The tree does not sing in the cellar. Not anymore."
+            ]
         }
     }
 }

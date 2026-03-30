@@ -6,11 +6,24 @@
     "source_type": "homebrew_original",
     "starting_location": "emberhome",
     "recommended_levels": {"min": 1, "max": 1},
+    "enrichment_version": "1.0",
+    "enrichment_date": "2026-03-27",
+    "summary": "Tutorial module for new Seekers. Warden Voss briefs the party, they select loadouts at the Armory, and descend into a five-room cellar beneath the old storehouse to clear a Tier I Rot incursion. The source is a Hollowed Bear -- a cave bear consumed by the Blight during hibernation. Teaches combat, investigation, hazard saves, Doom Clock management, and boss mechanics.",
+    "key_npcs": ["Warden Voss", "Birsa"],
+    "boss": "Hollowed Bear",
+    "teaching_sequence": [
+        "Room 0 (Ash Stairs): Movement, perception checks, Doom Clock introduction",
+        "Room 1 (Spoiled Stores): Basic combat vs 2 Rot-Beetles, Skitter ability",
+        "Room 2 (Sealed Alcove): Search, lockpick (puzzle-latch), trapped chest",
+        "Room 3 (Cracked Vein): Hazard saves (rubble + spores), compound consequences, Doom Clock non-combat advance",
+        "Room 4 (Hollow Den): Boss fight -- grapple saves, fire vulnerability, fungal anchor mechanic, resource management"
+    ],
     "chapters": [
         {
             "chapter_id": "ch1_emberhome_briefing",
             "display_name": "Emberhome Briefing",
             "order": 1,
+            "rooms": ["The Warden's Hall", "The Armory", "The Gate"],
             "zones": [
                 {
                     "zone_id": "cellar_briefing",
@@ -27,6 +40,7 @@
             "chapter_id": "ch2_the_ashen_cellar",
             "display_name": "The Ashen Cellar",
             "order": 2,
+            "rooms": ["The Ash Stairs", "The Spoiled Stores", "The Sealed Alcove", "The Cracked Vein", "The Hollow Den"],
             "zones": [
                 {
                     "zone_id": "ashen_cellar",

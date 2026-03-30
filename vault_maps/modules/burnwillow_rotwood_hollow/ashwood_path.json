@@ -22,17 +22,20 @@
             "tier": 2,
             "is_locked": false,
             "is_secret": false,
-            "content_hints": {
-                "description": "The forest edge is a border drawn in ash. On one side, the Burnwillow's lower canopy: fire-leaves overhead, amber light, the faint pulse of Root-Song in the bark. On the other, blackened trunks stripped of their leaves, branches reaching like charred fingers into a sky the color of old smoke. The transition is not gradual. There is a line -- a precise boundary where living wood becomes dead wood -- and stepping across it drops the temperature ten degrees and silences the Root-Song mid-pulse.",
-                "read_aloud": "The trees are dying. Not the slow decline of the Burnwillow's outer reaches but an aggressive blackening -- bark stripped grey, branches bare, leaves curled into ash that crunches underfoot like frozen snow. The fire-light does not reach here. Your lanterns are the only color in a landscape drained to monochrome. The Root-Song stopped three steps ago. You did not notice until the silence filled the space where it used to be. Ahead, Lira's blazes -- three parallel slashes in the bark -- mark the path. The blazes look fresh. The trees around them do not.",
-                "npcs": [],
-                "loot": [],
-                "services": [],
-                "event_triggers": [
-                    "On entry: The temperature drops. The Root-Song falls silent. Characters with Aether 14+ feel the absence as physical discomfort -- a pressure in the chest, as though the tree has withdrawn its attention from this region entirely.",
-                    "Navigation: Following Lira's blazes (DC 10 Wits to spot each set) keeps the party on the safe path. Missing a blaze set risks wandering into a Blight pocket (DoomClock +1, DC 12 Grit or early Blight contact)."
-                ]
-            }
+            "name": "The Blight Border",
+            "description": "The forest edge is a border drawn in ash. On one side, the Burnwillow's lower canopy: fire-leaves overhead, amber light, the faint pulse of Root-Song in the bark. On the other, blackened trunks stripped of their leaves, branches reaching like charred fingers into a sky the color of old smoke. The transition is not gradual. There is a line -- a precise boundary where living wood becomes dead wood -- and stepping across it drops the temperature ten degrees and silences the Root-Song mid-pulse.",
+            "read_aloud": "The trees are dying. Not the slow decline of the Burnwillow's outer reaches but an aggressive blackening -- bark stripped grey, branches bare, leaves curled into ash that crunches underfoot like frozen snow. The fire-light does not reach here. Your lanterns are the only color in a landscape drained to monochrome. The Root-Song stopped three steps ago. You did not notice until the silence filled the space where it used to be. Ahead, Lira's blazes -- three parallel slashes in the bark -- mark the path. The blazes look fresh. The trees around them do not.",
+            "sensory_signature": "Temperature drop. Root-Song silence. Ash crunching underfoot like frozen snow.",
+            "enemies": [],
+            "loot": [],
+            "hazards": [
+                {"name": "Blight Spores", "dc": 10, "damage": "1d4", "damage_type": "poison", "description": "Clusters of pale mushrooms release grey spores when disturbed by vibration. Sting exposed skin and burn the lungs. Present along the path edges."}
+            ],
+            "npcs": [],
+            "event_triggers": [
+                "On entry: The temperature drops. The Root-Song falls silent. Characters with Aether 14+ feel the absence as physical discomfort -- a pressure in the chest, as though the tree has withdrawn its attention from this region entirely.",
+                "Navigation: Following Lira's blazes (DC 10 Wits to spot each set) keeps the party on the safe path. Missing a blaze set risks wandering into a Blight pocket (DoomClock +1, DC 12 Grit or early Blight contact)."
+            ]
         },
         "1": {
             "id": 1,
@@ -42,47 +45,37 @@
             "height": 12,
             "room_type": "chamber",
             "connections": [0, 2],
-            "tier": 3,
+            "tier": 2,
             "is_locked": false,
             "is_secret": false,
-            "content_hints": {
-                "description": "A clearing -- or rather, a killing ground. The trees have been shattered at chest height, their trunks snapped inward as though something large crashed through them in pursuit of something fast. Three sets of claw marks score the remaining stumps. The ground is torn and scattered with the detritus of violent passage: torn cloth, a broken crossbow bolt, a single boot still laced. Blight Stalkers perch in the canopy above -- three of them, motionless, their bark-grey bodies flush against the dead branches. They are watching. Waiting for movement.",
-                "read_aloud": "The clearing is a wound. Trees snapped at chest height, ground torn to mulch, and in the mud -- a boot, laced tight, as though whoever wore it was pulled out of it at speed. The canopy above is thick with dead branches. Something moves up there. Something the color of bark. Three shapes, perfectly still, perfectly positioned. They are above you. They have been above you since you entered the clearing. One of them tilts its head. The ambush is already in motion.",
-                "npcs": [],
-                "enemies": [
-                    {
-                        "name": "Blight Stalker",
-                        "hp": 18,
-                        "ac": 14,
-                        "attack": 6,
-                        "damage": "1d6+3",
-                        "notes": "Tier III scavenger. Ambush: attacks from canopy with advantage if party fails Perception. Bark Camouflage: DC 16 Perception to spot before they strike. Pack Tactics: +1 damage per additional Stalker attacking the same target."
-                    },
-                    {
-                        "name": "Blight Stalker",
-                        "hp": 18,
-                        "ac": 14,
-                        "attack": 6,
-                        "damage": "1d6+3",
-                        "notes": "Tier III scavenger. Ambush. Bark Camouflage. Pack Tactics."
-                    },
-                    {
-                        "name": "Blight Stalker",
-                        "hp": 18,
-                        "ac": 14,
-                        "attack": 6,
-                        "damage": "1d6+3",
-                        "notes": "Tier III scavenger. Ambush. Bark Camouflage. Pack Tactics."
-                    }
-                ],
-                "loot": [],
-                "services": [],
-                "perception_dc": 16,
-                "event_triggers": [
-                    "On perception failure (DC 16): Surprise round for the Stalkers. All three attack simultaneously from the canopy -- the party cannot act during the first round. After the initial strike, the Stalkers drop to ground level and fight conventionally.",
-                    "On perception success: The party spots the ambush. Can attempt to withdraw (back to Room 0) or engage with a prepared round. Prepared round grants +1 to all attack rolls for the first round."
-                ]
-            }
+            "name": "The Killing Ground",
+            "description": "A clearing -- or rather, a killing ground. The trees have been shattered at chest height, their trunks snapped inward as though something large crashed through them in pursuit of something fast. Three sets of claw marks score the remaining stumps. The ground is torn and scattered with the detritus of violent passage: torn cloth, a broken crossbow bolt, a single boot still laced. Cinder Wolves perch in the canopy above -- three of them, motionless, their ember-tinged pelts flush against the dead branches. They are watching. Waiting for movement.",
+            "read_aloud": "The clearing is a wound. Trees snapped at chest height, ground torn to mulch, and in the mud -- a boot, laced tight, as though whoever wore it was pulled out of it at speed. The canopy above is thick with dead branches. Something moves up there. Something the color of bark. Three shapes, perfectly still, perfectly positioned. They are above you. They have been above you since you entered the clearing. One of them tilts its head. The ambush is already in motion.",
+            "sensory_signature": "Torn earth. The musk of predators. Stillness that is not stillness.",
+            "enemies": [
+                {
+                    "name": "Cinder Wolf",
+                    "count": 3,
+                    "tier": 2,
+                    "hp": 18,
+                    "ac": 13,
+                    "attack": 5,
+                    "damage": "1d8+2",
+                    "archetype": "beast",
+                    "special": "Pack: +1 dmg per additional Cinder Wolf present. Ember Howl: DC 12 Grit or frightened for 1 round. Ambush: attacks from canopy with advantage if party fails Perception DC 14.",
+                    "notes": "Bark Camouflage: DC 14 Perception to spot before they strike. Pack Tactics: +1 damage per additional wolf attacking the same target."
+                }
+            ],
+            "loot": [
+                {"name": "Broken Crossbow Bolt (salvage)", "tier": 1, "type": "crafting", "description": "Crossbow bolt fragments. Can be reforged by Pete or Weld into functional ammunition."}
+            ],
+            "hazards": [],
+            "npcs": [],
+            "perception_dc": 14,
+            "event_triggers": [
+                "On perception failure (DC 14): Surprise round for the wolves. All three attack simultaneously from the canopy -- the party cannot act during the first round.",
+                "On perception success: The party spots the ambush. Can attempt to withdraw (back to Room 0) or engage with a prepared round. Prepared round grants +1 to all attack rolls for the first round."
+            ]
         },
         "2": {
             "id": 2,
@@ -92,21 +85,24 @@
             "height": 8,
             "room_type": "corridor",
             "connections": [1, 3],
-            "tier": 3,
+            "tier": 2,
             "is_locked": false,
             "is_secret": false,
-            "content_hints": {
-                "description": "A ravine splits the forest floor -- a crack in the Burnwillow's root system opened by the tree's convulsions, fifty feet across and too deep to see the bottom. A single fallen trunk bridges the gap, its bark stripped and slick with condensation. The trunk shifts when you test it with your weight. It is not anchored on the far side.",
-                "read_aloud": "The ground ends. A ravine opens before you -- the Burnwillow's root cracked clean through, darkness yawning below. A fallen tree bridges the gap, bark stripped smooth by weather, one end balanced on the far lip with nothing securing it but friction and faith. The trunk shifts when the wind blows. Below, you hear nothing. Not even the sound of falling debris finding a bottom.",
-                "npcs": [],
-                "loot": [],
-                "services": [],
-                "event_triggers": [
-                    "Hazard: Ravine Crossing. Each character must cross individually (DC 14 Grit to balance). Failure: the trunk shifts, character must make a second DC 12 Grit save or fall. Falling: 3d6 damage and separated from the party (requires rope rescue, 2 rounds).",
-                    "On heavy load: Characters carrying heavy items (Memory Seeds, large weapons) cross at disadvantage (-1d6 to the check). The trunk cannot support more than one person at a time.",
-                    "Alternative: With 50ft rope from the equipment shed, one character can cross and anchor the rope. Remaining characters cross with DC 10 instead of DC 14."
-                ]
-            }
+            "name": "The Root Ravine",
+            "description": "A ravine splits the forest floor -- a crack in the Burnwillow's root system opened by the tree's convulsions, fifty feet across and too deep to see the bottom. A single fallen trunk bridges the gap, its bark stripped and slick with condensation. The trunk shifts when you test it with your weight. It is not anchored on the far side.",
+            "read_aloud": "The ground ends. A ravine opens before you -- the Burnwillow's root cracked clean through, darkness yawning below. A fallen tree bridges the gap, bark stripped smooth by weather, one end balanced on the far lip with nothing securing it but friction and faith. The trunk shifts when the wind blows. Below, you hear nothing. Not even the sound of falling debris finding a bottom.",
+            "sensory_signature": "Wind through the ravine. The creak of an unanchored log. Silence from the depths.",
+            "enemies": [],
+            "loot": [],
+            "hazards": [
+                {"name": "Ravine Crossing", "dc": 14, "damage": "3d6", "damage_type": "bludgeoning", "description": "Each character must cross individually. DC 14 Grit to balance. Failure: the trunk shifts, DC 12 Grit or fall. Falling: 3d6 damage and separated from the party (requires rope rescue, 2 rounds). Heavy load: -1d6 to check. With 50ft rope anchored: DC drops to 10."}
+            ],
+            "npcs": [],
+            "event_triggers": [
+                "Hazard: Ravine Crossing. Each character must cross individually (DC 14 Grit to balance). Failure: the trunk shifts, character must make a second DC 12 Grit save or fall. Falling: 3d6 damage and separated from the party (requires rope rescue, 2 rounds).",
+                "On heavy load: Characters carrying heavy items cross at disadvantage (-1d6 to the check). The trunk cannot support more than one person at a time.",
+                "Alternative: With 50ft rope from the equipment shed, one character can cross and anchor the rope. Remaining characters cross with DC 10 instead of DC 14."
+            ]
         },
         "3": {
             "id": 3,
@@ -116,29 +112,31 @@
             "height": 12,
             "room_type": "chamber",
             "connections": [2, 4],
-            "tier": 3,
+            "tier": 2,
             "is_locked": false,
             "is_secret": false,
-            "content_hints": {
-                "description": "A hunter's camp, hastily assembled and recently abandoned -- then reoccupied. A lean-to of ironbark stakes and fire-leaf thatch shelters a figure slumped against a tree trunk, their scout's cloak torn and their exposed skin laced with the grey veins of early Blight infection. Scout Marek. Alive, barely. He has built a crude fire from green wood that smokes more than it burns, and the Blight veins on his arms stop where the smoke touches them. He figured out that much at least.",
-                "read_aloud": "Smoke. Green-wood smoke, thick and acrid, pouring from a fire that someone built for the fumes, not the heat. Through the haze, a figure. Scout's cloak, torn. Skin laced with grey. He looks up when you approach, and his eyes are clear -- not Hollowed, not yet -- but the grey is climbing his throat. 'Rot-Salve ran out yesterday,' he says, his voice a rasp. 'The smoke slows it. Learned that from the Kindlers. Do you have salve? Because if you do not, I have about four hours before I stop being someone you want to rescue.'",
-                "npcs": [
-                    {
-                        "name": "Scout Marek",
-                        "role": "ally",
-                        "dialogue": "Senna and I found the hollow. It is worse than Lira reported -- the entire heart-tree has been consumed. The Blight has built something inside it, a structure, a hive. Senna went in for a closer look and the roots closed behind her. I tried to dig through. That is when the Stalkers hit me. The smoke kept them back long enough for me to barricade, but I have been here two days and the infection is winning. If you have salve, use it. If you do not, leave me a blade and go get Senna. She is the one who matters -- she mapped the interior before they took her.",
-                        "notes": "Rescue target 1 of 2. Marek is a veteran scout with early-stage Blight infection. Rot-Salve cures him immediately. Without salve, he has 4 hours before the infection becomes irreversible. If cured, he joins the party as a temporary ally (hp: 14, ac: 13, attack: 5, damage: 1d6+2) for the remaining chapters. He knows the forest paths and grants +1 to all navigation checks."
-                    }
-                ],
-                "loot": [
-                    {"name": "Scout's Cloak", "value": 10, "type": "uncommon", "notes": "Tier II. Shoulders slot. +1 to Wits checks for stealth and perception. Provides advantage on surprise avoidance. Torn but functional."}
-                ],
-                "services": ["rest"],
-                "event_triggers": [
-                    "On Rot-Salve applied: The grey recedes from Marek's skin like frost in sunlight. He flexes his fingers, tests his grip. 'I owe you a life. Put it on my tab. Senna is in the hollow -- I will take you there. The path through the Fungal Maze is disorienting but I marked it before I was hit.'",
-                    "On rest: Marek shares intelligence. The hollow is guarded by Rotwood Guardians -- animate root-constructs, the Blight's version of Wood-Golems. The Blight Matriarch at the center controls them. Killing the Matriarch will free Senna and collapse the hollow's structure."
-                ]
-            }
+            "name": "Marek's Smoke Camp",
+            "description": "A hunter's camp, hastily assembled and recently abandoned -- then reoccupied. A lean-to of ironbark stakes and fire-leaf thatch shelters a figure slumped against a tree trunk, their scout's cloak torn and their exposed skin laced with the grey veins of early Blight infection. Scout Marek. Alive, barely. He has built a crude fire from green wood that smokes more than it burns, and the Blight veins on his arms stop where the smoke touches them. He figured out that much at least.",
+            "read_aloud": "Smoke. Green-wood smoke, thick and acrid, pouring from a fire that someone built for the fumes, not the heat. Through the haze, a figure. Scout's cloak, torn. Skin laced with grey. He looks up when you approach, and his eyes are clear -- not Hollowed, not yet -- but the grey is climbing his throat. 'Rot-Salve ran out yesterday,' he says, his voice a rasp. 'The smoke slows it. Learned that from the Kindlers. Do you have salve? Because if you do not, I have about four hours before I stop being someone you want to rescue.'",
+            "sensory_signature": "Acrid green-wood smoke. The rasp of labored breathing. Grey veins on living skin.",
+            "enemies": [],
+            "loot": [
+                {"name": "Scout's Cloak", "tier": 2, "type": "uncommon", "description": "Shoulders slot. +1 to Wits checks for stealth and perception. Provides advantage on surprise avoidance. Torn but functional."}
+            ],
+            "hazards": [],
+            "npcs": [
+                {
+                    "name": "Scout Marek",
+                    "role": "ally",
+                    "dialogue": "Senna and I found the hollow. It is worse than Lira reported -- the entire heart-tree has been consumed. The Blight has built something inside it, a structure, a hive. Senna went in for a closer look and the roots closed behind her. I tried to dig through. That is when the Stalkers hit me. The smoke kept them back long enough for me to barricade, but I have been here two days and the infection is winning. If you have salve, use it. If you do not, leave me a blade and go get Senna. She is the one who matters -- she mapped the interior before they took her.",
+                    "notes": "Rescue target 1 of 2. Marek is a veteran scout with early-stage Blight infection. Rot-Salve cures him immediately. Without salve, he has 4 hours before the infection becomes irreversible. If cured, he joins the party as a temporary ally (hp: 14, ac: 13, attack: 5, damage: 1d6+2) for the remaining floors. He knows the forest paths and grants +1 to all navigation checks."
+                }
+            ],
+            "services": ["rest"],
+            "event_triggers": [
+                "On Rot-Salve applied: The grey recedes from Marek's skin like frost in sunlight. He flexes his fingers, tests his grip. 'I owe you a life. Put it on my tab. Senna is in the hollow -- I will take you there. The path through the Fungal Maze is disorienting but I marked it before I was hit.'",
+                "On rest: Marek shares intelligence. The hollow is guarded by Rotwood Guardians -- animate root-constructs, the Blight's version of Wood-Golems. The Blight Matriarch at the center controls them. Killing the Matriarch will free Senna and collapse the hollow's structure."
+            ]
         },
         "4": {
             "id": 4,
@@ -148,39 +146,37 @@
             "height": 14,
             "room_type": "chamber",
             "connections": [3],
-            "tier": 3,
+            "tier": 2,
             "is_locked": false,
             "is_secret": false,
-            "content_hints": {
-                "description": "The Fungal Maze is a cathedral of corruption made beautiful by accident. Mushrooms the size of market stalls grow from the forest floor, their caps overlapping to form a ceiling of bioluminescent flesh that pulses in hypnotic patterns. The pathways between them shift -- not physically, but perceptually. The spores in the air carry hallucinogenic compounds that make straight lines look curved and short distances feel infinite. Marek's trail blazes -- charcoal marks on the mushroom stems -- are the only reliable guide. Two Fungal Brutes patrol the maze's interior, their massive bodies grown from the same mycelial network as the mushrooms. They do not hunt. They herd.",
-                "read_aloud": "The mushrooms are enormous. Their caps form a canopy of pale blue light, pulsing in rhythm, and the air beneath them tastes of copper and rain. The paths between them look straight but they are not -- after ten steps you are facing a direction you did not intend to face. The spores are doing it. Breathe shallow. Follow the charcoal marks on the stems. Ignore the paths that look inviting. Ignore the sound of your name spoken by a voice you recognize from somewhere you cannot remember. Something large moves between the mushroom trunks. It is the color of the maze. It has been following you since you entered.",
-                "npcs": [],
-                "enemies": [
-                    {
-                        "name": "Fungal Brute",
-                        "hp": 22,
-                        "ac": 12,
-                        "attack": 5,
-                        "damage": "2d6+2",
-                        "notes": "Tier III beast. Spore Cloud: melee attackers must DC 12 Grit or suffer hallucination (-1d6 to all checks for 1 round). Regenerate: heals 2 HP per round while in contact with the mycelial floor. Severing floor contact (lifting, pushing onto stone) stops regeneration."
-                    },
-                    {
-                        "name": "Fungal Brute",
-                        "hp": 22,
-                        "ac": 12,
-                        "attack": 5,
-                        "damage": "2d6+2",
-                        "notes": "Tier III beast. Spore Cloud. Regenerate 2 HP/round on mycelial floor."
-                    }
-                ],
-                "loot": [],
-                "services": [],
-                "event_triggers": [
-                    "Navigation check: DC 13 Wits to follow Marek's blazes through the maze. If Marek is present and cured, DC drops to 10. Failure: the party becomes disoriented. DoomClock +1 as they wander. Must reroll the navigation check to find the exit.",
-                    "On getting lost: The spores intensify. Each character must DC 12 Grit or experience a hallucination -- they see a familiar face in the mushroom growth, hear a voice calling them deeper. The hallucination is not hostile but it wastes time.",
-                    "On maze exited: The mushrooms thin. Ahead, the forest bends inward -- every tree within sight is leaning toward a single point, their branches interlocked, forming a structure that should not exist. The Rotwood Hollow."
-                ]
-            }
+            "name": "The Fungal Maze",
+            "description": "The Fungal Maze is a cathedral of corruption made beautiful by accident. Mushrooms the size of market stalls grow from the forest floor, their caps overlapping to form a ceiling of bioluminescent flesh that pulses in hypnotic patterns. The pathways between them shift -- not physically, but perceptually. The spores in the air carry hallucinogenic compounds that make straight lines look curved and short distances feel infinite. Marek's trail blazes -- charcoal marks on the mushroom stems -- are the only reliable guide. Two Fungal Brutes patrol the maze's interior, their massive bodies grown from the same mycelial network as the mushrooms. They do not hunt. They herd.",
+            "read_aloud": "The mushrooms are enormous. Their caps form a canopy of pale blue light, pulsing in rhythm, and the air beneath them tastes of copper and rain. The paths between them look straight but they are not -- after ten steps you are facing a direction you did not intend to face. The spores are doing it. Breathe shallow. Follow the charcoal marks on the stems. Ignore the paths that look inviting. Ignore the sound of your name spoken by a voice you recognize from somewhere you cannot remember. Something large moves between the mushroom trunks. It is the color of the maze. It has been following you since you entered.",
+            "sensory_signature": "Bioluminescent pale blue pulse. Copper-and-rain taste. Hallucinogenic disorientation.",
+            "enemies": [
+                {
+                    "name": "Fungal Brute",
+                    "count": 2,
+                    "tier": 2,
+                    "hp": 20,
+                    "ac": 11,
+                    "attack": 4,
+                    "damage": "1d10+2",
+                    "archetype": "beast",
+                    "special": "Regeneration: heals 2 HP per round unless damaged by fire. Spore Cloud: melee attackers must DC 12 Grit or suffer hallucination (-1d6 to all checks for 1 round). Severing floor contact stops regeneration.",
+                    "notes": "Grown from the mycelial network. They herd, not hunt."
+                }
+            ],
+            "loot": [],
+            "hazards": [
+                {"name": "Hallucinogenic Spore Field", "dc": 13, "damage": "0", "damage_type": "none", "description": "DC 13 Wits to navigate the maze following Marek's blazes. If Marek is present and cured, DC drops to 10. Failure: party becomes disoriented, DoomClock +1. Each lost character must DC 12 Grit or experience a hallucination -- they see a familiar face, hear a voice calling them deeper.", "condition": "Disorientation and potential DoomClock advance"}
+            ],
+            "npcs": [],
+            "event_triggers": [
+                "Navigation check: DC 13 Wits to follow Marek's blazes through the maze. If Marek is present and cured, DC drops to 10. Failure: the party becomes disoriented. DoomClock +1 as they wander. Must reroll the navigation check to find the exit.",
+                "On getting lost: The spores intensify. Each character must DC 12 Grit or experience a hallucination -- they see a familiar face in the mushroom growth, hear a voice calling them deeper. The hallucination is not hostile but it wastes time.",
+                "On maze exited: The mushrooms thin. Ahead, the forest bends inward -- every tree within sight is leaning toward a single point, their branches interlocked, forming a structure that should not exist. The Rotwood Hollow."
+            ]
         }
     }
 }

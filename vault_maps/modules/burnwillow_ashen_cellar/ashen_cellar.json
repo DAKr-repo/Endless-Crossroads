@@ -8,7 +8,7 @@
         "theme": "RUST",
         "topology": "dungeon",
         "display_name": "The Ashen Cellar",
-        "flavor_note": "A tutorial dungeon beneath the old storehouse. Five chambers of Tier I threats designed to teach core mechanics: combat, investigation, hazard avoidance, DoomClock management, and boss encounters. The Rot has taken root here recently -- this is an early warning, not a deep infection."
+        "flavor_note": "A tutorial dungeon beneath the old storehouse. Five chambers of Tier I threats designed to teach core mechanics: combat, investigation, hazard avoidance, Doom Clock management, and boss encounters. The Rot has taken root here recently -- this is an early warning, not a deep infection. The walls still bear training marks from Warden Voss's first squad -- the last people to use this cellar before the Rot made it dangerous."
     },
     "rooms": {
         "0": {
@@ -22,18 +22,31 @@
             "tier": 1,
             "is_locked": false,
             "is_secret": false,
-            "content_hints": {
-                "description": "The cellar stairs are carved directly into petrified root, each step worn into a shallow dish by years of traffic. Ash coats every surface -- not fireplace ash but the fine grey particulate that Blight leaves behind when it consumes organic matter. Your footprints are the only marks. Whatever came through here did not use the stairs.",
-                "read_aloud": "Musty air fills your lungs as you descend. Ash coats the stairs like grey snow, undisturbed except by something thin and many-legged that dragged itself along the wall. The scratches in the root-bark are fresh. At the bottom, the cellar opens into darkness. From somewhere ahead, you hear a wet, rhythmic scratching -- like fingernails on damp wood.",
-                "npcs": [],
-                "loot": [],
-                "services": [],
-                "perception_dc": 10,
-                "event_triggers": [
-                    "On perception success (DC 10): The scratching comes from the east -- Room 1. It is rhythmic, deliberate. Not random scrabbling but something feeding. The sound pauses when you make noise, then resumes.",
-                    "Tutorial hint: Movement costs 1 DoomClock advance per room transition. The cellar is small -- 5 rooms -- but every step counts."
-                ]
-            }
+            "name": "The Ash Stairs",
+            "description": "The cellar stairs are carved directly into petrified root, each step worn into a shallow dish by decades of training descents. Ash coats every surface -- not fireplace ash but the fine grey particulate that Blight leaves behind when it consumes organic matter. Your footprints are the only human marks. Whatever else came through here did not use the stairs. The walls are scored with practice cuts -- Voss's first squad drilled here when the cellar was still safe, and their blade-marks have been preserved in the petrified grain like fossils. Someone carved 'HOLD THE LINE - V.S.' at eye level near the bottom step. The initials are repeated three more times in different hands, as though each squad member added their own.",
+            "read_aloud": "Ash coats the stairs like grey snow, undisturbed except by something thin and many-legged that dragged itself along the wall. The scratches in the root-bark are fresh -- not the old training marks that line the walls, but new ones, desperate and directionless. At the bottom, the cellar opens into a low chamber where the ceiling presses down like a held breath. From somewhere east, you hear a wet, rhythmic clicking -- like mandibles on damp wood.",
+            "sensory_signature": "Smell: mushroom damp and cold stone. Sound: your own breathing, magnified by the low ceiling. Touch: the ash is fine enough to feel like flour between your fingers. The Root-Song is absent -- not silent in the way of the deep zones, but muted, as though heard through a closed door.",
+            "npcs": [],
+            "enemies": [],
+            "loot": [],
+            "hazards": [
+                {
+                    "name": "Slippery Ash",
+                    "dc": 10,
+                    "damage": "0",
+                    "damage_type": "none",
+                    "condition": "prone",
+                    "description": "A thick layer of fine grey ash covers the floor. It compresses to a frictionless surface underfoot. The first step off the stairs is treacherous.",
+                    "notes": "Optional hazard -- only triggers if a player moves quickly or runs. Walking carefully avoids it entirely. Teaches the hazard-save concept gently."
+                }
+            ],
+            "services": [],
+            "perception_dc": 10,
+            "event_triggers": [
+                "On perception success (DC 10): The clicking comes from the east -- Room 1. It is rhythmic, deliberate. Not random scrabbling but something feeding. The sound pauses when you make noise, then resumes. Two sets of mandibles, working in tandem.",
+                "On examining training marks: The blade-marks are old -- twenty years at least. Different weapons, different hands, but the same drills. Slash-parry-thrust patterns scored into the root at shoulder height. One set of marks is deeper than the rest, made by someone who hit harder than they needed to. Below them, scratched small: 'Sorry about the wall. - Voss.'",
+                "Tutorial hint: Movement costs 1 Doom Clock advance per room transition. The cellar is small -- 5 rooms -- but every step counts. The ash hazard teaches saves. The perception check teaches investigation."
+            ]
         },
         "1": {
             "id": 1,
@@ -46,38 +59,52 @@
             "tier": 1,
             "is_locked": false,
             "is_secret": false,
-            "content_hints": {
-                "description": "The storage room is a shambles. Barrels have been split open from the inside, their contents -- dried grain, salt, preserved mushrooms -- scattered and grey with Blight contamination. Two small figures crouch atop a shattered crate, their translucent bodies pulsing with faint bioluminescence. Rot Sprites: parasitic fungal constructs no larger than a fist, but vicious when cornered.",
-                "read_aloud": "The barrel nearest the door has burst. Something ate through it from the inside -- the wood is laced with grey veins like a diseased lung. Two shapes perch on the wreckage, glowing faintly. They are small, translucent, and wrong -- mushroom-flesh stretched over frameworks of stolen bone. They turn toward your light with movements that are too fast and too coordinated to be mindless.",
-                "npcs": [],
-                "enemies": [
-                    {
-                        "name": "Rot Sprite",
-                        "hp": 4,
-                        "ac": 8,
-                        "attack": 1,
-                        "damage": "1d6",
-                        "notes": "Tier I beast. Spore Burst: on death, DC 8 Grit or -1 to all rolls for 1 round. Small, fast, fragile. Tutorial enemy -- teaches basic combat flow."
-                    },
-                    {
-                        "name": "Rot Sprite",
-                        "hp": 4,
-                        "ac": 8,
-                        "attack": 1,
-                        "damage": "1d6",
-                        "notes": "Tier I beast. Spore Burst: on death, DC 8 Grit or -1 to all rolls for 1 round."
-                    }
-                ],
-                "loot": [
-                    {"name": "Rot-Salve Pouch", "value": 3, "type": "consumable", "notes": "Found in an intact barrel. Still sealed."}
-                ],
-                "services": [],
-                "investigation_dc": 12,
-                "event_triggers": [
-                    "On investigation success (DC 12): Behind the shattered barrels, a hidden cache in the wall -- a Kindler's emergency stash. Contains 5 amber dust and a tallow candle. The cache was sealed with resin that the Rot has not yet reached.",
-                    "Tutorial hint: Rot Sprites explode with spores on death. The Grit save teaches the save mechanic. Killing them at range avoids the burst."
-                ]
-            }
+            "name": "The Spoiled Stores",
+            "description": "The storage room is a shambles. Barrels have been bored through from below -- neat round holes punched through oak and ironbark alike, their contents scattered and grey with Blight contamination. Dried grain, salt, and preserved mushrooms spill across the floor in ruined drifts. Two Rot-Beetles crouch atop a shattered crate, their boot-sized carapaces slick with grey-green blight, mandibles working steadily at a strip of contaminated grain. They click and hiss in alternation -- a feeding rhythm, almost musical, deeply wrong. The air tastes of spoiled copper.",
+            "read_aloud": "The barrel nearest the door has been bored clean through -- a perfect circle punched from below, the wood laced with grey veins like a diseased lung. Two shapes perch on the wreckage, each the size of a boot, their carapaces slick and iridescent with Blight. They click in tandem as they feed, mandibles shearing through contaminated grain with mechanical precision. When your light falls on them, they stop. Their antennae swivel toward you. The clicking resumes -- faster now, higher-pitched. Not feeding. Signaling.",
+            "sensory_signature": "Smell: spoiled grain and the sharp mineral tang of Blight fluid. Sound: the wet click-click of mandibles, the dry rustle of contaminated grain shifting. Touch: the air is warmer here than the stairs -- the beetles generate heat as they feed.",
+            "npcs": [],
+            "enemies": [
+                {
+                    "name": "Rot-Beetle",
+                    "hp": 4,
+                    "ac": 10,
+                    "attack": 2,
+                    "damage": "1d4",
+                    "archetype": "beast",
+                    "special": "Skitter: -1d6 to ranged attacks against it",
+                    "description": "Thumb-sized insects that scuttle through ash drifts, their carapaces slick with grey-green blight. They click and hiss when cornered.",
+                    "notes": "Tier I beast. Tutorial enemy -- teaches basic attack rolls and the dice pool system. Skitter makes ranged attacks harder, encouraging melee engagement for the first fight."
+                },
+                {
+                    "name": "Rot-Beetle",
+                    "hp": 4,
+                    "ac": 10,
+                    "attack": 2,
+                    "damage": "1d4",
+                    "archetype": "beast",
+                    "special": "Skitter: -1d6 to ranged attacks against it",
+                    "description": "This one is larger -- a mature specimen. Its wing-cases are fused shut with Blight residue, and it moves with the frantic energy of something that cannot fly and knows it.",
+                    "notes": "Tier I beast. Second beetle reinforces the combat loop: roll pool, compare to AC, deal damage. Two enemies teach turn order and target priority."
+                }
+            ],
+            "loot": [
+                {
+                    "name": "Rot-Salve Pouch",
+                    "value": 3,
+                    "type": "consumable",
+                    "description": "A sealed pouch of pale green paste found in an intact barrel the beetles had not yet reached. The wax seal bears the mark of Birsa's supplier.",
+                    "notes": "Backup salve for players who did not buy from Birsa. Found in the one barrel the Rot has not breached."
+                }
+            ],
+            "hazards": [],
+            "services": [],
+            "investigation_dc": 12,
+            "event_triggers": [
+                "On investigation success (DC 12): Behind the shattered barrels, a Kindler's emergency cache sealed into the wall with amber resin. The Rot has not reached it. Contains 5 amber dust and a tallow candle. The cache was last opened -- based on the resin oxidation -- roughly three years ago. Before the Rot arrived.",
+                "On combat start: The beetles scatter when first struck, then regroup. They are not brave, but they are territorial. The Skitter ability means ranged attacks against them suffer -1d6 -- the GM should announce this clearly as a teaching moment.",
+                "Tutorial hint: First combat encounter. Teaches attack rolls (Might or Wits pool vs enemy AC), damage rolls, and the Skitter special ability. Two low-HP enemies ensure the fight is short but mechanically complete. If a player brought the Occultist loadout, note that ranged attacks are penalized by Skitter -- close combat or clever positioning is rewarded."
+            ]
         },
         "2": {
             "id": 2,
@@ -85,120 +112,187 @@
             "y": 14,
             "width": 12,
             "height": 6,
-            "room_type": "corridor",
-            "connections": [1, 3, 4],
+            "room_type": "chamber",
+            "connections": [1, 3],
             "tier": 1,
             "is_locked": false,
             "is_secret": false,
-            "content_hints": {
-                "description": "A collapse has torn open the cellar wall, exposing raw root-material and a tangle of severed Aether veins that drip sluggish gold into a puddle on the floor. The tunnel forks: east into a chamber filled with pale blue light, west into darkness where the air is warmer and wetter. Rubble from the collapse litters the floor -- unstable, shifting underfoot.",
-                "read_aloud": "The ceiling groans. A section of root-wall has given way, opening cracks that weep golden sap into a shallow pool at your feet. The puddle is warm. The tunnel splits ahead -- pale blue light to the east, and to the west, a darkness that breathes. Rubble shifts under your boots. This part of the cellar was not carved. Something broke through from below.",
-                "npcs": [],
-                "loot": [],
-                "services": [],
-                "event_triggers": [
-                    "Hazard: Falling Rubble. Moving through the debris field requires a DC 11 Grit check. Failure: 1d6 damage from shifting stone and root-material. The noise advances DoomClock by 1 regardless of success.",
-                    "Tutorial hint: This room teaches hazard navigation. The fork offers a choice -- fungal garden (east, more enemies) or direct path to the boss (west). Both routes lead to Room 4."
-                ]
-            }
+            "name": "The Sealed Alcove",
+            "description": "A narrow chamber where the root-walls pinch inward, the ceiling barely clearing a raised hand. This was a cold-store once -- the petrified grain of the wood shows the dense ring-pattern of slow growth, designed by Arborist cultivation to hold temperature. A locked chest sits against the far wall, half-buried in ash drift. Its iron bands are green with oxidation but intact. The lock mechanism is Arborist-era -- not a keyhole but a puzzle-latch, three interlocking wooden rings set into the lid. Someone scratched a crude map of the cellar on the wall beside it, marking this room with a circle and the words 'WORTH IT' in old Trade-Common.",
+            "read_aloud": "The tunnel narrows. You have to duck. The walls press close enough to touch both sides, and the ceiling scrapes helmet and hair alike. Then the passage opens into a small alcove -- barely ten feet across, carved with the precision of Arborist cultivation. A chest sits against the wall, green-banded with corroded iron. The lock is not a lock. Three wooden rings are set into the lid, each carved with tiny root-patterns that interlock when aligned correctly. Beside the chest, someone scratched a message into the stone: WORTH IT.",
+            "sensory_signature": "Smell: cold stone and the faintest trace of amber resin from the chest's seal. Sound: silence -- the beetles' clicking does not reach here. Touch: the air is noticeably cooler, a remnant of the Arborist cold-store design. The walls are smooth, almost polished.",
+            "npcs": [],
+            "enemies": [],
+            "loot": [
+                {
+                    "name": "Kindler's Cache",
+                    "type": "container",
+                    "lock_dc": 11,
+                    "lock_type": "puzzle_latch",
+                    "description": "An Arborist-era cold-store chest. The puzzle-latch requires aligning three wooden rings so the root-patterns form a continuous line. A Wits check to solve, or brute-force with a Might check at higher DC.",
+                    "notes": "DC 11 Wits to solve the puzzle-latch. DC 14 Might to force it open (damages contents, lose 1 item). Iron Nail Bundle from the Armory grants +1d6 to the Wits attempt.",
+                    "contents": [
+                        {
+                            "name": "Ember Shard",
+                            "value": 8,
+                            "type": "currency",
+                            "description": "A thumb-sized piece of hardened amber, warm to the touch. It holds a faint impression: the sound of laughter and the smell of wood-smoke. Someone was happy when this formed."
+                        },
+                        {
+                            "name": "Scrap Iron",
+                            "value": 4,
+                            "type": "crafting",
+                            "description": "A bar of salvageable iron wrapped in oiled cloth. Enough for one item at Weld's Forge.",
+                            "notes": "Tier I crafting material."
+                        },
+                        {
+                            "name": "Tallow Candle (2-pack)",
+                            "value": 1,
+                            "type": "consumable",
+                            "description": "Two candles, still sealed in wax paper. The wick is braided from dried root-fiber.",
+                            "notes": "4 hours of light each."
+                        }
+                    ]
+                }
+            ],
+            "hazards": [
+                {
+                    "name": "Trapped Chest",
+                    "dc": 12,
+                    "damage": "1d6",
+                    "damage_type": "piercing",
+                    "description": "A spring-loaded mechanism inside the chest, rigged by the Kindler who stashed the supplies. A needle tipped with dried rot-salve -- originally medicinal, now oxidized to a mild toxin. Triggers only on a failed lockpick attempt.",
+                    "notes": "Only triggers on a FAILED Wits check to open the chest. A successful check disarms it automatically. If triggered: 1d6 piercing damage and the player's hand goes numb for 1 round (-1d6 to next action). Teaches the search-before-grab lesson."
+                }
+            ],
+            "services": [],
+            "investigation_dc": 10,
+            "event_triggers": [
+                "On investigation success (DC 10): The crude map scratched into the wall shows all five cellar rooms. Room 4 (the boss room) is marked with a skull and the words 'BIG ONE.' The map was drawn recently -- within months. Someone else explored this cellar before the party and left notes. They did not leave a name.",
+                "On chest opened successfully: The puzzle-latch clicks with a satisfying mechanical precision that survives centuries. The Arborists built things to last.",
+                "On chest forced open: The iron bands buckle and one item inside is crushed. The chest was not designed to be forced. Nothing the Arborists made was.",
+                "Tutorial hint: This room teaches the search and lockpick mechanics. The puzzle-latch introduces Wits checks outside of combat. The trap teaches players to investigate before acting. The crude map is a reward for exploration -- it previews the boss room and gives tactical foreknowledge."
+            ]
         },
         "3": {
             "id": 3,
-            "x": 44,
-            "y": 14,
+            "x": 30,
+            "y": 22,
             "width": 14,
-            "height": 12,
+            "height": 8,
             "room_type": "chamber",
             "connections": [2, 4],
             "tier": 1,
             "is_locked": false,
             "is_secret": false,
-            "content_hints": {
-                "description": "The fungal garden is beautiful and wrong. Bioluminescent mushrooms climb the walls in spiraling patterns, their pale blue glow casting the chamber in underwater light. The floor is soft -- a carpet of mycelium that gives under each step like wet sponge. At the center, a Spore Zombie stands motionless among the mushrooms, its body host to a dozen fruiting caps that have split its skin and clothing apart. Around its feet, a pack of Blighted Rats gnaws at the mycelium, their eyes reflecting blue.",
-                "read_aloud": "Blue light. The chamber glows with it -- mushrooms climbing the walls like luminous ivy, their caps pulsing in slow rhythm. The floor is alive beneath your feet, soft and yielding, and the air tastes of copper and damp earth. Something stands at the center of the garden. It was a person once. Now it is a framework for mushrooms, its arms outstretched, its head tilted back, its mouth open in a silent scream filled with pale fruiting bodies. It does not move. The rats at its feet do.",
-                "npcs": [],
-                "enemies": [
-                    {
-                        "name": "Spore Zombie",
-                        "hp": 11,
-                        "ac": 9,
-                        "attack": 2,
-                        "damage": "1d6+1",
-                        "notes": "Tier I scavenger. Hollowed Kindler. Slow but durable. On death in melee range: massive spore burst, DC 10 Grit or take 1d6 damage and DoomClock +1. Can be destroyed safely at range."
-                    },
-                    {
-                        "name": "Blighted Rat",
-                        "hp": 3,
-                        "ac": 8,
-                        "attack": 1,
-                        "damage": "1d6",
-                        "notes": "Tier I beast. Swarm behavior: 3 rats treated as pack. +1 damage per additional rat in melee."
-                    },
-                    {
-                        "name": "Blighted Rat",
-                        "hp": 3,
-                        "ac": 8,
-                        "attack": 1,
-                        "damage": "1d6",
-                        "notes": "Tier I beast."
-                    },
-                    {
-                        "name": "Blighted Rat",
-                        "hp": 3,
-                        "ac": 8,
-                        "attack": 1,
-                        "damage": "1d6",
-                        "notes": "Tier I beast."
-                    }
-                ],
-                "loot": [
-                    {"name": "Ember Shard", "value": 5, "type": "uncommon", "notes": "Amber currency. Worth enough for a Tier I upgrade at the Forge."}
-                ],
-                "services": [],
-                "event_triggers": [
-                    "On spore zombie killed in melee: The body detonates. A cloud of grey-blue spores fills the chamber. DoomClock +1. All characters in melee range make DC 10 Grit save or take 1d6 spore damage.",
-                    "Tutorial hint: This encounter teaches action economy and positioning. The zombie is the priority target but dangerous up close. Rats are fragile but numerous. Ranged attacks bypass the spore burst."
-                ]
-            }
+            "name": "The Cracked Vein",
+            "description": "A collapse has torn open the cellar wall, exposing raw root-material and a tangle of severed Aether veins that drip sluggish gold into a puddle on the floor. The golden sap is warm -- not scalding, but blood-warm, and it glows faintly in the dark. The collapse has destabilized the ceiling. Fist-sized chunks of petrified bark have already fallen, and cracks spider-web overhead in patterns that promise more. The air is thick with dust and the sweet copper-resin smell of exposed Aether. Blight Spores cluster in the rubble -- pale mushrooms sprouted in the damp, their caps swollen and glistening, ready to burst at the slightest vibration.",
+            "read_aloud": "The ceiling groans. A section of root-wall has given way, exposing cracks that weep golden sap into a shallow pool at your feet. The puddle is warm. Above, the ceiling is a web of fractures, and dust sifts down with each distant tremor. Pale mushrooms have sprouted in the rubble -- bloated, glistening things that sway when you breathe too close. The passage ahead narrows through the debris field. Every step shifts loose stone. Every shift rains dust from above. The final chamber lies beyond.",
+            "sensory_signature": "Smell: sweet Aether-resin and the chalky dust of crumbling petrified bark. Sound: the slow drip of golden sap, the creak of stressed ceiling beams, and the faint pop-pop of spore caps expanding. Touch: the warmth of the Aether puddle is startling -- a reminder that the tree is still alive, even here.",
+            "npcs": [],
+            "enemies": [],
+            "loot": [
+                {
+                    "name": "Raw Aether Vial",
+                    "value": 5,
+                    "type": "crafting",
+                    "description": "A vial's worth of golden sap collected from the severed vein. It glows faintly and is warm to the touch. Mildly toxic to the unprotected (DC 10 Grit or -1 to rolls for 1 hour) but valuable as a crafting component.",
+                    "notes": "Can be harvested with any container. Costs 1 Doom Clock advance to collect (per standard Aether extraction rules). Optional -- rewards players who recognize the opportunity."
+                }
+            ],
+            "hazards": [
+                {
+                    "name": "Falling Rubble",
+                    "dc": 11,
+                    "damage": "1d6",
+                    "damage_type": "bludgeoning",
+                    "description": "The ceiling is unstable. Moving through the debris field triggers a shower of petrified bark chunks. The shaking is brief -- three heartbeats -- but enough to bury an arm or crack a skull.",
+                    "notes": "Mandatory hazard -- must be crossed to reach Room 4. DC 11 Grit save. Failure: 1d6 bludgeoning damage. Success: safe passage. The noise advances the Doom Clock by 1 REGARDLESS of success or failure. This is the first time the Doom Clock advances from a non-combat source."
+                },
+                {
+                    "name": "Blight Spores",
+                    "dc": 10,
+                    "damage": "1d4",
+                    "damage_type": "poison",
+                    "description": "Clusters of pale mushrooms in the rubble release a cloud of grey spores when disturbed by vibration. Covering your mouth helps. Mostly.",
+                    "notes": "Triggers only if the Falling Rubble save is failed (the impact shakes the mushrooms loose). If the rubble save succeeds, the player moved carefully enough to avoid the spores. This teaches compound hazards -- one failure can cascade."
+                }
+            ],
+            "services": [],
+            "event_triggers": [
+                "Hazard sequence: The rubble is mandatory. Spores are conditional on rubble failure. Doom Clock advances by 1 from noise regardless. This is the most mechanically dense non-combat room.",
+                "On Aether collection: Collecting the raw Aether costs 1 additional Doom Clock advance. The tree trembles faintly when the sap is taken -- not pain, but acknowledgment. The Root-Song flickers back for a half-second, felt in the bones: gratitude? Warning? Both?",
+                "Tutorial hint: This room teaches hazard saves, compound consequences, and the Doom Clock's non-combat triggers. The rubble-then-spores sequence shows that failing one check can trigger another. The Aether collection teaches risk-reward: valuable loot that costs Doom Clock progress."
+            ]
         },
         "4": {
             "id": 4,
             "x": 30,
-            "y": 28,
+            "y": 32,
             "width": 16,
-            "height": 12,
+            "height": 8,
             "room_type": "boss",
-            "connections": [2, 3],
+            "connections": [3],
             "tier": 1,
             "is_locked": false,
             "is_secret": false,
-            "content_hints": {
-                "description": "The deepest chamber. The root-walls here are grey and dead -- the Root-Song has fallen completely silent. At the center, a mass of twisted roots and fungal matter pulses with a slow, wet rhythm, its tendrils sunk deep into the cellar floor. This is the source: a Rotwood Shambler, a parasitic fungal colony that has hijacked a dead root-cluster and animated it into something that moves with terrible purpose. The air is thick with spores. Breathing here costs.",
-                "read_aloud": "A twisted mass of roots and rot pulses at the center of the chamber. It has no face, no eyes, no mouth -- just a writhing column of grey-veined wood and fruiting mushroom flesh that reaches toward the ceiling with blind hunger. The Root-Song is silent here. Completely silent. You have never heard the absence of something you did not know you were listening to. The thing turns toward you -- not with sight, but with something worse. It felt you arrive. The DoomClock ticks. It ticks twice.",
-                "npcs": [],
-                "enemies": [
-                    {
-                        "name": "Rotwood Shambler",
-                        "hp": 15,
-                        "ac": 10,
-                        "attack": 3,
-                        "damage": "1d8",
-                        "is_boss": true,
-                        "notes": "Tutorial boss. Tier I construct/beast hybrid. Slow (acts last in initiative). Root Grasp: on hit, target must DC 10 Grit or be grappled (1d6 automatic damage per round until freed). Vulnerable to fire -- flame damage is doubled. On death: the corruption in the cellar begins to recede. Spores settle. The Root-Song returns as a faint, grateful vibration."
-                    }
-                ],
-                "loot": [
-                    {"name": "Hunter's Shortbow", "value": 8, "type": "uncommon", "notes": "Tier I. R.Hand. Ranged weapon. +1d6 WITS pool."},
-                    {"name": "Scrap Iron", "value": 4, "type": "crafting", "notes": "Tier I crafting material. Enough for one item at the Forge."},
-                    {"name": "Amber Core", "value": 12, "type": "rare", "notes": "A fist-sized amber piece pried from the dead root. Contains a faint memory impression: warmth, the sound of rain on leaves, a voice singing in a language you almost recognize."}
-                ],
-                "services": [],
-                "event_triggers": [
-                    "On room entry: DoomClock +2. The Shambler is aware of the party. There is no surprise round.",
-                    "On boss defeated: The grey recedes from the walls like tide going out. Color returns -- faint amber, the brown of living wood. The Root-Song resumes, faint but present. A vibration that feels like relief.",
-                    "On return to Emberhome: Voss marks the mission complete. 'Sixty-three percent. You improved my statistics.' She almost smiles."
-                ]
-            }
+            "name": "The Hollow Den",
+            "description": "The deepest chamber. The root-walls here are grey and dead -- the Root-Song has fallen completely silent. What was once a natural den carved by the tree's own growth now serves as the lair of something that should not still be moving. A bear lies at the center of the room -- or what remains of one. It is massive, larger than any bear should be, its fur matted with grey fungal growth and its hide split along the spine where shelf-mushrooms have erupted like a grotesque saddle. Its eyes are open but filmed with grey. It breathes in a slow, wet rhythm that fills the chamber with the sound of a bellows worked by dead hands. Fungal tendrils extend from its body into the floor and walls, anchoring it to the corruption like roots. This is the source. The Rot entered through a crack in the deepest wall, found a hibernating bear, and made itself a throne.",
+            "read_aloud": "The Root-Song stops. Not fades -- stops. You have never noticed a subsonic vibration until the moment it vanishes, and the absence is a pressure behind your eyes, a wrongness in your chest. The chamber opens wide and low, and at its center lies a shape you recognize and wish you didn't. A bear. Enormous. Grey. Its fur is laced with fungal threads and its spine bristles with shelf-mushrooms that pulse in a slow, wet rhythm. It is breathing. It should not be breathing. Its head lifts. Filmed eyes find you -- not with sight, but with something older and hungrier. The Doom Clock ticks. It ticks twice.",
+            "sensory_signature": "Smell: wet rot, animal musk gone sour, and the cloying sweetness of fruiting fungus. Sound: the bear's breathing -- a deep, rhythmic bellows-sound that you feel in your sternum. The silence of the Root-Song is a pressure, not an absence. Touch: the air is damp and warm, like the inside of a mouth.",
+            "npcs": [],
+            "enemies": [
+                {
+                    "name": "Hollowed Bear",
+                    "hp": 16,
+                    "ac": 11,
+                    "attack": 3,
+                    "damage": "1d8",
+                    "archetype": "beast",
+                    "is_boss": true,
+                    "special": "Slow: always acts last in initiative. Mauling Grip: on hit, target must DC 10 Grit or be grappled (1d4 automatic damage per round until freed, DC 10 Might to escape). Vulnerable to fire -- flame damage is doubled. Fungal Anchor: while anchored to the floor, regenerates 1 HP per round. Severing the tendrils (DC 10 Wits check as an action, or fire damage) stops regeneration.",
+                    "description": "A cave bear consumed by the Blight in its winter sleep. The Rot entered through a crack in the cellar's deepest wall, found the hibernating animal, and colonized it over weeks. The bear's muscles still function -- driven not by a living brain but by fungal impulses threaded through its nervous system. It moves with terrible, lumbering purpose. Its claws are still sharp. Its jaws still close. It does not feel pain. It does not feel anything.",
+                    "lore": "This is what the Rot does. It does not kill -- it occupies. The bear was alive when the fungus reached its brain. It stopped being alive so gradually that there was no single moment of death. The Hollowed Bear is the cellar's thesis statement: the Blight is patient, and it wastes nothing.",
+                    "tactics": "The Hollowed Bear is anchored to the floor by fungal tendrils. While anchored, it regenerates 1 HP per round. Players can sever the tendrils (Wits DC 10 or fire damage) to stop regeneration, then focus damage. The bear is Slow (always acts last), giving the party a full round to position. Mauling Grip is dangerous in melee -- the Sentinel's Guard action or the Occultist's ranged attacks mitigate it. Fire (torch, ember shard) doubles damage and severs tendrils simultaneously.",
+                    "notes": "Tutorial boss. Designed to test everything the cellar has taught: combat (attack rolls), saves (Grit to resist grapple), investigation (spotting the tendrils), positioning (avoiding melee range), and resource management (using fire or tools). HP is intentionally modest -- the fight should last 3-4 rounds, not become a war of attrition."
+                }
+            ],
+            "loot": [
+                {
+                    "name": "Bear-Claw Blade",
+                    "value": 10,
+                    "type": "weapon",
+                    "tier": 1,
+                    "slot": "R.Hand",
+                    "bonus": "+1d6 Might pool",
+                    "description": "A claw pried from the Hollowed Bear's forepaw after the fungal tissue was burned away. Weld can mount it on a handle at the Forge. The claw is dense, dark, and holds an edge better than iron.",
+                    "notes": "Tier I weapon. Equivalent to the Iron Shortsword but with a different aesthetic. Reward for completing the tutorial."
+                },
+                {
+                    "name": "Amber Core",
+                    "value": 12,
+                    "type": "rare",
+                    "description": "A fist-sized amber piece found embedded in the root-wall behind the bear's den -- the crack that let the Rot in also exposed this ancient deposit. The amber is warm and holds a faint memory impression: the sound of rain on broad leaves, a low humming that might be the Root-Song in a healthier age, and a voice singing in a language you almost recognize. The memory is peaceful. The contrast with this room is devastating.",
+                    "notes": "Amber Core quality -- years of formation. Contains a readable memory fragment for Aether-attuned characters (Aether 14+). Worth significant amber at market, or can be used as a Tier I crafting component."
+                },
+                {
+                    "name": "Scrap Iron",
+                    "value": 4,
+                    "type": "crafting",
+                    "description": "Salvaged from the bear's original den -- iron fittings from old storage shelves, corroded but usable. Enough for one item at Weld's Forge.",
+                    "notes": "Tier I crafting material."
+                }
+            ],
+            "hazards": [],
+            "services": [],
+            "event_triggers": [
+                "On room entry: Doom Clock +2. The Hollowed Bear is aware of the party -- it felt the vibrations of their passage through the cellar. There is no surprise round. The bear rises slowly, fungal tendrils stretching and snapping as it pulls free of the floor. It takes the entire first round to stand. Players get one free round of actions before it attacks.",
+                "On boss defeated: The grey recedes from the walls like tide going out. Color returns -- faint amber, the brown of living wood. The fungal tendrils wither, curling inward like burned paper. The crack in the far wall is visible now, a fissure no wider than a fist leading down into darkness that smells of deep earth. This is where the Rot entered. It can be sealed with amber resin or left open -- another choice.",
+                "On boss defeated (Root-Song): The Root-Song resumes. Faint, hesitant, like a voice that has been holding its breath. A vibration in the floor, in the walls, in the bones behind your ears. It feels like relief. It feels like the tree saying thank you in a language older than words.",
+                "On sealing the crack: Amber resin or raw Aether poured into the fissure hardens on contact, sealing the entry point. The Root-Song strengthens. Doom Clock -1 (rare reward). Voss will note this in her report.",
+                "On leaving crack open: The Rot will return eventually. The cellar will need clearing again in weeks. Voss will note this too, with less approval.",
+                "On return to Emberhome: Voss checks the bark-strip, checks the party, and checks the ledger. 'Sixty-three percent. You improved my statistics.' She pauses. Her hand hovers over the list of crossed-out names. She does not look at it. 'Report to Weld for gear assessment. Birsa will want to examine you for Blight-sign. And then --' She pins a fresh bark-strip to the bounty board. '-- there is more work.' She almost smiles. Almost."
+            ]
         }
     }
 }

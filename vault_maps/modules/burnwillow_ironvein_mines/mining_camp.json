@@ -22,24 +22,26 @@
             "tier": 2,
             "is_locked": false,
             "is_secret": false,
-            "content_hints": {
-                "description": "The mining camp clings to a shelf of petrified root-bark overlooking the mine entrance -- a ragged wound in the Burnwillow's lower trunk. Canvas tents have collapsed under ash-fall. Cook fires are cold, their firepits filled with grey water. The wind carries a faint mechanical clicking from deep inside the mine shaft, regular as a heartbeat. One tent still stands, its flap tied shut with miner's cord, a thin line of smoke rising from a ventilation hole.",
-                "read_aloud": "The camp is dead. Tents sag like deflated lungs, cook fires drowned in ash-water, tools dropped where they fell. Someone left in the middle of sharpening a pickaxe -- the whetstone sits in a groove worn six inches deep. Only one tent still stands, smoke threading up from a hole in the canvas. A voice from inside, cracked and dry: 'If you are the Rot, you are late. If you are Seekers, you are even later. Come in. Mind the dog. He bites.'",
-                "npcs": [
-                    {
-                        "name": "Old Miner Grod",
-                        "role": "ally",
-                        "dialogue": "Forty years I worked these veins. Iron, amber, the occasional Aether pocket that would sing when you struck it right. Then the spiders came. Not natural spiders -- ironvein spiders, the tree's own immune response turned wrong. They spin webs of metallic silk and hunt anything that moves. The miners ran. I stayed. Someone has to remember where the safe paths are. Here -- take this. The eastern tunnels are stable. Stay out of the western shaft. The gas pockets there will cook you before the spiders get a chance.",
-                        "notes": "Grod is a veteran miner who refused to evacuate. He knows the mine layout intimately. Will mark safe paths on the party's map if treated with respect. SECRET: His dog died weeks ago. The 'dog' is a trained Ironbark Hound that followed him home from the deep mines -- it is not Blighted yet, but Grod sees the grey forming in its eyes. He cannot bring himself to put it down."
-                    }
-                ],
-                "loot": [],
-                "services": ["rest"],
-                "event_triggers": [
-                    "On rest: Grod shares stories by the fire. The mine was profitable for decades until the Ironvein Spiders appeared -- the Burnwillow's corrupted immune response, antibodies turned predator. He marks three rooms on the party map as 'safe to rest' in the upper mines.",
-                    "On perception DC 14: Grod's 'dog' is not a dog. The shape in the corner of his tent is an Ironbark Hound, its flanks heaving with slow breaths, eyes reflecting amber in the firelight. Grey veins are forming along its muzzle. Early-stage Blight."
-                ]
-            }
+            "name": "Grod's Last Stand",
+            "description": "The mining camp clings to a shelf of petrified root-bark overlooking the mine entrance -- a ragged wound in the Burnwillow's lower trunk. Canvas tents have collapsed under ash-fall. Cook fires are cold, their firepits filled with grey water. The wind carries a faint mechanical clicking from deep inside the mine shaft, regular as a heartbeat. One tent still stands, its flap tied shut with miner's cord, a thin line of smoke rising from a ventilation hole.",
+            "read_aloud": "The camp is dead. Tents sag like deflated lungs, cook fires drowned in ash-water, tools dropped where they fell. Someone left in the middle of sharpening a pickaxe -- the whetstone sits in a groove worn six inches deep. Only one tent still stands, smoke threading up from a hole in the canvas. A voice from inside, cracked and dry: 'If you are the Rot, you are late. If you are Seekers, you are even later. Come in. Mind the dog. He bites.'",
+            "sensory_signature": "Cold wind through canvas. Mechanical clicking from below. Woodsmoke from Grod's tent.",
+            "enemies": [],
+            "loot": [],
+            "hazards": [],
+            "npcs": [
+                {
+                    "name": "Old Miner Grod",
+                    "role": "ally",
+                    "dialogue": "Forty years I worked these veins. Iron, amber, the occasional Aether pocket that would sing when you struck it right. Then the spiders came. Not natural spiders -- ironvein spiders, the tree's own immune response turned wrong. They spin webs of metallic silk and hunt anything that moves. The miners ran. I stayed. Someone has to remember where the safe paths are. Here -- take this. The eastern tunnels are stable. Stay out of the western shaft. The gas pockets there will cook you before the spiders get a chance.",
+                    "notes": "Grod is a veteran miner who refused to evacuate. He knows the mine layout intimately. Will mark safe paths on the party's map if treated with respect. SECRET: His dog died weeks ago. The 'dog' is a trained Ironbark Hound that followed him home from the deep mines -- it is not Blighted yet, but Grod sees the grey forming in its eyes. He cannot bring himself to put it down."
+                }
+            ],
+            "services": ["rest"],
+            "event_triggers": [
+                "On rest: Grod shares stories by the fire. The mine was profitable for decades until the Ironvein Spiders appeared -- the Burnwillow's corrupted immune response, antibodies turned predator. He marks three rooms on the party map as 'safe to rest' in the upper mines.",
+                "On perception DC 14: Grod's 'dog' is not a dog. The shape in the corner of his tent is an Ironbark Hound, its flanks heaving with slow breaths, eyes reflecting amber in the firelight. Grey veins are forming along its muzzle. Early-stage Blight."
+            ]
         },
         "1": {
             "id": 1,
@@ -52,22 +54,23 @@
             "tier": 2,
             "is_locked": false,
             "is_secret": false,
-            "content_hints": {
-                "description": "The equipment shed is a corrugated ironbark lean-to built against the mine entrance wall. Inside, mining tools hang from pegs in ordered rows -- pickaxes, pry bars, helmet lanterns, coils of rope. Most are standard iron, but a few pieces shimmer with the faint amber sheen of Aether-treated metal. A locked strongbox sits beneath the workbench, its padlock crusted with rust but still functional.",
-                "read_aloud": "The shed smells of iron filings and lantern oil. Tools hang in neat rows -- the kind of order that only survives because everyone left too fast to loot the place. A locked strongbox under the bench catches the light. Its padlock is rusted but solid.",
-                "npcs": [],
-                "loot": [
-                    {"name": "Miner's Pickaxe", "value": 5, "type": "common", "notes": "Tier I. R.Hand. +1d6 MIGHT. Can be used to break through collapsed tunnels (DC 12 Might)."},
-                    {"name": "Helmet Lantern", "value": 4, "type": "common", "notes": "Head slot. Hands-free light source. 8 hours of burn time. Does not contribute dice but frees both hands."},
-                    {"name": "Climbing Rope (50ft)", "value": 3, "type": "tool", "notes": "Required for vertical traversal in the deep mines."}
-                ],
-                "services": [],
-                "investigation_dc": 13,
-                "event_triggers": [
-                    "On investigation success (DC 13): The strongbox contains a miner's journal and a single Amber Shard. The journal describes 'singing iron' found in the deep mines -- veins of metal that resonate with the Root-Song. The last entry reads: 'The Queen is awake. We are leaving. Gods forgive us for what we dug into.'",
-                    "On lockpick attempt (DC 12 Wits): The padlock gives. Inside: 10 amber dust, 1 Amber Shard, and the journal."
-                ]
-            }
+            "name": "The Equipment Shed",
+            "description": "The equipment shed is a corrugated ironbark lean-to built against the mine entrance wall. Inside, mining tools hang from pegs in ordered rows -- pickaxes, pry bars, helmet lanterns, coils of rope. Most are standard iron, but a few pieces shimmer with the faint amber sheen of Aether-treated metal. A locked strongbox sits beneath the workbench, its padlock crusted with rust but still functional.",
+            "read_aloud": "The shed smells of iron filings and lantern oil. Tools hang in neat rows -- the kind of order that only survives because everyone left too fast to loot the place. A locked strongbox under the bench catches the light. Its padlock is rusted but solid.",
+            "sensory_signature": "Iron filings and lantern oil. Cold metal. The faint amber sheen of Aether-treated tools.",
+            "enemies": [],
+            "loot": [
+                {"name": "Miner's Pickaxe", "tier": 1, "type": "common", "description": "Tier I. R.Hand. +1d6 MIGHT. Can be used to break through collapsed tunnels (DC 12 Might)."},
+                {"name": "Helmet Lantern", "tier": 1, "type": "common", "description": "Head slot. Hands-free light source. 8 hours of burn time. Does not contribute dice but frees both hands."},
+                {"name": "Climbing Rope (50ft)", "tier": 1, "type": "tool", "description": "Required for vertical traversal in the deep mines."}
+            ],
+            "hazards": [],
+            "npcs": [],
+            "investigation_dc": 13,
+            "event_triggers": [
+                "On investigation success (DC 13): The strongbox contains a miner's journal and a single Amber Shard. The journal describes 'singing iron' found in the deep mines -- veins of metal that resonate with the Root-Song. The last entry reads: 'The Queen is awake. We are leaving. Gods forgive us for what we dug into.'",
+                "On lockpick attempt (DC 12 Wits): The padlock gives. Inside: 10 amber dust, 1 Amber Shard, and the journal."
+            ]
         },
         "2": {
             "id": 2,
@@ -80,17 +83,20 @@
             "tier": 2,
             "is_locked": false,
             "is_secret": false,
-            "content_hints": {
-                "description": "The mine shaft is a vertical descent -- a wooden cage elevator suspended over darkness by cables that creak and groan under their own weight. The mechanism is hand-cranked, rusted but functional. Looking down, the shaft drops forty feet into the upper mine level. Metallic web-strands catch the light at intervals, stretched across the shaft like tripwires. Something has been climbing up and down this shaft without using the elevator.",
-                "read_aloud": "The elevator cage hangs over nothing. The cables groan when the wind shifts, a sound like a ship's rigging in a storm. Looking down, you see web -- metallic, silver-bright, stretched in geometric patterns across the shaft. The strands vibrate faintly, transmitting information to something below. The crank is stiff but turns. The cage descends. The cables groan louder. You try not to think about the weight limit.",
-                "npcs": [],
-                "loot": [],
-                "services": [],
-                "event_triggers": [
-                    "On descent: The cables groan under your weight. DC 10 Wits to notice the fraying point three-quarters down. If noticed, the party can reinforce with rope (no check required). If not noticed: 25% chance the cable snaps on ascent later, requiring DC 14 Grit to catch the cage before it falls.",
-                    "DoomClock begins for mine exploration. The elevator descent is the point of no return for this chapter."
-                ]
-            }
+            "name": "Shaft Head Alpha",
+            "description": "The mine shaft is a vertical descent -- a wooden cage elevator suspended over darkness by cables that creak and groan under their own weight. The mechanism is hand-cranked, rusted but functional. Looking down, the shaft drops forty feet into the upper mine level. Metallic web-strands catch the light at intervals, stretched across the shaft like tripwires. Something has been climbing up and down this shaft without using the elevator.",
+            "read_aloud": "The elevator cage hangs over nothing. The cables groan when the wind shifts, a sound like a ship's rigging in a storm. Looking down, you see web -- metallic, silver-bright, stretched in geometric patterns across the shaft. The strands vibrate faintly, transmitting information to something below. The crank is stiff but turns. The cage descends. The cables groan louder. You try not to think about the weight limit.",
+            "sensory_signature": "Groaning cables. Cold updraft from below. The vibration of metallic web transmitting weight.",
+            "enemies": [],
+            "loot": [],
+            "hazards": [
+                {"name": "Fraying Cable", "dc": 10, "damage": "0", "damage_type": "none", "description": "The cable frays three-quarters down. DC 10 Wits to notice on descent. If not noticed: 25% chance the cable snaps on ascent, requiring DC 14 Grit to catch the cage before it falls (3d6 bludgeoning on failure)."}
+            ],
+            "npcs": [],
+            "event_triggers": [
+                "On descent: The cables groan under your weight. DC 10 Wits to notice the fraying point three-quarters down. If noticed, the party can reinforce with rope (no check required). If not noticed: 25% chance the cable snaps on ascent later, requiring DC 14 Grit to catch the cage before it falls.",
+                "DoomClock begins for mine exploration. The elevator descent is the point of no return for this chapter."
+            ]
         }
     }
 }
