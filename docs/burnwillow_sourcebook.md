@@ -4483,7 +4483,110 @@ Emberhome is not a dungeon. It is a home. These descriptions are for sessions th
 
 ---
 
-*Part IX concludes. The adventures above can be run sequentially as a campaign arc from Tutorial through Endgame, or independently as standalone sessions. The Doom Clock is always ticking. The tree is always dying. The question is never whether you survive. The question is what survives after you.*
+---
+
+## Modular Quests
+
+The following quests are **modular** — each can be run as a standalone one-shot or dropped into an ongoing campaign when the trigger conditions are met. They are not dungeon crawls. They are story beats: NPC encounters, faction choices, and lore revelations that reshape the campaign. Each is playable in a single session (2-3 hours).
+
+**Standalone play:** Use the pre-built setup noted at the top of each quest. Characters start at Emberhome with Tier-appropriate gear.
+
+**Campaign insert:** The GM drops the quest in when the trigger condition is met naturally. Quest outcomes change faction reputation, unlock services, and reveal lore that feeds into the endgame.
+
+**Lore progression:** The four quests build on each other. Quest 1 introduces factions. Quest 2 introduces the deep lore. Quest 3 opens the Heartwood. Quest 4 opens the Undergrove. A GM running all four in sequence creates a complete narrative arc from "newcomer Seeker" to "the person who knows the truth."
+
+---
+
+## Quest 1: The Hive's Dying Queen
+
+**Type:** Faction quest (modular)
+**Trigger:** First Hive NPC encounter, or Zone 1-2 exploration
+**Duration:** 1 session (4 rooms + social scene)
+**Tier:** I-II
+**Standalone Setup:** 2-4 Tier I characters, start at Emberhome Market Row. Stinger approaches them.
+
+### Overview
+
+The Hive's Queen Mother is dying. Without her, the collective memory fragments — 400 years of accumulated knowledge scattered across individual drones who have never been individuals before. Drone-Captain Vex is desperate. Stinger, the exile, has information the Hive doesn't want shared. The Rot is pressing against the Apiary's breeding chambers. The players must decide: help the Hive on the Hive's terms, or dig into what Stinger knows and risk the Hive's anger.
+
+### For the GM
+
+The real stakes are not the Queen's death — that is inevitable regardless of what the players do. The real stakes are what happens to the information she carries. The Hive wants to preserve the collective at all costs. Stinger wants to share a specific memory about the Arborists that the Hive considers dangerous. Both are right. Both are asking the players to choose a side.
+
+The Leech Cascade in the breeding chambers is not coincidental. The Hive has been farming Sap Leeches here for centuries, and the cascade is a direct consequence of that farming. The Hive knows this but cannot stop — the honeydew is biologically essential. This is the first time the players encounter the idea that factions create their own problems.
+
+### Part 1: The Approach (Social — Emberhome or Zone 1)
+
+**If campaign insert:** Stinger approaches the party in Emberhome's Market Row, or Drone-Captain Vex intercepts them in Zone 1 near Hive territory.
+
+**If standalone:** Start at Market Row. Stinger is waiting.
+
+> **Read Aloud (Stinger):** A figure wrapped in scavenged cloth sits at the edge of Market Row, sorting small objects into careful arrangements. Chitin ridges glint at their temples. They don't look up when you approach. "You're the new Seekers." Not a question. "The Hive needs help. They won't say that — they'll say 'we require assistance,' because they don't have a word for 'need' that isn't 'we.' But they need help." A pause. Their hands stop sorting. "I need help too. Different kind. You'll have to choose."
+
+**Stinger's Offer:** Guide the party to the Apiary. In exchange, the party listens to what Stinger has to say — a memory about the Arborists that the Hive expelled them for refusing to share. The Hive doesn't know Stinger is making this deal.
+
+**Voice prompt:** Quiet, guarded. Short sentences. Avoids eye contact. Speaks in fragments.
+
+### Part 2: The Apiary (3 rooms)
+
+The party enters Hive territory. Subsonic humming. Wax walls glowing amber.
+
+**Room 1: The Entry Chamber**
+
+> **Read Aloud:** The walls are honeycomb — hexagonal cells of translucent wax, each one glowing faintly amber from the Aether stored within. The air vibrates at a frequency you feel in your chest, not your ears. Drone-Captain Vex stands at the center of the chamber, antennae twitching. "We have been expecting you." Vex does not say "I." Vex never says "I." "The Mother is... diminishing. Follow."
+
+**NPC: Drone-Captain Vex**
+- Voice: Clipped military cadence. Rapid. Uses "we" exclusively. Occasionally slips into "I" — flinches when it happens.
+- Want: Save the Queen.
+- Secret: Has been having individual dreams. Terrified.
+- Offers: Honey potion (heal 2d6+2), wax-sealed armor repair.
+
+**Room 2: The Breeding Chambers**
+
+> **Read Aloud:** The temperature drops. The humming deepens. You enter a vast hexagonal gallery where the walls pulse with larval movement — hundreds of unborn Hive members, translucent and curled, suspended in amber-tinged wax. And on the far wall, grey tendrils. The Rot. It has found the softest part of the Hive. Where the larvae hang, the wall is thinnest. The Rot is eating through from outside.
+
+**Encounter:** 1d3 Rot-Beetles + 1 Sap Leech colony (Tier I). The Leeches are on the OPPOSITE wall from the Rot — the Hive farms them here. If the party kills the Leeches, Vex is upset (-1 Hive rep). If they leave the Leeches and only fight the Rot creatures, Vex is grateful.
+
+**GM Note:** The Sap-Drained condition applies while the Leech colony is alive. This is the first time players encounter the Leech Cascade concept. Let them feel the tension: the Leeches weaken the room, but the Hive needs them.
+
+**Room 3: The Queen's Chamber**
+
+> **Read Aloud:** She fills the room. The Queen Mother's body has merged with the wax walls, her form vast and immobile, compound eyes reflecting amber light that pulses with her breathing. Breathing that is slower than it was. Slower than it should be. When she speaks, the walls speak with her. "We remember you." She has never met you. She remembers everything every Hive member has ever seen. Including you. "We are... becoming less. The memories are separating. We can feel them pulling apart, like threads from a cloth." A long, slow blink. "Soon we will be many where we were one. We do not know what that means. We have never been many."
+
+**NPC: The Queen Mother**
+- Voice: Serene, ancient. Every sentence weighted with centuries.
+- Want: Preserve the collective memory.
+- Need: Allow individuals to emerge.
+- She asks the party to retrieve a rare Aether-rich pollen from Zone 2 — it could stabilize her for weeks. Not save her. Delay. She knows she is dying. She is buying time for the Hive to prepare.
+
+**Choice moment:** Stinger, who has been silent since entering the Apiary, steps forward. They ask to speak privately with the party. If the party agrees:
+
+> **Stinger whispers:** "She's not telling you everything. The pollen won't save her — she knows that. She's buying time to ensure the collective memory transfers intact. But there's a memory she's choosing NOT to transfer. A memory about the Arborists — about what they left behind in the Heartwood. She's suppressing it because she thinks it's dangerous. I have that memory. She expelled me because I wouldn't let her delete it from me. If you help me share it with someone outside the Hive — anyone — it survives. Even if she dies. Even if the Hive forgets."
+
+### Part 3: The Choice
+
+The party must decide:
+
+**Option A: Help the Queen.** Retrieve the pollen from Zone 2 (a short dungeon delve — 2-3 rooms, Tier II enemies). Return it to the Queen. She stabilizes temporarily. The Hive is grateful (+2 Hive rep). Stinger's memory stays hidden.
+
+**Option B: Help Stinger.** Let Stinger share the memory with the party via Memory Seed. The memory reveals: the Arborists left a functional Resonance Node in the Heartwood — a communication device that could re-establish contact with the sealed Arborists. The Hive doesn't want this known because the last time someone used Arborist communication technology, the Collapse happened. The Queen discovers the betrayal (-1 Hive rep, Stinger permanently exiled). But the party now knows where to look in the Heartwood.
+
+**Option C: Both.** Help the Queen AND listen to Stinger. Requires a Wits DC 15 check to manage the timing without the Queen noticing. On success: +1 Hive rep AND the memory. On failure: the Queen detects the deception. -2 Hive rep. Stinger is imprisoned. The party must choose whether to break Stinger out (combat encounter vs. Hive drones) or leave them.
+
+### Resolution
+
+| Outcome | Hive Rep | Loot | Lore Unlocked |
+|---------|---------|------|---------------|
+| Helped Queen only | +2 | Honey potions (3), wax-sealed armor piece | Hive faction services at Friendly |
+| Helped Stinger only | -1 | Memory Seed (Arborist Resonance Node location) | Heartwood quest hook, Arborist communication lore |
+| Both (success) | +1 | Honey potions (2) + Memory Seed | Both above |
+| Both (failed) | -2 | Memory Seed (if Stinger freed) | Lore unlocked but Hive hostile |
+
+**Campaign consequence:** If the party gains the Memory Seed, Quest 3 (The Cracked Seal) becomes available earlier — they know what they're looking for in the Heartwood.
+
+---
+
+*Part IX continues with additional modular quests as the campaign develops. Each quest unlocks new faction services, lore, and paths toward the endgame.*
 
 ---
 
