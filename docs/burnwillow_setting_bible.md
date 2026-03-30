@@ -390,11 +390,11 @@ The player must choose:
 - ~400 years ago: Generation 3. Old Cap's generation. Emberhome founded. The songs are mythology now.
 - Present day: 400 years of decline. The Rot has been slowly advancing, directed by the Choir from the Undergrove.
 
-### Root-Attunement — A Universal Capacity
+### Root-Binding (*Rótbinding*) — A Universal Capacity
 
-Every person in the Groves has Root-Attunement. It is not a bloodline, not a chosen lineage, not a gift that some are born with and others lack. It is a universal capacity — like the ability to build muscle, learn language, or perceive color. Everyone has it. In most people, it lies dormant. In some, it has been awakened by environment, exposure, and practice.
+Every person in the Groves has Root-Binding. It is not a bloodline, not a chosen lineage, not a gift that some are born with and others lack. It is a universal capacity — like the ability to build muscle, learn language, or perceive color. Everyone has it. In most people, it lies dormant. In some, it has been awakened by environment, exposure, and practice.
 
-Root-Attunement is the capacity to perceive and interact with Aether vibrations. It develops through prolonged proximity to Aether sources, through working with living wood, through years spent inside the tree's resonant structures. The Arborists had powerful attunement because they spent lifetimes immersed in Aether, singing to the tree daily for decades. Their children developed it faster because they grew up saturated in their parents' work. A farmer who works Aether-rich soil for thirty years might awaken it without ever knowing what happened.
+Root-Binding is the capacity to perceive and interact with Aether vibrations. It develops through prolonged proximity to Aether sources, through working with living wood, through years spent inside the tree's resonant structures. The Arborists had powerful attunement because they spent lifetimes immersed in Aether, singing to the tree daily for decades. Their children developed it faster because they grew up saturated in their parents' work. A farmer who works Aether-rich soil for thirty years might awaken it without ever knowing what happened.
 
 The Aether score at character creation represents how awake your attunement is — shaped by where you grew up, what you've been exposed to, and whether anyone ever taught you to listen. It is not fixed at birth. It can grow through experience.
 
@@ -413,7 +413,7 @@ The Arborists taught anyone willing to learn. Farmers learned simplified "growth
 Emberhome's farming traditions survived the Great Silencing in degraded form. Farmers still follow Arborist patterns, still prune at the "right" times, still sing to their plants. For most, it is habit without effect. But for the Stirring among them — and they don't know they are Stirring — it works. The wood responds, just a little. They chalk it up to good soil.
 
 **What this means:**
-- Root-Attunement is not destiny. It is opportunity. Anyone can develop it with enough exposure and effort.
+- Root-Binding is not destiny. It is opportunity. Anyone can develop it with enough exposure and effort.
 - A character's attunement can deepen during play — proximity to the Heartwood, contact with Arborist relics, learning from the descendants, or time in Aether-rich zones.
 - Weld's quirk ("talks to items while working — claims they answer back") is real attunement, awakened by decades at the forge.
 - Father Oaken's Aether flame responds to Resonant visitors. He doesn't know why.
@@ -531,7 +531,7 @@ Carrying a Memory Seed imposes severe tactical costs — designed to force escor
 
 The original inhabitants of the First Tree were one people. When the First Tree branched into four Groves, populations became isolated in different seasonal environments. Over millennia — long before the Golden Age, long before the Arborists organized — the tree shaped them. Not through magic. Through biology. The same way altitude shapes mountain peoples and latitude shapes skin color. Except the shaping agent is concentrated Aether in four distinct vibrational frequencies.
 
-Each Grove's Aether resonates at a different frequency. Each frequency pushes biological adaptation in a different direction. Root-Attunement — present in everyone — awakens and expresses differently depending on which Grove's frequency shaped your ancestors over millennia.
+Each Grove's Aether resonates at a different frequency. Each frequency pushes biological adaptation in a different direction. Root-Binding — present in everyone — awakens and expresses differently depending on which Grove's frequency shaped your ancestors over millennia.
 
 ### Autumn-Born (Burnwillow)
 
@@ -539,7 +539,7 @@ Shaped by decay-frequency Aether. The cycle of harvest, loss, and preservation.
 
 **Physical traits:** Warm-toned skin (amber, copper, brown). Hair that shifts color with age — dark in youth, ember-red in middle age, ash-white in old age, like fire-leaves through their seasons. Average build. Resilient against temperature extremes.
 
-**Aether expression:** Root-Attunement tuned to **transition and transformation**. The Stirring sense when things are about to change — a wall about to collapse, a creature about to attack, the Rot pushing into a new area. Resonants feel the Doom Clock viscerally. They are the people of the threshold.
+**Aether expression:** Root-Binding tuned to **transition and transformation**. The Stirring sense when things are about to change — a wall about to collapse, a creature about to attack, the Rot pushing into a new area. Resonants feel the Doom Clock viscerally. They are the people of the threshold.
 
 **Stat bonus:** +2 Grit. The Autumn people endure. An Autumn-Born Resonant doesn't hear the Root-Song as melody — they feel it as a steady pulse, a refusal to stop.
 
@@ -549,7 +549,7 @@ Shaped by growth-frequency Aether. The unrelenting push of new life.
 
 **Physical traits:** Green-tinged undertones to skin and hair. Tall and rangy — fast growth, lean builds. Fingernails grow faster than normal. Minor cuts heal visibly within hours. Some have faintly bioluminescent eyes from generations navigating dim understory.
 
-**Aether expression:** Root-Attunement tuned to **growth and acceleration**. The Stirring have green thumbs that actually work — plants respond. Resonants feel sap pressure, sense where new growth will burst, instinctively know which branches are sound.
+**Aether expression:** Root-Binding tuned to **growth and acceleration**. The Stirring have green thumbs that actually work — plants respond. Resonants feel sap pressure, sense where new growth will burst, instinctively know which branches are sound.
 
 **Stat bonus:** +2 Aether. The Spring people channel. Most naturally gifted at raw Aether manipulation. If any modern person can learn the Arborist songs, it's a Spring-Born Resonant. The Arborists likely drew disproportionately from this population.
 
@@ -559,7 +559,7 @@ Shaped by intensity-frequency Aether. Peak energy, forge heat, the burning crown
 
 **Physical traits:** Dark skin, resistant to heat and light. Compact, muscular builds — drought and fire selected for efficiency. Eyes tolerant of extreme brightness (Solheart's fire-leaves burn white). Calloused hands and feet from birth.
 
-**Aether expression:** Root-Attunement tuned to **force and intensity**. The Stirring hit harder than their frame suggests through unconscious Aether channeling. Resonants feel energy building, know when something is about to break, sense systems at peak capacity.
+**Aether expression:** Root-Binding tuned to **force and intensity**. The Stirring hit harder than their frame suggests through unconscious Aether channeling. Resonants feel energy building, know when something is about to break, sense systems at peak capacity.
 
 **Stat bonus:** +2 Might. The Summer people burn. An Solheart-Born Resonant feels the Root-Song as heat, as pressure, as the urge to act NOW.
 
@@ -569,7 +569,7 @@ Shaped by stillness-frequency Aether. The frozen pause. The preservation of what
 
 **Physical traits:** Pale, almost translucent skin. White or silver hair from birth. Slight builds — low caloric availability selected for efficiency. Extremely slow metabolism. Eat less, sleep less, age slower. Natural lifespan 120+ without Heartwood immersion. Cold does not bother them.
 
-**Aether expression:** Root-Attunement tuned to **perception and stillness**. The Stirring notice things others miss — details, patterns, the thing that doesn't belong. Resonants perceive the Root-Song even where it is weakest, calibrated to signal over noise. They hear silence between notes. They sense absence. The only people who might detect what's WRONG with the Choir's song — they intuitively know what stillness should sound like.
+**Aether expression:** Root-Binding tuned to **perception and stillness**. The Stirring notice things others miss — details, patterns, the thing that doesn't belong. Resonants perceive the Root-Song even where it is weakest, calibrated to signal over noise. They hear silence between notes. They sense absence. The only people who might detect what's WRONG with the Choir's song — they intuitively know what stillness should sound like.
 
 **Stat bonus:** +2 Wits. The Winter people observe. An Ashenmere-Born Resonant hears the spaces between notes. The rests. The architecture of silence.
 
@@ -592,7 +592,7 @@ Race gives one thing: a +2 bonus to one stat score at character creation. No com
 | Summer-Born | Solheart | Intensity | +2 Might |
 | Winter-Born | Ashenmere | Stillness | +2 Wits |
 
-Most Emberhome characters are Autumn-Born. Others are available with a sentence of backstory explaining how their family ended up here. Root-Attunement functions identically in all four peoples — Aether score determines awakening level regardless of heritage. But the expression of attunement is colored by ancestry — the frequency your ancestors were shaped by influences how you perceive the Root-Song.
+Most Emberhome characters are Autumn-Born. Others are available with a sentence of backstory explaining how their family ended up here. Root-Binding functions identically in all four peoples — Aether score determines awakening level regardless of heritage. But the expression of attunement is colored by ancestry — the frequency your ancestors were shaped by influences how you perceive the Root-Song.
 
 ---
 
@@ -1007,6 +1007,102 @@ Individual death has consequences: lose that character, their gear becomes salva
 At the table, the GM should mark TPK clearly: the death screen is not a memorial. It is silence. "THE BURNWILLOW FALLS." No statistics. No legacy summary. The fire-leaves go dark.
 
 This is Design Pillar #4 ("Death means something") taken to its conclusion. If total death had no consequence beyond rolling new stats, death would not mean anything. It would just be an inconvenience. The threat of losing everything — town upgrades, recipes, faction reputation, the graveyard of remembered heroes — is what makes every decision in the dungeon feel like it matters.
+
+---
+
+## Cultural Foundation — Norse and Gaelic Roots
+
+The Burnwillow draws from two intertwined cultural traditions: **Norse** (the World-Tree, sung magic, the gift-economy, the doomed cycle) and **Gaelic/Celtic** (the liminal threshold, the triple goddess, the tree-alphabet, the whispered incantation). These are not surface decoration. They are structural — the world's metaphysics, social customs, and language emerge from these roots.
+
+### The Language of the Tree
+
+Two naming traditions coexist. **English names** are used by surface-dwellers, modern factions, and Emberhome settlers — the practical language of people who have forgotten the old world. **Old Tongue names** (Norse/Gaelic influenced) are the original Arborist language, preserved by the Heartwood Descendants and still echoing in An Cór Briste's corrupted song.
+
+**Who speaks what:**
+- **Heartwood Descendants:** Old Tongue exclusively. They do not know the English names. When they whisper, it is in the old language.
+- **An Cór Briste (The Choir):** Old Tongue exclusively. Their song uses the original Arborist linguistic structures.
+- **Ancient faction members** (Old Cap, Brindlemaw, The Queen Mother, Ashknot): Mix of old and new. They remember the old names and use them in solemn moments, but have adapted to surface speech for daily use.
+- **Modern Emberhome residents:** English names only. The old language is mythology to them — fragments in Father Oaken's prayers, words carved on the Chapel wall that nobody can translate.
+- **Players:** Learn old names as they discover lore, gain faction reputation, and encounter descendants. The language itself is a progression system.
+
+### Core Terminology
+
+| English (Common) | Old Tongue (Ceremonial) | Origin | Meaning |
+|------------------|------------------------|--------|---------|
+| Root-Song | *Rótgaldr* | Norse: galdr = sung magic | The fundamental vibration of the tree |
+| Root-Binding | *Rótbinding* | Norse compound | The universal capacity to perceive Aether (formerly "Root-Binding") |
+| Memory Seed | *Cuimhne-Sìol* | Gaelic: cuimhne = memory, sìol = seed | Crystallized acoustic memory in amber |
+| The Heartwood | *An Croí-Fiodh* | Gaelic: croí = heart, fiodh = wood | The First Tree, the origin |
+| Emberhome | *Glóðheim* | Norse: glóð = ember, heim = home | The last settlement |
+| The Whisper | *An Cogar* | Gaelic: cogar = whisper | Sacred breath-speech, the only safe voice |
+| The Choir | **An Cór Briste** | Gaelic: cór = choir, briste = broken | The corrupted Arborists (always this name, never "The Choir") |
+| The Undergrove | *An Fréamh-Uaigh* | Gaelic: fréamh = root, uaigh = grave | The root-grave beneath all Groves |
+| Amber | *Ómra* | Gaelic: ómra = amber | Sacred currency and memory vessel |
+| Hollow | *Tóm* | Gaelic: tóm = empty | The mindless husks |
+| Seeker | *Lorgaire* | Gaelic: lorgaire = tracker/seeker | Those who delve into the tree |
+| Kindler | *Fadóir* | Gaelic: fadóir = one who kindles | Those who tend Emberhome |
+| The Painted Songs | *Na Amhráin Dathacha* | Gaelic: amhráin = songs, dathacha = colored | Visual encodings of the Rótgaldr |
+| Doom Clock | *Bás-Clog* | Gaelic: bás = death, clog = clock/bell | The ticking pressure of decay |
+
+### The Runic System
+
+The Painted Songs are not just murals — they are a **runic alphabet** rooted in both traditions. Each rune is a growth-ring pattern representing an Arborist song-fragment.
+
+**Ogham influence:** The Celtic ogham alphabet assigned each letter to a tree. In Burnwillow, each rune corresponds to a part of the tree's anatomy:
+
+| Rune | Tree-Part | Concept | Ogham Parallel |
+|------|-----------|---------|---------------|
+| *Croí* | Heartwood | Origin, memory, the First Ring | Beith (birch — beginnings) |
+| *Coirt* | Bark | Protection, boundary, the seal | Duir (oak — strength) |
+| *Súgh* | Sap | Flow, Aether, life-force | Saille (willow — flexibility) |
+| *Snaidhm* | Knot | Choice, junction, branching paths | Nuin (ash — connection) |
+| *Fréamh* | Root | Foundation, the deep, the Undergrove | Iodhadh (yew — death/rebirth) |
+| *Duilleog* | Leaf | Growth, canopy, the Crown | Ailm (pine — vision) |
+| *Galán* | Ringmark | A single growth year — time itself | Straif (blackthorn — discipline) |
+
+**Futhark influence:** Each rune also maps to a cosmic force:
+
+| Rune | Force | Game Mechanic |
+|------|-------|--------------|
+| *Lobhadh* (Decay) | Autumn-frequency Aether | Grit checks, endurance |
+| *Fás* (Growth) | Spring-frequency Aether | Aether checks, healing |
+| *Tine* (Fire) | Summer-frequency Aether | Might checks, force |
+| *Ciúnas* (Stillness) | Winter-frequency Aether | Wits checks, perception |
+| *Galdr* (Song) | The Root-Song itself | Trait activation, resonance |
+| *Tost* (Silence) | The Great Silencing | Stealth, the Whisper, hiding |
+
+**Gameplay:** Players discover runes on Memory Seeds, carved into Arborist relics, painted on Heartwood descendant murals, and etched into Amber Vault seals. Learning a rune unlocks: a crafting recipe, a trait modifier, a lore fragment, or a dialogue option with descendants. Collecting a full rune-set could be one path to the Wake the Sleepers ending — you need to know the complete original Rótgaldr to revive the amber-sealed Arborists.
+
+### The Threshold (*An Tairseach*)
+
+Celtic mythology is built on thresholds — liminal spaces where worlds overlap. Samhain, fairy mounds, twilight. Burnwillow is made of thresholds:
+
+- The Willow Wood: threshold between safe and dangerous
+- The Heartwood: threshold between present and past
+- The Undergrove: threshold between life and death
+- The Doom Clock: a threshold you are always approaching
+- The Whisper (*An Cogar*): speech on the threshold between voice and silence
+- Hidden entrances: thresholds between the known dungeon and the unknown depth
+
+The Arborists lived on the Threshold permanently — between the tree and themselves, between song and silence. An Cór Briste fell because they tried to cross a Threshold that should not be crossed (skipping Winter). The Heartwood Descendants survive by existing entirely on one side of a Threshold (silence) and never crossing to the other (song).
+
+**Emberhome rituals mark Threshold moments:**
+- Before a delve: a moment of silence at the gate (acknowledging the Threshold between *Glóðheim* and the deep)
+- After a death: the name is carved on the Chapel wall in old runes (Threshold between living and remembered)
+- Amber trading: holding *ómra* to your temple before exchanging it (Threshold between your memory and the tree's)
+- First kill of a run: touching the weapon to the floor (returning what was taken to the tree)
+
+### The Gift-Cycle (*Bronntanas*)
+
+Norse *gjof* (gift-giving) was a binding social contract — gifts created obligations. This is how faction reputation actually works in the world's culture. When you give the Hive a rare ingredient, you are not "increasing rep" — you are entering a *bronntanas* (gift-cycle). They owe you. You owe them. The currency is not amber. It is obligation.
+
+Every faction operates on this principle:
+- The Hive's Royal Jelly is not a "reward" — it is a gift that binds you to the collective
+- The Hag Circle's prices (a memory, a finger, a promise) are gift-exchanges, not transactions
+- The Dam-Wrights' repair services create a debt of maintenance — you are expected to help maintain what they build
+- The Canopy Court's enchantments are paid in memories because memories are the only currency the Court respects
+
+The Gift-Cycle explains why opposing factions conflict: entering one gift-cycle violates the obligations of another. You cannot owe both the Hag Circle (who value death) and the Heartwood Elders (who resist it). The debts are incompatible.
 
 ---
 
