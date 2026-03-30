@@ -846,7 +846,46 @@ class DMDashboard:
             return self._dispatch_death_save(args)
 
         elif cmd == "budget":
+            if self.system_tag == "BURNWILLOW":
+                return "Encounter budgets are not used in Burnwillow."
             return self._dispatch_encounter_budget(args)
+
+        # ─── Burnwillow-Specific Commands ───────────────────────────
+        elif cmd == "doom":
+            return self._bw_doom(args, engine)
+
+        elif cmd == "faction":
+            return self._bw_faction(args, engine)
+
+        elif cmd == "spawn":
+            return self._bw_spawn(args, engine)
+
+        elif cmd == "give":
+            return self._bw_give(args, engine)
+
+        elif cmd == "teach":
+            return self._bw_teach(args, engine)
+
+        elif cmd == "inflict":
+            return self._bw_inflict(args, engine)
+
+        elif cmd == "cure":
+            return self._bw_cure(args, engine)
+
+        elif cmd == "zone":
+            return self._bw_zone(args, engine)
+
+        elif cmd == "rot":
+            return self._bw_rot(args, engine)
+
+        elif cmd == "voice":
+            return self._bw_voice(args)
+
+        elif cmd == "cascade":
+            return self._bw_cascade(engine)
+
+        elif cmd == "inspect":
+            return self._bw_inspect(args, engine)
 
         elif cmd == "help":
             return self._help_text()
@@ -1195,8 +1234,395 @@ class DMDashboard:
             return self.companion.toggle(False)
         return self.companion.toggle()
 
+    # ─────────────────────────────────────────────────────────────────
+    # BURNWILLOW-SPECIFIC DM COMMANDS
+    # ─────────────────────────────────────────────────────────────────
+
+    def _bw_engine(self, engine):
+        """Get the BurnwillowEngine from whatever is passed."""
+        if engine and hasattr(engine, 'doom_clock'):
+            return engine
+        if self.core and hasattr(self.core, 'engine'):
+            return self.core.engine
+        return None
+
+    def _bw_doom(self, args: str, engine) -> str:
+        """View, advance, reduce, or set the Doom Clock."""
+        eng = self._bw_engine(engine)
+        if not eng:
+            return "No Burnwillow engine available."
+        if not args.strip():
+            current = eng.doom_clock.current
+            return f"Doom Clock: {current}\nThresholds: {eng.doom_clock.thresholds}"
+        arg = args.strip()
+        if arg.startswith("+"):
+            n = int(arg[1:])
+            events = eng.advance_doom(n)
+            return f"Doom advanced by {n}. Now: {eng.doom_clock.current}\n" + "\n".join(events)
+        elif arg.startswith("-"):
+            n = int(arg[1:])
+            eng.doom_clock.current = max(0, eng.doom_clock.current - n)
+            return f"Doom reduced by {n}. Now: {eng.doom_clock.current}"
+        elif arg.startswith("set "):
+            n = int(arg[4:])
+            eng.doom_clock.current = max(0, n)
+            return f"Doom set to {n}."
+        return f"Usage: doom [+N/-N/set N]  Current: {eng.doom_clock.current}"
+
+    def _bw_faction(self, args: str, engine) -> str:
+        """View or adjust faction reputation."""
+        eng = self._bw_engine(engine)
+        if not eng or not hasattr(eng, 'faction_rep'):
+            return "No faction system available."
+        if not args.strip():
+            return "\n".join(eng.faction_rep.get_summary())
+        parts = args.strip().split()
+        faction = parts[0].lower()
+        if len(parts) < 2:
+            tier = eng.faction_rep.get_tier_name(faction)
+            val = eng.faction_rep.get_tier(faction)
+            return f"{faction}: {tier} ({val:+d})"
+        try:
+            amount = int(parts[1])
+        except ValueError:
+            return f"Usage: faction <name> [+N/-N]"
+        msgs = eng.faction_rep.change_rep(faction, amount)
+        return "\n".join(msgs)
+
+    def _bw_spawn(self, args: str, engine) -> str:
+        """Spawn an enemy or NPC into the current room."""
+        eng = self._bw_engine(engine)
+        if not eng:
+            return "No engine available."
+        parts = args.strip().split(maxsplit=1)
+        if len(parts) < 2:
+            return "Usage: spawn enemy <name/tier> | spawn npc <name>"
+        spawn_type = parts[0].lower()
+        name = parts[1]
+
+        if spawn_type == "enemy":
+            # Try to parse as tier number
+            try:
+                tier = int(name)
+                import random as _rng
+                from codex.games.burnwillow.content import get_random_enemy
+                enemy = get_random_enemy(tier, _rng.Random())
+                if eng.current_room_id and eng.populated_rooms:
+                    pop = eng.populated_rooms.get(eng.current_room_id)
+                    if pop and isinstance(pop.content, dict):
+                        pop.content.setdefault("enemies", []).append(enemy)
+                return f"Spawned Tier {tier} enemy: {enemy.get('name', '?')}"
+            except (ValueError, ImportError):
+                # Spawn by name
+                enemy = {"name": name, "hp": 15, "defense": 12, "damage": "2d6", "tier": 2}
+                if eng.current_room_id and eng.populated_rooms:
+                    pop = eng.populated_rooms.get(eng.current_room_id)
+                    if pop and isinstance(pop.content, dict):
+                        pop.content.setdefault("enemies", []).append(enemy)
+                return f"Spawned enemy: {name}"
+
+        elif spawn_type == "npc":
+            npc = {"name": name, "npc_type": "quest_giver", "dialogue": f"{name} has appeared."}
+            if eng.current_room_id and eng.populated_rooms:
+                pop = eng.populated_rooms.get(eng.current_room_id)
+                if pop and isinstance(pop.content, dict):
+                    pop.content.setdefault("npcs", []).append(npc)
+            return f"NPC spawned: {name}"
+
+        return "Usage: spawn enemy <name/tier> | spawn npc <name>"
+
+    def _bw_give(self, args: str, engine) -> str:
+        """Give items, ingredients, amber, or scrap to a character."""
+        eng = self._bw_engine(engine)
+        if not eng or not eng.character:
+            return "No active character."
+        parts = args.strip().split(maxsplit=1)
+        if len(parts) < 2:
+            return "Usage: give <type> <details>\n  give ingredient <name> [count]\n  give amber <amount>\n  give scrap <amount>\n  give recipe <name>"
+        give_type = parts[0].lower()
+        detail = parts[1]
+        char = eng.character
+
+        if give_type == "ingredient":
+            ing_parts = detail.rsplit(maxsplit=1)
+            name = ing_parts[0]
+            count = 1
+            if len(ing_parts) > 1:
+                try:
+                    count = int(ing_parts[1])
+                    name = ing_parts[0]
+                except ValueError:
+                    name = detail
+            char.ingredients[name] = char.ingredients.get(name, 0) + count
+            return f"Gave {count}x {name}. Total: {char.ingredients[name]}"
+
+        elif give_type == "amber":
+            try:
+                amount = int(detail)
+            except ValueError:
+                return "Usage: give amber <amount>"
+            char.scrap += amount  # Amber and scrap are the same economy
+            return f"Gave {amount} amber/scrap. Total: {char.scrap}"
+
+        elif give_type == "scrap":
+            try:
+                amount = int(detail)
+            except ValueError:
+                return "Usage: give scrap <amount>"
+            char.scrap += amount
+            return f"Gave {amount} scrap. Total: {char.scrap}"
+
+        elif give_type == "recipe":
+            if detail not in char.known_recipes:
+                char.known_recipes.append(detail)
+            return f"Recipe unlocked: {detail}"
+
+        return "Usage: give ingredient/amber/scrap/recipe <details>"
+
+    def _bw_teach(self, args: str, engine) -> str:
+        """Teach a recipe to the party."""
+        eng = self._bw_engine(engine)
+        if not eng or not eng.character:
+            return "No active character."
+        recipe_name = args.strip()
+        if not recipe_name:
+            return "Usage: teach <recipe name>"
+        char = eng.character
+        if recipe_name not in char.known_recipes:
+            char.known_recipes.append(recipe_name)
+        return f"Recipe taught: {recipe_name}"
+
+    def _bw_inflict(self, args: str, engine) -> str:
+        """Inflict a condition on a character."""
+        eng = self._bw_engine(engine)
+        if not eng:
+            return "No engine available."
+        parts = args.strip().split(maxsplit=1)
+        if len(parts) < 2:
+            return "Usage: inflict <character> <condition>"
+        char_name = parts[0]
+        cond_name = parts[1]
+        target = None
+        for c in eng.party:
+            if char_name.lower() in c.name.lower():
+                target = c
+                break
+        if not target:
+            target = eng.character
+        from codex.games.burnwillow.engine import Condition
+        for cond in Condition:
+            if cond_name.lower().replace("-", "").replace("_", "") in cond.value.lower().replace("-", ""):
+                msg = target.add_condition(cond)
+                return msg
+        return f"Unknown condition: {cond_name}. Available: {', '.join(c.value for c in Condition)}"
+
+    def _bw_cure(self, args: str, engine) -> str:
+        """Remove a condition from a character."""
+        eng = self._bw_engine(engine)
+        if not eng:
+            return "No engine available."
+        parts = args.strip().split(maxsplit=1)
+        if len(parts) < 2:
+            return "Usage: cure <character> <condition>"
+        char_name = parts[0]
+        cond_name = parts[1]
+        target = None
+        for c in eng.party:
+            if char_name.lower() in c.name.lower():
+                target = c
+                break
+        if not target:
+            target = eng.character
+        from codex.games.burnwillow.engine import Condition
+        for cond in Condition:
+            if cond_name.lower().replace("-", "").replace("_", "") in cond.value.lower().replace("-", ""):
+                msg = target.remove_condition(cond)
+                return msg or f"{target.name} doesn't have {cond.value}."
+        return f"Unknown condition: {cond_name}"
+
+    def _bw_zone(self, args: str, engine) -> str:
+        """View or switch the current dungeon zone."""
+        eng = self._bw_engine(engine)
+        if not eng:
+            return "No engine available."
+        if not args.strip():
+            zone = getattr(eng, '_zone', 'unknown')
+            zone_names = {1: "The Tangle", 2: "The Stone-Grip", 3: "The Aether-Flow",
+                         4: "The Rot-Heart", 5: "The Crown", 6: "The Heartwood", 7: "The Undergrove"}
+            return f"Current zone: {zone} ({zone_names.get(zone, '?')})"
+        try:
+            new_zone = int(args.strip())
+        except ValueError:
+            return "Usage: zone [1-7]"
+        import random as _rng
+        eng.generate_dungeon(depth=4, seed=_rng.randint(0, 999999), zone=new_zone)
+        zone_names = {1: "The Tangle", 2: "The Stone-Grip", 3: "The Aether-Flow",
+                     4: "The Rot-Heart", 5: "The Crown", 6: "The Heartwood", 7: "The Undergrove"}
+        return f"Zone switched to {new_zone} ({zone_names.get(new_zone, '?')}). Dungeon regenerated."
+
+    def _bw_rot(self, args: str, engine) -> str:
+        """Trigger or clear vault breach echo (Rot intensity)."""
+        eng = self._bw_engine(engine)
+        if not eng:
+            return "No engine available."
+        if not args.strip():
+            echo = eng.vault_echo_remaining
+            return f"Vault echo remaining: {echo} rooms"
+        if args.strip() == "+":
+            msg = eng.trigger_vault_breach()
+            return msg
+        elif args.strip() == "-":
+            eng.vault_echo_remaining = 0
+            return "Vault echo cleared."
+        return "Usage: rot [+/-]  (+ triggers breach, - clears echo)"
+
+    def _bw_voice(self, args: str) -> str:
+        """Show NPC voice prompt for roleplay reference."""
+        if not args.strip():
+            return "Usage: voice <npc name>"
+        import json
+        from pathlib import Path
+        npc_path = Path(__file__).resolve().parent.parent.parent / "config" / "npcs" / "burnwillow.json"
+        if not npc_path.exists():
+            return "NPC config not found."
+        data = json.loads(npc_path.read_text())
+        target = args.strip().lower()
+        for npc in data.get("named_npcs", []):
+            if target in npc.get("name", "").lower():
+                lines = [f"=== {npc['name']} ==="]
+                lines.append(f"Voice: {npc.get('voice', 'No voice note.')}")
+                lines.append(f"Quirk: {npc.get('quirk', '')}")
+                lines.append(f"Want: {npc.get('want', '')}")
+                lines.append(f"Need: {npc.get('need', '')}")
+                faction = npc.get('faction', '')
+                if faction:
+                    lines.append(f"Faction: {faction}")
+                return "\n".join(lines)
+        return f"No NPC named '{args.strip()}' found."
+
+    def _bw_cascade(self, engine) -> str:
+        """Trigger a Leech Cascade event in the current room."""
+        eng = self._bw_engine(engine)
+        if not eng or not eng.current_room_id:
+            return "No active room."
+        pop = eng.populated_rooms.get(eng.current_room_id)
+        if not pop or not isinstance(pop.content, dict):
+            return "Room has no content to modify."
+        # Add cascade enemies
+        pop.content.setdefault("enemies", []).extend([
+            {"name": "Sap Leech", "hp": 6, "defense": 9, "damage": "1d4",
+             "special": "Life Drain: heals 1 HP per hit. Inflicts Sap-Drained.", "tier": 1},
+            {"name": "Sap Leech", "hp": 6, "defense": 9, "damage": "1d4",
+             "special": "Life Drain: heals 1 HP per hit. Inflicts Sap-Drained.", "tier": 1},
+        ])
+        pop.content.setdefault("hazards", []).append(
+            {"name": "Leech Cascade", "damage": 0, "description": "Sap Leeches cluster on the walls. The Root-Song thins."}
+        )
+        return "Leech Cascade triggered! 2 Sap Leeches spawned. Room conditions: Sap-Drained."
+
+    def _bw_inspect(self, args: str, engine) -> str:
+        """Full character inspection — gear, sets, affixes, conditions, stats."""
+        eng = self._bw_engine(engine)
+        if not eng:
+            return "No engine available."
+        target = eng.character
+        if args.strip():
+            for c in eng.party:
+                if args.strip().lower() in c.name.lower():
+                    target = c
+                    break
+        if not target:
+            return "No character found."
+        from codex.games.burnwillow.engine import StatType, GEAR_SETS
+        lines = [f"=== {target.name} ({target.heritage}) ==="]
+        lines.append(f"HP: {target.current_hp}/{target.max_hp}  Defense: {target.get_defense()}")
+        for stat in StatType:
+            eff = target.get_effective_score(stat)
+            mod = target.get_stat_mod(stat)
+            dice = target.gear.get_total_dice_bonus(stat)
+            lines.append(f"  {stat.value}: {eff} ({mod:+d}) [{dice}d6 pool]")
+        # Gear
+        lines.append("\nGear:")
+        for slot, item in target.gear.slots.items():
+            if item:
+                display = item.get_display_name()
+                extra = f" [SET:{item.set_id}]" if item.set_id else ""
+                lines.append(f"  {slot.value}: {display} (T{item.tier.value}){extra}")
+        # Set bonuses
+        sets = target.gear.get_set_progress()
+        if sets:
+            lines.append("\nSets:")
+            for sid, (count, name) in sets.items():
+                lines.append(f"  {name}: {count}/4")
+        # Active bonuses
+        bonuses = target.gear.get_active_set_bonuses()
+        if bonuses:
+            lines.append("Active Set Bonuses:")
+            for key, bonus in bonuses.items():
+                lines.append(f"  {key}: {bonus.get('description', str(bonus))}")
+        # Conditions
+        conds = target.get_active_conditions()
+        if conds:
+            lines.append(f"\nConditions: {', '.join(conds)}")
+        # Ingredients
+        if target.ingredients:
+            lines.append(f"\nIngredients: {len(target.ingredients)} types")
+        if target.known_recipes:
+            lines.append(f"Known Recipes: {len(target.known_recipes)}")
+        return "\n".join(lines)
+
+    def _bw_help_text(self) -> str:
+        """Burnwillow-specific DM Dashboard help."""
+        return (
+            "DM Dashboard — BURNWILLOW\n"
+            "═══════════════════════════\n"
+            "\n"
+            "--- World Control ---\n"
+            "  doom [+N/-N/set N]       - View/adjust Doom Clock\n"
+            "  faction [name] [+N/-N]   - View/adjust faction reputation\n"
+            "  zone [1-7]               - View or switch dungeon zone\n"
+            "  rot [+/-]                - Trigger/clear vault breach echo\n"
+            "  cascade                  - Trigger Leech Cascade in current room\n"
+            "\n"
+            "--- Encounter Management ---\n"
+            "  spawn enemy <name/tier>  - Add enemy to current room\n"
+            "  spawn npc <name>         - Add NPC to current scene\n"
+            "  encounter [tier]         - Generate full encounter\n"
+            "  bestiary <name>          - Lookup creature stats\n"
+            "  inflict <char> <cond>    - Apply condition to character\n"
+            "  cure <char> <cond>       - Remove condition from character\n"
+            "  init [roll|show|next]    - Initiative tracker\n"
+            "\n"
+            "--- Loot & Economy ---\n"
+            "  give ingredient <name> [N]  - Give ingredients\n"
+            "  give amber/scrap <N>        - Give currency\n"
+            "  give recipe <name>          - Unlock a recipe\n"
+            "  teach <recipe>              - Teach recipe to party\n"
+            "  loot [difficulty]           - Generate random loot\n"
+            "\n"
+            "--- Information ---\n"
+            "  inspect [character]      - Full character sheet (gear, sets, conditions)\n"
+            "  voice <npc name>         - NPC voice/quirk/want/need for roleplay\n"
+            "  ask <question>           - Query Codex model w/ RAG\n"
+            "  rules [topic]            - Rules quick-reference\n"
+            "\n"
+            "--- Session Management ---\n"
+            "  roll <dice>              - Roll dice (e.g. 3d6+2)\n"
+            "  condition <name> <type>  - Apply condition (generic)\n"
+            "  rest [short|long]        - Trigger rest\n"
+            "  quest add/list/complete  - Quest tracker\n"
+            "  npcs log/list/info       - NPC tracker\n"
+            "  note <text>              - Session note\n"
+            "  timer [start|stop]       - Session timer\n"
+            "  log add/save/recap       - Session log\n"
+            "  status                   - Thermal/RAM vitals\n"
+            "  quit                     - Exit dashboard\n"
+        )
+
     def _help_text(self) -> str:
         """Return help text for all commands."""
+        if self.system_tag == "BURNWILLOW":
+            return self._bw_help_text()
         return (
             "DM Dashboard Commands:\n"
             "  roll <dice>         - Roll dice (e.g. 2d6+3)\n"
