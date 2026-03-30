@@ -366,7 +366,11 @@ def autofill_system(system_id: str, master_data: Optional[dict] = None,
     current_mechanics = existing.get("mechanics", {})
 
     # Layer 1: MASTER_REGISTRY static data
-    if master_data:
+    # Skip merge if config explicitly opts out (prevents garbage data injection)
+    if existing.get("_no_registry_merge"):
+        if not silent:
+            print(f"      Layer 1: Skipped (_no_registry_merge flag set)")
+    elif master_data:
         master_mechanics = master_data.get("mechanics", {})
         current_mechanics = merge_mechanics(current_mechanics, master_mechanics)
         if not silent:

@@ -209,11 +209,11 @@ def calculate_dice_pool(self) -> int:
 **Example:**
 ```
 Base: 1d6
-+ Chest (Tier II): +2d6
-+ R.Hand (Tier II): +2d6
++ Chest (Tier II): +1d6
++ R.Hand (Tier II): +1d6
 + L.Hand (Tier I): +1d6
 ─────────────────────────
-Total: 6d6 → Capped to 5d6
+Total: 4d6 (each item = +1d6 regardless of tier)
 ```
 
 ---

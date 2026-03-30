@@ -19,84 +19,52 @@
     "settings": {
         "burnwillow": {
             "name": "Burnwillow — Autumn (Default)",
-            "description": "The dying hearth. Fire-leaves in perpetual crimson. The Blight rose first here. Emberhome clings to the mid-trunk.",
-            "theme": "Harvest and decay. Scarcity, sacrifice, community warmth against encroaching darkness.",
-            "season": "Autumn",
-            "hub": "Emberhome (Glóðheim)",
-            "zones": [0, 1, 2, 3, 4, 5, 6, 7],
-            "factions": ["hive", "mycelium", "dam_wrights", "canopy_court", "hag_circle", "heartwood_elders"],
-            "status": "playable"
+            "description": "The dying hearth. Fire-leaves in perpetual crimson. The Blight rose first here.",
+            "season": "Autumn", "hub": "Emberhome (Glóðheim)", "status": "playable"
         },
         "verdhollow": {
             "name": "Verdhollow — Spring",
-            "description": "Uncontrolled growth. Everything blooms too fast, too wild. Vines strangle paths between visits.",
-            "theme": "Abundance as threat. The terror of plenty. Life without restraint.",
-            "season": "Spring",
-            "hub": "Unknown — to be designed",
-            "zones": [],
-            "factions": [],
-            "status": "planned"
+            "description": "Uncontrolled growth. Everything blooms too fast, too wild.",
+            "season": "Spring", "hub": "TBD", "status": "planned"
         },
         "solheart": {
             "name": "Solheart — Summer",
-            "description": "Burning from the outside in. Crown fires. Drought in the roots. Desert-pragmatists who waste nothing.",
-            "theme": "Excess and endurance. The forge-heat of peak power. Glory and its cost.",
-            "season": "Summer",
-            "hub": "Unknown — to be designed",
-            "zones": [],
-            "factions": [],
-            "status": "planned"
+            "description": "Burning from the outside in. Crown fires. Drought in the roots.",
+            "season": "Summer", "hub": "TBD", "status": "planned"
         },
         "ashenmere": {
             "name": "Ashenmere — Winter",
-            "description": "A tree that has stopped entirely. No Root-Song. No sap flow. Crystalline, ice-encased. The Choir's first test.",
-            "theme": "Stillness and forgetting. Preservation vs. stagnation. The beauty of death.",
-            "season": "Winter",
-            "hub": "Unknown — to be designed",
-            "zones": [],
-            "factions": [],
-            "status": "planned"
+            "description": "A tree that has stopped entirely. An Cór Briste's first test.",
+            "season": "Winter", "hub": "TBD", "status": "planned"
         },
         "heartwood": {
             "name": "The Heartwood — Within",
-            "description": "The First Tree. Concentric growth rings. The Arborists' most sacred space. The Silent Culture survives here.",
-            "theme": "Memory and origin. The answers to every question the setting has raised.",
-            "season": "None — outside the cycle",
-            "hub": "Descendant settlements (no hub town)",
-            "zones": [6],
-            "factions": ["heartwood_elders"],
-            "status": "playable (endgame zone)"
+            "description": "The First Tree. The Silent Culture. The Arborists' most sacred space.",
+            "season": "None", "hub": "Descendant settlements", "status": "playable (endgame)"
         },
         "undergrove": {
             "name": "The Undergrove — Below",
-            "description": "The root network beneath all Groves. Where the Rot is native. Where An Cór Briste directs the decay.",
-            "theme": "Death and recycling. The necessary process everyone fears.",
-            "season": "None — beneath the cycle",
-            "hub": "None (hostile territory)",
-            "zones": [7],
-            "factions": [],
-            "status": "playable (endgame zone)"
+            "description": "The root network beneath all Groves. Where the Rot is native.",
+            "season": "None", "hub": "None (hostile)", "status": "playable (endgame)"
         }
     },
     "_no_ai_extract": true,
+    "_no_registry_merge": true,
     "mechanics": {
         "stats": ["Might", "Wits", "Grit", "Aether"],
         "resources": ["HP", "Doom Clock", "Amber"],
         "stat_generation": "4d6 drop lowest per stat. Gear adds to stat SCORE (not modifier). D&D formula: (score - 10) // 2.",
         "dice_pool": "Each equipped item = +1d6 to its stat pool, capped at 5d6. Roll pool + stat modifier vs DC.",
-        "dc_tiers": {
-            "Routine": 5,
-            "Standard": 11,
-            "Hard": 15,
-            "Elite": 22,
-            "Legendary": 30
-        },
+        "dc_tiers": {"Routine": 5, "Standard": 11, "Hard": 15, "Elite": 22, "Legendary": 30},
         "gear_slots": ["R.Hand", "L.Hand", "Head", "Arms", "Chest", "Legs", "Shoulders", "Neck", "R.Ring", "L.Ring"],
         "progression": "Gear-based (no leveling). Power scales with equipment tier and build synergy.",
         "passive_threshold": "If Total Modifier + 1 >= DC, auto-succeed without rolling.",
         "assistance": "Ally grants +1d6 to roll (subject to 5d6 cap). One helper per check.",
         "root_resonance": "Universal capacity to perceive Aether. Awakens through exposure. Spectrum: Dormant → Stirring → Resonant → True Arborist.",
         "tpk": "Total Party Kill = full campaign reset. No Memory Seeds, no meta_state.",
-        "cultural_tradition": "Norse/Gaelic. Old Tongue (Rótgaldr, An Cogar, An Cór Briste) for Heartwood Descendants and The Choir. Common for surface."
+        "cultural_tradition": "Norse/Gaelic. Old Tongue for Heartwood Descendants and An Cór Briste. Common for surface.",
+        "classes": [],
+        "subclasses": [],
+        "races": []
     }
 }
