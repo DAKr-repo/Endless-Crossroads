@@ -2068,7 +2068,25 @@ class BurnwillowEngine:
 
         # Populate with zone-specific content
         self._zone = zone
-        if zone == 1:
+        if zone == 6:
+            # The Heartwood — within the tree
+            try:
+                from codex.games.burnwillow.zone_heartwood import HeartwoodAdapter
+                adapter = HeartwoodAdapter(seed=seed)
+            except ImportError:
+                adapter = BurnwillowAdapter(seed=seed)
+            injector = ContentInjector(adapter)
+            self.populated_rooms = injector.populate_all(self.dungeon_graph)
+        elif zone == 7:
+            # The Undergrove — below the roots
+            try:
+                from codex.games.burnwillow.zone_undergrove import UndergroveAdapter
+                adapter = UndergroveAdapter(seed=seed)
+            except ImportError:
+                adapter = BurnwillowAdapter(seed=seed)
+            injector = ContentInjector(adapter)
+            self.populated_rooms = injector.populate_all(self.dungeon_graph)
+        elif zone == 1:
             try:
                 from codex.games.burnwillow.zone1 import TangleAdapter
                 adapter = TangleAdapter(seed=seed)
@@ -2077,7 +2095,7 @@ class BurnwillowEngine:
             injector = ContentInjector(adapter)
             self.populated_rooms = injector.populate_all(self.dungeon_graph)
         elif zone > 1:
-            # Higher zones use TangleAdapter for richer content
+            # Zones 2-5 use TangleAdapter for richer content
             try:
                 from codex.games.burnwillow.zone1 import TangleAdapter
                 adapter = TangleAdapter(seed=seed)
