@@ -391,6 +391,11 @@ def autofill_system(system_id: str, master_data: Optional[dict] = None,
         print(f"      Layer 2: No homebrew files found")
 
     # Layer 3: AI extraction (optional)
+    # Skip AI extraction if the config explicitly opts out (prevents garbage data injection)
+    if existing.get("_no_ai_extract") or existing.get("mechanics", {}).get("_no_ai_extract"):
+        use_ai = False
+        if not silent:
+            print(f"      Layer 3: Skipped (config has _no_ai_extract flag)")
     if use_ai:
         ai_found = 0
         display_name = (master_data or {}).get("name", system_id)
