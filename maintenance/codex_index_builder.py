@@ -286,8 +286,12 @@ def audit_index_health(manifest: 'VaultManifest') -> Dict[str, List[str]]:
                 continue
 
             # Check 2: file is in manifest but has no tagged shards
+            # Skip if the file was previously indexed and produced 0 shards
+            # (image-only PDFs, empty docs) — marked with "_empty" in manifest
             stored = manifest.all_tracked.get(manifest_key)
             if stored is not None and filename_stem not in tagged_sources:
+                if stored == "_empty":
+                    continue  # Already known to produce 0 shards
                 files_to_reindex.append(manifest_key)
                 continue
 
@@ -762,6 +766,16 @@ def build_index(vault_name: str, documents: List[DocChunk]):
                 tagged_text = f"[{source_name}] {text}" if source_name else text
                 all_chunks.append(DocChunk(page_content=tagged_text, metadata=dict(doc.metadata)))
     print(f"Created {len(all_chunks)} shards.")
+
+    # Mark files that produced 0 shards as "_empty" in manifest
+    # so the audit doesn't keep re-triggering them
+    if manifest and len(all_chunks) == 0:
+        for doc in parsed_docs:
+            source_path = doc.metadata.get("source", "")
+            if source_path:
+                mk = os.path.relpath(source_path, str(VAULT_DIR)) if VAULT_DIR else source_path
+                manifest.update(mk, "_empty")
+        manifest.save()
 
     # Enhance metadata
     all_chunks = _enhance_chunk_metadata(all_chunks)

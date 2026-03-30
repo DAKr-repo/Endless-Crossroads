@@ -12,6 +12,14 @@
             "type": "race",
             "name": "Dwarven"
         },
+        "dwarves": {
+            "type": "race",
+            "name": "Dwarves"
+        },
+        "elves": {
+            "type": "race",
+            "name": "Elves"
+        },
         "elvish": {
             "type": "race",
             "name": "Elvish"
@@ -20,13 +28,25 @@
             "type": "race",
             "name": "Gnome"
         },
+        "gnomes": {
+            "type": "race",
+            "name": "Gnomes"
+        },
         "halfling": {
             "type": "race",
             "name": "Halfling"
         },
+        "halflings": {
+            "type": "race",
+            "name": "Halflings"
+        },
         "orc": {
             "type": "race",
             "name": "Orc"
+        },
+        "orcs": {
+            "type": "race",
+            "name": "Orcs"
         },
         "diplomacy": {
             "type": "archetype",
@@ -113,10 +133,15 @@
             "finale": "Patron/Leader Reckoning, The Crossing, JSON Legacy",
             "races": [
                 "Dwarven",
+                "Dwarves",
+                "Elves",
                 "Elvish",
                 "Gnome",
+                "Gnomes",
                 "Halfling",
-                "Orc"
+                "Halflings",
+                "Orc",
+                "Orcs"
             ],
             "classes": [
                 "Diplomacy",

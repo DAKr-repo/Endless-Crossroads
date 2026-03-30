@@ -40,10 +40,15 @@
         "finale": "Patron/Leader Reckoning, The Crossing, JSON Legacy",
         "races": [
             "Dwarven",
+            "Dwarves",
+            "Elves",
             "Elvish",
             "Gnome",
+            "Gnomes",
             "Halfling",
-            "Orc"
+            "Halflings",
+            "Orc",
+            "Orcs"
         ],
         "classes": [
             "Diplomacy",

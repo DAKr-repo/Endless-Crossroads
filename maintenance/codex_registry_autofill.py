@@ -365,11 +365,18 @@ def autofill_system(system_id: str, master_data: Optional[dict] = None,
 
     current_mechanics = existing.get("mechanics", {})
 
-    # Layer 1: MASTER_REGISTRY static data
-    # Skip merge if config explicitly opts out (prevents garbage data injection)
+    # Complete opt-out: if config has _no_registry_merge, skip ALL layers and write nothing
     if existing.get("_no_registry_merge"):
         if not silent:
-            print(f"      Layer 1: Skipped (_no_registry_merge flag set)")
+            print(f"      All layers: Skipped (_no_registry_merge flag set)")
+            total = sum(len(v) for v in current_mechanics.values() if isinstance(v, list))
+            print(f"      Synced: {filepath.name} ({total} total entries)")
+        return False  # No modification
+
+    # Layer 1: MASTER_REGISTRY static data
+    # Skip merge if config explicitly opts out (prevents garbage data injection)
+    if existing.get("_no_ai_extract") and not master_data:
+        pass  # No master data to merge anyway
     elif master_data:
         master_mechanics = master_data.get("mechanics", {})
         current_mechanics = merge_mechanics(current_mechanics, master_mechanics)

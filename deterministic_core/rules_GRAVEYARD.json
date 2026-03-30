@@ -12,6 +12,10 @@
             "type": "race",
             "name": "Dwarven"
         },
+        "dwarves": {
+            "type": "race",
+            "name": "Dwarves"
+        },
         "elven": {
             "type": "race",
             "name": "Elven"
@@ -20,6 +24,10 @@
             "type": "race",
             "name": "Gnome"
         },
+        "gnomes": {
+            "type": "race",
+            "name": "Gnomes"
+        },
         "halfling": {
             "type": "race",
             "name": "Halfling"
@@ -27,6 +35,10 @@
         "orc": {
             "type": "race",
             "name": "Orc"
+        },
+        "orcs": {
+            "type": "race",
+            "name": "Orcs"
         },
         "n/a": {
             "type": "resource",
@@ -109,21 +121,36 @@
         "mechanics": {
             "races": [
                 "Dwarven",
+                "Dwarves",
                 "Elven",
                 "Gnome",
+                "Gnomes",
                 "Halfling",
-                "Orc"
+                "Orc",
+                "Orcs"
             ],
             "classes": [
                 "Armor",
+                "Bow",
+                "Crossbow",
                 "Equipment",
                 "Miscellaneous",
+                "Potion",
+                "Ring",
+                "Shield",
+                "Staff",
+                "Sword",
                 "Tools",
+                "Weapon",
                 "Weapons"
             ],
             "subclasses": [
                 "Armor",
                 "Artifact",
+                "Potion",
+                "Ring",
+                "Shield",
+                "Sword",
                 "Tool",
                 "Weapon"
             ]

@@ -1,96 +1,24 @@
 {
     "system_id": "GRAVEYARD",
     "display_name": "GRAVEYARD \u2014 Fallen Character Archive",
-    "description": "Cross-system persistent tombstone storage for characters who have met their end. Tracks provenance, cause, and legacy across all supported game systems.",
+    "description": "Cross-system persistent tombstone storage for characters who have met their end.",
     "engine": "none",
     "system_family": "meta",
     "dice_system": "none",
-    "archetype_categories": {
-        "note": "Graveyard is a storage system, not a game system."
-    },
-    "core_stats": [
-        "n/a"
-    ],
-    "resources": [
-        "n/a"
-    ],
+    "_no_ai_extract": true,
+    "_no_registry_merge": true,
+    "archetype_categories": {"note": "Graveyard is a storage system, not a game system."},
+    "core_stats": ["n/a"],
+    "resources": ["n/a"],
     "storage_format": "append_only_json_array",
-    "supported_systems": [
-        "burnwillow",
-        "dnd5e",
-        "stc",
-        "bitd",
-        "sav",
-        "bob",
-        "cbrpnk",
-        "candela",
-        "crown"
-    ],
+    "supported_systems": ["burnwillow", "dnd5e", "stc", "bitd", "sav", "bob", "cbrpnk", "candela", "crown"],
     "fields": {
-        "name": {
-            "type": "string",
-            "required": true,
-            "description": "The character's name as it appeared in play."
-        },
-        "system": {
-            "type": "string",
-            "required": true,
-            "description": "system_id of the game system this character belonged to."
-        },
-        "level_or_tier": {
-            "type": "string",
-            "required": false,
-            "description": "Character level (D&D-style) or advancement tier (FITD-style) at time of death."
-        },
-        "cause_of_death": {
-            "type": "string",
-            "required": true,
-            "description": "Narrative description of the final scene or killing blow."
-        },
-        "date": {
-            "type": "string",
-            "required": true,
-            "description": "ISO 8601 date string of when the character died (real-world session date)."
-        },
-        "achievements": {
-            "type": "array",
-            "required": false,
-            "description": "List of notable deeds, completed quests, or legacy moments from this character's run.",
-            "items": "string"
-        }
+        "name": {"type": "string", "required": true, "description": "Character name."},
+        "system": {"type": "string", "required": true, "description": "system_id of the game system."},
+        "level_or_tier": {"type": "string", "required": false, "description": "Level or tier at death."},
+        "cause_of_death": {"type": "string", "required": true, "description": "Narrative description."},
+        "date": {"type": "string", "required": true, "description": "ISO 8601 date."},
+        "achievements": {"type": "array", "required": false, "description": "Notable deeds.", "items": "string"}
     },
-    "example_tombstone": {
-        "name": "Ser Aldric Vane",
-        "system": "burnwillow",
-        "level_or_tier": "4",
-        "cause_of_death": "Crushed by the Doomclock's final toll when the vault collapsed.",
-        "date": "2026-03-01",
-        "achievements": [
-            "Cleared the Emberhome crypts",
-            "Recovered the Ember Sigil",
-            "Sacrificed herself so the party could escape"
-        ]
-    },
-    "mechanics": {
-        "races": [
-            "Dwarven",
-            "Elven",
-            "Gnome",
-            "Halfling",
-            "Orc"
-        ],
-        "classes": [
-            "Armor",
-            "Equipment",
-            "Miscellaneous",
-            "Tools",
-            "Weapons"
-        ],
-        "subclasses": [
-            "Armor",
-            "Artifact",
-            "Tool",
-            "Weapon"
-        ]
-    }
+    "mechanics": {}
 }

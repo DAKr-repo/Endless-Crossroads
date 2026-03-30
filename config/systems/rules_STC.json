@@ -4,77 +4,17 @@
     "engine": "custom",
     "system_family": "STC",
     "dice_system": "d20 + modifier (Cosmere RPG)",
+    "_no_ai_extract": true,
     "archetype_categories": {
-        "orders": [
-            "Bondsmith",
-            "Dustbringer",
-            "Edgedancer",
-            "Elsecaller",
-            "Lightweaver",
-            "Skybreaker",
-            "Stoneward",
-            "Truthwatcher",
-            "Willshaper",
-            "Windrunner"
-        ]
+        "orders": ["Bondsmith", "Dustbringer", "Edgedancer", "Elsecaller", "Lightweaver", "Skybreaker", "Stoneward", "Truthwatcher", "Willshaper", "Windrunner"]
     },
-    "core_stats": [
-        "Awareness",
-        "Intellect",
-        "Presence",
-        "Speed",
-        "Strength",
-        "Will"
-    ],
-    "resources": [
-        "Focus",
-        "Investiture",
-        "Stormlight"
-    ],
+    "core_stats": ["Awareness", "Intellect", "Presence", "Speed", "Strength", "Will"],
+    "resources": ["Focus", "Investiture", "Stormlight"],
     "mechanics": {
-        "stats": [
-            "Awareness",
-            "Intellect",
-            "Presence",
-            "Speed",
-            "Strength",
-            "Will"
-        ],
-        "resources": [
-            "Focus",
-            "Investiture",
-            "Stormlight"
-        ],
-        "classes": [
-            "Bondsmith",
-            "Dustbringer",
-            "Edgedancer",
-            "Elsecaller",
-            "Lightweaver",
-            "Skybreaker",
-            "Stoneward",
-            "Truthwatcher",
-            "Willshaper",
-            "Windrunner"
-        ],
-        "subclasses": [
-            "Draenei",
-            "Dwarves",
-            "Elfs",
-            "Gnomes",
-            "Halflings",
-            "Living Shard",
-            "Radiant",
-            "Squire"
-        ],
-        "races": [
-            "Dwarven",
-            "Elvish",
-            "Gnome",
-            "Halfling",
-            "Human",
-            "Orc",
-            "Singer"
-        ]
+        "stats": ["Awareness", "Intellect", "Presence", "Speed", "Strength", "Will"],
+        "resources": ["Focus", "Investiture", "Stormlight"],
+        "classes": ["Bondsmith", "Dustbringer", "Edgedancer", "Elsecaller", "Lightweaver", "Skybreaker", "Stoneward", "Truthwatcher", "Willshaper", "Windrunner"],
+        "subclasses": ["Radiant", "Squire"],
+        "races": ["Human", "Singer"]
     }
 }

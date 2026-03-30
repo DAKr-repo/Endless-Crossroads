@@ -180,6 +180,33 @@ def scan_system_content(vault_path: str, parent_path: str = None) -> dict:
             existing_names.add(mod["name"])
             result["modules"].append(mod)
 
+    # Also check the rules JSON for a "settings" key (for systems like Burnwillow
+    # that define settings in the config rather than as vault files)
+    if system_id:
+        _config_base = Path(__file__).resolve().parent.parent.parent / "config" / "systems"
+        _rules_path = _config_base / f"rules_{system_id.upper()}.json"
+        if not _rules_path.exists():
+            _rules_path = _config_base / f"rules_{system_id}.json"
+        if _rules_path.exists():
+            try:
+                import json as _json
+                _rules = _json.loads(_rules_path.read_text())
+                _json_settings = _rules.get("settings", {})
+                if isinstance(_json_settings, dict):
+                    existing_setting_names = {s["name"] for s in result.get("settings", [])}
+                    for _sid, _sdata in _json_settings.items():
+                        _sname = _sdata.get("name", _sid)
+                        if _sname not in existing_setting_names:
+                            result["settings"].append({
+                                "name": _sname,
+                                "path": f"rules_{system_id}.json#{_sid}",
+                                "description": _sdata.get("description", ""),
+                                "status": _sdata.get("status", ""),
+                            })
+                            existing_setting_names.add(_sname)
+            except Exception:
+                pass
+
     return result
 
 
