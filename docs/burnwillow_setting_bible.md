@@ -400,7 +400,7 @@ The Aether score at character creation represents how awake your attunement is �
 
 **The Spectrum of Awakening:**
 
-- **Dormant (most people, Aether below 12):** Attunement has never been activated. Can learn Arborist techniques as mechanical skills, but the wood does not respond specially. Can use Arborist tools at Tier I benefit only — the tool resonates, not the person. With enough exposure, anyone at this level could awaken further.
+- **Dormant (most people, Aether below 12):** Root-Binding has never been activated. Can learn Arborist techniques as mechanical skills, but the wood does not respond specially. Can use all gear normally — effectiveness is determined by stats, not by awakening level. With enough exposure, anyone at this level could awaken further.
 - **Stirring (uncommon, Aether 12-13):** Activated by years of proximity to Aether sources — working the forge, farming Aether-rich soil, living near vein taps. Occasional moments: wood that "just cooperates," gut feelings about which root to follow. They don't know why they're good at what they do. Weld is almost certainly Stirring — decades at the Ember-Forge did this. Scout Lira's instincts may be attunement she developed through years in the dungeon.
 - **Resonant (rare, Aether 14-16):** Fully awake. They hear the Root-Song without being told it exists. Children raised near concentrated Aether who hum melodies nobody taught them. Adults who feel the tree breathing through their palms. In Emberhome, Father Oaken tends to them — the Chapel's Aether flame burns brighter in their presence. They could learn to sing if anyone could teach them. Nobody can.
 - **True Arborists (the old order, Aether 17+):** Attunement fully developed AND trained over decades AND physically transformed by prolonged Aether saturation. Denser bones, Aether in the blood, extended lifespan, perception beyond human range. This was not a birthright — it was the result of lifelong devotion. An apprentice took 20 years to show the first changes. A master who had been singing for a century was barely human anymore. Not inhuman. Rooted. They became what they practiced.
@@ -425,7 +425,7 @@ Emberhome's farming traditions survived the Great Silencing in degraded form. Fa
 
 ### Arborist Relic Properties
 - Items carry the `[Resonant]` trait: they hum audibly near active Root-Song.
-- Most require Aether 12+ to attune; unintuned use grants only Tier I benefits regardless of material.
+- No attunement restriction — if you find it, you wield it. Your stat scores determine effectiveness.
 - Cannot be repaired conventionally — only Arborist forges (found in Amber Vaults) can restore them.
 - Some retain partial sentience; the Sun-Bow selects its own wielder (Aether check DC 16 to attune).
 - Arborist items are grown, not made. They respond to the Root-Song, not to the wielder's will alone.
@@ -967,7 +967,7 @@ Resource management is a primary tension layer, separate from combat.
 - **Implements (Wands/Staves):** Reusable. Scale with Aether stat. Hit Resistance (not Defense) — bypasses armor class entirely.
 - **Scrolls:** Consumable, high power. Roll Aether vs. DC 10 on use. Failure burns the scroll with no effect. Fumble (all dice showing 1): backfire.
 - **Aether Attunement:** Characters with Aether 14+ sense Amber impressions and interpret Root-Song fragments.
-- **Arborist Relic Attunement:** Requires Aether 12+. Unintuned use: Tier I benefit only regardless of item's actual material tier.
+- **Arborist Relics:** No attunement restriction. If you find it, you use it. Your stats determine how effective it is — a low-Aether character benefits less from an Aether-feeding relic, but the gear still works. The Sun-Bow is a unique exception (it selects its own wielder via Aether DC 16 — this is the item's personality, not a system-wide rule).
 
 ---
 
