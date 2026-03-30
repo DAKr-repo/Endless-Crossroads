@@ -125,6 +125,123 @@ Ashknot's discovery that the Rot follows Root-Road infrastructure makes sense: t
 
 ---
 
+## The Seasonal Groves — Expanded Settings
+
+Each Grove is a complete campaign setting with its own tone, crisis, factions, and core mechanic that replaces the Doom Clock. All share the Burnwillow engine (5d6 pool, GearGrid, traits) but each modifies it to reflect its season.
+
+### Verdhollow — Spring (The Growth Clock)
+
+**The crisis is not death — it is life.** Everything grows too fast. Vines strangle paths overnight. Roots split stone between visits. New growth smothers old. The Blight here wears green — indistinguishable from natural growth until it is too late.
+
+**Core Mechanic: The Growth Clock** — Replaces the Doom Clock. The dungeon grows around you. Passages close behind as vines fill them. Rooms shrink as roots push inward. The longer you stay, the harder it is to get out — not because things are falling apart, but because things are filling in.
+
+**The People:** The druids of Verdhollow are not fighting death. They are fighting birth. They prune constantly — every waking hour — and it is not enough. They do not delve into dungeons. They hack corridors through living wood that sealed overnight. Their "dungeon" is the tree itself, growing around them, trying to reclaim every space they have carved.
+
+**What makes it different from Burnwillow:**
+- In Burnwillow, you go DOWN into dead wood. In Verdhollow, you go INTO living wood that is actively trying to close around you.
+- Burnwillow gear is scavenged from ruins. Verdhollow gear is harvested from living things — and what you harvest grows back wrong.
+- Burnwillow's NPCs are survivors. Verdhollow's NPCs are gardeners in a garden that is eating them.
+
+**Real ecology:** Explosive bud-break, sap flow surges, pollinator explosion, root spreading into new territory, parasites emerging from dormancy, flooding from snowmelt.
+
+**Status:** Planned. Needs: hub settlement, 6 factions (spring ecology), bestiary, loot tables, zone structure.
+
+### Solheart — Summer (The Exhaustion Clock)
+
+**The crisis is not scarcity — it is burn rate.** Everything is at maximum intensity. Aether runs hot and unstable. Crown fires rage. There is MORE of everything — more energy, more heat, more danger — and it is consuming itself.
+
+**Core Mechanic: The Exhaustion Clock** — Replaces the Doom Clock. YOU decay, not the world. Every action costs stamina. Moving costs stamina. Fighting costs stamina. Even standing still in the sun costs stamina. Energy burns faster — you move faster, feel livelier, but become exhausted more easily.
+
+**Shade** is the only resource that matters. Shade rooms let you rest without cost. Open rooms drain you. Water is currency — not amber. The tree's sap here runs boiling hot, so drinkable water is rare and precious.
+
+**At exhaustion thresholds:** Stats start dropping. Might first (muscles fail), then Wits (mind hazes), then Grit (will breaks). Aether is the last to go because the ambient Aether is so intense it sustains you even as your body fails.
+
+**Frequent rest in shade is mandatory.** Crown fires rain down periodically. Some rooms are fully engulfed — impassable until you find water or a fire-break.
+
+**The People:** Desert-pragmatists. Nothing wasted, nothing sentimental. They do not save — they spend. They do not plan — they act. Their tree is burning and their response is to use the fire before it uses them. Forge weapons in the crown fires. Drink the boiling Aether. Sprint through the burning canopy because walking means you cook.
+
+**The feel:** You are stronger here than anywhere else. The ambient Aether makes everything sharper. But you are borrowing against your body's reserves, and the debt comes due fast. Exhilaration of peak performance alongside the terror of the crash.
+
+**What makes it different from Burnwillow:**
+- Burnwillow is about endurance. Solheart is about speed.
+- In Burnwillow, you manage resources carefully. In Solheart, resources are abundant but volatile — use them now or they burn away.
+- Burnwillow's tone is melancholy. Solheart's tone is glorious and tragic — everything is beautiful and everything is on fire.
+
+**Real ecology:** Maximum photosynthesis, heat stress (weeping posture = water conservation), fire vulnerability, insect peak, drought stress, storm damage.
+
+**Status:** Planned. Needs: hub settlement, 6 factions (summer ecology), bestiary, loot tables, zone structure.
+
+### Ashenmere — Winter (The Dormancy Clock)
+
+**The crisis is not that the tree is dying — it is that it has already stopped.** No Root-Song. No sap flow. No Blight (nothing to decompose). Everything is frozen, crystalline, preserved. Whether Ashenmere is dead, dormant, or waiting is the central mystery.
+
+**Core Mechanic: The Dormancy Clock** — Replaces the Doom Clock. The threat is you falling still. Every room in Ashenmere is quiet, beautiful, preserved. The temptation is not danger — it is rest. The clock measures how much of you has gone still.
+
+**Movement resets the clock.** As long as you keep moving, you stay awake. Stop to search a room? Clock ticks. Stop to fight? Clock ticks (combat is slow here — everything moves in slow motion, including you). Stop to rest? Clock SURGES.
+
+**The Still** — Ashenmere's version of the Rot. Not decomposition. Not growth. Cessation. A contagion of stopping. The Hollows here do not attack — they stand motionless, and if you stay near them too long, you start standing motionless too. Your joints stiffen. Your thoughts slow. Your vision narrows to a point and the point becomes comfortable and the comfort becomes everything and you stop.
+
+**At Dormancy thresholds:** Movement speed drops. Then actions per round drop. Then you cannot speak (the cold gets your voice first). Then you cannot fight. Then you stand motionless, and the frost grows over you, and you become part of Ashenmere forever.
+
+**The horror:** It does not hurt. Players who succumb to the Still are not screaming — they are smiling. They finally stopped running. They finally rested. Perfect, preserved, and gone.
+
+**An Cór Briste's test-song** is still playing here, frozen in a feedback loop. The Dormancy IS the song — not a side effect, the intended function. An Cór Briste wanted to pause Winter. They succeeded.
+
+**Winter-Born characters** have partial resistance — their Aether expression is tuned to stillness. They feel the Dormancy but can resist it longer.
+
+**Possibly empty.** No surviving people. Frozen mid-moment. Food on tables. Books open to pages being read when the song hit. The players are the first living things to walk these corridors in 400 years. And their warmth is waking things up — slowly, unpredictably, not always in welcome ways.
+
+**What makes it different from Burnwillow:**
+- Burnwillow is active, urgent, decaying. Ashenmere is still, preserved, waiting.
+- In Burnwillow, the danger is that things are falling apart. In Ashenmere, the danger is that you are falling still.
+- Burnwillow rewards aggression (act before the Doom Clock gets you). Ashenmere rewards caution (every action has permanent consequences in the frozen world).
+
+**Real ecology:** Dormancy, ice encasement, bark protection (only defense against cold), silence, preservation (dead things do not decompose in winter), memory stored in tree rings.
+
+**Status:** Planned. Needs: hub settlement (if any survivors exist), factions, bestiary, loot tables, zone structure.
+
+### The Void — The Deep Shade (Outside the Groves)
+
+**The Void is not a season. It is not part of the tree. It is what exists in the Deep Shade — the frozen, pitch-black expanse beyond the reach of every canopy's fire-light.**
+
+The Groves are islands of life in an ocean of nothing. The Root-Song creates a bubble of reality around each tree. Inside the bubble: physics, biology, Aether, time. Outside: something else entirely. The Void is governed by different laws of nature than those of the Groves.
+
+**The Void is not chaos or destruction.** It is a different set of rules. Things exist there, but they do not work the way things work inside the Groves. The Void does not want to destroy the tree — it does not "want" anything in a way that maps to intention. It is drawn to the edges of the Root-Song's reach the way water seeps into a crack. It fills the spaces where life is not.
+
+**How it differs from the Rot:**
+- The Rot is decomposition — a natural process misplaced. Part of the tree's ecosystem.
+- The Void is NOT part of the ecosystem. It is from outside. It does not decompose — it **nullifies.** Things touched by the Void do not rot. They become less real. Less solid. Less there. A Void-touched wall does not crumble — it becomes translucent, then transparent, then absent.
+
+**Void creatures** are not corrupted tree-life (like Hollows). They are things that exist in the Deep Shade under different rules. They perceive Aether the way predators perceive heat. The Root-Song is a beacon. They press against the canopy-edge, testing for weak points, slipping through where the fire-light dims.
+
+**The Void Herald** (existing bestiary, Tier IV, Zone 5 boss) is a scout. An ambassador from nothing. It does not attack from hunger or malice — it is investigating. The Groves are an anomaly in its reality. It wants to understand what the Groves ARE, and the way it understands things is by unmaking them.
+
+**The Crown (Zone 5) is where the canopy is thinnest** — the barrier between the Grove's reality and the Void is weakest at the highest branches, where fire-light barely reaches.
+
+**Endgame implications:** The player's choice about An Cór Briste has consequences for the Void:
+- Complete the Song → Root-Song strengthens → Void pushed back
+- Silence the Choir → Root-Song goes permanently silent → Void seeps in faster
+- Wake the Sleepers → a new song begins → the relationship with the Void changes unpredictably
+
+**A Void zone** would break every rule: no Aether (Root-Resonance fails), no direction (spatial map unstable), no sound (actual silence with weight). Might-focused attacks work (physical, real, undeniable). Aether-focused attacks diminished (no medium for vibration). Enemies do not have HP — they have *presence*. You do not kill them — you assert reality harder than they assert unreality.
+
+**Status:** Conceptual. The Void is a backdrop threat for now — the thing pressing at the edges while the player deals with An Cór Briste. It becomes the primary threat only after the Rot crisis is resolved.
+
+### Threat Ecology — The Complete Picture
+
+Each Grove's crisis is the corruption of something natural. All trace back to An Cór Briste breaking the seasonal cycle.
+
+| Threat | Origin | Nature | What It Does |
+|--------|--------|--------|-------------|
+| **The Rot** | Undergrove (below) | Decomposition misplaced | Breaks things down |
+| **An Cór Briste** | Undergrove | Directed Rot with intelligence | Conducts the Rot like an orchestra |
+| **The Still** | Ashenmere (winter) | Frozen test-song | Stops things permanently |
+| **The Overgrowth** | Verdhollow (spring) | Growth without restraint | Fills and smothers |
+| **The Burn** | Solheart (summer) | Energy without limit | Exhausts and consumes |
+| **The Void** | Deep Shade (outside) | Alien nullification | Unmakes reality at the edges |
+
+---
+
 ## The Rot (The Blight)
 
 The Rot is not a creature, disease, or army. It is a process — entropy given biological form.
