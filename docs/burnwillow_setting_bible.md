@@ -1,5 +1,6 @@
 # Burnwillow Setting Bible
-**Version 2.0 | Game Design Reference**
+**Version 4.0 | Game Design Reference**
+**Copyright 2026 Jorge De La Cruz. All Rights Reserved.**
 **Genre:** Tabletop Roguelite / Dungeon Crawler
 **Core Hook:** You are what you wear.
 **Tone:** High fantasy, druidic, shamanic — not biopunk. The Arborists sang wood into shape. Amber is sacred, not industrial.

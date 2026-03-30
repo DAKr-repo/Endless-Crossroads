@@ -6,6 +6,10 @@
 
 Version 1.0 | 2026
 
+Copyright 2026 Jorge De La Cruz. All Rights Reserved.
+
+Burnwillow, Crown & Crew, the Burnwillow setting, all characters, factions, lore, and game mechanics described herein are the original intellectual property of the author. No part of this document may be reproduced, distributed, or transmitted in any form without prior written permission.
+
 ---
 
 ## What Is This Game?
