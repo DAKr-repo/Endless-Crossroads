@@ -61,6 +61,11 @@ COMMANDS = {
     "ingredients": ["ing"],
     "craft":     ["brew", "make"],
     "recipes":   [],
+    "forge":     ["station", "workshop"],
+    "salvage":   ["scrap"],
+    "temper":    [],
+    "reforge":   [],
+    "enchant":   [],
     "help":      ["h", "?"],
     "tutorial":  ["tut"],
 }
@@ -126,6 +131,11 @@ class BurnwillowBridge:
             "ingredients": "Show gathered alchemy ingredients",
             "craft": "Craft a recipe: craft <recipe name>",
             "recipes": "Show known alchemy recipes",
+            "forge": "Show available crafting station actions",
+            "salvage": "Break an item into materials: salvage <item name>",
+            "temper": "Add +1 DR to armor: temper <item name>",
+            "reforge": "Change item slot: reforge <item name> <new slot>",
+            "enchant": "Add Aether affix to armor: enchant <item name>",
             "recap": "Session recap (kills, loot, rooms)",
             "help": "List all commands",
             "tutorial": "Open interactive tutorial",
@@ -266,6 +276,11 @@ class BurnwillowBridge:
             "ingredients": lambda: self._cmd_ingredients(),
             "craft":     lambda: self._cmd_craft(arg),
             "recipes":   lambda: self._cmd_recipes(),
+            "forge":     lambda: self._cmd_forge(),
+            "salvage":   lambda: self._cmd_salvage(arg),
+            "temper":    lambda: self._cmd_temper(arg),
+            "reforge":   lambda: self._cmd_reforge(arg),
+            "enchant":   lambda: self._cmd_enchant(arg),
             "help":      lambda: self._cmd_help(),
             "tutorial":  lambda: self._cmd_tutorial(),
         }
@@ -1513,6 +1528,166 @@ class BurnwillowBridge:
                     lines.append(f"    Ingredients: {ings}")
                     lines.append(f"    Effect: {r['effect']}")
                     lines.append("")
+        lines.append(self._status_line())
+        return "\n".join(lines)
+
+    def _cmd_forge(self) -> str:
+        """Show available crafting station actions."""
+        lines = ["=== CRAFTING STATIONS ===", ""]
+        fr = self.engine.faction_rep
+
+        lines.append("BLACKSMITH (always available):")
+        lines.append("  salvage <item>  — Break into materials")
+        lines.append("  temper <item>   — Add +1 DR (max 2 per item)")
+        lines.append("  reforge <item> <slot> — Change equipment slot")
+        lines.append("")
+
+        if fr.can_access_services("canopy_court"):
+            lines.append("SILKWEAVER (Canopy Court — Friendly+):")
+            lines.append("  enchant <item>  — Add random Aether affix")
+            lines.append("")
+        else:
+            lines.append("SILKWEAVER — Locked (need Canopy Court Friendly)")
+            lines.append("")
+
+        if fr.can_access_services("hag_circle"):
+            lines.append("HAG'S CAULDRON (Hag Circle — Friendly+):")
+            lines.append("  craft <recipe>  — Brew alchemy recipes")
+            lines.append("  (Use 'rot_process' during NPC talk for Rot Processing)")
+            lines.append("")
+        else:
+            lines.append("HAG'S CAULDRON — Locked (need Hag Circle Friendly)")
+            lines.append("")
+
+        if fr.can_access_services("mycelium"):
+            lines.append("MYCELIUM FORGE (Mycelium — Friendly+):")
+            lines.append("  (Use 'decompose' during NPC talk for better salvage)")
+            lines.append("  (Use 'spore_infuse' during NPC talk for living gear)")
+            lines.append("")
+        else:
+            lines.append("MYCELIUM FORGE — Locked (need Mycelium Friendly)")
+            lines.append("")
+
+        lines.append(self._status_line())
+        return "\n".join(lines)
+
+    def _cmd_salvage(self, arg: str = "") -> str:
+        """Salvage an item for materials."""
+        if not arg.strip():
+            return "Salvage what? Usage: salvage <item name>\n" + self._status_line()
+        char = self.engine.character
+        # Find item in inventory
+        target = None
+        target_idx = None
+        for idx, item in char.inventory.items():
+            if arg.strip().lower() in item.name.lower():
+                target = item
+                target_idx = idx
+                break
+        if not target:
+            return f"No item named '{arg}' in inventory.\n" + self._status_line()
+
+        from codex.games.burnwillow.engine import blacksmith_salvage
+        result = blacksmith_salvage(target)
+        lines = [result["message"]]
+        if result["success"]:
+            # Remove item from inventory
+            del char.inventory[target_idx]
+            # Add materials
+            for mat_name, mat_count in result.get("materials", {}).items():
+                char.ingredients[mat_name] = char.ingredients.get(mat_name, 0) + mat_count
+                lines.append(f"  +{mat_count} {mat_name}")
+        lines.append("")
+        lines.append(self._status_line())
+        return "\n".join(lines)
+
+    def _cmd_temper(self, arg: str = "") -> str:
+        """Temper an equipped armor piece for +1 DR."""
+        if not arg.strip():
+            return "Temper what? Usage: temper <item name>\n" + self._status_line()
+        char = self.engine.character
+        # Find in equipped gear
+        target = None
+        for slot, item in char.gear.slots.items():
+            if item and arg.strip().lower() in item.name.lower():
+                target = item
+                break
+        if not target:
+            return f"No equipped item named '{arg}'.\n" + self._status_line()
+        if char.scrap < 5:
+            return f"Need 5 scrap to temper. You have {char.scrap}.\n" + self._status_line()
+
+        from codex.games.burnwillow.engine import blacksmith_temper
+        result = blacksmith_temper(target)
+        if result["success"]:
+            char.scrap -= 5
+        lines = [result["message"]]
+        lines.append("")
+        lines.append(self._status_line())
+        return "\n".join(lines)
+
+    def _cmd_reforge(self, arg: str = "") -> str:
+        """Reforge an item to change its slot."""
+        parts = arg.strip().split()
+        if len(parts) < 2:
+            return "Usage: reforge <item name> <new slot>\nSlots: R.Hand, L.Hand, Head, Arms, Chest, Legs, Shoulders, Neck, R.Ring, L.Ring\n" + self._status_line()
+
+        new_slot_name = parts[-1]
+        item_name = " ".join(parts[:-1]).lower()
+
+        # Validate slot
+        try:
+            new_slot = GearSlot(new_slot_name)
+        except ValueError:
+            return f"Invalid slot: {new_slot_name}. Valid: R.Hand, L.Hand, Head, Arms, Chest, Legs, Shoulders, Neck, R.Ring, L.Ring\n" + self._status_line()
+
+        char = self.engine.character
+        target = None
+        target_idx = None
+        for idx, item in char.inventory.items():
+            if item_name in item.name.lower():
+                target = item
+                target_idx = idx
+                break
+        if not target:
+            return f"No item named '{item_name}' in inventory.\n" + self._status_line()
+        if char.scrap < 5:
+            return f"Need 5 scrap to reforge. You have {char.scrap}.\n" + self._status_line()
+
+        from codex.games.burnwillow.engine import blacksmith_reforge
+        result = blacksmith_reforge(target, new_slot)
+        if result["success"]:
+            char.scrap -= 5
+        lines = [result["message"]]
+        lines.append("")
+        lines.append(self._status_line())
+        return "\n".join(lines)
+
+    def _cmd_enchant(self, arg: str = "") -> str:
+        """Enchant an item with an Aether affix (Silkweaver station)."""
+        if not self.engine.faction_rep.can_access_services("canopy_court"):
+            return "The Silkweaver is unavailable. (Need Canopy Court Friendly+)\n" + self._status_line()
+        if not arg.strip():
+            return "Enchant what? Usage: enchant <item name>\n" + self._status_line()
+
+        char = self.engine.character
+        target = None
+        for slot, item in char.gear.slots.items():
+            if item and arg.strip().lower() in item.name.lower():
+                target = item
+                break
+        if not target:
+            for idx, item in char.inventory.items():
+                if arg.strip().lower() in item.name.lower():
+                    target = item
+                    break
+        if not target:
+            return f"No item named '{arg}'.\n" + self._status_line()
+
+        from codex.games.burnwillow.engine import silkweaver_enchant
+        result = silkweaver_enchant(target)
+        lines = [result["message"]]
+        lines.append("")
         lines.append(self._status_line())
         return "\n".join(lines)
 

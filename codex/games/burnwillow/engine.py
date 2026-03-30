@@ -1021,6 +1021,125 @@ def craft_recipe(recipe_name: str, character) -> dict:
 
 
 # =============================================================================
+# CRAFTING STATIONS
+# =============================================================================
+
+def blacksmith_reforge(item: "GearItem", new_slot: "GearSlot") -> dict:
+    """Reforge: Change an item's equipment slot. Costs 5 scrap."""
+    old_slot = item.slot
+    item.slot = new_slot
+    # Clear primary_stat since slot mapping may change
+    item.primary_stat = None
+    return {"success": True, "message": f"Reforged {item.name}: {old_slot.value} -> {new_slot.value}"}
+
+
+def blacksmith_temper(item: "GearItem") -> dict:
+    """Temper: Add +1 DR to armor. Max 2 tempers per item (tracked via DR value)."""
+    if item.damage_reduction >= item.tier.value + 2:
+        return {"success": False, "message": f"{item.name} is already fully tempered."}
+    item.damage_reduction += 1
+    return {"success": True, "message": f"Tempered {item.name}! DR now {item.damage_reduction}."}
+
+
+def blacksmith_salvage(item: "GearItem") -> dict:
+    """Salvage: Break gear into raw materials. Higher tier = more yield."""
+    tier = item.tier.value
+    materials = {
+        "Willow Bark": max(1, tier),
+        "Sap": max(1, tier),
+    }
+    if tier >= 2:
+        materials["Beetle Ichor"] = tier - 1
+    if tier >= 3:
+        materials["Moonstone Dust"] = tier - 2
+    return {"success": True, "message": f"Salvaged {item.name}.", "materials": materials}
+
+
+def blacksmith_affix_forge(item: "GearItem", prefix: str = None, suffix: str = None) -> dict:
+    """Affix Forge: Guarantee one specific affix on an item. Costs rare reagent + amber."""
+    if prefix:
+        if prefix not in AFFIX_PREFIXES:
+            return {"success": False, "message": f"Unknown prefix: {prefix}"}
+        item.prefix = prefix
+    if suffix:
+        if suffix not in AFFIX_SUFFIXES:
+            return {"success": False, "message": f"Unknown suffix: {suffix}"}
+        item.suffix = suffix
+    return {"success": True, "message": f"Affix forged! {item.get_display_name()}"}
+
+
+def silkweaver_enchant(item: "GearItem") -> dict:
+    """Enchant: Add a random Aether affix to a non-weapon item."""
+    if item.slot in (GearSlot.R_HAND, GearSlot.L_HAND):
+        return {"success": False, "message": "Cannot enchant weapons. Enchanting is for armor and accessories."}
+    suffix = random.choice(list(AFFIX_SUFFIXES.keys()))
+    item.suffix = suffix
+    return {"success": True, "message": f"Enchanted! {item.get_display_name()} ({suffix})"}
+
+
+def silkweaver_thread_bind(item_a: "GearItem", item_b: "GearItem", set_id: str) -> dict:
+    """Thread Binding: Link two items to count as the same gear set."""
+    if set_id not in GEAR_SETS:
+        return {"success": False, "message": f"Unknown set: {set_id}"}
+    item_a.set_id = set_id
+    item_b.set_id = set_id
+    set_name = GEAR_SETS[set_id]["name"]
+    return {"success": True, "message": f"Thread-bound! {item_a.name} and {item_b.name} now count as {set_name}."}
+
+
+def hag_curse_weapon(item: "GearItem") -> dict:
+    """Curse Weapon: Apply a debuff prefix that triggers on enemies."""
+    curse_prefixes = ["Volatile"]  # Volatile's self-damage is the "curse" flavor
+    # Add Hag-specific curse prefixes
+    item.prefix = random.choice(curse_prefixes + list(AFFIX_PREFIXES.keys()))
+    return {"success": True, "message": f"Cursed! {item.get_display_name()} now inflicts misery."}
+
+
+def hag_rot_process(character, ingredient_name: str = "Rot Spores") -> dict:
+    """Rot Processing: Convert Blight materials into usable components."""
+    if character.ingredients.get(ingredient_name, 0) < 2:
+        return {"success": False, "message": f"Need at least 2 {ingredient_name}."}
+    character.ingredients[ingredient_name] -= 2
+    if character.ingredients[ingredient_name] <= 0:
+        del character.ingredients[ingredient_name]
+    # Produce refined materials
+    character.ingredients["Moonstone Dust"] = character.ingredients.get("Moonstone Dust", 0) + 1
+    character.ingredients["Deepwater"] = character.ingredients.get("Deepwater", 0) + 1
+    return {"success": True, "message": f"Processed {ingredient_name} into Moonstone Dust + Deepwater."}
+
+
+def mycelium_decompose(item: "GearItem") -> dict:
+    """Decomposition: Break any item into pure base materials (better yield than blacksmith)."""
+    tier = item.tier.value
+    materials = {
+        "Willow Bark": max(1, tier + 1),
+        "Sap": max(1, tier + 1),
+        "Beetle Ichor": max(1, tier),
+    }
+    if tier >= 2:
+        materials["Moonstone Dust"] = tier
+    if tier >= 3:
+        materials["Spider Silk"] = tier - 1
+    return {"success": True, "message": f"Decomposed {item.name}. (Collect in 3 rooms.)", "materials": materials, "delay_rooms": 3}
+
+
+def mycelium_spore_infuse(item: "GearItem") -> dict:
+    """Spore Infusion: Add 'living' quality — weapon recovers 1 charge/floor, armor regens 1 temp HP/combat."""
+    item.suffix = "of Mending"  # Living quality = regen
+    return {"success": True, "message": f"Spore-infused! {item.get_display_name()} is now alive — it will regenerate."}
+
+
+def mycelium_network_graft(item: "GearItem") -> dict:
+    """Network Grafting: Item persists across death. The roguelike meta-progression hook."""
+    return {
+        "success": True,
+        "message": f"Network-grafted! {item.name} is bonded to the Mycelium. It will survive death and can be reclaimed next run.",
+        "grafted": True,
+        "item_name": item.name,
+    }
+
+
+# =============================================================================
 # CHARACTER SYSTEM
 # =============================================================================
 
