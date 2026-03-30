@@ -519,3 +519,98 @@ The Root-Attunement gene functions identically in all four peoples — Aether sc
 ### Dice Reminder
 
 Every item gives exactly +1d6 regardless of tier. Tier determines stat score bonus (+1 to +4) and trait scaling. "Blazing Moonstone Helm of Thorns [SET: wardens_watch]" gives +1d6 Wits, +3 to Wits score, Blazing fire damage, Thorns reflect, AND counts toward the Warden's Watch set bonus.
+
+---
+
+## 16. SYSTEMS WIRED — IMPLEMENTED 2026-03-29
+
+### 30 Trait Resolvers (was 21)
+9 bracket traits resolved: Lockpick (Wits DC scaled by tier), Guard (+tier DR to ally), Reflect (return ranged damage), Ranged (Wits-based attack), Light (reveal secrets), Summon (spirit minion), Spellslot (Aether-based damage), Backstab (double on surprise/blind), Heal (tier-scaled HP restore).
+
+### Trait Combos (#172)
+SNARE → CLEAVE: +1d6 bonus damage to snared targets. FLASH → BACKSTAB: double damage to blinded targets. Tracked via `_last_trait_used` and `_snared_enemies`/`_blinded_enemies` on the bridge.
+
+### Item Inspect Shows Real Data (#180)
+Replaced stale `_SYNERGY_HINTS` cosmetic dict. Inspect now shows: display name with affixes, +1d6 dice + score bonus, prefix/suffix effect details, gear set membership with progress (2/4 equipped, which bonuses active).
+
+### Choir Resonance Exposure (#200)
+`resonance_exposure` counter on engine. Builds +1 per room in Zone 4+. At threshold (5 rooms), inflicts Resonance-Touched condition. Resets on return to Zone 1-3.
+
+### Affix Effects Wired into Combat
+Blazing (+1d4 fire on hit), Keen (crit on 5+), Vampiric (heal 1 HP on kill), Volatile (self-dmg on fumble), Thorns (reflect 1 dmg when hit), Mending (+1 HP on room entry), Willow (absorbs Blight damage). All checked on the actual `prefix`/`suffix` string fields.
+
+### Set Bonuses Wired
+Warden's Watch 2pc: +1 DR wired into `get_total_dr()`. Arborist's Legacy 2pc: +1 Aether score wired into `get_stat_score_bonus()`.
+
+### Condition Infliction from Enemies
+Enemy `special` text parsed for condition keywords (Sap-Drained, Blighted, etc.) + DC saves. On enemy retaliation hit, conditions auto-inflicted if save fails. Supports all 12 condition types.
+
+### Faction Service Gating (#182-187)
+30 services across 6 factions, 3 reputation tiers each (Friendly/Allied/Exalted). When talking to a faction NPC, available services show as [*] if unlocked or [X] with required tier if locked.
+
+### Alchemy System Complete (#188-192)
+- 12 ingredients with zone-based drop tables (30% per room)
+- 21 recipes (6 potions, 6 bombs, 5 oils, 4 elixirs)
+- `craft`, `ingredients`, `recipes` commands
+- Potions: heal Xd6, cure conditions, stat buffs, reveal/sense
+- Bombs: AoE damage to all room enemies, status effects
+- Oils: weapon coating (+Xd4 per hit), lasts 1 combat, lifesteal
+- Elixirs: floor-duration buffs, one active at a time, Hag's Bargain self-damage
+
+### Crafting Stations (#193-196)
+- **Blacksmith**: `salvage` (materials), `temper` (+1 DR, costs 5 scrap), `reforge` (change slot)
+- **Silkweaver** (Canopy Court Friendly+): `enchant` (random Aether suffix)
+- **Hag's Cauldron** (Hag Circle Friendly+): Rot processing, curse weapons
+- **Mycelium Forge** (Mycelium Friendly+): decompose (better yield), spore infuse, network graft
+
+### Faction Reputation Engine
+`FactionReputation` class with 6 factions. Opposing pairs: Hag vs Elder, Court vs Dam-Wright, Hive vs Mycelium. Raising one drops the other. `reputation` command shows standings. Saved/loaded. Gates all faction services.
+
+---
+
+## 17. HEARTWOOD + UNDERGROVE ZONES — IMPLEMENTED 2026-03-29
+
+### Zone 6: The Heartwood (890 lines)
+"The Wood Behind the Wood." Procedural dungeon with concentric growth ring architecture.
+
+**9 biome tags:** Growth Ring, Sap Channel, Amber Deposit, Resin Pocket, Painted Mural, Silent Garden, Immune Node, Arborist Relic, Cracked Seal.
+
+**Enemies are NOT Rot.** Arborist constructs, amber echoes, immune responses. The tree treats you as an infection.
+- Tier 1: Amber Shard, Growth Ring Sentinel
+- Tier 2: Amber Echo (phase-shift), Arborist Automaton
+- Tier 3: Immune Response, Elder Amber Echo
+- Tier 4: Heartwood Guardian, Sealed Singer
+- Boss: Ancient Arborist (half-Hollowed, still singing)
+
+**Special rooms:** Painted Gallery (descendant murals, recipe discovery), Silent Garden (descendant NPC encounters), Amber Stasis (sealed Arborists — endgame quest).
+
+32 unique room descriptions. Tier 4 rooms describe the First Ring — the seed of the original tree.
+
+### Zone 7: The Undergrove (1072 lines)
+"Where the Roots Remember." Tangled root-mass from all four Groves.
+
+**9 biome tags:** Root Tangle, Decomposition Layer, Failed Grove Fossil, Root-Road Junction, Choir Resonance, Hollow Drift, Mycelium Vein, Nutrient Pool, Breach Point.
+
+**Enemies are Choir-directed.** The Rot is native here.
+- Tier 1: Chorus Walker (Resonance-Touched aura), Drift Hollow
+- Tier 2: Sap Leech Swarm, Mature Gall
+- Tier 3: Section Leader (zone-wide Rot buff), Choir Elite
+- Tier 4: Ancient Hollow (wearing Seeker gear), Root Colossus
+- Boss: The Conductor (80 HP, 1d4 psychic/round, summons Chorus, Phase 2 Song of Ending DC 22)
+
+**Unique mechanics:** 30% ingredient drops (doubled), Hollow Drift rooms may contain gear from previous deaths, Choir Pulse hazards, Memory Seed deposits in secret rooms.
+
+32 unique room descriptions. Tier 4 describes Failed Grove fossils — petrified tree skeletons older than the Four.
+
+### NOT YET WIRED: Zone Access
+The Heartwood and Undergrove generate correctly (zone=6, zone=7) but are only accessible by directly calling `generate_dungeon(zone=6)`. Hidden entrances inside existing dungeons (#206-208) and the Willow Wood spatial maps (#205) are still needed to make them reachable through normal gameplay.
+
+---
+
+## 18. REMAINING BURNWILLOW ITEMS
+
+- #205: Willow Wood authored spatial maps (hand-crafted room layouts)
+- #206: Hidden Heartwood entrances in Zones 2-4 (DC 25+, faction rep, relics)
+- #207: Hidden Undergrove entrances in Zone 4 (grey-amber vaults)
+- #208: Mid-dungeon zone transition mechanic (switch zones on discovery)
+- Discovery persistence in meta_state (revisitable once found)
