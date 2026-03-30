@@ -31,11 +31,13 @@ That is all. Everything else -- amber, ingredients, faction reputation, quest pr
 
 ## How to Use This Book
 
-This sourcebook is divided into eight parts.
+This sourcebook is divided into nine parts.
 
 **Parts I through III** are for players: the world, character creation, and rules. Read these and stop. Everything beyond that wall contains secrets your character has not earned.
 
 **Parts IV through VIII** are for the Game Master: the setting gazetteer, bestiary, treasure tables, procedural generation tools, and campaign guidance.
+
+**Part IX** contains four pre-built adventures and the Emberhome Gazetteer -- ready-to-run modules from the Tutorial through the Endgame, plus a room-by-room guide to the hub settlement for roleplay sessions.
 
 If you are a GM, read everything. Then read it again. The connections between factions, NPCs, and zones are load-bearing -- pull one thread and the whole tapestry shifts.
 
@@ -3577,6 +3579,911 @@ The Doom Clock is the heartbeat of the game. It should never be invisible, never
 - **Dead characters become Hollows.** The GM can reintroduce them as dungeon encounters. This is devastating and should be used sparingly.
 - **Memory Seeds persist.** New characters created by the same player benefit from recipes unlocked by previous characters. Death has meaning because something survives it.
 - **The world changes.** If the party completed a faction quest, the faction's situation improves. If they failed, it worsens. The GM should open each session with one sentence about what changed in Emberhome since last time.
+
+---
+
+# PART IX: ADVENTURES
+
+---
+
+## How to Use These Adventures
+
+Each adventure in this section is a pre-built dungeon module designed to be run at the table with minimal preparation. They are organized by zone and gear tier, progressing from the tutorial delve through the endgame.
+
+**Read Aloud text** appears in indented blocks. Read it verbatim to your players -- it is calibrated to convey exactly the right amount of information: enough to act on, never enough to feel safe.
+
+**GM Notes** follow each Read Aloud block. They contain enemy placement, DCs, loot, and guidance for improvisation. These are for your eyes only.
+
+**The Doom Clock** advances by 1 each time the party enters a new room unless otherwise noted. Track it visibly. When a threshold is crossed mid-adventure, apply the effects immediately (see Appendix A).
+
+---
+
+## Adventure 0: The Ashen Cellar
+
+**Tutorial Dungeon -- Zone 0, Tier I. For 1-4 players. Estimated time: 90-120 minutes.**
+
+### Overview
+
+The party's first delve. Warden Voss sends them into the shallow root-tunnels beneath the Emberhome Approaches to clear a Rot incursion and recover salvage from a lost supply cache. The Ashen Cellar teaches combat, searching, hazards, the Doom Clock, and the hard lesson that nothing in the Burnwillow is free.
+
+### For the GM
+
+The Ashen Cellar is not dramatic. It is not epic. It is five rooms of damp tunnels, small enemies, and bad air. Its purpose is mechanical literacy: by the time the party emerges, every player should understand how dice pools work, what the Doom Clock does, how searching costs time, and that retreat is always an option. Do not fudge rolls. If a character dies here, the game is working. Let the Chapel wall earn its first name.
+
+**Prepare:** Five Tier I enemy stat blocks (Rot-Beetle, Fungal Mite, Charred Skeleton, Scrap Imp, Hollowed Bear -- see Chapter 24 and 25). Tier I loot table (Chapter 27). Tier I hazard table (Chapter 28). The Doom Clock track.
+
+**Pacing:** Rooms 1-3 should take 15-20 minutes each. Room 4 is a short decision point. Room 5 (the boss) should take 25-35 minutes including the aftermath.
+
+### Briefing: Warden's Hall
+
+> *Read Aloud:*
+>
+> The Warden's Hall smells of oiled steel and old sweat. Weapons taken from fallen Hollows line the walls, cleaned and racked by caliber. A tally board near the door tracks active Seekers -- some columns are longer than others.
+>
+> Warden Voss stands behind the map table, its surface scarred by a hundred knife-point discussions. He taps the pommel of his belt-knife three times, then speaks without looking up.
+>
+> "Rot-Beetle colony in the Ashen Cellar. Shallow tunnels, directly below the Approaches. A supply cache went down three days ago -- iron nails, rope, a crate of Willow Bark tonic. We need the supplies. We need the colony dead. You need to learn how to not die."
+>
+> He slides a charcoal sketch across the table -- five rooms, rough dimensions, an X marking the supply cache in Room 3.
+>
+> "Objective. Route. Threat. Extraction. Questions?"
+
+**GM Notes -- Voss Dialogue:**
+
+Voss answers questions in clipped, practical sentences. He does not sugarcoat.
+
+- *"What's down there?"* -- "Rot-Beetles. Fungal Mites. Maybe a skeleton or two -- the cellar was a burial annex before the tree shifted. Nothing above Tier I. Nothing that should kill you if you keep your guard up."
+- *"What about the Doom Clock?"* -- "Five rooms. Every room you enter, the clock ticks. You hit five, the tunnels wake up. You hit ten, something bigger comes looking. Don't hit ten."
+- *"Can we get better gear first?"* -- "You get what you carry. Twitch sells lockpicks if you have amber. Weld might part with a spare shield. I don't outfit fools -- I send them."
+- *"What if we run?"* -- "Then you're smart. I'll send someone else for the cache. But the beetles will still be there tomorrow, and tomorrow they'll be hungrier."
+
+**Loadout Selection:** Before descending, players may visit Twitch (Root-Cellar) or Weld (Ember-Forge) to purchase Tier I gear with starting amber. Recommend that new players carry at least one weapon, one piece of chest armor, and a Bandage Pouch or Healer's Satchel.
+
+### The Dungeon
+
+#### Room 1: The Ash Stairs
+
+> *Read Aloud:*
+>
+> The stairs descend through a crack in the root-bark, each step worn to a shallow bowl at the center by generations of Seeker boots. Damp air rolls up to meet you -- the smell of old earth and something sweeter underneath, like fruit left to rot in a closed room. The torchlight reaches ten feet into the passage below, then gives up.
+>
+> At the bottom, the tunnel opens into a low chamber. Ash covers the floor in a fine grey layer, disturbed by recent tracks -- small, many-legged, scratching patterns in the dust. The walls are raw root-wood, weeping dark sap from stress cracks. A doorway to the north stands open. Another to the east is half-blocked by a collapsed beam.
+
+**GM Notes:**
+
+- **Enemies:** 2 Rot-Beetles (HP 4, AC 10, ATK +2, DMG 1d4, Special: Skitter -- -1d6 to ranged attacks against them).
+- **Behavior:** The beetles are feeding on sap weeping from the wall cracks. They attack if the party enters the room or makes loud noise (combat in the stairwell, dropping equipment). If the party is quiet (Wits DC 10 to move silently), they can observe the beetles before engaging.
+- **Loot:** Searching the room (1 action, costs +1 Doom) reveals a Seeker's pack wedged behind a root -- the straps are cut, not unbuckled. Inside: 2 amber chips and a cracked vial of Salicylic Tonic (heals 1d6 HP, single use).
+- **Exits:** North leads to Room 2. East (blocked beam) can be cleared with a Might DC 10 check -- leads to Room 3 directly, skipping Room 2 but costing the Doom tick for the check's noise.
+
+**Teaching Moment -- Combat Basics:** This is likely the first fight. Walk players through the dice pool: base stat die + weapon die (Tier I = +1d6). Demonstrate the attack roll vs. AC comparison. Show how the Skitter ability makes ranged harder -- this teaches that enemies have abilities, not just HP bars.
+
+**Teaching Moment -- The Doom Clock:** When the party entered this room, the Doom Clock advanced from 0 to 1. Say it out loud. Move the tracker visibly. If they search, it advances again. Let them feel the cost of thoroughness.
+
+---
+
+#### Room 2: The Spoiled Stores
+
+> *Read Aloud:*
+>
+> The passage narrows to a crawl-space before opening into a storeroom. Wooden crates line the walls, most smashed open, their contents scattered and spoiled. The smell here is worse -- a thick, cloying sweetness that coats the back of your throat. Grey fungal growth covers the east wall in a living carpet, pulsing faintly with bioluminescent light.
+>
+> Something moves in the fungal mat. Several somethings. Small, pale, many-legged.
+
+**GM Notes:**
+
+- **Enemies:** 3 Fungal Mites (HP 3, AC 10, ATK +1, DMG 1d4, Special: Spore Burst -- on death, DC 8 Grit or -1 to all rolls for 1 round). The Mites emerge from the fungal mat one per round if the party does not engage immediately. If the party attacks the mat directly (fire, slashing), all 3 emerge at once.
+- **Hazard:** The fungal mat itself is a Blight Spores hazard (DC 10 Grit, 1d4 poison damage) if a character touches it or fights in melee within 5 feet of it. Warn the player: "The fungal growth is close -- you'll brush against it if you swing."
+- **Loot:** The supply cache Voss mentioned is partially here -- 1 crate of iron nails (crafting scrap, worth 3 amber chips to Weld) and a length of rope (utility item). The Willow Bark tonic crate is missing -- it was dragged to Room 3.
+- **Exits:** South returns to Room 1. North-east leads to Room 3 through a root-arch passage. A crack in the west wall (Wits DC 10 to notice) leads to Room 4.
+
+**Teaching Moment -- Hazards:** The fungal mat teaches players that the environment fights back. A character who charges into melee without thinking eats 1d4 poison. A character who uses a ranged weapon or pulls the mites away from the mat takes no environmental damage. Tactics matter more than stats.
+
+**Teaching Moment -- Spore Burst:** When the first Mite dies, it explodes. Every player at the table should witness what happens when you kill something and it hurts you anyway. This prepares them for every Fungal creature in the game.
+
+---
+
+#### Room 3: The Sealed Alcove
+
+> *Read Aloud:*
+>
+> The passage opens into a wider chamber with a vaulted root-ceiling. Against the far wall, an alcove has been sealed with an ironbark door -- crude, recently installed, held shut by a heavy latch and a padlock of pitted iron. Scratch marks on the door's surface run in frantic parallel grooves. Something wanted out.
+>
+> The missing tonic crate sits in the middle of the floor, dragged here by something strong enough to gouge tracks in the stone. The crate is intact but the lid is loose, and the smell of willow bark cuts through the rot-stink like a blade.
+
+**GM Notes:**
+
+- **No enemies in this room initially.** The room is a puzzle and a choice.
+- **The Tonic Crate:** Contains 4 doses of Salicylic Tonic (each heals 2d6, cures poison). This is the primary objective. The party can take it and leave. Voss will be satisfied.
+- **The Sealed Alcove:** Opening the padlock requires one of:
+  - A Key (consumable, auto-opens).
+  - Lockpick trait gear + Wits DC 10 check. Failure: the lock jams and the Doom Clock advances by 1 from the noise.
+  - Brute force: Might DC 12. Success opens it, but 50% chance the noise draws enemies (roll 1d6: on 4-6, a Charred Skeleton shambles in from Room 4 in 2 rounds). The Doom Clock advances by 1 regardless.
+  - Aether DC 10 + 1 Implement charge: clean, silent open.
+- **Inside the Alcove:** A Charred Skeleton (HP 8, AC 11, ATK +3, DMG 1d6, Special: Brittle -- double damage from bludgeoning) is slumped against the back wall, inanimate. It is a Seeker who sealed themselves in to avoid the beetles, then died. Their gear: a Rusted Shortsword (Tier I, R.Hand), a Leather Cap (Tier I, Head), and an amber shard containing a memory fragment -- a flash of warmth, a woman's laugh, then darkness.
+  - **The skeleton animates if disturbed.** If the party takes the gear without examining the body first (Wits DC 8 to notice the grey fungal threads connecting the skeleton to the wall), the Charred Skeleton attacks with surprise.
+  - If they notice the threads and cut them first (any slashing weapon, no check required), the skeleton collapses and the gear can be taken safely.
+
+**Teaching Moment -- Lock-and-Key Economy:** Every method of opening the door costs something. Key = a consumable gone. Lockpick = risk of failure and Doom. Brute force = noise and Doom. Magic = a charge spent. There is no free option. This is the game.
+
+**Teaching Moment -- Searching Costs Time:** The amber shard is only found if someone searches the alcove (costs +1 Doom). The memory fragment is atmospheric lore -- it tells the player that amber holds memory, which is a load-bearing setting detail they will need later.
+
+---
+
+#### Room 4: The Cracked Vein
+
+> *Read Aloud:*
+>
+> The tunnel slopes downward and the air changes -- warmer, wetter, with a faint tang of copper and something that might be ozone. Ahead, the wall has split along a diagonal fault line, and from the crack, golden light bleeds into the darkness. Liquid Aether. The tree's lifeblood, seeping from a ruptured vein.
+>
+> The sap pools in a shallow basin at the base of the crack, glowing softly. The warmth is genuine -- you can feel it on your skin from ten feet away. But the floor around the basin is slick with overflow, and the surface of the pool ripples without wind.
+
+**GM Notes:**
+
+- **Hazard:** Ember Geyser (DC 10 Grit, 1d6 fire damage). The ruptured vein is unstable. Any character who approaches within 5 feet of the crack must save or take damage from a sudden spray of superheated sap. The geyser erupts once per round on initiative count 0.
+- **The Sap Pool:** Drinking from the pool or applying it directly: DC 10 Grit or -1 to all rolls for 1 hour (raw Aether toxicity). On success, heal 1d6 HP. Characters with Aether 14+ succeed automatically and receive a Root-Song impression -- a flash of the Ashen Cellar as it was before the Rot: a root-lined larder, well-stocked, warm, the faint hum of the tree at peace.
+- **Harvesting Aether:** A character with an empty vial or container can harvest 1 dose of raw Aether (crafting ingredient, worth 2 amber shards to Weld). Harvesting costs +1 Doom -- the extraction disturbs the vein.
+- **The Choice:** The sap pool heals, but it costs time (Doom) and carries risk (toxicity, geyser). A cautious party notes it and moves on. A desperate party (low HP, limited tonics) may need it. Let the decision happen naturally.
+- **Exits:** The passage continues downward to Room 5. There is no return gate. To leave, they must go back the way they came (re-entering cleared rooms does not advance the Doom Clock) or press forward.
+
+---
+
+#### Room 5: The Hollow Den
+
+> *Read Aloud:*
+>
+> The tunnel opens into a chamber large enough that your torchlight cannot find the far wall. The floor is littered with bones -- animal bones, cracked and sucked clean. The smell is overwhelming: iron and offal and the sweet-rot of the Blight, thick enough to taste.
+>
+> And then you hear it. A deep, wet breathing from the darkness ahead. The sound of something massive shifting its weight. Claws on stone.
+>
+> A shape emerges at the edge of the light. A bear. Or it was a bear. The fur is matted with grey rot, hanging in clumps from a body that is too large, too wrong. Its eyes burn with a dull amber light -- not intelligence, not malice, just hunger that has outlived the creature that felt it. It sees you. It rises.
+>
+> It roars, and the sound carries the voices of everything it has consumed.
+
+**GM Notes -- Boss: Hollowed Bear**
+
+| Stat | Value |
+|------|-------|
+| HP | 25 |
+| Defense | 14 |
+| Damage | 1d6+4 |
+| Special | Terrifying Roar, Thrash |
+
+- **Terrifying Roar:** At the start of combat, ALL characters must pass a Grit DC 12 check or suffer -1d6 to all rolls for 3 turns. This is the first real stat check in the game. Characters who dumped Grit will feel it.
+- **Thrash:** On a critical hit (final die shows 6), the Bear hits ALL adjacent targets for full damage. Warn the party physically: "The bear's claws sweep wide." Players who cluster together after this warning deserve what happens.
+- **Behavior:** The Bear charges the nearest target and does not switch targets unless that target drops or moves more than 20 feet away. It does not retreat. It does not fear fire. It is Hollowed -- the creature that knew fear is gone.
+
+**Tactical Notes for the GM:**
+
+A four-character party with Tier I gear should win this fight in 4-6 rounds with 1-2 characters taking significant damage. The Terrifying Roar debuff makes the first three rounds dangerous -- the party is fighting at reduced capacity while the Bear hits at full power. The fight turns when the Roar wears off and the party can bring their full dice pools to bear.
+
+If the party is struggling, the Bear does not pull punches. If a character drops to 0 HP, they are dead. Read the room: if the players are having fun despite the difficulty, let it ride. If frustration is setting in, describe the Bear slowing -- "Its movements are sluggish, the Rot consuming it from inside. It is dying, but not fast enough." This signals that persistence will win without mechanically fudging.
+
+**Loot:**
+
+- The Bear's den contains the rest of the supply cache: 2 more crates of iron nails, a bolt of rope, and a Pot Lid Shield (Tier I, L.Hand, [Intercept], DR 1).
+- Searching the den (costs +1 Doom) reveals a Seeker's skeleton in the back corner with a Spore Mask (Tier I, Head, immunity to Rot spore effects for 1 hour) and a journal. The final entry reads: *"The bear won't leave the den. It guards something. The cache, maybe. Or the body of whoever it used to be."*
+- The bear's body yields 2 Beast Fangs (alchemy ingredient) and an amber chip.
+
+**After the Fight:**
+
+The party has completed the objective. The route back through Rooms 4-1 is clear (no Doom advances for re-entering cleared rooms). If the Doom Clock has crossed 5, describe the return journey as tense -- distant growls, shifting shadows, the feeling of being watched. If it crossed 10 (unlikely in 5 rooms, but possible with searches and hazard advances), the Rot Hunter is in the tunnels above. The party hears scraping, heavy breathing, something too large for the corridors. They must reach the exit before it finds them.
+
+**Return to Emberhome:**
+
+Voss takes the supply cache without ceremony. "Good. You lived. Report to the Hearth for debrief." Elder Kaelen, if the party visits, asks what they felt in the tunnels -- not what they fought, not what they found, but what they *felt*. "The Root-Song. Did you feel it down there? Faint, yes. But present. The cellar still remembers what it was."
+
+---
+
+## Adventure 1: Rotwood Hollow
+
+**Zone 1, Tier I-II. For 2-4 players. Estimated time: 2-3 hours.**
+
+### Overview
+
+The Mycelium network has detected a Blight surge in the upper root system -- a Rotwood Hollow where the corruption is spreading faster than natural. Scout Lira mapped a route but did not enter. The party must push into the Tangle, clear six rooms of escalating opposition, and reach the Blight source: a corrupted Sap Elemental feeding the surge. Along the way, they discover that the Blight is not random -- something is directing it.
+
+### For the GM
+
+This is the party's first real dungeon. The Ashen Cellar was training. Rotwood Hollow introduces Tier II enemies, environmental storytelling, and the first hint of the Choir's influence. The Hollowed Bear was a simple stat-check. The encounters here require positioning, resource management, and difficult choices about when to search and when to move.
+
+The Doom Clock matters here. Six rooms means the party crosses Threshold 5 (Alert) before the boss. If they searched heavily in every room, they may approach Threshold 10 (Rot Hunter spawn). Let the pressure build. Do not remind them to hurry -- the Clock does that.
+
+**Prepare:** Tier I-II enemy stat blocks from Chapter 24 (Rot-Beetle, Fungal Mite, Ash Crawler, Cinder Wolf Pup, Hollowed Scavenger, Rotwood Shambler, Rotwood Guardian). Tier I-II loot and hazard tables. The Hollowed Bear stat block (see Chapter 25) in case the party detours into its territory.
+
+### Briefing: Scout Lira's Report
+
+Scout Lira delivers the briefing at Warden Voss's request. She is young, sharp-eyed, and rattled -- she does not rattle easily.
+
+> *Read Aloud:*
+>
+> Scout Lira unrolls a hand-drawn map on the table, its edges stained with mud and something darker. Her voice is steady but her hands are not.
+>
+> "I mapped six chambers before the air got too thick to breathe. The first three are standard Tangle -- root corridors, fungal growth, beetle nests. But past the third chamber, the wood changes. The roots are grey. The sap has stopped flowing. And the walls are *humming*."
+>
+> She taps the map where her line stops.
+>
+> "Not Root-Song. Something else. Lower. Rhythmic. Like the tree is trying to match a beat that isn't its own. I didn't go further. Whatever's down there, it's not just Rot. The Rot doesn't *organize*."
+
+**GM Notes -- Lira's Dialogue:**
+
+- *"What did you hear?"* -- "A hum. Deep, steady, almost musical. Not like any Root-Song I've felt. Wrong pitch. Like someone singing through the wrong end of a horn."
+- *"How dangerous?"* -- "I saw Cinder Wolf tracks in the ash. Fresh. And drag marks -- something big being moved through the tunnels. Tier II at minimum past the third room."
+- *"Should we be worried about the Rot Hunter?"* -- Lira looks at Voss. Voss says nothing. Lira: "Keep your Doom below ten and you won't find out."
+
+### The Dungeon
+
+#### Room 1: The Root Threshold
+
+> *Read Aloud:*
+>
+> The entrance to the Tangle is a wound in the tree's bark -- a jagged crack where the wood has split and the roots have grown around the damage like fingers interlacing. Sap weeps from stress fractures in the walls, catching the torchlight in threads of gold. The floor is packed earth, damp, and the air carries the green smell of living wood slowly losing.
+>
+> A carpet of grey ash covers the passage ahead, disturbed by boot prints -- Lira's, recognizable by the notched heel -- and something else. Smaller tracks. Many-legged. And a single wide drag mark, like a body being pulled.
+
+**GM Notes:**
+
+- **Enemies:** 2 Rot-Beetles (HP 4, AC 10, ATK +2, DMG 1d4) and 1 Ash Crawler (HP 6, AC 10, ATK +2, DMG 1d4+1, Special: Ash Trail -- leaves difficult terrain for 1 round). They are feeding on the sap and attack when disturbed.
+- **Loot:** The drag mark leads to a dead Scrap Imp in the corner, half-eaten. It clutches a Crude Hatchet (Tier I, R.Hand, [Cleave]) in its stiff fingers. 1 amber chip falls out of its cheek pouch.
+- **Environmental Detail:** A Seeker's blue-painted cairn (Lira's trail marker) sits at the entrance. If the party examines it (no action cost), they find scratched numbers on the base -- room counts and directional arrows. Lira's scouting notation.
+- **Exits:** The passage continues north. A narrow side-tunnel branches east, half-collapsed.
+
+---
+
+#### Room 2: The Fungal Garden
+
+> *Read Aloud:*
+>
+> The tunnel widens into a chamber where the ceiling soars high enough that your torchlight cannot reach it. Bioluminescent fungi coat every surface -- shelves of pale green and sickly yellow, climbing the walls in spiraling columns. The light they cast is enough to see by, barely, and it makes everything look drowned.
+>
+> The floor is soft here. Spongy. Mushroom caps the size of dinner plates crack underfoot with each step, releasing puffs of grey spore-dust that hang in the still air like breath on a cold morning. The sound of dripping water comes from everywhere and nowhere.
+
+**GM Notes:**
+
+- **Hazard:** Blight Spores (DC 10 Grit, 1d4 poison damage). The entire room is a low-level spore hazard. Any character who moves more than 10 feet in a single turn disturbs enough mushroom caps to trigger a save. Characters with a Spore Mask are immune.
+- **Enemies:** 3 Fungal Mites (HP 3, AC 10, ATK +1, DMG 1d4, Spore Burst on death). They drop from the ceiling when the party reaches the room's center. A Wits DC 10 check on entry allows a character to notice the ceiling shapes and warn the party -- everyone gets a free round before the Mites attack.
+- **Loot:** A patch of Moonstone Dust glitters on the east wall, extractable with a tool (any Arms-slot item or knife). Worth 1 amber shard or usable as an alchemy ingredient.
+- **Hidden Detail:** A character who examines the fungi closely (Wits DC 12, costs +1 Doom) notices that the fungal growth patterns are *geometric* -- they spiral in consistent mathematical ratios, like architecture rather than biology. This is the first hint that the Blight in this hollow is directed, not random.
+- **Exits:** North continues deeper. The east side-tunnel from Room 1 connects here through a crawl-space.
+
+---
+
+#### Room 3: The Scavenger's Camp
+
+> *Read Aloud:*
+>
+> Someone lived here. A bedroll of bark-cloth lies against the wall, a cook-fire ring of flat stones holds cold ash, and a salvage pile -- bent nails, a broken hinge, strips of leather -- is organized in neat rows. The camp is weeks old, maybe more. The salvage has not been touched.
+>
+> The owner has not gone far. A Hollowed Scavenger stands at the north end of the chamber, facing the wall. Its gear is intact -- ironbark hatchet, cured hide jerkin, a pack still strapped to its back. It does not breathe. It does not turn. It stands, perfectly still, as if listening to something in the stone.
+
+**GM Notes:**
+
+- **Enemy:** 1 Hollowed Scavenger (HP 14, AC 13, ATK +5, DMG 1d6+2, Special: Muscle Memory -- uses equipped gear traits with full proficiency). This is a Tier II enemy. The Scavenger was a Seeker who fell to the Blight and turned.
+- **Behavior:** The Scavenger does not attack until the party disturbs the camp, takes from the salvage pile, or approaches within 5 feet. When it turns, read: *"It turns and its eyes are amber glass -- no recognition, no malice, just the mechanical assessment of something that remembers how to fight without remembering why."*
+- **Tactical Note:** The Scavenger's Muscle Memory is the threat. It fights like a trained warrior -- it Intercepts, it uses Cleave, it guards. First-time players will be shocked by the difference between this and Rot-Beetles. That shock is the lesson: Hollows are people who died with good gear. They are as dangerous as you will be if you die.
+- **Loot:** The Scavenger drops its equipment: an Ironbark Hatchet (Tier I with a [Cleave] trait -- not quite Tier II, but close), a Padded Jerkin (Tier I, Chest, DR 1), and a Bandage Pouch (Tier I, Legs, [Heal], 3 charges). Its pack contains 3 amber shards and a Key.
+- **The Camp:** Searching the salvage pile (no Doom cost -- it is already organized) yields crafting scrap worth 4 amber chips to Weld. The bedroll has a name stitched inside: "Maren." If the party reports this to Warden Voss later, he is silent for a long time. Then: "She was good. Column her out." The tally board in the Warden's Hall updates.
+- **Exits:** North leads deeper, toward the transition zone where the wood begins to change. A return tunnel loops south-west back toward Room 1 (3 rooms of travel, no new encounters).
+
+**The Transition:** From this point forward, the dungeon's character changes. Read aloud as the party enters the passage north:
+
+> *The wood changes between one step and the next. The warm amber of living root-bark fades to grey. The sap in the walls thins, then stops. The air loses its warmth. And the sound -- you have been hearing the Root-Song without realizing it, a background vibration in your bones. It fades here. In its place, something else. A hum. Low, rhythmic, almost musical. Wrong.*
+
+---
+
+#### Room 4: The Grey Threshold
+
+> *Read Aloud:*
+>
+> The roots here are dead. Grey, brittle, snapping underfoot like old bones. Fungal threads web the passage in curtains you must push through, leaving your hands coated in a cold, oily residue. The bioluminescence is different -- no longer green but a faint, pulsing purple, casting long shadows that move in slow rhythm.
+>
+> The passage opens into a chamber where a massive root has breached the floor, rising from below at a forty-five degree angle before plunging back into the ceiling. The root is grey-white, glistening wet, and *pulsing* -- visibly, like a vein. It carries something upward. The hum is louder here. You feel it in your teeth.
+
+**GM Notes:**
+
+- **Enemies:** 1 Rotwood Shambler (HP 10, AC 9, ATK +2, DMG 1d6, Special: Slow -- always acts last in initiative) and 2 Rot-Beetles. The Shambler is a Tier I beast, but it soaks hits and occupies space while the Beetles flank.
+- **Hazard:** The pulsing root is a Rot Pool hazard in a 5-foot radius (DC 10 Grit, 1d6 necrotic). The oily residue on the root is concentrated Blight. Do not touch it. Characters who examined the fungal geometry in Room 2 may realize the pulsing is in the same mathematical ratio -- the Blight is being *pumped* through this root, not spreading naturally.
+- **Environmental Detail:** The hum is stronger near the root. Characters with Aether 14+ can interpret it: it is not the Root-Song. It is a *counter*-song -- the same frequencies, shifted to a dissonant key. The tree is trying to match it and failing. This is the Choir's influence, though the party cannot know that yet. Simply describe the sensation: "The sound wants you to relax. Your muscles loosen against your will. You have to consciously clench your fists to stay tense."
+- **Loot:** A Cinder Wolf Pup corpse lies at the base of the root, drained of color. Searching it yields 1 Beast Fang and a realization: whatever is ahead killed a wolf pup and left it. The predator is deeper.
+- **Exits:** North leads to Room 5. There is no other exit.
+
+---
+
+#### Room 5: The Sap Vein Chamber
+
+> *Read Aloud:*
+>
+> The chamber is vast. The ceiling is lost in darkness, but the walls pulse with veins of golden sap -- still flowing here, still alive, casting the room in warm amber light that fights the grey encroaching from below. The massive root you followed pierces the floor at the chamber's center, rising through a pool of liquid Aether that has turned the color of tarnished silver.
+>
+> Something stands in the pool. It is made of sap -- or it was. A humanoid shape of golden liquid, eight feet tall, its body threaded with grey corruption like ink dropped in honey. It turns eyeless features toward you and the hum intensifies to a vibration you feel in your chest.
+>
+> The sap veins in the walls pulse faster. The golden light flickers. The creature opens what might be a mouth, and a sound emerges -- not a roar, not a scream, but a *note*. A single sustained tone that makes the Rot on the walls bloom visibly, grey flowers opening in time with the beat.
+
+**GM Notes -- Boss: Corrupted Sap Elemental**
+
+| Stat | Value |
+|------|-------|
+| HP | 20 |
+| Defense | 12 |
+| Damage | 1d8+1 |
+| Special | Sap Spray, Rot Pulse, Pool Regeneration |
+
+- **Sap Spray:** Ranged attack, 15-foot cone. DC 10 Grit or coated in corrupted sap: -1 to all rolls for 2 rounds (the sap hardens, restricting movement).
+- **Rot Pulse:** Every 3 rounds, the Elemental releases a pulse through the pool. All characters within 10 feet of the pool: DC 12 Grit or 1d6 necrotic damage. Characters standing *in* the pool take 2d6 automatically.
+- **Pool Regeneration:** While the Elemental stands in the tarnished Aether pool, it regenerates 1d4 HP per round. If the party can force it out of the pool (forced movement, luring it with a flanking character, or draining the pool), the regeneration stops.
+- **Draining the Pool:** A character can attempt to rupture the pool's basin (Might DC 12, 1 action). Success drains the pool in 2 rounds and eliminates the regeneration. The Doom Clock advances by 1 from the noise.
+
+**Tactical Notes:** The Elemental is a puzzle fight. Brute-forcing 20 HP against 1d4 regen is doable but slow and costly. The intended solution: one character lures the Elemental out of the pool (it pursues anyone who damages it) while another drains the basin. Once the pool is gone, it is a straightforward Tier II fight.
+
+**Loot:**
+
+- When the Elemental is destroyed, it collapses into a pool of purified Aether -- the corruption burns off in the death. Each character can harvest 1 dose of purified Aether (heals 2d6 HP, no toxicity risk). Worth 4 amber shards each.
+- The corrupted root at the chamber's center cracks and goes dark when the Elemental dies. Inside the crack: an amber core containing a vivid memory -- *an Arborist, robed in living bark, singing a low note into the root system. The wood responds, sap flowing to the designated channels. Then a second voice joins, singing the same note in the wrong key. The Arborist's face contorts in horror.* This is the oldest evidence the party has of the Choir. They do not know what it means yet. Elder Kaelen will recognize the description: "The old songs. Someone is still singing them. Badly."
+- Searching the chamber thoroughly (costs +1 Doom) reveals a sealed Amber Vein Tap in the north wall -- an Arborist installation, still functional. It provides 1 Aether charge (single-use per run). Mark it on the map: future parties can use it if they return to this room.
+
+**After the Fight:**
+
+With the Elemental destroyed and the root severed, the Blight surge in this section of the Tangle will slow. The grey corridors will not recover -- dead wood stays dead -- but the spread stops. Scout Lira, if consulted on return, confirms: "The air's changed. Warmer. The Song's coming back, faint, but it's there."
+
+---
+
+## Adventure 2: The Ironvein Mines
+
+**Zone 2, Tier II-III. For 2-4 players. Estimated time: 3-4 hours.**
+
+### Overview
+
+The Dam-Wrights have reported structural failures deep in the Ironvein Ridge -- ancient Arborist-era mine shafts collapsing under Borer infestation and Rot pressure. A critical load-bearing root that anchors Emberhome's eastern wall runs through the deep shafts. If it fails, the settlement loses a quarter of its living space. The party must descend through the upper and deep shafts, clear the Borer infestation, and reach the Abandoned Forge where the Rust King has taken his throne.
+
+### For the GM
+
+This adventure is a gear-check. Tier I equipment will keep a character alive through the upper shafts. The deep shafts and the Rust King require Tier II minimum, and the boss demands Aether-based attacks (the Rust King is immune to Might-based damage). If your party is all melee Vanguards with Might builds, they should discover this the hard way -- and learn to diversify.
+
+The Ironvein Mines also introduce the Vault Breach mechanic. An Amber Vault is embedded in the mine wall between Rooms 4 and 5. If the party opens it, they get excellent loot but face 3 rooms of amplified spawns. The Doom Clock pressure is real here: eight rooms plus a boss means the party crosses Threshold 5 (Alert) by Room 5 and risks Threshold 10 (Rot Hunter) if they search aggressively or breach the Vault.
+
+**Prepare:** Tier II-III enemy stat blocks (Clockwork Spider, Hollowed Scavenger, Ironbark Hound, Char Hulk, Blighted Sentinel). Rust King boss stat block (Chapter 25). Tier II-III loot and hazard tables. Amber Vault loot profile (Chapter 4).
+
+### Briefing: Foreman Gnaw
+
+Foreman Gnaw is a Dam-Wright engineer -- broad, calloused hands, stone dust in every crease of her face, and a voice that sounds like gravel in a tumbler. She briefs the party at the mine entrance, not the Warden's Hall. She does not trust Voss to communicate engineering urgency.
+
+> *Read Aloud:*
+>
+> Foreman Gnaw stands at the mine entrance, a timber-braced hole in the Ironvein Ridge that exhales cold air and the tang of old metal. She holds a cracked support beam in one hand like a pointer.
+>
+> "Root Seventeen. Load-bearing. Runs through the deep shafts under the ridge and anchors Emberhome's eastern quarter. It's cracking. Borers undermined the stone around it, and something heavier moved in after them -- we've heard hammering from the deep levels. Metal on metal. Not Borers. Not Rot. Something *making* things down there."
+>
+> She snaps the beam in half for emphasis.
+>
+> "You go down. You clear whatever's infesting the deep shafts. You find Root Seventeen and you tell me if it's salvageable. If it's not, we start evacuating the eastern quarter tonight."
+
+**GM Notes -- Gnaw's Dialogue:**
+
+- *"What's making the hammering?"* -- "If I knew, I'd have sent my own people. I don't send miners against unknowns. That's what Seekers are for."
+- *"What about the Borers?"* -- "Beetle colonies in the upper shafts. They're structural sappers -- every tunnel they carve weakens the stone. Kill what you can. Seal what you can't."
+- *"How deep?"* -- "Eight chambers to the deep forge. Maybe more -- the tree's shifted since I last mapped it. Take a pick and rope. The floor's unreliable."
+
+### The Dungeon
+
+#### Room 1: The Pithead
+
+> *Read Aloud:*
+>
+> The mine entrance drops into a vertical shaft, its walls braced with ironbark timbers that creak under the mountain's weight. Iron rungs hammered into the stone form a ladder descending into darkness. The air is cold and smells of wet rock, old iron, and something acrid -- mine gas, faint but present.
+>
+> At the bottom, the shaft opens into a horizontal gallery. Rail tracks -- corroded, gap-toothed -- run along the floor toward a junction ahead. The walls are natural stone veined with dark iron deposits that catch the torchlight like frozen lightning.
+
+**GM Notes:**
+
+- **No enemies.** The pithead is a staging area. Foreman Gnaw's crew cleared it last week.
+- **Hazard:** Mine Gas Pocket (DC 12 Grit, 2d6 fire, extinguishes all open flames in room). The gas is detectable: a character with Wits 12+ smells the acrid tang automatically. Others require a Wits DC 10 check. If detected, the party can ventilate by fanning or using a wind-based trait before proceeding. If undetected and a character carries an open flame past the junction, the pocket ignites.
+- **Environmental Detail:** The rail tracks are Arborist-era -- the engineering is too precise for human hands. The rails are sung ironbark, still perfectly aligned despite centuries. Dam-Wright graffiti marks the walls: structural assessments, load calculations, profanity.
+- **Exits:** The gallery splits at the junction -- left leads to the upper shafts (Rooms 2-4), right leads to a collapsed passage (can be cleared with Might DC 14, skipping to Room 5 -- the deep shafts. The collapse is dangerous: DC 12 Grit to avoid 1d6 bludgeoning from falling rubble).
+
+---
+
+#### Room 2: The Borer Gallery
+
+> *Read Aloud:*
+>
+> The passage opens into a chamber that was once a storage bay -- shelving brackets protrude from the walls, and the floor is scarred with the ghosts of crate outlines in the dust. But the walls have been carved. Tunnels bore into the stone in spiraling geometric patterns, each one smooth-walled, wide enough to crawl through, and eeriely beautiful. The sound of active Borers is everywhere -- a constant, quiet chewing you feel more than hear.
+
+**GM Notes:**
+
+- **Hazard:** Borer Gallery collapse (DC 15 Grit on entry, or fall through the floor into a gallery below -- 1d6 bludgeoning, and you must be pulled out with Might DC 10 or a rope). The walls crumble if struck -- accidentally smashing through into adjacent galleries is possible and sometimes useful.
+- **Enemies:** No hostile enemies. Bark Borers (beetle-like, forearm-length, armored) swarm the walls but flee if approached. They are not aggressive. However, if the party attacks them or blocks a tunnel, 1d6 Borers swarm the aggressor (HP 2 each, AC 12, ATK +1, DMG 1d4).
+- **Tactical Choice:** The Dam-Wrights want the Borers cleared. Killing them is easy but time-consuming (many tunnels, many beetles). The Arborists used resonance frequencies to repel them -- a character with Aether 14+ and an implement can attempt to replicate this (Aether DC 14). Success drives the Borers from this room permanently without combat or Doom advances.
+- **Loot:** A collapsed shelf yields 2 ironbark brackets (crafting scrap, good quality) and a Miner's Pick (Tier I, R.Hand, [Shockwave] variant -- deals double damage to structures and constructs).
+- **Exits:** Deeper into the upper shafts (Room 3) or back to the junction.
+
+---
+
+#### Room 3: The Dripping Gallery
+
+> *Read Aloud:*
+>
+> Water runs down the walls in thin sheets, pooling in the low spots and filling the air with the sound of a hundred tiny waterfalls. The stone here is green-stained with mineral deposits, and the ironbark bracing has swollen with moisture, pressing outward against the stone. A bridge of planks spans a flooded section of the gallery -- the water beneath is black, still, and reflects nothing.
+
+**GM Notes:**
+
+- **Enemies:** 2 Clockwork Spiders (HP 8, AC 14, ATK +4, DMG 1d6+1, Web: target loses Move action, DC 10 Grit to resist, DR 1). They lurk on the ceiling above the plank bridge and drop when a character is mid-crossing. A Wits DC 12 check on entry spots the web-patterns on the ceiling.
+- **Hazard:** The black water is a Rot Pool (DC 10 Grit, 1d6 necrotic). Any character knocked off the bridge (by a Spider's web, by losing balance) falls in. Climbing out: Might DC 10 or rope.
+- **Loot:** One Spider carries a Key in its web-sac. The other's web-sac contains a Thief's Toolkit (Tier II, Arms, [Lockpick], +2d6 Wits) -- a previous victim's gear, still functional.
+- **Environmental Detail:** The mineral-green stain on the walls is copper carbonate -- the same material used in Arborist communication crystals. A character who notices this (Wits DC 14) and reports it to Twitch later gets a reaction: his eyes go wide, he clutches his crystal, and says nothing for a full minute. "That's where it comes from? That's -- do you know what this means? No. Neither do I. But it means *something*."
+- **Exits:** South continues to Room 4 (the Amber Vault antechamber). West returns to Room 2.
+
+---
+
+#### Room 4: The Vault Antechamber
+
+> *Read Aloud:*
+>
+> The gallery opens into a natural cavern where the stone has been shaped -- not carved, shaped, as if the rock flowed like water and hardened in mid-motion. Arborist work. The walls curve into a dome overhead, and at the dome's apex, an amber lens the size of a dinner plate glows with soft golden light.
+>
+> Set into the east wall: an Amber Vault. The iron-amber sphere is ten meters across, its surface fused into the stone, and its amber shell glows faintly in the lens-light above. A Wood-Golem stands motionless beside the vault door -- humanoid, two meters tall, its body made of interlocking wooden segments, its eyes dark amber. It does not move. It is watching.
+
+**GM Notes:**
+
+- **The Amber Vault:** This is optional. The party can proceed to Room 5 without opening it. The vault door requires a Whisper-Key (Tier III item -- unlikely at this point), an Aether DC 20 check (Legendary -- near impossible with Tier II gear), or a specific puzzle solution: the amber lens above projects a pattern on the floor when a light source is held at a specific angle (Wits DC 14 to notice, Wits DC 12 to solve). The pattern reveals a sequence of touch-points on the vault door. Pressing them in order opens it.
+- **Wood-Golem Protocol:** Non-Blighted intruders are observed, not attacked. First item taken freely. Second item triggers guardian protocol unless the party communicates intent (Aether DC 14). Blighted characters are attacked immediately (the Golem senses Blight contamination).
+- **Vault Contents:** Guaranteed Tier III item: Heartwood Gauntlets (Arms, DR 1, unarmed strikes +1d6). A Moonstone Pendant (Tier III, Neck, +1 Aether modifier). 50% chance of a Memory Seed (roll at the table -- make the party see the die).
+- **Vault Breach Consequence:** Opening the vault triggers the Vault Breach Alert (see Chapter 14). For the next 3 rooms: enemy spawn chance = 100%, enemy count +1 per room, immediate wave spawns in the vault room itself (2 Clockwork Spiders). The party must survive amplified spawns through Rooms 5-7. This is a serious decision.
+- **If they leave the Vault sealed:** The Vault persists. It can be opened on a future run with better tools. Mark it on the map.
+- **Exits:** West returns to Room 3. South descends to Room 5 (the deep shafts).
+
+---
+
+#### Room 5: The Deep Shafts
+
+> *Read Aloud:*
+>
+> The descent into the deep shafts is a vertical drop -- a spiraling ramp carved into the stone, wide enough for two abreast, with no railing and a hundred-foot drop into blackness on the inner edge. The air is warmer here. The stone is warm. Golden light leaks from cracks in the walls -- exposed Aether veins, pulsing with slow rhythm.
+>
+> At the bottom, the shaft opens into a gallery of ancient scale. The ceiling is thirty feet high. Ironbark pillars -- whole tree-trunks, petrified and polished -- support the span. Between the pillars, the floor is scored with rail tracks leading deeper. And everywhere, the sound: metal on metal. Hammering. Rhythmic, purposeful, and wrong.
+
+**GM Notes:**
+
+- **Enemies:** 2 Ironbark Hounds (HP 12, AC 14, ATK +5, DMG 1d6+1, DR 1, Pack: +1 dmg per additional Hound) patrol the gallery in a circuit. They attack anything that enters. If the Vault was breached, add 1 additional Hound.
+- **Environmental Detail:** The hammering is coming from Room 8 -- the Abandoned Forge. It carries through the stone with unnatural clarity. Characters with Aether 14+ can determine the direction. Characters with lower Aether just hear it from everywhere.
+- **Loot:** One petrified ironbark pillar has a plaque at its base, barely legible. It reads in Old Tongue: *"Forged in Root-Song. Sung into strength. Let no hand take what the Song has shaped."* This is an Arborist construction marker. It confirms the mines predate human habitation by centuries.
+- **Exits:** The gallery continues east (Room 6), south (Room 7), and a sealed passage north requires a Key or Might DC 14 to force (leads directly to Room 8 -- a shortcut that bypasses two rooms but costs Doom from the noise).
+
+---
+
+#### Room 6: The Iron Vein
+
+> *Read Aloud:*
+>
+> The passage narrows into a natural fissure where veins of raw iron run through the exposed stone like dark arteries. The metal is warm to the touch and hums faintly -- residual Aether, trapped in the ore. Pick marks scar the walls at regular intervals -- someone mined here, methodically, recently.
+>
+> A Hollowed Scavenger kneels at the far end of the fissure, mechanically swinging a pick into the wall. Its movements are precise, rhythmic, efficient. It has been mining. It does not need the iron. It does not know why it mines. But its muscles remember the motion, and so it continues.
+
+**GM Notes:**
+
+- **Enemy:** 1 Hollowed Scavenger (HP 14, AC 13, ATK +5, DMG 1d6+2, Muscle Memory). This one wields a mining pick (+1d6 damage vs. constructs). It attacks when approached within 10 feet or when the party makes noise.
+- **Emotional Note:** This is a dead miner. Treat it with the gravity it deserves. "The pick rises and falls. The hands blister and heal and blister again. The knees are worn through the hide trousers. It has been here a long time." If the party searches the body after killing it, they find a Dam-Wright membership token and a letter to someone named "Ros," never finished.
+- **Loot:** Mining Pick (Tier I equivalent with +1d6 vs. constructs), a sack of raw iron ore (worth 5 amber shards to Foreman Gnaw), 2 amber chips.
+- **Hidden Detail:** The section of wall the Scavenger was mining has exposed something unusual -- a vein of amber, not iron. DC 12 Wits to notice. The amber is warm and contains a clear memory impression: a forge, a smith singing while they work, the metal shaping itself in response to the song. This is a Memory Seed fragment -- not a full Seed, but evidence that one may be nearby (foreshadowing the Abandoned Forge).
+- **Exits:** Returns to Room 5.
+
+---
+
+#### Room 7: Root Seventeen
+
+> *Read Aloud:*
+>
+> The passage opens into a cathedral-sized chamber dominated by a single root. Root Seventeen. It spans the chamber diagonally, floor to ceiling, thick as a cart and dark with age. Ironbark bracing has been installed around it at intervals -- Dam-Wright work, recent, desperate. The braces are cracking.
+>
+> The root itself is alive but stressed. Deep fissures run along its length, weeping golden sap that pools on the floor in amber puddles. Borer galleries riddle the surrounding stone, their geometric tunnels weakening the rock that supports the root's weight. And at the root's base, where it descends into the floor, grey fungal threads have begun to climb.
+
+**GM Notes:**
+
+- **No enemies initially.** This is an assessment room. The party's objective is to determine if Root Seventeen is salvageable.
+- **Assessment:** A character can examine the root (Wits DC 12). Success reveals:
+  - The root is alive but critically stressed. The Borer damage to surrounding stone has removed 40% of its structural support.
+  - The Blight infection at the base is Stage 1 -- early, curable. Father Oaken or the Hag Circle could treat it if it were accessible, but the root cannot be moved.
+  - **Salvageable -- barely.** The Borers must be driven from the surrounding stone, the infection must be treated in place, and new bracing must be installed. Foreman Gnaw can do the bracing if the other two conditions are met.
+- **Hazard:** The sap pools are not hazardous but are harvestable (1 dose purified Aether per pool, no toxicity, 2 pools available). Harvesting costs +1 Doom per pool.
+- **Complication:** While the party examines the root, a tremor shakes the chamber (the Burnwillow thrashing). Falling Rubble hazard (DC 11 Grit, 1d6 bludgeoning). One of the Dam-Wright braces cracks audibly. The clock is ticking -- literally and figuratively.
+- **Exits:** A passage south leads to Room 8 (the Abandoned Forge). A Dam-Wright maintenance tunnel leads back to Room 5.
+
+---
+
+#### Room 8: The Abandoned Forge -- The Rust King's Throne
+
+> *Read Aloud:*
+>
+> The hammering stops the moment you enter.
+>
+> The Abandoned Forge is a vast chamber that was clearly shaped by Arborist hands -- the walls curve organically, the forge pit is a natural Aether vent channeled through ironbark troughs, and the workbenches are grown, not built. Tool racks line the walls, their implements still arranged as though the smith just stepped out. The forge-fire is dead. It has been dead for centuries.
+>
+> But the throne is new.
+>
+> At the chamber's heart, where the forge pit gapes dark and cold, a throne of petrified wood and fused iron has been erected. Corroded metal and dead amber form its crown. Seated upon it: a figure that was once an artificer, a maker, a singer of metal. It is none of those things now.
+>
+> The Rust King rises. His hands are blackened iron, fused to the tools he once wielded. His crown is a circlet of dead amber, cracked and lightless. His eyes are forge-fire that has gone grey.
+>
+> He does not speak. He raises one hand, and the iron in the walls shrieks in response.
+
+**GM Notes -- Boss: The Rust King**
+
+| Stat | Value |
+|------|-------|
+| HP | 50 |
+| Defense | 16 |
+| Damage | 5d6 |
+| Special | Corroding Touch, Summon Rot-Beetles, Ironbark Throne Immunity |
+
+- **Corroding Touch:** On hit, target's armor loses 1 DR permanently. This is devastating for tank characters. Announce it clearly: "Your cuirass splits at the seam. The metal is rusting before your eyes. [Item name] has lost 1 DR."
+- **Summon Rot-Beetles:** Action. Summons 1d6 Rot-Beetles (HP 4, AC 10, ATK +2, DMG 1d4). They emerge from the forge pit and swarm the nearest character.
+- **Ironbark Throne:** The Rust King is immune to Might-based attacks while seated on his throne. Physical attacks bounce off with a metallic ring. He does not leave the throne willingly. **Weak to Aether.** Aether-based attacks (implements, scrolls, Aether-scaling weapons) deal full damage.
+- **Forcing him off the throne:** Forced movement effects (Shockwave, Gust, a sufficiently creative environmental action -- toppling a pillar, collapsing the throne) work. Off the throne, he loses the Might immunity and becomes a standard Tier II-III fight. He attempts to return to the throne each round.
+
+**Tactical Notes:**
+
+This fight punishes mono-builds. An all-Might party will bounce off the throne immunity and die to attrition. The intended approach: Aether-users focus the King while Might-users kill Beetle summons and protect the casters. If no one has an Aether weapon, the party must get creative -- topple the throne (Might DC 16 on the throne itself, not the King), use fire from the forge pit (a character can attempt to relight the forge: Aether DC 12, filling the pit with Aether fire that deals 2d6 to anyone in the pit area, including the King), or lure the King off the throne by threatening the forge itself.
+
+**Loot:**
+
+- The Rust King's crown: Dead Amber Circlet (Tier II, Head, +2d6 Wits). It is corroded and faintly warm. Weld can restore it: "The amber's not dead. Just sleeping. I can feel it arguing with the iron."
+- The Rust King's tools: Forge Hammer of the Ironvein (Tier II, R.Hand, +2d6 Might, [Shockwave]). The handle is warm and hums faintly near active Aether.
+- The Abandoned Forge itself: with the Rust King dead, the forge can be restored. Foreman Gnaw will send a crew. This unlocks a permanent crafting station in the Ironvein Mines -- a secondary forge where the party can craft between runs without returning to Emberhome. Town Upgrade: Blacksmith +1 (if the party invests 10 amber shards in restoration).
+- In a sealed drawer behind the workbench (Lockpick DC 12 or Key): a Memory Seed. The memory it contains: the experience of an Arborist smith singing iron into shape -- the resonance, the heat, the moment when the metal stops resisting and starts *listening*. This unlocks a Tier III weapon recipe at Emberhome's forge.
+
+**After the Fight:**
+
+Foreman Gnaw's assessment of Root Seventeen: "Salvageable. Barely. Get Father Oaken down here for the Blight, and I'll have my crew reinforce the stone. The eastern quarter stands." She pauses. "Good work. Don't let it go to your heads."
+
+---
+
+## Adventure 3: The Rot Spire
+
+**Zone 4, Tier III-IV. Endgame. For 2-4 players with Tier III equipment minimum. Estimated time: 4-5 hours.**
+
+### Overview
+
+The Rot Spire is the endgame dungeon -- a vertical shaft of concentrated Blight rising from the Rot-Heart toward the Burnwillow's core systems. The Root-Song is dead here. The Choir's counter-song fills the silence. The party must ascend seven rooms through the Spire's spiraling interior, confronting the worst the Blight has to offer, to reach the Clockwork Archon at its peak -- an ancient Arborist war machine, corrupted and still executing its last command: kill all intruders.
+
+This adventure is lethal. Characters will be tested at every tier of play. Retreat is always an option, but the Doom Clock punishes indecision. The Spire does not forgive.
+
+### For the GM
+
+The Rot Spire is not a dungeon crawl. It is a siege. The party is ascending through hostile territory with no safe ground, no rest points, and escalating resistance. Every room should feel like a threshold crossed -- one step deeper into territory the living were never meant to enter.
+
+The Doom Clock will cross Threshold 5 by Room 5 and Threshold 10 by Room 7 or 8 if the party searches. At Threshold 10, the Rot Hunter spawns. In the Rot Spire, the Rot Hunter is not a background threat -- it is ascending behind them. The party must outpace it or turn and fight with Tier III-IV weapons.
+
+Tone: The Root-Song is absent. Describe its absence constantly. Characters accustomed to the background vibration feel its loss as physical discomfort -- pressure in the skull, ringing ears, a wrongness in the body. Replace it with the Choir's hum: dissonant, rhythmic, almost beautiful. The Rot Spire is a cathedral. The Choir is holding a service. The party is the congregation that was not invited.
+
+**Prepare:** Tier III-IV enemy stat blocks (Blighted Sentinel, Forge Wraith, Plague Knight, Emberlord Sentinel). Clockwork Archon boss stat block (Chapter 25). Tier III-IV loot and hazard tables. The Rot Hunter stat block (in case it catches them).
+
+### Briefing: Elder Kaelen and the War Council
+
+This briefing is not given in the Warden's Hall. It is given at the Hearth, by Elder Kaelen, with Warden Voss and Captain Ashara present. The mood is funereal.
+
+> *Read Aloud:*
+>
+> Elder Kaelen stands before the Hearth's Sun-Shard, its light casting his burn scar in sharp relief. He runs his thumb along the old wound on his forearm -- slowly, deliberately, the way he does when the decision has already been made.
+>
+> "The Rot Spire has been growing for months. It has breached the third root-layer and is approaching the Burnwillow's primary sap channels. If it reaches them, it will poison the tree's circulatory system from the inside out. The fire-leaves will go dark within a season."
+>
+> He looks at each of you in turn.
+>
+> "We have sent three parties into the Spire. None returned. We recovered gear from the first two -- their equipment was found on Hollows that emerged from the Spire's base. The third party's gear has not been seen. They may still be alive. They are probably not."
+>
+> Warden Voss: "Seven levels. The Archon sits at the top. It's an Arborist war machine -- old, corrupted, still fighting the last war. It does not distinguish between the Rot and you. It kills everything."
+>
+> Captain Ashara: "I cannot spare soldiers for this. The perimeter needs everyone I have. You go alone or you do not go."
+>
+> Elder Kaelen: "The tree does not stop. We do not stop. Questions?"
+
+**GM Notes -- War Council Dialogue:**
+
+- *"What's the Archon?"* -- Kaelen: "An Arborist construct. They built war machines to protect the Heartwood. This one was stationed in what is now the Rot-Heart. It does not know the Arborists are gone. It does not know its orders are five hundred years old. It knows only: kill all intruders."
+- *"How do we kill it?"* -- Voss: "It is a construct. DR 2. Precision crit range on 4-6. It repairs itself -- three times, maximum. And when you drop it below a quarter health, it detonates. 5d6 lightning to everything in the room. You need to burst it from above that threshold to zero in a single round, or you eat the explosion."
+- *"What about the previous parties?"* -- Ashara: "If you find survivors, bring them home. If you find Hollows wearing Emberhome gear, end them. They would want that."
+- *"Is retreat an option?"* -- Kaelen: "Always. The Spire will still be there tomorrow. But tomorrow it will be taller."
+
+### The Dungeon
+
+#### Room 1: The Spire Gate
+
+> *Read Aloud:*
+>
+> The entrance to the Rot Spire is a wound. The Burnwillow's root-bark has split apart to reveal the Spire's grey interior, fungal architecture growing through the gap like a tumor pushing through skin. The transition is immediate -- one step you are standing on living wood, the next on grey matter that yields slightly under your weight, springy and warm in a way that living things should not be.
+>
+> The Root-Song stops. Not fades -- stops. Between one heartbeat and the next, the background vibration you have felt since your first day in Emberhome vanishes. In its place: silence. Then, beneath the silence, something else. A hum. Low, rhythmic. The walls pulse with it. Your bones try to match it.
+>
+> Ahead, the Spire's interior spirals upward in a helix of grey corridors, lit by bioluminescent Blight that casts everything in a light that is the exact color of a bruise.
+
+**GM Notes:**
+
+- **No enemies in the gate room.** The silence is the encounter. Every character feels the Root-Song's absence. Characters with Aether 14+ must pass a Grit DC 12 check or gain the Shaken condition for 3 rounds -- the sensory absence is physically distressing. Describe it: "Your ears ring. Your jaw aches. Something you did not know you were hearing has gone quiet, and the silence is *loud*."
+- **Environmental Detail:** The walls are grown, not built -- fungal architecture that mimics Arborist construction in grey and purple. Characters who saw the geometric fungal patterns in Rotwood Hollow (Adventure 1, Room 2) recognize the same mathematical ratios here, at massive scale. The Choir is an architect.
+- **Hazard:** The floor is Blight-material. Extended contact (more than 3 rounds of standing in one spot) triggers a Blight check: DC 14 Grit or Blighted condition (1 HP lost per room traversed, cannot be healed until cured). Keep moving.
+- **Exits:** The spiral ascends to Room 2. There is no other exit. The party is committed.
+
+---
+
+#### Room 2: The Chorus Chamber
+
+> *Read Aloud:*
+>
+> The spiral opens into a chamber that was once -- impossibly -- beautiful. Fungal columns rise to a vaulted ceiling, their surfaces patterned in fractal spirals that catch the bioluminescent light and scatter it in prismatic arcs. The floor is smooth, polished grey, and reflects the light like still water.
+>
+> Figures stand in the chamber. A dozen of them. Hollows, but not like any you have seen. They stand in formation -- concentric circles, equidistant, facing inward. They are humming. A single sustained chord, three notes interleaved, that resonates in the columns and fills the chamber with sound that has weight and color and almost-meaning.
+>
+> They wear the gear of fallen Seekers. You recognize a Dam-Wright insignia. A Hive forager's sash. Emberhome boots, patched at the heel.
+
+**GM Notes:**
+
+- **Enemies:** 6 Chorus Hollows (use Hollowed Scavenger stats: HP 14, AC 13, ATK +5, DMG 1d6+2, Muscle Memory) and 1 Doom Herald (HP 18, AC 13, ATK +5, DMG 1d8+2, Doom Pulse: on hit DoomClock advances by 1, Chant: +1 to nearby enemy attack rolls).
+- **Behavior:** The Chorus does not attack immediately. They are singing. The party can attempt to pass through without engaging -- Wits DC 14 group stealth check. Failure: the formation breaks and all seven attack in coordinated waves (the Doom Herald hangs back and chants while the Hollows engage).
+- **Doom Herald Priority:** Kill the Herald first. Its Doom Pulse advances the Clock on every hit, and its Chant buffs every Hollow in the room. A fight against 6 buffed Hollows with the Clock advancing every round is a TPK waiting to happen.
+- **Emotional Beat:** The gear. Make the players look at it. "One of the Hollows wears a Padded Jerkin with a name stitched inside: Maren." If the party played Adventure 1, they found that name on the dead Scavenger's bedroll. Maren became a Hollow. She made it to the Spire. She is singing now.
+- **Loot:** Chorus Hollows carry standard Tier II gear. The Doom Herald drops a Doom Herald's Chime (Tier II, Neck, +2d6 Grit, Special: once per run, reduce DoomClock by 2 -- the chant reversed).
+- **Exits:** The spiral continues upward.
+
+---
+
+#### Room 3: The Blight Laboratory
+
+> *Read Aloud:*
+>
+> The chamber is clinical. Stone tables line the walls, their surfaces stained with substances that have dried to dark crusts. Glass vessels -- cracked, clouded, ancient -- sit in wooden racks. The fungal growth here is *organized*: cultures in amber dishes, samples sealed in resin, specimens pinned to cork boards with bone needles. Someone was studying the Blight. Or cultivating it.
+>
+> A Forge Wraith materializes at the far end of the room -- translucent, blue-white, the ghost of an Arborist researcher still running experiments on phenomena that have not been relevant for five hundred years. Its hands pass through the glassware without touching it. It sees you and its expression shifts from concentration to fury.
+
+**GM Notes:**
+
+- **Enemy:** 1 Forge Wraith (HP 18, AC 15, ATK +8, DMG 2d6+2, Aether Burn: bypasses DR, hits Resistance not Defense, Phase: moves through walls). The Wraith is incorporeal -- physical attacks deal half damage. Aether-based attacks deal full damage.
+- **Behavior:** The Wraith defends the laboratory. It phases through walls to flank, targets the character with the highest Aether score (drawn to resonance), and retreats through walls when below 5 HP to regenerate (heals 1d6 if unseen for 1 round).
+- **The Laboratory:** Searching the tables (costs +1 Doom) reveals:
+  - Arborist research notes, brittle but legible. A character with Wits 14+ can decipher fragments: the researchers were studying the boundary between the Undergrove's decomposition zone and the living wood. They identified a specific resonance frequency that maintained the boundary. The notes end abruptly mid-sentence.
+  - 3 doses of experimental Salicylic Tonic (Tier III quality: heals 3d6, cures Poison and Stage 1 Blight).
+  - A sealed amber specimen containing a sample of *pre-Collapse* Rot -- the natural, boundary-respecting version. It is warm, dormant, and does not register as hostile. A character with Aether 14+ who touches it feels calm. The Rot is not evil. It is decomposition. It belongs in the Undergrove. It was never supposed to be here.
+- **Exits:** Spiral continues up (Room 4). A sealed hatch in the floor (Lockpick DC 14 or Key) drops to a hidden passage that bypasses Room 4 and emerges in Room 5.
+
+---
+
+#### Room 4: The Crucible
+
+> *Read Aloud:*
+>
+> Heat. The spiral opens into a chamber where the Blight has breached an Aether vein, and the two forces war visibly -- golden sap pushing outward from the wall, grey corruption pushing inward, the boundary between them a roiling, hissing line of steam and sparks. The temperature is forge-hot. The air shimmers.
+>
+> An Emberlord Sentinel stands guard at the boundary line -- a construct of fire and iron, its body glowing cherry-red, its single amber eye scanning the room in mechanical sweeps. It is not Blighted. It is Arborist-made. It is still protecting the Aether vein. It will protect it from you, too.
+
+**GM Notes:**
+
+- **Enemy:** 1 Emberlord Sentinel (HP 35, AC 16, ATK +8, DMG 2d8+3, DR 2, Fire Aura: 1d4 fire damage to melee attackers, Immune to fire).
+- **Behavior:** The Sentinel guards the Aether vein. It does not pursue characters who retreat past the chamber entrance. It attacks anything that approaches the vein or the boundary line. It is not hostile to non-Blighted characters who stay near the walls -- a Wits DC 14 check reveals it is tracking the Blight, not the party. The party can pass through by hugging the far wall (Wits DC 12 group check to move quietly past).
+- **The Aether Vein:** If the party helps the Sentinel by attacking the Blight-boundary (fire damage, Aether attacks, or applying the experimental Salicylic Tonic from Room 3), the Sentinel recognizes them as allies and stands down. It gestures toward the vein with one iron hand. The vein is harvestable: 2 doses of high-grade Aether (heals 3d6, recharges 1 implement charge each).
+- **If they fight the Sentinel:** A brutal encounter. DR 2, Fire Aura, and 35 HP means this is a significant resource drain before the boss. The Sentinel drops an Ember Core (Tier III crafting material, worth 15 amber shards) and its chassis (Ironbark Plating components for Weld).
+- **Hazard:** Magma Vent (DC 15 Grit, 3d6 fire) near the boundary line. Metal carried too close begins to glow.
+- **Exits:** Spiral continues up.
+
+---
+
+#### Room 5: The Gallery of the Lost
+
+> *Read Aloud:*
+>
+> The Spire widens into a gallery lined with alcoves. In each alcove stands a figure -- Hollow, motionless, preserved. They are arranged chronologically: the nearest wear ancient Arborist robes, their fabric still intact after centuries. Further along, Dam-Wright coveralls. Hive forager gear. Emberhome leather. The most recent stands at the far end, in gear you recognize from the third lost party. Their eyes are open. They are not breathing.
+>
+> It is a collection. The Spire has been *collecting*.
+
+**GM Notes:**
+
+- **No immediate enemies.** The gallery is a horror set piece. The figures do not animate unless disturbed (removing gear, touching them, making loud noise).
+- **If disturbed:** The nearest 3 figures animate as Blighted Sentinels (HP 22, AC 16, ATK +7, DMG 1d8+3, DR 1, Alert: cannot be ambushed, Rallying Cry: +1 to hit for nearby enemies). They fight in coordinated formation.
+- **The Third Party:** The most recent figure is identifiable. Voss can confirm the name later. Searching the figure's gear (without animating it -- Wits DC 15 for careful extraction) yields a sealed message tube containing a partial map of the upper Spire (Rooms 6-7 layouts, enemy placements as of three weeks ago -- some may have shifted) and a Heartwood Greatsword (Tier III, R.Hand, +3d6 Might, requires both hands).
+- **Emotional Beat:** The gallery tells a story across centuries. The oldest alcove contains an Arborist in full regalia, perfectly preserved, their expression one of profound grief. They came here voluntarily. They joined the collection willingly. Why? Characters with Aether 16+ who touch the Arborist's alcove receive an impression: *"I could not stop the Song. I chose to join it. At least here I am still singing."* The Choir is not just a weapon. It is a grief made manifest.
+- **Exits:** Spiral continues up (Room 6). A vent shaft in the ceiling (Might DC 14 to climb) shortcuts to Room 7, bypassing Room 6 but emerging directly in the boss antechamber with no preparation.
+
+---
+
+#### Room 6: The Resonance Chamber
+
+> *Read Aloud:*
+>
+> The chamber throbs. There is no other word for it. The walls, floor, and ceiling pulse in synchronized rhythm -- the Choir's hum made physical. The air vibrates against your skin. Your teeth ache. The bioluminescent Blight-light here is intense, bright enough to read by, and the color shifts with each pulse -- purple, grey, almost-gold, then back.
+>
+> At the chamber's center, a crystalline formation grows from the floor -- amber, but wrong. Grey-amber. The color of a bruise on the tree's soul. It resonates with the chamber's pulse, amplifying it, broadcasting it upward through the Spire. This is a relay. The Choir's song passes through here on its way to the surface.
+
+**GM Notes:**
+
+- **Enemies:** 2 Plague Knights (HP 32, AC 18, ATK +9, DMG 2d8+3, DR 2, Rot Strike: DC 14 Grit or 1d4 necrotic/turn for 3 rounds, Parry: +2 AC as reaction). These are the elite guard. They fight with discipline and coordination -- one engages while the other Parries, then they switch.
+- **The Crystal Relay:** Destroying it (HP 30, AC 10, no defense -- it is a crystal, not a creature) silences the Choir's hum in the Spire. The effects:
+  - All remaining enemies in the Spire lose their coordinated behavior and fight as individuals (no Rallying Cry, no Pack bonuses, no Chant).
+  - The Clockwork Archon in Room 7 loses its connection to the Choir's song, which it has been using for targeting data. Its Precision Strike (crit on 4-6) reverts to standard crit (6 only).
+  - The silence is disorienting -- even the characters feel it. Characters with Aether 14+ feel a moment of pure Root-Song, unblemished, as the Choir's interference is removed from this section of the tree. It lasts five seconds. Then the Rot closes back in, and the Song is gone again.
+- **Destroying the Relay with Fire or Aether:** The crystal detonates on destruction (3d6 force, 15-foot radius, DC 14 Grit for half). Back up before the final blow.
+- **Loot:** The relay's shattered remains yield 3 amber cores (Tier III crafting material) and a Resonance Shard -- a fragment of the original Root-Song, crystallized. Slotted into a weapon, it adds +1d6 vs. Blighted enemies permanently.
+- **Exits:** Spiral continues to Room 7 -- the apex.
+
+---
+
+#### Room 7: The Apex -- The Clockwork Archon
+
+> *Read Aloud:*
+>
+> The spiral ends. The apex of the Rot Spire is a domed chamber of grey fungal architecture, its ceiling open to a shaft that rises toward the Burnwillow's sap channels far above. Wind pours down the shaft, carrying the distant scent of fire-leaves and living wood -- a cruel reminder of what the Spire is consuming.
+>
+> In the chamber's center, on a plinth of corroded iron and amber, stands the Clockwork Archon.
+>
+> It is beautiful. Terrible and beautiful. An Arborist war machine of interlocking gears, amber lenses, and ironbark plating, eight feet tall, its form humanoid but wrong -- too many joints, too many angles, moving with a precision that no living thing possesses. Fungal tendrils have woven through its chassis, grey threads among golden gears, but they have not slowed it. The amber heart in its chest beats with a rhythm that is almost, but not quite, the Root-Song.
+>
+> It turns. Eighteen joints articulate simultaneously. Every amber lens focuses on you.
+>
+> "INTRUDERS DETECTED. PROTOCOL: ELIMINATE. COMPLIANCE: MANDATORY."
+
+**GM Notes -- Boss: The Clockwork Archon**
+
+| Stat | Value |
+|------|-------|
+| HP | 45 (effective ~72 with Repair) |
+| Defense | 18 |
+| Damage | 5d6 |
+| DR | 2 |
+| Special | Precision Strike, Repair Protocol, Overload |
+
+- **Precision Strike:** Critical hits on 4-6 instead of 6 only. (If the relay in Room 6 was destroyed, this reverts to 6 only.) Each crit deals full 5d6 damage with no defensive reductions. The Archon rolls a lot of dice and crits on half of them. Intercept shields and Guard actions are critical.
+- **Repair Protocol:** Action. Restore 3d6 HP. 3 charges. The Archon uses this when below half HP. It pauses combat for one round to repair, giving the party a window -- but the next round it is back at higher HP. Kill it fast or it outlasts you.
+- **Overload:** When reduced below 15 HP, the Archon enters Overload mode. On its next turn, it detonates: 5d6 lightning, 20-foot radius. **Every character in the room must save (DC 15 Grit) for half.** The detonation kills the Archon. The strategy: burst it from above 15 to dead in a single round to skip Overload entirely, or trigger Overload deliberately and survive the blast.
+- **Phase Shift:** Every 2 rounds, the Archon teleports to a random position in the room. It cannot be cornered. It cannot be pinned. Positioning resets constantly.
+
+**Tactical Notes:**
+
+The Archon is the hardest single-target fight in the game before the Crown. Its expanded crit range means raw damage output is enormous. Its Repair Protocol means attrition fights favor it. Its Overload means the kill threshold requires coordination.
+
+**The Intended Kill Sequence:**
+1. Whittle HP to 20-25 range.
+2. Bait out Repair Protocol uses (it only has 3).
+3. Once Repairs are exhausted, coordinate: every character holds their attack.
+4. On a single round, unleash everything. Drive it from above 15 to 0 in one volley.
+5. If Overload triggers, scatter -- spread to minimize the 20-foot radius, and tank the DC 15 save.
+
+**If the party destroyed the Relay (Room 6):** The Archon crits only on 6, reducing its average damage by roughly 40%. The fight becomes significantly more manageable. This is the intended reward for thorough play.
+
+**Loot:**
+
+- The Archon's Amber Heart: a Tier IV component. Weld can build one legendary item from it (player's choice of stat, requires 20 amber shards of additional investment). "I have never held anything like this. The gears still turn. The amber still beats. What do you want me to make? Because I can make anything."
+- The Archon's chassis: Ironbark Armor (Tier III, Chest, DR 3, Heavy: -5ft movement). Arborist-made. It hums.
+- The Archon's targeting lens: Crown of Insight (Tier IV, Head, +2 Wits modifier, See Invisible). If the party already has one, replace with: Moonstone Helm (Tier III, Head, DR 2).
+- In a compartment in the plinth (Wits DC 14 to find): a Memory Seed containing the Archon's original orders -- *"Guard the Sap Nexus. Permit no Blight past the third root-layer. If the Nexus is compromised, seal the shaft and wait for the Silencers to return."* The Silencers never returned. The Archon waited five hundred years. It is still waiting.
+
+**After the Fight:**
+
+With the Archon destroyed, the Rot Spire loses its apex guardian. The Blight will not recede -- it never recedes -- but the Spire's growth slows. The shaft above vents warm air from the Burnwillow's sap channels, and for a brief moment, the Root-Song returns. Faint. Fragile. But real. Characters feel it in their bones: the tree is alive. Damaged, dying, but alive.
+
+The return descent through the Spire is tense but uneventful -- the enemies the party bypassed or left alive are disorganized without the relay and the Archon's command structure. If the Doom Clock has crossed Threshold 10, the Rot Hunter is somewhere in the lower levels. The party must choose: fight it (artifact-quality loot) or evade it (Wits DC 14 group check to find a side passage).
+
+**Return to Emberhome:**
+
+Elder Kaelen meets the party at the Hearth. He does not ask what they fought. He asks: "Did you hear it? At the end. After the machine stopped. The Song."
+
+If the party says yes, he closes his eyes. "Then the tree is still fighting. And so are we."
+
+If the party reports the Memory Seed's contents -- the Archon's orders, the Silencers, the five-hundred-year wait -- Kaelen is silent for a long time. He runs his thumb along his burn scar. "The Silencers sealed themselves in the Heartwood. The Archon was waiting for people who chose to disappear. That is the cruelest order I have ever heard."
+
+---
+
+## Emberhome Gazetteer
+
+**Settlement Reference for Roleplay Sessions**
+
+Emberhome is not a dungeon. It is a home. These descriptions are for sessions that spend time in the settlement -- shopping, crafting, talking to NPCs, and breathing between delves. Read the location description when the party visits. Let the NPCs be people, not vending machines.
+
+### The Hearth
+
+> *Read Aloud:*
+>
+> The Hearth is the heart of Emberhome -- a massive hollowed-out burl warmed by a Sun-Shard at its center. The floor is polished smooth by six centuries of shuffling feet, dark as river-stone and just as cold at the edges where the light does not reach. The air smells of woodsmoke, pine resin, and the faint sweetness of active Aether.
+>
+> Elder Kaelen sits in his usual chair by the Sun-Shard, its light casting his burn scar in amber relief. He watches everyone who enters. He always watches.
+
+**GM Notes:**
+
+- **Services:** Rest (full HP recovery), quest assignment, lore consultation.
+- **Elder Kaelen:** See Chapter 22 for full profile. Key dialogue hooks:
+  - If the party completed a quest: "Good. The tree remembers what you did, even if you do not." He does not elaborate.
+  - If a party member died: "Tell me their name." He produces a charcoal stick and walks to the Chapel. The name goes on the wall.
+  - If asked about the Root-Song: "It is weaker this season. The deep roots are compromised. I feel it in the floor when I sleep. The vibration stutters."
+  - If asked about the Arborists: He touches his burn scar. "They sang. The wood answered. We have forgotten the melody. We have not forgotten the silence that followed."
+
+### The Ember-Forge
+
+> *Read Aloud:*
+>
+> Humid warmth hits you at the threshold. The Ember-Forge is a greenhouse of metal and wood -- a natural Aether vent feeds the forge-fire, which is not fire at all but a column of golden sap-light that Weld tends with the focus of a man talking to something only he can hear. Living tools hang from ironbark racks -- chisels that vibrate when you pass, hammers that ring with harmonics.
+>
+> Kettrick works the secondary bench near the back, close-cropped hair bent over a piece of ironbark he is shaping with fingers too quick to follow. His pockets are full of something. They are always full of something.
+
+**GM Notes:**
+
+- **Services:** Craft, upgrade, repair, Memory Seed decoding, salvage.
+- **Weld:** Talks to the items while working. "This joint's wrong. You don't want to bend there, do you? No. Let me help." He is not performing. The items respond to Aether resonance and Weld's decades at the forge have made him sensitive. He is the closest thing Emberhome has to an Arborist, and he does not know it.
+  - If the party brings a Memory Seed: "Give it here. Carefully." He holds it to the forge-light. "I can feel the memory. This one was a weaponsmith. He had steady hands and bad knees." He decodes the recipe over the next session.
+  - If asked about Kettrick: A long pause. "He's good. Better than me at fine work. Won't admit it. I won't admit it. We're both too old and too stubborn."
+- **Kettrick:** Treats every conversation like a trade. "I'll tell you what I know about Ironvein iron if you tell me what you found in the deep shafts." He keeps a piece of Ashenmere bark in his pocket. It has never been warm. He touches it when he thinks no one is watching.
+  - If the party mentions Verdhollow: His eyes flicker. "Verdhollow's gone. Everyone knows that." He changes the subject. He is lying. He is in contact with a Verdhollow settlement via Root-Road messenger. This is his Secret (see Chapter 22).
+
+### The Root-Cellar
+
+> *Read Aloud:*
+>
+> The Root-Cellar is chaos with a shopkeeper. Floor to ceiling with salvage -- corroded gears next to children's toys, a broken compass beside a pressed flower, a knife rack labeled "ANGRY" in chalk. Twitch perches behind a counter made from a door balanced on two crates, his fingers sorting amber chips by some system visible only to him.
+>
+> "Ah! Customers. Or browsers. I never know which until you leave. What feels right today? Something sharp? Something warm? I have a thing that feels like early frost -- I don't know what it does but it's *correct*."
+
+**GM Notes:**
+
+- **Services:** Buy, sell, identify (Twitch identifies by holding items and waiting -- "It'll tell me. Give it a minute.").
+- **Twitch:** His cataloguing-by-emotion system is genuine and functional. A character looking for a specific item type can describe the *feeling* they want: "Something that protects" gets a shield. "Something that finds things" gets a Dowsing Rod or a Sporesight Elixir. Twitch's prices are fair but strange -- he charges more for items he likes and less for ones that "want to leave."
+  - The communication crystal in his back pile hums occasionally. If the party has encountered Arborist technology, they may recognize the hum (Wits DC 14). It is a Resonance Node -- part of the Arborist communication network. It is receiving a signal. Twitch does not know what it is. "It started humming three months ago. Before that, nothing. For twelve years, nothing. Something woke up. You know what I mean? Do you?"
+  - If asked about prices: "Never the same twice. The amber knows what it's worth. I just listen."
+
+### Market Row
+
+> *Read Aloud:*
+>
+> Lamp oil and commerce. Market Row is a narrow corridor of bark stalls hung with oil-lamps that cast more shadow than light. Birsa's stall anchors the far end -- always the last one you reach, always the one with what you need. Grimjaw's stall is three doors closer, better lit, too inviting. Patchwork Pete sits cross-legged on a blanket between them, surrounded by items he has cobbled together from other items.
+
+**GM Notes:**
+
+- **Birsa:** Never names a price twice the same way. "Worth more than that lockpick. Less than your left hand." She smells Blight on people before they show symptoms. She has identified one early-stage infected resident and said nothing. If the party has gained her trust (Friendly reputation), she may confide: "Someone in Emberhome is turning. I can smell it. Copper and sweetness, like fruit left in a closed room. I don't know who. I haven't looked closely enough. I'm afraid to look."
+- **Grimjaw:** Too smooth. Too friendly. "My friend, have I got a deal for you." His stock is suspiciously good. He buys salvage from desperate scavengers below value. If the party investigates his supply chain (Wits DC 14 or asking the right NPCs), they discover he has been sending people into Hollow-infested zones with misleading intel. Some did not come back. Grimjaw sleeps fine.
+- **Patchwork Pete:** An eccentric tinkerer who builds functional items from broken ones. His creations are ugly, unreliable, and occasionally brilliant. He can combine two Tier I items into a hybrid with unpredictable traits (GM rolls 1d6: 1-2 = the hybrid works perfectly, 3-4 = it works with a quirk, 5-6 = it explodes on first use. 1d6 fire to the user).
+
+### Chapel of the Eternal Flame
+
+> *Read Aloud:*
+>
+> The Chapel is quiet in the way that only deliberate silence can be. The vaulted chamber holds a single Aether flame that has burned without fuel for as long as anyone remembers, its light steady and warm and completely unlike the golden sap-fire of the Ember-Forge. This light is white. Clean. The pews are carved from a single piece of petrified heartwood -- the oldest wood in Emberhome, older than the settlement itself.
+>
+> The walls bear names. Hundreds of them. Carved into the stone in columns, each one a Seeker who never returned. The columns near the door are shallow and legible. The columns at the back are worn smooth by centuries of grieving hands.
+>
+> Father Oaken kneels before the flame, hands folded, eyes closed. He is always here. He is always kneeling. He is always tired.
+
+**GM Notes:**
+
+- **Services:** Heal (full HP), bless (+1d6 to next roll), cure Blight (Stage 1 only -- Stage 2+ requires a Sun-Fruit or Hag Circle intervention), funeral rites (add a name to the wall).
+- **Father Oaken:** A man who has spent his life healing others and cannot heal the tree. "The flame responds to the faithful. I do not know what it responds to. I have faith. That is all I have."
+  - If the party brings amber containing a memory: He holds it to the flame. The amber glows brighter. "The flame remembers too. I think it was lit by an Arborist. The first one to tend this place. Their memory is in the amber of the walls."
+  - If asked about Sister Tallow's treatment for the Blight: "Tallow has a treatment. Not a cure. The difference is hope." He pauses. "I should not have said that."
+  - The pews are carved from Heartwood. If the party has learned about the Heartwood (Adventures 1-3), they may realize: the pews could serve as a compass to find a Heartwood entrance. Father Oaken does not know this. The wood does.
+
+### Warden's Hall
+
+> *Read Aloud:*
+>
+> Tension and tally marks. The Warden's Hall is a fortified chamber of ironbark doors, weapon racks, and a map table that has survived more arguments than most marriages. Warden Voss stands at the table's head, his prosthetic leg of carved ironbark planted wide, his belt-knife handle worn smooth from three thousand superstitious taps.
+>
+> Captain Ashara leans against the far wall, arms crossed, polishing a sword that does not need polishing. Her silver hair catches the lamplight. The faded insignia on her shoulder belongs to a garrison that no longer exists.
+
+**GM Notes:**
+
+- **Services:** Bounty assignment, mission briefing, intelligence, recruitment.
+- **Voss:** Strips emotion from briefings. "Objective. Route. Threat. Extraction. Questions?" He has been sending Seekers on missions with lower survival odds than he reports. The settlement needs resources more than truth. If a character with high Wits (14+) examines the tally board, they notice the survival percentages do not match Voss's briefing estimates. Confronting him: a long silence. "Do you want the number that helps you sleep, or the number that helps you prepare?"
+- **Ashara:** Military precision. "The perimeter holds. For now." She has received orders via Root-Road courier to evacuate key personnel to Verdhollow. She has not told anyone. If the party has discovered Kettrick's Verdhollow contact, they may realize Ashara's orders come from the same source. Confronting her: "My loyalty is to this settlement. My orders are from elsewhere. I have not decided which wins. Do not force me to decide."
+
+### Refugee Camp
+
+> *Read Aloud:*
+>
+> The outer wall of Emberhome is lined with canvas and bark-cloth shelters that smell of cook smoke and unwashed cloth. Children who should be louder are not. A woman stirs a pot over a low fire, her eyes on the treeline beyond the wall. An old man repairs a boot with hands that shake. Someone is coughing, deep and wet, behind a partition.
+>
+> These people arrived with nothing. Emberhome has given them a wall and a fire. It cannot give them much more.
+
+**GM Notes:**
+
+- **Services:** Recruit (desperate refugees may join as companions), rumor (refugees carry news from settlements the party has never heard of), quest hooks ("My daughter went to the Ironvein Ridge three weeks ago. She has not come back.").
+- **The Coughing:** A character with medical training (Healer's Satchel, Triage trait, or Wits 14+) can examine the coughing resident. DC 12 Wits: it is a standard chest infection, treatable. DC 16 Wits: there is a second component. Grey veins under the skin of the wrist, visible only in strong light. Early-stage Blight. Birsa noticed. She said nothing. What does the party do?
+- **This is a moral choice, not a combat encounter.** Reporting the infection to Father Oaken triggers quarantine and treatment. Not reporting it risks the infection spreading. Confronting Birsa with the knowledge changes her dialogue permanently: "You saw it. Good. Now you carry it too -- the knowing. Decide what knowing is worth."
+
+---
+
+*Part IX concludes. The adventures above can be run sequentially as a campaign arc from Tutorial through Endgame, or independently as standalone sessions. The Doom Clock is always ticking. The tree is always dying. The question is never whether you survive. The question is what survives after you.*
 
 ---
 
