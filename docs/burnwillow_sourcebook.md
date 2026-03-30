@@ -1787,6 +1787,8 @@ Architecture is tree anatomy: sap channels as hallways, knots as chambers, resin
 
 **Unique mechanics:** No Doom Clock advancement (sealed from the main tree's pressure). Resonance exposure continues. Painted Song rooms can teach recipes.
 
+**How to Find:** HIDDEN_PORTAL rooms appear in Zones 2-4 dungeons. The wall grain runs inward instead of along the surface. The wood is warm. A passage descends through growth rings. Enter with `enter heartwood`. Once discovered, the entrance persists -- the Heart's Threshold gate appears in the Willow Wood on future runs.
+
 ### Zone 7: The Undergrove — "Where the Roots Remember"
 
 Accessed by discovering hidden entrances in the deepest Zone 4 vaults (grey-cracked amber, damaged golems). Opening one is a choice — you gain access but open a door that was holding the Rot back.
@@ -1796,6 +1798,8 @@ A tangled root-mass from all four Groves, woven so dense you cannot tell which r
 **Enemies are Choir-directed:** Chorus Walkers (formation movement, Resonance-Touched aura), Drift Hollows, Section Leaders (zone-wide Rot buff), Ancient Hollows (wearing recognizable Seeker gear). The final boss is The Conductor — 80 HP, persistent 1d4 psychic damage per round, summons Chorus Walkers, Phase 2 at 40 HP: Song of Ending (DC 22 Aether or Resonance-Touched + Shaken).
 
 **Unique mechanics:** Doom Clock advances at +2 per room. Resonance exposure builds at 2x rate. Ingredient drops are doubled (decomposition = rich materials). Hollow Drift rooms may contain gear from previous campaign deaths.
+
+**How to Find:** HIDDEN_PORTAL rooms in Zone 4's deepest reaches. Grey amber, cracked seals, a damaged golem standing guard. The air smells of wet earth. Enter with `enter undergrove`. Once discovered, the Root Descent gate appears in the Willow Wood on future runs.
 
 ---
 
@@ -3336,6 +3340,12 @@ Maximum dice pool: **5d6 hard cap.** Excess gear beyond the cap still contribute
 | 2 | Allied | Exclusive gear and crafting |
 | 3 | Exalted | Faction capstone reward (unique gear or ability) |
 
+### Exploration Commands
+
+| Command | Effect |
+|---------|--------|
+| `enter <destination>` | Enter a discovered hidden passage (heartwood / undergrove) |
+
 ---
 
 ## Appendix B: Glossary
@@ -3469,6 +3479,8 @@ For a standard 8-12 session campaign, the arc follows the dungeon Zones:
 | 5-7 | Zone 3: Aether-Flow | III | Faction quest lines reach their midpoints. Gear sets begin to come together. Hard choices between opposing factions. The Rot Hunter appears. |
 | 8-10 | Zone 4: Rot-Heart | III-IV | High lethality. Faction climaxes. The Root-Song goes silent. Characters are defined by their builds. |
 | 11-12 | Zone 5: The Crown | IV | Endgame. Sun-Fruits. The final boss. Legacy. The tree's fate is decided -- or at least delayed. |
+
+**Hidden Zone Discovery:** The Heartwood and Undergrove are not listed on any map. They are discovered through hidden portals in Zones 2-4. The GM should place these when the party is ready (typically sessions 8+). Once found, the entrance persists -- the party can return via the Willow Wood. Finding the Heartwood is the beginning of the endgame. Finding the Undergrove is the path to The Conductor.
 
 **For a one-shot:** Start at Zone 2 with pre-built Tier II characters. Set the Doom Clock to 5. Place one boss at the end. Give each player a faction contact and a personal goal. Play for 3-4 hours.
 

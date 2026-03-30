@@ -1,7 +1,7 @@
-# Burnwillow Session Report — 2026-03-27 / 2026-03-28
+# Burnwillow Session Report — 2026-03-27 / 2026-03-29
 ## For Gemini Review & Continuation
 
-This document summarizes everything discussed, designed, implemented, and documented during this two-day session. It is intended as a handoff to Gemini for architectural review, creative feedback, and continuation of open threads.
+This document summarizes everything discussed, designed, implemented, and documented during this three-day session (March 27-29, 2026). Burnwillow reached feature-complete status for all playability milestones. It is intended as a handoff to Gemini for architectural review, creative feedback, and continuation of open threads.
 
 ---
 

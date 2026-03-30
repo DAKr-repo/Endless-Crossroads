@@ -674,6 +674,11 @@ The Burnwillow is divided into vertical zones from the roots upward. Because the
 
 **The Veins:** The tree's internal vascular system. Narrow, turbulent chutes pumping sap between zones. Can be hacked into as rapid shortcuts between zones (costly: HP or Keys to open each Vein access point).
 
+**Hidden Zone Access:** Zones 6 and 7 are not on the map. They are discovered through hidden portals:
+- **Heartwood:** HIDDEN_PORTAL rooms appear in Zones 2-4. The wood grain runs inward. The wall is warm. Use `enter heartwood` to transition. Once discovered, the Heart's Threshold gate appears in the Willow Wood (from the Still Pool).
+- **Undergrove:** HIDDEN_PORTAL rooms in Zone 4 deep reaches. Grey amber, cracked seals, damaged golem. Use `enter undergrove` to transition. Once discovered, the Root Descent gate appears in the Willow Wood (from the Rootbridge).
+- **Persistence:** Discovered entrances are permanent. Players can revisit via the Willow Wood on any future run.
+
 ---
 
 ## Key NPCs
@@ -1469,13 +1474,17 @@ Consumables are used via the `use <item name>` command:
 - ~~Twitch's communication crystal~~ → A Resonance Node — part of the Arborist acoustic network. Still receiving faint transmissions from the Heartwood. The Arborists in amber stasis are not entirely silent.
 - ~~The Rot's origin~~ → The Rot is the Undergrove's natural decomposition process, leaked upward when the Choir's song broke the boundary. The Choir (corrupted Arborists in the Undergrove) now directs it through the Root-Road network. Ashenmere was their first test — frozen by their prototype song.
 
+### Resolved (v4.1 — Implementation Pass)
+- ~~The Heartwood descendants — culture~~ → Silent Culture fully defined: Painted Songs, Gardens, the Whisper, Touch-signs. Three descendant factions (Roots, Seedlings, Grafters). First contact scene written.
+- ~~Amber Vault acoustic dampening~~ → Vault Breach Alert: 3-room echo radius, +1 enemy count, 100% spawn rate. Doom Clock unaffected. Local Rot response to noise.
+- ~~Faction presence in dungeon Zones~~ → 30 faction services gated by reputation (Friendly/Allied/Exalted). Faction NPCs placed in config with headquarters locations. Hidden zone entrances discoverable in Zones 2-4.
+- ~~Alchemy ingredient ecology~~ → 12 ingredients with zone-based drop tables (30% per room). Ingredients drop from rooms based on zone, not season. Not cultivatable yet.
+
 ### Open
 - Heirloom mechanics — how are items designated as heirlooms before death? What is the handoff ritual?
 - Inter-faction politics in other Groves — do equivalents of the Six Factions exist in Verdhollow, Solheart, Ashenmere?
-- Faction presence in dungeon Zones — which factions control which territory? How does faction reputation affect dungeon encounters?
-- Alchemy ingredient ecology — do ingredients respawn? Are they seasonal? Can they be cultivated in Emberhome?
-- The Heartwood descendants — what is their culture like after 400 years of silence? What do they want from the surface? Do they welcome outsiders or fear them?
 - The Conductor — what were they like before? Can they be reasoned with? Is there a person left inside the Hollow?
 - Ashenmere — can it be thawed? What happens to the frozen Hollows if the Choir's test-song is disrupted?
 - The failed Groves in the Undergrove — how many were there? What killed them? Are they a warning or a resource?
-- Amber Vault acoustic dampening — does opening vaults mechanically increase Rot aggression in that zone? How does this interact with the Doom Clock?
+- Ingredient cultivation in Emberhome — can players grow ingredients in town between runs?
+- Endgame path mechanical requirements — what specific items/factions/Aether levels are needed for each of the three endings?

@@ -602,15 +602,62 @@ Enemy `special` text parsed for condition keywords (Sap-Drained, Blighted, etc.)
 
 32 unique room descriptions. Tier 4 describes Failed Grove fossils — petrified tree skeletons older than the Four.
 
-### NOT YET WIRED: Zone Access
-The Heartwood and Undergrove generate correctly (zone=6, zone=7) but are only accessible by directly calling `generate_dungeon(zone=6)`. Hidden entrances inside existing dungeons (#206-208) and the Willow Wood spatial maps (#205) are still needed to make them reachable through normal gameplay.
+### Zone Access — WIRED (see Section 18)
+The Heartwood and Undergrove are now fully reachable through normal gameplay via hidden portals and Willow Wood gates. See Section 18 for details.
 
 ---
 
-## 18. REMAINING BURNWILLOW ITEMS
+## 18. ZONE CONNECTIONS — IMPLEMENTED 2026-03-29
 
-- #205: Willow Wood authored spatial maps (hand-crafted room layouts)
-- #206: Hidden Heartwood entrances in Zones 2-4 (DC 25+, faction rep, relics)
-- #207: Hidden Undergrove entrances in Zone 4 (grey-amber vaults)
-- #208: Mid-dungeon zone transition mechanic (switch zones on discovery)
-- Discovery persistence in meta_state (revisitable once found)
+### Hidden Zone Entrances (#205-208)
+All four zone connection tasks are complete:
+
+**In-Dungeon Portals:** HIDDEN_PORTAL rooms in Zones 2-4 are automatically tagged as Heartwood entrances. Zone 4 portals are tagged as Undergrove entrances. Custom sensory descriptions for each. Only one portal per dungeon run.
+
+**Discovery:** Entering a portal room automatically adds the destination to `_discovered_entrances` (persisted in save state). The player sees: "A hidden passage to the Heartwood lies before you. Type 'enter heartwood' to cross the threshold."
+
+**Zone Transition:** The `enter` command (aliases: cross, portal) calls `generate_dungeon()` with the new zone number. Character, party, gear, and all state persist through the transition. The dungeon regenerates with the zone-specific adapter (HeartwoodAdapter or UndergroveAdapter).
+
+**Willow Wood Gates:** Two new destination gates in the Willow Wood blueprint — "The Heart's Threshold" (from the Still Pool) and "The Root Descent" (from the Rootbridge). Both gated by `requires_discovery` field. Gates only appear after the corresponding entrance has been found in a dungeon.
+
+**Revisitability:** Once discovered, entrances persist permanently in meta_state. Players can access Heartwood/Undergrove from the Willow Wood on any future run without re-discovering.
+
+---
+
+## 19. BURNWILLOW STATUS — FEATURE COMPLETE
+
+All Burnwillow playability milestones (M1 through M7d) are implemented:
+
+| System | Status |
+|--------|--------|
+| Dice mechanics (5d6 pool, DC 5/11/15/22/30) | Complete |
+| Gear (+1d6/item, tier→score bonus, 10 slots) | Complete |
+| 30 trait resolvers | Complete |
+| Conditions (12 status effects) | Complete |
+| Heritage (Four Peoples, +2 stat) | Complete |
+| Gear Sets (5 sets, 2/3/4pc bonuses) | Complete |
+| Randomized Affixes (6 prefix, 5 suffix) | Complete |
+| Faction Reputation (6 factions, opposing pairs) | Complete |
+| Faction Services (30 services, rep-gated) | Complete |
+| Alchemy (12 ingredients, 21 recipes) | Complete |
+| Consumables (potions/bombs/oils/elixirs) | Complete |
+| Crafting Stations (Blacksmith/Silkweaver/Cauldron/Forge) | Complete |
+| 35 Named NPCs + 10 templates | Complete |
+| 48 Bestiary entries + 1 boss (The Conductor) | Complete |
+| 29 Locations (including 6 faction HQs) | Complete |
+| 7 Dungeon Zones (Tangle through Undergrove) | Complete |
+| Hidden zone entrances + discovery persistence | Complete |
+| Zone transitions (mid-dungeon switch) | Complete |
+| Vault Breach Alert | Complete |
+| Choir Resonance exposure | Complete |
+| TPK = Full Reset | Complete |
+| Passive checks + Assistance | Complete |
+| Trait combos (SNARE→CLEAVE, FLASH→BACKSTAB) | Complete |
+| Solo Play rules (sourcebook Ch 31) | Complete |
+| Campaign structure (sourcebook Ch 33) | Complete |
+
+**Remaining non-playability items:**
+- #209: Copyright registration (business decision)
+- #210: Trademark consideration (business decision)
+- Sourcebook could be further polished for publication
+- Additional playtesting and balance tuning
