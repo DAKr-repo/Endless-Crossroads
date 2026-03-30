@@ -1571,6 +1571,9 @@ class BurnwillowEngine:
         self.resonance_exposure: int = 0
         self.resonance_threshold: int = 5  # Rooms in Zone 4+ before Resonance-Touched
 
+        # Discovered hidden entrances (persist across runs in meta_state)
+        self._discovered_entrances: set = set()
+
         # TPK Detection
         self.campaign_over: bool = False
 
@@ -1800,6 +1803,7 @@ class BurnwillowEngine:
             "delta_tracker": self.delta_tracker.to_dict() if self.delta_tracker else None,
             # Faction reputation
             "faction_rep": self.faction_rep.to_dict(),
+            "discovered_entrances": sorted(self._discovered_entrances),
         }
 
     def load_game(self, data: dict):
@@ -1860,6 +1864,9 @@ class BurnwillowEngine:
         # Faction reputation
         if data.get("faction_rep"):
             self.faction_rep = FactionReputation.from_dict(data["faction_rep"])
+
+        # Discovered entrances
+        self._discovered_entrances = set(data.get("discovered_entrances", []))
 
     def loot_item(self, room_id: Optional[int] = None) -> Optional[GearItem]:
         """Pop the first loot item from a room (no roll required).
@@ -2107,6 +2114,35 @@ class BurnwillowEngine:
             adapter = BurnwillowAdapter(seed=seed)
             injector = ContentInjector(adapter)
             self.populated_rooms = injector.populate_all(self.dungeon_graph)
+
+        # Tag HIDDEN_PORTAL rooms with zone destinations
+        if self.populated_rooms:
+            for room_id, pop_room in self.populated_rooms.items():
+                geom = pop_room.geometry if hasattr(pop_room, 'geometry') else None
+                if geom and hasattr(geom, 'room_type'):
+                    rt = geom.room_type.value if hasattr(geom.room_type, 'value') else str(geom.room_type)
+                    if rt == "hidden_portal":
+                        content = pop_room.content if isinstance(pop_room.content, dict) else {}
+                        if zone in (2, 3, 4) and "heartwood" not in self._discovered_entrances:
+                            content["portal_destination"] = "heartwood"
+                            content["portal_zone"] = 6
+                            content["description"] = (
+                                "The wall here is wrong. The grain runs inward, not along "
+                                "the surface. You press your palm flat and the wood is warm "
+                                "— blood-warm, pulsing. The growth rings are visible, "
+                                "descending into depths that should not exist inside a wall."
+                            )
+                            break
+                        elif zone == 4 and "undergrove" not in self._discovered_entrances:
+                            content["portal_destination"] = "undergrove"
+                            content["portal_zone"] = 7
+                            content["description"] = (
+                                "Grey amber. Cracked and stressed, veined with dark lines. "
+                                "A golem stands motionless beside the seal, head bowed, one "
+                                "arm missing. The air leaking through smells of wet earth "
+                                "and compost. Of endings."
+                            )
+                            break
 
         # Set starting position
         self.current_room_id = self.dungeon_graph.start_room_id

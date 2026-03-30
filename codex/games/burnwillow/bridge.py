@@ -61,6 +61,7 @@ COMMANDS = {
     "ingredients": ["ing"],
     "craft":     ["brew", "make"],
     "recipes":   [],
+    "enter":     ["cross", "portal"],
     "forge":     ["station", "workshop"],
     "salvage":   ["scrap"],
     "temper":    [],
@@ -131,6 +132,7 @@ class BurnwillowBridge:
             "ingredients": "Show gathered alchemy ingredients",
             "craft": "Craft a recipe: craft <recipe name>",
             "recipes": "Show known alchemy recipes",
+            "enter": "Enter a discovered hidden passage (enter heartwood / enter undergrove)",
             "forge": "Show available crafting station actions",
             "salvage": "Break an item into materials: salvage <item name>",
             "temper": "Add +1 DR to armor: temper <item name>",
@@ -276,6 +278,7 @@ class BurnwillowBridge:
             "ingredients": lambda: self._cmd_ingredients(),
             "craft":     lambda: self._cmd_craft(arg),
             "recipes":   lambda: self._cmd_recipes(),
+            "enter":     lambda: self._cmd_enter(arg),
             "forge":     lambda: self._cmd_forge(),
             "salvage":   lambda: self._cmd_salvage(arg),
             "temper":    lambda: self._cmd_temper(arg),
@@ -601,6 +604,15 @@ class BurnwillowBridge:
                 lines.append("")
                 lines.append("THE BURNWILLOW FALLS.")
             return "\n".join(lines)
+
+        # Hidden portal detection
+        room_data = self.engine.get_current_room()
+        if room_data and room_data.get("portal_destination"):
+            dest = room_data["portal_destination"]
+            self.engine._discovered_entrances.add(dest)
+            lines.append("")
+            lines.append(f"[bold cyan]A hidden passage to the {dest.title()} lies before you.[/bold cyan]")
+            lines.append(f"  Type 'enter {dest}' to cross the threshold.")
 
         # Ambush check
         if enemies:
@@ -1530,6 +1542,49 @@ class BurnwillowBridge:
                     lines.append("")
         lines.append(self._status_line())
         return "\n".join(lines)
+
+    def _cmd_enter(self, arg: str = "") -> str:
+        """Enter a discovered hidden passage to the Heartwood or Undergrove."""
+        room = self.engine.get_current_room()
+
+        # Check if we're standing on a portal
+        if room and room.get("portal_destination"):
+            dest = room["portal_destination"]
+            zone_num = room["portal_zone"]
+            if not arg.strip() or arg.strip().lower() == dest:
+                # Zone switch
+                new_seed = random.randint(0, 999999)
+                self.engine._discovered_entrances.add(dest)
+                self.engine.generate_dungeon(depth=4, seed=new_seed, zone=zone_num)
+                lines = [
+                    f"You cross the threshold into the {dest.replace('_', ' ').title()}...",
+                    "",
+                ]
+                lines.append(self._cmd_look())
+                return "\n".join(lines)
+            else:
+                return f"The passage leads to the {dest.replace('_', ' ').title()}, not '{arg}'.\n" + self._status_line()
+
+        # Check if using from Emberhome (already discovered)
+        arg_clean = arg.strip().lower()
+        if arg_clean in self.engine._discovered_entrances:
+            zone_map = {"heartwood": 6, "undergrove": 7}
+            zone_num = zone_map.get(arg_clean)
+            if zone_num:
+                new_seed = random.randint(0, 999999)
+                self.engine.generate_dungeon(depth=4, seed=new_seed, zone=zone_num)
+                lines = [
+                    f"You cross the threshold into the {arg_clean.replace('_', ' ').title()}...",
+                    "",
+                ]
+                lines.append(self._cmd_look())
+                return "\n".join(lines)
+
+        if not self.engine._discovered_entrances:
+            return "You haven't discovered any hidden passages yet.\n" + self._status_line()
+
+        discovered = ", ".join(sorted(self.engine._discovered_entrances))
+        return f"Enter where? Discovered passages: {discovered}\n" + self._status_line()
 
     def _cmd_forge(self) -> str:
         """Show available crafting station actions."""

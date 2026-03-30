@@ -174,6 +174,10 @@ class WillowWoodZone:
 
         for gate_data in self._blueprint.get("destination_gates", []):
             gate_key = gate_data["gate_id"]
+            # Skip gates that require discovery if not yet discovered
+            req_discovery = gate_data.get("requires_discovery")
+            if req_discovery and req_discovery not in self._discovered_secrets:
+                continue
             path_from = gate_data.get("path_from", 0)
             min_rooms = gate_data.get("path_rooms_min", 3)
             max_rooms = gate_data.get("path_rooms_max", 5)

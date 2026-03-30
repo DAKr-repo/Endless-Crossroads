@@ -49,7 +49,17 @@
         {"gate_id": "cave", "name": "The Maw", "tier": 2,
          "exit_type": "descend",
          "description": "A jagged crack in the hillside exhales a cold breath. Claw marks line the stone around the entrance.",
-         "path_from": 3, "path_rooms_min": 4, "path_rooms_max": 5}
+         "path_from": 3, "path_rooms_min": 4, "path_rooms_max": 5},
+        {"gate_id": "heartwood", "name": "The Heart's Threshold", "tier": 3,
+         "exit_type": "descend",
+         "description": "The bottom of the Still Pool is not stone. It is heartwood — warm, dense, older than anything on the surface. A passage descends inward, through the grain itself.",
+         "path_from": 6, "path_rooms_min": 2, "path_rooms_max": 3,
+         "requires_discovery": "heartwood_entrance"},
+        {"gate_id": "undergrove", "name": "The Root Descent", "tier": 3,
+         "exit_type": "descend",
+         "description": "Beneath the Rootbridge, where the oldest roots intertwine, a gap opens into darkness. The air rising from below smells of wet earth and centuries of compost.",
+         "path_from": 7, "path_rooms_min": 2, "path_rooms_max": 3,
+         "requires_discovery": "undergrove_entrance"}
     ],
     "start_room": 0,
     "npc_pool": ["wandering_herbalist", "lost_traveler", "wounded_scout", "mushroom_forager",
