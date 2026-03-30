@@ -390,17 +390,17 @@ The player must choose:
 - ~400 years ago: Generation 3. Old Cap's generation. Emberhome founded. The songs are mythology now.
 - Present day: 400 years of decline. The Rot has been slowly advancing, directed by the Choir from the Undergrove.
 
-### Root-Binding (*Rótbinding*) — A Universal Capacity
+### Root-Resonance (*Rótbinding*) — A Universal Capacity
 
-Every person in the Groves has Root-Binding. It is not a bloodline, not a chosen lineage, not a gift that some are born with and others lack. It is a universal capacity — like the ability to build muscle, learn language, or perceive color. Everyone has it. In most people, it lies dormant. In some, it has been awakened by environment, exposure, and practice.
+Every person in the Groves has Root-Resonance. It is not a bloodline, not a chosen lineage, not a gift that some are born with and others lack. It is a universal capacity — like the ability to build muscle, learn language, or perceive color. Everyone has it. In most people, it lies dormant. In some, it has been awakened by environment, exposure, and practice.
 
-Root-Binding is the capacity to perceive and interact with Aether vibrations. It develops through prolonged proximity to Aether sources, through working with living wood, through years spent inside the tree's resonant structures. The Arborists had powerful attunement because they spent lifetimes immersed in Aether, singing to the tree daily for decades. Their children developed it faster because they grew up saturated in their parents' work. A farmer who works Aether-rich soil for thirty years might awaken it without ever knowing what happened.
+Root-Resonance is the capacity to perceive and interact with Aether vibrations. It develops through prolonged proximity to Aether sources, through working with living wood, through years spent inside the tree's resonant structures. The Arborists had powerful attunement because they spent lifetimes immersed in Aether, singing to the tree daily for decades. Their children developed it faster because they grew up saturated in their parents' work. A farmer who works Aether-rich soil for thirty years might awaken it without ever knowing what happened.
 
 The Aether score at character creation represents how awake your attunement is — shaped by where you grew up, what you've been exposed to, and whether anyone ever taught you to listen. It is not fixed at birth. It can grow through experience.
 
 **The Spectrum of Awakening:**
 
-- **Dormant (most people, Aether below 12):** Root-Binding has never been activated. Can learn Arborist techniques as mechanical skills, but the wood does not respond specially. Can use all gear normally — effectiveness is determined by stats, not by awakening level. With enough exposure, anyone at this level could awaken further.
+- **Dormant (most people, Aether below 12):** Root-Resonance has never been activated. Can learn Arborist techniques as mechanical skills, but the wood does not respond specially. Can use all gear normally — effectiveness is determined by stats, not by awakening level. With enough exposure, anyone at this level could awaken further.
 - **Stirring (uncommon, Aether 12-13):** Activated by years of proximity to Aether sources — working the forge, farming Aether-rich soil, living near vein taps. Occasional moments: wood that "just cooperates," gut feelings about which root to follow. They don't know why they're good at what they do. Weld is almost certainly Stirring — decades at the Ember-Forge did this. Scout Lira's instincts may be attunement she developed through years in the dungeon.
 - **Resonant (rare, Aether 14-16):** Fully awake. They hear the Root-Song without being told it exists. Children raised near concentrated Aether who hum melodies nobody taught them. Adults who feel the tree breathing through their palms. In Emberhome, Father Oaken tends to them — the Chapel's Aether flame burns brighter in their presence. They could learn to sing if anyone could teach them. Nobody can.
 - **True Arborists (the old order, Aether 17+):** Attunement fully developed AND trained over decades AND physically transformed by prolonged Aether saturation. Denser bones, Aether in the blood, extended lifespan, perception beyond human range. This was not a birthright — it was the result of lifelong devotion. An apprentice took 20 years to show the first changes. A master who had been singing for a century was barely human anymore. Not inhuman. Rooted. They became what they practiced.
@@ -413,7 +413,7 @@ The Arborists taught anyone willing to learn. Farmers learned simplified "growth
 Emberhome's farming traditions survived the Great Silencing in degraded form. Farmers still follow Arborist patterns, still prune at the "right" times, still sing to their plants. For most, it is habit without effect. But for the Stirring among them — and they don't know they are Stirring — it works. The wood responds, just a little. They chalk it up to good soil.
 
 **What this means:**
-- Root-Binding is not destiny. It is opportunity. Anyone can develop it with enough exposure and effort.
+- Root-Resonance is not destiny. It is opportunity. Anyone can develop it with enough exposure and effort.
 - A character's attunement can deepen during play — proximity to the Heartwood, contact with Arborist relics, learning from the descendants, or time in Aether-rich zones.
 - Weld's quirk ("talks to items while working — claims they answer back") is real attunement, awakened by decades at the forge.
 - Father Oaken's Aether flame responds to Resonant visitors. He doesn't know why.
@@ -531,7 +531,7 @@ Carrying a Memory Seed imposes severe tactical costs — designed to force escor
 
 The original inhabitants of the First Tree were one people. When the First Tree branched into four Groves, populations became isolated in different seasonal environments. Over millennia — long before the Golden Age, long before the Arborists organized — the tree shaped them. Not through magic. Through biology. The same way altitude shapes mountain peoples and latitude shapes skin color. Except the shaping agent is concentrated Aether in four distinct vibrational frequencies.
 
-Each Grove's Aether resonates at a different frequency. Each frequency pushes biological adaptation in a different direction. Root-Binding — present in everyone — awakens and expresses differently depending on which Grove's frequency shaped your ancestors over millennia.
+Each Grove's Aether resonates at a different frequency. Each frequency pushes biological adaptation in a different direction. Root-Resonance — present in everyone — awakens and expresses differently depending on which Grove's frequency shaped your ancestors over millennia.
 
 ### Autumn-Born (Burnwillow)
 
@@ -539,7 +539,7 @@ Shaped by decay-frequency Aether. The cycle of harvest, loss, and preservation.
 
 **Physical traits:** Warm-toned skin (amber, copper, brown). Hair that shifts color with age — dark in youth, ember-red in middle age, ash-white in old age, like fire-leaves through their seasons. Average build. Resilient against temperature extremes.
 
-**Aether expression:** Root-Binding tuned to **transition and transformation**. The Stirring sense when things are about to change — a wall about to collapse, a creature about to attack, the Rot pushing into a new area. Resonants feel the Doom Clock viscerally. They are the people of the threshold.
+**Aether expression:** Root-Resonance tuned to **transition and transformation**. The Stirring sense when things are about to change — a wall about to collapse, a creature about to attack, the Rot pushing into a new area. Resonants feel the Doom Clock viscerally. They are the people of the threshold.
 
 **Stat bonus:** +2 Grit. The Autumn people endure. An Autumn-Born Resonant doesn't hear the Root-Song as melody — they feel it as a steady pulse, a refusal to stop.
 
@@ -549,7 +549,7 @@ Shaped by growth-frequency Aether. The unrelenting push of new life.
 
 **Physical traits:** Green-tinged undertones to skin and hair. Tall and rangy — fast growth, lean builds. Fingernails grow faster than normal. Minor cuts heal visibly within hours. Some have faintly bioluminescent eyes from generations navigating dim understory.
 
-**Aether expression:** Root-Binding tuned to **growth and acceleration**. The Stirring have green thumbs that actually work — plants respond. Resonants feel sap pressure, sense where new growth will burst, instinctively know which branches are sound.
+**Aether expression:** Root-Resonance tuned to **growth and acceleration**. The Stirring have green thumbs that actually work — plants respond. Resonants feel sap pressure, sense where new growth will burst, instinctively know which branches are sound.
 
 **Stat bonus:** +2 Aether. The Spring people channel. Most naturally gifted at raw Aether manipulation. If any modern person can learn the Arborist songs, it's a Spring-Born Resonant. The Arborists likely drew disproportionately from this population.
 
@@ -559,7 +559,7 @@ Shaped by intensity-frequency Aether. Peak energy, forge heat, the burning crown
 
 **Physical traits:** Dark skin, resistant to heat and light. Compact, muscular builds — drought and fire selected for efficiency. Eyes tolerant of extreme brightness (Solheart's fire-leaves burn white). Calloused hands and feet from birth.
 
-**Aether expression:** Root-Binding tuned to **force and intensity**. The Stirring hit harder than their frame suggests through unconscious Aether channeling. Resonants feel energy building, know when something is about to break, sense systems at peak capacity.
+**Aether expression:** Root-Resonance tuned to **force and intensity**. The Stirring hit harder than their frame suggests through unconscious Aether channeling. Resonants feel energy building, know when something is about to break, sense systems at peak capacity.
 
 **Stat bonus:** +2 Might. The Summer people burn. An Solheart-Born Resonant feels the Root-Song as heat, as pressure, as the urge to act NOW.
 
@@ -569,7 +569,7 @@ Shaped by stillness-frequency Aether. The frozen pause. The preservation of what
 
 **Physical traits:** Pale, almost translucent skin. White or silver hair from birth. Slight builds — low caloric availability selected for efficiency. Extremely slow metabolism. Eat less, sleep less, age slower. Natural lifespan 120+ without Heartwood immersion. Cold does not bother them.
 
-**Aether expression:** Root-Binding tuned to **perception and stillness**. The Stirring notice things others miss — details, patterns, the thing that doesn't belong. Resonants perceive the Root-Song even where it is weakest, calibrated to signal over noise. They hear silence between notes. They sense absence. The only people who might detect what's WRONG with the Choir's song — they intuitively know what stillness should sound like.
+**Aether expression:** Root-Resonance tuned to **perception and stillness**. The Stirring notice things others miss — details, patterns, the thing that doesn't belong. Resonants perceive the Root-Song even where it is weakest, calibrated to signal over noise. They hear silence between notes. They sense absence. The only people who might detect what's WRONG with the Choir's song — they intuitively know what stillness should sound like.
 
 **Stat bonus:** +2 Wits. The Winter people observe. An Ashenmere-Born Resonant hears the spaces between notes. The rests. The architecture of silence.
 
@@ -592,7 +592,7 @@ Race gives one thing: a +2 bonus to one stat score at character creation. No com
 | Summer-Born | Solheart | Intensity | +2 Might |
 | Winter-Born | Ashenmere | Stillness | +2 Wits |
 
-Most Emberhome characters are Autumn-Born. Others are available with a sentence of backstory explaining how their family ended up here. Root-Binding functions identically in all four peoples — Aether score determines awakening level regardless of heritage. But the expression of attunement is colored by ancestry — the frequency your ancestors were shaped by influences how you perceive the Root-Song.
+Most Emberhome characters are Autumn-Born. Others are available with a sentence of backstory explaining how their family ended up here. Root-Resonance functions identically in all four peoples — Aether score determines awakening level regardless of heritage. But the expression of attunement is colored by ancestry — the frequency your ancestors were shaped by influences how you perceive the Root-Song.
 
 ---
 
@@ -1030,7 +1030,7 @@ Two naming traditions coexist. **English names** are used by surface-dwellers, m
 | English (Common) | Old Tongue (Ceremonial) | Origin | Meaning |
 |------------------|------------------------|--------|---------|
 | Root-Song | *Rótgaldr* | Norse: galdr = sung magic | The fundamental vibration of the tree |
-| Root-Binding | *Rótbinding* | Norse compound | The universal capacity to perceive Aether (formerly "Root-Binding") |
+| Root-Resonance | *Rótbinding* | Norse compound | The universal capacity to perceive and interact with Aether |
 | Memory Seed | *Cuimhne-Sìol* | Gaelic: cuimhne = memory, sìol = seed | Crystallized acoustic memory in amber |
 | The Heartwood | *An Croí-Fiodh* | Gaelic: croí = heart, fiodh = wood | The First Tree, the origin |
 | Emberhome | *Glóðheim* | Norse: glóð = ember, heim = home | The last settlement |
@@ -1381,6 +1381,83 @@ An ally can grant +1d6 to another character's roll (subject to 5d6 cap). The hel
 | Advanced | 3d6 | +2 | 20 | +5 | 15.5 |
 | Master | 4d6 | +3 | 21 | +5 | 19.0 |
 | Legendary | 5d6 | +10 | 28 | +9 | 26.5 |
+
+---
+
+## Named Legendaries
+
+Named Legendaries are unique items with personalities, histories, and mechanics beyond their trait tags. Unlike standard Tier IV loot, each Legendary has a **unique ability** that no other item provides. They are the endgame chase items — finding one reshapes your build around it.
+
+No attunement restriction. If you find it, you wield it. Your stats determine effectiveness.
+
+### Might Legendaries
+
+**The Sun-Cleaver** (R.Hand, Tier IV, [Cleave])
+*A greatsword of golden Sunresin, forged in the Crown where the fire-leaves burn brightest.*
+- Crits on 5-6 (expanded crit range)
+- **Unique: Ember Momentum** — On kill, the blade burns brighter. +1 damage per kill this combat (stacks, resets between combats). A Might-focused character on a killing streak becomes devastating.
+
+**Worldbreaker** (R.Hand, Tier IV, [Shockwave])
+*A legendary maul of Ambercore. Each strike fractures reality.*
+- Stun on hit
+- **Unique: Sunder** — Once per floor, shatter a dungeon wall to reveal a hidden passage or secret room. The GM decides what lies behind.
+
+### Wits Legendaries
+
+**The Sun-Bow** (R.Hand, Tier IV, [Ranged])
+*An ancient artifact of fossilized bone from the Crown. It selects its own wielder.*
+- Uses Wits for attack (not Might)
+- **Unique: Chosen** — The Sun-Bow chooses who wields it (Aether DC 16 to pick up for the first time). Once bonded, it cannot be stolen or dropped involuntarily. If the wielder dies, the bow returns to the nearest Amber Vault.
+
+**Flashfire Crown** (Head, Tier IV, [Flash])
+*A crown of trapped lightning. The air crackles with potential.*
+- Blinds all enemies in a searing flash
+- **Unique: First Strike** — The wearer always acts first in initiative. Cannot be ambushed. Enemy surprise rounds do not apply.
+
+**Crown of Insight** (Head, Tier IV)
+*An Ambercore circlet with trapped fireflies. They pulse in rhythm with the Root-Song.*
+- +2 Wits score bonus (on top of tier bonus)
+- **Unique: True Sight** — See invisible enemies and hidden objects. Secret room exits glow faintly. Illusions from Spore-Sick condition are marked as false.
+
+### Grit Legendaries
+
+**Aegis Shield** (L.Hand, Tier IV, [Intercept][Guard][Reflect])
+*A mythic shield of Ambercore. It has protected more wielders than history remembers.*
+- DR 4. Reflects ranged attacks.
+- **Unique: Unyielding** — While the wielder is standing, reflected damage equals the full attack (not just 1). The shield remembers every blow and returns them in kind.
+
+**Warden's Bastion** (L.Hand, Tier IV, [Aegis])
+*The tower shield of the last warden. It extends protection to the entire party.*
+- DR 5. Extends DR to all adjacent allies.
+- **Unique: Last Stand** — Once per combat, when an ally would be reduced to 0 HP, they are instead reduced to 1 HP. The Bastion absorbs the killing blow. One save per combat, not per ally.
+
+### Aether Legendaries
+
+**Void Scepter** (R.Hand, Tier IV, [Voidgrip])
+*A scepter of condensed void. Light bends around it reluctantly.*
+- Necrotic damage + Blighted on hit
+- **Unique: Memory Drain** — Each kill drains a fragment of the target's memory. The wielder learns one fact about the current floor (enemy count in next room, nearest treasure, trap location). Information is always accurate.
+
+**Ring of the Burnwillow** (R.Ring, Tier IV)
+*An Ambercore ring pulsing with the heart of the Willow. The Root-Song is deafening when worn.*
+- +4 Aether score bonus
+- **Unique: The Tree Speaks** — Once per floor, ask the GM one yes/no question about the dungeon. The tree answers honestly, but the answer always comes in the form of a feeling, not words.
+
+**Eternity Bloom** (Neck, Tier IV, [Renewal])
+*A living flower of Sunresin. It has not stopped blooming since the Golden Age.*
+- Heal-over-time to all allies
+- **Unique: Blight Ward** — While worn, the entire party is immune to the Blighted condition. The bloom absorbs Rot on contact. (Does not protect against other conditions.)
+
+**Tempest Annihilator** (R.Hand, Tier IV, [Tempest])
+*A Sunresin rod crackling with perpetual storm. Lightning arcs between your fingers.*
+- Chain lightning to multiple targets
+- **Unique: Storm Surge** — After casting Tempest, the next Aether check this combat gets +1d6 bonus dice (beyond the 5d6 cap — this is the one exception to the cap rule). The storm feeds on itself.
+
+### Soulstone Amulet (Special — Any Build)
+
+**Soulstone Amulet** (Neck, Tier IV)
+*A moonstone with a trapped soul. The soul is not yours. It does not want to be here.*
+- **Unique: Second Chance** — When the wearer reaches 0 HP, they are revived at 1 HP. The amulet is consumed. Once per campaign, not per run. The trapped soul is released. Whether this is a kindness or a cruelty depends on your perspective.
 
 ---
 
