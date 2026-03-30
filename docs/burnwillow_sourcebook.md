@@ -183,6 +183,18 @@ The Rot is a decomposition process. Decomposition belongs in the root layer. The
 | The Rising Rot | Blight emerges from deep roots. First Hollows appear. Emberhome founded as a refuge. |
 | Present Day | Active play. The Burnwillow is the last tree with fire. Players are the last push. |
 
+### Cultural Roots: Norse and Gaelic Traditions
+
+The Burnwillow draws from Norse and Gaelic traditions -- not as decoration but as structural foundations.
+
+**Language:** Two naming traditions coexist. Common (English) names are used by surface-dwellers. Old Tongue (Norse/Gaelic influenced) names are used by the Heartwood Descendants and An Cor Briste exclusively. Ancient faction members (Old Cap, Brindlemaw, Ashknot) use a mix.
+
+Key Old Tongue terms: *Rotgaldr* (Root-Song), *Rotbinding* (Root-Resonance), *Cuimhne-Siol* (Memory Seed), *An Croi-Fiodh* (The Heartwood), *Glodheim* (Emberhome), *An Cogar* (The Whisper), *Omra* (Amber), *Tom* (Hollow), *Lorgaire* (Seeker), *Bas-Clog* (Doom Clock).
+
+**The Threshold (An Tairseach):** Celtic liminality is the game's core metaphysic. Every meaningful moment happens at a threshold -- between safe and dungeon, between living and remembered, between voice and silence. Emberhome rituals mark threshold moments: silence before a delve, name-carving after death, amber-to-temple before trading.
+
+**The Gift-Cycle (Bronntanas):** Faction reputation operates as Norse gift-exchange, not transaction. Entering a gift-cycle creates mutual obligation. Opposing factions conflict because their obligations are incompatible.
+
 ### Dungeon Zone Structure
 
 The Burnwillow is divided into vertical zones from the roots upward.
@@ -402,11 +414,11 @@ Not consciously. Not with malice, exactly. The Choir believes the four Groves ar
 - **Zone 4 (Rot-Heart):** The Root-Song is absent. The Choir's song is the only music. Constant, low, intimate -- as if someone is singing softly into your ear from inside the walls. Diminished intervals create perpetual unease, waiting for a resolution that never comes.
 - **The Undergrove:** The Choir's song is overpowering. Beautiful the way a fever dream is beautiful -- complex, layered, undeniably musical, and completely insane. Prolonged exposure causes sympathetic resonance in the player's gear. The Rot begins to treat them as part of the score.
 
-### Root-Attunement -- A Universal Capacity
+### Root-Resonance -- A Universal Capacity
 
-Every person in the Groves has Root-Attunement. It is not a bloodline, not a chosen lineage, not a gift some are born with and others lack. It is a universal capacity -- like building muscle or learning language. Everyone has it. In most, it lies dormant. It awakens through prolonged exposure to Aether, through working with living wood, through years spent in the tree's resonant structures.
+Every person in the Groves has Root-Resonance. It is not a bloodline, not a chosen lineage, not a gift some are born with and others lack. It is a universal capacity -- like building muscle or learning language. Everyone has it. In most, it lies dormant. It awakens through prolonged exposure to Aether, through working with living wood, through years spent in the tree's resonant structures.
 
-The Aether score at character creation represents how awake your attunement is -- shaped by environment, exposure, and circumstance. It is not fixed at birth. It can deepen through play.
+The Aether score at character creation represents how awake your resonance is -- shaped by environment, exposure, and circumstance. It is not fixed at birth. It can deepen through play.
 
 **The Spectrum of Awakening:**
 
@@ -424,7 +436,7 @@ The Aether score at character creation represents how awake your attunement is -
 - Father Oaken's Aether flame responds to Resonant visitors. He does not know why.
 - The Seedlings (Heartwood descendants) want to find surface Resonants who might hear the Painted Songs aloud.
 - The "Wake the Sleepers" endgame path requires a Resonant -- someone whose attunement can interact with the amber seals.
-- Attunement predates all heritage distinctions. Everyone carries it. Not everyone has had the chance to awaken it.
+- Resonance predates all heritage distinctions. Everyone carries it. Not everyone has had the chance to awaken it.
 
 ### The Silent Culture -- Heartwood Descendants
 
@@ -478,9 +490,9 @@ The player must choose:
 ### Arborist Relic Properties
 
 - Items carry the `[Resonant]` trait: they hum audibly near active Root-Song.
-- Most require Aether 12+ to attune. Unintuned use grants only Tier I benefits regardless of the item's actual material tier.
+- No attunement restriction. If you find it, you wield it. Your stats determine effectiveness.
 - Cannot be repaired conventionally -- only Arborist forges (found in Amber Vaults) can restore them.
-- Some retain partial sentience. The Sun-Bow selects its own wielder (Aether DC 16 to attune).
+- Some retain partial sentience. The Sun-Bow selects its own wielder (DC 16 Wits to earn its trust).
 - Arborist items are grown, not made. They respond to the Root-Song, not to the wielder's will alone.
 
 ### Known Arborist Constructs and Items
@@ -704,7 +716,7 @@ The modifier for each stat is calculated using the standard floor formula:
 
 | Aether Score | Ability |
 |--------------|---------|
-| 12+ | Can attune Arborist relics (full tier benefit) |
+| 12+ | Arborist relics respond more readily; trait DCs reduced by 1 |
 | 14+ | Senses amber impressions. Interprets Root-Song fragments. |
 | 16+ | Receives clear emotional impressions from the tree: grief, urgency, recognition. |
 
@@ -712,7 +724,7 @@ The modifier for each stat is calculated using the standard floor formula:
 
 The original inhabitants of the First Tree were one people. When the First Tree branched into four Groves, populations became isolated in different seasonal environments. Over millennia -- long before the Golden Age, long before the Arborists organized -- the tree shaped them. Not through magic. Through biology. The same way altitude shapes mountain peoples and latitude shapes skin color. Except the shaping agent is concentrated Aether in four distinct vibrational frequencies.
 
-Each Grove's Aether resonates at a different frequency. Each frequency pushes biological adaptation in a different direction. Root-Attunement -- present in everyone -- awakens and expresses differently depending on which Grove's frequency shaped your ancestors over millennia.
+Each Grove's Aether resonates at a different frequency. Each frequency pushes biological adaptation in a different direction. Root-Resonance -- present in everyone -- awakens and expresses differently depending on which Grove's frequency shaped your ancestors over millennia.
 
 #### Autumn-Born (Burnwillow)
 
@@ -741,7 +753,7 @@ Heritage gives one thing: a **+2 bonus to one stat score** at character creation
 | Summer-Born | Solheart | Intensity | +2 Might |
 | Winter-Born | Ashenmere | Stillness | +2 Wits |
 
-Most Emberhome characters are Autumn-Born. Others are available with a sentence of backstory explaining how their family ended up here. Root-Attunement functions identically in all four peoples -- Aether score determines awakening level regardless of heritage. But the expression of attunement is colored by ancestry -- the frequency your ancestors were shaped by influences how you perceive the Root-Song.
+Most Emberhome characters are Autumn-Born. Others are available with a sentence of backstory explaining how their family ended up here. Root-Resonance functions identically in all four peoples -- Aether score determines awakening level regardless of heritage. But the expression of attunement is colored by ancestry -- the frequency your ancestors were shaped by influences how you perceive the Root-Song.
 
 **Emberhome's Population:** Primarily Autumn-Born. Spring-Born (Verdhollow refugees) arrived first and form a significant minority -- they brought agricultural knowledge and healing traditions. Summer-Born are rare and valued for physical capabilities and forge-work. Winter-Born are almost nonexistent -- pale, quiet people who arrived decades ago and said almost nothing about where they came from. If true, they know something about what Ashenmere's stillness really is.
 
@@ -1130,19 +1142,19 @@ Scrolls are single-use magical items of considerable power. Using a scroll requi
 - **Failure:** The scroll is consumed with no effect.
 - **Fumble (all 1s):** The scroll backfires. The GM determines the consequence -- typically the effect targets the caster or an ally instead.
 
-### Aether Attunement
+### Aether Sensitivity
 
 Characters with high Aether scores gain passive benefits beyond combat:
 
 | Aether Score | Passive Benefit |
 |--------------|----------------|
-| 12+ | Can attune Arborist relics for full tier benefit |
+| 12+ | Arborist relics respond more readily; trait DCs reduced by 1 |
 | 14+ | Senses amber impressions. Interprets Root-Song fragments. Detects Hollow presence within 1 room. |
 | 16+ | Receives clear emotional impressions from the tree. The Root-Song changes in response to the character's presence. |
 
-### Arborist Relic Attunement
+### Arborist Relics in Play
 
-Arborist items require Aether 12+ to attune. An unintuned wielder receives only Tier I benefits regardless of the relic's actual material tier. Attunement is automatic for qualifying characters -- no action or ritual required. You hold the item and the item decides if it will speak to you.
+No attunement restriction. If you find it, you wield it. Your stats determine effectiveness. A character with Aether 8 swings the Sun-Bow as competently as one with Aether 16 -- but the higher-Aether wielder feels the weapon's intent, reads its grain, and benefits from reduced trait DCs. The relic does not refuse you. It simply speaks louder to those who can listen.
 
 ---
 
@@ -1371,6 +1383,25 @@ Long-duration buffs. One active at a time. Last entire floor.
 ---
 
 ## Chapter 17: Gear Sets & Affixes
+
+### Named Legendaries
+
+Named Legendaries are unique items with personalities, histories, and mechanics beyond standard traits. Each has a unique ability that no other item provides. No attunement restriction -- find it, use it.
+
+| Item | Slot | Stat | Unique Ability |
+|------|------|------|---------------|
+| The Sun-Cleaver | R.Hand | Might | Ember Momentum: +1 damage per kill this combat (stacks) |
+| Worldbreaker | R.Hand | Might | Sunder: once per floor, break a wall to reveal hidden passage |
+| The Sun-Bow | R.Hand | Wits | Chosen: selects its wielder (DC 16), cannot be stolen |
+| Flashfire Crown | Head | Wits | First Strike: always acts first, cannot be ambushed |
+| Crown of Insight | Head | Wits | True Sight: see invisible, mark illusions as false |
+| Aegis Shield | L.Hand | Grit | Unyielding: reflected damage equals full attack |
+| Warden's Bastion | L.Hand | Grit | Last Stand: once per combat, save an ally from death (reduced to 1 HP instead of 0) |
+| Void Scepter | R.Hand | Aether | Memory Drain: learn one dungeon fact per kill |
+| Ring of the Burnwillow | R.Ring | Aether | The Tree Speaks: one yes/no question per floor |
+| Eternity Bloom | Neck | Aether | Blight Ward: party immune to Blighted condition |
+| Tempest Annihilator | R.Hand | Aether | Storm Surge: +4 to Aether score on next check after Tempest |
+| Soulstone Amulet | Neck | Any | Second Chance: revive at 1 HP on death (once per campaign, consumed) |
 
 ### Gear Sets
 

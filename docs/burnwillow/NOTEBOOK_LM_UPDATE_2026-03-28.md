@@ -365,23 +365,23 @@ They might be right — the player's answer to their argument IS the endgame cho
 
 ---
 
-## 11. ROOT-ATTUNEMENT — A UNIVERSAL CAPACITY (Reflavored from "gene")
+## 11. ROOT-RESONANCE — A UNIVERSAL CAPACITY (Reflavored from "gene")
 
-Root-Attunement is NOT a genetic trait, bloodline, or inborn gift. It is a universal capacity — like building muscle or learning language. Everyone in the Groves has it. In most it lies dormant. It awakens through prolonged exposure to Aether, through working with living wood, through years spent in the tree's resonant structures. No one is born "without" it. Some just haven't had the opportunity to develop it.
+Root-Resonance is NOT a genetic trait, bloodline, or inborn gift. It is a universal capacity — like building muscle or learning language. Everyone in the Groves has it. In most it lies dormant. It awakens through prolonged exposure to Aether, through working with living wood, through years spent in the tree's resonant structures. No one is born "without" it. Some just haven't had the opportunity to develop it.
 
 **The Spectrum of Awakening:**
 - **Dormant (most, Aether <12):** Never activated. Can learn Arborist techniques as rote skills. May develop with exposure.
 - **Stirring (Aether 12-13):** Awakened by years near Aether sources. Wood "cooperates," gut feelings. Weld's decades at the forge did this. Scout Lira's dungeon time developed her instincts.
 - **Resonant (Aether 14-16):** Fully awake. Hear the Root-Song unprompted. Father Oaken's flame responds to them. Could learn to sing if taught.
 - **True Arborist (Aether 17+):** Lifelong practice + Aether saturation → physical transformation. NOT a birthright — the result of devotion.
-- **Heartwood Descendants:** 400 years of passive immersion. Proof that environment, not birth, drives attunement.
+- **Heartwood Descendants:** 400 years of passive immersion. Proof that environment, not birth, drives resonance.
 
 **Key implications:**
-- Attunement can deepen during play through Aether exposure, Arborist contact, Heartwood proximity.
+- Resonance can deepen during play through Aether exposure, Arborist contact, Heartwood proximity.
 - Emberhome's farming traditions work for the Stirring, who attribute it to luck.
 - "Wake the Sleepers" endgame requires a Resonant (Aether 14+).
 - The Seedlings seek surface Resonants who might hear the Painted Songs.
-- Attunement predates all heritage distinctions. Everyone carries it.
+- Resonance predates all heritage distinctions. Everyone carries it.
 
 ---
 
@@ -391,7 +391,7 @@ Root-Attunement is NOT a genetic trait, bloodline, or inborn gift. It is a unive
 - ~~Amber Vault acoustic dampening~~ → Vault Breach Alert mechanic
 - ~~Heartwood descendants culture~~ → Silent Culture (Painted Songs, Gardens, the Whisper, descendant factions)
 - ~~Choir recruitment~~ → Entrainment broadcast, Hollow Tide, Resonance-Touched condition
-- ~~Arborist heritage / Emberhome connection~~ → Root-Attunement gene, spectrum of expression, carriers in the population
+- ~~Arborist heritage / Emberhome connection~~ → Root-Resonance, spectrum of expression, carriers in the population
 
 ### Also resolved:
 - ~~Playable races~~ → The Four Peoples, shaped by season (see Section 13 below)
@@ -414,7 +414,7 @@ Root-Attunement is NOT a genetic trait, bloodline, or inborn gift. It is a unive
 
 No traditional fantasy races. The original inhabitants of the First Tree were one people. The four Groves shaped them over millennia through concentrated Aether at four distinct vibrational frequencies. Race is what the tree made your ancestors into.
 
-The Root-Attunement gene functions identically in all four peoples — Aether score determines carrier/resonant status. But the EXPRESSION differs by ancestry.
+Root-Resonance functions identically in all four peoples — Aether score determines carrier/resonant status. But the EXPRESSION differs by ancestry.
 
 ### Autumn-Born (Burnwillow)
 - **Shaped by:** Decay-frequency Aether
@@ -661,3 +661,35 @@ All Burnwillow playability milestones (M1 through M7d) are implemented:
 - #210: Trademark consideration (business decision)
 - Sourcebook could be further polished for publication
 - Additional playtesting and balance tuning
+
+---
+
+## 20. FINAL ADDITIONS — 2026-03-29
+
+### Root-Resonance (renamed from Root-Attunement/Root-Binding)
+The universal capacity to perceive Aether is now officially called **Root-Resonance** (Old Tongue: *Rótbinding*). The term was changed to avoid confusion with the item attunement mechanic. Root-Resonance = your personal connection. Attunement = equipping a specific item.
+
+### Arborist Relic Restriction Removed
+No attunement restriction on Arborist relics. If you find it, you use it. Stats determine effectiveness. The Sun-Bow is the sole exception (selects its own wielder, Aether DC 16 — item personality, not system rule).
+
+### Named Legendaries (12 items)
+Unique items with abilities beyond standard traits. 2-3 per stat:
+
+**Might:** Sun-Cleaver (Ember Momentum — stacking kill damage), Worldbreaker (Sunder — break walls)
+**Wits:** Sun-Bow (Chosen — selects wielder), Flashfire Crown (First Strike — always first), Crown of Insight (True Sight)
+**Grit:** Aegis Shield (Unyielding — full damage reflect), Warden's Bastion (Last Stand — save one ally from death per combat)
+**Aether:** Void Scepter (Memory Drain — learn info on kill), Ring of the Burnwillow (Tree Speaks — 1 yes/no per floor), Eternity Bloom (Blight Ward — party immune), Tempest Annihilator (Storm Surge — +4 Aether score after Tempest)
+**Any:** Soulstone Amulet (Second Chance — revive once per campaign, consumed)
+
+### Norse/Gaelic Cultural Foundation
+Two language traditions: Common (English, surface-dwellers) and Old Tongue (Heartwood Descendants, An Cor Briste exclusively). Ancient faction members mix both.
+
+Key terms: Rotgaldr (Root-Song), Cuimhne-Siol (Memory Seed), An Croi-Fiodh (Heartwood), Glodheim (Emberhome), An Cogar (The Whisper), An Cor Briste (The Choir — always this name), Omra (Amber), Tom (Hollow), Bas-Clog (Doom Clock).
+
+Runic system: 7 tree-anatomy runes (Ogham-inspired) + 6 cosmic force runes (Futhark-inspired). Players collect runes as progression.
+
+The Threshold (An Tairseach): Liminal spaces as core metaphysic.
+The Gift-Cycle (Bronntanas): Faction reputation as mutual obligation, not transaction.
+
+### 5d6 Cap Is Absolute
+No exceptions. Storm Surge gives +4 to Aether SCORE (not modifier, not dice). All bonuses flow through the standard (score - 10) // 2 formula. The cap is the cap.
