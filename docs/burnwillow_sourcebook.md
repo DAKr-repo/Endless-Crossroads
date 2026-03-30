@@ -926,18 +926,28 @@ Gear traits are activated abilities and passive effects attached to equipment. W
 | **Rally** | Wits | 10 | Grant +1 bonus die to ALL allies' next attack | Flat +1d6 to all |
 | **Aegis** | Grit | 10 | Grant DR equal to item tier to ALL allies for 2 rounds | DR = tier, duration 2 rounds |
 
-### Utility Traits
+### Utility & Exploration Traits
 
 | Trait | Stat | DC | Effect | Notes |
 |-------|------|----|--------|-------|
-| **Lockpick** | Wits | varies | Attempt to pick locks without consuming a Key | DC set by lock. Failure jams lock or triggers trap. |
-| **Set Trap** | Wits | 8 (Routine) | Create a hazard in the current room | Enemies entering trigger the hazard |
-| **Charge** | Might | 8 (Routine) | Rush attack with bonus 1d6 damage on success | Requires clear line |
-| **Sanctify** | Aether | 16 (Heroic) | Create a sanctified zone. AoE 1d6 damage to Blighted creatures | High DC, high reward |
-| **Flash** | Wits | 12 | Blind 1-2 enemies for 2 rounds (-2 accuracy) | Targets: min(2, tier) |
-| **Snare** | Wits | 12 | Reduce defense of 1-3 enemies by tier value | Targets: min(3, tier) |
+| **Lockpick** | Wits | 11 - tier | Pick locks without a Key. Higher tier picks = easier locks. | DC reduced by item tier |
+| **Guard** | -- | -- | Protect an adjacent ally. +tier DR to them until your next turn. | Defensive action |
+| **Reflect** | -- | -- | Return ranged attacks. Reflected damage = tier. | Passive when equipped |
+| **Ranged** | Wits | varies | Attack from distance using Wits instead of Might. | Damage = tier + 1 |
+| **Light** | -- | -- | Illuminate surroundings. Reveals hidden objects and secret exits. | Passive exploration |
+| **Summon** | -- | -- | Call a spirit minion. HP: 3 + Aether mod. Duration: 3 rounds. | Scales with Aether |
+| **Spellslot** | Aether | varies | Cast from spell focus. Damage = (tier)d6. | Magical attack |
+| **Backstab** | -- | -- | Double damage on surprise round or against blinded enemies. | Combo with Flash |
+| **Heal** | -- | -- | Restore HP from consumable. Healing = (tier)d6. | Consumable charges |
+| **Set Trap** | Wits | 5 (Routine) | Create a hazard in the current room | Enemies entering trigger the hazard |
+| **Charge** | Might | 5 (Routine) | Rush attack with bonus 1d6 damage on success | Requires clear line |
+| **Sanctify** | Aether | 15 (Hard) | Create a sanctified zone. AoE 1d6 damage to Blighted creatures | High DC, high reward |
+| **Flash** | Wits | 11 | Blind 1-2 enemies for 2 rounds (-2 accuracy) | Targets: min(2, tier). Combos with Backstab. |
+| **Snare** | Wits | 11 | Reduce defense of 1-3 enemies by tier value | Targets: min(3, tier). Combos with Cleave. |
 | **Far Sight** | -- | -- | Passive: Scout DC reduced by 2 | Always active when equipped |
 | **Resist Blight** | -- | -- | Passive: +2 DR vs. Blight hazards | Always active when equipped |
+
+**Total: 30 trait resolvers** (21 original + 9 bracket traits added v4.0).
 
 ---
 
@@ -1760,6 +1770,28 @@ Certain room types override the standard tier descriptions with purpose-built te
 - "Ozone coats your tongue. A portal of swirling violet light hovers above a circle of runes carved into the floor."
 - "Visual distortion warps the far wall. Where stone should be, you see flickering images of somewhere else entirely."
 - "A low thrum vibrates through your teeth. An archway of crystallized magic stands free of any wall, surface rippling like water."
+
+### Zone 6: The Heartwood — "The Wood Behind the Wood"
+
+Accessed by discovering hidden entrances in Zones 2-4 (behind certain Amber Vaults, overgrown passages, or with DC 25+ Wits checks). The Heartwood is not a direction — it is a depth. You go inward through the growth rings until the wood becomes something older than anything on the surface.
+
+Architecture is tree anatomy: sap channels as hallways, knots as chambers, resin pockets as vaults. Each concentric ring you pass through is older. The outermost rings show recognizable Arborist construction. The inner rings are alien — wood so dense it rings like metal, amber embedded in the walls like fossils, light from the grain itself.
+
+**Enemies are NOT Rot.** They are the tree's immune system and preserved Arborist echoes: Amber Shards, Growth Ring Sentinels, Amber Echoes (phase-shifting), Arborist Automatons, Immune Responses, and Sealed Singers (Arborists trapped in amber, still singing). The boss is an Ancient Arborist — half-Hollowed, the song still pouring from them.
+
+**Special rooms:** Painted Galleries (descendant murals — possible recipe discovery), Silent Gardens (descendant settlements — NPC encounters with the Whisper), Amber Stasis chambers (sealed Arborists — endgame quest locations).
+
+**Unique mechanics:** No Doom Clock advancement (sealed from the main tree's pressure). Resonance exposure continues. Painted Song rooms can teach recipes.
+
+### Zone 7: The Undergrove — "Where the Roots Remember"
+
+Accessed by discovering hidden entrances in the deepest Zone 4 vaults (grey-cracked amber, damaged golems). Opening one is a choice — you gain access but open a door that was holding the Rot back.
+
+A tangled root-mass from all four Groves, woven so dense you cannot tell which root belongs to which tree. Dark, wet, heavy. The Rot is native here — not an invader, a custodian. Failed Grove fossils (petrified tree skeletons older than the Four) serve as landmarks. Root-Road intersections mark where the sealed passage network converges.
+
+**Enemies are Choir-directed:** Chorus Walkers (formation movement, Resonance-Touched aura), Drift Hollows, Section Leaders (zone-wide Rot buff), Ancient Hollows (wearing recognizable Seeker gear). The final boss is The Conductor — 80 HP, persistent 1d4 psychic damage per round, summons Chorus Walkers, Phase 2 at 40 HP: Song of Ending (DC 22 Aether or Resonance-Touched + Shaken).
+
+**Unique mechanics:** Doom Clock advances at +2 per room. Resonance exposure builds at 2x rate. Ingredient drops are doubled (decomposition = rich materials). Hollow Drift rooms may contain gear from previous campaign deaths.
 
 ---
 

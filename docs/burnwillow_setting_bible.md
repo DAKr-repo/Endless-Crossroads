@@ -668,6 +668,8 @@ The Burnwillow is divided into vertical zones from the roots upward. Because the
 | 3 | The Aether-Flow | Mid-Root | III-IV | The Blight Mother | Rivers of raw golden sap. Exposure grants visions or burns minds. |
 | 4 | The Rot-Heart | Core | IV | The Clockwork Archon | Grey ash. Root-Song absent. Pulsating fungal webs. Infection origin. |
 | 5 | The Crown | Canopy | IV + Crown | The Void Herald | Vertigo, high winds, blinding fire-light. Sun-Fruit harvest zone. |
+| 6 | The Heartwood | Within | I-IV | Ancient Arborist | Concentric growth rings. Arborist constructs, amber echoes. Hidden entrance required. |
+| 7 | The Undergrove | Below | I-IV | The Conductor | Tangled root-mass. Choir-directed Hollows. The Rot is native here. Hidden entrance required. |
 
 **The Veins:** The tree's internal vascular system. Narrow, turbulent chutes pumping sap between zones. Can be hacked into as rapid shortcuts between zones (costly: HP or Keys to open each Vein access point).
 
@@ -1419,6 +1421,35 @@ Four stations, each faction-gated:
 | Moth's Grace | Moth-Scale Powder + Spider Silk + Sap | +1 to all Wits checks |
 | Hag's Bargain | Rot Spores + your own blood (1d6 self-damage) + Sap | Next 3 trait activations auto-succeed |
 | Root-Singer | Elder Sap + Moonstone Dust + Deepwater | Hear Root-Song — secret rooms glow on minimap |
+
+### Using Consumables
+
+Consumables are used via the `use <item name>` command:
+- **Potions:** Instant effect — heal Xd6, cure conditions, stat buffs, reveal/sense. Consumed on use.
+- **Bombs:** AoE damage to all enemies in the room + status effects (Burning, Blinded, Entangled, Frozen). 3 bomb carry slots.
+- **Oils:** Applied as weapon coating. Per-hit bonus damage (+Xd4). Lasts 1 combat encounter. One coating active at a time.
+- **Elixirs:** Floor-duration buff. One active at a time (new replaces old). Hag's Bargain costs 1d6 HP to brew.
+
+### Crafting Station Mechanics
+
+**Blacksmith** (always available):
+- `salvage <item>` — Break an inventory item into raw materials. Yield scales with tier. Tier III gives: 3 Willow Bark, 3 Sap, 2 Beetle Ichor, 1 Moonstone Dust.
+- `temper <item>` — Add +1 DR to an equipped armor piece. Costs 5 scrap. Max tempers based on item tier.
+- `reforge <item> <slot>` — Change an item's equipment slot. Costs 5 scrap. Clears primary_stat override.
+
+**Silkweaver** (Canopy Court Friendly+):
+- `enchant <item>` — Add a random Aether-based suffix to any non-weapon item. Cannot enchant weapons.
+- Thread Binding (NPC service) — Link two items to count as the same gear set.
+
+**Hag's Cauldron** (Hag Circle Friendly+):
+- Rot Processing (NPC service) — Convert 2 Rot Spores into 1 Moonstone Dust + 1 Deepwater.
+- Curse Weapons (NPC service) — Apply a debuff prefix to a weapon.
+- Alchemy crafting via the standard `craft` command.
+
+**Mycelium Forge** (Mycelium Friendly+):
+- Decomposition (NPC service) — Break any item into materials at better yield than Blacksmith (3-room delay to collect).
+- Spore Infusion (NPC service) — Add "living" quality (of Mending suffix) to any gear.
+- Network Grafting (NPC service) — Bond an item to the Mycelium. Item survives death — reclaim next run. One item per network node.
 
 ---
 
