@@ -1451,7 +1451,7 @@ No attunement restriction. If you find it, you wield it. Your stats determine ef
 **Tempest Annihilator** (R.Hand, Tier IV, [Tempest])
 *A Sunresin rod crackling with perpetual storm. Lightning arcs between your fingers.*
 - Chain lightning to multiple targets
-- **Unique: Storm Surge** — After casting Tempest, the next Aether check this combat gets +1d6 bonus dice (beyond the 5d6 cap — this is the one exception to the cap rule). The storm feeds on itself.
+- **Unique: Storm Surge** — After casting Tempest, the next Aether check this combat gets +2 to the modifier. The storm feeds on itself.
 
 ### Soulstone Amulet (Special — Any Build)
 
