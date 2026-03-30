@@ -218,14 +218,23 @@ The Groves are islands of life in an ocean of nothing. The Root-Song creates a b
 
 **The Crown (Zone 5) is where the canopy is thinnest** — the barrier between the Grove's reality and the Void is weakest at the highest branches, where fire-light barely reaches.
 
-**Endgame implications:** The player's choice about An Cór Briste has consequences for the Void:
-- Complete the Song → Root-Song strengthens → Void pushed back
-- Silence the Choir → Root-Song goes permanently silent → Void seeps in faster
-- Wake the Sleepers → a new song begins → the relationship with the Void changes unpredictably
+**The Root-Song repels the Void.** This is the fundamental relationship. The Root-Song is not just music — it is the assertion of reality. The vibration that says "this space is alive, this matter is real, this moment exists." The Void is the silence that exists where that assertion has never been made. The Root-Song does not fight the Void. It simply occupies the space the Void would otherwise fill. Where there is Song, there is no Void. Where there is no Song, the Void is already there.
+
+**This makes every endgame choice a Void decision:**
+
+| Ending | Rot Result | Root-Song Result | Void Consequence |
+|--------|-----------|-----------------|-----------------|
+| **Silence the Choir** | Rot mindless, tree stabilizes | Root-Song goes permanently silent | Void seeps inward. Fire-leaves dim — not from Rot, from absence. The players solved one crisis by creating a larger one. **Sequel campaign: the Void.** |
+| **Complete the Song** | Cycle resumes, tree transforms | Root-Song restored and strengthened | Void pushed back hard. The canopy burns brighter. But the world has changed — Burnwillow loses its fire-leaves, Ashenmere thaws. The price of a stronger Song is a different world. |
+| **Wake the Sleepers** | Arborists assess the damage | A new song begins — unlike the old one | Unpredictable. The Sleepers have been in amber for 400 years. Their song may be outdated, may harmonize with the Void differently, may attract it or repel it in ways the old song never did. The most uncertain and most interesting outcome. |
+
+**The Silence ending is not a failure** — it is a victory that creates a dilemma. The players return to Emberhome as heroes. The Rot is directionless. The tree stabilizes. And then, weeks later, the fire-leaves start dimming. Not from Rot — from absence. The Root-Song was the only thing keeping the nothing at bay. The players did not know this. Nobody knew this. The Arborists knew, which is one reason they never considered permanent silence as an option — but the Arborists are sealed in amber.
+
+This makes the Void the **sequel hook**. The first campaign is about the Rot. The second campaign — in any Grove — is about what happens when the Root-Song's relationship with the Void changes. The player's first-campaign choice determines the starting conditions of the second campaign.
 
 **A Void zone** would break every rule: no Aether (Root-Resonance fails), no direction (spatial map unstable), no sound (actual silence with weight). Might-focused attacks work (physical, real, undeniable). Aether-focused attacks diminished (no medium for vibration). Enemies do not have HP — they have *presence*. You do not kill them — you assert reality harder than they assert unreality.
 
-**Status:** Conceptual. The Void is a backdrop threat for now — the thing pressing at the edges while the player deals with An Cór Briste. It becomes the primary threat only after the Rot crisis is resolved.
+**Status:** The Void is the meta-campaign antagonist. It exists as a backdrop threat during the first campaign (pressing at the canopy edges, the Void Herald as a warning). It becomes the primary threat in the sequel campaign, with its severity determined by the player's endgame choice.
 
 ### Threat Ecology — The Complete Picture
 
