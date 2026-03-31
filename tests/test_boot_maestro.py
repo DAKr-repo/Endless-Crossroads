@@ -238,7 +238,9 @@ class TestVaultScan:
         with patch.object(BootWizard, "__init__", lambda self: None):
             wizard = BootWizard()
             with patch("maintenance.codex_index_builder.check_vault_changes",
-                        return_value=mock_changes):
+                        return_value=mock_changes), \
+                 patch("maintenance.codex_index_builder.audit_index_health",
+                        return_value={}):
                 wizard.vault_scan()  # Should not raise
 
     def test_content_scan_finds_modules(self):
@@ -269,7 +271,9 @@ class TestVaultScan:
         with patch.object(BootWizard, "__init__", lambda self: None):
             wizard = BootWizard()
             with patch("maintenance.codex_index_builder.check_vault_changes",
-                        return_value=mock_changes):
+                        return_value=mock_changes), \
+                 patch("maintenance.codex_index_builder.audit_index_health",
+                        return_value={}):
                 wizard.vault_scan()  # Should show content inventory, not "up to date"
 
 

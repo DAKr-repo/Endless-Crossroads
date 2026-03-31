@@ -556,6 +556,17 @@ class BurnwillowBridge:
         elif zone <= 3 and self.engine.resonance_exposure > 0:
             self.engine.resonance_exposure = 0  # Reset on return to safer zones
 
+        # Quest trigger: room entered
+        if hasattr(self.engine, '_quest_dispatcher') and self.engine._quest_dispatcher:
+            room_data = self.engine.get_current_room()
+            if room_data:
+                quest_msgs = self.engine._quest_dispatcher.on_room_entered(room_data.get("tier", 1))
+                for qm in quest_msgs:
+                    lines.append(f"[Quest] {qm}")
+                # Show quest markers
+                if room_data.get("quest_marker"):
+                    lines.append(f"[Quest] {room_data['quest_marker']}")
+
         # Active conditions summary
         active = char.get_active_conditions()
         if active:
@@ -828,6 +839,13 @@ class BurnwillowBridge:
                         elif leg["effect"] == "memory_drain":
                             lines.append(f"  Memory Drain! The {enemy_name}'s memories flow into you.")
                             lines.append(f"  (Ask the GM one fact about this floor.)")
+                # Quest trigger: enemy defeated
+                if hasattr(self.engine, '_quest_dispatcher') and self.engine._quest_dispatcher:
+                    faction_id = enemy.get("faction_id", "") if isinstance(enemy, dict) else ""
+                    tier = enemy.get("tier", 1) if isinstance(enemy, dict) else 1
+                    quest_msgs = self.engine._quest_dispatcher.on_enemy_defeated(enemy_name, tier, faction_id)
+                    for qm in quest_msgs:
+                        lines.append(f"  [Quest] {qm}")
                 # WO-V37.0: Log kill event
                 self._log_event("kill", target=enemy_name,
                                 tier=enemy.get("tier", 1) if isinstance(enemy, dict) else 1,
@@ -1044,6 +1062,13 @@ class BurnwillowBridge:
                 lines.append(f"You found: {name}!{_lflav}")
                 self.engine.register_loot_find(name)
                 found_loot = True
+                # Quest trigger: loot acquired
+                if hasattr(self.engine, '_quest_dispatcher') and self.engine._quest_dispatcher:
+                    room = self.engine.get_current_room()
+                    tier = room.get("tier", 1) if room else 1
+                    quest_msgs = self.engine._quest_dispatcher.on_loot_acquired(tier)
+                    for qm in quest_msgs:
+                        lines.append(f"  [Quest] {qm}")
                 # Update engine state
                 pop_room = self.engine.populated_rooms.get(self.engine.current_room_id)
                 if pop_room:

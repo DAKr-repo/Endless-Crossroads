@@ -1686,6 +1686,9 @@ class BurnwillowEngine:
         # Amber Vault Outposts (claimed, persist across runs)
         self.claimed_outposts: dict = {}  # outpost_id → {type, items, zone}
 
+        # Quest trigger dispatcher (wired by play loop after narrative engine init)
+        self._quest_dispatcher = None
+
         # TPK Detection
         self.campaign_over: bool = False
 
@@ -2230,6 +2233,15 @@ class BurnwillowEngine:
             adapter = BurnwillowAdapter(seed=seed)
             injector = ContentInjector(adapter)
             self.populated_rooms = injector.populate_all(self.dungeon_graph)
+
+        # Quest content injection (post-populate)
+        if self._quest_dispatcher and hasattr(self._quest_dispatcher, 'narrative'):
+            try:
+                from codex.core.quest_injector import QuestContentInjector
+                qi = QuestContentInjector()
+                self.populated_rooms = qi.inject_all(self.populated_rooms, self._quest_dispatcher.narrative, zone)
+            except ImportError:
+                pass
 
         # Tag HIDDEN_PORTAL rooms with zone destinations
         if self.populated_rooms:

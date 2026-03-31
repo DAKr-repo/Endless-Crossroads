@@ -2087,6 +2087,12 @@ def init_game(state: GameState, names: List[str], seed: Optional[int] = None,
     state.narrative = NarrativeEngine(system_id=state.system_id or "burnwillow")
     # WO-V56.0: Wire _engine_ref — unlocks DeltaTracker + memory shard injection
     state.narrative._engine_ref = state.engine  # type: ignore[attr-defined]
+    # Wire quest trigger dispatcher
+    try:
+        from codex.core.quest_trigger import QuestTriggerDispatcher
+        state.engine._quest_dispatcher = QuestTriggerDispatcher(state.narrative)
+    except ImportError:
+        pass
     # WO-V56.0: Wire memory engine for ANCHOR shard injection into Mimir prompts
     try:
         from codex.core.memory import CodexMemoryEngine
@@ -2192,6 +2198,12 @@ def init_game_with_characters(state: GameState, characters, seed=None):
 
     # --- Narrative Engine + Emberhome Hub ---
     state.narrative = NarrativeEngine(system_id=state.system_id or "burnwillow")
+    # Wire quest trigger dispatcher
+    try:
+        from codex.core.quest_trigger import QuestTriggerDispatcher
+        state.engine._quest_dispatcher = QuestTriggerDispatcher(state.narrative)
+    except ImportError:
+        pass
     _load_emberhome_settlement(state)
     _init_npc_memory(state)
     _run_emberhome_hub(state)

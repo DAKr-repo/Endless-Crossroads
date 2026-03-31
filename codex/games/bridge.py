@@ -1065,6 +1065,10 @@ class UniversalGameBridge:
                         lines.append(f'"{dialogue}"')
                     else:
                         lines.append(f"{name} has nothing to say.")
+                    # WO-V81.0: Track trust and reveal depth
+                    _trust_key = name.lower()
+                    self._npc_trust[_trust_key] = self._npc_trust.get(_trust_key, 0) + 1
+                    _trust_level = self._npc_trust[_trust_key]
                     # WO-V131: NPC recognizes character background
                     if self._character_loom and hasattr(self._character_loom, 'background'):
                         _bg = self._character_loom.background
@@ -1081,10 +1085,6 @@ class UniversalGameBridge:
                             _matches = _role_bg_match.get(role.lower(), [])
                             if any(m in _bg.lower() for m in _matches):
                                 lines.append(f'[{name} recognizes a fellow {_bg}.]')
-                    # WO-V81.0: Track trust and reveal depth
-                    _trust_key = name.lower()
-                    self._npc_trust[_trust_key] = self._npc_trust.get(_trust_key, 0) + 1
-                    _trust_level = self._npc_trust[_trust_key]
                     # Show want on 2nd+ conversation (quest hook)
                     want = npc.get("want", "")
                     if want and _trust_level >= 2:

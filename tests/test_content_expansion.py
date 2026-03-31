@@ -332,12 +332,13 @@ class TestGraveyardSchema:
         assert "Character Class B" not in raw
         assert "Playbook X" not in raw
 
-    def test_graveyard_has_example_tombstone(self):
-        assert "example_tombstone" in self.data
-        tombstone = self.data["example_tombstone"]
-        assert "name" in tombstone
-        assert "system" in tombstone
-        assert "cause_of_death" in tombstone
+    def test_graveyard_fields_cover_tombstone_data(self):
+        """Fields schema must define the core tombstone attributes."""
+        assert "fields" in self.data
+        fields = self.data["fields"]
+        assert "name" in fields
+        assert "system" in fields
+        assert "cause_of_death" in fields
 
 
 # =============================================================================

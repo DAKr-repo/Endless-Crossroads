@@ -137,16 +137,17 @@ def test_first_zone_has_content(module_id: str, expected_system: str):
     assert room_0 is not None, f"No room 0 in first zone of {module_id}"
 
     # content_hints can be inline in the room OR at the top level keyed by room id.
+    # Some modules (e.g. burnwillow) put fields directly on the room object.
     hints = room_0.get("content_hints", {})
     if not hints:
         top_hints = bp.get("content_hints", {})
         hints = top_hints.get("0", top_hints.get(0, {}))
 
-    desc = hints.get("description", "")
+    desc = hints.get("description", "") or room_0.get("description", "")
     assert desc, f"Room 0 has no description in {module_id}"
 
-    npcs = hints.get("npcs", [])
-    triggers = hints.get("event_triggers", [])
+    npcs = hints.get("npcs", []) or room_0.get("npcs", [])
+    triggers = hints.get("event_triggers", []) or room_0.get("event_triggers", [])
     assert npcs or triggers, (
         f"Room 0 has no NPCs and no event_triggers in {module_id}"
     )
