@@ -624,6 +624,80 @@ GEAR_SETS: Dict[str, dict] = {
 
 
 # =============================================================================
+# NAMED LEGENDARY ABILITIES
+# =============================================================================
+
+NAMED_LEGENDARY_ABILITIES: Dict[str, dict] = {
+    # Might
+    "Sun-Cleaver": {
+        "trigger": "on_kill",
+        "effect": "stacking_damage",
+        "description": "Ember Momentum: +1 damage per kill this combat (stacks, resets between combats)",
+    },
+    "Worldbreaker": {
+        "trigger": "use_active",
+        "effect": "sunder_wall",
+        "description": "Sunder: once per floor, reveal a hidden passage or secret room",
+    },
+    # Wits
+    "The Sun-Bow": {
+        "trigger": "passive",
+        "effect": "chosen",
+        "description": "Chosen: cannot be stolen or dropped involuntarily",
+    },
+    "Flashfire Crown": {
+        "trigger": "passive",
+        "effect": "first_strike",
+        "description": "First Strike: always act first in initiative, cannot be ambushed",
+    },
+    "Crown of Insight": {
+        "trigger": "passive",
+        "effect": "true_sight",
+        "description": "True Sight: see invisible enemies, secret exits glow, illusions marked false",
+    },
+    # Grit
+    "Aegis Shield": {
+        "trigger": "on_hit_taken",
+        "effect": "full_reflect",
+        "description": "Unyielding: reflected damage equals full attack, not just 1",
+    },
+    "Warden's Bastion": {
+        "trigger": "ally_would_die",
+        "effect": "last_stand",
+        "description": "Last Stand: once per combat, save an ally from death (1 HP instead of 0)",
+    },
+    # Aether
+    "Void Scepter": {
+        "trigger": "on_kill",
+        "effect": "memory_drain",
+        "description": "Memory Drain: learn one fact about the current floor per kill",
+    },
+    "Ring of the Burnwillow": {
+        "trigger": "use_active",
+        "effect": "tree_speaks",
+        "description": "The Tree Speaks: once per floor, ask the GM one yes/no question",
+    },
+    "Eternity Bloom": {
+        "trigger": "passive",
+        "effect": "blight_ward",
+        "description": "Blight Ward: party immune to Blighted condition while worn",
+    },
+    "Tempest Annihilator": {
+        "trigger": "after_trait",
+        "effect": "storm_surge",
+        "value": 4,
+        "description": "Storm Surge: +4 Aether score on next check after Tempest",
+    },
+    # Special
+    "Soulstone Amulet": {
+        "trigger": "on_death",
+        "effect": "second_chance",
+        "description": "Second Chance: revive at 1 HP on death (once per campaign, consumed)",
+    },
+}
+
+
+# =============================================================================
 # RANDOMIZED AFFIXES
 # =============================================================================
 

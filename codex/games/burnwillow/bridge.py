@@ -21,7 +21,7 @@ from pathlib import Path
 from codex.games.burnwillow.engine import (
     BurnwillowEngine, BurnwillowTraitResolver,
     Character, StatType, GearSlot, DC, Condition,
-    roll_dice_pool, passive_check
+    roll_dice_pool, passive_check, NAMED_LEGENDARY_ABILITIES
 )
 from codex.spatial.map_engine import RoomType
 from codex.core.state_frame import StateFrame, build_state_frame
@@ -163,6 +163,11 @@ class BurnwillowBridge:
 
         self.dead = False
         self._last_trait_used: str = ""  # For trait combo detection
+        self._sun_cleaver_kills: int = 0  # Ember Momentum stacking damage
+        self._last_stand_used: bool = False  # Warden's Bastion once per combat
+        self._sunder_used: bool = False  # Worldbreaker once per floor
+        self._tree_speaks_used: bool = False  # Ring of the Burnwillow once per floor
+        self._storm_surge_pending: int = 0  # Tempest Annihilator +score after Tempest
         self._snared_enemies: set = set()  # Enemies with defense reduced by SNARE
         self._blinded_enemies: set = set()  # Enemies blinded by FLASH
         self.last_frame: StateFrame | None = None
@@ -469,6 +474,24 @@ class BurnwillowBridge:
         if vault_echo_active:
             lines.append("The acoustic echo draws enemies toward you! (+1 enemy)")
 
+        # Reset per-combat legendary trackers on room entry
+        self._sun_cleaver_kills = 0
+        self._last_stand_used = False
+
+        # Named Legendary: Eternity Bloom — party immune to Blighted
+        eternity_bloom_active = False
+        for ally in self.engine.party:
+            if ally.is_alive():
+                for _sl, _it in ally.gear.slots.items():
+                    if _it and _it.name == "Eternity Bloom":
+                        eternity_bloom_active = True
+                        break
+                if eternity_bloom_active:
+                    break
+        if eternity_bloom_active and char.has_condition(Condition.BLIGHTED):
+            char.remove_condition(Condition.BLIGHTED)
+            lines.append("The Eternity Bloom's aura absorbs the Blight.")
+
         # Blighted condition: 1 HP per room (Willow suffix resists)
         if char.has_condition(Condition.BLIGHTED):
             willow_resist = False
@@ -614,14 +637,22 @@ class BurnwillowBridge:
             lines.append(f"[bold cyan]A hidden passage to the {dest.title()} lies before you.[/bold cyan]")
             lines.append(f"  Type 'enter {dest}' to cross the threshold.")
 
-        # Ambush check
+        # Ambush check — Named Legendary: Flashfire Crown = always first
         if enemies:
-            wits_mod = char.get_stat_mod(StatType.WITS)
-            ambush = roll_dice_pool(1, wits_mod, DC.STANDARD.value)
-            if ambush["success"]:
-                lines.append("You catch them off guard! (Ambush round)")
+            has_flashfire = False
+            for _sl, _it in char.gear.slots.items():
+                if _it and _it.name == "Flashfire Crown":
+                    has_flashfire = True
+                    break
+            if has_flashfire:
+                lines.append("Flashfire Crown crackles! You act first. (Cannot be ambushed)")
             else:
-                lines.append("Enemies spotted! Combat imminent.")
+                wits_mod = char.get_stat_mod(StatType.WITS)
+                ambush = roll_dice_pool(1, wits_mod, DC.STANDARD.value)
+                if ambush["success"]:
+                    lines.append("You catch them off guard! (Ambush round)")
+                else:
+                    lines.append("Enemies spotted! Combat imminent.")
 
         lines.append("")
         lines.append(self._status_line())
@@ -706,6 +737,10 @@ class BurnwillowBridge:
                 damage += bonus
                 self._pending_bonus_damage = 0
 
+            # Named Legendary: Sun-Cleaver stacking damage
+            if self._sun_cleaver_kills > 0 and weapon and weapon.name == "Sun-Cleaver":
+                damage += self._sun_cleaver_kills
+
             enemy_hp -= damage
 
             # Active Oil — weapon coating bonus damage
@@ -762,6 +797,16 @@ class BurnwillowBridge:
                     healed = char.heal(1)
                     if healed > 0:
                         lines.append(f"  Vampiric drain! (+{healed} HP)")
+                # Named Legendary: on_kill effects
+                if weapon and weapon.name in NAMED_LEGENDARY_ABILITIES:
+                    leg = NAMED_LEGENDARY_ABILITIES[weapon.name]
+                    if leg["trigger"] == "on_kill":
+                        if leg["effect"] == "stacking_damage":
+                            self._sun_cleaver_kills += 1
+                            lines.append(f"  Ember Momentum! (+{self._sun_cleaver_kills} damage on next attack)")
+                        elif leg["effect"] == "memory_drain":
+                            lines.append(f"  Memory Drain! The {enemy_name}'s memories flow into you.")
+                            lines.append(f"  (Ask the GM one fact about this floor.)")
                 # WO-V37.0: Log kill event
                 self._log_event("kill", target=enemy_name,
                                 tier=enemy.get("tier", 1) if isinstance(enemy, dict) else 1,
@@ -809,8 +854,16 @@ class BurnwillowBridge:
                 else:
                     lines.append(f"{enemy_name} strikes you for {effective_damage} damage!")
                     # Affix: Thorns — reflect 1 damage on hit
+                    # Named Legendary: Aegis Shield — full reflect
+                    reflect_dmg = 0
                     for _slot_item in char.gear.slots.values():
-                        if _slot_item and _slot_item.suffix == "of Thorns":
+                        if _slot_item and _slot_item.name == "Aegis Shield":
+                            reflect_dmg = raw_damage  # Full attack reflected
+                            enemy_hp -= reflect_dmg
+                            lines.append(f"  Aegis Shield UNYIELDING! {reflect_dmg} damage reflected!")
+                            break
+                        elif _slot_item and _slot_item.suffix == "of Thorns":
+                            reflect_dmg = 1
                             enemy_hp -= 1
                             lines.append(f"  Thorns reflect 1 damage back!")
                             break
@@ -859,7 +912,42 @@ class BurnwillowBridge:
                     if _emnarr:
                         lines.append(f"  {_emnarr}")
 
-        # Check death
+        # Check death — Named Legendary intercepts
+        if not char.is_alive():
+            # Soulstone Amulet: revive once per campaign
+            amulet_slot = None
+            for slot, item in char.gear.slots.items():
+                if item and item.name == "Soulstone Amulet":
+                    amulet_slot = slot
+                    break
+            if amulet_slot:
+                char.current_hp = 1
+                char.gear.unequip(amulet_slot)
+                lines.append("")
+                lines.append("The Soulstone Amulet SHATTERS. A trapped soul screams free.")
+                lines.append(f"{char.name} gasps back to life at 1 HP.")
+                lines.append("The amulet is gone. The soul is released.")
+                # NOT dead — skip death handling
+            # Warden's Bastion: save an ally (check if another party member has it)
+            elif not self._last_stand_used:
+                bastion_holder = None
+                for ally in self.engine.party:
+                    if ally is not char and ally.is_alive():
+                        for slot, item in ally.gear.slots.items():
+                            if item and item.name == "Warden's Bastion":
+                                bastion_holder = ally
+                                break
+                        if bastion_holder:
+                            break
+                if bastion_holder:
+                    char.current_hp = 1
+                    self._last_stand_used = True
+                    lines.append("")
+                    lines.append(f"{bastion_holder.name}'s Warden's Bastion flares!")
+                    lines.append(f"LAST STAND! {char.name} is saved at 1 HP.")
+                    lines.append("(Once per combat.)")
+                    # NOT dead — skip death handling
+
         if not char.is_alive():
             self.dead = True
             lines.append("")
@@ -1298,6 +1386,14 @@ class BurnwillowBridge:
                 bonus = random.randint(1, 6)
                 lines.append(f"  -> SNARE+CLEAVE COMBO! +{bonus} bonus damage to snared targets!")
                 self._snared_enemies.clear()
+
+            # Named Legendary: Tempest Annihilator Storm Surge
+            if clean_id == "TEMPEST":
+                for _sl, _it in char.gear.slots.items():
+                    if _it and _it.name == "Tempest Annihilator":
+                        self._storm_surge_pending = 4
+                        lines.append("  -> Storm Surge! +4 Aether score on next check.")
+                        break
 
         else:
             if result.get("creates"):
