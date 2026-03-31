@@ -4586,7 +4586,207 @@ The party must decide:
 
 ---
 
-*Part IX continues with additional modular quests as the campaign develops. Each quest unlocks new faction services, lore, and paths toward the endgame.*
+## Quest 2: Old Cap's Secret
+
+**Type:** Faction quest (modular)
+**Trigger:** Zone 2+, Mycelium node discovered
+**Duration:** 1 session (3 rooms + extended social scene)
+**Tier:** II
+**Standalone Setup:** 2-4 Tier II characters, start in Zone 2 near a bioluminescent mushroom cluster
+
+### Overview
+
+Old Cap — a 400-year-old toadstool who has been growing in the same spot since before Emberhome existed — knows why the Arborists sealed the Root-Roads. He was there. He will only share this knowledge with someone who brings him something from the Crown he has never tasted. Meanwhile, Sporecaller Maeth searches for her daughter's echo in the Mycelium network, and The Spreading — the network itself — knows the Rot's true origin but refuses to share it.
+
+### For the GM
+
+Three NPCs, three secrets, one location. Old Cap's revelation is the biggest lore drop in the campaign so far: the Root-Roads are the Rot's transmission vector. The Arborists sealed them because the Roads were CARRYING the Rot upward from the Undergrove. Something down there is sending it deliberately. This is the first time the players hear that the Rot has a direction and a source.
+
+Maeth's daughter quest is emotional, not mechanical. The daughter's consciousness exists in the network but has become something new — distributed, alien, no longer a person. Maeth must accept transformation, not recovery.
+
+The Spreading's silence is deliberate. It has known the truth since the Collapse but believes sharing it would cause panic. It offers convenience (fast-travel) in exchange for the party not pushing Old Cap. This is a bribe. A gentle one.
+
+### Part 1: The Undernet Hub Node (Social)
+
+> **Read Aloud:** The mushrooms are the size of tables. Bioluminescent caps pulse in slow rhythms — amber, then blue, then amber again. The air tingles on your skin. You feel a presence — not hostile, not welcoming. Aware. A massive toadstool in the center of the chamber, scarred with centuries of growth rings, shifts its cap toward you with the grinding patience of geology. "Oh. More of you." The voice is a vibration in the floor, not a sound. "Wipe your feet. I can feel the ash."
+
+**NPC: Old Cap**
+- Voice: Grumpy, elderly, surprisingly profane. Speaks slowly but with devastating precision.
+- Want: To be left alone.
+- Need: To pass on what he knows before the Rot reaches him.
+- Offer: "Bring me something I've never tasted. Something from the Crown. I've been in this spot for four hundred years. I've tasted everything down here. Surprise me."
+
+**NPC: Sporecaller Maeth**
+- Voice: Human warmth filtered through alien patience. One arm is mycelial thread.
+- Want: Find her daughter's echo in the network.
+- Offer: "There's a node in Zone 3 that went dark eleven years ago. That's when she... merged. Help me reactivate it. Please."
+
+**NPC: The Spreading** (speaks through mushroom ripples)
+- Voice: Slow, resonant. Arrives as impressions, not words.
+- Offer: "We can connect you to our network. Fast-travel between nodes you have discovered. In exchange... do not press the old one for his memories. Some truths are better composted."
+
+### Part 2: The Choice
+
+**Option A: Old Cap's Secret.** Bring a Crown ingredient (Sun-Fruit pulp, Moth-Scale Powder, or a fire-leaf — obtainable via Canopy Court trade or a Zone 5 expedition). Old Cap tastes it, goes quiet for a long time, then speaks:
+
+> **Read Aloud:** "The Root-Roads. You think they sealed them to keep people out. They sealed them because the Roads were carrying something UP. From below. From the root-mass beneath everything. The Rot didn't creep in through cracks in the bark. It walked in on roads we built for it. Roads that amplified every vibration. Every note of the Song. And something down there — something that used to be one of us — is still singing into those Roads. Still sending the Rot where it wants it to go. The Arborists didn't just seal the Roads. They sealed them because the Roads were a weapon someone else was using."
+
+**Option B: Maeth's Daughter.** Delve into Zone 3 to find the dark node (3 rooms, Tier II enemies — Rot creatures guarding a corrupted Mycelium junction). The final room: the node reactivates. Maeth touches it. Her mycelial arm blazes with bioluminescence. She gasps. "She's here. She's... everywhere. She's not Sera anymore. She's... the network learned something from her. She taught it to feel. She's not gone. She's just... not small enough to be a person anymore." Maeth weeps. The quest is complete. No combat resolution. Just grief and acceptance.
+
+**Option C: The Spreading's Silence.** Accept the deal. Network fast-travel unlocks immediately. No lore revealed. Convenient. Empty.
+
+### Resolution
+
+| Outcome | Mycelium Rep | Loot | Lore Unlocked |
+|---------|-------------|------|---------------|
+| Old Cap's secret | +2 | Mycelium Map (hidden rooms) | Root-Roads = Rot vector. Something directs the Rot from the Undergrove. |
+| Maeth's daughter | +1 | Spore grenades (3), Maeth as ally in future quests | Emotional depth. Maeth can translate Mycelium communications. |
+| The Spreading's silence | +1 | Network fast-travel nodes | None — convenience without knowledge. |
+| All three (multiple sessions) | +3 (if sequenced) | All above | Full Mycelium faction arc complete. |
+
+**Campaign consequence:** Old Cap's lore points directly at the Undergrove and An Cór Briste. Combined with Quest 1's Memory Seed (if obtained), the players now know WHERE to look (Heartwood Resonance Node) and WHY (the Root-Roads carry directed Rot from below).
+
+---
+
+## Quest 3: The Cracked Seal
+
+**Type:** Discovery quest (modular)
+**Trigger:** Zone 1 Ash Runner encounter, or Allied reputation with any faction
+**Duration:** 1 session (5 rooms + social scenes)
+**Tier:** I-III (escalates)
+**Standalone Setup:** 2-4 Tier II characters, start in Zone 1 near fortified rooms
+
+### Overview
+
+Sable — leader of the Ash Runners, former Seeker squad captain who went rogue after Warden Voss sent her squad into Zone 3 without adequate supplies — has found something in Zone 1 she cannot open. She thinks it is an Amber Vault. It is not. It is a Heartwood entrance — the first one the surface world has seen in 400 years. Behind it: the Heartwood Descendants. The Whisper. A civilization that has not spoken aloud in four centuries.
+
+### For the GM
+
+Sable is not a villain. She is right to be angry at Voss. She is wrong to have abandoned the settlement. The player's relationship with her determines whether she becomes a powerful ally or sells the entrance location to the Hollowborn cult.
+
+The Heartwood entrance is THE moment. The golem bows. The amber is wrong. The passage goes inward. This should feel like stepping through a mirror into a world the players did not know existed.
+
+The Descendant encounter must be handled with weight. These people have not spoken in 400 years. Sound brings the Rot. When they grab the players and silence them, it is not aggression — it is survival instinct. The Whisper ("You are so loud") should land with the force of a revelation.
+
+### Part 1: The Ash Runner Camp (Social)
+
+> **Read Aloud:** The corridor dead-ends at a barricade of scavenged ironbark and oiled leather. Beyond it, firelight. The smell of camp-cooking — something burned but edible. A figure stands at the gap with a crossbow aimed at your chest. Lean, scarred, cropped hair, the economical movements of someone who lives in hostile territory. "Name and business. You have one sentence."
+
+**NPC: Sable**
+- Voice: Direct, military-flat. No wasted words. Gives orders out of habit.
+- Want: Never answer to someone who does not understand the dungeon.
+- Need: Stop running from the settlement and start fighting for it.
+- Secret: Has found a Heartwood entrance. Thinks it is a vault she cannot open.
+- Offer: "I found something. Big. I need supplies — food, medical kit, a message delivered to Captain Ashara. She was in my squad. Before. I need to know if she still talks about us. In exchange, I show you what I found."
+
+**Alternative hook:** If the party has Allied faction rep, a faction contact mentions that the rogue Seekers in Zone 1 found "something that does not match any vault on record."
+
+### Part 2: The Seal (1 room)
+
+> **Read Aloud:** Sable leads you through corridors she knows by memory, past dead-falls and trip-wires she steps over without looking. Then she stops. "There." The vault. But wrong. The amber is darker — not golden but deep, warm brown. Old. The growth rings are visible in the surface, concentric, descending inward. And beside the seal, a golem. Intact. Functional. Standing with its head bowed. It has not moved since Sable found it. It does not move when you approach. Its posture is not aggressive. It is... respectful. As if waiting. As if it has been waiting for someone to come.
+
+**GM Note:** If the party has a Whisper-Key, it works here — whisper to the amber and it parts. Without one: Aether DC 15 to feel the resonance and push through. Or: the golem responds to the Old Tongue — if the party learned any rune-words from Memory Seeds, speaking one causes the seal to open. The golem BOWS.
+
+### Part 3: The Threshold (1 room)
+
+> **Read Aloud:** The passage beyond is not a corridor. It is a growth ring. You are walking into the wood itself — not along its surface, but through its history. Each step takes you past a layer of grain that represents a century. The wood gets denser. Warmer. The light is not coming from outside. It is coming from the grain. From inside the tree.
+
+### Part 4: First Contact (2 rooms)
+
+**Room 1: The Gallery.** The walls are covered in murals. Not decorative — informational. Colors encode frequencies. Brushstrokes encode phase. The Painted Songs. The players cannot read them. But they can feel something from them — a pressure behind the eyes, a melody that exists only as a potential.
+
+**Room 2: The Grab.**
+
+> **Read Aloud:** They come from the walls. Not through doors — from the wood itself, emerging from grain that seemed solid a moment ago. Hands. Many hands. Over your mouth. Around your arms. You are dragged, efficiently, silently, into a deep chamber. The hands do not hurt you. They hold you still. They hold you quiet. The silence is total. Even your heartbeat sounds too loud. Then someone leans close. You feel breath on your ear. Not speech. Not sound. Breath, shaped by lips, carried on air that never touches a vocal cord. A whisper. The first words spoken to a surface-dweller in four hundred years: "You are so loud."
+
+**Social encounter:** The Grafters faction (pragmatists) communicate via touch-signs pressed into the party's palms. They want surface allies. They offer: Arborist lore (via Memory Seeds), gardening techniques, Heartwood maps. They ask: fight the Rot incursions pressing inward from the cracked seals. The Roots faction (conservatives) wants the party to leave and never return. The Seedlings (young ones) are fascinated — one touches a player's throat while they speak, feeling the vibration with wonder and terror.
+
+### Resolution
+
+| Outcome | Rep Changes | Loot | Lore Unlocked |
+|---------|-----------|------|---------------|
+| Befriended Sable | Sable as ally | Sable's Zone 1 map, safe houses | Ash Runner intel network |
+| Entered Heartwood | Heartwood entrance discovered (meta_state) | Arborist relic (Tier III) | The Heartwood exists. Descendants survive. |
+| Allied with Grafters | +1 Heartwood Elders | Memory Seeds (3 lore fragments) | The Silent Culture. The Whisper. Painted Songs. The Choir's Old Tongue name. |
+| Antagonized Sable | — | Nothing | Sable sells location to Hollowborn. GM creates urgency. |
+
+**Campaign consequence:** Heartwood entrance in meta_state. Willow Wood gate unlocks. The Descendants are a new faction with unique services (Heartwood Grafting, Amber Communion, Living Architecture). Quest 4 becomes accessible.
+
+---
+
+## Quest 4: The Song Below
+
+**Type:** Endgame introduction (modular)
+**Trigger:** Zone 4 reached, or Heartwood explored
+**Duration:** 1 session (5 rooms, escalating tension)
+**Tier:** III-IV
+**Standalone Setup:** 2-4 Tier III characters, full gear, start at Zone 4 entrance
+
+### Overview
+
+A vault in Zone 4 is different from all the others. Grey amber. Cracked seals. A damaged golem with one arm missing. The air leaking through smells of wet earth and centuries of compost. Opening this door is a choice the players cannot unmake. Below: the Undergrove. The first Chorus Walkers, singing in formation. The Choir's song made audible, then physical. A Section Leader who speaks in the Old Tongue and explains why An Cór Briste believes the tree is already dead. And in the deepest dark, seen from a distance: The Conductor. Still singing. Four hundred years. The players do not fight it. Not yet. They witness it. And it witnesses them.
+
+### For the GM
+
+This is the endgame trigger. After this quest, the three-path ending is understood:
+1. Silence An Cór Briste — kill The Conductor, Rot goes mindless, Root-Song dies, the Void begins seeping in
+2. Complete the Song — fix the broken cycle, the world transforms permanently
+3. Wake the Sleepers — revive the amber-sealed Arborists, compose a new song
+
+The Section Leader is the moral core of this quest. It is not mindless. It TALKS. It explains, in fractured Old Tongue and Common, that An Cór Briste believes the seasonal cycle broke irreparably. That the tree is already dead — just hasn't finished decomposing. That they are performing a mercy. The players must decide whether this is insanity, tragedy, or a point of view with merit.
+
+Do NOT let the players fight The Conductor here. They see it from a distance. They feel its song in their bones. They understand the scale of what they face. Then they leave. The actual confrontation is the campaign finale.
+
+### Part 1: The Grey Vault (1 room)
+
+> **Read Aloud:** Every other vault in the Burnwillow glows gold. This one is grey. The amber is cracked in lines like a shattered window held together by habit. Dark veins web the surface — not Rot, something older. The golem beside the seal stands with its head bowed, one arm missing at the shoulder, corrosion eating the joint where the limb once was. It has been standing here for four hundred years, guarding a door that something on the other side has been pushing against for just as long. The air leaking through the cracks smells of wet earth. Of compost. Of endings.
+
+**Choice:** Open the vault or leave. Opening it advances the Doom Clock by 3 and triggers a Vault Breach Alert (3 rooms of heavy spawns). The players know this cost. They choose anyway — or they walk away and the endgame waits.
+
+### Part 2: The Descent (2 rooms)
+
+**Room 1: The Root Transition.**
+
+> **Read Aloud:** Below the vault, the world changes. The bark becomes raw root — tangled, wet, thick as your body. You can see the roots of different Groves intertwined: Burnwillow's amber-veined strands alongside threads of green that must be Verdhollow, and pale white wisps that could only come from Ashenmere. They are woven so tightly you cannot tell where one Grove ends and another begins. The Choir's song is audible now. Not the Root-Song — that faded in Zone 3. This is something else. The same melody, but every interval is wrong. Diminished. Refusing to resolve. Your teeth ache. The back of your throat tightens.
+
+**Room 2: The Hollow Drift.**
+
+> **Read Aloud:** They walk past you. Hollows — dozens of them — shuffling deeper into the root-mass. They do not attack. They do not notice you. They are drawn by the song, moving in the same direction, at the same pace, like leaves in a current. Some of them are wearing Seeker gear. Emberhome-issue leather, patched and re-patched. You recognize some of the patches. These were people.
+
+**GM Note:** If the campaign tracks previous character deaths, one of these Hollows is wearing a dead PC's gear. Let the player notice. Say nothing. Let them process.
+
+### Part 3: The Section Leader (1 room — social/combat)
+
+> **Read Aloud:** The corridor opens into a junction where roots from all four Groves converge. Standing at the center is something that was once an Arborist. It is taller than any Hollow you have seen. Its robes are ancient — woven from Aether-silk that still shimmers despite four centuries of decay. Its mouth is open, and the Choir's song pours from it in a continuous stream. But when it sees you, the song... pauses. Just for a moment. Its eyes focus. They are not empty. They remember. It speaks. Not in Common. In the Old Tongue — a language you have never heard but which lands in your mind like a stone in still water. *"Tá an crann marbh cheana féin. Níl muid ach ag críochnú an amhrán."* And somehow, you understand: *The tree is already dead. We are only finishing the song.*
+
+**NPC: The Section Leader**
+- Not a name. A function. It directs the Rot in this zone.
+- It believes it is performing mercy. The seasonal cycle broke 500 years ago. The tree is dying. Prolonging the death is cruelty. Finishing the decomposition allows something new to grow from the compost.
+- It will answer questions — in fragmented Old Tongue/Common.
+- It will fight if attacked: 25 HP, DEF 16, DMG 3d6, Song of Decay (DC 15 Aether or Blighted).
+- Killing it makes the Rot in this zone directionless — a preview of the Silence ending.
+- Listening to it is the lore reward. It reveals: An Cór Briste. The Conductor. The three-path choice. The fact that the Root-Song and the Choir's song are the SAME music, played differently.
+
+### Part 4: The Conductor (1 room — no combat)
+
+> **Read Aloud:** Through a gap in the tangled root-mass, you see deeper. Much deeper. A vast open space where the roots of all four Groves converge into a cathedral of decomposing wood. Bioluminescent fungi light the space in sickly green. And at the center — something that was once a person. It stands with its mouth open, and the Root-Song pours from it in a river of directed decay. The sound is beautiful. Complex, layered, harmonic in ways your ear cannot fully parse. And completely, utterly insane. The intervals fold over each other in patterns that should not work but do — a music that makes wood rot, that makes stone weep, that makes the boundary between living and dead dissolve. It does not see you as enemies. It does not see you as anything. You are notes in a song it has been singing for four hundred years. You have not resolved yet. It is patient. It will wait.
+
+**No combat.** The party sees The Conductor and withdraws. They now know what they face. The campaign has entered its final act.
+
+### Resolution
+
+| Outcome | Changes | Loot | Lore Unlocked |
+|---------|---------|------|---------------|
+| Opened the vault | Doom +3 + Breach Alert | Undergrove access | The Undergrove exists beneath everything |
+| Killed Section Leader | — | Section Leader gear (Tier IV) | Silence ending preview — Rot goes mindless |
+| Listened to Section Leader | — | None (lore is the reward) | An Cór Briste's name, motivation, the three paths |
+| Saw The Conductor | — | None | The endgame is real. The Conductor is the source. |
+
+**Campaign consequence:** The Undergrove entrance is in meta_state. The three endgame paths (Silence the Choir / Complete the Song / Wake the Sleepers) are now understood. The Willow Wood gains the Root Descent gate. The campaign's final act begins.
+
+---
+
+*The four modular quests form a complete narrative arc: from newcomer Seeker to the person who knows the truth. Run them in sequence for maximum impact, or drop them individually when the campaign is ready. The Doom Clock is always ticking. The tree is always dying. The question is never whether you survive. The question is what survives after you.*
 
 ---
 
