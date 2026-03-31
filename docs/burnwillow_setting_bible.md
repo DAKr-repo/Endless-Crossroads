@@ -653,6 +653,64 @@ Carrying a Memory Seed imposes severe tactical costs — designed to force escor
 
 ---
 
+## The Heirloom System — Preserving What Matters
+
+Two methods exist for storing items that persist across character deaths — as long as at least one party member survives. Total Party Kill wipes everything.
+
+### The Still Pool (*An Linn Chiúin*)
+
+The Still Pool in the Willow Wood — "a dark pond fed by no visible stream, the water perfectly still" — is where the Root-Song runs closest to the surface. The tree remembers what you give it.
+
+**The Ritual:** The player wades into the Still Pool. The water is warm — not cold like it looks. They hold the item beneath the surface and let go. It does not sink. It suspends, rotating slowly, as amber grows around it in real time. The player's hand comes back dry. The item is now part of the tree's memory.
+
+**Retrieval:** A new character (or the surviving party member) visits the Still Pool. A faint golden glow beneath the surface. They reach in. The amber releases the item, and for a moment — just a moment — they feel the previous wielder. A Memory Seed flash of who held this, how they fought, how they died.
+
+**Mechanical Rules:**
+- **2 items total.** Not per player — total, across the entire campaign. The party must agree on what goes in. This decision matters.
+- One deposit per visit to the Willow Wood (before or after a delve).
+- Retrieval costs 1 Doom Clock advance (the tree gives, but it takes).
+- On TPK: the pool goes dark. Items gone. The tree forgets.
+- As long as one character survives: items remain accessible.
+
+### Amber Vault Outposts
+
+Empty or previously looted Amber Vaults found in the dungeon can be repurposed into player outposts. But they must be conquered first.
+
+**The Flow:**
+1. **Discovery:** Find an Amber Vault that has been breached. The seal is cracked. Something moved in — bandits, Rot creatures, a Leech colony. It is occupied.
+2. **Clearing:** Fight through the hostiles inside (2-3 rooms in a sealed Arborist space).
+3. **Claiming:** The vault's golem reactivates. It recognizes that the vault's integrity has been restored. It asks (via Arborist protocol — a hum, a gesture): "Assign function?"
+4. **Converting:** The player chooses what the vault becomes:
+
+| Outpost Type | Function |
+|-------------|----------|
+| **Bank Vault** | Secure item storage. **1 item per player.** Golem guards it. |
+| **Rest Station** | Safe room mid-dungeon. Rest without Doom Clock advancing. One use per run. |
+| **Crafting Annex** | Field blacksmith. Salvage/temper/reforge in the dungeon. |
+| **Faction Post** | A faction representative sets up here. Faction services mid-dungeon. |
+| **Signal Tower** | Reveals adjacent room layouts (scout bonus for the floor). |
+
+5. **Persistence:** Claimed outposts persist in meta_state. Future runs place your outposts into the procedurally generated dungeon — fixed points in shifting geometry. The tree moves around them.
+6. **Vulnerability:** Outposts can be overrun between runs. High Doom Clock when you left = higher chance the outpost is re-occupied. You must clear it again.
+7. **On TPK:** Outposts revert to hostile-occupied vaults. New campaign, new conquest.
+
+**Why the golems cooperate:** The Arborists built the vaults as infrastructure, not treasure rooms. Repurposing them is using Arborist technology as intended. The golems were designed for this.
+
+**Faction connection:** The Dam-Wrights are the natural allies for outpost conversion. Foreman Gnaw's faction quest could involve converting the first vault into a Lodgework annex. Kitspool's sap-reversal device might need a vault as a power source.
+
+### Heirlooms vs. Memory Seeds
+
+| System | What It Preserves | Slots | Survives Death? | Survives TPK? |
+|--------|------------------|-------|-----------------|---------------|
+| **Still Pool** | Items (gear) | 2 total | Yes | No |
+| **Bank Vault** | Items (gear) | 1 per player | Yes | No (reverts to hostile) |
+| **Memory Seeds** | Knowledge (recipes, lore) | Unlimited (but dangerous to carry) | Yes | No |
+| **Town Upgrades** | Infrastructure (Emberhome) | N/A | Yes | No |
+
+All meta-progression is lost on TPK. The roguelike loop requires someone to survive and carry knowledge forward. No survivors = no legacy.
+
+---
+
 ## The Four Peoples — Shaped by Season
 
 The original inhabitants of the First Tree were one people. When the First Tree branched into four Groves, populations became isolated in different seasonal environments. Over millennia — long before the Golden Age, long before the Arborists organized — the tree shaped them. Not through magic. Through biology. The same way altitude shapes mountain peoples and latitude shapes skin color. Except the shaping agent is concentrated Aether in four distinct vibrational frequencies.
@@ -1780,7 +1838,7 @@ Consumables are used via the `use <item name>` command:
 - ~~Alchemy ingredient ecology~~ → 12 ingredients with zone-based drop tables (30% per room). Ingredients drop from rooms based on zone, not season. Not cultivatable yet.
 
 ### Open
-- Heirloom mechanics — how are items designated as heirlooms before death? What is the handoff ritual?
+- ~~Heirloom mechanics~~ → RESOLVED v4.2: Still Pool (2 items total, amber deposit ritual) + Amber Vault Outposts (conquered, converted, 1 item per player as bank). All wiped on TPK.
 - Inter-faction politics in other Groves — do equivalents of the Six Factions exist in Verdhollow, Solheart, Ashenmere?
 - The Conductor — what were they like before? Can they be reasoned with? Is there a person left inside the Hollow?
 - Ashenmere — can it be thawed? What happens to the frozen Hollows if the Choir's test-song is disrupted?
