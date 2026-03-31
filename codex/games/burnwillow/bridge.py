@@ -67,6 +67,13 @@ COMMANDS = {
     "temper":    [],
     "reforge":   [],
     "enchant":   [],
+    "heal":      ["honey"],
+    "reinforce": [],
+    "process":   ["rot_process"],
+    "graft":     [],
+    "deposit":   ["store"],
+    "retrieve":  ["withdraw"],
+    "claim":     [],
     "help":      ["h", "?"],
     "tutorial":  ["tut"],
 }
@@ -138,6 +145,13 @@ class BurnwillowBridge:
             "temper": "Add +1 DR to armor: temper <item name>",
             "reforge": "Change item slot: reforge <item name> <new slot>",
             "enchant": "Add Aether affix to armor: enchant <item name>",
+            "heal": "Hive honey healing (costs 5 amber, requires Hive Friendly)",
+            "reinforce": "Dam-Wright reinforcement: reinforce <item> (requires Dam-Wright Friendly)",
+            "process": "Hag Rot processing: convert Rot Spores (requires Hag Circle Friendly)",
+            "graft": "Heartwood grafting: graft <item> — fuse permanently, +1 tier (Heartwood Allied)",
+            "deposit": "Deposit an item in the Still Pool (2 max, Willow Wood only)",
+            "retrieve": "Retrieve an item from the Still Pool (costs 1 Doom)",
+            "claim": "Claim a cleared vault as an outpost: claim <type>",
             "recap": "Session recap (kills, loot, rooms)",
             "help": "List all commands",
             "tutorial": "Open interactive tutorial",
@@ -289,6 +303,13 @@ class BurnwillowBridge:
             "temper":    lambda: self._cmd_temper(arg),
             "reforge":   lambda: self._cmd_reforge(arg),
             "enchant":   lambda: self._cmd_enchant(arg),
+            "heal":      lambda: self._cmd_heal(),
+            "reinforce": lambda: self._cmd_reinforce(arg),
+            "process":   lambda: self._cmd_process(),
+            "graft":     lambda: self._cmd_graft(arg),
+            "deposit":   lambda: self._cmd_deposit(arg),
+            "retrieve":  lambda: self._cmd_retrieve(arg),
+            "claim":     lambda: self._cmd_claim(arg),
             "help":      lambda: self._cmd_help(),
             "tutorial":  lambda: self._cmd_tutorial(),
         }
@@ -1838,6 +1859,188 @@ class BurnwillowBridge:
         from codex.games.burnwillow.engine import silkweaver_enchant
         result = silkweaver_enchant(target)
         lines = [result["message"]]
+        lines.append("")
+        lines.append(self._status_line())
+        return "\n".join(lines)
+
+    def _cmd_heal(self) -> str:
+        """Hive honey healing (costs 5 amber, requires Hive Friendly+)."""
+        if not self.engine.faction_rep.can_access_services("hive"):
+            return "Hive healing unavailable. (Need Hive Friendly+)\n" + self._status_line()
+        from codex.games.burnwillow.engine import hive_honey_heal
+        result = hive_honey_heal(self.engine.character)
+        return result["message"] + "\n" + self._status_line()
+
+    def _cmd_reinforce(self, arg: str = "") -> str:
+        """Dam-Wright gear reinforcement (+1 DR, requires Dam-Wright Friendly+)."""
+        if not self.engine.faction_rep.can_access_services("dam_wrights"):
+            return "Dam-Wright reinforcement unavailable. (Need Dam-Wright Friendly+)\n" + self._status_line()
+        if not arg.strip():
+            return "Reinforce what? Usage: reinforce <item name>\n" + self._status_line()
+        char = self.engine.character
+        target = None
+        for slot, item in char.gear.slots.items():
+            if item and arg.strip().lower() in item.name.lower():
+                target = item
+                break
+        if not target:
+            return f"No equipped item named '{arg}'.\n" + self._status_line()
+        from codex.games.burnwillow.engine import dam_wright_reinforce
+        result = dam_wright_reinforce(target)
+        return result["message"] + "\n" + self._status_line()
+
+    def _cmd_process(self) -> str:
+        """Hag Rot processing (2 Rot Spores → Moonstone Dust + Deepwater, requires Hag Circle Friendly+)."""
+        if not self.engine.faction_rep.can_access_services("hag_circle"):
+            return "Hag's Rot processing unavailable. (Need Hag Circle Friendly+)\n" + self._status_line()
+        from codex.games.burnwillow.engine import hag_rot_process
+        result = hag_rot_process(self.engine.character)
+        return result["message"] + "\n" + self._status_line()
+
+    def _cmd_graft(self, arg: str = "") -> str:
+        """Heartwood grafting — permanently fuse gear, +1 tier (requires Heartwood Allied+)."""
+        if not self.engine.faction_rep.can_access_gear("heartwood_elders"):
+            return "Heartwood grafting unavailable. (Need Heartwood Elders Allied+)\n" + self._status_line()
+        if not arg.strip():
+            return "Graft what? Usage: graft <item name>\n  WARNING: Item cannot be unequipped after grafting!\n" + self._status_line()
+        char = self.engine.character
+        target = None
+        target_slot = None
+        for slot, item in char.gear.slots.items():
+            if item and arg.strip().lower() in item.name.lower():
+                target = item
+                target_slot = slot
+                break
+        if not target:
+            return f"No equipped item named '{arg}'.\n" + self._status_line()
+        from codex.games.burnwillow.engine import heartwood_graft
+        result = heartwood_graft(char, target, target_slot)
+        return result["message"] + "\n" + self._status_line()
+
+    def _cmd_deposit(self, arg: str = "") -> str:
+        """Deposit an item into the Still Pool (max 2, Willow Wood only)."""
+        if len(self.engine.still_pool_items) >= 2:
+            return "The Still Pool holds only 2 items. It is full.\n" + self._status_line()
+        if not arg.strip():
+            if self.engine.still_pool_items:
+                lines = ["=== THE STILL POOL ===", ""]
+                for i, item_dict in enumerate(self.engine.still_pool_items):
+                    lines.append(f"  [{i}] {item_dict.get('name', '?')} (Tier {item_dict.get('tier', '?')})")
+                lines.append(f"\n  {2 - len(self.engine.still_pool_items)} slot(s) remaining.")
+            else:
+                lines = ["The Still Pool is empty. Its surface is perfectly still."]
+            lines.append("\nUsage: deposit <item name>")
+            lines.append(self._status_line())
+            return "\n".join(lines)
+        char = self.engine.character
+        target = None
+        target_idx = None
+        for idx, item in char.inventory.items():
+            if arg.strip().lower() in item.name.lower():
+                target = item
+                target_idx = idx
+                break
+        if not target:
+            return f"No item named '{arg}' in inventory.\n" + self._status_line()
+        # Deposit
+        item_dict = target.to_dict()
+        self.engine.still_pool_items.append(item_dict)
+        del char.inventory[target_idx]
+        lines = [
+            "You wade into the Still Pool. The water is warm.",
+            f"You hold {target.name} beneath the surface and let go.",
+            "It does not sink. It suspends, rotating slowly, as amber grows around it.",
+            "Your hand comes back dry. The item is part of the tree's memory now.",
+            f"\nDeposited: {target.name}",
+            f"Still Pool: {len(self.engine.still_pool_items)}/2 items stored.",
+        ]
+        lines.append("")
+        lines.append(self._status_line())
+        return "\n".join(lines)
+
+    def _cmd_retrieve(self, arg: str = "") -> str:
+        """Retrieve an item from the Still Pool (costs 1 Doom)."""
+        if not self.engine.still_pool_items:
+            return "The Still Pool is empty.\n" + self._status_line()
+        if not arg.strip():
+            lines = ["=== THE STILL POOL ===", ""]
+            for i, item_dict in enumerate(self.engine.still_pool_items):
+                lines.append(f"  [{i}] {item_dict.get('name', '?')} (Tier {item_dict.get('tier', '?')})")
+            lines.append("\nUsage: retrieve <index or name>  (costs 1 Doom)")
+            lines.append(self._status_line())
+            return "\n".join(lines)
+        # Find the item
+        target_idx = None
+        try:
+            target_idx = int(arg.strip())
+        except ValueError:
+            for i, item_dict in enumerate(self.engine.still_pool_items):
+                if arg.strip().lower() in item_dict.get("name", "").lower():
+                    target_idx = i
+                    break
+        if target_idx is None or target_idx >= len(self.engine.still_pool_items):
+            return f"No item at index '{arg}'.\n" + self._status_line()
+        item_dict = self.engine.still_pool_items.pop(target_idx)
+        # Add to inventory
+        from codex.games.burnwillow.engine import GearItem
+        item = GearItem.from_dict(item_dict)
+        char = self.engine.character
+        inv_id = char._next_inv_id
+        char.inventory[inv_id] = item
+        char._next_inv_id += 1
+        # Cost: 1 Doom
+        self.engine.advance_doom(1)
+        lines = [
+            "You reach into the Still Pool. A faint golden glow beneath the surface.",
+            f"The amber releases {item.name} into your hands.",
+            "For a moment you feel the previous wielder — a flash of who held this.",
+            f"\nRetrieved: {item.name}  (Doom +1)",
+            f"Still Pool: {len(self.engine.still_pool_items)}/2 items stored.",
+        ]
+        lines.append("")
+        lines.append(self._status_line())
+        return "\n".join(lines)
+
+    def _cmd_claim(self, arg: str = "") -> str:
+        """Claim a cleared vault room as an outpost."""
+        room = self.engine.get_current_room()
+        if not room:
+            return "No active room.\n" + self._status_line()
+        # Check if room is a vault-type (treasure or hidden_portal that's been cleared)
+        room_type = room.get("type", "")
+        enemies = room.get("enemies", [])
+        if enemies:
+            return "Clear the room first! Enemies remain.\n" + self._status_line()
+        if room_type not in ("treasure", "hidden_portal", "secret", "chamber"):
+            return "This room cannot be claimed as an outpost.\n" + self._status_line()
+        valid_types = ["bank", "rest", "crafting", "faction", "signal"]
+        if not arg.strip() or arg.strip().lower() not in valid_types:
+            lines = ["Claim this vault as an outpost. Choose a type:", ""]
+            lines.append("  bank     — Secure item storage (1 item per player)")
+            lines.append("  rest     — Safe rest room (no Doom advance, once per run)")
+            lines.append("  crafting — Field blacksmith (salvage/temper/reforge)")
+            lines.append("  faction  — Faction contact point (services mid-dungeon)")
+            lines.append("  signal   — Scout tower (reveal adjacent room layouts)")
+            lines.append(f"\nUsage: claim <type>")
+            lines.append(self._status_line())
+            return "\n".join(lines)
+        outpost_type = arg.strip().lower()
+        room_id = self.engine.current_room_id
+        outpost_id = f"outpost_{room_id}"
+        self.engine.claimed_outposts[outpost_id] = {
+            "type": outpost_type,
+            "room_id": room_id,
+            "zone": getattr(self.engine, '_zone', 1),
+            "items": [],
+        }
+        type_names = {"bank": "Bank Vault", "rest": "Rest Station", "crafting": "Crafting Annex",
+                      "faction": "Faction Post", "signal": "Signal Tower"}
+        lines = [
+            "The vault's golem reactivates. Its head lifts. It hums — a question.",
+            f"You assign function: {type_names.get(outpost_type, outpost_type)}.",
+            "The golem nods. The vault is yours.",
+            f"\nOutpost claimed: {type_names.get(outpost_type)} (Room {room_id})",
+        ]
         lines.append("")
         lines.append(self._status_line())
         return "\n".join(lines)

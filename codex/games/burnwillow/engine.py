@@ -1213,6 +1213,38 @@ def mycelium_network_graft(item: "GearItem") -> dict:
     }
 
 
+def hive_honey_heal(character) -> dict:
+    """Hive honey healing: 2d6+2 HP. Costs 5 amber (scrap)."""
+    if character.scrap < 5:
+        return {"success": False, "message": f"Hive honey costs 5 amber. You have {character.scrap}."}
+    heal_amount = sum(random.randint(1, 6) for _ in range(2)) + 2
+    character.scrap -= 5
+    actual = character.heal(heal_amount)
+    return {"success": True, "message": f"Honey healing! Restored {actual} HP. (-5 amber)"}
+
+
+def dam_wright_reinforce(item: "GearItem") -> dict:
+    """Dam-Wright gear reinforcement: +1 DR to any item. Max 2 per item."""
+    if item.damage_reduction >= item.tier.value + 2:
+        return {"success": False, "message": f"{item.name} is already fully reinforced."}
+    item.damage_reduction += 1
+    return {"success": True, "message": f"Reinforced {item.name}! DR now {item.damage_reduction}."}
+
+
+def heartwood_graft(character, item: "GearItem", slot) -> dict:
+    """Heartwood Grafting: permanently fuse gear. Can't unequip, +1 tier."""
+    if item.tier.value >= 4:
+        return {"success": False, "message": f"{item.name} is already maximum tier."}
+    # Upgrade tier
+    new_tier = GearTier(item.tier.value + 1)
+    item.tier = new_tier
+    return {
+        "success": True,
+        "message": f"Grafted! {item.name} is now Tier {new_tier.value}. It cannot be unequipped — it has grown into you.",
+        "grafted_slot": slot.value,
+    }
+
+
 # =============================================================================
 # CHARACTER SYSTEM
 # =============================================================================
@@ -1648,6 +1680,12 @@ class BurnwillowEngine:
         # Discovered hidden entrances (persist across runs in meta_state)
         self._discovered_entrances: set = set()
 
+        # Still Pool heirloom storage (max 2 items, persists across runs)
+        self.still_pool_items: list = []  # list of GearItem.to_dict() dicts
+
+        # Amber Vault Outposts (claimed, persist across runs)
+        self.claimed_outposts: dict = {}  # outpost_id → {type, items, zone}
+
         # TPK Detection
         self.campaign_over: bool = False
 
@@ -1878,6 +1916,8 @@ class BurnwillowEngine:
             # Faction reputation
             "faction_rep": self.faction_rep.to_dict(),
             "discovered_entrances": sorted(self._discovered_entrances),
+            "still_pool_items": list(self.still_pool_items),
+            "claimed_outposts": dict(self.claimed_outposts),
         }
 
     def load_game(self, data: dict):
@@ -1941,6 +1981,8 @@ class BurnwillowEngine:
 
         # Discovered entrances
         self._discovered_entrances = set(data.get("discovered_entrances", []))
+        self.still_pool_items = data.get("still_pool_items", [])
+        self.claimed_outposts = data.get("claimed_outposts", {})
 
     def loot_item(self, room_id: Optional[int] = None) -> Optional[GearItem]:
         """Pop the first loot item from a room (no roll required).
