@@ -723,6 +723,55 @@
       "description": "A weathered survivalist who knows the paths between Emberhome and the surrounding zones. They charge for their knowledge and earn every shard.",
       "voice_hint": "Laconic, confident. 'Follow me, step where I step, and you'll live. Probably.'",
       "possible_rumors": ["New paths have opened since the last tremor", "The Charred Plains aren't as empty as they look", "Something large has been moving through the Ashwood at night"]
+    },
+    {
+      "template_id": "wandering_herbalist",
+      "function": "merchant",
+      "description": "A quiet figure with earth-stained hands and a satchel that smells of dried lavender and something sharper beneath. They know every grove within three zones and name each plant like a childhood friend.",
+      "voice_hint": "Quiet, observant. Names plants like friends. 'Ah, evening primrose. She only opens when the lanterns dim.'",
+      "possible_rumors": ["The mushrooms near the Rootbridge have been growing in spirals lately.", "I found Moonstone Dust growing wild near the Still Pool -- that's not supposed to happen.", "The herbalist from Emberhome stopped coming to the wood. Something spooked her."]
+    },
+    {
+      "template_id": "lost_traveler",
+      "function": "ambient",
+      "description": "A disoriented outsider from a frontier camp beyond the Ashwood, clothes torn by branches they do not remember passing through. Their eyes keep darting to landmarks that have moved since they last looked.",
+      "voice_hint": "Shaken, grateful for any help. Speaks in fragments. 'Was north. Swear it was north. The crossing -- it moved.'",
+      "possible_rumors": ["I heard singing in the deep. Not the Root-Song. Something else.", "The paths here change. I swear that crossing was further north yesterday.", "There are people out there beyond the Ashwood. More settlements than Emberhome knows about."]
+    },
+    {
+      "template_id": "wounded_scout",
+      "function": "quest_hook",
+      "description": "A Seeker scout freshly returned from Zone 2, blood seeping through improvised bandages of torn bark-cloth. They move with the rigid economy of someone who knows exactly how much energy they have left.",
+      "voice_hint": "Terse, professional. Talks in tactical shorthand. 'Two hostiles, eastern shaft. Formation -- not random. Need bandages. Can trade intel.'",
+      "possible_rumors": ["Clockwork Spiders have been pushing into the upper mines. More than usual.", "I saw something in the deep -- Hollows walking in formation. Organized. Not random.", "The Dam-Wrights are worried about their main dam. Gnaw won't say why."]
+    },
+    {
+      "template_id": "mushroom_forager",
+      "function": "merchant",
+      "description": "A hunched collector with a wide-brimmed hat hung with drying specimens, peering at the ground through a cracked magnifying lens. Their pockets bulge with waxed paper packets of spores sorted by genus.",
+      "voice_hint": "Enthusiastic, distracted. More interested in fungi than conversation. 'Hold on -- is that a Velvet Trumpet? No, no, the gills are wrong. Shame.'",
+      "possible_rumors": ["Spore patterns near the Withering Thicket match nothing in my records.", "The Mycelium is restless. Old Cap won't shut up about visitors.", "I've found amber growing INSIDE mushrooms. That shouldn't be possible."]
+    },
+    {
+      "template_id": "fleeing_merchant",
+      "function": "merchant",
+      "description": "A wild-eyed trader clutching a half-empty pack, running from something they will not name. They quote prices between ragged breaths and refuse to stop moving for long.",
+      "voice_hint": "Breathless, haggling even while terrified. 'Three shards -- fine, two -- just take it and let me pass.'",
+      "possible_rumors": ["The Ash Runners stopped me on the path. They took my best stock but let me live.", "Something's wrong with the prices in Emberhome. Grimjaw's undercutting everyone.", "I heard the Hive is buying Rot Spores. What would bees want with that?"]
+    },
+    {
+      "template_id": "willow_tender",
+      "function": "quest_giver",
+      "description": "An old caretaker with bark-rough hands and patient eyes, tending the willows with the slow deliberation of someone who has been doing this longer than most people have been alive. Sap stains their sleeves like old tears.",
+      "voice_hint": "Slow, measured. Each word placed like a seed. 'The willows... lean away now. They never used to lean away.'",
+      "possible_rumors": ["The Thicket is dying faster than it should. Something is draining the sap from beneath.", "I've tended these willows for forty years. They used to lean toward the Root-Song. Now they lean away.", "The Still Pool was always still. Last week, it rippled. Nothing touched it. It just... moved."]
+    },
+    {
+      "template_id": "ghost_lantern_keeper",
+      "function": "lore",
+      "description": "A pale figure glimpsed between the trees at dusk, tending luminescent wisps that drift through the wood like memories refusing to settle. Their lantern-staff casts no shadow.",
+      "voice_hint": "Dreamy, distant. Answers questions with questions. 'You ask where the path leads. But have you asked where it began?'",
+      "possible_rumors": ["The lanterns remember where the Arborists walked. Follow the brightest one.", "Some lights lead. Some lights lie. The true path hums.", "I tend the lights that no one lit. Someone should ask who they were burning for."]
     }
   ]
 }
