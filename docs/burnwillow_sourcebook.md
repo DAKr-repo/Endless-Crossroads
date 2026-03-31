@@ -33,13 +33,9 @@ That is all. Everything else -- amber, ingredients, faction reputation, quest pr
 
 This sourcebook is divided into nine parts.
 
-**Parts I through III** are for players: the world, character creation, and rules. Read these and stop. Everything beyond that wall contains secrets your character has not earned.
+**Parts I through III** are for players. They contain the world, character creation, and rules. There is a clear divider between Part III and Part IV marked "GAME MASTER TERRITORY." If you are a player, stop there.
 
-**Parts IV through VIII** are for the Game Master: the setting gazetteer, bestiary, treasure tables, procedural generation tools, and campaign guidance.
-
-**Part IX** contains four pre-built adventures and the Emberhome Gazetteer -- ready-to-run modules from the Tutorial through the Endgame, plus a room-by-room guide to the hub settlement for roleplay sessions.
-
-If you are a GM, read everything. Then read it again. The connections between factions, NPCs, and zones are load-bearing -- pull one thread and the whole tapestry shifts.
+**Parts IV through IX** are for the Game Master only. They contain hidden zones, NPC secrets, boss encounters, faction mysteries, adventures, and the endgame.
 
 Cross-references appear throughout as "(see Chapter X)." When a rule or concept is explained in detail elsewhere, we point you there rather than repeating ourselves. The Burnwillow has enough repetition in its dying corridors. The book does not need more.
 
@@ -51,11 +47,11 @@ Cross-references appear throughout as "(see Chapter X)." When a rule or concept 
 
 ## Chapter 1: The Living Cosmos
 
-### The Six Groves
+### The Groves
 
-The Burnwillow universe is a single living cosmos. At its heart are six Groves: four Seasonal world-trees of planetary scale, one shared root network beneath them all, and one hidden origin-trunk accessible only by going inward through the wood itself. The canopy is the sky. The roots are the underworld. There is nothing else. The trees are dying. The Rot is winning. The players are the last ones trying to stop it.
+The Burnwillow universe is a single living cosmos. At its heart are four Groves: Seasonal world-trees of planetary scale. The canopy is the sky. The roots are the underworld. There is nothing else. The trees are dying. The Rot is winning. The players are the last ones trying to stop it.
 
-The Seasonal Groves are where people live. The Undergrove is where everything ends up. The Heartwood is where everything began. The Root-Roads connect them -- surface to surface, surface to deep, and if you go far enough inward, surface to origin.
+The Seasonal Groves are where people live. The Root-Roads -- ancient sealed passages deep beneath -- once connected them all.
 
 #### The Seasonal Groves
 
@@ -97,71 +93,9 @@ Each passage carries the character of the season it leads to: a road to Verdholl
 
 **Campaign Hook:** The Root-Roads are the multiverse spine. Each Grove is its own full campaign setting, connected by these deep passages.
 
-### The Heartwood -- The First Tree (Within)
+### Beyond the Four
 
-The Heartwood is not a place you travel to by going up, down, or across. It is a place you travel to by going **inward** -- deeper into the wood itself, past growth rings that represent centuries of the tree's life, until you reach the very first ring. The center. The seed from which all four Groves grew.
-
-All four Seasonal Groves are branches of one original tree. The Heartwood is its trunk -- not physically beneath or above the Groves, but **inside** them. Every wall in every dungeon zone is made of wood that, if you bore deep enough through its grain, eventually becomes Heartwood. The oldest wood. The First Growth.
-
-**What It Is:**
-
-- The Arborists' most sacred space. The place where the Root-Song was first sung.
-- Architecture that is not carved but grown -- sap channels become hallways, knots become chambers, resin pockets become vaults. You are not exploring a building made of wood. You are exploring the wood itself.
-- Each concentric ring you pass through is older. The outermost rings are recognizable -- Arborist construction, familiar materials. The inner rings are alien -- wood so dense it rings like metal, amber embedded in the walls like fossils in stone, light that comes from the grain itself.
-- The enemies are not Rot creatures. They are preserved things -- Arborist constructs still executing ancient commands, amber-locked memories that manifest as hostile echoes, and the tree's own immune responses treating you as an infection.
-
-**How to Find It:**
-
-Heartwood entrances are hidden. They are not marked, not mapped, and not obvious.
-
-- Overgrown passages in long-abandoned sections of any dungeon zone -- a wall that gives way, a crack that goes deeper than it should, a root that is the wrong color.
-- Hidden chambers behind Amber Vaults. Not every vault contains treasure. Some contain a passage that goes inward instead of a room. The golem does not attack -- it steps aside. It was keeping things in, not keeping people out. The player cracks the seal expecting a Tier IV weapon and instead finds a tunnel of ancient growth rings descending into wood that is darker, denser, warm to the touch.
-- Nooks in the branches and Crown zone, nestled out of sight, where the bark has grown over something older.
-
-**How to Discover Them:**
-
-- NPC rumors. Old Cap (Mycelium) was alive when some passages were still open. Twitch's communication crystal may be receiving a signal from the Heartwood. Father Oaken's Chapel pews are carved from Heartwood -- a fragment that could serve as a compass.
-- Faction reputation at Allied or Exalted. The Heartwood Elders know where entrances are -- they ARE the tree. The Mycelium network extends into the Heartwood and can guide you to a seam.
-- A DC 25+ Wits check in the right room -- the gated check mechanic. You literally cannot perceive the entrance without the gear to look properly.
-- Arborist relics: Dowsing Rods at maximum range, Memory Seeds containing the memory of an entrance being used, or tools that let you phase through solid wood.
-- Pure luck at legendary gear levels -- a search roll in the right room that nobody expected to find anything in.
-
-**The Vault Connection:**
-
-The Arborists sealed the Heartwood when they sealed the Root-Roads. They used the same technology -- Amber Vaults. The treasure vaults players have been cracking open all game are the same construction as the Heartwood seals. Same amber locks, same golem protocols, same Aether-keyed mechanisms. The player has been learning how to open Heartwood doors without knowing it. The loot vaults are either dual-purpose or decoys -- the real function of the vault system was to seal the Heartwood. The treasure was bait to keep the technology remembered.
-
-**The Moment:** Early game -- player finds a vault, cracks it, gets a Tier III item. "Vaults have good loot." Mid game -- pattern established. Late game -- player finds a vault in a strange location (too deep, too hidden, the amber is a different color, the golem behaves strangely). They crack it. No loot. Just a passage. And the golem bows. That is where the Heartwood campaign begins.
-
-**Theme:** Memory and origin. The answers to every question the setting has raised. Why the Arborists vanished. Why the Rot started. What the Root-Song actually is. The place where the truth lives, sealed behind centuries of overgrowth and deliberate forgetting.
-
-### The Undergrove -- Where the Roots Remember (Below)
-
-The Undergrove is the shared root network beneath all four Seasonal Groves. It is the place where the Root-Roads go when they go deep enough -- below the individual root systems, into a tangle of ancient roots from all four trees, interwoven so densely that you cannot tell which root belongs to which Grove.
-
-**What It Is:**
-
-- The compost layer of the universe. Where dead things decompose and become the nutrients that feed new growth above.
-- Not a single tree -- a network. A vast, lightless tangle of roots, mycorrhizal networks, and geological deposits of composted matter going back to the First Growth.
-- Time works differently. The Undergrove remembers everything that was ever composted. Walking through it means passing through layers of geological memory -- dead civilizations, extinct species, failed Groves (yes, there were others, before the Four).
-- When a character dies and becomes a Hollow, the Hollow eventually migrates downward. The Undergrove is where the Hollows end up -- an entire stratum of the mindless dead, still moving, still wearing their gear, filed away in the roots like nutrients waiting to be recycled.
-
-**The Rot's Home:**
-
-The Rot is a decomposition process. Decomposition belongs in the root layer. The Rot is not invading the Groves from some external source -- it is leaking upward from where it has always been. The Undergrove is where the Rot is native, where it is supposed to be, where it serves its function: breaking down the dead to feed the living. The crisis is not that the Rot exists. The crisis is that something broke the boundary between the Undergrove and the surface -- and the Rot is now doing its job in places that are still alive.
-
-**How to Find It:**
-
-- The deepest vaults in Zone 4 (Rot-Heart). The ones that are hardest to reach and hardest to crack. These do not open inward (Heartwood) -- they open downward (Undergrove). The amber on these seals is discolored -- grey, cracked, visibly stressed. The golems guarding them are damaged, corroded, some broken entirely. The Rot has been pressing against these doors from the other side for centuries.
-- Opening one is a choice: you get access to the Undergrove, but you also open a door that was holding the Rot back. This is the consequence the setting has been warning about since the beginning.
-- Root-Roads that descend instead of crossing horizontally -- passages that slope downward until the walls stop being bark and start being raw root-mass, tangled and wet and very old.
-
-**Faction Connections:**
-
-- The Hag Circle understands the Undergrove intuitively -- decomposition is their domain. They may be the only faction that does not fear it.
-- The Mycelium network extends here. The corrupted nodes that have been causing problems on the surface are rooted in the Undergrove -- the infection runs deeper than anyone thought.
-- The Heartwood Elders remember a time before the boundary broke. They know what the Undergrove is supposed to be, and they grieve what it has become.
-
-**Theme:** Death and recycling. The necessary process that everyone fears. The place where the Rot is not a villain but a custodian that has lost its boundaries. Grief, inevitability, and the question of whether the cycle can be restored or whether the damage is permanent.
+The four seasonal Groves are not the entirety of the cosmos. Rumors persist of deeper places -- passages within the wood itself that lead to something older, and root-networks below that connect all four trees in ways the sealed Root-Roads only hint at. The Arborists knew. The Arborists are gone. What they sealed, they sealed for a reason. Whether those seals should be opened is a question the players will have to answer.
 
 ### Cosmology Summary
 
@@ -171,8 +105,6 @@ The Rot is a decomposition process. Decomposition belongs in the root layer. The
 | Verdhollow | Spring | Drowning in growth | Abundance as threat |
 | Solheart | Summer | The scorched throne | Excess and endurance |
 | Ashenmere | Winter | The still place | Stillness and forgetting |
-| The Heartwood | Within | The First Tree | Memory and origin |
-| The Undergrove | Below | The shared roots | Death and recycling |
 
 ### Timeline
 
@@ -187,15 +119,15 @@ The Rot is a decomposition process. Decomposition belongs in the root layer. The
 
 ### Cultural Roots: Norse and Gaelic Traditions
 
-The Burnwillow draws from Norse and Gaelic traditions -- not as decoration but as structural foundations.
+The Burnwillow draws from Norse and Gaelic traditions as structural foundations.
 
-**Language:** Two naming traditions coexist. Common (English) names are used by surface-dwellers. Old Tongue (Norse/Gaelic influenced) names are used by the Heartwood Descendants and An Cor Briste exclusively. Ancient faction members (Old Cap, Brindlemaw, Ashknot) use a mix.
+**Language:** Two naming traditions coexist. Common (English) names are used by surface-dwellers. An older language -- the Old Tongue -- survives in fragments: carved into Chapel walls, etched into Arborist relics, whispered in prayers no one fully understands. Some faction elders (Old Cap, Brindlemaw, Ashknot) use Old Tongue words in solemn moments.
 
-Key Old Tongue terms: *Rotgaldr* (Root-Song), *Rotbinding* (Root-Resonance), *Cuimhne-Siol* (Memory Seed), *An Croi-Fiodh* (The Heartwood), *Glodheim* (Emberhome), *An Cogar* (The Whisper), *Omra* (Amber), *Tom* (Hollow), *Lorgaire* (Seeker), *Bas-Clog* (Doom Clock).
+Key Old Tongue terms players may encounter: *Rotgaldr* (Root-Song), *Glodheim* (Emberhome), *Omra* (Amber), *Tom* (Hollow), *Lorgaire* (Seeker), *Bas-Clog* (Doom Clock).
 
-**The Threshold (An Tairseach):** Celtic liminality is the game's core metaphysic. Every meaningful moment happens at a threshold -- between safe and dungeon, between living and remembered, between voice and silence. Emberhome rituals mark threshold moments: silence before a delve, name-carving after death, amber-to-temple before trading.
+**The Threshold (An Tairseach):** Celtic liminality is the game's core metaphysic. Every meaningful moment happens at a threshold. Emberhome rituals mark threshold moments: silence before a delve, name-carving after death, amber-to-temple before trading.
 
-**The Gift-Cycle (Bronntanas):** Faction reputation operates as Norse gift-exchange, not transaction. Entering a gift-cycle creates mutual obligation. Opposing factions conflict because their obligations are incompatible.
+**The Gift-Cycle (Bronntanas):** Faction reputation operates as Norse gift-exchange. Entering a gift-cycle creates mutual obligation. This is why opposing factions conflict -- their obligations are incompatible.
 
 ### Dungeon Zone Structure
 
@@ -339,197 +271,17 @@ Resource management is a primary tension layer, separate from combat.
 
 ---
 
-## Chapter 4: The Arborists -- The First Druids
+## Chapter 4: The Arborists -- The Lost Order
 
-### Who They Were
+The Arborists were the original stewards of the Groves. They shaped wood through song and Aether, built the Root-Roads, and tended the seasonal cycle. During the Golden Age, their cities were grown from seeds, their tools were alive, and the Root-Song rang clear across all four trees.
 
-The Arborists were the original civilization of the Groves. They were not builders, not smiths, not mages in any conventional sense. They were **Resonance Engineers** -- biological musicians who shaped the living world through sound and Aether vibration. They did not forge metal. They sang wood into shapes harder than steel and wove Aether into silk. This was not technology. It was communion. The Arborist spoke to the tree and the tree answered. To find an Arborist relic is to hear an echo of the old songs.
+Then they vanished.
 
-### Culture: The Symphony of the Sap
+The precise cause is unknown. The leading theories among Emberhome's elders: an internal crisis, early contact with the Blight, or deliberate withdrawal. They sealed their Vaults -- amber-locked chambers scattered throughout the dungeon zones -- and disappeared. Their technology still works for anyone who finds it, though no one alive understands how to make more.
 
-- Organized as a guild-monastic order: part scientists, part priests of the tree.
-- Their magic was entirely auditory and vibrational. They did not cast spells -- they sang "Notes of Growth" or "Frequencies of Hardening."
-- To make Ironbark, an Arborist would sit with a sapling for a year, singing a specific low-frequency hum that signaled the wood to deposit Aether-dense fibers.
-- Their cities were not built -- they were "Conducted." They planted a seed and sang the city into existence over decades. A house in the Heartwood was not a structure made of wood -- it was a living extension of the tree's own circulatory system.
-- Memory Seeds were their "recordings" -- not written knowledge but first-person acoustic impressions pressed into specialized amber. When a Seeker finds a Memory Seed, they experience an echo of an Arborist's skill.
-- Communication Crystals (like Twitch's in the Root-Cellar) were **Resonance Nodes** -- part of a network that vibrated the tree's internal sap-channels to carry voice across Groves. Twitch's crystal still hums because the network still exists. Something in the Heartwood is still transmitting.
-- Created the Amber Vault network, Wood-Golem Constructs, Ironbark technology, and the Root-Road infrastructure.
-- Their relics are the most mechanically powerful items in the game (Tier IV+).
+What remains: Memory Seeds (crystallized knowledge), Amber Vaults (sealed caches), Ironbark (wood harder than steel), and the fading Root-Song itself -- a subsonic vibration that grows weaker with every passing year.
 
-### The Schism: Silencers and Choir
-
-During the Golden Age, the Arborists observed Ashenmere beginning to go still. Winter was deepening. The natural seasonal cycle -- the heartbeat of the cosmos -- appeared to be slowing. The Arborists panicked. Not from malice, but from love. They could not accept that part of the cycle involved dying.
-
-The order split:
-
-**The Silencers** believed the cycle should not be forced. If Winter was deepening, the correct response was patience -- tend the other Groves, wait for the rhythm to restore itself. Silence was strength. Observation was wisdom. The tree knew what it was doing.
-
-**The Choir** believed the answer was a better song. They proposed singing a resonance that would bypass Winter entirely -- Autumn directly to Spring, skipping death, skipping the Undergrove's decomposition phase. Not stopping the seasons, but editing them. Cutting out the part that hurt.
-
-The Choir won the argument. They sang.
-
-### The Collapse
-
-The Choir's song worked -- partially. They successfully disrupted the Autumn-to-Winter transition. But the Undergrove's decomposition cycle did not stop. It had nowhere to send its output. Dead material kept arriving. Nutrients kept being processed. But with no Winter to receive the recycled material and no Spring to consume it, pressure built in the Undergrove until the boundary between the root layer and the living wood shattered.
-
-The Rot is not a disease. It is not an invasion. It is the Undergrove's decomposition process operating in the wrong place. The Rot has always existed -- it is natural, necessary, and essential. The crisis is that something broke the boundary, and now decomposition is happening on living wood.
-
-Ashenmere did not freeze because of the Rot. Ashenmere froze because **the Choir tested their song there first.** They wanted to "pause" Winter before eliminating it. Instead they stopped it permanently. Ashenmere is their prototype. Their first failure. The Hollows in Ashenmere stand motionless because the Choir's original test-song is still playing there, frozen in a feedback loop.
-
-### The Great Silencing
-
-When the Undergrove boundary broke, the Silencers realized the catastrophe was acoustic. The Root-Song -- the fundamental vibration of the tree -- was now guiding the Rot upward. Every resonant surface amplified it. Every Root-Road carried it. The Arborists themselves, saturated with Aether and resonance from a lifetime of singing, were the loudest beacons of all.
-
-The Silencers made a choice:
-
-- They stopped singing. Entirely. Forever.
-- They sealed the Heartwood -- their most sacred space -- using Amber Vaults as acoustic dampeners.
-- They sealed the Root-Roads to cut the transmission paths.
-- They withdrew into the Heartwood and went into amber stasis, because their very presence on the surface attracted the Rot through resonance.
-
-The knowledge was not lost through negligence. It was suppressed through grief.
-
-- **Generation 1:** The survivors who knew the songs but were forbidden from singing them. They raised their children in silence.
-- **Generation 2:** The children who heard only whispered fragments. They remembered music existed but not how it worked.
-- **Generation 3:** The scavengers -- Old Cap's generation, roughly 400 years ago. They found the tools but had forgotten the music required to make them work. Emberhome was founded by these people.
-
-### The Choir Did Not Stop
-
-The Choir refused the Silencers' solution. They believed the answer was not silence but a perfected song -- one that could control the Rot instead of hiding from it. While the Silencers withdrew into the Heartwood, the Choir went deeper -- into the Undergrove itself, to sing the Rot into submission.
-
-They failed. Or worse -- they partially succeeded. They did not control the Rot. **The Rot learned their music.**
-
-The Choir became the first intentional Hollows. Not mindless husks -- conducting husks. They still sing, but the song is wrong. It is the Root-Song played in a key that makes living wood rot instead of grow. They are the reason the Rot has pattern and direction. The Rot as a process is natural. But the Rot as an organized invasion -- spreading through Root-Roads, following infrastructure, targeting specific zones -- requires someone giving it direction. The Choir is driving it.
-
-Not consciously. Not with malice, exactly. The Choir believes the four Groves are already dead -- just not decomposed yet. They think they are finishing the cycle the Silencers interrupted. They think they are helping.
-
-**The Choir's Structure:**
-
-- **The Conductor** -- the leader. The Arborist who first proposed singing to the Rot. Now a Hollow of immense power in the deepest Undergrove, the Root-Song pouring from them in a continuous stream of directed decay. The final boss of the entire game.
-- **Section Leaders** -- lesser Choir members scattered through the Undergrove and the deepest root systems of each Grove. Each controls the Rot in a specific zone. Kill one and the Rot in that area loses direction -- becomes mindless, which is less dangerous.
-- **The Chorus** -- Hollowed creatures and people the Choir's song has recruited over centuries. Not random Hollows. Organized ones. They move in formations. They sing. They build structures out of fungal matter that mimic Arborist architecture -- wrong and beautiful.
-
-**The Choir's Sound (Progression by Depth):**
-
-- **Zone 2:** Occasional dissonant undertone. Easy to dismiss. The Root-Song stutters for a beat, then corrects.
-- **Zone 3:** The two songs compete. The Root-Song is thinner; the Choir bleeds through in sustained passages -- a wrong note holding for seconds before the healthy song reasserts.
-- **Zone 4 (Rot-Heart):** The Root-Song is absent. The Choir's song is the only music. Constant, low, intimate -- as if someone is singing softly into your ear from inside the walls. Diminished intervals create perpetual unease, waiting for a resolution that never comes.
-- **The Undergrove:** The Choir's song is overpowering. Beautiful the way a fever dream is beautiful -- complex, layered, undeniably musical, and completely insane. Prolonged exposure causes sympathetic resonance in the player's gear. The Rot begins to treat them as part of the score.
-
-### Root-Resonance -- A Universal Capacity
-
-Every person in the Groves has Root-Resonance. It is not a bloodline, not a chosen lineage, not a gift some are born with and others lack. It is a universal capacity -- like building muscle or learning language. Everyone has it. In most, it lies dormant. It awakens through prolonged exposure to Aether, through working with living wood, through years spent in the tree's resonant structures.
-
-The Aether score at character creation represents how awake your resonance is -- shaped by environment, exposure, and circumstance. It is not fixed at birth. It can deepen through play.
-
-**The Spectrum of Awakening:**
-
-| Awakening Level | Aether Score | Description |
-|----------------|-------------|-------------|
-| Dormant | Below 12 (most) | Never activated. Can learn Arborist techniques as rote skills. Tools resonate, not the person. May develop with exposure. |
-| Stirring | 12-13 (uncommon) | Awakened by years near Aether sources -- working the forge, farming rich soil, living near vein taps. Wood "cooperates," gut feelings emerge. They attribute it to luck. |
-| Resonant | 14-16 (rare) | Fully awake. Hear the Root-Song unprompted. Children raised near Aether who hum unknown melodies. Could learn to sing if taught. Nobody can teach them -- yet. |
-| True Arborist | 17+ (the old order) | Lifelong practice + Aether saturation drove physical transformation. Not a birthright -- the result of devotion. Denser bones, extended lifespan. They became what they practiced. |
-| Heartwood Descendant | Varies (present) | 400 years of passive immersion. Proof that environment, not birth, drives attunement. Bark-like skin, 150+ year lifespans, extreme vibration sensitivity. |
-
-**NPC Connections:**
-
-- Weld's decades at the Ember-Forge awakened his attunement -- his quirk ("talks to items -- claims they answer back") is real.
-- Father Oaken's Aether flame responds to Resonant visitors. He does not know why.
-- The Seedlings (Heartwood descendants) want to find surface Resonants who might hear the Painted Songs aloud.
-- The "Wake the Sleepers" endgame path requires a Resonant -- someone whose attunement can interact with the amber seals.
-- Resonance predates all heritage distinctions. Everyone carries it. Not everyone has had the chance to awaken it.
-
-### The Silent Culture -- Heartwood Descendants
-
-The descendants of the Silencers have lived inside the Heartwood for 400 years. They number perhaps a few hundred. They have built a civilization defined entirely by the absence of the thing their ancestors were best at.
-
-**Painted Songs:** The first generation faced an impossible problem: how do you preserve an acoustic tradition when sound itself is lethal? They painted the songs. Not notation -- relationships between vibrations, resonance patterns, harmonic structures encoded in visual form. Color represents frequency (deep amber for low resonance, pale gold for mid-tones, white for highest harmonics). Brushstroke direction represents phase. Layering represents overtone structure. Every Heartwood child learns to read the murals before they learn to walk. They know exactly what the Root-Song sounds like. They have never made a sound.
-
-**The Gardens:** Where the Arborists shaped wood through song, the descendants shape it through patient physical manipulation. They graft, prune, bend branches over years. It takes a Silent gardener ten years to grow what an Arborist could sing into existence in an afternoon. They do not mind. They have had 400 years. Every surface has been touched. Flowers grow in patterns that, seen from above, form the shapes of the Painted Songs -- gardens that are also musical scores.
-
-**Communication:** Four modes, each with different emotional weight:
-
-| Mode | Weight | Description |
-|------|--------|-------------|
-| Touch-signs | Daily coordination | Tactile sign language pressed into palms, wrists, forearms. 400 years of evolution has made it as nuanced as any spoken language. |
-| The Whisper | Sacred trust | A whisper does not resonate -- turbulent airflow without vocal cord vibration. The Choir cannot detect it. To whisper to someone is to trust them with the most dangerous thing you have. |
-| Memory Seed notes | Permanence | Short experiential impressions pressed into tiny amber seeds. Their letters, books, and legal documents. |
-| Painted Songs | Eternity | For the knowledge that must outlast the tree. |
-
-**The Whisper-Key** makes acoustic sense in this context. It converts a whisper into the specific resonance frequency needed to open an Amber Vault seal, but only a whisper. It amplifies breath without adding harmonics. The Arborists designed the vault system to be openable only by the safest form of sound.
-
-**What They Fear:** Sound. Any sound. Not metaphorically -- the way someone with severe burns fears fire. They have lost people to carelessness. A child who hummed. A dreaming elder who moaned in their sleep. Each time, within hours, the Rot pressed inward toward the source. When a surface-dweller arrives -- clomping, breathing loudly, talking -- the descendants' reaction is not hostility. It is animal terror. They grab the newcomer, press a hand over their mouth, and drag them to a deep chamber before attempting to communicate.
-
-**First contact:** The player is grabbed, silenced, dragged to a deep chamber. Touch-signs, frantic gestures. Then the eldest descendant leans close. The player feels breath on their ear. A whisper: *"You are so loud."* The first words spoken to a surface-dweller in 400 years.
-
-**Descendant Factions:**
-
-- **The Roots** -- the majority. Conservative. The silence has worked for 400 years. They do not want rescue. They want the door closed again.
-- **The Seedlings** -- the young. Curious. They have read the Painted Songs and burn to hear them for real. Most likely to help the player. Most likely to do something reckless.
-- **The Grafters** -- pragmatists. The Heartwood is slowly losing ground to the Choir's inward pressure. They will trade Arborist knowledge for military support against Rot incursions.
-
-### The Endgame Choice
-
-The player must choose:
-
-1. **Silence the Choir.** Kill the Conductor, destroy the Section Leaders. The Rot becomes mindless -- still present, still dangerous, but no longer directed. The tree does not heal, but it stops getting worse. The Silencers' solution, extended forever.
-
-2. **Complete the Song.** The Choir was right about one thing -- the cycle needs to complete. Winter cannot be skipped. Help the Choir's song reach completion, but fix it -- add the notes the original Arborists left out. Let the Undergrove finish its work in a controlled way. The tree partially dies and partially regrows. Ashenmere thaws. Burnwillow loses its fire-leaves. The world changes permanently.
-
-3. **Wake the Sleepers.** Revive the amber-sealed Arborists. They know the original song. Maybe they can sing something new -- not the broken cycle, not silence, but an actual solution. The hardest path, the most uncertain, and the one that requires the most faction support.
-
-### Timescale
-
-| When | What Happened |
-|------|---------------|
-| ~500 years ago | The Collapse. The Choir sings. The Undergrove boundary breaks. The Silencers seal the Heartwood and go silent. |
-| ~480 years ago | Generation 1 dies. The last people who knew the songs but did not sing them. |
-| ~440 years ago | Generation 2 dies. The last who heard fragments as children. |
-| ~400 years ago | Generation 3. Old Cap's generation. Emberhome founded. The songs are mythology now. |
-| Present day | 400 years of decline. The Rot has been slowly advancing, directed by the Choir from the Undergrove. |
-
-### Arborist Relic Properties
-
-- Items carry the `[Resonant]` trait: they hum audibly near active Root-Song.
-- No attunement restriction. If you find it, you wield it. Your stats determine effectiveness.
-- Cannot be repaired conventionally -- only Arborist forges (found in Amber Vaults) can restore them.
-- Some retain partial sentience. The Sun-Bow selects its own wielder (DC 16 Wits to earn its trust).
-- Arborist items are grown, not made. They respond to the Root-Song, not to the wielder's will alone.
-
-### Known Arborist Constructs and Items
-
-| Item | Function |
-|------|----------|
-| Wood-Golem Constructs | Autonomous tree-limb guardians. Found exclusively in Amber Vaults. Guard against the Rot, not people. Attack characters carrying Blight-tainted items. Cannot leave Vault interiors. |
-| Ironbark Plating | Bark treated with Aether singing to exceed steel hardness. DR 3 as chest armor. Requires Arborist forge or Memory Seed recipe. |
-| Dowsing Rod | Tool item. Hums within 2 rooms of a Secret or hidden Amber Vault. Does not consume a Doom advance. |
-| Amber Vein Taps | Fixed installations in dungeon walls. Provide 1 Aether charge per use. Single-use per run. |
-| Sun-Bow | Tier IV ranged weapon. Crown-tier access required. Selects its own wielder. |
-| Whisper-Key | Acoustic amplifier that converts a whisper into vault-seal resonance frequency. Only works with unvoiced breath. Consumed on use. |
-
-### Amber Vaults
-
-The Arborists' legacy infrastructure -- sealed emergency caches created at the moment of the Golden Age collapse, preserved untouched ever since. Indestructible iron-amber spheres, 10-30 meters in diameter, fused into the Burnwillow's trunk and root walls.
-
-**Interior:** Sealed and clean. No Rot, no humidity, no decay. Lit by bioluminescent Aether veins. Constant faint hum. Root-Song acoustically isolated. Guarded by Wood-Golem Constructs.
-
-**Access Methods:**
-- Whisper-Key (Tier III item, found in earlier Vaults or as rare dungeon loot)
-- Aether Resonance (DC 20 Legendary Aether check)
-- Specific dungeon puzzle solutions
-
-**Metroidvania Progression:** Vaults are visible early in runs -- the amber shell glows faintly through dungeon walls. They cannot be opened by brute force. The shell is genuinely indestructible to any Tier I-II tool. Players see the Sun-Bow behind unbreakable amber. They cannot have it. They come back.
-
-**Vault Loot Profile:**
-- Guaranteed Tier III+ loot (at least one build-defining item per Vault).
-- Signature items: Sun-Bow, Whisper-Key, Arborist's Mantle, Resonance Band.
-- 50% chance to contain a Memory Seed.
-
-**Wood-Golem Guard Protocol:**
-- Non-Blighted intruders: Golems observe. They do not initiate combat.
-- First item taken freely. Second item triggers guardian protocol unless disabled (Aether DC 14: communicate intent to the golem).
-- Blighted intruders: Immediate hostile response.
+The Arborists are the central mystery of the Burnwillow. Who they were, what happened to them, and what they left behind is for the players to discover.
 
 ---
 
@@ -742,7 +494,7 @@ Shaped by intensity-frequency Aether. Dark skin, resistant to heat and light. Co
 
 #### Winter-Born (Ashenmere)
 
-Shaped by stillness-frequency Aether. Pale, almost translucent skin. White or silver hair from birth. Slight builds, extremely slow metabolism. Natural lifespan 120+ without Heartwood immersion. Cold does not bother them. Aether expression tuned to **perception and stillness**: the Stirring notice things others miss. Resonants perceive the Root-Song even where it is weakest -- the only people who might detect what is wrong with the Choir's song. **Stat bonus: +2 Wits.**
+Shaped by stillness-frequency Aether. Pale, almost translucent skin. White or silver hair from birth. Slight builds, extremely slow metabolism. Natural lifespan 120+ without Heartwood immersion. Cold does not bother them. Aether expression tuned to **perception and stillness**: the Stirring notice things others miss. Resonants perceive the Root-Song even where it is weakest -- the only people who might perceive what others cannot in the deepest silence. **Stat bonus: +2 Wits.**
 
 #### Heritage at the Table
 
@@ -1115,9 +867,9 @@ Status effects that enemies, hazards, environments, and the Leech Cascade can in
 |-----------|--------|---------------|
 | **Sap-Drained** | Trait abilities cost +1 DC to activate. Aether checks at disadvantage (roll twice, take lower). | Sap Leech colonies, Leech Cascade rooms |
 | **Spore-Sick** | Hallucinations -- GM describes one false threat per room. Player cannot distinguish real from false until they interact. | Fungal Mite death burst, Spore Clouds, Gall ruptures |
-| **Resonance-Touched** | Gear hums audibly. Enemy spawn chance +1 in rooms you enter. Choir-directed enemies prioritize you. | Prolonged Zone 4 / Undergrove exposure, Choir Section Leader proximity |
-| **Blighted** | 1 HP lost per room traversed. Cannot be healed until Blight is cured. Cure: Salicylic Tonic, Father Oaken, Hag Circle Rot Processing. | Rot contact, Blight Corruption hazard, Choir Chorus attacks |
-| **Shaken** | -1d6 to all rolls for 3 rounds. Cannot use [Command] or [Rally] traits. | Boss roars (Hollowed Bear), fear effects, first Choir encounter |
+| **Resonance-Touched** | Gear hums audibly. Enemy spawn chance +1 in rooms you enter. Organized enemies prioritize you. | Prolonged Zone 4+ exposure, deep-root proximity |
+| **Blighted** | 1 HP lost per room traversed. Cannot be healed until Blight is cured. Cure: Salicylic Tonic, Father Oaken, Hag Circle Rot Processing. | Rot contact, Blight Corruption hazard, deep-zone enemies |
+| **Shaken** | -1d6 to all rolls for 3 rounds. Cannot use [Command] or [Rally] traits. | Boss roars (Hollowed Bear), fear effects, deep-zone encounters |
 | **Entangled** | Cannot move. Lose Move action. DC 15 Might to break free (action). | Heartwood Serpent constrict, Glue Bombs, Vine Strangler, Borer tunnel collapse |
 | **Burning** | 1d4 fire damage per round for 2 rounds. Ended early by water, Deepwater, or a round spent smothering. | Ember hazards, Inferno trait, Solheart Root-Road proximity |
 | **Frozen** | Cannot take actions for 1 round. After thawing, -1d6 to Grit checks for 2 rounds. | Frostbite Flask, Ashenmere Root-Road proximity, Crown altitude |
@@ -1453,6 +1205,28 @@ When a player's dice pool is already at the 5d6 cap for a stat, additional gear 
 ---
 
 *End of Parts I-III.*
+
+---
+
+# ============================================================
+# GAME MASTER TERRITORY
+# ============================================================
+#
+# PLAYERS: STOP READING HERE.
+#
+# Everything beyond this point contains secrets, plot twists,
+# boss mechanics, NPC motivations, hidden zones, and the
+# answers to every mystery the setting has raised.
+#
+# If you are a player, close this book. The discoveries ahead
+# are earned at the table, not on the page.
+#
+# If you are the Game Master, read everything. Then read it
+# again. The connections between factions, NPCs, and zones
+# are load-bearing. Pull one thread and the whole tapestry
+# shifts.
+#
+# ============================================================
 
 ---
 
