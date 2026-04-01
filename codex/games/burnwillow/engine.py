@@ -1267,6 +1267,8 @@ class Character:
     max_hp: int = field(init=False)
     current_hp: int = field(init=False)
     base_defense: int = field(init=False)  # 10 + Wits modifier
+    max_aether_pool: int = field(init=False)
+    current_aether_pool: int = field(init=False)
 
     # Equipment
     gear: GearGrid = field(default_factory=GearGrid)
@@ -1294,12 +1296,35 @@ class Character:
         self.max_hp = 10 + calculate_stat_mod(self.grit)
         self.current_hp = self.max_hp
         self.base_defense = 10 + calculate_stat_mod(self.wits)
+        self.max_aether_pool = max(1, calculate_stat_mod(self.aether) + 3)
+        self.current_aether_pool = self.max_aether_pool
 
     def recalculate_hp(self):
         """Recalculate max HP from current Grit. Preserves damage taken."""
         damage_taken = self.max_hp - self.current_hp
         self.max_hp = 10 + calculate_stat_mod(self.grit)
         self.current_hp = max(1, self.max_hp - damage_taken)
+
+    def recalculate_aether_pool(self):
+        """Recalculate Aether pool from current Aether score + gear. Preserves spent points."""
+        old_max = self.max_aether_pool
+        self.max_aether_pool = max(1, self.get_stat_mod(StatType.AETHER) + 3)
+        if self.max_aether_pool > old_max:
+            self.current_aether_pool += (self.max_aether_pool - old_max)
+        self.current_aether_pool = min(self.current_aether_pool, self.max_aether_pool)
+
+    def spend_aether(self, cost: int) -> bool:
+        """Spend Aether points. Returns True if successful, False if not enough."""
+        if self.current_aether_pool >= cost:
+            self.current_aether_pool -= cost
+            return True
+        return False
+
+    def restore_aether(self, amount: int) -> int:
+        """Restore Aether points. Returns amount actually restored."""
+        restored = min(amount, self.max_aether_pool - self.current_aether_pool)
+        self.current_aether_pool += restored
+        return restored
 
     # Stat Accessors
     def get_stat_mod(self, stat_type: StatType) -> int:
@@ -1474,6 +1499,8 @@ class Character:
             "active_oil": self.active_oil,
             "active_elixir": self.active_elixir,
             "conditions": dict(self.conditions),
+            "current_aether_pool": self.current_aether_pool,
+            "max_aether_pool": self.max_aether_pool,
         }
 
     @classmethod
@@ -1521,6 +1548,12 @@ class Character:
         char.keys = data.get("keys", 0)
         char.scrap = data.get("scrap", 0)
         char.memory_seeds = list(data.get("memory_seeds", []))
+
+        # Aether pool: recalculate from gear, then restore saved value
+        char.recalculate_aether_pool()
+        saved_ap = data.get("current_aether_pool")
+        if saved_ap is not None:
+            char.current_aether_pool = min(saved_ap, char.max_aether_pool)
         return char
 
     @classmethod
@@ -1688,6 +1721,9 @@ class BurnwillowEngine:
 
         # Quest trigger dispatcher (wired by play loop after narrative engine init)
         self._quest_dispatcher = None
+
+        # Room lighting — [Light] trait persists across rooms
+        self._light_remaining: int = 0
 
         # TPK Detection
         self.campaign_over: bool = False
@@ -1921,6 +1957,7 @@ class BurnwillowEngine:
             "discovered_entrances": sorted(self._discovered_entrances),
             "still_pool_items": list(self.still_pool_items),
             "claimed_outposts": dict(self.claimed_outposts),
+            "light_remaining": self._light_remaining,
         }
 
     def load_game(self, data: dict):
@@ -1986,6 +2023,7 @@ class BurnwillowEngine:
         self._discovered_entrances = set(data.get("discovered_entrances", []))
         self.still_pool_items = data.get("still_pool_items", [])
         self.claimed_outposts = data.get("claimed_outposts", {})
+        self._light_remaining = data.get("light_remaining", 0)
 
     def loot_item(self, room_id: Optional[int] = None) -> Optional[GearItem]:
         """Pop the first loot item from a room (no roll required).
@@ -2283,6 +2321,24 @@ class BurnwillowEngine:
                 start_room.x + start_room.width // 2,
                 start_room.y + start_room.height // 2,
             )
+
+        # Tag rooms with darkness based on zone depth
+        if self.populated_rooms:
+            _dark_rng = random.Random(seed)
+            # Darkness chance: T1=10%, T2=20%, T3=35%, T4+=50%, Heartwood=5%, Undergrove=60%
+            if zone == 6:
+                dark_chance = 0.05  # Heartwood glows with amber light
+            elif zone == 7:
+                dark_chance = 0.60  # Undergrove is deep underground
+            else:
+                dark_chances = {1: 0.10, 2: 0.20, 3: 0.35}
+                dark_chance = dark_chances.get(zone, 0.50)
+            for room_id, pop_room in self.populated_rooms.items():
+                # Start room is always lit
+                if room_id == self.current_room_id:
+                    pop_room.is_dark = False
+                else:
+                    pop_room.is_dark = _dark_rng.random() < dark_chance
 
         return {
             "seed": self.dungeon_graph.seed,
@@ -3128,14 +3184,14 @@ class BurnwillowTraitResolver:
         }
 
     def _resolve_guard(self, character, context: dict) -> dict:
-        """Guard: Protect an adjacent ally. +tier DR to them until your next turn."""
+        """Guard: Brace for impact. +tier DR to self until next turn."""
         item = context.get("item")
         tier = item.tier.value if item else 1
-        dr_bonus = tier
         return {
             "success": True,
-            "message": f"GUARD: Protecting an ally. +{dr_bonus} DR to them until your next turn.",
-            "dr_bonus": dr_bonus,
+            "message": f"GUARD: Braced for impact. DR +{tier} until your next turn.",
+            "self_dr_bonus": tier,
+            "duration_rounds": 1,
             "action": "guard",
         }
 
@@ -3152,26 +3208,37 @@ class BurnwillowTraitResolver:
         }
 
     def _resolve_ranged(self, character, context: dict) -> dict:
-        """Ranged: Attack from distance. Uses Wits instead of Might."""
+        """Ranged: Attack from distance. Uses the weapon's pool stat."""
         item = context.get("item")
         tier = item.tier.value if item else 1
-        check = character.make_check(StatType.WITS, context.get("enemy_defense", DC.STANDARD.value))
+        stat = item.get_pool_stat() if item else StatType.MIGHT
+        dc = context.get("enemy_defense", DC.STANDARD.value)
+        check = character.make_check(stat, dc)
         damage = tier + 1 if check.success else 0
         return {
             "success": check.success,
-            "message": f"RANGED: Wits {check.total} vs DC {context.get('enemy_defense', DC.STANDARD.value)} — {'HIT' if check.success else 'MISS'}",
+            "message": f"RANGED: {stat.value} {check.total} vs DC {dc} — {'HIT' if check.success else 'MISS'}",
             "damage": damage,
-            "uses_wits": True,
             "action": "ranged",
         }
 
     def _resolve_light(self, character, context: dict) -> dict:
-        """Light: Illuminate surroundings. Reveals hidden objects and enemies."""
+        """Light: Dispel darkness. Lights the current room and persists for 3 rooms."""
         return {
             "success": True,
-            "message": "LIGHT: The area is illuminated. Hidden objects and secret exits are revealed.",
-            "reveals_secrets": True,
+            "message": "LIGHT: Brightness fills the space. The darkness retreats.",
+            "dispels_darkness": True,
+            "light_duration": 3,
             "action": "light",
+        }
+
+    def _resolve_reveal(self, character, context: dict) -> dict:
+        """Reveal: Discover hidden exits, secret doors, and buried loot."""
+        return {
+            "success": True,
+            "message": "REVEAL: Hidden features shimmer into view.",
+            "reveals_secrets": True,
+            "action": "reveal",
         }
 
     def _resolve_summon(self, character, context: dict) -> dict:
@@ -3265,6 +3332,7 @@ class BurnwillowTraitResolver:
         "SPELLSLOT": _resolve_spellslot,
         "BACKSTAB": _resolve_backstab,
         "HEAL": _resolve_heal,
+        "REVEAL": _resolve_reveal,
     }
 
 

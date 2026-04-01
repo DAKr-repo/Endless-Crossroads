@@ -88,6 +88,7 @@ LOOT_TABLES: Dict[int, List[Tuple[str, str, int, List[str], str]]] = {
         ("Bandage Pouch", "Legs", 1, ["[Heal]"], "Heals 1d6 HP (3 charges)."),
         ("Spore-Woven Vest", "Chest", 1, [], "Mushroom fibre vest. Hums with faint Aether. +1d6 Aether pool."),
         ("Spore Mask", "Head", 1, [], "Resin-sealed bark mask. Immunity to Rot spore effects for 1 hour."),
+        ("Amber Lantern", "L.Hand", 1, ["[Light]"], "Sap-fueled lantern. Dispels darkness for 3 rooms. Costs 1 Aether."),
         ("Amber Shard", "Neck", 1, [], "Hardened Aether. Holds a faint memory. Trade currency and crafting material."),
         # WO-V17.0: Support/Control items
         ("Warhorn", "L.Hand", 1, ["[Command]"], "Battered brass horn. Shout orders to rally allies. +1d6 Might pool."),
@@ -112,6 +113,7 @@ LOOT_TABLES: Dict[int, List[Tuple[str, str, int, List[str], str]]] = {
         ("Spiked Pauldrons", "Shoulders", 2, [], "Ironbark shoulder guards with jagged spikes. +2d6 Grit pool."),
         ("Aether Vial", "Neck", 2, ["[Heal]"], "Liquid golden sap. Restores 1 Aether point. Burns if spilled on the Rot."),
         ("Root-Song Charm", "Neck", 2, [], "A knot of living wood that hums faintly. +2d6 to perception checks within the tree."),
+        ("Seer's Lens", "Head", 2, ["[Reveal]"], "Amber-crystal monocle. Reveals hidden exits and secret passages. Costs 1 Aether."),
         ("Kindler's Lantern", "L.Hand", 2, [], "Fueled by a Sun-Shard fragment. 30ft bright light. Rot creatures take 1d6 within 10ft."),
         # WO-V17.0: Support/Control items
         ("Battle Standard", "L.Hand", 2, ["[Command]"], "A tattered banner that still inspires. Grant an ally a free action. +2d6 Might pool."),

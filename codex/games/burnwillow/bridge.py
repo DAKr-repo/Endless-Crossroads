@@ -184,6 +184,9 @@ class BurnwillowBridge:
         self._storm_surge_pending: int = 0  # Tempest Annihilator +score after Tempest
         self._snared_enemies: set = set()  # Enemies with defense reduced by SNARE
         self._blinded_enemies: set = set()  # Enemies blinded by FLASH
+        self._guard_dr_remaining: int = 0   # [Guard] self-DR until next turn
+        self._reflect_pending: int = 0      # [Reflect] damage returned on next hit taken
+        self._pending_bonus_damage: int = 0  # [Charge] bonus damage on next attack
         self.last_frame: StateFrame | None = None
         self._broadcast = broadcast_manager
         # Universal Narrative Bridge
@@ -495,9 +498,26 @@ class BurnwillowBridge:
         if vault_echo_active:
             lines.append("The acoustic echo draws enemies toward you! (+1 enemy)")
 
-        # Reset per-combat legendary trackers on room entry
+        # Reset per-combat state on room entry
         self._sun_cleaver_kills = 0
         self._last_stand_used = False
+        self._guard_dr_remaining = 0
+        self._reflect_pending = 0
+
+        # Room lighting: decrement [Light] duration, check darkness
+        pop_room = self.engine.populated_rooms.get(self.engine.current_room_id)
+        _is_dark = getattr(pop_room, 'is_dark', False) if pop_room else False
+        if self.engine._light_remaining > 0:
+            self.engine._light_remaining -= 1
+            if _is_dark:
+                if pop_room:
+                    pop_room.is_dark = False
+                if self.engine._light_remaining > 0:
+                    lines.append(f"Your light holds back the dark. ({self.engine._light_remaining} rooms remaining)")
+                else:
+                    lines.append("Your light flickers and fades.")
+        elif _is_dark:
+            lines.append("This room is shrouded in darkness. (-1d6 to all checks)")
 
         # Named Legendary: Eternity Bloom — party immune to Blighted
         eternity_bloom_active = False
@@ -746,6 +766,13 @@ class BurnwillowBridge:
         might_mod = char.get_stat_mod(StatType.MIGHT)
         dice_count = char.gear.get_total_dice_bonus(StatType.MIGHT)
 
+        # Darkness penalty: -1d6 in dark rooms with no light
+        pop_room = self.engine.populated_rooms.get(self.engine.current_room_id)
+        _is_dark = getattr(pop_room, 'is_dark', False) if pop_room else False
+        if _is_dark and self.engine._light_remaining <= 0:
+            dice_count = max(1, dice_count - 1)
+            lines.append("(Darkness: -1d6)")
+
         # Check for assist from ally
         _assisted = getattr(self, '_assist_pending', False)
         if _assisted:
@@ -881,12 +908,16 @@ class BurnwillowBridge:
             lines.append("")
             retaliation = roll_dice_pool(2, 0, char.get_defense())
             if retaliation["success"]:
-                # Check for Intercept DR bonus (WO-V17.0)
+                # Check for Intercept DR bonus (WO-V17.0) + Guard self-DR
                 intercept_dr = getattr(char, '_intercept_dr_bonus', 0) if getattr(char, '_intercept_active', False) else 0
+                guard_dr = self._guard_dr_remaining
+                self._guard_dr_remaining = 0  # Guard expires after one hit
                 raw_damage = enemy_damage if isinstance(enemy_damage, int) else 3
-                effective_damage = max(1, raw_damage - char.gear.get_total_dr() - intercept_dr)
+                effective_damage = max(1, raw_damage - char.gear.get_total_dr() - intercept_dr - guard_dr)
                 char.current_hp = max(0, char.current_hp - effective_damage)
-                if intercept_dr:
+                if guard_dr:
+                    lines.append(f"{enemy_name} strikes! Guard absorbs {guard_dr} damage! {effective_damage} damage taken.")
+                elif intercept_dr:
                     char._intercept_active = False
                     char._intercept_dr_bonus = 0
                     lines.append(f"{enemy_name} strikes! Your shield absorbs the blow! (-{intercept_dr} DR bonus) {effective_damage} damage taken.")
@@ -906,6 +937,11 @@ class BurnwillowBridge:
                             enemy_hp -= 1
                             lines.append(f"  Thorns reflect 1 damage back!")
                             break
+                    # [Reflect] trait: pending reflect from `use` command
+                    if self._reflect_pending > 0:
+                        enemy_hp -= self._reflect_pending
+                        lines.append(f"  Reflect! {self._reflect_pending} damage returned!")
+                        self._reflect_pending = 0
                     if self._narrator:
                         _ehnarr = self._narrator.narrate_combat_mimir(
                             "enemy_hit", enemy_name, effective_damage, mimir_fn=_combat_mimir_fn)
@@ -1035,6 +1071,12 @@ class BurnwillowBridge:
         wits_mod = char.get_stat_mod(StatType.WITS)
         dice_count = char.gear.get_total_dice_bonus(StatType.WITS)
 
+        # Darkness penalty: -1d6 in dark rooms with no light
+        pop_room = self.engine.populated_rooms.get(self.engine.current_room_id)
+        _is_dark = getattr(pop_room, 'is_dark', False) if pop_room else False
+        if _is_dark and self.engine._light_remaining <= 0:
+            dice_count = max(1, dice_count - 1)
+
         # Passive threshold: auto-succeed if gear makes failure impossible
         if passive_check(wits_mod, 11):
             result = {"success": True, "total": wits_mod + 1, "rolls": [], "modifier": wits_mod, "dc": 11, "crit": False, "fumble": False}
@@ -1129,7 +1171,16 @@ class BurnwillowBridge:
 
         result = self._rest_mgr.rest(self.engine, "BURNWILLOW", rest_type)
 
+        # Restore Aether pool: short rest = half, long rest = full
+        char = self.engine.character
+        if rest_type == "long":
+            restored = char.restore_aether(char.max_aether_pool)
+        else:
+            restored = char.restore_aether((char.max_aether_pool + 1) // 2)
+
         lines = [result.summary()]
+        if restored > 0:
+            lines.append(f"Aether restored: +{restored} ({char.current_aether_pool}/{char.max_aether_pool})")
 
         # WO-V35.0: Broadcast rest complete
         if self._broadcast:
@@ -1149,7 +1200,7 @@ class BurnwillowBridge:
         char = self.engine.character
         lines = [
             f"=== {char.name} ===",
-            f"HP: {char.current_hp}/{char.max_hp}",
+            f"HP: {char.current_hp}/{char.max_hp}  |  Aether: {char.current_aether_pool}/{char.max_aether_pool}",
             f"Defense: {char.get_defense()} | DR: {char.gear.get_total_dr()}",
             "",
             f"MIGHT:  {char.might:>2} ({char.get_stat_mod(StatType.MIGHT):+d})",
@@ -1357,10 +1408,26 @@ class BurnwillowBridge:
         # Strip bracket formatting if present (e.g., "[Lockpick]" -> "Lockpick")
         clean_id = trait_id.strip("[]").upper().replace(" ", "_")
 
+        # Aether cost gating for magical traits
+        _AETHER_COSTS = {"LIGHT": 1, "REVEAL": 1, "SPELLSLOT": 2, "SUMMON": 3, "HEAL": 1}
+        aether_cost = _AETHER_COSTS.get(clean_id, 0)
+        if aether_cost > 0:
+            if not char.spend_aether(aether_cost):
+                return (f"Not enough Aether! ({clean_id} costs {aether_cost}, "
+                        f"you have {char.current_aether_pool}/{char.max_aether_pool})\n"
+                        + self._status_line())
+
+        # Build context with combat state for damage-dealing traits
+        pop_room = self.engine.populated_rooms.get(self.engine.current_room_id)
+        enemies = pop_room.content.get("enemies", []) if pop_room and isinstance(pop_room.content, dict) else []
+        enemy_defense = enemies[0].get("defense", 10) if enemies else 11
         context = {
             "character": char,
             "room": self.engine.get_current_room(),
             "item": target_item,
+            "enemy_defense": enemy_defense,
+            "ambush_round": getattr(self, '_ambush_round', False),
+            "enemy_blinded": bool(getattr(self, '_blinded_enemies', set())),
         }
 
         try:
@@ -1440,6 +1507,80 @@ class BurnwillowBridge:
                         self._storm_surge_pending = 4
                         lines.append("  -> Storm Surge! +4 Aether score on next check.")
                         break
+
+            # DAMAGE: apply to current enemy (Ranged, Spellslot, Backstab)
+            if result.get("damage") and result["damage"] > 0:
+                if enemies:
+                    target = enemies[0]
+                    target["hp"] = target.get("hp", 5) - result["damage"]
+                    ename = target.get("name", "Enemy")
+                    lines.append(f"  -> {ename} takes {result['damage']} damage!")
+                    if target["hp"] <= 0:
+                        pop_room.content["enemies"] = [e for e in enemies if e.get("hp", 1) > 0]
+                        lines.append(f"  -> {ename} slain!")
+
+            # HEAL: restore HP (resolver already calls char.heal, just display)
+            if result.get("heal_amount") and result["heal_amount"] > 0:
+                lines.append(f"  -> Healed {result['heal_amount']} HP! ({char.current_hp}/{char.max_hp})")
+
+            # GUARD: self DR buff until next turn
+            if result.get("self_dr_bonus"):
+                self._guard_dr_remaining = result["self_dr_bonus"]
+                lines.append(f"  -> DR +{result['self_dr_bonus']} until your next turn.")
+
+            # REFLECT: store pending reflect for next incoming hit
+            if result.get("reflect_damage"):
+                self._reflect_pending = result["reflect_damage"]
+                lines.append(f"  -> Next attack against you reflects {result['reflect_damage']} damage!")
+
+            # LIGHT: dispel darkness in current room + duration
+            if result.get("dispels_darkness"):
+                self.engine._light_remaining = result.get("light_duration", 3)
+                if pop_room:
+                    pop_room.is_dark = False
+                lines.append(f"  -> Light! Darkness dispelled for {result['light_duration']} rooms.")
+
+            # REVEAL: show hidden exits and secret rooms
+            if result.get("reveals_secrets"):
+                revealed = []
+                room_data = self.engine.get_current_room()
+                if room_data and self.engine.dungeon_graph:
+                    geom = room_data.get("geometry")
+                    if geom and hasattr(geom, 'connections'):
+                        for conn_id in geom.connections:
+                            conn_room = self.engine.dungeon_graph.rooms.get(conn_id)
+                            if conn_room and getattr(conn_room, 'is_secret', False):
+                                conn_room.is_secret = False
+                                revealed.append(conn_room.name if hasattr(conn_room, 'name') else f"Room {conn_id}")
+                if revealed:
+                    lines.append(f"  -> Revealed: {', '.join(revealed)}")
+                else:
+                    lines.append("  -> No hidden features nearby.")
+
+            # LOCKPICK: unlock adjacent locked room
+            if result.get("action") == "lockpick" and result.get("success"):
+                unlocked = False
+                room_data = self.engine.get_current_room()
+                if room_data and self.engine.dungeon_graph:
+                    geom = room_data.get("geometry")
+                    if geom and hasattr(geom, 'connections'):
+                        for conn_id in geom.connections:
+                            conn_room = self.engine.dungeon_graph.rooms.get(conn_id)
+                            if conn_room and getattr(conn_room, 'is_locked', False):
+                                conn_room.is_locked = False
+                                rname = conn_room.name if hasattr(conn_room, 'name') else f"Room {conn_id}"
+                                lines.append(f"  -> Unlocked: {rname}")
+                                unlocked = True
+                                break
+                if not unlocked:
+                    lines.append("  -> No locked doors nearby.")
+
+            # SUMMON: spawn a spirit minion
+            if result.get("summon"):
+                from codex.games.burnwillow.engine import create_minion
+                minion = create_minion(char.name, char.get_stat_mod(StatType.AETHER))
+                self.engine.party.append(minion)
+                lines.append(f"  -> Spirit summoned! (HP: {minion.current_hp}, {minion.summon_duration} rounds)")
 
         else:
             if result.get("creates"):
