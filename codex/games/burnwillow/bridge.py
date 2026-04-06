@@ -184,6 +184,7 @@ class BurnwillowBridge:
         self._storm_surge_pending: int = 0  # Tempest Annihilator +score after Tempest
         self._snared_enemies: set = set()  # Enemies with defense reduced by SNARE
         self._blinded_enemies: set = set()  # Enemies blinded by FLASH
+        self._snare_reduction: int = 0      # Defense reduction value from last SNARE
         self._guard_dr_remaining: int = 0   # [Guard] self-DR until next turn
         self._reflect_pending: int = 0      # [Reflect] damage returned on next hit taken
         self._pending_bonus_damage: int = 0  # [Charge] bonus damage on next attack
@@ -503,6 +504,10 @@ class BurnwillowBridge:
         self._last_stand_used = False
         self._guard_dr_remaining = 0
         self._reflect_pending = 0
+        self._last_trait_used = ""
+        self._snared_enemies.clear()
+        self._blinded_enemies.clear()
+        self._snare_reduction = 0
 
         # Room lighting: decrement [Light] duration, check darkness
         pop_room = self.engine.populated_rooms.get(self.engine.current_room_id)
@@ -1484,21 +1489,26 @@ class BurnwillowBridge:
                 self._scout_dc_reduction = result["scout_dc_reduction"]
                 lines.append(f"  -> Scout DC reduced by {result['scout_dc_reduction']} for next search.")
 
-            # SNARE/FLASH: track for combo detection
+            # ── Track setup traits for combo detection ──
             if result.get("defense_reduction"):
                 self._snared_enemies.add("room_enemies")
+                self._snare_reduction = result["defense_reduction"]
                 self._last_trait_used = "SNARE"
-                lines.append("  -> Combo ready: CLEAVE will deal bonus damage to snared targets!")
-            if result.get("blind_rounds"):
+            elif result.get("blind_rounds"):
                 self._blinded_enemies.add("room_enemies")
                 self._last_trait_used = "FLASH"
-                lines.append("  -> Combo ready: BACKSTAB will deal double damage to blinded targets!")
+            elif result.get("self_dr_bonus") and result.get("action") == "guard":
+                self._last_trait_used = "GUARD"
+            elif result.get("bonus_damage") and result.get("action") != "command":
+                self._last_trait_used = "CHARGE"
+            elif result.get("dispels_darkness"):
+                self._last_trait_used = "LIGHT"
+            else:
+                self._last_trait_used = clean_id
 
-            # CLEAVE combo: bonus damage if enemies are snared
-            if result.get("cleave_targets") and self._snared_enemies:
-                bonus = random.randint(1, 6)
-                lines.append(f"  -> SNARE+CLEAVE COMBO! +{bonus} bonus damage to snared targets!")
-                self._snared_enemies.clear()
+            # ── Combo registry: (setup → payoff) → bonus ──
+            _combo_lines = self._resolve_combo(clean_id, result, enemies, pop_room)
+            lines.extend(_combo_lines)
 
             # Named Legendary: Tempest Annihilator Storm Surge
             if clean_id == "TEMPEST":
@@ -1589,6 +1599,183 @@ class BurnwillowBridge:
         lines.append("")
         lines.append(self._status_line())
         return "\n".join(lines)
+
+    # ─────────────────────────────────────────────────────────────────────
+    # TRAIT COMBO SYSTEM (#172)
+    # ─────────────────────────────────────────────────────────────────────
+
+    # Combo registry: (setup_trait, payoff_trait) → description
+    # Combos fire when payoff_trait is used while setup_trait's effect is active.
+    _COMBO_REGISTRY: dict[tuple[str, str], str] = {
+        ("SNARE", "CLEAVE"):    "LOCKDOWN",       # Snared enemies take +1d6 cleave
+        ("SNARE", "RANGED"):    "PINNED TARGET",   # Snare lowers ranged DC
+        ("FLASH", "BACKSTAB"):  "BLIND STRIKE",    # Already double damage, add combo tag
+        ("FLASH", "SPELLSLOT"): "ARCANE EXPLOIT",  # Blinded enemies can't dodge spells
+        ("GUARD", "REFLECT"):   "IRON MIRROR",     # Reflect damage doubled after guard
+        ("CHARGE", "CLEAVE"):   "MOMENTUM",        # Charge bonus carries into cleave splash
+        ("LIGHT", "REVEAL"):    "ILLUMINATION",    # Light + reveal = bonus discovery range
+    }
+
+    def _resolve_combo(self, current_trait: str, result: dict,
+                       enemies: list, pop_room) -> list[str]:
+        """Check if current_trait forms a combo with _last_trait_used.
+
+        Returns lines describing combo effects. Mutates game state as needed.
+        """
+        lines: list[str] = []
+        setup = self._last_trait_used
+        combo_key = (setup, current_trait)
+        combo_name = self._COMBO_REGISTRY.get(combo_key)
+
+        if not combo_name:
+            # Show combo hints for setup traits
+            if current_trait == "SNARE" and result.get("success"):
+                lines.append("  -> Combo ready: CLEAVE or RANGED next for bonus!")
+            elif current_trait == "FLASH" and result.get("success"):
+                lines.append("  -> Combo ready: BACKSTAB or SPELLSLOT next for bonus!")
+            elif current_trait == "GUARD":
+                lines.append("  -> Combo ready: REFLECT next to double reflected damage!")
+            elif current_trait == "LIGHT":
+                lines.append("  -> Combo ready: REVEAL next for extended discovery!")
+            return lines
+
+        lines.append(f"  >> COMBO: {combo_name}! ({setup} + {current_trait}) <<")
+
+        if combo_key == ("SNARE", "CLEAVE"):
+            # +1d6 bonus damage per snared target applied to all cleave hits
+            bonus = random.randint(1, 6)
+            lines.append(f"  -> Snared enemies reel! +{bonus} bonus cleave damage!")
+            if enemies:
+                for e in enemies[:result.get("cleave_targets", 1)]:
+                    e["hp"] = e.get("hp", 5) - bonus
+                    ename = e.get("name", "Enemy")
+                    lines.append(f"  -> {ename} takes {bonus} combo damage!")
+                    if e["hp"] <= 0:
+                        lines.append(f"  -> {ename} slain!")
+                if pop_room and isinstance(pop_room.content, dict):
+                    pop_room.content["enemies"] = [
+                        e for e in pop_room.content.get("enemies", [])
+                        if e.get("hp", 1) > 0
+                    ]
+            self._snared_enemies.clear()
+
+        elif combo_key == ("SNARE", "RANGED"):
+            # Snare lowers the effective DC for ranged attacks
+            reduction = self._snare_reduction
+            lines.append(f"  -> Pinned target! DC reduced by {reduction} for this shot.")
+            # Re-resolve ranged with lower DC if original missed
+            if not result.get("success") and reduction > 0:
+                char = self.engine.character
+                item = None
+                for _it in char.gear.slots.values():
+                    if _it and any("Ranged" in t for t in _it.special_traits):
+                        item = _it
+                        break
+                if item:
+                    stat = item.get_pool_stat() if item else StatType.MIGHT
+                    enemy_def = enemies[0].get("defense", 10) if enemies else 11
+                    new_dc = max(1, enemy_def - reduction)
+                    recheck = char.make_check(stat, new_dc)
+                    if recheck.success:
+                        tier = item.tier.value if item else 1
+                        damage = tier + 1
+                        lines.append(f"  -> Re-aimed! {stat.value} {recheck.total} vs DC {new_dc} — HIT for {damage}!")
+                        if enemies:
+                            enemies[0]["hp"] = enemies[0].get("hp", 5) - damage
+                            if enemies[0]["hp"] <= 0:
+                                ename = enemies[0].get("name", "Enemy")
+                                lines.append(f"  -> {ename} slain!")
+                                if pop_room and isinstance(pop_room.content, dict):
+                                    pop_room.content["enemies"] = [
+                                        e for e in pop_room.content.get("enemies", [])
+                                        if e.get("hp", 1) > 0
+                                    ]
+            self._snared_enemies.clear()
+
+        elif combo_key == ("FLASH", "BACKSTAB"):
+            # Backstab already does double damage via enemy_blinded context —
+            # just confirm the combo visually
+            lines.append("  -> Blinded enemy can't defend! Double damage confirmed!")
+
+        elif combo_key == ("FLASH", "SPELLSLOT"):
+            # Blinded enemies can't dodge: DC reduced by 3, re-resolve if missed
+            lines.append("  -> Blinded target can't dodge! DC -3 for spells.")
+            if not result.get("success"):
+                char = self.engine.character
+                enemy_def = enemies[0].get("defense", 10) if enemies else 11
+                new_dc = max(1, enemy_def - 3)
+                recheck = char.make_check(StatType.AETHER, new_dc)
+                if recheck.success:
+                    item = None
+                    for _it in char.gear.slots.values():
+                        if _it and any("Spellslot" in t for t in _it.special_traits):
+                            item = _it
+                            break
+                    tier = item.tier.value if item else 1
+                    damage = sum(random.randint(1, 6) for _ in range(tier))
+                    lines.append(f"  -> Arcane exploit! Aether {recheck.total} vs DC {new_dc} — HIT for {damage}!")
+                    if enemies:
+                        enemies[0]["hp"] = enemies[0].get("hp", 5) - damage
+                        if enemies[0]["hp"] <= 0:
+                            ename = enemies[0].get("name", "Enemy")
+                            lines.append(f"  -> {ename} slain!")
+                            if pop_room and isinstance(pop_room.content, dict):
+                                pop_room.content["enemies"] = [
+                                    e for e in pop_room.content.get("enemies", [])
+                                    if e.get("hp", 1) > 0
+                                ]
+            self._blinded_enemies.clear()
+
+        elif combo_key == ("GUARD", "REFLECT"):
+            # Double the reflect damage
+            self._reflect_pending *= 2
+            lines.append(f"  -> Iron Mirror! Reflect damage doubled to {self._reflect_pending}!")
+
+        elif combo_key == ("CHARGE", "CLEAVE"):
+            # Charge momentum carries into cleave splash targets
+            bonus = self._pending_bonus_damage
+            if bonus > 0:
+                lines.append(f"  -> Momentum! +{bonus} damage carries into cleave targets!")
+                if enemies:
+                    for e in enemies[:result.get("cleave_targets", 1)]:
+                        e["hp"] = e.get("hp", 5) - bonus
+                        ename = e.get("name", "Enemy")
+                        lines.append(f"  -> {ename} takes {bonus} momentum damage!")
+                        if e["hp"] <= 0:
+                            lines.append(f"  -> {ename} slain!")
+                    if pop_room and isinstance(pop_room.content, dict):
+                        pop_room.content["enemies"] = [
+                            e for e in pop_room.content.get("enemies", [])
+                            if e.get("hp", 1) > 0
+                        ]
+                self._pending_bonus_damage = 0
+
+        elif combo_key == ("LIGHT", "REVEAL"):
+            # Extended discovery: also reveal in adjacent rooms
+            lines.append("  -> Illumination! Reveal extends to adjacent rooms!")
+            if self.engine.dungeon_graph:
+                room_data = self.engine.get_current_room()
+                if room_data:
+                    geom = room_data.get("geometry")
+                    if geom and hasattr(geom, 'connections'):
+                        for conn_id in geom.connections:
+                            conn_room = self.engine.dungeon_graph.rooms.get(conn_id)
+                            if conn_room:
+                                # Reveal secrets in adjacent rooms too
+                                if getattr(conn_room, 'is_secret', False):
+                                    conn_room.is_secret = False
+                                    rname = conn_room.name if hasattr(conn_room, 'name') else f"Room {conn_id}"
+                                    lines.append(f"  -> Distant reveal: {rname}")
+                                # Also check one hop further
+                                if hasattr(conn_room, 'connections'):
+                                    for far_id in conn_room.connections:
+                                        far_room = self.engine.dungeon_graph.rooms.get(far_id)
+                                        if far_room and getattr(far_room, 'is_secret', False):
+                                            far_room.is_secret = False
+                                            fname = far_room.name if hasattr(far_room, 'name') else f"Room {far_id}"
+                                            lines.append(f"  -> Distant reveal: {fname}")
+
+        return lines
 
     # ─────────────────────────────────────────────────────────────────────
     # ACTIVE GEAR COMBAT COMMANDS (WO-V17.0)

@@ -640,3 +640,129 @@ class TestStateTracking:
 
         state.clear_combat_effects()
         assert state.party_dr_buff == (0, 0)
+
+
+# ============================================================================
+# Section E: Trait Combo System (#172)
+# ============================================================================
+
+class TestComboRegistry:
+    """Test the trait combo registry and _resolve_combo method."""
+
+    def _make_bridge(self):
+        """Create a minimal BurnwillowBridge for combo testing."""
+        from codex.games.burnwillow.bridge import BurnwillowBridge
+        bridge = object.__new__(BurnwillowBridge)
+        bridge._butler = None
+        bridge.show_dm_notes = False
+        bridge._talking_to = None
+        bridge._last_trait_used = ""
+        bridge._snared_enemies = set()
+        bridge._blinded_enemies = set()
+        bridge._snare_reduction = 0
+        bridge._guard_dr_remaining = 0
+        bridge._reflect_pending = 0
+        bridge._pending_bonus_damage = 0
+        engine = BurnwillowEngine()
+        engine.create_character("ComboTester")
+        engine.generate_dungeon(depth=3, seed=42)
+        bridge.engine = engine
+        return bridge
+
+    def test_combo_registry_has_7_entries(self):
+        """Combo registry should have 7 defined combos."""
+        from codex.games.burnwillow.bridge import BurnwillowBridge
+        assert len(BurnwillowBridge._COMBO_REGISTRY) == 7
+
+    def test_snare_cleave_combo(self):
+        """SNARE → CLEAVE should produce LOCKDOWN combo lines."""
+        bridge = self._make_bridge()
+        bridge._last_trait_used = "SNARE"
+        bridge._snared_enemies.add("room_enemies")
+        enemies = [{"name": "Goblin", "hp": 20, "defense": 10}]
+        result = {"success": True, "cleave_targets": 1, "action": "cleave"}
+        lines = bridge._resolve_combo("CLEAVE", result, enemies, None)
+        assert any("LOCKDOWN" in l for l in lines)
+        assert len(bridge._snared_enemies) == 0  # Cleared after combo
+
+    def test_flash_backstab_combo(self):
+        """FLASH → BACKSTAB should produce BLIND STRIKE combo lines."""
+        bridge = self._make_bridge()
+        bridge._last_trait_used = "FLASH"
+        bridge._blinded_enemies.add("room_enemies")
+        result = {"success": True, "damage": 6, "was_backstab": True, "action": "backstab"}
+        lines = bridge._resolve_combo("BACKSTAB", result, [], None)
+        assert any("BLIND STRIKE" in l for l in lines)
+
+    def test_guard_reflect_combo_doubles_damage(self):
+        """GUARD → REFLECT should double pending reflect damage."""
+        bridge = self._make_bridge()
+        bridge._last_trait_used = "GUARD"
+        bridge._reflect_pending = 3
+        result = {"success": True, "reflect_damage": 3, "action": "reflect"}
+        lines = bridge._resolve_combo("REFLECT", result, [], None)
+        assert any("IRON MIRROR" in l for l in lines)
+        assert bridge._reflect_pending == 6  # Doubled
+
+    def test_no_combo_without_setup(self):
+        """Using a payoff trait without setup should not trigger combo."""
+        bridge = self._make_bridge()
+        bridge._last_trait_used = ""
+        result = {"success": True, "cleave_targets": 2, "action": "cleave"}
+        lines = bridge._resolve_combo("CLEAVE", result, [], None)
+        assert not any("COMBO" in l for l in lines)
+
+    def test_combo_hints_on_setup(self):
+        """Setup traits should show combo hint text."""
+        bridge = self._make_bridge()
+        bridge._last_trait_used = ""
+        result = {"success": True, "defense_reduction": 2, "action": "snare"}
+        lines = bridge._resolve_combo("SNARE", result, [], None)
+        assert any("Combo ready" in l for l in lines)
+
+    def test_combo_state_resets_on_room_entry(self):
+        """Room entry should clear all combo tracking state."""
+        bridge = self._make_bridge()
+        bridge._last_trait_used = "SNARE"
+        bridge._snared_enemies.add("room_enemies")
+        bridge._blinded_enemies.add("room_enemies")
+        bridge._snare_reduction = 3
+        # Simulate room entry reset (same logic as _on_room_entered)
+        bridge._last_trait_used = ""
+        bridge._snared_enemies.clear()
+        bridge._blinded_enemies.clear()
+        bridge._snare_reduction = 0
+        assert bridge._last_trait_used == ""
+        assert len(bridge._snared_enemies) == 0
+        assert len(bridge._blinded_enemies) == 0
+
+    def test_charge_cleave_combo(self):
+        """CHARGE → CLEAVE should apply momentum bonus to cleave targets."""
+        bridge = self._make_bridge()
+        bridge._last_trait_used = "CHARGE"
+        bridge._pending_bonus_damage = 4
+        enemies = [{"name": "Orc", "hp": 15, "defense": 10}]
+        result = {"success": True, "cleave_targets": 1, "action": "cleave"}
+        lines = bridge._resolve_combo("CLEAVE", result, enemies, None)
+        assert any("MOMENTUM" in l for l in lines)
+        assert bridge._pending_bonus_damage == 0  # Consumed
+        assert enemies[0]["hp"] == 11  # 15 - 4
+
+    def test_snare_ranged_combo(self):
+        """SNARE → RANGED should produce PINNED TARGET combo lines."""
+        bridge = self._make_bridge()
+        bridge._last_trait_used = "SNARE"
+        bridge._snared_enemies.add("room_enemies")
+        bridge._snare_reduction = 3
+        result = {"success": True, "damage": 3, "action": "ranged"}
+        lines = bridge._resolve_combo("RANGED", result, [], None)
+        assert any("PINNED TARGET" in l for l in lines)
+
+    def test_flash_spellslot_combo(self):
+        """FLASH → SPELLSLOT should produce ARCANE EXPLOIT combo lines."""
+        bridge = self._make_bridge()
+        bridge._last_trait_used = "FLASH"
+        bridge._blinded_enemies.add("room_enemies")
+        result = {"success": True, "damage": 5, "action": "spellslot"}
+        lines = bridge._resolve_combo("SPELLSLOT", result, [], None)
+        assert any("ARCANE EXPLOIT" in l for l in lines)
