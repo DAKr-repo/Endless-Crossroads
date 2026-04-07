@@ -961,7 +961,10 @@ class BurnwillowBridge:
                     1 for _it in char.gear.slots.values()
                     if _it and _it.prefix == "Rooted"
                 )
-                effective_damage = max(1, raw_damage - char.gear.get_total_dr() - intercept_dr - guard_dr - rooted_dr)
+                # Archetype: Rootwarden — +1 DR
+                _arch_bonuses = self._get_archetype_bonuses()
+                arch_dr = _arch_bonuses.get("dr_bonus", 0)
+                effective_damage = max(1, raw_damage - char.gear.get_total_dr() - intercept_dr - guard_dr - rooted_dr - arch_dr)
                 char.current_hp = max(0, char.current_hp - effective_damage)
                 if guard_dr:
                     lines.append(f"{enemy_name} strikes! Guard absorbs {guard_dr} damage! {effective_damage} damage taken.")
@@ -1022,6 +1025,10 @@ class BurnwillowBridge:
                             b.get("resist_blight") for b in _set_bonuses.values()
                         ):
                             lines.append("  Rot Hunter: Blight resisted!")
+                            break
+                        # Archetype: Blightwalker — immune to Blighted
+                        if cond == Condition.BLIGHTED and self._get_archetype_bonuses().get("blight_immune"):
+                            lines.append("  Blightwalker: The Blight cannot touch you.")
                             break
                         # Check for a DC save if mentioned (e.g., "DC 11 Grit")
                         import re
@@ -1279,7 +1286,8 @@ class BurnwillowBridge:
         return "\n".join(lines)
 
     def _cmd_stats(self) -> str:
-        """Show character stats."""
+        """Show character stats and active archetypes."""
+        from codex.games.burnwillow.engine import detect_archetypes
         char = self.engine.character
         lines = [
             f"=== {char.name} ===",
@@ -1290,9 +1298,16 @@ class BurnwillowBridge:
             f"WITS:   {char.wits:>2} ({char.get_stat_mod(StatType.WITS):+d})",
             f"GRIT:   {char.grit:>2} ({char.get_stat_mod(StatType.GRIT):+d})",
             f"AETHER: {char.aether:>2} ({char.get_stat_mod(StatType.AETHER):+d})",
-            "",
-            self._status_line(),
         ]
+        # Active archetypes from gear source alignment
+        archetypes = detect_archetypes(char.gear)
+        if archetypes:
+            lines.append("")
+            lines.append("ARCHETYPES:")
+            for arch_id, arch_def in archetypes.items():
+                lines.append(f"  {arch_def['name']}: {arch_def['description']}")
+        lines.append("")
+        lines.append(self._status_line())
         return "\n".join(lines)
 
     def _cmd_inventory(self) -> str:
@@ -1492,12 +1507,21 @@ class BurnwillowBridge:
         clean_id = trait_id.strip("[]").upper().replace(" ", "_")
 
         # Aether cost gating for magical traits
-        _AETHER_COSTS = {"LIGHT": 1, "REVEAL": 1, "SPELLSLOT": 2, "SUMMON": 3, "HEAL": 1}
+        _AETHER_COSTS = {
+            "LIGHT": 1, "REVEAL": 1, "SPELLSLOT": 2, "SUMMON": 3, "HEAL": 1,
+            # Void traits
+            "NULLIFY": 2, "VOIDGRIP": 2, "COLLAPSE": 3, "WITHER": 3,
+            # Choir traits
+            "HELLFIRE": 2, "BLIGHTWEB": 2, "ICEWALL": 1, "OVERGROWTH_LASH": 2, "CHOIR_CALL": 3,
+        }
         aether_cost = _AETHER_COSTS.get(clean_id, 0)
         # Arborist 3pc: Sanctify costs no action (free cast)
         _use_set_bonuses = char.gear.get_active_set_bonuses()
         if clean_id == "SANCTIFY" and any(b.get("trait_free") == "SANCTIFY" for b in _use_set_bonuses.values()):
             aether_cost = 0
+        # Archetype: Voidtouched — Nullify costs 1 less Aether
+        if clean_id == "NULLIFY" and self._get_archetype_bonuses().get("nullify_cost_reduction"):
+            aether_cost = max(0, aether_cost - 1)
         if aether_cost > 0:
             if not char.spend_aether(aether_cost):
                 return (f"Not enough Aether! ({clean_id} costs {aether_cost}, "
@@ -1508,17 +1532,23 @@ class BurnwillowBridge:
         pop_room = self.engine.populated_rooms.get(self.engine.current_room_id)
         enemies = pop_room.content.get("enemies", []) if pop_room and isinstance(pop_room.content, dict) else []
         enemy_defense = enemies[0].get("defense", 10) if enemies else 11
+        # Archetype bonuses for trait context
+        _arch_bonuses = self._get_archetype_bonuses()
         context = {
             "character": char,
             "room": self.engine.get_current_room(),
             "item": target_item,
             "enemy_defense": enemy_defense,
+            "enemy_count": len(enemies),
+            "is_boss": enemies[0].get("boss", False) if enemies and isinstance(enemies[0], dict) else False,
             "ambush_round": getattr(self, '_ambush_round', False) or (
                 clean_id == "BACKSTAB" and any(
                     b.get("backstab_double_surprise") for b in _use_set_bonuses.values()
                 )
             ),
             "enemy_blinded": bool(getattr(self, '_blinded_enemies', set())),
+            # Archetype: Sporecaster — Snare +1 target
+            "snare_extra_target": _arch_bonuses.get("snare_extra_target", 0),
         }
 
         try:
@@ -1644,7 +1674,13 @@ class BurnwillowBridge:
             # GUARD: self DR buff until next turn
             if result.get("self_dr_bonus"):
                 self._guard_dr_remaining = result["self_dr_bonus"]
-                lines.append(f"  -> DR +{result['self_dr_bonus']} until your next turn.")
+                # Archetype: Amberwright — Guard lasts 1 extra round
+                _arch = self._get_archetype_bonuses()
+                if _arch.get("guard_reflect_extra_round"):
+                    self._guard_dr_remaining_extra = result["self_dr_bonus"]
+                    lines.append(f"  -> DR +{result['self_dr_bonus']} for 2 turns! (Amberwright)")
+                else:
+                    lines.append(f"  -> DR +{result['self_dr_bonus']} until your next turn.")
 
             # REFLECT: store pending reflect for next incoming hit
             if result.get("reflect_damage"):
@@ -1970,6 +2006,18 @@ class BurnwillowBridge:
         return lines
 
     # ─────────────────────────────────────────────────────────────────────
+    # ARCHETYPE BONUS HELPERS (#170)
+    # ─────────────────────────────────────────────────────────────────────
+
+    def _get_archetype_bonuses(self) -> dict:
+        """Get merged bonus dict from all active archetypes."""
+        from codex.games.burnwillow.engine import detect_archetypes
+        merged = {}
+        for arch_def in detect_archetypes(self.engine.character.gear).values():
+            merged.update(arch_def.get("bonus", {}))
+        return merged
+
+    # ─────────────────────────────────────────────────────────────────────
     # REACTION SYSTEM — trigger-prompted abilities
     # ─────────────────────────────────────────────────────────────────────
 
@@ -1983,10 +2031,12 @@ class BurnwillowBridge:
         return False
 
     def _check_hearthflare(self, attacker_name: str, enemy: dict) -> list[str]:
-        """Fire reaction: when you take damage, attacker takes 1d4 fire."""
+        """Fire reaction: when you take damage, attacker takes 1d4 fire (1d6 with Embercaller)."""
         lines = []
         if self._find_reaction_trait("Hearthflare"):
-            dmg = random.randint(1, 4)
+            _arch = self._get_archetype_bonuses()
+            die_size = 6 if _arch.get("hearthflare_upgrade") else 4
+            dmg = random.randint(1, die_size)
             enemy["hp"] = enemy.get("hp", 5) - dmg
             lines.append(f"  HEARTHFLARE! Ember burst sears {attacker_name} for {dmg} fire!")
         elif self._find_reaction_trait("Solflare"):
@@ -2036,12 +2086,14 @@ class BurnwillowBridge:
         return lines
 
     def _check_harmonic(self, ally, check_result: dict, stat: "StatType", dc: int) -> list[str]:
-        """Root-Song reaction: ally fails a check, grant +1d6 retroactive assist."""
+        """Root-Song reaction: ally fails a check, grant +1d6 retroactive (2d6 with Songweaver)."""
         lines = []
         if check_result.get("success"):
             return lines  # Only triggers on failure
         if self._find_reaction_trait("Harmonic"):
-            bonus = random.randint(1, 6)
+            _arch = self._get_archetype_bonuses()
+            dice_count = _arch.get("harmonic_bonus_dice", 1)
+            bonus = sum(random.randint(1, 6) for _ in range(dice_count))
             new_total = check_result["total"] + bonus
             if new_total >= dc:
                 lines.append(f"  HARMONIC! Your song lifts them. +{bonus} → {new_total} vs DC {dc}: SUCCESS!")

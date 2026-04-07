@@ -775,3 +775,81 @@ class TestComboRegistry:
         result = {"success": True, "damage": 5, "action": "spellslot"}
         lines = bridge._resolve_combo("SPELLSLOT", result, [], None)
         assert any("SUNBURST" in l for l in lines)
+
+
+# ============================================================================
+# Section F: Archetype Detection (#170)
+# ============================================================================
+
+class TestArchetypeDetection:
+    """Test archetype detection from gear trait sources."""
+
+    def test_no_archetype_with_mixed_gear(self):
+        """Mixed gear sources should not trigger any archetype."""
+        from codex.games.burnwillow.engine import detect_archetypes, GearGrid, GearItem, GearSlot, GearTier
+        grid = GearGrid()
+        grid.equip(GearItem(name="Sword", slot=GearSlot.R_HAND, tier=GearTier.TIER_II, special_traits=["[Cleave]"]))
+        grid.equip(GearItem(name="Shield", slot=GearSlot.L_HAND, tier=GearTier.TIER_II, special_traits=["[Guard]"]))
+        grid.equip(GearItem(name="Helm", slot=GearSlot.HEAD, tier=GearTier.TIER_II, special_traits=["[Flash]"]))
+        archetypes = detect_archetypes(grid)
+        assert len(archetypes) == 0
+
+    def test_rootwarden_activates_at_3_wood(self):
+        """3 Root/Wood traits should activate Rootwarden."""
+        from codex.games.burnwillow.engine import detect_archetypes, GearGrid, GearItem, GearSlot, GearTier
+        grid = GearGrid()
+        grid.equip(GearItem(name="Axe", slot=GearSlot.R_HAND, tier=GearTier.TIER_II, special_traits=["[Cleave]"]))
+        grid.equip(GearItem(name="Hammer", slot=GearSlot.L_HAND, tier=GearTier.TIER_II, special_traits=["[Shockwave]"]))
+        grid.equip(GearItem(name="Boots", slot=GearSlot.LEGS, tier=GearTier.TIER_II, special_traits=["[Charge]"]))
+        archetypes = detect_archetypes(grid)
+        assert "rootwarden" in archetypes
+        assert archetypes["rootwarden"]["bonus"]["dr_bonus"] == 1
+
+    def test_voidtouched_activates_at_2_void(self):
+        """2 Void traits should activate Voidtouched (lower threshold)."""
+        from codex.games.burnwillow.engine import detect_archetypes, GearGrid, GearItem, GearSlot, GearTier
+        grid = GearGrid()
+        grid.equip(GearItem(name="Void Staff", slot=GearSlot.R_HAND, tier=GearTier.TIER_III, special_traits=["[Voidgrip]"]))
+        grid.equip(GearItem(name="Void Ring", slot=GearSlot.R_RING, tier=GearTier.TIER_III, special_traits=["[Nullify]"]))
+        archetypes = detect_archetypes(grid)
+        assert "voidtouched" in archetypes
+
+    def test_affixes_count_toward_archetypes(self):
+        """Affix sources should count toward archetype thresholds."""
+        from codex.games.burnwillow.engine import detect_archetypes, GearGrid, GearItem, GearSlot, GearTier
+        grid = GearGrid()
+        # 2 fire traits + 1 fire affix = 3 fire_ember → Embercaller
+        grid.equip(GearItem(name="Torch", slot=GearSlot.R_HAND, tier=GearTier.TIER_II, special_traits=["[Inferno]"]))
+        grid.equip(GearItem(name="Lantern", slot=GearSlot.L_HAND, tier=GearTier.TIER_I, special_traits=["[Flash]"]))
+        item_with_affix = GearItem(name="Boots", slot=GearSlot.LEGS, tier=GearTier.TIER_II, special_traits=[])
+        item_with_affix.prefix = "Blazing"
+        grid.equip(item_with_affix)
+        archetypes = detect_archetypes(grid)
+        assert "embercaller" in archetypes
+
+    def test_archetype_shows_in_stats(self):
+        """Active archetypes should appear in _cmd_stats output."""
+        from codex.games.burnwillow.bridge import BurnwillowBridge
+        from codex.games.burnwillow.engine import BurnwillowEngine, GearItem, GearSlot, GearTier
+        bridge = object.__new__(BurnwillowBridge)
+        bridge._butler = None
+        bridge.show_dm_notes = False
+        bridge._talking_to = None
+        engine = BurnwillowEngine()
+        engine.create_character("Archetype Tester")
+        # Give 3 Root/Wood traits
+        engine.character.gear.equip(GearItem(name="Axe", slot=GearSlot.R_HAND, tier=GearTier.TIER_II, special_traits=["[Cleave]"]))
+        engine.character.gear.equip(GearItem(name="Hammer", slot=GearSlot.L_HAND, tier=GearTier.TIER_II, special_traits=["[Shockwave]"]))
+        engine.character.gear.equip(GearItem(name="Boots", slot=GearSlot.LEGS, tier=GearTier.TIER_II, special_traits=["[Charge]"]))
+        bridge.engine = engine
+        bridge._narrator = None
+        output = bridge._cmd_stats()
+        assert "Rootwarden" in output
+        assert "+1 DR" in output
+
+    def test_trait_source_mapping_complete(self):
+        """Every trait in _TRAIT_MAP should have a source in TRAIT_SOURCES."""
+        from codex.games.burnwillow.engine import BurnwillowTraitResolver, TRAIT_SOURCES
+        resolver = BurnwillowTraitResolver()
+        for trait_id in resolver._TRAIT_MAP:
+            assert trait_id in TRAIT_SOURCES, f"Trait {trait_id} missing from TRAIT_SOURCES"

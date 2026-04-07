@@ -682,6 +682,95 @@ TRAIT_DROP_ZONES: Dict[str, int] = {
 
 
 # =============================================================================
+# ARCHETYPE DETECTION (#170)
+# =============================================================================
+
+ARCHETYPES: Dict[str, dict] = {
+    "rootwarden": {
+        "name": "Rootwarden",
+        "source": "root_wood",
+        "threshold": 3,
+        "bonus": {"dr_bonus": 1, "rootcatch_targets": 2},
+        "description": "+1 DR. Rootcatch extends to 2 allies.",
+    },
+    "amberwright": {
+        "name": "Amberwright",
+        "source": "amber_sap",
+        "threshold": 3,
+        "bonus": {"guard_reflect_extra_round": 1},
+        "description": "Guard/Reflect last 1 extra round.",
+    },
+    "embercaller": {
+        "name": "Embercaller",
+        "source": "fire_ember",
+        "threshold": 3,
+        "bonus": {"hearthflare_upgrade": "1d6"},
+        "description": "Hearthflare upgrades to 1d6.",
+    },
+    "sporecaster": {
+        "name": "Sporecaster",
+        "source": "rot_natural",
+        "threshold": 3,
+        "bonus": {"snare_extra_target": 1},
+        "description": "Snare affects +1 target.",
+    },
+    "songweaver": {
+        "name": "Songweaver",
+        "source": "root_song",
+        "threshold": 3,
+        "bonus": {"harmonic_bonus_dice": 2},
+        "description": "Harmonic grants +2d6 instead of +1d6.",
+    },
+    "blightwalker": {
+        "name": "Blightwalker",
+        "source": "choir",
+        "threshold": 3,
+        "bonus": {"blight_immune": True, "max_hp_penalty": 1},
+        "description": "Immune to Blighted. -1 max HP permanently.",
+    },
+    "voidtouched": {
+        "name": "Voidtouched",
+        "source": "void",
+        "threshold": 2,
+        "bonus": {"nullify_cost_reduction": 1, "aether_pool_penalty": 1},
+        "description": "Nullify costs 1 Aether instead of 2. -1 max Aether pool.",
+    },
+}
+
+
+def detect_archetypes(gear: "GearGrid") -> Dict[str, dict]:
+    """Detect active archetypes from equipped gear trait sources.
+
+    Counts how many traits from each magic source are on equipped items.
+    Returns dict of archetype_id → archetype definition for each active archetype.
+    """
+    source_counts: Dict[str, int] = {}
+    for item in gear.slots.values():
+        if item:
+            for trait in item.special_traits:
+                clean = trait.strip("[]").upper().replace(" ", "_")
+                source = TRAIT_SOURCES.get(clean)
+                if source:
+                    source_counts[source] = source_counts.get(source, 0) + 1
+            # Also count affix sources
+            if item.prefix and item.prefix in AFFIX_PREFIXES:
+                src = AFFIX_PREFIXES[item.prefix].get("source")
+                if src:
+                    source_counts[src] = source_counts.get(src, 0) + 1
+            if item.suffix and item.suffix in AFFIX_SUFFIXES:
+                src = AFFIX_SUFFIXES[item.suffix].get("source")
+                if src:
+                    source_counts[src] = source_counts.get(src, 0) + 1
+
+    active = {}
+    for arch_id, arch_def in ARCHETYPES.items():
+        count = source_counts.get(arch_def["source"], 0)
+        if count >= arch_def["threshold"]:
+            active[arch_id] = arch_def
+    return active
+
+
+# =============================================================================
 # NAMED LEGENDARY ABILITIES
 # =============================================================================
 
@@ -3181,10 +3270,10 @@ class BurnwillowTraitResolver:
         }
 
     def _resolve_snare(self, character, context: dict) -> dict:
-        """Snare: Wits DC 11. Reduce defense of 1-3 enemies by tier."""
+        """Snare: Wits DC 11. Reduce defense of 1-3 enemies by tier (+1 with Sporecaster)."""
         item = context.get("item")
         tier = item.tier.value if item else 1
-        targets = min(3, tier)
+        targets = min(3, tier) + context.get("snare_extra_target", 0)
         check = character.make_check(StatType.WITS, DC.STANDARD.value)
         return {
             "success": check.success,
