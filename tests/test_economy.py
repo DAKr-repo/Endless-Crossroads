@@ -385,9 +385,11 @@ class TestDecipherService:
     def test_grit_boost_recalculates_hp(self):
         char = _make_char(grit=10)
         old_max_hp = char.max_hp
+        # Simulate a permanent Grit boost (quest reward, etc.)
         char.grit = 12
-        char.recalculate_hp()
+        gained = char.add_grit_hp(roll=False)  # Safe +4
         assert char.max_hp > old_max_hp
+        assert gained == 4
 
     def test_wits_boost_recalculates_base_defense(self):
         from codex.games.burnwillow.engine import calculate_stat_mod

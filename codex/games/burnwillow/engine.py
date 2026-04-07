@@ -624,6 +624,64 @@ GEAR_SETS: Dict[str, dict] = {
 
 
 # =============================================================================
+# TRAIT MAGIC SOURCES & DROP ZONES
+# =============================================================================
+
+class TraitSource(Enum):
+    """Magic source for each trait — determines thematic identity and drop zones."""
+    ROOT_WOOD = "root_wood"       # The tree's body. Might.
+    AMBER_SAP = "amber_sap"       # The tree's blood. Grit.
+    FIRE_EMBER = "fire_ember"     # Autumn hearth. Might/Wits.
+    ROT_NATURAL = "rot_natural"   # Decomposition → regrowth. Grit/Aether.
+    ROOT_SONG = "root_song"       # The tree's vibration. Aether.
+    PHYSICAL = "physical"         # No magic source — skill.
+    CHOIR = "choir"               # Corrupted by the Choir. Zone 3+/Undergrove.
+    VOID = "void"                 # Anti-Aether. Void enemies only.
+
+
+# Which magic source each trait belongs to
+TRAIT_SOURCES: Dict[str, str] = {
+    # Root/Wood
+    "CLEAVE": "root_wood", "SHOCKWAVE": "root_wood", "WHIRLWIND": "root_wood",
+    "CHARGE": "root_wood", "SET_TRAP": "root_wood", "ROOTCATCH": "root_wood",
+    # Amber/Sap
+    "GUARD": "amber_sap", "REFLECT": "amber_sap", "INTERCEPT": "amber_sap",
+    "AEGIS": "amber_sap", "RESIST_BLIGHT": "amber_sap", "HEAL": "amber_sap",
+    # Fire/Ember
+    "INFERNO": "fire_ember", "TEMPEST": "fire_ember", "FLASH": "fire_ember",
+    "LIGHT": "fire_ember", "HEARTHFLARE": "fire_ember",
+    # Rot (natural)
+    "SNARE": "rot_natural", "RENEWAL": "rot_natural", "MENDING": "rot_natural",
+    "SPORE_ADAPTATION": "rot_natural",
+    # Root-Song
+    "SPELLSLOT": "root_song", "SUMMON": "root_song", "BOLSTER": "root_song",
+    "RALLY": "root_song", "COMMAND": "root_song", "SANCTIFY": "root_song",
+    "FAR_SIGHT": "root_song", "REVEAL": "root_song", "HARMONIC": "root_song",
+    # Physical
+    "BACKSTAB": "physical", "RANGED": "physical", "LOCKPICK": "physical",
+    "TRIAGE": "physical",
+    # Choir (corrupted)
+    "HELLFIRE": "choir", "BLIGHTWEB": "choir", "ICEWALL": "choir",
+    "OVERGROWTH_LASH": "choir", "CHOIR_CALL": "choir",
+    "SOLFLARE": "choir", "BLIGHTGRASP": "choir", "CHOIR_RESONANCE": "choir",
+    # Void
+    "NULLIFY": "void", "VOIDGRIP": "void", "COLLAPSE": "void",
+    "WITHER": "void", "UNMAKE": "void",
+}
+
+# Minimum zone for corrupted/void trait drops
+TRAIT_DROP_ZONES: Dict[str, int] = {
+    # Choir traits: Zone 3+ or Undergrove or Choir enemies
+    "HELLFIRE": 3, "BLIGHTWEB": 3, "ICEWALL": 3,
+    "OVERGROWTH_LASH": 3, "CHOIR_CALL": 3,
+    "SOLFLARE": 3, "BLIGHTGRASP": 3, "CHOIR_RESONANCE": 3,
+    # Void traits: special acquisition only (zone 99 = never random drop)
+    "NULLIFY": 99, "VOIDGRIP": 7, "COLLAPSE": 99,
+    "WITHER": 99, "UNMAKE": 99,
+}
+
+
+# =============================================================================
 # NAMED LEGENDARY ABILITIES
 # =============================================================================
 
@@ -702,20 +760,23 @@ NAMED_LEGENDARY_ABILITIES: Dict[str, dict] = {
 # =============================================================================
 
 AFFIX_PREFIXES: Dict[str, dict] = {
-    "Blazing": {"on_hit_fire": "1d4"},
-    "Frozen": {"slow_chance": 0.1},
-    "Vampiric": {"heal_on_kill": 1},
-    "Keen": {"crit_range": [5, 6]},
-    "Volatile": {"bonus_damage": 2, "self_damage_on_fumble": 1},
-    "Rooted": {"dr_if_stationary": 1},
+    # Natural (Zone 1+)
+    "Blazing": {"on_hit_fire": "1d4", "source": "fire_ember"},
+    "Keen": {"crit_range": [5, 6], "source": "physical"},
+    "Rooted": {"dr_if_stationary": 1, "source": "root_wood"},
+    # Corrupted (Zone 3+)
+    "Frozen": {"slow_chance": 0.1, "source": "choir", "min_zone": 3},
+    "Vampiric": {"heal_on_kill": 1, "source": "choir", "min_zone": 3},
+    "Volatile": {"bonus_damage": 2, "self_damage_on_fumble": 1, "source": "choir", "min_zone": 3},
 }
 
 AFFIX_SUFFIXES: Dict[str, dict] = {
-    "of the Canopy": {"aether_pool_bonus": 1},
-    "of Haste": {"extra_movement": 1},
-    "of Thorns": {"reflect_damage": 1},
-    "of Mending": {"regen_per_room": 1},
-    "of the Willow": {"blight_resistance": True},
+    # Natural (Zone 1+)
+    "of the Canopy": {"aether_pool_bonus": 1, "source": "root_song"},
+    "of Haste": {"extra_movement": 1, "source": "fire_ember"},
+    "of Thorns": {"reflect_damage": 1, "source": "root_wood"},
+    "of Mending": {"regen_per_room": 1, "source": "rot_natural"},
+    "of the Willow": {"blight_resistance": True, "source": "amber_sap"},
 }
 
 
@@ -723,6 +784,7 @@ def roll_affixes(tier: int, zone_depth: int = 1) -> tuple:
     """Roll random affixes for a loot drop.
 
     Higher tier and deeper zones = higher chance of affixes.
+    Corrupted affixes (Choir-touched) only available in Zone 3+.
 
     Returns:
         (prefix, suffix) tuple — either or both may be None.
@@ -734,15 +796,18 @@ def roll_affixes(tier: int, zone_depth: int = 1) -> tuple:
     # Zone depth adds +5% per zone
     chance = min(0.80, base_chance + zone_depth * 0.05)
 
+    # Filter affixes by zone
+    valid_prefixes = [k for k, v in AFFIX_PREFIXES.items() if zone_depth >= v.get("min_zone", 1)]
+    valid_suffixes = [k for k, v in AFFIX_SUFFIXES.items() if zone_depth >= v.get("min_zone", 1)]
+
     prefix = None
     suffix = None
 
-    if _rng.random() < chance:
-        prefix = _rng.choice(list(AFFIX_PREFIXES.keys()))
+    if valid_prefixes and _rng.random() < chance:
+        prefix = _rng.choice(valid_prefixes)
 
-    # Second affix is harder: half the chance
-    if _rng.random() < chance * 0.4:
-        suffix = _rng.choice(list(AFFIX_SUFFIXES.keys()))
+    if valid_suffixes and _rng.random() < chance * 0.4:
+        suffix = _rng.choice(valid_suffixes)
 
     return (prefix, suffix)
 
@@ -765,6 +830,9 @@ class Condition(Enum):
     BLINDED = "Blinded"                   # Attacks hit random target, -2 Wits 2 rounds
     POISONED = "Poisoned"                 # -1 all rolls, 1d4 damage/round 3 rounds
     GALL_MARKED = "Gall-Marked"           # Healing halved, rest attracts Gall Larvae
+    DRAINED = "Drained"                   # Damage reduced by tier value, 2 rounds
+    PINNED = "Pinned"                     # Can't move, -2 defense, 1 round
+    VOID_EXHAUSTION = "Void-Exhaustion"   # -1d6 all checks, half Aether pool. Long rest to clear.
 
 
 # Default durations (0 = indefinite, cured by rest/potion/healer)
@@ -781,6 +849,9 @@ CONDITION_DURATIONS: Dict[Condition, int] = {
     Condition.BLINDED: 2,           # 2 rounds
     Condition.POISONED: 3,          # 3 rounds
     Condition.GALL_MARKED: 0,       # Until cured (Hag Circle or Mycelium)
+    Condition.DRAINED: 2,           # 2 rounds
+    Condition.PINNED: 1,            # 1 round
+    Condition.VOID_EXHAUSTION: 0,   # Until long rest
 }
 
 
@@ -1269,6 +1340,7 @@ class Character:
     base_defense: int = field(init=False)  # 10 + Wits modifier
     max_aether_pool: int = field(init=False)
     current_aether_pool: int = field(init=False)
+    _hp_grit_bonus: int = field(init=False, repr=False, default=0)  # Running HP bonus from Grit (creation rolls + gear choices)
 
     # Equipment
     gear: GearGrid = field(default_factory=GearGrid)
@@ -1292,23 +1364,59 @@ class Character:
     conditions: Dict[str, int] = field(default_factory=dict)
 
     def __post_init__(self):
-        """Calculate derived stats."""
-        self.max_hp = 10 + calculate_stat_mod(self.grit)
+        """Calculate derived stats. HP = 10 + 1d6 per Grit mod (always rolled at creation)."""
+        grit_mod = max(0, calculate_stat_mod(self.grit))
+        self._hp_grit_bonus = sum(random.randint(1, 6) for _ in range(grit_mod))
+        self.max_hp = 10 + self._hp_grit_bonus
         self.current_hp = self.max_hp
         self.base_defense = 10 + calculate_stat_mod(self.wits)
         self.max_aether_pool = max(1, calculate_stat_mod(self.aether) + 3)
         self.current_aether_pool = self.max_aether_pool
 
     def recalculate_hp(self):
-        """Recalculate max HP from current Grit. Preserves damage taken."""
+        """Recalculate max HP from stored Grit bonus. Used on load/restore."""
         damage_taken = self.max_hp - self.current_hp
-        self.max_hp = 10 + calculate_stat_mod(self.grit)
+        self.max_hp = 10 + self._hp_grit_bonus
         self.current_hp = max(1, self.max_hp - damage_taken)
 
+    def add_grit_hp(self, roll: bool = False) -> int:
+        """Add 1 Grit die to HP. Called when equipping Grit-boosting gear.
+
+        Args:
+            roll: If True, roll 1d6 (gamble). If False, take fixed 4 (safe).
+
+        Returns:
+            The HP gained.
+        """
+        gained = random.randint(1, 6) if roll else 4
+        self._hp_grit_bonus += gained
+        self.max_hp += gained
+        self.current_hp += gained
+        return gained
+
+    def remove_grit_hp(self) -> int:
+        """Remove 1 Grit die from HP (fixed 4). Called when unequipping Grit gear.
+
+        Returns:
+            The HP lost (always 4).
+        """
+        lost = min(4, self._hp_grit_bonus)
+        self._hp_grit_bonus -= lost
+        self.max_hp = max(10, self.max_hp - lost)
+        self.current_hp = min(self.current_hp, self.max_hp)
+        self.current_hp = max(1, self.current_hp)
+        return lost
+
     def recalculate_aether_pool(self):
-        """Recalculate Aether pool from current Aether score + gear. Preserves spent points."""
+        """Recalculate Aether pool from current Aether score + gear + affixes."""
         old_max = self.max_aether_pool
-        self.max_aether_pool = max(1, self.get_stat_mod(StatType.AETHER) + 3)
+        base = max(1, self.get_stat_mod(StatType.AETHER) + 3)
+        # Affix: "of the Canopy" adds +1 Aether pool per item with the suffix
+        affix_bonus = sum(
+            1 for item in self.gear.slots.values()
+            if item and item.suffix == "of the Canopy"
+        )
+        self.max_aether_pool = base + affix_bonus
         if self.max_aether_pool > old_max:
             self.current_aether_pool += (self.max_aether_pool - old_max)
         self.current_aether_pool = min(self.current_aether_pool, self.max_aether_pool)
@@ -1501,6 +1609,7 @@ class Character:
             "conditions": dict(self.conditions),
             "current_aether_pool": self.current_aether_pool,
             "max_aether_pool": self.max_aether_pool,
+            "hp_grit_bonus": self._hp_grit_bonus,
         }
 
     @classmethod
@@ -1539,6 +1648,9 @@ class Character:
                 if idx >= char._next_inv_id:
                     char._next_inv_id = idx + 1
 
+        # Restore HP Grit bonus before recalculating
+        if "hp_grit_bonus" in data:
+            char._hp_grit_bonus = data["hp_grit_bonus"]
         # Defensive HP recalculation: ensures max_hp reflects gear-buffed grit
         char.recalculate_hp()
         saved_hp = data.get("current_hp")
@@ -2048,9 +2160,19 @@ class BurnwillowEngine:
         # Convert raw dict to GearItem if possible
         if isinstance(raw, dict) and "slot" in raw:
             try:
-                return GearItem.from_dict(raw)
+                item = GearItem.from_dict(raw)
             except (KeyError, ValueError):
-                pass
+                item = None
+            if item:
+                # Roll affixes if the item doesn't already have them
+                if not item.prefix and not item.suffix:
+                    zone = getattr(self, '_zone', 1)
+                    prefix, suffix = roll_affixes(item.tier.value, zone)
+                    if prefix:
+                        item.prefix = prefix
+                    if suffix:
+                        item.suffix = suffix
+                return item
         # Return as a minimal GearItem with the name
         name = raw.get("name", str(raw)) if isinstance(raw, dict) else str(raw)
         return GearItem(name=name, slot=GearSlot.R_HAND, tier=GearTier.TIER_0)
@@ -3115,7 +3237,7 @@ class BurnwillowTraitResolver:
         }
 
     def _resolve_voidgrip(self, character, context: dict) -> dict:
-        """Voidgrip: Aether DC 15. Necrotic damage + Blighted 2 rounds to 1-2 targets."""
+        """Voidgrip: Aether DC 15. Necrotic damage + Drained 2 rounds (Void diminishes, not corrupts)."""
         item = context.get("item")
         tier = item.tier.value if item else 1
         targets = min(2, tier)
@@ -3126,8 +3248,10 @@ class BurnwillowTraitResolver:
             "message": f"VOIDGRIP: Aether {check.total} vs DC {DC.HARD.value} — {'SUCCESS' if check.success else 'FAIL'}",
             "damage": dmg,
             "targets": targets if check.success else 0,
-            "blighted_rounds": 2 if check.success else 0,
+            "drained_rounds": 2 if check.success else 0,
+            "drain_amount": tier if check.success else 0,
             "action": "voidgrip",
+            "source": "void",
         }
 
     def _resolve_mending(self, character, context: dict) -> dict:
@@ -3297,42 +3421,301 @@ class BurnwillowTraitResolver:
             "action": "heal",
         }
 
+    # ── Reactions (resolved via bridge event hooks, not direct _cmd_use) ──
+
+    def _resolve_hearthflare(self, character, context: dict) -> dict:
+        """Hearthflare [Fire reaction]: When you take damage, attacker takes 1d4 fire."""
+        dmg = random.randint(1, 4)
+        return {
+            "success": True,
+            "message": f"HEARTHFLARE: Ember burst! Attacker takes {dmg} fire damage.",
+            "reflect_fire": dmg,
+            "action": "hearthflare",
+            "source": "fire_ember",
+            "is_reaction": True,
+        }
+
+    def _resolve_rootcatch(self, character, context: dict) -> dict:
+        """Rootcatch [Root/Wood reaction]: Ally at 0 HP stabilizes at 1. Once per encounter."""
+        return {
+            "success": True,
+            "message": "ROOTCATCH: Roots surge up and catch the fallen!",
+            "stabilize_at": 1,
+            "action": "rootcatch",
+            "source": "root_wood",
+            "is_reaction": True,
+            "once_per_encounter": True,
+        }
+
+    def _resolve_spore_adaptation(self, character, context: dict) -> dict:
+        """Spore Adaptation [Rot reaction]: Reroll failed poison/Blight save with +2."""
+        return {
+            "success": True,
+            "message": "SPORE ADAPTATION: Mycelium in your gear metabolizes the toxin!",
+            "reroll_bonus": 2,
+            "action": "spore_adaptation",
+            "source": "rot_natural",
+            "is_reaction": True,
+        }
+
+    def _resolve_harmonic(self, character, context: dict) -> dict:
+        """Harmonic [Root-Song reaction]: Ally fails a check, grant +1d6 retroactive."""
+        bonus = random.randint(1, 6)
+        return {
+            "success": True,
+            "message": f"HARMONIC: Your song reinforces theirs! (+{bonus})",
+            "retroactive_bonus": bonus,
+            "action": "harmonic",
+            "source": "root_song",
+            "is_reaction": True,
+        }
+
+    # ── Corrupted Choir Traits ──
+
+    def _resolve_hellfire(self, character, context: dict) -> dict:
+        """Hellfire [Choir/Solheart]: 2x Inferno damage, Burning 3 rounds. Room catches fire."""
+        item = context.get("item")
+        tier = item.tier.value if item else 1
+        targets = min(3, tier)
+        check = character.make_check(StatType.AETHER, DC.HARD.value)
+        dmg = sum(random.randint(1, 6) for _ in range(tier)) * 2 if check.success else 0
+        return {
+            "success": check.success,
+            "message": f"HELLFIRE: Aether {check.total} vs DC {DC.HARD.value} — {'THE ROOM IGNITES' if check.success else 'FAIL'}",
+            "damage": dmg,
+            "targets": targets if check.success else 0,
+            "burning_rounds": 3 if check.success else 0,
+            "room_fire": True if check.success else False,
+            "room_fire_damage": "1d4",
+            "action": "hellfire",
+            "source": "choir",
+        }
+
+    def _resolve_blightweb(self, character, context: dict) -> dict:
+        """Blightweb [Choir/Blight]: Snare + Blighted. Unbreakable snare. Costs 1 HP."""
+        item = context.get("item")
+        tier = item.tier.value if item else 1
+        targets = min(3, tier)
+        check = character.make_check(StatType.WITS, DC.STANDARD.value)
+        character.current_hp = max(0, character.current_hp - 1)
+        return {
+            "success": check.success,
+            "message": f"BLIGHTWEB: Wits {check.total} vs DC {DC.STANDARD.value} — {'Blight tendrils erupt!' if check.success else 'FAIL'} (Cost: 1 HP)",
+            "targets": targets if check.success else 0,
+            "defense_reduction": tier if check.success else 0,
+            "inflicts_blighted": check.success,
+            "unbreakable_snare": check.success,
+            "action": "blightweb",
+            "source": "choir",
+        }
+
+    def _resolve_icewall(self, character, context: dict) -> dict:
+        """Icewall [Choir/Ashenmere]: +tier*2 DR but frozen in place next round."""
+        item = context.get("item")
+        tier = item.tier.value if item else 1
+        return {
+            "success": True,
+            "message": f"ICEWALL: Ice crystallizes around you. DR +{tier * 2}. You cannot act next round.",
+            "self_dr_bonus": tier * 2,
+            "duration_rounds": 1,
+            "caster_frozen": True,
+            "action": "icewall",
+            "source": "choir",
+        }
+
+    def _resolve_overgrowth_lash(self, character, context: dict) -> dict:
+        """Overgrowth Lash [Choir/Verdhollow]: Full damage to ALL enemies. Grapples 1 random ally."""
+        item = context.get("item")
+        tier = item.tier.value if item else 1
+        check = character.make_check(StatType.MIGHT, DC.HARD.value)
+        dmg = sum(random.randint(1, 6) for _ in range(tier)) if check.success else 0
+        return {
+            "success": check.success,
+            "message": f"OVERGROWTH LASH: Might {check.total} vs DC {DC.HARD.value} — {'Vines explode from the walls!' if check.success else 'FAIL'}",
+            "damage": dmg,
+            "hits_all": check.success,
+            "grapples_ally": check.success,
+            "action": "overgrowth_lash",
+            "source": "choir",
+        }
+
+    def _resolve_choir_call(self, character, context: dict) -> dict:
+        """Choir Call [Choir/Song]: Summon 2 minions but +1 Resonance exposure."""
+        aether_mod = character.get_stat_mod(StatType.AETHER)
+        return {
+            "success": True,
+            "message": f"CHOIR CALL: Two spirits answer the changed song. (+1 Resonance)",
+            "summon": True,
+            "summon_count": 2,
+            "minion_hp": 3 + max(0, aether_mod),
+            "minion_might": 8 + max(0, aether_mod),
+            "duration": 3,
+            "resonance_gain": 1,
+            "action": "choir_call",
+            "source": "choir",
+        }
+
+    # ── Corrupted Reactions (resolved via bridge event hooks) ──
+
+    def _resolve_solflare(self, character, context: dict) -> dict:
+        """Solflare [Choir/Fire reaction]: 2d6 fire to attacker AND all adjacent including allies."""
+        dmg = sum(random.randint(1, 6) for _ in range(2))
+        return {
+            "success": True,
+            "message": f"SOLFLARE: Uncontrollable blaze erupts! {dmg} fire to ALL adjacent!",
+            "aoe_fire": dmg,
+            "hits_allies": True,
+            "action": "solflare",
+            "source": "choir",
+            "is_reaction": True,
+        }
+
+    def _resolve_blightgrasp(self, character, context: dict) -> dict:
+        """Blightgrasp [Choir/Wood reaction]: Stabilize at 1 HP but target gains Blighted."""
+        return {
+            "success": True,
+            "message": "BLIGHTGRASP: Dark roots catch the fallen... but Blight seeps in.",
+            "stabilize_at": 1,
+            "inflicts_blighted": True,
+            "action": "blightgrasp",
+            "source": "choir",
+            "is_reaction": True,
+            "once_per_encounter": True,
+        }
+
+    def _resolve_choir_resonance(self, character, context: dict) -> dict:
+        """Choir Resonance [Choir/Rot reaction]: Auto-succeed failed save but +1 Resonance."""
+        return {
+            "success": True,
+            "message": "CHOIR RESONANCE: The changed song shields you... at a cost. (+1 Resonance)",
+            "auto_succeed_save": True,
+            "resonance_gain": 1,
+            "action": "choir_resonance",
+            "source": "choir",
+            "is_reaction": True,
+        }
+
+    # ── Void Traits ──
+
+    def _resolve_nullify(self, character, context: dict) -> dict:
+        """Nullify [Void reaction]: Counterspell. Enemy special fizzles on success."""
+        check = character.make_check(StatType.AETHER, DC.STANDARD.value)
+        return {
+            "success": check.success,
+            "message": f"NULLIFY: Aether {check.total} vs DC {DC.STANDARD.value} — {'The ability dissolves into nothing.' if check.success else 'The Void slips. Ability resolves.'}",
+            "cancels_ability": check.success,
+            "action": "nullify",
+            "source": "void",
+            "is_reaction": True,
+        }
+
+    def _resolve_collapse(self, character, context: dict) -> dict:
+        """Collapse [Void]: Gravity well. Pull all enemies together. 1d4 per enemy. Pinned 1 round."""
+        check = character.make_check(StatType.AETHER, DC.HARD.value)
+        enemy_count = context.get("enemy_count", 1)
+        dmg_per = random.randint(1, 4) if check.success else 0
+        return {
+            "success": check.success,
+            "message": f"COLLAPSE: Aether {check.total} vs DC {DC.HARD.value} — {'Space contracts. Everything slides.' if check.success else 'FAIL'}",
+            "damage": dmg_per * enemy_count if check.success else 0,
+            "damage_per_enemy": dmg_per,
+            "hits_all": check.success,
+            "inflicts_pinned": check.success,
+            "action": "collapse",
+            "source": "void",
+        }
+
+    def _resolve_wither(self, character, context: dict) -> dict:
+        """Wither [Void]: Reduce target max HP by 1d6/tier for encounter. Caster takes 1 HP."""
+        item = context.get("item")
+        tier = item.tier.value if item else 1
+        check = character.make_check(StatType.AETHER, DC.HARD.value)
+        reduction = sum(random.randint(1, 6) for _ in range(tier)) if check.success else 0
+        character.current_hp = max(0, character.current_hp - 1)
+        return {
+            "success": check.success,
+            "message": f"WITHER: Aether {check.total} vs DC {DC.HARD.value} — {'Vitality drains away.' if check.success else 'FAIL'} (Backlash: -1 HP)",
+            "max_hp_reduction": reduction,
+            "boss_damage_reduction": check.success,
+            "action": "wither",
+            "source": "void",
+        }
+
+    def _resolve_unmake(self, character, context: dict) -> dict:
+        """Unmake [Void]: Erase non-boss or massive boss damage. Costs all Aether + 2 HP. Void Exhaustion."""
+        check = character.make_check(StatType.AETHER, DC.ELITE.value)
+        item = context.get("item")
+        tier = item.tier.value if item else 1
+        # Cost: all Aether + 2 HP
+        character.current_aether_pool = 0
+        character.current_hp = max(0, character.current_hp - 2)
+        is_boss = context.get("is_boss", False)
+        boss_dmg = sum(random.randint(1, 6) for _ in range(tier * 3)) if check.success and is_boss else 0
+        return {
+            "success": check.success,
+            "message": f"UNMAKE: Aether {check.total} vs DC {DC.ELITE.value} — {'There is a sound like the opposite of a sound.' if check.success else 'The Void recedes. You are empty.'}",
+            "erases_target": check.success and not is_boss,
+            "boss_damage": boss_dmg,
+            "inflicts_void_exhaustion": True,
+            "action": "unmake",
+            "source": "void",
+        }
+
     _TRAIT_MAP = {
+        # Root/Wood
         "SET_TRAP": _resolve_set_trap,
         "CHARGE": _resolve_charge,
-        "SANCTIFY": _resolve_sanctify,
-        "RESIST_BLIGHT": _resolve_resist_blight,
-        "FAR_SIGHT": _resolve_far_sight,
-        # WO-V17.0: Active Gear Abilities
-        "INTERCEPT": _resolve_intercept,
-        "COMMAND": _resolve_command,
-        "BOLSTER": _resolve_bolster,
-        "TRIAGE": _resolve_triage,
-        # WO-V32.0: AoE Combat
         "CLEAVE": _resolve_cleave,
-        # WO-V36.0: Expanded AoE Traits
         "SHOCKWAVE": _resolve_shockwave,
         "WHIRLWIND": _resolve_whirlwind,
-        "FLASH": _resolve_flash,
-        "SNARE": _resolve_snare,
-        "RALLY": _resolve_rally,
-        "INFERNO": _resolve_inferno,
-        "TEMPEST": _resolve_tempest,
-        "VOIDGRIP": _resolve_voidgrip,
-        "MENDING": _resolve_mending,
-        "RENEWAL": _resolve_renewal,
-        "AEGIS": _resolve_aegis,
-        # WO-V4a: Bracket traits resolved
-        "LOCKPICK": _resolve_lockpick,
+        # Amber/Sap
+        "INTERCEPT": _resolve_intercept,
         "GUARD": _resolve_guard,
         "REFLECT": _resolve_reflect,
-        "RANGED": _resolve_ranged,
-        "LIGHT": _resolve_light,
-        "SUMMON": _resolve_summon,
-        "SPELLSLOT": _resolve_spellslot,
-        "BACKSTAB": _resolve_backstab,
+        "AEGIS": _resolve_aegis,
+        "RESIST_BLIGHT": _resolve_resist_blight,
         "HEAL": _resolve_heal,
+        # Fire/Ember
+        "INFERNO": _resolve_inferno,
+        "TEMPEST": _resolve_tempest,
+        "FLASH": _resolve_flash,
+        "LIGHT": _resolve_light,
+        "HEARTHFLARE": _resolve_hearthflare,
+        # Rot (natural)
+        "SNARE": _resolve_snare,
+        "MENDING": _resolve_mending,
+        "RENEWAL": _resolve_renewal,
+        "SPORE_ADAPTATION": _resolve_spore_adaptation,
+        # Root-Song
+        "SPELLSLOT": _resolve_spellslot,
+        "SUMMON": _resolve_summon,
+        "BOLSTER": _resolve_bolster,
+        "RALLY": _resolve_rally,
+        "COMMAND": _resolve_command,
+        "SANCTIFY": _resolve_sanctify,
+        "FAR_SIGHT": _resolve_far_sight,
         "REVEAL": _resolve_reveal,
+        "HARMONIC": _resolve_harmonic,
+        # Physical
+        "BACKSTAB": _resolve_backstab,
+        "RANGED": _resolve_ranged,
+        "LOCKPICK": _resolve_lockpick,
+        "TRIAGE": _resolve_triage,
+        # Choir (corrupted)
+        "HELLFIRE": _resolve_hellfire,
+        "BLIGHTWEB": _resolve_blightweb,
+        "ICEWALL": _resolve_icewall,
+        "OVERGROWTH_LASH": _resolve_overgrowth_lash,
+        "CHOIR_CALL": _resolve_choir_call,
+        "SOLFLARE": _resolve_solflare,
+        "BLIGHTGRASP": _resolve_blightgrasp,
+        "CHOIR_RESONANCE": _resolve_choir_resonance,
+        # Void
+        "NULLIFY": _resolve_nullify,
+        "VOIDGRIP": _resolve_voidgrip,
+        "COLLAPSE": _resolve_collapse,
+        "WITHER": _resolve_wither,
+        "UNMAKE": _resolve_unmake,
     }
 
 

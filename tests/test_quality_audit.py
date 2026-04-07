@@ -669,30 +669,39 @@ class TestComboRegistry:
         bridge.engine = engine
         return bridge
 
-    def test_combo_registry_has_7_entries(self):
-        """Combo registry should have 7 defined combos."""
+    def test_combo_registry_has_entries(self):
+        """Combo registry should have natural + corrupted + void combos."""
         from codex.games.burnwillow.bridge import BurnwillowBridge
-        assert len(BurnwillowBridge._COMBO_REGISTRY) == 7
+        reg = BurnwillowBridge._COMBO_REGISTRY
+        assert len(reg) >= 7  # At least 7 natural combos
+        # Verify themed names replaced generic ones
+        assert reg[("SNARE", "CLEAVE")] == "ROOT CRUSH"
+        assert reg[("GUARD", "REFLECT")] == "AMBER MIRROR"
+        assert reg[("FLASH", "BACKSTAB")] == "EMBER SHADOW"
+        # Verify corrupted combos exist
+        assert ("BLIGHTWEB", "CLEAVE") in reg
+        # Verify void combos exist
+        assert ("NULLIFY", "WITHER") in reg
 
     def test_snare_cleave_combo(self):
-        """SNARE → CLEAVE should produce LOCKDOWN combo lines."""
+        """SNARE → CLEAVE should produce ROOT CRUSH combo lines."""
         bridge = self._make_bridge()
         bridge._last_trait_used = "SNARE"
         bridge._snared_enemies.add("room_enemies")
         enemies = [{"name": "Goblin", "hp": 20, "defense": 10}]
         result = {"success": True, "cleave_targets": 1, "action": "cleave"}
         lines = bridge._resolve_combo("CLEAVE", result, enemies, None)
-        assert any("LOCKDOWN" in l for l in lines)
+        assert any("ROOT CRUSH" in l for l in lines)
         assert len(bridge._snared_enemies) == 0  # Cleared after combo
 
     def test_flash_backstab_combo(self):
-        """FLASH → BACKSTAB should produce BLIND STRIKE combo lines."""
+        """FLASH → BACKSTAB should produce EMBER SHADOW combo lines."""
         bridge = self._make_bridge()
         bridge._last_trait_used = "FLASH"
         bridge._blinded_enemies.add("room_enemies")
         result = {"success": True, "damage": 6, "was_backstab": True, "action": "backstab"}
         lines = bridge._resolve_combo("BACKSTAB", result, [], None)
-        assert any("BLIND STRIKE" in l for l in lines)
+        assert any("EMBER SHADOW" in l for l in lines)
 
     def test_guard_reflect_combo_doubles_damage(self):
         """GUARD → REFLECT should double pending reflect damage."""
@@ -701,7 +710,7 @@ class TestComboRegistry:
         bridge._reflect_pending = 3
         result = {"success": True, "reflect_damage": 3, "action": "reflect"}
         lines = bridge._resolve_combo("REFLECT", result, [], None)
-        assert any("IRON MIRROR" in l for l in lines)
+        assert any("AMBER MIRROR" in l for l in lines)
         assert bridge._reflect_pending == 6  # Doubled
 
     def test_no_combo_without_setup(self):
@@ -744,25 +753,25 @@ class TestComboRegistry:
         enemies = [{"name": "Orc", "hp": 15, "defense": 10}]
         result = {"success": True, "cleave_targets": 1, "action": "cleave"}
         lines = bridge._resolve_combo("CLEAVE", result, enemies, None)
-        assert any("MOMENTUM" in l for l in lines)
+        assert any("TIMBER FALL" in l for l in lines)
         assert bridge._pending_bonus_damage == 0  # Consumed
         assert enemies[0]["hp"] == 11  # 15 - 4
 
     def test_snare_ranged_combo(self):
-        """SNARE → RANGED should produce PINNED TARGET combo lines."""
+        """SNARE → RANGED should produce PINNED PREY combo lines."""
         bridge = self._make_bridge()
         bridge._last_trait_used = "SNARE"
         bridge._snared_enemies.add("room_enemies")
         bridge._snare_reduction = 3
         result = {"success": True, "damage": 3, "action": "ranged"}
         lines = bridge._resolve_combo("RANGED", result, [], None)
-        assert any("PINNED TARGET" in l for l in lines)
+        assert any("PINNED PREY" in l for l in lines)
 
     def test_flash_spellslot_combo(self):
-        """FLASH → SPELLSLOT should produce ARCANE EXPLOIT combo lines."""
+        """FLASH → SPELLSLOT should produce SUNBURST combo lines."""
         bridge = self._make_bridge()
         bridge._last_trait_used = "FLASH"
         bridge._blinded_enemies.add("room_enemies")
         result = {"success": True, "damage": 5, "action": "spellslot"}
         lines = bridge._resolve_combo("SPELLSLOT", result, [], None)
-        assert any("ARCANE EXPLOIT" in l for l in lines)
+        assert any("SUNBURST" in l for l in lines)

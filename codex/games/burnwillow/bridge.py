@@ -510,6 +510,7 @@ class BurnwillowBridge:
         self._blinded_enemies.clear()
         self._snare_reduction = 0
         self._first_attack_in_room = True  # Shadowweave 4pc: first attack crits
+        self._rootcatch_used = False       # Rootcatch: once per encounter
 
         # Room lighting: decrement [Light] duration, check darkness
         pop_room = self.engine.populated_rooms.get(self.engine.current_room_id)
@@ -853,6 +854,13 @@ class BurnwillowBridge:
                 enemy_hp -= fire_dmg
                 lines.append(f"  Blazing! +{fire_dmg} fire damage.")
 
+            # Affix: Frozen — 10% chance to slow (inflict Frozen condition)
+            if weapon and weapon.prefix == "Frozen":
+                if random.random() < 0.1:
+                    if isinstance(enemy, dict):
+                        enemy["frozen"] = True
+                        lines.append(f"  Frozen! {enemy_name} is slowed — defense reduced!")
+
             _wname = weapon.name if weapon else "fists"
             # Affix: Keen — crit range expanded to 5-6
             is_crit = result.get("crit")
@@ -948,7 +956,12 @@ class BurnwillowBridge:
                 guard_dr = self._guard_dr_remaining
                 self._guard_dr_remaining = 0  # Guard expires after one hit
                 raw_damage = enemy_damage if isinstance(enemy_damage, int) else 3
-                effective_damage = max(1, raw_damage - char.gear.get_total_dr() - intercept_dr - guard_dr)
+                # Affix: Rooted — +1 DR when stationary (attacking = not moving)
+                rooted_dr = sum(
+                    1 for _it in char.gear.slots.values()
+                    if _it and _it.prefix == "Rooted"
+                )
+                effective_damage = max(1, raw_damage - char.gear.get_total_dr() - intercept_dr - guard_dr - rooted_dr)
                 char.current_hp = max(0, char.current_hp - effective_damage)
                 if guard_dr:
                     lines.append(f"{enemy_name} strikes! Guard absorbs {guard_dr} damage! {effective_damage} damage taken.")
@@ -962,6 +975,8 @@ class BurnwillowBridge:
                     lines.append(f"{enemy_name} strikes! Your shield absorbs the blow! (-{intercept_dr} DR bonus) {effective_damage} damage taken.")
                 else:
                     lines.append(f"{enemy_name} strikes you for {effective_damage} damage!")
+                    # Reaction: Hearthflare / Solflare — fire on being hit
+                    lines.extend(self._check_hearthflare(enemy_name, enemy))
                     # Affix: Thorns — reflect 1 damage on hit
                     # Named Legendary: Aegis Shield — full reflect
                     reflect_dmg = 0
@@ -1017,8 +1032,13 @@ class BurnwillowBridge:
                             save_mod = char.get_stat_mod(save_stat)
                             save_roll = roll_dice_pool(char.gear.get_total_dice_bonus(save_stat), save_mod, save_dc)
                             if not save_roll["success"]:
-                                msg = char.add_condition(cond)
-                                lines.append(f"  {msg} (failed {save_stat.value} save vs DC {save_dc})")
+                                # Reaction: Spore Adaptation / Choir Resonance
+                                spore_lines = self._check_spore_adaptation(char, cond, save_stat, save_dc)
+                                lines.extend(spore_lines)
+                                if not char.has_condition(cond):  # Reaction may have prevented it
+                                    if not any("succeeded" in l.lower() or "shields you" in l.lower() for l in spore_lines):
+                                        msg = char.add_condition(cond)
+                                        lines.append(f"  {msg} (failed {save_stat.value} save vs DC {save_dc})")
                         else:
                             msg = char.add_condition(cond)
                             lines.append(f"  {msg}")
@@ -1032,9 +1052,13 @@ class BurnwillowBridge:
                     if _emnarr:
                         lines.append(f"  {_emnarr}")
 
-        # Check death — Named Legendary intercepts
+        # Check death — Reactions first, then Named Legendary intercepts
         if not char.is_alive():
-            # Soulstone Amulet: revive once per campaign
+            # Reaction: Rootcatch / Blightgrasp — stabilize at 1
+            rootcatch_lines = self._check_rootcatch(char)
+            if rootcatch_lines:
+                lines.extend(rootcatch_lines)
+            # Soulstone Amulet: revive once per campaign (if still dead)
             amulet_slot = None
             for slot, item in char.gear.slots.items():
                 if item and item.name == "Soulstone Amulet":
@@ -1688,16 +1712,29 @@ class BurnwillowBridge:
     # TRAIT COMBO SYSTEM (#172)
     # ─────────────────────────────────────────────────────────────────────
 
-    # Combo registry: (setup_trait, payoff_trait) → description
+    # Combo registry: (setup_trait, payoff_trait) → themed name
     # Combos fire when payoff_trait is used while setup_trait's effect is active.
     _COMBO_REGISTRY: dict[tuple[str, str], str] = {
-        ("SNARE", "CLEAVE"):    "LOCKDOWN",       # Snared enemies take +1d6 cleave
-        ("SNARE", "RANGED"):    "PINNED TARGET",   # Snare lowers ranged DC
-        ("FLASH", "BACKSTAB"):  "BLIND STRIKE",    # Already double damage, add combo tag
-        ("FLASH", "SPELLSLOT"): "ARCANE EXPLOIT",  # Blinded enemies can't dodge spells
-        ("GUARD", "REFLECT"):   "IRON MIRROR",     # Reflect damage doubled after guard
-        ("CHARGE", "CLEAVE"):   "MOMENTUM",        # Charge bonus carries into cleave splash
-        ("LIGHT", "REVEAL"):    "ILLUMINATION",    # Light + reveal = bonus discovery range
+        # Natural combos (source-themed)
+        ("SNARE", "CLEAVE"):    "ROOT CRUSH",      # Rot + Wood: mycelium holds, branch strikes
+        ("SNARE", "RANGED"):    "PINNED PREY",     # Rot + Physical: tendrils hold, arrow finds
+        ("FLASH", "BACKSTAB"):  "EMBER SHADOW",    # Fire + Stealth: hearth-flash blinds, blade follows
+        ("FLASH", "SPELLSLOT"): "SUNBURST",        # Fire + Song: fire amplifies the song
+        ("GUARD", "REFLECT"):   "AMBER MIRROR",    # Amber + Amber: hardened sap rebounds
+        ("CHARGE", "CLEAVE"):   "TIMBER FALL",     # Wood + Wood: the whole tree comes down
+        ("LIGHT", "REVEAL"):    "SONG ECHO",       # Fire + Song: light carries the song
+        # Corrupted Choir combos (Zone 3+, Undergrove)
+        ("BLIGHTWEB", "CLEAVE"):  "BLIGHT CRUSH",  # Choir Rot + Wood: +1d6 AND Blighted
+        ("FLASH", "HELLFIRE"):    "SOLAR FLARE",   # Fire + Solheart: 2x AoE, hits allies
+        ("ICEWALL", "REFLECT"):   "ICE MIRROR",    # Ashenmere + Amber: 3x reflect, -1 DR
+        ("LIGHT", "CHOIR_CALL"):  "CHOIR PULSE",   # Fire + Choir: reveals floor, +1 Resonance
+        # Void combos (endgame)
+        ("NULLIFY", "WITHER"):  "UNRAVELING",      # Strip defenses then diminish: 2x wither
+        ("COLLAPSE", "INFERNO"): "EVENT HORIZON",   # Gravity + AoE: +50% to pinned targets
+        ("COLLAPSE", "TEMPEST"): "EVENT HORIZON",
+        ("COLLAPSE", "WHIRLWIND"): "EVENT HORIZON",
+        ("COLLAPSE", "SHOCKWAVE"): "EVENT HORIZON",
+        ("COLLAPSE", "HELLFIRE"): "EVENT HORIZON",
     }
 
     def _resolve_combo(self, current_trait: str, result: dict,
@@ -1714,13 +1751,23 @@ class BurnwillowBridge:
         if not combo_name:
             # Show combo hints for setup traits
             if current_trait == "SNARE" and result.get("success"):
-                lines.append("  -> Combo ready: CLEAVE or RANGED next for bonus!")
+                lines.append("  -> Combo ready: CLEAVE (Root Crush) or RANGED (Pinned Prey)!")
             elif current_trait == "FLASH" and result.get("success"):
-                lines.append("  -> Combo ready: BACKSTAB or SPELLSLOT next for bonus!")
+                lines.append("  -> Combo ready: BACKSTAB (Ember Shadow) or SPELLSLOT (Sunburst)!")
             elif current_trait == "GUARD":
-                lines.append("  -> Combo ready: REFLECT next to double reflected damage!")
+                lines.append("  -> Combo ready: REFLECT (Amber Mirror)!")
+            elif current_trait == "CHARGE" and result.get("success"):
+                lines.append("  -> Combo ready: CLEAVE (Timber Fall)!")
             elif current_trait == "LIGHT":
-                lines.append("  -> Combo ready: REVEAL next for extended discovery!")
+                lines.append("  -> Combo ready: REVEAL (Song Echo)!")
+            elif current_trait == "BLIGHTWEB" and result.get("success"):
+                lines.append("  -> Choir combo ready: CLEAVE (Blight Crush)!")
+            elif current_trait == "ICEWALL":
+                lines.append("  -> Choir combo ready: REFLECT (Ice Mirror)!")
+            elif current_trait == "NULLIFY" and result.get("success"):
+                lines.append("  -> Void combo ready: WITHER (Unraveling)!")
+            elif current_trait == "COLLAPSE" and result.get("success"):
+                lines.append("  -> Void combo ready: any AoE (Event Horizon)!")
             return lines
 
         lines.append(f"  >> COMBO: {combo_name}! ({setup} + {current_trait}) <<")
@@ -1813,13 +1860,13 @@ class BurnwillowBridge:
         elif combo_key == ("GUARD", "REFLECT"):
             # Double the reflect damage
             self._reflect_pending *= 2
-            lines.append(f"  -> Iron Mirror! Reflect damage doubled to {self._reflect_pending}!")
+            lines.append(f"  -> Amber Mirror! Reflect damage doubled to {self._reflect_pending}!")
 
         elif combo_key == ("CHARGE", "CLEAVE"):
             # Charge momentum carries into cleave splash targets
             bonus = self._pending_bonus_damage
             if bonus > 0:
-                lines.append(f"  -> Momentum! +{bonus} damage carries into cleave targets!")
+                lines.append(f"  -> Timber Fall! +{bonus} damage carries into cleave targets!")
                 if enemies:
                     for e in enemies[:result.get("cleave_targets", 1)]:
                         e["hp"] = e.get("hp", 5) - bonus
@@ -1836,7 +1883,7 @@ class BurnwillowBridge:
 
         elif combo_key == ("LIGHT", "REVEAL"):
             # Extended discovery: also reveal in adjacent rooms
-            lines.append("  -> Illumination! Reveal extends to adjacent rooms!")
+            lines.append("  -> Song Echo! Light carries the song, song reveals truth!")
             if self.engine.dungeon_graph:
                 room_data = self.engine.get_current_room()
                 if room_data:
@@ -1845,12 +1892,10 @@ class BurnwillowBridge:
                         for conn_id in geom.connections:
                             conn_room = self.engine.dungeon_graph.rooms.get(conn_id)
                             if conn_room:
-                                # Reveal secrets in adjacent rooms too
                                 if getattr(conn_room, 'is_secret', False):
                                     conn_room.is_secret = False
                                     rname = conn_room.name if hasattr(conn_room, 'name') else f"Room {conn_id}"
                                     lines.append(f"  -> Distant reveal: {rname}")
-                                # Also check one hop further
                                 if hasattr(conn_room, 'connections'):
                                     for far_id in conn_room.connections:
                                         far_room = self.engine.dungeon_graph.rooms.get(far_id)
@@ -1859,6 +1904,151 @@ class BurnwillowBridge:
                                             fname = far_room.name if hasattr(far_room, 'name') else f"Room {far_id}"
                                             lines.append(f"  -> Distant reveal: {fname}")
 
+        # ── Corrupted Choir Combos ──
+
+        elif combo_key == ("BLIGHTWEB", "CLEAVE"):
+            # Blight Crush: +1d6 AND targets gain Blighted
+            bonus = random.randint(1, 6)
+            lines.append(f"  -> Blight tendrils hold — the wood strikes! +{bonus} combo damage!")
+            char = self.engine.character
+            char.current_hp = max(0, char.current_hp - 1)
+            lines.append("  -> (Blight cost: -1 HP)")
+            if enemies:
+                for e in enemies[:result.get("cleave_targets", 1)]:
+                    e["hp"] = e.get("hp", 5) - bonus
+                    ename = e.get("name", "Enemy")
+                    lines.append(f"  -> {ename} takes {bonus} blight damage and is Blighted!")
+                    if e["hp"] <= 0:
+                        lines.append(f"  -> {ename} slain!")
+                if pop_room and isinstance(pop_room.content, dict):
+                    pop_room.content["enemies"] = [
+                        e for e in pop_room.content.get("enemies", [])
+                        if e.get("hp", 1) > 0
+                    ]
+            self._snared_enemies.clear()
+
+        elif combo_key == ("FLASH", "HELLFIRE"):
+            # Solar Flare: 2x AoE but hits allies
+            lines.append("  -> SOLAR FLARE! Uncontrollable blaze — enemies AND allies caught!")
+
+        elif combo_key == ("ICEWALL", "REFLECT"):
+            # Ice Mirror: 3x reflect but -1 DR permanent
+            self._reflect_pending *= 3
+            lines.append(f"  -> Ice Mirror! Reflect tripled to {self._reflect_pending}!")
+            lines.append("  -> WARNING: Your armor cracks. (-1 DR permanent)")
+            char = self.engine.character
+            # Find an armor piece and reduce its DR
+            for _slot, _item in char.gear.slots.items():
+                if _item and _item.damage_reduction > 0:
+                    _item.damage_reduction = max(0, _item.damage_reduction - 1)
+                    lines.append(f"  -> {_item.name} DR reduced to {_item.damage_reduction}.")
+                    break
+
+        elif combo_key == ("LIGHT", "CHOIR_CALL"):
+            # Choir Pulse: reveals floor but +1 Resonance
+            lines.append("  -> Choir Pulse! The changed song echoes through every room!")
+            lines.append("  -> Full floor revealed! (+1 Resonance exposure)")
+            if self.engine.dungeon_graph:
+                for room in self.engine.dungeon_graph.rooms.values():
+                    if hasattr(room, 'is_secret'):
+                        room.is_secret = False
+            self.engine.resonance_exposure = getattr(self.engine, 'resonance_exposure', 0) + 1
+
+        # ── Void Combos ──
+
+        elif combo_key == ("NULLIFY", "WITHER"):
+            # Unraveling: Wither's max HP reduction doubled
+            lines.append("  -> UNRAVELING! Defenses stripped — the withering cuts twice as deep!")
+            # The wither result's max_hp_reduction is already calculated;
+            # bridge will apply it doubled when handling wither effect
+
+        elif combo_name == "EVENT HORIZON":
+            # Collapse + any AoE: +50% damage to pinned targets
+            lines.append("  -> EVENT HORIZON! Everything was already in one place.")
+            # The AoE's damage gets a 50% bonus; handled by caller checking combo_name
+
+        return lines
+
+    # ─────────────────────────────────────────────────────────────────────
+    # REACTION SYSTEM — trigger-prompted abilities
+    # ─────────────────────────────────────────────────────────────────────
+
+    def _find_reaction_trait(self, trait_id: str) -> bool:
+        """Check if any party member has an item with the given reaction trait."""
+        for ally in self.engine.party:
+            if ally.is_alive():
+                for item in ally.gear.slots.values():
+                    if item and any(trait_id.lower() in t.lower() for t in item.special_traits):
+                        return True
+        return False
+
+    def _check_hearthflare(self, attacker_name: str, enemy: dict) -> list[str]:
+        """Fire reaction: when you take damage, attacker takes 1d4 fire."""
+        lines = []
+        if self._find_reaction_trait("Hearthflare"):
+            dmg = random.randint(1, 4)
+            enemy["hp"] = enemy.get("hp", 5) - dmg
+            lines.append(f"  HEARTHFLARE! Ember burst sears {attacker_name} for {dmg} fire!")
+        elif self._find_reaction_trait("Solflare"):
+            # Choir version: 2d6 but hits allies too
+            dmg = sum(random.randint(1, 6) for _ in range(2))
+            enemy["hp"] = enemy.get("hp", 5) - dmg
+            lines.append(f"  SOLFLARE! Uncontrollable blaze — {dmg} fire to {attacker_name}!")
+            # Also damages party
+            char = self.engine.character
+            char.current_hp = max(1, char.current_hp - dmg)
+            lines.append(f"  Solflare backlash! You take {dmg} fire too!")
+        return lines
+
+    def _check_rootcatch(self, fallen_ally) -> list[str]:
+        """Root/Wood reaction: ally at 0 HP stabilizes at 1. Once per encounter."""
+        lines = []
+        if getattr(self, '_rootcatch_used', False):
+            return lines
+        if self._find_reaction_trait("Rootcatch"):
+            fallen_ally.current_hp = 1
+            self._rootcatch_used = True
+            lines.append(f"  ROOTCATCH! Roots surge up and catch {fallen_ally.name} at 1 HP!")
+        elif self._find_reaction_trait("Blightgrasp"):
+            fallen_ally.current_hp = 1
+            fallen_ally.add_condition(Condition.BLIGHTED)
+            self._rootcatch_used = True
+            lines.append(f"  BLIGHTGRASP! Dark roots save {fallen_ally.name}... but Blight seeps in.")
+        return lines
+
+    def _check_spore_adaptation(self, char, cond: "Condition", save_stat, save_dc) -> list[str]:
+        """Rot reaction: reroll failed poison/Blight save with +2."""
+        lines = []
+        blight_like = cond in (Condition.BLIGHTED, Condition.POISONED, Condition.SPORE_SICK)
+        if not blight_like:
+            return lines
+        if self._find_reaction_trait("Spore_Adaptation"):
+            reroll = roll_dice_pool(char.gear.get_total_dice_bonus(save_stat),
+                                    char.get_stat_mod(save_stat) + 2, save_dc)
+            if reroll["success"]:
+                lines.append(f"  SPORE ADAPTATION! Mycelium metabolizes the toxin. Save succeeded!")
+                return lines  # Caller should skip condition application
+            lines.append(f"  Spore Adaptation: reroll failed ({reroll['total']} vs DC {save_dc}).")
+        elif self._find_reaction_trait("Choir_Resonance"):
+            lines.append(f"  CHOIR RESONANCE! The changed song shields you. (+1 Resonance)")
+            self.engine.resonance_exposure = getattr(self.engine, 'resonance_exposure', 0) + 1
+            return lines  # Auto-succeed, caller skips condition
+        return lines
+
+    def _check_harmonic(self, ally, check_result: dict, stat: "StatType", dc: int) -> list[str]:
+        """Root-Song reaction: ally fails a check, grant +1d6 retroactive assist."""
+        lines = []
+        if check_result.get("success"):
+            return lines  # Only triggers on failure
+        if self._find_reaction_trait("Harmonic"):
+            bonus = random.randint(1, 6)
+            new_total = check_result["total"] + bonus
+            if new_total >= dc:
+                lines.append(f"  HARMONIC! Your song lifts them. +{bonus} → {new_total} vs DC {dc}: SUCCESS!")
+                check_result["success"] = True
+                check_result["total"] = new_total
+            else:
+                lines.append(f"  Harmonic: +{bonus} → {new_total} vs DC {dc}: still short.")
         return lines
 
     # ─────────────────────────────────────────────────────────────────────
