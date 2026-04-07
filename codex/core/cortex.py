@@ -278,15 +278,16 @@ class Cortex:
         return "OK"
 
     def _flush_vram(self):
-        """Force-unload non-essential models from Ollama VRAM.
+        """Force-unload non-essential models from memory.
 
-        Sends keep_alive=0 to Ollama for Llama and Coder models,
+        Sends keep_alive=0 to Ollama for the Coder model,
         causing immediate eviction. Mimir (persona model) is retained.
+        Also unloads LiteRT-LM Gemma 4 engine if loaded.
 
         WO-V31.0: Homeostatic Guard — VRAM flush on RAM DANGER.
         """
         import requests as _requests
-        for model in ["llama3.2:1b", "qwen2.5-coder:1.5b"]:
+        for model in ["qwen2.5-coder:1.5b"]:
             try:
                 _requests.post(
                     "http://localhost:11434/api/generate",
@@ -295,6 +296,15 @@ class Cortex:
                 )
             except Exception:
                 pass  # Best-effort flush
+
+        # Unload LiteRT-LM engine (frees ~350MB hard + ~1.2GB page cache)
+        try:
+            from codex.core.services.litert_engine import get_litert_engine
+            engine = get_litert_engine()
+            if engine.is_loaded:
+                engine.unload()
+        except Exception:
+            pass  # Best-effort flush
 
     def get_system_prompt_modifier(self) -> str:
         """

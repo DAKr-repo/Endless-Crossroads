@@ -3,14 +3,14 @@ codex_architect.py - The Mind (Sovereign Trinity Router)
 
 The Architect routes queries across the Sovereign Trinity:
   - Mimir (qwen2.5:0.5b)  — The Voice / Reflex & Narrator
-  - Codex (qwen3:1.7b)    — The Philosopher / Academy (thermal-gated)
+  - Codex (gemma4:e2b)     — The Philosopher / Academy (LiteRT-LM, thermal-gated)
   - Experimental (qwen2.5-coder:1.5b) — The Experimenter (sandboxed, explicit only)
 
 EXPERIMENTAL model is quarantined: never auto-routed during gameplay.
 Only reachable via explicit !code command or direct API call.
 
-This implements the core intelligence routing that makes C.O.D.E.X.
-adaptive to both cognitive demands and physical constraints.
+Academy model runs via LiteRT-LM (not Ollama) for 5x less RAM and
+50% faster decode on CM5. See codex/core/services/litert_engine.py.
 """
 
 import asyncio
@@ -109,8 +109,7 @@ class ArchitectConfig:
 
     # Sovereign Trinity — model identifiers
     MODEL_REFLEX = "mimir"              # The Voice — fast persona (qwen2.5:0.5b, 397MB)
-    MODEL_ACADEMY = "codex"             # The Philosopher — deep reasoning (qwen3:1.7b, 1.4GB)
-    MODEL_NARRATIVE = "mimir"           # The Narrator — persona & voice (qwen2.5:0.5b)
+    MODEL_ACADEMY = "codex"             # The Philosopher — deep reasoning (gemma4:e2b via LiteRT-LM, ~350MB)
     MODEL_EXPERIMENTAL = "qwen2.5-coder:1.5b"  # The Experimenter — sandboxed, explicit request only
 
     # Sandbox for coder output
@@ -239,6 +238,9 @@ class ComplexityAnalyzer:
 
 _NUM_PREDICT = {"mimir": -2, "codex": 400, "qwen2.5-coder:1.5b": 300}
 # -2 = use Modelfile default (120 for mimir); codex caps at 400; coder at 300
+
+# Models routed through LiteRT-LM instead of Ollama
+_LITERT_MODELS: set[str] = {"codex"}
 
 
 class Architect:
@@ -478,11 +480,15 @@ class Architect:
         timeout_ms: int = 30000
     ) -> tuple[str, Optional[str], int]:
         """
-        Call Ollama API.
+        Call model API (LiteRT-LM or Ollama).
 
         Returns:
             (response_content, thinking_trace, token_count)
         """
+        # Route LiteRT-LM models through the dedicated engine
+        if model in _LITERT_MODELS:
+            return await self._call_litert(model, prompt, system)
+
         session = await self._get_session()
 
         num_predict = _NUM_PREDICT.get(model, 300)
@@ -535,6 +541,38 @@ class Architect:
         except Exception as e:
             return f"[Unexpected error: {e}]", None, 0
 
+    async def _call_litert(
+        self,
+        model: str,
+        prompt: str,
+        system: str = "",
+    ) -> tuple[str, Optional[str], int]:
+        """Call LiteRT-LM engine for Gemma 4 models.
+
+        Returns:
+            (response_content, thinking_trace, token_count)
+        """
+        from codex.core.services.litert_engine import get_litert_engine
+
+        max_tokens = _NUM_PREDICT.get(model, 400)
+
+        # Hard thermal pain reflex
+        metabolic = self.cortex.read_metabolic_state()
+        if metabolic.thermal_status == ThermalStatus.CRITICAL:
+            max_tokens = 150
+
+        try:
+            engine = get_litert_engine()
+            content, tokens = await engine.generate(
+                prompt=prompt,
+                system=system,
+                max_tokens=max_tokens,
+            )
+            # Gemma 4 doesn't use <think> blocks — no trace extraction needed
+            return content, None, tokens
+        except Exception as e:
+            return f"[LiteRT-LM error: {e}]", None, 0
+
     async def invoke_stream(
         self,
         query: str,
@@ -551,6 +589,14 @@ class Architect:
 
         thermal_modifier = self.cortex.get_system_prompt_modifier()
         full_system_prompt = thermal_modifier + system_prompt
+
+        # Route LiteRT-LM models through dedicated streaming path
+        if decision.model in _LITERT_MODELS:
+            async for chunk in self._stream_litert(
+                query, full_system_prompt
+            ):
+                yield chunk
+            return
 
         if decision.mode == ThinkingMode.ACADEMY:
             timeout = self.config.ACADEMY_TIMEOUT_MS
@@ -619,6 +665,23 @@ class Architect:
             yield "[Response timeout]"
         except Exception as e:
             yield f"[Error: {e}]"
+
+    async def _stream_litert(
+        self,
+        prompt: str,
+        system: str = "",
+    ) -> AsyncIterator[str]:
+        """Stream response from LiteRT-LM Gemma 4."""
+        from codex.core.services.litert_engine import get_litert_engine
+
+        try:
+            engine = get_litert_engine()
+            async for chunk in engine.generate_stream(
+                prompt=prompt, system=system
+            ):
+                yield chunk
+        except Exception as e:
+            yield f"[LiteRT-LM error: {e}]"
 
     def get_routing_report(self, query: str) -> str:
         """

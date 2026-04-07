@@ -18,6 +18,7 @@ from rich import box
 
 from codex.games.burnwillow.engine import (
     Character, GearSlot, GearItem, GearGrid, calculate_stat_mod,
+    GEAR_SETS, AFFIX_PREFIXES, AFFIX_SUFFIXES, NAMED_LEGENDARY_ABILITIES,
 )
 
 # BURNWILLOW COLOR PALETTE (Bioluminescent Decay)
@@ -232,17 +233,25 @@ def render_dual_backpack(character: Character, width: int = 40) -> Panel:
     )
 
 
-def render_item_detail(item: GearItem) -> Panel:
+def render_item_detail(item: GearItem, gear_grid: Optional[GearGrid] = None) -> Panel:
     """Render a detailed inspection of a single item.
+
+    Shows: display name with affixes, stats, prefix/suffix effects,
+    gear set membership with progress, combo hints, and named legendary abilities.
 
     Args:
         item: The GearItem to inspect.
+        gear_grid: Optional gear grid for set progress display.
 
     Returns:
-        Rich Panel with full item stats and description.
+        Rich Panel with full item stats, synergy, and description.
     """
     lines = Text()
-    lines.append(f"{item.name}\n", style=WILLOW_GOLD + " bold")
+
+    # Display name with affixes
+    display_name = item.get_display_name()
+    lines.append(f"{display_name}\n", style=WILLOW_GOLD + " bold")
+
     tier_val = item.tier.value if hasattr(item.tier, 'value') else item.tier
     lines.append(f"Slot: {item.slot.value}  |  Tier: {tier_val}\n", style=BONE_WHITE)
     lines.append("Dice: ", style=BONE_WHITE)
@@ -258,6 +267,95 @@ def render_item_detail(item: GearItem) -> Panel:
         lines.append(f"Traits: {', '.join(item.special_traits)}\n", style=FUNGAL_CYAN)
     if item.two_handed:
         lines.append("Two-Handed\n", style=EMBER_RUST)
+
+    # Prefix effect details
+    if item.prefix and item.prefix in AFFIX_PREFIXES:
+        fx = AFFIX_PREFIXES[item.prefix]
+        fx_parts = []
+        if fx.get("on_hit_fire"):
+            fx_parts.append(f"On hit: {fx['on_hit_fire']} fire")
+        if fx.get("slow_chance"):
+            fx_parts.append(f"{int(fx['slow_chance'] * 100)}% slow")
+        if fx.get("heal_on_kill"):
+            fx_parts.append(f"Heal {fx['heal_on_kill']} on kill")
+        if fx.get("crit_range"):
+            fx_parts.append(f"Crit on {fx['crit_range']}")
+        if fx.get("bonus_damage"):
+            fx_parts.append(f"+{fx['bonus_damage']} dmg")
+        if fx.get("self_damage_on_fumble"):
+            fx_parts.append(f"Self-dmg {fx['self_damage_on_fumble']} on fumble")
+        if fx.get("dr_if_stationary"):
+            fx_parts.append(f"+{fx['dr_if_stationary']} DR when stationary")
+        if fx_parts:
+            lines.append(f"Prefix [{item.prefix}]: {', '.join(fx_parts)}\n", style=SHADOW_PURPLE)
+
+    # Suffix effect details
+    if item.suffix and item.suffix in AFFIX_SUFFIXES:
+        fx = AFFIX_SUFFIXES[item.suffix]
+        fx_parts = []
+        if fx.get("aether_pool_bonus"):
+            fx_parts.append(f"+{fx['aether_pool_bonus']} Aether pool")
+        if fx.get("extra_movement"):
+            fx_parts.append(f"+{fx['extra_movement']} movement")
+        if fx.get("reflect_damage"):
+            fx_parts.append(f"Reflect {fx['reflect_damage']} on hit")
+        if fx.get("regen_per_room"):
+            fx_parts.append(f"Regen {fx['regen_per_room']} HP/room")
+        if fx.get("blight_resistance"):
+            fx_parts.append("Blight resistance")
+        if fx_parts:
+            lines.append(f"Suffix [{item.suffix}]: {', '.join(fx_parts)}\n", style=SHADOW_PURPLE)
+
+    # Gear set membership + progress
+    if item.set_id and item.set_id in GEAR_SETS:
+        set_def = GEAR_SETS[item.set_id]
+        set_name = set_def["name"]
+        total_pieces = max(set_def.get("bonuses", {}).keys(), default=0)
+        equipped_count = 0
+        if gear_grid:
+            for slot_item in gear_grid.slots.values():
+                if slot_item and slot_item.set_id == item.set_id:
+                    equipped_count += 1
+        lines.append(f"\nSet: {set_name}", style=WILLOW_GOLD)
+        if gear_grid:
+            lines.append(f" ({equipped_count}/{total_pieces})\n", style=BONE_WHITE)
+        else:
+            lines.append("\n")
+        for threshold, bonus in sorted(set_def.get("bonuses", {}).items()):
+            active = gear_grid is not None and equipped_count >= threshold
+            marker = ">>>" if active else "   "
+            style = FUNGAL_CYAN if active else BONE_WHITE + " dim"
+            lines.append(f"  {marker} {threshold}pc: {bonus.get('description', '?')}\n", style=style)
+
+    # Named legendary ability
+    if item.name in NAMED_LEGENDARY_ABILITIES:
+        ability = NAMED_LEGENDARY_ABILITIES[item.name]
+        lines.append(f"\nLegendary: {ability['description']}\n", style=EMBER_RUST + " bold")
+
+    # Combo hints from traits
+    _COMBO_SETUPS = {
+        "SNARE": ["CLEAVE (+1d6 bonus)", "RANGED (DC reduction)"],
+        "FLASH": ["BACKSTAB (double damage)", "SPELLSLOT (DC -3)"],
+        "GUARD": ["REFLECT (double reflect)"],
+        "CHARGE": ["CLEAVE (momentum splash)"],
+        "LIGHT": ["REVEAL (extended range)"],
+    }
+    _COMBO_PAYOFFS = {
+        "CLEAVE": "from SNARE or CHARGE",
+        "RANGED": "from SNARE",
+        "BACKSTAB": "from FLASH",
+        "SPELLSLOT": "from FLASH",
+        "REFLECT": "from GUARD",
+        "REVEAL": "from LIGHT",
+    }
+    for trait in item.special_traits:
+        clean = trait.strip("[]").upper().replace(" ", "_")
+        if clean in _COMBO_SETUPS:
+            combos = ", ".join(_COMBO_SETUPS[clean])
+            lines.append(f"Combo: {clean} -> {combos}\n", style=DECAY_GREEN)
+        elif clean in _COMBO_PAYOFFS:
+            lines.append(f"Combo: {clean} (bonus {_COMBO_PAYOFFS[clean]})\n", style=DECAY_GREEN)
+
     if item.description:
         lines.append(f"\n{item.description}\n", style=BONE_WHITE + " italic")
 

@@ -296,12 +296,70 @@ class GenericAutopilotAgent:
 
     # ─── Hybrid LLM Narration ──────────────────────────────────────────
 
-    def narrate_action(self, action: str, engine, context: str = "") -> str:
-        """Generate narrative text for a companion action via mimir.
+    def _native_role(self) -> str:
+        """Resolve the system-native role name for this companion."""
+        try:
+            from codex.core.companion_maps import get_native_role
+            return get_native_role(self.system_tag.lower(), self.personality.archetype)
+        except Exception:
+            return self.personality.archetype
 
-        Uses Ollama/mimir for narrative moments when available. Falls back
-        to static templates from companion_maps if mimir is unavailable
-        (timeout, thermal throttle, import error).
+    def companion_dialogue(self, context: str, event: str = "") -> str:
+        """Generate in-character companion dialogue via Gemma 4 E2B.
+
+        Uses LiteRT-LM for quality dialogue when thermal status is GREEN.
+        Returns empty string if thermal-gated or engine unavailable.
+        Uses system-native role names (playbook/class/order) in the prompt.
+
+        Args:
+            context: Current scene description / situation.
+            event: What just happened (combat result, discovery, etc.)
+
+        Returns:
+            In-character dialogue string, or empty string.
+        """
+        # Thermal gate — companion dialogue is a luxury, not a necessity
+        try:
+            from codex.core.cortex import get_cortex, ThermalStatus
+            cortex = get_cortex()
+            metabolic = cortex.read_metabolic_state()
+            if metabolic.thermal_status != ThermalStatus.OPTIMAL:
+                return ""
+        except Exception:
+            pass  # If cortex unavailable, allow anyway
+
+        comp_name = self.personality.name or "Companion"
+        p = self.get_effective_personality()
+        native_role = self._native_role()
+
+        system = (
+            f"You are {comp_name}, a {native_role}. "
+            f"{p.description} Quirk: {p.quirk}\n"
+            f"Speak in character. One or two sentences max. "
+            f"Never break character or mention game mechanics."
+        )
+        prompt = f"Scene: {context}"
+        if event:
+            prompt += f"\nWhat just happened: {event}"
+        prompt += f"\nWhat does {comp_name} say?"
+
+        try:
+            from codex.core.services.litert_engine import get_litert_engine
+            engine = get_litert_engine()
+            text, _tokens = engine.generate_sync(
+                prompt=prompt, system=system, max_tokens=80
+            )
+            return text.strip() if text else ""
+        except Exception:
+            return ""
+
+    def narrate_action(self, action: str, engine, context: str = "") -> str:
+        """Generate narrative text for a companion action.
+
+        Priority:
+        1. Gemma 4 via companion_dialogue() — quality, thermal-gated
+        2. Mimir via query_mimir() — fast reflex fallback
+        3. Static templates from companion_maps
 
         Args:
             action: The action string (e.g. "attack 0", "guard", "search").
@@ -314,6 +372,15 @@ class GenericAutopilotAgent:
         comp_name = self.personality.name or "Companion"
         verb = action.split()[0] if action else "act"
 
+        # Try Gemma 4 first (thermal-gated)
+        dialogue = self.companion_dialogue(
+            context=context or "exploring a dungeon",
+            event=f"{comp_name} decided to {action}",
+        )
+        if dialogue:
+            return dialogue
+
+        # Fallback to mimir (always available, fast)
         try:
             from codex.integrations.mimir import query_mimir
             prompt = (

@@ -114,6 +114,75 @@ class TestItemDetail:
         panel = render_item_detail(item)
         assert isinstance(panel, Panel)
 
+    def test_display_name_with_affixes(self):
+        item = _make_gear_item("Longsword", GearSlot.R_HAND, tier=2)
+        item.prefix = "Blazing"
+        item.suffix = "of the Canopy"
+        panel = render_item_detail(item)
+        console = Console(file=__import__("io").StringIO(), force_terminal=True, width=80)
+        with console.capture() as capture:
+            console.print(panel)
+        output = capture.get()
+        assert "Blazing" in output
+        assert "Canopy" in output
+
+    def test_prefix_effect_shown(self):
+        item = _make_gear_item("Axe", GearSlot.R_HAND, tier=2)
+        item.prefix = "Vampiric"
+        console = Console(file=__import__("io").StringIO(), force_terminal=True, width=80)
+        with console.capture() as capture:
+            console.print(render_item_detail(item))
+        output = capture.get()
+        assert "Heal" in output and "kill" in output
+
+    def test_suffix_effect_shown(self):
+        item = _make_gear_item("Ring", GearSlot.R_RING, tier=2)
+        item.suffix = "of Thorns"
+        console = Console(file=__import__("io").StringIO(), force_terminal=True, width=80)
+        with console.capture() as capture:
+            console.print(render_item_detail(item))
+        output = capture.get()
+        assert "Reflect" in output
+
+    def test_gear_set_progress_shown(self):
+        item1 = _make_gear_item("Warden Helm", GearSlot.HEAD, tier=3)
+        item1.set_id = "wardens_watch"
+        item2 = _make_gear_item("Warden Shield", GearSlot.L_HAND, tier=3)
+        item2.set_id = "wardens_watch"
+        grid = GearGrid()
+        grid.equip(item1)
+        grid.equip(item2)
+        console = Console(file=__import__("io").StringIO(), force_terminal=True, width=80)
+        with console.capture() as capture:
+            console.print(render_item_detail(item1, gear_grid=grid))
+        output = capture.get()
+        assert "Warden" in output
+        assert "2/" in output  # Shows 2/X progress
+
+    def test_named_legendary_ability_shown(self):
+        item = _make_gear_item("Sun-Cleaver", GearSlot.R_HAND, tier=4)
+        console = Console(file=__import__("io").StringIO(), force_terminal=True, width=80)
+        with console.capture() as capture:
+            console.print(render_item_detail(item))
+        output = capture.get()
+        assert "Ember Momentum" in output
+
+    def test_combo_hints_for_setup_trait(self):
+        item = _make_gear_item("Net", GearSlot.R_HAND, tier=2, traits=["[Snare]"])
+        console = Console(file=__import__("io").StringIO(), force_terminal=True, width=80)
+        with console.capture() as capture:
+            console.print(render_item_detail(item))
+        output = capture.get()
+        assert "CLEAVE" in output or "RANGED" in output
+
+    def test_combo_hints_for_payoff_trait(self):
+        item = _make_gear_item("Axe", GearSlot.R_HAND, tier=2, traits=["[Cleave]"])
+        console = Console(file=__import__("io").StringIO(), force_terminal=True, width=80)
+        with console.capture() as capture:
+            console.print(render_item_detail(item))
+        output = capture.get()
+        assert "SNARE" in output or "CHARGE" in output
+
 
 class TestDualBackpack:
     def test_empty_backpack(self):

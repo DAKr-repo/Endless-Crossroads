@@ -165,6 +165,32 @@
       ],
       "timestamp": "2026-03-14T09:23:08",
       "id": "seed_922613"
+    },
+    {
+      "seed_value": 647242,
+      "dungeon_type": "burnwillow",
+      "level_number": 3,
+      "total_rooms": 8,
+      "start_room": null,
+      "system_id": "burnwillow",
+      "party": [
+        "Sol Nyshka"
+      ],
+      "timestamp": "2026-03-29T15:03:50",
+      "id": "seed_647242"
+    },
+    {
+      "seed_value": 691392,
+      "dungeon_type": "burnwillow",
+      "level_number": 3,
+      "total_rooms": 7,
+      "start_room": null,
+      "system_id": "burnwillow",
+      "party": [
+        "Sol Nyshka"
+      ],
+      "timestamp": "2026-04-05T15:25:58",
+      "id": "seed_691392"
     }
   ]
 }

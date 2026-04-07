@@ -334,9 +334,9 @@ def generate_encounter(
 # =============================================================================
 
 def summarize_context(history_text: str) -> str:
-    """Compress session history into bullet points using Ollama.
+    """Compress session history into bullet points using Gemma 4 via LiteRT-LM.
 
-    Falls back gracefully if Ollama is unavailable or times out.
+    Falls back gracefully if the engine is unavailable.
 
     Args:
         history_text: Raw session log text to summarize.
@@ -347,28 +347,16 @@ def summarize_context(history_text: str) -> str:
     if not history_text.strip():
         return "No session notes to summarize."
 
-    payload = {
-        "model": "qwen2.5-coder:1.5b",
-        "prompt": (
-            "Summarize this RPG session log into 3 concise bullet points:\n"
-            f"{history_text[:2000]}"
-        ),
-        "stream": False,
-        "options": {"num_predict": 150},
-    }
+    prompt = (
+        "Summarize this RPG session log into 3 concise bullet points:\n"
+        f"{history_text[:2000]}"
+    )
 
     try:
-        r = requests.post(
-            OLLAMA_GEN_URL,
-            json=payload,
-            timeout=OLLAMA_TIMEOUT,
-        )
-        r.raise_for_status()
-        return r.json().get("response", "Summary generation returned empty.")
-    except requests.Timeout:
-        return "Summary unavailable — Ollama timed out."
-    except requests.ConnectionError:
-        return "Summary unavailable — Ollama not running."
+        from codex.core.services.litert_engine import get_litert_engine
+        engine = get_litert_engine()
+        text, _tokens = engine.generate_sync(prompt=prompt, max_tokens=150)
+        return text or "Summary generation returned empty."
     except Exception as e:
         return f"Summary unavailable — {e}"
 
@@ -440,15 +428,15 @@ def lookup_creature(name: str, system_tag: str = "BURNWILLOW") -> str:
 # =============================================================================
 
 def query_codex(question: str, system_id: str = "") -> str:
-    """RAG-enriched query to Codex model (qwen3:1.7b).
+    """RAG-enriched query to Codex model (Gemma 4 E2B via LiteRT-LM).
 
     Keeps Mimir free for narration by routing DM queries to the
-    Academy/Codex model via Ollama.
+    Academy/Codex model via LiteRT-LM.
 
     Flow:
     1. If system_id -> RAGService.search() for context chunks
     2. Build prompt: CONTEXT + QUESTION
-    3. Call Ollama model="codex", num_predict=400, timeout=30s
+    3. Call Gemma 4 via LiteRT-LM, max_tokens=400
     4. Return response text (graceful fallback on error)
 
     Args:
@@ -483,26 +471,12 @@ def query_codex(question: str, system_id: str = "") -> str:
     parts.append("Answer concisely as a TTRPG rules expert.")
     prompt = "\n".join(parts)
 
-    # 3. Call Ollama
-    payload = {
-        "model": "codex",
-        "prompt": prompt,
-        "stream": False,
-        "options": {"num_predict": 400},
-    }
-
+    # 3. Call Gemma 4 via LiteRT-LM
     try:
-        r = requests.post(
-            OLLAMA_GEN_URL,
-            json=payload,
-            timeout=OLLAMA_TIMEOUT,
-        )
-        r.raise_for_status()
-        return r.json().get("response", "Codex returned empty response.")
-    except requests.Timeout:
-        return "Codex query timed out — Ollama busy."
-    except requests.ConnectionError:
-        return "Codex unavailable — Ollama not running."
+        from codex.core.services.litert_engine import get_litert_engine
+        engine = get_litert_engine()
+        text, _tokens = engine.generate_sync(prompt=prompt, max_tokens=400)
+        return text or "Codex returned empty response."
     except Exception as e:
         return f"Codex query failed — {e}"
 

@@ -7141,9 +7141,9 @@ def _game_loop_inner(state: GameState, butler=None):
                 if char and char.gear_grid:  # type: ignore[attr-defined]
                     for slot, item in char.gear_grid.slots.items():  # type: ignore[attr-defined]
                         if item and (search in item.name.lower() or search in slot.name.lower()):
-                            detail = render_item_detail(item)
+                            detail = render_item_detail(item, char.gear_grid)  # type: ignore[attr-defined]
                             state.push_sidebar(detail)  # type: ignore[arg-type]
-                            new_messages = [f"Inspecting {item.name} -- see sidebar."]
+                            new_messages = [f"Inspecting {item.get_display_name()} -- see sidebar."]
                             found = True
                             break
                 if not found:

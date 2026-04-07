@@ -188,6 +188,7 @@ class BurnwillowBridge:
         self._guard_dr_remaining: int = 0   # [Guard] self-DR until next turn
         self._reflect_pending: int = 0      # [Reflect] damage returned on next hit taken
         self._pending_bonus_damage: int = 0  # [Charge] bonus damage on next attack
+        self._first_attack_in_room: bool = True  # Shadowweave 4pc tracking
         self.last_frame: StateFrame | None = None
         self._broadcast = broadcast_manager
         # Universal Narrative Bridge
@@ -508,6 +509,7 @@ class BurnwillowBridge:
         self._snared_enemies.clear()
         self._blinded_enemies.clear()
         self._snare_reduction = 0
+        self._first_attack_in_room = True  # Shadowweave 4pc: first attack crits
 
         # Room lighting: decrement [Light] duration, check darkness
         pop_room = self.engine.populated_rooms.get(self.engine.current_room_id)
@@ -783,12 +785,27 @@ class BurnwillowBridge:
         if _assisted:
             self._assist_pending = False
 
+        # Gear set bonuses that affect attack rolls
+        _set_bonuses = char.gear.get_active_set_bonuses()
+
+        # Shadowweave 4pc: First attack each combat auto-crits
+        _shadow_first_crit = self._first_attack_in_room and any(
+            b.get("first_attack_crit") for b in _set_bonuses.values()
+        )
+
         # Passive threshold: auto-hit weak enemies
         if passive_check(might_mod, enemy_defense):
-            result = {"success": True, "total": might_mod + 1, "rolls": [], "modifier": might_mod, "dc": enemy_defense, "crit": False, "fumble": False}
+            result = {"success": True, "total": might_mod + 1, "rolls": [], "modifier": might_mod, "dc": enemy_defense, "crit": _shadow_first_crit, "fumble": False}
             lines.append(f"Your gear outclasses {enemy_name}. (Auto-hit)")
         else:
             result = roll_dice_pool(dice_count, might_mod, enemy_defense, assist=_assisted)
+
+        # Shadowweave 4pc: force crit on first attack
+        if _shadow_first_crit and result["success"] and not result.get("crit"):
+            result["crit"] = True
+            lines.append("  Shadowweave: First strike is lethal!")
+
+        self._first_attack_in_room = False
 
         if result["success"]:
             # Deal damage based on weapon tier
@@ -804,6 +821,13 @@ class BurnwillowBridge:
             # Named Legendary: Sun-Cleaver stacking damage
             if self._sun_cleaver_kills > 0 and weapon and weapon.name == "Sun-Cleaver":
                 damage += self._sun_cleaver_kills
+
+            # Rot Hunter 3pc: +2 damage vs Blighted enemies
+            _enemy_blighted = isinstance(enemy, dict) and "Blighted" in enemy.get("special", "")
+            if _enemy_blighted and any(b.get("bonus_vs_blighted") for b in _set_bonuses.values()):
+                rot_bonus = sum(b.get("bonus_vs_blighted", 0) for b in _set_bonuses.values())
+                damage += rot_bonus
+                lines.append(f"  Rot Hunter: +{rot_bonus} vs Blighted!")
 
             enemy_hp -= damage
 
@@ -861,6 +885,12 @@ class BurnwillowBridge:
                     healed = char.heal(1)
                     if healed > 0:
                         lines.append(f"  Vampiric drain! (+{healed} HP)")
+                # Rot Hunter 4pc: heal 1d6 on Blighted kill
+                if _enemy_blighted and any(b.get("heal_on_blighted_kill") for b in _set_bonuses.values()):
+                    rot_heal = random.randint(1, 6)
+                    actual_heal = char.heal(rot_heal)
+                    if actual_heal > 0:
+                        lines.append(f"  Rot Hunter: Blight energy heals {actual_heal} HP!")
                 # Named Legendary: on_kill effects
                 if weapon and weapon.name in NAMED_LEGENDARY_ABILITIES:
                     leg = NAMED_LEGENDARY_ABILITIES[weapon.name]
@@ -922,6 +952,10 @@ class BurnwillowBridge:
                 char.current_hp = max(0, char.current_hp - effective_damage)
                 if guard_dr:
                     lines.append(f"{enemy_name} strikes! Guard absorbs {guard_dr} damage! {effective_damage} damage taken.")
+                    # Warden's Watch 4pc: on block, allies get +1d6 next attack
+                    if any(b.get("on_block_ally_bonus") for b in _set_bonuses.values()):
+                        self._pending_bonus_damage += 1
+                        lines.append(f"  Warden's Watch: Allies rallied! +1d6 next attack.")
                 elif intercept_dr:
                     char._intercept_active = False
                     char._intercept_dr_bonus = 0
@@ -968,6 +1002,12 @@ class BurnwillowBridge:
                 }
                 for keyword, cond in _CONDITION_KEYWORDS.items():
                     if keyword in enemy_special and not char.has_condition(cond):
+                        # Rot Hunter 2pc: resist Blight passively
+                        if cond == Condition.BLIGHTED and any(
+                            b.get("resist_blight") for b in _set_bonuses.values()
+                        ):
+                            lines.append("  Rot Hunter: Blight resisted!")
+                            break
                         # Check for a DC save if mentioned (e.g., "DC 11 Grit")
                         import re
                         dc_match = re.search(r'DC\s*(\d+)\s*(Might|Wits|Grit|Aether)', enemy_special)
@@ -1062,6 +1102,15 @@ class BurnwillowBridge:
             char.current_hp = max(0, char.current_hp - poison_dmg)
             lines.append(f"Poison courses through you. (-{poison_dmg} HP)")
 
+        # Moonstone 4pc: party regen 1 HP/round in combat
+        regen_amount = sum(b.get("party_regen", 0) for b in _set_bonuses.values())
+        if regen_amount > 0 and char.is_alive():
+            for ally in self.engine.party:
+                if ally.is_alive() and ally.current_hp < ally.max_hp:
+                    actual = ally.heal(regen_amount)
+                    if actual > 0:
+                        lines.append(f"  Moonstone Circle: {ally.name} regenerates {actual} HP.")
+
         lines.append("")
         lines.append(self._status_line())
         return "\n".join(lines)
@@ -1075,6 +1124,11 @@ class BurnwillowBridge:
         char = self.engine.character
         wits_mod = char.get_stat_mod(StatType.WITS)
         dice_count = char.gear.get_total_dice_bonus(StatType.WITS)
+
+        # Shadowweave 2pc: +2 Scout bonus
+        _set_bonuses = char.gear.get_active_set_bonuses()
+        scout_bonus = sum(b.get("scout_bonus", 0) for b in _set_bonuses.values())
+        wits_mod += scout_bonus
 
         # Darkness penalty: -1d6 in dark rooms with no light
         pop_room = self.engine.populated_rooms.get(self.engine.current_room_id)
@@ -1416,6 +1470,10 @@ class BurnwillowBridge:
         # Aether cost gating for magical traits
         _AETHER_COSTS = {"LIGHT": 1, "REVEAL": 1, "SPELLSLOT": 2, "SUMMON": 3, "HEAL": 1}
         aether_cost = _AETHER_COSTS.get(clean_id, 0)
+        # Arborist 3pc: Sanctify costs no action (free cast)
+        _use_set_bonuses = char.gear.get_active_set_bonuses()
+        if clean_id == "SANCTIFY" and any(b.get("trait_free") == "SANCTIFY" for b in _use_set_bonuses.values()):
+            aether_cost = 0
         if aether_cost > 0:
             if not char.spend_aether(aether_cost):
                 return (f"Not enough Aether! ({clean_id} costs {aether_cost}, "
@@ -1431,7 +1489,11 @@ class BurnwillowBridge:
             "room": self.engine.get_current_room(),
             "item": target_item,
             "enemy_defense": enemy_defense,
-            "ambush_round": getattr(self, '_ambush_round', False),
+            "ambush_round": getattr(self, '_ambush_round', False) or (
+                clean_id == "BACKSTAB" and any(
+                    b.get("backstab_double_surprise") for b in _use_set_bonuses.values()
+                )
+            ),
             "enemy_blinded": bool(getattr(self, '_blinded_enemies', set())),
         }
 
@@ -1520,18 +1582,40 @@ class BurnwillowBridge:
 
             # DAMAGE: apply to current enemy (Ranged, Spellslot, Backstab)
             if result.get("damage") and result["damage"] > 0:
+                dmg = result["damage"]
+                # Arborist 4pc: Aether abilities auto-crit on Blighted enemies
+                if result.get("uses_aether") or result.get("action") in ("spellslot", "sanctify", "inferno", "tempest", "voidgrip"):
+                    if enemies and isinstance(enemies[0], dict) and "Blighted" in enemies[0].get("special", ""):
+                        if any(b.get("crit_vs_blighted") for b in _use_set_bonuses.values()):
+                            dmg *= 2
+                            lines.append("  -> Arborist's Legacy: Auto-crit vs Blighted!")
                 if enemies:
                     target = enemies[0]
-                    target["hp"] = target.get("hp", 5) - result["damage"]
+                    target["hp"] = target.get("hp", 5) - dmg
                     ename = target.get("name", "Enemy")
-                    lines.append(f"  -> {ename} takes {result['damage']} damage!")
+                    lines.append(f"  -> {ename} takes {dmg} damage!")
                     if target["hp"] <= 0:
                         pop_room.content["enemies"] = [e for e in enemies if e.get("hp", 1) > 0]
                         lines.append(f"  -> {ename} slain!")
 
             # HEAL: restore HP (resolver already calls char.heal, just display)
             if result.get("heal_amount") and result["heal_amount"] > 0:
-                lines.append(f"  -> Healed {result['heal_amount']} HP! ({char.current_hp}/{char.max_hp})")
+                heal_total = result["heal_amount"]
+                # Moonstone 2pc: Mending heals +1d6
+                if result.get("action") == "mending":
+                    bonus_dice = sum(b.get("heal_bonus_die", 0) for b in _use_set_bonuses.values())
+                    if bonus_dice > 0:
+                        bonus_heal = sum(random.randint(1, 6) for _ in range(bonus_dice))
+                        extra = char.heal(bonus_heal)
+                        heal_total += extra
+                        lines.append(f"  -> Moonstone Circle: +{extra} bonus healing!")
+                lines.append(f"  -> Healed {heal_total} HP! ({char.current_hp}/{char.max_hp})")
+                # Moonstone 3pc: Renewal duration +2 rounds
+                if result.get("action") == "renewal" and result.get("hot_rounds"):
+                    duration_bonus = sum(b.get("renewal_duration_bonus", 0) for b in _use_set_bonuses.values())
+                    if duration_bonus > 0:
+                        total_rounds = result["hot_rounds"] + duration_bonus
+                        lines.append(f"  -> Moonstone Circle: Renewal extended to {total_rounds} rounds!")
 
             # GUARD: self DR buff until next turn
             if result.get("self_dr_bonus"):
@@ -1808,7 +1892,23 @@ class BurnwillowBridge:
         char._intercept_active = True
         char._intercept_dr_bonus = dr_bonus
 
+        # Warden's Watch 3pc: Intercept protects 2 allies (apply DR to first minion/companion too)
+        _intercept_set_bonuses = char.gear.get_active_set_bonuses()
+        if any(b.get("intercept_targets", 0) >= 2 for b in _intercept_set_bonuses.values()):
+            for ally in self.engine.party:
+                if ally is not char and ally.is_alive():
+                    ally._intercept_active = True
+                    ally._intercept_dr_bonus = dr_bonus
+                    lines_extra = f"  Warden's Watch: {ally.name} also shielded! (+{dr_bonus} DR)"
+                    break
+            else:
+                lines_extra = None
+        else:
+            lines_extra = None
+
         lines = [f"You raise your {item.name}! (+{dr_bonus} DR until next hit)"]
+        if lines_extra:
+            lines.append(lines_extra)
         if tier >= 4:
             lines.append("  Legendary: melee attackers take 1d6 reflected damage!")
         lines.append("")

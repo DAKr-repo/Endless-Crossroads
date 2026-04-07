@@ -11,8 +11,6 @@ from codex.games.burnwillow.autopilot import (
     build_exploration_snapshot,
     build_combat_snapshot,
     build_hub_snapshot,
-    DECISION_MODEL,
-    NARRATION_MODEL,
     PERSONALITY_POOL,
 )
 
@@ -26,7 +24,5 @@ __all__ = [
     "build_exploration_snapshot",
     "build_combat_snapshot",
     "build_hub_snapshot",
-    "DECISION_MODEL",
-    "NARRATION_MODEL",
     "PERSONALITY_POOL",
 ]

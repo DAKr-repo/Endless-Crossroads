@@ -544,6 +544,33 @@ def get_personality_pool(system_id: str) -> list:
     return SYSTEM_PERSONALITY_POOL.get(system_id, SYSTEM_PERSONALITY_POOL.get("dnd5e", []))
 
 
+def get_native_role(system_id: str, archetype: str) -> str:
+    """Resolve the native role/class/playbook name for an archetype.
+
+    Uses COMPANION_CLASS_MAP to translate generic archetypes (vanguard,
+    scholar, scavenger, healer) into system-native terminology:
+      - FitD/Candela → playbook name (Cutter, Lurk, Muscle, Weird...)
+      - D&D 5e → class name (Fighter, Wizard, Rogue, Cleric...)
+      - STC → order name (Windrunner, Truthwatcher, Lightweaver...)
+      - Crown → role name (Soldier, Scholar, Spy, Priest)
+      - Burnwillow → archetype as-is
+
+    Args:
+        system_id: Engine system identifier (lowercase).
+        archetype: One of "vanguard", "scholar", "scavenger", "healer".
+
+    Returns:
+        Native role name string.
+    """
+    system_map = COMPANION_CLASS_MAP.get(system_id, {})
+    entry = system_map.get(archetype, archetype)
+    if isinstance(entry, dict):
+        # D&D: {"class": "Fighter", "background": "Soldier"}
+        # STC: {"order": "Windrunner", "role": "front-line"}
+        return entry.get("class") or entry.get("order") or entry.get("playbook", archetype)
+    return str(entry) if entry else archetype
+
+
 def narrate_decision(action: str, archetype: str, name: str,
                      target: str = "the enemy", evolution_drift: Optional[dict] = None,
                      bond_tier: Optional[str] = None) -> str:

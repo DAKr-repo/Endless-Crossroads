@@ -8,12 +8,8 @@ Provides heuristic-driven AI decision-making for:
 
 Decision architecture:
   - decide_*() methods are pure heuristics (no LLM call in hot loop)
-  - Companion dialogue uses llama3.2:1b via talk_to_npc() for quality
+  - Companion dialogue uses Gemma 4 E2B via LiteRT-LM for quality
   - Combat narration continues using mimir for speed
-
-Voice separation:
-  DECISION_MODEL = "llama3.2:1b"   — Calculates tactics (dialogue only)
-  NARRATION_MODEL = "mimir"         — Narrates results (qwen2.5:0.5b)
 
 WO-V31.0: The Sovereign Triad — Phase 1B
 """
@@ -27,14 +23,6 @@ from codex.games.burnwillow.engine import (
     roll_4d6_drop_lowest, calculate_stat_mod, create_starter_gear,
     BurnwillowEngine,
 )
-
-# =============================================================================
-# MODEL CONFIG — Voice Separation
-# =============================================================================
-
-DECISION_MODEL = "llama3.2:1b"    # Calculates tactics (dialogue only)
-NARRATION_MODEL = "mimir"          # Narrates results (qwen2.5:0.5b)
-
 
 # =============================================================================
 # COMPANION PERSONALITY

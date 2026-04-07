@@ -642,28 +642,26 @@ class TestNewDMTools:
         result = lookup_creature("cremling", "STC")
         assert "Cremling" in result
 
-    @patch("codex.core.dm_tools.requests.post")
-    def test_query_codex_mocked(self, mock_post):
-        """Test query_codex with mocked Ollama response."""
+    @patch("codex.core.services.litert_engine.get_litert_engine")
+    def test_query_codex_mocked(self, mock_get_engine):
+        """Test query_codex with mocked LiteRT-LM response."""
         from codex.core.dm_tools import query_codex
-        mock_response = MagicMock()
-        mock_response.status_code = 200
-        mock_response.json.return_value = {
-            "response": "The Doom Clock is a timer that tracks dungeon pressure."
-        }
-        mock_post.return_value = mock_response
+        mock_engine = MagicMock()
+        mock_engine.generate_sync.return_value = (
+            "The Doom Clock is a timer that tracks dungeon pressure.", 15
+        )
+        mock_get_engine.return_value = mock_engine
 
         result = query_codex("What is the doom clock?")
         assert "Doom Clock" in result or "timer" in result
 
-    @patch("codex.core.dm_tools.requests.post")
-    def test_query_codex_timeout(self, mock_post):
-        """Test graceful timeout handling."""
-        import requests
+    @patch("codex.core.services.litert_engine.get_litert_engine")
+    def test_query_codex_engine_error(self, mock_get_engine):
+        """Test graceful error handling when LiteRT-LM fails."""
         from codex.core.dm_tools import query_codex
-        mock_post.side_effect = requests.Timeout()
+        mock_get_engine.side_effect = RuntimeError("Engine failed to load")
         result = query_codex("test question")
-        assert "timed out" in result.lower() or "unavailable" in result.lower()
+        assert "failed" in result.lower()
 
     def test_query_codex_empty(self):
         from codex.core.dm_tools import query_codex
