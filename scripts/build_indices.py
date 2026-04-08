@@ -97,7 +97,8 @@ def extract_pdf_text(pdf_path: Path) -> list[str]:
 def _clean_page_text(text: str) -> str:
     """Remove common noise from PDF-extracted text.
 
-    Strips DRM watermarks, repeated headers/footers, and page numbers.
+    Strips DRM watermarks, repeated headers/footers, page numbers,
+    URL footers, and timestamp artifacts.
     """
     import re
     # Common DRM watermark pattern
@@ -106,9 +107,26 @@ def _clean_page_text(text: str) -> str:
     text = re.sub(r'^\d{1,3}\s*$', '', text, flags=re.MULTILINE)
     # Repeated copyright lines
     text = re.sub(r'©\s*\d{4}.*?(?:Wizards|Hasbro|Elderbrain).*?$', '', text, flags=re.MULTILINE | re.IGNORECASE)
+    # D&D Beyond URL footers
+    text = re.sub(r'https?://\S+', '', text)
+    # Timestamp footers (e.g. "26/03/2026, 08:44")
+    text = re.sub(r'\d{2}/\d{2}/\d{4},?\s*\d{2}:\d{2}', '', text)
     # Collapse excessive whitespace
     text = re.sub(r'\n{3,}', '\n\n', text)
     return text.strip()
+
+
+def ocr_quality_score(text: str) -> float:
+    """Score text readability from 0.0 (garbled) to 1.0 (clean).
+
+    Measures the ratio of alphabetic characters to total characters.
+    Clean digital PDFs score >0.75. Garbled OCR scores <0.5.
+    """
+    import re
+    if not text:
+        return 0.0
+    alpha = len(re.findall(r'[a-zA-Z]', text))
+    return alpha / max(1, len(text))
 
 
 def chunk_text(
@@ -279,7 +297,8 @@ def build_index_for_system(
     out_dir = INDEX_ROOT / system_id
     faiss_file = out_dir / "index.faiss"
 
-    # Skip check
+    # Skip check — existing index or previously attempted with no shards
+    noshards_marker = out_dir / ".noshards"
     if faiss_file.exists() and not force:
         return {
             "system_id": system_id,
@@ -287,6 +306,14 @@ def build_index_for_system(
             "chunks": 0,
             "skipped": True,
             "error": None,
+        }
+    if noshards_marker.exists() and not force:
+        return {
+            "system_id": system_id,
+            "pdfs": len(pdf_paths),
+            "chunks": 0,
+            "skipped": True,
+            "error": "No text (image-only PDFs, previously attempted)",
         }
 
     # Collect all chunks across all PDFs
@@ -315,6 +342,12 @@ def build_index_for_system(
     progress.remove_task(pdf_task)
 
     if not all_chunks:
+        # Mark as attempted so we don't re-index every run (#213)
+        out_dir.mkdir(parents=True, exist_ok=True)
+        noshards_marker.write_text(json.dumps({
+            "pdfs": [str(p.name) for p in pdf_paths],
+            "reason": "No text extracted (image-only PDFs)",
+        }))
         return {
             "system_id": system_id,
             "pdfs": len(pdf_paths),

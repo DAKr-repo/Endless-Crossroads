@@ -193,7 +193,8 @@ def scan_system_content(vault_path: str, parent_path: str = None) -> dict:
                 _rules = _json.loads(_rules_path.read_text())
                 _json_settings = _rules.get("settings", {})
                 if isinstance(_json_settings, dict):
-                    existing_setting_names = {s["name"] for s in result.get("settings", [])}
+                    result.setdefault("settings", [])
+                    existing_setting_names = {s["name"] for s in result["settings"]}
                     for _sid, _sdata in _json_settings.items():
                         _sname = _sdata.get("name", _sid)
                         if _sname not in existing_setting_names:
