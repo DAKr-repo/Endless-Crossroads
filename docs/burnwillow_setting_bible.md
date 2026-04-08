@@ -249,9 +249,44 @@ Each Grove's crisis is the corruption of something natural. All trace back to An
 | **The Burn** | Solheart (summer) | Energy without limit | Exhausts and consumes |
 | **The Void** | Deep Shade (outside) | Alien nullification | Unmakes reality at the edges |
 
+> **GM NOTE — Wrong-Season Corruptions:** The Choir's song doesn't create new corruptions — it drags other seasons in where they don't belong. Blight = decay without renewal (Rot with the regrowth stripped out). The Burn = Solheart's uncontrollable blaze pulled into Autumn. The Still = Ashenmere's ice pulled into living wood. The Overgrowth = Verdhollow's smothering spring pulled into dying groves. Each corruption is a natural seasonal force operating without its counterbalancing season.
+
+---
+
+## Magic Sources (GM Reference)
+
+> **GM NOTE:** This section describes the true taxonomy of magic in the Burnwillow. Players learn these categories through gameplay, not exposition. A settler calls it all "the tree's power" or "Aether." The distinctions matter for how abilities, traits, and gear interact mechanically.
+
+### Natural Sources (Burnwillow = Autumn)
+| Source | Theme | Stat Affinity | Expression |
+|--------|-------|---------------|------------|
+| **Root/Wood** | The tree's body | Might | Physical force, growth, reshaping, constriction |
+| **Amber/Sap** | The tree's blood | Grit | Healing, preservation, shielding, warding |
+| **Fire/Ember** | The autumn hearth | Might/Wits | Warmth, light, controlled burn, purification |
+| **Rot (natural)** | Decomposition that feeds regrowth | Grit/Aether | The Mycelium network. Tendrils, spores, regeneration |
+| **Root-Song** | The tree's vibration | Aether | Arborist Song-Craft. Resonance, summoning, communion |
+
+### Choir-Corrupted Sources (wrong-season intrusions)
+| Natural | Corrupted | Wrong Season | Effect |
+|---------|-----------|-------------|--------|
+| Rot | **Blight** | (silence) | Decay without regrowth. Root-Song falls silent. |
+| Fire | **Blaze** | Solheart (Summer) | Uncontrollable napalm. Burns everything, no rebirth. |
+| Amber | **Ice** | Ashenmere (Winter) | Cold imprisonment. Freezes, doesn't preserve. |
+| Root/Wood | **Overgrowth** | Verdhollow (Spring) | Strangling, smothering. Drowning in life. |
+
+### The Void (Anti-Aether)
+The polar opposite of Aether itself. Where Aether connects, Void isolates. Where Aether flows, Void drains. Void abilities focus on negation (canceling abilities, stripping defenses), debuffs (reducing stats, draining Aether), gravity (pulling, crushing, compressing space), and absence (erasure, things ceasing to exist).
+
+Void-source items are extremely rare — found only by defeating Void enemies or as rewards for quests involving Void artifacts. They are powerful but always carry a cost.
+
+### Arborist Song-Craft
+The Arborists' tradition is a distinct magical practice, not mundane technology. It works *through* Amber as a medium, powered by the Root-Song. Singing seals, painted-song panels (murals that ARE songs), and constructs are all expressions of song-magic crystallized in amber. The clockwork enemies in the dungeons are not machines — they are song-powered amber-craft still running on ancient resonance.
+
 ---
 
 ## The Rot (The Blight)
+
+> **GM NOTE — Unreliable Narrator:** This section is written from the settlers' perspective. They do not distinguish between natural Rot (healthy decomposition) and the Blight (Choir-corrupted decay). To them, it is all "the Rot" or "the Blight" — one enemy. The GM knows the difference (see Magic Sources above and the Schism section). The player-facing text below reflects the settlers' limited understanding.
 
 The Rot is not a creature, disease, or army. It is a process — entropy given biological form.
 
@@ -353,38 +388,64 @@ The Arborists were the original civilization of the Groves. They were not builde
 
 ### The Schism: Silencers and Choir
 
-During the Golden Age, the Arborists observed Ashenmere beginning to go still. Winter was deepening. The natural seasonal cycle — the heartbeat of the cosmos — appeared to be slowing. The Arborists panicked. Not from malice, but from love. They could not accept that part of the cycle involved dying.
+During the Golden Age, the Arborists observed Ashenmere beginning to go still. Winter was deepening. The natural seasonal cycle — the heartbeat of the cosmos — appeared to be slowing. Harvests grew shorter. Sap ran cold sooner. The fire-leaves dimmed before they should have.
+
+When they investigated the cause, they found it at the edges — the boundary where the canopy's fire-light met the Deep Shade. The Void was not invading. It was *leeching*. Stealing heat, draining Aether, inducing Winter prematurely. Each cycle, the cold phase arrived sooner and lasted longer. The Arborists calculated that left unchecked, eventually there would be nothing but Winter. Nothing but Ashenmere.
+
+> **GM NOTE:** The settlers of Emberhome do not know about the Void's role. To them, the Blight and the Rot are one enemy, the Choir is purely evil, and the seasonal crisis is simply "the tree is dying." This section contains the truth. Player-facing text throughout this document uses the unreliable narrator — the settlers' limited perspective.
 
 The order split:
 
-**The Silencers** believed the cycle should not be forced. If Winter was deepening, the correct response was patience — tend the other Groves, wait for the rhythm to restore itself. Silence was strength. Observation was wisdom. The tree knew what it was doing.
+**The Silencers** believed the cycle should not be forced. If the Void was stealing warmth, the correct response was to reduce the tree's exposure — seal the borders, withdraw inward, make the edges smaller. Silence was strength. Observation was wisdom. The tree had survived deep winters before.
 
-**The Choir** believed the answer was a better song. They proposed singing a resonance that would bypass Winter entirely — Autumn directly to Spring, skipping death, skipping the Undergrove's decomposition phase. Not stopping the seasons, but editing them. Cutting out the part that hurt.
+**The Choir** believed the answer was a better song. If Winter was the vulnerability — the phase where the Void could drain the most energy — then eliminate Winter itself. They proposed singing a resonance that would bypass Winter entirely — Autumn directly to Spring, skipping death, skipping the Undergrove's decomposition phase. No Winter means no entry point for the Void.
+
+Both responses were rational. The Silencers' solution was defensive and sustainable but meant abandoning the outer Groves. The Choir's solution was aggressive and preserved everything — if it worked.
 
 The Choir won the argument. They sang.
 
+### The Test (Ashenmere)
+
+The Choir chose Ashenmere — the Grove already most affected by the Void's heat-stealing — as their test subject. "Ashenmere is already mostly Winter. If we can skip it past Winter here, we prove the concept."
+
+They sang a targeted song aimed at one Grove, attempting to force its season forward. Instead of skipping Winter to Spring, they locked Ashenmere in permanent Winter. The test-song is still playing there, frozen in a feedback loop. The Hollows in Ashenmere stand motionless because they are caught in it.
+
+> **GM NOTE — The Tragic Irony:** The Choir's cure was the disease, accelerated. They were trying to prevent the Void from inducing permanent Winter. Their test *created* permanent Winter — the exact thing the Void was doing, just faster.
+
 ### The Collapse
 
-The Choir's song worked — partially. They successfully disrupted the Autumn-to-Winter transition. But the Undergrove's decomposition cycle did not stop. It had nowhere to send its output. Dead material kept arriving. Nutrients kept being processed. But with no Winter to receive the recycled material and no Spring to consume it, pressure built in the Undergrove until the boundary between the root layer and the living wood shattered.
+The Choir looked at the Ashenmere failure and drew the wrong conclusion. They decided the test-song was too narrow — targeting a single Grove locked it in place instead of advancing it. The full version needed to affect ALL Groves simultaneously so the cycle would move as one.
 
-The Rot is not a disease. It is not an invasion. It is the Undergrove's decomposition process operating in the wrong place. The Rot has always existed — it is natural, necessary, and essential. The crisis is that something broke the boundary, and now decomposition is happening on living wood.
+They descended to the Undergrove — the only place where all four root systems converge — and sang a fundamentally different song. Not a targeted push, but a global cycle alteration. Skip Winter everywhere, all at once.
 
-Ashenmere did not freeze because of the Rot. Ashenmere froze because **the Choir tested their song there first.** They wanted to "pause" Winter before eliminating it. Instead they stopped it permanently. Ashenmere is their prototype. Their first failure. The Hollows in Ashenmere stand motionless because the Choir's original test-song is still playing there, frozen in a feedback loop.
+The full song *did* affect the cycle — but instead of skipping Winter, it disrupted the decomposition phase. The Undergrove couldn't process dead material into nutrients for Spring. Pressure built. The boundary between the root layer and the living wood shattered.
+
+**The Rot is not a disease.** It is not an invasion. It is the Undergrove's decomposition process — natural, necessary, essential — now operating in the wrong place. The Rot has always existed. The crisis is that the Choir broke the boundary, and now decomposition happens on living wood. This misdirected decomposition is what the settlers call "the Blight."
+
+> **GM NOTE — Rot vs. Blight:** Natural Rot (decomposition that feeds regrowth) still exists in the Undergrove and is not hostile — the Mycelium network IS this healthy system. The Blight is what happens when the Choir's changed song strips the renewal half from decay. Rot composts. Blight sterilizes. Where the Blight spreads, the Root-Song falls silent — because the Choir's wrong-key vibration overwrites it. Settlers do not distinguish between Rot and Blight. They call it all "the corruption."
+
+> **GM NOTE — The Song Worked:** The full song actually DID push the Void back. The Choir's core theory was correct — disrupting the Winter phase reduced the Void's ability to leech energy. But the collateral damage — the Blight, the broken boundaries, the wrong-season corruptions in every Grove — is killing the tree faster than the Void ever was. The cure is worse than the disease. But it IS a cure, and no one else has one.
+
+> **GM NOTE — Autumn Extended:** The Choir's song, centered in the Undergrove beneath Burnwillow, has the side effect of *holding Autumn in place*. This is why Burnwillow is the only Grove where people still live, where sap still flows, where fire-leaves still burn. Burnwillow is not surviving despite the Choir. Burnwillow is surviving **because of the Choir**. If the players silence the Choir, Autumn ends. Winter comes. The fire-leaves go dark. No one in Emberhome knows this.
 
 ### The Great Silencing
 
 When the Undergrove boundary broke, the Silencers realized the catastrophe was acoustic. The Root-Song — the fundamental vibration of the tree — was now guiding the Rot upward. Every resonant surface amplified it. Every Root-Road carried it. The Arborists themselves, saturated with Aether and resonance from a lifetime of singing, were the loudest beacons of all.
 
-The Silencers made a choice:
-- They stopped singing. Entirely. Forever.
+The Silencers made a choice — but not before acting on their responsibility to the people they were about to leave behind:
+
+- **First, they evacuated.** The last Silencers guided refugees along the Root-Roads from every Grove toward the Burnwillow — the Grove the Choir's song was holding in Autumn, the only one still warm enough to survive in. This is how Emberhome's founding population arrived: guided by Arborists who knew they were about to disappear forever. The Root-Road from Ashenmere was already too cold. The road from Verdhollow was already choking with overgrowth. But they got people out. Not everyone. Not enough. But some.
+- Then they stopped singing. Entirely. Forever.
 - They sealed the Heartwood — their most sacred space — using Amber Vaults as acoustic dampeners.
 - They sealed the Root-Roads to cut the transmission paths.
 - They withdrew into the Heartwood and went into amber stasis, because their very presence on the surface attracted the Rot through resonance.
 
+> **GM NOTE — The Silencers' Paradox:** The Silencers understood something the Choir refused to accept: the Root-Song both repels and attracts the Void. Like a campfire in the wilderness — the light keeps predators at bay, but the warmth draws them to the perimeter. Singing louder pushes the Void further back, but radiates more Aether energy for the Void to feed on at the edges. Going silent stops the beacon but lets the Void seep inward unopposed. There is no winning move. The Silencers chose the option that bought the most time. The Choir chose the option that fought hardest. Both are failing. A "third way" would need to resolve this paradox — a song that asserts reality without radiating energy outward, or a way to make the Void stop feeding entirely.
+
 The knowledge was not lost through negligence. It was suppressed through grief.
 - **Generation 1:** The survivors who knew the songs but were forbidden from singing them. They raised their children in silence.
 - **Generation 2:** The children who heard only whispered fragments. They remembered music existed but not how it worked.
-- **Generation 3:** The scavengers — Old Cap's generation, roughly 400 years ago. They found the tools but had forgotten the music required to make them work. Emberhome was founded by these people.
+- **Generation 3:** The scavengers — Old Cap's generation, roughly 400 years ago. They found the tools but had forgotten the music required to make them work. Emberhome was founded by these people — descendants of the refugees the Silencers evacuated along the Root-Roads before sealing themselves away.
 
 ### The Choir Did Not Stop
 
@@ -395,6 +456,8 @@ They failed. Or worse — they partially succeeded. They did not control the Rot
 The Choir became the first intentional Hollows. Not mindless husks — conducting husks. They still sing, but the song is wrong. It is the Root-Song played in a key that makes living wood rot instead of grow. They are the reason the Rot has pattern and direction. The Rot as a process is natural. But the Rot as an organized invasion — spreading through Root-Roads, following infrastructure, targeting specific zones — requires someone giving it direction. The Choir is driving it.
 
 Not consciously. Not with malice, exactly. The Choir believes the four Groves are already dead — just not decomposed yet. They think they are finishing the cycle the Silencers interrupted. They think they are helping.
+
+> **GM NOTE — The Broken Messengers:** The original Choir may have been rational, even heroic — they were trying to save the Groves from the Void. But centuries of exposure to the Blight they created has corrupted their minds. The current Choir is Blight-mad. The original goal (protect the tree from the Void) is buried under layers of corruption. They can't be simply reasoned with, but they're not simply evil. The warning about the Void is real. The messengers are broken. They are the only ones still alive AND active who know the Void is returning — but they've forgotten why they're screaming.
 
 ### The Choir's Structure
 
@@ -1663,28 +1726,37 @@ Gear Sets are collections of thematically linked items that provide escalating b
 
 Items can roll 0-2 affixes when they drop. Affixes add a prefix and/or suffix to the item name ("Blazing Ironbark Longsword of the Canopy") and provide mechanical bonuses. Higher-tier items and deeper zones have higher affix chances and access to rarer affixes.
 
-**Prefixes** (modify the attack or effect):
+Each affix is tied to a magic source (see Magic Sources above). **Natural affixes** drop everywhere. **Corrupted affixes** (Choir-touched) only appear on items found in Zone 3+, the Undergrove, or from Choir-aligned enemies. This means early-game loot feels grounded in the tree's natural magic, while deeper exploration introduces the wrong-season corruptions.
 
-| Prefix | Effect |
-|--------|--------|
-| Blazing | On-hit: +1d4 fire damage |
-| Frozen | On-hit: 10% chance to slow (enemy loses next turn) |
-| Vampiric | Heal 1 HP per kill with this weapon |
-| Keen | Crit range expanded: 6 becomes 5-6 |
-| Volatile | +2 damage, but 1 self-damage on fumble |
-| Rooted | +1 DR while stationary (did not move this turn) |
+**Natural Prefixes** (Zone 1+):
 
-**Suffixes** (modify the item itself):
+| Prefix | Magic Source | Effect | Lore |
+|--------|-------------|--------|------|
+| Blazing | Fire/Ember | On-hit: +1d4 fire damage | Ember-dust coating. The weapon carries the hearth's warmth — and its bite. |
+| Keen | Physical/Craft | Crit range expanded: 5-6 | Honed by a skilled hand. The edge finds the gap. |
+| Rooted | Root/Wood | +1 DR while stationary | Living bark reinforcement. Stand your ground and the wood remembers its strength. |
 
-| Suffix | Effect |
-|--------|--------|
-| ...of the Canopy | +1d6 to Aether pool checks |
-| ...of Haste | +1 movement (extra room transition per turn) |
-| ...of Thorns | Attacker takes 1 damage when they hit you |
-| ...of Mending | Passive 1 HP regen per room explored |
-| ...of the Willow | Blight resistance: halve Rot damage |
+**Corrupted Prefixes** (Zone 3+, Choir-touched):
+
+| Prefix | Corrupted Source | Effect | Lore |
+|--------|-----------------|--------|------|
+| Frozen | Ashenmere Ice | On-hit: 10% chance to slow | Ice that doesn't belong here. Cold that seeps from the wrong season. The weapon frosts over between strikes. |
+| Vampiric | Blight | Heal 1 HP per kill | Life drained unnaturally. The Blight takes without returning — and now the weapon does too. Nothing grows where this blade cuts. |
+| Volatile | Solheart Blaze | +2 damage, but 1 self-damage on fumble | Uncontrollable heat. Solheart's fire crammed into Autumn steel. It burns hot — too hot. The wielder's hands blister. |
+
+**Natural Suffixes** (Zone 1+):
+
+| Suffix | Magic Source | Effect | Lore |
+|--------|-------------|--------|------|
+| ...of the Canopy | Root-Song/Aether | +1 Aether pool | Canopy Court silk woven into the item. The Root-Song flows stronger through it — like a channel cut into a riverbed. |
+| ...of Haste | Fire/Ember | +1 movement | Ember-quickened. The fire-leaves' restless energy infuses the wearer. Each step carries you further than it should. |
+| ...of Thorns | Root/Wood | Attacker takes 1 damage when they hit you | Living thorn growth on the surface. Not crafted — grown. The wood defends itself and you with it. |
+| ...of Mending | Rot (natural) | Passive 1 HP regen per room explored | Mycelium threading through the material. The healthy kind of rot — the kind that feeds regrowth. The item heals you the way the forest floor heals the tree. |
+| ...of the Willow | Amber/Sap | Blight resistance: halve Rot damage | Amber-sealed. The sap ward holds the corruption at bay. Named for the Burnwillow itself — the last tree still fighting. |
 
 **Emergent Combos:** Certain prefix-suffix pairs create synergies that are discovered, not listed. Blazing + ...of Thorns = fire reflect (attacker takes fire damage). Vampiric + Keen = more crits, more healing. The system rewards experimentation.
+
+> **GM NOTE — Void Affixes:** Two Void-source affixes exist (Voidscarred, of Negation) but cannot appear on random drops. They are only found on items taken from Void enemies or received as quest rewards. They are powerful but carry permanent costs — the Void always takes its cut.
 
 ### Post-Cap Overflow
 
