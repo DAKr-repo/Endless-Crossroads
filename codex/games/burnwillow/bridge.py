@@ -71,6 +71,11 @@ COMMANDS = {
     "reinforce": [],
     "process":   ["rot_process"],
     "graft":     [],
+    "curse":     ["curse_weapon"],
+    "threadbind": ["bind"],
+    "decompose": ["decomp"],
+    "infuse":    ["spore_infuse"],
+    "netgraft":  ["network_graft"],
     "deposit":   ["store"],
     "retrieve":  ["withdraw"],
     "claim":     [],
@@ -149,6 +154,11 @@ class BurnwillowBridge:
             "reinforce": "Dam-Wright reinforcement: reinforce <item> (requires Dam-Wright Friendly)",
             "process": "Hag Rot processing: convert Rot Spores (requires Hag Circle Friendly)",
             "graft": "Heartwood grafting: graft <item> — fuse permanently, +1 tier (Heartwood Allied)",
+            "curse": "Hag curse weapon: curse <item> — apply debuff prefix (Hag Circle Friendly)",
+            "threadbind": "Canopy thread binding: threadbind <item1> <item2> <set> (Canopy Court Allied)",
+            "decompose": "Mycelium decomposition: decompose <item> — better yield (Mycelium Friendly)",
+            "infuse": "Mycelium spore infusion: infuse <item> — add living quality (Mycelium Allied)",
+            "netgraft": "Mycelium network graft: netgraft <item> — survives death (Mycelium Exalted)",
             "deposit": "Deposit an item in the Still Pool (2 max, Willow Wood only)",
             "retrieve": "Retrieve an item from the Still Pool (costs 1 Doom)",
             "claim": "Claim a cleared vault as an outpost: claim <type>",
@@ -312,6 +322,11 @@ class BurnwillowBridge:
             "reinforce": lambda: self._cmd_reinforce(arg),
             "process":   lambda: self._cmd_process(),
             "graft":     lambda: self._cmd_graft(arg),
+            "curse":     lambda: self._cmd_curse(arg),
+            "threadbind": lambda: self._cmd_threadbind(arg),
+            "decompose": lambda: self._cmd_decompose(arg),
+            "infuse":    lambda: self._cmd_infuse(arg),
+            "netgraft":  lambda: self._cmd_netgraft(arg),
             "deposit":   lambda: self._cmd_deposit(arg),
             "retrieve":  lambda: self._cmd_retrieve(arg),
             "claim":     lambda: self._cmd_claim(arg),
@@ -909,9 +924,17 @@ class BurnwillowBridge:
                         elif leg["effect"] == "memory_drain":
                             lines.append(f"  Memory Drain! The {enemy_name}'s memories flow into you.")
                             lines.append(f"  (Ask the GM one fact about this floor.)")
+                # Faction reputation: killing faction-aligned enemies
+                _enemy_faction = enemy.get("faction_id", "") if isinstance(enemy, dict) else ""
+                if _enemy_faction and hasattr(self.engine, 'faction_rep'):
+                    # Killing faction enemies reduces rep with that faction
+                    rep_msgs = self.engine.faction_rep.change_rep(_enemy_faction, -1)
+                    for rm in rep_msgs:
+                        lines.append(f"  [Faction] {rm}")
+
                 # Quest trigger: enemy defeated
                 if hasattr(self.engine, '_quest_dispatcher') and self.engine._quest_dispatcher:
-                    faction_id = enemy.get("faction_id", "") if isinstance(enemy, dict) else ""
+                    faction_id = _enemy_faction
                     tier = enemy.get("tier", 1) if isinstance(enemy, dict) else 1
                     quest_msgs = self.engine._quest_dispatcher.on_enemy_defeated(enemy_name, tier, faction_id)
                     for qm in quest_msgs:
@@ -2554,6 +2577,8 @@ class BurnwillowBridge:
         from codex.games.burnwillow.engine import silkweaver_enchant
         result = silkweaver_enchant(target)
         lines = [result["message"]]
+        if result.get("success"):
+            lines.extend(self.engine.faction_rep.change_rep("canopy_court", 1))
         lines.append("")
         lines.append(self._status_line())
         return "\n".join(lines)
@@ -2564,7 +2589,10 @@ class BurnwillowBridge:
             return "Hive healing unavailable. (Need Hive Friendly+)\n" + self._status_line()
         from codex.games.burnwillow.engine import hive_honey_heal
         result = hive_honey_heal(self.engine.character)
-        return result["message"] + "\n" + self._status_line()
+        lines = [result["message"]]
+        if result.get("success"):
+            lines.extend(self.engine.faction_rep.change_rep("hive", 1))
+        return "\n".join(lines) + "\n" + self._status_line()
 
     def _cmd_reinforce(self, arg: str = "") -> str:
         """Dam-Wright gear reinforcement (+1 DR, requires Dam-Wright Friendly+)."""
@@ -2582,7 +2610,10 @@ class BurnwillowBridge:
             return f"No equipped item named '{arg}'.\n" + self._status_line()
         from codex.games.burnwillow.engine import dam_wright_reinforce
         result = dam_wright_reinforce(target)
-        return result["message"] + "\n" + self._status_line()
+        lines = [result["message"]]
+        if result.get("success"):
+            lines.extend(self.engine.faction_rep.change_rep("dam_wrights", 1))
+        return "\n".join(lines) + "\n" + self._status_line()
 
     def _cmd_process(self) -> str:
         """Hag Rot processing (2 Rot Spores → Moonstone Dust + Deepwater, requires Hag Circle Friendly+)."""
@@ -2590,7 +2621,10 @@ class BurnwillowBridge:
             return "Hag's Rot processing unavailable. (Need Hag Circle Friendly+)\n" + self._status_line()
         from codex.games.burnwillow.engine import hag_rot_process
         result = hag_rot_process(self.engine.character)
-        return result["message"] + "\n" + self._status_line()
+        lines = [result["message"]]
+        if result.get("success"):
+            lines.extend(self.engine.faction_rep.change_rep("hag_circle", 1))
+        return "\n".join(lines) + "\n" + self._status_line()
 
     def _cmd_graft(self, arg: str = "") -> str:
         """Heartwood grafting — permanently fuse gear, +1 tier (requires Heartwood Allied+)."""
@@ -2610,7 +2644,129 @@ class BurnwillowBridge:
             return f"No equipped item named '{arg}'.\n" + self._status_line()
         from codex.games.burnwillow.engine import heartwood_graft
         result = heartwood_graft(char, target, target_slot)
-        return result["message"] + "\n" + self._status_line()
+        lines = [result["message"]]
+        if result.get("success"):
+            lines.extend(self.engine.faction_rep.change_rep("heartwood_elders", 1))
+        return "\n".join(lines) + "\n" + self._status_line()
+
+    def _cmd_curse(self, arg: str = "") -> str:
+        """Hag curse weapon — apply debuff prefix (requires Hag Circle Friendly+)."""
+        if not self.engine.faction_rep.can_access_services("hag_circle"):
+            return "Hag curse unavailable. (Need Hag Circle Friendly+)\n" + self._status_line()
+        if not arg.strip():
+            return "Curse what? Usage: curse <item name>\n" + self._status_line()
+        char = self.engine.character
+        target = None
+        for slot, item in char.gear.slots.items():
+            if item and arg.strip().lower() in item.name.lower():
+                target = item
+                break
+        if not target:
+            return f"No equipped item named '{arg}'.\n" + self._status_line()
+        from codex.games.burnwillow.engine import hag_curse_weapon
+        result = hag_curse_weapon(target)
+        lines = [result["message"]]
+        if result.get("success"):
+            lines.extend(self.engine.faction_rep.change_rep("hag_circle", 1))
+        return "\n".join(lines) + "\n" + self._status_line()
+
+    def _cmd_threadbind(self, arg: str = "") -> str:
+        """Canopy thread binding — link two items to a gear set (requires Canopy Court Allied+)."""
+        if not self.engine.faction_rep.can_access_gear("canopy_court"):
+            return "Thread binding unavailable. (Need Canopy Court Allied+)\n" + self._status_line()
+        parts = arg.strip().split()
+        if len(parts) < 3:
+            return "Usage: threadbind <item1> <item2> <set_id>\n  Sets: arborist_legacy, wardens_watch, rot_hunter_trophy, moonstone_circle, shadowweave\n" + self._status_line()
+        set_id = parts[-1].lower()
+        item_search = " ".join(parts[:-1])
+        char = self.engine.character
+        found = []
+        for slot, item in char.gear.slots.items():
+            if item and any(s in item.name.lower() for s in item_search.lower().split()):
+                found.append(item)
+        if len(found) < 2:
+            return f"Need 2 equipped items matching search. Found {len(found)}.\n" + self._status_line()
+        from codex.games.burnwillow.engine import silkweaver_thread_bind
+        result = silkweaver_thread_bind(found[0], found[1], set_id)
+        lines = [result["message"]]
+        if result.get("success"):
+            lines.extend(self.engine.faction_rep.change_rep("canopy_court", 1))
+        return "\n".join(lines) + "\n" + self._status_line()
+
+    def _cmd_decompose(self, arg: str = "") -> str:
+        """Mycelium decomposition — break item for better yield (requires Mycelium Friendly+)."""
+        if not self.engine.faction_rep.can_access_services("mycelium"):
+            return "Mycelium decomposition unavailable. (Need Mycelium Friendly+)\n" + self._status_line()
+        if not arg.strip():
+            return "Decompose what? Usage: decompose <item name>\n" + self._status_line()
+        char = self.engine.character
+        target = None
+        target_idx = None
+        for idx, item in char.inventory.items():
+            if arg.strip().lower() in item.name.lower():
+                target = item
+                target_idx = idx
+                break
+        if not target:
+            return f"No item named '{arg}' in inventory.\n" + self._status_line()
+        from codex.games.burnwillow.engine import mycelium_decompose
+        result = mycelium_decompose(target)
+        lines = [result["message"]]
+        if result.get("success"):
+            char.remove_from_inventory(target_idx)
+            # Add materials after delay (simplified: immediate for now)
+            for mat, count in result.get("materials", {}).items():
+                char.ingredients[mat] = char.ingredients.get(mat, 0) + count
+                lines.append(f"  +{count} {mat}")
+            lines.extend(self.engine.faction_rep.change_rep("mycelium", 1))
+        return "\n".join(lines) + "\n" + self._status_line()
+
+    def _cmd_infuse(self, arg: str = "") -> str:
+        """Mycelium spore infusion — add living quality (requires Mycelium Allied+)."""
+        if not self.engine.faction_rep.can_access_gear("mycelium"):
+            return "Spore infusion unavailable. (Need Mycelium Allied+)\n" + self._status_line()
+        if not arg.strip():
+            return "Infuse what? Usage: infuse <item name>\n" + self._status_line()
+        char = self.engine.character
+        target = None
+        for slot, item in char.gear.slots.items():
+            if item and arg.strip().lower() in item.name.lower():
+                target = item
+                break
+        if not target:
+            return f"No equipped item named '{arg}'.\n" + self._status_line()
+        from codex.games.burnwillow.engine import mycelium_spore_infuse
+        result = mycelium_spore_infuse(target)
+        lines = [result["message"]]
+        if result.get("success"):
+            lines.extend(self.engine.faction_rep.change_rep("mycelium", 1))
+        return "\n".join(lines) + "\n" + self._status_line()
+
+    def _cmd_netgraft(self, arg: str = "") -> str:
+        """Mycelium network graft — item survives death (requires Mycelium Exalted)."""
+        if not self.engine.faction_rep.has_capstone("mycelium"):
+            return "Network grafting unavailable. (Need Mycelium Exalted)\n" + self._status_line()
+        if not arg.strip():
+            return "Network graft what? Usage: netgraft <item name>\n" + self._status_line()
+        char = self.engine.character
+        target = None
+        for slot, item in char.gear.slots.items():
+            if item and arg.strip().lower() in item.name.lower():
+                target = item
+                break
+        if not target:
+            return f"No equipped item named '{arg}'.\n" + self._status_line()
+        from codex.games.burnwillow.engine import mycelium_network_graft
+        result = mycelium_network_graft(target)
+        lines = [result["message"]]
+        if result.get("success"):
+            # Store grafted item name in meta_state for persistence across death
+            if hasattr(self.engine, 'meta_state'):
+                grafted = self.engine.meta_state.setdefault("grafted_items", [])
+                if target.name not in grafted:
+                    grafted.append(target.name)
+            lines.extend(self.engine.faction_rep.change_rep("mycelium", 1))
+        return "\n".join(lines) + "\n" + self._status_line()
 
     def _cmd_deposit(self, arg: str = "") -> str:
         """Deposit an item into the Still Pool (max 2, Willow Wood only)."""

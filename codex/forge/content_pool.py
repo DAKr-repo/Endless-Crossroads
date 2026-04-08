@@ -46,6 +46,7 @@ class PoolNPC:
     voice: str = ""      # WO-V81.0: Speech style tag
     want: str = ""       # WO-V81.0: What they seek (quest hook)
     need: str = ""       # WO-V81.0: What they truly need (deeper motivation)
+    faction: str = ""    # Faction alignment (hive, mycelium, etc.)
 
     def to_scene_dict(self) -> dict:
         """Convert to content_hints NPC format expected by SceneData."""
@@ -66,6 +67,8 @@ class PoolNPC:
             d["want"] = self.want
         if self.need:
             d["need"] = self.need
+        if self.faction:
+            d["faction"] = self.faction
         return d
 
 
@@ -473,6 +476,7 @@ class ContentPool:
                     voice=n.get("voice", ""),
                     want=n.get("want", ""),
                     need=n.get("need", ""),
+                    faction=n.get("faction", ""),
                 )
                 for n in selected
             ]
