@@ -2211,10 +2211,14 @@ class BurnwillowEngine:
             "still_pool_items": list(self.still_pool_items),
             "claimed_outposts": dict(self.claimed_outposts),
             "light_remaining": self._light_remaining,
+            "campaign_over": self.campaign_over,
         }
 
     def load_game(self, data: dict):
-        """Restore game state from save."""
+        """Restore game state from save. Rejects TPK campaign-over saves."""
+        if data.get("campaign_over"):
+            self.campaign_over = True
+            return  # Cannot continue a TPK save — campaign is over
         if data.get("party"):
             self.party = [Character.from_dict(c) for c in data["party"]]
             self.character = self.party[0] if self.party else None
@@ -2402,6 +2406,12 @@ class BurnwillowEngine:
         all_dead = all(c.current_hp <= 0 for c in self.party)
         if all_dead:
             self.campaign_over = True
+            # Wipe meta-progression: Memory Seeds, Still Pool, outposts, grafted items
+            self.still_pool_items.clear()
+            self.claimed_outposts.clear()
+            self._discovered_entrances.clear()
+            if hasattr(self, 'meta_state'):
+                self.meta_state.clear()
         return all_dead
 
     # ─────────────────────────────────────────────────────────────────────

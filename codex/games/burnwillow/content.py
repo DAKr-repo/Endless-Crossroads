@@ -95,6 +95,9 @@ LOOT_TABLES: Dict[int, List[Tuple[str, str, int, List[str], str]]] = {
         ("Healer's Satchel", "Arms", 1, ["[Triage]"], "Bandages and salves. Wits-based healing. 3 charges."),
         # Aether-variant items (fixed slot overrides)
         ("Sap-Woven Gloves", "Arms", 1, [], "Woven from living Aether-threads. Channels residual sap energy through the fingertips. +1d6 Aether pool."),
+        # Aether items for missing slots
+        ("Resonance Wand", "R.Hand", 1, ["[Spellslot]"], "A tuning fork of living amber. Channels the Root-Song as force. +1d6 Aether attack."),
+        ("Sap-Cord Mantle", "Shoulders", 1, [], "Shoulder drape woven from sap-soaked cord. The Root-Song vibrates through it faintly. +1d6 Aether pool."),
     ],
     2: [
         # Tier II: Ironbark/Cured Hide (+2d6)
@@ -133,6 +136,10 @@ LOOT_TABLES: Dict[int, List[Tuple[str, str, int, List[str], str]]] = {
         # Aether-variant items (fixed slot overrides)
         ("Aether-Traced Greaves", "Legs", 2, [], "Ironbark leg guards with Aether channels etched into the grain. Warmth pulses through them with each step. +2d6 Aether pool."),
         ("Sap-Singer's Helm", "Head", 2, [], "A bark helm lined with sap-soaked moss. Amplifies the wearer's sensitivity to Root-Song vibrations. +2d6 Aether pool."),
+        ("Resonance Staff", "R.Hand", 2, ["[Spellslot]"], "Ironbark staff carved with song-runes. The Root-Song flows through it like water through a channel. +2d6 Aether attack."),
+        ("Sap-Light Buckler", "L.Hand", 2, ["[Reflect]"], "A small amber-inlaid shield that pulses with Aether. Redirects hostile resonance. +2d6 Aether pool."),
+        ("Mycelium Epaulette", "Shoulders", 2, [], "Living fungal growth on shoulder pads. Bioluminescent threads pulse with the network's rhythm. +2d6 Aether pool."),
+        ("Spore Ring", "L.Ring", 2, [], "A band of hardened mycelium. Rot-touched but alive — the healthy kind. Amplifies natural Aether. +2d6 Aether pool."),
     ],
     3: [
         # Tier III: Petrified Heartwood/Moonstone (+3d6)
@@ -169,6 +176,10 @@ LOOT_TABLES: Dict[int, List[Tuple[str, str, int, List[str], str]]] = {
         # Aether-variant items (fixed slot overrides)
         ("Resonance Greaves", "Legs", 3, [], "Heartwood leg guards that hum when the Root-Song passes through them. The wearer's stride falls into rhythm with the tree. +3d6 Aether pool."),
         ("Whisper Crown", "Head", 3, [], "A circlet of petrified Heartwood that amplifies whispered intentions into Aether pulses. The air around it shimmers faintly. +3d6 Aether pool."),
+        ("Song-Forged Staff", "R.Hand", 3, ["[Spellslot]", "[Bolster]"], "A staff grown from Heartwood, never carved. The Root-Song sings through it constantly. +3d6 Aether attack."),
+        ("Amber Aegis", "L.Hand", 3, ["[Intercept]", "[Reflect]"], "A shield of solid amber. Memories swim inside it. It remembers how to protect. +3d6 Aether pool."),
+        ("Choir-Silk Mantle", "Shoulders", 3, [], "Woven from Canopy Court moth-silk. The fabric hums with stored resonance. +3d6 Aether pool."),
+        ("Root-Woven Band", "L.Ring", 3, [], "A ring of living rootwood. It grows tighter when Aether flows through it. +3d6 Aether pool."),
     ],
     4: [
         # Tier IV: Ambercore/Sunresin (+4d6)
@@ -205,6 +216,10 @@ LOOT_TABLES: Dict[int, List[Tuple[str, str, int, List[str], str]]] = {
         # Aether-variant items (fixed slot overrides)
         ("Root-Song Greaves", "Legs", 4, [], "Ambercore leg armor that resonates with the fundamental vibration of the tree. Each step sends ripples through the Aether. +4d6 Aether pool."),
         ("Crown of Resonance", "Head", 4, [], "An Arborist circlet of pure Ambercore. The Root-Song is deafening when worn. Aether flows like a river through the wearer's skull. +4d6 Aether pool."),
+        ("Conductor's Baton", "R.Hand", 4, ["[Spellslot]", "[Summon]"], "An Arborist conductor's wand of pure Ambercore. The tree sings through it. Armies answer. +4d6 Aether attack."),
+        ("Amber Mirror Shield", "L.Hand", 4, ["[Reflect]", "[Nullify]"], "A shield of flawless amber. It does not block — it makes attacks not arrive. +4d6 Aether pool."),
+        ("Arborist's Mantle", "Shoulders", 4, [], "Woven from Heartwood fibres by the last Silencers. The Root-Song wraps around your shoulders like a warm breath. +4d6 Aether pool."),
+        ("Ring of the Root-Song", "L.Ring", 4, [], "Carved from the First Ring's wood. The vibration is constant, deep, and older than language. +4d6 Aether pool."),
     ]
 }
 
@@ -261,6 +276,21 @@ LOOT_PRIMARY_STATS: Dict[str, str] = {
     "Whisper Crown":          "AETHER",   # Head — Tier III
     "Root-Song Greaves":      "AETHER",   # Legs — Tier IV
     "Crown of Resonance":     "AETHER",   # Head — Tier IV
+    # New Aether items for missing slots (#204)
+    "Resonance Wand":         "AETHER",   # R.Hand — Tier I
+    "Sap-Cord Mantle":        "AETHER",   # Shoulders — Tier I
+    "Resonance Staff":        "AETHER",   # R.Hand — Tier II
+    "Sap-Light Buckler":      "AETHER",   # L.Hand — Tier II
+    "Mycelium Epaulette":     "AETHER",   # Shoulders — Tier II
+    "Spore Ring":             "AETHER",   # L.Ring — Tier II
+    "Song-Forged Staff":      "AETHER",   # R.Hand — Tier III
+    "Amber Aegis":            "AETHER",   # L.Hand — Tier III
+    "Choir-Silk Mantle":      "AETHER",   # Shoulders — Tier III
+    "Root-Woven Band":        "AETHER",   # L.Ring — Tier III
+    "Conductor's Baton":      "AETHER",   # R.Hand — Tier IV
+    "Amber Mirror Shield":    "AETHER",   # L.Hand — Tier IV
+    "Arborist's Mantle":      "AETHER",   # Shoulders — Tier IV
+    "Ring of the Root-Song":  "AETHER",   # L.Ring — Tier IV
 }
 
 
