@@ -375,10 +375,15 @@ class BurnwillowBridge:
         if not room:
             return "ERROR: No dungeon loaded."
 
-        # Spawn NPC on first visit if room has none
+        # Spawn NPC on first visit if room has none — bias toward room's faction
         if self._narrator and not room.get("npcs"):
+            _room_faction_hint = ""
+            _pop = self.engine.populated_rooms.get(self.engine.current_room_id)
+            if _pop and isinstance(_pop.content, dict):
+                _room_faction_hint = _pop.content.get("faction_territory", "")
             _npc = self._narrator.spawn_npc_for_room(
-                room["id"], tier=room.get("tier", 1))
+                room["id"], tier=room.get("tier", 1),
+                faction_hint=_room_faction_hint)
             if _npc:
                 room.setdefault("npcs", []).append(_npc)
                 # Persist to engine
@@ -544,6 +549,20 @@ class BurnwillowBridge:
                     lines.append("Your light flickers and fades.")
         elif _is_dark:
             lines.append("This room is shrouded in darkness. (-1d6 to all checks)")
+
+        # Faction territory flavor
+        if pop_room and isinstance(pop_room.content, dict):
+            _room_faction = pop_room.content.get("faction_territory", "")
+            _FACTION_FLAVOR = {
+                "hive": "Wax-sealed chambers and faint humming mark this as Hive territory.",
+                "mycelium": "Bioluminescent mycelium threads the walls. The Mycelium network pulses here.",
+                "dam_wrights": "Ironbark braces and water channels — Dam-Wright engineering.",
+                "canopy_court": "Moth-scale dust glitters in the air. The Canopy Court's domain.",
+                "hag_circle": "Dark soil, medicinal smells. The Hag Circle has been here.",
+                "heartwood_elders": "The grain pulses. Ancient song-craft resonates in the walls.",
+            }
+            if _room_faction and _room_faction in _FACTION_FLAVOR:
+                lines.append(_FACTION_FLAVOR[_room_faction])
 
         # Named Legendary: Eternity Bloom — party immune to Blighted
         eternity_bloom_active = False

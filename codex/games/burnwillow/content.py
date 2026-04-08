@@ -554,6 +554,54 @@ CONTENT_ARCHETYPES = {
 }
 CONTENT_DR_BY_TIER = {1: 0, 2: 1, 3: 2, 4: 3}
 
+# Enemy → faction alignment (for reputation changes on kill)
+ENEMY_FACTIONS: Dict[str, str] = {
+    # Hive-aligned (insect creatures)
+    "Rot-Beetle": "hive", "Fungal Mite": "mycelium", "Blight-Hawk": "hive",
+    # Mycelium-aligned (fungal creatures)
+    "Shambling Moss": "mycelium", "Spore-Crawler": "mycelium",
+    # Heartwood-aligned (constructs, guardians)
+    "Clockwork Spider": "heartwood_elders", "Ironbark Hound": "heartwood_elders",
+    "Ambercore Golem": "heartwood_elders", "Ironroot Tyrant": "heartwood_elders",
+    "Blighted Sentinel": "heartwood_elders",
+    # Hag-aligned (rot creatures with intelligence)
+    "Blight Warden": "hag_circle",
+    # Canopy-aligned (upper zone creatures)
+    "Wind Hawk": "canopy_court", "Branch Stalker": "canopy_court",
+    "Canopy Warden": "canopy_court", "Storm Raptor": "canopy_court",
+    # Dam-Wright aligned (engineering creatures)
+    "Rust Serpent": "dam_wrights",
+}
+
+# Loot item → gear set membership
+LOOT_SET_IDS: Dict[str, str] = {
+    # Arborist's Legacy
+    "Root-Song Charm": "arborist_legacy",
+    "Sap-Singer's Helm": "arborist_legacy",
+    "Resonance Greaves": "arborist_legacy",
+    "Crown of Resonance": "arborist_legacy",
+    # Warden's Watch
+    "Ironbark Helm": "wardens_watch",
+    "Ironbark Shield": "wardens_watch",
+    "Ironbark Greaves": "wardens_watch",
+    "Ironbark Armor": "wardens_watch",
+    # Rot Hunter's Trophy
+    "Blight-Fang Dagger": "rot_hunter_trophy",
+    "Rot Hunter's Mantle": "rot_hunter_trophy",
+    "Spore-Sight Goggles": "rot_hunter_trophy",
+    "Heartstone Amulet": "rot_hunter_trophy",
+    # Moonstone Circle
+    "Moonstone Pendant": "moonstone_circle",
+    "Herbalist's Satchel": "moonstone_circle",
+    "Renewal Chalice": "moonstone_circle",
+    "Lifebinder's Mantle": "moonstone_circle",
+    # Shadowweave
+    "Shadow Cloak": "shadowweave",
+    "Burglar's Gloves": "shadowweave",
+    "Silent Boots": "shadowweave",
+    "Mask of Whispers": "shadowweave",
+}
+
 
 # =============================================================================
 # WAVE ENEMIES — Doom-triggered spawns (WO-V17.0)
@@ -588,7 +636,7 @@ def get_random_enemy(tier: int, rng: random.Random) -> dict:
     pool = ENEMY_TABLES[tier]
     name, hp_base, hp_var, defense, damage, special = rng.choice(pool)
 
-    return {
+    enemy = {
         "name": name,
         "hp": hp_base + rng.randint(0, hp_var),
         "defense": defense,
@@ -598,6 +646,11 @@ def get_random_enemy(tier: int, rng: random.Random) -> dict:
         "dr": CONTENT_DR_BY_TIER.get(tier, 0),
         "archetype": CONTENT_ARCHETYPES.get(name, "beast"),
     }
+    # Faction alignment — for reputation changes on kill
+    faction = ENEMY_FACTIONS.get(name)
+    if faction:
+        enemy["faction_id"] = faction
+    return enemy
 
 
 def get_random_loot(tier: int, rng: random.Random) -> dict:

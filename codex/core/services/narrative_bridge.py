@@ -472,16 +472,19 @@ class NarrativeBridge:
 
     # ── NPC Spawning ─────────────────────────────────────────────────
 
-    def spawn_npc_for_room(self, room_id: int, tier: int = 1) -> Optional[dict]:
+    def spawn_npc_for_room(self, room_id: int, tier: int = 1,
+                           faction_hint: str = "") -> Optional[dict]:
         """Decide whether to spawn an NPC and return their data.
 
         ~20% chance per unvisited room. Returns a scene-ready NPC dict
         or None. Uses ContentPool for config-sourced NPCs with fallback
-        to procedural generation.
+        to procedural generation. Faction-controlled rooms bias toward
+        that faction's NPCs.
 
         Args:
             room_id: Room identifier (for deterministic seeding).
             tier: Dungeon tier for role selection.
+            faction_hint: If set, prefer NPCs from this faction.
 
         Returns:
             NPC dict with name/role/dialogue/notes, or None.
@@ -494,10 +497,14 @@ class NarrativeBridge:
         try:
             from codex.forge.content_pool import ContentPool
             pool = ContentPool(self.system_id)
-            npcs = pool.get_npcs(tier=tier, count=1)
+            npcs = pool.get_npcs(tier=tier, count=3)
             if npcs:
-                npc = npcs[0]
-                return npc.to_scene_dict()
+                # Prefer faction-aligned NPC if hint provided
+                if faction_hint:
+                    faction_npcs = [n for n in npcs if n.faction == faction_hint]
+                    if faction_npcs:
+                        return faction_npcs[0].to_scene_dict()
+                return npcs[0].to_scene_dict()
         except Exception:
             pass
 

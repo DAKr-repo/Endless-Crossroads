@@ -681,6 +681,58 @@ TRAIT_DROP_ZONES: Dict[str, int] = {
 }
 
 
+# Zone → dominant faction(s) with presence weights
+# Used for NPC spawning, room flavor, and territorial encounters
+ZONE_FACTION_TERRITORY: Dict[int, Dict[str, float]] = {
+    1: {  # The Tangle (upper roots)
+        "hive": 0.30,           # Hive nests in the upper root system
+        "dam_wrights": 0.25,    # Dam-Wrights at the base, managing sap flow
+        "mycelium": 0.20,       # Mycelium throughout, natural decomposition
+    },
+    2: {  # Mid-dungeon
+        "hag_circle": 0.30,     # Hag clearing in Zone 2
+        "mycelium": 0.25,       # Network nodes spread through root system
+        "hive": 0.15,           # Scouts and outriders
+        "dam_wrights": 0.15,    # Root-Road maintenance crews
+    },
+    3: {  # Deep dungeon
+        "hag_circle": 0.25,     # Deeper Hag presence
+        "mycelium": 0.25,       # Dense network near Undergrove border
+        "heartwood_elders": 0.10,  # Faint Heartwood resonance
+    },
+    4: {  # Canopy / Crown approaches
+        "canopy_court": 0.40,   # Dominant — their domain
+        "hive": 0.20,           # Hive nests in the high branches
+    },
+    5: {  # Crown (highest canopy)
+        "canopy_court": 0.50,   # Exclusive territory
+    },
+    6: {  # Heartwood
+        "heartwood_elders": 0.80,  # Their sanctum
+    },
+    7: {  # Undergrove
+        "mycelium": 0.30,       # The Mycelium's origin
+    },
+}
+
+
+def get_room_faction(zone: int, rng: "random.Random") -> str:
+    """Roll a room's dominant faction based on zone territory weights.
+
+    Returns faction_id string or empty string if no faction dominates this room.
+    """
+    territory = ZONE_FACTION_TERRITORY.get(zone, {})
+    if not territory:
+        return ""
+    roll = rng.random()
+    cumulative = 0.0
+    for faction, weight in territory.items():
+        cumulative += weight
+        if roll < cumulative:
+            return faction
+    return ""  # No faction dominance (uncontested room)
+
+
 # =============================================================================
 # ARCHETYPE DETECTION (#170)
 # =============================================================================
@@ -2544,12 +2596,18 @@ class BurnwillowEngine:
             else:
                 dark_chances = {1: 0.10, 2: 0.20, 3: 0.35}
                 dark_chance = dark_chances.get(zone, 0.50)
+            _faction_rng = random.Random(seed + 1)
             for room_id, pop_room in self.populated_rooms.items():
                 # Start room is always lit
                 if room_id == self.current_room_id:
                     pop_room.is_dark = False
                 else:
                     pop_room.is_dark = _dark_rng.random() < dark_chance
+                # Tag room with dominant faction territory
+                room_faction = get_room_faction(zone, _faction_rng)
+                if isinstance(pop_room.content, dict):
+                    if room_faction:
+                        pop_room.content["faction_territory"] = room_faction
 
         return {
             "seed": self.dungeon_graph.seed,
@@ -3030,7 +3088,8 @@ class BurnwillowEngine:
         if is_boss:
             hp = int(hp * 1.5)
             name = f"{name} (Alpha)"
-        return {
+        from codex.games.burnwillow.content import ENEMY_FACTIONS
+        enemy = {
             "name": name, "hp": hp, "defense": defense,
             "damage": damage, "special": special, "tier": tier,
             "dr": dr_table.get(tier, 0) + (1 if is_boss else 0),
@@ -3038,6 +3097,10 @@ class BurnwillowEngine:
                 name.replace(" (Alpha)", ""), "beast"),
             "is_boss": is_boss,
         }
+        faction = ENEMY_FACTIONS.get(name.replace(" (Alpha)", ""))
+        if faction:
+            enemy["faction_id"] = faction
+        return enemy
 
     @staticmethod
     def _canopy_loot(tier, rng, tables):
