@@ -1,0 +1,154 @@
+{
+  "module_id": "crown_pirate_throne",
+  "display_name": "The Pirate Throne",
+  "description": "A fractured pirate fleet sailing between volcanic islands. The Admiralty demands surrender. The Fleet demands loyalty. The sea itself is hostile.",
+  "crown_faction": "Admiralty",
+  "crew_faction": "Fleet",
+  "neutral_term": "Castaway",
+  "campfire_term": "Lantern Watch",
+  "world_term": "Shattered Isles",
+  "days": 5,
+  "scene_chapters": [
+    {
+      "chapter_id": "the_wilds",
+      "display_name": "The Wilds",
+      "entry_condition": "day >= 1",
+      "exit_condition": "day >= 3",
+      "scenes": [
+        {
+          "scene_id": "pt_day1_wreck_field",
+          "description": "The Fleet picks through a graveyard of ships. Masts jut from the shallows like drowned fingers, and the stink of tar and brine hangs in the windless air. A Castaway clings to a barnacled hull, waving a strip of sail. Below decks of the largest wreck, something metallic catches the light -- could be Admiralty guns, could be trade silver. The reef beneath is sharp enough to gut a keel, and the tide is turning. Your flagship's carpenter says you have maybe an hour before the channel closes.",
+          "location": "The Boneyard Shallows",
+          "choices": [
+            {
+              "text": "Send divers to salvage the wreck before the tide turns.",
+              "sway_effect": 1,
+              "tag": "GUILE",
+              "narrative": "The divers surface with four crates of Admiralty powder and shot -- enough to arm the Fleet's two biggest vessels. One diver gashes her leg on coral and will not dive again. The Castaway is pulled aboard as an afterthought, coughing salt water and gratitude."
+            },
+            {
+              "text": "Rescue the Castaway and chart the reef for future passage.",
+              "sway_effect": -1,
+              "tag": "HEARTH",
+              "narrative": "The Castaway turns out to be a former Admiralty cartographer who went overboard in a storm. She draws the reef channels from memory while the Fleet's navigator watches with grudging respect. The wreck's cargo sinks with the tide, but the charts she produces are worth more to a fleet that must keep moving."
+            },
+            {
+              "text": "Torch the wrecks so the Admiralty cannot use them as a forward base.",
+              "sway_effect": 0,
+              "tag": "DEFIANCE",
+              "narrative": "Pitch and old timber burn fast. The column of smoke rises black and greasy, visible for miles across the flat water. The Admiralty will know exactly where you were six hours ago. But they will find nothing useful when they arrive -- just charred ribs and melted iron sinking into the reef."
+            }
+          ]
+        },
+        {
+          "scene_id": "pt_day2_storm_harbor",
+          "description": "A squall drives the Fleet into a volcanic harbor on the lee side of Ashcap Island. The water is warm -- unnaturally so -- and sulfur vents bubble along the shore. Three Castaway fishing boats are already sheltering here, their crews watching your sails with the flat wariness of people who have been robbed before. The storm will not break until morning. The Fleet needs fresh water, and the only stream runs through the Castaway village above the harbor. Your hulls need scraping. Your crews need rest. The Castaways need a reason not to signal the Admiralty cutter that patrols this chain.",
+          "location": "Ashcap Harbor",
+          "choices": [
+            {
+              "text": "Trade rum and sail-cloth for water and anchorage rights.",
+              "sway_effect": 0,
+              "tag": "HEARTH",
+              "narrative": "The Castaways haggle like professionals. You lose more rum than you planned and half a bolt of good canvas. In return, the Fleet fills its water casks and the village elder mentions, almost casually, that the Admiralty cutter runs aground on a sandbar at low tide every third day. Information freely given tastes better than intelligence extracted."
+            },
+            {
+              "text": "Post armed watch on the signal point and take what the Fleet needs.",
+              "sway_effect": 1,
+              "tag": "BLOOD",
+              "narrative": "The Castaways retreat into the tree line and watch with hard eyes as your crews fill barrels at the stream. No signals are sent. No blood is spilled. But when the Fleet sails at dawn, the fishing boats are already gone, and whatever they tell the next Admiralty patrol will not be kind."
+            },
+            {
+              "text": "Offer the Castaways passage -- join the Fleet or risk the Admiralty alone.",
+              "sway_effect": -1,
+              "tag": "SILENCE",
+              "narrative": "Five Castaways accept. The rest stay, watching your sails shrink on the horizon with expressions you cannot read at that distance. The five new hands know these waters intimately -- every current, every hidden cove. They also know that joining the Fleet means the Admiralty will never let them go home."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter_id": "the_borderlands",
+      "display_name": "The Borderlands",
+      "entry_condition": "day >= 3",
+      "exit_condition": "day >= 6",
+      "scenes": [
+        {
+          "scene_id": "pt_day3_mirror_break",
+          "description": "The Fleet reaches the Throat -- a narrow channel between two volcanic islands where the Shattered Isles end and open water begins. An Admiralty frigate sits at anchor in the channel mouth, its gun ports open but its sails furled. A signal flag rises on its mainmast: parley. The frigate's captain is known to your people -- Captain Orenza, who once sailed under the same black flag before she took the Admiralty's coin. She was fair, once. The volcanic cliffs on either side of the Throat echo every sound back doubled. The Fleet waits in the shadow of the eastern island, watching.",
+          "location": "The Throat",
+          "choices": [
+            {
+              "text": "Accept the parley. Hear what Orenza has to say.",
+              "sway_effect": -1,
+              "tag": "GUILE",
+              "narrative": "Orenza speaks plainly from her quarterdeck: the Admiralty will grant letters of marque to any captain who surrenders. Legitimate trade, protection, a future. Three of your captains exchange glances. By nightfall, two ships peel away from the Fleet and sail toward the frigate's lanterns. The Fleet is smaller now, but what remains is certain."
+            },
+            {
+              "text": "Run the Throat at night under oar power, slipping past the frigate.",
+              "sway_effect": 0,
+              "tag": "SILENCE",
+              "narrative": "Muffled oars and no lanterns. The Fleet glides through the Throat in single file, close enough to hear the Admiralty watch-bell counting the hours. One ship scrapes a submerged rock and the sound echoes between the cliffs like a gunshot. Everyone freezes. The frigate's lanterns swing -- then settle. By dawn, the Fleet is through, and the open sea stretches ahead like a promise with teeth."
+            },
+            {
+              "text": "Sail straight at the frigate, flags flying. Force them to fire first or move.",
+              "sway_effect": 1,
+              "tag": "DEFIANCE",
+              "narrative": "The Fleet forms a line abreast and bears down on the Throat with every scrap of canvas drawing. Orenza watches through her glass. She does not fire. The frigate weighs anchor and moves aside -- not in retreat, but in calculation. She lets you pass and watches your heading. The Admiralty now knows exactly where you are going. But the Fleet passed the Throat with its colors up, and that story will reach every port before you do."
+            }
+          ]
+        },
+        {
+          "scene_id": "pt_day4_floating_market",
+          "description": "Beyond the Throat, the Fleet finds the Lantern Market -- a raft-city that drifts between jurisdictions, loyal to no flag. Hundreds of boats lashed together, draped in oil-lamp light and the smell of frying fish and black-market gunpowder. A Castaway merchant named Sable controls the ammunition supply here, and she sets her prices by how desperate you look. The Fleet needs shot. The Fleet needs rope. The Fleet needs a heading for safe harbor. Sable has all three, and she accepts only one currency: favors owed.",
+          "location": "The Lantern Market",
+          "choices": [
+            {
+              "text": "Owe Sable the favor. The Fleet needs supplies more than pride.",
+              "sway_effect": -1,
+              "tag": "GUILE",
+              "narrative": "Sable smiles with too many teeth and loads your boats heavy. Shot, rope, pitch, and a sealed letter with coordinates for a safe harbor two days south. The favor is unspecified. That is how Sable likes it. Somewhere in the ledger of debts that keeps the Lantern Market turning, your name is freshly inked."
+            },
+            {
+              "text": "Offer Fleet protection for the Market in exchange for supplies.",
+              "sway_effect": 1,
+              "tag": "HEARTH",
+              "narrative": "Sable considers. The Admiralty has been circling the Market for months, and her hired guards are expensive and unreliable. She agrees: supplies now, and the Fleet stands picket for one night. Your crews grumble at sentry duty after three days of hard sailing, but the Market feeds them well, and by morning the Fleet is provisioned and Sable is considering a longer arrangement."
+            },
+            {
+              "text": "Trade the Admiralty signal codes your Castaway cartographer knows.",
+              "sway_effect": 0,
+              "tag": "BLOOD",
+              "narrative": "The cartographer hesitates, then writes the codes on Sable's table. This intelligence will be sold to every pirate, smuggler, and privateer in the Shattered Isles within a week. The Admiralty will change its codes within a month, but the damage before then will be enormous. Sable pays generously. The cartographer does not speak for the rest of the day."
+            }
+          ]
+        },
+        {
+          "scene_id": "pt_day5_final_sail",
+          "description": "The fifth dawn paints the sky the color of a healing bruise. Ahead lies Freeport -- the one harbor in the Shattered Isles that even the Admiralty will not shell, because every nation's merchants use it. Behind, three Admiralty sails have appeared on the horizon, running close-hauled. The wind is wrong for a straight run to Freeport. Your navigator offers two options, and neither is good. The Fleet captains gather on your deck, salt-crusted and hollow-eyed, waiting for the last order of the voyage.",
+          "location": "The Open Water",
+          "choices": [
+            {
+              "text": "Scatter the Fleet -- every ship for itself, regroup in Freeport.",
+              "sway_effect": -1,
+              "tag": "SILENCE",
+              "narrative": "The captains nod. They know this dance. Signals fly and the Fleet breaks apart like a flock of startled birds, each ship choosing its own line for Freeport. The Admiralty cannot chase them all. Two ships are caught. The rest limp into Freeport over the next two days, battered but breathing. The two captured crews will need ransoming, and that debt falls on you."
+            },
+            {
+              "text": "Turn and fight. Pin the Admiralty ships against the wind.",
+              "sway_effect": 1,
+              "tag": "BLOOD",
+              "narrative": "The Fleet comes about in a ragged line, and for one terrifying hour, cannon smoke blots out the sun. One Admiralty ship loses its foremast. Your flagship takes a hit below the waterline that the carpenter plugs with a hammock and a prayer. The Admiralty breaks off. The Fleet limps into Freeport flying torn flags and leaking badly, but it sails in together, and every eye on the harbor wall watches it come."
+            },
+            {
+              "text": "Send the fastest ship ahead to Freeport to invoke harbor sanctuary before the Admiralty arrives.",
+              "sway_effect": 0,
+              "tag": "GUILE",
+              "narrative": "Your swiftest sloop races ahead while the Fleet tacks slowly toward port. The sloop reaches Freeport and the harbor master raises the sanctuary chain across the entrance. When the Admiralty arrives, they find the harbor closed by treaty law. They anchor outside, furious and impotent. The Fleet enters under the chain one ship at a time, and every tavern in Freeport charges double for the privilege of hearing the story."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

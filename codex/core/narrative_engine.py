@@ -187,6 +187,7 @@ class NarrativeEngine:
     def __post_init__(self):
         if not self.quests:
             self._seed_chapter(self.chapter)
+            self._seed_modular_quests()
         if not self.npcs:
             self._seed_npcs()
 
@@ -305,6 +306,33 @@ class NarrativeEngine:
                 reward_text=t["reward"],
                 turn_in_npc=t.get("turn_in", ""),
                 tier_hint=chapter, path=t.get("path", "ascend"),
+                progress_target=target,
+                prerequisite=prereq,
+            ))
+
+    def _seed_modular_quests(self):
+        """Populate modular quest modules (faction-intro storylines)."""
+        try:
+            from codex.core.narrative_content import MODULAR_QUEST_TEMPLATES
+        except ImportError:
+            return
+
+        existing_ids = {q.quest_id for q in self.quests}
+        for t in MODULAR_QUEST_TEMPLATES:
+            if t["id"] in existing_ids:
+                continue
+            target = self._parse_progress_target(t["objective"])
+            prereq = t.get("prerequisite", "")
+            self.quests.append(Quest(
+                quest_id=t["id"], title=t["title"],
+                description=t["description"], quest_type=t["type"],
+                chapter=t.get("tier_hint", 1),
+                objective=t["objective"],
+                objective_trigger=t["objective"],
+                reward_text=t["reward"],
+                turn_in_npc=t.get("turn_in", ""),
+                tier_hint=t.get("tier_hint", 1),
+                path="",
                 progress_target=target,
                 prerequisite=prereq,
             ))

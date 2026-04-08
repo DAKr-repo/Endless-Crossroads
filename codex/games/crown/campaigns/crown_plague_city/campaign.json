@@ -1,0 +1,154 @@
+{
+  "module_id": "crown_plague_city",
+  "display_name": "The Plague City",
+  "description": "A city locked down by plague. The Quarantine Authority controls the gates. The Underground moves through the sewers. The plague doesn't care about politics.",
+  "crown_faction": "Quarantine Authority",
+  "crew_faction": "Underground",
+  "neutral_term": "Forsaken",
+  "campfire_term": "Vigil",
+  "world_term": "Walled City",
+  "days": 5,
+  "scene_chapters": [
+    {
+      "chapter_id": "the_wilds",
+      "display_name": "The Wilds",
+      "entry_condition": "day >= 1",
+      "exit_condition": "day >= 3",
+      "scenes": [
+        {
+          "scene_id": "pc_day1_quarantine_line",
+          "description": "The Quarantine Authority has painted a red line across Millhaven Street -- lime and pig's blood, the old recipe. Beyond it, the Forsaken district festers. You stand on the clean side, watching Authority wardens in waxed masks nail shut the doors of a tenement where someone coughed blood this morning. A child's face appears in a third-floor window, pressing palms against the glass. An Underground runner at your elbow says there is a sewer grate two streets west that the Authority has not yet found. The wardens are moving to the next building.",
+          "location": "Millhaven Quarantine Line",
+          "choices": [
+            {
+              "text": "Cross the red line and help the Underground evacuate the Forsaken before the wardens seal the block.",
+              "sway_effect": 1,
+              "tag": "DEFIANCE",
+              "narrative": "You step over the line and the wardens shout. The Underground runners move fast -- twelve Forsaken are through the sewer grate before the Authority can mobilize. The wardens record your face. You are now on their list, and in the Walled City, lists have consequences."
+            },
+            {
+              "text": "Stay on the clean side but smuggle medicine across through the Underground's sewer route.",
+              "sway_effect": 0,
+              "tag": "GUILE",
+              "narrative": "Willow bark and clean bandages vanish down the sewer grate in an oilskin bag. The Authority sees nothing. The Forsaken receive enough to treat the worst cases for two days. It is not enough. It is never enough. But the Underground's route stays secret, and that is worth more than any single delivery."
+            },
+            {
+              "text": "Report the sewer route to the Authority. Containment saves more lives than compassion.",
+              "sway_effect": -1,
+              "tag": "SILENCE",
+              "narrative": "The Authority seals the grate within the hour, welding iron over it. The Underground's best route into the Forsaken district is gone. Three runners are trapped on the wrong side. But the Authority physician grudgingly admits that the new infection rate in the clean district drops by half. The numbers are cold comfort when you can still see that third-floor window from the street."
+            }
+          ]
+        },
+        {
+          "scene_id": "pc_day2_water_supply",
+          "description": "The Underground's cistern is fouled. Someone -- Authority sabotage or simple rot -- has contaminated the water supply for the sewer network. Two hundred people drink from this cistern: Underground runners, Forsaken refugees, the old and the young who cannot surface. A Forsaken apothecary named Maren says she can purify the water with alum and charcoal, but she needs a day and the Authority's clean water supply from the fountain in Covenant Square. The fountain is guarded. The Underground is thirsty now.",
+          "location": "The Deep Cistern",
+          "choices": [
+            {
+              "text": "Raid Covenant Square at night. Take the water the Underground needs.",
+              "sway_effect": 1,
+              "tag": "BLOOD",
+              "narrative": "Six Underground fighters and a stolen handcart. The fountain guard is one old warden who does not fight when he sees the numbers. Clean water flows into the Underground's barrels. The Authority calls it terrorism. Maren calls it survival. The warden's broken lantern is found at dawn and the Authority doubles the guard on every water source in the city."
+            },
+            {
+              "text": "Negotiate with the Authority for clean water in exchange for plague intelligence from inside the Forsaken district.",
+              "sway_effect": -1,
+              "tag": "GUILE",
+              "narrative": "The Authority physician wants infection maps -- where the plague is spreading, how fast, which streets are lost. The Underground provides the data, drawn in charcoal on butcher's paper. The Authority sends water. Not enough, but some. The Forsaken do not know their suffering has been mapped and traded. Maren purifies what arrives and says nothing about the price."
+            },
+            {
+              "text": "Let Maren purify the fouled cistern with what she has. It will take longer but reveals nothing.",
+              "sway_effect": 0,
+              "tag": "HEARTH",
+              "narrative": "Maren works through the night with a half-measure of alum begged from a Forsaken tanner. The water is drinkable by dawn -- barely. It tastes of chalk and iron. Two children vomit but recover. The cistern holds, the Underground's location stays hidden, and Maren adds 'miracle worker' to her list of thankless titles."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter_id": "the_borderlands",
+      "display_name": "The Borderlands",
+      "entry_condition": "day >= 3",
+      "exit_condition": "day >= 6",
+      "scenes": [
+        {
+          "scene_id": "pc_day3_mirror_break",
+          "description": "The plague mutates. What killed in five days now kills in two, and the Authority's physicians have no answer. The Quarantine Authority declares martial law: no movement between districts, no exceptions. Armed wardens block every street. The Underground's sewer network is the only passage left, and now everyone wants in -- Forsaken, merchants, even two Authority wardens who saw what the new strain does and decided their uniforms were not worth dying in. The Deep Cistern is crowded, the air thick with fear and the sweet-rot smell of infection. Someone in the back of the room is coughing.",
+          "location": "The Deep Cistern",
+          "choices": [
+            {
+              "text": "Accept everyone -- wardens included. The Underground does not turn people away.",
+              "sway_effect": 1,
+              "tag": "HEARTH",
+              "narrative": "The wardens strip off their masks and join the Forsaken on the cistern floor. The coughing figure is isolated in a side tunnel with what medicine remains. By morning, the Underground has doubled in size. It is also twice as vulnerable to disease, twice as loud, and twice as likely to be found. But no one was turned away, and in the Walled City, that story spreads faster than plague."
+            },
+            {
+              "text": "Screen everyone for symptoms. The sick stay topside -- the Underground cannot become a death pit.",
+              "sway_effect": -1,
+              "tag": "BLOOD",
+              "narrative": "Maren checks throats and eyes by candlelight. Eleven people are turned away, including the one who was coughing. They climb back into the streets where martial law means arrest or worse. The Underground survives. The eleven do not all survive the night. The wardens who were accepted keep their heads down and do not meet anyone's eyes."
+            },
+            {
+              "text": "Split the Underground into smaller cells across different sewer junctions.",
+              "sway_effect": 0,
+              "tag": "SILENCE",
+              "narrative": "The crowd disperses into six smaller groups, each in a different section of the sewer network. Communication becomes difficult -- runners carry messages through knee-deep water in the dark. But if one cell is found, the others survive. If disease hits one group, it does not reach the rest. The Underground becomes harder to kill and harder to lead."
+            }
+          ]
+        },
+        {
+          "scene_id": "pc_day4_authority_schism",
+          "description": "The Authority is fracturing. Commander Aldren, who controls the eastern gates, has broken with the central Authority. He wants to open his gates and let the healthy flee the Walled City entirely -- a plan that would spread the plague to every village within a week's walk. His rival, Warden-General Senn, wants to burn the Forsaken district to the ground and call it a firebreak. Both have sent runners to the Underground, because both need the sewer routes to outflank the other. The Underground sits between two monsters and the clock is ticking.",
+          "location": "Junction Nine, the Undercity",
+          "choices": [
+            {
+              "text": "Support Aldren. Open the gates. The Walled City is already lost -- save who you can.",
+              "sway_effect": -1,
+              "tag": "DEFIANCE",
+              "narrative": "Underground runners guide Aldren's soldiers through the sewers to flank Senn's barricades. The eastern gates open at dawn. Hundreds pour out -- healthy, sick, terrified. The plague will spread. Villages will burn. But the Forsaken walk free for the first time in weeks, and some of them will live. The cost is measured in other people's futures."
+            },
+            {
+              "text": "Support neither. Use the chaos to evacuate the Underground and the Forsaken through a route neither side controls.",
+              "sway_effect": 1,
+              "tag": "GUILE",
+              "narrative": "While Aldren and Senn circle each other, the Underground moves. Three hundred Forsaken travel through the deepest sewer tunnels to a collapsed section of the outer wall that Maren discovered last winter. They emerge outside the Walled City in a marsh that no one patrols. It is not freedom -- it is exile. But exile beats burning alive."
+            },
+            {
+              "text": "Feed false intelligence to both sides. Let them exhaust each other while the Underground fortifies.",
+              "sway_effect": 0,
+              "tag": "SILENCE",
+              "narrative": "Aldren's soldiers march into empty tunnels. Senn's wardens find barricades where the Underground told them there would be open passage. Both sides lose a day and several officers to the confusion. The Underground uses the time to stockpile food and seal secondary entrances. It is a cruel trick played on desperate men, and it buys perhaps forty-eight hours. In the Walled City, forty-eight hours is a lifetime."
+            }
+          ]
+        },
+        {
+          "scene_id": "pc_day5_the_cure_or_the_key",
+          "description": "Maren has done it. Working in a sewer tunnel by candlelight with stolen Authority supplies and Forsaken folk remedies, she has brewed something that stops the new strain's progression. Not a cure -- a treatment. Enough for perhaps fifty doses. The Underground holds it. The Authority wants it. Warden-General Senn stands at the entrance to the Deep Cistern with twenty soldiers and a white flag, offering the one thing the Underground has wanted since the first day: the keys to the gates. Open the Walled City, end the quarantine, in exchange for the treatment formula. Maren stands behind you, holding a clay jug of brown liquid that smells of garlic and copper. Fifty doses. A city of thousands.",
+          "location": "The Deep Cistern Entrance",
+          "choices": [
+            {
+              "text": "Give Senn the formula. The gates open, the quarantine ends, and the Authority mass-produces the treatment.",
+              "sway_effect": -1,
+              "tag": "HEARTH",
+              "narrative": "Maren hands over her notes. Senn reads them, nods once, and orders the gates opened. By nightfall, the Authority's physicians are brewing the treatment in every district. The Underground empties out into streets that smell of smoke and lime and something like hope. Maren watches the Authority take credit and says nothing. The Forsaken are free. The formula belongs to everyone now. The Underground's leverage is gone."
+            },
+            {
+              "text": "Distribute the fifty doses to the Forsaken first. Negotiate with the Authority from a position of proof, not promises.",
+              "sway_effect": 1,
+              "tag": "BLOOD",
+              "narrative": "Fifty Forsaken drink the treatment and by morning, their fevers break. The Underground sends one recovered patient to the Authority's gate with a message: open the city and the formula follows. Senn rages, but the proof walks and breathes and speaks. The gates open on the Underground's terms. Maren keeps the formula until the last warden stands down."
+            },
+            {
+              "text": "Refuse Senn entirely. The Underground distributes the treatment itself, one district at a time, building a parallel authority.",
+              "sway_effect": 0,
+              "tag": "DEFIANCE",
+              "narrative": "The Underground becomes the only source of survival in the Walled City. District by district, the Forsaken line up at sewer grates for Maren's brown liquid. The Authority's power dissolves not in violence but in irrelevance -- why obey wardens who cannot save you when the people in the sewers can? It is slow. It is dangerous. Three Underground runners are killed by desperate mobs. But by the fifth night, the gates do not need to be opened. They simply stop being guarded."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

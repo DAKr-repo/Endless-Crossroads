@@ -17,7 +17,32 @@ import random
 from pathlib import Path
 from typing import Any, Callable, Dict, List, Optional
 
+import re as _re
+
 _CONFIG_DIR = Path(__file__).resolve().parent.parent.parent.parent / "config"
+
+# Spoiler filter (#164): GM-only terms that Mimir must never leak to players.
+# These are endgame secrets, hidden zone names, and antagonist identities.
+_SPOILER_TERMS = [
+    r"\bThe Conductor\b", r"\bAn Cór Briste\b", r"\bBroken Choir\b",
+    r"\bChoir(?:'s)?\b(?! of)", r"\bSection Leader\b", r"\bChorus Walker\b",
+    r"\bUndergrove\b", r"\bHeartwood(?:\s+zone|\s+entrance)\b",
+    r"\bVoid Herald\b", r"\bThe Between\b", r"\bDeep Shade\b",
+    r"\bthe Song(?:\s+Below)?\b(?=.*(?:Choir|Conductor|Undergrove))",
+    r"\bRoot-Song.*(?:weapon|changed|broken)\b",
+]
+_SPOILER_PATTERNS = [_re.compile(p, _re.IGNORECASE) for p in _SPOILER_TERMS]
+
+
+def _scrub_spoilers(text: str) -> str:
+    """Remove GM-secret terms from Mimir-generated narration.
+
+    Replaces spoiler terms with atmospheric alternatives so the
+    output still reads naturally.
+    """
+    for pattern in _SPOILER_PATTERNS:
+        text = pattern.sub("something ancient", text)
+    return text
 
 # Palette key mapping for non-Burnwillow systems
 # Maps system_id → palette prefix in NARRATIVE_PALETTES
@@ -435,6 +460,7 @@ class NarrativeBridge:
                 # Reject AI meta-commentary
                 reject = ["as an ai", "i cannot", "language model", "certainly!", "here's"]
                 if not any(r in text.lower() for r in reject):
+                    text = _scrub_spoilers(text)
                     # Cap at one sentence (~150 chars)
                     if len(text) > 150:
                         last_period = text[:150].rfind(".")
@@ -646,6 +672,8 @@ class NarrativeBridge:
                 # Reject AI meta-commentary
                 reject = ["as an ai", "i cannot", "language model", "certainly!"]
                 if not any(r in text.lower() for r in reject):
+                    # Spoiler filter: scrub GM-only terms from output
+                    text = _scrub_spoilers(text)
                     # Cap length
                     if len(text) > 300:
                         last_period = text[:300].rfind(".")

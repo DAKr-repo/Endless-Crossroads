@@ -1,250 +1,487 @@
 {
-    "seed": 3011,
-    "width": 70,
-    "height": 50,
-    "start_room_id": 0,
-    "metadata": {
-        "zone_id": "gralhund_villa",
-        "theme": "STONE",
-        "topology": "dungeon",
-        "display_name": "Gralhund Villa"
+  "seed": 3011,
+  "width": 70,
+  "height": 50,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "gralhund_villa",
+    "theme": "STONE",
+    "topology": "dungeon",
+    "display_name": "Gralhund Villa"
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 30,
+      "y": 0,
+      "width": 10,
+      "height": 6,
+      "room_type": "start",
+      "connections": [
+        1
+      ],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Cassalanter Villa is an extravagant manse with dozens of lavish chambers, but its splendor belies the terrible secret it holds. The temple of Siamorphe that once lay beneath the estate has been desecrated by Victoro and Ammalia’s devil-worship, and now this great chapel is dedicated to the Lord of the Nine Hells.",
+        "read_aloud": "You see the extravagant manse of Cassalanter Villa, its splendor belied by a terrible secret. The air is heavy, and you notice the lingering scent of decay mixed with the oppressive silence of a place once dedicated to a forgotten deity.",
+        "npcs": [
+          {
+            "name": "Urstul Floxin",
+            "role": "Zhent assassin",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          },
+          {
+            "name": "Yalah Gralhund",
+            "role": "Resident of Gralhund Villa",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          }
+        ],
+        "enemies": [
+          {
+            "name": "Gralhund Guard",
+            "cr": "1/2"
+          },
+          {
+            "name": "Gralhund Guard",
+            "cr": "1/2"
+          }
+        ],
+        "loot": [],
+        "hazards": [],
+        "services": [],
+        "event_triggers": [
+          "On entry: Sounds of fighting echo from inside -- steel on steel, a scream cut short."
+        ],
+        "_source": "Waterdeep_ Dragon Heist",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
     },
-    "rooms": {
-        "0": {
-            "id": 0,
-            "x": 30,
-            "y": 0,
-            "width": 10,
-            "height": 6,
-            "room_type": "start",
-            "connections": [1],
-            "tier": 2,
-            "is_locked": false,
-            "is_secret": false,
-            "content_hints": {
-                "description": "Wrought-iron gates topped with gilded gryphons stand ajar, one hinge twisted where something forced its way through. Blood spatter on the flagstones has already dried to a dark crust. The villa beyond is lit from within, every window blazing as if the household wants the whole ward to see that everything is fine.",
-                "read_aloud": "Wrought-iron gates topped with gilded gryphons stand ajar, one hinge twisted and bent. Dark stains on the flagstones have dried to a crust in the night air. Beyond the gate, the villa blazes with light from every window, its white facade almost too bright against the dark -- as if someone inside wants the whole ward to believe that nothing is wrong. From within, you hear the distant clash of steel.",
-                "npcs": [],
-                "enemies": [
-                    {"name": "Gralhund Guard", "cr": "1/2"},
-                    {"name": "Gralhund Guard", "cr": "1/2"}
-                ],
-                "loot": [],
-                "hazards": [],
-                "services": [],
-                "event_triggers": [
-                    "On entry: Sounds of fighting echo from inside -- steel on steel, a scream cut short."
-                ]
-            }
-        },
-        "1": {
-            "id": 1,
-            "x": 30,
-            "y": 8,
-            "width": 12,
-            "height": 10,
-            "room_type": "normal",
-            "connections": [0, 2, 3, 6],
-            "tier": 2,
-            "is_locked": false,
-            "is_secret": false,
-            "content_hints": {
-                "description": "A chandelier the size of a cart wheel throws fractured light across marble floors streaked with muddy bootprints. A suit of ceremonial plate armor has been knocked from its pedestal and lies in pieces near the staircase. The portraits on the walls depict generations of Gralhunds, each painted with the same sharp, acquisitive smile.",
-                "read_aloud": "A chandelier the size of a cart wheel hangs overhead, its fractured light scattering across marble floors streaked with muddy bootprints. A suit of ceremonial plate armor lies toppled near the staircase, its pieces scattered like the bones of a fallen knight. Portraits line the walls -- generations of sharp-featured nobles staring down at the chaos below with identical, painted smiles.",
-                "npcs": [],
-                "enemies": [
-                    {"name": "Zhentarim Thug", "cr": "1/2"},
-                    {"name": "Zhentarim Thug", "cr": "1/2"}
-                ],
-                "loot": [
-                    {"name": "Silver Candlestick (25 gp)", "type": "treasure"}
-                ],
-                "hazards": [],
-                "services": [],
-                "event_triggers": [
-                    "On entry: A Zhentarim thug crashes through a door to the left, bleeding from a crossbow bolt in his shoulder."
-                ]
-            }
-        },
-        "2": {
-            "id": 2,
-            "x": 10,
-            "y": 10,
-            "width": 12,
-            "height": 8,
-            "room_type": "normal",
-            "connections": [1, 6],
-            "tier": 2,
-            "is_locked": false,
-            "is_secret": false,
-            "content_hints": {
-                "description": "The long oak table is set for twelve but dinner was never served. Soup has gone cold in porcelain bowls painted with the Gralhund crest. A crossbow bolt is embedded in the back of the host's chair. Glass crunches underfoot from a shattered wine decanter, and the carpet is stained the same deep red as the vintage it held.",
-                "read_aloud": "A long oak table is set for twelve with porcelain bowls and crystal goblets, but dinner was never served. Soup has gone cold in the bowls, and a crossbow bolt juts from the back of the host's chair. Glass crunches underfoot -- a shattered wine decanter, its contents soaking into the carpet in a spreading stain indistinguishable from blood. The candles in the centerpiece have burned to stubs, their wax pooling across the linen.",
-                "npcs": [],
-                "enemies": [
-                    {"name": "Gralhund Guard", "cr": "1/2"}
-                ],
-                "loot": [
-                    {"name": "Fine Silverware Set (50 gp)", "type": "treasure"}
-                ],
-                "hazards": [],
-                "services": [],
-                "event_triggers": []
-            }
-        },
-        "3": {
-            "id": 3,
-            "x": 50,
-            "y": 10,
-            "width": 10,
-            "height": 8,
-            "room_type": "treasure",
-            "connections": [1, 4],
-            "tier": 2,
-            "is_locked": true,
-            "is_secret": false,
-            "content_hints": {
-                "description": "Floor-to-ceiling shelves sag under the weight of leather-bound volumes and rolled scrolls. A reading desk near the window holds an open journal, its most recent entry half-finished -- the ink still wet, the quill abandoned mid-sentence. Someone left in a hurry and did not think to lock the door behind them.",
-                "read_aloud": "Floor-to-ceiling shelves sag under the weight of leather-bound volumes and rolled scrolls, filling the room with the smell of old paper and binding glue. A reading desk near the window holds an open journal, its most recent entry trailing off mid-sentence, the quill discarded beside a spreading ink blot. The chair is pushed back at an angle, as though whoever sat here stood in a hurry and never returned.",
-                "npcs": [],
-                "enemies": [],
-                "loot": [
-                    {"name": "Gralhund Correspondence", "type": "quest_item"},
-                    {"name": "Spell Scroll of Sending", "type": "consumable"},
-                    {"name": "Noble's Coin Purse (75 gp)", "type": "treasure"}
-                ],
-                "hazards": [
-                    {"name": "Glyph of Warding on desk drawer", "dc": 14}
-                ],
-                "services": [],
-                "event_triggers": [
-                    "On search (DC 14 Investigation): The journal reveals the Gralhunds have been playing the Zhentarim and Xanathar Guild against each other."
-                ]
-            }
-        },
-        "4": {
-            "id": 4,
-            "x": 50,
-            "y": 22,
-            "width": 10,
-            "height": 8,
-            "room_type": "normal",
-            "connections": [3, 5, 7],
-            "tier": 2,
-            "is_locked": false,
-            "is_secret": false,
-            "content_hints": {
-                "description": "A gallery landing overlooks the grand foyer below. Ornamental swords and shields line the walls between tall windows. One window is shattered outward, its curtain flapping in the night breeze. Muddy handprints on the balustrade suggest someone climbed up from outside -- or fled down.",
-                "read_aloud": "You step onto a gallery landing that overlooks the foyer below, its marble floor visible through the balustrade. Ornamental swords and shields hang between tall windows, one of which is shattered outward, its curtain billowing in the night breeze. Cold air pours through the gap, carrying the smell of rain-wet cobblestones. Muddy handprints smear the balustrade railing, trailing toward the broken glass.",
-                "npcs": [],
-                "enemies": [
-                    {"name": "Gralhund Guard Captain", "cr": "2"}
-                ],
-                "loot": [],
-                "hazards": [
-                    {"name": "Broken window (fall to courtyard, 2d6 damage)", "dc": 12}
-                ],
-                "services": [],
-                "event_triggers": []
-            }
-        },
-        "5": {
-            "id": 5,
-            "x": 50,
-            "y": 34,
-            "width": 10,
-            "height": 8,
-            "room_type": "secret",
-            "connections": [4],
-            "tier": 2,
-            "is_locked": true,
-            "is_secret": true,
-            "content_hints": {
-                "description": "Behind a pivoting bookcase, the master bedroom's true purpose is revealed: a hidden alcove lined with lead sheeting to block divination. A small altar to Bane occupies one corner, its candles freshly lit. A locked strongbox sits beneath the altar, still warm to the touch.",
-                "read_aloud": "Beyond the pivoting bookcase, a hidden alcove opens into a space that feels wrong -- the air is too still, too warm, and sounds from outside are swallowed completely. The walls are lined with dull gray sheeting that absorbs the light. A small altar stands in one corner, its black candles burning with steady, smokeless flames that cast no flickering shadow. A locked strongbox beneath the altar radiates a faint, unnatural warmth against your fingertips.",
-                "npcs": [
-                    {
-                        "name": "Yalah Gralhund",
-                        "role": "antagonist",
-                        "dialogue": "You have no idea what you have walked into. The Stone was never meant for you, and the powers who want it will grind this city to dust to get it back. Leave now, and I will pretend you were never here.",
-                        "notes": "Noble matriarch. Ice-cold pragmatist. Worships Bane in secret. Ordered the Nimblewright to steal the Stone of Golorr. Will negotiate if cornered, fight if desperate."
-                    }
-                ],
-                "enemies": [],
-                "loot": [
-                    {"name": "Bane Holy Symbol (hidden)", "type": "quest_item"},
-                    {"name": "Coded Letters to Zhentarim", "type": "quest_item"}
-                ],
-                "hazards": [],
-                "services": [],
-                "event_triggers": [
-                    "On discovery (DC 15 Perception): The lead-lined walls suggest the Gralhunds are hiding something from magical surveillance."
-                ]
-            }
-        },
-        "6": {
-            "id": 6,
-            "x": 10,
-            "y": 22,
-            "width": 10,
-            "height": 8,
-            "room_type": "normal",
-            "connections": [1, 2],
-            "tier": 2,
-            "is_locked": false,
-            "is_secret": false,
-            "content_hints": {
-                "description": "Narrow cots line both walls of this long, low room, each with a footlocker and a hook for a uniform. Most of the beds are empty -- their occupants are either dead in the foyer or guarding upstairs. A half-eaten meal sits on a trestle table, the bread still soft.",
-                "read_aloud": "Narrow cots line both walls of this long, low room, each made with military precision. Footlockers sit at the end of every bed, and uniforms hang from hooks on the wall. Most of the beds are empty, their blankets thrown back in haste. A half-eaten meal sits on a trestle table in the center -- the bread is still soft, the ale still foaming. Whoever was here left moments ago.",
-                "npcs": [
-                    {
-                        "name": "Hurv Cossburl",
-                        "role": "informant",
-                        "dialogue": "I just work here, all right? They do not pay me enough to die for them. The mechanical thing -- it went up to the roof. The mistress built it in the attic, never let any of us near it.",
-                        "notes": "Gralhund house guard. Terrified. Will surrender and share information about the Nimblewright if shown mercy."
-                    }
-                ],
-                "enemies": [],
-                "loot": [
-                    {"name": "Guard's Crossbow", "type": "weapon"},
-                    {"name": "Healing Potion (under a pillow)", "type": "consumable"}
-                ],
-                "hazards": [],
-                "services": [],
-                "event_triggers": []
-            }
-        },
-        "7": {
-            "id": 7,
-            "x": 30,
-            "y": 38,
-            "width": 12,
-            "height": 10,
-            "room_type": "boss",
-            "connections": [4],
-            "tier": 2,
-            "is_locked": false,
-            "is_secret": false,
-            "content_hints": {
-                "description": "Potted topiaries shaped like dragons line a rooftop garden open to the Waterdeep sky. Between the planters, a mechanical figure stands motionless -- humanoid in shape but wrong in every detail. Its joints click as it turns to face you, and the moonlight catches the rapier in its articulated hand. A leather satchel hangs from its belt, bulging with something round.",
-                "read_aloud": "You emerge onto a rooftop garden open to the Waterdeep sky. Potted topiaries shaped like coiled dragons line the parapet, their leaves silvered by moonlight. Between the planters, a figure stands perfectly still -- humanoid in shape, but its proportions are wrong, its joints too many, its surface gleaming like lacquered wood. As you step closer, something clicks inside its chest, and it turns to face you with a motion that is smooth, precise, and entirely inhuman. Moonlight catches the blade in its articulated hand.",
-                "npcs": [],
-                "enemies": [
-                    {"name": "Nimblewright", "cr": "4"}
-                ],
-                "loot": [
-                    {"name": "Stone of Golorr", "type": "quest_item"},
-                    {"name": "Nimblewright's Rapier (+1)", "type": "weapon"}
-                ],
-                "hazards": [
-                    {"name": "Rooftop edge (fall 30 ft, 3d6 damage)", "dc": 12}
-                ],
-                "services": [],
-                "event_triggers": [
-                    "On combat start: The Nimblewright fights with mechanical precision, prioritizing escape over killing. If reduced to half HP, it attempts to flee across the rooftops.",
-                    "On Stone recovered: The Stone of Golorr pulses with cold light and whispers a single word: 'Vault.'"
-                ]
-            }
-        }
+    "1": {
+      "id": 1,
+      "x": 30,
+      "y": 8,
+      "width": 12,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [
+        0,
+        2,
+        3,
+        6
+      ],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Urstul Floxin returned to Gralhund Villa to confront Yalah Gralhund regarding the nimblewright's meddling in his mission. Lady Gralhund, displeased with Urstul, wrested the Stone of Golorr from him at swordpoint and ordered her guards to lock him up.",
+        "read_aloud": "You see the opulent halls of Gralhund Villa, where the air hangs heavy with unspoken conflict. Fractured light spills across marble floors marred by muddy bootprints, and a suit of ceremonial plate armor lies toppled near the staircase, its pieces scattered like the bones of a fallen knight.",
+        "npcs": [
+          {
+            "name": "Urstul Floxin",
+            "role": "Zhent assassin who returned to Gralhund Villa to confront Yalah Gralhund about sending the nimblewright to meddle in his mission.",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          },
+          {
+            "name": "Yalah Gralhund",
+            "role": "The person Urstul Floxin was confronting at Gralhund Villa.",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          },
+          {
+            "name": "Lady Gralhund",
+            "role": "The person who wrested the Stone of Golorr from Urstul Floxin.",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          },
+          {
+            "name": "Orond",
+            "role": "Lady Gralhund's husband who was providing coin and shelter to Urstul and his fellow Zhents.",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          }
+        ],
+        "enemies": [
+          {
+            "name": "Zhentarim Thug",
+            "cr": "1/2"
+          },
+          {
+            "name": "Zhentarim Thug",
+            "cr": "1/2"
+          }
+        ],
+        "loot": [
+          {
+            "name": "Silver Candlestick (25 gp)",
+            "type": "treasure"
+          }
+        ],
+        "hazards": [],
+        "services": [],
+        "event_triggers": [
+          "On entry: A Zhentarim thug crashes through a door to the left, bleeding from a crossbow bolt in his shoulder."
+        ],
+        "_source": "Waterdeep_ Dragon Heist",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 10,
+      "y": 10,
+      "width": 12,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [
+        1,
+        6
+      ],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Urstul Floxin returned to Gralhund Villa to confront Yalah Gralhund regarding the nimblewright's meddling in his mission. Lady Gralhund, displeased with Urstul, wrested the Stone of Golorr from him at swordpoint and ordered her guards to lock him up.",
+        "read_aloud": "You see a long oak table set for twelve with porcelain bowls and crystal goblets, but dinner was never served. Soup has gone cold in the bowls, and a crossbow bolt juts from the back of the host's chair. Glass crunches underfoot—a shattered wine decanter, its contents soaking into the carpet in a spreading stain indistinguishable from blood.",
+        "npcs": [
+          {
+            "name": "Urstul Floxin",
+            "role": "Zhent assassin who returned to Gralhund Villa to confront Yalah Gralhund about sending the nimblewright to meddle in his mission.",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          },
+          {
+            "name": "Yalah Gralhund",
+            "role": "The person Urstul Floxin was confronting at Gralhund Villa.",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          },
+          {
+            "name": "Lady Gralhund",
+            "role": "The person who wrested the Stone of Golorr from Urstul Floxin.",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          },
+          {
+            "name": "Orond",
+            "role": "Lady Gralhund's husband who was providing coin and shelter to Urstul and his fellow Zhents.",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          }
+        ],
+        "enemies": [
+          {
+            "name": "Gralhund Guard",
+            "cr": "1/2"
+          }
+        ],
+        "loot": [
+          {
+            "name": "Fine Silverware Set (50 gp)",
+            "type": "treasure"
+          }
+        ],
+        "hazards": [],
+        "services": [],
+        "event_triggers": [],
+        "_source": "Waterdeep_ Dragon Heist",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
+    },
+    "3": {
+      "id": 3,
+      "x": 50,
+      "y": 10,
+      "width": 10,
+      "height": 8,
+      "room_type": "treasure",
+      "connections": [
+        1,
+        4
+      ],
+      "tier": 2,
+      "is_locked": true,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The carnage at Gralhund Villa is significant enough that the City Watch cannot conceal what has transpired for long. Lady Gralhund’s nimblewright fled the estate with the Stone of Golorr, hiding the artifact in a secret location within Waterdeep.",
+        "read_aloud": "You see the opulent interior of Gralhund Villa, where the air is thick with the earthy scent of old books. The library fills two floors of the three-story building, and the sheer volume of books seems to contain more than just knowledge.",
+        "npcs": [
+          {
+            "name": "Lady Gralhund",
+            "role": "Lady Gralhund’s nimblewright hides the artifact in a secret location in Waterdeep.",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          },
+          {
+            "name": "Hrabbaz",
+            "role": "Lady Gralhund and Hrabbaz are the only people who know where the nimblewright has gone, but they feign ignorance when questioned about it.",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          }
+        ],
+        "enemies": [],
+        "loot": [
+          {
+            "name": "Gralhund Correspondence",
+            "type": "quest_item"
+          },
+          {
+            "name": "Spell Scroll of Sending",
+            "type": "consumable"
+          },
+          {
+            "name": "Noble's Coin Purse (75 gp)",
+            "type": "treasure"
+          }
+        ],
+        "hazards": [
+          {
+            "name": "Glyph of Warding on desk drawer",
+            "dc": 14
+          }
+        ],
+        "services": [],
+        "event_triggers": [
+          "On search (DC 14 Investigation): The journal reveals the Gralhunds have been playing the Zhentarim and Xanathar Guild against each other."
+        ],
+        "_source": "Waterdeep_ Dragon Heist",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
+    },
+    "4": {
+      "id": 4,
+      "x": 50,
+      "y": 22,
+      "width": 10,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [
+        3,
+        5,
+        7
+      ],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Gralhund Villa is the location where Urstul Floxin returned to confront Yalah Gralhund regarding the nimblewright's meddling in his mission. Lady Gralhund, deciding she no longer liked Urstul, wrested the Stone of Golorr from him at swordpoint and ordered her guards to lock him up.",
+        "read_aloud": "You step onto a gallery landing overlooking the foyer below, the marble floor visible through the balustrade. Ornamental swords and shields hang between tall windows, one shattered outward, its curtain billowing in the night breeze.",
+        "npcs": [
+          {
+            "name": "Urstul Floxin",
+            "role": "Zhent assassin who returned to Gralhund Villa to confront Yalah Gralhund about sending the nimblewright to meddle in his mission.",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          },
+          {
+            "name": "Yalah Gralhund",
+            "role": "The person Urstul Floxin was confronting at Gralhund Villa.",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          },
+          {
+            "name": "Lady Gralhund",
+            "role": "The person who wrested the Stone of Golorr from Urstul Floxin.",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          },
+          {
+            "name": "Orond",
+            "role": "Lady Gralhund's husband who was providing coin and shelter to Urstul and his fellow Zhents.",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          }
+        ],
+        "enemies": [
+          {
+            "name": "Gralhund Guard Captain",
+            "cr": "2"
+          }
+        ],
+        "loot": [],
+        "hazards": [
+          {
+            "name": "Broken window (fall to courtyard, 2d6 damage)",
+            "dc": 12
+          }
+        ],
+        "services": [],
+        "event_triggers": [],
+        "_source": "Waterdeep_ Dragon Heist",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
+    },
+    "5": {
+      "id": 5,
+      "x": 50,
+      "y": 34,
+      "width": 10,
+      "height": 8,
+      "room_type": "secret",
+      "connections": [
+        4
+      ],
+      "tier": 2,
+      "is_locked": true,
+      "is_secret": true,
+      "content_hints": {
+        "description": "After fleeing Gralhund Villa with the Stone of Golorr, Lady Gralhund’s nimblewright hides the artifact in a secret location in Waterdeep, setting the stage for chapter 4. The carnage at the estate cannot be hidden from the City Watch for long, as there are too many murdered servants and guards.",
+        "read_aloud": "You see a hidden alcove opening into a space that feels wrong—the air is too still, too warm, and sounds from outside are swallowed completely. The walls are lined with dull gray sheeting that absorbs the light, and a locked strongbox beneath an altar radiates a faint, unnatural warmth against your fingertips.",
+        "npcs": [
+          {
+            "name": "Yalah Gralhund",
+            "role": "She carries a ring of keys that open all locked doors in the mansion, as well as the locked wooden trunk at the foot of the bed.",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          },
+          {
+            "name": "Lady Gralhund",
+            "role": "She wrests the Stone of Golorr from Urstul Floxin at swordpoint and orders her guards to lock him up until she decides what to do with him.",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          }
+        ],
+        "enemies": [],
+        "loot": [
+          {
+            "name": "Bane Holy Symbol (hidden)",
+            "type": "quest_item"
+          },
+          {
+            "name": "Coded Letters to Zhentarim",
+            "type": "quest_item"
+          }
+        ],
+        "hazards": [],
+        "services": [],
+        "event_triggers": [
+          "On discovery (DC 15 Perception): The lead-lined walls suggest the Gralhunds are hiding something from magical surveillance."
+        ],
+        "_source": "Waterdeep_ Dragon Heist",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
+    },
+    "6": {
+      "id": 6,
+      "x": 10,
+      "y": 22,
+      "width": 10,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [
+        1,
+        2
+      ],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Gralhund Villa is the location where the Zhent assassin Urstul Floxin returned to confront Yalah Gralhund about sending the nimblewright to meddle in his mission. Lady Gralhund decided she no longer liked Urstul and, taking advantage of his injuries, wrested the Stone of Golorr from him at swordpoint before ordering her guards to lock him up.",
+        "read_aloud": "You see narrow cots lining both walls of this long, low room, each made with military precision. Footlockers sit at the end of every bed, and uniforms hang from hooks on the wall.",
+        "npcs": [
+          {
+            "name": "Yalah Gralhund",
+            "role": "Lady Gralhund decides she no longer likes Urstul and, taking advantage of his injuries, wrests the Stone of Golorr from him at swordpoint and orders her guards to lock him up until she decides what to do with him.",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          },
+          {
+            "name": "Orond",
+            "role": "Gralhund and her husband, Orond, are providing coin and shelter to Urstul and his fellow Zhents in exchange for the promise of getting their fair share of the hidden cache of gold.",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          }
+        ],
+        "enemies": [],
+        "loot": [
+          {
+            "name": "Guard's Crossbow",
+            "type": "weapon"
+          },
+          {
+            "name": "Healing Potion (under a pillow)",
+            "type": "consumable"
+          }
+        ],
+        "hazards": [],
+        "services": [],
+        "event_triggers": [],
+        "_source": "Waterdeep_ Dragon Heist",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
+    },
+    "7": {
+      "id": 7,
+      "x": 30,
+      "y": 38,
+      "width": 12,
+      "height": 10,
+      "room_type": "boss",
+      "connections": [
+        4
+      ],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Gralhund Villa is a location where Urstul Floxin returned to confront Yalah Gralhund about the nimblewright's meddling in his mission. Lady Gralhund decided she no longer liked Urstul and, taking advantage of his injuries, wrested the Stone of Golorr from him at swordpoint and ordered her guards to lock him up.",
+        "read_aloud": "> You stand before Gralhund Villa, a place steeped in shadow and intrigue. The air feels heavy with unspoken conflict, and you sense the lingering tension of a recent confrontation.",
+        "npcs": [
+          {
+            "name": "Urstul Floxin",
+            "role": "Zhent assassin who returned to Gralhund Villa to confront Yalah Gralhund",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          },
+          {
+            "name": "Lady Gralhund",
+            "role": "Owner of Gralhund Villa who wrested the Stone of Golorr from Urstul Floxin",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          }
+        ],
+        "enemies": [
+          {
+            "name": "Nimblewright",
+            "cr": "4"
+          }
+        ],
+        "loot": [
+          {
+            "name": "Stone of Golorr",
+            "type": "quest_item"
+          },
+          {
+            "name": "Nimblewright's Rapier (+1)",
+            "type": "weapon"
+          }
+        ],
+        "hazards": [
+          {
+            "name": "Rooftop edge (fall 30 ft, 3d6 damage)",
+            "dc": 12
+          }
+        ],
+        "services": [],
+        "event_triggers": [
+          "On combat start: The Nimblewright fights with mechanical precision, prioritizing escape over killing. If reduced to half HP, it attempts to flee across the rooftops.",
+          "On Stone recovered: The Stone of Golorr pulses with cold light and whispers a single word: 'Vault.'"
+        ],
+        "_source": "Waterdeep_ Dragon Heist",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
     }
+  }
 }

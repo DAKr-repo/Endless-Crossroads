@@ -4564,4 +4564,151 @@ Do NOT let the players fight The Conductor here. They see it from a distance. Th
 
 ---
 
+# APPENDIX A: THE OTHER GROVES — Design Bible
+
+---
+
+## Overview
+
+The four Groves are one world-tree in four seasons, connected by Root-Roads. Each Grove's corruption is the Choir's song forcing the *wrong* season onto living wood. This appendix provides the design foundation for Verdhollow, Solheart, Ashenmere, and the Void — enough to run sessions, design factions, or expand the setting into full campaigns.
+
+---
+
+## Verdhollow — Spring (Drowning in Growth)
+
+### Core Mechanic: The Growth Clock
+Every session in Verdhollow, the Growth Clock advances. As it ticks, the dungeon *changes*: corridors narrow, rooms shrink, new rooms grow between existing ones. Passages the party used three rooms ago may be impassable now. The Growth Clock is not a threat counter — it is the dungeon rewriting itself.
+
+- **Growth Clock Maximum:** 12 (equivalent to Doom Clock)
+- **Tick Triggers:** Room entry (+1), resting (+2), killing plant-type enemies (+1, their death feeds the soil)
+- **Thresholds:** At 4: new corridors sprout. At 8: rooms split. At 12: the canopy closes — total enclosure, all exits sealed until the party cuts free (Might DC 18).
+
+### Corruption: Overgrowth
+The Choir's song forces perpetual spring. Growth without dormancy. Flowers bloom in seconds, vines strangle in minutes. The natural growth cycle — bud, bloom, fruit, seed, rest — collapses into bud-bloom-bud-bloom with no rest phase. The Verdhollow Blight is suffocation by abundance.
+
+### Verdhollow Factions (6)
+
+| Faction | Ecological Basis | Role | Core Tension |
+|---------|-----------------|------|-------------|
+| **The Pruners** | Gardeners / controlled burn | Militant order that cuts back Overgrowth | Believe destruction is mercy. Will cut anything that grows too fast — including allies. |
+| **The Bloomweavers** | Pollinator network | Artisan-diplomats who shape growth instead of fighting it | Think the Pruners are butchers. Weave living architecture, but their creations sometimes turn on them. |
+| **The Root Mothers** | Ancient mycorrhizal nodes | Elder network that remembers pre-corruption Verdhollow | Know the Growth Clock's origin. Won't share unless the price is paid: one season of service. |
+| **The Verdant Choir** | Choir-aligned converts | Those who *chose* the endless spring | Believe the song is a gift. Want to spread it to the Burnwillow. Terrifying because they're genuinely happy. |
+| **The Harvesters** | Fruit-gatherers / resource extractors | Pragmatic survivors who exploit Overgrowth | Strip-mine the growth for resources. Ruthlessly efficient. No ideology — just survival. |
+| **The Dormancy Cult** | Hibernation advocates | Seek to force Verdhollow into winter sleep | Extreme solution: freeze the grove to stop the growth. Would destroy everything to save it. |
+
+### Signature Enemies
+- **Bloom Hollow:** A Hollow covered in flowers. Each round it lives, it spawns a Seedling (1 HP, explodes for 1d4 on death).
+- **Vine Strangler:** Grapples on hit. Target must break free (DC 14 Might) or take 2 dmg/round.
+- **The Gardener:** Mini-boss. An enormous construct made of woven vines, still executing an Arborist's final command: "prune everything that doesn't belong." It does not distinguish settlers from Blight.
+
+---
+
+## Solheart — Summer (The Scorched Throne)
+
+### Core Mechanic: The Exhaustion Economy
+Solheart is a furnace. Every action costs more than it should. The Exhaustion Economy tracks cumulative heat exposure:
+
+- **Heat Level:** 0-10 scale. Starts at 0 on entry.
+- **Gain:** +1 per room entered, +2 for combat, +1 per rest (the heat doesn't stop).
+- **Effects:** At 3: -1d6 to all checks (dehydration). At 6: max HP reduced by 25%. At 9: hallucinations (GM feeds false room info). At 10: unconscious.
+- **Reduction:** Deepwater (-3), shade rooms (-1/rest), Ashenmere artifacts (-2 on contact).
+
+### Corruption: Blaze
+The Choir's song forces perpetual summer. Fire without ash. Heat without hearth. The controlled embers that Burnwillow settlers nurture become napalm here — uncontrollable, consuming. Solheart's Blight is not decay but immolation. The trees burn but don't fall. The ash doesn't cool.
+
+### Solheart Factions (6)
+
+| Faction | Ecological Basis | Role | Core Tension |
+|---------|-----------------|------|-------------|
+| **The Ashen Guard** | Fire wardens / ember keepers | Military order that fights fire with controlled burns | Believe the only way to survive fire is to become it. Ritual scarification. Will burn allies to deny fuel. |
+| **The Oasis Keepers** | Water conservation / shade engineers | Maintain the few cool zones in Solheart | Pacifists by necessity — any violence generates heat. Hoard Deepwater jealously. |
+| **The Forge-Born** | Metallurgists / heat-smiths | Master crafters who work raw Aether-heat into weapons | The heat that kills everything else is their fuel. Make the best weapons in any grove. Price: servitude. |
+| **The Sun Speakers** | Solar worship / seasonal theologians | Believe Summer was always meant to rule | Think the Choir perfected the song. Want to extend Summer to all groves. Eerily calm. |
+| **The Char Runners** | Nomadic scavengers / couriers | Move between safe zones, trading information | Know every shade-pocket and cool corridor. Sell routes for water. Trust no one. |
+| **The Quench** | Underground resistance / anti-heat extremists | Seek to drown Solheart's fires permanently | Stockpile Deepwater. Plan a Great Quenching. Would drown the grove to save it — same logic as the Dormancy Cult. |
+
+### Signature Enemies
+- **Ember Hollow:** A Hollow wreathed in flame. Melee attackers take 1d4 fire damage. Dies in an explosion (2d6, 10ft radius).
+- **Heat Mirage:** Appears as a friendly NPC or treasure chest. Attacks when approached. Immune to fire.
+- **The Furnace King:** Mini-boss. A massive construct at the center of a lava chamber, still pumping heat through Solheart's root system. The Arborists built it to warm the grove. The Choir made it forget how to stop.
+
+---
+
+## Ashenmere — Winter (The Still Place)
+
+### Core Mechanic: Dormancy Infection
+Ashenmere doesn't attack. It *slows*. Every room entered in Ashenmere inflicts Dormancy:
+
+- **Dormancy Level:** 0-10. Starts at 0.
+- **Gain:** +1 per room, +1 per failed save against cold effects.
+- **Effects:** At 3: movement speed halved. At 5: one random skill locked (cannot use). At 7: forget one party member's name (mechanical: cannot use assist/intercept on them). At 10: enter Stasis — frozen in place, aware but unable to act. Rescued only by external heat source.
+- **Reduction:** Fire (+1 Aether), Ember items (-2 on use), combat (-1 per round — adrenaline fights the cold).
+
+### Corruption: Ice
+The Choir's first experiment. They tested the song here to push back Winter — and it worked too well. Ashenmere froze solid. Not dead. Paused. Everything is preserved in grey-amber ice: Arborists mid-stride, animals mid-leap, Root-Song notes hanging in the air as visible frost crystals. The horror is that they're all still alive inside the ice. Still thinking. Still waiting.
+
+### Ashenmere Factions (6)
+
+| Faction | Ecological Basis | Role | Core Tension |
+|---------|-----------------|------|-------------|
+| **The Watchers** | Ice preservationists / archivists | Guard the frozen and study what they preserved | Believe unfreezing Ashenmere would kill everyone inside. May be right. Won't let anyone try. |
+| **The Thaw** | Heat-seekers / liberators | Want to melt the ice and free the frozen | Believe the frozen are suffering. Will use any heat source — including Blaze. Desperate. |
+| **The Still Singers** | Sound-based mystics | Hear the frozen Root-Song notes and try to complete them | The only faction that understands the Song was interrupted mid-note. If they finish it... what? |
+| **The Ice Shapers** | Cold-craft artisans | Work the grey-amber ice into tools and armor | Ashenmere ice is the hardest material in any grove. They trade it. They don't ask what's inside. |
+| **The Hollow Choir** | Ashenmere's Choir remnant | Frozen Choir members still singing, barely audible | Their song is the reason Ashenmere hasn't shattered. If they stop, the ice cracks. If they continue, the freeze deepens. |
+| **The Void Wardens** | Anti-Void sentinels | Guard the border where Ashenmere meets the Deep Shade | Know the Void is closest here. The ice is a barrier. Thawing Ashenmere might open a door that cannot be closed. |
+
+### Signature Enemies
+- **Frost Hollow:** A Hollow encased in ice armor. DR 3. Slow but devastating. On death, explodes into shards (1d6 to all adjacent).
+- **Memory Ghost:** A frozen Arborist's projected consciousness. Cannot physically harm, but forces Dormancy saves at DC 16. Speaks fragments of the Root-Song.
+- **The Sleeper:** Mini-boss. An ancient Arborist frozen at the exact moment they were trying to complete the counter-song. If awakened, they will finish what they started. No one knows if that saves or dooms Ashenmere.
+
+---
+
+## The Void — The Deep Shade
+
+### Nature
+The Void is not a place. It is an absence. The space between the groves, between the Root-Roads, between the notes of the Root-Song. It is where Aether isn't. The Void does not invade — it *leaches*. Where the Root-Song weakens, the Void seeps in. Where Aether drains, the Void fills the gap with nothing.
+
+### Core Mechanic: Aether Drain
+In Void-touched areas, all Aether-based systems degrade:
+- **Aether Drain:** -1 max Aether pool per room. At 0, Aether items go inert.
+- **Root-Song Silence:** No NPC dialogue enhancement. No Mimir narration. Silence.
+- **Equipment Degradation:** Magical properties of gear suppress. Affixes stop functioning. Set bonuses deactivate.
+- **The only thing that works:** Physical force. Might. Grit. Steel. The Void cannot drain what was never magical.
+
+### Void Creatures
+
+| Creature | Type | Behavior | Horror |
+|----------|------|----------|--------|
+| **Void Wisp** | Scout | Follows parties, drains 1 Aether/room if not destroyed | Looks like a hole in reality. Your eyes slide off it. |
+| **Shade Walker** | Hunter | Attacks from dimensional folds. Appears in party's blind spots. | Wears the shape of someone you've lost. Not a copy — an absence shaped like a person. |
+| **The Unmade** | Abomination | A creature that was partially consumed by the Void. Missing chunks of reality. | Has no hit points in the missing sections. Attacks pass through. Only hits the parts that exist. |
+| **Void Herald** | Boss | Extra-dimensional entity. Precursor/scout for the greater Void. | Should not exist. Breaks dungeon rules: no room type, no tier, no faction. The dungeon itself rejects it. |
+
+### Void Faction: The Between
+
+Not truly a faction — more a state of being. The Between are those who have spent too long in Void-touched spaces and survived. They are:
+- Immune to Aether drain (they have none left)
+- Cannot benefit from healing magic, set bonuses, or trait effects
+- See in absolute darkness
+- Speak only in negatives ("not warm" instead of "cold", "un-alive" instead of "dead")
+- Consider the groves an infection on the Void's natural state
+
+**The Between's position:** The groves are a tumor. The Root-Song is a disease. Aether is a parasite. The natural state of things is silence and void. The Choir got closest to truth when they silenced Ashenmere — but they didn't go far enough.
+
+---
+
+## Design Notes: Cross-Grove Campaign Hooks
+
+1. **The Root-Road Network:** Unsealing a Root-Road to another grove opens a two-way passage. The other grove's corruption can now reach the Burnwillow.
+2. **Faction Diplomacy:** Each grove's factions have natural allies and enemies in other groves (Pruners ally with Ashen Guard; Dormancy Cult allies with Thaw; etc.).
+3. **The Three Endgame Paths** apply to all groves:
+   - **Silence the Choir:** Stops the Blight everywhere but lets the Void advance. All groves begin dying naturally.
+   - **Complete the Song:** Fixes the Choir's broken note. Stops the Blight AND the Void. But requires the Song of Ending — which kills everything in the Undergrove, including the Choir members who are people.
+   - **Wake the Sleepers:** Awaken the frozen Arborists in Ashenmere who knew the original counter-song. They might fix everything. They might make it worse. They've been listening to the Void for centuries.
+
+---
+
 *End of the Burnwillow Sourcebook.*

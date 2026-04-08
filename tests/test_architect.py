@@ -5,8 +5,6 @@ Tests the following components WITHOUT hardware access or Ollama:
   - ComplexityAnalyzer.analyze(query)        → (Complexity, reasoning_str)
   - ComplexityAnalyzer.estimate_tokens(query) → int
   - Architect.route(query)                   → RoutingDecision
-  - Architect._detect_code_request(query)    → bool
-  - Architect._validate_coder_sandbox(query) → Optional[str]
 
 All tests mock codex.core.cortex.get_cortex() so no hardware reads occur.
 """
@@ -172,84 +170,7 @@ class TestHighComplexity(unittest.TestCase):
 
 
 # ===========================================================================
-# 4. Code detection
-# ===========================================================================
-
-class TestDetectCodeRequest(unittest.TestCase):
-    """_detect_code_request() must return True for code-flavoured queries."""
-
-    def setUp(self) -> None:
-        with patch(_CORTEX_PATCH, return_value=_make_mock_cortex()):
-            self.architect = Architect()
-
-    def test_write_code_detected(self) -> None:
-        self.assertTrue(self.architect._detect_code_request("write code for a dice roller"))
-
-    def test_implement_keyword_detected(self) -> None:
-        self.assertTrue(self.architect._detect_code_request("implement a retry wrapper"))
-
-    def test_class_keyword_detected(self) -> None:
-        self.assertTrue(self.architect._detect_code_request("create a class that parses JSON"))
-
-    def test_plain_question_not_detected(self) -> None:
-        self.assertFalse(self.architect._detect_code_request("what is the thermal limit?"))
-
-    def test_greeting_not_detected(self) -> None:
-        self.assertFalse(self.architect._detect_code_request("hello, how are you?"))
-
-
-# ===========================================================================
-# 5. Sandbox validation
-# ===========================================================================
-
-class TestValidateCoderSandbox(unittest.TestCase):
-    """
-    _validate_coder_sandbox() must block destructive operations targeting
-    files outside /tmp/codex_sandbox.
-    """
-
-    def setUp(self) -> None:
-        with patch(_CORTEX_PATCH, return_value=_make_mock_cortex()):
-            self.architect = Architect()
-
-    def test_destructive_on_project_py_is_blocked(self) -> None:
-        query = "delete codex/core/architect.py because we no longer need it"
-        result = self._validate(query)
-        self.assertIsNotNone(result)
-        self.assertIn("SECURITY_RESTRICTION", result)
-
-    def test_rm_on_json_outside_sandbox_is_blocked(self) -> None:
-        query = "rm config/settings.json"
-        result = self._validate(query)
-        self.assertIsNotNone(result)
-        self.assertIn("SECURITY_RESTRICTION", result)
-
-    def test_remove_txt_outside_sandbox_is_blocked(self) -> None:
-        query = "remove notes.txt from the project root"
-        result = self._validate(query)
-        self.assertIsNotNone(result)
-        self.assertIn("outside sandbox", result)
-
-    def test_safe_query_passes_validation(self) -> None:
-        # No destructive verb + no file extension target → allowed
-        query = "write a function that sums two numbers"
-        result = self._validate(query)
-        self.assertIsNone(result)
-
-    def test_sandbox_path_itself_is_allowed(self) -> None:
-        # Targeting a file inside /tmp/codex_sandbox should be permitted
-        sandbox_file = str(Path("/tmp/codex_sandbox/output.py"))
-        query = f"delete {sandbox_file} after the test"
-        result = self._validate(query)
-        self.assertIsNone(result)
-
-    # Internal helper — avoids repetition
-    def _validate(self, query: str):
-        return self.architect._validate_coder_sandbox(query)
-
-
-# ===========================================================================
-# 6. Routing decisions
+# 4. Routing decisions
 # ===========================================================================
 
 class TestRouting(unittest.TestCase):
@@ -333,20 +254,10 @@ class TestRouting(unittest.TestCase):
         decision = architect.route("hello")
         self.assertFalse(decision.clearance_granted)
 
-    def test_experimental_never_auto_routed(self) -> None:
-        """
-        Even a code-heavy query must NOT auto-route to EXPERIMENTAL.
-        The spec says EXPERIMENTAL is only reachable via explicit !code.
-        """
-        architect = self._make_architect(clearance=True)
-        decision = architect.route(
-            "write code to implement a full OAuth2 class with refresh tokens"
-        )
-        self.assertNotEqual(decision.mode, ThinkingMode.EXPERIMENTAL)
 
 
 # ===========================================================================
-# 7. Token estimation
+# 6. Token estimation
 # ===========================================================================
 
 class TestEstimateTokens(unittest.TestCase):

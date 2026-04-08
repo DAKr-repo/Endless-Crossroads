@@ -1,293 +1,477 @@
 {
-    "seed": 3015,
-    "width": 80,
-    "height": 60,
-    "start_room_id": 0,
-    "metadata": {
-        "zone_id": "sea_maidens_faire",
-        "theme": "STONE",
-        "topology": "dungeon",
-        "display_name": "Sea Maidens Faire"
+  "seed": 3015,
+  "width": 80,
+  "height": 60,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "sea_maidens_faire",
+    "theme": "STONE",
+    "topology": "dungeon",
+    "display_name": "Sea Maidens Faire"
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 5,
+      "y": 5,
+      "width": 12,
+      "height": 8,
+      "room_type": "start",
+      "connections": [
+        1
+      ],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The Sea Maidens Faire is the grandest parade of the fall season, and Jarlaxle seeks to have it as part of the Day of Wonders. The event takes place on the pier, where performers practice routines and caged creatures are offloaded, before the parade marches through Waterdeep’s streets.",
+        "read_aloud": "You see the harbor pier stretching ahead, slick with salt spray, where three gaudy ships ride at anchor beneath banners of crimson and gold. Calliope music drifts across the water, tinny and bright, and colored lanterns sway on lines strung between the masts.",
+        "npcs": [
+          {
+            "name": "Bregan D’aerthe",
+            "role": "is using one of Jarlaxle’s legitimate business enterprises — the Sea Maidens Faire — as a front in Waterdeep.",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          }
+        ],
+        "enemies": [],
+        "loot": [],
+        "hazards": [],
+        "services": [],
+        "event_triggers": [
+          "On entry: The carnival is winding down for the evening. Colored lanterns sway on lines between the three ships, and the last acrobats are taking their bows. A figure in a wide-brimmed hat watches from the Eyecatcher's quarterdeck."
+        ],
+        "_source": "Waterdeep_ Dragon Heist",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
     },
-    "rooms": {
-        "0": {
-            "id": 0,
-            "x": 5,
-            "y": 5,
-            "width": 12,
-            "height": 8,
-            "room_type": "start",
-            "connections": [1],
-            "tier": 3,
-            "is_locked": false,
-            "is_secret": false,
-            "content_hints": {
-                "description": "Waterdeep's harbor in autumn. The smell of brine and roasting chestnuts mingles with the calliope music drifting from three gaudy ships moored at the end of the longest pier. Banners of crimson and gold snap in the harbor wind, advertising the Sea Maidens Faire -- a traveling carnival of exotic beasts, acrobats, and wonders from the Sword Coast. Dockhands avoid the pier. The carnival folk keep to themselves after dark.",
-                "read_aloud": "The harbor pier stretches ahead, slick with salt spray, and at its end three gaudy ships ride at anchor beneath banners of crimson and gold. Calliope music drifts across the water, tinny and bright, and colored lanterns sway on lines strung between the masts. The smell of brine mixes with roasting chestnuts and something sweeter -- face paint, maybe, or stage smoke. Dockhands give the pier a wide berth, and as the last light fades, the carnival folk draw their gangplanks close.",
-                "npcs": [
-                    {
-                        "name": "Carnival Barker",
-                        "role": "guide",
-                        "dialogue": "Step right up! The Sea Maidens Faire welcomes all! See the fire-eaters of Calimshan! Marvel at creatures from beyond the Trackless Sea! Captain Zord himself invites you aboard the Eyecatcher!",
-                        "notes": "Drow in disguise (hat of disguise). Reports all visitors to Jarlaxle. Will steer the party toward the Eyecatcher if they ask questions."
-                    }
-                ],
-                "enemies": [],
-                "loot": [],
-                "hazards": [],
-                "services": [],
-                "event_triggers": [
-                    "On entry: The carnival is winding down for the evening. Colored lanterns sway on lines between the three ships, and the last acrobats are taking their bows. A figure in a wide-brimmed hat watches from the Eyecatcher's quarterdeck."
-                ]
-            }
-        },
-        "1": {
-            "id": 1,
-            "x": 20,
-            "y": 5,
-            "width": 14,
-            "height": 10,
-            "room_type": "normal",
-            "connections": [0, 2, 3],
-            "tier": 3,
-            "is_locked": false,
-            "is_secret": false,
-            "content_hints": {
-                "description": "The main deck of the Eyecatcher, Jarlaxle's flagship. It is absurdly well-appointed for a carnival vessel -- the rails are polished mahogany, the brass fittings gleam, and the deck planks are oiled teak that do not creak underfoot. Caged animals line the port side: a displacer beast kitten chasing its own tentacles, a cockatrice in a gilded cage, a pseudodragon dozing on a velvet cushion. Everything is theatrical. Everything is a distraction.",
-                "read_aloud": "You step aboard the Eyecatcher and immediately notice it is no ordinary carnival ship. The rails are polished mahogany, the brass fittings gleam, and the teak deck planks are oiled so smooth they do not creak beneath your weight. Caged creatures line the port rail -- something dark and sleek chases its own tentacles in one cage, a reptilian thing clucks irritably in another, and a small winged lizard dozes on a velvet cushion. The whole vessel smells of exotic spice and fresh lacquer, and everything feels like a stage set -- beautiful, deliberate, and designed to keep your eyes on the wrong thing.",
-                "npcs": [
-                    {
-                        "name": "Zardoz Zord",
-                        "role": "antagonist",
-                        "dialogue": "Welcome aboard! I am Zardoz Zord, humble captain and purveyor of wonders. You look like the adventuring sort -- I can always tell. Something about the scars. Can I offer you Amnian wine? We have business to discuss, I think.",
-                        "notes": "Jarlaxle Baenre in magical disguise as a flamboyant human sea captain. Wearing a hat of disguise and ring of truth-telling (he knows if you lie). Charming, always smiling, always three steps ahead. Will not break cover unless forced."
-                    }
-                ],
-                "enemies": [],
-                "loot": [],
-                "hazards": [],
-                "services": ["drink", "rumor"],
-                "event_triggers": [
-                    "On conversation (DC 18 Insight): Zord's accent slips for half a syllable -- something clipped and precise beneath the bravado. His eyes, for just a moment, are the wrong color.",
-                    "On investigation (DC 20): The Eyecatcher rides too low in the water for a ship this size. Something heavy is underneath."
-                ]
-            }
-        },
-        "2": {
-            "id": 2,
-            "x": 40,
-            "y": 5,
-            "width": 10,
-            "height": 8,
-            "room_type": "normal",
-            "connections": [1, 4, 5],
-            "tier": 3,
-            "is_locked": true,
-            "is_secret": false,
-            "content_hints": {
-                "description": "The captain's quarters are a study in contradictions. Calishite tapestries hang beside Menzoberranzan spider-silk curtains. A desk of carved darkwood holds charts of Waterdeep's sewers alongside legitimate shipping manifests. A mirror on the wall is flanked by two rapiers -- one jeweled and decorative, the other plain and razor-sharp. The bed has not been slept in. A hidden panel in the floor leads below.",
-                "read_aloud": "The captain's quarters are lavishly appointed -- tapestries of desert scenes hang beside curtains of shimmering black silk that seems to drink the lamplight. A darkwood desk holds charts and manifests, and a mirror on the far wall is flanked by two rapiers: one encrusted with jewels, the other plain steel with a killing edge. The bed is pristine, its covers undisturbed. The air smells of wine, ink, and a cologne that carries notes of something foreign and deep -- earth and spice from a place that has never seen the sun.",
-                "npcs": [],
-                "enemies": [],
-                "loot": [
-                    {"name": "Jarlaxle's Shipping Manifests (evidence)", "type": "quest_item"},
-                    {"name": "Calishite Tapestry (200 gp)", "type": "treasure"}
-                ],
-                "hazards": [
-                    {"name": "Glyph of Warding on desk drawer", "dc": 16}
-                ],
-                "services": [],
-                "event_triggers": [
-                    "On search (DC 15 Investigation): The shipping manifests reveal cargo deliveries to four noble houses -- all members of the Lords' Alliance.",
-                    "On search (DC 18 Investigation): The hidden floor panel is found, revealing a ladder descending to the submarine dock."
-                ],
-                "investigation_dc": 15,
-                "investigation_success": "The manifests reveal a pattern of deliveries to Lords' Alliance members -- Jarlaxle is mapping their weaknesses."
-            }
-        },
-        "3": {
-            "id": 3,
-            "x": 20,
-            "y": 20,
-            "width": 12,
-            "height": 8,
-            "room_type": "normal",
-            "connections": [1, 4],
-            "tier": 3,
-            "is_locked": false,
-            "is_secret": false,
-            "content_hints": {
-                "description": "Below the main deck, hammocks swing from beams in tight rows. The crew here are lean, dark-eyed, and move with a dancer's grace that no human sailor possesses. Their belongings are sparse and identical -- each bunk has a sea chest containing a change of clothes, a hand crossbow wrapped in oilcloth, and a vial of something viscous and dark. In dim light, their skin has a faint purple undertone.",
-                "read_aloud": "Below deck, hammocks swing from the beams in tight rows, swaying with the ship's gentle motion. The crew quarters are cramped and dim, lit by a single shuttered lantern. The figures in the hammocks are lean and dark-eyed, and they move with a fluid grace that no ordinary sailor possesses. Their belongings are identical and sparse -- sea chests in neat rows, their lids closed, their contents hidden. The air smells of oilcloth, salt, and something faintly chemical. In the dim light, the nearest sleeping face has a complexion that is not quite right -- too dark, with an undertone of violet.",
-                "npcs": [],
-                "enemies": [
-                    {"name": "Drow Gunslinger", "hp": 65, "ac": 18, "attack": 6, "count": 2},
-                    {"name": "Drow Elite Warrior", "hp": 71, "ac": 18, "attack": 7, "count": 1}
-                ],
-                "loot": [
-                    {"name": "Hand Crossbow +1", "type": "weapon"},
-                    {"name": "Drow Poison (3 vials)", "type": "equipment"}
-                ],
-                "hazards": [],
-                "services": [],
-                "event_triggers": [
-                    "On combat: The drow fight in eerie silence, coordinating with hand signals. They aim to incapacitate, not kill -- Jarlaxle wants prisoners, not corpses."
-                ]
-            }
-        },
-        "4": {
-            "id": 4,
-            "x": 40,
-            "y": 20,
-            "width": 10,
-            "height": 10,
-            "room_type": "secret",
-            "connections": [2, 3, 5, 6],
-            "tier": 3,
-            "is_locked": true,
-            "is_secret": true,
-            "content_hints": {
-                "description": "A circular shaft descends through the ship's keel into something that should not exist beneath a wooden hull. Metal rungs are set into a riveted iron tube that transitions from timber to steel halfway down. At the bottom, a pressurized hatch opens into a chamber lit by continual flame lanterns behind thick glass. The air tastes of machine oil and magic. You are now inside the Scarlet Marpenoth -- a submersible vessel.",
-                "read_aloud": "A circular shaft drops through the ship's keel, and halfway down the timber walls give way to riveted steel. Metal rungs are cold beneath your hands. At the bottom, a pressurized hatch opens with a hiss of escaping air, and you step into a chamber lit by lanterns sealed behind thick glass. The walls are iron, curved, and slick with condensation. The air tastes of machine oil and something else -- something that vibrates faintly in your teeth. The floor hums. You are no longer aboard a ship. You are inside something else entirely.",
-                "npcs": [],
-                "enemies": [],
-                "loot": [],
-                "hazards": [
-                    {"name": "Pressurized hatch (Strength check to open)", "dc": 14}
-                ],
-                "services": [],
-                "event_triggers": [
-                    "On entry: The hatch seals behind you with a hiss of escaping air. A mechanical clicking begins somewhere in the walls -- the submarine is preparing to dive."
-                ]
-            }
-        },
-        "5": {
-            "id": 5,
-            "x": 50,
-            "y": 15,
-            "width": 12,
-            "height": 10,
-            "room_type": "treasure",
-            "connections": [2, 4, 7],
-            "tier": 3,
-            "is_locked": true,
-            "is_secret": false,
-            "content_hints": {
-                "description": "The submarine's hold is divided into sealed compartments, each containing cargo too sensitive for the ships above. Crates stamped with the Bregan D'aerthe sigil hold weapons, disguise kits, forged documents of identity, and enough blackmail material to unseat half the Masked Lords. One compartment is climate-controlled and contains a single item on a velvet stand: a map of the Vault of Dragons with three possible entrances marked in red ink.",
-                "read_aloud": "The submarine's hold is divided into sealed compartments, each door marked with a symbol you do not recognize. Inside, crates are stacked with military precision -- weapons in oilcloth, bundles of documents bound with black ribbon, kits of cosmetics and prosthetics. One compartment is warmer than the others, its air carefully controlled. Inside, on a velvet stand beneath a glass dome, sits a single rolled map. The parchment glows faintly in the controlled light, and three points on its surface are marked in red ink that glistens as though still wet.",
-                "npcs": [],
-                "enemies": [],
-                "loot": [
-                    {"name": "Vault of Dragons Map (quest item)", "type": "quest_item"},
-                    {"name": "Forged Lords' Alliance Credentials", "type": "quest_item"},
-                    {"name": "Bregan D'aerthe Cipher Codex", "type": "quest_item"},
-                    {"name": "Trade Bars (2,000 gp)", "type": "treasure"}
-                ],
-                "hazards": [
-                    {"name": "Alarm ward on Vault map case", "dc": 17}
-                ],
-                "services": [],
-                "event_triggers": [
-                    "On map read: The map reveals that Jarlaxle has already located the Vault of Dragons -- he just needs the dragonstaff of Ahghairon to open it."
-                ]
-            }
-        },
-        "6": {
-            "id": 6,
-            "x": 35,
-            "y": 35,
-            "width": 10,
-            "height": 8,
-            "room_type": "normal",
-            "connections": [4, 7],
-            "tier": 3,
-            "is_locked": false,
-            "is_secret": false,
-            "content_hints": {
-                "description": "The submarine's navigation chamber. Brass instruments line the curved walls -- depth gauges, pressure dials, a compass that points to something other than north. A periscope extends through the hull. Through its eyepiece, you can see the harbor floor: silt, anchor chains, and the barnacled foundations of Waterdeep's piers. A speaking tube connects to the war room below, and through it you can hear a voice -- smooth, amused, speaking Elvish to someone who answers in Undercommon.",
-                "read_aloud": "Brass instruments line the curved walls of the navigation chamber -- depth gauges, pressure dials, and a compass whose needle spins slowly, pointing to something other than north. A periscope extends through the hull, and through its eyepiece you can see the harbor floor: gray silt, anchor chains, and the barnacled pilings of the docks far above. A speaking tube protrudes from the bulkhead, and through it drifts a voice -- smooth, musical, speaking a language you almost recognize. Someone answers in something darker.",
-                "npcs": [
-                    {
-                        "name": "Fel'rekt Lafeen",
-                        "role": "lieutenant",
-                        "dialogue": "You should not be here. The captain does not appreciate uninvited guests in his private vessel. But he appreciates corpses even less -- they are terrible for business. So let us talk.",
-                        "notes": "Drow lieutenant of Bregan D'aerthe. Pragmatic and professional. Will negotiate if outmatched, fight if cornered. Knows the submarine's layout and Jarlaxle's schedule."
-                    }
-                ],
-                "enemies": [
-                    {"name": "Drow Mage", "hp": 45, "ac": 12, "attack": 5, "count": 1}
-                ],
-                "loot": [
-                    {"name": "Submarine Navigation Charts", "type": "equipment"}
-                ],
-                "hazards": [],
-                "services": [],
-                "event_triggers": [
-                    "On negotiation: Fel'rekt offers a deal -- Jarlaxle will meet the party peacefully if they surrender their weapons. He keeps his word. Jarlaxle always keeps his word. The trick is what he does not say."
-                ]
-            }
-        },
-        "7": {
-            "id": 7,
-            "x": 45,
-            "y": 40,
-            "width": 16,
-            "height": 14,
-            "room_type": "boss",
-            "connections": [5, 6, 8],
-            "tier": 3,
-            "is_locked": false,
-            "is_secret": false,
-            "content_hints": {
-                "description": "The war room of the Scarlet Marpenoth is a drow mercenary's private sanctum rendered in mahogany and brass. Maps of a dozen cities cover the walls, each bristling with colored pins. A table of black glass reflects the continual flame lanterns like a dark mirror. And there, leaning against the table with a glass of wine, is Jarlaxle Baenre -- no longer Zardoz Zord, no longer disguised. Ebon skin, white hair cropped short on one side, an eye patch that is almost certainly magical, and a grin that promises he has been expecting you.",
-                "read_aloud": "The war room is rendered in mahogany and brass, warm and close as a gentleman's study. Maps of a dozen cities cover the walls, bristling with colored pins. A table of black glass dominates the center, its surface reflecting the lantern light like a dark mirror. And there, leaning against the table with a glass of red wine, is a figure who has stopped pretending. Ebon skin, white hair cropped short on one side, an eye patch that catches the light strangely, and a grin -- wide, genuine, and absolutely certain that you were going to walk through that door. He raises his glass.",
-                "npcs": [],
-                "enemies": [
-                    {"name": "Jarlaxle Baenre (CR 15 drow swashbuckler)", "cr": "15"},
-                    {"name": "Drow Elite Warrior", "hp": 71, "ac": 18, "attack": 7, "count": 2}
-                ],
-                "loot": [
-                    {"name": "Jarlaxle's Eye Patch (Knave's Eye Patch)", "type": "equipment"},
-                    {"name": "Bracer of Flying Daggers", "type": "weapon"},
-                    {"name": "Jarlaxle's Hat of Disguise", "type": "equipment"},
-                    {"name": "Ring of Truth Telling", "type": "equipment"},
-                    {"name": "Portable Hole", "type": "equipment"}
-                ],
-                "hazards": [],
-                "services": [],
-                "event_triggers": [
-                    "On entry: 'Ah, there you are. I was beginning to think you would never find the submarine. Most do not. Please, sit -- wine? No? Straight to business, then. I can respect that.' He does not draw a weapon. He does not need to.",
-                    "On negotiation: Jarlaxle offers a deal: he wants the cache of dragons to buy Luskan a seat in the Lords' Alliance. He does not want war. He does not want blood. He wants legitimacy. 'Every lord in that Alliance got their seat through violence or inheritance. I merely propose a third option: commerce.'",
-                    "On combat: Jarlaxle fights like a storm -- rapier in one hand, flying daggers from the bracer in the other, always moving, always grinning. If reduced below 50 HP he vanishes (Cape of Mountebank) and the submarine begins to flood. 3 rounds to escape.",
-                    "On defeat: Jarlaxle surrenders with a bow. 'Well played. I concede this round. But I suspect we shall meet again -- I always enjoy a worthy adversary.' He means it. He does not suffer fools, but he respects skill."
-                ]
-            }
-        },
-        "8": {
-            "id": 8,
-            "x": 55,
-            "y": 52,
-            "width": 8,
-            "height": 5,
-            "room_type": "town_gate",
-            "connections": [7],
-            "tier": 3,
-            "is_locked": false,
-            "is_secret": false,
-            "content_hints": {
-                "description": "An emergency hatch at the submarine's stern opens into a flooded escape tube. Iron rungs lead up through ten feet of harbor water to a concealed platform beneath the Eyecatcher's hull. From there, a rope ladder reaches the pier above. The autumn air hits like a slap after the submarine's recycled atmosphere. Behind you, the Scarlet Marpenoth's running lights dim and the vessel sinks silently into the harbor mud.",
-                "read_aloud": "An emergency hatch opens into a flooded escape tube, its iron rungs slick with algae. Cold harbor water swirls around your ankles, rising fast. You climb through ten feet of dark water, lungs burning, and break the surface beneath the Eyecatcher's barnacled hull. A rope ladder leads up to the pier, and when you haul yourself over the railing, the autumn air hits your face like a slap. Below, the submarine's lights dim one by one, and the vessel sinks silently into the harbor mud.",
-                "npcs": [],
-                "enemies": [],
-                "loot": [],
-                "hazards": [
-                    {"name": "Flooded escape tube (Constitution save or 1 level exhaustion)", "dc": 12}
-                ],
-                "services": ["exit_settlement"],
-                "event_triggers": [
-                    "On escape during flood: The submarine groans around you as seawater pours through breached seams. The escape tube is your only option -- swim or drown."
-                ]
-            }
-        }
+    "1": {
+      "id": 1,
+      "x": 20,
+      "y": 5,
+      "width": 14,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [
+        0,
+        2,
+        3
+      ],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The Sea Maidens Faire is a grand parade of the fall season, and Jarlaxle desires it to be a part of the Day of Wonders. During this event, performers practice their routines, and caged creatures are offloaded one by one.",
+        "read_aloud": "You step aboard the Eyecatcher and immediately notice it is no ordinary carnival ship. Caged creatures line the port rail—something dark and sleek chases its own tentacles in one cage, a reptilian thing clucks irritably in another, and a small winged lizard dozes on a velvet cushion. The whole vessel smells of exotic spice and fresh lacquer, and everything feels like a stage set—beautiful, deliberate, and designed to keep your eyes on the wrong thing.",
+        "npcs": [
+          {
+            "name": "Zardoz Zord",
+            "role": "serves as grand marshal, leading the parade on the back of a rainbow-feathered diatryma summoned using Neverember’s hidden cache of dragons.",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          }
+        ],
+        "enemies": [],
+        "loot": [],
+        "hazards": [],
+        "services": [
+          "drink",
+          "rumor"
+        ],
+        "event_triggers": [
+          "On conversation (DC 18 Insight): Zord's accent slips for half a syllable -- something clipped and precise beneath the bravado. His eyes, for just a moment, are the wrong color.",
+          "On investigation (DC 20): The Eyecatcher rides too low in the water for a ship this size. Something heavy is underneath."
+        ],
+        "_source": "Waterdeep_ Dragon Heist",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 40,
+      "y": 5,
+      "width": 10,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [
+        1,
+        4,
+        5
+      ],
+      "tier": 3,
+      "is_locked": true,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The Sea Maidens Faire is a seafaring carnival traveling up and down the Sword Coast in three ships: the ostentatious flagship, the Eyecatcher; the Heartbreaker, used for transporting performers and strange creatures; and the Hellraiser, which carries musicians and decorative floats. All three ships are crewed by drow who are magically disguised as slender humans and are loyal members of Bregan D’aerthe, all knowing that Zardoz Zord is Jarlaxle Baenre in disguise.",
+        "read_aloud": "You see the captain's quarters are lavishly appointed, with tapestries of desert scenes hanging beside curtains of shimmering black silk that seems to drink the lamplight. The air smells of wine, ink, and a cologne that carries notes of something foreign and deep—earth and spice from a place that has never seen the sun.",
+        "npcs": [
+          {
+            "name": "Jarlaxle Baenre",
+            "role": "Jarlaxle’s seafaring carnival travels up and down the Sword Coast in three ships.",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          },
+          {
+            "name": "Velgos Ephezzrin",
+            "role": "captains the Hellraiser in the guise of a human named Fergus Crabwater.",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          },
+          {
+            "name": "Tylan Ilueph",
+            "role": "captains the Heartbreaker as a human named Klarr Besham.",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          }
+        ],
+        "enemies": [],
+        "loot": [
+          {
+            "name": "Jarlaxle's Shipping Manifests (evidence)",
+            "type": "quest_item"
+          },
+          {
+            "name": "Calishite Tapestry (200 gp)",
+            "type": "treasure"
+          }
+        ],
+        "hazards": [
+          {
+            "name": "Glyph of Warding on desk drawer",
+            "dc": 16
+          }
+        ],
+        "services": [],
+        "event_triggers": [
+          "On search (DC 15 Investigation): The shipping manifests reveal cargo deliveries to four noble houses -- all members of the Lords' Alliance.",
+          "On search (DC 18 Investigation): The hidden floor panel is found, revealing a ladder descending to the submarine dock."
+        ],
+        "investigation_dc": 15,
+        "investigation_success": "The manifests reveal a pattern of deliveries to Lords' Alliance members -- Jarlaxle is mapping their weaknesses.",
+        "_source": "Waterdeep_ Dragon Heist",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
+    },
+    "3": {
+      "id": 3,
+      "x": 20,
+      "y": 20,
+      "width": 12,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [
+        1,
+        4
+      ],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The Sea Maidens Faire consists to gate the following morning shortly afterdawn. The griffon and its trainer normally reside in Peaktop Aerie atop Mount Waterdeep, but most civilians are not welcome there.",
+        "read_aloud": "You see hammocks swinging from the beams in tight rows, swaying with the ship's gentle motion. The crew quarters are cramped and dim, lit by a single shuttered lantern, and the air smells of oilcloth, salt, and something faintly chemical.",
+        "npcs": [
+          {
+            "name": "Bregan D’aerthe",
+            "role": "is using one of Jarlaxle’s legitimate business enterprises — the Sea Maidens Faire — as a front in Waterdeep.",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          }
+        ],
+        "enemies": [
+          {
+            "name": "Drow Gunslinger",
+            "hp": 65,
+            "ac": 18,
+            "attack": 6,
+            "count": 2
+          },
+          {
+            "name": "Drow Elite Warrior",
+            "hp": 71,
+            "ac": 18,
+            "attack": 7,
+            "count": 1
+          }
+        ],
+        "loot": [
+          {
+            "name": "Hand Crossbow +1",
+            "type": "weapon"
+          },
+          {
+            "name": "Drow Poison (3 vials)",
+            "type": "equipment"
+          }
+        ],
+        "hazards": [],
+        "services": [],
+        "event_triggers": [
+          "On combat: The drow fight in eerie silence, coordinating with hand signals. They aim to incapacitate, not kill -- Jarlaxle wants prisoners, not corpses."
+        ],
+        "_source": "Waterdeep_ Dragon Heist",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
+    },
+    "4": {
+      "id": 4,
+      "x": 40,
+      "y": 20,
+      "width": 10,
+      "height": 10,
+      "room_type": "secret",
+      "connections": [
+        2,
+        3,
+        5,
+        6
+      ],
+      "tier": 3,
+      "is_locked": true,
+      "is_secret": true,
+      "content_hints": {
+        "description": "Where the tunnel branches, a stone bridge spans the sewage pouring out of an eastern artery. There is no walkway in this arterial passage that leads to areas B3 and B4.",
+        "read_aloud": "You see a circular shaft drop through the ship's keel, and halfway down the timber walls give way to riveted steel. Metal rungs are cold beneath your hands. At the bottom, a pressurized hatch opens with a hiss of escaping air, and you step into a chamber lit by lanterns sealed behind thick glass. The walls are iron, curved, and slick with condensation. The air tastes of machine oil and something else—something that vibrates faintly in your teeth. The floor hums. You are no longer aboard a ship. You are inside something else entirely.",
+        "npcs": [],
+        "enemies": [],
+        "loot": [],
+        "hazards": [
+          {
+            "name": "Pressurized hatch (Strength check to open)",
+            "dc": 14
+          }
+        ],
+        "services": [],
+        "event_triggers": [
+          "On entry: The hatch seals behind you with a hiss of escaping air. A mechanical clicking begins somewhere in the walls -- the submarine is preparing to dive."
+        ],
+        "_source": "Waterdeep_ Dragon Heist",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
+    },
+    "5": {
+      "id": 5,
+      "x": 50,
+      "y": 15,
+      "width": 12,
+      "height": 10,
+      "room_type": "treasure",
+      "connections": [
+        2,
+        4,
+        7
+      ],
+      "tier": 3,
+      "is_locked": true,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The Day of Wonders is the grandest parade of the fall season, and Jarlaxle wants the Sea Maidens Faire to be a part of it. In the guise of Zardoz Zord, he pays a visit the day before the holiday to the House of Inspired Hands, Waterdeep’s temple of Gond, to coordinate with the acolytes in charge of organizing the parade.",
+        "read_aloud": "You see ps of paper, twisted pieces of metal, and bird droppings littering the space. Rocking chairs and a trellis table sit amidst the charred remains of a bookshelf, all shrouded in thick cobwebs. Arrow slits line the walls, and pigeons nest in the rafters above.",
+        "npcs": [],
+        "enemies": [],
+        "loot": [
+          {
+            "name": "Vault of Dragons Map (quest item)",
+            "type": "quest_item"
+          },
+          {
+            "name": "Forged Lords' Alliance Credentials",
+            "type": "quest_item"
+          },
+          {
+            "name": "Bregan D'aerthe Cipher Codex",
+            "type": "quest_item"
+          },
+          {
+            "name": "Trade Bars (2,000 gp)",
+            "type": "treasure"
+          }
+        ],
+        "hazards": [
+          {
+            "name": "Alarm ward on Vault map case",
+            "dc": 17
+          }
+        ],
+        "services": [],
+        "event_triggers": [
+          "On map read: The map reveals that Jarlaxle has already located the Vault of Dragons -- he just needs the dragonstaff of Ahghairon to open it."
+        ],
+        "_source": "Waterdeep_ Dragon Heist",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
+    },
+    "6": {
+      "id": 6,
+      "x": 35,
+      "y": 35,
+      "width": 10,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [
+        4,
+        7
+      ],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The Sea Maidens Faire is a grand parade of the fall season, and Jarlaxle desires it to be a part of the Day of Wonders. During this event, performers practice their routines, and caged creatures are offloaded one by one.",
+        "read_aloud": "You see the Sea Maidens Faire on the pier, a hive of activity where performers practice their routines and caged creatures are offloaded one by one. An hour before high sun on this crisp, windy autumn day, the parade makes its way to the House of Inspired Hands to meet up with the Gond worshipers and their contraptions.",
+        "npcs": [
+          {
+            "name": "Zardoz Zord",
+            "role": "serves as grand marshal, leading the parade on the back of a rainbow-feathered diatryma summoned using Neverember’s hidden cache of dragons.",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          }
+        ],
+        "enemies": [
+          {
+            "name": "Drow Mage",
+            "hp": 45,
+            "ac": 12,
+            "attack": 5,
+            "count": 1
+          }
+        ],
+        "loot": [
+          {
+            "name": "Submarine Navigation Charts",
+            "type": "equipment"
+          }
+        ],
+        "hazards": [],
+        "services": [],
+        "event_triggers": [
+          "On negotiation: Fel'rekt offers a deal -- Jarlaxle will meet the party peacefully if they surrender their weapons. He keeps his word. Jarlaxle always keeps his word. The trick is what he does not say."
+        ],
+        "_source": "Waterdeep_ Dragon Heist",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
+    },
+    "7": {
+      "id": 7,
+      "x": 45,
+      "y": 40,
+      "width": 16,
+      "height": 14,
+      "room_type": "boss",
+      "connections": [
+        5,
+        6,
+        8
+      ],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The Sea Maidens Faire is a front in Waterdeep, used by Bregan D’aerthe. A successful DC 15 Charisma (Deception or Persuasion) check and the mention of Zardoz Zord’s name is enough to gain an audience with a ship captain.",
+        "read_aloud": "You see the Sea Maidens Faire, a vibrant spectacle of ships and activity. The air is filled with the sounds of the sea and the bustle of the fair.",
+        "npcs": [
+          {
+            "name": "Captain Zardoz Zord",
+            "role": "The Sea Maidens Faire and all its ships are under the command of Captain Zardoz Zord of Luskan.",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          }
+        ],
+        "enemies": [
+          {
+            "name": "Jarlaxle Baenre (CR 15 drow swashbuckler)",
+            "cr": "15"
+          },
+          {
+            "name": "Drow Elite Warrior",
+            "hp": 71,
+            "ac": 18,
+            "attack": 7,
+            "count": 2
+          }
+        ],
+        "loot": [
+          {
+            "name": "Jarlaxle's Eye Patch (Knave's Eye Patch)",
+            "type": "equipment"
+          },
+          {
+            "name": "Bracer of Flying Daggers",
+            "type": "weapon"
+          },
+          {
+            "name": "Jarlaxle's Hat of Disguise",
+            "type": "equipment"
+          },
+          {
+            "name": "Ring of Truth Telling",
+            "type": "equipment"
+          },
+          {
+            "name": "Portable Hole",
+            "type": "equipment"
+          }
+        ],
+        "hazards": [],
+        "services": [],
+        "event_triggers": [
+          "On entry: 'Ah, there you are. I was beginning to think you would never find the submarine. Most do not. Please, sit -- wine? No? Straight to business, then. I can respect that.' He does not draw a weapon. He does not need to.",
+          "On negotiation: Jarlaxle offers a deal: he wants the cache of dragons to buy Luskan a seat in the Lords' Alliance. He does not want war. He does not want blood. He wants legitimacy. 'Every lord in that Alliance got their seat through violence or inheritance. I merely propose a third option: commerce.'",
+          "On combat: Jarlaxle fights like a storm -- rapier in one hand, flying daggers from the bracer in the other, always moving, always grinning. If reduced below 50 HP he vanishes (Cape of Mountebank) and the submarine begins to flood. 3 rounds to escape.",
+          "On defeat: Jarlaxle surrenders with a bow. 'Well played. I concede this round. But I suspect we shall meet again -- I always enjoy a worthy adversary.' He means it. He does not suffer fools, but he respects skill."
+        ],
+        "_source": "Waterdeep_ Dragon Heist",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
+    },
+    "8": {
+      "id": 8,
+      "x": 55,
+      "y": 52,
+      "width": 8,
+      "height": 5,
+      "room_type": "town_gate",
+      "connections": [
+        7
+      ],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The Sea Maidens Faire is a front in Waterdeep used by Bregan D’aerthe. A successful DC 15 Charisma (Deception or Persuasion) check and mentioning Zardoz Zord's name can gain an audience with a ship captain.",
+        "read_aloud": "You see the bustling activity on the pier, a hive of activity where performers practice their routines and caged creatures are offloaded one by one.",
+        "npcs": [
+          {
+            "name": "Bregan D’aerthe",
+            "role": "is using one of Jarlaxle’s legitimate business enterprises — the Sea Maidens Faire — as a front in Waterdeep.",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          }
+        ],
+        "enemies": [],
+        "loot": [],
+        "hazards": [
+          {
+            "name": "Flooded escape tube (Constitution save or 1 level exhaustion)",
+            "dc": 12
+          }
+        ],
+        "services": [
+          "exit_settlement"
+        ],
+        "event_triggers": [
+          "On escape during flood: The submarine groans around you as seawater pours through breached seams. The escape tube is your only option -- swim or drown."
+        ],
+        "_source": "Waterdeep_ Dragon Heist",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
     }
+  }
 }

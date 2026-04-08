@@ -1,16 +1,14 @@
 """
-codex_architect.py - The Mind (Sovereign Trinity Router)
+codex_architect.py - The Mind (Sovereign Duo Router)
 
-The Architect routes queries across the Sovereign Trinity:
-  - Mimir (qwen2.5:0.5b)  — The Voice / Reflex & Narrator
+The Architect routes queries across two models:
+  - Mimir (qwen2.5:0.5b)  — The Voice / Reflex & Narrator (Ollama)
   - Codex (gemma4:e2b)     — The Philosopher / Academy (LiteRT-LM, thermal-gated)
-  - Experimental (qwen2.5-coder:1.5b) — The Experimenter (sandboxed, explicit only)
-
-EXPERIMENTAL model is quarantined: never auto-routed during gameplay.
-Only reachable via explicit !code command or direct API call.
 
 Academy model runs via LiteRT-LM (not Ollama) for 5x less RAM and
 50% faster decode on CM5. See codex/core/services/litert_engine.py.
+
+Experimental coder model extracted to ~/Projects/claude_sandbox/Architect_Sandbox/
 """
 
 import asyncio
@@ -18,7 +16,6 @@ import re
 import time
 from dataclasses import dataclass, field
 from enum import Enum
-from pathlib import Path
 from typing import Optional, AsyncIterator
 import aiohttp
 
@@ -28,8 +25,6 @@ from codex.core.cortex import (
     ThermalStatus,
     MetabolicState
 )
-
-SANDBOX_DIR = Path("/tmp/codex_sandbox")
 
 
 class Complexity(Enum):
@@ -42,8 +37,7 @@ class Complexity(Enum):
 class ThinkingMode(Enum):
     """Selected thinking mode for response."""
     REFLEX = "REFLEX"            # Fast path: mimir (qwen2.5:0.5b)
-    ACADEMY = "ACADEMY"          # Deep path: codex (qwen3:1.7b, thermal-gated)
-    EXPERIMENTAL = "EXPERIMENTAL"  # Sandboxed: qwen2.5-coder (explicit request only)
+    ACADEMY = "ACADEMY"          # Deep path: codex (gemma4:e2b, thermal-gated)
 
 
 @dataclass
@@ -110,10 +104,6 @@ class ArchitectConfig:
     # Sovereign Trinity — model identifiers
     MODEL_REFLEX = "mimir"              # The Voice — fast persona (qwen2.5:0.5b, 397MB)
     MODEL_ACADEMY = "codex"             # The Philosopher — deep reasoning (gemma4:e2b via LiteRT-LM, ~350MB)
-    MODEL_EXPERIMENTAL = "qwen2.5-coder:1.5b"  # The Experimenter — sandboxed, explicit request only
-
-    # Sandbox for coder output
-    SANDBOX_DIR = SANDBOX_DIR
 
     # Complexity thresholds
     COMPLEXITY_HIGH_KEYWORDS = [
@@ -130,19 +120,12 @@ class ArchitectConfig:
         "what time", "how many", "list", "show", "tell me"
     ]
 
-    COMPLEXITY_CODE_KEYWORDS = [
-        "write code", "implement", "function", "class", "script",
-        "generate code", "code review", "write a", "create a function",
-        "write me", "code this", "program"
-    ]
-
     # Token estimation (rough)
     TOKENS_PER_WORD = 1.3
 
     # Timeout settings (ms)
     REFLEX_TIMEOUT_MS = 120000        # 120 seconds
     ACADEMY_TIMEOUT_MS = 120000       # 120 seconds
-    EXPERIMENTAL_TIMEOUT_MS = 120000  # 120 seconds
 
 
 class ComplexityAnalyzer:
@@ -236,8 +219,8 @@ class ComplexityAnalyzer:
         return int(word_count * self.config.TOKENS_PER_WORD)
 
 
-_NUM_PREDICT = {"mimir": -2, "codex": 400, "qwen2.5-coder:1.5b": 300}
-# -2 = use Modelfile default (120 for mimir); codex caps at 400; coder at 300
+_NUM_PREDICT = {"mimir": -2, "codex": 400}
+# -2 = use Modelfile default (120 for mimir); codex caps at 400
 
 # Models routed through LiteRT-LM instead of Ollama
 _LITERT_MODELS: set[str] = {"codex"}
@@ -271,35 +254,6 @@ class Architect:
         if self._session and not self._session.closed:
             await self._session.close()
 
-    # Sandbox enforcement for CODER model
-    _DESTRUCTIVE_PATTERNS = re.compile(
-        r'\b(delete|remove|rm|unlink|rmdir|truncate|overwrite|drop)\b.*'
-        r'(\.py|\.json|\.md|\.txt|\.yaml|\.yml|\.cfg|\.ini|/)',
-        re.IGNORECASE
-    )
-
-    def _validate_coder_sandbox(self, query: str) -> Optional[str]:
-        """Check if coder request targets files outside sandbox.
-        Returns error message if blocked, None if allowed."""
-        if not self._DESTRUCTIVE_PATTERNS.search(query):
-            return None
-        sandbox = str(self.config.SANDBOX_DIR)
-        paths = re.findall(r'[\w./\\-]+\.(?:py|json|md|txt|yaml|yml|cfg|ini)', query)
-        for p in paths:
-            resolved = str(Path(p).resolve())
-            if not resolved.startswith(sandbox):
-                return (
-                    f"[SECURITY_RESTRICTION] Coder model cannot modify "
-                    f"'{p}' — outside sandbox ({sandbox}). "
-                    f"File operations restricted to sandbox directory."
-                )
-        return None
-
-    def _detect_code_request(self, query: str) -> bool:
-        """Return True if the query looks like a code generation request."""
-        query_lower = query.lower()
-        return any(kw in query_lower for kw in self.config.COMPLEXITY_CODE_KEYWORDS)
-
     def route(self, query: str) -> RoutingDecision:
         """
         Determine the routing for a query.
@@ -308,9 +262,8 @@ class Architect:
         complexity analysis with thermal clearance.
 
         Routing priority:
-        1. Code keywords detected + GREEN/YELLOW thermal → CODER
-        2. HIGH complexity + GREEN thermal → ACADEMY
-        3. Everything else → REFLEX
+        1. HIGH complexity + GREEN thermal → ACADEMY
+        2. Everything else → REFLEX
         """
         # Analyze complexity
         complexity, analysis_reasoning = self.analyzer.analyze(query)
@@ -319,10 +272,6 @@ class Architect:
         metabolic_state = self.cortex.read_metabolic_state()
         thermal_status = metabolic_state.thermal_status
         clearance = metabolic_state.metabolic_clearance
-
-        # EXPERIMENTAL mode: only via explicit request, never auto-routed
-        # (code keywords no longer trigger auto-routing to prevent
-        # experimental model from entering live game loops)
 
         if complexity == Complexity.HIGH and clearance:
             mode = ThinkingMode.ACADEMY
@@ -380,17 +329,7 @@ class Architect:
         if decision is None:
             decision = self.route(query)
 
-        # Sandbox enforcement for EXPERIMENTAL mode
-        if decision.mode == ThinkingMode.EXPERIMENTAL:
-            sandbox_error = self._validate_coder_sandbox(query)
-            if sandbox_error:
-                return ModelResponse(
-                    content=sandbox_error,
-                    model=decision.model,
-                    mode=decision.mode,
-                )
-
-        # Persona is Mimir-only; Academy/Experimental use caller's system prompt
+        # Persona is Mimir-only; Academy uses caller's system prompt
         thermal_modifier = self.cortex.get_system_prompt_modifier()
         if decision.mode == ThinkingMode.REFLEX:
             base_persona_prompt = self.cortex.get_base_persona_prompt()
@@ -442,8 +381,6 @@ class Architect:
         # Select timeout based on mode
         if decision.mode == ThinkingMode.ACADEMY:
             timeout = self.config.ACADEMY_TIMEOUT_MS
-        elif decision.mode == ThinkingMode.EXPERIMENTAL:
-            timeout = self.config.EXPERIMENTAL_TIMEOUT_MS
         else:
             timeout = self.config.REFLEX_TIMEOUT_MS
 
@@ -600,8 +537,6 @@ class Architect:
 
         if decision.mode == ThinkingMode.ACADEMY:
             timeout = self.config.ACADEMY_TIMEOUT_MS
-        elif decision.mode == ThinkingMode.EXPERIMENTAL:
-            timeout = self.config.EXPERIMENTAL_TIMEOUT_MS
         else:
             timeout = self.config.REFLEX_TIMEOUT_MS
 
@@ -693,7 +628,6 @@ class Architect:
 
         mode_indicators = {
             ThinkingMode.ACADEMY: "🧠",
-            ThinkingMode.EXPERIMENTAL: "💻",
             ThinkingMode.REFLEX: "⚡",
         }
         mode_indicator = mode_indicators.get(decision.mode, "⚡")

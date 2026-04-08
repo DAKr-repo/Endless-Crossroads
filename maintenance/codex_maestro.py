@@ -287,6 +287,7 @@ def _render_menu():
         table.add_row(f"  [{i}]", f"{script['name']} - {script['description']}")
 
     table.add_row("", "")
+    table.add_row("  [P]", "Index Single PDF (pick a system and PDF to index)")
     table.add_row("  [A]", "Run All (zero-touch sequential)")
     table.add_row("  [L]", "View Build Log")
     table.add_row("  [Q]", "Exit")
@@ -296,7 +297,7 @@ def _render_menu():
 
     choice = Prompt.ask(
         f"[{GOLD}]Select>[/]",
-        choices=["1", "2", "3", "4", "a", "l", "q"],
+        choices=["1", "2", "3", "4", "p", "a", "l", "q"],
         default="q",
         console=console,
         show_choices=False,
@@ -382,6 +383,119 @@ def _run_all():
     _log("=== MAESTRO: ZERO-TOUCH RUN ALL COMPLETE ===")
 
 
+def _index_single_pdf():
+    """Interactive menu to index a single PDF into a system's FAISS index."""
+    from rich.prompt import Confirm
+
+    # Discover available systems
+    systems_dir = VAULT_DIR
+    available = []
+    for d in sorted(systems_dir.iterdir()):
+        if d.is_dir() and any(d.rglob("*.pdf")):
+            available.append(d.name)
+        elif d.is_dir():
+            # Check group dirs (FITD/, ILLUMINATED_WORLDS/)
+            for child in sorted(d.iterdir()):
+                if child.is_dir() and any(child.rglob("*.pdf")):
+                    available.append(child.name)
+
+    if not available:
+        console.print(f"  [{CRIMSON}]No systems with PDFs found in vault/[/]")
+        return
+
+    # Show available systems
+    console.print(f"\n  [{GOLD}]Available systems:[/]")
+    for i, sys_id in enumerate(available, 1):
+        console.print(f"    [{GOLD}]{i}[/] {sys_id}")
+
+    sys_choice = Prompt.ask(
+        f"\n  [{GOLD}]System number or ID[/]",
+        console=console,
+    )
+
+    # Resolve system ID
+    try:
+        idx = int(sys_choice) - 1
+        system_id = available[idx]
+    except (ValueError, IndexError):
+        system_id = sys_choice.strip()
+
+    # Map vault dir names to canonical IDs
+    _VAULT_TO_ID = {"Candela_Obscura": "candela", "CBR_PNK": "cbrpnk"}
+    canonical_id = _VAULT_TO_ID.get(system_id, system_id)
+
+    # Find all PDFs in that system's vault
+    # Check both flat and grouped layouts
+    system_vault = VAULT_DIR / system_id
+    if not system_vault.is_dir():
+        # Try group dirs
+        for group in ("FITD", "ILLUMINATED_WORLDS"):
+            candidate = VAULT_DIR / group / system_id
+            if candidate.is_dir():
+                system_vault = candidate
+                break
+
+    if not system_vault.is_dir():
+        console.print(f"  [{CRIMSON}]Vault directory not found for '{system_id}'[/]")
+        return
+
+    pdfs = sorted(system_vault.rglob("*.pdf")) + sorted(system_vault.rglob("*.PDF"))
+    pdfs = list(dict.fromkeys(pdfs))  # deduplicate
+
+    if not pdfs:
+        console.print(f"  [{CRIMSON}]No PDFs found in {system_vault}[/]")
+        return
+
+    # Show available PDFs
+    console.print(f"\n  [{GOLD}]PDFs in {system_id}:[/]")
+    for i, pdf in enumerate(pdfs, 1):
+        rel = pdf.relative_to(system_vault)
+        console.print(f"    [{GOLD}]{i:2d}[/] {rel}")
+
+    pdf_choice = Prompt.ask(
+        f"\n  [{GOLD}]PDF number to index[/]",
+        console=console,
+    )
+
+    try:
+        pdf_idx = int(pdf_choice) - 1
+        selected_pdf = pdfs[pdf_idx]
+    except (ValueError, IndexError):
+        console.print(f"  [{CRIMSON}]Invalid selection.[/]")
+        return
+
+    console.print(f"\n  Indexing [{EMERALD}]{selected_pdf.name}[/] into [{GOLD}]{canonical_id}[/]...")
+    if not Confirm.ask(f"  [{SILVER}]Proceed?[/]", console=console, default=True):
+        return
+
+    # Run build_indices.py with --pdf flag
+    _log(f"INDEX PDF: {selected_pdf.name} -> {canonical_id}")
+    script_path = PROJECT_ROOT / "scripts" / "build_indices.py"
+
+    try:
+        result = subprocess.run(
+            [sys.executable, str(script_path),
+             "--system", canonical_id,
+             "--pdf", str(selected_pdf),
+             "--force"],
+            cwd=str(PROJECT_ROOT),
+            capture_output=False,
+            timeout=7200,  # 2 hour timeout for large PDFs
+        )
+        if result.returncode == 0:
+            console.print(f"  [{EMERALD}]SUCCESS:[/] {selected_pdf.name} indexed into {canonical_id}.")
+            _log(f"SUCCESS: {selected_pdf.name} -> {canonical_id}")
+        else:
+            console.print(f"  [{CRIMSON}]FAILED:[/] Exit code {result.returncode}")
+            _log(f"FAIL: {selected_pdf.name} -> {canonical_id} (exit {result.returncode})")
+    except subprocess.TimeoutExpired:
+        console.print(f"  [{CRIMSON}]TIMEOUT:[/] Indexing took too long (>2h).")
+        _log(f"TIMEOUT: {selected_pdf.name}")
+    except Exception as e:
+        console.print(f"  [{CRIMSON}]ERROR:[/] {e}")
+        _log(f"ERROR: {selected_pdf.name} - {e}")
+
+
 def _view_log():
     """Display the build log contents."""
     if not LOG_FILE.exists():
@@ -417,6 +531,8 @@ def main():
         if choice == "q":
             console.print(f"\n  [{SILVER}]Maestro signing off.[/]\n")
             break
+        elif choice == "p":
+            _index_single_pdf()
         elif choice == "a":
             _run_all()
         elif choice == "l":

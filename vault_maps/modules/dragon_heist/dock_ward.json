@@ -1,201 +1,278 @@
 {
-    "seed": 3017,
-    "width": 60,
-    "height": 40,
-    "start_room_id": 0,
-    "metadata": {
-        "zone_id": "dock_ward",
-        "theme": "VILLAGE",
-        "topology": "settlement",
-        "display_name": "Dock Ward"
+  "seed": 3017,
+  "width": 60,
+  "height": 40,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "dock_ward",
+    "theme": "VILLAGE",
+    "topology": "settlement",
+    "display_name": "Dock Ward"
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 25,
+      "y": 5,
+      "width": 12,
+      "height": 8,
+      "room_type": "town_square",
+      "connections": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The Dock Ward was long considered the most dangerous district in the city, though the Field Ward has since taken that title. This area is home to some of Waterdeep’s poor, and most of its taverns are inhabited by habitual drinkers.",
+        "read_aloud": "> You step into the Dock Ward, where the colors are burgundy and orange, and the air carries the smell of tar, frying fish, and the open sea. Timber buildings lean overhead, their upper stories jutting so far forward they nearly touch, blocking out the sky.",
+        "npcs": [
+          {
+            "name": "Dash",
+            "role": "informant",
+            "dialogue": "You want information, I want silver. Everybody gets what they want, everybody walks away smiling. I seen things down by warehouse nine last night. Things with tentacles. That one's free -- consider it a sample.",
+            "notes": "Street urchin, about twelve. Missing two front teeth. Runs a network of child informants across the Dock Ward. Genuinely knows everything that happens on these streets. Will not betray paying clients."
+          }
+        ],
+        "enemies": [],
+        "loot": [],
+        "hazards": [],
+        "services": [
+          "rumor"
+        ],
+        "event_triggers": [
+          "On entry: A pickpocket attempts to lift a coin purse (DC 14 Perception to notice)."
+        ],
+        "_source": "Waterdeep_ Dragon Heist",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
     },
-    "rooms": {
-        "0": {
-            "id": 0,
-            "x": 25,
-            "y": 5,
-            "width": 12,
-            "height": 8,
-            "room_type": "town_square",
-            "connections": [1, 2, 3, 4],
-            "tier": 2,
-            "is_locked": false,
-            "is_secret": false,
-            "content_hints": {
-                "description": "A cobblestone square slick with fish scales and salt spray, ringed by leaning timber buildings whose upper stories overhang the street like gossiping neighbors. Gulls wheel overhead, fighting over scraps. A fountain in the center -- long dry, its basin now used as a message board -- is papered with broadsheets, wanted posters, and handbills advertising passage to Baldur's Gate. The smell of the sea is everywhere, mixed with tar, smoke, and frying fish.",
-                "read_aloud": "You step into a cobblestone square slick with fish scales and sea spray. Timber buildings lean overhead, their upper stories jutting so far forward they nearly touch, blocking out the sky. Gulls shriek and wheel above, fighting over scraps. In the center stands a dry fountain papered over with broadsheets and wanted posters, its basin cracked and stained. The salt wind carries the smell of tar, frying fish, and the open sea beyond the rooftops.",
-                "npcs": [
-                    {
-                        "name": "Dash",
-                        "role": "informant",
-                        "dialogue": "You want information, I want silver. Everybody gets what they want, everybody walks away smiling. I seen things down by warehouse nine last night. Things with tentacles. That one's free -- consider it a sample.",
-                        "notes": "Street urchin, about twelve. Missing two front teeth. Runs a network of child informants across the Dock Ward. Genuinely knows everything that happens on these streets. Will not betray paying clients."
-                    }
-                ],
-                "enemies": [],
-                "loot": [],
-                "hazards": [],
-                "services": ["rumor"],
-                "event_triggers": [
-                    "On entry: A pickpocket attempts to lift a coin purse (DC 14 Perception to notice)."
-                ]
-            }
-        },
-        "1": {
-            "id": 1,
-            "x": 5,
-            "y": 5,
-            "width": 10,
-            "height": 10,
-            "room_type": "tavern",
-            "connections": [0, 2],
-            "tier": 2,
-            "is_locked": false,
-            "is_secret": false,
-            "content_hints": {
-                "description": "The sign shows a dragon spitted on a lance like a roast pig. Inside, the ceiling is so low that anyone over five and a half feet stoops. Smoke from a peat fire mixes with pipe smoke to create a permanent haze at eye level. The ale is cheap, the food is salt cod and hard bread, and the clientele are the kind of people who keep their backs to the wall and their weapons where they can reach them.",
-                "read_aloud": "A painted sign of a dragon spitted on a lance creaks above the door. Inside, the ceiling hangs so low you duck on instinct. Smoke from a peat fire mingles with pipe haze, creating a permanent fog at eye level through which faces appear and vanish. The room is cramped, dim, and warm, and every patron sits with their back to the wall. The smell of salt cod and cheap ale hangs in the air like a second set of curtains.",
-                "npcs": [
-                    {
-                        "name": "Bonnie",
-                        "role": "tavern_keeper",
-                        "dialogue": "Rules of the house: no magic, no fighting inside, no tab over five gold. Break a rule and I break something of yours. What are you having?",
-                        "notes": "Half-orc barkeep. Former sailor with anchor tattoos on both forearms. Fair but absolutely no-nonsense. Has thrown a full-grown minotaur out the front door. Hears every rumor in the ward but will only share for coin or a good story."
-                    }
-                ],
-                "enemies": [],
-                "loot": [],
-                "hazards": [],
-                "services": ["drink", "rest", "rumor"],
-                "event_triggers": [
-                    "On rest: Bonnie slides you an extra bread roll with your meal. 'You look like you need it. Do not get used to it.'"
-                ]
-            }
-        },
-        "2": {
-            "id": 2,
-            "x": 5,
-            "y": 20,
-            "width": 10,
-            "height": 8,
-            "room_type": "normal",
-            "connections": [0, 1],
-            "tier": 2,
-            "is_locked": true,
-            "is_secret": false,
-            "content_hints": {
-                "description": "A salt-stained warehouse marked only with a black serpent chalked above the door. Inside, crates are stacked in careful rows, each stamped with legitimate shipping marks that do not match their contents. The air smells of weapon oil and smuggled spices. A lookout on the catwalk above watches the entrance with a loaded crossbow.",
-                "read_aloud": "A black serpent symbol is chalked above the warehouse door, half-washed away by rain. Inside, crates stand in careful rows beneath a timber catwalk, their shipping labels crisp and official-looking. The air is thick with the smell of weapon oil and something sweeter -- cinnamon, maybe, or clove -- that has no business being in a Dock Ward warehouse. A shadow moves on the catwalk above, and you hear the quiet click of a crossbow bolt being seated.",
-                "npcs": [
-                    {
-                        "name": "Yagra Stonefist",
-                        "role": "faction_contact",
-                        "dialogue": "You are either brave or stupid to come here. Most people are both. State your business or get out -- we do not give tours.",
-                        "notes": "Zhentarim enforcer. Half-orc. Respects strength and directness. Will deal with the party if they have leverage or a Zhentarim contact. Controls smuggling operations in this section of the docks."
-                    }
-                ],
-                "enemies": [
-                    {"name": "Zhentarim Spy", "cr": "1"},
-                    {"name": "Zhentarim Thug", "cr": "1/2"}
-                ],
-                "loot": [
-                    {"name": "Smuggled Weapons Crate", "type": "equipment"},
-                    {"name": "Zhentarim Shipping Manifest", "type": "quest_item"}
-                ],
-                "hazards": [],
-                "services": [],
-                "event_triggers": [
-                    "On hostile entry: Yagra flips a table and draws twin scimitars. 'Wrong door, friend.'"
-                ]
-            }
-        },
-        "3": {
-            "id": 3,
-            "x": 45,
-            "y": 5,
-            "width": 10,
-            "height": 8,
-            "room_type": "barracks",
-            "connections": [0, 4],
-            "tier": 2,
-            "is_locked": false,
-            "is_secret": false,
-            "content_hints": {
-                "description": "The City Watch post is a squat stone building that looks like it was designed to survive a siege and then forgotten about. A duty roster nailed to the wall is three days out of date. Inside, two guards play cards while a third sleeps with his helmet over his face. The desk sergeant's ledger is open to a page of incident reports, most involving drunk sailors and missing cargo.",
-                "read_aloud": "A squat stone building hunkers at the corner like a bulldog that has given up chasing anything. The Watch banner hangs limp above the door. Inside, the air is stale with the smell of old tea and boot leather. Two guards sit at a table playing cards, and a third sleeps in a chair with his helmet tipped over his face. A duty roster nailed to the wall is several days out of date, its ink smudged by rain that leaked through the ceiling.",
-                "npcs": [
-                    {
-                        "name": "Sergeant Cromley",
-                        "role": "authority",
-                        "dialogue": "Another complaint? File it with the clerk. What? The clerk quit? Fine, file it with me. I will get to it. Eventually. We are understaffed, underpaid, and the captain says no overtime.",
-                        "notes": "Human, middle-aged, exhausted. Honest but overwhelmed. The Dock Ward has more crime than his unit can handle. Will cooperate with adventurers who do not cause more problems than they solve."
-                    }
-                ],
-                "enemies": [],
-                "loot": [],
-                "hazards": [],
-                "services": ["quest"],
-                "event_triggers": [
-                    "On quest available: Cromley has bounties posted for warehouse break-ins that he suspects are Xanathar Guild related."
-                ]
-            }
-        },
-        "4": {
-            "id": 4,
-            "x": 45,
-            "y": 20,
-            "width": 10,
-            "height": 8,
-            "room_type": "market",
-            "connections": [0, 3, 5],
-            "tier": 2,
-            "is_locked": false,
-            "is_secret": false,
-            "content_hints": {
-                "description": "Wooden stalls and canvas awnings stretch along the wharf, selling the day's catch. Fishmongers shout prices over each other while cats prowl between the tables, waiting for scraps. The fish range from mundane cod and herring to things pulled from deep water that have too many eyes. One stall sells 'exotic specimens' in sealed jars that glow faintly in the shadows.",
-                "read_aloud": "Wooden stalls crowd the wharf edge beneath canvas awnings snapping in the harbor wind. Fishmongers shout prices over one another in a rising chorus, their tables heaped with silver-scaled cod, fat herring, and stranger things pulled from deep water -- things with too many eyes and not enough fins. Cats slink between the stalls, and the cobblestones underfoot are slick with scales and brine. One stall at the far end displays sealed jars that glow faintly in the shadow of its awning.",
-                "npcs": [
-                    {
-                        "name": "Old Maera",
-                        "role": "shopkeeper",
-                        "dialogue": "Eel? Cod? Something from below the thermocline? I have a squid today with seven tentacles instead of eight -- lucky squid, they say. Or unlucky, depending on which end you are on.",
-                        "notes": "Human fisherwoman, weathered and sharp-eyed. Sells mundane and exotic sea creatures. Occasionally finds magical items in her nets. Knows the harbor currents, smuggling routes, and which warehouse doors are left unlocked at night."
-                    }
-                ],
-                "enemies": [],
-                "loot": [
-                    {"name": "Cloak of the Manta Ray (tangled in fishing nets)", "type": "equipment"}
-                ],
-                "hazards": [],
-                "services": ["shop"],
-                "event_triggers": [
-                    "On browse: Old Maera leans close. 'I pulled something out of the harbor last night that was not a fish. Interested?'"
-                ]
-            }
-        },
-        "5": {
-            "id": 5,
-            "x": 25,
-            "y": 30,
-            "width": 10,
-            "height": 6,
-            "room_type": "town_gate",
-            "connections": [4],
-            "tier": 2,
-            "is_locked": false,
-            "is_secret": false,
-            "content_hints": {
-                "description": "The harbor gate is a massive timber-and-iron affair set into the city's sea wall. Beyond it, wooden piers reach into the gray harbor like outstretched fingers. Ships from a dozen nations rock at anchor -- Calishite dhows, Luskan raiders with their sails furled, a Lantanese steamship trailing a ribbon of smoke. The gate guards check cargo, not people. Anyone can walk in. Getting cargo out is another matter.",
-                "read_aloud": "A massive timber-and-iron gate stands open in the sea wall, framing a view of the gray harbor beyond. Wooden piers reach out into the water like outstretched fingers, and ships from a dozen nations rock at anchor -- brightly painted dhows, dark-hulled warships with furled sails, and a vessel trailing a thin ribbon of smoke from a brass chimney. Salt wind pours through the gate, carrying the cry of gulls and the creak of rigging.",
-                "npcs": [],
-                "enemies": [],
-                "loot": [],
-                "hazards": [],
-                "services": ["exit_settlement"],
-                "event_triggers": [
-                    "On exit: The sounds of the Dock Ward fade behind you as salt wind fills your lungs."
-                ]
-            }
-        }
+    "1": {
+      "id": 1,
+      "x": 5,
+      "y": 5,
+      "width": 10,
+      "height": 10,
+      "room_type": "tavern",
+      "connections": [
+        0,
+        2
+      ],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The Yawning Portal is a famous inn and tavern located in the Castle Ward of Waterdeep, featuring a common room with a 40-foot-diameter open well descending 140 feet to the first level of Undermountain. The place is a stone building with a slate roof and several chimneys.",
+        "read_aloud": "You see a painted sign of a dragon spitted on a lance creaking above the door. Inside, the ceiling hangs so low you duck on instinct, and smoke from a peat fire mingles with pipe haze, creating a permanent fog at eye level through which faces appear and vanish. The room is cramped, dim, and warm, and the smell of salt cod and cheap ale hangs in the air like a second set of curtains.",
+        "npcs": [
+          {
+            "name": "Staget",
+            "role": "curb the violence in the Dock Ward",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          },
+          {
+            "name": "Lif",
+            "role": "the former tavern is haunted by the poltergeist (specter) of the tavern’s previous barkeeper",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          }
+        ],
+        "enemies": [],
+        "loot": [],
+        "hazards": [],
+        "services": [
+          "drink",
+          "rest",
+          "rumor"
+        ],
+        "event_triggers": [
+          "On rest: Bonnie slides you an extra bread roll with your meal. 'You look like you need it. Do not get used to it.'"
+        ],
+        "_source": "Waterdeep_ Dragon Heist",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 5,
+      "y": 20,
+      "width": 10,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [
+        0,
+        1
+      ],
+      "tier": 2,
+      "is_locked": true,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The Dock Ward was long considered the most dangerous district in the city, though the Field Ward has since taken that title. This area is home to some of Waterdeep’s poor and is inhabited by habitual drinkers.",
+        "read_aloud": "You see the colors of the Dock Ward are burgundy and orange, and the folk of the Dock Ward take competition seriously. The air here is thick with the smell of weapon oil and something sweeter, perhaps cinnamon or clove, that has no business being in a Dock Ward warehouse.",
+        "npcs": [
+          {
+            "name": "Staget",
+            "role": "curb the violence in the Dock Ward",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          },
+          {
+            "name": "Volo",
+            "role": "last saw Floon outside the Skewered Dragon",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          }
+        ],
+        "enemies": [
+          {
+            "name": "Zhentarim Spy",
+            "cr": "1"
+          },
+          {
+            "name": "Zhentarim Thug",
+            "cr": "1/2"
+          }
+        ],
+        "loot": [
+          {
+            "name": "Smuggled Weapons Crate",
+            "type": "equipment"
+          },
+          {
+            "name": "Zhentarim Shipping Manifest",
+            "type": "quest_item"
+          }
+        ],
+        "hazards": [],
+        "services": [],
+        "event_triggers": [
+          "On hostile entry: Yagra flips a table and draws twin scimitars. 'Wrong door, friend.'"
+        ],
+        "_source": "Waterdeep_ Dragon Heist",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
+    },
+    "3": {
+      "id": 3,
+      "x": 45,
+      "y": 5,
+      "width": 10,
+      "height": 8,
+      "room_type": "barracks",
+      "connections": [
+        0,
+        4
+      ],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The Dock Ward was long considered the most dangerous district in the city, though the Field Ward has since taken that title. This area is home to some of Waterdeep’s poor and is inhabited by habitual drinkers in most of its taverns.",
+        "read_aloud": "You find yourself in the Dock Ward, a district long considered the most dangerous in the city, though some residents are glad of its reputation. You see the area is home to some of Waterdeep’s poor, with taverns inhabited by habitual drinkers.",
+        "npcs": [
+          {
+            "name": "Sergeant Cromley",
+            "role": "authority",
+            "dialogue": "Another complaint? File it with the clerk. What? The clerk quit? Fine, file it with me. I will get to it. Eventually. We are understaffed, underpaid, and the captain says no overtime.",
+            "notes": "Human, middle-aged, exhausted. Honest but overwhelmed. The Dock Ward has more crime than his unit can handle. Will cooperate with adventurers who do not cause more problems than they solve."
+          }
+        ],
+        "enemies": [],
+        "loot": [],
+        "hazards": [],
+        "services": [
+          "quest"
+        ],
+        "event_triggers": [
+          "On quest available: Cromley has bounties posted for warehouse break-ins that he suspects are Xanathar Guild related."
+        ],
+        "_source": "Waterdeep_ Dragon Heist",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
+    },
+    "4": {
+      "id": 4,
+      "x": 45,
+      "y": 20,
+      "width": 10,
+      "height": 8,
+      "room_type": "market",
+      "connections": [
+        0,
+        3,
+        5
+      ],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The Dock Ward was long considered the most dangerous district in the city, though the Field Ward has since taken that title. This area is home to some of Waterdeep’s poor, and most of its taverns are inhabited by habitual drinkers.",
+        "read_aloud": "You see wooden stalls crowd the wharf edge beneath canvas awnings snapping in the harbor wind. The colors of the Dock Ward are burgundy and orange, and the air is thick with the smell of brine and fish.",
+        "npcs": [
+          {
+            "name": "Old Maera",
+            "role": "shopkeeper",
+            "dialogue": "Eel? Cod? Something from below the thermocline? I have a squid today with seven tentacles instead of eight -- lucky squid, they say. Or unlucky, depending on which end you are on.",
+            "notes": "Human fisherwoman, weathered and sharp-eyed. Sells mundane and exotic sea creatures. Occasionally finds magical items in her nets. Knows the harbor currents, smuggling routes, and which warehouse doors are left unlocked at night."
+          }
+        ],
+        "enemies": [],
+        "loot": [
+          {
+            "name": "Cloak of the Manta Ray (tangled in fishing nets)",
+            "type": "equipment"
+          }
+        ],
+        "hazards": [],
+        "services": [
+          "shop"
+        ],
+        "event_triggers": [
+          "On browse: Old Maera leans close. 'I pulled something out of the harbor last night that was not a fish. Interested?'"
+        ],
+        "_source": "Waterdeep_ Dragon Heist",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
+    },
+    "5": {
+      "id": 5,
+      "x": 25,
+      "y": 30,
+      "width": 10,
+      "height": 6,
+      "room_type": "town_gate",
+      "connections": [
+        4
+      ],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The Dock Ward was long considered the most dangerous district in the city, though the Field Ward has since taken that title. This area is where most of Waterdeep’s poor reside, and most of its taverns are inhabited by habitual drinkers.",
+        "read_aloud": "You see the Dock Ward, a district steeped in the colors of burgundy and orange, where the air carries the scent of the harbor. This area was long considered the most dangerous district in the city, though the Field Ward has since taken that title.",
+        "npcs": [],
+        "enemies": [],
+        "loot": [],
+        "hazards": [],
+        "services": [
+          "exit_settlement"
+        ],
+        "event_triggers": [
+          "On exit: The sounds of the Dock Ward fade behind you as salt wind fills your lungs."
+        ],
+        "_source": "Waterdeep_ Dragon Heist",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
     }
+  }
 }

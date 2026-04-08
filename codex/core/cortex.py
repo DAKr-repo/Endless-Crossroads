@@ -280,23 +280,10 @@ class Cortex:
     def _flush_vram(self):
         """Force-unload non-essential models from memory.
 
-        Sends keep_alive=0 to Ollama for the Coder model,
-        causing immediate eviction. Mimir (persona model) is retained.
-        Also unloads LiteRT-LM Gemma 4 engine if loaded.
+        Unloads LiteRT-LM Gemma 4 engine. Mimir (Ollama) is retained.
 
         WO-V31.0: Homeostatic Guard — VRAM flush on RAM DANGER.
         """
-        import requests as _requests
-        for model in ["qwen2.5-coder:1.5b"]:
-            try:
-                _requests.post(
-                    "http://localhost:11434/api/generate",
-                    json={"model": model, "keep_alive": 0},
-                    timeout=5,
-                )
-            except Exception:
-                pass  # Best-effort flush
-
         # Unload LiteRT-LM engine (frees ~350MB hard + ~1.2GB page cache)
         try:
             from codex.core.services.litert_engine import get_litert_engine

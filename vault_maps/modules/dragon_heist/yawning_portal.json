@@ -1,155 +1,223 @@
 {
-    "seed": 3001,
-    "width": 50,
-    "height": 45,
-    "start_room_id": 0,
-    "metadata": {
-        "zone_id": "yawning_portal",
-        "theme": "VILLAGE",
-        "topology": "settlement",
-        "display_name": "The Yawning Portal"
+  "seed": 3001,
+  "width": 50,
+  "height": 45,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "yawning_portal",
+    "theme": "VILLAGE",
+    "topology": "settlement",
+    "display_name": "The Yawning Portal"
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 15,
+      "y": 15,
+      "width": 20,
+      "height": 15,
+      "room_type": "town_square",
+      "connections": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The Yawning Portal is a famous inn and tavern situated in the Castle Ward of Waterdeep, a stone building with a slate roof and several chimneys. Its common room features a 40-foot-diameter open well, which is actually the outer shell of a sunken stone tower descending 140 feet to the first level of Undermountain.",
+        "read_aloud": "You push through the heavy oak doors into a cavernous hall thick with pipe smoke and the din of a hundred conversations. At its center yawns a well shaft forty feet across, its stone rim polished smooth by generations of gripping hands.",
+        "npcs": [
+          {
+            "name": "Durnan",
+            "role": "proprietor",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          }
+        ],
+        "services": [
+          "drink",
+          "rest",
+          "rumor",
+          "quest"
+        ],
+        "enemies": [
+          {
+            "name": "Troll",
+            "hp": 84,
+            "max_hp": 84,
+            "ac": 15,
+            "attack": 7,
+            "defense": 15,
+            "count": 1
+          }
+        ],
+        "event_triggers": [
+          "On entry: A roar shakes the tavern. Chains snap and a massive troll hauls itself over the rim of the well, dripping with sewer water. Durnan vaults the bar, greatsword in hand. 'EVERYONE BACK!'"
+        ],
+        "_source": "Waterdeep_ Dragon Heist",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
     },
-    "rooms": {
-        "0": {
-            "id": 0,
-            "x": 15,
-            "y": 15,
-            "width": 20,
-            "height": 15,
-            "room_type": "town_square",
-            "connections": [1, 2, 3, 4],
-            "tier": 1,
-            "is_locked": false,
-            "is_secret": false,
-            "content_hints": {
-                "description": "The main hall of the Yawning Portal -- Waterdeep's most famous tavern. The cavernous room is dominated by a forty-foot-wide well shaft in the center, its stone rim worn smooth by the hands of countless adventurers who descended into Undermountain and never returned. Rope pulleys creak overhead. The air smells of ale, pipe smoke, and the faint sulfurous draft rising from the well.",
-                "read_aloud": "You push through the heavy oak doors into a cavernous hall thick with pipe smoke and the din of a hundred conversations. At its center yawns a well shaft forty feet across, its stone rim polished smooth by generations of gripping hands. Ropes and pulleys creak overhead, swaying gently in a warm updraft that carries the smell of sulfur and deep places. Somewhere across the room, a bard plucks a mournful chord, and a barmaid weaves between tables bearing tankards that slosh with every step.",
-                "npcs": [
-                    {
-                        "name": "Durnan",
-                        "role": "innkeeper",
-                        "dialogue": "One gold to go down the well. What comes back up is your business. Ale's on the bar -- help yourself, but pay before you drink. I've buried better adventurers than you.",
-                        "notes": "Retired adventurer, former delver of Undermountain. Keeps a greatsword behind the bar. Does not tolerate brawls."
-                    },
-                    {
-                        "name": "Volothamp Geddarm",
-                        "role": "quest_giver",
-                        "dialogue": "You there! You look like capable sorts. Not too capable, mind -- the truly capable are far too expensive. I need someone to find a friend of mine. Floon Blagmaar. Disappeared two nights ago after a night of drinking in the Dock Ward. I'll pay ten dragons -- er, gold pieces -- each.",
-                        "notes": "Famous author, chronic exaggerator. His 'friend' Floon was actually drinking with Renaer Neverember, the Open Lord's estranged son."
-                    }
-                ],
-                "services": ["drink", "rest", "rumor", "quest"],
-                "enemies": [
-                    {"name": "Troll", "hp": 84, "max_hp": 84, "ac": 15, "attack": 7, "defense": 15, "count": 1}
-                ],
-                "event_triggers": ["On entry: A roar shakes the tavern. Chains snap and a massive troll hauls itself over the rim of the well, dripping with sewer water. Durnan vaults the bar, greatsword in hand. 'EVERYONE BACK!'"]
-            }
-        },
-        "1": {
-            "id": 1,
-            "x": 5,
-            "y": 18,
-            "width": 8,
-            "height": 10,
-            "room_type": "tavern",
-            "connections": [0],
-            "tier": 1,
-            "is_locked": false,
-            "is_secret": false,
-            "content_hints": {
-                "description": "The bar -- a massive slab of darkwood scarred by knife points and mug rings. Bottles line the shelves behind it in no discernible order. A chalkboard lists the day's fare: roast boar, fish pie, and something called 'Trollskull Stout' that glows faintly green.",
-                "read_aloud": "A bar stretches the length of the wall, its darkwood surface scarred by decades of knife points and mug rings. Behind it, bottles crowd the shelves in cheerful disorder, their labels faded and peeling. A chalkboard lists the day's fare in uneven chalk -- roast boar, fish pie, and something called 'Trollskull Stout' that glows a faint, unsettling green in its bottle.",
-                "npcs": [
-                    {
-                        "name": "Bonnie",
-                        "role": "barmaid",
-                        "dialogue": "What'll it be? And don't ask what's in the Stout. Durnan won't say and I've learned not to ask."
-                    }
-                ],
-                "services": ["drink", "rumor"],
-                "inventory": [
-                    {"name": "Ale", "cost": 4, "type": "consumable"},
-                    {"name": "Wine (Cormyrean Red)", "cost": 10, "type": "consumable"},
-                    {"name": "Trollskull Stout", "cost": 8, "type": "consumable"},
-                    {"name": "Roast Boar Platter", "cost": 6, "type": "consumable"},
-                    {"name": "Fish Pie", "cost": 3, "type": "consumable"}
-                ]
-            }
-        },
-        "2": {
-            "id": 2,
-            "x": 38,
-            "y": 18,
-            "width": 8,
-            "height": 10,
-            "room_type": "residence",
-            "connections": [0],
-            "tier": 1,
-            "is_locked": false,
-            "is_secret": false,
-            "content_hints": {
-                "description": "A row of private dining alcoves partitioned by heavy curtains. The wood paneling is carved with scenes of famous Undermountain expeditions -- most of them ending badly. A brass plaque reads 'Reserved for the Harpers' over one alcove, though it appears empty.",
-                "read_aloud": "Heavy curtains partition a row of private dining alcoves along the far wall. The wood paneling between them is carved with scenes of armored figures descending into darkness -- most of the scenes end with the figures running the other way. A brass plaque above one curtained booth reads 'Reserved,' though the booth beyond appears empty. The air here is quieter, thick with the smell of old wood and spilled wine.",
-                "npcs": [
-                    {
-                        "name": "Yagra Stonefist",
-                        "role": "mercenary",
-                        "dialogue": "You want work? Talk to Davil Starsong at the Doom Raiders. Or don't -- he'll find you either way.",
-                        "notes": "Half-orc enforcer for the Doom Raiders (reformed Zhentarim faction). Gets into a fistfight with a half-orc thug as the party arrives."
-                    }
-                ],
-                "services": ["rumor"],
-                "event_triggers": ["On first visit: Bar fight between Yagra and a Zhentarim thug. A troll climbs out of the well mid-fight."]
-            }
-        },
-        "3": {
-            "id": 3,
-            "x": 18,
-            "y": 5,
-            "width": 14,
-            "height": 8,
-            "room_type": "residence",
-            "connections": [0],
-            "tier": 1,
-            "is_locked": false,
-            "is_secret": false,
-            "content_hints": {
-                "description": "The kitchen -- a sweltering room of copper pots, hanging herbs, and a fireplace large enough to roast an ox. The head cook, a stout halfling woman, orchestrates the chaos with a wooden spoon she wields like a marshal's baton. Steam and the smell of baking bread fill the air.",
-                "read_aloud": "A wave of heat rolls over you as you step into the kitchen. Copper pots hang from ceiling hooks in cluttered ranks, and bundles of dried herbs dangle above a fireplace large enough to stand in. Steam billows from a dozen bubbling vessels, carrying the smell of baking bread, roasting meat, and something sharp -- onions, maybe, or the temper of the stout halfling who rounds on you with a wooden spoon raised like a weapon.",
-                "npcs": [
-                    {
-                        "name": "Marta Moonshadow",
-                        "role": "cook",
-                        "dialogue": "Out! Out of my kitchen! Unless you're here to peel potatoes, in which case -- grab a knife and get to work."
-                    }
-                ]
-            }
-        },
-        "4": {
-            "id": 4,
-            "x": 20,
-            "y": 33,
-            "width": 10,
-            "height": 8,
-            "room_type": "town_gate",
-            "connections": [0],
-            "tier": 1,
-            "is_locked": false,
-            "is_secret": false,
-            "content_hints": {
-                "description": "The well entrance -- a gaping shaft descending into absolute darkness. A wooden platform and rope-and-pulley system allows descent for those brave or foolish enough to enter Undermountain. One gold piece to go down. Coming back up is free, assuming you come back at all. Scratch marks on the stone rim suggest not everything that climbs out is human.",
-                "read_aloud": "You stand at the rim of the well and peer down into nothing. The shaft drops into absolute darkness, swallowing the light of the tavern's lanterns within a few feet. A wooden platform sways on thick ropes beside a hand-cranked pulley, creaking softly with every draft from below. The stone rim is gouged with deep scratch marks, and the air rising from the shaft is warm, wet, and carries a faint sound -- something between breathing and the drip of distant water.",
-                "npcs": [
-                    {
-                        "name": "Mattrim 'Threestrings' Mereg",
-                        "role": "bard",
-                        "dialogue": "Another song, another copper! This one's called 'The Ballad of the Fallen Fifty' -- about the last big expedition into Undermountain. Spoiler: it doesn't end well.",
-                        "notes": "Plays lute near the well. Actually a Harper spy reporting to Mirt the Moneylender."
-                    }
-                ],
-                "services": ["exit_settlement"],
-                "exit_note": "Leads to Undermountain (not part of this module) or back to Waterdeep streets via the front door."
-            }
-        }
+    "1": {
+      "id": 1,
+      "x": 5,
+      "y": 18,
+      "width": 8,
+      "height": 10,
+      "room_type": "tavern",
+      "connections": [
+        0
+      ],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The Yawning Portal is a famous inn and tavern situated in the Castle Ward of Waterdeep, a stone building with a slate roof and several chimneys. Most of the ground floor is taken up by the common room, which features a 40-foot-diameter open well that descends 140 feet to the first level of Undermountain.",
+        "read_aloud": "You see the Yawning Portal, a famous inn and tavern in the Castle Ward of Waterdeep. The stone building has a slate roof and several chimneys, and the ground floor is dominated by the common room, which features a 40-foot-diameter open well that descends 140 feet to the first level of Undermountain.",
+        "npcs": [
+          {
+            "name": "Lif",
+            "role": "The former tavern is haunted by the poltergeist (specter) of the tavern’s previous barkeeper.",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          }
+        ],
+        "services": [
+          "drink",
+          "rumor"
+        ],
+        "inventory": [
+          {
+            "name": "Ale",
+            "cost": 4,
+            "type": "consumable"
+          },
+          {
+            "name": "Wine (Cormyrean Red)",
+            "cost": 10,
+            "type": "consumable"
+          },
+          {
+            "name": "Trollskull Stout",
+            "cost": 8,
+            "type": "consumable"
+          },
+          {
+            "name": "Roast Boar Platter",
+            "cost": 6,
+            "type": "consumable"
+          },
+          {
+            "name": "Fish Pie",
+            "cost": 3,
+            "type": "consumable"
+          }
+        ],
+        "_source": "Waterdeep_ Dragon Heist",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 38,
+      "y": 18,
+      "width": 8,
+      "height": 10,
+      "room_type": "residence",
+      "connections": [
+        0
+      ],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The Yawning Portal is a famous inn and tavern located in the Castle Ward of Waterdeep, a stone building with a slate roof and several chimneys. Its common room features a 40-foot-diameter open well that descends 140 feet to the first level of Undermountain.",
+        "read_aloud": "You see the Yawning Portal, a famous inn and tavern nestled in the Castle Ward of Waterdeep. The stone building has a slate roof and several chimneys, and most of the ground floor is taken up by the common room, which features a 40-foot-diameter open well.",
+        "npcs": [
+          {
+            "name": "Durnan",
+            "role": "proprietor",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          }
+        ],
+        "services": [
+          "rumor"
+        ],
+        "event_triggers": [
+          "On first visit: Bar fight between Yagra and a Zhentarim thug. A troll climbs out of the well mid-fight."
+        ],
+        "_source": "Waterdeep_ Dragon Heist",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
+    },
+    "3": {
+      "id": 3,
+      "x": 18,
+      "y": 5,
+      "width": 14,
+      "height": 8,
+      "room_type": "residence",
+      "connections": [
+        0
+      ],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The Yawning Portal is a famous inn and tavern located in the Castle Ward of Waterdeep, a stone building with a slate roof and several chimneys. Its common room features a 40-foot-diameter open well that descends 140 feet to the first level of Undermountain.",
+        "read_aloud": "You step into the Yawning Portal, a famous inn and tavern in the Castle Ward of Waterdeep. You see a stone building with a slate roof and several chimneys, and the air is thick with the sounds of adventurers from every corner of the Forgotten Realms.",
+        "npcs": [
+          {
+            "name": "Durnan",
+            "role": "proprietor",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          }
+        ],
+        "_source": "Waterdeep_ Dragon Heist",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
+    },
+    "4": {
+      "id": 4,
+      "x": 20,
+      "y": 33,
+      "width": 10,
+      "height": 8,
+      "room_type": "town_gate",
+      "connections": [
+        0
+      ],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The Yawning Portal is a famous inn and tavern located in the Castle Ward of Waterdeep, where adventurers can meet all sorts of colorful characters. The ground floor of the building contains the tavern’s common room, which features a 40-foot-diameter open well that descends 140 feet to the first level of Undermountain.",
+        "read_aloud": "You see the Yawning Portal, a famous inn and tavern in the Castle Ward of Waterdeep, a stone building with a slate roof and several chimneys. The ground floor is dominated by the common room, which features a 40-foot-diameter open well.",
+        "npcs": [
+          {
+            "name": "Durnan",
+            "role": "proprietor",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          }
+        ],
+        "services": [
+          "exit_settlement"
+        ],
+        "exit_note": "Leads to Undermountain (not part of this module) or back to Waterdeep streets via the front door.",
+        "_source": "Waterdeep_ Dragon Heist",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
     }
+  }
 }

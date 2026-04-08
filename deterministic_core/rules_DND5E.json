@@ -1,7 +1,7 @@
 {
     "meta": {
         "system_id": "DND5E",
-        "display_name": "dnd5e",
+        "display_name": "D&D 5e",
         "engine": "custom",
         "dice_system": "custom",
         "system_family": "DND5E",
@@ -115,7 +115,7 @@
     },
     "structure": {
         "system_id": "DND5E",
-        "display_name": "dnd5e",
+        "display_name": "D&D 5e",
         "engine": "custom",
         "system_family": "DND5E",
         "archetype_categories": {},

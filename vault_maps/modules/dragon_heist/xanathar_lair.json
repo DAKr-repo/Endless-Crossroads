@@ -1,289 +1,496 @@
 {
-    "seed": 3014,
-    "width": 80,
-    "height": 60,
-    "start_room_id": 0,
-    "metadata": {
-        "zone_id": "xanathar_lair",
-        "theme": "STONE",
-        "topology": "dungeon",
-        "display_name": "Xanathar's Lair"
+  "seed": 3014,
+  "width": 80,
+  "height": 60,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "xanathar_lair",
+    "theme": "STONE",
+    "topology": "dungeon",
+    "display_name": "Xanathar's Lair"
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 5,
+      "y": 5,
+      "width": 8,
+      "height": 6,
+      "room_type": "start",
+      "connections": [
+        1
+      ],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Very few members of the Xanathar Guild have access to the beholder’s secret lair. If the characters want to get there, the following factions know where it is and can help them find it.",
+        "read_aloud": "You see the oppressive darkness of the Xanathar Lair, the air thick with the stench of decay and stagnant water. Patches of sickly blue-green bioluminescent fungus cling to the damp walls, casting an eerie, dim light upon the stone steps before you. Dozens of small, gleaming eyes watch you from the shadows below.",
+        "npcs": [
+          {
+            "name": "Nar’l Xibrindas",
+            "role": "advisor Nar’l Xibrindas, who uses sending spells to transmit intelligence to his drow brethren.",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          }
+        ],
+        "enemies": [],
+        "loot": [],
+        "hazards": [
+          {
+            "name": "Slippery steps (Dexterity save or fall prone)",
+            "dc": 11
+          }
+        ],
+        "services": [],
+        "event_triggers": [
+          "On entry: A small, gelatinous creature with a single eye blinks at you from a ledge, then scurries into the darkness. You have been spotted."
+        ],
+        "_source": "Waterdeep_ Dragon Heist",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
     },
-    "rooms": {
-        "0": {
-            "id": 0,
-            "x": 5,
-            "y": 5,
-            "width": 8,
-            "height": 6,
-            "room_type": "start",
-            "connections": [1],
-            "tier": 3,
-            "is_locked": false,
-            "is_secret": false,
-            "content_hints": {
-                "description": "A storm drain grate lifts away to reveal stone steps descending into the Waterdeep sewers. The stench hits first -- a wall of rot and standing water and something else beneath it, something sharp and alien, like ozone before a lightning strike. Bioluminescent fungus clings to the walls in blue-green patches, providing just enough light to see the rats watching you from the shadows.",
-                "read_aloud": "The storm drain grate lifts away with a grinding screech, revealing stone steps that descend into darkness. The stench hits you like a physical thing -- rot, standing water, and something sharper beneath it all, electric and alien. Bioluminescent fungus clings to the walls in patches of sickly blue-green, casting just enough light to see the steps and the dozens of small, gleaming eyes watching you from the shadows below.",
-                "npcs": [],
-                "enemies": [],
-                "loot": [],
-                "hazards": [
-                    {"name": "Slippery steps (Dexterity save or fall prone)", "dc": 11}
-                ],
-                "services": [],
-                "event_triggers": [
-                    "On entry: A small, gelatinous creature with a single eye blinks at you from a ledge, then scurries into the darkness. You have been spotted."
-                ]
-            }
-        },
-        "1": {
-            "id": 1,
-            "x": 15,
-            "y": 5,
-            "width": 14,
-            "height": 6,
-            "room_type": "corridor",
-            "connections": [0, 2],
-            "tier": 3,
-            "is_locked": false,
-            "is_secret": false,
-            "content_hints": {
-                "description": "The tunnel is half-flooded, murky water reaching mid-thigh. Things move beneath the surface -- quick, sinuous shapes that brush against your legs and vanish. The walls are scratched with territorial markings in Deep Speech, and at one point the passage narrows to single-file between two pillars of fused bone.",
-                "read_aloud": "Murky water fills the tunnel to mid-thigh, cold enough to steal your breath. Things move beneath the surface -- quick, sinuous shapes that brush against your legs and are gone before you can react. The walls are gouged with deep scratches in patterns that might be writing, and the tunnel narrows ahead, forcing you single-file between two pale columns that are not stone. They are bone -- fused together, stacked, rising from the waterline to the ceiling.",
-                "npcs": [],
-                "enemies": [
-                    {"name": "Gazer", "cr": "1/2"},
-                    {"name": "Gazer", "cr": "1/2"}
-                ],
-                "loot": [],
-                "hazards": [
-                    {"name": "Flooded passage (difficult terrain, hidden debris)", "dc": 12}
-                ],
-                "services": [],
-                "event_triggers": []
-            }
-        },
-        "2": {
-            "id": 2,
-            "x": 35,
-            "y": 5,
-            "width": 10,
-            "height": 8,
-            "room_type": "normal",
-            "connections": [1, 3, 4],
-            "tier": 3,
-            "is_locked": false,
-            "is_secret": false,
-            "content_hints": {
-                "description": "Crude barricades of overturned tables and salvaged doors block the passage. Behind them, bugbear guards play a dice game using knucklebones that are not from any animal you recognize. They wear mismatched armor stamped with a circle-and-dot symbol -- Xanathar's brand. One picks its teeth with a human femur.",
-                "read_aloud": "Crude barricades of overturned tables and salvaged doors block the passage ahead. Behind them, hulking figures crouch in the torchlight, rolling knucklebones across a flat stone with low, guttural laughter. Their mismatched armor is stamped with the same symbol -- a circle with a dot at its center. The air smells of unwashed fur, rancid meat, and the smoke of a guttering torch jammed into a skull mounted on the barricade.",
-                "npcs": [],
-                "enemies": [
-                    {"name": "Bugbear", "cr": "1"},
-                    {"name": "Bugbear", "cr": "1"},
-                    {"name": "Bugbear Chief", "cr": "3"}
-                ],
-                "loot": [
-                    {"name": "Guard Post Key", "type": "equipment"},
-                    {"name": "Xanathar Guild Token", "type": "quest_item"}
-                ],
-                "hazards": [],
-                "services": [],
-                "event_triggers": [
-                    "On combat: The bugbear chief blows a horn. Reinforcements arrive from Room 4 in 3 rounds if not stopped."
-                ]
-            }
-        },
-        "3": {
-            "id": 3,
-            "x": 35,
-            "y": 18,
-            "width": 12,
-            "height": 8,
-            "room_type": "normal",
-            "connections": [2, 5],
-            "tier": 3,
-            "is_locked": true,
-            "is_secret": false,
-            "content_hints": {
-                "description": "Iron cages hang from the ceiling by rusted chains, each containing a prisoner in varying states of despair. Some weep. Some stare. One laughs softly and will not stop. The floor beneath the cages is stained with old filth, and a bucket of gruel sits by the entrance with a ladle chained to it -- feeding time is apparently self-service.",
-                "read_aloud": "Iron cages hang from the ceiling by rusted chains, swaying gently, each holding a slumped figure. The sounds they make are the worst part -- quiet weeping, the dry rasp of labored breathing, and from one cage, a soft, broken laugh that does not stop. The floor beneath the cages is stained dark, and the air is foul with the smell of confinement. A bucket of gray gruel sits by the entrance, its ladle chained to the handle.",
-                "npcs": [
-                    {
-                        "name": "Floon Blagmaar",
-                        "role": "quest_target",
-                        "dialogue": "You came. By Tymora's grace, you actually came. They kept asking about the Stone -- I told them I do not know anything, but the big one, the beholder, it can tell when you are lying. It just... stares at you, and you feel your thoughts peeling open.",
-                        "notes": "Missing nobleman. Kidnapped by mistake (looks like Renaer Neverember). Traumatized but physically unharmed. Key to Chapter 1 resolution."
-                    }
-                ],
-                "enemies": [
-                    {"name": "Intellect Devourer", "cr": "2"}
-                ],
-                "loot": [
-                    {"name": "Prisoner Belongings (assorted, 40 gp total)", "type": "treasure"}
-                ],
-                "hazards": [],
-                "services": [],
-                "event_triggers": [
-                    "On rescue: Floon warns that Xanathar's throne room is ahead and begs the party to leave before the beholder notices."
-                ]
-            }
-        },
-        "4": {
-            "id": 4,
-            "x": 55,
-            "y": 5,
-            "width": 12,
-            "height": 10,
-            "room_type": "treasure",
-            "connections": [2, 5, 6],
-            "tier": 3,
-            "is_locked": true,
-            "is_secret": false,
-            "content_hints": {
-                "description": "Shelves of stolen goods line the walls -- paintings still in their frames, bolts of silk, casks of dwarven spirits, and a taxidermied owlbear wearing a jaunty hat. Xanathar keeps trophies of every significant theft, each tagged with a label in cramped handwriting noting the date, the victim, and a rating out of ten for difficulty. The owlbear rates a seven.",
-                "read_aloud": "Shelves line every wall, packed with stolen treasure displayed like a museum exhibit. Paintings still in gilt frames lean against bolts of shimmering silk. Casks of spirits are stacked beside jewelry boxes and a taxidermied owlbear wearing a jaunty feathered hat. Every item bears a small tag in cramped handwriting. The room smells of dust, lacquer, and the faint sweetness of aged spirits leaking from a cracked cask.",
-                "npcs": [],
-                "enemies": [],
-                "loot": [
-                    {"name": "Necklace of Fireballs (3 beads remaining)", "type": "weapon"},
-                    {"name": "Stolen Paintings (500 gp total)", "type": "treasure"},
-                    {"name": "Cask of Dwarven Brandy (150 gp)", "type": "treasure"},
-                    {"name": "Xanathar's Trophy Log", "type": "quest_item"}
-                ],
-                "hazards": [
-                    {"name": "Glyph of Warding on owlbear pedestal", "dc": 15}
-                ],
-                "services": [],
-                "event_triggers": []
-            }
-        },
-        "5": {
-            "id": 5,
-            "x": 45,
-            "y": 25,
-            "width": 14,
-            "height": 10,
-            "room_type": "normal",
-            "connections": [3, 4, 7],
-            "tier": 3,
-            "is_locked": false,
-            "is_secret": false,
-            "content_hints": {
-                "description": "A sand-floored pit twenty feet deep, ringed by tiered stone benches worn smooth by spectators. Bones are scattered across the arena floor -- some humanoid, some not, all gnawed clean. Rusty weapons are chained to posts at the pit's center. Dark stains in the sand tell the story of a hundred fights, and the drainage grate at the bottom is clogged with teeth.",
-                "read_aloud": "You stand at the lip of a sand-floored pit twenty feet deep, ringed by tiers of stone benches worn smooth by countless spectators. Bones litter the arena floor below -- ribs, skulls, things you cannot identify, all gnawed clean. Rusty weapons are chained to posts at the pit's center, their blades notched and dark. The sand is stained in overlapping circles of brown and black, and the air rising from the pit smells of old blood and iron.",
-                "npcs": [],
-                "enemies": [
-                    {"name": "Half-Ogre", "cr": "1"},
-                    {"name": "Intellect Devourer", "cr": "2"}
-                ],
-                "loot": [
-                    {"name": "Champion's Gauntlets (+1 unarmed strikes)", "type": "equipment"}
-                ],
-                "hazards": [
-                    {"name": "Pit walls (DC 15 Athletics to climb out)", "dc": 15}
-                ],
-                "services": [],
-                "event_triggers": [
-                    "On entry: Iron gates slam shut. A booming voice echoes: 'NEW CHALLENGERS! XANATHAR SEES ALL!'"
-                ]
-            }
-        },
-        "6": {
-            "id": 6,
-            "x": 65,
-            "y": 15,
-            "width": 10,
-            "height": 10,
-            "room_type": "normal",
-            "connections": [4, 7],
-            "tier": 3,
-            "is_locked": true,
-            "is_secret": false,
-            "content_hints": {
-                "description": "A circular chamber filled entirely with water, lit from below by permanent Dancing Lights spells. Inside the crystal-clear tank, a single goldfish swims in lazy circles among miniature castles, sunken ships, and tiny ceramic divers. The tank is temperature-controlled, pH-balanced, and guarded by more magic than most noble vaults. This fish is the most protected creature in Waterdeep.",
-                "read_aloud": "You enter a circular chamber dominated by an enormous glass tank that fills the room from wall to wall. The water inside is crystal clear, lit from below in soft blue and gold, and at its center a single goldfish drifts in lazy circles among miniature castles, tiny sunken ships, and ceramic divers frozen in mid-swim. The water hums faintly with the vibration of protective magic. The room is immaculate, climate-controlled, and warmer than anywhere else in this lair.",
-                "npcs": [
-                    {
-                        "name": "Sylgar",
-                        "role": "pet",
-                        "dialogue": "The goldfish stares at you with one flat eye, opens its mouth, closes it, and turns away. It is, by all measures, just a fish.",
-                        "notes": "Xanathar's beloved pet goldfish. Has been secretly replaced dozens of times by Xanathar's minions (the beholder cannot tell goldfish apart). Threatening Sylgar is the most dangerous thing you can do in this lair. Xanathar will offer nearly anything for the fish's safe return."
-                    }
-                ],
-                "enemies": [],
-                "loot": [],
-                "hazards": [
-                    {"name": "Alarm ward on fish tank (alerts Xanathar immediately)", "dc": 18}
-                ],
-                "services": [],
-                "event_triggers": [
-                    "On Sylgar threatened: Xanathar abandons all other priorities. Every creature in the lair converges on this room within 2 rounds."
-                ]
-            }
-        },
-        "7": {
-            "id": 7,
-            "x": 45,
-            "y": 40,
-            "width": 16,
-            "height": 14,
-            "room_type": "boss",
-            "connections": [5, 6, 8],
-            "tier": 3,
-            "is_locked": false,
-            "is_secret": false,
-            "content_hints": {
-                "description": "The cavern opens into a dome of natural stone, its ceiling crusted with stalactites that drip into shallow pools. In the center, floating three feet above a throne carved from a single stalagmite, Xanathar rotates slowly. Its central eye sweeps the room like a lighthouse beam, and its eyestalks writhe in constant, independent surveillance. The beholder's voice fills the chamber without echo, as if it speaks from inside your skull.",
-                "read_aloud": "The cavern opens into a vast dome of natural stone, its ceiling crusted with stalactites that drip into shallow pools scattered across the floor. The air is cold, still, and thick with a pressure you feel behind your eyes. At the center of the chamber, something floats above a throne carved from living rock -- a sphere of mottled flesh, massive and terrible, its great central eye sweeping the room in a slow, searching arc. Smaller stalks writhe from its crown, each tipped with a gleaming eye that moves independently. It has already seen you.",
-                "npcs": [],
-                "enemies": [
-                    {"name": "Xanathar (Beholder)", "cr": "13"},
-                    {"name": "Gazer", "cr": "1/2"},
-                    {"name": "Gazer", "cr": "1/2"},
-                    {"name": "Gazer", "cr": "1/2"}
-                ],
-                "loot": [
-                    {"name": "Xanathar's Hoard (2,500 gp in mixed coin)", "type": "treasure"},
-                    {"name": "Ring of Mind Shielding", "type": "equipment"},
-                    {"name": "Wand of Fear", "type": "weapon"}
-                ],
-                "hazards": [
-                    {"name": "Antimagic Cone (Xanathar's central eye)", "dc": 0}
-                ],
-                "services": [],
-                "event_triggers": [
-                    "On entry: 'Ah. Visitors. Xanathar sees you. Xanathar sees everything. You are here about the gold, yes? Everyone is here about the gold. Xanathar finds this tiresome.'",
-                    "On Sylgar mentioned: Xanathar's eyestalks all focus on the speaker simultaneously. 'You know about Sylgar? WHO TOLD YOU ABOUT SYLGAR?'",
-                    "On defeat: The lair begins to collapse as Xanathar's death throes destabilize the cavern. 3 rounds to escape."
-                ]
-            }
-        },
-        "8": {
-            "id": 8,
-            "x": 45,
-            "y": 55,
-            "width": 8,
-            "height": 5,
-            "room_type": "town_gate",
-            "connections": [7],
-            "tier": 3,
-            "is_locked": false,
-            "is_secret": false,
-            "content_hints": {
-                "description": "A waterway cuts through the rock, its current fast and cold. A flat-bottomed boat is moored to an iron ring, large enough for four. The tunnel ahead narrows to a slit of gray light -- the harbor. Salt air pushes back against the sewer stench, and the distant cry of gulls sounds like freedom.",
-                "read_aloud": "A waterway cuts through the rock, its current fast and dark. A flat-bottomed boat is moored to an iron ring in the stone, rocking in the current. The tunnel ahead narrows until a slit of gray light appears at its end -- the harbor, impossibly distant and impossibly welcome. Salt air pushes against the sewer stench, and you can hear the faint, muffled cry of gulls somewhere above the waterline.",
-                "npcs": [],
-                "enemies": [],
-                "loot": [],
-                "hazards": [
-                    {"name": "Strong current (Strength save or swept downstream)", "dc": 13}
-                ],
-                "services": ["exit_settlement"],
-                "event_triggers": [
-                    "On escape during collapse: The boat ride through the sewers is a harrowing 2-minute sprint against falling stone and rising water."
-                ]
-            }
-        }
+    "1": {
+      "id": 1,
+      "x": 15,
+      "y": 5,
+      "width": 14,
+      "height": 6,
+      "room_type": "corridor",
+      "connections": [
+        0,
+        2
+      ],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Xanathar’s lair is an ancient dungeon complex originally built by Netherese wizards and expanded by beholders over time, connecting to the subterranean town of Skullport by way of a tunnel (area X4). A secret staircase (area X1) gives access to Waterdeep’s sewers.",
+        "read_aloud": "You see an ancient dungeon complex, built by Netherese wizards and expanded by beholders over time. A secret staircase offers access to Waterdeep’s sewers, and tunnels connect to the subterranean town of Skullport.",
+        "npcs": [
+          {
+            "name": "Nar’l Xibrindas",
+            "role": "advisor Nar’l Xibrindas, who uses sending spells to transmit intelligence to his drow brethren.",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          }
+        ],
+        "enemies": [
+          {
+            "name": "Gazer",
+            "cr": "1/2"
+          },
+          {
+            "name": "Gazer",
+            "cr": "1/2"
+          }
+        ],
+        "loot": [],
+        "hazards": [
+          {
+            "name": "Flooded passage (difficult terrain, hidden debris)",
+            "dc": 12
+          }
+        ],
+        "services": [],
+        "event_triggers": [],
+        "_source": "Waterdeep_ Dragon Heist",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 35,
+      "y": 5,
+      "width": 10,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [
+        1,
+        3,
+        4
+      ],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The Zhents in black armor sit around a stone dining table, playing Three-Dragon Ante. Eight moth-eaten banners hang from the walls, each bearing an arcane sigil representing a different school of magic.",
+        "read_aloud": "You see crude barricades of overturned tables and salvaged doors blocking the passage ahead. Behind them, hulking figures crouch in the torchlight, rolling knucklebones across a flat stone with low, guttural laughter. The air smells of unwashed fur, rancid meat, and the smoke of a guttering torch jammed into a skull mounted on the barricade.",
+        "npcs": [
+          {
+            "name": "Tally Fellbranch",
+            "role": "owner and chief",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          },
+          {
+            "name": "Embric",
+            "role": "a fire genasi named Embric",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          }
+        ],
+        "enemies": [
+          {
+            "name": "Bugbear",
+            "cr": "1"
+          },
+          {
+            "name": "Bugbear",
+            "cr": "1"
+          },
+          {
+            "name": "Bugbear Chief",
+            "cr": "3"
+          }
+        ],
+        "loot": [
+          {
+            "name": "Guard Post Key",
+            "type": "equipment"
+          },
+          {
+            "name": "Xanathar Guild Token",
+            "type": "quest_item"
+          }
+        ],
+        "hazards": [],
+        "services": [],
+        "event_triggers": [
+          "On combat: The bugbear chief blows a horn. Reinforcements arrive from Room 4 in 3 rounds if not stopped."
+        ],
+        "_source": "Waterdeep_ Dragon Heist",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
+    },
+    "3": {
+      "id": 3,
+      "x": 35,
+      "y": 18,
+      "width": 12,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [
+        2,
+        5
+      ],
+      "tier": 3,
+      "is_locked": true,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Xanathar's Lair is a room containing three Zhents in black armor seated around a stone dining table, playing Three-Dragon Ante. Eight moth-eaten banners hang from the walls, each bearing an arcane sigil representing one of the eight schools of magic.",
+        "read_aloud": "You see iron cages hanging from the ceiling by rusted chains, swaying gently, each holding a slumped figure. The sounds they make are the worst part—quiet weeping, the dry rasp of labored breathing, and from one cage, a soft, broken laugh that does not stop.",
+        "npcs": [
+          {
+            "name": "Tally Fellbranch",
+            "role": "owner and chief",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          },
+          {
+            "name": "Embric",
+            "role": "a fire genasi named Embric",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          }
+        ],
+        "enemies": [
+          {
+            "name": "Intellect Devourer",
+            "cr": "2"
+          }
+        ],
+        "loot": [
+          {
+            "name": "Prisoner Belongings (assorted, 40 gp total)",
+            "type": "treasure"
+          }
+        ],
+        "hazards": [],
+        "services": [],
+        "event_triggers": [
+          "On rescue: Floon warns that Xanathar's throne room is ahead and begs the party to leave before the beholder notices."
+        ],
+        "_source": "Waterdeep_ Dragon Heist",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
+    },
+    "4": {
+      "id": 4,
+      "x": 55,
+      "y": 5,
+      "width": 12,
+      "height": 10,
+      "room_type": "treasure",
+      "connections": [
+        2,
+        5,
+        6
+      ],
+      "tier": 3,
+      "is_locked": true,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Xanathar Lair is the beholder crime lord of Waterdeep.",
+        "read_aloud": "You see shelves lining every wall, packed with colorful, leather-bound books. The air is thick with the earthy scent of old books, and you notice the faint sweetness of aged spirits leaking from a cracked cask.",
+        "npcs": [],
+        "enemies": [],
+        "loot": [
+          {
+            "name": "Necklace of Fireballs (3 beads remaining)",
+            "type": "weapon"
+          },
+          {
+            "name": "Stolen Paintings (500 gp total)",
+            "type": "treasure"
+          },
+          {
+            "name": "Cask of Dwarven Brandy (150 gp)",
+            "type": "treasure"
+          },
+          {
+            "name": "Xanathar's Trophy Log",
+            "type": "quest_item"
+          }
+        ],
+        "hazards": [
+          {
+            "name": "Glyph of Warding on owlbear pedestal",
+            "dc": 15
+          }
+        ],
+        "services": [],
+        "event_triggers": [],
+        "_source": "Waterdeep_ Dragon Heist",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
+    },
+    "5": {
+      "id": 5,
+      "x": 45,
+      "y": 25,
+      "width": 14,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [
+        3,
+        4,
+        7
+      ],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Xanathar's Lair is a room containing three Zhents in black armor seated around a stone dining table, playing Three-Dragon Ante. Eight moth-eaten banners hang from the walls, each bearing an arcane sigil representing one of the eight schools of magic.",
+        "read_aloud": "You see a cellar complex under a powdered wig shop in the Trades Ward, Dandymops, closed and locked with an iron gate.",
+        "npcs": [
+          {
+            "name": "Tally Fellbranch",
+            "role": "owner and chief",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          },
+          {
+            "name": "Embric",
+            "role": "a fire genasi named Embric",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          }
+        ],
+        "enemies": [
+          {
+            "name": "Half-Ogre",
+            "cr": "1"
+          },
+          {
+            "name": "Intellect Devourer",
+            "cr": "2"
+          }
+        ],
+        "loot": [
+          {
+            "name": "Champion's Gauntlets (+1 unarmed strikes)",
+            "type": "equipment"
+          }
+        ],
+        "hazards": [
+          {
+            "name": "Pit walls (DC 15 Athletics to climb out)",
+            "dc": 15
+          }
+        ],
+        "services": [],
+        "event_triggers": [
+          "On entry: Iron gates slam shut. A booming voice echoes: 'NEW CHALLENGERS! XANATHAR SEES ALL!'"
+        ],
+        "_source": "Waterdeep_ Dragon Heist",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
+    },
+    "6": {
+      "id": 6,
+      "x": 65,
+      "y": 15,
+      "width": 10,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [
+        4,
+        7
+      ],
+      "tier": 3,
+      "is_locked": true,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Xanathar's Lair is a room containing three Zhents in black armor seated around a stone dining table, playing Three-Dragon Ante. Eight moth-eaten banners hang from the walls, each bearing an arcane sigil representing one of the eight schools of magic.",
+        "read_aloud": "You see a circular chamber dominated by an enormous glass tank that fills the room from wall to wall. The water inside is crystal clear, lit from below in soft blue and gold, and at its center a single goldfish drifts in lazy circles among miniature castles, tiny sunken ships, and ceramic divers frozen in mid-swim. The water hums faintly with the vibration of protective magic.",
+        "npcs": [
+          {
+            "name": "Tally Fellbranch",
+            "role": "owner and chief",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          },
+          {
+            "name": "Embric",
+            "role": "a fire genasi named Embric",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          }
+        ],
+        "enemies": [],
+        "loot": [],
+        "hazards": [
+          {
+            "name": "Alarm ward on fish tank (alerts Xanathar immediately)",
+            "dc": 18
+          }
+        ],
+        "services": [],
+        "event_triggers": [
+          "On Sylgar threatened: Xanathar abandons all other priorities. Every creature in the lair converges on this room within 2 rounds."
+        ],
+        "_source": "Waterdeep_ Dragon Heist",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
+    },
+    "7": {
+      "id": 7,
+      "x": 45,
+      "y": 40,
+      "width": 16,
+      "height": 14,
+      "room_type": "boss",
+      "connections": [
+        5,
+        6,
+        8
+      ],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The hideout of the Xanathar Guild operatives who snatched up Floon is deep in the city’s labyrinthine sewers. At every location where characters must make a decision about which direction to go, a symbol scrawled in yellow chalk—a stylized representation of Xanathar—is marked next to the tunnel that leads in the right direction.",
+        "read_aloud": "You see a cavern opening into a vast dome of natural stone, its ceiling crusted with stalactites that drip into shallow pools scattered across the floor. The air is cold, still, and thick with a pressure you feel behind your eyes.",
+        "npcs": [
+          {
+            "name": "Grum’shar",
+            "role": "The boss of this hideout is a half-orc named Grum’shar.",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          }
+        ],
+        "enemies": [
+          {
+            "name": "Xanathar (Beholder)",
+            "cr": "13"
+          },
+          {
+            "name": "Gazer",
+            "cr": "1/2"
+          },
+          {
+            "name": "Gazer",
+            "cr": "1/2"
+          },
+          {
+            "name": "Gazer",
+            "cr": "1/2"
+          }
+        ],
+        "loot": [
+          {
+            "name": "Xanathar's Hoard (2,500 gp in mixed coin)",
+            "type": "treasure"
+          },
+          {
+            "name": "Ring of Mind Shielding",
+            "type": "equipment"
+          },
+          {
+            "name": "Wand of Fear",
+            "type": "weapon"
+          }
+        ],
+        "hazards": [
+          {
+            "name": "Antimagic Cone (Xanathar's central eye)",
+            "dc": 0
+          }
+        ],
+        "services": [],
+        "event_triggers": [
+          "On entry: 'Ah. Visitors. Xanathar sees you. Xanathar sees everything. You are here about the gold, yes? Everyone is here about the gold. Xanathar finds this tiresome.'",
+          "On Sylgar mentioned: Xanathar's eyestalks all focus on the speaker simultaneously. 'You know about Sylgar? WHO TOLD YOU ABOUT SYLGAR?'",
+          "On defeat: The lair begins to collapse as Xanathar's death throes destabilize the cavern. 3 rounds to escape."
+        ],
+        "_source": "Waterdeep_ Dragon Heist",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
+    },
+    "8": {
+      "id": 8,
+      "x": 45,
+      "y": 55,
+      "width": 8,
+      "height": 5,
+      "room_type": "town_gate",
+      "connections": [
+        7
+      ],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The area is a chamber where characters descending from Zardoz Zord’s cabin arrive, featuring a circular metal hatch that can be opened by turning its valve wheel. Below this hatch is a metal ladder descending to a steel tube, granting access to area U1 on the Scarlet Marpenoth.",
+        "read_aloud": "You see the damp, earthy smell of the Mud Flats, a mucky beach where clam diggers and fishers tread. The air is thick with the scent of brine and decay, and you hear the faint, muffled cry of gulls somewhere above the waterline.",
+        "npcs": [],
+        "enemies": [],
+        "loot": [],
+        "hazards": [
+          {
+            "name": "Strong current (Strength save or swept downstream)",
+            "dc": 13
+          }
+        ],
+        "services": [
+          "exit_settlement"
+        ],
+        "event_triggers": [
+          "On escape during collapse: The boat ride through the sewers is a harrowing 2-minute sprint against falling stone and rising water."
+        ],
+        "_source": "Waterdeep_ Dragon Heist",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
     }
+  }
 }

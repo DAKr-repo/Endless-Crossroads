@@ -1,165 +1,295 @@
 {
-    "seed": 3003,
-    "width": 50,
-    "height": 50,
-    "start_room_id": 0,
-    "metadata": {
-        "zone_id": "trollskull_manor",
-        "theme": "VILLAGE",
-        "topology": "settlement",
-        "display_name": "Trollskull Manor"
+  "seed": 3003,
+  "width": 50,
+  "height": 50,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "trollskull_manor",
+    "theme": "VILLAGE",
+    "topology": "settlement",
+    "display_name": "Trollskull Manor"
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 15,
+      "y": 15,
+      "width": 20,
+      "height": 12,
+      "room_type": "tavern",
+      "connections": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Trollskull Manor is a four stories tall, abandoned building in Trollskull Alley that boasts balconies, a turret, and five chimneys. The former tavern is haunted by the poltergeist of its previous barkeeper, Lif, who causes mischief by smashing plates and breaking beer barrels.",
+        "read_aloud": "You see Trollskull Manor, a four-story structure boasting balconies, a turret, and five chimneys, one of the grandest in Trollskull Alley. The tavern's taproom is filled with broken furniture and tarnished silverware, and the air carries the scent of old ale and decay.",
+        "npcs": [
+          {
+            "name": "Lif",
+            "role": "the poltergeist (specter) of the tavern’s previous barkeeper",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          }
+        ],
+        "services": [
+          "drink",
+          "rest",
+          "base_of_operations"
+        ],
+        "renovation_options": [
+          {
+            "name": "Basic Repairs",
+            "cost": 250,
+            "days": 5,
+            "effect": "Tavern becomes functional. Lif stops breaking things."
+          },
+          {
+            "name": "Full Renovation",
+            "cost": 1000,
+            "days": 20,
+            "effect": "Tavern becomes profitable. Generates 10 gp/tenday income."
+          },
+          {
+            "name": "Guild License",
+            "cost": 150,
+            "days": 3,
+            "effect": "Legal permission to operate. Required by Waterdeep law."
+          }
+        ],
+        "_source": "Waterdeep_ Dragon Heist",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
     },
-    "rooms": {
-        "0": {
-            "id": 0,
-            "x": 15,
-            "y": 15,
-            "width": 20,
-            "height": 12,
-            "room_type": "tavern",
-            "connections": [1, 2, 3, 4, 5],
-            "tier": 1,
-            "is_locked": false,
-            "is_secret": false,
-            "content_hints": {
-                "description": "The taproom of Trollskull Manor -- a once-grand tavern fallen into elegant disrepair. Dust sheets cover the furniture. A chandelier of antlers and wrought iron hangs askew from the vaulted ceiling. The bar is carved from a single slab of dark oak, its surface ringed by a thousand mugs. Sunlight slants through cracked stained-glass windows depicting a troll hunt. The whole place smells of wood polish and old dreams.",
-                "read_aloud": "Dust sheets drape the furniture like mourning veils, and sunlight slants through cracked stained-glass windows, throwing colored shards across the floor. A chandelier of antlers and wrought iron hangs askew overhead. The bar is a single slab of dark oak, its surface marked by a thousand ring-stains, and the air holds the ghost-scent of wood polish and old ale. The whole room has the stillness of a place waiting to be remembered.",
-                "npcs": [
-                    {
-                        "name": "Lif",
-                        "role": "ghost",
-                        "dialogue": "",
-                        "notes": "The ghost of the previous owner. Does not speak but communicates through poltergeist activity -- arranging mugs into words, slamming doors in disapproval, or polishing the bar when pleased. Friendly once acknowledged. Will help run the tavern if the party treats his legacy with respect."
-                    }
-                ],
-                "services": ["drink", "rest", "base_of_operations"],
-                "renovation_options": [
-                    {"name": "Basic Repairs", "cost": 250, "days": 5, "effect": "Tavern becomes functional. Lif stops breaking things."},
-                    {"name": "Full Renovation", "cost": 1000, "days": 20, "effect": "Tavern becomes profitable. Generates 10 gp/tenday income."},
-                    {"name": "Guild License", "cost": 150, "days": 3, "effect": "Legal permission to operate. Required by Waterdeep law."}
-                ]
-            }
-        },
-        "1": {
-            "id": 1,
-            "x": 5,
-            "y": 18,
-            "width": 8,
-            "height": 8,
-            "room_type": "residence",
-            "connections": [0],
-            "tier": 1,
-            "is_locked": false,
-            "is_secret": false,
-            "content_hints": {
-                "description": "The kitchen -- a stone-floored room with a cold hearth large enough to stand in. Copper pots hang from ceiling hooks, tarnished green. A dumbwaiter connects to the cellar below. The pantry shelves are bare except for a jar of pickled eggs that may predate the Spellplague. Rat droppings dot the corners, though the rats themselves seem to have moved on.",
-                "read_aloud": "The kitchen hearth is cold and cavernous, large enough to stand in without stooping. Copper pots hang from ceiling hooks, their surfaces tarnished to a deep green. The pantry shelves are bare save for a single dust-caked jar of something unidentifiable, and the stone floor is gritty underfoot. A small dumbwaiter shaft opens in the wall, its rope frayed, descending into darkness below.",
-                "services": ["cook"],
-                "renovation_options": [
-                    {"name": "Restock Kitchen", "cost": 50, "days": 1, "effect": "Basic cooking supplies. Can prepare simple meals."},
-                    {"name": "Hire a Cook", "cost": 30, "days": 0, "effect": "Per tenday. A competent cook improves tavern reputation."}
-                ]
-            }
-        },
-        "2": {
-            "id": 2,
-            "x": 18,
-            "y": 30,
-            "width": 14,
-            "height": 10,
-            "room_type": "residence",
-            "connections": [0],
-            "tier": 1,
-            "is_locked": false,
-            "is_secret": false,
-            "content_hints": {
-                "description": "The cellar -- damp stone walls, a packed earth floor, and racks of empty wine bottles gathering dust. A locked iron gate in the far wall opens onto the Waterdeep sewer system. The air is cold and carries a mineral tang. Claw marks on the cellar door suggest something once tried very hard to get out -- or in.",
-                "read_aloud": "You descend creaking steps into a cellar of damp stone and packed earth. Empty wine racks line the walls, their bottles long gone, and the air is cold enough to make your breath mist. A rusted iron gate is set into the far wall, and beyond it you can hear the distant trickle of water -- the sewers. Deep claw marks score the inside of the cellar door above you, gouged into the wood by something desperate.",
-                "investigation_dc": 14,
-                "investigation_success": "Behind a false section of wine rack: a hidden compartment containing Lif's personal ledger and a pouch of 50 gold pieces -- his life savings, hidden before his murder.",
-                "loot": [
-                    {"name": "Lif's Ledger", "value": 0, "description": "The former owner's accounting book. Details the manor's debts and the name of his killer: 'Turned away by the Guild. They sent a man with a dead smile. I write this knowing I will not survive the night.'"},
-                    {"name": "50 Gold Pieces (hidden)", "value": 50}
-                ]
-            }
-        },
-        "3": {
-            "id": 3,
-            "x": 15,
-            "y": 2,
-            "width": 20,
-            "height": 10,
-            "room_type": "residence",
-            "connections": [0, 4],
-            "tier": 1,
-            "is_locked": false,
-            "is_secret": false,
-            "content_hints": {
-                "description": "The guest rooms -- a row of four small chambers on the upper floor, each with a straw mattress, a washstand, and a window overlooking Trollskull Alley. The wallpaper peels in long strips, revealing older wallpaper beneath, and older wallpaper beneath that -- layers of decades like geological strata. One room still has a 'Do Not Disturb' sign hanging from its doorknob.",
-                "read_aloud": "A narrow hallway runs past four small guest rooms, each door standing ajar. Inside, straw mattresses sag on iron frames, and washstands hold empty pitchers. The wallpaper peels in long strips, revealing older paper beneath -- layer after layer, like the rings of an ancient tree. Through the windows, you can see the cobblestones of Trollskull Alley below. One door at the end still bears a 'Do Not Disturb' sign, swaying gently on its knob.",
-                "services": ["rest"],
-                "capacity": 4,
-                "renovation_options": [
-                    {"name": "Furnish Guest Rooms", "cost": 200, "days": 5, "effect": "Comfortable rooms. Can rent to guests for 5 sp/night each."}
-                ]
-            }
-        },
-        "4": {
-            "id": 4,
-            "x": 20,
-            "y": 2,
-            "width": 10,
-            "height": 6,
-            "room_type": "residence",
-            "connections": [3],
-            "tier": 1,
-            "is_locked": true,
-            "is_secret": false,
-            "content_hints": {
-                "description": "The owner's suite -- the largest room on the upper floor, with a four-poster bed draped in moth-eaten velvet and a writing desk facing a bay window. Lif's personal effects remain undisturbed: a half-finished letter, a miniature portrait of a woman, and a pressed flower between the pages of a book of Waterdhavian poetry. The room feels cold even on warm days.",
-                "read_aloud": "The largest room on the upper floor holds a four-poster bed draped in moth-eaten velvet. A writing desk faces a bay window overlooking the alley, its surface still set with a half-finished letter and a dry inkwell. A miniature portrait of a woman leans against the candlestick, her painted smile faded but warm. The room is noticeably colder than the hallway, and the candle flame, when you light it, bends toward the desk as though drawn by an invisible hand.",
-                "lock_dc": 10,
-                "npcs": [
-                    {
-                        "name": "Lif (manifestation)",
-                        "role": "ghost",
-                        "dialogue": "",
-                        "notes": "Lif's presence is strongest here. If the party reads his letter aloud, the room warms by several degrees and the ghost becomes permanently friendly. The letter is addressed to someone named 'Elara' and says: 'I should have left when you asked me to.'"
-                    }
-                ]
-            }
-        },
-        "5": {
-            "id": 5,
-            "x": 25,
-            "y": 30,
-            "width": 8,
-            "height": 6,
-            "room_type": "town_gate",
-            "connections": [0],
-            "tier": 1,
-            "is_locked": false,
-            "is_secret": false,
-            "content_hints": {
-                "description": "The alley entrance -- a side door opening onto Trollskull Alley, a narrow cobblestone lane in the North Ward. Neighboring businesses include a bookshop, a tiger-renting establishment, a private detective's office, and a shop that sells nothing but candles shaped like famous Waterdhavians. A calico cat sits on the stoop, watching passersby with unsettling intelligence.",
-                "read_aloud": "A side door opens onto Trollskull Alley, a narrow cobblestone lane lined with small shops and leaning tenements. The smell of sawdust, herbs, and hot iron drifts from neighboring doorways. A calico cat sits on the stoop, watching the street with an unblinking gaze that feels far too deliberate for a common house cat. Beyond the alley, the bustle of the North Ward murmurs on.",
-                "npcs": [
-                    {
-                        "name": "Fala Lefaliir",
-                        "role": "neighbor",
-                        "dialogue": "Welcome to the alley! I run Corellon's Crown -- the herbalist shop next door. If you need poultices, tinctures, or someone to complain to about the noise, I'm your elf.",
-                        "notes": "Wood elf herbalist. Non-binary. Knows all the alley's gossip. Can supply healing potions at cost (40 gp) as a favor to good neighbors."
-                    },
-                    {
-                        "name": "Vincent Trench",
-                        "role": "neighbor",
-                        "dialogue": "Trench. Private investigator. If you need someone found or something proven, my rates are reasonable. If you need something un-found or un-proven, my rates are less reasonable.",
-                        "notes": "Actually a disguised rakshasa named Valanthar. Runs a legitimate detective agency as cover. Not hostile unless his true nature is discovered."
-                    }
-                ],
-                "services": ["exit_settlement"],
-                "exit_note": "Leads to Trollskull Alley and the North Ward of Waterdeep."
-            }
-        }
+    "1": {
+      "id": 1,
+      "x": 5,
+      "y": 18,
+      "width": 8,
+      "height": 8,
+      "room_type": "residence",
+      "connections": [
+        0
+      ],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Trollskull Manor is a multistory structure, with each level standing 20 feet higher than the one below it. Its rooms feature 15-foot-high ceilings and 7-foot-high doorways.",
+        "read_aloud": "You see the kitchen hearth is cold and cavernous, large enough to stand in without stooping. Copper pots hang from ceiling hooks, their surfaces tarnished to a deep green.",
+        "services": [
+          "cook"
+        ],
+        "renovation_options": [
+          {
+            "name": "Restock Kitchen",
+            "cost": 50,
+            "days": 1,
+            "effect": "Basic cooking supplies. Can prepare simple meals."
+          },
+          {
+            "name": "Hire a Cook",
+            "cost": 30,
+            "days": 0,
+            "effect": "Per tenday. A competent cook improves tavern reputation."
+          }
+        ],
+        "_source": "Waterdeep_ Dragon Heist",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished",
+        "npcs": [
+          {
+            "name": "Kalain",
+            "role": "unable to behave politely before strangers, for she believes they’re all assassins sent by Dagult Neverember to murder her.",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          },
+          {
+            "name": "VhasparHolmdreg",
+            "role": "LG male Illuskan human priest, who rents a room in the west wing of the residence.",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          }
+        ]
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 18,
+      "y": 30,
+      "width": 14,
+      "height": 10,
+      "room_type": "residence",
+      "connections": [
+        0
+      ],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Trollskull Manor is a multistory structure, with each level standing 20 feet higher than the one below it. Its rooms have 15-foot-high ceilings, with 7-foot-high doorways connecting them.",
+        "read_aloud": "You descend creaking steps into a cellar of damp stone and packed earth. Empty wine racks line the walls, their bottles long gone, and the air is cold enough to make your breath mist.",
+        "investigation_dc": 14,
+        "investigation_success": "Behind a false section of wine rack: a hidden compartment containing Lif's personal ledger and a pouch of 50 gold pieces -- his life savings, hidden before his murder.",
+        "loot": [
+          {
+            "name": "Lif's Ledger",
+            "value": 0,
+            "description": "The former owner's accounting book. Details the manor's debts and the name of his killer: 'Turned away by the Guild. They sent a man with a dead smile. I write this knowing I will not survive the night.'"
+          },
+          {
+            "name": "50 Gold Pieces (hidden)",
+            "value": 50
+          }
+        ],
+        "_source": "Waterdeep_ Dragon Heist",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished",
+        "npcs": [
+          {
+            "name": "Kalain",
+            "role": "unable to behave politely before strangers, for she believes they’re all assassins sent by Dagult Neverember to murder her.",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          },
+          {
+            "name": "VhasparHolmdreg",
+            "role": "LG male Illuskan human priest, who rents a room in the west wing of the residence.",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          }
+        ]
+      }
+    },
+    "3": {
+      "id": 3,
+      "x": 15,
+      "y": 2,
+      "width": 20,
+      "height": 10,
+      "room_type": "residence",
+      "connections": [
+        0,
+        4
+      ],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Trollskull Manor is a multistory structure, with each level standing 20 feet higher than the one below it. Its rooms feature 15-foot-high ceilings and 7-foot-high doorways.",
+        "read_aloud": "> You see a narrow hallway running past four small guest rooms, each door standing ajar. Inside, straw mattresses sag on iron frames, and washstands hold empty pitchers.",
+        "services": [
+          "rest"
+        ],
+        "capacity": 4,
+        "renovation_options": [
+          {
+            "name": "Furnish Guest Rooms",
+            "cost": 200,
+            "days": 5,
+            "effect": "Comfortable rooms. Can rent to guests for 5 sp/night each."
+          }
+        ],
+        "_source": "Waterdeep_ Dragon Heist",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished",
+        "npcs": [
+          {
+            "name": "Kalain",
+            "role": "unable to behave politely before strangers, for she believes they’re all assassins sent by Dagult Neverember to murder her.",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          },
+          {
+            "name": "VhasparHolmdreg",
+            "role": "LG male Illuskan human priest, who rents a room in the west wing of the residence.",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          }
+        ]
+      }
+    },
+    "4": {
+      "id": 4,
+      "x": 20,
+      "y": 2,
+      "width": 10,
+      "height": 6,
+      "room_type": "residence",
+      "connections": [
+        3
+      ],
+      "tier": 1,
+      "is_locked": true,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Trollskull Manor is a four stories tall, abandoned building that boasts balconies, a turret, and five chimneys, making it one of the grandest in Trollskull Alley. Characters can refurnish, rebuild, rename, and otherwise personalize their new stronghold to their hearts’ content.",
+        "read_aloud": "You see the grand scale of Trollskull Manor, four stories tall and boasting balconies, a turret, and five chimneys. As you explore, you notice this abandoned building is one of the grandest in Trollskull Alley.",
+        "lock_dc": 10,
+        "npcs": [
+          {
+            "name": "Kalain",
+            "role": "unable to behave politely before strangers, for she believes they’re all assassins sent by Dagult Neverember to murder her.",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          },
+          {
+            "name": "VhasparHolmdreg",
+            "role": "LG male Illuskan human priest, who rents a room in the west wing of the residence.",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          }
+        ],
+        "_source": "Waterdeep_ Dragon Heist",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
+    },
+    "5": {
+      "id": 5,
+      "x": 25,
+      "y": 30,
+      "width": 8,
+      "height": 6,
+      "room_type": "town_gate",
+      "connections": [
+        0
+      ],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Four stories tall and boasting balconies, a turret, and five chimneys, the abandoned building is one of the grandest in Trollskull Alley. Characters can refurnish, rebuild, rename, and otherwise personalize their new stronghold to their hearts’ content.",
+        "read_aloud": "You see a four-story, abandoned building boasting balconies, a turret, and five chimneys, one of the grandest in Trollskull Alley. As you enter, you can sense the history of this grand manor, though the tavern rooms within are filled with the broken furniture and tarnished silverware of a long-forgotten establishment.",
+        "npcs": [
+          {
+            "name": "Fala Lefaliir",
+            "role": "neighbor",
+            "dialogue": "Welcome to the alley! I run Corellon's Crown -- the herbalist shop next door. If you need poultices, tinctures, or someone to complain to about the noise, I'm your elf.",
+            "notes": "Wood elf herbalist. Non-binary. Knows all the alley's gossip. Can supply healing potions at cost (40 gp) as a favor to good neighbors."
+          },
+          {
+            "name": "Vincent Trench",
+            "role": "neighbor",
+            "dialogue": "Trench. Private investigator. If you need someone found or something proven, my rates are reasonable. If you need something un-found or un-proven, my rates are less reasonable.",
+            "notes": "Actually a disguised rakshasa named Valanthar. Runs a legitimate detective agency as cover. Not hostile unless his true nature is discovered."
+          }
+        ],
+        "services": [
+          "exit_settlement"
+        ],
+        "exit_note": "Leads to Trollskull Alley and the North Ward of Waterdeep.",
+        "_source": "Waterdeep_ Dragon Heist",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
     }
+  }
 }

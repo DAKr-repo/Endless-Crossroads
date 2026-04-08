@@ -117,10 +117,16 @@ def _clean_page_text(text: str) -> str:
 
 
 def ocr_quality_score(text: str) -> float:
-    """Score text readability from 0.0 (garbled) to 1.0 (clean).
+    """Score text readability from 0.0 (garbled) to 1.0 (readable).
 
-    Measures the ratio of alphabetic characters to total characters.
-    Clean digital PDFs score >0.75. Garbled OCR scores <0.5.
+    Measures the alpha ratio — proportion of a-zA-Z characters.
+    This is a garble detector, not an accuracy metric:
+      - Clean digital PDFs: 0.75-0.87 (numbers, punctuation, stat blocks lower it)
+      - Light OCR artifacts: 0.55-0.75
+      - Heavily garbled OCR: <0.50
+
+    A D&D sourcebook with stat blocks will never reach 1.0 because
+    numbers, punctuation, and whitespace are valid content.
     """
     import re
     if not text:
@@ -186,30 +192,57 @@ def chunks_from_pages(
     chunk_size: int = DEFAULT_CHUNK_SIZE,
     overlap: int = DEFAULT_OVERLAP,
     source_name: str = "",
-) -> list[str]:
-    """Convert a list of page strings into a flat list of text chunks.
+    system_id: str = "",
+) -> list[dict]:
+    """Convert a list of page strings into v3.0 chunk dicts with metadata.
 
-    Cleans noise (watermarks, page numbers) before chunking.
-    Optionally prefixes chunks with source name for provenance.
+    Each chunk is a dict with:
+        text: The chunk text (prefixed with [source_name])
+        meta: {source, system_id, page_start, page_end, quality}
+
+    Cleans noise before chunking. Skips chunks with OCR quality < 0.40.
 
     Args:
         pages: Page-level text extracted from a PDF.
         chunk_size: Characters per chunk.
         overlap: Overlap between consecutive chunks.
         source_name: Optional PDF filename to prefix chunks with.
+        system_id: System identifier for metadata.
 
     Returns:
-        Ordered list of text chunks across all pages.
+        Ordered list of chunk dicts across all pages.
     """
-    all_chunks: list[str] = []
+    all_chunks: list[dict] = []
     prefix = f"[{source_name}] " if source_name else ""
 
     for page_idx, page_text in enumerate(pages):
         cleaned = _clean_page_text(page_text)
         if not cleaned:
             continue
+
+        page_num = page_idx + 1  # 1-indexed
+        quality = ocr_quality_score(cleaned)
+
+        # Skip heavily garbled pages
+        if quality < 0.40:
+            continue
+
         for chunk in chunk_text(cleaned, chunk_size, overlap):
-            all_chunks.append(f"{prefix}{chunk}" if prefix else chunk)
+            chunk_quality = ocr_quality_score(chunk)
+            if chunk_quality < 0.45:
+                continue
+
+            text = f"{prefix}{chunk}" if prefix else chunk
+            all_chunks.append({
+                "text": text,
+                "meta": {
+                    "source": source_name,
+                    "system_id": system_id,
+                    "page_start": page_num,
+                    "page_end": page_num,
+                    "quality": round(chunk_quality, 3),
+                },
+            })
 
     return all_chunks
 
@@ -280,6 +313,7 @@ def build_index_for_system(
     overlap: int,
     force: bool,
     progress: Progress,
+    merge: bool = False,
 ) -> dict:
     """Build and write a FAISS index for one system.
 
@@ -290,6 +324,7 @@ def build_index_for_system(
         overlap: Overlap characters between chunks.
         force: If False, skip systems whose index.faiss already exists.
         progress: Shared Rich Progress instance for nested task display.
+        merge: If True, merge new PDFs into existing index (replace same-source chunks).
 
     Returns:
         Summary dict with keys: system_id, pdfs, chunks, skipped, error.
@@ -298,8 +333,9 @@ def build_index_for_system(
     faiss_file = out_dir / "index.faiss"
 
     # Skip check — existing index or previously attempted with no shards
+    # (merge mode always proceeds since we're adding to existing)
     noshards_marker = out_dir / ".noshards"
-    if faiss_file.exists() and not force:
+    if faiss_file.exists() and not force and not merge:
         return {
             "system_id": system_id,
             "pdfs": len(pdf_paths),
@@ -307,7 +343,7 @@ def build_index_for_system(
             "skipped": True,
             "error": None,
         }
-    if noshards_marker.exists() and not force:
+    if noshards_marker.exists() and not force and not merge:
         return {
             "system_id": system_id,
             "pdfs": len(pdf_paths),
@@ -316,8 +352,8 @@ def build_index_for_system(
             "error": "No text (image-only PDFs, previously attempted)",
         }
 
-    # Collect all chunks across all PDFs
-    all_chunks: list[str] = []
+    # Collect all chunks across all PDFs (v3.0: list of dicts)
+    all_chunks: list[dict] = []
     pdf_task = progress.add_task(
         f"  [cyan]{system_id}[/cyan] — reading PDFs",
         total=len(pdf_paths),
@@ -331,7 +367,10 @@ def build_index_for_system(
         try:
             pages = extract_pdf_text(pdf_path)
             source = pdf_path.stem  # Filename without extension
-            chunks = chunks_from_pages(pages, chunk_size, overlap, source_name=source)
+            chunks = chunks_from_pages(
+                pages, chunk_size, overlap,
+                source_name=source, system_id=system_id,
+            )
             all_chunks.extend(chunks)
         except Exception as exc:
             console.print(
@@ -346,7 +385,7 @@ def build_index_for_system(
         out_dir.mkdir(parents=True, exist_ok=True)
         noshards_marker.write_text(json.dumps({
             "pdfs": [str(p.name) for p in pdf_paths],
-            "reason": "No text extracted (image-only PDFs)",
+            "reason": "No text extracted (image-only PDFs or all garbled)",
         }))
         return {
             "system_id": system_id,
@@ -356,9 +395,20 @@ def build_index_for_system(
             "error": "No text extracted from PDFs",
         }
 
+    # Quality stats
+    qualities = [c["meta"]["quality"] for c in all_chunks]
+    avg_q = sum(qualities) / len(qualities)
+    garbled = sum(1 for q in qualities if q < 0.55)
+    console.print(
+        f"  [cyan]{system_id}[/cyan] — {len(all_chunks)} chunks "
+        f"(readability: {avg_q:.0%} avg"
+        + (f", {garbled} garbled chunks filtered out" if garbled else ", clean")
+        + ")"
+    )
+
     # Embed all chunks
     vectors: list[np.ndarray] = []
-    docstore: dict[str, str] = {}
+    docstore: dict[str, dict] = {}
     id_map: dict[str, str] = {}
 
     embed_task = progress.add_task(
@@ -366,7 +416,7 @@ def build_index_for_system(
         total=len(all_chunks),
     )
 
-    for i, chunk in enumerate(all_chunks):
+    for i, chunk_dict in enumerate(all_chunks):
         progress.update(
             embed_task,
             description=(
@@ -374,10 +424,10 @@ def build_index_for_system(
                 f"[dim]{i + 1}/{len(all_chunks)}[/dim]"
             ),
         )
-        vec = embed_text(chunk)
+        vec = embed_text(chunk_dict["text"])
         if vec is not None:
             doc_id = f"doc_{len(vectors)}"
-            docstore[doc_id] = chunk
+            docstore[doc_id] = chunk_dict
             id_map[str(len(vectors))] = doc_id
             vectors.append(vec)
         progress.advance(embed_task)
@@ -393,8 +443,59 @@ def build_index_for_system(
             "error": "All embeddings failed — is Ollama running?",
         }
 
+    # Check if we should merge into an existing index (--pdf mode)
+    merged_old = 0
+    if faiss_file.exists() and merge:
+        # Delta merge: load existing index, remove old chunks from same source(s),
+        # then append new chunks
+        try:
+            old_index = faiss.read_index(str(faiss_file))
+            old_ds_data = json.loads((out_dir / "docstore.json").read_text())
+            old_docstore = old_ds_data.get("docstore", {})
+            old_id_map = old_ds_data.get("id_map", {})
+
+            # Determine which sources we're replacing
+            new_sources = {c["meta"]["source"] for c in all_chunks if isinstance(c, dict)}
+
+            # Keep old chunks that aren't from the sources we're replacing
+            kept_vectors = []
+            for str_idx, doc_id in sorted(old_id_map.items(), key=lambda x: int(x[0])):
+                entry = old_docstore.get(doc_id, "")
+                if isinstance(entry, dict):
+                    src = entry.get("meta", {}).get("source", "")
+                else:
+                    # v2 string: extract source tag
+                    src = entry.split("]")[0].lstrip("[") if entry.startswith("[") else ""
+
+                if src not in new_sources:
+                    idx = int(str_idx)
+                    if idx < old_index.ntotal:
+                        vec = old_index.reconstruct(idx)
+                        new_doc_id = f"doc_{len(kept_vectors) + len(vectors)}"
+                        docstore[new_doc_id] = entry
+                        id_map[str(len(kept_vectors) + len(vectors))] = new_doc_id
+                        kept_vectors.append(vec)
+
+            merged_old = len(kept_vectors)
+            console.print(
+                f"  [cyan]{system_id}[/cyan] — merging: "
+                f"keeping {merged_old} existing chunks, "
+                f"replacing {new_sources} with {len(vectors)} new"
+            )
+
+            # Combine old kept + new vectors
+            if kept_vectors:
+                all_vecs = vectors + kept_vectors
+            else:
+                all_vecs = vectors
+        except Exception as e:
+            console.print(f"  [yellow]Merge failed ({e}), building fresh[/yellow]")
+            all_vecs = vectors
+    else:
+        all_vecs = vectors
+
     # Build FAISS index
-    matrix = np.vstack(vectors).astype("float32")
+    matrix = np.vstack(all_vecs).astype("float32")
     dim = matrix.shape[1]
     index = faiss.IndexFlatL2(dim)
     index.add(matrix)
@@ -404,7 +505,7 @@ def build_index_for_system(
     faiss.write_index(index, str(faiss_file))
 
     docstore_data = {
-        "version": 1,
+        "version": 3,
         "docstore": docstore,
         "id_map": id_map,
     }
@@ -416,7 +517,7 @@ def build_index_for_system(
     return {
         "system_id": system_id,
         "pdfs": len(pdf_paths),
-        "chunks": len(vectors),
+        "chunks": len(vectors) + merged_old,
         "skipped": False,
         "error": None,
     }
@@ -600,9 +701,9 @@ def main() -> int:
                 return 1
             pdf_paths.append(path)
         target_systems = {args.system: pdf_paths}
-        # Force merge since we're adding specific files
-        args.force = True
-        console.print(f"\n[bold]Indexing {len(pdf_paths)} specific PDF(s) into [cyan]{args.system}[/cyan]:[/bold]")
+        # Delta merge — do NOT force (force would rebuild from scratch)
+        args.force = False
+        console.print(f"\n[bold]Merging {len(pdf_paths)} PDF(s) into [cyan]{args.system}[/cyan] index:[/bold]")
         for p in pdf_paths:
             console.print(f"  {p.name}")
         console.print()
@@ -668,6 +769,7 @@ def main() -> int:
                 overlap=args.overlap,
                 force=args.force,
                 progress=progress,
+                merge=bool(args.pdf),
             )
             results.append(result)
             progress.advance(system_task)

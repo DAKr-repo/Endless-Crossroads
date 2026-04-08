@@ -1,0 +1,154 @@
+{
+  "module_id": "crown_border_run",
+  "display_name": "The Border Run",
+  "description": "A military deserter column fleeing through hostile borderlands toward a neutral territory.",
+  "crown_faction": "Garrison",
+  "crew_faction": "Deserters",
+  "neutral_term": "Straggler",
+  "campfire_term": "Bivouac",
+  "world_term": "Borderlands",
+  "days": 5,
+  "scene_chapters": [
+    {
+      "chapter_id": "the_wilds",
+      "display_name": "The Wilds",
+      "entry_condition": "day >= 1",
+      "exit_condition": "day >= 3",
+      "scenes": [
+        {
+          "scene_id": "br_day1_river_crossing",
+          "description": "The column halts at the Blackwash River. Spring melt has turned the ford into a churning brown torrent that swallows the far bank in spray. A Deserter scout points upstream to a collapsed mill bridge -- half its timbers still hold, slick with moss. Downstream, the water widens and slows, but Garrison outriders left hoofprints in the mud there yesterday. The column watches you, seventy-odd souls waiting for someone to decide how they die or how they live.",
+          "location": "Blackwash River Ford",
+          "choices": [
+            {
+              "text": "Risk the mill bridge -- speed matters more than safety.",
+              "sway_effect": 1,
+              "tag": "DEFIANCE",
+              "narrative": "The timbers groan and two snap underfoot, but the column crosses in under an hour. Three Stragglers twist ankles on the wet planks. The Garrison will find only broken wood behind you."
+            },
+            {
+              "text": "Wade the downstream shallows under cover of dusk.",
+              "sway_effect": -1,
+              "tag": "GUILE",
+              "narrative": "You wait half a day for darkness. The crossing is silent and slow, waist-deep water numbing legs. No one drowns, but the delay costs daylight the column cannot afford."
+            },
+            {
+              "text": "Send swimmers across with rope to rig a guideline at the ford.",
+              "sway_effect": 0,
+              "tag": "HEARTH",
+              "narrative": "Three volunteers plunge into the torrent and fight their way across. The rope holds. The crossing takes two hours -- not fast, not quiet, but every soul makes it to the far bank standing."
+            }
+          ]
+        },
+        {
+          "scene_id": "br_day2_straggler_wagon",
+          "description": "A Straggler family's wagon has thrown a wheel on a root-buckled stretch of forest trail. The father sits in the mud holding a splintered axle, his two children asleep in the wagon bed under a moth-eaten blanket. The Deserter column is already strung out over a mile of trail. Behind you, somewhere in the tree line, a Garrison horn sounds -- two notes, the signal for a flanking patrol. Everyone hears it. The father looks up at you and says nothing.",
+          "location": "Thornback Trail",
+          "choices": [
+            {
+              "text": "Redistribute their belongings among the column and abandon the wagon.",
+              "sway_effect": -1,
+              "tag": "BLOOD",
+              "narrative": "The children cry as strangers carry their things. The father shoulders what he can and walks. The column moves faster, but the Stragglers at the rear watch you with hard eyes, measuring the worth of your protection."
+            },
+            {
+              "text": "Detail four Deserters to carry the wagon bodily until you can repair it.",
+              "sway_effect": 1,
+              "tag": "HEARTH",
+              "narrative": "Four fighters become porters, cursing under the weight. The wagon lurches forward on three wheels and human shoulders. It slows the rear guard dangerously, but the Straggler father falls in beside his children and picks up a hatchet. You have one more fighter now."
+            },
+            {
+              "text": "Rig a quick travois from cut saplings and move only the children and essentials.",
+              "sway_effect": 0,
+              "tag": "SILENCE",
+              "narrative": "An hour's carpentry in hostile territory. The travois works, barely. The family loses half their possessions but keeps their dignity. The Garrison horn does not sound again -- this time."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter_id": "the_borderlands",
+      "display_name": "The Borderlands",
+      "entry_condition": "day >= 3",
+      "exit_condition": "day >= 6",
+      "scenes": [
+        {
+          "scene_id": "br_day3_mirror_break",
+          "description": "The column reaches the Mirror Break -- a granite ridgeline where the Borderlands begin in earnest. The Garrison has posted a proclamation nailed to a dead oak at the pass: amnesty for any Deserter who surrenders before sundown, signed by Commander Vasek herself. Half the column can read. The other half watches the faces of those who can. The wind tears at the parchment's edge. Beyond the ridge, the land drops into scrub and dust. There is no going back after this.",
+          "location": "Mirror Break Ridge",
+          "choices": [
+            {
+              "text": "Tear down the proclamation and burn it in front of the column.",
+              "sway_effect": 1,
+              "tag": "DEFIANCE",
+              "narrative": "The parchment catches fast. You hold it until the flames lick your fingers, then drop it in the dust. A cheer rises from the Deserters -- ragged, fierce, defiant. But three Stragglers at the back of the column quietly slip away before nightfall."
+            },
+            {
+              "text": "Read the proclamation aloud and let every soul choose freely.",
+              "sway_effect": -1,
+              "tag": "HEARTH",
+              "narrative": "Your voice carries in the mountain air. Seven Deserters and two Straggler families step forward and turn back toward the Garrison line. Those who remain look at each other with the particular clarity of people who have chosen. The column is smaller now, and harder."
+            },
+            {
+              "text": "Leave it hanging but push the column through the pass at double pace.",
+              "sway_effect": 0,
+              "tag": "GUILE",
+              "narrative": "You say nothing about the proclamation. The literate whisper to the illiterate. By the time the last soul crests the ridge, everyone knows what it said. No one turned back, but no one was given the dignity of an open choice. The silence at the Bivouac that night is heavy."
+            }
+          ]
+        },
+        {
+          "scene_id": "br_day4_borderland_parley",
+          "description": "A rider approaches under a white branch -- not Garrison, but a Borderlands freeholder named Dace, leather-brown and wary. She controls the only well for three days' march. She will sell water, but her price is information: the column's strength, its route, its destination. The Garrison would pay well for the same intelligence. Dace does not pretend otherwise. The column's water skins are light. Children have stopped asking for drinks.",
+          "location": "Dace's Well",
+          "choices": [
+            {
+              "text": "Trade the truth -- your numbers, your heading -- for the water.",
+              "sway_effect": -1,
+              "tag": "GUILE",
+              "narrative": "Dace fills every skin and asks no further price. She rides east afterward, toward the Garrison supply road. Maybe she sells your secrets. Maybe she does not. The column drinks deeply, and for one night, the children sleep without crying."
+            },
+            {
+              "text": "Offer labor instead -- a day's work repairing her boundary walls.",
+              "sway_effect": 1,
+              "tag": "HEARTH",
+              "narrative": "Thirty Deserters spend a day stacking stone under Borderlands sun. Dace watches, impressed despite herself, and fills the skins. She offers nothing else, but when you leave, she points out a canyon trail that avoids the eastern patrols. Worth more than water."
+            },
+            {
+              "text": "Take the well by force. The column's need outweighs one freeholder's claim.",
+              "sway_effect": 0,
+              "tag": "BLOOD",
+              "narrative": "Dace rides hard before your people reach the well. You fill the skins, but smoke rises from her farmstead signal tower -- three columns of black against the pale sky. Someone is coming. You are no longer refugees. You are raiders, and the Borderlands will treat you accordingly."
+            }
+          ]
+        },
+        {
+          "scene_id": "br_day5_final_march",
+          "description": "Dawn on the fifth day. The neutral border is a line of white cairns on the horizon, close enough to count. Between you and those stones stands a Garrison blocking force -- not the full regiment, but enough. Forty soldiers in sun-faded red, formed up across the road with pikes grounded. Their officer steps forward and calls out that Commander Vasek offers one final mercy: surrender the ringleaders and the rest walk free. The column looks at you. The Stragglers look at the cairns. The distance is perhaps a thousand yards.",
+          "location": "The Cairn Road",
+          "choices": [
+            {
+              "text": "Charge the line. Forty soldiers cannot hold against a column with nothing left to lose.",
+              "sway_effect": 1,
+              "tag": "BLOOD",
+              "narrative": "The column hits the Garrison line like a wave. It is ugly and desperate and over in minutes. Pikemen break formation when faced with seventy people who have walked five days to reach those cairns. Eleven Deserters fall. The rest cross the border at a staggering run, and behind them the white cairns stand indifferent."
+            },
+            {
+              "text": "Send the Stragglers and children wide through the scrub while the Deserters hold the road.",
+              "sway_effect": 0,
+              "tag": "SILENCE",
+              "narrative": "The Deserters form a ragged line and begin singing -- an old marching song from the regiment they abandoned. The Garrison officer hesitates. While he stares at former comrades, forty Stragglers and their children vanish into the scrub. Some will reach the cairns. All of them will remember who stood on the road."
+            },
+            {
+              "text": "Walk forward alone and negotiate. Your life for the column's passage.",
+              "sway_effect": -1,
+              "tag": "DEFIANCE",
+              "narrative": "You walk the thousand yards in silence. The officer listens. He does not accept your offer, but the negotiation takes an hour, and in that hour the column scatters into the scrub and filters across the border in twos and threes. You are taken. The column is free. Whether that bargain was worth it depends on who is telling the story."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

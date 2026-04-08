@@ -460,7 +460,7 @@ class BootWizard:
             ("Thermal Threshold (Fatigue)", "65°C"),
             ("Thermal Threshold (Critical)", "75°C"),
             ("Deep Thinking Model", "deepseek-r1:1.5b"),
-            ("Reflex Model", "qwen2.5-coder:1.5b"),
+            ("Academy Model", "gemma4:e2b (LiteRT-LM)"),
             ("Voice Enabled", "Yes"),
         ]
 

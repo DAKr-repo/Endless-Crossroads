@@ -1,0 +1,3080 @@
+======================================================================
+  SOURCE VERIFICATION AUDIT REPORT
+======================================================================
+
+Total items checked: 411
+  Verified (>=75% match):  18
+  Suspect (55%-75% match):  393
+  Unverified (<55% match):   0
+  Errors/No source:          0
+
+----------------------------------------------------------------------
+SUSPECT ITEMS (close but may differ from source):
+----------------------------------------------------------------------
+
+  [66.71%] dragon_heist/cassalanter_estate/room_0
+    Authored: \f'l IS till ndVI'Illtlll (110 II( l , II I th ~U 
+l(•t,lt d ( 11111{1( It I I (VI It:~ ldl>lt " yOt...
+    Source:   [Baldur's Gate - Descent into Avernus] or its purpose was 
+negated by some superseding event. Sudden...
+
+  [67.31%] dragon_heist/cassalanter_estate/room_0/NPC:Mad Mage
+    Authored: Mad Mage (l with 
+the book Waterdeep: Dungeon of the Mad Mage): ...
+    Source:   [Dungeon of the Mad Mage] labaster with a fake Ud 
+carved to appear openable - a false tomb built to...
+
+  [70.43%] dragon_heist/cassalanter_estate/room_0/NPC:Dungeon Master
+    Authored: Dungeon Master (Magi c items are described in the Dungeon Master 's Guide, unless the 
+adventure's t...
+    Source:   [Player's Handbook] ucan spend these points tofuelvarious kifeatures.
+Youstart knowing three such fe...
+
+  [64.81%] dragon_heist/cassalanter_estate/room_0/NPC:Stvord Cons
+    Authored: Stvord Cons (u 11o11 nt 1'111 IJ:H lq~ro111 HI (d sc I ib d in 
+the Stvord Cons/ Ad111 nltllt 'l ·):...
+    Source:   [Baldur's Gate - Descent into Avernus] l good human knights ). The couple's 
+presence shapes the inn...
+
+  [69.72%] dragon_heist/cassalanter_estate/room_0/read_aloud
+    Authored: orr 
+it. The kenku is 60 feet away from the characters at the 
+start of the chase . . 
+f . t the ken...
+    Source:   [Baldur's Gate - Descent into Avernus] ers are near. Vatilan remains by the 
+nalfeshnee's side until...
+
+  [69.66%] dragon_heist/cassalanter_estate/room_1
+    Authored: 1st-level characters for t~is 
+adventure, consider setting aside the first game sesswn 
+for characte...
+    Source:   [Baldur's Gate - Descent into Avernus] that you can use to rein­
+force the flavor of adventuring in ...
+
+  [66.88%] dragon_heist/cassalanter_estate/room_1/NPC:Guid
+    Authored: Guid (RUNNING THE ADVENTURE 
+To run this adv entur e, you nee d the D&D fifth edition 
+core rulebook...
+    Source:   [Baldur's Gate - Descent into Avernus] el, a series of encounters leads them 
+to Bel, the pit fiend ...
+
+  [67.06%] dragon_heist/cassalanter_estate/room_1/NPC:North Ward
+    Authored: North Ward (" Th family 
+ha~ a large villa in the North Ward, on the eas t side of the High Road bet...
+    Source:   [Xanathar's Guide to Everything] Aterribleblightinyourhomecommunitycausedcropstofail,andmanystarved....
+
+  [65.94%] dragon_heist/cassalanter_estate/room_1/NPC:During
+    Authored: During (" 
+ROOFTOP CHASE: WINTER 
+A Zhent named Yevette Blackwater (CE female Tethyrian human swashb...
+    Source:   [Out of the Abyss] LtS
+and
+attacks
+when
+creatures
+enter
+this
+rllanlller.
+She
+gloats
+about
+how
+the
+ch...
+
+  [63.95%] dragon_heist/cassalanter_estate/room_1/read_aloud
+    Authored: ndbook 
+is availab le for purchase in Waterdeep at normal prices. 
+CHARACTER BACKGROUNDS 
+Players lo...
+    Source:   [Xanathar's Guide to Everything] undinaforbiddenplace,Iencounteredanotherworldlybeingthatofferedtoen...
+
+  [70.26%] dragon_heist/cassalanter_estate/room_2
+    Authored: 1st-level characters for t~is 
+adventure, consider setting aside the first game sesswn 
+for characte...
+    Source:   [Baldur's Gate - Descent into Avernus] that you can use to rein­
+force the flavor of adventuring in ...
+
+  [66.92%] dragon_heist/cassalanter_estate/room_2/NPC:Guid
+    Authored: Guid (RUNNING THE ADVENTURE 
+To run this adv entur e, you nee d the D&D fifth edition 
+core rulebook...
+    Source:   [Baldur's Gate - Descent into Avernus] el, a series of encounters leads them 
+to Bel, the pit fiend ...
+
+  [66.88%] dragon_heist/cassalanter_estate/room_2/NPC:North Ward
+    Authored: North Ward (" Th family 
+ha~ a large villa in the North Ward, on the eas t side of the High Road bet...
+    Source:   [Xanathar's Guide to Everything] Aterribleblightinyourhomecommunitycausedcropstofail,andmanystarved....
+
+  [65.73%] dragon_heist/cassalanter_estate/room_2/NPC:During
+    Authored: During (" 
+ROOFTOP CHASE: WINTER 
+A Zhent named Yevette Blackwater (CE female Tethyrian human swashb...
+    Source:   [Out of the Abyss] LtS
+and
+attacks
+when
+creatures
+enter
+this
+rllanlller.
+She
+gloats
+about
+how
+the
+ch...
+
+  [64.07%] dragon_heist/cassalanter_estate/room_2/read_aloud
+    Authored: ndbook 
+is availab le for purchase in Waterdeep at normal prices. 
+CHARACTER BACKGROUNDS 
+Players lo...
+    Source:   [Xanathar's Guide to Everything] undinaforbiddenplace,Iencounteredanotherworldlybeingthatofferedtoen...
+
+  [72.01%] dragon_heist/cassalanter_estate/room_3
+    Authored: isruption. If Caladorn's ghost is present 
+when one or both magic items are removed from the 
+sarcop...
+    Source:   [Baldur's Gate - Descent into Avernus] mpur. 
+SHRINE OF THE SUFFERING 
+This simple stone shrine to I...
+
+  [68.93%] dragon_heist/cassalanter_estate/room_3/NPC:Black Pudding
+    Authored: Black Pudding (A crack in 
+the wa ll concea ls a black pudding that gushes out and 
+attacks characte...
+    Source:   [Volo's Guide to Monsters] ial they grasp or caress with their tentacles. The imprinting causes impe...
+
+  [66.55%] dragon_heist/cassalanter_estate/room_3/NPC:Cast
+    Authored: Cast (Thl' forecastle is within stght of the satlors on the main 
+deck (nreajl), the aft castle lowe...
+    Source:   [Tasha's Cauldron of Everything] e homunculus shares your initiative 
+count, but it takes its turn i...
+
+  [65.41%] dragon_heist/cassalanter_estate/room_3/NPC:Lords
+    Authored: Lords (Waterdeep is one of the most influential and invested 
+members of the Lords' Alliance): ...
+    Source:   [Tomb of Annihilation] (CN maleHalruaan human veteran); and three other crewmen named Brax, Nhar, an...
+
+  [67.33%] dragon_heist/cassalanter_estate/room_3/read_aloud
+    Authored: 's 
+no walkway in this arterial passage that leads to areas 
+B3 and B4. 
+CHAPTER 4 I DRAGON SEASO 
+M...
+    Source:   [Volo's Guide to Monsters] cated than a simple club.
+Undead Nature. A gnoll witherling doesn’t requi...
+
+  [70.15%] dragon_heist/cassalanter_estate/room_4
+    Authored: 1st-level characters for t~is 
+adventure, consider setting aside the first game sesswn 
+for characte...
+    Source:   [Baldur's Gate - Descent into Avernus] that you can use to rein­
+force the flavor of adventuring in ...
+
+  [66.91%] dragon_heist/cassalanter_estate/room_4/NPC:Guid
+    Authored: Guid (RUNNING THE ADVENTURE 
+To run this adv entur e, you nee d the D&D fifth edition 
+core rulebook...
+    Source:   [Baldur's Gate - Descent into Avernus] el, a series of encounters leads them 
+to Bel, the pit fiend ...
+
+  [66.71%] dragon_heist/cassalanter_estate/room_4/NPC:North Ward
+    Authored: North Ward (" Th family 
+ha~ a large villa in the North Ward, on the eas t side of the High Road bet...
+    Source:   [Xanathar's Guide to Everything] Aterribleblightinyourhomecommunitycausedcropstofail,andmanystarved....
+
+  [65.65%] dragon_heist/cassalanter_estate/room_4/NPC:During
+    Authored: During (" 
+ROOFTOP CHASE: WINTER 
+A Zhent named Yevette Blackwater (CE female Tethyrian human swashb...
+    Source:   [Out of the Abyss] LtS
+and
+attacks
+when
+creatures
+enter
+this
+rllanlller.
+She
+gloats
+about
+how
+the
+ch...
+
+  [64.10%] dragon_heist/cassalanter_estate/room_4/read_aloud
+    Authored: ndbook 
+is availab le for purchase in Waterdeep at normal prices. 
+CHARACTER BACKGROUNDS 
+Players lo...
+    Source:   [Xanathar's Guide to Everything] undinaforbiddenplace,Iencounteredanotherworldlybeingthatofferedtoen...
+
+  [72.75%] dragon_heist/cassalanter_estate/room_5
+    Authored: l stairs curl up into the tower and down into 
+the cellar. Set into the west wall is a fireplace bla...
+    Source:   [Baldur's Gate - Descent into Avernus] into the sky. You watch her silhouette dwindle until it is 
+s...
+
+  [68.42%] dragon_heist/cassalanter_estate/room_5/NPC:Inside
+    Authored: Inside (The front door has a sliding peephole that 
+can be opened from the inside): ...
+    Source:   [Player's Handbook] (+1).
+Bob fills in Bruenor's final hit points: 10 + his
+Constitution modifier of...
+
+  [66.25%] dragon_heist/cassalanter_estate/room_5/NPC:Rishaal
+    Authored: Rishaal (The shop is managed by a short dragon born of gold 
+dragon ancestry named Rishaal the Page ...
+    Source:   [Monster Manual] asts , vilifying the primeval wyrms . 
+Giants and dragons continu e to harbor grudg...
+
+  [68.77%] dragon_heist/cassalanter_estate/room_5/NPC:Deepwater Harbor
+    Authored: Deepwater Harbor (" 
+3rd "A young bronze dragon has taken up resi­
+dence in Deepwater Harbor): ...
+    Source:   [Xanathar's Guide to Everything] untilthespellends,causingyoutobecomeheavilyobscuredtoothers.Theshad...
+
+  [69.20%] dragon_heist/cassalanter_estate/room_5/read_aloud
+    Authored: to squeeze through. 
+Treasure. A thorough search of the room yields a ran ­
+dom treas ure , determin...
+    Source:   [Tasha's Cauldron of Everything] ; you can use some, all, or none of them. 
+ADDITIONAL BARD SPELLS 
+...
+
+  [67.63%] dragon_heist/cassalanter_estate/room_6
+    Authored: 1 ch.tptt•t 1 
+of the Dtmg on Ma t r 's Gwd to II olC~ .I t:h 11 .tel ,. I Jnk 
+and ascent wtthlll ·...
+    Source:   [Baldur's Gate - Descent into Avernus] insan e cartographe r. Distances and travel times be­
+tween l...
+
+  [65.38%] dragon_heist/cassalanter_estate/room_6/NPC:Boss
+    Authored: Boss (tllasatgll lll (lieu 
+tenant, 25) , ll areth ( apta111 , 50) 
+Force Grey Ranks: Gta Hand lntti...
+    Source:   [Xanathar's Guide to Everything] Aterribleblightinyourhomecommunitycausedcropstofail,andmanystarved....
+
+  [65.98%] dragon_heist/cassalanter_estate/room_6/NPC:Magists
+    Authored: Magists (Arcane spellcasters living in the 
+cily are requir ed by law to registe r with the Watchful...
+    Source:   [Dragon Heist] av e alt·ead arri ed in Wat erdeep and borne 
+witn to ome of its man wonders. But in ...
+
+  [65.97%] dragon_heist/cassalanter_estate/room_6/read_aloud
+    Authored: always involves the perpetration 
+of a serious crime. Possibilitie s include murdering a 
+guild memb...
+    Source:   [Baldur's Gate - Descent into Avernus] a bit of a hopping dance. The madcaps 
+and redcaps think this...
+
+  [69.28%] dragon_heist/cassalanter_estate/room_7
+    Authored: A rough-hewn tunnel barely wide enough for two abreast slopes upward through packed earth and stone....
+    Source:   [Player's Handbook] ges ithas, ifany.Voulearn
+whether anyspells are affecting theitem and what they
+...
+
+  [70.93%] dragon_heist/cassalanter_estate/room_7/read_aloud
+    Authored: A rough-hewn tunnel slopes upward through packed earth and stone, barely wide enough for two abreast...
+    Source:   [Volo's Guide to Monsters] ser creatures of the world have no souls; they exist only to be fodder fo...
+
+  [69.26%] dragon_heist/dock_ward/room_0
+    Authored: m and the Xanathar Guild, since violent encounters 
+between the two factions are becoming ever more ...
+    Source:   [Xanathar's Guide to Everything] r,providedthattherearenocrea—turesinit.Thewaterunfreezesin1hour.Ify...
+
+  [65.20%] dragon_heist/dock_ward/room_0/NPC:Ship 
+Street
+    Authored: Ship 
+Street (Meet them at the Muleskull Tavern, on Ship 
+Street in the Dock Ward, at six bells and ...
+    Source:   [Out of the Abyss] LtS
+and
+attacks
+when
+creatures
+enter
+this
+rllanlller.
+She
+gloats
+about
+how
+the
+ch...
+
+  [66.87%] dragon_heist/dock_ward/room_0/NPC:Stag
+    Authored: Stag (While his constables search the wareho use, Cap­
+tain Stag et questions the characters): ...
+    Source:   [Out of the Abyss] LtS
+and
+attacks
+when
+creatures
+enter
+this
+rllanlller.
+She
+gloats
+about
+how
+the
+ch...
+
+  [64.72%] dragon_heist/dock_ward/room_0/NPC:Some
+    Authored: Some (Seeking patronag e from a noble without having been 
+introduc ed to that person is considered ...
+    Source:   [Xanathar's Guide to Everything] r,providedthattherearenocrea—turesinit.Thewaterunfreezesin1hour.Ify...
+
+  [69.96%] dragon_heist/dock_ward/room_0/read_aloud
+    Authored: h ign at 11 y, . an ot er businesses often have no 
+rea · ou etther know where you are going and ha,...
+    Source:   [Baldur's Gate - Descent into Avernus] ies a red handkerchief somewhere 
+on his person. He can take ...
+
+  [73.42%] dragon_heist/dock_ward/room_1
+    Authored: l Alley. Characters can refurnish, 
+rebuild, rename, and otherwise personalize their new 
+stronghold...
+    Source:   [Baldur's Gate - Descent into Avernus] unoccupied 
+space within S feet of you and follows you 
+aroun...
+
+  [67.29%] dragon_heist/dock_ward/room_1/NPC:Stag
+    Authored: Stag (While his constables search the wareho use, Cap­
+tain Stag et questions the characters): ...
+    Source:   [Out of the Abyss] LtS
+and
+attacks
+when
+creatures
+enter
+this
+rllanlller.
+She
+gloats
+about
+how
+the
+ch...
+
+  [65.42%] dragon_heist/dock_ward/room_1/NPC:North Ward
+    Authored: North Ward (" Th family 
+ha~ a large villa in the North Ward, on the eas t side of the High Road bet...
+    Source:   [Dungeon Master's Guide] nificent mansion spell creates a 
+demiplane consist ing of a foyer with mul...
+
+  [63.87%] dragon_heist/dock_ward/room_1/NPC:Fellowship
+    Authored: Fellowship (GUILD S OF WATERDEEP 
+Bakers' Guild 
+Carpenters', Roofers', and Plaisterers' Guild 
+Cell...
+    Source:   [Dungeon of the Mad Mage] labaster with a fake Ud 
+carved to appear openable - a false tomb built to...
+
+  [69.71%] dragon_heist/dock_ward/room_1/read_aloud
+    Authored: m and the Xanathar Guild, since violent encounters 
+between the two factions are becoming ever more ...
+    Source:   [Xanathar's Guide to Everything] r,providedthattherearenocrea—turesinit.Thewaterunfreezesin1hour.Ify...
+
+  [69.00%] dragon_heist/dock_ward/room_2
+    Authored: m and the Xanathar Guild, since violent encounters 
+between the two factions are becoming ever more ...
+    Source:   [Baldur's Gate - Descent into Avernus] n Avernus seem important to finding the 
+Citadel: a place whe...
+
+  [65.39%] dragon_heist/dock_ward/room_2/NPC:Ship 
+Street
+    Authored: Ship 
+Street (Meet them at the Muleskull Tavern, on Ship 
+Street in the Dock Ward, at six bells and ...
+    Source:   [Volo's Guide to Monsters] nly the group’s needs, but the effect each action will have on the forest...
+
+  [67.11%] dragon_heist/dock_ward/room_2/NPC:Stag
+    Authored: Stag (While his constables search the wareho use, Cap­
+tain Stag et questions the characters): ...
+    Source:   [Out of the Abyss] LtS
+and
+attacks
+when
+creatures
+enter
+this
+rllanlller.
+She
+gloats
+about
+how
+the
+ch...
+
+  [65.01%] dragon_heist/dock_ward/room_2/NPC:Some
+    Authored: Some (Seeking patronag e from a noble without having been 
+introduc ed to that person is considered ...
+    Source:   [Xanathar's Guide to Everything] r,providedthattherearenocrea—turesinit.Thewaterunfreezesin1hour.Ify...
+
+  [70.00%] dragon_heist/dock_ward/room_2/read_aloud
+    Authored: h ign at 11 y, . an ot er businesses often have no 
+rea · ou etther know where you are going and ha,...
+    Source:   [Baldur's Gate - Descent into Avernus] ies a red handkerchief somewhere 
+on his person. He can take ...
+
+  [69.14%] dragon_heist/dock_ward/room_3
+    Authored: m and the Xanathar Guild, since violent encounters 
+between the two factions are becoming ever more ...
+    Source:   [Baldur's Gate - Descent into Avernus] n Avernus seem important to finding the 
+Citadel: a place whe...
+
+  [65.61%] dragon_heist/dock_ward/room_3/NPC:Ship 
+Street
+    Authored: Ship 
+Street (Meet them at the Muleskull Tavern, on Ship 
+Street in the Dock Ward, at six bells and ...
+    Source:   [Out of the Abyss] LtS
+and
+attacks
+when
+creatures
+enter
+this
+rllanlller.
+She
+gloats
+about
+how
+the
+ch...
+
+  [67.52%] dragon_heist/dock_ward/room_3/NPC:Stag
+    Authored: Stag (While his constables search the wareho use, Cap­
+tain Stag et questions the characters): ...
+    Source:   [Out of the Abyss] LtS
+and
+attacks
+when
+creatures
+enter
+this
+rllanlller.
+She
+gloats
+about
+how
+the
+ch...
+
+  [65.08%] dragon_heist/dock_ward/room_3/NPC:Some
+    Authored: Some (Seeking patronag e from a noble without having been 
+introduc ed to that person is considered ...
+    Source:   [Xanathar's Guide to Everything] r,providedthattherearenocrea—turesinit.Thewaterunfreezesin1hour.Ify...
+
+  [69.92%] dragon_heist/dock_ward/room_3/read_aloud
+    Authored: h ign at 11 y, . an ot er businesses often have no 
+rea · ou etther know where you are going and ha,...
+    Source:   [Baldur's Gate - Descent into Avernus] ies a red handkerchief somewhere 
+on his person. He can take ...
+
+  [69.07%] dragon_heist/dock_ward/room_4
+    Authored: m and the Xanathar Guild, since violent encounters 
+between the two factions are becoming ever more ...
+    Source:   [Baldur's Gate - Descent into Avernus] n Avernus seem important to finding the 
+Citadel: a place whe...
+
+  [65.16%] dragon_heist/dock_ward/room_4/NPC:Ship 
+Street
+    Authored: Ship 
+Street (Meet them at the Muleskull Tavern, on Ship 
+Street in the Dock Ward, at six bells and ...
+    Source:   [Out of the Abyss] LtS
+and
+attacks
+when
+creatures
+enter
+this
+rllanlller.
+She
+gloats
+about
+how
+the
+ch...
+
+  [66.95%] dragon_heist/dock_ward/room_4/NPC:Stag
+    Authored: Stag (While his constables search the wareho use, Cap­
+tain Stag et questions the characters): ...
+    Source:   [Out of the Abyss] LtS
+and
+attacks
+when
+creatures
+enter
+this
+rllanlller.
+She
+gloats
+about
+how
+the
+ch...
+
+  [65.20%] dragon_heist/dock_ward/room_4/NPC:Some
+    Authored: Some (Seeking patronag e from a noble without having been 
+introduc ed to that person is considered ...
+    Source:   [Xanathar's Guide to Everything] r,providedthattherearenocrea—turesinit.Thewaterunfreezesin1hour.Ify...
+
+  [70.05%] dragon_heist/dock_ward/room_4/read_aloud
+    Authored: h ign at 11 y, . an ot er businesses often have no 
+rea · ou etther know where you are going and ha,...
+    Source:   [Baldur's Gate - Descent into Avernus] ies a red handkerchief somewhere 
+on his person. He can take ...
+
+  [69.13%] dragon_heist/dock_ward/room_5
+    Authored: m and the Xanathar Guild, since violent encounters 
+between the two factions are becoming ever more ...
+    Source:   [Xanathar's Guide to Everything] r,providedthattherearenocrea—turesinit.Thewaterunfreezesin1hour.Ify...
+
+  [65.12%] dragon_heist/dock_ward/room_5/NPC:Ship 
+Street
+    Authored: Ship 
+Street (Meet them at the Muleskull Tavern, on Ship 
+Street in the Dock Ward, at six bells and ...
+    Source:   [Volo's Guide to Monsters] nly the group’s needs, but the effect each action will have on the forest...
+
+  [67.11%] dragon_heist/dock_ward/room_5/NPC:Stag
+    Authored: Stag (While his constables search the wareho use, Cap­
+tain Stag et questions the characters): ...
+    Source:   [Out of the Abyss] LtS
+and
+attacks
+when
+creatures
+enter
+this
+rllanlller.
+She
+gloats
+about
+how
+the
+ch...
+
+  [65.15%] dragon_heist/dock_ward/room_5/NPC:Some
+    Authored: Some (Seeking patronag e from a noble without having been 
+introduc ed to that person is considered ...
+    Source:   [Xanathar's Guide to Everything] r,providedthattherearenocrea—turesinit.Thewaterunfreezesin1hour.Ify...
+
+  [69.98%] dragon_heist/dock_ward/room_5/read_aloud
+    Authored: h ign at 11 y, . an ot er businesses often have no 
+rea · ou etther know where you are going and ha,...
+    Source:   [Baldur's Gate - Descent into Avernus] ies a red handkerchief somewhere 
+on his person. He can take ...
+
+  [66.00%] dragon_heist/gralhund_villa/room_0
+    Authored: \f'l IS till ndVI'Illtlll (110 II( l , II I th ~U 
+l(•t,lt d ( 11111{1( It I I (VI It:~ ldl>lt " yOt...
+    Source:   [Baldur's Gate - Descent into Avernus] l good human knights ). The couple's 
+presence shapes the inn...
+
+  [66.65%] dragon_heist/gralhund_villa/room_0/NPC:North Ward
+    Authored: North Ward (" Th family 
+ha~ a large villa in the North Ward, on the eas t side of the High Road bet...
+    Source:   [Baldur's Gate - Descent into Avernus] hrough the majority of the 
+Outer City and then southeast tow...
+
+  [70.52%] dragon_heist/gralhund_villa/room_0/NPC:Dungeon Master
+    Authored: Dungeon Master (Magi c items are described in the Dungeon Master 's Guide, unless the 
+adventure's t...
+    Source:   [Player's Handbook] ucan spend these points tofuelvarious kifeatures.
+Youstart knowing three such fe...
+
+  [65.80%] dragon_heist/gralhund_villa/room_0/NPC:Davil Starsong
+    Authored: Davil Starsong (gated, including Davil Starsong 
+(see appendix B)): ...
+    Source:   [Dragon Heist] ases 
+to function. 
+C28. WINE CELLAR 
+This cellar contains the following featur es: 
+...
+
+  [73.44%] dragon_heist/gralhund_villa/room_0/read_aloud
+    Authored: ormally reside in Peaktop Aerie atop 
+Mount Waterdeep , but most civilians aren't welcome 
+there.) T...
+    Source:   [Baldur's Gate - Descent into Avernus] (-1) 
+Condition Immunities charmed, frighten ed, poisoned 
+Se...
+
+  [69.17%] dragon_heist/gralhund_villa/room_1
+    Authored: pied. The largest of the three cham­
+bers is a common room containing six bunk beds for 
+the junior ...
+    Source:   [Dragon Heist] ases 
+to function. 
+C28. WINE CELLAR 
+This cellar contains the following featur es: 
+...
+
+  [67.21%] dragon_heist/gralhund_villa/room_1/NPC:Guid
+    Authored: Guid (RUNNING THE ADVENTURE 
+To run this adv entur e, you nee d the D&D fifth edition 
+core rulebook...
+    Source:   [Baldur's Gate - Descent into Avernus] el, a series of encounters leads them 
+to Bel, the pit fiend ...
+
+  [66.97%] dragon_heist/gralhund_villa/room_1/NPC:North Ward
+    Authored: North Ward (" Th family 
+ha~ a large villa in the North Ward, on the eas t side of the High Road bet...
+    Source:   [Baldur's Gate - Descent into Avernus] hrough the majority of the 
+Outer City and then southeast tow...
+
+  [66.16%] dragon_heist/gralhund_villa/room_1/NPC:Davil Starsong
+    Authored: Davil Starsong (gated, including Davil Starsong 
+(see appendix B)): ...
+    Source:   [Dragon Heist] ases 
+to function. 
+C28. WINE CELLAR 
+This cellar contains the following featur es: 
+...
+
+  [72.89%] dragon_heist/gralhund_villa/room_1/read_aloud
+    Authored: avalr y riders (see appendix B) astride griffons . 
+The griffons and their riders remain airborne, p...
+    Source:   [Baldur's Gate - Descent into Avernus] h a pair of stone 
+benches. Spare polearms and scale 
+armor, ...
+
+  [68.96%] dragon_heist/gralhund_villa/room_2
+    Authored: pied. The largest of the three cham­
+bers is a common room containing six bunk beds for 
+the junior ...
+    Source:   [Dragon Heist] ases 
+to function. 
+C28. WINE CELLAR 
+This cellar contains the following featur es: 
+...
+
+  [67.28%] dragon_heist/gralhund_villa/room_2/NPC:Guid
+    Authored: Guid (RUNNING THE ADVENTURE 
+To run this adv entur e, you nee d the D&D fifth edition 
+core rulebook...
+    Source:   [Baldur's Gate - Descent into Avernus] el, a series of encounters leads them 
+to Bel, the pit fiend ...
+
+  [66.62%] dragon_heist/gralhund_villa/room_2/NPC:North Ward
+    Authored: North Ward (" Th family 
+ha~ a large villa in the North Ward, on the eas t side of the High Road bet...
+    Source:   [Baldur's Gate - Descent into Avernus] hrough the majority of the 
+Outer City and then southeast tow...
+
+  [65.67%] dragon_heist/gralhund_villa/room_2/NPC:Davil Starsong
+    Authored: Davil Starsong (gated, including Davil Starsong 
+(see appendix B)): ...
+    Source:   [Dragon Heist] ases 
+to function. 
+C28. WINE CELLAR 
+This cellar contains the following featur es: 
+...
+
+  [73.07%] dragon_heist/gralhund_villa/room_2/read_aloud
+    Authored: avalr y riders (see appendix B) astride griffons . 
+The griffons and their riders remain airborne, p...
+    Source:   [Baldur's Gate - Descent into Avernus] h a pair of stone 
+benches. Spare polearms and scale 
+armor, ...
+
+  [71.64%] dragon_heist/gralhund_villa/room_3
+    Authored: l stairs curl up into the tower and down into 
+the cellar. Set into the west wall is a fireplace bla...
+    Source:   [Baldur's Gate - Descent into Avernus] into the sky. You watch her silhouette dwindle until it is 
+s...
+
+  [68.41%] dragon_heist/gralhund_villa/room_3/NPC:Inside
+    Authored: Inside (The front door has a sliding peephole that 
+can be opened from the inside): ...
+    Source:   [Out of the Abyss] s
+nfjuililex
+table
+to
+dt-icrmiiie
+the
+nature
+of
+(ha
+madness.
+which
+is
+Ll
+Characte...
+
+  [66.39%] dragon_heist/gralhund_villa/room_3/NPC:Rishaal
+    Authored: Rishaal (The shop is managed by a short dragon born of gold 
+dragon ancestry named Rishaal the Page ...
+    Source:   [Monster Manual] asts , vilifying the primeval wyrms . 
+Giants and dragons continu e to harbor grudg...
+
+  [65.15%] dragon_heist/gralhund_villa/room_3/NPC:Saeth Cromley
+    Authored: Saeth Cromley (ETH CROMLEY 
+Saeth Cromley is a retired sergeant of the City Watch , a 
+likabl e fell...
+    Source:   [Dragon Heist] time, in any order, or 
+not at all. The characters might have reason to visit one 
+or...
+
+  [69.40%] dragon_heist/gralhund_villa/room_3/read_aloud
+    Authored: to squeeze through. 
+Treasure. A thorough search of the room yields a ran ­
+dom treas ure , determin...
+    Source:   [Dragon Heist] ases 
+to function. 
+C28. WINE CELLAR 
+This cellar contains the following featur es: 
+...
+
+  [69.09%] dragon_heist/gralhund_villa/room_4
+    Authored: pied. The largest of the three cham­
+bers is a common room containing six bunk beds for 
+the junior ...
+    Source:   [Baldur's Gate - Descent into Avernus] w 
+these devils are deployed). 
+Bugles. Each devil on watch d...
+
+  [67.33%] dragon_heist/gralhund_villa/room_4/NPC:Guid
+    Authored: Guid (RUNNING THE ADVENTURE 
+To run this adv entur e, you nee d the D&D fifth edition 
+core rulebook...
+    Source:   [Baldur's Gate - Descent into Avernus] el, a series of encounters leads them 
+to Bel, the pit fiend ...
+
+  [66.35%] dragon_heist/gralhund_villa/room_4/NPC:North Ward
+    Authored: North Ward (" Th family 
+ha~ a large villa in the North Ward, on the eas t side of the High Road bet...
+    Source:   [Baldur's Gate - Descent into Avernus] hrough the majority of the 
+Outer City and then southeast tow...
+
+  [66.51%] dragon_heist/gralhund_villa/room_4/NPC:Davil Starsong
+    Authored: Davil Starsong (gated, including Davil Starsong 
+(see appendix B)): ...
+    Source:   [Dungeon of the Mad Mage] lo ths, ld4 nycaloths , or an­
+other ultroloth (see the "Variant: Yugoloth...
+
+  [73.16%] dragon_heist/gralhund_villa/room_4/read_aloud
+    Authored: avalr y riders (see appendix B) astride griffons . 
+The griffons and their riders remain airborne, p...
+    Source:   [Baldur's Gate - Descent into Avernus] h a pair of stone 
+benches. Spare polearms and scale 
+armor, ...
+
+  [72.56%] dragon_heist/gralhund_villa/room_5
+    Authored: isruption. If Caladorn's ghost is present 
+when one or both magic items are removed from the 
+sarcop...
+    Source:   [Baldur's Gate - Descent into Avernus] mpur. 
+SHRINE OF THE SUFFERING 
+This simple stone shrine to I...
+
+  [69.67%] dragon_heist/gralhund_villa/room_5/NPC:Black Pudding
+    Authored: Black Pudding (A crack in 
+the wa ll concea ls a black pudding that gushes out and 
+attacks characte...
+    Source:   [Volo's Guide to Monsters] ial they grasp or caress with their tentacles. The imprinting causes impe...
+
+  [67.04%] dragon_heist/gralhund_villa/room_5/NPC:Cast
+    Authored: Cast (Thl' forecastle is within stght of the satlors on the main 
+deck (nreajl), the aft castle lowe...
+    Source:   [Out of the Abyss] recognizable
+are
+a
+pair
+or
+clawed
+stone
+feet
+clutching
+the
+pedcst.'ti's
+top.
+Carv...
+
+  [64.70%] dragon_heist/gralhund_villa/room_5/NPC:Lords
+    Authored: Lords (Waterdeep is one of the most influential and invested 
+members of the Lords' Alliance): ...
+    Source:   [Guildmasters' Guide to Ravnica] k roc GGR
+3 Knight MM
+3 Veteran MM
+4 Reckoner GGR
+5 Battleforce ang...
+
+  [68.22%] dragon_heist/gralhund_villa/room_5/read_aloud
+    Authored: 's 
+no walkway in this arterial passage that leads to areas 
+B3 and B4. 
+CHAPTER 4 I DRAGON SEASO 
+M...
+    Source:   [Player's Handbook] ges ithas, ifany.Voulearn
+whether anyspells are affecting theitem and what they
+...
+
+  [68.96%] dragon_heist/gralhund_villa/room_6
+    Authored: pied. The largest of the three cham­
+bers is a common room containing six bunk beds for 
+the junior ...
+    Source:   [Dragon Heist] ases 
+to function. 
+C28. WINE CELLAR 
+This cellar contains the following featur es: 
+...
+
+  [67.70%] dragon_heist/gralhund_villa/room_6/NPC:Guid
+    Authored: Guid (RUNNING THE ADVENTURE 
+To run this adv entur e, you nee d the D&D fifth edition 
+core rulebook...
+    Source:   [Baldur's Gate - Descent into Avernus] el, a series of encounters leads them 
+to Bel, the pit fiend ...
+
+  [66.94%] dragon_heist/gralhund_villa/room_6/NPC:North Ward
+    Authored: North Ward (" Th family 
+ha~ a large villa in the North Ward, on the eas t side of the High Road bet...
+    Source:   [Baldur's Gate - Descent into Avernus] hrough the majority of the 
+Outer City and then southeast tow...
+
+  [66.21%] dragon_heist/gralhund_villa/room_6/NPC:Davil Starsong
+    Authored: Davil Starsong (gated, including Davil Starsong 
+(see appendix B)): ...
+    Source:   [Dragon Heist] ases 
+to function. 
+C28. WINE CELLAR 
+This cellar contains the following featur es: 
+...
+
+  [73.17%] dragon_heist/gralhund_villa/room_6/read_aloud
+    Authored: avalr y riders (see appendix B) astride griffons . 
+The griffons and their riders remain airborne, p...
+    Source:   [Baldur's Gate - Descent into Avernus] h a pair of stone 
+benches. Spare polearms and scale 
+armor, ...
+
+  [69.09%] dragon_heist/gralhund_villa/room_7
+    Authored: pied. The largest of the three cham­
+bers is a common room containing six bunk beds for 
+the junior ...
+    Source:   [Dragon Heist] ases 
+to function. 
+C28. WINE CELLAR 
+This cellar contains the following featur es: 
+...
+
+  [66.44%] dragon_heist/gralhund_villa/room_7/NPC:Magists
+    Authored: Magists (Arcane spellcasters living in the 
+cily are requir ed by law to registe r with the Watchful...
+    Source:   [Dragon Heist] m , and one of the Xanathar 
+Guild members has a black tattoo on the palm of his 
+rig...
+
+  [65.36%] dragon_heist/gralhund_villa/room_7/NPC:Gta Hand
+    Authored: Gta Hand (tllasatgll lll (lieu 
+tenant, 25) , ll areth ( apta111 , 50) 
+Force Grey Ranks: Gta Hand l...
+    Source:   [Dragon Heist] ases 
+to function. 
+C28. WINE CELLAR 
+This cellar contains the following featur es: 
+...
+
+  [73.19%] dragon_heist/gralhund_villa/room_7/read_aloud
+    Authored: avalr y riders (see appendix B) astride griffons . 
+The griffons and their riders remain airborne, p...
+    Source:   [Baldur's Gate - Descent into Avernus] h a pair of stone 
+benches. Spare polearms and scale 
+armor, ...
+
+  [68.42%] dragon_heist/kolat_towers/room_0
+    Authored: hrows against being frightened. He speaks 
+Common and Halfling. 
+KoLAT TOWERS LORE 
+With a successfu...
+    Source:   [Player's Handbook] fyou're a 3rd-level wizard, you have
+four 1st-leve!and two 2nd-levei spell slots...
+
+  [66.62%] dragon_heist/kolat_towers/room_0/NPC:Others
+    Authored: Others (Others think it's 
+haunted by the ghosts of the Kolat brothers): ...
+    Source:   [Ghosts of Saltmarsh] ures currently cursed by the statue and within 20 feet of it take 5 necrotic d...
+
+  [63.42%] dragon_heist/kolat_towers/room_0/NPC:Stvord Cons
+    Authored: Stvord Cons (u 11o11 nt 1'111 IJ:H lq~ro111 HI (d sc I ib d in 
+the Stvord Cons/ Ad111 nltllt 'l ·):...
+    Source:   [Baldur's Gate - Descent into Avernus] l good human knights ). The couple's 
+presence shapes the inn...
+
+  [63.00%] dragon_heist/kolat_towers/room_0/NPC:Willifort
+    Authored: Willifort (WILLIFORT CROWELLE 
+Willifort dresses in a sharp black suit and wears thin­
+rimmed specta...
+    Source:   [Dragon Heist] S< coud dr11we1 contniu u lwl} oflm/rltng I h, I he 
+long · toj.trloxh Bneun. Nar 'lh...
+
+  [66.40%] dragon_heist/kolat_towers/room_0/read_aloud
+    Authored: \f'l IS till ndVI'Illtlll (110 II( l , II I th ~U 
+l(•t,lt d ( 11111{1( It I I (VI It:~ ldl>lt " yOt...
+    Source:   [Baldur's Gate - Descent into Avernus] ds to plague the Avernian expanse. 
+If Zariel wasn't so busy ...
+
+  [68.51%] dragon_heist/kolat_towers/room_1
+    Authored: hrows against being frightened. He speaks 
+Common and Halfling. 
+KoLAT TOWERS LORE 
+With a successfu...
+    Source:   [Mordenkainen's Tome of Foes] and doesn’t fall prone or become trapped.
+Legendary Resistance (3/Day)...
+
+  [66.62%] dragon_heist/kolat_towers/room_1/NPC:Others
+    Authored: Others (Others think it's 
+haunted by the ghosts of the Kolat brothers): ...
+    Source:   [Ghosts of Saltmarsh] ures currently cursed by the statue and within 20 feet of it take 5 necrotic d...
+
+  [64.29%] dragon_heist/kolat_towers/room_1/NPC:Some
+    Authored: Some (Seeking patronag e from a noble without having been 
+introduc ed to that person is considered ...
+    Source:   [Mordenkainen's Tome of Foes] ass 21 (natural armor)
+Hit Points 307 (15d20 + 150)
+Speed 40 ft., swim...
+
+  [68.75%] dragon_heist/kolat_towers/room_1/read_aloud
+    Authored: tradimensional sanctum. From there, he 
+continues his search for the Vault of Dragons while fend ­
+i...
+    Source:   [Baldur's Gate - Descent into Avernus] o the frigid river to haul out 
+a foundering fishing boat wit...
+
+  [68.89%] dragon_heist/kolat_towers/room_2
+    Authored: hrows against being frightened. He speaks 
+Common and Halfling. 
+KoLAT TOWERS LORE 
+With a successfu...
+    Source:   [Player's Handbook] fyou're a 3rd-level wizard, you have
+four 1st-leve!and two 2nd-levei spell slots...
+
+  [66.74%] dragon_heist/kolat_towers/room_2/NPC:Others
+    Authored: Others (Others think it's 
+haunted by the ghosts of the Kolat brothers): ...
+    Source:   [Ghosts of Saltmarsh] ures currently cursed by the statue and within 20 feet of it take 5 necrotic d...
+
+  [64.20%] dragon_heist/kolat_towers/room_2/NPC:Some
+    Authored: Some (Seeking patronag e from a noble without having been 
+introduc ed to that person is considered ...
+    Source:   [Crown of the Oathbreaker Low Res (3rd Ed)] ngeance on the Matrons of Malice. The 
+characters can at...
+
+  [67.03%] dragon_heist/kolat_towers/room_2/NPC:Inside
+    Authored: Inside (The front door has a sliding peephole that 
+can be opened from the inside): ...
+    Source:   [Ghosts of Saltmarsh] lastroth (area W7).
+Malek Trandence secretly worshiped Erythnul, the god of sl...
+
+  [68.94%] dragon_heist/kolat_towers/room_2/read_aloud
+    Authored: tradimensional sanctum. From there, he 
+continues his search for the Vault of Dragons while fend ­
+i...
+    Source:   [Baldur's Gate - Descent into Avernus] o the frigid river to haul out 
+a foundering fishing boat wit...
+
+  [68.60%] dragon_heist/kolat_towers/room_3
+    Authored: hrows against being frightened. He speaks 
+Common and Halfling. 
+KoLAT TOWERS LORE 
+With a successfu...
+    Source:   [Player's Handbook] fyou're a 3rd-level wizard, you have
+four 1st-leve!and two 2nd-levei spell slots...
+
+  [66.42%] dragon_heist/kolat_towers/room_3/NPC:Others
+    Authored: Others (Others think it's 
+haunted by the ghosts of the Kolat brothers): ...
+    Source:   [Ghosts of Saltmarsh] ures currently cursed by the statue and within 20 feet of it take 5 necrotic d...
+
+  [64.34%] dragon_heist/kolat_towers/room_3/NPC:Some
+    Authored: Some (Seeking patronag e from a noble without having been 
+introduc ed to that person is considered ...
+    Source:   [Crown of the Oathbreaker Low Res (3rd Ed)] ngeance on the Matrons of Malice. The 
+characters can at...
+
+  [68.69%] dragon_heist/kolat_towers/room_3/read_aloud
+    Authored: tradimensional sanctum. From there, he 
+continues his search for the Vault of Dragons while fend ­
+i...
+    Source:   [Baldur's Gate - Descent into Avernus] o the frigid river to haul out 
+a foundering fishing boat wit...
+
+  [71.03%] dragon_heist/kolat_towers/room_4
+    Authored: l stairs curl up into the tower and down into 
+the cellar. Set into the west wall is a fireplace bla...
+    Source:   [Baldur's Gate - Descent into Avernus] into the sky. You watch her silhouette dwindle until it is 
+s...
+
+  [67.29%] dragon_heist/kolat_towers/room_4/NPC:Inside
+    Authored: Inside (The front door has a sliding peephole that 
+can be opened from the inside): ...
+    Source:   [Ghosts of Saltmarsh] lastroth (area W7).
+Malek Trandence secretly worshiped Erythnul, the god of sl...
+
+  [65.75%] dragon_heist/kolat_towers/room_4/NPC:Rishaal
+    Authored: Rishaal (The shop is managed by a short dragon born of gold 
+dragon ancestry named Rishaal the Page ...
+    Source:   [Tasha's Cauldron of Everything] 10 feet for 1 hour . 
+3 Resilience. The drink er gains a +1 bon us ...
+
+  [66.14%] dragon_heist/kolat_towers/room_4/NPC:Intelligence
+    Authored: Intelligence (" 
+Mission Requirements and Reward 
+Characters can find Maxeene, a draft horse with an...
+    Source:   [Dungeon of the Mad Mage] he rules of 
+this gate are as follows: 
+• The gate opens for 1 minute when...
+
+  [66.67%] dragon_heist/kolat_towers/room_4/read_aloud
+    Authored: to squeeze through. 
+Treasure. A thorough search of the room yields a ran ­
+dom treas ure , determin...
+    Source:   [Tasha's Cauldron of Everything] ; you can use some, all, or none of them. 
+ADDITIONAL BARD SPELLS 
+...
+
+  [68.44%] dragon_heist/kolat_towers/room_5
+    Authored: hrows against being frightened. He speaks 
+Common and Halfling. 
+KoLAT TOWERS LORE 
+With a successfu...
+    Source:   [Player's Handbook] fyou're a 3rd-level wizard, you have
+four 1st-leve!and two 2nd-levei spell slots...
+
+  [66.34%] dragon_heist/kolat_towers/room_5/NPC:Others
+    Authored: Others (Others think it's 
+haunted by the ghosts of the Kolat brothers): ...
+    Source:   [Ghosts of Saltmarsh] ures currently cursed by the statue and within 20 feet of it take 5 necrotic d...
+
+  [64.44%] dragon_heist/kolat_towers/room_5/NPC:Some
+    Authored: Some (Seeking patronag e from a noble without having been 
+introduc ed to that person is considered ...
+    Source:   [Crown of the Oathbreaker Low Res (3rd Ed)] ngeance on the Matrons of Malice. The 
+characters can at...
+
+  [68.92%] dragon_heist/kolat_towers/room_5/read_aloud
+    Authored: tradimensional sanctum. From there, he 
+continues his search for the Vault of Dragons while fend ­
+i...
+    Source:   [Baldur's Gate - Descent into Avernus] o the frigid river to haul out 
+a foundering fishing boat wit...
+
+  [68.85%] dragon_heist/kolat_towers/room_6
+    Authored: hrows against being frightened. He speaks 
+Common and Halfling. 
+KoLAT TOWERS LORE 
+With a successfu...
+    Source:   [Player's Handbook] fyou're a 3rd-level wizard, you have
+four 1st-leve!and two 2nd-levei spell slots...
+
+  [66.63%] dragon_heist/kolat_towers/room_6/NPC:Others
+    Authored: Others (Others think it's 
+haunted by the ghosts of the Kolat brothers): ...
+    Source:   [Ghosts of Saltmarsh] ures currently cursed by the statue and within 20 feet of it take 5 necrotic d...
+
+  [64.61%] dragon_heist/kolat_towers/room_6/NPC:Some
+    Authored: Some (Seeking patronag e from a noble without having been 
+introduc ed to that person is considered ...
+    Source:   [Crown of the Oathbreaker Low Res (3rd Ed)] ngeance on the Matrons of Malice. The 
+characters can at...
+
+  [63.58%] dragon_heist/kolat_towers/room_6/NPC:Gta Hand
+    Authored: Gta Hand (tllasatgll lll (lieu 
+tenant, 25) , ll areth ( apta111 , 50) 
+Force Grey Ranks: Gta Hand l...
+    Source:   [Xanathar's Guide to Everything] Aterribleblightinyourhomecommunitycausedcropstofail,andmanystarved....
+
+  [69.11%] dragon_heist/kolat_towers/room_6/read_aloud
+    Authored: tradimensional sanctum. From there, he 
+continues his search for the Vault of Dragons while fend ­
+i...
+    Source:   [Baldur's Gate - Descent into Avernus] o the frigid river to haul out 
+a foundering fishing boat wit...
+
+  [67.38%] dragon_heist/manshoon_sanctum/room_0
+    Authored: \f'l IS till ndVI'Illtlll (110 II( l , II I th ~U 
+l(•t,lt d ( 11111{1( It I I (VI It:~ ldl>lt " yOt...
+    Source:   [Baldur's Gate - Descent into Avernus] l good human knights ). The couple's 
+presence shapes the inn...
+
+  [68.33%] dragon_heist/manshoon_sanctum/room_0/NPC:Mad Mage
+    Authored: Mad Mage (l with 
+the book Waterdeep: Dungeon of the Mad Mage): ...
+    Source:   [Dungeon of the Mad Mage] labaster with a fake Ud 
+carved to appear openable - a false tomb built to...
+
+  [70.02%] dragon_heist/manshoon_sanctum/room_0/NPC:Dungeon Master
+    Authored: Dungeon Master (Magi c items are described in the Dungeon Master 's Guide, unless the 
+adventure's t...
+    Source:   [Player's Handbook] ucan spend these points tofuelvarious kifeatures.
+Youstart knowing three such fe...
+
+  [65.83%] dragon_heist/manshoon_sanctum/room_0/NPC:Stvord Cons
+    Authored: Stvord Cons (u 11o11 nt 1'111 IJ:H lq~ro111 HI (d sc I ib d in 
+the Stvord Cons/ Ad111 nltllt 'l ·):...
+    Source:   [Baldur's Gate - Descent into Avernus] l good human knights ). The couple's 
+presence shapes the inn...
+
+  [69.62%] dragon_heist/manshoon_sanctum/room_0/read_aloud
+    Authored: orr 
+it. The kenku is 60 feet away from the characters at the 
+start of the chase . . 
+f . t the ken...
+    Source:   [Baldur's Gate - Descent into Avernus] acters can count on Kostchtchie to 
+create a distraction big ...
+
+  [69.30%] dragon_heist/manshoon_sanctum/room_1
+    Authored: se book titl e d 
+The Man from Damara - a wooden blo c k paint e d to re­
+semb le a book, which is w...
+    Source:   [Baldur's Gate - Descent into Avernus] itions used to buy dubious exploration 
+and dungeon -delving ...
+
+  [67.05%] dragon_heist/manshoon_sanctum/room_1/NPC:Inside
+    Authored: Inside (The front door has a sliding peephole that 
+can be opened from the inside): ...
+    Source:   [Tyranny of Dragons] angry snak es-or lik e liq­
+uid moving through open tubes. A moment later, liqu...
+
+  [65.38%] dragon_heist/manshoon_sanctum/room_1/NPC:Agorn
+    Authored: Agorn (Agorn was moved to perpetrate this act by the play he 
+saw at the theater and by his lady fri...
+    Source:   [Baldur's Gate - Descent into Avernus] t explode outward in blinding 
+rays of light. Creatures in th...
+
+  [67.02%] dragon_heist/manshoon_sanctum/room_1/NPC:Rishaal
+    Authored: Rishaal (The shop is managed by a short dragon born of gold 
+dragon ancestry named Rishaal the Page ...
+    Source:   [Xanathar's Guide to Everything] untilthespellends,causingyoutobecomeheavilyobscuredtoothers.Theshad...
+
+  [67.66%] dragon_heist/manshoon_sanctum/room_1/read_aloud
+    Authored: It has grown accustomed to living among mortals and, 
+much to its own astonishment, is rather fond o...
+    Source:   [Baldur's Gate - Descent into Avernus] that area for the duration. 
+When the effects ends, the shatt...
+
+  [70.57%] dragon_heist/manshoon_sanctum/room_2
+    Authored: 1st-level characters for t~is 
+adventure, consider setting aside the first game sesswn 
+for characte...
+    Source:   [Baldur's Gate - Descent into Avernus] that you can use to rein­
+force the flavor of adventuring in ...
+
+  [66.37%] dragon_heist/manshoon_sanctum/room_2/NPC:Guid
+    Authored: Guid (RUNNING THE ADVENTURE 
+To run this adv entur e, you nee d the D&D fifth edition 
+core rulebook...
+    Source:   [Baldur's Gate - Descent into Avernus] el, a series of encounters leads them 
+to Bel, the pit fiend ...
+
+  [66.63%] dragon_heist/manshoon_sanctum/room_2/NPC:North Ward
+    Authored: North Ward (" Th family 
+ha~ a large villa in the North Ward, on the eas t side of the High Road bet...
+    Source:   [Tasha's Cauldron of Everything] lacksmiths, jewelers, carpenters, tailors, 
+alchemists, scribes, an...
+
+  [66.25%] dragon_heist/manshoon_sanctum/room_2/NPC:During
+    Authored: During (" 
+ROOFTOP CHASE: WINTER 
+A Zhent named Yevette Blackwater (CE female Tethyrian human swashb...
+    Source:   [Dungeon of the Mad Mage] labaster with a fake Ud 
+carved to appear openable - a false tomb built to...
+
+  [64.51%] dragon_heist/manshoon_sanctum/room_2/read_aloud
+    Authored: ndbook 
+is availab le for purchase in Waterdeep at normal prices. 
+CHARACTER BACKGROUNDS 
+Players lo...
+    Source:   [Xanathar's Guide to Everything] undinaforbiddenplace,Iencounteredanotherworldlybeingthatofferedtoen...
+
+  [70.28%] dragon_heist/manshoon_sanctum/room_3
+    Authored: 1st-level characters for t~is 
+adventure, consider setting aside the first game sesswn 
+for characte...
+    Source:   [Baldur's Gate - Descent into Avernus] that you can use to rein­
+force the flavor of adventuring in ...
+
+  [66.09%] dragon_heist/manshoon_sanctum/room_3/NPC:Guid
+    Authored: Guid (RUNNING THE ADVENTURE 
+To run this adv entur e, you nee d the D&D fifth edition 
+core rulebook...
+    Source:   [Baldur's Gate - Descent into Avernus] el, a series of encounters leads them 
+to Bel, the pit fiend ...
+
+  [66.41%] dragon_heist/manshoon_sanctum/room_3/NPC:North Ward
+    Authored: North Ward (" Th family 
+ha~ a large villa in the North Ward, on the eas t side of the High Road bet...
+    Source:   [Tasha's Cauldron of Everything] lacksmiths, jewelers, carpenters, tailors, 
+alchemists, scribes, an...
+
+  [66.19%] dragon_heist/manshoon_sanctum/room_3/NPC:During
+    Authored: During (" 
+ROOFTOP CHASE: WINTER 
+A Zhent named Yevette Blackwater (CE female Tethyrian human swashb...
+    Source:   [Dungeon of the Mad Mage] labaster with a fake Ud 
+carved to appear openable - a false tomb built to...
+
+  [64.71%] dragon_heist/manshoon_sanctum/room_3/read_aloud
+    Authored: ndbook 
+is availab le for purchase in Waterdeep at normal prices. 
+CHARACTER BACKGROUNDS 
+Players lo...
+    Source:   [Xanathar's Guide to Everything] undinaforbiddenplace,Iencounteredanotherworldlybeingthatofferedtoen...
+
+  [67.57%] dragon_heist/manshoon_sanctum/room_4
+    Authored: 1 ch.tptt•t 1 
+of the Dtmg on Ma t r 's Gwd to II olC~ .I t:h 11 .tel ,. I Jnk 
+and ascent wtthlll ·...
+    Source:   [Baldur's Gate - Descent into Avernus] insan e cartographe r. Distances and travel times be­
+tween l...
+
+  [65.80%] dragon_heist/manshoon_sanctum/room_4/NPC:Boss
+    Authored: Boss (tllasatgll lll (lieu 
+tenant, 25) , ll areth ( apta111 , 50) 
+Force Grey Ranks: Gta Hand lntti...
+    Source:   [Dungeon of the Mad Mage] labaster with a fake Ud 
+carved to appear openable - a false tomb built to...
+
+  [65.88%] dragon_heist/manshoon_sanctum/room_4/NPC:Magists
+    Authored: Magists (Arcane spellcasters living in the 
+cily are requir ed by law to registe r with the Watchful...
+    Source:   [Xanathar's Guide to Everything] ntherunesdestroysthetrap.NETTRAPSimpletrap(level1—4,dangerousthreat...
+
+  [65.96%] dragon_heist/manshoon_sanctum/room_4/read_aloud
+    Authored: always involves the perpetration 
+of a serious crime. Possibilitie s include murdering a 
+guild memb...
+    Source:   [Baldur's Gate - Descent into Avernus] a bit of a hopping dance. The madcaps 
+and redcaps think this...
+
+  [73.06%] dragon_heist/manshoon_sanctum/room_5
+    Authored: l stairs curl up into the tower and down into 
+the cellar. Set into the west wall is a fireplace bla...
+    Source:   [Baldur's Gate - Descent into Avernus] into the sky. You watch her silhouette dwindle until it is 
+s...
+
+  [67.62%] dragon_heist/manshoon_sanctum/room_5/NPC:Inside
+    Authored: Inside (The front door has a sliding peephole that 
+can be opened from the inside): ...
+    Source:   [Ghosts of Saltmarsh] lastroth (area W7).
+Malek Trandence secretly worshiped Erythnul, the god of sl...
+
+  [66.82%] dragon_heist/manshoon_sanctum/room_5/NPC:Rishaal
+    Authored: Rishaal (The shop is managed by a short dragon born of gold 
+dragon ancestry named Rishaal the Page ...
+    Source:   [Xanathar's Guide to Everything] untilthespellends,causingyoutobecomeheavilyobscuredtoothers.Theshad...
+
+  [69.60%] dragon_heist/manshoon_sanctum/room_5/NPC:Deepwater Harbor
+    Authored: Deepwater Harbor (" 
+3rd "A young bronze dragon has taken up resi­
+dence in Deepwater Harbor): ...
+    Source:   [Xanathar's Guide to Everything] untilthespellends,causingyoutobecomeheavilyobscuredtoothers.Theshad...
+
+  [68.87%] dragon_heist/manshoon_sanctum/room_5/read_aloud
+    Authored: to squeeze through. 
+Treasure. A thorough search of the room yields a ran ­
+dom treas ure , determin...
+    Source:   [Tasha's Cauldron of Everything] ; you can use some, all, or none of them. 
+ADDITIONAL BARD SPELLS 
+...
+
+  [65.30%] dragon_heist/sea_maidens_faire/room_0
+    Authored: easy at that point, Jar­
+laxle would rather put them to work for him. He has 
+them watched but doesn...
+    Source:   [Baldur's Gate - Descent into Avernus] . Those who seek to learn more about 
+you- your weaknesses, y...
+
+  [66.78%] dragon_heist/sea_maidens_faire/room_0/NPC:News
+    Authored: News (REWARDS 
+Volo is drinking alone in the Yawning Portal while anx­
+iously awaiting news of Floon...
+    Source:   [Out of the Abyss] oice.
+--Yoti
+haw
+tlisturtietl
+the
+tomb
+oi
+Brysis
+0l'Khaen15
+Accttrsctl
+art‘.
+you....
+
+  [66.28%] dragon_heist/sea_maidens_faire/room_0/NPC:North Ward
+    Authored: North Ward (" Th family 
+ha~ a large villa in the North Ward, on the eas t side of the High Road bet...
+    Source:   [Player's Handbook] fyou.
+You become invisible for the next minute. During that
+time, other creature...
+
+  [63.25%] dragon_heist/sea_maidens_faire/room_0/NPC:The Sea Maidens
+    Authored: The Sea Maidens (Bregan D'aerthe is using one ofjarlaxle 's legitimate 
+business enterprises - the S...
+    Source:   [Baldur's Gate - Descent into Avernus] . If three vrocks are killed, the remaining 
+ones flee and do...
+
+  [67.55%] dragon_heist/sea_maidens_faire/room_0/read_aloud
+    Authored: \f'l IS till ndVI'Illtlll (110 II( l , II I th ~U 
+l(•t,lt d ( 11111{1( It I I (VI It:~ ldl>lt " yOt...
+    Source:   [Rime of the Frostmaiden] be able to find common magic items for sale, or a friendly druid, priest, ...
+
+  [67.38%] dragon_heist/sea_maidens_faire/room_1
+    Authored: a company of merc enari es orig­
+inally made up of the much-derided and dishonorable 
+castaways of d...
+    Source:   [Rime of the Frostmaiden] fortress inhabited by Auril the Frostmaiden
+Grynsk Berylbore GRINSK BEAR-i...
+
+  [66.71%] dragon_heist/sea_maidens_faire/room_1/NPC:News
+    Authored: News (REWARDS 
+Volo is drinking alone in the Yawning Portal while anx­
+iously awaiting news of Floon...
+    Source:   [Out of the Abyss] oice.
+--Yoti
+haw
+tlisturtietl
+the
+tomb
+oi
+Brysis
+0l'Khaen15
+Accttrsctl
+art‘.
+you....
+
+  [66.27%] dragon_heist/sea_maidens_faire/room_1/NPC:North Ward
+    Authored: North Ward (" Th family 
+ha~ a large villa in the North Ward, on the eas t side of the High Road bet...
+    Source:   [Player's Handbook] fyou.
+You become invisible for the next minute. During that
+time, other creature...
+
+  [63.34%] dragon_heist/sea_maidens_faire/room_1/NPC:The Sea Maidens
+    Authored: The Sea Maidens (Bregan D'aerthe is using one ofjarlaxle 's legitimate 
+business enterprises - the S...
+    Source:   [Baldur's Gate - Descent into Avernus] . If three vrocks are killed, the remaining 
+ones flee and do...
+
+  [66.33%] dragon_heist/sea_maidens_faire/room_1/read_aloud
+    Authored: easy at that point, Jar­
+laxle would rather put them to work for him. He has 
+them watched but doesn...
+    Source:   [Baldur's Gate - Descent into Avernus] . Those who seek to learn more about 
+you- your weaknesses, y...
+
+  [67.62%] dragon_heist/sea_maidens_faire/room_2
+    Authored: a company of merc enari es orig­
+inally made up of the much-derided and dishonorable 
+castaways of d...
+    Source:   [Rime of the Frostmaiden] fortress inhabited by Auril the Frostmaiden
+Grynsk Berylbore GRINSK BEAR-i...
+
+  [66.61%] dragon_heist/sea_maidens_faire/room_2/NPC:News
+    Authored: News (REWARDS 
+Volo is drinking alone in the Yawning Portal while anx­
+iously awaiting news of Floon...
+    Source:   [Out of the Abyss] oice.
+--Yoti
+haw
+tlisturtietl
+the
+tomb
+oi
+Brysis
+0l'Khaen15
+Accttrsctl
+art‘.
+you....
+
+  [66.34%] dragon_heist/sea_maidens_faire/room_2/NPC:North Ward
+    Authored: North Ward (" Th family 
+ha~ a large villa in the North Ward, on the eas t side of the High Road bet...
+    Source:   [Player's Handbook] fyou.
+You become invisible for the next minute. During that
+time, other creature...
+
+  [63.22%] dragon_heist/sea_maidens_faire/room_2/NPC:The Sea Maidens
+    Authored: The Sea Maidens (Bregan D'aerthe is using one ofjarlaxle 's legitimate 
+business enterprises - the S...
+    Source:   [Baldur's Gate - Descent into Avernus] . If three vrocks are killed, the remaining 
+ones flee and do...
+
+  [66.29%] dragon_heist/sea_maidens_faire/room_2/read_aloud
+    Authored: easy at that point, Jar­
+laxle would rather put them to work for him. He has 
+them watched but doesn...
+    Source:   [Baldur's Gate - Descent into Avernus] . Those who seek to learn more about 
+you- your weaknesses, y...
+
+  [67.72%] dragon_heist/sea_maidens_faire/room_3
+    Authored: a company of merc enari es orig­
+inally made up of the much-derided and dishonorable 
+castaways of d...
+    Source:   [Rime of the Frostmaiden] fortress inhabited by Auril the Frostmaiden
+Grynsk Berylbore GRINSK BEAR-i...
+
+  [66.70%] dragon_heist/sea_maidens_faire/room_3/NPC:News
+    Authored: News (REWARDS 
+Volo is drinking alone in the Yawning Portal while anx­
+iously awaiting news of Floon...
+    Source:   [Out of the Abyss] oice.
+--Yoti
+haw
+tlisturtietl
+the
+tomb
+oi
+Brysis
+0l'Khaen15
+Accttrsctl
+art‘.
+you....
+
+  [65.91%] dragon_heist/sea_maidens_faire/room_3/NPC:North Ward
+    Authored: North Ward (" Th family 
+ha~ a large villa in the North Ward, on the eas t side of the High Road bet...
+    Source:   [Player's Handbook] fyou.
+You become invisible for the next minute. During that
+time, other creature...
+
+  [63.48%] dragon_heist/sea_maidens_faire/room_3/NPC:The Sea Maidens
+    Authored: The Sea Maidens (Bregan D'aerthe is using one ofjarlaxle 's legitimate 
+business enterprises - the S...
+    Source:   [Baldur's Gate - Descent into Avernus] ine. Where they end determines 
+the consequences of the encou...
+
+  [66.37%] dragon_heist/sea_maidens_faire/room_3/read_aloud
+    Authored: easy at that point, Jar­
+laxle would rather put them to work for him. He has 
+them watched but doesn...
+    Source:   [Baldur's Gate - Descent into Avernus] . Those who seek to learn more about 
+you- your weaknesses, y...
+
+  [72.83%] dragon_heist/sea_maidens_faire/room_4
+    Authored: isruption. If Caladorn's ghost is present 
+when one or both magic items are removed from the 
+sarcop...
+    Source:   [Baldur's Gate - Descent into Avernus] mpur. 
+SHRINE OF THE SUFFERING 
+This simple stone shrine to I...
+
+  [69.12%] dragon_heist/sea_maidens_faire/room_4/NPC:Black Pudding
+    Authored: Black Pudding (A crack in 
+the wa ll concea ls a black pudding that gushes out and 
+attacks characte...
+    Source:   [Volo's Guide to Monsters] ial they grasp or caress with their tentacles. The imprinting causes impe...
+
+  [66.31%] dragon_heist/sea_maidens_faire/room_4/NPC:Cast
+    Authored: Cast (Thl' forecastle is within stght of the satlors on the main 
+deck (nreajl), the aft castle lowe...
+    Source:   [Out of the Abyss] from
+the
+gem.
+If
+the
+spell
+is
+ofa
+higher
+level
+than
+you
+can
+nor—
+mally
+cast.
+you
+...
+
+  [63.89%] dragon_heist/sea_maidens_faire/room_4/NPC:Lords
+    Authored: Lords (Waterdeep is one of the most influential and invested 
+members of the Lords' Alliance): ...
+    Source:   [Tomb of Annihilation] (CN maleHalruaan human veteran); and three other crewmen named Brax, Nhar, an...
+
+  [67.66%] dragon_heist/sea_maidens_faire/room_4/read_aloud
+    Authored: 's 
+no walkway in this arterial passage that leads to areas 
+B3 and B4. 
+CHAPTER 4 I DRAGON SEASO 
+M...
+    Source:   [Baldur's Gate - Descent into Avernus] rating 15 or higher, or a good-aligned 
+cleric or paladin of ...
+
+  [74.05%] dragon_heist/sea_maidens_faire/room_5
+    Authored: l stairs curl up into the tower and down into 
+the cellar. Set into the west wall is a fireplace bla...
+    Source:   [Baldur's Gate - Descent into Avernus] into the sky. You watch her silhouette dwindle until it is 
+s...
+
+  [63.34%] dragon_heist/sea_maidens_faire/room_5/NPC:The Sea Maidens
+    Authored: The Sea Maidens (Bregan D'aerthe is using one ofjarlaxle 's legitimate 
+business enterprises - the S...
+    Source:   [Baldur's Gate - Descent into Avernus] . If three vrocks are killed, the remaining 
+ones flee and do...
+
+  [67.24%] dragon_heist/sea_maidens_faire/room_5/NPC:Inside
+    Authored: Inside (The front door has a sliding peephole that 
+can be opened from the inside): ...
+    Source:   [Ghosts of Saltmarsh] lastroth (area W7).
+Malek Trandence secretly worshiped Erythnul, the god of sl...
+
+  [66.29%] dragon_heist/sea_maidens_faire/room_5/NPC:Rishaal
+    Authored: Rishaal (The shop is managed by a short dragon born of gold 
+dragon ancestry named Rishaal the Page ...
+    Source:   [Dungeon of the Mad Mage] ll reveals an aura of transmutation 
+magic around the pot, which is a comm...
+
+  [67.96%] dragon_heist/sea_maidens_faire/room_5/read_aloud
+    Authored: to squeeze through. 
+Treasure. A thorough search of the room yields a ran ­
+dom treas ure , determin...
+    Source:   [Baldur's Gate - Descent into Avernus] rd is away. If his worst 
+fears come true and the Flaming Fis...
+
+  [68.32%] dragon_heist/sea_maidens_faire/room_6
+    Authored: a company of merc enari es orig­
+inally made up of the much-derided and dishonorable 
+castaways of d...
+    Source:   [Rime of the Frostmaiden] fortress inhabited by Auril the Frostmaiden
+Grynsk Berylbore GRINSK BEAR-i...
+
+  [66.78%] dragon_heist/sea_maidens_faire/room_6/NPC:News
+    Authored: News (REWARDS 
+Volo is drinking alone in the Yawning Portal while anx­
+iously awaiting news of Floon...
+    Source:   [Out of the Abyss] oice.
+--Yoti
+haw
+tlisturtietl
+the
+tomb
+oi
+Brysis
+0l'Khaen15
+Accttrsctl
+art‘.
+you....
+
+  [66.54%] dragon_heist/sea_maidens_faire/room_6/NPC:North Ward
+    Authored: North Ward (" Th family 
+ha~ a large villa in the North Ward, on the eas t side of the High Road bet...
+    Source:   [Player's Handbook] fyou.
+You become invisible for the next minute. During that
+time, other creature...
+
+  [63.70%] dragon_heist/sea_maidens_faire/room_6/NPC:The Sea Maidens
+    Authored: The Sea Maidens (Bregan D'aerthe is using one ofjarlaxle 's legitimate 
+business enterprises - the S...
+    Source:   [Baldur's Gate - Descent into Avernus] . If three vrocks are killed, the remaining 
+ones flee and do...
+
+  [66.40%] dragon_heist/sea_maidens_faire/room_6/read_aloud
+    Authored: easy at that point, Jar­
+laxle would rather put them to work for him. He has 
+them watched but doesn...
+    Source:   [Baldur's Gate - Descent into Avernus] . Those who seek to learn more about 
+you- your weaknesses, y...
+
+  [68.41%] dragon_heist/sea_maidens_faire/room_7
+    Authored: a company of merc enari es orig­
+inally made up of the much-derided and dishonorable 
+castaways of d...
+    Source:   [Rime of the Frostmaiden] fortress inhabited by Auril the Frostmaiden
+Grynsk Berylbore GRINSK BEAR-i...
+
+  [66.47%] dragon_heist/sea_maidens_faire/room_7/NPC:News
+    Authored: News (REWARDS 
+Volo is drinking alone in the Yawning Portal while anx­
+iously awaiting news of Floon...
+    Source:   [Out of the Abyss] oice.
+--Yoti
+haw
+tlisturtietl
+the
+tomb
+oi
+Brysis
+0l'Khaen15
+Accttrsctl
+art‘.
+you....
+
+  [67.08%] dragon_heist/sea_maidens_faire/room_7/NPC:Magists
+    Authored: Magists (Arcane spellcasters living in the 
+cily are requir ed by law to registe r with the Watchful...
+    Source:   [Baldur's Gate - Descent into Avernus] t has been warped by eons of 
+demonic invasion. Travelers fac...
+
+  [63.53%] dragon_heist/sea_maidens_faire/room_7/NPC:The Sea Maidens
+    Authored: The Sea Maidens (Bregan D'aerthe is using one ofjarlaxle 's legitimate 
+business enterprises - the S...
+    Source:   [Baldur's Gate - Descent into Avernus] . If three vrocks are killed, the remaining 
+ones flee and do...
+
+  [68.06%] dragon_heist/sea_maidens_faire/room_8
+    Authored: a company of merc enari es orig­
+inally made up of the much-derided and dishonorable 
+castaways of d...
+    Source:   [Rime of the Frostmaiden] fortress inhabited by Auril the Frostmaiden
+Grynsk Berylbore GRINSK BEAR-i...
+
+  [66.62%] dragon_heist/sea_maidens_faire/room_8/NPC:News
+    Authored: News (REWARDS 
+Volo is drinking alone in the Yawning Portal while anx­
+iously awaiting news of Floon...
+    Source:   [Out of the Abyss] oice.
+--Yoti
+haw
+tlisturtietl
+the
+tomb
+oi
+Brysis
+0l'Khaen15
+Accttrsctl
+art‘.
+you....
+
+  [65.78%] dragon_heist/sea_maidens_faire/room_8/NPC:North Ward
+    Authored: North Ward (" Th family 
+ha~ a large villa in the North Ward, on the eas t side of the High Road bet...
+    Source:   [Player's Handbook] fyou.
+You become invisible for the next minute. During that
+time, other creature...
+
+  [63.31%] dragon_heist/sea_maidens_faire/room_8/NPC:The Sea Maidens
+    Authored: The Sea Maidens (Bregan D'aerthe is using one ofjarlaxle 's legitimate 
+business enterprises - the S...
+    Source:   [Baldur's Gate - Descent into Avernus] . If three vrocks are killed, the remaining 
+ones flee and do...
+
+  [66.38%] dragon_heist/sea_maidens_faire/room_8/read_aloud
+    Authored: easy at that point, Jar­
+laxle would rather put them to work for him. He has 
+them watched but doesn...
+    Source:   [Baldur's Gate - Descent into Avernus] . Those who seek to learn more about 
+you- your weaknesses, y...
+
+  [67.55%] dragon_heist/trollskull_alley/room_0/NPC:North Ward
+    Authored: North Ward (" Th family 
+ha~ a large villa in the North Ward, on the eas t side of the High Road bet...
+    Source:   [Xanathar's Guide to Everything] Aterribleblightinyourhomecommunitycausedcropstofail,andmanystarved....
+
+  [65.72%] dragon_heist/trollskull_alley/room_0/NPC:Fellowship
+    Authored: Fellowship (GUILD S OF WATERDEEP 
+Bakers' Guild 
+Carpenters', Roofers', and Plaisterers' Guild 
+Cell...
+    Source:   [Tales from the Yawning Portal] ng, requiring a successful DC 15 Wisdom (Perception) check to notice...
+
+  [69.07%] dragon_heist/trollskull_alley/room_0/NPC:Each Bregan
+    Authored: Each Bregan (Reward: Each Bregan D'aerthe character gains 2 renown): ...
+    Source:   [Baldur's Gate - Descent into Avernus] h in prayer. Each 
+knight wears the faded regalia of Elturel....
+
+  [72.59%] dragon_heist/trollskull_alley/room_0/read_aloud
+    Authored: rs', and Brewe rs' Guild ; and bread and past ries 
+from the Bakers' Guild. The list goes on. 
+The "...
+    Source:   [Baldur's Gate - Descent into Avernus] on roars to alert Krull (see 
+1st level (4 slots): cure wound...
+
+  [72.99%] dragon_heist/trollskull_alley/room_1
+    Authored: haracters advance fro!Il 
+1st to 2nd level when they return to Volo after having 
+explored the Xanat...
+    Source:   [Baldur's Gate - Descent into Avernus] ow). 
+A WIZARD'S THEORY 
+The wizard claims that each standing...
+
+  [66.48%] dragon_heist/trollskull_alley/room_1/NPC:Magists
+    Authored: Magists (Arcane spellcasters living in the 
+cily are requir ed by law to registe r with the Watchful...
+    Source:   [Tasha's Cauldron of Everything] spec­
+tral mind is intangible and doesn't occupy its space, 
+and it...
+
+  [64.52%] dragon_heist/trollskull_alley/room_1/NPC:Dock Street
+    Authored: Dock Street (fot 
+BR C AN D ' A R T H MISSIONS 
+Party Level 
+2nd 
+3rd 
+4th 
+5th 
+M t ion Brief 
+I d ...
+    Source:   [Monster Manual] 4 hours 
+that elapse, the target must repeat the saving throw, reducing 
+its hit po...
+
+  [68.86%] dragon_heist/trollskull_alley/room_1/NPC:Characters
+    Authored: Characters (He can also give characters a tour of Waterdeep): ...
+    Source:   [Dungeon of the Mad Mage] labaster with a fake Ud 
+carved to appear openable - a false tomb built to...
+
+  [67.79%] dragon_heist/trollskull_alley/room_2
+    Authored: d wood sculptur es. 
+T3. STEAM AND STEEL 
+During daylight hours, smoke and steam billow from 
+the ma...
+    Source:   [Out of the Abyss] or
+the
+Dungeon
+Masters
+Guide).
+Whenever
+a
+quaggoth
+spore
+servant
+is
+touched
+or
+ta...
+
+  [65.37%] dragon_heist/trollskull_alley/room_2/NPC:Eldath
+    Authored: Eldath (He spea ks Common and PrimordiaL 
+A vi worships Eldath, god of peace, and us es his magic 
+t...
+    Source:   [Volo's Guide to Monsters] Uncanny Smell. The boggle has advantage on Wisdom (Perception) checks tha...
+
+  [64.54%] dragon_heist/trollskull_alley/room_2/NPC:Dock Street
+    Authored: Dock Street (fot 
+BR C AN D ' A R T H MISSIONS 
+Party Level 
+2nd 
+3rd 
+4th 
+5th 
+M t ion Brief 
+I d ...
+    Source:   [Monster Manual] 4 hours 
+that elapse, the target must repeat the saving throw, reducing 
+its hit po...
+
+  [66.10%] dragon_heist/trollskull_alley/room_2/NPC:During
+    Authored: During (" 
+ROOFTOP CHASE: WINTER 
+A Zhent named Yevette Blackwater (CE female Tethyrian human swashb...
+    Source:   [Out of the Abyss] LtS
+and
+attacks
+when
+creatures
+enter
+this
+rllanlller.
+She
+gloats
+about
+how
+the
+ch...
+
+  [73.47%] dragon_heist/trollskull_alley/room_2/read_aloud
+    Authored: haracters advance fro!Il 
+1st to 2nd level when they return to Volo after having 
+explored the Xanat...
+    Source:   [Baldur's Gate - Descent into Avernus] ow). 
+A WIZARD'S THEORY 
+The wizard claims that each standing...
+
+  [73.40%] dragon_heist/trollskull_alley/room_3
+    Authored: haracters advance fro!Il 
+1st to 2nd level when they return to Volo after having 
+explored the Xanat...
+    Source:   [Baldur's Gate - Descent into Avernus] ow). 
+A WIZARD'S THEORY 
+The wizard claims that each standing...
+
+  [66.36%] dragon_heist/trollskull_alley/room_3/NPC:Magists
+    Authored: Magists (Arcane spellcasters living in the 
+cily are requir ed by law to registe r with the Watchful...
+    Source:   [Tasha's Cauldron of Everything] spec­
+tral mind is intangible and doesn't occupy its space, 
+and it...
+
+  [64.80%] dragon_heist/trollskull_alley/room_3/NPC:Dock Street
+    Authored: Dock Street (fot 
+BR C AN D ' A R T H MISSIONS 
+Party Level 
+2nd 
+3rd 
+4th 
+5th 
+M t ion Brief 
+I d ...
+    Source:   [Monster Manual] 4 hours 
+that elapse, the target must repeat the saving throw, reducing 
+its hit po...
+
+  [68.36%] dragon_heist/trollskull_alley/room_3/NPC:Characters
+    Authored: Characters (He can also give characters a tour of Waterdeep): ...
+    Source:   [Dungeon of the Mad Mage] labaster with a fake Ud 
+carved to appear openable - a false tomb built to...
+
+  [73.75%] dragon_heist/trollskull_alley/room_4
+    Authored: haracters advance fro!Il 
+1st to 2nd level when they return to Volo after having 
+explored the Xanat...
+    Source:   [Baldur's Gate - Descent into Avernus] ow). 
+A WIZARD'S THEORY 
+The wizard claims that each standing...
+
+  [66.96%] dragon_heist/trollskull_alley/room_4/NPC:Magists
+    Authored: Magists (Arcane spellcasters living in the 
+cily are requir ed by law to registe r with the Watchful...
+    Source:   [Mythic Odysseys of Theros] s to mortals—tobehold him is to behold the cruelty of war personified. H...
+
+  [67.53%] dragon_heist/trollskull_alley/room_4/NPC:North Ward
+    Authored: North Ward (" Th family 
+ha~ a large villa in the North Ward, on the eas t side of the High Road bet...
+    Source:   [Xanathar's Guide to Everything] Aterribleblightinyourhomecommunitycausedcropstofail,andmanystarved....
+
+  [64.26%] dragon_heist/trollskull_alley/room_4/NPC:Dock Street
+    Authored: Dock Street (fot 
+BR C AN D ' A R T H MISSIONS 
+Party Level 
+2nd 
+3rd 
+4th 
+5th 
+M t ion Brief 
+I d ...
+    Source:   [Monster Manual] 4 hours 
+that elapse, the target must repeat the saving throw, reducing 
+its hit po...
+
+  [73.17%] dragon_heist/trollskull_alley/room_4/read_aloud
+    Authored: until the passage of a period of time specified by one 
+who is attuned to the staff. 
+The dragonstaf...
+    Source:   [Baldur's Gate - Descent into Avernus] n the shores of the River 
+Styx below Elturel are the biggest...
+
+  [72.99%] dragon_heist/trollskull_alley/room_5
+    Authored: haracters advance fro!Il 
+1st to 2nd level when they return to Volo after having 
+explored the Xanat...
+    Source:   [Baldur's Gate - Descent into Avernus] ow). 
+A WIZARD'S THEORY 
+The wizard claims that each standing...
+
+  [66.40%] dragon_heist/trollskull_alley/room_5/NPC:Magists
+    Authored: Magists (Arcane spellcasters living in the 
+cily are requir ed by law to registe r with the Watchful...
+    Source:   [Guildmasters' Guide to Ravnica] they commit crimes, the Orzhov find out about it. Thecharacters’ va...
+
+  [64.12%] dragon_heist/trollskull_alley/room_5/NPC:Dock Street
+    Authored: Dock Street (fot 
+BR C AN D ' A R T H MISSIONS 
+Party Level 
+2nd 
+3rd 
+4th 
+5th 
+M t ion Brief 
+I d ...
+    Source:   [Monster Manual] 4 hours 
+that elapse, the target must repeat the saving throw, reducing 
+its hit po...
+
+  [68.56%] dragon_heist/trollskull_alley/room_5/NPC:Characters
+    Authored: Characters (He can also give characters a tour of Waterdeep): ...
+    Source:   [Dungeon of the Mad Mage] labaster with a fake Ud 
+carved to appear openable - a false tomb built to...
+
+  [67.04%] dragon_heist/trollskull_alley/room_5/read_aloud
+    Authored: ree to em e IS, a I ·on that 
+you will. Your version ofWatel deep is the on y versl 
+matters for you...
+    Source:   [Baldur's Gate - Descent into Avernus] it to be no 
+more than ten miles away. 
+CHAPTER 2 I Et.TO REL...
+
+  [67.37%] dragon_heist/trollskull_manor/room_0/NPC:North Ward
+    Authored: North Ward (" Th family 
+ha~ a large villa in the North Ward, on the eas t side of the High Road bet...
+    Source:   [Xanathar's Guide to Everything] Aterribleblightinyourhomecommunitycausedcropstofail,andmanystarved....
+
+  [65.82%] dragon_heist/trollskull_manor/room_0/NPC:Fellowship
+    Authored: Fellowship (GUILD S OF WATERDEEP 
+Bakers' Guild 
+Carpenters', Roofers', and Plaisterers' Guild 
+Cell...
+    Source:   [Dungeon of the Mad Mage] labaster with a fake Ud 
+carved to appear openable - a false tomb built to...
+
+  [69.44%] dragon_heist/trollskull_manor/room_0/NPC:Each Bregan
+    Authored: Each Bregan (Reward: Each Bregan D'aerthe character gains 2 renown): ...
+    Source:   [Baldur's Gate - Descent into Avernus] h in prayer. Each 
+knight wears the faded regalia of Elturel....
+
+  [72.42%] dragon_heist/trollskull_manor/room_0/read_aloud
+    Authored: rs', and Brewe rs' Guild ; and bread and past ries 
+from the Bakers' Guild. The list goes on. 
+The "...
+    Source:   [Baldur's Gate - Descent into Avernus] on roars to alert Krull (see 
+1st level (4 slots): cure wound...
+
+  [74.48%] dragon_heist/trollskull_manor/room_1
+    Authored: haracters advance fro!Il 
+1st to 2nd level when they return to Volo after having 
+explored the Xanat...
+    Source:   [Baldur's Gate - Descent into Avernus] ow). 
+A WIZARD'S THEORY 
+The wizard claims that each standing...
+
+  [67.11%] dragon_heist/trollskull_manor/room_1/NPC:Corell
+    Authored: Corell (Like the clven god Corellon Lar e th ~~n): ...
+    Source:   [Tasha's Cauldron of Everything] s who hijack taxes from the cruel 
+baron and return them to the dow...
+
+  [65.36%] dragon_heist/trollskull_manor/room_1/NPC:North
+    Authored: North (In 
+the outhern third of the city, where the land slopes up from the harbor, the High Road an...
+    Source:   [Crown of the Oathbreaker Low Res (3rd Ed)] fected by the harsh blast of wind must make a DC 
+13 Str...
+
+  [67.74%] dragon_heist/trollskull_manor/room_1/NPC:North Ward
+    Authored: North Ward (" Th family 
+ha~ a large villa in the North Ward, on the eas t side of the High Road bet...
+    Source:   [Xanathar's Guide to Everything] Aterribleblightinyourhomecommunitycausedcropstofail,andmanystarved....
+
+  [72.72%] dragon_heist/trollskull_manor/room_1/read_aloud
+    Authored: until the passage of a period of time specified by one 
+who is attuned to the staff. 
+The dragonstaf...
+    Source:   [Baldur's Gate - Descent into Avernus] n the shores of the River 
+Styx below Elturel are the biggest...
+
+  [67.05%] dragon_heist/trollskull_manor/room_2/NPC:Corell
+    Authored: Corell (Like the clven god Corellon Lar e th ~~n): ...
+    Source:   [Tasha's Cauldron of Everything] s who hijack taxes from the cruel 
+baron and return them to the dow...
+
+  [65.61%] dragon_heist/trollskull_manor/room_2/NPC:North
+    Authored: North (In 
+the outhern third of the city, where the land slopes up from the harbor, the High Road an...
+    Source:   [Crown of the Oathbreaker Low Res (3rd Ed)] fected by the harsh blast of wind must make a DC 
+13 Str...
+
+  [67.56%] dragon_heist/trollskull_manor/room_2/NPC:North Ward
+    Authored: North Ward (" Th family 
+ha~ a large villa in the North Ward, on the eas t side of the High Road bet...
+    Source:   [Xanathar's Guide to Everything] Aterribleblightinyourhomecommunitycausedcropstofail,andmanystarved....
+
+  [72.76%] dragon_heist/trollskull_manor/room_2/read_aloud
+    Authored: until the passage of a period of time specified by one 
+who is attuned to the staff. 
+The dragonstaf...
+    Source:   [Baldur's Gate - Descent into Avernus] n the shores of the River 
+Styx below Elturel are the biggest...
+
+  [74.67%] dragon_heist/trollskull_manor/room_3
+    Authored: haracters advance fro!Il 
+1st to 2nd level when they return to Volo after having 
+explored the Xanat...
+    Source:   [Baldur's Gate - Descent into Avernus] ow). 
+A WIZARD'S THEORY 
+The wizard claims that each standing...
+
+  [67.30%] dragon_heist/trollskull_manor/room_3/NPC:Corell
+    Authored: Corell (Like the clven god Corellon Lar e th ~~n): ...
+    Source:   [Monster Manual] hment on a regular basis. 
+More than treasure, a bandit capta in or pirate captain ...
+
+  [65.13%] dragon_heist/trollskull_manor/room_3/NPC:North
+    Authored: North (In 
+the outhern third of the city, where the land slopes up from the harbor, the High Road an...
+    Source:   [Crown of the Oathbreaker Low Res (3rd Ed)] fected by the harsh blast of wind must make a DC 
+13 Str...
+
+  [67.39%] dragon_heist/trollskull_manor/room_3/NPC:North Ward
+    Authored: North Ward (" Th family 
+ha~ a large villa in the North Ward, on the eas t side of the High Road bet...
+    Source:   [Xanathar's Guide to Everything] Aterribleblightinyourhomecommunitycausedcropstofail,andmanystarved....
+
+  [72.73%] dragon_heist/trollskull_manor/room_3/read_aloud
+    Authored: until the passage of a period of time specified by one 
+who is attuned to the staff. 
+The dragonstaf...
+    Source:   [Baldur's Gate - Descent into Avernus] n the shores of the River 
+Styx below Elturel are the biggest...
+
+  [74.98%] dragon_heist/trollskull_manor/room_4
+    Authored: haracters advance fro!Il 
+1st to 2nd level when they return to Volo after having 
+explored the Xanat...
+    Source:   [Baldur's Gate - Descent into Avernus] ow). 
+A WIZARD'S THEORY 
+The wizard claims that each standing...
+
+  [66.77%] dragon_heist/trollskull_manor/room_4/NPC:Corell
+    Authored: Corell (Like the clven god Corellon Lar e th ~~n): ...
+    Source:   [Tasha's Cauldron of Everything] s who hijack taxes from the cruel 
+baron and return them to the dow...
+
+  [65.55%] dragon_heist/trollskull_manor/room_4/NPC:North
+    Authored: North (In 
+the outhern third of the city, where the land slopes up from the harbor, the High Road an...
+    Source:   [Crown of the Oathbreaker Low Res (3rd Ed)] fected by the harsh blast of wind must make a DC 
+13 Str...
+
+  [67.40%] dragon_heist/trollskull_manor/room_4/NPC:North Ward
+    Authored: North Ward (" Th family 
+ha~ a large villa in the North Ward, on the eas t side of the High Road bet...
+    Source:   [Xanathar's Guide to Everything] Aterribleblightinyourhomecommunitycausedcropstofail,andmanystarved....
+
+  [72.90%] dragon_heist/trollskull_manor/room_4/read_aloud
+    Authored: until the passage of a period of time specified by one 
+who is attuned to the staff. 
+The dragonstaf...
+    Source:   [Baldur's Gate - Descent into Avernus] n the shores of the River 
+Styx below Elturel are the biggest...
+
+  [74.24%] dragon_heist/trollskull_manor/room_5
+    Authored: haracters advance fro!Il 
+1st to 2nd level when they return to Volo after having 
+explored the Xanat...
+    Source:   [Baldur's Gate - Descent into Avernus] ow). 
+A WIZARD'S THEORY 
+The wizard claims that each standing...
+
+  [66.23%] dragon_heist/trollskull_manor/room_5/NPC:Magists
+    Authored: Magists (Arcane spellcasters living in the 
+cily are requir ed by law to registe r with the Watchful...
+    Source:   [Dungeon Master's Guide] nificent mansion spell creates a 
+demiplane consist ing of a foyer with mul...
+
+  [68.68%] dragon_heist/trollskull_manor/room_5/NPC:Characters
+    Authored: Characters (He can also give characters a tour of Waterdeep): ...
+    Source:   [Dungeon of the Mad Mage] labaster with a fake Ud 
+carved to appear openable - a false tomb built to...
+
+  [66.82%] dragon_heist/trollskull_manor/room_5/NPC:Trollskull Manor
+    Authored: Trollskull Manor (TROLLSKULL MANOR 
+See appendix C for a handout showing the floor plan of 
+this bui...
+    Source:   [Xanathar's Guide to Everything] Aterribleblightinyourhomecommunitycausedcropstofail,andmanystarved....
+
+  [64.58%] dragon_heist/trollskull_manor/room_5/read_aloud
+    Authored: wn or partaking rn 
+self- dir ected activities. This period of time represents .afl 
+opportunity for...
+    Source:   [Baldur's Gate - Descent into Avernus] . 
+MAHA DI , EMPO R IUM MASTER 
+Mahadi the raksb asa (see the...
+
+  [65.47%] dragon_heist/vault_of_dragons/room_0
+    Authored: \f'l IS till ndVI'Illtlll (110 II( l , II I th ~U 
+l(•t,lt d ( 11111{1( It I I (VI It:~ ldl>lt " yOt...
+    Source:   [Baldur's Gate - Descent into Avernus] l good human knights ). The couple's 
+presence shapes the inn...
+
+  [68.69%] dragon_heist/vault_of_dragons/room_0/NPC:Dungeon Master
+    Authored: Dungeon Master (Magi c items are described in the Dungeon Master 's Guide, unless the 
+adventure's t...
+    Source:   [Volo's Guide to Monsters] those slain by russet mold grow new moldies. Not the legacy most of us as...
+
+  [65.47%] dragon_heist/vault_of_dragons/room_0/NPC:Stvord Cons
+    Authored: Stvord Cons (u 11o11 nt 1'111 IJ:H lq~ro111 HI (d sc I ib d in 
+the Stvord Cons/ Ad111 nltllt 'l ·):...
+    Source:   [Out of the Abyss] n
+the
+Deep
+Father,"prt)cla1ming
+hm‘!
+the
+new
+god
+other
+peopk‘
+she
+has
+backed
+up
+h...
+
+  [64.72%] dragon_heist/vault_of_dragons/room_0/NPC:Willifort
+    Authored: Willifort (WILLIFORT CROWELLE 
+Willifort dresses in a sharp black suit and wears thin­
+rimmed specta...
+    Source:   [Dragon Heist] S< coud dr11we1 contniu u lwl} oflm/rltng I h, I he 
+long · toj.trloxh Bneun. Nar 'lh...
+
+  [72.95%] dragon_heist/vault_of_dragons/room_0/read_aloud
+    Authored: r clientele, and cha racters 
+might find themselves the targets of wors e if they dar e 
+to leave th...
+    Source:   [Baldur's Gate - Descent into Avernus] . 
+MAHA DI , EMPO R IUM MASTER 
+Mahadi the raksb asa (see the...
+
+  [64.69%] dragon_heist/vault_of_dragons/room_1/NPC:The Sea Maidens
+    Authored: The Sea Maidens (Bregan D'aerthe is using one ofjarlaxle 's legitimate 
+business enterprises - the S...
+    Source:   [Out of the Abyss] n
+the
+Deep
+Father,"prt)cla1ming
+hm‘!
+the
+new
+god
+other
+peopk‘
+she
+has
+backed
+up
+h...
+
+  [66.54%] dragon_heist/vault_of_dragons/room_1/NPC:During
+    Authored: During (" 
+ROOFTOP CHASE: WINTER 
+A Zhent named Yevette Blackwater (CE female Tethyrian human swashb...
+    Source:   [Dungeon of the Mad Mage] labaster with a fake Ud 
+carved to appear openable - a false tomb built to...
+
+  [65.79%] dragon_heist/vault_of_dragons/room_1/NPC:Strength
+    Authored: Strength (Make a DC 10 Strength (Athlet ­ics) check): ...
+    Source:   [Out of the Abyss] n
+the
+Deep
+Father,"prt)cla1ming
+hm‘!
+the
+new
+god
+other
+peopk‘
+she
+has
+backed
+up
+h...
+
+  [69.31%] dragon_heist/vault_of_dragons/room_1/read_aloud
+    Authored: ala in and hostile 
+toward all others . It rolls initiative to determine when it acts. It 
+disappear...
+    Source:   [Strixhaven_ A Curriculum of Chaos] this encounter on the tracking sheet.
+Chaos in the Kitchen
+Even ...
+
+  [67.50%] dragon_heist/vault_of_dragons/room_2/NPC:Others
+    Authored: Others (Others think it's 
+haunted by the ghosts of the Kolat brothers): ...
+    Source:   [Monster Manual] swarm has half of its hit points or fewer. 
+SWARM OF RATS 
+Medium swarm of Tiny bea...
+
+  [64.40%] dragon_heist/vault_of_dragons/room_2/NPC:The Sea Maidens
+    Authored: The Sea Maidens (Bregan D'aerthe is using one ofjarlaxle 's legitimate 
+business enterprises - the S...
+    Source:   [Out of the Abyss] n
+the
+Deep
+Father,"prt)cla1ming
+hm‘!
+the
+new
+god
+other
+peopk‘
+she
+has
+backed
+up
+h...
+
+  [66.10%] dragon_heist/vault_of_dragons/room_2/NPC:During
+    Authored: During (" 
+ROOFTOP CHASE: WINTER 
+A Zhent named Yevette Blackwater (CE female Tethyrian human swashb...
+    Source:   [Dungeon of the Mad Mage] labaster with a fake Ud 
+carved to appear openable - a false tomb built to...
+
+  [69.18%] dragon_heist/vault_of_dragons/room_2/read_aloud
+    Authored: and arrange th em in plac es 
+(and at the proper angles) so that s unlight from outside 
+can be refl...
+    Source:   [Baldur's Gate - Descent into Avernus] it takes for the Flaming Fist to arrive, 
+and roll on the Fla...
+
+  [68.94%] dragon_heist/vault_of_dragons/room_3/NPC:Others
+    Authored: Others (Others think it's 
+haunted by the ghosts of the Kolat brothers): ...
+    Source:   [Monster Manual] swarm has half of its hit points or fewer. 
+SWARM OF RATS 
+Medium swarm of Tiny bea...
+
+  [68.58%] dragon_heist/vault_of_dragons/room_3/NPC:Magists
+    Authored: Magists (Arcane spellcasters living in the 
+cily are requir ed by law to registe r with the Watchful...
+    Source:   [Monster Manual] s two 
+ranged attacks or two melee attacks, but can constrict 
+only once . 
+Bite (S...
+
+  [64.43%] dragon_heist/vault_of_dragons/room_3/NPC:The Sea Maidens
+    Authored: The Sea Maidens (Bregan D'aerthe is using one ofjarlaxle 's legitimate 
+business enterprises - the S...
+    Source:   [Monster Manual] swarm has half of its hit points or fewer. 
+SWARM OF RATS 
+Medium swarm of Tiny bea...
+
+  [69.31%] dragon_heist/vault_of_dragons/room_3/read_aloud
+    Authored: and arrange th em in plac es 
+(and at the proper angles) so that s unlight from outside 
+can be refl...
+    Source:   [Baldur's Gate - Descent into Avernus] it takes for the Flaming Fist to arrive, 
+and roll on the Fla...
+
+  [73.41%] dragon_heist/vault_of_dragons/room_4
+    Authored: l stairs curl up into the tower and down into 
+the cellar. Set into the west wall is a fireplace bla...
+    Source:   [Baldur's Gate - Descent into Avernus] into the sky. You watch her silhouette dwindle until it is 
+s...
+
+  [68.28%] dragon_heist/vault_of_dragons/room_4/NPC:Inside
+    Authored: Inside (The front door has a sliding peephole that 
+can be opened from the inside): ...
+    Source:   [Out of the Abyss] n
+the
+Deep
+Father,"prt)cla1ming
+hm‘!
+the
+new
+god
+other
+peopk‘
+she
+has
+backed
+up
+h...
+
+  [69.68%] dragon_heist/vault_of_dragons/room_4/NPC:Deepwater Harbor
+    Authored: Deepwater Harbor (" 
+3rd "A young bronze dragon has taken up resi­
+dence in Deepwater Harbor): ...
+    Source:   [Xanathar's Guide to Everything] untilthespellends,causingyoutobecomeheavilyobscuredtoothers.Theshad...
+
+  [71.02%] dragon_heist/vault_of_dragons/room_4/read_aloud
+    Authored: to squeeze through. 
+Treasure. A thorough search of the room yields a ran ­
+dom treas ure , determin...
+    Source:   [Baldur's Gate - Descent into Avernus] rd is away. If his worst 
+fears come true and the Flaming Fis...
+
+  [67.53%] dragon_heist/vault_of_dragons/room_5/NPC:Others
+    Authored: Others (Others think it's 
+haunted by the ghosts of the Kolat brothers): ...
+    Source:   [Tomb of Annihilation] body of a unicycle. The straw doll says, “You need to run away! The Sewn Sist...
+
+  [64.53%] dragon_heist/vault_of_dragons/room_5/NPC:The Sea Maidens
+    Authored: The Sea Maidens (Bregan D'aerthe is using one ofjarlaxle 's legitimate 
+business enterprises - the S...
+    Source:   [Out of the Abyss] n
+the
+Deep
+Father,"prt)cla1ming
+hm‘!
+the
+new
+god
+other
+peopk‘
+she
+has
+backed
+up
+h...
+
+  [66.04%] dragon_heist/vault_of_dragons/room_5/NPC:During
+    Authored: During (" 
+ROOFTOP CHASE: WINTER 
+A Zhent named Yevette Blackwater (CE female Tethyrian human swashb...
+    Source:   [Dungeon of the Mad Mage] labaster with a fake Ud 
+carved to appear openable - a false tomb built to...
+
+  [69.65%] dragon_heist/vault_of_dragons/room_5/read_aloud
+    Authored: and arrange th em in plac es 
+(and at the proper angles) so that s unlight from outside 
+can be refl...
+    Source:   [Baldur's Gate - Descent into Avernus] it takes for the Flaming Fist to arrive, 
+and roll on the Fla...
+
+  [64.97%] dragon_heist/vault_of_dragons/room_6/NPC:The Sea Maidens
+    Authored: The Sea Maidens (Bregan D'aerthe is using one ofjarlaxle 's legitimate 
+business enterprises - the S...
+    Source:   [Out of the Abyss] n
+the
+Deep
+Father,"prt)cla1ming
+hm‘!
+the
+new
+god
+other
+peopk‘
+she
+has
+backed
+up
+h...
+
+  [65.97%] dragon_heist/vault_of_dragons/room_6/NPC:During
+    Authored: During (" 
+ROOFTOP CHASE: WINTER 
+A Zhent named Yevette Blackwater (CE female Tethyrian human swashb...
+    Source:   [Dungeon of the Mad Mage] labaster with a fake Ud 
+carved to appear openable - a false tomb built to...
+
+  [66.60%] dragon_heist/vault_of_dragons/room_6/NPC:Strength
+    Authored: Strength (Make a DC 10 Strength (Athlet ­ics) check): ...
+    Source:   [Baldur's Gate - Descent into Avernus] o its cattle herds. 
+Ravenshade trades in inks, dyes, gems, a...
+
+  [68.98%] dragon_heist/vault_of_dragons/room_6/read_aloud
+    Authored: ala in and hostile 
+toward all others . It rolls initiative to determine when it acts. It 
+disappear...
+    Source:   [Strixhaven_ A Curriculum of Chaos] this encounter on the tracking sheet.
+Chaos in the Kitchen
+Even ...
+
+  [67.45%] dragon_heist/vault_of_dragons/room_7/NPC:Others
+    Authored: Others (Others think it's 
+haunted by the ghosts of the Kolat brothers): ...
+    Source:   [Tomb of Annihilation] body of a unicycle. The straw doll says, “You need to run away! The Sewn Sist...
+
+  [64.79%] dragon_heist/vault_of_dragons/room_7/NPC:The Sea Maidens
+    Authored: The Sea Maidens (Bregan D'aerthe is using one ofjarlaxle 's legitimate 
+business enterprises - the S...
+    Source:   [Out of the Abyss] n
+the
+Deep
+Father,"prt)cla1ming
+hm‘!
+the
+new
+god
+other
+peopk‘
+she
+has
+backed
+up
+h...
+
+  [66.00%] dragon_heist/vault_of_dragons/room_7/NPC:During
+    Authored: During (" 
+ROOFTOP CHASE: WINTER 
+A Zhent named Yevette Blackwater (CE female Tethyrian human swashb...
+    Source:   [Dungeon of the Mad Mage] labaster with a fake Ud 
+carved to appear openable - a false tomb built to...
+
+  [69.62%] dragon_heist/vault_of_dragons/room_7/read_aloud
+    Authored: and arrange th em in plac es 
+(and at the proper angles) so that s unlight from outside 
+can be refl...
+    Source:   [Baldur's Gate - Descent into Avernus] it takes for the Flaming Fist to arrive, 
+and roll on the Fla...
+
+  [67.08%] dragon_heist/xanathar_lair/room_0
+    Authored: \f'l IS till ndVI'Illtlll (110 II( l , II I th ~U 
+l(•t,lt d ( 11111{1( It I I (VI It:~ ldl>lt " yOt...
+    Source:   [Tomb of Annihilation] so he survives the run. Draza is about to be thrown into the pit with a pair ...
+
+  [67.58%] dragon_heist/xanathar_lair/room_0/NPC:Mad Mage
+    Authored: Mad Mage (l with 
+the book Waterdeep: Dungeon of the Mad Mage): ...
+    Source:   [Dungeon of the Mad Mage] labaster with a fake Ud 
+carved to appear openable - a false tomb built to...
+
+  [69.87%] dragon_heist/xanathar_lair/room_0/NPC:Dungeon Master
+    Authored: Dungeon Master (Magi c items are described in the Dungeon Master 's Guide, unless the 
+adventure's t...
+    Source:   [Player's Handbook] ucan spend these points tofuelvarious kifeatures.
+Youstart knowing three such fe...
+
+  [64.60%] dragon_heist/xanathar_lair/room_0/NPC:Stvord Cons
+    Authored: Stvord Cons (u 11o11 nt 1'111 IJ:H lq~ro111 HI (d sc I ib d in 
+the Stvord Cons/ Ad111 nltllt 'l ·):...
+    Source:   [Baldur's Gate - Descent into Avernus] l good human knights ). The couple's 
+presence shapes the inn...
+
+  [69.90%] dragon_heist/xanathar_lair/room_0/read_aloud
+    Authored: orr 
+it. The kenku is 60 feet away from the characters at the 
+start of the chase . . 
+f . t the ken...
+    Source:   [Baldur's Gate - Descent into Avernus] ers are near. Vatilan remains by the 
+nalfeshnee's side until...
+
+  [68.49%] dragon_heist/xanathar_lair/room_1
+    Authored: ized representation of Xanathar-is 
+marked next to the tunnel that leads in the right direc­
+tion. T...
+    Source:   [Baldur's Gate - Descent into Avernus] much noise here alerts the hell­
+wasps in area N2. Creatures ...
+
+  [66.97%] dragon_heist/xanathar_lair/room_1/NPC:Underlings
+    Authored: Underlings (A SSASSINATION 
+Killing one of Xanathar's most trusted underlings , such 
+as Ahmaergo or...
+    Source:   [Ghosts of Saltmarsh] ir sinister plans. In almost every court in the land, from the most remote bac...
+
+  [68.74%] dragon_heist/xanathar_lair/room_1/NPC:Doorknobs
+    Authored: Doorknobs (Doorknobs 
+are set into stone fixtures shaped like Xanathar's syrn· 
+~ol): ...
+    Source:   [Dungeon of the Mad Mage] .) 
+6. TEMPLE OF DUMATHOIN 
+~~~~~~~~-
+This ancient temple of Dumathoin has...
+
+  [65.81%] dragon_heist/xanathar_lair/room_1/NPC:Telekinetic Ray
+    Authored: Telekinetic Ray (It uses its Telekinetic Ray to transport 
+its pet fish, Sylgar , if it's within ran...
+    Source:   [Strixhaven_ A Curriculum of Chaos] of the observation huts (areas W2, W7, W9, W10, and W14) are 10 ...
+
+  [68.79%] dragon_heist/xanathar_lair/room_1/read_aloud
+    Authored: ala in and hostile 
+toward all others . It rolls initiative to determine when it acts. It 
+disappear...
+    Source:   [Strixhaven_ A Curriculum of Chaos] this encounter on the tracking sheet.
+Chaos in the Kitchen
+Even ...
+
+  [70.45%] dragon_heist/xanathar_lair/room_2
+    Authored: 1st-level characters for t~is 
+adventure, consider setting aside the first game sesswn 
+for characte...
+    Source:   [Baldur's Gate - Descent into Avernus] that you can use to rein­
+force the flavor of adventuring in ...
+
+  [67.07%] dragon_heist/xanathar_lair/room_2/NPC:Guid
+    Authored: Guid (RUNNING THE ADVENTURE 
+To run this adv entur e, you nee d the D&D fifth edition 
+core rulebook...
+    Source:   [Baldur's Gate - Descent into Avernus] el, a series of encounters leads them 
+to Bel, the pit fiend ...
+
+  [65.66%] dragon_heist/xanathar_lair/room_2/NPC:North Ward
+    Authored: North Ward (" Th family 
+ha~ a large villa in the North Ward, on the eas t side of the High Road bet...
+    Source:   [Xanathar's Guide to Everything] Aterribleblightinyourhomecommunitycausedcropstofail,andmanystarved....
+
+  [65.67%] dragon_heist/xanathar_lair/room_2/NPC:During
+    Authored: During (" 
+ROOFTOP CHASE: WINTER 
+A Zhent named Yevette Blackwater (CE female Tethyrian human swashb...
+    Source:   [Out of the Abyss] LtS
+and
+attacks
+when
+creatures
+enter
+this
+rllanlller.
+She
+gloats
+about
+how
+the
+ch...
+
+  [63.38%] dragon_heist/xanathar_lair/room_2/read_aloud
+    Authored: ndbook 
+is availab le for purchase in Waterdeep at normal prices. 
+CHARACTER BACKGROUNDS 
+Players lo...
+    Source:   [Xanathar's Guide to Everything] undinaforbiddenplace,Iencounteredanotherworldlybeingthatofferedtoen...
+
+  [70.12%] dragon_heist/xanathar_lair/room_3
+    Authored: 1st-level characters for t~is 
+adventure, consider setting aside the first game sesswn 
+for characte...
+    Source:   [Baldur's Gate - Descent into Avernus] that you can use to rein­
+force the flavor of adventuring in ...
+
+  [66.62%] dragon_heist/xanathar_lair/room_3/NPC:Guid
+    Authored: Guid (RUNNING THE ADVENTURE 
+To run this adv entur e, you nee d the D&D fifth edition 
+core rulebook...
+    Source:   [Baldur's Gate - Descent into Avernus] el, a series of encounters leads them 
+to Bel, the pit fiend ...
+
+  [65.54%] dragon_heist/xanathar_lair/room_3/NPC:North Ward
+    Authored: North Ward (" Th family 
+ha~ a large villa in the North Ward, on the eas t side of the High Road bet...
+    Source:   [Xanathar's Guide to Everything] Aterribleblightinyourhomecommunitycausedcropstofail,andmanystarved....
+
+  [65.90%] dragon_heist/xanathar_lair/room_3/NPC:During
+    Authored: During (" 
+ROOFTOP CHASE: WINTER 
+A Zhent named Yevette Blackwater (CE female Tethyrian human swashb...
+    Source:   [Out of the Abyss] LtS
+and
+attacks
+when
+creatures
+enter
+this
+rllanlller.
+She
+gloats
+about
+how
+the
+ch...
+
+  [63.50%] dragon_heist/xanathar_lair/room_3/read_aloud
+    Authored: ndbook 
+is availab le for purchase in Waterdeep at normal prices. 
+CHARACTER BACKGROUNDS 
+Players lo...
+    Source:   [Xanathar's Guide to Everything] undinaforbiddenplace,Iencounteredanotherworldlybeingthatofferedtoen...
+
+  [71.71%] dragon_heist/xanathar_lair/room_4
+    Authored: l stairs curl up into the tower and down into 
+the cellar. Set into the west wall is a fireplace bla...
+    Source:   [Baldur's Gate - Descent into Avernus] into the sky. You watch her silhouette dwindle until it is 
+s...
+
+  [68.11%] dragon_heist/xanathar_lair/room_4/NPC:Inside
+    Authored: Inside (The front door has a sliding peephole that 
+can be opened from the inside): ...
+    Source:   [Player's Handbook] (+1).
+Bob fills in Bruenor's final hit points: 10 + his
+Constitution modifier of...
+
+  [66.55%] dragon_heist/xanathar_lair/room_4/NPC:Rishaal
+    Authored: Rishaal (The shop is managed by a short dragon born of gold 
+dragon ancestry named Rishaal the Page ...
+    Source:   [Xanathar's Guide to Everything] untilthespellends,causingyoutobecomeheavilyobscuredtoothers.Theshad...
+
+  [69.99%] dragon_heist/xanathar_lair/room_4/NPC:Deepwater Harbor
+    Authored: Deepwater Harbor (" 
+3rd "A young bronze dragon has taken up resi­
+dence in Deepwater Harbor): ...
+    Source:   [Mordenkiannen Presents: Monsters of the Multiverse] that an in­
+dividual is in the lair to target t...
+
+  [68.14%] dragon_heist/xanathar_lair/room_4/read_aloud
+    Authored: to squeeze through. 
+Treasure. A thorough search of the room yields a ran ­
+dom treas ure , determin...
+    Source:   [Tasha's Cauldron of Everything] ; you can use some, all, or none of them. 
+ADDITIONAL BARD SPELLS 
+...
+
+  [70.05%] dragon_heist/xanathar_lair/room_5
+    Authored: 1st-level characters for t~is 
+adventure, consider setting aside the first game sesswn 
+for characte...
+    Source:   [Baldur's Gate - Descent into Avernus] that you can use to rein­
+force the flavor of adventuring in ...
+
+  [67.13%] dragon_heist/xanathar_lair/room_5/NPC:Guid
+    Authored: Guid (RUNNING THE ADVENTURE 
+To run this adv entur e, you nee d the D&D fifth edition 
+core rulebook...
+    Source:   [Baldur's Gate - Descent into Avernus] el, a series of encounters leads them 
+to Bel, the pit fiend ...
+
+  [65.66%] dragon_heist/xanathar_lair/room_5/NPC:North Ward
+    Authored: North Ward (" Th family 
+ha~ a large villa in the North Ward, on the eas t side of the High Road bet...
+    Source:   [Ghosts of Saltmarsh] ir sinister plans. In almost every court in the land, from the most remote bac...
+
+  [65.52%] dragon_heist/xanathar_lair/room_5/NPC:During
+    Authored: During (" 
+ROOFTOP CHASE: WINTER 
+A Zhent named Yevette Blackwater (CE female Tethyrian human swashb...
+    Source:   [Out of the Abyss] LtS
+and
+attacks
+when
+creatures
+enter
+this
+rllanlller.
+She
+gloats
+about
+how
+the
+ch...
+
+  [63.00%] dragon_heist/xanathar_lair/room_5/read_aloud
+    Authored: ndbook 
+is availab le for purchase in Waterdeep at normal prices. 
+CHARACTER BACKGROUNDS 
+Players lo...
+    Source:   [Xanathar's Guide to Everything] undinaforbiddenplace,Iencounteredanotherworldlybeingthatofferedtoen...
+
+  [69.92%] dragon_heist/xanathar_lair/room_6
+    Authored: 1st-level characters for t~is 
+adventure, consider setting aside the first game sesswn 
+for characte...
+    Source:   [Baldur's Gate - Descent into Avernus] that you can use to rein­
+force the flavor of adventuring in ...
+
+  [67.36%] dragon_heist/xanathar_lair/room_6/NPC:Guid
+    Authored: Guid (RUNNING THE ADVENTURE 
+To run this adv entur e, you nee d the D&D fifth edition 
+core rulebook...
+    Source:   [Baldur's Gate - Descent into Avernus] el, a series of encounters leads them 
+to Bel, the pit fiend ...
+
+  [66.01%] dragon_heist/xanathar_lair/room_6/NPC:North Ward
+    Authored: North Ward (" Th family 
+ha~ a large villa in the North Ward, on the eas t side of the High Road bet...
+    Source:   [Ghosts of Saltmarsh] ir sinister plans. In almost every court in the land, from the most remote bac...
+
+  [65.75%] dragon_heist/xanathar_lair/room_6/NPC:During
+    Authored: During (" 
+ROOFTOP CHASE: WINTER 
+A Zhent named Yevette Blackwater (CE female Tethyrian human swashb...
+    Source:   [Out of the Abyss] LtS
+and
+attacks
+when
+creatures
+enter
+this
+rllanlller.
+She
+gloats
+about
+how
+the
+ch...
+
+  [63.29%] dragon_heist/xanathar_lair/room_6/read_aloud
+    Authored: ndbook 
+is availab le for purchase in Waterdeep at normal prices. 
+CHARACTER BACKGROUNDS 
+Players lo...
+    Source:   [Xanathar's Guide to Everything] undinaforbiddenplace,Iencounteredanotherworldlybeingthatofferedtoen...
+
+  [68.13%] dragon_heist/xanathar_lair/room_7
+    Authored: 1 ch.tptt•t 1 
+of the Dtmg on Ma t r 's Gwd to II olC~ .I t:h 11 .tel ,. I Jnk 
+and ascent wtthlll ·...
+    Source:   [Baldur's Gate - Descent into Avernus] insan e cartographe r. Distances and travel times be­
+tween l...
+
+  [64.72%] dragon_heist/xanathar_lair/room_7/NPC:Boss
+    Authored: Boss (tllasatgll lll (lieu 
+tenant, 25) , ll areth ( apta111 , 50) 
+Force Grey Ranks: Gta Hand lntti...
+    Source:   [Candlekeep Mysteries] moving at a speed of 30 feet on eachof its turns and making no attacks. This ...
+
+  [65.95%] dragon_heist/xanathar_lair/room_7/NPC:Magists
+    Authored: Magists (Arcane spellcasters living in the 
+cily are requir ed by law to registe r with the Watchful...
+    Source:   [Dragon Heist] av e alt·ead arri ed in Wat erdeep and borne 
+witn to ome of its man wonders. But in ...
+
+  [66.32%] dragon_heist/xanathar_lair/room_7/read_aloud
+    Authored: always involves the perpetration 
+of a serious crime. Possibilitie s include murdering a 
+guild memb...
+    Source:   [Baldur's Gate - Descent into Avernus] a bit of a hopping dance. The madcaps 
+and redcaps think this...
+
+  [68.77%] dragon_heist/xanathar_lair/room_8
+    Authored: A waterway cuts through the rock, its current fast and cold. A flat-bottomed boat is moored to an ir...
+    Source:   [Mordenkainen's Tome of Foes] ng throws, it can’t take reactions, and the only action it can take is...
+
+  [69.31%] dragon_heist/xanathar_lair/room_8/read_aloud
+    Authored: A waterway cuts through the rock, its current fast and dark. A flat-bottomed boat is moored to an ir...
+    Source:   [Mordenkainen's Tome of Foes] ng throws, it can’t take reactions, and the only action it can take is...
+
+  [68.35%] dragon_heist/yawning_portal/room_0
+    Authored: 1st-level characters for t~is 
+adventure, consider setting aside the first game sesswn 
+for characte...
+    Source:   [Baldur's Gate - Descent into Avernus] that you can use to rein­
+force the flavor of adventuring in ...
+
+  [66.82%] dragon_heist/yawning_portal/room_0/NPC:Mad Mage
+    Authored: Mad Mage (l with 
+the book Waterdeep: Dungeon of the Mad Mage): ...
+    Source:   [Dungeon of the Mad Mage] labaster with a fake Ud 
+carved to appear openable - a false tomb built to...
+
+  [64.74%] dragon_heist/yawning_portal/room_0/NPC:Undermountain
+    Authored: Undermountain (Now under the mon­
+ster's co ntrol , Me loon actively discourages adventurers 
+from e...
+    Source:   [Tasha's Cauldron of Everything] y col­
+lect rare holy books and record the life stories of 
+mir acl...
+
+  [70.15%] dragon_heist/yawning_portal/room_0/NPC:Market
+    Authored: Market (lrfir <,! 'J he~ ~ark t in the Castle Ward is the largest market square; 
+111 the city, but ...
+    Source:   [Baldur's Gate - Descent into Avernus] for power that exists in every mortal heart and awakens 
+it w...
+
+  [73.66%] dragon_heist/yawning_portal/room_0/read_aloud
+    Authored: e m chani m is used to 
+lower ad •nt · 1 . C . urcr mto t 1C well and hoist them out. More 10 01·mat...
+    Source:   [Baldur's Gate - Descent into Avernus] he pouch willingly, though 
+it can be magically cha rmed into...
+
+  [73.49%] dragon_heist/yawning_portal/room_1
+    Authored: l Alley. Characters can refurnish, 
+rebuild, rename, and otherwise personalize their new 
+stronghold...
+    Source:   [Baldur's Gate - Descent into Avernus] unoccupied 
+space within S feet of you and follows you 
+aroun...
+
+  [66.46%] dragon_heist/yawning_portal/room_1/NPC:North Ward
+    Authored: North Ward (" Th family 
+ha~ a large villa in the North Ward, on the eas t side of the High Road bet...
+    Source:   [Xanathar's Guide to Everything] Aterribleblightinyourhomecommunitycausedcropstofail,andmanystarved....
+
+  [64.64%] dragon_heist/yawning_portal/room_1/NPC:Fellowship
+    Authored: Fellowship (GUILD S OF WATERDEEP 
+Bakers' Guild 
+Carpenters', Roofers', and Plaisterers' Guild 
+Cell...
+    Source:   [Dungeon of the Mad Mage] labaster with a fake Ud 
+carved to appear openable - a false tomb built to...
+
+  [66.82%] dragon_heist/yawning_portal/room_1/NPC:Each Bregan
+    Authored: Each Bregan (Reward: Each Bregan D'aerthe character gains 2 renown): ...
+    Source:   [Baldur's Gate - Descent into Avernus] cho here until the end ohime." 
+Adorning the wall across from...
+
+  [70.43%] dragon_heist/yawning_portal/room_1/read_aloud
+    Authored: rs', and Brewe rs' Guild ; and bread and past ries 
+from the Bakers' Guild. The list goes on. 
+The "...
+    Source:   [Baldur's Gate - Descent into Avernus] on roars to alert Krull (see 
+1st level (4 slots): cure wound...
+
+  [68.98%] dragon_heist/yawning_portal/room_2
+    Authored: 1st-level characters for t~is 
+adventure, consider setting aside the first game sesswn 
+for characte...
+    Source:   [Baldur's Gate - Descent into Avernus] that you can use to rein­
+force the flavor of adventuring in ...
+
+  [66.31%] dragon_heist/yawning_portal/room_2/NPC:North Ward
+    Authored: North Ward (" Th family 
+ha~ a large villa in the North Ward, on the eas t side of the High Road bet...
+    Source:   [Xanathar's Guide to Everything] Aterribleblightinyourhomecommunitycausedcropstofail,andmanystarved....
+
+  [67.21%] dragon_heist/yawning_portal/room_2/NPC:Mad Mage
+    Authored: Mad Mage (l with 
+the book Waterdeep: Dungeon of the Mad Mage): ...
+    Source:   [Dungeon of the Mad Mage] labaster with a fake Ud 
+carved to appear openable - a false tomb built to...
+
+  [64.65%] dragon_heist/yawning_portal/room_2/NPC:Undermountain
+    Authored: Undermountain (Now under the mon­
+ster's co ntrol , Me loon actively discourages adventurers 
+from e...
+    Source:   [Tasha's Cauldron of Everything] y col­
+lect rare holy books and record the life stories of 
+mir acl...
+
+  [71.94%] dragon_heist/yawning_portal/room_2/read_aloud
+    Authored: until the passage of a period of time specified by one 
+who is attuned to the staff. 
+The dragonstaf...
+    Source:   [Baldur's Gate - Descent into Avernus] n the shores of the River 
+Styx below Elturel are the biggest...
+
+  [68.81%] dragon_heist/yawning_portal/room_3
+    Authored: 1st-level characters for t~is 
+adventure, consider setting aside the first game sesswn 
+for characte...
+    Source:   [Baldur's Gate - Descent into Avernus] that you can use to rein­
+force the flavor of adventuring in ...
+
+  [66.24%] dragon_heist/yawning_portal/room_3/NPC:North Ward
+    Authored: North Ward (" Th family 
+ha~ a large villa in the North Ward, on the eas t side of the High Road bet...
+    Source:   [Xanathar's Guide to Everything] Aterribleblightinyourhomecommunitycausedcropstofail,andmanystarved....
+
+  [67.05%] dragon_heist/yawning_portal/room_3/NPC:Mad Mage
+    Authored: Mad Mage (l with 
+the book Waterdeep: Dungeon of the Mad Mage): ...
+    Source:   [Out of the Abyss] alls.
+fused
+Pcebles.
+The
+svirfneblin
+holding
+the
+bag
+is
+Peehles.
+He
+came
+to
+Manto...
+
+  [64.70%] dragon_heist/yawning_portal/room_3/NPC:Undermountain
+    Authored: Undermountain (Now under the mon­
+ster's co ntrol , Me loon actively discourages adventurers 
+from e...
+    Source:   [Dragon Heist] meetmg Renaer when he was but a child 
+r nd can easily imagine a scenario in which Da...
+
+  [71.91%] dragon_heist/yawning_portal/room_3/read_aloud
+    Authored: until the passage of a period of time specified by one 
+who is attuned to the staff. 
+The dragonstaf...
+    Source:   [Baldur's Gate - Descent into Avernus] n the shores of the River 
+Styx below Elturel are the biggest...
+
+  [68.99%] dragon_heist/yawning_portal/room_4
+    Authored: 1st-level characters for t~is 
+adventure, consider setting aside the first game sesswn 
+for characte...
+    Source:   [Baldur's Gate - Descent into Avernus] that you can use to rein­
+force the flavor of adventuring in ...
+
+  [67.09%] dragon_heist/yawning_portal/room_4/NPC:Mad Mage
+    Authored: Mad Mage (l with 
+the book Waterdeep: Dungeon of the Mad Mage): ...
+    Source:   [Dungeon of the Mad Mage] labaster with a fake Ud 
+carved to appear openable - a false tomb built to...
+
+  [64.74%] dragon_heist/yawning_portal/room_4/NPC:Undermountain
+    Authored: Undermountain (Now under the mon­
+ster's co ntrol , Me loon actively discourages adventurers 
+from e...
+    Source:   [Ghosts of Saltmarsh] , as does the metal grate in the deck that offers access to the lower decks. A...
+
+  [70.60%] dragon_heist/yawning_portal/room_4/NPC:Market
+    Authored: Market (lrfir <,! 'J he~ ~ark t in the Castle Ward is the largest market square; 
+111 the city, but ...
+    Source:   [Baldur's Gate - Descent into Avernus] for power that exists in every mortal heart and awakens 
+it w...
+
+  [74.10%] dragon_heist/yawning_portal/room_4/read_aloud
+    Authored: e m chani m is used to 
+lower ad •nt · 1 . C . urcr mto t 1C well and hoist them out. More 10 01·mat...
+    Source:   [Baldur's Gate - Descent into Avernus] he pouch willingly, though 
+it can be magically cha rmed into...
+
+  [67.35%] dragon_heist/zhentarim_hideout/room_0
+    Authored: \f'l IS till ndVI'Illtlll (110 II( l , II I th ~U 
+l(•t,lt d ( 11111{1( It I I (VI It:~ ldl>lt " yOt...
+    Source:   [Tomb of Annihilation] so he survives the run. Draza is about to be thrown into the pit with a pair ...
+
+  [68.74%] dragon_heist/zhentarim_hideout/room_0/NPC:Mad Mage
+    Authored: Mad Mage (l with 
+the book Waterdeep: Dungeon of the Mad Mage): ...
+    Source:   [Xanathar's Guide to Everything] untilthespellends,causingyoutobecomeheavilyobscuredtoothers.Theshad...
+
+  [70.32%] dragon_heist/zhentarim_hideout/room_0/NPC:Dungeon Master
+    Authored: Dungeon Master (Magi c items are described in the Dungeon Master 's Guide, unless the 
+adventure's t...
+    Source:   [Volo's Guide to Monsters] those slain by russet mold grow new moldies. Not the legacy most of us as...
+
+  [65.35%] dragon_heist/zhentarim_hideout/room_0/NPC:Stvord Cons
+    Authored: Stvord Cons (u 11o11 nt 1'111 IJ:H lq~ro111 HI (d sc I ib d in 
+the Stvord Cons/ Ad111 nltllt 'l ·):...
+    Source:   [Baldur's Gate - Descent into Avernus] l good human knights ). The couple's 
+presence shapes the inn...
+
+  [69.59%] dragon_heist/zhentarim_hideout/room_0/read_aloud
+    Authored: orr 
+it. The kenku is 60 feet away from the characters at the 
+start of the chase . . 
+f . t the ken...
+    Source:   [Baldur's Gate - Descent into Avernus] acters can count on Kostchtchie to 
+create a distraction big ...
+
+  [69.47%] dragon_heist/zhentarim_hideout/room_1
+    Authored: 1st-level characters for t~is 
+adventure, consider setting aside the first game sesswn 
+for characte...
+    Source:   [Baldur's Gate - Descent into Avernus] that you can use to rein­
+force the flavor of adventuring in ...
+
+  [66.74%] dragon_heist/zhentarim_hideout/room_1/NPC:Guid
+    Authored: Guid (RUNNING THE ADVENTURE 
+To run this adv entur e, you nee d the D&D fifth edition 
+core rulebook...
+    Source:   [Baldur's Gate - Descent into Avernus] el, a series of encounters leads them 
+to Bel, the pit fiend ...
+
+  [67.57%] dragon_heist/zhentarim_hideout/room_1/NPC:North Ward
+    Authored: North Ward (" Th family 
+ha~ a large villa in the North Ward, on the eas t side of the High Road bet...
+    Source:   [Xanathar's Guide to Everything] Aterribleblightinyourhomecommunitycausedcropstofail,andmanystarved....
+
+  [66.87%] dragon_heist/zhentarim_hideout/room_1/NPC:Strength
+    Authored: Strength (Make a DC 10 Strength (Athlet ­ics) check): ...
+    Source:   [Baldur's Gate - Descent into Avernus] n any potentiaJ source 
+of soul coins. Targets who give up th...
+
+  [65.05%] dragon_heist/zhentarim_hideout/room_1/read_aloud
+    Authored: ndbook 
+is availab le for purchase in Waterdeep at normal prices. 
+CHARACTER BACKGROUNDS 
+Players lo...
+    Source:   [Xanathar's Guide to Everything] undinaforbiddenplace,Iencounteredanotherworldlybeingthatofferedtoen...
+
+  [70.02%] dragon_heist/zhentarim_hideout/room_2
+    Authored: 1st-level characters for t~is 
+adventure, consider setting aside the first game sesswn 
+for characte...
+    Source:   [Baldur's Gate - Descent into Avernus] that you can use to rein­
+force the flavor of adventuring in ...
+
+  [66.84%] dragon_heist/zhentarim_hideout/room_2/NPC:Guid
+    Authored: Guid (RUNNING THE ADVENTURE 
+To run this adv entur e, you nee d the D&D fifth edition 
+core rulebook...
+    Source:   [Baldur's Gate - Descent into Avernus] el, a series of encounters leads them 
+to Bel, the pit fiend ...
+
+  [67.33%] dragon_heist/zhentarim_hideout/room_2/NPC:North Ward
+    Authored: North Ward (" Th family 
+ha~ a large villa in the North Ward, on the eas t side of the High Road bet...
+    Source:   [Xanathar's Guide to Everything] Aterribleblightinyourhomecommunitycausedcropstofail,andmanystarved....
+
+  [66.51%] dragon_heist/zhentarim_hideout/room_2/NPC:Strength
+    Authored: Strength (Make a DC 10 Strength (Athlet ­ics) check): ...
+    Source:   [Baldur's Gate - Descent into Avernus] n any potentiaJ source 
+of soul coins. Targets who give up th...
+
+  [65.14%] dragon_heist/zhentarim_hideout/room_2/read_aloud
+    Authored: ndbook 
+is availab le for purchase in Waterdeep at normal prices. 
+CHARACTER BACKGROUNDS 
+Players lo...
+    Source:   [Xanathar's Guide to Everything] undinaforbiddenplace,Iencounteredanotherworldlybeingthatofferedtoen...
+
+  [72.19%] dragon_heist/zhentarim_hideout/room_3
+    Authored: isruption. If Caladorn's ghost is present 
+when one or both magic items are removed from the 
+sarcop...
+    Source:   [Baldur's Gate - Descent into Avernus] mpur. 
+SHRINE OF THE SUFFERING 
+This simple stone shrine to I...
+
+  [68.89%] dragon_heist/zhentarim_hideout/room_3/NPC:Black Pudding
+    Authored: Black Pudding (A crack in 
+the wa ll concea ls a black pudding that gushes out and 
+attacks characte...
+    Source:   [Volo's Guide to Monsters] ial they grasp or caress with their tentacles. The imprinting causes impe...
+
+  [67.11%] dragon_heist/zhentarim_hideout/room_3/NPC:Cast
+    Authored: Cast (Thl' forecastle is within stght of the satlors on the main 
+deck (nreajl), the aft castle lowe...
+    Source:   [Tasha's Cauldron of Everything] 10 feet for 1 hour . 
+3 Resilience. The drink er gains a +1 bon us ...
+
+  [66.36%] dragon_heist/zhentarim_hideout/room_3/NPC:Lords
+    Authored: Lords (Waterdeep is one of the most influential and invested 
+members of the Lords' Alliance): ...
+    Source:   [Ghosts of Saltmarsh] ir sinister plans. In almost every court in the land, from the most remote bac...
+
+  [69.50%] dragon_heist/zhentarim_hideout/room_3/read_aloud
+    Authored: 's 
+no walkway in this arterial passage that leads to areas 
+B3 and B4. 
+CHAPTER 4 I DRAGON SEASO 
+M...
+    Source:   [Player's Handbook] ges ithas, ifany.Voulearn
+whether anyspells are affecting theitem and what they
+...
+
+  [70.90%] dragon_heist/zhentarim_hideout/room_4
+    Authored: l stairs curl up into the tower and down into 
+the cellar. Set into the west wall is a fireplace bla...
+    Source:   [Baldur's Gate - Descent into Avernus] into the sky. You watch her silhouette dwindle until it is 
+s...
+
+  [68.10%] dragon_heist/zhentarim_hideout/room_4/NPC:Inside
+    Authored: Inside (The front door has a sliding peephole that 
+can be opened from the inside): ...
+    Source:   [Out of the Abyss] s
+nfjuililex
+table
+to
+dt-icrmiiie
+the
+nature
+of
+(ha
+madness.
+which
+is
+Ll
+Characte...
+
+  [67.61%] dragon_heist/zhentarim_hideout/room_4/NPC:Rishaal
+    Authored: Rishaal (The shop is managed by a short dragon born of gold 
+dragon ancestry named Rishaal the Page ...
+    Source:   [Xanathar's Guide to Everything] untilthespellends,causingyoutobecomeheavilyobscuredtoothers.Theshad...
+
+  [70.56%] dragon_heist/zhentarim_hideout/room_4/NPC:Deepwater Harbor
+    Authored: Deepwater Harbor (" 
+3rd "A young bronze dragon has taken up resi­
+dence in Deepwater Harbor): ...
+    Source:   [Mordenkiannen Presents: Monsters of the Multiverse] and take 5 (ldlO) fire damage 
+plus 9 (2d8) aci...
+
+  [68.98%] dragon_heist/zhentarim_hideout/room_4/read_aloud
+    Authored: to squeeze through. 
+Treasure. A thorough search of the room yields a ran ­
+dom treas ure , determin...
+    Source:   [Baldur's Gate - Descent into Avernus] rd is away. If his worst 
+fears come true and the Flaming Fis...
+
+  [67.27%] dragon_heist/zhentarim_hideout/room_5
+    Authored: 1 ch.tptt•t 1 
+of the Dtmg on Ma t r 's Gwd to II olC~ .I t:h 11 .tel ,. I Jnk 
+and ascent wtthlll ·...
+    Source:   [Baldur's Gate - Descent into Avernus] insan e cartographe r. Distances and travel times be­
+tween l...
+
+  [66.64%] dragon_heist/zhentarim_hideout/room_5/NPC:Magists
+    Authored: Magists (Arcane spellcasters living in the 
+cily are requir ed by law to registe r with the Watchful...
+    Source:   [Ghosts of Saltmarsh] ir sinister plans. In almost every court in the land, from the most remote bac...
+
+  [65.80%] dragon_heist/zhentarim_hideout/room_5/NPC:Gta Hand
+    Authored: Gta Hand (tllasatgll lll (lieu 
+tenant, 25) , ll areth ( apta111 , 50) 
+Force Grey Ranks: Gta Hand l...
+    Source:   [Xanathar's Guide to Everything] Aterribleblightinyourhomecommunitycausedcropstofail,andmanystarved....
+
+  [65.48%] dragon_heist/zhentarim_hideout/room_5/read_aloud
+    Authored: always involves the perpetration 
+of a serious crime. Possibilitie s include murdering a 
+guild memb...
+    Source:   [Baldur's Gate - Descent into Avernus] a bit of a hopping dance. The madcaps 
+and redcaps think this...

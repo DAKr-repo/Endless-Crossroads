@@ -1508,3 +1508,395 @@ ROOM_FRAGMENTS: Dict[str, List[str]] = {
         "From here, you can see how far the blight has spread. Too far.",
     ],
 }
+
+
+# ---------------------------------------------------------------------------
+# 9. MODULAR QUEST MODULES — Faction-introducing story quests (#218-#221)
+# ---------------------------------------------------------------------------
+# These are narrative quest modules triggered by gameplay events (not chapter
+# progression). Each represents a faction contact point with 3-5 conceptual
+# rooms, social scenes, and faction reputation consequences.
+#
+# Trigger conditions: checked by quest_trigger.py / narrative_engine.py
+# Objectives: matched by check_objective() triggers
+# Prerequisites: gated by prior quest completion
+
+MODULAR_QUEST_TEMPLATES: List[Dict[str, Any]] = [
+    # ─── #218: THE HIVE'S DYING QUEEN ───────────────────────────────────
+    # First faction contact. Introduces the Hive, the gift-cycle, and the
+    # Leech Cascade tension. Trigger: Zone 1-2 NPC encounter.
+    {
+        "id": "mod_hive_queen",
+        "type": "side",
+        "title": "The Hive's Dying Queen",
+        "description": (
+            "A Hive scout — thorax scarred, antennae twitching — stumbles into "
+            "your path. She is Stinger, last of the Queen Mother's honour guard. "
+            "The breeding chambers are under siege: Rot-choked fungi have sealed "
+            "the royal gallery, and the Queen's sap-song grows fainter by the hour. "
+            "Stinger offers the Hive's oldest bargain — the gift-cycle. Help them, "
+            "and honeydew flows. Refuse, and the Leech Cascade begins."
+        ),
+        "objective": "kill_count_tier1_3",
+        "trigger": "zone_1",
+        "tier_hint": 1,
+        "reward": {
+            "gold": 40,
+            "item": "Honeydew Vial",
+            "description": "A wax-sealed vial of Queen's honeydew. Heals 2d6+2 HP. The Hive remembers your aid.",
+            "faction_rep": {"hive": 2},
+        },
+        "turn_in": "quest_giver",
+        "quest_npcs": [
+            {
+                "name": "Stinger",
+                "role": "quest_giver",
+                "description": (
+                    "A wasp-kin scout with compound eyes and a voice like "
+                    "dry reeds. Half her wings are torn. She clicks when "
+                    "she speaks, translating pheromone-language into words "
+                    "that almost make sense."
+                ),
+                "faction": "hive",
+                "disposition": "wary",
+                "dialogue_greeting": (
+                    "You. Soft-shell. The Queen dies. The wax cracks. The "
+                    "Rot-things grow fat on our dead. I am Stinger. I ask — "
+                    "not beg — for the gift-cycle. We give, you give. This "
+                    "is the way of the Hive."
+                ),
+                "dialogue_quest": (
+                    "Three Rot-bloated crawlers nest in the royal gallery. "
+                    "Kill them. Burn the fungal seals. The Queen cannot "
+                    "breathe. If you do this, the honeydew is yours. "
+                    "If you walk away, the Leech Cascade begins — the Hive "
+                    "takes what it needs from whoever passes."
+                ),
+                "dialogue_turn_in": (
+                    "The gallery breathes again. The Queen's song strengthens. "
+                    "You have earned the gift-cycle. Take this — honeydew, "
+                    "the Hive's covenant. Return when the wax calls."
+                ),
+            },
+        ],
+        "rooms": [
+            {
+                "name": "Wax-Sealed Gallery",
+                "description": "Hexagonal chambers of dried wax and amber resin. The walls hum with a subsonic vibration — the Queen's sap-song, growing weaker.",
+                "enemies": ["Rot Crawler", "Rot Crawler", "Spore-Bloated Drone"],
+                "tier": 1,
+            },
+            {
+                "name": "Royal Antechamber",
+                "description": "The air is thick with pheromones. Honeycombs line the walls, some still dripping golden liquid. A massive sealed door vibrates faintly.",
+                "enemies": [],
+                "loot": ["Wax Sealant", "Honeydew Vial"],
+                "tier": 1,
+            },
+            {
+                "name": "Queen's Audience Chamber",
+                "description": "The Queen Mother fills the chamber — vast, translucent, her body a living map of the Hive's network. She cannot speak. Stinger translates the pheromone-clouds.",
+                "social": True,
+                "tier": 1,
+            },
+        ],
+    },
+
+    # ─── #219: OLD CAP'S SECRET ─────────────────────────────────────────
+    # Mycelium lore quest. Introduces Root-Roads, An Cór Briste, and the
+    # Rot/Blight distinction. Trigger: Zone 2+ Mycelium node.
+    {
+        "id": "mod_old_cap",
+        "type": "side",
+        "title": "Old Cap's Secret",
+        "description": (
+            "Deep in a bioluminescent chamber, a Mycelium elder named Old Cap "
+            "grows from the wall itself — half-mushroom, half-memory. He knows "
+            "why the Root-Roads were sealed, but the knowledge costs a Crown "
+            "ingredient: Moth-Scale Powder, currency of the Canopy Court. "
+            "Old Cap claims natural Rot and the Blight are not the same thing. "
+            "He calls the true enemy by an older name: An Cór Briste — the "
+            "Broken Choir."
+        ),
+        "objective": "find_item_moth_scale_powder",
+        "trigger": "zone_2",
+        "tier_hint": 2,
+        "prerequisite": "",
+        "reward": {
+            "gold": 60,
+            "item": "Root-Road Key",
+            "description": "A living tendril that writhes toward Mycelium nodes. Unlocks fast-travel between visited network points.",
+            "faction_rep": {"mycelium": 2},
+        },
+        "turn_in": "quest_giver",
+        "quest_npcs": [
+            {
+                "name": "Old Cap",
+                "role": "quest_giver",
+                "description": (
+                    "A shelf-mushroom the size of a table, growing from "
+                    "a junction of three root-walls. A face has formed "
+                    "in the cap — ancient, patient, slightly amused. "
+                    "Bioluminescent spores drift from his gills when he speaks."
+                ),
+                "faction": "mycelium",
+                "disposition": "friendly",
+                "dialogue_greeting": (
+                    "Ah. A walker. The network felt your footsteps three "
+                    "rooms ago. Sit. Or stand. I have been here since "
+                    "before your grandmother's grandmother learned to "
+                    "tell mushrooms from stones."
+                ),
+                "dialogue_quest": (
+                    "The Root-Roads were sealed for a reason. The Elders "
+                    "call it safety. I call it cowardice. I can unseal "
+                    "them — but I need something the Canopy Court hoards: "
+                    "Moth-Scale Powder. The dust between dimensions. "
+                    "Bring it, and I will tell you what An Cór Briste "
+                    "truly means. The settlers call it the Rot. They are "
+                    "wrong. The Rot is me. The Rot is natural. What is "
+                    "killing this tree is something else entirely."
+                ),
+                "dialogue_turn_in": (
+                    "The powder dissolves into the network. The Roads "
+                    "breathe again. Now listen: the Blight is not decay. "
+                    "It is a song gone wrong. The Choir changed the Root-Song "
+                    "to fight something worse — and the side effects are "
+                    "what your people call the Rot. An Cór Briste. The "
+                    "Broken Choir. They are still singing, deep below."
+                ),
+            },
+            {
+                "name": "Maeth",
+                "role": "informant",
+                "description": (
+                    "A young woman with soil-stained hands and hollow eyes. "
+                    "She searches the Mycelium tunnels for her daughter, who "
+                    "wandered into a Root-Road before the seals held. "
+                    "Maeth does not believe the Roads are truly closed."
+                ),
+                "faction": "mycelium",
+                "disposition": "neutral",
+                "dialogue_greeting": (
+                    "Have you seen a girl? Eight years old. Red hair. "
+                    "She went into the network before they sealed it. "
+                    "The mushrooms say she's alive. I can feel her, "
+                    "through the spores. Please."
+                ),
+            },
+        ],
+        "rooms": [
+            {
+                "name": "Luminescent Junction",
+                "description": "Three root-tunnels converge in a cathedral of fungal growth. Bioluminescent threads pulse in slow waves — the Mycelium's heartbeat.",
+                "enemies": [],
+                "social": True,
+                "tier": 2,
+            },
+            {
+                "name": "Sealed Root-Road",
+                "description": "A tunnel mouth blocked by hardened amber resin. Behind the seal, you can hear something — a low vibration, like a distant choir.",
+                "enemies": ["Blight Tendril", "Spore Guardian"],
+                "tier": 2,
+            },
+            {
+                "name": "The Spreading",
+                "description": "A vast cavern where the natural Rot and the Blight visibly collide. White mycelia push against black corruption. The boundary shifts like a tide.",
+                "enemies": ["Choir Sprout"],
+                "loot": ["Mycelium Map Fragment"],
+                "tier": 2,
+            },
+        ],
+    },
+
+    # ─── #220: THE CRACKED SEAL ─────────────────────────────────────────
+    # Heartwood discovery. Introduces the Descendants, the Whisper, and
+    # the first Heartwood entrance. Trigger: Zone 1 Ash Runner encounter
+    # or Allied faction rep with any faction.
+    {
+        "id": "mod_cracked_seal",
+        "type": "side",
+        "title": "The Cracked Seal",
+        "description": (
+            "Sable — the settlement's cartographer — found something in the old "
+            "maps: a vault that doesn't match any known Arborist construction. "
+            "Its seal is cracking from the inside. Something within wants out. "
+            "The Heartwood Elders sealed these passages generations ago and "
+            "refuse to explain why. The vault bows when approached, as though "
+            "recognising visitors. A figure called the Whisper speaks through "
+            "the amber."
+        ),
+        "objective": "reach_tier_2",
+        "trigger": "zone_1",
+        "tier_hint": 1,
+        "prerequisite": "",
+        "reward": {
+            "gold": 50,
+            "item": "Amber Shard (Heartwood)",
+            "description": "A warm shard of pure heartwood amber. Vibrates near concealed passages. Heartwood entrance discovered.",
+            "faction_rep": {"heartwood_elders": 1},
+            "unlocks": "heartwood_entrance",
+        },
+        "turn_in": "informant",
+        "quest_npcs": [
+            {
+                "name": "The Whisper",
+                "role": "quest_giver",
+                "description": (
+                    "Not a person — a voice. It speaks through vibrations "
+                    "in the amber walls, through resonance in your equipment, "
+                    "through the hum of your teeth. It claims to be a "
+                    "Descendant — one who came after the Arborists and "
+                    "inherited their silence."
+                ),
+                "faction": "heartwood_elders",
+                "disposition": "neutral",
+                "dialogue_greeting": (
+                    "You hear us. Good. Most walk past and hear only "
+                    "the wood creaking. We are the Descendants. We "
+                    "inherited the Elders' vigil when they withdrew "
+                    "into the Heartwood and fell silent."
+                ),
+                "dialogue_quest": (
+                    "The seal was made to keep something in — or keep "
+                    "something out. We can no longer tell. The Elders "
+                    "forgot the reason generations ago. But the seal is "
+                    "cracking. If you help us stabilise it, we will show "
+                    "you the entrance. What you find inside... that is "
+                    "between you and the tree."
+                ),
+                "dialogue_turn_in": (
+                    "The seal holds. For now. As promised — the entrance "
+                    "to the Heartwood. The Elders will not welcome you. "
+                    "But the tree might. It remembers things its caretakers "
+                    "have forgotten."
+                ),
+            },
+        ],
+        "rooms": [
+            {
+                "name": "The Bowing Vault",
+                "description": "An Arborist vault unlike any other — the door curves inward as you approach, as if the wood is genuflecting. Amber light pulses within.",
+                "enemies": [],
+                "social": True,
+                "tier": 1,
+            },
+            {
+                "name": "Seal Chamber",
+                "description": "Song-craft murals line every surface — painted songs frozen mid-phrase. The central seal is a disc of compressed amber the size of a cart wheel, and hairline fractures web across its face.",
+                "enemies": ["Amber Echo", "Seal Guardian"],
+                "tier": 2,
+            },
+            {
+                "name": "The Threshold",
+                "description": "Beyond the seal: a passage that breathes. The walls are living wood, warm to the touch. The grain patterns spell words in a language older than the settlement.",
+                "enemies": [],
+                "loot": ["Amber Shard (Heartwood)"],
+                "tier": 2,
+            },
+        ],
+    },
+
+    # ─── #221: THE SONG BELOW ───────────────────────────────────────────
+    # Undergrove introduction. First Chorus Walker and Section Leader
+    # encounter. The Choir's song becomes audible. Endgame begins.
+    # Trigger: Zone 4 or Heartwood reached.
+    {
+        "id": "mod_song_below",
+        "type": "main",
+        "title": "The Song Below",
+        "description": (
+            "The wood vibrates. Not from wind, not from movement — from sound. "
+            "A song rises through the roots, audible only in the deepest chambers. "
+            "It is beautiful, and it is wrong. Every seventh note lands flat, and "
+            "when it does, the Blight pulses. Someone is singing the tree sick. "
+            "The grey-amber vault ahead leads down — past the Heartwood, past "
+            "the sealed corridors, into the Undergrove where the roots of all "
+            "four groves converge. The Conductor waits at the convergence."
+        ),
+        "objective": "zone_7",
+        "trigger": "zone_4",
+        "tier_hint": 4,
+        "prerequisite": "mod_cracked_seal",
+        "reward": {
+            "gold": 200,
+            "item": "Resonance Dampener",
+            "description": "A disc of counter-harmonics etched in heartwood. Reduces Choir Resonance buildup by half.",
+            "unlocks": "undergrove_entrance",
+        },
+        "turn_in": "quest_giver",
+        "quest_npcs": [
+            {
+                "name": "Section Leader Vrenn",
+                "role": "quest_giver",
+                "description": (
+                    "Once an Arborist — now something between. Their body "
+                    "is still humanoid but the skin is bark-grey, the eyes "
+                    "amber-lit from within. They speak in two voices: their "
+                    "own, and a harmonic that resonates from the walls. "
+                    "They are not hostile. They are tired."
+                ),
+                "faction": "",
+                "disposition": "wary",
+                "dialogue_greeting": (
+                    "You should not be here. The Song is stronger at this "
+                    "depth. Can you hear it? Every seventh note — that is "
+                    "the Blight. The Conductor cannot stop. We cannot stop. "
+                    "The Song holds Autumn in place. Without it, Winter "
+                    "comes. The Void comes."
+                ),
+                "dialogue_quest": (
+                    "The Undergrove is where the roots converge. The Choir "
+                    "sings from there — not by choice, not anymore. The "
+                    "Conductor changed the Song to fight the Void, and it "
+                    "worked. But the cost... the Blight is a side effect. "
+                    "We are the side effect. Go down. See what we became. "
+                    "Then decide: do you silence the Song and let Winter in, "
+                    "or leave us singing and let the Blight spread?"
+                ),
+                "dialogue_turn_in": (
+                    "You saw. You heard. The Song cannot be unsung. But "
+                    "perhaps it can be... retuned. The original Root-Song "
+                    "still echoes in the Heartwood. If someone could carry "
+                    "it to the Conductor... but that is a quest for another "
+                    "day. Take this. It will quiet the resonance. A little."
+                ),
+            },
+        ],
+        "rooms": [
+            {
+                "name": "The Grey-Amber Vault",
+                "description": "The amber here is not golden — it is grey, drained, like a photograph left in the rain. Golems stand at broken attention, their song-cores dark.",
+                "enemies": ["Hollow Walker", "Hollow Walker"],
+                "tier": 4,
+            },
+            {
+                "name": "Root Convergence",
+                "description": "Four massive root-systems plunge into a single cavern. They are alive — pulsing, intertwined, fighting. The air tastes of ozone and old sap.",
+                "enemies": ["Chorus Walker", "Choir Sprout"],
+                "tier": 4,
+            },
+            {
+                "name": "The Conductor's Balcony",
+                "description": "A ledge overlooking a vast chasm. Far below, a figure stands at the intersection of all roots, arms raised, mouth open in an endless song. The sound is deafening and silent at the same time.",
+                "enemies": [],
+                "social": True,
+                "tier": 4,
+            },
+        ],
+    },
+]
+
+
+# ---------------------------------------------------------------------------
+# 10. QUEST MODULE NPC POOL — Unified access for quest injection
+# ---------------------------------------------------------------------------
+
+QUEST_MODULE_NPCS: Dict[str, dict] = {}
+for _qmod in MODULAR_QUEST_TEMPLATES:
+    for _npc in _qmod.get("quest_npcs", []):
+        QUEST_MODULE_NPCS[_npc["name"]] = {
+            "quest_id": _qmod["id"],
+            "npc_type": _npc["role"],
+            **_npc,
+        }

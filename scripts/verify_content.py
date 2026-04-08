@@ -97,7 +97,14 @@ def search_index(index, docstore: dict, query_vec: np.ndarray, k: int = 3):
         if idx < 0:
             continue
         doc_key = f"doc_{idx}"
-        text = docstore.get(doc_key, "")
+        entry = docstore.get(doc_key, "")
+        # v3.0 docstore: dicts with "text" + "meta"
+        if isinstance(entry, dict):
+            text = entry.get("text", "")
+            meta = entry.get("meta", {})
+        else:
+            text = str(entry)
+            meta = {}
         # Convert L2 distance to similarity (approximate)
         similarity = 1.0 / (1.0 + dist)
         results.append({
@@ -106,6 +113,9 @@ def search_index(index, docstore: dict, query_vec: np.ndarray, k: int = 3):
             "distance": round(float(dist), 4),
             "doc_key": doc_key,
             "text": text[:300],
+            "page_start": meta.get("page_start"),
+            "page_end": meta.get("page_end"),
+            "quality": meta.get("quality"),
         })
 
     return results

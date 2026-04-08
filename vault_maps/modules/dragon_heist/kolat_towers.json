@@ -1,219 +1,404 @@
 {
-    "seed": 3012,
-    "width": 50,
-    "height": 70,
-    "start_room_id": 0,
-    "metadata": {
-        "zone_id": "kolat_towers",
-        "theme": "GOTHIC",
-        "topology": "vertical",
-        "display_name": "Kolat Towers"
+  "seed": 3012,
+  "width": 50,
+  "height": 70,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "kolat_towers",
+    "theme": "GOTHIC",
+    "topology": "vertical",
+    "display_name": "Kolat Towers"
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 20,
+      "y": 0,
+      "width": 10,
+      "height": 6,
+      "room_type": "start",
+      "connections": [
+        1
+      ],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "This dilapidated, two-towered edifice stands tall in the Southern Ward, its neighbors aware of the magical force field that surrounds it, and light from continual flamespells spills from its windows. Most folk believe the structure is abandoned, though others think it is haunted by the ghosts of the Kolat brothers.",
+        "read_aloud": "You see two dilapidated towers standing tall in the Southern Ward, their neighbors aware of the magical force field that surrounds them. Light from continual flamespells spills from the windows, yet most folk believe the structure is abandoned, haunted by the ghosts of the Kolat brothers.",
+        "npcs": [
+          {
+            "name": "Manshoon",
+            "role": "He posts no visible guards outside Kolat Towers, since he wants others to believe the site is abandoned.",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          }
+        ],
+        "enemies": [],
+        "loot": [],
+        "hazards": [
+          {
+            "name": "Arcane Ward (alarm triggers on forced entry)",
+            "dc": 15
+          }
+        ],
+        "services": [],
+        "event_triggers": [
+          "On forced entry: A silent alarm alerts all inhabitants. Stealth checks inside are made at disadvantage for 1 minute."
+        ],
+        "_source": "Waterdeep_ Dragon Heist",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
     },
-    "rooms": {
-        "0": {
-            "id": 0,
-            "x": 20,
-            "y": 0,
-            "width": 10,
-            "height": 6,
-            "room_type": "start",
-            "connections": [1],
-            "tier": 3,
-            "is_locked": false,
-            "is_secret": false,
-            "content_hints": {
-                "description": "A wooden door reinforced with iron bands stands in a narrow alley between two stone towers that lean toward each other like conspiring thieves. Arcane sigils flicker along the doorframe -- wards that have been recently reset. The stones here are old, older than the surrounding buildings, and the mortar between them is black with age.",
-                "read_aloud": "Two stone towers lean toward each other across a narrow alley, their upper stories almost touching. The stones are ancient, their mortar black with age, and the air between the towers feels heavier than it should. A wooden door reinforced with iron bands stands at the base, its frame lined with faintly flickering symbols that hurt your eyes if you stare too long. The alley is quiet -- unnaturally so, as if the city noise stops at its mouth.",
-                "npcs": [],
-                "enemies": [],
-                "loot": [],
-                "hazards": [
-                    {"name": "Arcane Ward (alarm triggers on forced entry)", "dc": 15}
-                ],
-                "services": [],
-                "event_triggers": [
-                    "On forced entry: A silent alarm alerts all inhabitants. Stealth checks inside are made at disadvantage for 1 minute."
-                ]
-            }
-        },
-        "1": {
-            "id": 1,
-            "x": 5,
-            "y": 10,
-            "width": 12,
-            "height": 10,
-            "room_type": "normal",
-            "connections": [0, 2, 6],
-            "tier": 3,
-            "is_locked": false,
-            "is_secret": false,
-            "content_hints": {
-                "description": "Workbenches cluttered with half-assembled clockwork line the walls. Gears, springs, and crystal lenses spill from open drawers. An animated broom sweeps the same patch of floor in an endless, maddening loop. The air smells of machine oil and ozone, and every few seconds a spark jumps between two copper rods mounted above the door.",
-                "read_aloud": "Workbenches line every wall, cluttered with half-assembled clockwork -- gears, springs, crystal lenses spilling from open drawers. The air smells of machine oil and ozone. In the corner, a broom sweeps the same patch of floor over and over in a slow, maddening loop. Every few seconds a bright spark leaps between two copper rods mounted above the doorway, crackling and fading with a sharp snap that makes you flinch.",
-                "npcs": [],
-                "enemies": [
-                    {"name": "Animated Armor", "cr": "1"},
-                    {"name": "Flying Sword", "cr": "1/4"},
-                    {"name": "Flying Sword", "cr": "1/4"}
-                ],
-                "loot": [
-                    {"name": "Tinker's Tools", "type": "equipment"},
-                    {"name": "Clockwork Components (30 gp)", "type": "treasure"}
-                ],
-                "hazards": [],
-                "services": [],
-                "event_triggers": [
-                    "On disturbance: The animated armor activates only if items are touched or removed."
-                ]
-            }
-        },
-        "2": {
-            "id": 2,
-            "x": 5,
-            "y": 24,
-            "width": 12,
-            "height": 10,
-            "room_type": "library",
-            "connections": [1, 3],
-            "tier": 3,
-            "is_locked": false,
-            "is_secret": false,
-            "content_hints": {
-                "description": "Books are shelved not by title but by the color of their spines, creating a disorienting rainbow that spirals up two floors. A mechanical ladder slides along brass rails, clicking to a stop wherever you stand as if anticipating your reach. Several volumes are chained to their shelves. The ones that are not chained whisper when you turn your back.",
-                "read_aloud": "Books fill the shelves from floor to ceiling, arranged not by title but by the color of their spines -- a disorienting rainbow that spirals upward through two floors of open gallery. A mechanical ladder on brass rails slides along the shelves with a soft click, stopping near you as if it knows what you want to reach. Several volumes are chained to their shelves with iron links. The unchained ones rustle faintly when your back is turned, as though turning their own pages.",
-                "npcs": [],
-                "enemies": [],
-                "loot": [
-                    {"name": "Spell Scroll of Counterspell", "type": "consumable"},
-                    {"name": "Tome: 'The Arcane Brotherhood -- A History' (quest lore)", "type": "quest_item"}
-                ],
-                "hazards": [
-                    {"name": "Explosive Runes on trapped book", "dc": 16}
-                ],
-                "services": [],
-                "event_triggers": [
-                    "On search (DC 15 Investigation): A journal reveals the towers were built by the Kolat brothers, wizards who vanished decades ago. Manshoon claimed the space after."
-                ]
-            }
-        },
-        "3": {
-            "id": 3,
-            "x": 5,
-            "y": 38,
-            "width": 12,
-            "height": 10,
-            "room_type": "normal",
-            "connections": [2, 4],
-            "tier": 3,
-            "is_locked": false,
-            "is_secret": false,
-            "content_hints": {
-                "description": "Living quarters stripped of personality. The bed is made with military precision, the wardrobe holds identical black robes, and the only decoration is a mirror that shows your reflection three seconds delayed. A cold meal sits untouched on a side table -- someone was here recently and left in no hurry, which is worse.",
-                "read_aloud": "The living quarters are stripped to bare function -- a bed made with military precision, a wardrobe standing open to reveal rows of identical black robes. A mirror on the wall catches your movement, but something is wrong with it; your reflection arrives a heartbeat too late, its expression not quite matching yours. A cold meal sits untouched on a side table, the chair pushed in neatly. Whoever lives here left recently, and they were not in a hurry.",
-                "npcs": [],
-                "enemies": [
-                    {"name": "Zhentarim Spy", "cr": "1"}
-                ],
-                "loot": [
-                    {"name": "Zhentarim Cipher Key", "type": "quest_item"}
-                ],
-                "hazards": [],
-                "services": [],
-                "event_triggers": []
-            }
-        },
-        "4": {
-            "id": 4,
-            "x": 5,
-            "y": 52,
-            "width": 12,
-            "height": 10,
-            "room_type": "treasure",
-            "connections": [3, 5],
-            "tier": 3,
-            "is_locked": true,
-            "is_secret": false,
-            "content_hints": {
-                "description": "Glass vessels line every surface, each containing a different colored liquid that bubbles or glows or does both simultaneously. An alchemical apparatus of bewildering complexity dominates the center table, its copper tubing coiling like intestines. Charts on the wall map ley lines beneath Waterdeep, with the Vault of Dragons circled three times in red ink.",
-                "read_aloud": "Glass vessels crowd every surface, each containing a different colored liquid -- some bubbling, some glowing, some doing both at once. Copper tubing coils between the vessels in loops and spirals of bewildering complexity, dripping condensation that hisses when it hits the table. The air is sharp with chemical fumes that sting your eyes and taste of metal. Charts cover the far wall, their lines and symbols mapping something beneath the city in painstaking detail.",
-                "npcs": [],
-                "enemies": [],
-                "loot": [
-                    {"name": "Potion of Invisibility", "type": "consumable"},
-                    {"name": "Potion of Greater Healing", "type": "consumable"},
-                    {"name": "Ley Line Map of Waterdeep", "type": "quest_item"},
-                    {"name": "Alchemist's Supplies", "type": "equipment"}
-                ],
-                "hazards": [
-                    {"name": "Unstable reagents (acid splash if disturbed)", "dc": 14}
-                ],
-                "services": [],
-                "event_triggers": [
-                    "On search: The ley line map reveals the approximate location of the Vault of Dragons beneath the city."
-                ]
-            }
-        },
-        "5": {
-            "id": 5,
-            "x": 30,
-            "y": 58,
-            "width": 10,
-            "height": 8,
-            "room_type": "normal",
-            "connections": [4],
-            "tier": 3,
-            "is_locked": false,
-            "is_secret": false,
-            "content_hints": {
-                "description": "A stone platform atop the north tower, open to the sky and ringed by gargoyle waterspouts. A permanent teleportation circle is etched into the flagstones, its runes glowing a faint violet. Wind whips across the rooftop, and the lights of Waterdeep spread out below like a field of earthbound stars. The circle hums when you step near it.",
-                "read_aloud": "Wind strikes you as you step onto the tower's open rooftop, whipping your cloak and stinging your eyes. Gargoyle waterspouts ring the parapet, their stone mouths frozen mid-snarl. A circle of runes is etched into the flagstones at your feet, each symbol glowing a faint, pulsing violet. The lights of Waterdeep spread out below in every direction -- a field of earthbound stars -- and the circle hums with a low vibration you feel in the soles of your boots.",
-                "npcs": [],
-                "enemies": [],
-                "loot": [
-                    {"name": "Teleportation Circle Sigil Sequence (recorded)", "type": "quest_item"}
-                ],
-                "hazards": [
-                    {"name": "Rooftop gusts (Strength save or pushed toward edge)", "dc": 13}
-                ],
-                "services": [],
-                "event_triggers": [
-                    "On activation: The circle connects to Manshoon's sanctum. Activating it without the correct passphrase deposits the user in a random location in Undermountain."
-                ]
-            }
-        },
-        "6": {
-            "id": 6,
-            "x": 30,
-            "y": 10,
-            "width": 12,
-            "height": 10,
-            "room_type": "boss",
-            "connections": [1],
-            "tier": 3,
-            "is_locked": true,
-            "is_secret": true,
-            "content_hints": {
-                "description": "The basement is carved from raw stone, older than the towers above. Manacles hang from the walls beside rust-colored stains that no amount of scrubbing has removed. In the center, a ritual circle drawn in silver dust surrounds a crystal sphere that pulses with stolen memories. The air is thick with the smell of old blood and new magic.",
-                "read_aloud": "The basement is carved from raw stone far older than the towers above, its walls rough and sweating moisture. Manacles hang from iron bolts beside stains that have soaked so deep into the rock they will never come clean. In the center of the floor, a circle of silver dust surrounds a crystal sphere that pulses with a slow, cold light -- brighter, dimmer, brighter, like a heartbeat. The air is thick with something that tastes of iron and ozone, and your skin prickles as though the room itself is watching you.",
-                "npcs": [],
-                "enemies": [
-                    {"name": "Manshoon Simulacrum", "cr": "8"},
-                    {"name": "Zhentarim Enforcer", "cr": "3"},
-                    {"name": "Zhentarim Enforcer", "cr": "3"}
-                ],
-                "loot": [
-                    {"name": "Manshoon's Spellbook (partial copy)", "type": "treasure"},
-                    {"name": "Staff of Power (cursed -- attunes to Manshoon on death)", "type": "weapon"}
-                ],
-                "hazards": [
-                    {"name": "Antimagic field (intermittent, 50% chance per round)", "dc": 0}
-                ],
-                "services": [],
-                "event_triggers": [
-                    "On combat start: The simulacrum speaks with Manshoon's voice: 'You found the basement. How industrious. How unfortunate.'",
-                    "On defeat: The simulacrum dissolves into snow. A sending stone on the desk crackles with Manshoon's real voice: 'That was merely a copy. I have many.'"
-                ]
-            }
-        }
+    "1": {
+      "id": 1,
+      "x": 5,
+      "y": 10,
+      "width": 12,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [
+        0,
+        2,
+        6
+      ],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "This dilapidated, two-towered edifice stands tall in the Southern Ward, surrounded by a magical force field that prevents anything from passing through, including air, fog, rain, and snow. Light from continual flamespells spills out of the windows, yet most folk believe the structure is abandoned, thinking it is haunted by the ghosts of the Kolat brothers.",
+        "read_aloud": "You see a dilapidated, two-towered edifice standing tall in the Southern Ward. Neighbors speak of a magical force field surrounding it, and you can see light from continual flamespells spilling out of the windows, despite the persistent magical effects.",
+        "npcs": [
+          {
+            "name": "Manshoon",
+            "role": "He posts no visible guards outside Kolat Towers, since he wants others to believe the site is abandoned.",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          }
+        ],
+        "enemies": [
+          {
+            "name": "Animated Armor",
+            "cr": "1"
+          },
+          {
+            "name": "Flying Sword",
+            "cr": "1/4"
+          },
+          {
+            "name": "Flying Sword",
+            "cr": "1/4"
+          }
+        ],
+        "loot": [
+          {
+            "name": "Tinker's Tools",
+            "type": "equipment"
+          },
+          {
+            "name": "Clockwork Components (30 gp)",
+            "type": "treasure"
+          }
+        ],
+        "hazards": [],
+        "services": [],
+        "event_triggers": [
+          "On disturbance: The animated armor activates only if items are touched or removed."
+        ],
+        "_source": "Waterdeep_ Dragon Heist",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 5,
+      "y": 24,
+      "width": 12,
+      "height": 10,
+      "room_type": "library",
+      "connections": [
+        1,
+        3
+      ],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Kolat Towers is a multistory structure where each level stands 20 feet higher than the one below it, featuring rooms with 15-foot-high ceilings and 7-foot-high doorways connecting them. Climbing the outside walls without equipment requires a successful DC 15 Strength (Athletics) check.",
+        "read_aloud": "You see a multistory structure, the Kolat Towers, where each level stands twenty feet higher than the one below it. The rooms boast fifteen-foot-high ceilings and seven-foot-high doorways connecting them.",
+        "npcs": [
+          {
+            "name": "Duhlark",
+            "role": "belonged to Kolat Towers",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          },
+          {
+            "name": "Alcedor Kolat",
+            "role": "belonged to Kolat Towers",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          },
+          {
+            "name": "Mirt or Volo",
+            "role": "an NPC familiar with Waterdeep’s history, can also provide this information",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          }
+        ],
+        "enemies": [],
+        "loot": [
+          {
+            "name": "Spell Scroll of Counterspell",
+            "type": "consumable"
+          },
+          {
+            "name": "Tome: 'The Arcane Brotherhood -- A History' (quest lore)",
+            "type": "quest_item"
+          }
+        ],
+        "hazards": [
+          {
+            "name": "Explosive Runes on trapped book",
+            "dc": 16
+          }
+        ],
+        "services": [],
+        "event_triggers": [
+          "On search (DC 15 Investigation): A journal reveals the towers were built by the Kolat brothers, wizards who vanished decades ago. Manshoon claimed the space after."
+        ],
+        "_source": "Waterdeep_ Dragon Heist",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
+    },
+    "3": {
+      "id": 3,
+      "x": 5,
+      "y": 38,
+      "width": 12,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [
+        2,
+        4
+      ],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "This dilapidated, two-towered edifice stands tall in the Southern Ward, and its neighbors are aware of the magical force field that surrounds it. Light from continual flamespells spills out of the windows, though most folk believe the structure is abandoned.",
+        "read_aloud": "You see a dilapidated, two-towered edifice standing tall in the Southern Ward. Neighbors whisper of a magical force field surrounding it, and you can see light from continual flamespells spilling out of the windows, despite the persistent magical effects.",
+        "npcs": [
+          {
+            "name": "Duhlark",
+            "role": "Kolat Towers once belonged to two eccentric brothers, Duhlark and Alcedor Kolat.",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          },
+          {
+            "name": "Alcedor Kolat",
+            "role": "Kolat Towers once belonged to two eccentric brothers, Duhlark and Alcedor Kolat.",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          }
+        ],
+        "enemies": [
+          {
+            "name": "Zhentarim Spy",
+            "cr": "1"
+          }
+        ],
+        "loot": [
+          {
+            "name": "Zhentarim Cipher Key",
+            "type": "quest_item"
+          }
+        ],
+        "hazards": [],
+        "services": [],
+        "event_triggers": [],
+        "_source": "Waterdeep_ Dragon Heist",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
+    },
+    "4": {
+      "id": 4,
+      "x": 5,
+      "y": 52,
+      "width": 12,
+      "height": 10,
+      "room_type": "treasure",
+      "connections": [
+        3,
+        5
+      ],
+      "tier": 3,
+      "is_locked": true,
+      "is_secret": false,
+      "content_hints": {
+        "description": "This dilapidated, two-towered edifice stands tall in the Southern Ward, and its neighbors are aware of the magical force field that surrounds it. Light from continual flamespells spills out of the windows, though most folk believe the structure is abandoned.",
+        "read_aloud": "You see the dilapidated, two-towered edifice standing tall in the Southern Ward. Neighbors are aware of the magical force field surrounding it, and you can see light from continual flamespells spilling out of the windows. Despite these persistent magical effects, most folk believe the structure is abandoned, haunted by the ghosts of the Kolat brothers.",
+        "npcs": [
+          {
+            "name": "Manshoon",
+            "role": "evil wizard and his underlings come and go using teleportation circles",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          }
+        ],
+        "enemies": [],
+        "loot": [
+          {
+            "name": "Potion of Invisibility",
+            "type": "consumable"
+          },
+          {
+            "name": "Potion of Greater Healing",
+            "type": "consumable"
+          },
+          {
+            "name": "Ley Line Map of Waterdeep",
+            "type": "quest_item"
+          },
+          {
+            "name": "Alchemist's Supplies",
+            "type": "equipment"
+          }
+        ],
+        "hazards": [
+          {
+            "name": "Unstable reagents (acid splash if disturbed)",
+            "dc": 14
+          }
+        ],
+        "services": [],
+        "event_triggers": [
+          "On search: The ley line map reveals the approximate location of the Vault of Dragons beneath the city."
+        ],
+        "_source": "Waterdeep_ Dragon Heist",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
+    },
+    "5": {
+      "id": 5,
+      "x": 30,
+      "y": 58,
+      "width": 10,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [
+        4
+      ],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "This dilapidated, two-towered edifice stands tall in the Southern Ward, its neighbors aware of the magical force field that surrounds it. Light from continual flamespells spills out of the windows, yet most folk believe the structure is abandoned, though others think it is haunted by the ghosts of the Kolat brothers.",
+        "read_aloud": "You step onto the open rooftop of the dilapidated, two-towered edifice, where the wind whips your cloak and stings your eyes. You see light from continual flamespells spilling out of the windows, despite the persistent magical effects.",
+        "npcs": [
+          {
+            "name": "Manshoon",
+            "role": "He posts no visible guards outside Kolat Towers, since he wants others to believe the site is abandoned.",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          }
+        ],
+        "enemies": [],
+        "loot": [
+          {
+            "name": "Teleportation Circle Sigil Sequence (recorded)",
+            "type": "quest_item"
+          }
+        ],
+        "hazards": [
+          {
+            "name": "Rooftop gusts (Strength save or pushed toward edge)",
+            "dc": 13
+          }
+        ],
+        "services": [],
+        "event_triggers": [
+          "On activation: The circle connects to Manshoon's sanctum. Activating it without the correct passphrase deposits the user in a random location in Undermountain."
+        ],
+        "_source": "Waterdeep_ Dragon Heist",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
+    },
+    "6": {
+      "id": 6,
+      "x": 30,
+      "y": 10,
+      "width": 12,
+      "height": 10,
+      "room_type": "boss",
+      "connections": [
+        1
+      ],
+      "tier": 3,
+      "is_locked": true,
+      "is_secret": true,
+      "content_hints": {
+        "description": "Kolat Towers is a multistory structure where each level stands 20 feet higher than the one below it, featuring rooms with 15-foot-high ceilings and 7-foot-high doorways connecting them. Rooms and corridors are brightly lit by continual flame spells cast on wall sconces.",
+        "read_aloud": "You see a multistory structure, with each level standing twenty feet higher than the one below it. Its rooms boast fifteen-foot-high ceilings, connected by doorways seven feet high.",
+        "npcs": [
+          {
+            "name": "Volo",
+            "role": "NPC familiar with Waterdeep’s history, such as Mirt or Volo, can also provide this information.",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          },
+          {
+            "name": "Manshoon",
+            "role": "Lurks in Kolat Towers, a pair of wizards’ towers in the Trades Ward.",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          }
+        ],
+        "enemies": [
+          {
+            "name": "Manshoon Simulacrum",
+            "cr": "8"
+          },
+          {
+            "name": "Zhentarim Enforcer",
+            "cr": "3"
+          },
+          {
+            "name": "Zhentarim Enforcer",
+            "cr": "3"
+          }
+        ],
+        "loot": [
+          {
+            "name": "Manshoon's Spellbook (partial copy)",
+            "type": "treasure"
+          },
+          {
+            "name": "Staff of Power (cursed -- attunes to Manshoon on death)",
+            "type": "weapon"
+          }
+        ],
+        "hazards": [
+          {
+            "name": "Antimagic field (intermittent, 50% chance per round)",
+            "dc": 0
+          }
+        ],
+        "services": [],
+        "event_triggers": [
+          "On combat start: The simulacrum speaks with Manshoon's voice: 'You found the basement. How industrious. How unfortunate.'",
+          "On defeat: The simulacrum dissolves into snow. A sending stone on the desk crackles with Manshoon's real voice: 'That was merely a copy. I have many.'"
+        ],
+        "_source": "Waterdeep_ Dragon Heist",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
     }
+  }
 }

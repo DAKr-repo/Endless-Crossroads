@@ -19,6 +19,7 @@ from rich import box
 from codex.games.burnwillow.engine import (
     Character, GearSlot, GearItem, GearGrid, calculate_stat_mod,
     GEAR_SETS, AFFIX_PREFIXES, AFFIX_SUFFIXES, NAMED_LEGENDARY_ABILITIES,
+    TRAIT_SOURCES, ARCHETYPES,
 )
 
 # BURNWILLOW COLOR PALETTE (Bioluminescent Decay)
@@ -355,6 +356,26 @@ def render_item_detail(item: GearItem, gear_grid: Optional[GearGrid] = None) -> 
             lines.append(f"Combo: {clean} -> {combos}\n", style=DECAY_GREEN)
         elif clean in _COMBO_PAYOFFS:
             lines.append(f"Combo: {clean} (bonus {_COMBO_PAYOFFS[clean]})\n", style=DECAY_GREEN)
+
+    # Archetype contribution — which archetype this item's traits feed
+    _source_to_archetype = {v["source"]: v["name"] for v in ARCHETYPES.values()}
+    item_sources = set()
+    for trait in item.special_traits:
+        clean = trait.strip("[]").upper().replace(" ", "_")
+        source = TRAIT_SOURCES.get(clean)
+        if source and source in _source_to_archetype:
+            item_sources.add(_source_to_archetype[source])
+    # Also check prefix/suffix source contributions
+    if item.prefix and item.prefix in AFFIX_PREFIXES:
+        pfx_src = AFFIX_PREFIXES[item.prefix].get("source", "")
+        if pfx_src in _source_to_archetype:
+            item_sources.add(_source_to_archetype[pfx_src])
+    if item.suffix and item.suffix in AFFIX_SUFFIXES:
+        sfx_src = AFFIX_SUFFIXES[item.suffix].get("source", "")
+        if sfx_src in _source_to_archetype:
+            item_sources.add(_source_to_archetype[sfx_src])
+    if item_sources:
+        lines.append(f"Archetype: {', '.join(sorted(item_sources))}\n", style=DECAY_GREEN)
 
     if item.description:
         lines.append(f"\n{item.description}\n", style=BONE_WHITE + " italic")

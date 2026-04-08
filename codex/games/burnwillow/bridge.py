@@ -21,13 +21,16 @@ from pathlib import Path
 from codex.games.burnwillow.engine import (
     BurnwillowEngine, BurnwillowTraitResolver,
     Character, StatType, GearSlot, DC, Condition,
-    roll_dice_pool, passive_check, NAMED_LEGENDARY_ABILITIES
+    roll_dice_pool, passive_check, NAMED_LEGENDARY_ABILITIES,
+    FACTION_SERVICES,
 )
 from codex.spatial.map_engine import RoomType
 from codex.core.state_frame import StateFrame, build_state_frame
 from codex.core.services.trait_handler import TraitHandler
 from codex.core.mechanics.rest import RestManager
 from codex.spatial.map_renderer import render_mini_map, rooms_to_minimap_dict
+from codex.core.narrative_engine import NarrativeEngine
+from codex.core.quest_trigger import QuestTriggerDispatcher
 
 _SAVES_DIR = Path(__file__).resolve().parent.parent.parent.parent / "saves"
 
@@ -77,9 +80,25 @@ COMMANDS = {
     "decompose": ["decomp"],
     "infuse":    ["spore_infuse"],
     "netgraft":  ["network_graft"],
+    "buy":       ["trade", "purchase"],
+    "propolis":  ["repair"],
+    "hivesense": ["hive_sense", "royal_jelly"],
+    "fasttravel": ["network", "fast_travel"],
+    "rootroads": ["root_roads", "shortcut"],
+    "siege":     ["barricade"],
+    "lodgecraft": ["fortify"],
+    "windride":  ["wind_ride"],
+    "mothwing":  ["cloak"],
+    "fortune":   ["fortune_tell", "reveal_boss"],
+    "architecture": ["reshape"],
+    "communion": ["amber_communion", "memories"],
     "deposit":   ["store"],
     "retrieve":  ["withdraw"],
     "claim":     [],
+    "questlog":  ["quests", "journal", "ql"],
+    "accept":    [],
+    "turnin":    ["turn_in"],
+    "inspect":   ["examine", "detail"],
     "help":      ["h", "?"],
     "tutorial":  ["tut"],
 }
@@ -131,6 +150,9 @@ class BurnwillowBridge:
         },
         "interaction": {
             "talk": "Talk to an NPC (type freely to chat, 'bye' to end)",
+            "questlog": "Show quest journal (aliases: quests, journal, ql)",
+            "accept": "Accept a quest: accept <quest_id>",
+            "turnin": "Turn in a completed quest: turnin <quest_id>",
         },
         "exploration": {
             "search": "Search for loot (+1 Doom)",
@@ -139,6 +161,7 @@ class BurnwillowBridge:
             "use": "Use an item's special trait",
             "push": "Push furniture in a direction",
             "inventory": "Show your gear and items",
+            "inspect": "Inspect item detail: inspect <item name> (aliases: examine, detail)",
             "stats": "Show character stats",
             "save": "Save current game",
             "reputation": "Show faction standings (aliases: rep, factions)",
@@ -210,6 +233,12 @@ class BurnwillowBridge:
             self._narrator = NarrativeBridge("burnwillow", seed=seed)
         except Exception:
             pass
+
+        # Quest system: NarrativeEngine + QuestTriggerDispatcher
+        self._narrative = NarrativeEngine(system_id="burnwillow")
+        self._narrative.reputation = self.engine.faction_rep
+        self._quest_dispatcher = QuestTriggerDispatcher(self._narrative)
+        self.engine._quest_dispatcher = self._quest_dispatcher
 
         # WO-V37.0: Session chronicle log (mirrors play_burnwillow GameState.session_log)
         self._session_log: list[dict] = []
@@ -330,9 +359,25 @@ class BurnwillowBridge:
             "decompose": lambda: self._cmd_decompose(arg),
             "infuse":    lambda: self._cmd_infuse(arg),
             "netgraft":  lambda: self._cmd_netgraft(arg),
+            "buy":       lambda: self._cmd_buy(arg),
+            "propolis":  lambda: self._cmd_propolis(arg),
+            "hivesense": lambda: self._cmd_hivesense(),
+            "fasttravel": lambda: self._cmd_fasttravel(arg),
+            "rootroads": lambda: self._cmd_rootroads(),
+            "siege":     lambda: self._cmd_siege(),
+            "lodgecraft": lambda: self._cmd_lodgecraft(),
+            "windride":  lambda: self._cmd_windride(),
+            "mothwing":  lambda: self._cmd_mothwing(),
+            "fortune":   lambda: self._cmd_fortune(),
+            "architecture": lambda: self._cmd_architecture(),
+            "communion": lambda: self._cmd_communion(),
             "deposit":   lambda: self._cmd_deposit(arg),
             "retrieve":  lambda: self._cmd_retrieve(arg),
             "claim":     lambda: self._cmd_claim(arg),
+            "inspect":   lambda: self._cmd_inspect(arg),
+            "questlog":  lambda: self._cmd_questlog(),
+            "accept":    lambda: self._cmd_accept(arg),
+            "turnin":    lambda: self._cmd_turnin(arg),
             "help":      lambda: self._cmd_help(),
             "tutorial":  lambda: self._cmd_tutorial(),
         }
@@ -563,6 +608,34 @@ class BurnwillowBridge:
             }
             if _room_faction and _room_faction in _FACTION_FLAVOR:
                 lines.append(_FACTION_FLAVOR[_room_faction])
+                # Hag Circle capstone: Blight Tolerance — Blighted rooms reveal secrets
+                if _room_faction == "hag_circle" and self.engine.faction_rep.has_capstone("hag_circle"):
+                    lines.append("  [Blight Tolerance] The Rot parts before you. Secrets shimmer in the decay.")
+                    # Reveal connected secret rooms
+                    if self.engine.dungeon_graph:
+                        node = self.engine.dungeon_graph.rooms.get(self.engine.current_room_id)
+                        if node:
+                            for conn_id in node.connections:
+                                conn_room = self.engine.populated_rooms.get(conn_id)
+                                if conn_room and getattr(conn_room, 'is_secret', False):
+                                    conn_room.is_secret = False
+
+        # Heartwood Elders capstone: Root-Sense — Doom events give advance warning
+        if self.engine.faction_rep.has_capstone("heartwood_elders"):
+            doom_pct = self.engine.doom_clock.current / max(self.engine.doom_clock.maximum, 1)
+            if doom_pct >= 0.6:
+                lines.append("  [Root-Sense] The roots tremble. Something approaches from the deep.")
+            elif doom_pct >= 0.4:
+                lines.append("  [Root-Sense] The wood hums with distant unease.")
+
+        # Mothwing Cloak: invisible transition — skip enemy ambush
+        if getattr(self, '_mothwing_active', False):
+            self._mothwing_active = False
+            if pop_room and isinstance(pop_room.content, dict):
+                enemies = pop_room.content.get("enemies", [])
+                if enemies:
+                    lines.append("You pass through unseen. The Mothwing Cloak fades.")
+                    # Enemies don't detect — skip ambush, they won't attack first
 
         # Named Legendary: Eternity Bloom — party immune to Blighted
         eternity_bloom_active = False
@@ -598,6 +671,44 @@ class BurnwillowBridge:
                 if healed > 0:
                     lines.append("Mending aura restores 1 HP.")
                 break
+
+        # Named Legendary: Crown of Insight — True Sight passive
+        self._check_true_sight(room_data, lines)
+
+        # Amber Vault Outpost benefits on room entry
+        outpost_id = f"outpost_{self.engine.current_room_id}"
+        outpost = self.engine.claimed_outposts.get(outpost_id)
+        if outpost:
+            otype = outpost["type"]
+            _TYPE_NAMES = {"bank": "Bank Vault", "rest": "Rest Station", "crafting": "Crafting Annex",
+                           "faction": "Faction Post", "signal": "Signal Tower"}
+            lines.append(f"[Outpost: {_TYPE_NAMES.get(otype, otype)}]")
+            # Doom overrun check: 50% chance to lose outpost at Doom >= 75%
+            doom_pct = self.engine.doom_clock.current / max(self.engine.doom_clock.maximum, 1)
+            if doom_pct >= 0.75 and random.random() < 0.5:
+                del self.engine.claimed_outposts[outpost_id]
+                lines.append("  The Doom overwhelms the outpost! The golem shatters. Outpost LOST.")
+            else:
+                if otype == "signal":
+                    # Signal Tower: auto-reveal adjacent rooms
+                    if self.engine.dungeon_graph:
+                        node = self.engine.dungeon_graph.rooms.get(self.engine.current_room_id)
+                        if node:
+                            for conn_id in node.connections:
+                                self.engine.visited_rooms.add(conn_id)
+                    lines.append("  The signal tower hums. Adjacent rooms mapped.")
+                elif otype == "rest":
+                    lines.append("  Safe haven. Use 'rest' here without Doom advance.")
+                elif otype == "bank":
+                    stored = outpost.get("items", [])
+                    if stored:
+                        lines.append(f"  Stored: {', '.join(i.get('name', '?') for i in stored)}")
+                    else:
+                        lines.append("  Bank empty. Use 'deposit' to store an item.")
+                elif otype == "crafting":
+                    lines.append("  Field forge available. Use 'forge' for crafting options.")
+                elif otype == "faction":
+                    lines.append("  Faction contacts accessible. Use 'talk' to interact.")
 
         # Ingredient drops (30% chance per room)
         from codex.games.burnwillow.engine import roll_ingredient_drop
@@ -810,6 +921,12 @@ class BurnwillowBridge:
         # Player attacks
         might_mod = char.get_stat_mod(StatType.MIGHT)
         dice_count = char.gear.get_total_dice_bonus(StatType.MIGHT)
+
+        # Named Legendary: Tempest Annihilator Storm Surge — +4 on next check
+        if self._storm_surge_pending > 0:
+            might_mod += self._storm_surge_pending
+            lines.append(f"Storm Surge! +{self._storm_surge_pending} to this attack!")
+            self._storm_surge_pending = 0
 
         # Darkness penalty: -1d6 in dark rooms with no light
         pop_room = self.engine.populated_rooms.get(self.engine.current_room_id)
@@ -1267,6 +1384,14 @@ class BurnwillowBridge:
         for event in doom_events:
             lines.append(event)
 
+        # Quest trigger: search completed (regardless of loot found)
+        if result["success"] and self.engine._quest_dispatcher:
+            room = self.engine.get_current_room()
+            tier = room.get("tier", 1) if room else 1
+            quest_msgs = self.engine._quest_dispatcher.on_search_completed(tier)
+            for qm in quest_msgs:
+                lines.append(f"  [Quest] {qm}")
+
         lines.append("")
         lines.append(self._status_line())
         return "\n".join(lines)
@@ -1289,6 +1414,14 @@ class BurnwillowBridge:
         arg = arg.strip()
         if not arg:
             return "Drop what? Usage: drop <item name>\n" + self._status_line()
+        # Named Legendary: The Sun-Bow — Chosen: cannot be dropped
+        if self._check_chosen_protection(arg):
+            return "The Sun-Bow refuses to leave your hand. (Chosen: cannot be dropped.)\n" + self._status_line()
+        # Also check if any equipped/inventory item matches
+        char = self.engine.character
+        for item in char.gear.slots.values():
+            if item and arg.lower() in item.name.lower() and self._check_chosen_protection(item.name):
+                return f"{item.name} refuses to leave you. (Chosen: cannot be dropped.)\n" + self._status_line()
         dropped = self.engine.drop_item(arg)
         if dropped is None:
             return f"You don't have '{arg}'.\n" + self._status_line()
@@ -1304,7 +1437,28 @@ class BurnwillowBridge:
         if not self.engine.party and self.engine.character:
             self.engine.party = [self.engine.character]
 
+        # Outpost: Rest Station — no Doom advance; Lodgecraft — halve Doom
+        outpost_id = f"outpost_{self.engine.current_room_id}"
+        outpost = self.engine.claimed_outposts.get(outpost_id)
+        _rest_outpost = outpost and outpost["type"] == "rest"
+        _fortified = False
+        pop_room = self.engine.populated_rooms.get(self.engine.current_room_id)
+        if pop_room and isinstance(pop_room.content, dict) and pop_room.content.get("fortified"):
+            _fortified = True
+
         result = self._rest_mgr.rest(self.engine, "BURNWILLOW", rest_type)
+
+        # Outpost/Lodgecraft Doom reduction — reverse Doom added by RestManager
+        if _rest_outpost:
+            doom_added = 1 if rest_type == "short" else 3
+            self.engine.doom_clock.current = max(0, self.engine.doom_clock.current - doom_added)
+            result.side_effects = ["Rest Station: Doom held at bay."]
+        elif _fortified:
+            doom_added = 1 if rest_type == "short" else 3
+            refund = doom_added // 2
+            if refund > 0:
+                self.engine.doom_clock.current = max(0, self.engine.doom_clock.current - refund)
+            result.side_effects = [f"Lodgecraft: Doom reduced by {refund}."]
 
         # Restore Aether pool: short rest = half, long rest = full
         char = self.engine.character
@@ -1356,18 +1510,43 @@ class BurnwillowBridge:
         return "\n".join(lines)
 
     def _cmd_inventory(self) -> str:
-        """Show equipped gear grid."""
+        """Show equipped gear grid with affix, set, and archetype info."""
+        from codex.games.burnwillow.engine import (
+            GEAR_SETS, AFFIX_PREFIXES, AFFIX_SUFFIXES,
+            TRAIT_SOURCES, ARCHETYPES, detect_archetypes,
+        )
         char = self.engine.character
         lines = ["=== GEAR GRID ==="]
 
         for slot in GearSlot:
             item = char.gear.slots.get(slot)
             if item:
+                # Build display name with affixes
+                display = item.get_display_name() if hasattr(item, 'get_display_name') else item.name
                 traits = " ".join(item.special_traits) if item.special_traits else ""
                 extra = f" {traits}" if traits else ""
-                lines.append(f"  {slot.value:<12} {item.name} (T{item.tier.value}){extra}")
+                set_tag = ""
+                if item.set_id and item.set_id in GEAR_SETS:
+                    set_tag = f" [{GEAR_SETS[item.set_id]['name']}]"
+                lines.append(f"  {slot.value:<12} {display} (T{item.tier.value}){extra}{set_tag}")
             else:
                 lines.append(f"  {slot.value:<12} --empty--")
+
+        # Active set bonuses
+        set_bonuses = char.gear.get_active_set_bonuses()
+        if set_bonuses:
+            lines.append("")
+            lines.append("ACTIVE SETS:")
+            for set_id, bonus in set_bonuses.items():
+                lines.append(f"  {bonus.get('description', set_id)}")
+
+        # Active archetypes
+        archetypes = detect_archetypes(char.gear)
+        if archetypes:
+            lines.append("")
+            lines.append("ARCHETYPES:")
+            for arch_def in archetypes.values():
+                lines.append(f"  {arch_def['name']}: {arch_def['description']}")
 
         if char.inventory:
             lines.append("")
@@ -1542,6 +1721,12 @@ class BurnwillowBridge:
 
         if target_item is None:
             return f"You don't have '{arg}'.\n" + self._status_line()
+
+        # Named Legendary: use_active abilities (bypass trait system)
+        if target_item.name in NAMED_LEGENDARY_ABILITIES:
+            leg = NAMED_LEGENDARY_ABILITIES[target_item.name]
+            if leg["trigger"] == "use_active":
+                return self._use_legendary_active(target_item, leg)
 
         if not target_item.special_traits:
             return f"{target_item.name} has no special traits.\n" + self._status_line()
@@ -2310,6 +2495,8 @@ class BurnwillowBridge:
         """Save current game state to disk."""
         try:
             data = self.engine.save_game()
+            # Persist quest/narrative state alongside engine state
+            data["narrative"] = self._narrative.to_dict()
             _SAVES_DIR.mkdir(parents=True, exist_ok=True)
             save_path = _SAVES_DIR / "burnwillow_save.json"
             save_path.write_text(json.dumps(data, indent=2, default=str))
@@ -2409,7 +2596,9 @@ class BurnwillowBridge:
             dest = room["portal_destination"]
             zone_num = room["portal_zone"]
             if not arg.strip() or arg.strip().lower() == dest:
-                # Zone switch
+                # Zone switch — reset per-floor legendary abilities
+                self._sunder_used = False
+                self._tree_speaks_used = False
                 new_seed = random.randint(0, 999999)
                 self.engine._discovered_entrances.add(dest)
                 self.engine.generate_dungeon(depth=4, seed=new_seed, zone=zone_num)
@@ -2428,6 +2617,8 @@ class BurnwillowBridge:
             zone_map = {"heartwood": 6, "undergrove": 7}
             zone_num = zone_map.get(arg_clean)
             if zone_num:
+                self._sunder_used = False
+                self._tree_speaks_used = False
                 new_seed = random.randint(0, 999999)
                 self.engine.generate_dungeon(depth=4, seed=new_seed, zone=zone_num)
                 lines = [
@@ -2829,6 +3020,314 @@ class BurnwillowBridge:
             lines.extend(self.engine.faction_rep.change_rep("mycelium", 1))
         return "\n".join(lines) + "\n" + self._status_line()
 
+    # -----------------------------------------------------------------
+    # FACTION SERVICES — Tier 1-3 unlocks
+    # -----------------------------------------------------------------
+
+    def _cmd_buy(self, arg: str = "") -> str:
+        """Buy ingredients from faction vendors."""
+        arg = arg.strip().lower()
+        char = self.engine.character
+        cost = 5  # amber-shards
+
+        _VENDOR_STOCK = {
+            "wax": ("hive", "Wax Sealant", "Used for Blight-resistant gear coatings."),
+            "royal_jelly": ("hive", "Royal Jelly", "Rare Hive ingredient for potent elixirs."),
+            "spores": ("mycelium", "Rot Spores", "Mycelium-processed fungal spores."),
+            "materials": ("dam_wrights", "Ironbark Scraps", "Dense construction material."),
+            "moth": ("canopy_court", "Moth-Scale Powder", "Iridescent dust with magical properties."),
+            "elder_sap": ("hag_circle", "Elder Sap", "Processed tree sap from the Hag Circle."),
+            "heartwood_sap": ("heartwood_elders", "Elder Sap", "Pure sap from the Heartwood Elders."),
+        }
+
+        if not arg:
+            lines = ["=== FACTION VENDORS ===", ""]
+            for key, (faction, name, desc) in _VENDOR_STOCK.items():
+                available = self.engine.faction_rep.can_access_services(faction)
+                status = "" if available else " [LOCKED]"
+                lines.append(f"  buy {key} — {name} (5 amber){status}")
+                lines.append(f"    {desc}")
+            lines.append("")
+            lines.append(self._status_line())
+            return "\n".join(lines)
+
+        match = _VENDOR_STOCK.get(arg)
+        if not match:
+            # Fuzzy match
+            for key, val in _VENDOR_STOCK.items():
+                if arg in key or arg in val[1].lower():
+                    match = val
+                    break
+        if not match:
+            return f"Unknown item '{arg}'. Use 'buy' to see available stock.\n" + self._status_line()
+
+        faction, item_name, desc = match
+        if not self.engine.faction_rep.can_access_services(faction):
+            fname = FACTION_SERVICES[faction]["name"]
+            return f"Vendor locked. (Need {fname} Friendly+)\n" + self._status_line()
+
+        # Check gold/amber
+        if not hasattr(char, 'gold'):
+            char.gold = 0
+        if char.gold < cost:
+            return f"Not enough gold. ({cost} needed, you have {char.gold})\n" + self._status_line()
+
+        char.gold -= cost
+        char.ingredients[item_name] = char.ingredients.get(item_name, 0) + 1
+        return f"Purchased {item_name}! ({char.ingredients[item_name]} total)\n" + self._status_line()
+
+    def _cmd_propolis(self, arg: str = "") -> str:
+        """Hive Propolis Repair — restore 1 DR to armor (requires Hive Allied+)."""
+        if not self.engine.faction_rep.can_access_gear("hive"):
+            return "Propolis repair unavailable. (Need Hive Allied+)\n" + self._status_line()
+        if not arg.strip():
+            return "Repair what? Usage: propolis <item name>\n" + self._status_line()
+        char = self.engine.character
+        target = None
+        for slot, item in char.gear.slots.items():
+            if item and arg.strip().lower() in item.name.lower():
+                target = item
+                break
+        if not target:
+            return f"No equipped item named '{arg}'.\n" + self._status_line()
+        if not hasattr(target, 'dr_bonus'):
+            target.dr_bonus = 0
+        target.dr_bonus = getattr(target, 'dr_bonus', 0) + 1
+        return f"Propolis applied! {target.name} gains +1 DR (now +{target.dr_bonus} DR).\n" + self._status_line()
+
+    def _cmd_hivesense(self) -> str:
+        """Royal Jelly Dose — see through walls 3 rooms (requires Hive Exalted)."""
+        if not self.engine.faction_rep.has_capstone("hive"):
+            return "Royal Jelly Dose unavailable. (Need Hive Exalted)\n" + self._status_line()
+        # Reveal all rooms within 3 connections
+        revealed = 0
+        if self.engine.dungeon_graph:
+            current = self.engine.current_room_id
+            frontier = {current}
+            for _ in range(3):
+                next_frontier = set()
+                for rid in frontier:
+                    node = self.engine.dungeon_graph.rooms.get(rid)
+                    if node:
+                        for conn in node.connections:
+                            if conn not in self.engine.visited_rooms:
+                                self.engine.visited_rooms.add(conn)
+                                revealed += 1
+                            next_frontier.add(conn)
+                frontier = next_frontier
+        lines = ["The Royal Jelly floods your senses. You see through walls."]
+        if revealed:
+            lines.append(f"  {revealed} rooms revealed on the map!")
+        else:
+            lines.append("  (All nearby rooms already explored.)")
+        lines.append("")
+        lines.append(self._status_line())
+        return "\n".join(lines)
+
+    def _cmd_fasttravel(self, arg: str = "") -> str:
+        """Mycelium Network Travel — fast-travel to discovered Mycelium nodes (requires Mycelium Allied+)."""
+        if not self.engine.faction_rep.can_access_gear("mycelium"):
+            return "Network Travel unavailable. (Need Mycelium Allied+)\n" + self._status_line()
+
+        # Find rooms with Mycelium territory markers
+        mycelium_rooms = []
+        for rid, pr in self.engine.populated_rooms.items():
+            if isinstance(pr.content, dict) and pr.content.get("faction_territory") == "mycelium":
+                if rid in self.engine.visited_rooms and rid != self.engine.current_room_id:
+                    mycelium_rooms.append(rid)
+
+        if not mycelium_rooms:
+            return "No discovered Mycelium nodes to travel to.\n" + self._status_line()
+
+        if not arg.strip():
+            lines = ["=== MYCELIUM NETWORK ===", ""]
+            for rid in mycelium_rooms:
+                lines.append(f"  fasttravel {rid} — Room {rid}")
+            lines.append("")
+            lines.append(self._status_line())
+            return "\n".join(lines)
+
+        try:
+            dest = int(arg.strip())
+        except ValueError:
+            return f"Invalid room ID. Use: fasttravel <room_id>\n" + self._status_line()
+
+        if dest not in mycelium_rooms:
+            return f"Room {dest} is not a discovered Mycelium node.\n" + self._status_line()
+
+        self.engine.current_room_id = dest
+        doom_events = self.engine.advance_doom(1)
+        lines = ["The mycelium threads pull you through the root-mass..."]
+        lines.append(f"You emerge at Room {dest}. (+1 Doom)")
+        for event in doom_events:
+            lines.append(event)
+        lines.append("")
+        lines.append(self._cmd_look())
+        return "\n".join(lines)
+
+    def _cmd_rootroads(self) -> str:
+        """Dam-Wright Root-Road Shortcuts — unlock shortcuts between zones (requires Dam-Wright Allied+)."""
+        if not self.engine.faction_rep.can_access_gear("dam_wrights"):
+            return "Root-Road shortcuts unavailable. (Need Dam-Wright Allied+)\n" + self._status_line()
+        # Reveal 2 unvisited rooms as "shortcut" connections
+        revealed = 0
+        if self.engine.dungeon_graph:
+            for rid, pr in self.engine.populated_rooms.items():
+                if rid not in self.engine.visited_rooms and revealed < 2:
+                    self.engine.visited_rooms.add(rid)
+                    revealed += 1
+        lines = ["The Dam-Wrights have maintained these root-roads well."]
+        if revealed:
+            lines.append(f"  {revealed} shortcut rooms revealed on your map!")
+        else:
+            lines.append("  (All rooms already explored.)")
+        lines.append("")
+        lines.append(self._status_line())
+        return "\n".join(lines)
+
+    def _cmd_siege(self) -> str:
+        """Dam-Wright Siege Equipment — portable barricade for room defense (requires Dam-Wright Allied+)."""
+        if not self.engine.faction_rep.can_access_gear("dam_wrights"):
+            return "Siege equipment unavailable. (Need Dam-Wright Allied+)\n" + self._status_line()
+        # Add a barricade to the current room
+        pop_room = self.engine.populated_rooms.get(self.engine.current_room_id)
+        if pop_room:
+            pop_room.content.setdefault("hazards", []).append({
+                "name": "Ironbark Barricade", "damage": 3, "source": "player",
+                "effect": "Enemies must break barricade before reaching party."
+            })
+        lines = ["The Dam-Wrights set an Ironbark barricade across the corridor."]
+        lines.append("  Enemies entering this room take 3 damage and are delayed.")
+        lines.append("")
+        lines.append(self._status_line())
+        return "\n".join(lines)
+
+    def _cmd_lodgecraft(self) -> str:
+        """Dam-Wright Lodgecraft — fortify room, halve Doom gain (requires Dam-Wright Exalted)."""
+        if not self.engine.faction_rep.has_capstone("dam_wrights"):
+            return "Lodgecraft unavailable. (Need Dam-Wright Exalted)\n" + self._status_line()
+        # Set a room fortification flag — Doom gain halved while in fortified rooms
+        pop_room = self.engine.populated_rooms.get(self.engine.current_room_id)
+        if pop_room:
+            pop_room.content["fortified"] = True
+        lines = ["The Dam-Wrights erect a living lodge around you."]
+        lines.append("  This room is FORTIFIED. Doom gain halved while resting here.")
+        lines.append("  Safe to use as a rest shelter.")
+        lines.append("")
+        lines.append(self._status_line())
+        return "\n".join(lines)
+
+    def _cmd_windride(self) -> str:
+        """Canopy Court Wind-Riding — access Crown zone without climbing (requires Canopy Court Allied+)."""
+        if not self.engine.faction_rep.can_access_gear("canopy_court"):
+            return "Wind-Riding unavailable. (Need Canopy Court Allied+)\n" + self._status_line()
+        # Discover the canopy/crown entrance
+        self.engine._discovered_entrances.add("canopy")
+        lines = ["The moth-riders catch the updraft. You rise through the branches."]
+        lines.append("  The Canopy zone is now accessible! Use: enter canopy")
+        lines.append("")
+        lines.append(self._status_line())
+        return "\n".join(lines)
+
+    def _cmd_mothwing(self) -> str:
+        """Mothwing Cloak — invisible for one room transition (requires Canopy Court Exalted, once/floor)."""
+        if not self.engine.faction_rep.has_capstone("canopy_court"):
+            return "Mothwing Cloak unavailable. (Need Canopy Court Exalted)\n" + self._status_line()
+        if getattr(self, '_mothwing_used', False):
+            return "The Mothwing Cloak has already been used this floor.\n" + self._status_line()
+        self._mothwing_used = True
+        self._mothwing_active = True
+        lines = ["Moth-silk shimmers around you. You become invisible."]
+        lines.append("  Next room entered: enemies will not detect you. (One transition.)")
+        lines.append("")
+        lines.append(self._status_line())
+        return "\n".join(lines)
+
+    def _cmd_fortune(self) -> str:
+        """Hag Fortune-Telling — reveal boss weaknesses (requires Hag Circle Allied+). Costs map memory."""
+        if not self.engine.faction_rep.can_access_gear("hag_circle"):
+            return "Fortune-telling unavailable. (Need Hag Circle Allied+)\n" + self._status_line()
+        # Cost: lose some map data (forget 2 visited rooms)
+        lost = 0
+        removable = [r for r in self.engine.visited_rooms
+                     if r != self.engine.current_room_id]
+        for rid in removable[:2]:
+            self.engine.visited_rooms.discard(rid)
+            lost += 1
+
+        # Reveal boss info from populated rooms
+        boss_info = []
+        for rid, pr in self.engine.populated_rooms.items():
+            enemies = pr.content.get("enemies", []) if isinstance(pr.content, dict) else []
+            for e in enemies:
+                if isinstance(e, dict) and e.get("boss"):
+                    boss_info.append(f"  {e.get('name', '???')}: HP {e.get('hp', '?')}, "
+                                     f"DEF {e.get('defense', '?')}, DMG {e.get('damage', '?')}")
+                    specials = e.get("special", "")
+                    if specials:
+                        boss_info.append(f"    Abilities: {specials}")
+
+        lines = ["The Hag peers into the bones and whispers..."]
+        if lost:
+            lines.append(f"  (Lost memory of {lost} rooms — the price of seeing.)")
+        if boss_info:
+            lines.append("  The Hag reveals:")
+            lines.extend(boss_info)
+        else:
+            lines.append("  'No great beast stirs on this floor. Not yet.'")
+        lines.append("")
+        lines.append(self._status_line())
+        return "\n".join(lines)
+
+    def _cmd_architecture(self) -> str:
+        """Heartwood Living Architecture — reshape current room (requires Heartwood Elders Friendly+)."""
+        if not self.engine.faction_rep.can_access_services("heartwood_elders"):
+            return "Living Architecture unavailable. (Need Heartwood Elders Friendly+)\n" + self._status_line()
+        pop_room = self.engine.populated_rooms.get(self.engine.current_room_id)
+        if not pop_room:
+            return "No room to reshape.\n" + self._status_line()
+
+        lines = ["The Heartwood responds. The walls groan and shift."]
+        # Seal hazards
+        hazards = pop_room.content.get("hazards", []) if isinstance(pop_room.content, dict) else []
+        sealed = [h for h in hazards if h.get("source") != "player"]
+        if sealed:
+            pop_room.content["hazards"] = [h for h in hazards if h.get("source") == "player"]
+            lines.append(f"  {len(sealed)} hazard(s) sealed by living wood!")
+        # Clear darkness
+        if getattr(pop_room, 'is_dark', False):
+            pop_room.is_dark = False
+            lines.append("  Bioluminescent sap fills the cracks. Darkness banished.")
+        if not sealed and not getattr(pop_room, 'is_dark', False):
+            lines.append("  The room shifts subtly. Nothing specific to change.")
+        lines.append("")
+        lines.append(self._status_line())
+        return "\n".join(lines)
+
+    def _cmd_communion(self) -> str:
+        """Amber Communion — access Arborist memories in the walls (requires Heartwood Elders Friendly+)."""
+        if not self.engine.faction_rep.can_access_services("heartwood_elders"):
+            return "Amber Communion unavailable. (Need Heartwood Elders Friendly+)\n" + self._status_line()
+
+        zone = getattr(self.engine, '_zone', 1)
+        _MEMORIES = {
+            1: "You see Arborists walking these corridors — long before the Rot. They sang to the wood, and it answered.",
+            2: "Clockwork mechanisms turn. The Arborists built these safeguards to contain something below.",
+            3: "Golden amber flows. The Heartwood remembers when the Choir sang in harmony — before the schism.",
+            4: "The vision burns. You see the moment the Song split — one voice went wrong. The Conductor turned.",
+            5: "Willow Wood as it was: a sanctuary between the groves. The Still Pool was their temple.",
+            6: "Deep within the Heartwood: the original Song, pure and resonant. The roots remember everything.",
+            7: "The Undergrove whispers of the Void — the silence between songs. Older than the tree itself.",
+        }
+        memory = _MEMORIES.get(zone, _MEMORIES[1])
+        lines = ["You press your hand to the amber. Memories flood in.", ""]
+        lines.append(f"  {memory}")
+        lines.append("")
+        lines.append("  (This is lore. The tree's history unfolds with each communion.)")
+        lines.append("")
+        lines.append(self._status_line())
+        return "\n".join(lines)
+
     def _cmd_deposit(self, arg: str = "") -> str:
         """Deposit an item into the Still Pool (max 2, Willow Wood only)."""
         if len(self.engine.still_pool_items) >= 2:
@@ -2953,6 +3452,291 @@ class BurnwillowBridge:
             "The golem nods. The vault is yours.",
             f"\nOutpost claimed: {type_names.get(outpost_type)} (Room {room_id})",
         ]
+        lines.append("")
+        lines.append(self._status_line())
+        return "\n".join(lines)
+
+    # -----------------------------------------------------------------
+    # ITEM INSPECT (text-mode paper doll)
+    # -----------------------------------------------------------------
+
+    def _cmd_inspect(self, arg: str = "") -> str:
+        """Inspect an item in detail: affixes, set progress, combos, archetype, legendary."""
+        from codex.games.burnwillow.engine import (
+            GEAR_SETS, AFFIX_PREFIXES, AFFIX_SUFFIXES,
+            TRAIT_SOURCES, ARCHETYPES,
+        )
+        arg = arg.strip().lower()
+        if not arg:
+            return "Inspect what? Usage: inspect <item name>\n" + self._status_line()
+
+        char = self.engine.character
+        target = None
+        for slot, item in char.gear.slots.items():
+            if item and arg in item.name.lower():
+                target = item
+                break
+        if not target:
+            for item in char.inventory:
+                if arg in item.name.lower():
+                    target = item
+                    break
+        if not target:
+            return f"No item named '{arg}'.\n" + self._status_line()
+
+        display = target.get_display_name() if hasattr(target, 'get_display_name') else target.name
+        tier_val = target.tier.value if hasattr(target.tier, 'value') else target.tier
+        lines = [
+            f"=== {display} ===",
+            f"Slot: {target.slot.value}  |  Tier: {tier_val}  |  Dice: {'d6 ' * tier_val}",
+        ]
+        if target.damage_reduction:
+            lines.append(f"DR: {target.damage_reduction}")
+        if target.stat_bonuses:
+            bonus_strs = [f"{stat.value} {val:+d}" for stat, val in target.stat_bonuses.items()]
+            lines.append(f"Bonuses: {', '.join(bonus_strs)}")
+        if target.special_traits:
+            lines.append(f"Traits: {', '.join(target.special_traits)}")
+        if target.two_handed:
+            lines.append("Two-Handed")
+
+        # Prefix details
+        if target.prefix and target.prefix in AFFIX_PREFIXES:
+            fx = AFFIX_PREFIXES[target.prefix]
+            fx_parts = []
+            for key, label in [("on_hit_fire", "fire"), ("slow_chance", "slow"),
+                               ("heal_on_kill", "heal on kill"), ("crit_range", "crit"),
+                               ("bonus_damage", "+dmg"), ("self_damage_on_fumble", "self-dmg on fumble"),
+                               ("dr_if_stationary", "+DR stationary")]:
+                if fx.get(key):
+                    fx_parts.append(f"{label}: {fx[key]}")
+            if fx_parts:
+                lines.append(f"Prefix [{target.prefix}]: {', '.join(fx_parts)}")
+
+        # Suffix details
+        if target.suffix and target.suffix in AFFIX_SUFFIXES:
+            fx = AFFIX_SUFFIXES[target.suffix]
+            fx_parts = []
+            for key, label in [("aether_pool_bonus", "+Aether pool"), ("extra_movement", "+move"),
+                               ("reflect_damage", "reflect"), ("regen_per_room", "regen/room"),
+                               ("blight_resistance", "blight resist")]:
+                if fx.get(key):
+                    fx_parts.append(f"{label}: {fx[key]}")
+            if fx_parts:
+                lines.append(f"Suffix [{target.suffix}]: {', '.join(fx_parts)}")
+
+        # Set membership + progress
+        if target.set_id and target.set_id in GEAR_SETS:
+            set_def = GEAR_SETS[target.set_id]
+            equipped = sum(1 for i in char.gear.slots.values() if i and i.set_id == target.set_id)
+            total = max(set_def.get("bonuses", {}).keys(), default=0)
+            lines.append(f"\nSet: {set_def['name']} ({equipped}/{total})")
+            for threshold, bonus in sorted(set_def.get("bonuses", {}).items()):
+                marker = ">>>" if equipped >= threshold else "   "
+                lines.append(f"  {marker} {threshold}pc: {bonus.get('description', '?')}")
+
+        # Named legendary
+        if target.name in NAMED_LEGENDARY_ABILITIES:
+            ability = NAMED_LEGENDARY_ABILITIES[target.name]
+            lines.append(f"\n* LEGENDARY: {ability['description']}")
+
+        # Combo hints
+        _COMBOS = {"SNARE": "CLEAVE (+1d6), RANGED (DC-)", "FLASH": "BACKSTAB (2x), SPELLSLOT (DC-3)",
+                    "GUARD": "REFLECT (2x)", "CHARGE": "CLEAVE (splash)", "LIGHT": "REVEAL (range+)"}
+        for trait in (target.special_traits or []):
+            clean = trait.strip("[]").upper().replace(" ", "_")
+            if clean in _COMBOS:
+                lines.append(f"Combo: {clean} -> {_COMBOS[clean]}")
+
+        # Archetype contribution
+        _src_to_arch = {v["source"]: v["name"] for v in ARCHETYPES.values()}
+        sources = set()
+        for trait in (target.special_traits or []):
+            clean = trait.strip("[]").upper().replace(" ", "_")
+            src = TRAIT_SOURCES.get(clean)
+            if src and src in _src_to_arch:
+                sources.add(_src_to_arch[src])
+        if target.prefix and target.prefix in AFFIX_PREFIXES:
+            src = AFFIX_PREFIXES[target.prefix].get("source", "")
+            if src in _src_to_arch:
+                sources.add(_src_to_arch[src])
+        if target.suffix and target.suffix in AFFIX_SUFFIXES:
+            src = AFFIX_SUFFIXES[target.suffix].get("source", "")
+            if src in _src_to_arch:
+                sources.add(_src_to_arch[src])
+        if sources:
+            lines.append(f"Archetype: {', '.join(sorted(sources))}")
+
+        if target.description:
+            lines.append(f"\n{target.description}")
+
+        lines.append("")
+        lines.append(self._status_line())
+        return "\n".join(lines)
+
+    # -----------------------------------------------------------------
+    # NAMED LEGENDARY ABILITIES
+    # -----------------------------------------------------------------
+
+    def _use_legendary_active(self, item, leg: dict) -> str:
+        """Handle use_active legendary abilities: Worldbreaker (Sunder) and Ring of the Burnwillow (Tree Speaks)."""
+        lines = []
+
+        if leg["effect"] == "sunder_wall":
+            # Worldbreaker: once per floor, reveal a hidden/secret room
+            if self._sunder_used:
+                return "Worldbreaker's Sunder has already been used this floor.\n" + self._status_line()
+            self._sunder_used = True
+            pop_room = self.engine.populated_rooms.get(self.engine.current_room_id)
+            revealed = False
+            if pop_room and self.engine.dungeon_graph:
+                node = self.engine.dungeon_graph.rooms.get(self.engine.current_room_id)
+                if node:
+                    for conn_id in node.connections:
+                        conn_room = self.engine.populated_rooms.get(conn_id)
+                        if conn_room and getattr(conn_room, 'is_secret', False):
+                            conn_room.is_secret = False
+                            self.engine.visited_rooms.add(conn_id)
+                            lines.append(f"** {item.name} — SUNDER **")
+                            lines.append("The wall CRACKS. Stone splits. A hidden passage yawns open.")
+                            lines.append(f"  -> Secret room {conn_id} revealed!")
+                            revealed = True
+                            break
+            if not revealed:
+                lines.append(f"** {item.name} — SUNDER **")
+                lines.append("The blow echoes through the stone. No hidden passages here,")
+                lines.append("but you sense the dungeon tremble. (No adjacent secrets to reveal.)")
+            lines.append("")
+            lines.append(self._status_line())
+            return "\n".join(lines)
+
+        elif leg["effect"] == "tree_speaks":
+            # Ring of the Burnwillow: once per floor, the GM answers one yes/no question
+            if self._tree_speaks_used:
+                return "The Ring has already spoken this floor.\n" + self._status_line()
+            self._tree_speaks_used = True
+            lines.append(f"** {item.name} — THE TREE SPEAKS **")
+            lines.append("The ring hums. Amber light pulses. The Burnwillow listens.")
+            lines.append("  Ask the GM one yes/no question about this floor.")
+            lines.append("  (The answer comes as a feeling: warmth for yes, cold for no.)")
+            lines.append("")
+            lines.append(self._status_line())
+            return "\n".join(lines)
+
+        return f"{item.name} activated.\n" + self._status_line()
+
+    def _check_true_sight(self, room_data: dict, lines: list) -> None:
+        """Crown of Insight: passive — reveal secret exits and mark invisible enemies."""
+        char = self.engine.character
+        has_true_sight = any(
+            item and item.name == "Crown of Insight"
+            for item in char.gear.slots.values()
+        )
+        if not has_true_sight:
+            return
+
+        # Reveal secret exits in adjacent rooms
+        if self.engine.dungeon_graph:
+            node = self.engine.dungeon_graph.rooms.get(self.engine.current_room_id)
+            if node:
+                for conn_id in node.connections:
+                    conn_room = self.engine.populated_rooms.get(conn_id)
+                    if conn_room and getattr(conn_room, 'is_secret', False):
+                        conn_room.is_secret = False
+                        lines.append("  [True Sight] A secret exit glows faintly to the north.")
+
+        # Mark invisible/ambush enemies
+        pop_room = self.engine.populated_rooms.get(self.engine.current_room_id)
+        if pop_room:
+            enemies = pop_room.content.get("enemies", []) if isinstance(pop_room.content, dict) else []
+            for enemy in enemies:
+                if isinstance(enemy, dict) and enemy.get("invisible"):
+                    enemy["invisible"] = False
+                    lines.append(f"  [True Sight] You see through {enemy.get('name', 'the enemy')}'s invisibility.")
+
+    def _check_chosen_protection(self, item_name: str) -> bool:
+        """The Sun-Bow: passive — cannot be stolen or dropped involuntarily."""
+        return item_name == "The Sun-Bow"
+
+    # -----------------------------------------------------------------
+    # QUEST COMMANDS
+    # -----------------------------------------------------------------
+
+    def _cmd_questlog(self) -> str:
+        """Show quest journal: available, active, and completed quests."""
+        lines = ["=== QUEST JOURNAL ===", ""]
+
+        available = self._narrative.get_available_quests()
+        active = [q for q in self._narrative.quests if q.status == "active"]
+        ready = [q for q in self._narrative.quests if q.status == "complete"]
+        done = [q for q in self._narrative.quests if q.status == "turned_in"]
+
+        if ready:
+            lines.append("--- READY TO TURN IN ---")
+            for q in ready:
+                lines.append(f"  [{q.quest_id}] {q.title} (COMPLETE)")
+                lines.append(f"    Use: turnin {q.quest_id}")
+            lines.append("")
+
+        if active:
+            lines.append("--- ACTIVE ---")
+            for q in active:
+                prog = ""
+                if q.progress_target > 1:
+                    prog = f" ({q.progress}/{q.progress_target})"
+                lines.append(f"  [{q.quest_id}] {q.title}{prog}")
+                lines.append(f"    {q.description[:80]}...")
+            lines.append("")
+
+        if available:
+            lines.append("--- AVAILABLE ---")
+            for q in available:
+                tag = "MAIN" if q.quest_type == "main" else "SIDE"
+                lines.append(f"  [{q.quest_id}] {q.title} ({tag})")
+                lines.append(f"    {q.description[:80]}...")
+                lines.append(f"    Use: accept {q.quest_id}")
+            lines.append("")
+
+        if done:
+            lines.append(f"--- COMPLETED ({len(done)}) ---")
+            for q in done:
+                lines.append(f"  [{q.quest_id}] {q.title}")
+            lines.append("")
+
+        if not (available or active or ready or done):
+            lines.append("  No quests yet. Explore deeper to find opportunities.")
+            lines.append("")
+
+        lines.append(self._status_line())
+        return "\n".join(lines)
+
+    def _cmd_accept(self, arg: str) -> str:
+        """Accept a quest by ID."""
+        quest_id = arg.strip()
+        if not quest_id:
+            return "Usage: accept <quest_id>\nUse 'questlog' to see available quests."
+        msg = self._narrative.accept_quest(quest_id)
+        return f"{msg}\n{self._status_line()}"
+
+    def _cmd_turnin(self, arg: str) -> str:
+        """Turn in a completed quest by ID."""
+        quest_id = arg.strip()
+        if not quest_id:
+            # Auto-find first completable quest
+            ready = [q for q in self._narrative.quests if q.status == "complete"]
+            if not ready:
+                return "No quests ready to turn in.\n" + self._status_line()
+            quest_id = ready[0].quest_id
+
+        msg, reward = self._narrative.turn_in_quest(quest_id)
+        lines = [msg]
+        if reward:
+            if reward.get("gold"):
+                lines.append(f"  Reward: {reward['gold']} gold")
+            if reward.get("item"):
+                lines.append(f"  Reward: {reward['item']}")
+            if reward.get("description"):
+                lines.append(f"  {reward['description']}")
         lines.append("")
         lines.append(self._status_line())
         return "\n".join(lines)
