@@ -1,0 +1,28 @@
+{
+    "module_id": "burnwillow_willow_wood",
+    "display_name": "The Willow Wood: Beyond Emberhome",
+    "system_id": "burnwillow",
+    "source_pdf": "original",
+    "source_type": "homebrew_original",
+    "starting_location": "copper_ridge",
+    "recommended_levels": {"min": 1, "max": 4},
+    "chapters": [
+        {
+            "chapter_id": "ch1_willow_wood",
+            "display_name": "The Willow Wood",
+            "order": 1,
+            "zones": [
+                {
+                    "zone_id": "willow_wood_overworld",
+                    "blueprint": "willow_wood.json",
+                    "topology": "overworld",
+                    "theme": "AUTUMN",
+                    "location_id": "willow_wood",
+                    "entry_trigger": "leave_emberhome",
+                    "exit_trigger": "player_choice"
+                }
+            ]
+        }
+    ],
+    "freeform_zones": []
+}

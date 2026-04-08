@@ -1,0 +1,234 @@
+{
+    "seed": 7701,
+    "width": 80,
+    "height": 40,
+    "start_room_id": 0,
+    "metadata": {
+        "zone_id": "willow_wood_overworld",
+        "theme": "AUTUMN",
+        "topology": "overworld",
+        "display_name": "The Willow Wood: Beyond Emberhome",
+        "flavor_note": "The Willow Wood is the living territory surrounding Emberhome. Fire-leaves cast amber light over faction hubs, ancient landmarks, and hidden passages. The Root-Song hums underfoot. This is not a dungeon -- it is the world between dungeons."
+    },
+    "rooms": {
+        "0": {
+            "id": 0,
+            "x": 35, "y": 20, "width": 10, "height": 8,
+            "room_type": "start",
+            "connections": [1, 2, 3, 4, 5],
+            "tier": 1,
+            "is_locked": false, "is_secret": false,
+            "name": "Copper Ridge",
+            "description": "A rocky escarpment overlooking the Willow Wood. Paths radiate outward in five directions -- to the Hive's wax-sealed entrance below, the Dam-Wrights' waterworks at the tree's base, the Hag Circle's clearing in the mid-roots, and deeper into the canopy. Behind you, the warm glow of Emberhome beckons through the trunk.",
+            "read_aloud": "The ridge gives you the only vantage point in the Willow Wood. Below: the amber shimmer of the Hive's outer walls. To the east: the sound of running water where the Dam-Wrights work. Northwest: the faint glow of bioluminescent fungus marking Mycelium territory. And above, impossibly high, fire-leaves burning like a second sun.",
+            "sensory_signature": "Wind-scoured stone. Panoramic view. The Root-Song vibrates clearly up through the rock.",
+            "faction_territory": "",
+            "hazards": [],
+            "npcs": [
+                {
+                    "name": "Scout Lira",
+                    "function": "guide",
+                    "description": "A lean woman in worn leather, her blue-painted trail markers visible on the rocks behind her. She knows every path in the Willow Wood.",
+                    "dialogue": "Heading out? I can tell you what's active. The Hive's been agitated -- something about their queen. The Dam-Wrights are reinforcing the lower channels. And the Hags... well. The Hags are always doing something. Which way are you going?",
+                    "faction": "",
+                    "quirk": "Traces invisible maps on any flat surface while talking.",
+                    "secret": "Has been in contact via Root-Road messenger with a Verdhollow settlement that Emberhome believes was destroyed."
+                }
+            ],
+            "loot": [],
+            "enemies": []
+        },
+        "1": {
+            "id": 1,
+            "x": 15, "y": 10, "width": 12, "height": 8,
+            "room_type": "normal",
+            "connections": [0, 6],
+            "tier": 1,
+            "is_locked": false, "is_secret": false,
+            "name": "The Apiary",
+            "description": "A massive honeycombed structure grown into the mid-trunk of the Burnwillow, between Zones 1 and 2. Wax walls glow amber from stored Aether. The air vibrates with subsonic humming that outsiders find disorienting and Hive members find home. Individual cells serve as workshops, nurseries, and memory archives where royal jelly preserves the knowledge of every member who has ever died.",
+            "read_aloud": "The wax walls pulse with amber light as you cross the threshold. The humming hits your chest first -- not sound but pressure, a vibration that makes your teeth ache and your eyes water until they adjust. A figure in articulated chitin armor steps forward, mandibles clicking. Not hostile. Assessing.",
+            "sensory_signature": "Subsonic humming felt in the teeth and chest. Amber glow through wax walls. Warm, heavy air sweet with Aether-rich pollen.",
+            "faction_territory": "hive",
+            "hazards": [],
+            "npcs": [
+                {
+                    "name": "Drone-Captain Vex",
+                    "function": "faction_leader",
+                    "description": "A scarred Hive warrior in articulated chitin armor. Missing an antenna. Commands the Hive's defense perimeter with quiet efficiency.",
+                    "dialogue": "You are not Hive. You smell of ash and metal. But the Queen Mother says we trade now. So. What do you need?",
+                    "faction": "hive",
+                    "quirk": "Missing left antenna causes a slight head tilt when listening.",
+                    "secret": "The Queen Mother is dying. Vex knows and has told no one outside the inner circle."
+                },
+                {
+                    "name": "Stinger",
+                    "function": "merchant",
+                    "description": "A younger Hive member who handles external trade. Friendly by Hive standards, which means minimally hostile.",
+                    "dialogue": "Wax-sealed armor keeps the spores out. Honey heals what medicine cannot. Royal jelly... that is not for outsiders. Yet.",
+                    "faction": "hive",
+                    "quirk": "Counts everything in hexagonal units.",
+                    "secret": "Has been secretly studying Arborist amber-sealing techniques from stolen Memory Seeds."
+                }
+            ],
+            "loot": [],
+            "enemies": []
+        },
+        "2": {
+            "id": 2,
+            "x": 55, "y": 8, "width": 12, "height": 8,
+            "room_type": "normal",
+            "connections": [0, 7],
+            "tier": 1,
+            "is_locked": false, "is_secret": false,
+            "name": "The Lodgework",
+            "description": "A massive reinforced structure at the base of Zone 1, where the root system meets the water table. Built from harvested deadwood, Ironbark beams, and compacted earth, it controls the primary sap-flow dam that regulates moisture throughout the lower Zones. Everything is damp but structurally immaculate -- every joint tight, every beam load-tested, every surface maintained by hands that consider shoddy work a personal insult.",
+            "read_aloud": "Water runs everywhere -- through channels, along gutters, under floors. The Dam-Wrights' lodge is built around the sound of it. The timber framework is enormous, each beam the width of your chest, fitted without nails or adhesive. A barrel-chested figure with sawdust in their fur looks up from a schematic drawn on bark-paper.",
+            "sensory_signature": "Constant running water. Damp wood and compacted earth. The creak of load-bearing timber under honest stress.",
+            "faction_territory": "dam_wrights",
+            "hazards": [],
+            "npcs": [
+                {
+                    "name": "Foreman Gnaw",
+                    "function": "faction_leader",
+                    "description": "The Dam-Wrights' chief engineer. Barrel-chested, sawdust permanently embedded in their fur, one front tooth chipped from stress-testing materials with their mouth.",
+                    "dialogue": "You want reinforcement? Bring materials. You want access to the Root-Roads? Earn it. Everything here is built to last and nothing is free. What can you do?",
+                    "faction": "dam_wrights",
+                    "quirk": "Tests the structural integrity of everything by tapping it with a knuckle.",
+                    "secret": "Has been diverting sap-flow to reinforce a specific section of the Root-Road network. Won't say which or why."
+                }
+            ],
+            "loot": [],
+            "enemies": []
+        },
+        "3": {
+            "id": 3,
+            "x": 10, "y": 28, "width": 12, "height": 8,
+            "room_type": "normal",
+            "connections": [0],
+            "tier": 2,
+            "is_locked": false, "is_secret": false,
+            "name": "The Mulching Ground",
+            "description": "A clearing in Zone 2 where dead wood decomposes into rich, dark soil. Three crooked huts sit in a triangle around a central cauldron that never stops boiling. The ground is soft underfoot -- layers of decomposed matter going back centuries. Paradoxically, it is the most fertile place in the Burnwillow. The sisters trade in secrets, debts, and body parts, and their prices are always fair but never comfortable.",
+            "read_aloud": "The path grows soft. Your boots sink. The air changes from woodsmoke to something richer -- fertile earth, mushroom musk, and the sweet-sharp scent of active decomposition. Three huts lean toward a central cauldron like old women sharing a secret. One of them is watching you. She was watching before you arrived.",
+            "sensory_signature": "Rich earth and mushroom musk. Soft ground yielding underfoot. Warmth rising from the cauldron and the composting soil beneath.",
+            "faction_territory": "hag_circle",
+            "hazards": [],
+            "npcs": [
+                {
+                    "name": "Brindlemaw",
+                    "function": "faction_leader",
+                    "description": "The eldest Hag. Her face is bark-textured and her eyes are different colors -- one amber, one the grey of Blight. She speaks in riddles until you pay, then speaks plainly.",
+                    "dialogue": "Oh, a visitor. Sit. The cauldron is always boiling and the ground is always hungry. You want curses or cures? They are the same thing, applied differently.",
+                    "faction": "hag_circle",
+                    "quirk": "One amber eye, one grey. The grey one sees things the amber one does not.",
+                    "secret": "Knows the Choir's song is holding Autumn in place. Will not share this for free."
+                }
+            ],
+            "loot": [],
+            "enemies": []
+        },
+        "4": {
+            "id": 4,
+            "x": 55, "y": 28, "width": 12, "height": 8,
+            "room_type": "normal",
+            "connections": [0],
+            "tier": 2,
+            "is_locked": false, "is_secret": false,
+            "name": "The Undernet Hub Node",
+            "description": "The largest node in the Mycelium's fungal network -- a vast cluster of bioluminescent mushrooms in Zone 2 where the network hub connects to all four Grove root systems, though the connections to Ashenmere have gone dark. Spore-bursts carry communication that you feel more than hear -- a tingling on the skin, an impression in the mind, a sudden certainty about something you did not know a moment ago.",
+            "read_aloud": "The bioluminescence hits you before the path ends -- purple-blue light that ripples through the fungal mass like thought through a brain. The mushrooms are enormous here, their caps the size of tables, their stems thick as pillars. Something ancient sits at the center. It has been growing in the same spot for four hundred years. It knows you are here. It knew before you did.",
+            "sensory_signature": "Bioluminescent purple-blue glow. Spore-tinged air that tingles on exposed skin. The deep patience of something that thinks in centuries.",
+            "faction_territory": "mycelium",
+            "hazards": [],
+            "npcs": [
+                {
+                    "name": "Old Cap",
+                    "function": "faction_collective",
+                    "description": "The Mycelium network itself, given voice through its oldest fruiting body. Old Cap is a mushroom the size of a house. It remembers everything the roots have ever carried.",
+                    "dialogue": "You step on my children every day and I do not mind. We are the floor and the wall and the ceiling. We are the memory of the dead. What would you like to remember?",
+                    "faction": "mycelium",
+                    "quirk": "Speaks through spore-bursts that the listener perceives as their own inner voice.",
+                    "secret": "Knows why the Root-Roads were sealed. Knows what walked them last. Will share this if you bring a Crown ingredient."
+                }
+            ],
+            "loot": [],
+            "enemies": []
+        },
+        "5": {
+            "id": 5,
+            "x": 35, "y": 5, "width": 10, "height": 8,
+            "room_type": "normal",
+            "connections": [0],
+            "tier": 1,
+            "is_locked": false, "is_secret": false,
+            "name": "The Rootbridge",
+            "description": "A natural bridge of living root spanning a deep chasm in the Burnwillow's trunk. The roots are wide enough to walk three abreast, their surface worn smooth by centuries of foot traffic. Below: darkness and the sound of dripping water. Above: fire-leaves in the mid-canopy, their light filtering down in amber shafts. The bridge connects the upper and lower Willow Wood.",
+            "read_aloud": "The root-bridge stretches before you, wide and smooth as a road. The chasm below is black and deep -- you can hear water, but not see it. Fire-leaves high above cast long amber shadows across the crossing. At the far side, a carved archway marks the passage deeper into the tree. The Root-Song is very clear here, rising through the bridge like blood through a vein.",
+            "sensory_signature": "The bridge vibrates with the Root-Song. Amber light from above. The void below.",
+            "faction_territory": "",
+            "hazards": [],
+            "npcs": [],
+            "loot": [],
+            "enemies": [],
+            "special": {
+                "gate_destination": "undergrove",
+                "gate_zone": 7,
+                "requires_discovery": true,
+                "gate_description": "At the bridge's midpoint, a spiral staircase of petrified root descends into the dark. A carved sign reads: 'The Root Descent.' The air rising from below smells of wet earth and deep time."
+            }
+        },
+        "6": {
+            "id": 6,
+            "x": 5, "y": 18, "width": 8, "height": 6,
+            "room_type": "treasure",
+            "connections": [1],
+            "tier": 2,
+            "is_locked": false, "is_secret": false,
+            "name": "The Still Pool",
+            "description": "A natural basin of perfectly calm water hidden behind the Hive's outer walls. The surface is mirror-still despite the constant vibration of the Root-Song. Amber deposits line the basin's edges, forming natural shelves. The Arborists used this place to store their most precious items -- things they could not bear to carry but could not bear to lose. The tradition continues.",
+            "read_aloud": "The pool does not reflect you. It reflects the room as it was -- amber shelves holding tools from another age, light that is warmer and steadier than fire-leaf glow. Your reflection shows empty hands, even if you are holding something. The water remembers what was here. It does not care what is here now.",
+            "sensory_signature": "Perfect stillness. The water is warm. Time moves differently at the edges.",
+            "faction_territory": "",
+            "hazards": [],
+            "npcs": [],
+            "loot": [],
+            "enemies": [],
+            "special": {
+                "still_pool": true,
+                "deposit_slots": 2,
+                "gate_destination": "heartwood",
+                "gate_zone": 6,
+                "requires_discovery": true,
+                "gate_description": "Behind the pool, where the amber deposits are thickest, a passage descends inward. Not down -- inward, through the wood itself. 'The Heart's Threshold.' The grain of the walls runs in concentric rings, each one older than the last."
+            }
+        },
+        "7": {
+            "id": 7,
+            "x": 65, "y": 15, "width": 10, "height": 8,
+            "room_type": "normal",
+            "connections": [2],
+            "tier": 1,
+            "is_locked": false, "is_secret": false,
+            "name": "The Watchtower",
+            "description": "A reinforced observation post built by the Dam-Wrights at the highest point of Zone 1. Ironbark scaffold and woven root-rope create a structure that sways gently in the upper drafts. From here, you can see the canopy above, the root-maze below, and the distant glow of the Hive's wax walls. The Watchtower serves as Emberhome's early warning system.",
+            "read_aloud": "The scaffold creaks as you climb. Each level gives you more sky and less ground. At the top, the view steals your breath -- the Burnwillow stretches in every direction, fire-leaves burning orange and gold against a canopy so vast it IS the sky. Below: the tangled root-maze of Zone 1, smoke from the Hag Circle's clearing, and the faint blue glow of the Mycelium. You can see everything from here. Including the things that are moving.",
+            "sensory_signature": "Wind at height. The sway of living wood. The panorama of a dying world that is still beautiful.",
+            "faction_territory": "dam_wrights",
+            "hazards": [],
+            "npcs": [
+                {
+                    "name": "Warden Voss",
+                    "function": "military",
+                    "description": "A grizzled veteran who runs the Watchtower's observation schedule. Missing two fingers on their left hand. Sees everything and says little.",
+                    "dialogue": "Movement in the lower root-maze. Three contacts, maybe four. Probably Hollows. Probably not a problem. But I have been wrong before, and I have the scars to prove it. What do you need?",
+                    "faction": "",
+                    "quirk": "Sketches threat maps on bark scraps compulsively.",
+                    "secret": "Has been tracking a pattern in Hollow movements that suggests they are being directed, not wandering. Has not shared this because no one would believe him."
+                }
+            ],
+            "loot": [],
+            "enemies": []
+        }
+    }
+}
