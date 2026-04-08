@@ -66,6 +66,7 @@ COMMANDS = {
     "salvage":   ["scrap"],
     "temper":    [],
     "reforge":   [],
+    "affixforge": ["affix_forge", "forge_affix"],
     "enchant":   [],
     "heal":      ["honey"],
     "reinforce": [],
@@ -149,6 +150,7 @@ class BurnwillowBridge:
             "salvage": "Break an item into materials: salvage <item name>",
             "temper": "Add +1 DR to armor: temper <item name>",
             "reforge": "Change item slot: reforge <item name> <new slot>",
+            "affixforge": "Blacksmith affix forge: affixforge <item> <prefix or suffix name>",
             "enchant": "Add Aether affix to armor: enchant <item name>",
             "heal": "Hive honey healing (costs 5 amber, requires Hive Friendly)",
             "reinforce": "Dam-Wright reinforcement: reinforce <item> (requires Dam-Wright Friendly)",
@@ -317,6 +319,7 @@ class BurnwillowBridge:
             "salvage":   lambda: self._cmd_salvage(arg),
             "temper":    lambda: self._cmd_temper(arg),
             "reforge":   lambda: self._cmd_reforge(arg),
+            "affixforge": lambda: self._cmd_affixforge(arg),
             "enchant":   lambda: self._cmd_enchant(arg),
             "heal":      lambda: self._cmd_heal(),
             "reinforce": lambda: self._cmd_reinforce(arg),
@@ -2552,6 +2555,45 @@ class BurnwillowBridge:
         lines.append("")
         lines.append(self._status_line())
         return "\n".join(lines)
+
+    def _cmd_affixforge(self, arg: str = "") -> str:
+        """Blacksmith affix forge — apply a specific prefix or suffix to an item. Costs 10 scrap."""
+        if not arg.strip():
+            from codex.games.burnwillow.engine import AFFIX_PREFIXES, AFFIX_SUFFIXES
+            prefix_list = ", ".join(AFFIX_PREFIXES.keys())
+            suffix_list = ", ".join(AFFIX_SUFFIXES.keys())
+            return (f"Usage: affixforge <item name> <affix name>\n"
+                    f"Prefixes: {prefix_list}\n"
+                    f"Suffixes: {suffix_list}\n"
+                    f"Cost: 10 scrap\n" + self._status_line())
+        parts = arg.strip().rsplit(" ", 1)
+        if len(parts) < 2:
+            return "Usage: affixforge <item name> <affix name>\n" + self._status_line()
+        item_search, affix_name = parts[0].lower(), parts[1]
+        char = self.engine.character
+        if char.scrap < 10:
+            return f"Need 10 scrap to affix forge. You have {char.scrap}.\n" + self._status_line()
+        target = None
+        for slot, item in char.gear.slots.items():
+            if item and item_search in item.name.lower():
+                target = item
+                break
+        if not target:
+            for idx, item in char.inventory.items():
+                if item_search in item.name.lower():
+                    target = item
+                    break
+        if not target:
+            return f"No item named '{item_search}'.\n" + self._status_line()
+        from codex.games.burnwillow.engine import blacksmith_affix_forge, AFFIX_PREFIXES, AFFIX_SUFFIXES
+        prefix = affix_name if affix_name in AFFIX_PREFIXES else None
+        suffix = affix_name if affix_name in AFFIX_SUFFIXES else None
+        if not prefix and not suffix:
+            return f"Unknown affix: '{affix_name}'.\n" + self._status_line()
+        result = blacksmith_affix_forge(target, prefix=prefix, suffix=suffix)
+        if result.get("success"):
+            char.scrap -= 10
+        return result["message"] + "\n" + self._status_line()
 
     def _cmd_enchant(self, arg: str = "") -> str:
         """Enchant an item with an Aether affix (Silkweaver station)."""
