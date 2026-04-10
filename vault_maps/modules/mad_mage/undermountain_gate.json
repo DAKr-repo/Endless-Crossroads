@@ -1,162 +1,221 @@
 {
-    "seed": 4001,
-    "width": 40,
-    "height": 50,
-    "start_room_id": 0,
-    "metadata": {
-        "zone_id": "undermountain_gate",
-        "theme": "VILLAGE",
-        "topology": "settlement",
-        "display_name": "The Yawning Portal -- Undermountain Gate"
+  "seed": 4001,
+  "width": 40,
+  "height": 50,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "undermountain_gate",
+    "theme": "VILLAGE",
+    "topology": "settlement",
+    "display_name": "The Yawning Portal -- Undermountain Gate"
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 15,
+      "y": 0,
+      "width": 10,
+      "height": 8,
+      "room_type": "tavern",
+      "connections": [
+        1
+      ],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The Yawning Portal is a famous inn and tavern located in the Castle Ward of Waterdeep. Its common room features a 40-foot-diameter open well, which is actually the outer shell of a sunken stone tower descending 140 feet to the first level of Undermountain.",
+        "read_aloud": "You see a massive, 30-foot-high cavern, a maze of single-story stone buildings, many of which have partially collapsed. The air is deathly quiet, and the crumbling stone buildings loom around you.",
+        "npcs": [
+          {
+            "name": "Durnan",
+            "role": "quest_giver",
+            "dialogue": "One gold each, down and back. I will wait four hours. After that, you are on your own. Any questions? Good. I do not answer questions. Step onto the platform.",
+            "notes": "Retired adventurer, owner of the Yawning Portal. Over 200 years old (kept young by magic). Has been to the bottom of Undermountain and back. Speaks in clipped sentences. Judges adventurers by their gear -- good boots matter more than good swords, he says."
+          }
+        ],
+        "enemies": [],
+        "loot": [],
+        "hazards": [
+          {
+            "name": "Open well shaft (140-foot drop into Undermountain)",
+            "dc": 0
+          }
+        ],
+        "services": [
+          "drink",
+          "rest",
+          "rumor",
+          "quest"
+        ],
+        "event_triggers": [
+          "On approach to well: Durnan holds out his hand. 'Gold first. Prayers second.'",
+          "On rumor: A drunken dwarf mutters about hearing his grandfather's forge hammer echoing from Level 6 -- impossible, since his grandfather died three centuries ago."
+        ],
+        "_source": "Dungeon of the Mad Mage",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
     },
-    "rooms": {
-        "0": {
-            "id": 0,
-            "x": 15,
-            "y": 0,
-            "width": 10,
-            "height": 8,
-            "room_type": "tavern",
-            "connections": [1],
-            "tier": 1,
-            "is_locked": false,
-            "is_secret": false,
-            "content_hints": {
-                "description": "The Yawning Portal's common room is built around a forty-foot-wide well shaft that drops into absolute darkness. A pulley system lowers adventurers into Undermountain for one gold piece per head -- Durnan pulls them back up for free, provided they are still alive. The tavern does brisk business in last meals and farewell drinks. A chalkboard behind the bar tracks the current record for deepest level reached and survived: Level 14, set six years ago. No one has beaten it.",
-                "read_aloud": "The tavern is warm and loud, but every conversation orbits the same dark center: a forty-foot well shaft cut into the common room floor, its stone lip worn smooth by a thousand gripping hands. A heavy iron pulley hangs above it, rope coiled thick as a man's arm. The air rising from the shaft is cold and smells of wet stone and something older. Behind the bar, a chalkboard lists names and numbers -- depths reached, dates descended. Many entries have been crossed out. A broad-shouldered man works the bar with the calm efficiency of someone who has seen everything come back up that well, and most of what hasn't.",
-                "npcs": [
-                    {
-                        "name": "Durnan",
-                        "role": "quest_giver",
-                        "dialogue": "One gold each, down and back. I will wait four hours. After that, you are on your own. Any questions? Good. I do not answer questions. Step onto the platform.",
-                        "notes": "Retired adventurer, owner of the Yawning Portal. Over 200 years old (kept young by magic). Has been to the bottom of Undermountain and back. Speaks in clipped sentences. Judges adventurers by their gear -- good boots matter more than good swords, he says."
-                    }
-                ],
-                "enemies": [],
-                "loot": [],
-                "hazards": [
-                    {"name": "Open well shaft (140-foot drop into Undermountain)", "dc": 0}
-                ],
-                "services": ["drink", "rest", "rumor", "quest"],
-                "event_triggers": [
-                    "On approach to well: Durnan holds out his hand. 'Gold first. Prayers second.'",
-                    "On rumor: A drunken dwarf mutters about hearing his grandfather's forge hammer echoing from Level 6 -- impossible, since his grandfather died three centuries ago."
-                ]
-            }
-        },
-        "1": {
-            "id": 1,
-            "x": 15,
-            "y": 12,
-            "width": 10,
-            "height": 8,
-            "room_type": "normal",
-            "connections": [0, 2],
-            "tier": 1,
-            "is_locked": false,
-            "is_secret": false,
-            "content_hints": {
-                "description": "The descent platform is a wooden cage reinforced with iron bands, large enough for six. Durnan works the winch with the ease of long practice, and the tavern recedes above you -- candlelight shrinking to a distant star, then nothing. The shaft walls change from brick to raw stone to something older, and the temperature drops with every foot. The rope creaks. The darkness is absolute.",
-                "read_aloud": "You step onto a wooden platform reinforced with iron bands, large enough for six if you stand close. The winch groans and the platform drops. Above you, the tavern's warm light shrinks to a coin, then a pinprick, then nothing. The shaft walls change around you -- mortared brick giving way to rough stone, then to something smoother and far older. The temperature falls steadily, and the only sounds are the creak of rope and the slow drip of water from stones that have been weeping for centuries.",
-                "npcs": [],
-                "enemies": [],
-                "loot": [],
-                "hazards": [
-                    {"name": "Unstable platform (listen for groaning timber)", "dc": 10}
-                ],
-                "services": [],
-                "event_triggers": [
-                    "On descent: The sounds of the tavern fade. For thirty seconds, there is only the creak of rope and the drip of water. Then the platform hits stone with a hollow boom."
-                ]
-            }
-        },
-        "2": {
-            "id": 2,
-            "x": 15,
-            "y": 24,
-            "width": 10,
-            "height": 8,
-            "room_type": "start",
-            "connections": [1, 3, 4],
-            "tier": 1,
-            "is_locked": false,
-            "is_secret": false,
-            "content_hints": {
-                "description": "The landing chamber is a dome of worked stone lit by everburning torches in iron brackets. The floor is smooth -- worn down by centuries of boots, hooves, and less identifiable appendages. Three passages lead deeper, each marked with faded paint: red for 'Known Paths,' blue for 'The River,' and a third mark that has been scratched out. Graffiti covers the walls -- warnings, boasts, final messages, and one recurring phrase carved in a dozen hands: 'HALASTER SEES.'",
-                "read_aloud": "The platform settles onto a floor of polished stone beneath a domed ceiling. Everburning torches gutter in iron brackets, casting steady amber light across walls covered in graffiti -- names, warnings, prayers scratched into the rock by hundreds of hands over hundreds of years. Three passages lead deeper into darkness, each marked with faded paint above the lintel. The floor is worn glass-smooth by the passage of countless feet. One phrase appears again and again, carved in different hands, different depths, different states of desperation: HALASTER SEES.",
-                "npcs": [],
-                "enemies": [],
-                "loot": [
-                    {"name": "Adventurer's Journal (abandoned, last entry reads 'Level 3. Something following us. It has too many arms.')", "type": "quest_item"}
-                ],
-                "hazards": [],
-                "services": [],
-                "event_triggers": [
-                    "On entry: A faint vibration in the stone -- rhythmic, like breathing. The mountain is alive."
-                ]
-            }
-        },
-        "3": {
-            "id": 3,
-            "x": 5,
-            "y": 32,
-            "width": 8,
-            "height": 8,
-            "room_type": "market",
-            "connections": [2],
-            "tier": 1,
-            "is_locked": false,
-            "is_secret": false,
-            "content_hints": {
-                "description": "A shallow alcove has been converted into a supply cache by an enterprising halfling who hauls goods down from the surface twice a week. Rope, pitons, torches, rations, and healing potions are arranged on a folding table. The prices are extortionate and non-negotiable. A sign reads: 'NO CREDIT. NO REFUNDS. NO EXCEPTIONS. YES, THAT MEANS YOU.'",
-                "read_aloud": "A shallow alcove off the main passage has been claimed as a shop. A folding table sags under coils of rope, bundles of torches, and rows of glass vials stoppered with wax. A hand-lettered sign nailed to the wall reads: NO CREDIT. NO REFUNDS. NO EXCEPTIONS. YES, THAT MEANS YOU. The alcove smells of lamp oil and dried rations, and a small figure perches on a stool behind the table, watching you approach with the sharp, unblinking appraisal of someone who has calculated your net worth before you opened your mouth.",
-                "npcs": [
-                    {
-                        "name": "Tasselgryn 'Tass' Velldarn",
-                        "role": "shopkeeper",
-                        "dialogue": "Torch? Two gold. Rope? Five gold. Healing potion? Twenty gold. You think that is expensive? Try buying one on Level 8 when you are bleeding out. Suddenly my prices look very reasonable.",
-                        "notes": "Halfling merchant. Fearless entrepreneur. Has been robbed seven times and always comes back. Keeps a loaded crossbow under the table and a Ring of Invisibility for emergencies. Knows more about the first three levels than most adventurers who have explored them."
-                    }
-                ],
-                "enemies": [],
-                "loot": [
-                    {"name": "Potion of Healing (20 gp)", "type": "consumable"},
-                    {"name": "50 ft Hempen Rope (5 gp)", "type": "equipment"},
-                    {"name": "Torch Bundle (10, 2 gp)", "type": "equipment"}
-                ],
-                "hazards": [],
-                "services": ["shop"],
-                "event_triggers": []
-            }
-        },
-        "4": {
-            "id": 4,
-            "x": 25,
-            "y": 36,
-            "width": 10,
-            "height": 10,
-            "room_type": "normal",
-            "connections": [2],
-            "tier": 1,
-            "is_locked": false,
-            "is_secret": false,
-            "content_hints": {
-                "description": "A ten-foot stone statue of a robed figure stands at the junction of three passages, one hand raised in warning or greeting -- impossible to tell which. The statue's face has been chiseled smooth, its features erased by someone who did not want it recognized. At its base, offerings have been left by passing adventurers: coins, flowers (long dead), and a child's wooden toy. A Detect Magic spell reveals the statue radiates faint divination magic. It is watching.",
-                "read_aloud": "A ten-foot stone statue dominates the junction where three passages meet. It depicts a robed figure with one hand raised -- whether in warning or welcome, you cannot tell, because its face has been chiseled away to smooth, featureless stone. Dried flowers, tarnished coins, and small trinkets are heaped at its base like offerings at a roadside shrine. The air near the statue feels oddly still, as though something is holding its breath. You have the unmistakable sensation of being observed.",
-                "npcs": [],
-                "enemies": [],
-                "loot": [
-                    {"name": "Offering Coins (3 gp in copper and silver)", "type": "treasure"}
-                ],
-                "hazards": [
-                    {"name": "Scrying sensor (Halaster observes through the statue)", "dc": 20}
-                ],
-                "services": [],
-                "event_triggers": [
-                    "On Detect Magic: The statue's eyes flare briefly. A voice echoes from nowhere: 'How polite of you to announce yourselves.' Then silence.",
-                    "On offering left: The statue's hand shifts slightly, as if accepting the gift. Perception DC 18 to notice."
-                ]
-            }
-        }
+    "1": {
+      "id": 1,
+      "x": 15,
+      "y": 12,
+      "width": 10,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [
+        0,
+        2
+      ],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The descent platform is a wooden cage reinforced with iron bands, large enough for six. Durnan works the winch with the ease of long practice, and the tavern recedes above you -- candlelight shrinking to a distant star, then nothing. The shaft walls change from brick to raw stone to something older, and the temperature drops with every foot. The rope creaks. The darkness is absolute.",
+        "read_aloud": "You step onto a wooden platform reinforced with iron bands, large enough for six if you stand close. The winch groans and the platform drops. Above you, the tavern's warm light shrinks to a coin, then a pinprick, then nothing. The shaft walls change around you -- mortared brick giving way to rough stone, then to something smoother and far older. The temperature falls steadily, and the only sounds are the creak of rope and the slow drip of water from stones that have been weeping for centuries.",
+        "npcs": [],
+        "enemies": [],
+        "loot": [],
+        "hazards": [
+          {
+            "name": "Unstable platform (listen for groaning timber)",
+            "dc": 10
+          }
+        ],
+        "services": [],
+        "event_triggers": [
+          "On descent: The sounds of the tavern fade. For thirty seconds, there is only the creak of rope and the drip of water. Then the platform hits stone with a hollow boom."
+        ],
+        "_source": "Dungeon of the Mad Mage",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 15,
+      "y": 24,
+      "width": 10,
+      "height": 8,
+      "room_type": "start",
+      "connections": [
+        1,
+        3,
+        4
+      ],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The landing chamber is a stone landing with no railings, leading to a door in area K7 and a stone spiral staircase descending to area K4. An invisible staircase hugs the wall as it climbs from the landing to area K11.",
+        "read_aloud": "> You see the platform settle onto a floor of polished stone beneath a domed ceiling. Everburning torches gutter in iron brackets, casting steady amber light across walls covered in graffiti. Three passages lead deeper into darkness, each marked with faded paint above the lintel.",
+        "npcs": [],
+        "enemies": [],
+        "loot": [
+          {
+            "name": "Adventurer's Journal (abandoned, last entry reads 'Level 3. Something following us. It has too many arms.')",
+            "type": "quest_item"
+          }
+        ],
+        "hazards": [],
+        "services": [],
+        "event_triggers": [
+          "On entry: A faint vibration in the stone -- rhythmic, like breathing. The mountain is alive."
+        ],
+        "_source": "Dungeon of the Mad Mage",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
+    },
+    "3": {
+      "id": 3,
+      "x": 5,
+      "y": 32,
+      "width": 8,
+      "height": 8,
+      "room_type": "market",
+      "connections": [
+        2
+      ],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "A stone arch is embedded in the wall at the west end of a 20-foot-high ledge, serving as one of Halaster's gates. This arch is composed of one hundred stone jigsaw pieces, each weighing 10 pounds.",
+        "read_aloud": "You see covered in dirt and bat guano. The air is thick with the stench of burned meat and bread, and a magical light illuminates a kitchen where a haggard male halfling frantically tries to cook, knead dough, simmer sauce, and mix spices all at once.",
+        "npcs": [
+          {
+            "name": "Tasselgryn 'Tass' Velldarn",
+            "role": "shopkeeper",
+            "dialogue": "Torch? Two gold. Rope? Five gold. Healing potion? Twenty gold. You think that is expensive? Try buying one on Level 8 when you are bleeding out. Suddenly my prices look very reasonable.",
+            "notes": "Halfling merchant. Fearless entrepreneur. Has been robbed seven times and always comes back. Keeps a loaded crossbow under the table and a Ring of Invisibility for emergencies. Knows more about the first three levels than most adventurers who have explored them."
+          }
+        ],
+        "enemies": [],
+        "loot": [
+          {
+            "name": "Potion of Healing (20 gp)",
+            "type": "consumable"
+          },
+          {
+            "name": "50 ft Hempen Rope (5 gp)",
+            "type": "equipment"
+          },
+          {
+            "name": "Torch Bundle (10, 2 gp)",
+            "type": "equipment"
+          }
+        ],
+        "hazards": [],
+        "services": [
+          "shop"
+        ],
+        "event_triggers": [],
+        "_source": "Dungeon of the Mad Mage",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
+    },
+    "4": {
+      "id": 4,
+      "x": 25,
+      "y": 36,
+      "width": 10,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [
+        2
+      ],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "A secret door in the west wall opens into area 3, and north of the room is a hidden pit trap.",
+        "read_aloud": "You see a secret door in the west wall opening into area 3, and north of the room, a hidden pit trap awaits. The air here feels heavy, and you sense a hidden danger beneath the floor.",
+        "npcs": [],
+        "enemies": [],
+        "loot": [
+          {
+            "name": "Offering Coins (3 gp in copper and silver)",
+            "type": "treasure"
+          }
+        ],
+        "hazards": [
+          {
+            "name": "Scrying sensor (Halaster observes through the statue)",
+            "dc": 20
+          }
+        ],
+        "services": [],
+        "event_triggers": [
+          "On Detect Magic: The statue's eyes flare briefly. A voice echoes from nowhere: 'How polite of you to announce yourselves.' Then silence.",
+          "On offering left: The statue's hand shifts slightly, as if accepting the gift. Perception DC 18 to notice."
+        ],
+        "_source": "Dungeon of the Mad Mage",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
     }
+  }
 }

@@ -49,8 +49,8 @@
       "is_locked": false,
       "is_secret": false,
       "content_hints": {
-        "description": "The Zhentarim Hideout is a ramshackle two-story warehouse on Castle Lane, situated at the back of an outer yard behind a high fence. The gate on the fence is not locked.",
-        "read_aloud": "Crates are stacked high on either side, creating a narrow corridor of bolted cloth and flour sacks that funnels you toward the far doorway. The air smells of salt fish and damp grain. Ahead, overturned tables have been shoved together into a crude barricade, and behind it you can see movement -- dark shapes shifting, the dull gleam of crossbow bolts catching what little light there is.",
+        "description": "The Zhentarim Hideout is a ramshackle two-story warehouse on Castle Lane, situated at the back of an outer yard behind a high fence. The gate on the fence is not locked, while the building’s three points of entry—a front door, a large warehouse loading door, and a painted-over window—are locked.",
+        "read_aloud": "You see a ramshackle two-story warehouse standing at the back of an outer yard behind a high fence. The building’s three points of entry—a front door, a large warehouse loading door, and a painted-over window—are locked.",
         "enemies": [
           {
             "name": "Zhentarim Thug",
@@ -103,7 +103,7 @@
       "is_locked": false,
       "is_secret": false,
       "content_hints": {
-        "description": "The Zhentarim Hideout is a ramshackle two-story warehouse on Castle Lane, standing at the back of an outer yard behind a high fence with an unlocked gate.",
+        "description": "The Zhentarim Hideout is a ramshackle two-story warehouse on Castle Lane, standing at the back of an outer yard behind a high fence with an unlocked gate. The building's three points of entry—a front door, a large warehouse loading door, and a painted-over window—are locked.",
         "read_aloud": "You see a ramshackle two-story warehouse on Castle Lane, a hideout for the Black Network. The building stands at the back of an outer yard behind a high fence, with an unlocked gate.",
         "enemies": [
           {
@@ -163,13 +163,21 @@
       "is_locked": false,
       "is_secret": true,
       "content_hints": {
-        "description": "A narrow passage is hidden behind a false wall of crates. The wooden planks here are scuffed and scratched from repeated use, sloping downward into a damp cellar beneath the warehouse, which is the Zhentarim's actual base of operations.",
-        "read_aloud": "You see a narrow passage descend into darkness beyond the false wall. The planks underfoot are scuffed and scratched from heavy use, and the air grows colder and damper with every step. The walls press close, barely wide enough for two abreast, and the passage slopes steadily downward into a cellar the warehouse above was built to hide.",
+        "description": "The Zhentarim's base of operations is located in a sunken cellar featuring an unlocked iron door set into the east wall and a crumbling stone staircase leading to a landing with a wooden door secured by a chain and a padlock. This cellar contains a small, empty storage room with hooks hanging from the ceiling, and features a secret door that can be spotted with a successful DC 15 Wisdom (Perception) check.",
+        "read_aloud": "You see a cramped chamber smelling strongly of sour fish and vinegar, filled with discarded ropes, canvas tarpaulins, and splintered wood from smashed barrels. You can hear the ragged breathing of Renaer Neverember coming from under a tarpaulin at the north end of the room.",
         "perception_dc": 15,
         "perception_success": "One stack of crates is mounted on a wooden rail. It slides aside to reveal a passage descending into darkness.",
         "_source": "Waterdeep_ Dragon Heist",
         "_extraction_date": "2026-04-08",
-        "_method": "polished"
+        "_method": "polished",
+        "npcs": [
+          {
+            "name": "Renaer Neverember",
+            "role": "Renaer is hiding here, having slipped free of his rope bonds.",
+            "dialogue": "",
+            "notes": "[Source: Waterdeep_ Dragon Heist PDF]"
+          }
+        ]
       }
     },
     "4": {
@@ -186,7 +194,7 @@
       "is_locked": true,
       "is_secret": false,
       "content_hints": {
-        "description": "The front of this bookstore is adorned with a charming sign of a gold dragon curled around a treasure hoard of books and scrolls. Inside, the shop is decorated with beautiful hardwood, and the earthy scent of old books permeates the air. The library fills two floors of this three-story building.",
+        "description": "The Zhentarim Hideout is a location where the Zhentarim, a shadowy network of mercenaries, are at odds with Xanathar, the beholder crime lord of Waterdeep.",
         "read_aloud": "You see piles of paper, twisted pieces of metal, and bird droppings littering the space. Rocking chairs and a trellis table sit amidst the charred remains of a bookshelf, all shrouded in thick cobwebs. Arrow slits line the walls, and pigeons nest in the rafters above.",
         "lock_dc": 10,
         "npcs": [
@@ -223,8 +231,8 @@
       "is_locked": false,
       "is_secret": false,
       "content_hints": {
-        "description": "The Zhentarim Hideout is a ramshackle two-story warehouse on Castle Lane, standing at the back of an outer yard behind a high fence with an unlocked gate. Inside, the main cellar is a low-ceilinged room supported by timber pillars, lit by guttering torches in iron sconces, with crates of weapons and contraband lining the walls.",
-        "read_aloud": "> You see a ramshackle two-story warehouse on Castle Lane, its gate on the back of a high fence unlocked. Inside, the air is thick with the smell of torch smoke and sweat, and you hear muffled voices repeating phrases like, \"Xanathar sends its regards.\"",
+        "description": "The Zhentarim Hideout is a ramshackle two-story warehouse on Castle Lane, standing at the back of an outer yard behind a high fence with an unlocked gate. The building’s three points of entry—a front door, a large warehouse loading door, and a painted-over window—are locked.",
+        "read_aloud": "You see a ramshackle two-story warehouse on Castle Lane, its gate on the back of a high fence unlocked. Inside, the air is thick with the smell of torch smoke and sweat, and you hear muffled voices repeating phrases like, \"Xanathar sends its regards.\"",
         "enemies": [
           {
             "name": "Krentz",

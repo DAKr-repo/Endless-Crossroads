@@ -30,7 +30,9 @@ AMD-05: includes Quick Reference: Laws command for Code Legal shards.
 import json
 import os
 import re
+import subprocess
 import tempfile
+import threading
 from datetime import datetime
 from pathlib import Path
 from typing import Callable, Dict, List, Optional, Tuple
@@ -218,6 +220,12 @@ class LibrarianTUI:
         self._pdf_page: int = 0            # Current page index (0-based)
         self._pdf_total_pages: int = 0     # Total pages in active PDF
 
+        # Voice reader toggle — Mimir reads the page aloud via Piper TTS
+        self._voice_mode: bool = False
+        self._voice_engine = None          # PiperVoice instance (lazy-loaded)
+        self._voice_thread: Optional[threading.Thread] = None
+        self._voice_stop = threading.Event()
+
         # D1 (WO-V9.5): Content-type tags from scan_vault_structure
         self._content_tags: Dict[str, List[str]] = {}  # book_key -> ["rules","settings",...]
 
@@ -392,14 +400,138 @@ class LibrarianTUI:
 
         sanitized = self._sanitize_pdf_text(raw)
         self._current_text = f"[dim]{page_indicator}[/dim]\n{sanitized}"
+        self._voice_auto_read()
 
     def _close_pdf(self):
         """Exit PDF reader mode and release resources."""
+        self._voice_stop_playback()
         self._pdf_reader = None
         self._pdf_path = None
         self._pdf_total_pages = 0
         self._pdf_page = 0
         self._pdf_mode = False
+
+    # -----------------------------------------------------------------
+    # Voice Reader (Piper TTS)
+    # -----------------------------------------------------------------
+
+    def _voice_load(self) -> bool:
+        """Lazy-load the Piper voice model. Returns True on success."""
+        if self._voice_engine is not None:
+            return True
+        try:
+            from piper import PiperVoice
+            from codex.paths import PIPER_MODEL_DIR
+            model_path = PIPER_MODEL_DIR / "en_US-libritts_r-medium.onnx"
+            if not model_path.exists():
+                return False
+            self._voice_engine = PiperVoice.load(str(model_path))
+            return True
+        except Exception:
+            return False
+
+    def _voice_speak(self, text: str) -> None:
+        """Speak text aloud in a background thread. Stops previous speech first."""
+        self._voice_stop_playback()
+        if not text or not self._voice_engine:
+            return
+
+        # Strip Rich markup for clean speech
+        clean = re.sub(r'\[/?[^\]]*\]', '', text)
+        # Strip leftover markdown
+        clean = re.sub(r'\*\*(.+?)\*\*', r'\1', clean)
+        clean = re.sub(r'\*(.+?)\*', r'\1', clean)
+        clean = re.sub(r'#{1,6}\s+', '', clean)
+        clean = re.sub(r'`(.+?)`', r'\1', clean)
+        clean = clean.strip()
+        if not clean or len(clean) < 5:
+            return
+
+        self._voice_stop.clear()
+        self._voice_thread = threading.Thread(
+            target=self._voice_play_thread, args=(clean,), daemon=True
+        )
+        self._voice_thread.start()
+
+    def _voice_play_thread(self, text: str) -> None:
+        """Background thread: synthesize + play via aplay."""
+        import io
+        import wave
+
+        # Split into paragraphs for incremental playback
+        paragraphs = [p.strip() for p in text.split('\n\n') if p.strip()]
+        if not paragraphs:
+            paragraphs = [text]
+
+        for para in paragraphs:
+            if self._voice_stop.is_set():
+                return
+            # Cap paragraph length for Piper (very long text can OOM)
+            if len(para) > 600:
+                sentences = re.split(r'(?<=[.!?])\s+', para)
+                chunks = []
+                chunk = ""
+                for s in sentences:
+                    if len(chunk) + len(s) > 500 and chunk:
+                        chunks.append(chunk)
+                        chunk = s
+                    else:
+                        chunk = (chunk + " " + s).strip()
+                if chunk:
+                    chunks.append(chunk)
+            else:
+                chunks = [para]
+
+            for chunk in chunks:
+                if self._voice_stop.is_set():
+                    return
+                try:
+                    buf = io.BytesIO()
+                    with wave.open(buf, 'wb') as wf:
+                        if hasattr(self._voice_engine, 'synthesize_wav'):
+                            self._voice_engine.synthesize_wav(chunk, wf)
+                        else:
+                            wf.setnchannels(1)
+                            wf.setsampwidth(2)
+                            wf.setframerate(self._voice_engine.config.sample_rate)
+                            for audio in self._voice_engine.synthesize(chunk):
+                                if self._voice_stop.is_set():
+                                    return
+                                wf.writeframes(audio.audio_int16_bytes)
+                    buf.seek(0)
+                    with tempfile.NamedTemporaryFile(suffix='.wav', delete=True) as f:
+                        f.write(buf.read())
+                        f.flush()
+                        subprocess.run(
+                            ['paplay', f.name],
+                            timeout=60, capture_output=True,
+                        )
+                except Exception:
+                    pass  # Silently skip TTS failures
+
+    def _voice_stop_playback(self) -> None:
+        """Stop any ongoing speech playback."""
+        self._voice_stop.set()
+        if self._voice_thread and self._voice_thread.is_alive():
+            self._voice_thread.join(timeout=2)
+        self._voice_thread = None
+
+    def _voice_toggle(self) -> str:
+        """Toggle voice reader on/off. Returns status message."""
+        if self._voice_mode:
+            self._voice_mode = False
+            self._voice_stop_playback()
+            return "[dim]Voice reader OFF[/dim]"
+        else:
+            if not self._voice_load():
+                return "[red]Voice reader unavailable — Piper model not found[/red]"
+            self._voice_mode = True
+            return "[bold green]Voice reader ON[/bold green] — Mimir will read pages aloud"
+
+    def _voice_auto_read(self) -> None:
+        """If voice mode is active, read the current text aloud."""
+        if getattr(self, '_voice_mode', False) and self._current_text:
+            self._voice_speak(self._current_text)
 
     def _load_seed_data(self) -> List[dict]:
         """Load seeds from the seed ledger."""
@@ -494,6 +626,7 @@ class LibrarianTUI:
             self._open_pdf(pdf_path)
         else:
             self._current_text = f"[bold]{chapter_name}[/bold]"
+            self._voice_auto_read()
         return True
 
     def close_book(self):
@@ -944,9 +1077,10 @@ class LibrarianTUI:
         content = self._current_text or "(No text)"
         chapter = self._current_chapter or "PDF"
         title = f"[bold]{chapter}[/bold]"
+        voice_indicator = " | [green]♫ Voice ON[/green]" if self._voice_mode else ""
         footer = (
             f"[dim]Page {self._pdf_page + 1} of {self._pdf_total_pages} "
-            f"| 'n' next | 'p' prev | 'b' back to Vault[/dim]"
+            f"| 'n' next | 'p' prev | 'b' back | 'v' voice{voice_indicator}[/dim]"
         )
         return Panel(
             content, title=title, subtitle=footer, border_style="white",
@@ -1180,7 +1314,8 @@ class LibrarianTUI:
         return (
             "[dim]Commands: <number> | open <tome> | ask <question> "
             "| list | back | [M] maps | grave | seeds | atlas | chrono | laws | carto | tutorial | quit\n"
-            "PDF: n (next) | p (prev) | page <N> | b (back to vault)[/dim]"
+            "PDF: n (next) | p (prev) | page <N> | b (back to vault)\n"
+            "Voice: [V] toggle voice reader | stop (silence)[/dim]"
         )
 
     def run_loop(self, console: Optional[Console] = None):
@@ -1225,6 +1360,7 @@ class LibrarianTUI:
             if not raw:
                 continue
             if raw.lower() in ("quit", "exit", "q"):
+                self._voice_stop_playback()
                 break
 
             # --- Numeric selection (context-sensitive) ---
@@ -1442,6 +1578,18 @@ class LibrarianTUI:
                         con.print("[dim]No maps available. Run a dungeon to generate some.[/dim]")
                 else:
                     con.print("[dim]Cartography service not available.[/dim]")
+
+            elif cmd in ("voice", "v", "read"):
+                msg = self._voice_toggle()
+                con.print(msg)
+                # If just turned on and there's content, read it
+                if self._voice_mode and self._current_text:
+                    self._voice_auto_read()
+
+            elif cmd == "stop":
+                if self._voice_mode:
+                    self._voice_stop_playback()
+                    con.print("[dim]Playback stopped.[/dim]")
 
             elif cmd in ("tutorial", "tut"):
                 try:

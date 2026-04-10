@@ -1,134 +1,162 @@
 {
-    "seed": 4000,
-    "width": 30,
-    "height": 80,
-    "start_room_id": 0,
-    "metadata": {
-        "zone_id": "undermountain_overview",
-        "theme": "STONE",
-        "topology": "vertical",
-        "display_name": "Undermountain -- The Depths Below"
+  "seed": 4000,
+  "width": 30,
+  "height": 80,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "undermountain_overview",
+    "theme": "STONE",
+    "topology": "vertical",
+    "display_name": "Undermountain -- The Depths Below"
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 10,
+      "y": 0,
+      "width": 10,
+      "height": 10,
+      "room_type": "start",
+      "connections": [
+        1
+      ],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The Yawning Portal's well drops into the first levels of Undermountain, where goblins, bugbears, and Xanathar Guild agents squabble over territory in halls that Halaster carved as an afterthought. These upper levels are almost civilized -- almost.",
+        "read_aloud": "> You see the well shaft opens into corridors of rough-hewn stone where torchlight barely reaches the ceiling. The air carries the stink of goblin cookfires and unwashed fur, and somewhere ahead, raised voices argue in broken Common over territory that none of them built.",
+        "npcs": [],
+        "enemies": [],
+        "loot": [],
+        "hazards": [],
+        "services": [],
+        "event_triggers": [
+          "On entry: Levels 1-3. Recommended for parties of level 5-7."
+        ],
+        "_source": "Dungeon of the Mad Mage",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
     },
-    "rooms": {
-        "0": {
-            "id": 0,
-            "x": 10,
-            "y": 0,
-            "width": 10,
-            "height": 10,
-            "room_type": "start",
-            "connections": [1],
-            "tier": 1,
-            "is_locked": false,
-            "is_secret": false,
-            "content_hints": {
-                "description": "The Yawning Portal's well drops into the first levels of Undermountain, where goblins, bugbears, and Xanathar Guild agents squabble over territory in halls that Halaster carved as an afterthought. These upper levels are almost civilized -- almost.",
-                "read_aloud": "The well shaft opens into corridors of rough-hewn stone where torchlight barely reaches the ceiling. The air carries the stink of goblin cookfires and unwashed fur, and somewhere ahead, raised voices argue in broken Common over territory that none of them built. Claw marks gouge the walls at chest height, layered over older scratches, layered over older scratches still.",
-                "npcs": [],
-                "enemies": [],
-                "loot": [],
-                "hazards": [],
-                "services": [],
-                "event_triggers": [
-                    "On entry: Levels 1-3. Recommended for parties of level 5-7."
-                ]
-            }
-        },
-        "1": {
-            "id": 1,
-            "x": 10,
-            "y": 16,
-            "width": 10,
-            "height": 10,
-            "room_type": "normal",
-            "connections": [0, 2],
-            "tier": 2,
-            "is_locked": false,
-            "is_secret": false,
-            "content_hints": {
-                "description": "The Sargauth River cuts through these levels, its black water flowing from nowhere to nowhere. Drow outposts cling to the cavern walls, and the dwarven ruins of Clan Melairkyn give way to stranger architecture -- temples to forgotten gods, prisons for things that should not be named.",
-                "read_aloud": "You hear the river before you see it -- a deep, constant rush of black water that smells of iron and deep earth. The cavern walls bear the chisel-marks of dwarven masons, but the stonework changes as you descend, giving way to alien geometries and doorways carved in shapes that hurt to look at directly. Faint purple light pulses from somewhere ahead, and the air grows heavy with incense you cannot name.",
-                "npcs": [],
-                "enemies": [],
-                "loot": [],
-                "hazards": [],
-                "services": [],
-                "event_triggers": [
-                    "On entry: Levels 3-5. Recommended for parties of level 7-9."
-                ]
-            }
-        },
-        "2": {
-            "id": 2,
-            "x": 10,
-            "y": 32,
-            "width": 10,
-            "height": 10,
-            "room_type": "normal",
-            "connections": [1, 3],
-            "tier": 2,
-            "is_locked": false,
-            "is_secret": false,
-            "content_hints": {
-                "description": "The Lost Level. Time moves strangely here. Petrified forests grow in caverns that have never seen sunlight, and githyanki war parties hunt through ruins that predate the city above. The walls remember things that the surface has forgotten, and some of those memories have teeth.",
-                "read_aloud": "A gray, sourceless light suffuses the cavern ahead, illuminating a landscape that has no right to exist this far underground. Stone trees stand in silent rows, their quartz bark glinting dully, their agate leaves frozen in an ancient wind. The air tastes of mineral dust and carries the faintest scent of flowers -- petrified blossoms that remember what perfume was. Time feels heavier here, each step landing with a strange, leaden finality.",
-                "npcs": [],
-                "enemies": [],
-                "loot": [],
-                "hazards": [],
-                "services": [],
-                "event_triggers": [
-                    "On entry: Levels 6-9. Recommended for parties of level 9-13."
-                ]
-            }
-        },
-        "3": {
-            "id": 3,
-            "x": 10,
-            "y": 48,
-            "width": 10,
-            "height": 10,
-            "room_type": "normal",
-            "connections": [2, 4],
-            "tier": 3,
-            "is_locked": false,
-            "is_secret": false,
-            "content_hints": {
-                "description": "Trobriand's Graveyard, where the Mad Mage's apprentice built an army of iron constructs and then lost control of them. The forges still burn. The golems still march. And Trobriand himself may still be here, his mind merged with his greatest creation, unable to tell where the wizard ends and the machine begins.",
-                "read_aloud": "A wall of heat strikes you as you descend, carrying the taste of molten copper and burnt oil. The rhythmic clang of hammers on anvils echoes from below -- not the irregular ring of a craftsman's work, but the metronomic precision of a machine that never tires. Sparks fountain upward from unseen forges, and through the haze of metallic smoke, massive silhouettes move with grinding, purposeful steps.",
-                "npcs": [],
-                "enemies": [],
-                "loot": [],
-                "hazards": [],
-                "services": [],
-                "event_triggers": [
-                    "On entry: Levels 10-16. Recommended for parties of level 13-17."
-                ]
-            }
-        },
-        "4": {
-            "id": 4,
-            "x": 10,
-            "y": 64,
-            "width": 10,
-            "height": 10,
-            "room_type": "boss",
-            "connections": [3],
-            "tier": 4,
-            "is_locked": false,
-            "is_secret": false,
-            "content_hints": {
-                "description": "The deepest level. Halaster's sanctum, where reality bends to the will of a thousand-year-old wizard who has had centuries to go mad and decades to get creative about it. Stars burn in underground skies. Doors open into rooms that should not exist. And at the center of it all, Halaster Blackcloak waits, playing a game whose rules only he understands.",
-                "read_aloud": "The stone gives way to nothing. You stand on a flagstone platform suspended in a void of stars -- real stars, turning in constellations you have never seen, cold and impossibly vast. The air crackles with so much raw arcane energy that your teeth ache and your shadow moves independently of your body. Somewhere ahead, past corridors that bend in directions geometry forbids, a presence waits. It has been waiting for a very long time. It is patient. It is amused.",
-                "npcs": [],
-                "enemies": [],
-                "loot": [],
-                "hazards": [],
-                "services": [],
-                "event_triggers": [
-                    "On entry: Levels 17-23. Recommended for parties of level 17-20."
-                ]
-            }
-        }
+    "1": {
+      "id": 1,
+      "x": 10,
+      "y": 16,
+      "width": 10,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [
+        0,
+        2
+      ],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The Sargauth River cuts through these levels, its black water flowing from nowhere to nowhere. Drow outposts cling to the cavern walls, and the dwarven ruins of Clan Melairkyn give way to stranger architecture—temples to forgotten gods, prisons for things that should not be named.",
+        "read_aloud": "> You see the river before you see it -- a deep, constant rush of black water that smells of iron and deep earth. The cavern walls bear the chisel-marks of dwarven masons, but the stonework changes as you descend, giving way to alien geometries and doorways carved in shapes that hurt to look at directly. Faint purple light pulses from somewhere ahead, and the air grows heavy with incense you cannot name.",
+        "npcs": [],
+        "enemies": [],
+        "loot": [],
+        "hazards": [],
+        "services": [],
+        "event_triggers": [
+          "On entry: Levels 3-5. Recommended for parties of level 7-9."
+        ],
+        "_source": "Dungeon of the Mad Mage",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 10,
+      "y": 32,
+      "width": 10,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [
+        1,
+        3
+      ],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The area of Narhnndellyn is clustered beneath the plateau of Qu'ellarz'url, allowing the superiors to look down upon them. This district remains the bright center of Menzoberranzan, where lesser houses vie for wealth, power, and influence amidst soaring, st각mitc towers and great manors.",
+        "read_aloud": "You see a gray, sourceless light suffuse the cavern ahead, illuminating a landscape that has no right to exist this far underground. Stone trees stand in silent rows, their quartz bark glinting dully, their agate leaves frozen in an ancient wind.",
+        "npcs": [],
+        "enemies": [],
+        "loot": [],
+        "hazards": [],
+        "services": [],
+        "event_triggers": [
+          "On entry: Levels 6-9. Recommended for parties of level 9-13."
+        ],
+        "_source": "Dungeon of the Mad Mage",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
+    },
+    "3": {
+      "id": 3,
+      "x": 10,
+      "y": 48,
+      "width": 10,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [
+        2,
+        4
+      ],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The map reveals pathways to various locations, including the Castle Ward's sewers and the route through Undermountain and Skullport. It also points toward Xanathar's lair via a spiral staircase accessible from the sewers and hidden behind a secret door.",
+        "read_aloud": "You see a spiral staircase accessible from the Castle Ward's sewers, hidden behind a secret door. The walls of this narrow, spiraling staircase are carved with opened eyes that glow with a faint, magical light.",
+        "npcs": [],
+        "enemies": [],
+        "loot": [],
+        "hazards": [],
+        "services": [],
+        "event_triggers": [
+          "On entry: Levels 10-16. Recommended for parties of level 13-17."
+        ],
+        "_source": "Dungeon of the Mad Mage",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
+    },
+    "4": {
+      "id": 4,
+      "x": 10,
+      "y": 64,
+      "width": 10,
+      "height": 10,
+      "room_type": "boss",
+      "connections": [
+        3
+      ],
+      "tier": 4,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The deepest level is Halaster's sanctum, where reality bends to the will of a thousand-year-old wizard who has had centuries to go mad and decades to get creative about it. Stars burn in underground skies, and doors open into rooms that should not exist. At the center of it all, Halaster Blackcloak waits, playing a game whose rules only he understands.",
+        "read_aloud": "You see a vast void filled with swirling purple mist, and the air crackles with raw arcane energy that makes your teeth ache. Somewhere ahead, past corridors that bend in directions geometry forbids, a presence waits, patient and amused.",
+        "npcs": [],
+        "enemies": [],
+        "loot": [],
+        "hazards": [],
+        "services": [],
+        "event_triggers": [
+          "On entry: Levels 17-23. Recommended for parties of level 17-20."
+        ],
+        "_source": "Dungeon of the Mad Mage",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
     }
+  }
 }

@@ -1,241 +1,378 @@
 {
-    "seed": 4004,
-    "width": 70,
-    "height": 60,
-    "start_room_id": 0,
-    "metadata": {
-        "zone_id": "dungeon_level_6",
-        "theme": "GOTHIC",
-        "topology": "dungeon",
-        "display_name": "Undermountain Level 6 -- The Lost Level"
+  "seed": 4004,
+  "width": 70,
+  "height": 60,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "dungeon_level_6",
+    "theme": "GOTHIC",
+    "topology": "dungeon",
+    "display_name": "Undermountain Level 6 -- The Lost Level"
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 30,
+      "y": 0,
+      "width": 10,
+      "height": 8,
+      "room_type": "start",
+      "connections": [
+        1
+      ],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The stairs crumble beneath your feet as you descend, each step older and more weathered than the last, as if you are walking backward through geological time. By the bottom, the stonework has given way to raw, uncarved cavern. The air is ancient -- it tastes of mineral dust and something floral that has no business existing this far underground.",
+        "read_aloud": "> The stairs crumble beneath your feet as you descend, each step more weathered than the last, the stonework dissolving from carved blocks to raw, unworked cavern by the time you reach the bottom. The air down here tastes ancient—mineral dust and, impossibly, something floral, sweet and faint as a half-remembered dream.",
+        "npcs": [],
+        "enemies": [],
+        "loot": [],
+        "hazards": [
+          {
+            "name": "Crumbling stairs (Dexterity save on final steps)",
+            "dc": 12
+          }
+        ],
+        "services": [],
+        "event_triggers": [
+          "On entry: Your torch gutters. The gray light ahead is not fire, not magic -- it is ambient, as if the air itself remembers what daylight was."
+        ],
+        "_source": "Dungeon of the Mad Mage",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
     },
-    "rooms": {
-        "0": {
-            "id": 0,
-            "x": 30,
-            "y": 0,
-            "width": 10,
-            "height": 8,
-            "room_type": "start",
-            "connections": [1],
-            "tier": 2,
-            "is_locked": false,
-            "is_secret": false,
-            "content_hints": {
-                "description": "The stairs crumble beneath your feet as you descend, each step older and more weathered than the last, as if you are walking backward through geological time. By the bottom, the stonework has given way to raw, uncarved cavern. The air is ancient -- it tastes of mineral dust and something floral that has no business existing this far underground. Ahead, gray light filters from a source that should not exist.",
-                "read_aloud": "The stairs crumble beneath your feet as you descend, each step more weathered than the last, the stonework dissolving from carved blocks to raw, unworked cavern by the time you reach the bottom. The air down here tastes ancient -- mineral dust and, impossibly, something floral, sweet and faint as a half-remembered dream. Ahead, gray light filters from no visible source, ambient and directionless, as if the air itself remembers what daylight was and is doing its best impression.",
-                "npcs": [],
-                "enemies": [],
-                "loot": [],
-                "hazards": [
-                    {"name": "Crumbling stairs (Dexterity save on final steps)", "dc": 12}
-                ],
-                "services": [],
-                "event_triggers": [
-                    "On entry: Your torch gutters. The gray light ahead is not fire, not magic -- it is ambient, as if the air itself remembers what daylight was."
-                ]
-            }
-        },
-        "1": {
-            "id": 1,
-            "x": 20,
-            "y": 12,
-            "width": 16,
-            "height": 12,
-            "room_type": "normal",
-            "connections": [0, 2, 3],
-            "tier": 2,
-            "is_locked": false,
-            "is_secret": false,
-            "content_hints": {
-                "description": "A forest of stone trees fills a cavern half a mile wide. Each tree is petrified -- bark turned to quartz, leaves frozen mid-fall as agate and jasper, roots fused with the bedrock in veins of fossilized wood. Some trees still stand; others lie shattered, their rings exposed like calendar pages. The oldest ring you can count dates this forest to before the founding of Waterdeep. Before the founding of anything. Birds that are not birds perch in the stone branches -- they are stone too, caught mid-song, their beaks open in silence that has lasted millennia.",
-                "read_aloud": "A forest of stone trees fills a cavern so vast its far wall is lost in gray haze. Each tree is petrified -- bark turned to quartz, leaves frozen mid-fall as chips of agate and jasper that glitter in the sourceless light. Some still stand tall; others lie shattered, their exposed rings spiraling inward like the pages of an impossibly old calendar. Stone birds perch in the branches, beaks open in songs that were silenced millennia ago. The silence is absolute, broken only by the crunch of crystallized leaves beneath your boots and the faint, mineral scent of a world preserved in the moment of its passing.",
-                "npcs": [],
-                "enemies": [
-                    {"name": "Basilisk", "cr": "3"}
-                ],
-                "loot": [
-                    {"name": "Petrified Wood Branch (arcane focus, worth 50 gp)", "type": "equipment"},
-                    {"name": "Agate Leaves (10 gp each, handfuls available)", "type": "treasure"}
-                ],
-                "hazards": [
-                    {"name": "Basilisk gaze (Constitution save or petrified)", "dc": 12}
-                ],
-                "services": [],
-                "event_triggers": [
-                    "On investigation: One petrified tree bears carvings in a language that predates Common, Dwarvish, and Elvish. A Comprehend Languages spell translates it as: 'We were here before. We will be here after. Remember us.'"
-                ]
-            }
-        },
-        "2": {
-            "id": 2,
-            "x": 5,
-            "y": 20,
-            "width": 12,
-            "height": 10,
-            "room_type": "normal",
-            "connections": [1, 4],
-            "tier": 3,
-            "is_locked": false,
-            "is_secret": false,
-            "content_hints": {
-                "description": "A military camp carved into an alcove of the petrified forest. Tents of red dragon hide are arranged in precise rows around a central fire pit that burns without fuel. Githyanki warriors sharpen silver swords that hum with psionic energy, their movements too efficient to be casual -- they are preparing for war. Astral runes ward the camp's perimeter, and a portal shimmer hangs in the air behind the command tent, thin as paper, showing stars that do not belong to any sky on the Material Plane.",
-                "read_aloud": "Among the petrified trees, a military camp occupies a cleared alcove with surgical precision. Tents of dark red hide are arranged in exact rows around a fire pit where flames burn without any visible fuel. Figures in ornate armor sharpen long silver blades that hum faintly, the sound felt more in your teeth than your ears. The camp's perimeter is marked with runes that glow pale blue, and behind the largest tent, the air shimmers paper-thin -- through the distortion, you glimpse stars arranged in constellations that belong to no sky you have ever seen. Every head in the camp turns toward you at once.",
-                "npcs": [
-                    {
-                        "name": "Kress'tal",
-                        "role": "faction_contact",
-                        "dialogue": "You walk where you do not belong, groundling. This level is contested -- the shadow wyrm claims the deep chambers, and we intend to take them. You may pass, or you may fight beside us. Choose quickly; we do not negotiate with the indecisive.",
-                        "notes": "Githyanki knight. Scarred, pragmatic, fiercely disciplined. Leading a war party hunting a shadow dragon that lairs deeper in the level. Will accept temporary allies but trusts no one. Psionic abilities make deception nearly impossible."
-                    }
-                ],
-                "enemies": [
-                    {"name": "Githyanki Warrior", "cr": "3"},
-                    {"name": "Githyanki Warrior", "cr": "3"},
-                    {"name": "Githyanki Knight", "cr": "8"}
-                ],
-                "loot": [
-                    {"name": "Githyanki Silver Greatsword (rare, psychic damage)", "type": "weapon"}
-                ],
-                "hazards": [],
-                "services": [],
-                "event_triggers": [
-                    "On alliance: Kress'tal provides tactical information about the shadow dragon's lair and a githyanki war chant that grants resistance to fear for 1 hour.",
-                    "On hostility: The entire camp mobilizes in 6 seconds. There are more warriors in the tents."
-                ]
-            }
-        },
-        "3": {
-            "id": 3,
-            "x": 40,
-            "y": 22,
-            "width": 14,
-            "height": 10,
-            "room_type": "normal",
-            "connections": [1, 4, 5],
-            "tier": 3,
-            "is_locked": false,
-            "is_secret": false,
-            "content_hints": {
-                "description": "A coliseum of natural stone, its tiered seats carved from the cavern walls by hands or forces unknown. The arena floor is sand over stone, and the sand is black -- volcanic, imported from somewhere deep. Weapons are embedded in the ground at the arena's center, each one ancient, each one still sharp. The seats are empty, but the impression of an audience lingers -- a pressure in the air, a sense of being watched by thousands of invisible eyes.",
-                "read_aloud": "The cavern opens into a natural amphitheater -- tiered stone seats carved from the living rock, rising in concentric rings around a circular pit floored with black volcanic sand. Ancient weapons jut from the sand at the pit's center, their blades still gleaming despite ages of neglect. The seats are empty, but the air carries a weight, a pressure, as though a thousand unseen spectators lean forward in anticipation. Your footsteps on the stone echo back at you with a strange, amplified quality, as if the arena itself is listening.",
-                "npcs": [],
-                "enemies": [
-                    {"name": "Minotaur", "cr": "3"},
-                    {"name": "Minotaur", "cr": "3"}
-                ],
-                "loot": [
-                    {"name": "Champion's Javelin (+1, returns when thrown)", "type": "weapon"},
-                    {"name": "Ancient Gladiator's Helm (grants advantage on saves vs. fear)", "type": "armor"}
-                ],
-                "hazards": [
-                    {"name": "Arena wards (prevent teleportation within the pit)", "dc": 0}
-                ],
-                "services": [],
-                "event_triggers": [
-                    "On weapon drawn in arena: The invisible audience roars. For the duration of combat in the arena, critical hits deal maximum damage.",
-                    "On victory: The roar becomes a chant. A hidden door in the arena wall grinds open, revealing a passage deeper."
-                ]
-            }
-        },
-        "4": {
-            "id": 4,
-            "x": 20,
-            "y": 35,
-            "width": 14,
-            "height": 10,
-            "room_type": "treasure",
-            "connections": [2, 3, 5],
-            "tier": 3,
-            "is_locked": true,
-            "is_secret": false,
-            "content_hints": {
-                "description": "A stone circle of seven menhirs, each twelve feet tall, each carved with a different rune. The runes pulse in sequence -- a slow, repeating pattern like a heartbeat. At the circle's center, the air is warm and tastes of copper. Objects left inside the circle overnight are changed: iron becomes silver, wood becomes stone, and water becomes a luminous blue fluid that functions as a Potion of Greater Healing. Halaster repurposed something far older than himself, and even he did not fully understand it.",
-                "read_aloud": "Seven standing stones rise from the cavern floor in a perfect circle, each one twelve feet tall, each carved with a single rune that pulses with pale light in a slow, repeating sequence -- like a heartbeat measured in geological time. The air inside the circle is noticeably warmer, carrying a faint copper taste that coats your tongue. Small objects near the stones seem to shimmer at the edges, as if reality is thinner here, as if the boundary between what something is and what it could become has worn dangerously thin.",
-                "npcs": [],
-                "enemies": [],
-                "loot": [
-                    {"name": "Transmuted Silver Ingots (200 gp)", "type": "treasure"},
-                    {"name": "Luminous Water (2 doses, Greater Healing)", "type": "consumable"},
-                    {"name": "Runestone Fragment (arcane focus, +1 to spell attack rolls)", "type": "equipment"}
-                ],
-                "hazards": [
-                    {"name": "Transmutation field (living creatures save or polymorphed for 1 hour)", "dc": 16}
-                ],
-                "services": [],
-                "event_triggers": [
-                    "On rune study (DC 17 Arcana): The sequence is a countdown. It has been counting down for nine thousand years. It has fourteen iterations remaining."
-                ]
-            }
-        },
-        "5": {
-            "id": 5,
-            "x": 35,
-            "y": 40,
-            "width": 12,
-            "height": 10,
-            "room_type": "normal",
-            "connections": [3, 4, 6],
-            "tier": 3,
-            "is_locked": false,
-            "is_secret": false,
-            "content_hints": {
-                "description": "The cavern narrows into a passage where shadows move independently of light. They cling to the walls like living things, recoiling from bright light but surging forward in darkness. The temperature drops sharply -- breath fogs, metal frosts, and exposed skin prickles with cold that feels intelligent, targeted, curious. Deep in the passage, two points of violet light hang in the dark, unblinking. They are not torches. They are eyes.",
-                "read_aloud": "The passage narrows, and the shadows here move wrong. They slide along the walls independently of your torchlight, recoiling when the flame swings close, surging forward the moment it passes. The temperature plummets -- your breath fogs thick and white, frost rimes the metal of your weapons, and the cold prickles across your exposed skin with an unsettling specificity, as if it is testing you, probing for weakness. Deep in the passage ahead, two points of violet light hang in the darkness, steady and unblinking. They are watching you. They have been watching you for some time.",
-                "npcs": [],
-                "enemies": [
-                    {"name": "Shadow", "cr": "1/2"},
-                    {"name": "Shadow", "cr": "1/2"},
-                    {"name": "Shadow", "cr": "1/2"},
-                    {"name": "Shadow", "cr": "1/2"}
-                ],
-                "loot": [],
-                "hazards": [
-                    {"name": "Supernatural darkness (disadvantage on Perception in dim areas)", "dc": 0},
-                    {"name": "Strength drain (shadow touch reduces Strength)", "dc": 0}
-                ],
-                "services": [],
-                "event_triggers": [
-                    "On light source destroyed: The shadows surge forward. All shadows in the room act immediately.",
-                    "On passage through: The violet eyes at the end of the corridor blink and withdraw. The shadow dragon knows you are coming."
-                ]
-            }
-        },
-        "6": {
-            "id": 6,
-            "x": 25,
-            "y": 50,
-            "width": 16,
-            "height": 10,
-            "room_type": "boss",
-            "connections": [5],
-            "tier": 3,
-            "is_locked": false,
-            "is_secret": false,
-            "content_hints": {
-                "description": "A cavern of impossible size, its ceiling lost in darkness that even darkvision cannot penetrate. The floor is covered in a thin layer of ash that muffles footsteps to silence. In the center, coiled around a pillar of obsidian, a dragon made of shadow and hunger opens its eyes. It is not entirely solid -- light passes through it in places, and where its body meets the ground, the ash swirls in patterns that suggest something vast sleeping just beneath the surface. Its breath is not fire but absence -- a cone of nothingness that unmakes light, sound, and hope.",
-                "read_aloud": "The cavern is vast beyond reason, its ceiling swallowed by a darkness so complete that even magical light cannot find it. A thin layer of pale ash blankets the floor, muffling your footsteps to absolute silence. At the chamber's center, a pillar of black glass rises from the ash, and coiled around it is a shape that your eyes struggle to hold -- immense, serpentine, made of shadow given terrible weight. Where it meets the ground, the ash swirls in slow patterns as if disturbed by breathing from somewhere far below. Two violet eyes open in that darkness, and the temperature drops to nothing. The ash begins to rise.",
-                "npcs": [],
-                "enemies": [
-                    {"name": "Young Shadow Dragon", "cr": "9"}
-                ],
-                "loot": [
-                    {"name": "Shadow Dragon Scale (5 scales, rare crafting material)", "type": "treasure"},
-                    {"name": "Obsidian Shard (can cast Darkness 1/day)", "type": "equipment"},
-                    {"name": "Level 7 Gate Rune", "type": "quest_item"},
-                    {"name": "Shadow Dragon's Hoard (1,800 gp in darkened coin)", "type": "treasure"}
-                ],
-                "hazards": [
-                    {"name": "Shadow Breath (necrotic cone, Constitution save)", "dc": 15},
-                    {"name": "Living shadow terrain (difficult terrain in darkness)", "dc": 0}
-                ],
-                "services": [],
-                "event_triggers": [
-                    "On combat start: The dragon does not roar. It simply stops pretending to sleep. The ash on the floor rises in a ring around the chamber, and the only exit seals behind a wall of solid darkness.",
-                    "On githyanki alliance active: Kress'tal and two warriors arrive on round 3, attacking the dragon's flank. 'FOR VLAAKITH! FOR THE ASTRAL SEA!'",
-                    "On defeat: The dragon dissolves into the ash. The obsidian pillar cracks, revealing a stairway spiraling downward. The shadows in the cavern do not leave -- they watch. They remember."
-                ]
-            }
-        }
+    "1": {
+      "id": 1,
+      "x": 20,
+      "y": 12,
+      "width": 16,
+      "height": 12,
+      "room_type": "normal",
+      "connections": [
+        0,
+        2,
+        3
+      ],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "A 10-foot-square, 1-foot-thick secret door conceals this room, leading to a circular room with a 20-foot-high, domed ceiling. In the middle of the room is a gilded wooden throne with a cushioned seat and backrest covered in black velvet sewn with silver stars.",
+        "read_aloud": "You see a vast, circular room with a 20-foot-high, domed ceiling, its interior bathed in a strange, sourceless light. Gilded wooden thrones sit in the center, and near the ceiling, four invisible sensors float, hinting at secrets hidden within this chamber.",
+        "npcs": [],
+        "enemies": [
+          {
+            "name": "Basilisk",
+            "cr": "3"
+          }
+        ],
+        "loot": [
+          {
+            "name": "Petrified Wood Branch (arcane focus, worth 50 gp)",
+            "type": "equipment"
+          },
+          {
+            "name": "Agate Leaves (10 gp each, handfuls available)",
+            "type": "treasure"
+          }
+        ],
+        "hazards": [
+          {
+            "name": "Basilisk gaze (Constitution save or petrified)",
+            "dc": 12
+          }
+        ],
+        "services": [],
+        "event_triggers": [
+          "On investigation: One petrified tree bears carvings in a language that predates Common, Dwarvish, and Elvish. A Comprehend Languages spell translates it as: 'We were here before. We will be here after. Remember us.'"
+        ],
+        "_source": "Dungeon of the Mad Mage",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 5,
+      "y": 20,
+      "width": 12,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [
+        1,
+        4
+      ],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The environment is furnished with a small desk with some fake notes on non-existent transactions of illicit goods with made-up clients, some maps, and writing equipment, along with unlit lanterns, a bedroll, and a chest containing treasure.",
+        "read_aloud": "Among the petrified trees, a military camp occupies a cleared alcove with surgical precision. Tents of dark red hide are arranged in exact rows around a fire pit where flames burn without any visible fuel. Figures in ornate armor sharpen long silver blades that hum faintly, the sound felt more in your teeth than your ears.",
+        "npcs": [
+          {
+            "name": "Kress'tal",
+            "role": "faction_contact",
+            "dialogue": "You walk where you do not belong, groundling. This level is contested -- the shadow wyrm claims the deep chambers, and we intend to take them. You may pass, or you may fight beside us. Choose quickly; we do not negotiate with the indecisive.",
+            "notes": "Githyanki knight. Scarred, pragmatic, fiercely disciplined. Leading a war party hunting a shadow dragon that lairs deeper in the level. Will accept temporary allies but trusts no one. Psionic abilities make deception nearly impossible."
+          }
+        ],
+        "enemies": [
+          {
+            "name": "Githyanki Warrior",
+            "cr": "3"
+          },
+          {
+            "name": "Githyanki Warrior",
+            "cr": "3"
+          },
+          {
+            "name": "Githyanki Knight",
+            "cr": "8"
+          }
+        ],
+        "loot": [
+          {
+            "name": "Githyanki Silver Greatsword (rare, psychic damage)",
+            "type": "weapon"
+          }
+        ],
+        "hazards": [],
+        "services": [],
+        "event_triggers": [
+          "On alliance: Kress'tal provides tactical information about the shadow dragon's lair and a githyanki war chant that grants resistance to fear for 1 hour.",
+          "On hostility: The entire camp mobilizes in 6 seconds. There are more warriors in the tents."
+        ],
+        "_source": "Dungeon of the Mad Mage",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
+    },
+    "3": {
+      "id": 3,
+      "x": 40,
+      "y": 22,
+      "width": 14,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [
+        1,
+        4,
+        5
+      ],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "A magically lit, circular chamber features a thin layer of blood-soaked sand covering the floor and stone buttresses supporting a 40-foot-high domed ceiling. This area has been turned into a gladiatorial arena where a pit fiend is trapped inside.",
+        "read_aloud": "You see a magically lit, circular chamber with a thin layer of blood-soaked sand covering the floor and stone buttresses supporting a 40-foot-high dome. Ancient weapons jut from the sand at the pit's center, and the air carries a weight, as though a thousand unseen spectators lean forward in anticipation.",
+        "npcs": [],
+        "enemies": [
+          {
+            "name": "Minotaur",
+            "cr": "3"
+          },
+          {
+            "name": "Minotaur",
+            "cr": "3"
+          }
+        ],
+        "loot": [
+          {
+            "name": "Champion's Javelin (+1, returns when thrown)",
+            "type": "weapon"
+          },
+          {
+            "name": "Ancient Gladiator's Helm (grants advantage on saves vs. fear)",
+            "type": "armor"
+          }
+        ],
+        "hazards": [
+          {
+            "name": "Arena wards (prevent teleportation within the pit)",
+            "dc": 0
+          }
+        ],
+        "services": [],
+        "event_triggers": [
+          "On weapon drawn in arena: The invisible audience roars. For the duration of combat in the arena, critical hits deal maximum damage.",
+          "On victory: The roar becomes a chant. A hidden door in the arena wall grinds open, revealing a passage deeper."
+        ],
+        "_source": "Dungeon of the Mad Mage",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
+    },
+    "4": {
+      "id": 4,
+      "x": 20,
+      "y": 35,
+      "width": 14,
+      "height": 10,
+      "room_type": "treasure",
+      "connections": [
+        2,
+        3,
+        5
+      ],
+      "tier": 3,
+      "is_locked": true,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The dungeon level features a room with three beds lining the south wall, an empty cradle against the east wall, and squat wardrobes, play rugs, and children's desks. The door to this room is locked and can be picked with a successful DC 15 Dexterity check using thieves' tools.",
+        "read_aloud": "> You see seven standing stones rising from the cavern floor in a perfect circle, each one twelve feet tall, each carved with a single rune that pulses with pale light in a slow, repeating sequence—like a heartbeat measured in geological time. The air inside the circle is noticeably warmer, carrying a faint copper taste that coats your tongue. Small objects near the stones seem to shimmer at the edges, as if reality is thinner here, as if the boundary between what something is and what it could become has worn dangerously thin.",
+        "npcs": [],
+        "enemies": [],
+        "loot": [
+          {
+            "name": "Transmuted Silver Ingots (200 gp)",
+            "type": "treasure"
+          },
+          {
+            "name": "Luminous Water (2 doses, Greater Healing)",
+            "type": "consumable"
+          },
+          {
+            "name": "Runestone Fragment (arcane focus, +1 to spell attack rolls)",
+            "type": "equipment"
+          }
+        ],
+        "hazards": [
+          {
+            "name": "Transmutation field (living creatures save or polymorphed for 1 hour)",
+            "dc": 16
+          }
+        ],
+        "services": [],
+        "event_triggers": [
+          "On rune study (DC 17 Arcana): The sequence is a countdown. It has been counting down for nine thousand years. It has fourteen iterations remaining."
+        ],
+        "_source": "Dungeon of the Mad Mage",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
+    },
+    "5": {
+      "id": 5,
+      "x": 35,
+      "y": 40,
+      "width": 12,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [
+        3,
+        4,
+        6
+      ],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The tunnel is covered with stone tiling and continues for 500 feet, being 10 feet wide and 10 feet in height.",
+        "read_aloud": "> You see the stone tiling stretching into an endless, narrow corridor, the air growing heavy and cold. Deep in the passage ahead, two points of violet light hang in the darkness, steady and unblinking, watching you.",
+        "npcs": [],
+        "enemies": [
+          {
+            "name": "Shadow",
+            "cr": "1/2"
+          },
+          {
+            "name": "Shadow",
+            "cr": "1/2"
+          },
+          {
+            "name": "Shadow",
+            "cr": "1/2"
+          },
+          {
+            "name": "Shadow",
+            "cr": "1/2"
+          }
+        ],
+        "loot": [],
+        "hazards": [
+          {
+            "name": "Supernatural darkness (disadvantage on Perception in dim areas)",
+            "dc": 0
+          },
+          {
+            "name": "Strength drain (shadow touch reduces Strength)",
+            "dc": 0
+          }
+        ],
+        "services": [],
+        "event_triggers": [
+          "On light source destroyed: The shadows surge forward. All shadows in the room act immediately.",
+          "On passage through: The violet eyes at the end of the corridor blink and withdraw. The shadow dragon knows you are coming."
+        ],
+        "_source": "Dungeon of the Mad Mage",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
+    },
+    "6": {
+      "id": 6,
+      "x": 25,
+      "y": 50,
+      "width": 16,
+      "height": 10,
+      "room_type": "boss",
+      "connections": [
+        5
+      ],
+      "tier": 3,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The cavern is of impossible size, with a ceiling lost in darkness that even darkvision cannot penetrate. The floor is covered in a thin layer of ash that muffles footsteps to silence. In the center, coiled around a pillar of obsidian, a dragon made of shadow and hunger opens its eyes.",
+        "read_aloud": "> You see a cavern vast beyond reason, its ceiling swallowed by a darkness so complete that even magical light cannot find it. A thin layer of pale ash blankets the floor, muffling your footsteps to absolute silence.",
+        "npcs": [],
+        "enemies": [
+          {
+            "name": "Young Shadow Dragon",
+            "cr": "9"
+          }
+        ],
+        "loot": [
+          {
+            "name": "Shadow Dragon Scale (5 scales, rare crafting material)",
+            "type": "treasure"
+          },
+          {
+            "name": "Obsidian Shard (can cast Darkness 1/day)",
+            "type": "equipment"
+          },
+          {
+            "name": "Level 7 Gate Rune",
+            "type": "quest_item"
+          },
+          {
+            "name": "Shadow Dragon's Hoard (1,800 gp in darkened coin)",
+            "type": "treasure"
+          }
+        ],
+        "hazards": [
+          {
+            "name": "Shadow Breath (necrotic cone, Constitution save)",
+            "dc": 15
+          },
+          {
+            "name": "Living shadow terrain (difficult terrain in darkness)",
+            "dc": 0
+          }
+        ],
+        "services": [],
+        "event_triggers": [
+          "On combat start: The dragon does not roar. It simply stops pretending to sleep. The ash on the floor rises in a ring around the chamber, and the only exit seals behind a wall of solid darkness.",
+          "On githyanki alliance active: Kress'tal and two warriors arrive on round 3, attacking the dragon's flank. 'FOR VLAAKITH! FOR THE ASTRAL SEA!'",
+          "On defeat: The dragon dissolves into the ash. The obsidian pillar cracks, revealing a stairway spiraling downward. The shadows in the cavern do not leave -- they watch. They remember."
+        ],
+        "_source": "Dungeon of the Mad Mage",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
     }
+  }
 }

@@ -1,236 +1,392 @@
 {
-    "seed": 4003,
-    "width": 70,
-    "height": 60,
-    "start_room_id": 0,
-    "metadata": {
-        "zone_id": "dungeon_level_3",
-        "theme": "STONE",
-        "topology": "dungeon",
-        "display_name": "Undermountain Level 3 -- The Sargauth Level"
+  "seed": 4003,
+  "width": 70,
+  "height": 60,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "dungeon_level_3",
+    "theme": "STONE",
+    "topology": "dungeon",
+    "display_name": "Undermountain Level 3 -- The Sargauth Level"
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 30,
+      "y": 0,
+      "width": 10,
+      "height": 8,
+      "room_type": "start",
+      "connections": [
+        1,
+        2
+      ],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Level 3 features include the Monastery of the Spirited Leaf.",
+        "read_aloud": "You see a stone landing slick with condensation. The air is heavier here, thick with moisture that beads on your skin and the taste of deep minerals—iron, limestone, and something organic beneath it all, like the breath of a subterranean river. Dwarven mason's marks are chiseled into the walls at precise intervals, each one a different hand, each one centuries old.",
+        "npcs": [],
+        "enemies": [],
+        "loot": [],
+        "hazards": [
+          {
+            "name": "Slippery stone (Dexterity save on running)",
+            "dc": 11
+          }
+        ],
+        "services": [],
+        "event_triggers": [
+          "On entry: The distant sound of rushing water echoes from the south. The Sargauth River."
+        ],
+        "_source": "Dungeon of the Mad Mage",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
     },
-    "rooms": {
-        "0": {
-            "id": 0,
-            "x": 30,
-            "y": 0,
-            "width": 10,
-            "height": 8,
-            "room_type": "start",
-            "connections": [1, 2],
-            "tier": 2,
-            "is_locked": false,
-            "is_secret": false,
-            "content_hints": {
-                "description": "The stairway deposits you onto a stone landing slick with condensation. The air here is different -- heavier, wetter, carrying the mineral tang of deep groundwater and something else, something organic, like the breath of a river that has never seen the sun. The walls are carved with dwarven mason's marks from Clan Melairkyn, each one a signature of a craftsman dead for a thousand years.",
-                "read_aloud": "The stairway ends on a stone landing slick with condensation. The air is heavier here, thick with moisture that beads on your skin and the taste of deep minerals -- iron, limestone, and something organic beneath it all, like the breath of a subterranean river. Dwarven mason's marks are chiseled into the walls at precise intervals, each one a different hand, each one centuries old. From somewhere to the south, the sound of rushing water echoes through the stone.",
-                "npcs": [],
-                "enemies": [],
-                "loot": [],
-                "hazards": [
-                    {"name": "Slippery stone (Dexterity save on running)", "dc": 11}
-                ],
-                "services": [],
-                "event_triggers": [
-                    "On entry: The distant sound of rushing water echoes from the south. The Sargauth River."
-                ]
-            }
-        },
-        "1": {
-            "id": 1,
-            "x": 10,
-            "y": 10,
-            "width": 14,
-            "height": 10,
-            "room_type": "normal",
-            "connections": [0, 3],
-            "tier": 2,
-            "is_locked": false,
-            "is_secret": false,
-            "content_hints": {
-                "description": "The Sargauth River fills a cavern a hundred feet wide, its black water moving with a patient, irresistible current. The surface is glass-smooth and utterly opaque -- you cannot see an inch below it. A stone quay juts into the water, mooring three flat-bottomed boats. The boats are drow-made, carved from a single piece of zurkhwood and treated to resist the river's corrosive minerals. Someone has painted eyes on each prow.",
-                "read_aloud": "The cavern opens wide, and the Sargauth River fills it edge to edge -- a hundred feet of black water moving with a slow, irresistible current. The surface is glass-smooth and utterly opaque, swallowing your torchlight without reflection. A stone quay juts into the water, its edges worn round by centuries of lapping current, and three flat-bottomed boats are moored there, each carved from a single piece of pale fungal wood. Painted eyes stare from each prow, wide and unblinking. The river smells of cold iron and deep places that have never known the sun.",
-                "npcs": [],
-                "enemies": [],
-                "loot": [
-                    {"name": "Zurkhwood Boat (seats 4)", "type": "equipment"}
-                ],
-                "hazards": [
-                    {"name": "River current (Strength save or swept 60 ft downstream)", "dc": 14},
-                    {"name": "Deep water (no bottom visible; something large moves below)", "dc": 0}
-                ],
-                "services": [],
-                "event_triggers": [
-                    "On water contact: The river is ice-cold and leaves a faint phosphorescent residue on the skin that takes hours to fade.",
-                    "On boat launch: The painted eyes on the prow glow faintly as the boat enters the current, then go dark."
-                ]
-            }
-        },
-        "2": {
-            "id": 2,
-            "x": 45,
-            "y": 10,
-            "width": 12,
-            "height": 10,
-            "room_type": "normal",
-            "connections": [0, 4],
-            "tier": 2,
-            "is_locked": false,
-            "is_secret": false,
-            "content_hints": {
-                "description": "Webbing fills this cavern like cotton in a jewelry box, every surface coated in sticky strands that vibrate at the slightest touch. Wrapped bundles hang from the ceiling -- some are animals, some are humanoid, and one is still moving, its muffled screams barely audible through layers of silk. The webs are not random; they form a pattern, a spiral that draws the eye inward toward a dark hollow at the center.",
-                "read_aloud": "Thick webbing fills the cavern from floor to ceiling, coating every surface in sticky, pale strands that vibrate at the slightest disturbance. The air is close and sweet with decay. Wrapped bundles hang from the ceiling at odd intervals -- some small, some roughly the size of a person. One of them twitches. A muffled sound comes from within, barely audible through layers of silk. The webs are arranged in a deliberate spiral pattern, each strand drawing your eye inward toward a dark hollow at the cavern's center where the webbing is thickest.",
-                "npcs": [],
-                "enemies": [
-                    {"name": "Giant Spider", "cr": "1"},
-                    {"name": "Giant Spider", "cr": "1"},
-                    {"name": "Phase Spider", "cr": "3"}
-                ],
-                "loot": [
-                    {"name": "Webbed Coin Pouch (30 gp)", "type": "treasure"},
-                    {"name": "Potion of Spider Climbing (in web cocoon)", "type": "consumable"}
-                ],
-                "hazards": [
-                    {"name": "Web strands (restrained on contact, DC 12 to escape)", "dc": 12}
-                ],
-                "services": [],
-                "event_triggers": [
-                    "On rescue attempt: The wrapped figure is a drow scout who will reluctantly provide information about the outpost ahead in exchange for freedom."
-                ]
-            }
-        },
-        "3": {
-            "id": 3,
-            "x": 5,
-            "y": 25,
-            "width": 14,
-            "height": 12,
-            "room_type": "normal",
-            "connections": [1, 5, 6],
-            "tier": 2,
-            "is_locked": false,
-            "is_secret": false,
-            "content_hints": {
-                "description": "Stalactites have been hollowed out and connected by rope bridges to form a drow settlement suspended above the river. Dim purple faerie fire illuminates doorways carved into the stone columns, and drow move between them with the silent grace of spiders on a web. The settlement is a forward outpost for House Auvryndar, and the guards watch the water and the passages with equal suspicion.",
-                "read_aloud": "Above you, a settlement hangs from the cavern ceiling. Stalactites have been hollowed into dwellings and connected by rope bridges that sway gently in the updraft from the river below. Dim purple light spills from carved doorways, casting the stone columns in violet shadow. Dark figures move between the structures with silent, fluid grace, crossing the bridges without a sound. You feel their eyes on you before you can make out their features -- watchful, calculating, and utterly unafraid.",
-                "npcs": [
-                    {
-                        "name": "T'rissa Auvryndar",
-                        "role": "antagonist",
-                        "dialogue": "Surface dwellers. How quaint. You have come seeking the deeper levels, yes? Everyone does. Few survive. I will make you an offer: serve House Auvryndar for one task, and I will grant you safe passage to Level 4. Refuse, and you may try to swim. The river is very patient.",
-                        "notes": "Drow priestess of Lolth, commander of the outpost. Cunning and pragmatic. Will use the party as expendable assets against rival drow houses. Honors deals but interprets them with spider-web precision."
-                    }
-                ],
-                "enemies": [
-                    {"name": "Drow", "cr": "1/4"},
-                    {"name": "Drow", "cr": "1/4"},
-                    {"name": "Drow Elite Warrior", "cr": "5"}
-                ],
-                "loot": [
-                    {"name": "Drow Poison (3 doses)", "type": "consumable"},
-                    {"name": "Drow Chain Shirt", "type": "armor"}
-                ],
-                "hazards": [],
-                "services": [],
-                "event_triggers": [
-                    "On diplomacy (DC 15 Persuasion): T'rissa offers safe passage through the outpost and information about Level 4 in exchange for clearing the spider nest."
-                ]
-            }
-        },
-        "4": {
-            "id": 4,
-            "x": 50,
-            "y": 28,
-            "width": 10,
-            "height": 10,
-            "room_type": "normal",
-            "connections": [2, 5],
-            "tier": 2,
-            "is_locked": false,
-            "is_secret": false,
-            "content_hints": {
-                "description": "The crossing is a natural stone bridge spanning a forty-foot chasm through which the Sargauth thunders. The bridge is three feet wide, slick with spray, and has no railing. Halfway across, drow runes carved into the stone glow when stepped on -- each one a different color, each one a different effect. The drow use them as a security measure. Visitors use them as a gamble.",
-                "read_aloud": "A natural stone bridge arcs over a forty-foot chasm where the Sargauth River thunders below, its roar filling the cavern until your ribs vibrate. The bridge is barely three feet wide, slick with spray, and has no railing -- just a long drop into churning black water on either side. Halfway across, colored runes are carved into the stone, each one glowing a different hue: crimson, violet, gold, white. They pulse faintly as you approach, as though waiting to be stepped on. The spray stings your face and the stone is treacherously slick beneath your boots.",
-                "npcs": [],
-                "enemies": [],
-                "loot": [],
-                "hazards": [
-                    {"name": "Narrow bridge crossing (Acrobatics or Athletics)", "dc": 14},
-                    {"name": "Rune traps (random effects: light, darkness, teleport, alarm)", "dc": 15}
-                ],
-                "services": [],
-                "event_triggers": [
-                    "On crossing: Roll 1d4 for each rune stepped on. 1: Faerie Fire (outlined for 1 minute). 2: Darkness (10-foot radius). 3: Teleported back to start. 4: Alarm (drow alerted)."
-                ]
-            }
-        },
-        "5": {
-            "id": 5,
-            "x": 30,
-            "y": 38,
-            "width": 14,
-            "height": 10,
-            "room_type": "treasure",
-            "connections": [3, 4, 6],
-            "tier": 2,
-            "is_locked": true,
-            "is_secret": false,
-            "content_hints": {
-                "description": "A dwarven temple to Dumathoin, Keeper of Secrets Under the Mountain. The altar is carved from a single boulder of black marble, its surface engraved with a face whose eyes are closed and whose lips are sealed. Offerings of raw gemstones fill niches in the walls, placed by Melairkyn dwarves who never returned to claim them. The temple has been undisturbed for centuries -- until now. The dust on the floor shows only your footprints.",
-                "read_aloud": "You step into a chamber of reverent stillness. An altar of black marble dominates the space, carved with the face of a figure whose eyes are closed and whose lips are sealed in eternal silence. Niches line the walls, each one holding a cluster of raw, uncut gemstones that catch your torchlight in flashes of deep color. Dust lies thick on every surface, undisturbed for what must be centuries -- your footprints are the first. The air is cool and dry and tastes of stone, and the silence here is not empty but full, as though the chamber itself is holding a secret between its teeth.",
-                "npcs": [],
-                "enemies": [],
-                "loot": [
-                    {"name": "Uncut Gemstones (12 gems, 25 gp each)", "type": "treasure"},
-                    {"name": "Shield of the Sentinel (+1 Shield, glows near secret doors)", "type": "armor"},
-                    {"name": "Prayer Beads of Dumathoin", "type": "equipment"}
-                ],
-                "hazards": [
-                    {"name": "Divine ward (non-dwarves take 2d6 radiant on altar touch)", "dc": 14}
-                ],
-                "services": [],
-                "event_triggers": [
-                    "On dwarf character prayer: Dumathoin grants a vision of a secret passage on this level, revealed for 1 hour.",
-                    "On desecration attempt: The sealed face on the altar opens its eyes. The temperature drops thirty degrees in an instant."
-                ]
-            }
-        },
-        "6": {
-            "id": 6,
-            "x": 20,
-            "y": 50,
-            "width": 12,
-            "height": 8,
-            "room_type": "boss",
-            "connections": [3, 5],
-            "tier": 2,
-            "is_locked": false,
-            "is_secret": false,
-            "content_hints": {
-                "description": "A ritual chamber dominated by a spider-shaped altar carved from purple obsidian. Eight candles burn at the tips of its legs, their flames a sickly green that casts no shadows. A drow priestess kneels before it, her prayers carrying the clicking, skittering cadence of the spider tongue. Behind her, a Gate spell shimmers in the air -- a portal to the Demonweb Pits, half-open, leaking wisps of darkness that move against the light.",
-                "read_aloud": "The chamber ahead is lit by eight candles burning sickly green, each one perched at the tip of a leg belonging to a spider-shaped altar carved from dark, glassy stone. The flames cast no shadows -- the light simply stops at the edges of things, as if the darkness here is stronger than the fire. A figure kneels before the altar, murmuring in a language of clicks and hisses that makes your skin crawl. Behind the altar, the air itself is torn -- a shimmering wound in reality, leaking tendrils of darkness that drift upward against gravity, reaching toward the ceiling like grasping fingers.",
-                "npcs": [],
-                "enemies": [
-                    {"name": "Drow Priestess of Lolth", "cr": "8"},
-                    {"name": "Giant Spider", "cr": "1"},
-                    {"name": "Giant Spider", "cr": "1"},
-                    {"name": "Drider", "cr": "6"}
-                ],
-                "loot": [
-                    {"name": "Spider Staff (rare, drow craftsmanship)", "type": "weapon"},
-                    {"name": "Lolth's Blessing Amulet (cursed)", "type": "equipment"},
-                    {"name": "Level 4 Gate Key", "type": "quest_item"}
-                ],
-                "hazards": [
-                    {"name": "Demonweb Gate (Charisma save or pulled 5 ft toward portal)", "dc": 15}
-                ],
-                "services": [],
-                "event_triggers": [
-                    "On combat start: The priestess does not turn around. 'Lolth told me you were coming. She told me to make it interesting.' The gate pulses wider.",
-                    "On defeat: The gate collapses with a shriek of torn reality. The candles die. In the sudden darkness, something on the other side of the closing portal whispers: 'Next time.'",
-                    "On gate key found: The stairway to Level 4 unlocks. The stone grinds open like a jaw."
-                ]
-            }
-        }
+    "1": {
+      "id": 1,
+      "x": 10,
+      "y": 10,
+      "width": 14,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [
+        0,
+        3
+      ],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The Sargauth River fills a cavern a hundred feet wide, its black water moving with a patient, irresistible current. The surface is glass-smooth and utterly opaque, and a stone quay juts into the water, mooring three flat-bottomed boats.",
+        "read_aloud": "> You see the cavern opens wide, and the Sargauth River fills it edge to edge—a hundred feet of black water moving with a slow, irresistible current. The surface is glass-smooth and utterly opaque, swallowing your torchlight without reflection.",
+        "npcs": [],
+        "enemies": [],
+        "loot": [
+          {
+            "name": "Zurkhwood Boat (seats 4)",
+            "type": "equipment"
+          }
+        ],
+        "hazards": [
+          {
+            "name": "River current (Strength save or swept 60 ft downstream)",
+            "dc": 14
+          },
+          {
+            "name": "Deep water (no bottom visible; something large moves below)",
+            "dc": 0
+          }
+        ],
+        "services": [],
+        "event_triggers": [
+          "On water contact: The river is ice-cold and leaves a faint phosphorescent residue on the skin that takes hours to fade.",
+          "On boat launch: The painted eyes on the prow glow faintly as the boat enters the current, then go dark."
+        ],
+        "_source": "Dungeon of the Mad Mage",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 45,
+      "y": 10,
+      "width": 12,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [
+        0,
+        4
+      ],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Green Slime covers each 10-foot-wide, 15-foot-high section of vertical wall with six 5-foot-square patches of green slime. This slime obscures a secret door, and ability checks made to search the walls for it are made with disadvantage until the slime is scraped off the section of wall in which the secret door is hidden.",
+        "read_aloud": "You see thick webbing filling the cavern from floor to ceiling, coating every surface in sticky, pale strands that vibrate at the slightest disturbance. The air is close and sweet with decay, and wrapped bundles hang from the ceiling at odd intervals.",
+        "npcs": [],
+        "enemies": [
+          {
+            "name": "Giant Spider",
+            "cr": "1"
+          },
+          {
+            "name": "Giant Spider",
+            "cr": "1"
+          },
+          {
+            "name": "Phase Spider",
+            "cr": "3"
+          }
+        ],
+        "loot": [
+          {
+            "name": "Webbed Coin Pouch (30 gp)",
+            "type": "treasure"
+          },
+          {
+            "name": "Potion of Spider Climbing (in web cocoon)",
+            "type": "consumable"
+          }
+        ],
+        "hazards": [
+          {
+            "name": "Web strands (restrained on contact, DC 12 to escape)",
+            "dc": 12
+          }
+        ],
+        "services": [],
+        "event_triggers": [
+          "On rescue attempt: The wrapped figure is a drow scout who will reluctantly provide information about the outpost ahead in exchange for freedom."
+        ],
+        "_source": "Dungeon of the Mad Mage",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
+    },
+    "3": {
+      "id": 3,
+      "x": 5,
+      "y": 25,
+      "width": 14,
+      "height": 12,
+      "room_type": "normal",
+      "connections": [
+        1,
+        5,
+        6
+      ],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The chamber features plated walls, and at the end of the room is near a structure that collapses, where a creature within half the distance of the structure's height must make a DC 25 Dexterity saving throw. The room is lit by continual flame spells cast on iron torch sconces bolted to the walls, and mounted on stone plaques between the sconces are the heads of three dwarves, two orogs, a troglodyte, and a gargoyle.",
+        "read_aloud": "You see a room filled with wooden trestle tables and benches, lit by continual flame spells cast on iron torch sconces bolted to the walls. Mounted on stone plaques between the sconces are the heads of three dwarves, two orogs, a troglodyte, and a gargoyle.",
+        "npcs": [
+          {
+            "name": "T'rissa Auvryndar",
+            "role": "antagonist",
+            "dialogue": "Surface dwellers. How quaint. You have come seeking the deeper levels, yes? Everyone does. Few survive. I will make you an offer: serve House Auvryndar for one task, and I will grant you safe passage to Level 4. Refuse, and you may try to swim. The river is very patient.",
+            "notes": "Drow priestess of Lolth, commander of the outpost. Cunning and pragmatic. Will use the party as expendable assets against rival drow houses. Honors deals but interprets them with spider-web precision."
+          }
+        ],
+        "enemies": [
+          {
+            "name": "Drow",
+            "cr": "1/4"
+          },
+          {
+            "name": "Drow",
+            "cr": "1/4"
+          },
+          {
+            "name": "Drow Elite Warrior",
+            "cr": "5"
+          }
+        ],
+        "loot": [
+          {
+            "name": "Drow Poison (3 doses)",
+            "type": "consumable"
+          },
+          {
+            "name": "Drow Chain Shirt",
+            "type": "armor"
+          }
+        ],
+        "hazards": [],
+        "services": [],
+        "event_triggers": [
+          "On diplomacy (DC 15 Persuasion): T'rissa offers safe passage through the outpost and information about Level 4 in exchange for clearing the spider nest."
+        ],
+        "_source": "Dungeon of the Mad Mage",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
+    },
+    "4": {
+      "id": 4,
+      "x": 50,
+      "y": 28,
+      "width": 10,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [
+        2,
+        5
+      ],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "A large, opulent room features green marble tiling on the floor and walls painted with lifelike forest scenes depicting predators stalking prey. In the center of the tabernacle is a block of blood-stained white marble. Eerie clicking sounds betray the presence of seven hook horrors, which attempt to hook stray creatures.",
+        "read_aloud": "You see a large, opulent room with green marble tiling on the floor and walls painted with lifelike forest scenes of predators stalking prey. In the center of the room is an altar made of stained white marble, beside which lies an inanimate human skeleton clad in tattered hide armor. Eerie clicking sounds betray the presence of seven hook horrors lurking in the shadows.",
+        "npcs": [],
+        "enemies": [],
+        "loot": [],
+        "hazards": [
+          {
+            "name": "Narrow bridge crossing (Acrobatics or Athletics)",
+            "dc": 14
+          },
+          {
+            "name": "Rune traps (random effects: light, darkness, teleport, alarm)",
+            "dc": 15
+          }
+        ],
+        "services": [],
+        "event_triggers": [
+          "On crossing: Roll 1d4 for each rune stepped on. 1: Faerie Fire (outlined for 1 minute). 2: Darkness (10-foot radius). 3: Teleported back to start. 4: Alarm (drow alerted)."
+        ],
+        "_source": "Dungeon of the Mad Mage",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
+    },
+    "5": {
+      "id": 5,
+      "x": 30,
+      "y": 38,
+      "width": 14,
+      "height": 10,
+      "room_type": "treasure",
+      "connections": [
+        3,
+        4,
+        6
+      ],
+      "tier": 2,
+      "is_locked": true,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The chamber is clearly the workplace of a wizard, featuring open tomes on astronomy and astrology, a massive telescope of brass, crystal, and polished mahogany on an intricate stand, a ladder against one wall, and an immense crystal lens embedded in the wall. A pair of voluminous tomes on astronomy and astrology lie open on a table, and a locked wooden chest about the size of ISKANOER sits in the corner.",
+        "read_aloud": "You step into a chamber where a massive telescope of brass, crystal, and polished mahogany rests on an intricate stand in the middle of the chamber. A ladder leans against one wall, and an immense crystal lens is embedded in the wall.",
+        "npcs": [],
+        "enemies": [],
+        "loot": [
+          {
+            "name": "Uncut Gemstones (12 gems, 25 gp each)",
+            "type": "treasure"
+          },
+          {
+            "name": "Shield of the Sentinel (+1 Shield, glows near secret doors)",
+            "type": "armor"
+          },
+          {
+            "name": "Prayer Beads of Dumathoin",
+            "type": "equipment"
+          }
+        ],
+        "hazards": [
+          {
+            "name": "Divine ward (non-dwarves take 2d6 radiant on altar touch)",
+            "dc": 14
+          }
+        ],
+        "services": [],
+        "event_triggers": [
+          "On dwarf character prayer: Dumathoin grants a vision of a secret passage on this level, revealed for 1 hour.",
+          "On desecration attempt: The sealed face on the altar opens its eyes. The temperature drops thirty degrees in an instant."
+        ],
+        "_source": "Dungeon of the Mad Mage",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
+    },
+    "6": {
+      "id": 6,
+      "x": 20,
+      "y": 50,
+      "width": 12,
+      "height": 8,
+      "room_type": "boss",
+      "connections": [
+        3,
+        5
+      ],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Altonrel and Rezz and a female drow elite warrior (Balryn) stand watch atop a ridge of natural rock in the middle of this 30-foot-high cave. Fungi, barrelstalk, and ripplebark grow in small gardens around the ridge.",
+        "read_aloud": "You see Altonrel and Rezz, along with a female drow elite warrior named Balryn, standing watch atop a ridge of natural rock in the middle of this 30-foot-high cave. Fungi, barrelstalk, and ripplebark grow in small gardens around the ridge, and stacks of supplies and gear neatly line the walls.",
+        "npcs": [
+          {
+            "name": "Altonrel",
+            "role": "stands watch atop a ridge of natural rock in the middle of this 30-foot-high cave.",
+            "dialogue": "",
+            "notes": "[Source: Dungeon of the Mad Mage PDF]"
+          },
+          {
+            "name": "Rezz",
+            "role": "stands watch atop a ridge of natural rock in the middle of this 30-foot-high cave.",
+            "dialogue": "",
+            "notes": "[Source: Dungeon of the Mad Mage PDF]"
+          },
+          {
+            "name": "Balryn",
+            "role": "a female drow elite warrior stand watch atop a ridge of natural rock in the middle of this 30-foot-high cave.",
+            "dialogue": "",
+            "notes": "[Source: Dungeon of the Mad Mage PDF]"
+          },
+          {
+            "name": "Melith",
+            "role": "knows that the only route between this level of Undermountain and the next one down is the underground river.",
+            "dialogue": "",
+            "notes": "[Source: Dungeon of the Mad Mage PDF]"
+          }
+        ],
+        "enemies": [
+          {
+            "name": "Drow Priestess of Lolth",
+            "cr": "8"
+          },
+          {
+            "name": "Giant Spider",
+            "cr": "1"
+          },
+          {
+            "name": "Giant Spider",
+            "cr": "1"
+          },
+          {
+            "name": "Drider",
+            "cr": "6"
+          }
+        ],
+        "loot": [
+          {
+            "name": "Spider Staff (rare, drow craftsmanship)",
+            "type": "weapon"
+          },
+          {
+            "name": "Lolth's Blessing Amulet (cursed)",
+            "type": "equipment"
+          },
+          {
+            "name": "Level 4 Gate Key",
+            "type": "quest_item"
+          }
+        ],
+        "hazards": [
+          {
+            "name": "Demonweb Gate (Charisma save or pulled 5 ft toward portal)",
+            "dc": 15
+          }
+        ],
+        "services": [],
+        "event_triggers": [
+          "On combat start: The priestess does not turn around. 'Lolth told me you were coming. She told me to make it interesting.' The gate pulses wider.",
+          "On defeat: The gate collapses with a shriek of torn reality. The candles die. In the sudden darkness, something on the other side of the closing portal whispers: 'Next time.'",
+          "On gate key found: The stairway to Level 4 unlocks. The stone grinds open like a jaw."
+        ],
+        "_source": "Dungeon of the Mad Mage",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
     }
+  }
 }

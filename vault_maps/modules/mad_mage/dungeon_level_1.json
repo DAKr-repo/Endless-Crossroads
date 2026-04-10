@@ -1,280 +1,449 @@
 {
-    "seed": 4002,
-    "width": 80,
-    "height": 60,
-    "start_room_id": 0,
-    "metadata": {
-        "zone_id": "dungeon_level_1",
-        "theme": "STONE",
-        "topology": "dungeon",
-        "display_name": "Undermountain Level 1 -- The Dungeon Level"
+  "seed": 4002,
+  "width": 80,
+  "height": 60,
+  "start_room_id": 0,
+  "metadata": {
+    "zone_id": "dungeon_level_1",
+    "theme": "STONE",
+    "topology": "dungeon",
+    "display_name": "Undermountain Level 1 -- The Dungeon Level"
+  },
+  "rooms": {
+    "0": {
+      "id": 0,
+      "x": 5,
+      "y": 5,
+      "width": 10,
+      "height": 8,
+      "room_type": "start",
+      "connections": [
+        1,
+        2
+      ],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The passage from the landing chamber opens into a vaulted hall whose ceiling has partially collapsed, leaving rubble in piles that create natural chokepoints. Torchlight from the landing behind you fades within thirty feet, replaced by phosphorescent fungus that casts everything in sickly green. Boot prints in the dust lead in every direction -- dozens of parties have passed through here. Most of the tracks only go one way.",
+        "read_aloud": "You step into a vaulted hall where the ceiling has partially collapsed, leaving mounds of rubble that narrow the path ahead. Phosphorescent fungus clings to the walls in pale green patches, casting a sickly light that makes shadows pool in every crevice. Dust on the floor is churned with boot prints heading in every direction.",
+        "npcs": [],
+        "enemies": [
+          {
+            "name": "Giant Rat",
+            "cr": "1/8"
+          },
+          {
+            "name": "Giant Rat",
+            "cr": "1/8"
+          },
+          {
+            "name": "Giant Rat",
+            "cr": "1/8"
+          }
+        ],
+        "loot": [],
+        "hazards": [
+          {
+            "name": "Rubble pile (difficult terrain, falling stones)",
+            "dc": 11
+          }
+        ],
+        "services": [],
+        "event_triggers": [
+          "On entry: Scratching sounds in the walls. The rats have learned that the pulley system means fresh meat."
+        ],
+        "_source": "Dungeon of the Mad Mage",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
     },
-    "rooms": {
-        "0": {
-            "id": 0,
-            "x": 5,
-            "y": 5,
-            "width": 10,
-            "height": 8,
-            "room_type": "start",
-            "connections": [1, 2],
-            "tier": 1,
-            "is_locked": false,
-            "is_secret": false,
-            "content_hints": {
-                "description": "The passage from the landing chamber opens into a vaulted hall whose ceiling has partially collapsed, leaving rubble in piles that create natural chokepoints. Torchlight from the landing behind you fades within thirty feet, replaced by phosphorescent fungus that casts everything in sickly green. Boot prints in the dust lead in every direction -- dozens of parties have passed through here. Most of the tracks only go one way.",
-                "read_aloud": "The passage opens into a vaulted hall where the ceiling has partially collapsed, leaving mounds of rubble that narrow the path ahead. Phosphorescent fungus clings to the walls in pale green patches, casting a sickly light that makes shadows pool in every crevice. The dust on the floor is churned with boot prints heading in every direction. Scratching sounds echo from within the walls -- something small, and hungry, and very much aware that you have arrived.",
-                "npcs": [],
-                "enemies": [
-                    {"name": "Giant Rat", "cr": "1/8"},
-                    {"name": "Giant Rat", "cr": "1/8"},
-                    {"name": "Giant Rat", "cr": "1/8"}
-                ],
-                "loot": [],
-                "hazards": [
-                    {"name": "Rubble pile (difficult terrain, falling stones)", "dc": 11}
-                ],
-                "services": [],
-                "event_triggers": [
-                    "On entry: Scratching sounds in the walls. The rats have learned that the pulley system means fresh meat."
-                ]
-            }
-        },
-        "1": {
-            "id": 1,
-            "x": 20,
-            "y": 5,
-            "width": 14,
-            "height": 10,
-            "room_type": "market",
-            "connections": [0, 3, 4],
-            "tier": 1,
-            "is_locked": false,
-            "is_secret": false,
-            "content_hints": {
-                "description": "A cavern strung with colored lanterns and cluttered with makeshift stalls. Goblins hawk stolen goods, questionable food, and information of dubious reliability. A goblin in a top hat three sizes too large presides over the market from an overturned barrel, adjudicating disputes with a wooden gavel. The air smells of roasting mystery meat and goblin perfume, which is just regular perfume applied in punishing quantities.",
-                "read_aloud": "Colored lanterns strung on fraying rope transform this cavern into a chaotic underground bazaar. Makeshift stalls of scrap wood and salvaged doors crowd the floor, and small green figures hawk their wares in shrill, overlapping voices. The air is thick with the smell of roasting meat of uncertain origin and perfume applied in quantities that could fell an owlbear. Atop an overturned barrel at the market's center, a figure in an enormous top hat bangs a wooden gavel and shrieks for order.",
-                "npcs": [
-                    {
-                        "name": "Yek the Tall",
-                        "role": "shopkeeper",
-                        "dialogue": "Welcome to Yek's! Best prices on Level 1, guaranteed! You want sword? We got sword. You want information? We got information. You want directions to Level 2? That costs extra. Yek knows the way. Yek knows ALL the ways.",
-                        "notes": "Goblin boss. Wears a battered top hat and a monocle with no lens. Runs the Goblin Bazaar as a neutral zone -- no fighting allowed, enforced by twenty goblins with crossbows in the balcony above. Shrewd trader who accepts coin, barter, or 'interesting stories.'"
-                    }
-                ],
-                "enemies": [],
-                "loot": [
-                    {"name": "Driftglobe (sold by goblins, 75 gp)", "type": "equipment"},
-                    {"name": "Dungeon Map Fragment (Level 1, partially accurate)", "type": "quest_item"}
-                ],
-                "hazards": [],
-                "services": ["shop", "rumor"],
-                "event_triggers": [
-                    "On browse: A goblin child tugs your sleeve and whispers: 'The bugbears in the east hall are digging for something. Something old. Yek does not want you to know that.'"
-                ]
-            }
-        },
-        "2": {
-            "id": 2,
-            "x": 5,
-            "y": 18,
-            "width": 10,
-            "height": 10,
-            "room_type": "normal",
-            "connections": [0, 5],
-            "tier": 1,
-            "is_locked": false,
-            "is_secret": false,
-            "content_hints": {
-                "description": "A den of stinking hides and splintered furniture. Bugbears sleep in piles like dogs, their snores shaking dust from the ceiling. The walls are decorated with trophies -- adventurer helmets, mostly, arranged by size. A cook fire in the center burns with green-tinged flame, and whatever is in the pot has been simmering long enough to dissolve bone.",
-                "read_aloud": "The stench hits you before you see the room -- rancid fur and something simmering that you do not want identified. Beyond the doorway, piles of stinking hides and broken furniture fill a low-ceilinged chamber. A cook fire burns in the center with a greenish tinge, and a blackened pot bubbles thickly over it. The walls are lined with helmets arranged by size like grim trophies, each one dented, some still bearing dark stains. Massive shapes lie heaped together in the shadows, and the sound of deep, rumbling snores shakes dust from the ceiling.",
-                "npcs": [],
-                "enemies": [
-                    {"name": "Bugbear", "cr": "1"},
-                    {"name": "Bugbear", "cr": "1"},
-                    {"name": "Bugbear", "cr": "1"}
-                ],
-                "loot": [
-                    {"name": "Adventurer's Pack (salvaged, contains waterskin and 3 rations)", "type": "equipment"},
-                    {"name": "Helmet Collection (10 helmets, 2 gp each)", "type": "treasure"}
-                ],
-                "hazards": [],
-                "services": [],
-                "event_triggers": [
-                    "On stealth success (DC 13): The bugbears can be bypassed entirely while sleeping."
-                ]
-            }
-        },
-        "3": {
-            "id": 3,
-            "x": 40,
-            "y": 5,
-            "width": 10,
-            "height": 10,
-            "room_type": "normal",
-            "connections": [1, 4],
-            "tier": 1,
-            "is_locked": false,
-            "is_secret": false,
-            "content_hints": {
-                "description": "Three stone tables arranged in a U, their surfaces stained with embalming fluid and old blood. The walls are lined with niches, each containing a wrapped corpse -- some ancient, some alarmingly fresh. A robed figure works by candlelight, carefully extracting teeth from a skull and dropping them into a leather pouch. The figure does not look up as you enter. 'Customers or merchandise?' it asks. 'I deal in both.'",
-                "read_aloud": "Three stone tables stand in a U-shape, their surfaces stained dark with fluids you would rather not identify. The walls are honeycombed with niches, each holding a wrapped bundle roughly the size and shape of a body -- some yellowed with age, others disturbingly fresh. Candles drip wax onto every surface, and a robed figure hunches over the nearest table, working with small, precise tools. The air reeks of preserving chemicals and old copper. The figure does not look up as you enter.",
-                "npcs": [
-                    {
-                        "name": "Midna Tauberth",
-                        "role": "shopkeeper",
-                        "dialogue": "The dead have no need of their possessions. I redistribute them to the living. Call it recycling. The teeth? Components. You do not want to know what for.",
-                        "notes": "Human undertaker, neutral evil. Has set up shop in the dungeon to harvest corpses left by adventurers. Sells salvaged gear at fair prices. Will buy bodies (5 gp each, no questions asked). Knows the layout of Level 1 from following the dead."
-                    }
-                ],
-                "enemies": [],
-                "loot": [
-                    {"name": "Salvaged Shortsword +1", "type": "weapon"},
-                    {"name": "Scroll of Gentle Repose", "type": "consumable"}
-                ],
-                "hazards": [],
-                "services": ["shop"],
-                "event_triggers": []
-            }
-        },
-        "4": {
-            "id": 4,
-            "x": 50,
-            "y": 15,
-            "width": 12,
-            "height": 10,
-            "room_type": "treasure",
-            "connections": [1, 3, 5],
-            "tier": 2,
-            "is_locked": true,
-            "is_secret": false,
-            "content_hints": {
-                "description": "A workshop sealed behind a door engraved with Halaster's sigil. Inside, half-completed magical experiments litter the benches -- a pair of boots that hover an inch off the ground, a mirror that shows yesterday instead of today, and a music box that plays a song no one has composed yet. Arcane formulae cover every surface, written in a hand that grows more erratic and illegible toward the edges, as if the writer's sanity was leaking out through the pen.",
-                "read_aloud": "Beyond the sigil-marked door, a cluttered workshop stretches into shadow. Workbenches sag under half-finished contraptions -- a pair of boots hovering an inch above the table, a tarnished mirror reflecting a room that is subtly wrong, a music box playing a melody you have never heard and cannot quite remember once it stops. Arcane formulae cover the walls, the ceiling, even the floor, scrawled in handwriting that starts precise and degenerates into frantic, looping scribbles at the edges. The air hums with residual magic, and small objects on the benches twitch at your approach.",
-                "npcs": [],
-                "enemies": [
-                    {"name": "Animated Armor", "cr": "1"},
-                    {"name": "Rug of Smothering", "cr": "2"}
-                ],
-                "loot": [
-                    {"name": "Boots of Elvenkind", "type": "equipment"},
-                    {"name": "Mirror of the Past (shows yesterday's events in reflected room)", "type": "equipment"},
-                    {"name": "Halaster's Workshop Notes (Level 1-3 annotations)", "type": "quest_item"}
-                ],
-                "hazards": [
-                    {"name": "Wild magic zone (roll on Wild Magic Surge table on spell cast)", "dc": 0}
-                ],
-                "services": [],
-                "event_triggers": [
-                    "On notes read: Halaster's handwriting includes margin notes addressed to future readers: 'If you are reading this, you are already on Level 1, which means you are already doomed. Welcome!'"
-                ]
-            }
-        },
-        "5": {
-            "id": 5,
-            "x": 30,
-            "y": 25,
-            "width": 10,
-            "height": 8,
-            "room_type": "normal",
-            "connections": [2, 4, 6],
-            "tier": 2,
-            "is_locked": false,
-            "is_secret": false,
-            "content_hints": {
-                "description": "A fortified position built from salvaged dungeon furniture -- doors used as walls, tables as parapets, and chair legs sharpened into stakes. The Xanathar Guild has claimed this junction as a toll point, and they enforce it with crossbows and a willingness to use them. A painted sign reads: 'TOLL: 10 GP PER HEAD. HEADS ACCEPTED AS ALTERNATE PAYMENT.'",
-                "read_aloud": "The corridor ahead has been barricaded with salvaged dungeon furniture -- doors propped as walls, tables turned on their sides as parapets, chair legs sharpened into stakes jutting outward. Behind the barricade, crossbow bolts glint in the torchlight, aimed at you. A crudely painted sign hangs above the fortification: TOLL: 10 GP PER HEAD. HEADS ACCEPTED AS ALTERNATE PAYMENT. A voice calls out from behind the barricade, thick with menace and professional indifference.",
-                "npcs": [
-                    {
-                        "name": "Grum'shar",
-                        "role": "antagonist",
-                        "dialogue": "Ten gold or ten toes. Your choice. The Guild controls this corridor and everything south of it. You want to go deeper, you pay. You want to argue, Grum'shar can argue too.",
-                        "notes": "Half-orc warlock. Xanathar Guild lieutenant. Secretly has an intellect devourer planted in a nearby prisoner, ready to deploy if things go wrong. Cruel but pragmatic -- will negotiate if outmatched."
-                    }
-                ],
-                "enemies": [
-                    {"name": "Xanathar Guild Thug", "cr": "1/2"},
-                    {"name": "Xanathar Guild Thug", "cr": "1/2"},
-                    {"name": "Grum'shar (Warlock)", "cr": "3"}
-                ],
-                "loot": [
-                    {"name": "Guild Toll Chest (65 gp in mixed coin)", "type": "treasure"},
-                    {"name": "Xanathar Guild Insignia", "type": "quest_item"}
-                ],
-                "hazards": [],
-                "services": [],
-                "event_triggers": [
-                    "On combat: Grum'shar activates the intellect devourer as a bonus action on round 2."
-                ]
-            }
-        },
-        "6": {
-            "id": 6,
-            "x": 20,
-            "y": 35,
-            "width": 10,
-            "height": 8,
-            "room_type": "normal",
-            "connections": [5, 7],
-            "tier": 2,
-            "is_locked": false,
-            "is_secret": false,
-            "content_hints": {
-                "description": "A natural cavern where rats have achieved civilization, or at least its crude beginnings. Crude tunnels honeycomb the walls, each barely wide enough for a child. The rats here are enormous -- the size of terriers -- and they watch with an intelligence that is deeply unsettling. A rat king sits atop a mound of refuse, its multiple tails knotted together, its multiple heads tracking different targets.",
-                "read_aloud": "The passage opens into a natural cavern where the walls are honeycombed with narrow tunnels, each barely wide enough for a child to crawl through. The floor is thick with refuse and gnawed bones, and the smell is staggering -- ammonia and rot and something musky that coats the back of your throat. Enormous rats the size of terriers perch on ledges and refuse piles, watching you with a glittering, unsettling intelligence. They do not flee. They study. Atop the largest mound of refuse, something larger sits -- a knotted mass of tails and too many heads, each one tracking a different member of your party.",
-                "npcs": [],
-                "enemies": [
-                    {"name": "Swarm of Rats", "cr": "1/4"},
-                    {"name": "Swarm of Rats", "cr": "1/4"},
-                    {"name": "Giant Rat (Dire variant)", "cr": "1/4"},
-                    {"name": "Giant Rat (Dire variant)", "cr": "1/4"}
-                ],
-                "loot": [
-                    {"name": "Ring of Swimming (in rat nest refuse)", "type": "equipment"}
-                ],
-                "hazards": [
-                    {"name": "Filth disease (Constitution save after combat)", "dc": 11}
-                ],
-                "services": [],
-                "event_triggers": [
-                    "On Speak with Animals: The rats are terrified. 'The metal ones from below. They come at night. They take us. They put things in our heads.'"
-                ]
-            }
-        },
-        "7": {
-            "id": 7,
-            "x": 20,
-            "y": 48,
-            "width": 12,
-            "height": 10,
-            "room_type": "boss",
-            "connections": [6],
-            "tier": 2,
-            "is_locked": false,
-            "is_secret": false,
-            "content_hints": {
-                "description": "A wide staircase descends into a chamber dominated by a stone arch etched with Halaster's rune. The arch is the gate to Level 2 -- one-way until you find the key rune on the other side. Before the arch, a bugbear chieftain has established his throne: a wooden chair stolen from the Yawning Portal, still bearing Durnan's brand on its back. The chieftain wears a crown of rat skulls and speaks in a voice like grinding stone.",
-                "read_aloud": "A wide stone staircase descends into a vaulted chamber where a great arch of carved stone stands against the far wall, its surface etched with glowing runes that pulse like a slow heartbeat. Before the arch, a crude throne has been assembled -- a wooden tavern chair, battered and scarred but bearing the faded brand of a well-known establishment on the surface. A massive figure sits upon it, wearing a crown fashioned from small skulls, watching your descent with the patient malice of something that has been expecting you. The runes on the arch behind it pulse brighter as you draw near.",
-                "npcs": [],
-                "enemies": [
-                    {"name": "Bugbear Chief", "cr": "3"},
-                    {"name": "Bugbear", "cr": "1"},
-                    {"name": "Bugbear", "cr": "1"},
-                    {"name": "Wolf", "cr": "1/4"},
-                    {"name": "Wolf", "cr": "1/4"}
-                ],
-                "loot": [
-                    {"name": "Bugbear Chief's Morningstar (+1)", "type": "weapon"},
-                    {"name": "Stairway Key Rune (grants return passage)", "type": "quest_item"},
-                    {"name": "Stolen Goods (120 gp in assorted valuables)", "type": "treasure"}
-                ],
-                "hazards": [],
-                "services": [],
-                "event_triggers": [
-                    "On combat start: The chieftain kicks the throne backward and draws his morningstar. 'Yek said you were coming. Yek is a snitch. But you -- you are dinner.'",
-                    "On defeat: The arch flares to life, its runes blazing blue-white. The stairway down is open. Somewhere far below, something laughs."
-                ]
-            }
-        }
+    "1": {
+      "id": 1,
+      "x": 20,
+      "y": 5,
+      "width": 14,
+      "height": 10,
+      "room_type": "market",
+      "connections": [
+        0,
+        3,
+        4
+      ],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Fungi forest paths run between patches of stout trillimac and a forest of towering zurkhwood whose caps scrape the 40-foot-high ceiling. Throughout the cavern are small clearings where the fungi have been torn out of the mossy ground.",
+        "read_aloud": "You see colored lanterns strung on fraying rope transforming this cavern into a chaotic underground bazaar. Makeshift stalls of scrap wood and salvaged doors crowd the floor, and small green figures hawk their wares in shrill, overlapping voices. The air is thick with the smell of roasting meat of uncertain origin and perfume applied in quantities that could fell an owlbear.",
+        "npcs": [
+          {
+            "name": "Yek the Tall",
+            "role": "shopkeeper",
+            "dialogue": "Welcome to Yek's! Best prices on Level 1, guaranteed! You want sword? We got sword. You want information? We got information. You want directions to Level 2? That costs extra. Yek knows the way. Yek knows ALL the ways.",
+            "notes": "Goblin boss. Wears a battered top hat and a monocle with no lens. Runs the Goblin Bazaar as a neutral zone -- no fighting allowed, enforced by twenty goblins with crossbows in the balcony above. Shrewd trader who accepts coin, barter, or 'interesting stories.'"
+          }
+        ],
+        "enemies": [],
+        "loot": [
+          {
+            "name": "Driftglobe (sold by goblins, 75 gp)",
+            "type": "equipment"
+          },
+          {
+            "name": "Dungeon Map Fragment (Level 1, partially accurate)",
+            "type": "quest_item"
+          }
+        ],
+        "hazards": [],
+        "services": [
+          "shop",
+          "rumor"
+        ],
+        "event_triggers": [
+          "On browse: A goblin child tugs your sleeve and whispers: 'The bugbears in the east hall are digging for something. Something old. Yek does not want you to know that.'"
+        ],
+        "_source": "Dungeon of the Mad Mage",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
+    },
+    "2": {
+      "id": 2,
+      "x": 5,
+      "y": 18,
+      "width": 10,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [
+        0,
+        5
+      ],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The main cave has a 40-foot-high ceiling filled with petrified objects. A statue of a princely human clad in plate armor, with his sword drawn, lies among the ruins.",
+        "read_aloud": "You see a curved set of stone stairs climbing twenty feet to the upper level, covered in bird droppings, broken roof shingles, mud, and mold. The air is thick with the smell of decay, and you notice a fireplace blackened with soot with a burned heap of padded leather chair lying near it.",
+        "npcs": [],
+        "enemies": [
+          {
+            "name": "Bugbear",
+            "cr": "1"
+          },
+          {
+            "name": "Bugbear",
+            "cr": "1"
+          },
+          {
+            "name": "Bugbear",
+            "cr": "1"
+          }
+        ],
+        "loot": [
+          {
+            "name": "Adventurer's Pack (salvaged, contains waterskin and 3 rations)",
+            "type": "equipment"
+          },
+          {
+            "name": "Helmet Collection (10 helmets, 2 gp each)",
+            "type": "treasure"
+          }
+        ],
+        "hazards": [],
+        "services": [],
+        "event_triggers": [
+          "On stealth success (DC 13): The bugbears can be bypassed entirely while sleeping."
+        ],
+        "_source": "Dungeon of the Mad Mage",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
+    },
+    "3": {
+      "id": 3,
+      "x": 40,
+      "y": 5,
+      "width": 10,
+      "height": 10,
+      "room_type": "normal",
+      "connections": [
+        1,
+        4
+      ],
+      "tier": 1,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "This area features a Green Slime covering sections of the vertical wall, obscuring a secret door that can be found by scraping the slime off the wall. Nearby, an altar of variegated gray stone is visible, and the panels weigh 50 pounds each.",
+        "read_aloud": "You see three stone tables arranged in a U-shape, their surfaces stained dark with fluids you would rather not identify. The walls are honeycombed with niches, each holding a wrapped bundle roughly the size and shape of a body—some yellowed with age, others disturbingly fresh. Candles drip wax onto every surface, and a robed figure hunches over the nearest table, working with small, precise tools.",
+        "npcs": [
+          {
+            "name": "Midna Tauberth",
+            "role": "shopkeeper",
+            "dialogue": "The dead have no need of their possessions. I redistribute them to the living. Call it recycling. The teeth? Components. You do not want to know what for.",
+            "notes": "Human undertaker, neutral evil. Has set up shop in the dungeon to harvest corpses left by adventurers. Sells salvaged gear at fair prices. Will buy bodies (5 gp each, no questions asked). Knows the layout of Level 1 from following the dead."
+          }
+        ],
+        "enemies": [],
+        "loot": [
+          {
+            "name": "Salvaged Shortsword +1",
+            "type": "weapon"
+          },
+          {
+            "name": "Scroll of Gentle Repose",
+            "type": "consumable"
+          }
+        ],
+        "hazards": [],
+        "services": [
+          "shop"
+        ],
+        "event_triggers": [],
+        "_source": "Dungeon of the Mad Mage",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
+    },
+    "4": {
+      "id": 4,
+      "x": 50,
+      "y": 15,
+      "width": 12,
+      "height": 10,
+      "room_type": "treasure",
+      "connections": [
+        1,
+        3,
+        5
+      ],
+      "tier": 2,
+      "is_locked": true,
+      "is_secret": false,
+      "content_hints": {
+        "description": "Hobgoblins of Doomcrown's phalanx have secured most of the halls and chambers in Arcturiadoom, leaving only wandering monsters of consequence. The level 1 features include spells such as Fireball, Hypnotic Pattern, and Detect Magic, alongside various combat and utility options.",
+        "read_aloud": "You see a cluttered workshop stretching into shadow, where workbenches sag under half-finished contraptions. Arcane formulae cover the walls, the ceiling, and the floor, scrawled in handwriting that starts precise and degenerates into frantic, looping scribbles at the edges. The air hums with residual magic, and small objects on the benches twitch at your approach.",
+        "npcs": [],
+        "enemies": [
+          {
+            "name": "Animated Armor",
+            "cr": "1"
+          },
+          {
+            "name": "Rug of Smothering",
+            "cr": "2"
+          }
+        ],
+        "loot": [
+          {
+            "name": "Boots of Elvenkind",
+            "type": "equipment"
+          },
+          {
+            "name": "Mirror of the Past (shows yesterday's events in reflected room)",
+            "type": "equipment"
+          },
+          {
+            "name": "Halaster's Workshop Notes (Level 1-3 annotations)",
+            "type": "quest_item"
+          }
+        ],
+        "hazards": [
+          {
+            "name": "Wild magic zone (roll on Wild Magic Surge table on spell cast)",
+            "dc": 0
+          }
+        ],
+        "services": [],
+        "event_triggers": [
+          "On notes read: Halaster's handwriting includes margin notes addressed to future readers: 'If you are reading this, you are already on Level 1, which means you are already doomed. Welcome!'"
+        ],
+        "_source": "Dungeon of the Mad Mage",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
+    },
+    "5": {
+      "id": 5,
+      "x": 30,
+      "y": 25,
+      "width": 10,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [
+        2,
+        4,
+        6
+      ],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "The area features a temple of Dumathoin, converted into a vile hatchery for giant spiders by T'rissa Auvryn­dar and her followers. A drow priestess stands atop a raised dais presiding over a group of four drow and three giant spiders.",
+        "read_aloud": "> You see the corridor ahead barricaded with salvaged dungeon furniture; doors are propped as walls, tables turned on their sides as parapets, and chair legs sharpened into stakes jutting outward. Crossbow bolts glint in the torchlight behind the barricade, aimed at you. A crudely painted sign hangs above the fortification: TOLL: 10 GP PER HEAD. HEADS ACCEPTED AS ALTERNATE PAYMENT.",
+        "npcs": [
+          {
+            "name": "Grum'shar",
+            "role": "antagonist",
+            "dialogue": "Ten gold or ten toes. Your choice. The Guild controls this corridor and everything south of it. You want to go deeper, you pay. You want to argue, Grum'shar can argue too.",
+            "notes": "Half-orc warlock. Xanathar Guild lieutenant. Secretly has an intellect devourer planted in a nearby prisoner, ready to deploy if things go wrong. Cruel but pragmatic -- will negotiate if outmatched."
+          }
+        ],
+        "enemies": [
+          {
+            "name": "Xanathar Guild Thug",
+            "cr": "1/2"
+          },
+          {
+            "name": "Xanathar Guild Thug",
+            "cr": "1/2"
+          },
+          {
+            "name": "Grum'shar (Warlock)",
+            "cr": "3"
+          }
+        ],
+        "loot": [
+          {
+            "name": "Guild Toll Chest (65 gp in mixed coin)",
+            "type": "treasure"
+          },
+          {
+            "name": "Xanathar Guild Insignia",
+            "type": "quest_item"
+          }
+        ],
+        "hazards": [],
+        "services": [],
+        "event_triggers": [
+          "On combat: Grum'shar activates the intellect devourer as a bonus action on round 2."
+        ],
+        "_source": "Dungeon of the Mad Mage",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
+    },
+    "6": {
+      "id": 6,
+      "x": 20,
+      "y": 35,
+      "width": 10,
+      "height": 8,
+      "room_type": "normal",
+      "connections": [
+        5,
+        7
+      ],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "A natural cavern where rats have achieved civilization, or at least its crude beginnings. Crude tunnels honeycomb the walls, each barely wide enough for a child.",
+        "read_aloud": "You see a tankard in the other. A shattered wooden cask lies nearby. Careful examination of the wall above the skeleton reveals a slot carved into the stone.",
+        "npcs": [],
+        "enemies": [
+          {
+            "name": "Swarm of Rats",
+            "cr": "1/4"
+          },
+          {
+            "name": "Swarm of Rats",
+            "cr": "1/4"
+          },
+          {
+            "name": "Giant Rat (Dire variant)",
+            "cr": "1/4"
+          },
+          {
+            "name": "Giant Rat (Dire variant)",
+            "cr": "1/4"
+          }
+        ],
+        "loot": [
+          {
+            "name": "Ring of Swimming (in rat nest refuse)",
+            "type": "equipment"
+          }
+        ],
+        "hazards": [
+          {
+            "name": "Filth disease (Constitution save after combat)",
+            "dc": 11
+          }
+        ],
+        "services": [],
+        "event_triggers": [
+          "On Speak with Animals: The rats are terrified. 'The metal ones from below. They come at night. They take us. They put things in our heads.'"
+        ],
+        "_source": "Dungeon of the Mad Mage",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
+    },
+    "7": {
+      "id": 7,
+      "x": 20,
+      "y": 48,
+      "width": 12,
+      "height": 10,
+      "room_type": "boss",
+      "connections": [
+        6
+      ],
+      "tier": 2,
+      "is_locked": false,
+      "is_secret": false,
+      "content_hints": {
+        "description": "A 20-foot-high, 20-foot-wide stone corridor ends before an adamantine double door bearing Dwarvish runes that read, “THETHREE KEYS. BRING THEM FORTH.” This area contains a 10-foot-diameter circle of runes drawn on the floor in dried blood, smoke billowing from four iron braziers, and a barlgura slumped motionless within the circle.",
+        "read_aloud": "> You see a 20-foot-high, 20-foot-wide stone corridor ending before an adamantine double door bearing Dwarvish runes. The writing on them reads, “THETHREE KEYS. BRING THEM FORTH.”",
+        "npcs": [],
+        "enemies": [
+          {
+            "name": "Bugbear Chief",
+            "cr": "3"
+          },
+          {
+            "name": "Bugbear",
+            "cr": "1"
+          },
+          {
+            "name": "Bugbear",
+            "cr": "1"
+          },
+          {
+            "name": "Wolf",
+            "cr": "1/4"
+          },
+          {
+            "name": "Wolf",
+            "cr": "1/4"
+          }
+        ],
+        "loot": [
+          {
+            "name": "Bugbear Chief's Morningstar (+1)",
+            "type": "weapon"
+          },
+          {
+            "name": "Stairway Key Rune (grants return passage)",
+            "type": "quest_item"
+          },
+          {
+            "name": "Stolen Goods (120 gp in assorted valuables)",
+            "type": "treasure"
+          }
+        ],
+        "hazards": [],
+        "services": [],
+        "event_triggers": [
+          "On combat start: The chieftain kicks the throne backward and draws his morningstar. 'Yek said you were coming. Yek is a snitch. But you -- you are dinner.'",
+          "On defeat: The arch flares to life, its runes blazing blue-white. The stairway down is open. Somewhere far below, something laughs."
+        ],
+        "_source": "Dungeon of the Mad Mage",
+        "_extraction_date": "2026-04-08",
+        "_method": "polished"
+      }
     }
+  }
 }
